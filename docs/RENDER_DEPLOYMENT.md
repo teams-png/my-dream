@@ -4,7 +4,9 @@
 
 1. Render dashboard → **New > Blueprint** → pick this GitHub repo.
 2. When asked, fill in `PLATFORM_ADMIN_EMAIL` and `PLATFORM_ADMIN_PASSWORD`
-   (your platform-owner login; created once by `build.sh`).
+   (your platform-owner login; created once by `build.sh`). Forgot the
+   password? Set a new `PLATFORM_ADMIN_PASSWORD` plus
+   `PLATFORM_ADMIN_RESET_PASSWORD=True`, redeploy, then set it back to `False`.
 3. Click **Apply**. After the build finishes, open the `bookpilot-web` URL.
 
 Free-plan limits: the web service sleeps after ~15 min idle (first request

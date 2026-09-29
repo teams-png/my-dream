@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import device_views, views
+from . import device_views, share_views, views
 
 app_name = "webapp"
 
@@ -393,4 +393,6 @@ urlpatterns = [
 
     # ---- Invoice PDF (shared) ----
     path("invoices/<int:invoice_id>/pdf/", views.invoice_pdf, name="invoice_pdf"),
+    path("invoices/<int:invoice_id>/share/", share_views.invoice_share, name="invoice_share"),
+    path("i/<str:token>/", share_views.public_invoice, name="public_invoice"),
 ]

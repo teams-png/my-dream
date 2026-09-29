@@ -20,9 +20,14 @@
   .totals .grand{ font-weight:700; font-size:15px; border-top:1px solid #12162B; margin-top:6px; padding-top:8px; }
   .bill-to{ margin-top:6px; }
   .bill-to strong{ display:block; margin-bottom:2px; }
+  .share-bar{display:flex;gap:8px;justify-content:flex-end;margin:-10px 0 18px}
+  .share-bar a,.share-bar button{font:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:9px;border:1px solid #d7dae4;background:#fff;color:#12162B;cursor:pointer;text-decoration:none}
+  .share-bar .primary{background:#12162B;color:#fff;border-color:#12162B}
+  @media print{.share-bar{display:none}}
 </style>
 </head>
 <body>
+  {% if public_url %}<div class="share-bar"><button class="primary" onclick="window.print()">Print</button><a href="?format=pdf">Download PDF</a></div>{% endif %}
   <div class="header">
     <div>
       <p class="company-name">{{ company.name }}</p>

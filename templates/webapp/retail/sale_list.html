@@ -13,7 +13,7 @@
   <tr>
     <td>{{ inv.invoice_number }}</td><td>{{ inv.date }}</td><td>{{ inv.customer.name }}</td>
     <td>{{ inv.total }}</td><td>{{ inv.get_status_display }}</td>
-    <td><a class="btn btn-secondary" href="{% url 'webapp:invoice_pdf' inv.id %}" target="_blank">PDF</a></td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:invoice_pdf' inv.id %}" target="_blank">PDF</a> <a class="btn btn-secondary" href="{% url 'webapp:invoice_share' inv.id %}">Share</a></td>
   </tr>
   {% endfor %}
 </table>

@@ -70,3 +70,40 @@ def test_print_agent_rejects_public_hosts():
     h = Fake({"X-Printer-Host": "8.8.8.8", "X-Printer-Port": "9100", "Content-Length": "1"})
     h.do_POST()
     assert b"only printers on the local network" in h.wfile.getvalue()
+
+
+def test_invoice_share_link_whatsapp_and_email(client, tenant_a, restaurant, mailoutbox=None):
+    from django.core import mail
+    from apps.sales import sharing
+    d = restaurant
+    tenant_a.country = "Qatar"; tenant_a.save(update_fields=["country"])
+    order = services.create_order(company=tenant_a, channel="takeaway", waiter=d["user"])
+    services.add_order_line(company=tenant_a, order=order, product=d["burger"], quantity=1)
+    invoice = services.settle_order(company=tenant_a, user=d["user"], order=order, warehouse=d["warehouse"],
+                                    date=order.created_at.date(), payments=[{"method": "cash", "amount": Decimal("20")}])
+    invoice.customer.phone = "5555 1234"; invoice.customer.save(update_fields=["phone"])
+    client.force_login(d["user"])
+    page = client.get(reverse("webapp:invoice_share", args=[invoice.id]))
+    assert page.status_code == 200
+    assert "https://wa.me/97455551234?text=" in page.context["whatsapp_url"]
+    public_url = page.context["public_url"]
+    # the public link works without login and cannot be forged
+    client.logout()
+    public = client.get(public_url)
+    assert public.status_code == 200 and invoice.invoice_number.encode() in public.content
+    assert client.get(reverse("webapp:public_invoice", args=["forged-token"])).status_code == 404
+    other = sharing.share_token(invoice).replace(str(invoice.id), str(invoice.id + 1))
+    assert client.get(reverse("webapp:public_invoice", args=[other])).status_code == 404
+    client.force_login(d["user"])
+    resp = client.post(reverse("webapp:invoice_share", args=[invoice.id]), {"email": "guest@example.com", "note": "Thanks!"})
+    assert resp.status_code == 302
+    assert len(mail.outbox) == 1 and mail.outbox[0].to == ["guest@example.com"]
+    assert invoice.invoice_number in mail.outbox[0].subject and len(mail.outbox[0].attachments) == 1
+
+
+def test_phone_normalisation():
+    from apps.sales.sharing import normalise_phone
+    assert normalise_phone("+91 98470 12345") == "919847012345"
+    assert normalise_phone("098470 12345", "India") == "919847012345"
+    assert normalise_phone("0097455551234") == "97455551234"
+    assert normalise_phone("", "Qatar") == ""

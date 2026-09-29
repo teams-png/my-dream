@@ -255,7 +255,7 @@
       </div>
     </div>
     <div class="rp-top-actions">
-      {% if order.status != 'paid' and order.status != 'cancelled' %}<a class="rp-icon-btn danger rp-hide-sm" href="{% url 'webapp:restaurant_order_cancel' order.id %}" title="Cancel order">✕ <span class="label">Cancel Order</span></a>{% elif order.status == 'paid' and order.invoice %}<a class="rp-icon-btn rp-hide-sm" href="{% url 'webapp:sales_return_add' order.invoice.id %}">↺ <span class="label">Return / Refund</span></a>{% endif %}
+      {% if order.status != 'paid' and order.status != 'cancelled' %}<a class="rp-icon-btn danger rp-hide-sm" href="{% url 'webapp:restaurant_order_cancel' order.id %}" title="Cancel order">✕ <span class="label">Cancel Order</span></a>{% elif order.status == 'paid' and order.invoice %}<a class="rp-icon-btn rp-hide-sm" href="{% url 'webapp:sales_return_add' order.invoice.id %}">↺ <span class="label">Return / Refund</span></a><a class="rp-icon-btn" href="{% url 'webapp:invoice_share' order.invoice.id %}">📤 <span class="label">Share bill</span></a>{% endif %}
       <a class="rp-icon-btn rp-hide-sm" href="{% url 'webapp:restaurant_kitchen' %}" title="Kitchen board">👨‍🍳 <span class="label">Kitchen</span></a>
       <button class="rp-icon-btn rp-hide-sm" id="posFullScreen" type="button" title="Full screen">⛶</button>
       <a class="rp-icon-btn primary" href="{% url 'webapp:restaurant_order_add' %}">＋ <span class="label">New order</span></a>

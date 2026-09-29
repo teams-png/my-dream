@@ -232,7 +232,7 @@ document.getElementById('pos-checkout-btn').addEventListener('click', async () =
     let extra = '';
     if (parseFloat(data.discount_amount) > 0) extra += ` (discount ${data.discount_amount} applied)`;
     if (data.points_earned) extra += ` · +${data.points_earned} loyalty pts`;
-    msg.innerHTML = `Sale complete — ${data.invoice_number}${extra}. <a href="/invoices/${data.invoice_id}/pdf/" target="_blank">Print receipt</a>`;
+    msg.innerHTML = `Sale complete — ${data.invoice_number}${extra}. <a href="/invoices/${data.invoice_id}/pdf/" target="_blank">Print receipt</a> · <a href="/invoices/${data.invoice_id}/share/">Send on WhatsApp / email</a>`;
     msg.style.color = 'var(--accent)';
     if (window.Devices) {
       const cfg = Devices.load();

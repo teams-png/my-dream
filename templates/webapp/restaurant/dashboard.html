@@ -4,6 +4,13 @@
 {% block heading %}Restaurant Dashboard{% endblock %}
 {% block content %}
 {% with cur=active_company.default_currency %}
+{% if paid_order and paid_order.invoice %}
+<div class="r-card r-reveal" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;margin-bottom:14px;border-color:#bfe8d1;background:#f0fbf5">
+  <span style="font-size:26px">✅</span><div style="margin-right:auto"><strong>{{ paid_order.order_number }} paid</strong><br><small style="color:var(--r-soft)">{{ cur }} {{ paid_order.total|floatformat:2 }} · invoice {{ paid_order.invoice.invoice_number }}</small></div>
+  <a class="r-btn small" target="_blank" href="{% url 'webapp:restaurant_receipt_print' paid_order.id %}">🧾 Print</a>
+  <a class="r-btn small" style="background:#25d366;border-color:#25d366;color:#fff" href="{% url 'webapp:invoice_share' paid_order.invoice.id %}">💬 WhatsApp / Email</a>
+</div>
+{% endif %}
 <section class="r-hero r-reveal">
   <div>
     <h2 id="rGreeting">Welcome back 👋</h2>

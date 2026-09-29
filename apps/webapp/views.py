@@ -3030,6 +3030,8 @@ def restaurant_dashboard(request):
         "orders": orders,
         "open_shift": RestaurantShift.objects.for_company(company).filter(status="open").first(),
         "recent_shifts": RestaurantShift.objects.for_company(company).order_by("-opened_at")[:10],
+        "paid_order": RestaurantOrder.objects.for_company(company).filter(
+            id=request.GET.get("paid"), status="paid").select_related("invoice").first() if (request.GET.get("paid") or "").isdigit() else None,
         "stats": {
             "sales_today": paid_today.aggregate(total=Sum("invoice__total"))["total"] or Decimal("0"),
             "paid_today": paid_today.count(),

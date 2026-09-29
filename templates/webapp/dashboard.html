@@ -25,15 +25,15 @@
 <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:16px;">
   <div class="card" style="border-top:3px solid var(--accent);">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Today's sales" %}</div>
-    <div style="font-size:26px; font-weight:700; margin-top:6px;">{{ today_sales }}</div>
+    <div style="font-size:26px; font-weight:700; margin-top:6px;">{{ today_sales|floatformat:2 }}</div>
   </div>
   <div class="card" style="border-top:3px solid var(--accent);">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "This month's revenue" %}</div>
-    <div style="font-size:26px; font-weight:700; margin-top:6px;">{{ month_revenue }}</div>
+    <div style="font-size:26px; font-weight:700; margin-top:6px;">{{ month_revenue|floatformat:2 }}</div>
   </div>
   <div class="card" style="border-top:3px solid {% if outstanding_dues > 0 %}var(--warning){% else %}var(--accent){% endif %};">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Outstanding dues" %}</div>
-    <div style="font-size:26px; font-weight:700; margin-top:6px; {% if outstanding_dues > 0 %}color:var(--warning);{% endif %}">{{ outstanding_dues }}</div>
+    <div style="font-size:26px; font-weight:700; margin-top:6px; {% if outstanding_dues > 0 %}color:var(--warning);{% endif %}">{{ outstanding_dues|floatformat:2 }}</div>
   </div>
   <div class="card" style="border-top:3px solid {% if low_stock_count > 0 %}var(--danger){% else %}var(--accent){% endif %};">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Low stock items" %}</div>
@@ -96,7 +96,7 @@
   </div>
   <div class="card">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Revenue (all time)" %}</div>
-    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue|floatformat:2 }}</div>
   </div>
 
   {% elif active_company.business_type.code == "sports_shop" or active_company.business_type.code == "fitness_sports_store" %}
@@ -196,7 +196,7 @@
   </div>
   <div class="card">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Revenue" %}</div>
-    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue|floatformat:2 }}</div>
   </div>
 
   {% elif active_company.business_type.code == "dental_clinic" or active_company.business_type.code == "medical_clinic" or active_company.business_type.code == "physiotherapy_center" or active_company.business_type.code == "veterinary_clinic" or active_company.business_type.code == "photography_studio" or active_company.business_type.code == "driving_school" or active_company.business_type.code == "tuition_center" or active_company.business_type.code == "consultancy" or active_company.business_type.code == "auto_garage" or active_company.business_type.code == "repair_services" or active_company.business_type.code == "home_services" or active_company.business_type.code == "laundry_dry_cleaning" %}
@@ -226,7 +226,7 @@
   {% else %}
   <div class="card">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Revenue (all time)" %}</div>
-    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue|floatformat:2 }}</div>
   </div>
   <div class="card">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Units in stock" %}</div>

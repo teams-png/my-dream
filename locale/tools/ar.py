@@ -242,3 +242,6 @@ AR.update({
 "Depreciation is already up to date.": "الإهلاك محدّث بالفعل.", "Asset added and recorded in the books.": "تمت إضافة الأصل وتسجيله في الدفاتر.",
 "Asset disposed and the gain or loss recorded.": "تم استبعاد الأصل وتسجيل الربح أو الخسارة.",
 })
+AR.update({"Dark / light mode": "الوضع الداكن / الفاتح", "VAT / Tax No:": "الرقم الضريبي:", "Backup & export": "النسخ الاحتياطي والتصدير",
+"Download every record of this business as a zip file. Keep a copy somewhere safe.": "نزّل جميع سجلات هذا النشاط كملف مضغوط. احتفظ بنسخة في مكان آمن.",
+"Include photos and logos": "تضمين الصور والشعارات", "Download all my data": "تنزيل كل بياناتي", "API docs": "توثيق واجهة API"})

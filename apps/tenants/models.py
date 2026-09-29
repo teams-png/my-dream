@@ -35,6 +35,10 @@ class Company(models.Model):
         "modules.BusinessType", on_delete=models.PROTECT, related_name="companies"
     )
     registration_number = models.CharField(max_length=100, blank=True)
+    vat_number = models.CharField(
+        max_length=30, blank=True,
+        help_text="Tax registration number printed on invoices (VAT TRN, KSA VAT no., India GSTIN).",
+    )
     country = models.CharField(max_length=100, blank=True)
     address = models.TextField(blank=True)
     phone = models.CharField(max_length=20, blank=True)

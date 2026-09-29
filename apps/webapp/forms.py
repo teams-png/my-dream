@@ -1131,7 +1131,7 @@ class RedeemPointsForm(forms.Form):
 class CompanySettingsForm(forms.ModelForm):
     class Meta:
         model = Company
-        fields = ["name", "registration_number", "address", "phone", "email", "default_currency", "logo"]
+        fields = ["name", "registration_number", "vat_number", "country", "address", "phone", "email", "default_currency", "logo"]
         widgets = {"address": forms.Textarea(attrs={"rows": 3})}
 
 # ---------------- Branches ----------------

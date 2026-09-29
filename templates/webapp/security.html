@@ -60,6 +60,12 @@ details summary{cursor:pointer;font-weight:700;margin-top:16px}
       <form method="post">{% csrf_token %}<input type="hidden" name="action" value="start"><button class="btn">{% translate "Set up two-step login" %}</button></form>
     {% endif %}
   </section>
+  {% if request.role.name == "Owner" %}
+  <section class="sec-card">
+    <div class="sec-head"><div class="sec-ico">💾</div><div><h2>{% translate "Backup & export" %}</h2><p>{% translate "Download every record of this business as a zip file. Keep a copy somewhere safe." %}</p></div></div>
+    <form method="post" action="{% url 'webapp:export_data' %}" class="row">{% csrf_token %}<label style="display:flex;gap:8px;align-items:center;font-size:14px"><input type="checkbox" name="media" value="1"> {% translate "Include photos and logos" %}</label><button class="btn">{% translate "Download all my data" %}</button></form>
+  </section>
+  {% endif %}
   <section class="sec-card">
     <div class="sec-head"><div class="sec-ico">🔑</div><div><h2>{% translate "Password" %}</h2><p>{% translate "Forgot it? Use “Forgot password” on the sign-in page." %}</p></div></div>
     <div class="row"><a class="btn btn-secondary" href="{% url 'webapp:password_reset' %}">{% translate "Reset password by email" %}</a></div>

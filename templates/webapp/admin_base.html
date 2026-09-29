@@ -102,7 +102,7 @@
   [dir=rtl] .focus-mode .sidebar{inset:0 0 0 auto;transform:translateX(105%)}
   [dir=rtl] .focus-mode.nav-open .sidebar{transform:none}
 </style>
-{% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}</head>
+{% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}{% load static %}<link rel="stylesheet" href="{% static 'css/dark.css' %}"><script>(function(){try{if(localStorage.getItem('bp.theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}})();</script></head>
 <body>
 <div class="shell" id="appShell">
   <nav class="sidebar">
@@ -123,13 +123,14 @@
       <a class="nav-link {% if 'platform_setup' in request.resolver_match.url_name or request.resolver_match.url_name == 'platform_module_list' or request.resolver_match.url_name == 'platform_business_type_list' %}active{% endif %}" href="{% url 'webapp:platform_setup' %}"><span>{% translate "Product Catalogue" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'register_client' %}active{% endif %}" href="{% url 'webapp:register_client' %}">{% translate "+ Add new client" %}</a>
       <a class="nav-link {% if request.resolver_match.url_name == 'security_settings' %}active{% endif %}" href="{% url 'webapp:security_settings' %}"><span>{% translate "🔐 Security & 2FA" %}</span></a>
+      <a class="nav-link" href="/api/docs/" target="_blank"><span>🧩 {% translate "API docs" %}</span></a>
     </div>
   </nav>
   <div class="nav-scrim" data-nav-close></div>
   <main class="main">
     <div class="topbar">
       <div class="topbar-title"><button class="nav-toggle" type="button" data-nav-toggle aria-label="{% translate 'Open menu' %}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><h1>{% block heading %}{% endblock %}</h1></div>
-      <div class="user-chip">{% include "webapp/_language_switcher.html" %}
+      <div class="user-chip">{% include "webapp/_language_switcher.html" %}{% include "webapp/_theme_toggle.html" %}
         <span>{{ request.user.email|default:request.user.username }} · <a href="{% url 'webapp:logout' %}">{% translate "Log out" %}</a></span>
         <div class="avatar">{{ request.user.email|default:request.user.username|slice:":1"|upper }}</div>
       </div>
@@ -144,5 +145,6 @@
   </main>
 </div>
 <script>(function(){const shell=document.getElementById('appShell');document.addEventListener('click',e=>{if(e.target.closest('[data-nav-toggle]'))shell.classList.toggle('nav-open');else if(e.target.closest('[data-nav-close]'))shell.classList.remove('nav-open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')shell.classList.remove('nav-open')})})();</script>
+<script>(function(){const set=t=>{document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('bp.theme',t)}catch(e){}document.querySelectorAll('[data-theme-toggle]').forEach(b=>b.textContent=t==='dark'?'☀️':'🌙')};set(document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light');document.addEventListener('click',e=>{if(e.target.closest('[data-theme-toggle]'))set(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')})})();</script>
 </body>
 </html>

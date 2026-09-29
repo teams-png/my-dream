@@ -3633,13 +3633,8 @@ def invoice_pdf(request, invoice_id):
     invoice = get_object_or_404(
         SalesInvoice.objects.for_company(company).select_related("customer"), id=invoice_id
     )
-    lines = SalesInvoiceLine.objects.filter(invoice=invoice).select_related("product")
-
-    html = render_to_string("webapp/invoice_pdf.html", {
-        "company": company, "invoice": invoice, "lines": lines,
-        "mobile_units": invoice.mobile_units.select_related("product").all(),
-        "balance_due": invoice.total - invoice.amount_paid,
-    })
+    from apps.sales.sharing import render_invoice_html
+    html = render_invoice_html(invoice)
 
     try:
         from weasyprint import HTML

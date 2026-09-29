@@ -1,0 +1,50 @@
+/* Dark theme: switched on with the moon button (saved per browser). */
+html[data-theme=dark]{
+  color-scheme:dark;
+  --ink:#e8ebf2; --ink-soft:#9aa3b6; --line:#2a3140; --paper:#0e1219; --panel:#161b25;
+  --accent:#1f9d55; --accent-soft:#15291d;
+  --success:#4ade80; --success-bg:#13291c; --warning:#fbbf24; --warning-bg:#302612; --danger:#f87171; --danger-bg:#361615;
+  /* restaurant module tokens */
+  --r-ink:#f1ece8; --r-soft:#b3a79f; --r-line:#33291f; --r-bg:#120e0b; --r-card:#1c1612;
+  --r-brand-soft:#3a1d12; --r-green-soft:#12291c; --r-blue-soft:#172440;
+}
+html[data-theme=dark] body{background:var(--paper);color:var(--ink)}
+html[data-theme=dark] :is(.card,table,.btn-secondary,.general-back,.nav-toggle,.lang-switch label,
+  .fn-card,.fn-stat,.fn-tabs,.fn-filter a,.fn-actions button,.dv-card,.dv-mode,.sh-card,.sec-card,.qr,
+  .r-card,.r-table,.r-order,.r-channel,.r-pick,.restaurant-shortcuts,.restaurant-back,.r-btn,
+  .rp-top,.rp-icon-btn,.menu-search,.cart-panel,.qty-btn,.rp-btn,.rp-dialog,.cat-btn.active,.more-card,
+  .kds-ticket,.quick-demo,.pos-no-match,.stepper button,.seg button.on,.quick-cash button,.theme-toggle){
+  background:var(--panel);color:var(--ink);border-color:var(--line)
+}
+html[data-theme=dark] :is(input,select,textarea){background:#0f141d;color:var(--ink);border-color:var(--line)}
+html[data-theme=dark] th{background:#11161f;color:var(--ink-soft)}
+html[data-theme=dark] tbody tr:hover td,html[data-theme=dark] tr:hover td{background:#1a202b}
+html[data-theme=dark] td,html[data-theme=dark] th{border-color:var(--line)}
+html[data-theme=dark] .sidebar{background:var(--panel);border-color:var(--line)}
+html[data-theme=dark] .nav-section>summary:hover{background:#1c2230}
+html[data-theme=dark] .rp-rail,html[data-theme=dark] .cart-foot{background:#17120e}
+html[data-theme=dark] .rpos{background:var(--r-bg)}
+html[data-theme=dark] .food-image,html[data-theme=dark] .dlg-hero{background:linear-gradient(145deg,#3a2a1a,#2a1d12)}
+html[data-theme=dark] .qty-actions,html[data-theme=dark] .stepper,html[data-theme=dark] .seg,html[data-theme=dark] .cart-qty-static,html[data-theme=dark] .rp-chip{background:#241c16}
+html[data-theme=dark] .rp-btn.kitchen{background:#f1ece8;color:#1d1715}
+html[data-theme=dark] .pay-due{background:#0b0908}
+html[data-theme=dark] .cart-hint,html[data-theme=dark] .cart-note .note{background:#33280f;color:#fcd98a}
+html[data-theme=dark] .main:has(.restaurant-route-nav){background:var(--r-bg)}
+html[data-theme=dark] .restaurant-shortcut:hover{background:#241c16}
+html[data-theme=dark] .restaurant-shortcut.selected{background:#f1ece8;color:#1d1715}
+html[data-theme=dark] .r-table.occupied{background:linear-gradient(160deg,#1c1612,#2a1a12)}
+html[data-theme=dark] .r-table.cleaning{background:#261f10}
+html[data-theme=dark] .messages .success{background:var(--success-bg)}
+html[data-theme=dark] .avatar{background:var(--accent-soft)}
+html[data-theme=dark] tr.due td{background:#2a2110}
+html[data-theme=dark] .dv-note,html[data-theme=dark] .secret,html[data-theme=dark] .codes code{background:#0f141d}
+html[data-theme=dark] .modifier-choice{border-color:var(--r-line)}
+html[data-theme=dark] .kds-ticket .ticket-head{background:#2a2014}
+html[data-theme=dark] .kds-ticket .ticket-item{border-color:#33291f}
+html[data-theme=dark] img{filter:brightness(.92)}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:38px;height:36px;border:1px solid #e3e6ee;border-radius:10px;background:#fff;cursor:pointer;font-size:16px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.theme-toggle:hover{transform:rotate(-15deg)}
+html,body,.sidebar,.card,table,.cart-panel,.rp-top{transition:background-color .3s ease,color .3s ease,border-color .3s ease}
+@media(prefers-reduced-motion:reduce){html,body,.sidebar,.card,table,.cart-panel,.rp-top,.theme-toggle{transition:none}}
+html[data-theme=dark] .rp-btn:disabled{background:#241c16!important;border-color:#241c16!important;color:#6f635a!important}
+html[data-theme=dark] .food-add:disabled{background:#3a3029}

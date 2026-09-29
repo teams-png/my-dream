@@ -268,7 +268,7 @@
       {% if order.status != 'paid' and order.status != 'cancelled' %}<a class="rp-icon-btn danger rp-hide-sm" href="{% url 'webapp:restaurant_order_cancel' order.id %}" title="{% translate 'Cancel order' %}">✕ <span class="label">{% translate "Cancel Order" %}</span></a>{% elif order.status == 'paid' and order.invoice %}<a class="rp-icon-btn rp-hide-sm" href="{% url 'webapp:sales_return_add' order.invoice.id %}">↺ <span class="label">{% translate "Return / Refund" %}</span></a><a class="rp-icon-btn" href="{% url 'webapp:invoice_share' order.invoice.id %}">📤 <span class="label">{% translate "Share bill" %}</span></a>{% endif %}
       <a class="rp-icon-btn rp-hide-sm" href="{% url 'webapp:restaurant_kitchen' %}" title="{% translate 'Kitchen board' %}">👨‍🍳 <span class="label">{% translate "Kitchen" %}</span></a>
       <button class="rp-icon-btn rp-hide-sm" id="posFullScreen" type="button" title="{% translate 'Full screen' %}">⛶</button>
-      <span class="rp-hide-sm">{% include "webapp/_language_switcher.html" %}</span>
+      <span class="rp-hide-sm">{% include "webapp/_language_switcher.html" %}</span><span class="rp-hide-sm">{% include "webapp/_theme_toggle.html" %}</span>
       <a class="rp-icon-btn primary" href="{% url 'webapp:restaurant_order_add' %}">＋ <span class="label">{% translate "New order" %}</span></a>
     </div>
   </header>

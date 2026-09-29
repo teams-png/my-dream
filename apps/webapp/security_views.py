@@ -71,3 +71,24 @@ def security_settings(request):
         uri = twofactor.provisioning_uri(user, secret)
         context.update({"setup_secret": secret, "qr_svg": twofactor.qr_svg(uri)})
     return render(request, "webapp/security.html", context)
+
+
+@login_required
+def export_data(request):
+    """Owner-only download of every record of the active business (backup / portability)."""
+    from django.http import HttpResponse
+    from apps.common.exporting import export_company_zip
+    company = getattr(request, "company", None)
+    role = getattr(request, "role", None)
+    if company is None or role is None or role.name != "Owner":
+        messages.error(request, "Only the business owner can download all data.")
+        return redirect("webapp:dashboard")
+    if request.method != "POST":
+        return redirect("webapp:security_settings")
+    data, counts = export_company_zip(company, include_media=request.POST.get("media") == "1")
+    from apps.audit.services import log_action
+    log_action(company=company, user=request.user, action="export", model_name="Company", object_id=company.id,
+               changes={"tables": len(counts), "rows": sum(counts.values())})
+    response = HttpResponse(data, content_type="application/zip")
+    response["Content-Disposition"] = f'attachment; filename="{company.slug}-{timezone.localdate():%Y%m%d}.zip"'
+    return response

@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # third-party
     "rest_framework",
     "rest_framework_simplejwt",
+    "drf_spectacular",
     "corsheaders",
 
     # shared utilities (Phase 18) — validators, permission classes; no models
@@ -181,6 +182,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticated",
     ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_THROTTLE_CLASSES": (
         "rest_framework.throttling.ScopedRateThrottle",
         "rest_framework.throttling.AnonRateThrottle",
@@ -258,3 +260,17 @@ PAYMENT_CREDENTIALS_ENCRYPTION_KEY = env(
 # accept new clients only through Platform Admin -> Add new client.
 PUBLIC_SIGNUP_ENABLED = env.bool("PUBLIC_SIGNUP_ENABLED", default=True)
 SIGNUP_LIMIT_PER_IP_PER_HOUR = env.int("SIGNUP_LIMIT_PER_IP_PER_HOUR", default=5)
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "BookPilot API",
+    "DESCRIPTION": "REST API for BookPilot. Sign in at /api/accounts/login/ to get a JWT access token "
+                   "(send 'otp' too when two-step login is on), then send 'Authorization: Bearer <token>'. "
+                   "Every request is scoped to your active business.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAuthenticated"],
+    "COMPONENT_SPLIT_REQUEST": True,
+    # Older APIViews without serializers are still listed; hide the generator noise.
+    "DISABLE_ERRORS_AND_WARNINGS": True,
+    "ENABLE_DJANGO_DEPLOY_CHECK": False,
+}

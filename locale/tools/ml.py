@@ -222,3 +222,6 @@ ML.update({
 "Depreciation is already up to date.": "ഡിപ്രീസിയേഷൻ ഇതിനകം അപ്ഡേറ്റ് ആണ്.", "Asset added and recorded in the books.": "ആസ്തി ചേർത്ത് അക്കൗണ്ട്സിൽ രേഖപ്പെടുത്തി.",
 "Asset disposed and the gain or loss recorded.": "ആസ്തി ഒഴിവാക്കി, ലാഭമോ നഷ്ടമോ രേഖപ്പെടുത്തി.",
 })
+ML.update({"Dark / light mode": "ഡാർക്ക് / ലൈറ്റ് മോഡ്", "VAT / Tax No:": "VAT / ടാക്സ് നമ്പർ:", "Backup & export": "ബാക്കപ്പും എക്സ്പോർട്ടും",
+"Download every record of this business as a zip file. Keep a copy somewhere safe.": "ഈ ബിസിനസിന്റെ എല്ലാ രേഖകളും zip ഫയലായി ഡൗൺലോഡ് ചെയ്യുക. ഒരു കോപ്പി സുരക്ഷിതമായി സൂക്ഷിക്കുക.",
+"Include photos and logos": "ഫോട്ടോകളും ലോഗോകളും ഉൾപ്പെടുത്തുക", "Download all my data": "എന്റെ എല്ലാ ഡാറ്റയും ഡൗൺലോഡ്", "API docs": "API ഡോക്സ്"})

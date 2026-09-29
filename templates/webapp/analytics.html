@@ -12,7 +12,7 @@
 <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:26px;">
   <div class="card">
     <div style="color:var(--ink-soft); font-size:13px;">Sales</div>
-    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ total_sales }}</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ total_sales|floatformat:2 }}</div>
   </div>
   <div class="card">
     <div style="color:var(--ink-soft); font-size:13px;">Expenses</div>

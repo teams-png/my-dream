@@ -1,5 +1,7 @@
 # BookPilot — Gap Analysis & Roadmap
 
+> **Update (second pass):** everything in Priority 1 except external setup (S3 bucket, SMTP, paid database) and most of Priority 2 is now built. See *Status* below.
+
 Review date: 2026-09-29. Scope: the whole platform, with a deeper pass on the
 restaurant POS. "Exists" means there is working code and tests for it.
 
@@ -64,3 +66,25 @@ restaurant POS. "Exists" means there is working code and tests for it.
 - New-order screen: visual order-type cards and table picker.
 - Fixed: numbers shown as `26.00000` / `2.000`; tables stuck in "cleaning" after payment
   (new **Mark ready** action); payment impossible when a tenant had no active stock location.
+
+
+## Status after the second pass
+
+| Item | Status |
+|------|--------|
+| Add items after KOT (rounds), table transfer, guests | ✅ Done |
+| Restaurant VAT/tax % and default service charge % | ✅ Done |
+| Devices: USB/serial/LAN printers, cash drawer, scanner, customer display, kitchen alarm | ✅ Done (`docs/DEVICES.md`) |
+| Invoice by WhatsApp / email + secure customer link | ✅ Done (email needs SMTP settings) |
+| Two-factor authentication | ✅ Done (web + API) |
+| Public landing, pricing, self sign-up with trial | ✅ Done |
+| Arabic + RTL (and Malayalam) | ✅ Main screens, POS, restaurant, finance, website |
+| PDC cheques, recurring invoices, fixed assets | ✅ Done |
+| Dark mode | ✅ Done (toggle in the top bar) |
+| KSA ZATCA Phase-1 QR on invoices | ✅ Done (Phase-2 API clearance needs ZATCA onboarding) |
+| Backups / data export | ✅ Done (`docs/BACKUPS.md`); database backups need a paid Render DB |
+| API documentation | ✅ `/api/docs/` (signed-in users) |
+| Persistent file storage | ⏳ Needs an S3/R2 bucket (`USE_S3=True` + keys) |
+| Offline POS, course firing, direct cash-drawer via LAN without agent, aggregator APIs | ⏳ Future |
+| India GST e-invoice (IRN) | ⏳ Needs a GSP/IRP account; GSTIN can already be printed via the tax number field |
+| Translating every remaining vertical screen | ⏳ Main flows are translated; niche vertical pages still English |

@@ -118,6 +118,10 @@ msgid "Security & 2FA"
 msgstr "സുരക്ഷയും 2FA-യും"
 
 #: templates/base.html
+msgid "API docs"
+msgstr "API ഡോക്സ്"
+
+#: templates/base.html
 msgid "⚙ Platform Admin"
 msgstr "⚙ പ്ലാറ്റ്ഫോം അഡ്മിൻ"
 
@@ -388,6 +392,10 @@ msgstr "◷ ഷിഫ്റ്റ് നിയന്ത്രണം"
 #: templates/webapp/_language_switcher.html
 msgid "Language"
 msgstr "ഭാഷ"
+
+#: templates/webapp/_theme_toggle.html
+msgid "Dark / light mode"
+msgstr "ഡാർക്ക് / ലൈറ്റ് മോഡ്"
 
 #: templates/webapp/admin_base.html
 msgid "Platform Admin"
@@ -1287,6 +1295,10 @@ msgstr "പ്രിന്റ്"
 #: templates/webapp/invoice_pdf.html
 msgid "Download PDF"
 msgstr "PDF ഡൗൺലോഡ്"
+
+#: templates/webapp/invoice_pdf.html
+msgid "VAT / Tax No:"
+msgstr "VAT / ടാക്സ് നമ്പർ:"
 
 #: templates/webapp/invoice_pdf.html
 msgid "INVOICE"
@@ -3103,6 +3115,26 @@ msgstr ""
 #: templates/webapp/security.html
 msgid "Set up two-step login"
 msgstr "ടു-സ്റ്റെപ്പ് ലോഗിൻ സെറ്റ് ചെയ്യുക"
+
+#: templates/webapp/security.html
+msgid "Backup & export"
+msgstr "ബാക്കപ്പും എക്സ്പോർട്ടും"
+
+#: templates/webapp/security.html
+msgid ""
+"Download every record of this business as a zip file. Keep a copy somewhere "
+"safe."
+msgstr ""
+"ഈ ബിസിനസിന്റെ എല്ലാ രേഖകളും zip ഫയലായി ഡൗൺലോഡ് ചെയ്യുക. ഒരു കോപ്പി "
+"സുരക്ഷിതമായി സൂക്ഷിക്കുക."
+
+#: templates/webapp/security.html
+msgid "Include photos and logos"
+msgstr "ഫോട്ടോകളും ലോഗോകളും ഉൾപ്പെടുത്തുക"
+
+#: templates/webapp/security.html
+msgid "Download all my data"
+msgstr "എന്റെ എല്ലാ ഡാറ്റയും ഡൗൺലോഡ്"
 
 #: templates/webapp/security.html
 msgid "Forgot it? Use “Forgot password” on the sign-in page."

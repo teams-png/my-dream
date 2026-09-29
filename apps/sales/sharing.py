@@ -10,6 +10,7 @@ from django.core import signing
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
+from .einvoice import invoice_qr_svg
 from .models import SalesInvoice, SalesInvoiceLine
 
 SHARE_SALT = "bookpilot.invoice-share"
@@ -44,6 +45,7 @@ def render_invoice_html(invoice, *, public_url=""):
         "mobile_units": invoice.mobile_units.select_related("product").all(),
         "balance_due": invoice.total - invoice.amount_paid,
         "public_url": public_url,
+        "zatca_qr": invoice_qr_svg(invoice),
     })
 
 

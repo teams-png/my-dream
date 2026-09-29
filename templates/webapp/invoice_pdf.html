@@ -32,6 +32,7 @@
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   [dir=rtl] body{font-family:'Inter','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
   html[lang=ml] body{font-family:'Inter','Noto Sans Malayalam','Nirmala UI',sans-serif}
+.zatca{float:left;width:150px;margin-top:18px;text-align:center;font-size:10px;color:#5F6579}.zatca-qr svg{width:130px;height:130px}[dir=rtl] .zatca{float:right}
 </style>
 {% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}</head>
 <body>
@@ -40,7 +41,7 @@
     <div>
       <p class="company-name">{{ company.name }}</p>
       <p class="muted">
-        {{ company.address|default:"" }}{% if company.phone %}<br>{{ company.phone }}{% endif %}{% if company.email %}<br>{{ company.email }}{% endif %}
+        {{ company.address|default:"" }}{% if company.phone %}<br>{{ company.phone }}{% endif %}{% if company.email %}<br>{{ company.email }}{% endif %}{% if company.vat_number %}<br><strong>{% translate "VAT / Tax No:" %} {{ company.vat_number }}</strong>{% endif %}
       </p>
     </div>
     <div class="invoice-title">
@@ -87,10 +88,11 @@
   </div>
   {% endif %}
 
+  {% if zatca_qr %}<div class="zatca"><div class="zatca-qr">{{ zatca_qr|safe }}</div><small>فاتورة ضريبية مبسطة · Simplified tax invoice</small></div>{% endif %}
   <div class="totals">
     <div><span>{% translate "Subtotal" %}</span><span>{{ invoice.subtotal }}</span></div>
     {% if invoice.tax_amount %}<div><span>{% translate "Tax" %}</span><span>{{ invoice.tax_amount }}</span></div>{% endif %}
-    <div class="grand"><span>Total ({{ company.default_currency }})</span><span>{{ invoice.total }}</span></div>
+    <div class="grand"><span>Total ({{ company.default_currency }})</span><span>{{ invoice.total|floatformat:2 }}</span></div>
     {% if invoice.amount_paid %}<div><span>{% translate "Paid" %}</span><span>{{ invoice.amount_paid }}</span></div>{% endif %}
     {% if balance_due %}<div><span>{% translate "Balance due" %}</span><span>{{ balance_due }}</span></div>{% endif %}
   </div>

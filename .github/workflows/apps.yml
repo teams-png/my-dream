@@ -9,6 +9,8 @@ name: apps
 on:
   workflow_dispatch:
   push:
+    # with only a tag filter GitHub would skip branch pushes, so list both
+    branches: ['**']
     tags: ['app-v*']
     paths:
       - 'desktop/**'

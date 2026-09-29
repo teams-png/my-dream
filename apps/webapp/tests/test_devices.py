@@ -92,8 +92,16 @@ def test_invoice_share_link_whatsapp_and_email(client, tenant_a, restaurant, mai
     public = client.get(public_url)
     assert public.status_code == 200 and invoice.invoice_number.encode() in public.content
     assert client.get(reverse("webapp:public_invoice", args=["forged-token"])).status_code == 404
-    other = sharing.share_token(invoice).replace(str(invoice.id), str(invoice.id + 1))
-    assert client.get(reverse("webapp:public_invoice", args=[other])).status_code == 404
+    # a token for another invoice, signed with a different key, is rejected
+    from django.core import signing
+    forged = signing.dumps({"i": invoice.id + 1, "c": invoice.company_id}, key="not-the-server-key",
+                           salt=sharing.SHARE_SALT, compress=True)
+    assert client.get(reverse("webapp:public_invoice", args=[forged])).status_code == 404
+    # so is a genuine token whose signed data was edited
+    payload, rest = sharing.share_token(invoice).split(":", 1)
+    edited = signing.b64_encode(b'{"i":%d,"c":%d}' % (invoice.id + 1, invoice.company_id)).decode()
+    assert edited != payload
+    assert client.get(reverse("webapp:public_invoice", args=[edited + ":" + rest])).status_code == 404
     client.force_login(d["user"])
     resp = client.post(reverse("webapp:invoice_share", args=[invoice.id]), {"email": "guest@example.com", "note": "Thanks!"})
     assert resp.status_code == 302

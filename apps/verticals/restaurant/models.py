@@ -4,6 +4,7 @@ import uuid
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from apps.tenants.models import TenantScopedModel
 
@@ -35,7 +36,7 @@ class RestaurantProfile(TenantScopedModel):
 
 
 class DiningTable(TenantScopedModel):
-    STATUS = [("available", "Available"), ("occupied", "Occupied"), ("reserved", "Reserved"), ("cleaning", "Cleaning")]
+    STATUS = [("available", _("Available")), ("occupied", _("Occupied")), ("reserved", _("Reserved")), ("cleaning", _("Cleaning"))]
     area = models.ForeignKey(DiningArea, on_delete=models.CASCADE, related_name="tables")
     name = models.CharField(max_length=50)
     capacity = models.PositiveSmallIntegerField(default=4)
@@ -132,7 +133,7 @@ class KitchenStation(TenantScopedModel):
 
 
 class TableReservation(TenantScopedModel):
-    STATUS = [("booked", "Booked"), ("seated", "Seated"), ("completed", "Completed"), ("cancelled", "Cancelled"), ("no_show", "No-show")]
+    STATUS = [("booked", _("Booked")), ("seated", _("Seated")), ("completed", _("Completed")), ("cancelled", _("Cancelled")), ("no_show", _("No-show"))]
     customer_name = models.CharField(max_length=150)
     phone = models.CharField(max_length=30)
     reservation_at = models.DateTimeField()
@@ -179,7 +180,7 @@ class RestaurantComboItem(TenantScopedModel):
 
 
 class RestaurantShift(TenantScopedModel):
-    STATUS = [("open", "Open"), ("closed", "Closed")]
+    STATUS = [("open", _("Open")), ("closed", _("Closed"))]
     opened_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name="restaurant_shifts_opened")
     opened_at = models.DateTimeField(auto_now_add=True)
     opening_cash = models.DecimalField(max_digits=12, decimal_places=2, default=0)
@@ -192,8 +193,8 @@ class RestaurantShift(TenantScopedModel):
 
 
 class RestaurantOrder(TenantScopedModel):
-    CHANNELS = [("dine_in", "Dine-in"), ("takeaway", "Takeaway"), ("delivery", "Delivery")]
-    STATUS = [("draft", "Draft"), ("held", "Held"), ("kitchen", "Sent to kitchen"), ("ready", "Ready"), ("served", "Served"), ("paid", "Paid"), ("cancelled", "Cancelled")]
+    CHANNELS = [("dine_in", _("Dine-in")), ("takeaway", _("Takeaway")), ("delivery", _("Delivery"))]
+    STATUS = [("draft", _("Draft")), ("held", _("Held")), ("kitchen", _("Sent to kitchen")), ("ready", _("Ready")), ("served", _("Served")), ("paid", _("Paid")), ("cancelled", _("Cancelled"))]
     order_number = models.CharField(max_length=30)
     channel = models.CharField(max_length=12, choices=CHANNELS)
     table = models.ForeignKey(DiningTable, null=True, blank=True, on_delete=models.PROTECT, related_name="orders")
@@ -267,7 +268,7 @@ class RestaurantOrderLineModifier(TenantScopedModel):
 
 
 class KitchenTicket(TenantScopedModel):
-    STATUS = [("queued", "Queued"), ("preparing", "Preparing"), ("ready", "Ready"), ("served", "Served")]
+    STATUS = [("queued", _("Queued")), ("preparing", _("Preparing")), ("ready", _("Ready")), ("served", _("Served"))]
     order = models.ForeignKey(RestaurantOrder, on_delete=models.CASCADE, related_name="kitchen_tickets")
     station = models.ForeignKey(KitchenStation, null=True, blank=True, on_delete=models.SET_NULL, related_name="tickets")
     ticket_number = models.CharField(max_length=30)

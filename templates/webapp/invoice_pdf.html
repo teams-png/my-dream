@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load i18n %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
 <meta charset="UTF-8">
-<title>Invoice {{ invoice.invoice_number }}</title>
+<title>{% translate "Invoice" %} {{ invoice.invoice_number }}</title>
 <style>
   @page { size: A4; margin: 28mm 20mm; }
   body{ font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; color:#12162B; font-size:13px; }
@@ -24,10 +24,18 @@
   .share-bar a,.share-bar button{font:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:9px;border:1px solid #d7dae4;background:#fff;color:#12162B;cursor:pointer;text-decoration:none}
   .share-bar .primary{background:#12162B;color:#fff;border-color:#12162B}
   @media print{.share-bar{display:none}}
+
+  .lang-switch{margin:0;display:inline-flex}
+  .lang-switch label{display:inline-flex;align-items:center;gap:4px;border:1px solid #e3e6ee;border-radius:10px;padding:0 6px 0 8px;background:#fff;font-size:13px;cursor:pointer}
+  .lang-switch select{border:0;background:transparent;font:inherit;font-size:13px;font-weight:600;padding:7px 2px;cursor:pointer;color:inherit}
+  .lang-switch select:focus{outline:none}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  [dir=rtl] body{font-family:'Inter','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
+  html[lang=ml] body{font-family:'Inter','Noto Sans Malayalam','Nirmala UI',sans-serif}
 </style>
-</head>
+{% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}</head>
 <body>
-  {% if public_url %}<div class="share-bar"><button class="primary" onclick="window.print()">Print</button><a href="?format=pdf">Download PDF</a></div>{% endif %}
+  {% if public_url %}<div class="share-bar"><button class="primary" onclick="window.print()">{% translate "Print" %}</button><a href="?format=pdf">{% translate "Download PDF" %}</a></div>{% endif %}
   <div class="header">
     <div>
       <p class="company-name">{{ company.name }}</p>
@@ -36,18 +44,18 @@
       </p>
     </div>
     <div class="invoice-title">
-      <h1>INVOICE</h1>
+      <h1>{% translate "INVOICE" %}</h1>
       <p class="muted">
-        No: {{ invoice.invoice_number }}<br>
-        Date: {{ invoice.date }}<br>
-        {% if invoice.due_date %}Due: {{ invoice.due_date }}<br>{% endif %}
-        Status: {{ invoice.get_status_display }}
+        {% translate "No:" %} {{ invoice.invoice_number }}<br>
+        {% translate "Date:" %} {{ invoice.date }}<br>
+        {% if invoice.due_date %}{% translate "Due:" %} {{ invoice.due_date }}<br>{% endif %}
+        {% translate "Status:" %} {{ invoice.get_status_display }}
       </p>
     </div>
   </div>
 
   <div class="bill-to">
-    <span class="muted">Bill to</span>
+    <span class="muted">{% translate "Bill to" %}</span>
     <strong>{{ invoice.customer.name }}</strong>
     <span class="muted">
       {% if invoice.customer.phone %}{{ invoice.customer.phone }}<br>{% endif %}
@@ -57,10 +65,10 @@
 
   <table>
     <tr>
-      <th>Item</th>
-      <th class="num">Qty</th>
-      <th class="num">Unit price</th>
-      <th class="num">Amount</th>
+      <th>{% translate "Item" %}</th>
+      <th class="num">{% translate "Qty" %}</th>
+      <th class="num">{% translate "Unit price" %}</th>
+      <th class="num">{% translate "Amount" %}</th>
     </tr>
     {% for line in lines %}
     <tr>
@@ -74,17 +82,17 @@
 
   {% if mobile_units %}
   <div style="margin-top:18px;border:1px solid #E7E9F2;padding:12px;">
-    <strong>Handset IMEI & Warranty</strong>
-    {% for unit in mobile_units %}<p style="margin:7px 0 0;">{{ unit.product.name }} — IMEI: <b>{{ unit.imei }}</b>{% if unit.serial_number %} · Serial: {{ unit.serial_number }}{% endif %} · Warranty: {{ unit.warranty_months }} months{% if unit.warranty_expires %} (until {{ unit.warranty_expires }}){% endif %}</p>{% endfor %}
+    <strong>{% translate "Handset IMEI & Warranty" %}</strong>
+    {% for unit in mobile_units %}<p style="margin:7px 0 0;">{{ unit.product.name }} {% translate "— IMEI:" %} <b>{{ unit.imei }}</b>{% if unit.serial_number %} {% translate "· Serial:" %} {{ unit.serial_number }}{% endif %} {% translate "· Warranty:" %} {{ unit.warranty_months }} {% translate "months" %}{% if unit.warranty_expires %} {% translate "(until" %} {{ unit.warranty_expires }}){% endif %}</p>{% endfor %}
   </div>
   {% endif %}
 
   <div class="totals">
-    <div><span>Subtotal</span><span>{{ invoice.subtotal }}</span></div>
-    {% if invoice.tax_amount %}<div><span>Tax</span><span>{{ invoice.tax_amount }}</span></div>{% endif %}
+    <div><span>{% translate "Subtotal" %}</span><span>{{ invoice.subtotal }}</span></div>
+    {% if invoice.tax_amount %}<div><span>{% translate "Tax" %}</span><span>{{ invoice.tax_amount }}</span></div>{% endif %}
     <div class="grand"><span>Total ({{ company.default_currency }})</span><span>{{ invoice.total }}</span></div>
-    {% if invoice.amount_paid %}<div><span>Paid</span><span>{{ invoice.amount_paid }}</span></div>{% endif %}
-    {% if balance_due %}<div><span>Balance due</span><span>{{ balance_due }}</span></div>{% endif %}
+    {% if invoice.amount_paid %}<div><span>{% translate "Paid" %}</span><span>{{ invoice.amount_paid }}</span></div>{% endif %}
+    {% if balance_due %}<div><span>{% translate "Balance due" %}</span><span>{{ balance_due }}</span></div>{% endif %}
   </div>
 </body>
 </html>

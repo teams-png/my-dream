@@ -70,6 +70,8 @@
 .r-tables{display:grid;grid-template-columns:repeat(auto-fill,minmax(122px,1fr));gap:10px}
 .r-table{--c:var(--r-green);position:relative;display:flex;flex-direction:column;gap:3px;min-height:112px;padding:12px 13px;border-radius:18px;border:1.5px solid var(--r-line);background:#fff;color:var(--r-ink);text-align:left;transition:transform .25s var(--r-ease),box-shadow .25s,border-color .2s;animation:rRise .45s var(--r-ease) both;animation-delay:calc(var(--d,0) * 35ms)}
 .r-table::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 4px 4px 0;background:var(--c)}
+[dir=rtl] .r-table::before{left:auto;right:0;border-radius:4px 0 0 4px}
+[dir=rtl] .r-hero::after{right:auto;left:-10px}
 a.r-table:hover{transform:translateY(-3px);box-shadow:var(--r-shadow);border-color:var(--c)}
 .r-table .t-name{font-size:19px;font-weight:900;letter-spacing:-.02em}
 .r-table .t-meta{font-size:12px;color:var(--r-soft);font-weight:600}

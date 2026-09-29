@@ -3,3 +3,4 @@ django-debug-toolbar==4.4.6
 pytest==8.3.4
 pytest-django==4.9.0
 factory-boy==3.3.1
+polib==1.2.0  # rebuild translations: python locale/tools/build.py

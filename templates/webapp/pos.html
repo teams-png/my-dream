@@ -1,68 +1,69 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
-{% block title %}POS{% endblock %}
-{% block heading %}Point of Sale{% endblock %}
+{% block title %}{% translate "POS" %}{% endblock %}
+{% block heading %}{% translate "Point of Sale" %}{% endblock %}
 {% block content %}
 <div style="display:grid; grid-template-columns:1.3fr 1fr; gap:20px; align-items:start;">
 
   <div>
     <input id="pos-search" type="text" autocomplete="off" autofocus
-           placeholder="Scan barcode or search product by name / SKU..."
+           placeholder="{% translate 'Scan barcode or search product by name / SKU...' %}"
            style="width:100%; padding:11px 14px; border:1px solid var(--line); border-radius:8px; font-size:15px; margin-bottom:14px;">
     <div id="pos-product-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; max-height:70vh; overflow-y:auto;"></div>
   </div>
 
   <div class="card" style="position:sticky; top:20px;">
-    <h3 style="margin:0 0 12px; font-size:15px;">Cart</h3>
+    <h3 style="margin:0 0 12px; font-size:15px;">{% translate "Cart" %}</h3>
     {% if branches|length > 1 %}
-    <label style="font-size:13px; color:var(--ink-soft);">Branch</label>
+    <label style="font-size:13px; color:var(--ink-soft);">{% translate "Branch" %}</label>
     <select id="pos-branch" style="width:100%; padding:8px; border:1px solid var(--line); border-radius:6px; margin-bottom:12px;">
       {% for b in branches %}<option value="{{ b.id }}" {% if b.is_default %}selected{% endif %}>{{ b.name }}</option>{% endfor %}
     </select>
     {% endif %}
-    <label style="font-size:13px; color:var(--ink-soft);">Customer</label>
+    <label style="font-size:13px; color:var(--ink-soft);">{% translate "Customer" %}</label>
     <select id="pos-customer" style="width:100%; padding:8px; border:1px solid var(--line); border-radius:6px; margin-bottom:12px;">
-      <option value="">Walk-in Customer</option>
+      <option value="">{% translate "Walk-in Customer" %}</option>
       {% for c in customers %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}
     </select>
 
     <table style="width:100%; font-size:13.5px;">
       <tbody id="pos-cart-body"></tbody>
     </table>
-    <div id="pos-empty-cart" style="color:var(--ink-soft); font-size:13.5px; padding:16px 0; text-align:center;">Cart is empty</div>
+    <div id="pos-empty-cart" style="color:var(--ink-soft); font-size:13.5px; padding:16px 0; text-align:center;">{% translate "Cart is empty" %}</div>
 
-    <label style="font-size:13px; color:var(--ink-soft); margin-top:8px; display:block;">Coupon code (optional)</label>
-    <input id="pos-coupon" type="text" placeholder="e.g. SAVE10" style="width:100%; padding:7px; border:1px solid var(--line); border-radius:6px; margin-bottom:6px;">
+    <label style="font-size:13px; color:var(--ink-soft); margin-top:8px; display:block;">{% translate "Coupon code (optional)" %}</label>
+    <input id="pos-coupon" type="text" placeholder="{% translate 'e.g. SAVE10' %}" style="width:100%; padding:7px; border:1px solid var(--line); border-radius:6px; margin-bottom:6px;">
     <div id="pos-discount-line" style="display:none; justify-content:space-between; font-size:13.5px; color:var(--accent);">
-      <span>Discount</span><span id="pos-discount-amount">0.00</span>
+      <span>{% translate "Discount" %}</span><span id="pos-discount-amount">0.00</span>
     </div>
 
     <div style="border-top:1px solid var(--line); margin-top:12px; padding-top:12px;">
       <div style="display:flex; justify-content:space-between; font-size:18px; font-weight:700;">
-        <span>Total</span><span id="pos-total">0.00</span>
+        <span>{% translate "Total" %}</span><span id="pos-total">0.00</span>
       </div>
     </div>
 
-    <label style="font-size:13px; color:var(--ink-soft); margin-top:12px; display:block;">Payment method</label>
+    <label style="font-size:13px; color:var(--ink-soft); margin-top:12px; display:block;">{% translate "Payment method" %}</label>
     <select id="pos-payment-method" style="width:100%; padding:8px; border:1px solid var(--line); border-radius:6px; margin-bottom:14px;">
-      <option value="cash">Cash</option>
-      <option value="card">Card</option>
-      <option value="bank">Bank Transfer</option>
-      {% if is_mobile_shop %}<option value="credit">Credit / Due</option><option value="installment">Instalment</option>{% endif %}
+      <option value="cash">{% translate "Cash" %}</option>
+      <option value="card">{% translate "Card" %}</option>
+      <option value="bank">{% translate "Bank Transfer" %}</option>
+      {% if is_mobile_shop %}<option value="credit">{% translate "Credit / Due" %}</option><option value="installment">{% translate "Instalment" %}</option>{% endif %}
     </select>
     {% if is_mobile_shop %}
     <div id="mobile-payment-details" style="display:none; border:1px solid var(--line); border-radius:7px; padding:10px; margin-bottom:12px;">
-      <label style="font-size:12px;">Deposit / amount paid now</label><input id="pos-amount-paid" type="number" min="0" step="0.01" value="0" style="width:100%; margin-bottom:8px;">
-      <label style="font-size:12px;">Deposit method</label><select id="pos-deposit-method" style="width:100%; margin-bottom:8px;"><option value="cash">Cash</option><option value="card">Card</option><option value="bank">Bank</option></select>
+      <label style="font-size:12px;">{% translate "Deposit / amount paid now" %}</label><input id="pos-amount-paid" type="number" min="0" step="0.01" value="0" style="width:100%; margin-bottom:8px;">
+      <label style="font-size:12px;">{% translate "Deposit method" %}</label><select id="pos-deposit-method" style="width:100%; margin-bottom:8px;"><option value="cash">{% translate "Cash" %}</option><option value="card">{% translate "Card" %}</option><option value="bank">{% translate "Bank" %}</option></select>
       <div id="installment-fields" style="display:none;">
-        <label style="font-size:12px;">Number of instalments</label><input id="pos-installment-count" type="number" min="1" value="3" style="width:100%; margin-bottom:8px;">
-        <label style="font-size:12px;">Frequency</label><select id="pos-frequency" style="width:100%; margin-bottom:8px;"><option value="monthly">Monthly</option><option value="weekly">Weekly</option></select>
-        <label style="font-size:12px;">First due date</label><input id="pos-next-due" type="date" style="width:100%;">
+        <label style="font-size:12px;">{% translate "Number of instalments" %}</label><input id="pos-installment-count" type="number" min="1" value="3" style="width:100%; margin-bottom:8px;">
+        <label style="font-size:12px;">{% translate "Frequency" %}</label><select id="pos-frequency" style="width:100%; margin-bottom:8px;"><option value="monthly">{% translate "Monthly" %}</option><option value="weekly">{% translate "Weekly" %}</option></select>
+        <label style="font-size:12px;">{% translate "First due date" %}</label><input id="pos-next-due" type="date" style="width:100%;">
       </div>
     </div>
     {% endif %}
 
-    <button id="pos-checkout-btn" class="btn" style="width:100%; padding:12px; font-size:15px;">Complete Sale</button>
+    <button id="pos-checkout-btn" class="btn" style="width:100%; padding:12px; font-size:15px;">{% translate "Complete Sale" %}</button>
     <div id="pos-message" style="margin-top:10px; font-size:13.5px;"></div>
   </div>
 </div>

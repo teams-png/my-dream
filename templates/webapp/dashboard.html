@@ -1,260 +1,261 @@
 {% extends "base.html" %}
-{% block title %}Overview{% endblock %}
-{% block heading %}Overview{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Overview" %}{% endblock %}
+{% block heading %}{% translate "Overview" %}{% endblock %}
 {% block content %}
 {% if subscription %}
   {% if subscription_days_left < 0 %}
   <div class="card" style="border-left:4px solid var(--danger); margin-bottom:18px;">
-    <strong style="color:var(--danger);">Your subscription has expired.</strong>
-    <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">Renew now →</a>
+    <strong style="color:var(--danger);">{% translate "Your subscription has expired." %}</strong>
+    <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">{% translate "Renew now →" %}</a>
   </div>
   {% elif subscription.status == "trial" %}
   <div class="card" style="border-left:4px solid var(--accent); margin-bottom:18px;">
-    <strong>Free trial — {{ subscription_days_left }} day{{ subscription_days_left|pluralize }} left</strong>
-    <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">View billing →</a>
+    <strong>{% translate "Free trial —" %} {{ subscription_days_left }} day{{ subscription_days_left|pluralize }} {% translate "left" %}</strong>
+    <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">{% translate "View billing →" %}</a>
   </div>
   {% elif subscription_days_left <= 7 %}
   <div class="card" style="border-left:4px solid var(--accent); margin-bottom:18px;">
-    <strong>Subscription renews in {{ subscription_days_left }} day{{ subscription_days_left|pluralize }}</strong>
-    <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">View billing →</a>
+    <strong>{% translate "Subscription renews in" %} {{ subscription_days_left }} day{{ subscription_days_left|pluralize }}</strong>
+    <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">{% translate "View billing →" %}</a>
   </div>
   {% endif %}
 {% endif %}
 
 <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:16px;">
   <div class="card" style="border-top:3px solid var(--accent);">
-    <div style="color:var(--ink-soft); font-size:13px;">Today's sales</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Today's sales" %}</div>
     <div style="font-size:26px; font-weight:700; margin-top:6px;">{{ today_sales }}</div>
   </div>
   <div class="card" style="border-top:3px solid var(--accent);">
-    <div style="color:var(--ink-soft); font-size:13px;">This month's revenue</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "This month's revenue" %}</div>
     <div style="font-size:26px; font-weight:700; margin-top:6px;">{{ month_revenue }}</div>
   </div>
   <div class="card" style="border-top:3px solid {% if outstanding_dues > 0 %}var(--warning){% else %}var(--accent){% endif %};">
-    <div style="color:var(--ink-soft); font-size:13px;">Outstanding dues</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Outstanding dues" %}</div>
     <div style="font-size:26px; font-weight:700; margin-top:6px; {% if outstanding_dues > 0 %}color:var(--warning);{% endif %}">{{ outstanding_dues }}</div>
   </div>
   <div class="card" style="border-top:3px solid {% if low_stock_count > 0 %}var(--danger){% else %}var(--accent){% endif %};">
-    <div style="color:var(--ink-soft); font-size:13px;">Low stock items</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Low stock items" %}</div>
     <div style="font-size:26px; font-weight:700; margin-top:6px; {% if low_stock_count > 0 %}color:var(--danger);{% endif %}">{{ low_stock_count }}</div>
   </div>
 </div>
 
-<div style="font-size:15px; font-weight:700; margin:22px 0 12px;">Business overview</div>
+<div style="font-size:15px; font-weight:700; margin:22px 0 12px;">{% translate "Business overview" %}</div>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
   {% if active_company.business_type.code == "gym" or active_company.business_type.code == "fitness_center" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Active members</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Active members" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ active_member_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Total members</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Total members" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ member_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Membership plans</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Membership plans" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ plan_count }}</div>
   </div>
 
   {% elif active_company.business_type.code == "spa" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Services offered</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Services offered" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ service_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Appointments today</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Appointments today" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ today_appt_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Completed (all time)</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Completed (all time)" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
   </div>
 
   {% elif active_company.business_type.code == "textile" or active_company.business_type.code == "tailoring_shop" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Fabrics</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Fabrics" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ fabric_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Orders pending</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Orders pending" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ pending_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Ready for pickup</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Ready for pickup" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ ready_count }}</div>
   </div>
 
   {% elif active_company.business_type.code == "vehicle_wash" or active_company.business_type.code == "car_wash" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Vehicles</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Vehicles" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ vehicle_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Washes today</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Washes today" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ today_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Revenue (all time)</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Revenue (all time)" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
   </div>
 
   {% elif active_company.business_type.code == "sports_shop" or active_company.business_type.code == "fitness_sports_store" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Products</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Products" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ product_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Categories</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Categories" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ category_count }}</div>
   </div>
 
   {% elif active_company.business_type.code == "cycle_shop" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">In stock</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "In stock" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ in_stock_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Sold</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Sold" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ sold_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Open tickets</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Open tickets" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ open_tickets }}</div>
   </div>
 
   {% elif active_company.business_type.code == "saloon" or active_company.business_type.code == "barber_shop" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Services</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Services" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ service_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Appointments today</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Appointments today" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ today_appt_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Completed (all time)</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Completed (all time)" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
   </div>
 
   {% elif active_company.business_type.code == "beauty_parlour" or active_company.business_type.code == "beauty_salon" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Services</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Services" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ service_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Appointments today</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Appointments today" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ today_appt_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Completed (all time)</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Completed (all time)" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
   </div>
 
   {% elif active_company.business_type.code == "medical_shop" or active_company.business_type.code == "pharmacy" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Batches in stock</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Batches in stock" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ batch_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Expiring in 30 days</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Expiring in 30 days" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ expiring_soon }}</div>
   </div>
 
   {% elif active_company.business_type.code == "protein_shop" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Batches in stock</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Batches in stock" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ batch_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Expiring in 30 days</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Expiring in 30 days" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ expiring_soon }}</div>
   </div>
 
   {% elif active_company.business_type.code == "construction" or active_company.business_type.code == "contracting_company" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Active projects</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Active projects" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ active_projects }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Total projects</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Total projects" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ total_projects }}</div>
   </div>
 
   {% elif active_company.business_type.code == "watch_shop" or active_company.business_type.code == "perfume_shop" or active_company.business_type.code == "book_store" or active_company.business_type.code == "retail_shop" or active_company.business_type.code == "supermarket" or active_company.business_type.code == "grocery_store" or active_company.business_type.code == "clothing_store" or active_company.business_type.code == "electronics_store" or active_company.business_type.code == "computer_shop" or active_company.business_type.code == "furniture_store" or active_company.business_type.code == "hardware_store" or active_company.business_type.code == "cosmetics_store" or active_company.business_type.code == "jewelry_shop" or active_company.business_type.code == "auto_spare_parts" or active_company.business_type.code == "medical_equipment_store" or active_company.business_type.code == "flower_shop" or active_company.business_type.code == "pet_shop" or active_company.business_type.code == "bakery" or active_company.business_type.code == "trading_company" or active_company.business_type.code == "wholesale_business" or active_company.business_type.code == "import_export" or active_company.business_type.code == "car_showroom" or active_company.business_type.code == "printing_shop" or active_company.business_type.code == "manufacturing" or active_company.business_type.code == "industrial_services" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Products</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Products" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ product_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Categories</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Categories" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ category_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Sales</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Sales" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ invoice_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Revenue</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Revenue" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
   </div>
 
   {% elif active_company.business_type.code == "dental_clinic" or active_company.business_type.code == "medical_clinic" or active_company.business_type.code == "physiotherapy_center" or active_company.business_type.code == "veterinary_clinic" or active_company.business_type.code == "photography_studio" or active_company.business_type.code == "driving_school" or active_company.business_type.code == "tuition_center" or active_company.business_type.code == "consultancy" or active_company.business_type.code == "auto_garage" or active_company.business_type.code == "repair_services" or active_company.business_type.code == "home_services" or active_company.business_type.code == "laundry_dry_cleaning" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Services</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Services" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ service_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Appointments today</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Appointments today" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ today_appt_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Completed (all time)</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Completed (all time)" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
   </div>
 
   {% elif active_company.business_type.code == "advertising_agency" or active_company.business_type.code == "digital_marketing_agency" or active_company.business_type.code == "web_development" or active_company.business_type.code == "it_services" or active_company.business_type.code == "software_company" or active_company.business_type.code == "accounting_audit" or active_company.business_type.code == "recruitment_agency" or active_company.business_type.code == "security_services" or active_company.business_type.code == "event_management" or active_company.business_type.code == "cleaning_company" or active_company.business_type.code == "maintenance_company" or active_company.business_type.code == "landscaping_company" %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Active projects</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Active projects" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ active_projects }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Total projects</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Total projects" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ total_projects }}</div>
   </div>
 
   {% else %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Revenue (all time)</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Revenue (all time)" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Units in stock</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Units in stock" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ unit_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Sales made</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Sales made" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ sales_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Categories</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Categories" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ category_count }}</div>
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Products</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Products" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ product_count }}</div>
   </div>
   {% endif %}
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Customers</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Customers" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ customer_count }}</div>
   </div>
 </div>
 
-<div style="font-size:15px; font-weight:700; margin:26px 0 12px;">Recent sales</div>
+<div style="font-size:15px; font-weight:700; margin:26px 0 12px;">{% translate "Recent sales" %}</div>
 <div class="card" style="padding:0; overflow:hidden;">
   {% if recent_invoices %}
   <table>
-    <thead><tr><th>Invoice</th><th>Customer</th><th>Date</th><th>Total</th><th>Status</th></tr></thead>
+    <thead><tr><th>{% translate "Invoice" %}</th><th>{% translate "Customer" %}</th><th>{% translate "Date" %}</th><th>{% translate "Total" %}</th><th>{% translate "Status" %}</th></tr></thead>
     <tbody>
       {% for inv in recent_invoices %}
       <tr>
@@ -268,7 +269,7 @@
     </tbody>
   </table>
   {% else %}
-  <div class="empty">No sales recorded yet — they'll show up here as soon as you make your first sale.</div>
+  <div class="empty">{% translate "No sales recorded yet — they'll show up here as soon as you make your first sale." %}</div>
   {% endif %}
 </div>
 {% endblock %}

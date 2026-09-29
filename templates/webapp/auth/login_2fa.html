@@ -1,9 +1,9 @@
-{% load static %}<!DOCTYPE html>
-<html lang="en">
+{% load i18n %}{% load static %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verify sign-in</title>
+<title>{% translate "Verify sign-in" %}</title>
 <style>
   @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Regular.ttf" %}');font-weight:400}
   @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Bold.ttf" %}');font-weight:700}
@@ -21,17 +21,26 @@
   .alt{display:block;margin-top:16px;font-size:13px;color:#5f6579}
   a{color:#14532d;font-weight:700}
   @media(prefers-reduced-motion:reduce){.box,.msg{animation:none}}
+
+  .lang-switch{margin:0;display:inline-flex}
+  .lang-switch label{display:inline-flex;align-items:center;gap:4px;border:1px solid #e3e6ee;border-radius:10px;padding:0 6px 0 8px;background:#fff;font-size:13px;cursor:pointer}
+  .lang-switch select{border:0;background:transparent;font:inherit;font-size:13px;font-weight:600;padding:7px 2px;cursor:pointer;color:inherit}
+  .lang-switch select:focus{outline:none}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  [dir=rtl] body{font-family:'Inter','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
+  html[lang=ml] body{font-family:'Inter','Noto Sans Malayalam','Nirmala UI',sans-serif}
 </style>
-</head>
+{% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}</head>
 <body>
+<div style="position:fixed;top:14px;inset-inline-end:14px">{% include "webapp/_language_switcher.html" %}</div>
 <form class="box" method="post" autocomplete="off">{% csrf_token %}
   <div class="ico">🔐</div>
-  <h1>Two-step verification</h1>
-  <p>Enter the 6-digit code from your authenticator app for <strong>{{ user_email }}</strong>.</p>
+  <h1>{% translate "Two-step verification" %}</h1>
+  <p>{% translate "Enter the 6-digit code from your authenticator app for" %} <strong>{{ user_email }}</strong>.</p>
   {% for m in messages %}<div class="msg">{{ m }}</div>{% endfor %}
   <input class="code" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="14" placeholder="••••••" autofocus required>
-  <button type="submit">Verify & sign in</button>
-  <span class="alt">Lost your phone? Type one of your recovery codes instead.<br><a href="{% url 'webapp:login' %}">← Back to sign in</a></span>
+  <button type="submit">{% translate "Verify & sign in" %}</button>
+  <span class="alt">{% translate "Lost your phone? Type one of your recovery codes instead." %}<br><a href="{% url 'webapp:login' %}">{% translate "← Back to sign in" %}</a></span>
 </form>
 <script>document.querySelector('.code').addEventListener('input',e=>{const v=e.target.value.replace(/\s/g,'');if(/^\d{6}$/.test(v))e.target.form.requestSubmit()})</script>
 </body>

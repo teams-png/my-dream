@@ -1,10 +1,10 @@
-{% load static %}
+{% load i18n %}{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% block title %}Platform Admin{% endblock %}</title>
+<title>{% block title %}{% translate "Platform Admin" %}{% endblock %}</title>
 <style>
   @font-face { font-family:'Inter'; src:url('{% static "fonts/Inter-Regular.ttf" %}') format('truetype'); font-weight:400; font-display:swap; }
   @font-face { font-family:'Inter'; src:url('{% static "fonts/Inter-Medium.ttf" %}') format('truetype'); font-weight:500; font-display:swap; }
@@ -86,36 +86,51 @@
     .main{padding:16px 16px 40px!important}
     table{display:block;overflow-x:auto}
   }
+
+  .lang-switch{margin:0;display:inline-flex}
+  .lang-switch label{display:inline-flex;align-items:center;gap:4px;border:1px solid #e3e6ee;border-radius:10px;padding:0 6px 0 8px;background:#fff;font-size:13px;cursor:pointer}
+  .lang-switch select{border:0;background:transparent;font:inherit;font-size:13px;font-weight:600;padding:7px 2px;cursor:pointer;color:inherit}
+  .lang-switch select:focus{outline:none}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  [dir=rtl] body{font-family:'Inter','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
+  html[lang=ml] body{font-family:'Inter','Noto Sans Malayalam','Nirmala UI',sans-serif}
+
+  [dir=rtl] .sidebar{border-right:0;border-left:1px solid var(--line)}
+  [dir=rtl] th,[dir=rtl] td{text-align:right}
+  [dir=rtl] .general-back,[dir=rtl] .restaurant-back{direction:rtl}
+  @media(max-width:900px){[dir=rtl] .sidebar{inset:0 0 0 auto;transform:translateX(105%)}[dir=rtl] .nav-open .sidebar{transform:none}}
+  [dir=rtl] .focus-mode .sidebar{inset:0 0 0 auto;transform:translateX(105%)}
+  [dir=rtl] .focus-mode.nav-open .sidebar{transform:none}
 </style>
-</head>
+{% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}</head>
 <body>
 <div class="shell" id="appShell">
   <nav class="sidebar">
-    <div class="brand">Platform Admin
-      <small>Multi-Business Accounting SaaS</small>
+    <div class="brand">{% translate "Platform Admin" %}
+      <small>{% translate "Multi-Business Accounting SaaS" %}</small>
     </div>
     <div class="nav-group">
-      <a class="nav-link {% if request.resolver_match.url_name == 'platform_admin_dashboard' %}active{% endif %}" href="{% url 'webapp:platform_admin_dashboard' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="9" rx="1.5" width="7" x="3" y="3"></rect><rect height="5" rx="1.5" width="7" x="14" y="3"></rect><rect height="9" rx="1.5" width="7" x="14" y="12"></rect><rect height="5" rx="1.5" width="7" x="3" y="16"></rect></svg><span>Dashboard</span></a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'platform_admin_company_list' %}active{% endif %}" href="{% url 'webapp:platform_admin_company_list' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"></path><circle cx="17.5" cy="8.5" r="2.7"></circle><path d="M15.5 14.2c2.7.3 5 2.5 5 5.8"></path></svg><span>Clients & Provisioning</span></a>
-            <a class="nav-link {% if request.resolver_match.url_name == 'platform_commercial_control' %}active{% endif %}" href="{% url 'webapp:platform_commercial_control' %}"><span>Commercial Control</span></a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'platform_permission_catalogue' %}active{% endif %}" href="{% url 'webapp:platform_permission_catalogue' %}"><span>Permission Catalogue</span></a>
-<a class="nav-link {% if request.resolver_match.url_name == 'platform_admin_analytics' %}active{% endif %}" href="{% url 'webapp:platform_admin_analytics' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><line x1="5" x2="5" y1="21" y2="11"></line><line x1="12" x2="12" y1="21" y2="5"></line><line x1="19" x2="19" y1="21" y2="14"></line></svg><span>Analytics</span></a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'platform_plan_list' %}active{% endif %}" href="{% url 'webapp:platform_plan_list' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="14" rx="2" width="20" x="2" y="5"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg><span>Pricing Plans</span></a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'platform_pending_payments' %}active{% endif %}" href="{% url 'webapp:platform_pending_payments' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="13" rx="2" width="18" x="3" y="6"></rect><path d="M3 10h18"></path><circle cx="17" cy="14.5" r="1.3"></circle></svg><span>Pending Payments</span></a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'platform_user_list' %}active{% endif %}" href="{% url 'webapp:platform_user_list' %}"><span>Users & Access</span></a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'platform_support_list' %}active{% endif %}" href="{% url 'webapp:platform_support_list' %}"><span>Support Tickets</span></a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'platform_audit_list' %}active{% endif %}" href="{% url 'webapp:platform_audit_list' %}"><span>Audit Log</span></a>
-      <a class="nav-link {% if 'platform_setup' in request.resolver_match.url_name or request.resolver_match.url_name == 'platform_module_list' or request.resolver_match.url_name == 'platform_business_type_list' %}active{% endif %}" href="{% url 'webapp:platform_setup' %}"><span>Product Catalogue</span></a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'register_client' %}active{% endif %}" href="{% url 'webapp:register_client' %}">+ Add new client</a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'security_settings' %}active{% endif %}" href="{% url 'webapp:security_settings' %}"><span>🔐 Security & 2FA</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_admin_dashboard' %}active{% endif %}" href="{% url 'webapp:platform_admin_dashboard' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="9" rx="1.5" width="7" x="3" y="3"></rect><rect height="5" rx="1.5" width="7" x="14" y="3"></rect><rect height="9" rx="1.5" width="7" x="14" y="12"></rect><rect height="5" rx="1.5" width="7" x="3" y="16"></rect></svg><span>{% translate "Dashboard" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_admin_company_list' %}active{% endif %}" href="{% url 'webapp:platform_admin_company_list' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"></path><circle cx="17.5" cy="8.5" r="2.7"></circle><path d="M15.5 14.2c2.7.3 5 2.5 5 5.8"></path></svg><span>{% translate "Clients & Provisioning" %}</span></a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'platform_commercial_control' %}active{% endif %}" href="{% url 'webapp:platform_commercial_control' %}"><span>{% translate "Commercial Control" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_permission_catalogue' %}active{% endif %}" href="{% url 'webapp:platform_permission_catalogue' %}"><span>{% translate "Permission Catalogue" %}</span></a>
+<a class="nav-link {% if request.resolver_match.url_name == 'platform_admin_analytics' %}active{% endif %}" href="{% url 'webapp:platform_admin_analytics' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><line x1="5" x2="5" y1="21" y2="11"></line><line x1="12" x2="12" y1="21" y2="5"></line><line x1="19" x2="19" y1="21" y2="14"></line></svg><span>{% translate "Analytics" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_plan_list' %}active{% endif %}" href="{% url 'webapp:platform_plan_list' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="14" rx="2" width="20" x="2" y="5"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg><span>{% translate "Pricing Plans" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_pending_payments' %}active{% endif %}" href="{% url 'webapp:platform_pending_payments' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="13" rx="2" width="18" x="3" y="6"></rect><path d="M3 10h18"></path><circle cx="17" cy="14.5" r="1.3"></circle></svg><span>{% translate "Pending Payments" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_user_list' %}active{% endif %}" href="{% url 'webapp:platform_user_list' %}"><span>{% translate "Users & Access" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_support_list' %}active{% endif %}" href="{% url 'webapp:platform_support_list' %}"><span>{% translate "Support Tickets" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_audit_list' %}active{% endif %}" href="{% url 'webapp:platform_audit_list' %}"><span>{% translate "Audit Log" %}</span></a>
+      <a class="nav-link {% if 'platform_setup' in request.resolver_match.url_name or request.resolver_match.url_name == 'platform_module_list' or request.resolver_match.url_name == 'platform_business_type_list' %}active{% endif %}" href="{% url 'webapp:platform_setup' %}"><span>{% translate "Product Catalogue" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'register_client' %}active{% endif %}" href="{% url 'webapp:register_client' %}">{% translate "+ Add new client" %}</a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'security_settings' %}active{% endif %}" href="{% url 'webapp:security_settings' %}"><span>{% translate "🔐 Security & 2FA" %}</span></a>
     </div>
   </nav>
   <div class="nav-scrim" data-nav-close></div>
   <main class="main">
     <div class="topbar">
-      <div class="topbar-title"><button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><h1>{% block heading %}{% endblock %}</h1></div>
-      <div class="user-chip">
-        <span>{{ request.user.email|default:request.user.username }} · <a href="{% url 'webapp:logout' %}">Log out</a></span>
+      <div class="topbar-title"><button class="nav-toggle" type="button" data-nav-toggle aria-label="{% translate 'Open menu' %}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><h1>{% block heading %}{% endblock %}</h1></div>
+      <div class="user-chip">{% include "webapp/_language_switcher.html" %}
+        <span>{{ request.user.email|default:request.user.username }} · <a href="{% url 'webapp:logout' %}">{% translate "Log out" %}</a></span>
         <div class="avatar">{{ request.user.email|default:request.user.username|slice:":1"|upper }}</div>
       </div>
     </div>
@@ -124,7 +139,7 @@
       {% for message in messages %}<li class="{{ message.tags }}">{{ message }}</li>{% endfor %}
     </ul>
     {% endif %}
-    {% if request.resolver_match.url_name != 'platform_admin_dashboard' %}<a href="{% url 'webapp:platform_admin_dashboard' %}" class="btn btn-secondary" style="margin-bottom:18px" onclick="if (history.length > 1 && document.referrer && new URL(document.referrer).origin === location.origin) { event.preventDefault(); history.back(); }">← Back</a>{% endif %}
+    {% if request.resolver_match.url_name != 'platform_admin_dashboard' %}<a href="{% url 'webapp:platform_admin_dashboard' %}" class="btn btn-secondary" style="margin-bottom:18px" onclick="if (history.length > 1 && document.referrer && new URL(document.referrer).origin === location.origin) { event.preventDefault(); history.back(); }">{% translate "← Back" %}</a>{% endif %}
     {% block content %}{% endblock %}
   </main>
 </div>

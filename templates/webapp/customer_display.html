@@ -1,9 +1,9 @@
-{% load static %}<!DOCTYPE html>
-<html lang="en">
+{% load i18n %}{% load static %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Customer display · {{ company.name }}</title>
+<title>{% translate "Customer display ·" %} {{ company.name }}</title>
 <style>
   @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Regular.ttf" %}');font-weight:400}
   @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Bold.ttf" %}');font-weight:700}
@@ -56,31 +56,40 @@
   .hint{position:fixed;left:16px;bottom:12px;font-size:12px;color:#fff;opacity:.6;z-index:5}
   @media(max-width:800px){#cart{flex-direction:column}.side{width:auto;padding:3vh 5vw}.side .brand,.side .foot{display:none}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}#paid .tick path{stroke-dashoffset:0}}
+
+  .lang-switch{margin:0;display:inline-flex}
+  .lang-switch label{display:inline-flex;align-items:center;gap:4px;border:1px solid #e3e6ee;border-radius:10px;padding:0 6px 0 8px;background:#fff;font-size:13px;cursor:pointer}
+  .lang-switch select{border:0;background:transparent;font:inherit;font-size:13px;font-weight:600;padding:7px 2px;cursor:pointer;color:inherit}
+  .lang-switch select:focus{outline:none}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  [dir=rtl] body{font-family:'Inter','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
+  html[lang=ml] body{font-family:'Inter','Noto Sans Malayalam','Nirmala UI',sans-serif}
 </style>
-</head>
+{% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}</head>
 <body>
 <section class="screen" id="idle">
   <div class="logo">{% if company.logo %}<img src="{{ company.logo.url }}" alt="">{% else %}🍽️{% endif %}</div>
-  <h1>Welcome to {{ company.name }}</h1>
-  <p>Your order will appear here</p>
+  <h1>{% translate "Welcome to" %} {{ company.name }}</h1>
+  <p>{% translate "Your order will appear here" %}</p>
   <div class="clock" id="clock"></div>
 </section>
 <section class="screen" id="cart" hidden>
-  <div class="items"><h2><span>Your order</span><small id="count"></small></h2><div class="list" id="list"></div></div>
+  <div class="items"><h2><span>{% translate "Your order" %}</span><small id="count"></small></h2><div class="list" id="list"></div></div>
   <aside class="side">
     <div class="brand">{{ company.name }}</div>
-    <div class="label">Total to pay</div>
+    <div class="label">{% translate "Total to pay" %}</div>
     <div class="total" id="total"><small>{{ company.default_currency }}</small>0.00</div>
     <div class="break" id="break"></div>
-    <div class="foot">Thank you for choosing us ♥</div>
+    <div class="foot">{% translate "Thank you for choosing us ♥" %}</div>
   </aside>
 </section>
 <section class="screen" id="paid" hidden>
   <div class="tick"><svg viewBox="0 0 52 52" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 27l8 8 16-18"/></svg></div>
-  <h1>Thank you!</h1>
+  <h1>{% translate "Thank you!" %}</h1>
   <p id="paidText"></p>
 </section>
-<div class="hint" id="hint">Press F11 for full screen</div>
+<div class="hint" id="hint">{% translate "Press F11 for full screen" %}</div>
+<script>const T={item:"{% translate 'item' %}",items:"{% translate 'items' %}",paid:"{% translate 'Paid' %}",change:"{% translate 'Your change' %}",noLive:"{% translate T.noLive %}"};</script>
 <script>
 (function(){
   const cur="{{ company.default_currency|escapejs }}";
@@ -97,13 +106,13 @@
     list.innerHTML=m.lines.slice(-8).map(l=>{const key=l.name+'|'+l.qty+'|'+l.amount;const isNew=!known.has(key);return `<div class="row${isNew?' flash':''}"${isNew?'':' style="animation:none"'}><span class="q">${esc(l.qty)}×</span><span class="n">${esc(l.name)}</span><span class="a">${esc(l.amount)}</span></div>`}).join('');
     known=new Set(m.lines.map(l=>l.name+'|'+l.qty+'|'+l.amount));
     const n=m.lines.reduce((s,l)=>s+(parseFloat(l.qty)||0),0);
-    document.getElementById('count').textContent=n+' item'+(n===1?'':'s');
+    document.getElementById('count').textContent=n+' '+(n===1?T.item:T.items);
     document.getElementById('break').innerHTML=(m.breakdown||[]).map(([k,v])=>`<div><span>${esc(k)}</span><span>${esc(v)}</span></div>`).join('');
     countTo(document.getElementById('total'),parseFloat(m.total)||0);
   }
   function renderPaid(m){
     show('paid');
-    document.getElementById('paidText').textContent=m.change&&parseFloat(m.change)>0?`Paid ${cur} ${m.paid} · Your change: ${cur} ${m.change}`:`Paid ${cur} ${m.total}`;
+    document.getElementById('paidText').textContent=m.change&&parseFloat(m.change)>0?`${T.paid} ${cur} ${m.paid} · ${T.change}: ${cur} ${m.change}`:`${T.paid} ${cur} ${m.total}`;
     const colors=['#ffbf2e','#fff','#ff7a3d','#4ade80','#60a5fa'];
     for(let i=0;i<60;i++){const c=document.createElement('div');c.className='confetti';c.style.left=Math.random()*100+'vw';c.style.background=colors[i%colors.length];c.style.animationDuration=(2+Math.random()*2.5)+'s';c.style.animationDelay=(Math.random()*.6)+'s';document.getElementById('paid').appendChild(c);setTimeout(()=>c.remove(),5500)}
     clearTimeout(idleTimer);idleTimer=setTimeout(()=>{show('idle');known=new Set();shown=0},9000);
@@ -111,7 +120,7 @@
   try{
     const ch=new BroadcastChannel('bookpilot-customer-display');
     ch.onmessage=e=>{const m=e.data||{};clearTimeout(idleTimer);if(m.type==='cart')renderCart(m);else if(m.type==='paid')renderPaid(m);else if(m.type==='idle')show('idle')};
-  }catch(e){document.querySelector('#idle p').textContent='This browser cannot show the live order.'}
+  }catch(e){document.querySelector('#idle p').textContent=T.noLive}
   document.addEventListener('keydown',e=>{if(e.key==='f'||e.key==='F')document.documentElement.requestFullscreen?.()});
   setTimeout(()=>document.getElementById('hint').remove(),8000);
 })();

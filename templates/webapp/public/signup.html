@@ -1,9 +1,9 @@
-{% load static %}<!DOCTYPE html>
-<html lang="en">
+{% load i18n %}{% load static %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Start your free trial · BookPilot</title>
+<title>{% translate "Start your free trial · BookPilot" %}</title>
 <style>
 @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Regular.ttf" %}');font-weight:400}
 @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-SemiBold.ttf" %}');font-weight:600}
@@ -52,49 +52,57 @@ button[type=submit].busy{opacity:.7;pointer-events:none}
 @media(max-width:900px){body{grid-template-columns:1fr}.side{padding:28px}.side h1{margin-top:22px}.side ul{display:none}.types{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:480px){.grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  .lang-switch{margin:0;display:inline-flex}
+  .lang-switch label{display:inline-flex;align-items:center;gap:4px;border:1px solid #e3e6ee;border-radius:10px;padding:0 6px 0 8px;background:#fff;font-size:13px;cursor:pointer}
+  .lang-switch select{border:0;background:transparent;font:inherit;font-size:13px;font-weight:600;padding:7px 2px;cursor:pointer;color:inherit}
+  .lang-switch select:focus{outline:none}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  [dir=rtl] body{font-family:'Inter','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
+  html[lang=ml] body{font-family:'Inter','Noto Sans Malayalam','Nirmala UI',sans-serif}
 </style>
-</head>
+{% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}</head>
 <body>
 <aside class="side">
-  <a class="logo" href="{% url 'webapp:landing' %}"><i>✦</i>BookPilot</a>
-  <h1>Your business, organised in minutes.</h1>
+  <a class="logo" href="{% url 'webapp:landing' %}"><i>✦</i>{% translate "BookPilot" %}</a>
+  <h1>{% translate "Your business, organised in minutes." %}</h1>
   <ul>
-    <li><b>🎁</b>{{ trial_days }} days free, no card needed</li>
-    <li><b>⚡</b>Ready-made screens for your type of business</li>
-    <li><b>🧾</b>POS, stock, accounts and staff in one place</li>
-    <li><b>🔒</b>Your data stays private and separate</li>
+    <li><b>🎁</b>{{ trial_days }} {% translate "days free, no card needed" %}</li>
+    <li><b>⚡</b>{% translate "Ready-made screens for your type of business" %}</li>
+    <li><b>🧾</b>{% translate "POS, stock, accounts and staff in one place" %}</li>
+    <li><b>🔒</b>{% translate "Your data stays private and separate" %}</li>
   </ul>
 </aside>
-<main class="main">
+<main class="main"><div style="position:fixed;top:14px;inset-inline-end:14px">{% include "webapp/_language_switcher.html" %}</div>
   <form method="post" id="signupForm" novalidate>{% csrf_token %}
-    <h2>Start your free trial</h2>
-    <p class="muted">Already have an account? <a href="{% url 'webapp:login' %}">Sign in</a></p>
+    <h2>{% translate "Start your free trial" %}</h2>
+    <p class="muted">{% translate "Already have an account?" %} <a href="{% url 'webapp:login' %}">{% translate "Sign in" %}</a></p>
     {% for m in messages %}<div class="alert">{{ m }}</div>{% endfor %}
     {% if form.non_field_errors %}<div class="alert">{{ form.non_field_errors|join:" " }}</div>{% endif %}
 
-    <p class="step">1 · Your business</p>
+    <p class="step">{% translate "1 · Your business" %}</p>
     <div class="types" id="types">{% for code, label, icon in popular_types|slice:":8" %}<button type="button" data-code="{{ code }}"><span>{{ icon }}</span>{{ label }}</button>{% endfor %}</div>
     <div class="grid">
-      <label class="full">Business type
+      <label class="full">{% translate "Business type" %}
         <select name="business_type" id="id_business_type">{% for group, items in form.fields.business_type.choices %}<optgroup label="{{ group }}">{% for code, name in items %}<option value="{{ code }}" {% if form.business_type.value == code %}selected{% endif %}>{{ name }}</option>{% endfor %}</optgroup>{% endfor %}</select>
         <div class="errors">{{ form.business_type.errors }}</div></label>
-      <label>Business name<input name="business_name" value="{{ form.business_name.value|default:'' }}" placeholder="e.g. Spice Garden" required><div class="errors">{{ form.business_name.errors }}</div></label>
-      <label>Country<select name="country">{% for value, label in form.fields.country.choices %}<option value="{{ value }}" {% if form.country.value == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
-      {% if plans %}<label class="full">Plan (after the trial)<select name="plan"><option value="">Decide later</option>{% for plan in plans %}<option value="{{ plan.id }}" {% if form.plan.value|stringformat:"s" == plan.id|stringformat:"s" %}selected{% endif %}>{{ plan.name }} · {{ plan.currency }} {{ plan.price|floatformat:"-2" }}/{% if plan.billing_period == 'yearly' %}year{% else %}month{% endif %}</option>{% endfor %}</select></label>{% endif %}
+      <label>{% translate "Business name" %}<input name="business_name" value="{{ form.business_name.value|default:'' }}" placeholder="{% translate 'e.g. Spice Garden' %}" required><div class="errors">{{ form.business_name.errors }}</div></label>
+      <label>{% translate "Country" %}<select name="country">{% for value, label in form.fields.country.choices %}<option value="{{ value }}" {% if form.country.value == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+      {% if plans %}<label class="full">{% translate "Plan (after the trial)" %}<select name="plan"><option value="">{% translate "Decide later" %}</option>{% for plan in plans %}<option value="{{ plan.id }}" {% if form.plan.value|stringformat:"s" == plan.id|stringformat:"s" %}selected{% endif %}>{{ plan.name }} · {{ plan.currency }} {{ plan.price|floatformat:"-2" }}/{% if plan.billing_period == 'yearly' %}{% translate "year" %}{% else %}{% translate "month" %}{% endif %}</option>{% endfor %}</select></label>{% endif %}
     </div>
 
-    <p class="step">2 · Your login</p>
+    <p class="step">{% translate "2 · Your login" %}</p>
     <div class="grid">
-      <label>Your name<input name="full_name" value="{{ form.full_name.value|default:'' }}" autocomplete="name" required><div class="errors">{{ form.full_name.errors }}</div></label>
-      <label>Phone (optional)<input name="phone" value="{{ form.phone.value|default:'' }}" autocomplete="tel" inputmode="tel"></label>
-      <label class="full">Email<input type="email" name="email" value="{{ form.email.value|default:'' }}" autocomplete="email" required><div class="errors">{{ form.email.errors }}</div></label>
-      <label class="full">Password<input type="password" name="password" id="pw" autocomplete="new-password" minlength="8" required><div class="pw"><i id="pwbar"></i></div><div class="errors">{{ form.password.errors }}</div></label>
+      <label>{% translate "Your name" %}<input name="full_name" value="{{ form.full_name.value|default:'' }}" autocomplete="name" required><div class="errors">{{ form.full_name.errors }}</div></label>
+      <label>{% translate "Phone (optional)" %}<input name="phone" value="{{ form.phone.value|default:'' }}" autocomplete="tel" inputmode="tel"></label>
+      <label class="full">{% translate "Email" %}<input type="email" name="email" value="{{ form.email.value|default:'' }}" autocomplete="email" required><div class="errors">{{ form.email.errors }}</div></label>
+      <label class="full">{% translate "Password" %}<input type="password" name="password" id="pw" autocomplete="new-password" minlength="8" required><div class="pw"><i id="pwbar"></i></div><div class="errors">{{ form.password.errors }}</div></label>
     </div>
     <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <label class="terms"><input type="checkbox" name="accept_terms" {% if form.accept_terms.value %}checked{% endif %} required>I agree to the terms of service and privacy policy.</label>
+    <label class="terms"><input type="checkbox" name="accept_terms" {% if form.accept_terms.value %}checked{% endif %} required>{% translate "I agree to the terms of service and privacy policy." %}</label>
     <div class="errors">{{ form.accept_terms.errors }}</div>
-    <button type="submit" id="go">Create my account →</button>
-    <p class="foot">Free for {{ trial_days }} days · cancel anytime</p>
+    <button type="submit" id="go">{% translate "Create my account →" %}</button>
+    <p class="foot">{% translate "Free for" %} {{ trial_days }} {% translate "days · cancel anytime" %}</p>
   </form>
 </main>
 <script>

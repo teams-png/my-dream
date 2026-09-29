@@ -1,7 +1,8 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
-{% block title %}Devices & Hardware{% endblock %}
-{% block heading %}Devices & Hardware{% endblock %}
+{% block title %}{% translate "Devices & Hardware" %}{% endblock %}
+{% block heading %}{% translate "Devices & Hardware" %}{% endblock %}
 {% block content %}
 <style>
 .dv-intro{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:20px 22px;border-radius:20px;background:linear-gradient(120deg,#12162b,#27305a);color:#fff;margin-bottom:18px}
@@ -46,84 +47,84 @@
 </style>
 
 <div class="dv-intro">
-  <div><h2>Connect your shop hardware</h2><p>These settings belong to <strong>this computer/tablet</strong>. Set them up once on every till, kitchen screen or waiter device.</p></div>
+  <div><h2>{% translate "Connect your shop hardware" %}</h2><p>{% translate "These settings belong to" %} <strong>{% translate "this computer/tablet" %}</strong>{% translate ". Set them up once on every till, kitchen screen or waiter device." %}</p></div>
   <div class="dv-support" id="support"></div>
 </div>
 
 <div class="dv-grid">
   <section class="dv-card" data-role="receipt">
-    <div class="dv-head"><div class="dv-ico">🧾</div><div><h3>Receipt printer</h3><small>Customer bills and receipts</small></div><span class="dv-status" data-status></span></div>
+    <div class="dv-head"><div class="dv-ico">🧾</div><div><h3>{% translate "Receipt printer" %}</h3><small>{% translate "Customer bills and receipts" %}</small></div><span class="dv-status" data-status></span></div>
     <div class="dv-modes">
-      <label class="dv-mode"><input type="radio" name="receipt-mode" value="browser"><span>🖨️</span>Any printer</label>
-      <label class="dv-mode"><input type="radio" name="receipt-mode" value="usb"><span>🔌</span>USB</label>
-      <label class="dv-mode"><input type="radio" name="receipt-mode" value="serial"><span>🧷</span>Serial / BT</label>
-      <label class="dv-mode"><input type="radio" name="receipt-mode" value="network"><span>📶</span>Network (LAN)</label>
+      <label class="dv-mode"><input type="radio" name="receipt-mode" value="browser"><span>🖨️</span>{% translate "Any printer" %}</label>
+      <label class="dv-mode"><input type="radio" name="receipt-mode" value="usb"><span>🔌</span>{% translate "USB" %}</label>
+      <label class="dv-mode"><input type="radio" name="receipt-mode" value="serial"><span>🧷</span>{% translate "Serial / BT" %}</label>
+      <label class="dv-mode"><input type="radio" name="receipt-mode" value="network"><span>📶</span>{% translate "Network (LAN)" %}</label>
     </div>
-    <p class="dv-note" data-show-when="browser">Uses the normal print window, so it works with any printer installed on this computer (thermal, A4, PDF). Tip: start Chrome with <code>--kiosk-printing</code> to print without the dialog.</p>
-    <div class="dv-row" data-show-when="network"><label>Printer IP address<input data-field="host" placeholder="192.168.1.50"></label><label style="max-width:110px">Port<input data-field="port" type="number" placeholder="9100"></label></div>
-    <div class="dv-row" data-show-when="serial"><label>Baud rate<select data-field="baud"><option>9600</option><option>19200</option><option>38400</option><option>57600</option><option>115200</option></select></label></div>
-    <div class="dv-row"><label>Paper width<select data-field="width"><option value="48">80 mm (48 characters)</option><option value="42">80 mm (42 characters)</option><option value="32">58 mm (32 characters)</option></select></label></div>
-    <div class="dv-actions"><button class="btn" data-connect>Connect printer</button><button class="btn btn-secondary" data-test>Test print</button></div>
+    <p class="dv-note" data-show-when="browser">{% translate "Uses the normal print window, so it works with any printer installed on this computer (thermal, A4, PDF). Tip: start Chrome with" %} <code>{% translate "--kiosk-printing" %}</code> {% translate "to print without the dialog." %}</p>
+    <div class="dv-row" data-show-when="network"><label>{% translate "Printer IP address" %}<input data-field="host" placeholder="192.168.1.50"></label><label style="max-width:110px">{% translate "Port" %}<input data-field="port" type="number" placeholder="9100"></label></div>
+    <div class="dv-row" data-show-when="serial"><label>{% translate "Baud rate" %}<select data-field="baud"><option>9600</option><option>19200</option><option>38400</option><option>57600</option><option>115200</option></select></label></div>
+    <div class="dv-row"><label>{% translate "Paper width" %}<select data-field="width"><option value="48">{% translate "80 mm (48 characters)" %}</option><option value="42">{% translate "80 mm (42 characters)" %}</option><option value="32">{% translate "58 mm (32 characters)" %}</option></select></label></div>
+    <div class="dv-actions"><button class="btn" data-connect>{% translate "Connect printer" %}</button><button class="btn btn-secondary" data-test>{% translate "Test print" %}</button></div>
   </section>
 
   <section class="dv-card" data-role="kitchen">
-    <div class="dv-head"><div class="dv-ico">👨‍🍳</div><div><h3>Kitchen printer (KOT)</h3><small>Order tickets for the kitchen</small></div><span class="dv-status" data-status></span></div>
+    <div class="dv-head"><div class="dv-ico">👨‍🍳</div><div><h3>{% translate "Kitchen printer (KOT)" %}</h3><small>{% translate "Order tickets for the kitchen" %}</small></div><span class="dv-status" data-status></span></div>
     <div class="dv-modes">
-      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="none"><span>🚫</span>None</label>
-      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="same"><span>🔁</span>Same as receipt</label>
-      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="browser"><span>🖨️</span>Any printer</label>
-      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="usb"><span>🔌</span>USB</label>
-      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="serial"><span>🧷</span>Serial / BT</label>
-      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="network"><span>📶</span>Network</label>
+      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="none"><span>🚫</span>{% translate "None" %}</label>
+      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="same"><span>🔁</span>{% translate "Same as receipt" %}</label>
+      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="browser"><span>🖨️</span>{% translate "Any printer" %}</label>
+      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="usb"><span>🔌</span>{% translate "USB" %}</label>
+      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="serial"><span>🧷</span>{% translate "Serial / BT" %}</label>
+      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="network"><span>📶</span>{% translate "Network" %}</label>
     </div>
-    <div class="dv-row" data-show-when="network"><label>Printer IP address<input data-field="host" placeholder="192.168.1.51"></label><label style="max-width:110px">Port<input data-field="port" type="number" placeholder="9100"></label></div>
-    <div class="dv-row" data-show-when="serial"><label>Baud rate<select data-field="baud"><option>9600</option><option>19200</option><option>38400</option><option>57600</option><option>115200</option></select></label></div>
-    <div class="dv-row"><label>Paper width<select data-field="width"><option value="48">80 mm (48 characters)</option><option value="42">80 mm (42 characters)</option><option value="32">58 mm (32 characters)</option></select></label></div>
-    <div class="dv-actions"><button class="btn" data-connect>Connect printer</button><button class="btn btn-secondary" data-test>Test print</button></div>
+    <div class="dv-row" data-show-when="network"><label>{% translate "Printer IP address" %}<input data-field="host" placeholder="192.168.1.51"></label><label style="max-width:110px">{% translate "Port" %}<input data-field="port" type="number" placeholder="9100"></label></div>
+    <div class="dv-row" data-show-when="serial"><label>{% translate "Baud rate" %}<select data-field="baud"><option>9600</option><option>19200</option><option>38400</option><option>57600</option><option>115200</option></select></label></div>
+    <div class="dv-row"><label>{% translate "Paper width" %}<select data-field="width"><option value="48">{% translate "80 mm (48 characters)" %}</option><option value="42">{% translate "80 mm (42 characters)" %}</option><option value="32">{% translate "58 mm (32 characters)" %}</option></select></label></div>
+    <div class="dv-actions"><button class="btn" data-connect>{% translate "Connect printer" %}</button><button class="btn btn-secondary" data-test>{% translate "Test print" %}</button></div>
   </section>
 
   <section class="dv-card">
-    <div class="dv-head"><div class="dv-ico">⚙️</div><div><h3>Automatic printing</h3><small>Print without pressing buttons</small></div></div>
-    <div class="dv-toggle">POS: print KOT when an order is sent to the kitchen<label class="dv-switch"><input type="checkbox" data-cfg="autoPrintKot"><i></i></label></div>
-    <div class="dv-toggle">Kitchen screen: print every new ticket that arrives<label class="dv-switch"><input type="checkbox" data-cfg="kdsAutoPrint"><i></i></label></div>
-    <div class="dv-toggle">Print receipt when a bill is paid<label class="dv-switch"><input type="checkbox" data-cfg="autoPrintReceipt"><i></i></label></div>
-    <p class="dv-note">Turn KOT printing on for <strong>either</strong> the POS or the kitchen screen, not both, to avoid double tickets.</p>
+    <div class="dv-head"><div class="dv-ico">⚙️</div><div><h3>{% translate "Automatic printing" %}</h3><small>{% translate "Print without pressing buttons" %}</small></div></div>
+    <div class="dv-toggle">{% translate "POS: print KOT when an order is sent to the kitchen" %}<label class="dv-switch"><input type="checkbox" data-cfg="autoPrintKot"><i></i></label></div>
+    <div class="dv-toggle">{% translate "Kitchen screen: print every new ticket that arrives" %}<label class="dv-switch"><input type="checkbox" data-cfg="kdsAutoPrint"><i></i></label></div>
+    <div class="dv-toggle">{% translate "Print receipt when a bill is paid" %}<label class="dv-switch"><input type="checkbox" data-cfg="autoPrintReceipt"><i></i></label></div>
+    <p class="dv-note">{% translate "Turn KOT printing on for" %} <strong>{% translate "either" %}</strong> {% translate "the POS or the kitchen screen, not both, to avoid double tickets." %}</p>
   </section>
 
   <section class="dv-card">
-    <div class="dv-head"><div class="dv-ico">💵</div><div><h3>Cash drawer</h3><small>Opens through the receipt printer</small></div></div>
-    <div class="dv-toggle">Open drawer on cash payments<label class="dv-switch"><input type="checkbox" data-cfg="drawer.enabled"><i></i></label></div>
-    <div class="dv-row"><label>Drawer connector<select data-cfg="drawer.pin"><option value="0">Pin 2 (most drawers)</option><option value="1">Pin 5</option></select></label></div>
+    <div class="dv-head"><div class="dv-ico">💵</div><div><h3>{% translate "Cash drawer" %}</h3><small>{% translate "Opens through the receipt printer" %}</small></div></div>
+    <div class="dv-toggle">{% translate "Open drawer on cash payments" %}<label class="dv-switch"><input type="checkbox" data-cfg="drawer.enabled"><i></i></label></div>
+    <div class="dv-row"><label>{% translate "Drawer connector" %}<select data-cfg="drawer.pin"><option value="0">{% translate "Pin 2 (most drawers)" %}</option><option value="1">{% translate "Pin 5" %}</option></select></label></div>
     <p class="dv-note">Plug the drawer's RJ11 cable into the receipt printer's "DK" port. Needs a USB, serial or network receipt printer.</p>
-    <div class="dv-actions"><button class="btn btn-secondary" id="openDrawer">Open drawer now</button></div>
+    <div class="dv-actions"><button class="btn btn-secondary" id="openDrawer">{% translate "Open drawer now" %}</button></div>
   </section>
 
   <section class="dv-card">
-    <div class="dv-head"><div class="dv-ico">🔍</div><div><h3>Barcode scanner</h3><small>USB or Bluetooth scanners</small></div></div>
-    <div class="dv-toggle">Add scanned items automatically in the POS<label class="dv-switch"><input type="checkbox" data-cfg="scanner.enabled"><i></i></label></div>
-    <div class="dv-scan" id="scanBox">Scan any barcode now to test your scanner…</div>
-    <p class="dv-note">Scanners work like a keyboard. The POS matches the scanned code with the product <strong>SKU</strong>.</p>
+    <div class="dv-head"><div class="dv-ico">🔍</div><div><h3>{% translate "Barcode scanner" %}</h3><small>{% translate "USB or Bluetooth scanners" %}</small></div></div>
+    <div class="dv-toggle">{% translate "Add scanned items automatically in the POS" %}<label class="dv-switch"><input type="checkbox" data-cfg="scanner.enabled"><i></i></label></div>
+    <div class="dv-scan" id="scanBox">{% translate "Scan any barcode now to test your scanner…" %}</div>
+    <p class="dv-note">{% translate "Scanners work like a keyboard. The POS matches the scanned code with the product" %} <strong>{% translate "SKU" %}</strong>.</p>
   </section>
 
   <section class="dv-card">
-    <div class="dv-head"><div class="dv-ico">🖥️</div><div><h3>Customer display</h3><small>Second screen facing the customer</small></div></div>
-    <div class="dv-toggle">Show the order on a customer screen<label class="dv-switch"><input type="checkbox" data-cfg="display.enabled"><i></i></label></div>
-    <p class="dv-note">Open the display window, drag it to the second monitor and press F11 for full screen. It updates live as you add items.</p>
-    <div class="dv-actions"><a class="btn" href="{% url 'webapp:customer_display' %}" target="bookpilot-display">Open customer display</a></div>
+    <div class="dv-head"><div class="dv-ico">🖥️</div><div><h3>{% translate "Customer display" %}</h3><small>{% translate "Second screen facing the customer" %}</small></div></div>
+    <div class="dv-toggle">{% translate "Show the order on a customer screen" %}<label class="dv-switch"><input type="checkbox" data-cfg="display.enabled"><i></i></label></div>
+    <p class="dv-note">{% translate "Open the display window, drag it to the second monitor and press F11 for full screen. It updates live as you add items." %}</p>
+    <div class="dv-actions"><a class="btn" href="{% url 'webapp:customer_display' %}" target="bookpilot-display">{% translate "Open customer display" %}</a></div>
   </section>
 
   <section class="dv-card">
-    <div class="dv-head"><div class="dv-ico">🔔</div><div><h3>Order alarm</h3><small>Sound for new kitchen orders and ready orders</small></div></div>
-    <div class="dv-toggle">Play a sound for new orders<label class="dv-switch"><input type="checkbox" data-cfg="alarm.enabled"><i></i></label></div>
-    <div class="dv-row"><label>Sound<select data-cfg="alarm.sound"><option value="chime">Chime</option><option value="bell">Bell</option><option value="beep">Beep (loud)</option></select></label><label>Repeat<select data-cfg="alarm.repeat"><option>1</option><option>2</option><option>3</option><option>5</option></select></label><label>Volume<input data-cfg="alarm.volume" type="range" min="0.1" max="1" step="0.1"></label></div>
-    <div class="dv-actions"><button class="btn btn-secondary" id="testAlarm">▶ Test new-order sound</button><button class="btn btn-secondary" id="testReady">▶ Test ready sound</button></div>
+    <div class="dv-head"><div class="dv-ico">🔔</div><div><h3>{% translate "Order alarm" %}</h3><small>{% translate "Sound for new kitchen orders and ready orders" %}</small></div></div>
+    <div class="dv-toggle">{% translate "Play a sound for new orders" %}<label class="dv-switch"><input type="checkbox" data-cfg="alarm.enabled"><i></i></label></div>
+    <div class="dv-row"><label>{% translate "Sound" %}<select data-cfg="alarm.sound"><option value="chime">{% translate "Chime" %}</option><option value="bell">{% translate "Bell" %}</option><option value="beep">{% translate "Beep (loud)" %}</option></select></label><label>{% translate "Repeat" %}<select data-cfg="alarm.repeat"><option>1</option><option>2</option><option>3</option><option>5</option></select></label><label>{% translate "Volume" %}<input data-cfg="alarm.volume" type="range" min="0.1" max="1" step="0.1"></label></div>
+    <div class="dv-actions"><button class="btn btn-secondary" id="testAlarm">{% translate "▶ Test new-order sound" %}</button><button class="btn btn-secondary" id="testReady">{% translate "▶ Test ready sound" %}</button></div>
   </section>
 
   <section class="dv-card">
-    <div class="dv-head"><div class="dv-ico">📶</div><div><h3>Network print agent</h3><small>Only needed for LAN / Wi-Fi printers</small></div><span class="dv-status" id="agentStatus">Not checked</span></div>
-    <p class="dv-note">Browsers cannot reach network printers directly. Run the small BookPilot print agent on this computer: <code>python scripts/print_agent.py</code> (from the project, needs Python 3).</p>
-    <div class="dv-row"><label>Agent address<input data-cfg="agentUrl" placeholder="http://127.0.0.1:8719"></label></div>
-    <div class="dv-actions"><button class="btn btn-secondary" id="checkAgent">Check agent</button></div>
+    <div class="dv-head"><div class="dv-ico">📶</div><div><h3>{% translate "Network print agent" %}</h3><small>{% translate "Only needed for LAN / Wi-Fi printers" %}</small></div><span class="dv-status" id="agentStatus">{% translate "Not checked" %}</span></div>
+    <p class="dv-note">{% translate "Browsers cannot reach network printers directly. Run the small BookPilot print agent on this computer:" %} <code>{% translate "python scripts/print_agent.py" %}</code> {% translate "(from the project, needs Python 3)." %}</p>
+    <div class="dv-row"><label>{% translate "Agent address" %}<input data-cfg="agentUrl" placeholder="{% translate 'http://127.0.0.1:8719' %}"></label></div>
+    <div class="dv-actions"><button class="btn btn-secondary" id="checkAgent">{% translate "Check agent" %}</button></div>
   </section>
 </div>
 

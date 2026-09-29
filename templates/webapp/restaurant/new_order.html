@@ -1,40 +1,41 @@
 {% extends "base.html" %}
-{% block title %}New restaurant order{% endblock %}
-{% block heading %}Start an order{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "New restaurant order" %}{% endblock %}
+{% block heading %}{% translate "Start an order" %}{% endblock %}
 {% block content %}
 <section class="r-start">
   <form method="post" id="newOrder">{% csrf_token %}
-    <p class="r-step">Step 1 · Order type</p>
+    <p class="r-step">{% translate "Step 1 · Order type" %}</p>
     <div class="r-channels">
-      <label class="r-channel r-reveal" style="--d:0"><input type="radio" name="channel" value="dine_in" {% if form.channel.value == 'dine_in' %}checked{% endif %}><span class="c-ico">🍽️</span><span><strong>Dine in</strong><br><small>Serve guests at a table</small></span></label>
-      <label class="r-channel r-reveal" style="--d:1"><input type="radio" name="channel" value="takeaway" {% if form.channel.value == 'takeaway' or not form.channel.value %}checked{% endif %}><span class="c-ico">🥡</span><span><strong>Takeaway</strong><br><small>Ready to collect</small></span></label>
-      <label class="r-channel r-reveal" style="--d:2"><input type="radio" name="channel" value="delivery" {% if form.channel.value == 'delivery' %}checked{% endif %}><span class="c-ico">🛵</span><span><strong>Delivery</strong><br><small>Send to customer</small></span></label>
+      <label class="r-channel r-reveal" style="--d:0"><input type="radio" name="channel" value="dine_in" {% if form.channel.value == 'dine_in' %}checked{% endif %}><span class="c-ico">🍽️</span><span><strong>{% translate "Dine in" %}</strong><br><small>{% translate "Serve guests at a table" %}</small></span></label>
+      <label class="r-channel r-reveal" style="--d:1"><input type="radio" name="channel" value="takeaway" {% if form.channel.value == 'takeaway' or not form.channel.value %}checked{% endif %}><span class="c-ico">🥡</span><span><strong>{% translate "Takeaway" %}</strong><br><small>{% translate "Ready to collect" %}</small></span></label>
+      <label class="r-channel r-reveal" style="--d:2"><input type="radio" name="channel" value="delivery" {% if form.channel.value == 'delivery' %}checked{% endif %}><span class="c-ico">🛵</span><span><strong>{% translate "Delivery" %}</strong><br><small>{% translate "Send to customer" %}</small></span></label>
     </div>
     <div class="r-errors">{{ form.channel.errors }}{{ form.non_field_errors }}</div>
 
     <div class="r-slot" id="tableField">
-      <p class="r-step">Step 2 · Choose a table <small style="color:var(--r-soft);text-transform:none;letter-spacing:0">({{ tables|length }} tables)</small></p>
+      <p class="r-step">{% translate "Step 2 · Choose a table" %} <small style="color:var(--r-soft);text-transform:none;letter-spacing:0">({{ tables|length }} {% translate "tables)" %}</small></p>
       <div class="r-pick-tables">
         {% for table in tables %}
-        <label class="r-pick{% if table.status != 'available' %} busy{% endif %}" title="{{ table.area.name }}"><input type="radio" name="table" value="{{ table.id }}" {% if form.table.value|stringformat:"s" == table.id|stringformat:"s" %}checked{% endif %}><b>{{ table.name }}</b><small>{% if table.status == 'available' %}{{ table.capacity }} seats{% else %}{{ table.get_status_display }}{% endif %}</small></label>
+        <label class="r-pick{% if table.status != 'available' %} busy{% endif %}" title="{{ table.area.name }}"><input type="radio" name="table" value="{{ table.id }}" {% if form.table.value|stringformat:"s" == table.id|stringformat:"s" %}checked{% endif %}><b>{{ table.name }}</b><small>{% if table.status == 'available' %}{{ table.capacity }} {% translate "seats" %}{% else %}{{ table.get_status_display }}{% endif %}</small></label>
         {% empty %}
-        <div class="r-empty" style="grid-column:1/-1"><strong>No tables yet.</strong> <a href="{% url 'webapp:restaurant_table_add' %}" style="color:var(--r-brand);font-weight:700">Add a table</a></div>
+        <div class="r-empty" style="grid-column:1/-1"><strong>{% translate "No tables yet." %}</strong> <a href="{% url 'webapp:restaurant_table_add' %}" style="color:var(--r-brand);font-weight:700">{% translate "Add a table" %}</a></div>
         {% endfor %}
       </div>
       <div class="r-errors">{{ form.table.errors }}</div>
     </div>
 
-    <p class="r-step" style="margin-top:22px">Step <span id="detailsStep">2</span> · Details</p>
+    <p class="r-step" style="margin-top:22px">{% translate "Step" %} <span id="detailsStep">2</span> {% translate "· Details" %}</p>
     <div class="r-fields">
-      <div><label>Customer (optional) {{ form.customer }}</label><div class="r-errors">{{ form.customer.errors }}</div></div>
-      <div class="r-slot" id="guestsField"><label>Guests <input type="number" name="guests" min="0" max="500" value="{{ form.guests.value|default:'' }}" placeholder="e.g. 4" inputmode="numeric"></label><div class="r-errors">{{ form.guests.errors }}</div></div>
-      <div class="r-slot" id="phoneField"><label>Delivery phone {{ form.delivery_phone }}</label><div class="r-errors">{{ form.delivery_phone.errors }}</div></div>
-      <div class="r-slot" id="addressField" style="grid-column:1/-1"><label>Delivery address {{ form.delivery_address }}</label><div class="r-errors">{{ form.delivery_address.errors }}</div></div>
+      <div><label>{% translate "Customer (optional)" %} {{ form.customer }}</label><div class="r-errors">{{ form.customer.errors }}</div></div>
+      <div class="r-slot" id="guestsField"><label>{% translate "Guests" %} <input type="number" name="guests" min="0" max="500" value="{{ form.guests.value|default:'' }}" placeholder="e.g. 4" inputmode="numeric"></label><div class="r-errors">{{ form.guests.errors }}</div></div>
+      <div class="r-slot" id="phoneField"><label>{% translate "Delivery phone" %} {{ form.delivery_phone }}</label><div class="r-errors">{{ form.delivery_phone.errors }}</div></div>
+      <div class="r-slot" id="addressField" style="grid-column:1/-1"><label>{% translate "Delivery address" %} {{ form.delivery_address }}</label><div class="r-errors">{{ form.delivery_address.errors }}</div></div>
     </div>
 
     <div class="r-submit">
-      <span id="summary">Takeaway order</span>
-      <button class="r-btn brand" type="submit">Continue to menu →</button>
+      <span id="summary">{% translate "Takeaway order" %}</span>
+      <button class="r-btn brand" type="submit">{% translate "Continue to menu →" %}</button>
     </div>
   </form>
 </section>

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block title %}Share {{ invoice.invoice_number }}{% endblock %}
-{% block heading %}Share invoice{% endblock %}
+{% block heading %}{% translate "Share invoice" %}{% endblock %}
 {% block content %}
 <style>
 .sh-wrap{max-width:880px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start}
@@ -30,31 +31,31 @@
 <div class="sh-wrap">
   <div class="sh-card sh-head">
     <div><div class="num">{{ invoice.invoice_number }}</div><div class="meta">{{ invoice.customer }} · {{ invoice.date }} · {{ invoice.get_status_display }}</div></div>
-    <div class="amt"><span class="meta">Total</span><b>{{ invoice.currency }} {{ invoice.total|floatformat:2 }}</b></div>
+    <div class="amt"><span class="meta">{% translate "Total" %}</span><b>{{ invoice.currency }} {{ invoice.total|floatformat:2 }}</b></div>
   </div>
 
   <div class="sh-card">
-    <h3>💬 WhatsApp</h3>
-    <p>{% if invoice.customer.phone %}Opens WhatsApp with a message to <strong>{{ invoice.customer.phone }}</strong>.{% else %}No phone saved for this customer, so WhatsApp will ask you to choose a contact.{% endif %}</p>
-    <a class="wa-btn" href="{{ whatsapp_url }}" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Send on WhatsApp</a>
-    {% if invoice.customer.phone %}<a class="wa-alt" href="{{ whatsapp_any_url }}" target="_blank" rel="noopener">Send to a different number →</a>{% endif %}
+    <h3>{% translate "💬 WhatsApp" %}</h3>
+    <p>{% if invoice.customer.phone %}{% translate "Opens WhatsApp with a message to" %} <strong>{{ invoice.customer.phone }}</strong>.{% else %}{% translate "No phone saved for this customer, so WhatsApp will ask you to choose a contact." %}{% endif %}</p>
+    <a class="wa-btn" href="{{ whatsapp_url }}" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>{% translate "Send on WhatsApp" %}</a>
+    {% if invoice.customer.phone %}<a class="wa-alt" href="{{ whatsapp_any_url }}" target="_blank" rel="noopener">{% translate "Send to a different number →" %}</a>{% endif %}
     <div class="preview">{{ message }}</div>
   </div>
 
   <div class="sh-card">
-    <h3>✉️ Email</h3>
-    <p>Sends the invoice as a PDF attachment with a link to view it online.</p>
+    <h3>{% translate "✉️ Email" %}</h3>
+    <p>{% translate "Sends the invoice as a PDF attachment with a link to view it online." %}</p>
     <form method="post">{% csrf_token %}
-      {{ form.email.errors }}<label for="id_email">Customer email</label>{{ form.email }}
-      <label for="id_note">Message (optional)</label>{{ form.note }}
-      <button class="btn" style="margin-top:14px;width:100%;justify-content:center">Send email</button>
+      {{ form.email.errors }}<label for="id_email">{% translate "Customer email" %}</label>{{ form.email }}
+      <label for="id_note">{% translate "Message (optional)" %}</label>{{ form.note }}
+      <button class="btn" style="margin-top:14px;width:100%;justify-content:center">{% translate "Send email" %}</button>
     </form>
   </div>
 
   <div class="sh-card" style="grid-column:1/-1">
-    <h3>🔗 Customer link</h3>
-    <p>Anyone with this link can view this one invoice (no login needed). Share it by SMS, Telegram or any app.</p>
-    <div class="link-row"><input id="shareLink" value="{{ public_url }}" readonly><button class="btn" type="button" id="copyBtn">Copy</button><a class="btn btn-secondary" href="{{ public_url }}" target="_blank">Open</a>{% if request.user.is_authenticated %}<button class="btn btn-secondary" type="button" id="nativeShare" hidden>Share…</button>{% endif %}</div>
+    <h3>{% translate "🔗 Customer link" %}</h3>
+    <p>{% translate "Anyone with this link can view this one invoice (no login needed). Share it by SMS, Telegram or any app." %}</p>
+    <div class="link-row"><input id="shareLink" value="{{ public_url }}" readonly><button class="btn" type="button" id="copyBtn">{% translate "Copy" %}</button><a class="btn btn-secondary" href="{{ public_url }}" target="_blank">{% translate "Open" %}</a>{% if request.user.is_authenticated %}<button class="btn btn-secondary" type="button" id="nativeShare" hidden>{% translate "Share…" %}</button>{% endif %}</div>
   </div>
 </div>
 <script>

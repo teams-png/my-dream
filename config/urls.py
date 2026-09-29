@@ -10,6 +10,7 @@ urlpatterns = [
     path("manifest.webmanifest", pwa_manifest, name="pwa-manifest"),
     path("service-worker.js", service_worker, name="service-worker"),
     path("admin/", admin.site.urls),
+    path("i18n/", include("django.conf.urls.i18n")),
 
     path("", include("apps.webapp.urls")),
 

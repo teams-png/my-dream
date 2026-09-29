@@ -1,10 +1,10 @@
-{% load static %}
+{% load i18n %}{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign in · Business Console</title>
+<title>{% translate "Sign in · Business Console" %}</title>
 <style>
   @font-face { font-family:'Inter'; src:url('{% static "fonts/Inter-Regular.ttf" %}') format('truetype'); font-weight:400; font-display:swap; }
   @font-face { font-family:'Inter'; src:url('{% static "fonts/Inter-Medium.ttf" %}') format('truetype'); font-weight:500; font-display:swap; }
@@ -26,25 +26,34 @@
   }
   button:hover{opacity:0.92;}
   .err{background:#fdeceb; color:#c0392b; padding:10px 13px; border-radius:10px; font-size:13.5px; font-weight:500; margin-bottom:14px;}
+
+  .lang-switch{margin:0;display:inline-flex}
+  .lang-switch label{display:inline-flex;align-items:center;gap:4px;border:1px solid #e3e6ee;border-radius:10px;padding:0 6px 0 8px;background:#fff;font-size:13px;cursor:pointer}
+  .lang-switch select{border:0;background:transparent;font:inherit;font-size:13px;font-weight:600;padding:7px 2px;cursor:pointer;color:inherit}
+  .lang-switch select:focus{outline:none}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  [dir=rtl] body{font-family:'Inter','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
+  html[lang=ml] body{font-family:'Inter','Noto Sans Malayalam','Nirmala UI',sans-serif}
 </style>
-</head>
+{% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}</head>
 <body>
+<div style="position:fixed;top:14px;inset-inline-end:14px">{% include "webapp/_language_switcher.html" %}</div>
   <div class="box">
-    <h1>Sign in</h1>
-    <p>Manage your business — sales, stock, and reports.</p>
+    <h1>{% translate "Sign in" %}</h1>
+    <p>{% translate "Manage your business — sales, stock, and reports." %}</p>
     {% if messages %}
       {% for message in messages %}<div class="err">{{ message }}</div>{% endfor %}
     {% endif %}
     <form method="post">
       {% csrf_token %}
-      <label for="username">Username</label>
+      <label for="username">{% translate "Username" %}</label>
       <input id="username" name="username" autofocus required>
-      <label for="password">Password</label>
+      <label for="password">{% translate "Password" %}</label>
       <input id="password" name="password" type="password" required>
-      <button type="submit">Sign in</button>
+      <button type="submit">{% translate "Sign in" %}</button>
     </form>
-    <p style="text-align:center; margin-top:14px; font-size:13px;"><a href="{% url 'webapp:password_reset' %}" style="color:#14532d; font-weight:600;">Forgot password?</a></p>
-    <p style="text-align:center; margin-top:6px; font-size:13px; color:#5f6579;">New here? <a href="{% url 'webapp:signup' %}" style="color:#14532d; font-weight:600;">Start a free trial</a></p>
+    <p style="text-align:center; margin-top:14px; font-size:13px;"><a href="{% url 'webapp:password_reset' %}" style="color:#14532d; font-weight:600;">{% translate "Forgot password?" %}</a></p>
+    <p style="text-align:center; margin-top:6px; font-size:13px; color:#5f6579;">{% translate "New here?" %} <a href="{% url 'webapp:signup' %}" style="color:#14532d; font-weight:600;">{% translate "Start a free trial" %}</a></p>
   </div>
 </body>
 </html>

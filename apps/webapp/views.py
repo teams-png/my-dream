@@ -3322,7 +3322,7 @@ def restaurant_order_detail(request, order_id):
                     return redirect("webapp:restaurant_order_detail", order_id=order.id)
                 ticket = restaurant_services.send_to_kitchen(company=company, order=order)
                 messages.success(request, f"KOT sent to kitchen (round {ticket.kitchen_round}).")
-                return redirect(reverse("webapp:restaurant_order_detail", args=[order.id]) + f"?sent={ticket.id}")
+                return redirect(reverse("webapp:restaurant_order_detail", args=[order.id]) + f"?kot_round={ticket.kitchen_round}")
             elif action == "transfer":
                 table = get_object_or_404(DiningTable.objects.for_company(company), id=request.POST.get("table_id"))
                 restaurant_services.transfer_table(company=company, order=order, table=table)
@@ -3354,7 +3354,7 @@ def restaurant_order_detail(request, order_id):
                     payments = [{"method": method, "amount": d.get(method) or 0} for method in ("cash", "card", "bank") if (d.get(method) or 0) > 0]
                     restaurant_services.settle_order(company=company, user=request.user, order=order, warehouse=d["warehouse"], date=timezone.localdate(), payments=payments)
                     messages.success(request, "Order billed and paid.")
-                    return redirect("webapp:restaurant_dashboard")
+                    return redirect(reverse("webapp:restaurant_dashboard") + f"?paid={order.id}")
         except Exception as exc:
             messages.error(request, str(exc))
     merge_candidates = RestaurantOrder.objects.for_company(company).exclude(id=order.id).exclude(status__in=["paid", "cancelled"])
@@ -3373,6 +3373,8 @@ def restaurant_order_detail(request, order_id):
     return render(request, "webapp/restaurant/order_detail.html", {
         "order": order, "line_form": line_form, "settle_form": settle_form,
         "unsent_count": order.lines.filter(sent_at__isnull=True).count(),
+        "print_tickets": list(order.kitchen_tickets.filter(kitchen_round=request.GET.get("kot_round") or 0).values_list("id", flat=True)) if request.GET.get("kot_round", "").isdigit() else [],
+        "last_tickets": list(order.kitchen_tickets.order_by("-kitchen_round", "id").values_list("id", "kitchen_round")[:6]),
         "free_tables": DiningTable.objects.for_company(company).filter(is_active=True).exclude(id__in=list(busy_table_ids)).select_related("area"),
         "suggested_service": suggested_service, "service_pct": service_pct,
         "merge_candidates": merge_candidates, "menu_items": menu_items,

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}POS{% endblock %}
 {% block heading %}Point of Sale{% endblock %}
 {% block content %}
@@ -233,6 +234,14 @@ document.getElementById('pos-checkout-btn').addEventListener('click', async () =
     if (data.points_earned) extra += ` · +${data.points_earned} loyalty pts`;
     msg.innerHTML = `Sale complete — ${data.invoice_number}${extra}. <a href="/invoices/${data.invoice_id}/pdf/" target="_blank">Print receipt</a>`;
     msg.style.color = 'var(--accent)';
+    if (window.Devices) {
+      const cfg = Devices.load();
+      const printJob = { dataUrl: `/devices/print/invoice/${data.invoice_id}.json`, htmlUrl: `/invoices/${data.invoice_id}/pdf/` };
+      const paidCash = (body.payment_method || '') === 'cash';
+      if (cfg.autoPrintReceipt) Devices.printReceipt({ ...printJob, drawer: paidCash }).catch(e => { msg.innerHTML += ' · Printer: ' + e.message; });
+      else if (paidCash && cfg.drawer.enabled) Devices.openDrawer().catch(() => {});
+      Devices.display({ type: 'paid', total: data.total || '', paid: data.total || '', change: '0.00' });
+    }
     for (const k in cart) delete cart[k];
     document.getElementById('pos-coupon').value = '';
     renderCart();
@@ -250,4 +259,5 @@ if (document.getElementById('mobile-payment-details')) paymentSelect.addEventLis
   document.getElementById('installment-fields').style.display = paymentSelect.value === 'installment' ? 'block' : 'none';
 });
 </script>
+<script src="{% static 'js/devices.js' %}"></script>
 {% endblock %}

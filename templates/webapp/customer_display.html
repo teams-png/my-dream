@@ -1,0 +1,120 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer display · {{ company.name }}</title>
+<style>
+  @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Regular.ttf" %}');font-weight:400}
+  @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Bold.ttf" %}');font-weight:700}
+  :root{--ink:#1d1715;--soft:#8a7a70;--brand:#e03a1e;--bg:#f7f3ed;--ease:cubic-bezier(.2,.8,.2,1)}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);overflow:hidden}
+  .screen{position:absolute;inset:0;display:flex;transition:opacity .5s var(--ease),transform .5s var(--ease)}
+  .screen[hidden]{display:flex!important;opacity:0;pointer-events:none;transform:scale(.98)}
+  /* idle */
+  #idle{flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(120% 120% at 80% 0%,#ff7a3d,#e03a1e 40%,#2a1712);color:#fff}
+  #idle .logo{width:120px;height:120px;border-radius:32px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;font-size:60px;margin-bottom:26px;animation:float 4s ease-in-out infinite;overflow:hidden}
+  #idle .logo img{width:100%;height:100%;object-fit:cover}
+  #idle h1{font-size:clamp(34px,6vw,72px);margin:0;letter-spacing:-.03em}
+  #idle p{font-size:clamp(16px,2vw,24px);opacity:.85;margin:10px 0 0}
+  #idle .clock{position:absolute;bottom:34px;font-size:22px;font-weight:700;opacity:.7}
+  /* cart */
+  #cart{flex-direction:row}
+  .items{flex:1;display:flex;flex-direction:column;padding:4vh 4vw;min-width:0}
+  .items h2{margin:0 0 2vh;font-size:clamp(20px,2.4vw,32px);display:flex;justify-content:space-between;align-items:center}
+  .items h2 small{font-size:.6em;color:var(--soft);font-weight:700}
+  .list{flex:1;overflow:hidden;display:flex;flex-direction:column;gap:1.2vh;justify-content:flex-end}
+  .row{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:#fff;border-radius:20px;padding:1.6vh 22px;font-size:clamp(17px,2vw,28px);box-shadow:0 4px 14px rgba(64,36,18,.06);animation:rowIn .45s var(--ease) both}
+  .row .q{min-width:52px;height:52px;border-radius:14px;background:#fff0e6;color:var(--brand);display:flex;align-items:center;justify-content:center;font-weight:700}
+  .row .n{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .row .a{font-weight:700;font-variant-numeric:tabular-nums}
+  .row.flash{animation:rowIn .45s var(--ease) both,flash 1.2s ease .1s}
+  .side{width:min(38vw,520px);background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:5vh 3.5vw}
+  .side .brand{font-size:clamp(18px,1.8vw,26px);font-weight:700;opacity:.8;margin-bottom:auto}
+  .side .label{font-size:clamp(14px,1.4vw,20px);opacity:.6;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+  .side .total{font-size:clamp(46px,6.5vw,110px);font-weight:700;letter-spacing:-.04em;line-height:1;margin:1vh 0 3vh;font-variant-numeric:tabular-nums}
+  .side .total small{font-size:.35em;opacity:.7;margin-right:10px;letter-spacing:0}
+  .side .break div{display:flex;justify-content:space-between;font-size:clamp(15px,1.4vw,21px);opacity:.75;padding:.5vh 0}
+  .side .foot{margin-top:auto;opacity:.5;font-size:15px}
+  /* paid */
+  #paid{flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(160deg,#15935b,#0b5d39);color:#fff}
+  #paid .tick{width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;margin-bottom:30px}
+  #paid .tick svg{width:96px;height:96px}
+  #paid .tick path{stroke-dasharray:60;stroke-dashoffset:60}
+  #paid.show .tick{animation:pop .6s var(--ease) both}
+  #paid.show .tick path{animation:draw .6s .3s ease forwards}
+  #paid h1{font-size:clamp(34px,5vw,68px);margin:0}
+  #paid p{font-size:clamp(18px,2.2vw,30px);opacity:.9;margin:12px 0 0}
+  .confetti{position:absolute;top:-20px;width:12px;height:18px;border-radius:3px;animation:fall linear forwards}
+  @keyframes rowIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes flash{0%{background:#fff3cf}100%{background:#fff}}
+  @keyframes float{50%{transform:translateY(-10px)}}
+  @keyframes pop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+  .hint{position:fixed;left:16px;bottom:12px;font-size:12px;color:#fff;opacity:.6;z-index:5}
+  @media(max-width:800px){#cart{flex-direction:column}.side{width:auto;padding:3vh 5vw}.side .brand,.side .foot{display:none}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}#paid .tick path{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<section class="screen" id="idle">
+  <div class="logo">{% if company.logo %}<img src="{{ company.logo.url }}" alt="">{% else %}🍽️{% endif %}</div>
+  <h1>Welcome to {{ company.name }}</h1>
+  <p>Your order will appear here</p>
+  <div class="clock" id="clock"></div>
+</section>
+<section class="screen" id="cart" hidden>
+  <div class="items"><h2><span>Your order</span><small id="count"></small></h2><div class="list" id="list"></div></div>
+  <aside class="side">
+    <div class="brand">{{ company.name }}</div>
+    <div class="label">Total to pay</div>
+    <div class="total" id="total"><small>{{ company.default_currency }}</small>0.00</div>
+    <div class="break" id="break"></div>
+    <div class="foot">Thank you for choosing us ♥</div>
+  </aside>
+</section>
+<section class="screen" id="paid" hidden>
+  <div class="tick"><svg viewBox="0 0 52 52" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 27l8 8 16-18"/></svg></div>
+  <h1>Thank you!</h1>
+  <p id="paidText"></p>
+</section>
+<div class="hint" id="hint">Press F11 for full screen</div>
+<script>
+(function(){
+  const cur="{{ company.default_currency|escapejs }}";
+  const show=id=>{['idle','cart','paid'].forEach(s=>{const el=document.getElementById(s);el.hidden=s!==id;el.classList.toggle('show',s===id)})};
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  let known=new Set(),idleTimer=null,shown=0;
+  function tick(){document.getElementById('clock').textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}
+  tick();setInterval(tick,10000);
+  function countTo(el,to){const from=shown,t0=performance.now();shown=to;const step=t=>{const p=Math.min(1,(t-t0)/500),e=1-Math.pow(1-p,3);el.innerHTML='<small>'+esc(cur)+'</small>'+(from+(to-from)*e).toFixed(2);if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
+  function renderCart(m){
+    if(!m.lines||!m.lines.length){show('idle');known=new Set();shown=0;return}
+    show('cart');
+    const list=document.getElementById('list');
+    list.innerHTML=m.lines.slice(-8).map(l=>{const key=l.name+'|'+l.qty+'|'+l.amount;const isNew=!known.has(key);return `<div class="row${isNew?' flash':''}"${isNew?'':' style="animation:none"'}><span class="q">${esc(l.qty)}×</span><span class="n">${esc(l.name)}</span><span class="a">${esc(l.amount)}</span></div>`}).join('');
+    known=new Set(m.lines.map(l=>l.name+'|'+l.qty+'|'+l.amount));
+    const n=m.lines.reduce((s,l)=>s+(parseFloat(l.qty)||0),0);
+    document.getElementById('count').textContent=n+' item'+(n===1?'':'s');
+    document.getElementById('break').innerHTML=(m.breakdown||[]).map(([k,v])=>`<div><span>${esc(k)}</span><span>${esc(v)}</span></div>`).join('');
+    countTo(document.getElementById('total'),parseFloat(m.total)||0);
+  }
+  function renderPaid(m){
+    show('paid');
+    document.getElementById('paidText').textContent=m.change&&parseFloat(m.change)>0?`Paid ${cur} ${m.paid} · Your change: ${cur} ${m.change}`:`Paid ${cur} ${m.total}`;
+    const colors=['#ffbf2e','#fff','#ff7a3d','#4ade80','#60a5fa'];
+    for(let i=0;i<60;i++){const c=document.createElement('div');c.className='confetti';c.style.left=Math.random()*100+'vw';c.style.background=colors[i%colors.length];c.style.animationDuration=(2+Math.random()*2.5)+'s';c.style.animationDelay=(Math.random()*.6)+'s';document.getElementById('paid').appendChild(c);setTimeout(()=>c.remove(),5500)}
+    clearTimeout(idleTimer);idleTimer=setTimeout(()=>{show('idle');known=new Set();shown=0},9000);
+  }
+  try{
+    const ch=new BroadcastChannel('bookpilot-customer-display');
+    ch.onmessage=e=>{const m=e.data||{};clearTimeout(idleTimer);if(m.type==='cart')renderCart(m);else if(m.type==='paid')renderPaid(m);else if(m.type==='idle')show('idle')};
+  }catch(e){document.querySelector('#idle p').textContent='This browser cannot show the live order.'}
+  document.addEventListener('keydown',e=>{if(e.key==='f'||e.key==='F')document.documentElement.requestFullscreen?.()});
+  setTimeout(()=>document.getElementById('hint').remove(),8000);
+})();
+</script>
+</body>
+</html>

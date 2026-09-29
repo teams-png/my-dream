@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Restaurant POS · {{ order.order_number }}{% endblock %}
 {% block heading %}Restaurant POS{% endblock %}
 {% block shell_class %}focus-mode{% endblock %}
@@ -277,7 +278,7 @@
       <div class="pos-no-match" id="posNoMatch" hidden>🔍 No dishes match this search. Try another name or category.</div>
       <div class="food-grid" id="foodGrid">
         {% for item in menu_items %}
-        <article class="food-card{% if not item.is_available %} sold{% endif %}" style="--i:{{ forloop.counter0 }}" data-category="{{ item.product.category_id|default:'none' }}" data-search="{{ item.product.name|lower }} {{ item.product.sku|lower }} {{ item.product.category.name|lower }}">
+        <article class="food-card{% if not item.is_available %} sold{% endif %}" style="--i:{{ forloop.counter0 }}" data-category="{{ item.product.category_id|default:'none' }}" data-sku="{{ item.product.sku|lower }}" data-search="{{ item.product.name|lower }} {{ item.product.sku|lower }} {{ item.product.category.name|lower }}">
           <div class="food-image">
             <div class="food-badges">{% if item.is_featured %}<span class="featured-label">★ Popular</span>{% endif %}{% if item.is_vegetarian %}<span class="veg-label">● Veg</span>{% endif %}{% if not item.is_available %}<span class="sold-label">Sold out</span>{% endif %}</div>
             {% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.product.name }}" loading="lazy">{% else %}<span class="food-placeholder">🍽️</span>{% endif %}
@@ -360,7 +361,15 @@
           {% endif %}
           <form method="post" class="more-card">{% csrf_token %}<input type="hidden" name="action" value="split"><strong>✂️ Split selected items</strong>{% for line in order.lines.all %}<label><input type="checkbox" name="line_ids" value="{{ line.id }}"> {{ line.quantity|floatformat:"-3" }} × {{ line.product.name }}</label>{% empty %}<p class="cart-note">No items to split yet.</p>{% endfor %}<button class="rp-btn" style="margin-top:8px" {% if not line_count %}disabled{% endif %}>Split into new order</button></form>
           <form method="post" class="more-card">{% csrf_token %}<input type="hidden" name="action" value="merge"><strong>🔗 Merge another order into this one</strong><select name="source_order_id" class="rp-input">{% for candidate in merge_candidates %}<option value="{{ candidate.id }}">{{ candidate.order_number }} · {{ candidate.get_channel_display }}{% if candidate.table %} · {{ candidate.table.name }}{% endif %}</option>{% empty %}<option value="">No other open orders</option>{% endfor %}</select><button class="rp-btn" style="margin-top:8px" {% if not merge_candidates %}disabled{% endif %}>Merge orders</button></form>
-          <div class="more-card"><strong>🧾 Receipt</strong><a class="rp-btn" target="_blank" href="{% url 'webapp:restaurant_receipt_print' order.id %}">Print receipt</a></div>
+          <div class="more-card"><strong>🖨️ Print & devices</strong>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <button class="rp-btn" type="button" data-print-receipt>🧾 Print receipt</button>
+              <button class="rp-btn" type="button" data-open-drawer>💵 Open drawer</button>
+              {% for tid, rnd in last_tickets %}<button class="rp-btn" type="button" data-print-kot="{{ tid }}">👨‍🍳 KOT · round {{ rnd }}</button>{% endfor %}
+              <button class="rp-btn" type="button" data-open-display>🖥️ Customer display</button>
+            </div>
+            <a href="{% url 'webapp:devices' %}" style="display:block;margin-top:8px;font-size:13px;font-weight:700;color:var(--r-brand)">⚙ Printer & device settings</a>
+          </div>
         </div>
       </dialog>
       {% endwith %}
@@ -441,6 +450,7 @@
   <div class="dlg-foot"><button class="rp-btn" type="button" id="posConfirmCancel">Go back</button><button class="rp-btn go" type="button" id="posConfirmAccept">Yes, send it</button></div>
 </dialog>
 
+<script src="{% static 'js/devices.js' %}"></script>
 <script>
 const CURRENCY = "{{ active_company.default_currency|escapejs }}";
 const search=document.getElementById('menuSearch'),cards=[...document.querySelectorAll('.food-card')],itemDialog=document.getElementById('itemDialog');
@@ -485,10 +495,10 @@ document.querySelector('.rp-body').addEventListener('submit',event=>{const form=
 document.getElementById('posFullScreen').addEventListener('click',()=>{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen?.()});
 
 /* ---------- send to kitchen confirmation ---------- */
-const confirmDialog=document.getElementById('posConfirm');let pendingForm=null;
-document.querySelector('.rp-body').addEventListener('submit',event=>{const form=event.target,button=event.submitter;if(button?.value!=='send_kitchen'||form.dataset.confirmed)return;event.preventDefault();pendingForm=form;const n=document.querySelector('.cart-panel').dataset.lines;document.getElementById('posConfirmText').textContent='The kitchen will receive '+n+' item'+(n==='1'?'':'s')+' and start preparing them.';confirmDialog.showModal()});
+const confirmDialog=document.getElementById('posConfirm');let pendingForm=null,pendingButton=null;
+document.querySelector('.rp-body').addEventListener('submit',event=>{const form=event.target,button=event.submitter;if(button?.value!=='send_kitchen'||form.dataset.confirmed)return;event.preventDefault();pendingForm=form;pendingButton=button;const n=document.querySelector('.cart-panel').dataset.lines;document.getElementById('posConfirmText').textContent='The kitchen will receive '+n+' item'+(n==='1'?'':'s')+' and start preparing them.';confirmDialog.showModal()});
 document.getElementById('posConfirmCancel').addEventListener('click',()=>confirmDialog.close());
-document.getElementById('posConfirmAccept').addEventListener('click',()=>{if(pendingForm){pendingForm.dataset.confirmed='1';pendingForm.requestSubmit()}confirmDialog.close()});
+document.getElementById('posConfirmAccept').addEventListener('click',()=>{if(pendingForm){pendingForm.dataset.confirmed='1';pendingForm.requestSubmit(pendingButton&&pendingButton.isConnected?pendingButton:undefined)}confirmDialog.close()});
 
 /* ---------- payment ---------- */
 let payMethod='cash';
@@ -501,6 +511,39 @@ $('payDialog').addEventListener('input',renderPay);
 $('quickCash').addEventListener('click',e=>{const b=e.target.closest('[data-cash]');if(b){$('cashGiven').value=money(b.dataset.cash);renderPay()}});
 $('payForm').addEventListener('submit',()=>{$('payGo').disabled=true;$('payGo').textContent='Processing…'});
 {% if settle_form.errors %}preparePay();$('payDialog').showModal();{% endif %}
+
+/* ---------- devices: printers, drawer, scanner, customer display ---------- */
+const PRINT={
+  receiptData:"{% url 'webapp:device_restaurant_receipt' order.id %}",
+  receiptHtml:"{% url 'webapp:restaurant_receipt_print' order.id %}",
+  kotData:id=>"{% url 'webapp:device_kot' 0 %}".replace('/0.json','/'+id+'.json'),
+  kotHtml:id=>"{% url 'webapp:restaurant_kot_print' 0 %}".replace('/0/','/'+id+'/'),
+};
+const devErr=e=>notifyCart(e.message==='raw-unavailable'?'Set up a printer in Devices first':e.message,true);
+async function printKots(ids){for(const id of ids){try{await Devices.printKot({dataUrl:PRINT.kotData(id),htmlUrl:PRINT.kotHtml(id)})}catch(e){devErr(e);break}}}
+document.addEventListener('click',async e=>{
+  const kot=e.target.closest('[data-print-kot]');if(kot){printKots([kot.dataset.printKot]);return}
+  if(e.target.closest('[data-print-receipt]')){try{await Devices.printReceipt({dataUrl:PRINT.receiptData,htmlUrl:PRINT.receiptHtml,drawer:false});notifyCart('Receipt sent to printer')}catch(err){devErr(err)}return}
+  if(e.target.closest('[data-open-drawer]')){try{await Devices.openDrawer();notifyCart('Cash drawer opened')}catch(err){devErr(err)}return}
+  if(e.target.closest('[data-open-display]')){const c=Devices.load();if(!c.display.enabled){c.display.enabled=true;Devices.save(c)}window.open("{% url 'webapp:customer_display' %}",'bookpilot-display');setTimeout(sendDisplay,800)}
+});
+{% if print_tickets %}if(Devices.load().autoPrintKot){printKots({{ print_tickets|safe }})}{% endif %}
+function sendDisplay(){
+  const panel=document.querySelector('.cart-panel');if(!panel)return;
+  const lines=[...panel.querySelectorAll('.cart-item')].map(r=>({qty:(r.querySelector('.qty-val,.cart-qty-static')?.textContent||'1').replace('×','').trim(),name:r.querySelector('.cart-name')?.childNodes[0]?.textContent.trim()||'',amount:r.querySelector('.cart-price')?.textContent.trim()||''}));
+  const breakdown=[...panel.querySelectorAll('.sum-row')].map(r=>[...r.querySelectorAll('span')].map(x=>x.textContent.trim()));
+  Devices.display({type:'cart',order:"{{ order.order_number|escapejs }}",lines,breakdown,total:panel.querySelector('.amt')?.dataset.amount||'0'});
+}
+sendDisplay();
+new MutationObserver(()=>sendDisplay()).observe(document.querySelector('.rp-body'),{childList:true});
+Devices.attachScanner(code=>{
+  const c=code.toLowerCase().trim();
+  const card=cards.find(x=>x.dataset.sku===c);
+  if(!card){notifyCart('No menu item with code '+code,true);return}
+  const btn=card.querySelector('.food-add');if(btn.disabled){notifyCart(btn.dataset.productName+' is not available',true);return}
+  btn.click();
+});
+$('payForm').addEventListener('submit',()=>{try{sessionStorage.setItem('bp.lastPayment',JSON.stringify({order:{{ order.id }},total:money(due()),paid:$('cashGiven').value?money($('cashGiven').value):money(due()),change:payMethod==='cash'&&$('cashGiven').value?money(Math.max(0,parseFloat($('cashGiven').value)-due())):'0.00',cash:payMethod==='cash'||parseFloat($('id_cash').value)>0}))}catch(e){}});
 
 /* ---------- flash messages auto-hide ---------- */
 document.querySelectorAll('.messages').forEach(m=>setTimeout(()=>{m.style.transition='opacity .4s';m.style.opacity='0';setTimeout(()=>m.remove(),400)},4200));

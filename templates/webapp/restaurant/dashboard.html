@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Restaurant{% endblock %}
 {% block heading %}Restaurant Dashboard{% endblock %}
 {% block content %}
@@ -93,12 +94,43 @@
   </table>
 </section>
 {% endwith %}
+<script src="{% static 'js/devices.js' %}"></script>
 <script>
 (function(){
+  /* after payment: receipt, cash drawer and customer display */
+  const params=new URLSearchParams(location.search),paid=params.get('paid');
+  if(paid&&/^\d+$/.test(paid)){
+    let info={};try{info=JSON.parse(sessionStorage.getItem('bp.lastPayment')||'{}');sessionStorage.removeItem('bp.lastPayment')}catch(e){}
+    const cfg=Devices.load();
+    const dataUrl="{% url 'webapp:device_restaurant_receipt' 0 %}".replace('/0.json','/'+paid+'.json');
+    const htmlUrl="{% url 'webapp:restaurant_receipt_print' 0 %}".replace('/0/','/'+paid+'/');
+    if(cfg.autoPrintReceipt){Devices.printReceipt({dataUrl,htmlUrl}).catch(()=>{})}
+    else if(cfg.drawer.enabled&&info.cash){Devices.openDrawer().catch(()=>{})}
+    Devices.display({type:'paid',total:info.total||'',paid:info.paid||'',change:info.change||'0.00'});
+    history.replaceState(null,'',location.pathname);
+  }
+  /* live updates: refresh orders and chime when food is ready */
+  let refreshing=false;
+  async function refresh(event){
+    if(refreshing||document.querySelector('dialog[open]'))return;refreshing=true;
+    try{
+      const html=await (await fetch(location.pathname,{credentials:'same-origin'})).text();
+      const doc=new DOMParser().parseFromString(html,'text/html');
+      ['.r-stats','.r-grid'].forEach(sel=>{const fresh=doc.querySelector(sel),old=document.querySelector(sel);if(fresh&&old){fresh.querySelectorAll('.r-reveal,.r-table,.r-order').forEach(x=>x.style.animation='none');old.replaceWith(fresh)}});
+      window.ago&&window.ago();
+      if(event==='status_changed'&&doc.querySelector('.r-pill.ready'))Devices.alarm('ready');
+    }catch(e){}finally{refreshing=false}
+  }
+  try{
+    let delay=1000;
+    const connect=()=>{const ws=new WebSocket((location.protocol==='https:'?'wss':'ws')+'://'+location.host+'/ws/restaurant/kitchen/');ws.onmessage=m=>{let ev='refresh';try{ev=JSON.parse(m.data).event}catch(e){}refresh(ev)};ws.onopen=()=>delay=1000;ws.onclose=()=>{setTimeout(connect,delay);delay=Math.min(delay*2,30000)}};
+    connect();
+  }catch(e){}
+  setInterval(()=>{if(!document.hidden)refresh()},60000);
   const h=new Date().getHours();
   document.getElementById('rGreeting').textContent=(h<12?'Good morning':h<17?'Good afternoon':'Good evening')+' 👋';
-  const ago=()=>document.querySelectorAll('[data-since]').forEach(el=>{const m=Math.max(0,Math.round((Date.now()-new Date(el.dataset.since))/60000));el.textContent=m<1?'just now':m<60?m+' min':Math.floor(m/60)+'h '+(m%60)+'m'});
-  ago();setInterval(ago,30000);
+  window.ago=()=>document.querySelectorAll('[data-since]').forEach(el=>{const m=Math.max(0,Math.round((Date.now()-new Date(el.dataset.since))/60000));el.textContent=m<1?'just now':m<60?m+' min':Math.floor(m/60)+'h '+(m%60)+'m'});
+  window.ago();setInterval(window.ago,30000);
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   document.querySelectorAll('[data-count]').forEach(el=>{
     const to=parseFloat(el.dataset.count)||0,dec=el.dataset.count.includes('.')?2:0,pre=el.dataset.prefix||'',t0=performance.now();

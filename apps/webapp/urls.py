@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import views
+from . import device_views, views
 
 app_name = "webapp"
 
@@ -91,6 +91,11 @@ urlpatterns = [
     path("purchases/reports/", views.purchase_reports, name="purchase_reports"),
 
     path("pos/", views.pos_view, name="pos"),
+    path("devices/", device_views.devices_settings, name="devices"),
+    path("devices/customer-display/", device_views.customer_display, name="customer_display"),
+    path("devices/print/invoice/<int:invoice_id>.json", device_views.invoice_receipt_data, name="device_invoice_receipt"),
+    path("devices/print/restaurant/<int:order_id>.json", device_views.restaurant_receipt_data, name="device_restaurant_receipt"),
+    path("devices/print/kot/<int:ticket_id>.json", device_views.kot_data, name="device_kot"),
     path("pos/checkout/", views.pos_checkout, name="pos_checkout"),
 
     path("returns/", views.sales_return_list, name="sales_return_list"),

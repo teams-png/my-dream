@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Devices & Hardware{% endblock %}
+{% block heading %}Devices & Hardware{% endblock %}
+{% block content %}
+<style>
+.dv-intro{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:20px 22px;border-radius:20px;background:linear-gradient(120deg,#12162b,#27305a);color:#fff;margin-bottom:18px}
+.dv-intro h2{margin:0;font-size:21px}.dv-intro p{margin:4px 0 0;opacity:.8;font-size:14px;max-width:640px}
+.dv-support{display:flex;gap:6px;flex-wrap:wrap}
+.dv-support span{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.12)}
+.dv-support span.ok::before{content:"✓ ";color:#4ade80}.dv-support span.no::before{content:"✕ ";color:#f87171}
+.dv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+.dv-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:12px;animation:dvIn .45s cubic-bezier(.2,.8,.2,1) both}
+.dv-card:nth-child(2){animation-delay:.05s}.dv-card:nth-child(3){animation-delay:.1s}.dv-card:nth-child(4){animation-delay:.15s}.dv-card:nth-child(5){animation-delay:.2s}.dv-card:nth-child(6){animation-delay:.25s}
+@keyframes dvIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.dv-head{display:flex;align-items:center;gap:12px}
+.dv-ico{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:23px;background:var(--accent-soft);flex-shrink:0}
+.dv-head h3{margin:0;font-size:17px}.dv-head small{color:var(--ink-soft)}
+.dv-status{margin-left:auto;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;background:#f1f3f8;color:var(--ink-soft);white-space:nowrap}
+.dv-status.on{background:var(--success-bg);color:var(--success)}
+.dv-modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:6px}
+.dv-mode{position:relative;border:1.5px solid var(--line);border-radius:12px;padding:9px 6px;text-align:center;font-size:12.5px;font-weight:700;cursor:pointer;transition:border-color .15s,background .15s}
+.dv-mode input{position:absolute;opacity:0}
+.dv-mode span{display:block;font-size:19px;margin-bottom:2px}
+.dv-mode:has(input:checked){border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.dv-row{display:flex;gap:8px;flex-wrap:wrap;align-items:end}
+.dv-row label{flex:1;min-width:120px;font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.dv-row input,.dv-row select{display:block;width:100%;margin-top:4px;padding:9px 11px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:14px;background:#fff}
+.dv-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:600;font-size:14px}
+.dv-switch{position:relative;width:46px;height:26px;flex-shrink:0}
+.dv-switch input{opacity:0;width:0;height:0}
+.dv-switch i{position:absolute;inset:0;border-radius:99px;background:#d6d9e3;transition:background .2s;cursor:pointer}
+.dv-switch i::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.dv-switch input:checked+i{background:var(--accent)}
+.dv-switch input:checked+i::after{transform:translateX(20px)}
+.dv-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.dv-actions .btn{font-size:13.5px;padding:9px 14px}
+.dv-note{font-size:12.5px;color:var(--ink-soft);background:var(--paper);border-radius:10px;padding:9px 11px;margin:0}
+.dv-scan{padding:14px;border:2px dashed var(--line);border-radius:14px;text-align:center;color:var(--ink-soft);font-weight:600;transition:border-color .2s,background .2s}
+.dv-scan.hit{border-color:var(--success);background:var(--success-bg);color:var(--success);animation:dvPop .4s}
+@keyframes dvPop{50%{transform:scale(1.03)}}
+.dv-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#12162b;color:#fff;padding:12px 18px;border-radius:14px;font-weight:700;z-index:99;box-shadow:0 14px 34px rgba(0,0,0,.3);animation:dvIn .3s both}
+.dv-toast.err{background:#b42318}
+
+@media(prefers-reduced-motion:reduce){.dv-card,.dv-toast,.dv-scan.hit{animation:none}}
+</style>
+
+<div class="dv-intro">
+  <div><h2>Connect your shop hardware</h2><p>These settings belong to <strong>this computer/tablet</strong>. Set them up once on every till, kitchen screen or waiter device.</p></div>
+  <div class="dv-support" id="support"></div>
+</div>
+
+<div class="dv-grid">
+  <section class="dv-card" data-role="receipt">
+    <div class="dv-head"><div class="dv-ico">🧾</div><div><h3>Receipt printer</h3><small>Customer bills and receipts</small></div><span class="dv-status" data-status></span></div>
+    <div class="dv-modes">
+      <label class="dv-mode"><input type="radio" name="receipt-mode" value="browser"><span>🖨️</span>Any printer</label>
+      <label class="dv-mode"><input type="radio" name="receipt-mode" value="usb"><span>🔌</span>USB</label>
+      <label class="dv-mode"><input type="radio" name="receipt-mode" value="serial"><span>🧷</span>Serial / BT</label>
+      <label class="dv-mode"><input type="radio" name="receipt-mode" value="network"><span>📶</span>Network (LAN)</label>
+    </div>
+    <p class="dv-note" data-show-when="browser">Uses the normal print window, so it works with any printer installed on this computer (thermal, A4, PDF). Tip: start Chrome with <code>--kiosk-printing</code> to print without the dialog.</p>
+    <div class="dv-row" data-show-when="network"><label>Printer IP address<input data-field="host" placeholder="192.168.1.50"></label><label style="max-width:110px">Port<input data-field="port" type="number" placeholder="9100"></label></div>
+    <div class="dv-row" data-show-when="serial"><label>Baud rate<select data-field="baud"><option>9600</option><option>19200</option><option>38400</option><option>57600</option><option>115200</option></select></label></div>
+    <div class="dv-row"><label>Paper width<select data-field="width"><option value="48">80 mm (48 characters)</option><option value="42">80 mm (42 characters)</option><option value="32">58 mm (32 characters)</option></select></label></div>
+    <div class="dv-actions"><button class="btn" data-connect>Connect printer</button><button class="btn btn-secondary" data-test>Test print</button></div>
+  </section>
+
+  <section class="dv-card" data-role="kitchen">
+    <div class="dv-head"><div class="dv-ico">👨‍🍳</div><div><h3>Kitchen printer (KOT)</h3><small>Order tickets for the kitchen</small></div><span class="dv-status" data-status></span></div>
+    <div class="dv-modes">
+      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="none"><span>🚫</span>None</label>
+      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="same"><span>🔁</span>Same as receipt</label>
+      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="browser"><span>🖨️</span>Any printer</label>
+      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="usb"><span>🔌</span>USB</label>
+      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="serial"><span>🧷</span>Serial / BT</label>
+      <label class="dv-mode"><input type="radio" name="kitchen-mode" value="network"><span>📶</span>Network</label>
+    </div>
+    <div class="dv-row" data-show-when="network"><label>Printer IP address<input data-field="host" placeholder="192.168.1.51"></label><label style="max-width:110px">Port<input data-field="port" type="number" placeholder="9100"></label></div>
+    <div class="dv-row" data-show-when="serial"><label>Baud rate<select data-field="baud"><option>9600</option><option>19200</option><option>38400</option><option>57600</option><option>115200</option></select></label></div>
+    <div class="dv-row"><label>Paper width<select data-field="width"><option value="48">80 mm (48 characters)</option><option value="42">80 mm (42 characters)</option><option value="32">58 mm (32 characters)</option></select></label></div>
+    <div class="dv-actions"><button class="btn" data-connect>Connect printer</button><button class="btn btn-secondary" data-test>Test print</button></div>
+  </section>
+
+  <section class="dv-card">
+    <div class="dv-head"><div class="dv-ico">⚙️</div><div><h3>Automatic printing</h3><small>Print without pressing buttons</small></div></div>
+    <div class="dv-toggle">POS: print KOT when an order is sent to the kitchen<label class="dv-switch"><input type="checkbox" data-cfg="autoPrintKot"><i></i></label></div>
+    <div class="dv-toggle">Kitchen screen: print every new ticket that arrives<label class="dv-switch"><input type="checkbox" data-cfg="kdsAutoPrint"><i></i></label></div>
+    <div class="dv-toggle">Print receipt when a bill is paid<label class="dv-switch"><input type="checkbox" data-cfg="autoPrintReceipt"><i></i></label></div>
+    <p class="dv-note">Turn KOT printing on for <strong>either</strong> the POS or the kitchen screen, not both, to avoid double tickets.</p>
+  </section>
+
+  <section class="dv-card">
+    <div class="dv-head"><div class="dv-ico">💵</div><div><h3>Cash drawer</h3><small>Opens through the receipt printer</small></div></div>
+    <div class="dv-toggle">Open drawer on cash payments<label class="dv-switch"><input type="checkbox" data-cfg="drawer.enabled"><i></i></label></div>
+    <div class="dv-row"><label>Drawer connector<select data-cfg="drawer.pin"><option value="0">Pin 2 (most drawers)</option><option value="1">Pin 5</option></select></label></div>
+    <p class="dv-note">Plug the drawer's RJ11 cable into the receipt printer's "DK" port. Needs a USB, serial or network receipt printer.</p>
+    <div class="dv-actions"><button class="btn btn-secondary" id="openDrawer">Open drawer now</button></div>
+  </section>
+
+  <section class="dv-card">
+    <div class="dv-head"><div class="dv-ico">🔍</div><div><h3>Barcode scanner</h3><small>USB or Bluetooth scanners</small></div></div>
+    <div class="dv-toggle">Add scanned items automatically in the POS<label class="dv-switch"><input type="checkbox" data-cfg="scanner.enabled"><i></i></label></div>
+    <div class="dv-scan" id="scanBox">Scan any barcode now to test your scanner…</div>
+    <p class="dv-note">Scanners work like a keyboard. The POS matches the scanned code with the product <strong>SKU</strong>.</p>
+  </section>
+
+  <section class="dv-card">
+    <div class="dv-head"><div class="dv-ico">🖥️</div><div><h3>Customer display</h3><small>Second screen facing the customer</small></div></div>
+    <div class="dv-toggle">Show the order on a customer screen<label class="dv-switch"><input type="checkbox" data-cfg="display.enabled"><i></i></label></div>
+    <p class="dv-note">Open the display window, drag it to the second monitor and press F11 for full screen. It updates live as you add items.</p>
+    <div class="dv-actions"><a class="btn" href="{% url 'webapp:customer_display' %}" target="bookpilot-display">Open customer display</a></div>
+  </section>
+
+  <section class="dv-card">
+    <div class="dv-head"><div class="dv-ico">🔔</div><div><h3>Order alarm</h3><small>Sound for new kitchen orders and ready orders</small></div></div>
+    <div class="dv-toggle">Play a sound for new orders<label class="dv-switch"><input type="checkbox" data-cfg="alarm.enabled"><i></i></label></div>
+    <div class="dv-row"><label>Sound<select data-cfg="alarm.sound"><option value="chime">Chime</option><option value="bell">Bell</option><option value="beep">Beep (loud)</option></select></label><label>Repeat<select data-cfg="alarm.repeat"><option>1</option><option>2</option><option>3</option><option>5</option></select></label><label>Volume<input data-cfg="alarm.volume" type="range" min="0.1" max="1" step="0.1"></label></div>
+    <div class="dv-actions"><button class="btn btn-secondary" id="testAlarm">▶ Test new-order sound</button><button class="btn btn-secondary" id="testReady">▶ Test ready sound</button></div>
+  </section>
+
+  <section class="dv-card">
+    <div class="dv-head"><div class="dv-ico">📶</div><div><h3>Network print agent</h3><small>Only needed for LAN / Wi-Fi printers</small></div><span class="dv-status" id="agentStatus">Not checked</span></div>
+    <p class="dv-note">Browsers cannot reach network printers directly. Run the small BookPilot print agent on this computer: <code>python scripts/print_agent.py</code> (from the project, needs Python 3).</p>
+    <div class="dv-row"><label>Agent address<input data-cfg="agentUrl" placeholder="http://127.0.0.1:8719"></label></div>
+    <div class="dv-actions"><button class="btn btn-secondary" id="checkAgent">Check agent</button></div>
+  </section>
+</div>
+
+<script src="{% static 'js/devices.js' %}"></script>
+<script>
+(function(){
+  const D=window.Devices;
+  const toast=(m,err)=>{document.querySelectorAll('.dv-toast').forEach(x=>x.remove());const t=document.createElement('div');t.className='dv-toast'+(err?' err':'');t.textContent=(err?'⚠️ ':'✓ ')+m;document.body.appendChild(t);setTimeout(()=>t.remove(),3500)};
+  const get=(o,p)=>p.split('.').reduce((a,k)=>a&&a[k],o);
+  const set=(o,p,v)=>{const ks=p.split('.');const last=ks.pop();ks.reduce((a,k)=>a[k],o)[last]=v};
+  const support=document.getElementById('support');
+  [['USB printers','usb' in navigator],['Serial / Bluetooth','serial' in navigator],['Customer display','BroadcastChannel' in window],['Sound','AudioContext' in window||'webkitAudioContext' in window]].forEach(([n,ok])=>{const s=document.createElement('span');s.className=ok?'ok':'no';s.textContent=n;support.appendChild(s)});
+
+  function render(){
+    const cfg=D.load();
+    document.querySelectorAll('[data-role]').forEach(card=>{
+      const role=card.dataset.role,r=cfg[role];
+      card.querySelectorAll(`input[name=${role}-mode]`).forEach(i=>i.checked=i.value===r.mode);
+      card.querySelectorAll('[data-field]').forEach(i=>i.value=r[i.dataset.field]??'');
+      card.querySelectorAll('[data-show-when]').forEach(el=>el.style.display=el.dataset.showWhen===r.mode?'':'none');
+      const btn=card.querySelector('[data-connect]');btn.style.display=(r.mode==='usb'||r.mode==='serial')?'':'none';
+      const st=card.querySelector('[data-status]');
+      const label={browser:'Print window',usb:r.usb?('USB · '+(r.usb.name||'printer')):'USB · not connected',serial:r.serial?'Serial · paired':'Serial · not connected',network:r.host?('LAN · '+r.host):'LAN · no IP',same:'Same as receipt',none:'Off'}[r.mode];
+      st.textContent=label;st.classList.toggle('on',!(/not connected|no IP|Off/.test(label)));
+    });
+    document.querySelectorAll('[data-cfg]').forEach(i=>{const v=get(cfg,i.dataset.cfg);if(i.type==='checkbox')i.checked=!!v;else i.value=v});
+  }
+  document.addEventListener('change',e=>{
+    const cfg=D.load();const t=e.target;
+    const card=t.closest('[data-role]');
+    if(card){const r=cfg[card.dataset.role];if(t.name&&t.name.endsWith('-mode'))r.mode=t.value;if(t.dataset.field)r[t.dataset.field]=t.type==='number'||t.dataset.field==='width'||t.dataset.field==='baud'?Number(t.value):t.value.trim()}
+    if(t.dataset.cfg){let v=t.type==='checkbox'?t.checked:t.value;if(['drawer.pin','alarm.repeat'].includes(t.dataset.cfg))v=Number(v);if(t.dataset.cfg==='alarm.volume')v=parseFloat(v);set(cfg,t.dataset.cfg,v)}
+    D.save(cfg);render();toast('Saved on this device');
+  });
+  document.querySelectorAll('[data-role]').forEach(card=>{
+    const role=card.dataset.role;
+    card.querySelector('[data-connect]').addEventListener('click',async()=>{try{const mode=D.load()[role].mode;await D.connect(role,mode);render();toast('Printer connected')}catch(e){if(e.name!=='NotFoundError')toast(e.message,true)}});
+    card.querySelector('[data-test]').addEventListener('click',async()=>{try{await D.testPrint(role);toast('Test page sent')}catch(e){toast(e.message==='raw-unavailable'?'Choose a printer type first':e.message,true)}});
+  });
+  document.getElementById('openDrawer').addEventListener('click',async()=>{try{await D.openDrawer();toast('Drawer opened')}catch(e){toast(e.message,true)}});
+  document.getElementById('testAlarm').addEventListener('click',()=>D.alarm('new',true));
+  document.getElementById('testReady').addEventListener('click',()=>D.alarm('ready',true));
+  document.getElementById('checkAgent').addEventListener('click',async()=>{const st=document.getElementById('agentStatus');try{const r=await fetch(D.load().agentUrl.replace(/\/$/,'')+'/health');if(!r.ok)throw 0;st.textContent='Running';st.classList.add('on');toast('Print agent is running')}catch(e){st.textContent='Not running';st.classList.remove('on');toast('Print agent not found on this computer',true)}});
+  const box=document.getElementById('scanBox');
+  D.attachScanner(code=>{box.textContent='Scanned: '+code;box.classList.remove('hit');void box.offsetWidth;box.classList.add('hit')});
+  render();
+})();
+</script>
+{% endblock %}

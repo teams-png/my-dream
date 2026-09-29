@@ -44,6 +44,12 @@ class PaymentGatewayConfig:
     razorpay_key_id: str
     razorpay_key_secret: str
     razorpay_webhook_secret: str
+    skipcash_enabled: bool = False
+    skipcash_test_mode: bool = True
+    skipcash_client_id: str = ""
+    skipcash_key_id: str = ""
+    skipcash_key_secret: str = ""
+    skipcash_webhook_key: str = ""
 
 
 def get_payment_gateway_config():
@@ -61,6 +67,9 @@ def get_payment_gateway_config():
 
     stripe_secret = secret("stripe_secret_key", "STRIPE_SECRET_KEY")
     razorpay_key_id = secret("razorpay_key_id", "RAZORPAY_KEY_ID")
+    skipcash_key_secret = secret("skipcash_key_secret", "SKIPCASH_KEY_SECRET")
+    skipcash_key_id = secret("skipcash_key_id", "SKIPCASH_KEY_ID")
+    skipcash_ready = bool(skipcash_key_secret and skipcash_key_id)
     return PaymentGatewayConfig(
         stripe_enabled=(saved.stripe_enabled if saved else bool(stripe_secret)) and bool(stripe_secret),
         stripe_test_mode=saved.stripe_test_mode if saved else True,
@@ -72,4 +81,10 @@ def get_payment_gateway_config():
         razorpay_key_id=razorpay_key_id,
         razorpay_key_secret=secret("razorpay_key_secret", "RAZORPAY_KEY_SECRET"),
         razorpay_webhook_secret=secret("razorpay_webhook_secret", "RAZORPAY_WEBHOOK_SECRET"),
+        skipcash_enabled=(saved.skipcash_enabled if saved else skipcash_ready) and skipcash_ready,
+        skipcash_test_mode=saved.skipcash_test_mode if saved else getattr(settings, "SKIPCASH_TEST_MODE", True),
+        skipcash_client_id=secret("skipcash_client_id", "SKIPCASH_CLIENT_ID"),
+        skipcash_key_id=skipcash_key_id,
+        skipcash_key_secret=skipcash_key_secret,
+        skipcash_webhook_key=secret("skipcash_webhook_key", "SKIPCASH_WEBHOOK_KEY"),
     )

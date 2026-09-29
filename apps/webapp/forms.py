@@ -1211,6 +1211,14 @@ class PaymentGatewaySettingsForm(forms.Form):
     razorpay_webhook_secret = forms.CharField(required=False, widget=forms.PasswordInput(render_value=False))
     clear_razorpay_keys = forms.BooleanField(required=False, label="Remove saved Razorpay keys")
 
+    skipcash_enabled = forms.BooleanField(required=False, label="Enable SkipCash (Qatar)")
+    skipcash_test_mode = forms.BooleanField(required=False, label="SkipCash sandbox (test) mode")
+    skipcash_client_id = forms.CharField(required=False, widget=forms.PasswordInput(render_value=False))
+    skipcash_key_id = forms.CharField(required=False, widget=forms.PasswordInput(render_value=False))
+    skipcash_key_secret = forms.CharField(required=False, widget=forms.PasswordInput(render_value=False))
+    skipcash_webhook_key = forms.CharField(required=False, widget=forms.PasswordInput(render_value=False))
+    clear_skipcash_keys = forms.BooleanField(required=False, label="Remove saved SkipCash keys")
+
     def __init__(self, *args, instance=None, **kwargs):
         super().__init__(*args, **kwargs)
         self.instance = instance
@@ -1220,10 +1228,13 @@ class PaymentGatewaySettingsForm(forms.Form):
                 "stripe_test_mode": instance.stripe_test_mode,
                 "razorpay_enabled": instance.razorpay_enabled,
                 "razorpay_test_mode": instance.razorpay_test_mode,
+                "skipcash_enabled": instance.skipcash_enabled,
+                "skipcash_test_mode": instance.skipcash_test_mode,
             })
         for name in (
             "stripe_publishable_key", "stripe_secret_key", "stripe_webhook_secret",
             "razorpay_key_id", "razorpay_key_secret", "razorpay_webhook_secret",
+            "skipcash_client_id", "skipcash_key_id", "skipcash_key_secret", "skipcash_webhook_key",
         ):
             self.fields[name].help_text = "Leave blank to keep the currently saved value."
 
@@ -1240,6 +1251,12 @@ class PaymentGatewaySettingsForm(forms.Form):
                 self.add_error("razorpay_key_id", "A Razorpay key ID is required when Razorpay is enabled.")
             if not cleaned.get("razorpay_key_secret") and not existing_secret:
                 self.add_error("razorpay_key_secret", "A Razorpay key secret is required when Razorpay is enabled.")
+        if cleaned.get("skipcash_enabled"):
+            for name, label in (("skipcash_client_id", "client ID"), ("skipcash_key_id", "key ID"),
+                                ("skipcash_key_secret", "key secret"), ("skipcash_webhook_key", "webhook key")):
+                existing = self.instance and not cleaned.get("clear_skipcash_keys") and self.instance.get_secret(name)
+                if not cleaned.get(name) and not existing:
+                    self.add_error(name, f"The SkipCash {label} is required when SkipCash is enabled.")
         return cleaned
 
     def save(self, user):
@@ -1248,10 +1265,13 @@ class PaymentGatewaySettingsForm(forms.Form):
         obj.stripe_test_mode = self.cleaned_data["stripe_test_mode"]
         obj.razorpay_enabled = self.cleaned_data["razorpay_enabled"]
         obj.razorpay_test_mode = self.cleaned_data["razorpay_test_mode"]
+        obj.skipcash_enabled = self.cleaned_data["skipcash_enabled"]
+        obj.skipcash_test_mode = self.cleaned_data["skipcash_test_mode"]
 
         groups = {
             "stripe": ("stripe_publishable_key", "stripe_secret_key", "stripe_webhook_secret"),
             "razorpay": ("razorpay_key_id", "razorpay_key_secret", "razorpay_webhook_secret"),
+            "skipcash": ("skipcash_client_id", "skipcash_key_id", "skipcash_key_secret", "skipcash_webhook_key"),
         }
         for provider, names in groups.items():
             if self.cleaned_data.get(f"clear_{provider}_keys"):

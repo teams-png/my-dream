@@ -390,4 +390,15 @@ AR.update({
 "The code %(code)s is already used by another product.": "الرمز %(code)s مستخدم لمنتج آخر.",
 "Setup skipped. You can come back to it any time from Settings.": "تم تخطي الإعداد. يمكنك العودة إليه في أي وقت من الإعدادات.",
 "Added %(items)s items and %(tables)s tables.": "تمت إضافة %(items)s صنفًا و%(tables)s طاولة.",
+
+# SkipCash billing
+"Only the business owner can pay.": "يمكن لمالك النشاط فقط الدفع.",
+"Online payment isn't available for this plan yet.": "الدفع الإلكتروني غير متاح لهذه الباقة بعد.",
+"Enter a valid mobile number for the payment receipt.": "أدخل رقم جوال صحيحًا لإيصال الدفع.",
+"Could not start the payment: %(error)s": "تعذّر بدء الدفع: %(error)s",
+"We could not check the payment yet (%(error)s). It will update automatically.": "تعذّر التحقق من الدفع الآن (%(error)s). سيتم التحديث تلقائيًا.",
+"Payment not found.": "لم يتم العثور على الدفعة.",
+"Payment received — thank you! Your subscription is active.": "تم استلام الدفع — شكرًا لك! اشتراكك مفعّل.",
+"The payment was cancelled or declined — no charge was made.": "تم إلغاء الدفع أو رفضه — لم يتم خصم أي مبلغ.",
+"Your payment is being confirmed. This page will show it within a minute.": "جارٍ تأكيد دفعتك. ستظهر في هذه الصفحة خلال دقيقة.",
 })

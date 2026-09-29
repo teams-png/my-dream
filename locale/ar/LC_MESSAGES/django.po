@@ -3967,3 +3967,42 @@ msgstr "لا يزال تعذّر تسجيل %(number)s: %(error)s"
 #: apps/webapp/views.py
 msgid "Marked as handled."
 msgstr "تم التعليم كمُعالج."
+
+#: apps/webapp/views.py
+msgid "Only the business owner can pay."
+msgstr "يمكن لمالك النشاط فقط الدفع."
+
+#: apps/webapp/views.py
+msgid "Online payment isn't available for this plan yet."
+msgstr "الدفع الإلكتروني غير متاح لهذه الباقة بعد."
+
+#: apps/webapp/views.py
+msgid "Enter a valid mobile number for the payment receipt."
+msgstr "أدخل رقم جوال صحيحًا لإيصال الدفع."
+
+#: apps/webapp/views.py
+msgid "Could not start the payment: %(error)s"
+msgstr "تعذّر بدء الدفع: %(error)s"
+
+#: apps/webapp/views.py
+msgid ""
+"We could not check the payment yet (%(error)s). It will update "
+"automatically."
+msgstr "تعذّر التحقق من الدفع الآن (%(error)s). سيتم التحديث تلقائيًا."
+
+#: apps/webapp/views.py
+msgid "Payment not found."
+msgstr "لم يتم العثور على الدفعة."
+
+#: apps/webapp/views.py
+msgid "Payment received — thank you! Your subscription is active."
+msgstr "تم استلام الدفع — شكرًا لك! اشتراكك مفعّل."
+
+#: apps/webapp/views.py
+msgid "The payment was cancelled or declined — no charge was made."
+msgstr "تم إلغاء الدفع أو رفضه — لم يتم خصم أي مبلغ."
+
+#: apps/webapp/views.py
+msgid ""
+"Your payment is being confirmed. This page will show it within a minute."
+msgstr "جارٍ تأكيد دفعتك. ستظهر في هذه الصفحة خلال دقيقة."

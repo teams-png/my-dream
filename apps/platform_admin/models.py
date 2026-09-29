@@ -16,6 +16,14 @@ class PaymentGatewaySettings(models.Model):
     razorpay_key_secret_ciphertext = models.TextField(blank=True)
     razorpay_webhook_secret_ciphertext = models.TextField(blank=True)
 
+    # SkipCash — Qatar (cards, Apple Pay, Google Pay, local debit)
+    skipcash_enabled = models.BooleanField(default=False)
+    skipcash_test_mode = models.BooleanField(default=True)
+    skipcash_client_id_ciphertext = models.TextField(blank=True)
+    skipcash_key_id_ciphertext = models.TextField(blank=True)
+    skipcash_key_secret_ciphertext = models.TextField(blank=True)
+    skipcash_webhook_key_ciphertext = models.TextField(blank=True)
+
     updated_at = models.DateTimeField(auto_now=True)
     updated_by = models.ForeignKey(
         "accounts.User", null=True, blank=True, on_delete=models.SET_NULL, related_name="+",

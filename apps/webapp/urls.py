@@ -145,6 +145,9 @@ urlpatterns = [
     path("billing/razorpay/order/", views.billing_razorpay_order, name="billing_razorpay_order"),
     path("billing/razorpay/verify/", views.billing_razorpay_verify, name="billing_razorpay_verify"),
     path("billing/razorpay/webhook/", views.billing_razorpay_webhook, name="billing_razorpay_webhook"),
+    path("billing/skipcash/start/", views.billing_skipcash_start, name="billing_skipcash_start"),
+    path("billing/skipcash/return/", views.billing_skipcash_return, name="billing_skipcash_return"),
+    path("billing/skipcash/webhook/", views.billing_skipcash_webhook, name="billing_skipcash_webhook"),
 
     path("settings/", views.company_settings, name="company_settings"),
 

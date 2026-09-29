@@ -78,3 +78,31 @@ class UsageSnapshot(models.Model):
     captured_at = models.DateTimeField(auto_now=True)
     class Meta:
         unique_together = ('company', 'period')
+
+
+class GatewayCheckout(models.Model):
+    """
+    One online payment attempt at a hosted checkout (SkipCash). The
+    subscription is only extended after the gateway itself confirms the
+    payment, and `status` makes that happen exactly once even when the
+    return page and the webhook both arrive.
+    """
+    STATUS = [("pending", "Pending"), ("paid", "Paid"), ("failed", "Failed / cancelled")]
+
+    subscription = models.ForeignKey(Subscription, on_delete=models.PROTECT, related_name="gateway_checkouts")
+    gateway = models.CharField(max_length=20, default="skipcash")
+    transaction_id = models.CharField(max_length=64, unique=True)
+    gateway_payment_id = models.CharField(max_length=64, blank=True, db_index=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    currency = models.CharField(max_length=3)
+    status = models.CharField(max_length=10, choices=STATUS, default="pending")
+    status_detail = models.CharField(max_length=255, blank=True)
+    created_by = models.ForeignKey("accounts.User", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+    paid_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.gateway} {self.transaction_id} ({self.status})"

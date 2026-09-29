@@ -248,6 +248,15 @@ RAZORPAY_KEY_ID = env("RAZORPAY_KEY_ID", default="")
 RAZORPAY_KEY_SECRET = env("RAZORPAY_KEY_SECRET", default="")
 RAZORPAY_WEBHOOK_SECRET = env("RAZORPAY_WEBHOOK_SECRET", default="")
 
+# SkipCash handles Qatar (QAR cards, Apple Pay, Google Pay). Keys come from
+# the SkipCash merchant portal; they can also be saved (encrypted) under
+# Platform → Setup → Payment gateways, which takes precedence.
+SKIPCASH_CLIENT_ID = env("SKIPCASH_CLIENT_ID", default="")
+SKIPCASH_KEY_ID = env("SKIPCASH_KEY_ID", default="")
+SKIPCASH_KEY_SECRET = env("SKIPCASH_KEY_SECRET", default="")
+SKIPCASH_WEBHOOK_KEY = env("SKIPCASH_WEBHOOK_KEY", default="")
+SKIPCASH_TEST_MODE = env.bool("SKIPCASH_TEST_MODE", default=True)
+
 # Encrypts payment credentials saved from Platform Admin. Set a separate,
 # long random value in production. SECRET_KEY is a backwards-compatible
 # fallback so the settings screen remains usable before this is configured.

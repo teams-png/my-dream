@@ -37,9 +37,22 @@
 </div>
 
 {% if is_owner %}
+{% if skipcash_ready %}
+<h2 style="font-size:16px; margin-bottom:10px;">Pay online</h2>
+<div class="card" style="max-width:460px; margin-bottom:22px;">
+  <p style="color:var(--ink-soft); font-size:13.5px; margin-top:0;">Pay by debit/credit card, Apple Pay or Google Pay through SkipCash (Qatar). Your subscription is renewed automatically as soon as the payment is confirmed.</p>
+  <form class="stacked" method="post" action="{% url 'webapp:billing_skipcash_start' %}">
+    {% csrf_token %}
+    <label for="skipcash-phone">Mobile number (for the payment receipt)</label>
+    <input id="skipcash-phone" name="phone" type="tel" inputmode="tel" required value="{{ company_phone }}" placeholder="+974 5555 1234" pattern="[+0-9 ]{8,20}">
+    <button class="btn" style="margin-top:16px; width:100%;" type="submit">Pay {{ subscription.plan.currency }} {{ subscription.plan.price }} securely →</button>
+  </form>
+  <p style="font-size:12px; color:var(--ink-soft); margin:10px 0 0;">🔒 You pay on SkipCash's secure page. We never see your card details.</p>
+</div>
+{% endif %}
 {% if is_gcc %}
-<h2 style="font-size:16px; margin-bottom:10px;">Submit a payment</h2>
-<p style="color:var(--ink-soft); font-size:13px; margin-top:-4px;">Paid by bank transfer or cash? Let us know and we'll confirm it on our end.</p>
+<h2 style="font-size:16px; margin-bottom:10px;">{% if skipcash_ready %}Paid by bank transfer or cash?{% else %}Submit a payment{% endif %}</h2>
+<p style="color:var(--ink-soft); font-size:13px; margin-top:-4px;">{% if skipcash_ready %}Let us know{% else %}Paid by bank transfer or cash? Let us know{% endif %} and we'll confirm it on our end.</p>
 <div class="card" style="max-width:420px; margin-bottom:26px;">
   <form class="stacked" method="post">
     {% csrf_token %}

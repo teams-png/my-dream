@@ -4011,3 +4011,44 @@ msgstr "%(number)s ഇപ്പോഴും ബുക്ക് ചെയ്യ�
 #: apps/webapp/views.py
 msgid "Marked as handled."
 msgstr "കൈകാര്യം ചെയ്തതായി അടയാളപ്പെടുത്തി."
+
+#: apps/webapp/views.py
+msgid "Only the business owner can pay."
+msgstr "ബിസിനസ് ഉടമയ്ക്ക് മാത്രമേ പണമടയ്ക്കാൻ കഴിയൂ."
+
+#: apps/webapp/views.py
+msgid "Online payment isn't available for this plan yet."
+msgstr "ഈ പ്ലാനിന് ഓൺലൈൻ പേയ്മെന്റ് ഇതുവരെ ലഭ്യമല്ല."
+
+#: apps/webapp/views.py
+msgid "Enter a valid mobile number for the payment receipt."
+msgstr "പേയ്മെന്റ് രസീതിനായി ശരിയായ മൊബൈൽ നമ്പർ നൽകുക."
+
+#: apps/webapp/views.py
+msgid "Could not start the payment: %(error)s"
+msgstr "പേയ്മെന്റ് തുടങ്ങാനായില്ല: %(error)s"
+
+#: apps/webapp/views.py
+msgid ""
+"We could not check the payment yet (%(error)s). It will update "
+"automatically."
+msgstr ""
+"പേയ്മെന്റ് ഇപ്പോൾ പരിശോധിക്കാനായില്ല (%(error)s). ഇത് സ്വയം അപ്ഡേറ്റ് ആകും."
+
+#: apps/webapp/views.py
+msgid "Payment not found."
+msgstr "പേയ്മെന്റ് കണ്ടെത്തിയില്ല."
+
+#: apps/webapp/views.py
+msgid "Payment received — thank you! Your subscription is active."
+msgstr "പേയ്മെന്റ് ലഭിച്ചു — നന്ദി! നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ ആക്ടീവ് ആണ്."
+
+#: apps/webapp/views.py
+msgid "The payment was cancelled or declined — no charge was made."
+msgstr "പേയ്മെന്റ് റദ്ദാക്കി അല്ലെങ്കിൽ നിരസിച്ചു — പണം ഈടാക്കിയിട്ടില്ല."
+
+#: apps/webapp/views.py
+msgid ""
+"Your payment is being confirmed. This page will show it within a minute."
+msgstr ""
+"നിങ്ങളുടെ പേയ്മെന്റ് സ്ഥിരീകരിക്കുന്നു. ഒരു മിനിറ്റിനുള്ളിൽ ഇവിടെ കാണാം."

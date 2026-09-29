@@ -26,7 +26,21 @@
       <p>{{ form.clear_razorpay_keys }} {{ form.clear_razorpay_keys.label_tag }}</p>
     </section>
   </div>
-  <p style="padding:12px;background:var(--surface-soft);border-radius:8px;">Webhook URLs: <code>/billing/stripe/webhook/</code> and <code>/billing/razorpay/webhook/</code></p>
+  <section style="margin-top:24px;padding-top:18px;border-top:1px solid var(--line);">
+    <h2 style="font-size:18px;">SkipCash — Qatar 🇶🇦</h2>
+    <p style="color:var(--ink-soft);margin-top:-6px;">Cards, Apple Pay and Google Pay in QAR. Offered to customers whose plan is priced in QAR. Get the keys from the SkipCash merchant portal (Online payments → Integration).</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px;">
+      <p>{{ form.skipcash_enabled }} {{ form.skipcash_enabled.label_tag }}</p>
+      <p>{{ form.skipcash_test_mode }} {{ form.skipcash_test_mode.label_tag }}</p>
+      <p><label>Client ID {% if skipcash_has_client %}<span class="badge active">Saved</span>{% endif %}</label>{{ form.skipcash_client_id }}{{ form.skipcash_client_id.errors }}<small>{{ form.skipcash_client_id.help_text }}</small></p>
+      <p><label>Key ID {% if skipcash_has_id %}<span class="badge active">Saved</span>{% endif %}</label>{{ form.skipcash_key_id }}{{ form.skipcash_key_id.errors }}<small>{{ form.skipcash_key_id.help_text }}</small></p>
+      <p><label>Key secret {% if skipcash_has_secret %}<span class="badge active">Saved</span>{% endif %}</label>{{ form.skipcash_key_secret }}{{ form.skipcash_key_secret.errors }}<small>{{ form.skipcash_key_secret.help_text }}</small></p>
+      <p><label>Webhook key {% if skipcash_has_webhook %}<span class="badge active">Saved</span>{% endif %}</label>{{ form.skipcash_webhook_key }}{{ form.skipcash_webhook_key.errors }}<small>{{ form.skipcash_webhook_key.help_text }}</small></p>
+    </div>
+    <p>{{ form.clear_skipcash_keys }} {{ form.clear_skipcash_keys.label_tag }}</p>
+    <p style="padding:12px;background:var(--surface-soft);border-radius:8px;font-size:13.5px;">In the SkipCash portal set<br>Return URL: <code>{{ skipcash_return_url }}</code><br>Webhook URL: <code>{{ skipcash_webhook_url }}</code></p>
+  </section>
+  <p style="padding:12px;background:var(--surface-soft);border-radius:8px;">Webhook URLs: <code>/billing/stripe/webhook/</code>, <code>/billing/razorpay/webhook/</code> and <code>/billing/skipcash/webhook/</code></p>
   <button class="btn" type="submit">Save payment settings</button>
   <a class="btn btn-secondary" href="{% url 'webapp:platform_setup' %}">Back</a>
 </form>

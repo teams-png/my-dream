@@ -131,3 +131,32 @@ into the new VPS Postgres, then just change `DATABASE_URL` — no
 application code changes needed, because every setting reads
 `DATABASE_URL` through `env.db(...)` rather than hardcoding host/port
 anywhere. Full steps are in the Phase 21 deployment doc.
+
+## Qatar online payments (SkipCash)
+
+Customers whose plan is priced in **QAR** get a **Pay online** button on
+the Billing page (card, Apple Pay, Google Pay through SkipCash). Their
+subscription renews automatically once SkipCash confirms the payment.
+
+1. Open a SkipCash merchant account (skipcash.app) and, in the merchant
+   portal, create online-payment (API) keys. You get a **Client ID**,
+   **Key ID**, **Key secret** and **Webhook key**.
+2. Sign in as platform admin → **Platform → Setup → Payment gateways**.
+   Tick **Enable SkipCash**, keep **sandbox mode** ticked while testing,
+   paste the four keys and save (they are stored encrypted with
+   `PAYMENT_CREDENTIALS_ENCRYPTION_KEY`).
+3. In the SkipCash portal set the **Return URL** and **Webhook URL** shown
+   on that page (`https://<your-domain>/billing/skipcash/return/` and
+   `https://<your-domain>/billing/skipcash/webhook/`).
+4. Make a test payment with a SkipCash sandbox card, then untick sandbox
+   mode and replace the keys with the live ones.
+
+Instead of step 2 you can set `SKIPCASH_CLIENT_ID`, `SKIPCASH_KEY_ID`,
+`SKIPCASH_KEY_SECRET`, `SKIPCASH_WEBHOOK_KEY` and `SKIPCASH_TEST_MODE`
+(`True`/`False`) as environment variables; keys saved in Platform Admin
+take precedence.
+
+A payment is only accepted after the server asks SkipCash for its status
+and checks the amount and currency, so a forged redirect or webhook cannot
+extend a subscription. The free trial is 3 days (`TRIAL_DAYS` in
+`apps/subscriptions/services.py`).

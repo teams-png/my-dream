@@ -5057,7 +5057,104 @@ def billing_view(request):
         "stripe_configured": gateway.stripe_enabled,
         "razorpay_configured": gateway.razorpay_enabled,
         "razorpay_key_id": gateway.razorpay_key_id,
+        "skipcash_ready": _skipcash_ready(gateway, subscription),
+        "company_phone": company.phone,
     })
+
+
+# ================= BILLING: SKIPCASH (Qatar — cards, Apple Pay, Google Pay) =================
+
+def _skipcash_ready(gateway, subscription):
+    return bool(gateway.skipcash_enabled and subscription and subscription.plan.price > 0
+                and subscription.plan.currency.upper() == "QAR")
+
+
+@login_required
+def billing_skipcash_start(request):
+    import re
+    from apps.subscriptions import skipcash
+
+    if request.method != "POST":
+        return redirect("webapp:billing")
+    company = request.company
+    subscription = Subscription.objects.filter(company=company).select_related("plan").first() if company else None
+    gateway = get_payment_gateway_config()
+    if getattr(request.role, "name", None) != "Owner":
+        messages.error(request, _("Only the business owner can pay."))
+        return redirect("webapp:billing")
+    if not _skipcash_ready(gateway, subscription):
+        messages.error(request, _("Online payment isn't available for this plan yet."))
+        return redirect("webapp:billing")
+    phone = re.sub(r"[^\d+]", "", request.POST.get("phone") or company.phone or "")
+    if not re.fullmatch(r"\+?\d{8,15}", phone):
+        messages.error(request, _("Enter a valid mobile number for the payment receipt."))
+        return redirect("webapp:billing")
+    user = request.user
+    try:
+        _checkout, pay_url = skipcash.start_checkout(
+            gateway, subscription=subscription, user=user, first_name=user.first_name or company.name,
+            last_name=user.last_name, phone=phone, email=user.email or company.email,
+        )
+    except skipcash.SkipCashError as exc:
+        messages.error(request, _("Could not start the payment: %(error)s") % {"error": exc})
+        return redirect("webapp:billing")
+    return redirect(pay_url)
+
+
+@login_required
+def billing_skipcash_return(request):
+    """SkipCash sends the customer back here; the result is checked with SkipCash itself."""
+    from apps.subscriptions import skipcash
+    from apps.subscriptions.models import GatewayCheckout
+
+    company = request.company
+    subscription = Subscription.objects.filter(company=company).first() if company else None
+    if subscription is None:
+        return redirect("webapp:billing")
+    payment_id = request.GET.get("id") or request.GET.get("paymentId") or ""
+    if not payment_id:
+        pending = GatewayCheckout.objects.filter(subscription=subscription, gateway="skipcash", status="pending") \
+            .exclude(gateway_payment_id="").first()
+        payment_id = pending.gateway_payment_id if pending else ""
+    checkout = None
+    if payment_id:
+        try:
+            checkout = skipcash.settle(get_payment_gateway_config(), payment_id)
+        except skipcash.SkipCashError as exc:
+            messages.error(request, _("We could not check the payment yet (%(error)s). It will update automatically.") % {"error": exc})
+            return redirect("webapp:billing")
+    if checkout is None or checkout.subscription_id != subscription.id:
+        messages.error(request, _("Payment not found."))
+    elif checkout.status == "paid":
+        messages.success(request, _("Payment received — thank you! Your subscription is active."))
+    elif checkout.status == "failed":
+        messages.error(request, _("The payment was cancelled or declined — no charge was made."))
+    else:
+        messages.info(request, _("Your payment is being confirmed. This page will show it within a minute."))
+    return redirect("webapp:billing")
+
+
+@csrf_exempt
+def billing_skipcash_webhook(request):
+    import json
+    from django.http import JsonResponse
+    from apps.subscriptions import skipcash
+
+    if request.method != "POST":
+        return HttpResponse(status=405)
+    gateway = get_payment_gateway_config()
+    try:
+        payload = json.loads(request.body or b"{}")
+    except ValueError:
+        return HttpResponse(status=400)
+    signature = request.META.get("HTTP_AUTHORIZATION") or request.META.get("HTTP_X_SIGNATURE") or ""
+    if not gateway.skipcash_enabled or not skipcash.valid_webhook(gateway, payload, signature):
+        return HttpResponse(status=401)
+    try:
+        skipcash.settle(gateway, payload.get("PaymentId"))
+    except skipcash.SkipCashError:
+        return HttpResponse(status=502)  # SkipCash retries the webhook later
+    return JsonResponse({"received": True})
 
 
 # ================= PLATFORM ADMIN: PENDING PAYMENTS =================
@@ -5407,6 +5504,12 @@ def platform_payment_gateway_settings(request):
         "razorpay_has_id": bool(gateway_settings.razorpay_key_id_ciphertext),
         "razorpay_has_secret": bool(gateway_settings.razorpay_key_secret_ciphertext),
         "razorpay_has_webhook": bool(gateway_settings.razorpay_webhook_secret_ciphertext),
+        "skipcash_has_client": bool(gateway_settings.skipcash_client_id_ciphertext),
+        "skipcash_has_id": bool(gateway_settings.skipcash_key_id_ciphertext),
+        "skipcash_has_secret": bool(gateway_settings.skipcash_key_secret_ciphertext),
+        "skipcash_has_webhook": bool(gateway_settings.skipcash_webhook_key_ciphertext),
+        "skipcash_return_url": request.build_absolute_uri(reverse("webapp:billing_skipcash_return")),
+        "skipcash_webhook_url": request.build_absolute_uri(reverse("webapp:billing_skipcash_webhook")),
     })
 
 

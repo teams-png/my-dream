@@ -6,7 +6,7 @@ from django.utils import timezone
 
 from .models import SubscriptionPlan, Subscription
 
-TRIAL_DAYS = 7
+TRIAL_DAYS = 3
 EXPIRY_NOTIFY_THRESHOLDS = (30, 15, 7, 3, 1)
 
 
@@ -204,9 +204,9 @@ def confirm_stripe_payment(subscription, *, amount, reference):
 
 
 @transaction.atomic
-def confirm_razorpay_payment(subscription, *, amount, reference):
-    """A Razorpay payment (UPI / PhonePe / card) was verified — renews the
-    subscription immediately, same as a verified Stripe payment."""
+def confirm_gateway_payment(subscription, *, amount, reference, method):
+    """A payment was verified by an online gateway (Razorpay, SkipCash) —
+    renews the subscription immediately, same as a verified Stripe payment."""
     from .models import SubscriptionPayment, SubscriptionRenewal
 
     previous_end_date = subscription.end_date
@@ -220,9 +220,14 @@ def confirm_razorpay_payment(subscription, *, amount, reference):
 
     SubscriptionPayment.objects.create(
         subscription=subscription, amount=amount, paid_on=timezone.localdate(),
-        method="razorpay", reference=reference, submitted_by_client=True, is_confirmed=True,
+        method=method, reference=reference, submitted_by_client=True, is_confirmed=True,
     )
     SubscriptionRenewal.objects.create(
         subscription=subscription, previous_end_date=previous_end_date, new_end_date=new_end_date,
     )
     return subscription
+
+
+def confirm_razorpay_payment(subscription, *, amount, reference):
+    """A Razorpay payment (UPI / PhonePe / card) was verified."""
+    return confirm_gateway_payment(subscription, amount=amount, reference=reference, method="razorpay")

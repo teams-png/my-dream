@@ -370,4 +370,15 @@ ML.update({
 "The code %(code)s is already used by another product.": "%(code)s എന്ന കോഡ് മറ്റൊരു ഉൽപ്പന്നം ഉപയോഗിക്കുന്നുണ്ട്.",
 "Setup skipped. You can come back to it any time from Settings.": "സെറ്റപ്പ് ഒഴിവാക്കി. എപ്പോൾ വേണമെങ്കിലും Settings-ൽ നിന്ന് തിരികെ വരാം.",
 "Added %(items)s items and %(tables)s tables.": "%(items)s ഇനങ്ങളും %(tables)s ടേബിളുകളും ചേർത്തു.",
+
+# SkipCash billing
+"Only the business owner can pay.": "ബിസിനസ് ഉടമയ്ക്ക് മാത്രമേ പണമടയ്ക്കാൻ കഴിയൂ.",
+"Online payment isn't available for this plan yet.": "ഈ പ്ലാനിന് ഓൺലൈൻ പേയ്മെന്റ് ഇതുവരെ ലഭ്യമല്ല.",
+"Enter a valid mobile number for the payment receipt.": "പേയ്മെന്റ് രസീതിനായി ശരിയായ മൊബൈൽ നമ്പർ നൽകുക.",
+"Could not start the payment: %(error)s": "പേയ്മെന്റ് തുടങ്ങാനായില്ല: %(error)s",
+"We could not check the payment yet (%(error)s). It will update automatically.": "പേയ്മെന്റ് ഇപ്പോൾ പരിശോധിക്കാനായില്ല (%(error)s). ഇത് സ്വയം അപ്ഡേറ്റ് ആകും.",
+"Payment not found.": "പേയ്മെന്റ് കണ്ടെത്തിയില്ല.",
+"Payment received — thank you! Your subscription is active.": "പേയ്മെന്റ് ലഭിച്ചു — നന്ദി! നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ ആക്ടീവ് ആണ്.",
+"The payment was cancelled or declined — no charge was made.": "പേയ്മെന്റ് റദ്ദാക്കി അല്ലെങ്കിൽ നിരസിച്ചു — പണം ഈടാക്കിയിട്ടില്ല.",
+"Your payment is being confirmed. This page will show it within a minute.": "നിങ്ങളുടെ പേയ്മെന്റ് സ്ഥിരീകരിക്കുന്നു. ഒരു മിനിറ്റിനുള്ളിൽ ഇവിടെ കാണാം.",
 })

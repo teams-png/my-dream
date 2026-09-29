@@ -123,7 +123,10 @@ def approve_client_payment(payment):
 def start_trial_subscription(company, plan=None):
     """Called once at company creation. Requires at least one SubscriptionPlan to exist (seeded via Super Admin)."""
     if plan is None:
-        plan = SubscriptionPlan.objects.filter(is_active=True).first()
+        from .pricing import plans_for
+        business_type = getattr(company, "business_type", None)
+        plan = (plans_for(company.country, business_type.code if business_type else "").first()
+                or SubscriptionPlan.objects.filter(is_active=True).first())
     if not plan:
         return None
     today = timezone.localdate()

@@ -257,6 +257,12 @@ SKIPCASH_KEY_SECRET = env("SKIPCASH_KEY_SECRET", default="")
 SKIPCASH_WEBHOOK_KEY = env("SKIPCASH_WEBHOOK_KEY", default="")
 SKIPCASH_TEST_MODE = env.bool("SKIPCASH_TEST_MODE", default=True)
 
+# Display-only exchange rates (units of each currency per 1 QAR) used to
+# show visitors outside Qatar an estimate of the QAR price. Example:
+# DISPLAY_FX_PER_QAR='{"GBP": "0.21", "EUR": "0.24"}'. Customers are always
+# charged in QAR (or INR for India).
+DISPLAY_FX_PER_QAR = env.json("DISPLAY_FX_PER_QAR", default={})
+
 # Encrypts payment credentials saved from Platform Admin. Set a separate,
 # long random value in production. SECRET_KEY is a backwards-compatible
 # fallback so the settings screen remains usable before this is configured.

@@ -381,4 +381,23 @@ ML.update({
 "Payment received — thank you! Your subscription is active.": "പേയ്മെന്റ് ലഭിച്ചു — നന്ദി! നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ ആക്ടീവ് ആണ്.",
 "The payment was cancelled or declined — no charge was made.": "പേയ്മെന്റ് റദ്ദാക്കി അല്ലെങ്കിൽ നിരസിച്ചു — പണം ഈടാക്കിയിട്ടില്ല.",
 "Your payment is being confirmed. This page will show it within a minute.": "നിങ്ങളുടെ പേയ്മെന്റ് സ്ഥിരീകരിക്കുന്നു. ഒരു മിനിറ്റിനുള്ളിൽ ഇവിടെ കാണാം.",
+
+# pricing
+"Supermarket / Large shop": "സൂപ്പർമാർക്കറ്റ് / വലിയ ഷോപ്പ്",
+"International (QAR)": "ഇന്റർനാഷണൽ (QAR)",
+"India (INR)": "ഇന്ത്യ (INR)",
+"Show in": "കാണിക്കുക:",
+"user": "യൂസർ",
+"users": "യൂസർമാർ",
+"All features for your business type": "നിങ്ങളുടെ ബിസിനസ് തരത്തിനുള്ള എല്ലാ ഫീച്ചറുകളും",
+"Prices are per year. Customers outside India are billed in QAR; other currencies are an estimate.": "വില വർഷത്തേക്കാണ്. ഇന്ത്യക്ക് പുറത്തുള്ളവർക്ക് QAR-ൽ ബിൽ ചെയ്യും; മറ്റ് കറൻസികൾ ഏകദേശ കണക്കാണ്.",
+"Prices are per year, billed in INR.": "വില വർഷത്തേക്കാണ്, INR-ൽ ബിൽ ചെയ്യും.",
+"approx.": "ഏകദേശം",
+"Plan after the free trial": "ഫ്രീ ട്രയലിന് ശേഷമുള്ള പ്ലാൻ",
+"Billed in": "ബിൽ ചെയ്യുന്നത്",
+"India pricing, billed in INR.": "ഇന്ത്യ വില, INR-ൽ ബിൽ ചെയ്യും.",
+"You can change the plan any time from Billing.": "Billing-ൽ നിന്ന് എപ്പോൾ വേണമെങ്കിലും പ്ലാൻ മാറ്റാം.",
+"That plan can't be selected.": "ആ പ്ലാൻ തിരഞ്ഞെടുക്കാനാവില്ല.",
+"You have %(users)s active users; this plan allows %(max)s. Remove users first.": "നിങ്ങൾക്ക് %(users)s ആക്ടീവ് യൂസർമാരുണ്ട്; ഈ പ്ലാനിൽ %(max)s പേർ മാത്രം. ആദ്യം യൂസർമാരെ നീക്കുക.",
+"Plan changed to %(plan)s.": "പ്ലാൻ %(plan)s ആയി മാറ്റി.",
 })

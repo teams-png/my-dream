@@ -2462,36 +2462,20 @@ msgid "Every plan starts with a"
 msgstr "എല്ലാ പ്ലാനും ആരംഭിക്കുന്നത്"
 
 #: templates/webapp/public/landing.html
-msgid "year"
-msgstr "വർഷം"
+msgid "Supermarket / Large shop"
+msgstr "സൂപ്പർമാർക്കറ്റ് / വലിയ ഷോപ്പ്"
 
 #: templates/webapp/public/landing.html
-msgid "Up to"
-msgstr "പരമാവധി"
+msgid "International (QAR)"
+msgstr "ഇന്റർനാഷണൽ (QAR)"
 
 #: templates/webapp/public/landing.html
-msgid "invoices / month"
-msgstr "ഇൻവോയ്സുകൾ / മാസം"
+msgid "India (INR)"
+msgstr "ഇന്ത്യ (INR)"
 
 #: templates/webapp/public/landing.html
-msgid "Unlimited invoices"
-msgstr "പരിധിയില്ലാത്ത ഇൻവോയ്സുകൾ"
-
-#: templates/webapp/public/landing.html
-msgid "POS, stock, accounts & reports"
-msgstr "POS, സ്റ്റോക്ക്, അക്കൗണ്ട്സ്, റിപ്പോർട്ടുകൾ"
-
-#: templates/webapp/public/landing.html
-msgid "WhatsApp bills & device support"
-msgstr "WhatsApp ബില്ലുകളും ഉപകരണ പിന്തുണയും"
-
-#: templates/webapp/public/landing.html
-msgid "Plans for every size"
-msgstr "എല്ലാ വലിപ്പത്തിനും പ്ലാനുകൾ"
-
-#: templates/webapp/public/landing.html
-msgid "Contact us for pricing in your country."
-msgstr "നിങ്ങളുടെ രാജ്യത്തെ വിലയ്ക്ക് ഞങ്ങളെ ബന്ധപ്പെടുക."
+msgid "Show in"
+msgstr "കാണിക്കുക:"
 
 #: templates/webapp/public/landing.html
 msgid "Questions"
@@ -2583,6 +2567,54 @@ msgstr "സൗജന്യ ട്രയൽ തുടങ്ങൂ →"
 msgid "Create account"
 msgstr "അക്കൗണ്ട് ഉണ്ടാക്കുക"
 
+#: templates/webapp/public/landing.html
+msgid "user"
+msgstr "യൂസർ"
+
+#: templates/webapp/public/landing.html
+msgid "users"
+msgstr "യൂസർമാർ"
+
+#: templates/webapp/public/landing.html
+msgid "year"
+msgstr "വർഷം"
+
+#: templates/webapp/public/landing.html
+msgid "Up to"
+msgstr "പരമാവധി"
+
+#: templates/webapp/public/landing.html
+msgid "All features for your business type"
+msgstr "നിങ്ങളുടെ ബിസിനസ് തരത്തിനുള്ള എല്ലാ ഫീച്ചറുകളും"
+
+#: templates/webapp/public/landing.html
+msgid "POS, stock, accounts & reports"
+msgstr "POS, സ്റ്റോക്ക്, അക്കൗണ്ട്സ്, റിപ്പോർട്ടുകൾ"
+
+#: templates/webapp/public/landing.html
+msgid "WhatsApp bills & device support"
+msgstr "WhatsApp ബില്ലുകളും ഉപകരണ പിന്തുണയും"
+
+#: templates/webapp/public/landing.html
+msgid "Unlimited invoices"
+msgstr "പരിധിയില്ലാത്ത ഇൻവോയ്സുകൾ"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Prices are per year. Customers outside India are billed in QAR; other "
+"currencies are an estimate."
+msgstr ""
+"വില വർഷത്തേക്കാണ്. ഇന്ത്യക്ക് പുറത്തുള്ളവർക്ക് QAR-ൽ ബിൽ ചെയ്യും; മറ്റ് "
+"കറൻസികൾ ഏകദേശ കണക്കാണ്."
+
+#: templates/webapp/public/landing.html
+msgid "Prices are per year, billed in INR."
+msgstr "വില വർഷത്തേക്കാണ്, INR-ൽ ബിൽ ചെയ്യും."
+
+#: templates/webapp/public/landing.html
+msgid "approx."
+msgstr "ഏകദേശം"
+
 #: templates/webapp/public/signup.html
 msgid "Start your free trial · BookPilot"
 msgstr "സൗജന്യ ട്രയൽ തുടങ്ങൂ · BookPilot"
@@ -2632,12 +2664,8 @@ msgid "Country"
 msgstr "രാജ്യം"
 
 #: templates/webapp/public/signup.html
-msgid "Plan (after the trial)"
-msgstr "പ്ലാൻ (ട്രയലിന് ശേഷം)"
-
-#: templates/webapp/public/signup.html
-msgid "Decide later"
-msgstr "പിന്നീട് തീരുമാനിക്കാം"
+msgid "Plan after the free trial"
+msgstr "ഫ്രീ ട്രയലിന് ശേഷമുള്ള പ്ലാൻ"
 
 #: templates/webapp/public/signup.html
 msgid "2 · Your login"
@@ -2670,6 +2698,18 @@ msgstr "സൗജന്യം:"
 #: templates/webapp/public/signup.html
 msgid "days · cancel anytime"
 msgstr "ദിവസം · എപ്പോൾ വേണമെങ്കിലും റദ്ദാക്കാം"
+
+#: templates/webapp/public/signup.html
+msgid "Billed in"
+msgstr "ബിൽ ചെയ്യുന്നത്"
+
+#: templates/webapp/public/signup.html
+msgid "India pricing, billed in INR."
+msgstr "ഇന്ത്യ വില, INR-ൽ ബിൽ ചെയ്യും."
+
+#: templates/webapp/public/signup.html
+msgid "You can change the plan any time from Billing."
+msgstr "Billing-ൽ നിന്ന് എപ്പോൾ വേണമെങ്കിലും പ്ലാൻ മാറ്റാം."
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Restaurant"
@@ -4011,6 +4051,22 @@ msgstr "%(number)s ഇപ്പോഴും ബുക്ക് ചെയ്യ�
 #: apps/webapp/views.py
 msgid "Marked as handled."
 msgstr "കൈകാര്യം ചെയ്തതായി അടയാളപ്പെടുത്തി."
+
+#: apps/webapp/views.py
+msgid "That plan can't be selected."
+msgstr "ആ പ്ലാൻ തിരഞ്ഞെടുക്കാനാവില്ല."
+
+#: apps/webapp/views.py
+msgid ""
+"You have %(users)s active users; this plan allows %(max)s. Remove users "
+"first."
+msgstr ""
+"നിങ്ങൾക്ക് %(users)s ആക്ടീവ് യൂസർമാരുണ്ട്; ഈ പ്ലാനിൽ %(max)s പേർ മാത്രം. "
+"ആദ്യം യൂസർമാരെ നീക്കുക."
+
+#: apps/webapp/views.py
+msgid "Plan changed to %(plan)s."
+msgstr "പ്ലാൻ %(plan)s ആയി മാറ്റി."
 
 #: apps/webapp/views.py
 msgid "Only the business owner can pay."

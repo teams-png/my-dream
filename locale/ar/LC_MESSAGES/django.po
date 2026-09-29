@@ -2436,36 +2436,20 @@ msgid "Every plan starts with a"
 msgstr "كل خطة تبدأ بـ"
 
 #: templates/webapp/public/landing.html
-msgid "year"
-msgstr "سنة"
+msgid "Supermarket / Large shop"
+msgstr "سوبرماركت / متجر كبير"
 
 #: templates/webapp/public/landing.html
-msgid "Up to"
-msgstr "حتى"
+msgid "International (QAR)"
+msgstr "دولي (ريال قطري)"
 
 #: templates/webapp/public/landing.html
-msgid "invoices / month"
-msgstr "فاتورة / شهر"
+msgid "India (INR)"
+msgstr "الهند (روبية)"
 
 #: templates/webapp/public/landing.html
-msgid "Unlimited invoices"
-msgstr "فواتير غير محدودة"
-
-#: templates/webapp/public/landing.html
-msgid "POS, stock, accounts & reports"
-msgstr "نقطة البيع والمخزون والحسابات والتقارير"
-
-#: templates/webapp/public/landing.html
-msgid "WhatsApp bills & device support"
-msgstr "فواتير واتساب ودعم الأجهزة"
-
-#: templates/webapp/public/landing.html
-msgid "Plans for every size"
-msgstr "خطط لكل حجم"
-
-#: templates/webapp/public/landing.html
-msgid "Contact us for pricing in your country."
-msgstr "تواصل معنا لمعرفة الأسعار في بلدك."
+msgid "Show in"
+msgstr "العرض بـ"
 
 #: templates/webapp/public/landing.html
 msgid "Questions"
@@ -2552,6 +2536,54 @@ msgstr "ابدأ تجربتك المجانية ←"
 msgid "Create account"
 msgstr "إنشاء حساب"
 
+#: templates/webapp/public/landing.html
+msgid "user"
+msgstr "مستخدم"
+
+#: templates/webapp/public/landing.html
+msgid "users"
+msgstr "مستخدمين"
+
+#: templates/webapp/public/landing.html
+msgid "year"
+msgstr "سنة"
+
+#: templates/webapp/public/landing.html
+msgid "Up to"
+msgstr "حتى"
+
+#: templates/webapp/public/landing.html
+msgid "All features for your business type"
+msgstr "جميع الميزات لنوع نشاطك"
+
+#: templates/webapp/public/landing.html
+msgid "POS, stock, accounts & reports"
+msgstr "نقطة البيع والمخزون والحسابات والتقارير"
+
+#: templates/webapp/public/landing.html
+msgid "WhatsApp bills & device support"
+msgstr "فواتير واتساب ودعم الأجهزة"
+
+#: templates/webapp/public/landing.html
+msgid "Unlimited invoices"
+msgstr "فواتير غير محدودة"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Prices are per year. Customers outside India are billed in QAR; other "
+"currencies are an estimate."
+msgstr ""
+"الأسعار سنوية. يُحاسَب العملاء خارج الهند بالريال القطري؛ العملات الأخرى "
+"تقديرية."
+
+#: templates/webapp/public/landing.html
+msgid "Prices are per year, billed in INR."
+msgstr "الأسعار سنوية، وتُحاسَب بالروبية الهندية."
+
+#: templates/webapp/public/landing.html
+msgid "approx."
+msgstr "تقريبًا"
+
 #: templates/webapp/public/signup.html
 msgid "Start your free trial · BookPilot"
 msgstr "ابدأ تجربتك المجانية · BookPilot"
@@ -2601,12 +2633,8 @@ msgid "Country"
 msgstr "الدولة"
 
 #: templates/webapp/public/signup.html
-msgid "Plan (after the trial)"
-msgstr "الخطة (بعد التجربة)"
-
-#: templates/webapp/public/signup.html
-msgid "Decide later"
-msgstr "لاحقًا"
+msgid "Plan after the free trial"
+msgstr "الباقة بعد الفترة التجريبية"
 
 #: templates/webapp/public/signup.html
 msgid "2 · Your login"
@@ -2639,6 +2667,18 @@ msgstr "مجانًا لمدة"
 #: templates/webapp/public/signup.html
 msgid "days · cancel anytime"
 msgstr "أيام · إلغاء في أي وقت"
+
+#: templates/webapp/public/signup.html
+msgid "Billed in"
+msgstr "الفوترة بـ"
+
+#: templates/webapp/public/signup.html
+msgid "India pricing, billed in INR."
+msgstr "أسعار الهند، تُحاسَب بالروبية."
+
+#: templates/webapp/public/signup.html
+msgid "You can change the plan any time from Billing."
+msgstr "يمكنك تغيير الباقة في أي وقت من صفحة الفوترة."
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Restaurant"
@@ -3967,6 +4007,22 @@ msgstr "لا يزال تعذّر تسجيل %(number)s: %(error)s"
 #: apps/webapp/views.py
 msgid "Marked as handled."
 msgstr "تم التعليم كمُعالج."
+
+#: apps/webapp/views.py
+msgid "That plan can't be selected."
+msgstr "لا يمكن اختيار هذه الباقة."
+
+#: apps/webapp/views.py
+msgid ""
+"You have %(users)s active users; this plan allows %(max)s. Remove users "
+"first."
+msgstr ""
+"لديك %(users)s مستخدمين نشطين؛ هذه الباقة تسمح بـ %(max)s. أزل بعض "
+"المستخدمين أولًا."
+
+#: apps/webapp/views.py
+msgid "Plan changed to %(plan)s."
+msgstr "تم تغيير الباقة إلى %(plan)s."
 
 #: apps/webapp/views.py
 msgid "Only the business owner can pay."

@@ -31,10 +31,26 @@
   </div>
   <div class="card">
     <div style="color:var(--ink-soft); font-size:13px;">Price</div>
-    <div style="font-size:18px; font-weight:600; margin-top:4px;">{{ subscription.plan.currency }} {{ subscription.plan.price }}</div>
-    <div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">per {{ subscription.plan.get_billing_period_display|lower }}</div>
+    <div style="font-size:18px; font-weight:600; margin-top:4px;">{{ subscription.plan.currency }} {{ subscription.plan.price|floatformat:"-2" }}</div>
+    <div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">per {{ subscription.plan.get_billing_period_display|lower }}{% if price_estimate %} · ≈ {{ active_company.default_currency }} {{ price_estimate }}{% endif %}</div>
   </div>
 </div>
+
+{% if is_owner and available_plans|length > 1 %}
+<h2 style="font-size:16px; margin-bottom:10px;">Choose your plan</h2>
+<form method="post" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:12px; margin-bottom:26px;">
+  {% csrf_token %}
+  {% for plan, estimate in available_plans %}
+  <button class="card" type="submit" name="change_plan" value="{{ plan.id }}" {% if plan.id == subscription.plan_id %}disabled{% endif %}
+          style="text-align:left; cursor:pointer; font:inherit; color:inherit; {% if plan.id == subscription.plan_id %}border:2px solid var(--accent); cursor:default;{% endif %}">
+    <div style="font-weight:700;">{{ plan.max_users }} user{{ plan.max_users|pluralize }}</div>
+    <div style="font-size:18px; font-weight:700; margin-top:4px;">{{ plan.currency }} {{ plan.price|floatformat:"-2" }}<small style="font-weight:500; color:var(--ink-soft);"> / year</small></div>
+    {% if estimate %}<div style="font-size:12.5px; color:var(--ink-soft);">≈ {{ active_company.default_currency }} {{ estimate }}</div>{% endif %}
+    <div style="font-size:12.5px; margin-top:6px; color:var(--accent); font-weight:600;">{% if plan.id == subscription.plan_id %}✓ Current plan{% else %}Switch to this plan{% endif %}</div>
+  </button>
+  {% endfor %}
+</form>
+{% endif %}
 
 {% if is_owner %}
 {% if skipcash_ready %}

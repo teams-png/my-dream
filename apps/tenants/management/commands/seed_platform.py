@@ -1,6 +1,6 @@
 """
 One-time / idempotent seed command for Phase 2: creates a couple of
-BusinessTypes + Modules + a default SubscriptionPlan so registration
+BusinessTypes + Modules + the standard subscription plans so registration
 (tenants.services.create_company_with_owner) has something to attach to.
 
 Run with: python manage.py seed_platform
@@ -9,13 +9,12 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 
 from apps.modules.models import BusinessType, Module, BusinessTypeDefaultModule
-from apps.subscriptions.models import SubscriptionPlan
 from apps.tenants.services import ensure_default_permissions
 from apps.modules.catalog import BUSINESS_TYPE_MAP, RETAIL_TYPES, SERVICE_TYPES, PROJECT_TYPES, RESTAURANT_TYPES
 
 
 class Command(BaseCommand):
-    help = "Seed core BusinessTypes, Modules, and a default SubscriptionPlan."
+    help = "Seed core BusinessTypes, Modules, and the standard subscription plans."
 
     @transaction.atomic
     def handle(self, *args, **options):
@@ -103,10 +102,8 @@ class Command(BaseCommand):
                     business_type=business_type, module=module_objs["restaurant"]
                 )
 
-        plan, _ = SubscriptionPlan.objects.get_or_create(
-            name="Starter",
-            defaults={"price": 0, "billing_period": "yearly", "max_users": 5},
-        )
-        plan.modules.set(module_objs.values())
+        # 1 / 3 / 5-user yearly plans: INR for India, QAR everywhere else.
+        from apps.subscriptions.pricing import ensure_default_plans
+        ensure_default_plans(modules=list(module_objs.values()))
 
         self.stdout.write(self.style.SUCCESS("Platform seed data created."))

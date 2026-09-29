@@ -100,6 +100,9 @@ def test_finishing_or_skipping_marks_setup_done(client):
 def test_staff_cannot_open_wizard(client, member_factory):
     company = _signup(client)
     client.logout()
+    sub = company.subscription
+    sub.plan = sub.plan.__class__.objects.filter(country=sub.plan.country, tier=sub.plan.tier, max_users=5).first()
+    sub.save()
     staff = member_factory(company, "Staff")
     client.force_login(staff)
     resp = client.get(_url("business"))

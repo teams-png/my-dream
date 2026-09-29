@@ -15,6 +15,7 @@ from apps.accounts.models import LoginAttempt
 from apps.modules.catalog import BUSINESS_TYPE_MAP, business_group
 from apps.modules.models import BusinessType, Module
 from apps.subscriptions.models import SubscriptionPlan
+from apps.subscriptions.pricing import CURRENCY_BY_COUNTRY, LARGE_BUSINESS_TYPES, fx_rates, is_exact, plans_for
 from apps.subscriptions.services import TRIAL_DAYS
 from apps.tenants.models import Company, CompanyBusinessType
 
@@ -26,9 +27,9 @@ POPULAR_TYPES = [
     ("vehicle_wash", "Car Wash", "🚗"), ("construction", "Construction", "🏗️"), ("bakery", "Bakery", "🥐"),
 ]
 
-COUNTRIES = ["Qatar", "United Arab Emirates", "Saudi Arabia", "Oman", "Kuwait", "Bahrain", "India", "Other"]
-CURRENCY_BY_COUNTRY = {"Qatar": "QAR", "United Arab Emirates": "AED", "Saudi Arabia": "SAR", "Oman": "OMR",
-                       "Kuwait": "KWD", "Bahrain": "BHD", "India": "INR"}
+COUNTRIES = ["Qatar", "United Arab Emirates", "Saudi Arabia", "Oman", "Kuwait", "Bahrain", "India",
+             "United Kingdom", "United States", "Canada", "Australia", "Germany", "France", "Ireland",
+             "Netherlands", "Italy", "Spain", "Other"]
 
 
 def _business_choices():
@@ -75,16 +76,33 @@ class SignupForm(forms.Form):
         cleaned = super().clean()
         if cleaned.get("website"):
             raise forms.ValidationError("Sign-up could not be completed.")
+        plan = cleaned.get("plan")
+        if plan and cleaned.get("country") and cleaned.get("business_type"):
+            if not plans_for(cleaned["country"], cleaned["business_type"]).filter(pk=plan.pk).exists():
+                # e.g. an India price picked with Qatar as the country: use the matching plan instead
+                cleaned["plan"] = plans_for(cleaned["country"], cleaned["business_type"]).filter(
+                    max_users=plan.max_users).first()
         return cleaned
 
 
 def _plans():
-    return list(SubscriptionPlan.objects.filter(is_active=True).order_by("price"))
+    return list(SubscriptionPlan.objects.filter(is_active=True).order_by("country", "tier", "max_users", "price"))
+
+
+def _pricing_data():
+    """Everything the pricing cards need to switch region, tier and display currency in the browser."""
+    return {
+        "plans": [{"id": p.id, "region": p.country, "tier": p.tier, "users": p.max_users, "name": p.name,
+                   "price": f"{p.price:.2f}", "currency": p.currency, "period": p.billing_period} for p in _plans()],
+        "large_types": sorted(LARGE_BUSINESS_TYPES),
+        "fx": {code: {"rate": str(rate), "exact": is_exact(code)} for code, rate in fx_rates().items()},
+        "country_currency": CURRENCY_BY_COUNTRY,
+    }
 
 
 def landing(request):
     return render(request, "webapp/public/landing.html", {
-        "plans": _plans(), "popular_types": POPULAR_TYPES, "trial_days": TRIAL_DAYS,
+        "plans": _plans(), "pricing": _pricing_data(), "popular_types": POPULAR_TYPES, "trial_days": TRIAL_DAYS,
         "business_count": len(BUSINESS_TYPE_MAP), "signup_enabled": settings.PUBLIC_SIGNUP_ENABLED,
         "module_count": Module.objects.count(),
     })
@@ -109,7 +127,8 @@ def create_trial_account(*, data):
     company = create_company_with_owner(
         user=user, name=data["business_name"].strip(), slug=slug, business_type=business_type,
         country=data["country"], phone=data.get("phone", ""), email=data["email"],
-        default_currency=CURRENCY_BY_COUNTRY.get(data["country"], "USD"), plan=data.get("plan"),
+        default_currency=CURRENCY_BY_COUNTRY.get(data["country"], "USD"),
+        plan=data.get("plan") or plans_for(data["country"], code).first(),
     )
     CompanyBusinessType.objects.update_or_create(
         company=company, business_type=business_type, defaults={"is_active": True, "is_primary": True},
@@ -149,7 +168,7 @@ def signup(request):
                 messages.success(request, f"Welcome to BookPilot! Your {TRIAL_DAYS}-day free trial has started.")
                 return redirect("webapp:setup", step="business")
     return render(request, "webapp/public/signup.html", {
-        "form": form, "plans": _plans(), "trial_days": TRIAL_DAYS, "popular_types": POPULAR_TYPES,
+        "form": form, "plans": _plans(), "pricing": _pricing_data(), "trial_days": TRIAL_DAYS, "popular_types": POPULAR_TYPES,
     })
 
 

@@ -401,4 +401,23 @@ AR.update({
 "Payment received — thank you! Your subscription is active.": "تم استلام الدفع — شكرًا لك! اشتراكك مفعّل.",
 "The payment was cancelled or declined — no charge was made.": "تم إلغاء الدفع أو رفضه — لم يتم خصم أي مبلغ.",
 "Your payment is being confirmed. This page will show it within a minute.": "جارٍ تأكيد دفعتك. ستظهر في هذه الصفحة خلال دقيقة.",
+
+# pricing
+"Supermarket / Large shop": "سوبرماركت / متجر كبير",
+"International (QAR)": "دولي (ريال قطري)",
+"India (INR)": "الهند (روبية)",
+"Show in": "العرض بـ",
+"user": "مستخدم",
+"users": "مستخدمين",
+"All features for your business type": "جميع الميزات لنوع نشاطك",
+"Prices are per year. Customers outside India are billed in QAR; other currencies are an estimate.": "الأسعار سنوية. يُحاسَب العملاء خارج الهند بالريال القطري؛ العملات الأخرى تقديرية.",
+"Prices are per year, billed in INR.": "الأسعار سنوية، وتُحاسَب بالروبية الهندية.",
+"approx.": "تقريبًا",
+"Plan after the free trial": "الباقة بعد الفترة التجريبية",
+"Billed in": "الفوترة بـ",
+"India pricing, billed in INR.": "أسعار الهند، تُحاسَب بالروبية.",
+"You can change the plan any time from Billing.": "يمكنك تغيير الباقة في أي وقت من صفحة الفوترة.",
+"That plan can't be selected.": "لا يمكن اختيار هذه الباقة.",
+"You have %(users)s active users; this plan allows %(max)s. Remove users first.": "لديك %(users)s مستخدمين نشطين؛ هذه الباقة تسمح بـ %(max)s. أزل بعض المستخدمين أولًا.",
+"Plan changed to %(plan)s.": "تم تغيير الباقة إلى %(plan)s.",
 })

@@ -5033,6 +5033,24 @@ def billing_view(request):
     elif request.GET.get("stripe_cancelled"):
         messages.error(request, "Checkout was cancelled — no charge was made.")
 
+    from apps.subscriptions.pricing import local_estimate, plans_for
+    available_plans = list(plans_for(company.country, company.business_type.code)) if subscription else []
+
+    if request.method == "POST" and request.POST.get("change_plan"):
+        from apps.tenants.models import CompanyMembership
+        plan = next((p for p in available_plans if str(p.id) == request.POST.get("change_plan")), None)
+        users = CompanyMembership.objects.filter(company=company, is_active=True).count()
+        if not is_owner or plan is None or subscription is None:
+            messages.error(request, _("That plan can't be selected."))
+        elif users > plan.max_users:
+            messages.error(request, _("You have %(users)s active users; this plan allows %(max)s. Remove users first.") % {
+                "users": users, "max": plan.max_users})
+        else:
+            subscription.plan = plan
+            subscription.save(update_fields=["plan"])
+            messages.success(request, _("Plan changed to %(plan)s.") % {"plan": plan.name})
+        return redirect("webapp:billing")
+
     if request.method == "POST":
         if not is_owner:
             messages.error(request, "Only the business owner can submit a payment.")
@@ -5059,6 +5077,9 @@ def billing_view(request):
         "razorpay_key_id": gateway.razorpay_key_id,
         "skipcash_ready": _skipcash_ready(gateway, subscription),
         "company_phone": company.phone,
+        "available_plans": [(p, local_estimate(p.price, p.currency, company.default_currency)) for p in available_plans],
+        "price_estimate": local_estimate(subscription.plan.price, subscription.plan.currency, company.default_currency)
+        if subscription else None,
     })
 
 

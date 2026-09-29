@@ -160,3 +160,30 @@ A payment is only accepted after the server asks SkipCash for its status
 and checks the amount and currency, so a forged redirect or webhook cannot
 extend a subscription. The free trial is 3 days (`TRIAL_DAYS` in
 `apps/subscriptions/services.py`).
+
+## Pricing
+
+`seed_platform` (run on every deploy) creates these yearly plans if they
+are missing. It never overwrites a price edited later under
+**Platform → Plans**.
+
+| | 1 user | 3 users | 5 users |
+|---|---|---|---|
+| Normal business (all countries except India) | 399 QAR | 699 QAR | 899 QAR |
+| Supermarket / large shop (all countries except India) | 499 QAR | 899 QAR | 1,199 QAR |
+| Normal business (India) | ₹3,999 | ₹6,999 | ₹8,999 |
+| Supermarket / large shop (India) | ₹5,999 | ₹9,999 | ₹13,999 |
+
+- The country chosen at sign-up picks the price list: India gets INR,
+  every other country gets QAR.
+- The business type picks the tier. "Large shop" pricing covers the
+  types in `LARGE_BUSINESS_TYPES` in `apps/subscriptions/pricing.py`
+  (Supermarket and Wholesale business).
+- Visitors outside Qatar also see an **estimate** in their own currency,
+  but are always charged in QAR.
+- The display rates live in `DEFAULT_FX_PER_QAR`. The GCC currencies and
+  USD are pegged to QAR, so their rates are exact. GBP, EUR, CAD and AUD
+  float; update them with the `DISPLAY_FX_PER_QAR` env var, e.g.
+  `{"GBP": "0.21"}`.
+- Owners can switch between 1, 3 and 5 users on the Billing page. They
+  cannot pick a plan with fewer users than they already have.

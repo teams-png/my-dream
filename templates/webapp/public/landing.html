@@ -123,6 +123,15 @@ h2{font-size:clamp(30px,3.6vw,44px);letter-spacing:-.035em;line-height:1.1;margi
 .plan ul{list-style:none;padding:0;margin:6px 0 16px;color:var(--soft);font-size:15px;display:grid;gap:7px}
 .plan li::before{content:"✓";color:var(--brand-2);font-weight:700;margin-right:8px}
 .plan .btn{margin-top:auto}
+.price-tools{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;margin-top:30px}
+.seg-tabs{display:inline-flex;background:#eef3ef;border-radius:999px;padding:4px;gap:4px}
+.seg-tabs button{border:0;background:transparent;border-radius:999px;padding:9px 16px;font:inherit;font-weight:700;font-size:14px;color:var(--soft);cursor:pointer;transition:background .2s,color .2s}
+.seg-tabs button.on{background:#fff;color:var(--ink);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.cur-pick{font-size:14px;font-weight:700;color:var(--soft)}
+.cur-pick select{border:1.5px solid var(--line);border-radius:999px;padding:8px 12px;font:inherit;background:#fff}
+.plan .approx{font-size:14px;color:var(--soft);font-weight:600;margin-top:-4px}
+.plan-swap{animation:planIn .45s var(--ease) both}
+@keyframes planIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 /* faq */
 .faq{max-width:760px;margin:40px auto 0;display:grid;gap:10px}
 .faq details{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 22px;transition:border-color .2s}
@@ -218,23 +227,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <section id="pricing"><div class="wrap">
   <div class="center reveal"><span class="eyebrow">{% translate "Simple pricing" %}</span><h2>{% translate "Start free. Upgrade when you grow." %}</h2><p class="sub">{% translate "Every plan starts with a" %} {{ trial_days }}-day free trial. No card needed.</p></div>
-  <div class="plans">
-    {% for plan in plans %}
-    <div class="plan reveal{% if plans|length > 2 and forloop.counter == 2 %} hot{% endif %}">
-      <h3>{{ plan.name }}</h3>
-      <div class="price">{{ plan.currency }} {{ plan.price|floatformat:"-2" }} <small>/ {% if plan.billing_period == 'yearly' %}{% translate "year" %}{% else %}{% translate "month" %}{% endif %}</small></div>
-      <ul>
-        <li>{% translate "Up to" %} {{ plan.max_users }} user{{ plan.max_users|pluralize }}</li>
-        <li>{{ plan.max_warehouses }} branch{{ plan.max_warehouses|pluralize:"es" }} / store{{ plan.max_warehouses|pluralize }}</li>
-        <li>{% if plan.max_invoices_per_month %}{{ plan.max_invoices_per_month }} {% translate "invoices / month" %}{% else %}{% translate "Unlimited invoices" %}{% endif %}</li>
-        <li>{% translate "POS, stock, accounts & reports" %}</li>
-        <li>{% translate "WhatsApp bills & device support" %}</li>
-      </ul>
-      {% if signup_enabled %}<a class="btn {% if plans|length > 2 and forloop.counter == 2 or plans|length == 1 %}primary{% else %}ghost{% endif %}" href="{% url 'webapp:signup' %}?plan={{ plan.id }}">{% translate "Start free trial" %}</a>{% endif %}
-    </div>
-    {% empty %}
-    <div class="plan reveal" style="grid-column:1/-1;text-align:center"><h3>{% translate "Plans for every size" %}</h3><p style="color:var(--soft)">{% translate "Contact us for pricing in your country." %}</p></div>
-    {% endfor %}
+  <div class="price-tools reveal">
+    <div class="seg-tabs" id="tierTabs" role="tablist"><button type="button" class="on" data-tier="standard">🏢 {% translate "Business" %}</button><button type="button" data-tier="large">🛒 {% translate "Supermarket / Large shop" %}</button></div>
+    <div class="seg-tabs" id="regionTabs" role="tablist"><button type="button" class="on" data-region="Global">🌍 {% translate "International (QAR)" %}</button><button type="button" data-region="India">🇮🇳 {% translate "India (INR)" %}</button></div>
+    <label class="cur-pick">{% translate "Show in" %} <select id="curPick"><option value="">QAR</option>{% for code in pricing.fx %}{% if code != "QAR" %}<option value="{{ code }}">{{ code }}</option>{% endif %}{% endfor %}</select></label>
+  </div>
+  <div class="plans" id="planCards"></div>
+  <p class="sub" id="priceNote" style="font-size:14px;margin:18px auto 0;text-align:center"></p>
+  <noscript><div class="plans">{% for plan in plans %}<div class="plan"><h3>{{ plan.name }} ({{ plan.country }})</h3><div class="price">{{ plan.currency }} {{ plan.price|floatformat:"-2" }}</div></div>{% endfor %}</div></noscript>
   </div>
 </div></section>
 
@@ -255,7 +255,40 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <footer><div class="wrap"><span>© {% now "Y" %} {% translate "BookPilot" %}</span><span><a href="{% url 'webapp:login' %}">{% translate "Sign in" %}</a>{% if signup_enabled %} · <a href="{% url 'webapp:signup' %}">{% translate "Create account" %}</a>{% endif %}</span></div></footer>
 
+{{ pricing|json_script:"pricingData" }}
 <script>
+(function(){
+  const P=JSON.parse(document.getElementById('pricingData').textContent);
+  const box=document.getElementById('planCards'),note=document.getElementById('priceNote'),cur=document.getElementById('curPick');
+  const signup="{% if signup_enabled %}{% url 'webapp:signup' %}{% endif %}";
+  const T={user:"{% translate 'user' %}",users:"{% translate 'users' %}",year:"{% translate 'year' %}",upTo:"{% translate 'Up to' %}",
+    start:"{% translate 'Start free trial' %}",all:"{% translate 'All features for your business type' %}",
+    feats:["{% translate 'POS, stock, accounts & reports' %}","{% translate 'WhatsApp bills & device support' %}","{% translate 'Unlimited invoices' %}"],
+    billed:"{% translate 'Prices are per year. Customers outside India are billed in QAR; other currencies are an estimate.' %}",
+    india:"{% translate 'Prices are per year, billed in INR.' %}",approx:"{% translate 'approx.' %}"};
+  let tier='standard',region='Global';
+  try{const saved=localStorage.getItem('bp.cur');if(saved&&P.fx[saved])cur.value=saved}catch(_){}
+  if(!cur.value){const lang=(navigator.language||'').toLowerCase();if(lang.endsWith('-in')){region='India'}}
+  const fmt=n=>Number(n).toLocaleString(undefined,{maximumFractionDigits:n<100?1:0});
+  function render(){
+    document.querySelectorAll('#tierTabs button').forEach(b=>b.classList.toggle('on',b.dataset.tier===tier));
+    document.querySelectorAll('#regionTabs button').forEach(b=>b.classList.toggle('on',b.dataset.region===region));
+    cur.parentElement.hidden=region==='India';
+    const list=P.plans.filter(p=>p.region===region&&p.tier===tier).sort((a,b)=>a.users-b.users);
+    const c=region==='India'?'':cur.value,fx=P.fx[c];
+    box.innerHTML=list.map((p,i)=>`<div class="plan plan-swap${i===1?' hot':''}" style="animation-delay:${i*70}ms">
+      <h3>${p.users} ${p.users>1?T.users:T.user}</h3>
+      <div class="price">${p.currency} ${fmt(p.price)} <small>/ ${T.year}</small></div>
+      ${c&&fx?`<div class="approx">≈ ${c} ${fmt(p.price*fx.rate)}${fx.exact?'':' ('+T.approx+')'}</div>`:''}
+      <ul><li>${T.upTo} ${p.users} ${p.users>1?T.users:T.user}</li>${T.feats.map(f=>`<li>${f}</li>`).join('')}<li>${T.all}</li></ul>
+      ${signup?`<a class="btn ${i===1?'primary':'ghost'}" href="${signup}?plan=${p.id}">${T.start}</a>`:''}</div>`).join('');
+    note.textContent=region==='India'?T.india:T.billed;
+  }
+  document.getElementById('tierTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){tier=b.dataset.tier;render()}});
+  document.getElementById('regionTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){region=b.dataset.region;render()}});
+  cur.addEventListener('change',()=>{try{localStorage.setItem('bp.cur',cur.value)}catch(_){}render()});
+  render();
+})();
 (function(){
   const nav=document.getElementById('nav');
   const onScroll=()=>nav.classList.toggle('scrolled',scrollY>10);onScroll();addEventListener('scroll',onScroll,{passive:true});

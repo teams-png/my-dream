@@ -9,6 +9,11 @@ class SubscriptionPlan(models.Model):
     currency = models.CharField(max_length=3, default="QAR")
     price = models.DecimalField(max_digits=10, decimal_places=2)
     billing_period = models.CharField(max_length=20, choices=BILLING_PERIOD, default="yearly")
+    TIERS = [("standard", "Normal business"), ("large", "Supermarket / large shop")]
+    tier = models.CharField(
+        max_length=10, choices=TIERS, default="standard",
+        help_text="Which businesses this price is for; see apps/subscriptions/pricing.py.",
+    )
     max_users = models.PositiveIntegerField(default=5)
     max_warehouses = models.PositiveIntegerField(default=1)
     max_invoices_per_month = models.PositiveIntegerField(default=0, help_text="0 means unlimited")

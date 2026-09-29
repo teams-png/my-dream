@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self'">
+<title>BookPilot</title>
+<link rel="stylesheet" href="shell.css">
+</head>
+<body>
+<main class="card">
+  <img class="logo" src="icon.png" alt="">
+  <h1>Can't reach BookPilot</h1>
+  <p>Check the internet connection. The app will try again by itself.<br><code id="server"></code></p>
+  <div class="btns">
+    <button class="go" id="retry" type="button">Try again</button>
+    <button id="settings" type="button">Change server</button>
+  </div>
+  <p style="margin-top:18px"><small id="detail"></small></p>
+</main>
+<script src="offline.js"></script>
+</body>
+</html>

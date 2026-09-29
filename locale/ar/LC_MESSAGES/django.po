@@ -334,6 +334,14 @@ msgid "Open menu"
 msgstr "فتح القائمة"
 
 #: templates/base.html
+msgid "Install as an app"
+msgstr "ثبّته كتطبيق"
+
+#: templates/base.html
+msgid "Install app"
+msgstr "تثبيت التطبيق"
+
+#: templates/base.html
 msgid "Log out"
 msgstr "تسجيل الخروج"
 
@@ -392,6 +400,14 @@ msgstr "＋ إضافة طاولة"
 #: templates/base.html
 msgid "◷ Shift Control"
 msgstr "◷ إدارة الورديات"
+
+#: templates/base.html
+msgid "Install BookPilot"
+msgstr "تثبيت BookPilot"
+
+#: templates/base.html
+msgid "Tap the Share button, then “Add to Home Screen”."
+msgstr "اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية»."
 
 #: templates/webapp/_language_switcher.html
 msgid "Language"
@@ -734,6 +750,14 @@ msgstr "تسلسلي / بلوتوث"
 #: templates/webapp/devices.html
 msgid "Network (LAN)"
 msgstr "الشبكة (LAN)"
+
+#: templates/webapp/devices.html
+msgid "Printer (desktop app — prints without the print window)"
+msgstr "الطابعة (تطبيق سطح المكتب — طباعة دون نافذة الطباعة)"
+
+#: templates/webapp/devices.html
+msgid "Ask every time (print window)"
+msgstr "السؤال في كل مرة (نافذة الطباعة)"
 
 #: templates/webapp/devices.html
 msgid ""
@@ -2370,10 +2394,6 @@ msgstr "أمان بمستوى البنوك"
 #: templates/webapp/public/landing.html
 msgid "Two-step login, audit log and fully separated data for every business."
 msgstr "تحقق بخطوتين وسجل تدقيق وبيانات منفصلة تمامًا لكل نشاط."
-
-#: templates/webapp/public/landing.html
-msgid "Install as an app"
-msgstr "ثبّته كتطبيق"
 
 #: templates/webapp/public/landing.html
 msgid ""

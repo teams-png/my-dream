@@ -23,6 +23,7 @@
 .dv-mode{position:relative;border:1.5px solid var(--line);border-radius:12px;padding:9px 6px;text-align:center;font-size:12.5px;font-weight:700;cursor:pointer;transition:border-color .15s,background .15s}
 .dv-mode input{position:absolute;opacity:0}
 .dv-mode span{display:block;font-size:19px;margin-bottom:2px}
+html:not(.bp-desktop) .desktop-only{display:none !important}
 .dv-mode:has(input:checked){border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
 .dv-row{display:flex;gap:8px;flex-wrap:wrap;align-items:end}
 .dv-row label{flex:1;min-width:120px;font-size:12.5px;font-weight:700;color:var(--ink-soft)}
@@ -60,6 +61,7 @@
       <label class="dv-mode"><input type="radio" name="receipt-mode" value="serial"><span>🧷</span>{% translate "Serial / BT" %}</label>
       <label class="dv-mode"><input type="radio" name="receipt-mode" value="network"><span>📶</span>{% translate "Network (LAN)" %}</label>
     </div>
+    <div class="dv-row desktop-only" data-show-when="browser"><label>{% translate "Printer (desktop app — prints without the print window)" %}<select data-field="systemPrinter" data-printer-list><option value="">{% translate "Ask every time (print window)" %}</option></select></label></div>
     <p class="dv-note" data-show-when="browser">{% translate "Uses the normal print window, so it works with any printer installed on this computer (thermal, A4, PDF). Tip: start Chrome with" %} <code>{% translate "--kiosk-printing" %}</code> {% translate "to print without the dialog." %}</p>
     <div class="dv-row" data-show-when="network"><label>{% translate "Printer IP address" %}<input data-field="host" placeholder="192.168.1.50"></label><label style="max-width:110px">{% translate "Port" %}<input data-field="port" type="number" placeholder="9100"></label></div>
     <div class="dv-row" data-show-when="serial"><label>{% translate "Baud rate" %}<select data-field="baud"><option>9600</option><option>19200</option><option>38400</option><option>57600</option><option>115200</option></select></label></div>
@@ -77,6 +79,7 @@
       <label class="dv-mode"><input type="radio" name="kitchen-mode" value="serial"><span>🧷</span>{% translate "Serial / BT" %}</label>
       <label class="dv-mode"><input type="radio" name="kitchen-mode" value="network"><span>📶</span>{% translate "Network" %}</label>
     </div>
+    <div class="dv-row desktop-only" data-show-when="browser"><label>{% translate "Printer (desktop app — prints without the print window)" %}<select data-field="systemPrinter" data-printer-list><option value="">{% translate "Ask every time (print window)" %}</option></select></label></div>
     <div class="dv-row" data-show-when="network"><label>{% translate "Printer IP address" %}<input data-field="host" placeholder="192.168.1.51"></label><label style="max-width:110px">{% translate "Port" %}<input data-field="port" type="number" placeholder="9100"></label></div>
     <div class="dv-row" data-show-when="serial"><label>{% translate "Baud rate" %}<select data-field="baud"><option>9600</option><option>19200</option><option>38400</option><option>57600</option><option>115200</option></select></label></div>
     <div class="dv-row"><label>{% translate "Paper width" %}<select data-field="width"><option value="48">{% translate "80 mm (48 characters)" %}</option><option value="42">{% translate "80 mm (42 characters)" %}</option><option value="32">{% translate "58 mm (32 characters)" %}</option></select></label></div>
@@ -147,11 +150,23 @@
       card.querySelectorAll('[data-show-when]').forEach(el=>el.style.display=el.dataset.showWhen===r.mode?'':'none');
       const btn=card.querySelector('[data-connect]');btn.style.display=(r.mode==='usb'||r.mode==='serial')?'':'none';
       const st=card.querySelector('[data-status]');
-      const label={browser:'Print window',usb:r.usb?('USB · '+(r.usb.name||'printer')):'USB · not connected',serial:r.serial?'Serial · paired':'Serial · not connected',network:r.host?('LAN · '+r.host):'LAN · no IP',same:'Same as receipt',none:'Off'}[r.mode];
+      const label={browser:(r.systemPrinter&&window.bookpilotDesktop)?('Printer · '+r.systemPrinter):'Print window',usb:r.usb?('USB · '+(r.usb.name||'printer')):'USB · not connected',serial:r.serial?'Serial · paired':'Serial · not connected',network:r.host?('LAN · '+r.host):'LAN · no IP',same:'Same as receipt',none:'Off'}[r.mode];
       st.textContent=label;st.classList.toggle('on',!(/not connected|no IP|Off/.test(label)));
     });
     document.querySelectorAll('[data-cfg]').forEach(i=>{const v=get(cfg,i.dataset.cfg);if(i.type==='checkbox')i.checked=!!v;else i.value=v});
   }
+  async function loadSystemPrinters(){
+    const bridge=window.bookpilotDesktop;if(!bridge)return;
+    document.documentElement.classList.add('bp-desktop');
+    try{
+      const printers=await bridge.printers();
+      document.querySelectorAll('[data-printer-list]').forEach(sel=>{
+        printers.forEach(p=>{const o=document.createElement('option');o.value=p.name;o.textContent=p.displayName||p.name;if(p.isDefault)o.textContent+=' ★';sel.appendChild(o)});
+      });
+      render();
+    }catch(e){toast(e.message,true)}
+  }
+  loadSystemPrinters();
   document.addEventListener('change',e=>{
     const cfg=D.load();const t=e.target;
     const card=t.closest('[data-role]');

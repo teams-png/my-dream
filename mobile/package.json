@@ -1,0 +1,26 @@
+{
+  "name": "bookpilot-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BookPilot Business Suite for Android and iOS",
+  "license": "UNLICENSED",
+  "scripts": {
+    "config": "node scripts/write-config.js",
+    "sync": "npm run config && cap sync",
+    "android": "npm run sync && cap open android",
+    "ios": "npm run sync && cap open ios",
+    "assets": "capacitor-assets generate --assetPath assets --iconBackgroundColor '#14532d' --iconBackgroundColorDark '#08271a' --splashBackgroundColor '#14532d' --splashBackgroundColorDark '#08271a'"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/app": "^8.0.0",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/ios": "^8.5.2",
+    "@capacitor/splash-screen": "^8.0.0",
+    "@capacitor/status-bar": "^8.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.5.2"
+  }
+}

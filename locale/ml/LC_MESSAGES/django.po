@@ -334,6 +334,14 @@ msgid "Open menu"
 msgstr "മെനു തുറക്കുക"
 
 #: templates/base.html
+msgid "Install as an app"
+msgstr "ആപ്പായി ഇൻസ്റ്റാൾ ചെയ്യാം"
+
+#: templates/base.html
+msgid "Install app"
+msgstr "ആപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക"
+
+#: templates/base.html
 msgid "Log out"
 msgstr "ലോഗ് ഔട്ട്"
 
@@ -392,6 +400,14 @@ msgstr "＋ ടേബിൾ ചേർക്കുക"
 #: templates/base.html
 msgid "◷ Shift Control"
 msgstr "◷ ഷിഫ്റ്റ് നിയന്ത്രണം"
+
+#: templates/base.html
+msgid "Install BookPilot"
+msgstr "BookPilot ഇൻസ്റ്റാൾ ചെയ്യുക"
+
+#: templates/base.html
+msgid "Tap the Share button, then “Add to Home Screen”."
+msgstr "Share ബട്ടൺ അമർത്തി “Add to Home Screen” തിരഞ്ഞെടുക്കുക."
 
 #: templates/webapp/_language_switcher.html
 msgid "Language"
@@ -736,6 +752,15 @@ msgstr "സീരിയൽ / BT"
 #: templates/webapp/devices.html
 msgid "Network (LAN)"
 msgstr "നെറ്റ്‌വർക്ക് (LAN)"
+
+#: templates/webapp/devices.html
+msgid "Printer (desktop app — prints without the print window)"
+msgstr ""
+"പ്രിന്റർ (ഡെസ്ക്ടോപ്പ് ആപ്പ് — പ്രിന്റ് വിൻഡോ ഇല്ലാതെ പ്രിന്റ് ചെയ്യും)"
+
+#: templates/webapp/devices.html
+msgid "Ask every time (print window)"
+msgstr "ഓരോ തവണയും ചോദിക്കുക (പ്രിന്റ് വിൻഡോ)"
 
 #: templates/webapp/devices.html
 msgid ""
@@ -2395,10 +2420,6 @@ msgstr "ബാങ്ക് നിലവാരത്തിലുള്ള സു�
 msgid "Two-step login, audit log and fully separated data for every business."
 msgstr ""
 "ടു-സ്റ്റെപ്പ് ലോഗിൻ, ഓഡിറ്റ് ലോഗ്, ഓരോ ബിസിനസിനും പൂർണ്ണമായി വേറിട്ട ഡാറ്റ."
-
-#: templates/webapp/public/landing.html
-msgid "Install as an app"
-msgstr "ആപ്പായി ഇൻസ്റ്റാൾ ചെയ്യാം"
 
 #: templates/webapp/public/landing.html
 msgid ""

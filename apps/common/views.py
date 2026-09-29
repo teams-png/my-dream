@@ -17,11 +17,28 @@ def readiness(request):
 
 
 def pwa_manifest(request):
-    return JsonResponse({
-        "name": "BookPilot Business Suite", "short_name": "BookPilot",
-        "start_url": "/", "display": "standalone", "background_color": "#f4f6fb",
-        "theme_color": "#14532d", "description": "Accounting, POS and business management",
+    """Makes the site installable (Chrome/Edge/Android "Install app", iOS "Add to Home Screen")."""
+    from django.templatetags.static import static
+
+    icons = [{"src": static(f"icons/icon-{n}.png"), "sizes": f"{n}x{n}", "type": "image/png", "purpose": "any"}
+             for n in (48, 72, 96, 144, 192, 256, 384, 512)]
+    icons += [{"src": static(f"icons/maskable-{n}.png"), "sizes": f"{n}x{n}", "type": "image/png", "purpose": "maskable"}
+              for n in (192, 512)]
+    shortcut_icon = [{"src": static("icons/icon-96.png"), "sizes": "96x96", "type": "image/png"}]
+    response = JsonResponse({
+        "id": "/", "name": "BookPilot Business Suite", "short_name": "BookPilot",
+        "description": "Accounting, POS and business management",
+        "start_url": "/?source=app", "scope": "/", "display": "standalone", "display_override": ["standalone"],
+        "orientation": "any", "background_color": "#f4f6fb", "theme_color": "#14532d",
+        "categories": ["business", "finance", "productivity"], "icons": icons,
+        "shortcuts": [
+            {"name": "Point of Sale", "short_name": "POS", "url": "/pos/", "icons": shortcut_icon},
+            {"name": "Restaurant orders", "short_name": "Restaurant", "url": "/restaurant/", "icons": shortcut_icon},
+            {"name": "Dashboard", "short_name": "Dashboard", "url": "/", "icons": shortcut_icon},
+        ],
     })
+    response["Content-Type"] = "application/manifest+json"
+    return response
 
 
 def service_worker(request):

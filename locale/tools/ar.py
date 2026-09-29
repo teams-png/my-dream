@@ -420,4 +420,11 @@ AR.update({
 "That plan can't be selected.": "لا يمكن اختيار هذه الباقة.",
 "You have %(users)s active users; this plan allows %(max)s. Remove users first.": "لديك %(users)s مستخدمين نشطين؛ هذه الباقة تسمح بـ %(max)s. أزل بعض المستخدمين أولًا.",
 "Plan changed to %(plan)s.": "تم تغيير الباقة إلى %(plan)s.",
+
+# apps
+"Install app": "تثبيت التطبيق",
+"Install BookPilot": "تثبيت BookPilot",
+"Tap the Share button, then “Add to Home Screen”.": "اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية».",
+"Printer (desktop app — prints without the print window)": "الطابعة (تطبيق سطح المكتب — طباعة دون نافذة الطباعة)",
+"Ask every time (print window)": "السؤال في كل مرة (نافذة الطباعة)",
 })

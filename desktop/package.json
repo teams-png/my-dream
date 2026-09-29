@@ -1,0 +1,86 @@
+{
+  "name": "bookpilot-desktop",
+  "productName": "BookPilot",
+  "version": "1.0.0",
+  "description": "BookPilot Business Suite for Windows, macOS and Linux",
+  "main": "main.js",
+  "author": "BookPilot",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/teams-png/my-dream.git"
+  },
+  "private": true,
+  "scripts": {
+    "config": "node scripts/write-config.js",
+    "start": "npm run config && electron .",
+    "dist": "npm run config && electron-builder --publish never",
+    "dist:win": "npm run config && electron-builder --win --publish never",
+    "dist:mac": "npm run config && electron-builder --mac --publish never",
+    "dist:linux": "npm run config && electron-builder --linux --publish never"
+  },
+  "devDependencies": {
+    "electron": "^44.5.0",
+    "electron-builder --publish never": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.bookpilot.desktop",
+    "productName": "BookPilot",
+    "copyright": "BookPilot",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "app-config.json",
+      "pages/**",
+      "package.json"
+    ],
+    "artifactName": "BookPilot-${version}-${os}-${arch}.${ext}",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "BookPilot"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "category": "public.app-category.business"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Office",
+      "syncDesktopName": true
+    }
+  },
+  "desktopName": "bookpilot.desktop"
+}

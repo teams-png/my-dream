@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self'">
+<title>BookPilot settings</title>
+<link rel="stylesheet" href="shell.css">
+</head>
+<body>
+<form class="card" id="form">
+  <img class="logo" src="icon.png" alt="" style="width:64px;height:64px">
+  <h1>Settings</h1>
+  <label for="url">BookPilot server address</label>
+  <input id="url" type="url" required placeholder="https://your-company.bookpilot.app" autocomplete="off">
+  <label class="check"><input id="fullscreen" type="checkbox"> Open full screen (good for a POS till)</label>
+  <p class="err" id="err"></p>
+  <div class="btns">
+    <button type="button" id="reset">Use default</button>
+    <button class="go" type="submit">Save</button>
+  </div>
+  <p style="margin-top:16px"><small>Keys: F11 full screen · Ctrl+R reload · Ctrl +/− zoom · Ctrl+, settings</small><br><small id="ver"></small></p>
+</form>
+<script src="settings.js"></script>
+</body>
+</html>

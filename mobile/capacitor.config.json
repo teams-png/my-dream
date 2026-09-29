@@ -1,0 +1,36 @@
+{
+  "appId": "com.bookpilot.app",
+  "appName": "BookPilot",
+  "webDir": "www",
+  "appendUserAgent": "BookPilotApp/1.0 (mobile)",
+  "backgroundColor": "#f4f6fb",
+  "server": {
+    "url": "https://bookpilot-web.onrender.com",
+    "cleartext": false,
+    "allowNavigation": [
+      "bookpilot-web.onrender.com"
+    ],
+    "errorPath": "error.html"
+  },
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true
+  },
+  "ios": {
+    "contentInset": "automatic",
+    "scrollEnabled": true,
+    "limitsNavigationsToAppBoundDomains": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 900,
+      "backgroundColor": "#14532d",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#14532d",
+      "overlaysWebView": false
+    }
+  }
+}

@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
+{% include "webapp/_app_head.html" %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="{% if request.path|slice:':12' == '/restaurant/' %}#da291c{% else %}#14532d{% endif %}">
-<link rel="manifest" href="/manifest.webmanifest">
 <title>{% block title %}{% translate "Dashboard" %}{% endblock %} · {{ active_company.name|default:"Business Console" }}</title>
 <style>
   @font-face { font-family:'Inter'; src:url('{% static "fonts/Inter-Regular.ttf" %}') format('truetype'); font-weight:400; font-display:swap; }
@@ -32,6 +32,9 @@
     width:236px; background:var(--panel); border-right:1px solid var(--line);
     padding:22px 14px; flex-shrink:0;
   }
+  .install-app{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border:1px solid var(--accent);border-radius:10px;background:var(--accent-soft);color:var(--accent);font:inherit;font-weight:700;font-size:13px;cursor:pointer}
+  .install-app[hidden]{display:none}
+  @media(max-width:700px){.install-app span{display:none}}
   .brand{padding:2px 10px 20px; font-weight:700; font-size:19px; margin-bottom:6px;}
   .brand small{display:block; color:var(--ink-soft); font-weight:400; font-size:12.5px; margin-top:3px;}
   .nav-group{padding:0;}
@@ -405,6 +408,7 @@
       </div>
       {% if request.user.is_authenticated %}
       <div class="user-chip">
+        <button class="install-app" type="button" data-install-app hidden title="{% translate 'Install as an app' %}">⬇ <span>{% translate "Install app" %}</span></button>
         {% include "webapp/_language_switcher.html" %}{% include "webapp/_theme_toggle.html" %}
         <span>{{ request.user.email|default:request.user.username }} · <a href="{% url 'webapp:logout' %}">{% translate "Log out" %}</a></span>
         <div class="avatar">{{ request.user.email|default:request.user.username|slice:":1"|upper }}</div>
@@ -442,6 +446,8 @@
   </main>
 </div>
 <script>(function(){const shell=document.getElementById('appShell');if(!shell)return;const close=()=>shell.classList.remove('nav-open');document.addEventListener('click',e=>{if(e.target.closest('[data-nav-toggle]')){shell.classList.toggle('nav-open');}else if(e.target.closest('[data-nav-close]')){close();}});document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});})();</script>
+<script>document.documentElement.dataset.installTitle="{% translate 'Install BookPilot' %}";document.documentElement.dataset.installIos="{% translate 'Tap the Share button, then “Add to Home Screen”.' %}";</script>
+<script src="{% static 'js/install-app.js' %}" defer></script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}</script>
 <script>(function(){const set=t=>{document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('bp.theme',t)}catch(e){}document.querySelectorAll('[data-theme-toggle]').forEach(b=>b.textContent=t==='dark'?'☀️':'🌙')};set(document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light');document.addEventListener('click',e=>{if(e.target.closest('[data-theme-toggle]'))set(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')})})();</script>
 </body>

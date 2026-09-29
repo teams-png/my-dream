@@ -175,6 +175,9 @@ def signup(request):
 def home(request):
     """Visitors see the website; signed-in users go straight to their dashboard."""
     if not request.user.is_authenticated:
+        # the installed web app and the desktop / mobile apps open on sign-in, not the website
+        if request.GET.get("source") == "app" or "BookPilotApp" in request.META.get("HTTP_USER_AGENT", ""):
+            return redirect("webapp:login")
         return landing(request)
     from .views import dashboard
     return dashboard(request)

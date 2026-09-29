@@ -1,11 +1,11 @@
 {% load i18n %}{% load static %}<!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
+{% include "webapp/_app_head.html" %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="BookPilot: POS, accounting, inventory and staff in one app for restaurants, shops, salons, gyms and more.">
 <meta name="theme-color" content="#0e3b22">
-<link rel="manifest" href="/manifest.webmanifest">
 <title>{% translate "BookPilot · All-in-one business software" %}</title>
 <style>
 @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Regular.ttf" %}');font-weight:400;font-display:swap}
@@ -166,7 +166,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <header class="nav" id="nav"><div class="wrap">
   <a class="logo" href="{% url 'webapp:landing' %}"><i>✦</i>{% translate "BookPilot" %}</a>
   <nav class="nav-links"><a href="#features">{% translate "Features" %}</a><a href="#business">{% translate "Businesses" %}</a><a href="#pricing">{% translate "Pricing" %}</a><a href="#faq">{% translate "FAQ" %}</a></nav>
-  <div class="nav-cta">{% include "webapp/_language_switcher.html" %}<a class="btn ghost" href="{% url 'webapp:login' %}">{% translate "Sign in" %}</a>{% if signup_enabled %}<a class="btn primary" href="{% url 'webapp:signup' %}">{% translate "Start free trial" %}</a>{% endif %}</div>
+  <div class="nav-cta"><button class="btn ghost" type="button" data-install-app hidden>⬇ {% translate "Install app" %}</button>{% include "webapp/_language_switcher.html" %}<a class="btn ghost" href="{% url 'webapp:login' %}">{% translate "Sign in" %}</a>{% if signup_enabled %}<a class="btn primary" href="{% url 'webapp:signup' %}">{% translate "Start free trial" %}</a>{% endif %}</div>
 </div></header>
 
 <div class="hero"><div class="wrap">
@@ -299,5 +299,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   if(!reduce)setInterval(()=>{v+=Math.round(20+Math.random()*80);tick.textContent='QAR '+v.toLocaleString()},1400);else tick.textContent='QAR 4,820';
 })();
 </script>
+<script>document.documentElement.dataset.installTitle="{% translate 'Install BookPilot' %}";document.documentElement.dataset.installIos="{% translate 'Tap the Share button, then “Add to Home Screen”.' %}";</script>
+<script src="{% static 'js/install-app.js' %}" defer></script>
+<script>if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}))}</script>
 </body>
 </html>

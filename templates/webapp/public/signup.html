@@ -1,6 +1,7 @@
 {% load i18n %}{% load static %}<!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
+{% include "webapp/_app_head.html" %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{% translate "Start your free trial · BookPilot" %}</title>

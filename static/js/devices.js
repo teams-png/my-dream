@@ -165,7 +165,19 @@
     }
     if (!res.ok) throw new Error("Printer error: " + (await res.text()));
   }
-  function browserPrint(url) {
+  /* In the BookPilot desktop app, "Any printer" can print silently to a
+     chosen system printer instead of opening the print window. */
+  function desktopPrinter(role) {
+    const bridge = window.bookpilotDesktop;
+    if (!bridge || !role) return null;
+    const cfg = load();
+    const r = role === "kitchen" && cfg.kitchen.mode === "same" ? cfg.receipt : cfg[role];
+    return r && r.systemPrinter ? { bridge, printer: r.systemPrinter } : null;
+  }
+  function browserPrint(url, role) {
+    const desk = desktopPrinter(role);
+    if (desk && url) return desk.bridge.printUrl(new URL(url, location.href).href, { printer: desk.printer });
+    if (window.bookpilotNative && url) return window.bookpilotNative.printUrl(url);
     return new Promise((resolve, reject) => {
       if (!url) return reject(new Error("Nothing to print."));
       const frame = document.createElement("iframe");
@@ -197,7 +209,10 @@
     (d.lines || []).forEach(l => { b += `<div class="big">${esc(l.qty)} x ${esc(l.name)}</div>` + (l.extra || []).map(x => `<div>&nbsp;&nbsp;${esc(x)}</div>`).join(""); });
     return paperHtml(b + '<div class="l"></div>', width);
   }
-  function browserPrintHtml(html) {
+  function browserPrintHtml(html, role) {
+    const desk = desktopPrinter(role);
+    if (desk) return desk.bridge.printHtml(html, { printer: desk.printer });
+    if (window.bookpilotNative) return window.bookpilotNative.printHtml(html);
     return new Promise(resolve => {
       const frame = document.createElement("iframe");
       frame.style.cssText = "position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden";
@@ -255,7 +270,7 @@
 
     async printReceipt({ dataUrl, htmlUrl, drawer } = {}) {
       const cfg = load();
-      if (modeOf("receipt") === "browser") return browserPrint(htmlUrl);
+      if (modeOf("receipt") === "browser") return browserPrint(htmlUrl, "receipt");
       const data = await getJson(dataUrl);
       const kick = cfg.drawer.enabled && (drawer === undefined ? data.open_drawer : drawer);
       return sendRaw("receipt", buildReceipt(data, widthOf("receipt"), kick, cfg.drawer.pin));
@@ -264,14 +279,14 @@
     async printKot({ dataUrl, htmlUrl } = {}) {
       const cfg = load();
       if (cfg.kitchen.mode === "none") return;
-      if (modeOf("kitchen") === "browser") return browserPrint(htmlUrl);
+      if (modeOf("kitchen") === "browser") return browserPrint(htmlUrl, "kitchen");
       return sendRaw("kitchen", buildKot(await getJson(dataUrl), widthOf("kitchen")));
     },
 
     /* print from data held on this device (used by the offline POS) */
     async printReceiptData(data, { drawer } = {}) {
       const cfg = load();
-      if (modeOf("receipt") === "browser") return browserPrintHtml(receiptHtml(data, widthOf("receipt")));
+      if (modeOf("receipt") === "browser") return browserPrintHtml(receiptHtml(data, widthOf("receipt")), "receipt");
       const kick = cfg.drawer.enabled && (drawer === undefined ? data.open_drawer : drawer);
       return sendRaw("receipt", buildReceipt(data, widthOf("receipt"), kick, cfg.drawer.pin));
     },
@@ -279,7 +294,7 @@
     async printKotData(data) {
       const cfg = load();
       if (cfg.kitchen.mode === "none") return;
-      if (modeOf("kitchen") === "browser") return browserPrintHtml(kotHtml(data, widthOf("kitchen")));
+      if (modeOf("kitchen") === "browser") return browserPrintHtml(kotHtml(data, widthOf("kitchen")), "kitchen");
       return sendRaw("kitchen", buildKot(data, widthOf("kitchen")));
     },
 
@@ -298,6 +313,9 @@
         .line("BookPilot device check").line(new Date().toLocaleString()).rule()
         .align("left").pair("Paper width", w + " chars").pair("Role", role)
         .rule().align("center").line("If you can read this, printing works!").cut();
+      if (modeOf(role) === "browser" && desktopPrinter(role)) {
+        return browserPrintHtml(paperHtml('<div class="c"><h1>TEST PRINT</h1>BookPilot desktop<br>' + esc(new Date().toLocaleString()) + '<div class="l"></div>If you can read this, printing works!</div>', w), role);
+      }
       if (modeOf(role) === "browser") {
         const html = "data:text/html," + encodeURIComponent('<pre style="font:14px monospace">TEST PRINT\nBookPilot device check\n' + new Date().toLocaleString() + "</pre><script>print()<\/script>");
         window.open(html, "_blank"); return;

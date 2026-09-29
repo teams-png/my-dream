@@ -400,4 +400,11 @@ ML.update({
 "That plan can't be selected.": "ആ പ്ലാൻ തിരഞ്ഞെടുക്കാനാവില്ല.",
 "You have %(users)s active users; this plan allows %(max)s. Remove users first.": "നിങ്ങൾക്ക് %(users)s ആക്ടീവ് യൂസർമാരുണ്ട്; ഈ പ്ലാനിൽ %(max)s പേർ മാത്രം. ആദ്യം യൂസർമാരെ നീക്കുക.",
 "Plan changed to %(plan)s.": "പ്ലാൻ %(plan)s ആയി മാറ്റി.",
+
+# apps
+"Install app": "ആപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക",
+"Install BookPilot": "BookPilot ഇൻസ്റ്റാൾ ചെയ്യുക",
+"Tap the Share button, then “Add to Home Screen”.": "Share ബട്ടൺ അമർത്തി “Add to Home Screen” തിരഞ്ഞെടുക്കുക.",
+"Printer (desktop app — prints without the print window)": "പ്രിന്റർ (ഡെസ്ക്ടോപ്പ് ആപ്പ് — പ്രിന്റ് വിൻഡോ ഇല്ലാതെ പ്രിന്റ് ചെയ്യും)",
+"Ask every time (print window)": "ഓരോ തവണയും ചോദിക്കുക (പ്രിന്റ് വിൻഡോ)",
 })

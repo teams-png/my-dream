@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{ supplier.name }}{% endblock %}
+{% block heading %}{{ supplier.name }}{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Total purchased</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ total_purchased }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Total paid</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ total_paid }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Outstanding</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px; {% if outstanding > 0 %}color:var(--danger);{% endif %}">{{ outstanding }}</div>
+  </div>
+</div>
+
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:supplier_payment_add' supplier.id %}">+ Record payment</a></div>
+
+<h2 style="font-size:16px; margin-bottom:10px;">Purchases</h2>
+{% if purchases %}
+<table style="margin-bottom:26px;">
+  <tr><th>Bill #</th><th>Date</th><th>Total</th><th>Paid</th><th>Status</th></tr>
+  {% for p in purchases %}
+  <tr><td>{{ p.bill_number|default:"—" }}</td><td>{{ p.date }}</td><td>{{ p.total }}</td><td>{{ p.amount_paid }}</td><td>{{ p.get_status_display }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty" style="margin-bottom:26px;">No purchases yet.</div>
+{% endif %}
+
+<h2 style="font-size:16px; margin-bottom:10px;">Payments</h2>
+{% if payments %}
+<table>
+  <tr><th>Date</th><th>Amount</th><th>Method</th></tr>
+  {% for p in payments %}
+  <tr><td>{{ p.date }}</td><td>{{ p.amount }}</td><td>{{ p.method|title }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No payments recorded yet.</div>
+{% endif %}
+{% endblock %}

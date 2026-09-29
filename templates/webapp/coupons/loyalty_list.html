@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Loyalty{% endblock %}
+{% block heading %}Loyalty points{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:loyalty_redeem' %}">Redeem points</a></div>
+<p style="color:var(--ink-soft); font-size:13px;">Customers earn 1 point for every 10 spent, automatically at checkout.</p>
+{% if accounts %}
+<table>
+  <tr><th>Customer</th><th>Points balance</th></tr>
+  {% for a in accounts %}
+  <tr><td>{{ a.customer.name }}</td><td>{{ a.points_balance }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No loyalty activity yet.</div>
+{% endif %}
+{% endblock %}

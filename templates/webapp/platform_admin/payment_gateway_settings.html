@@ -1,0 +1,33 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Payment Gateways{% endblock %}
+{% block heading %}Payment Gateway Settings{% endblock %}
+{% block content %}
+<p style="color:var(--ink-soft); margin-top:-10px;">Only platform administrators can access this page. Saved credentials are encrypted and are never displayed again.</p>
+<form method="post" class="card" style="max-width:900px;">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <section>
+      <h2 style="font-size:18px;">Stripe</h2>
+      <p>{{ form.stripe_enabled }} {{ form.stripe_enabled.label_tag }}</p>
+      <p>{{ form.stripe_test_mode }} {{ form.stripe_test_mode.label_tag }}</p>
+      <p><label>Publishable key {% if stripe_has_publishable %}<span class="badge active">Saved</span>{% endif %}</label>{{ form.stripe_publishable_key }}{{ form.stripe_publishable_key.errors }}<small>{{ form.stripe_publishable_key.help_text }}</small></p>
+      <p><label>Secret key {% if stripe_has_secret %}<span class="badge active">Saved</span>{% endif %}</label>{{ form.stripe_secret_key }}{{ form.stripe_secret_key.errors }}<small>{{ form.stripe_secret_key.help_text }}</small></p>
+      <p><label>Webhook secret {% if stripe_has_webhook %}<span class="badge active">Saved</span>{% endif %}</label>{{ form.stripe_webhook_secret }}{{ form.stripe_webhook_secret.errors }}<small>{{ form.stripe_webhook_secret.help_text }}</small></p>
+      <p>{{ form.clear_stripe_keys }} {{ form.clear_stripe_keys.label_tag }}</p>
+    </section>
+    <section>
+      <h2 style="font-size:18px;">Razorpay</h2>
+      <p>{{ form.razorpay_enabled }} {{ form.razorpay_enabled.label_tag }}</p>
+      <p>{{ form.razorpay_test_mode }} {{ form.razorpay_test_mode.label_tag }}</p>
+      <p><label>Key ID {% if razorpay_has_id %}<span class="badge active">Saved</span>{% endif %}</label>{{ form.razorpay_key_id }}{{ form.razorpay_key_id.errors }}<small>{{ form.razorpay_key_id.help_text }}</small></p>
+      <p><label>Key secret {% if razorpay_has_secret %}<span class="badge active">Saved</span>{% endif %}</label>{{ form.razorpay_key_secret }}{{ form.razorpay_key_secret.errors }}<small>{{ form.razorpay_key_secret.help_text }}</small></p>
+      <p><label>Webhook secret {% if razorpay_has_webhook %}<span class="badge active">Saved</span>{% endif %}</label>{{ form.razorpay_webhook_secret }}{{ form.razorpay_webhook_secret.errors }}<small>{{ form.razorpay_webhook_secret.help_text }}</small></p>
+      <p>{{ form.clear_razorpay_keys }} {{ form.clear_razorpay_keys.label_tag }}</p>
+    </section>
+  </div>
+  <p style="padding:12px;background:var(--surface-soft);border-radius:8px;">Webhook URLs: <code>/billing/stripe/webhook/</code> and <code>/billing/razorpay/webhook/</code></p>
+  <button class="btn" type="submit">Save payment settings</button>
+  <a class="btn btn-secondary" href="{% url 'webapp:platform_setup' %}">Back</a>
+</form>
+{% endblock %}

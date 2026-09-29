@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% block title %}Billing{% endblock %}
+{% block heading %}Billing &amp; Subscription{% endblock %}
+{% block content %}
+{% if not subscription %}
+<div class="card empty">No subscription found for this business. Contact support.</div>
+{% else %}
+
+{% if is_expired %}
+<div class="card" style="border-left:4px solid var(--danger); margin-bottom:20px;">
+  <strong style="color:var(--danger);">Your subscription has expired.</strong>
+  <p style="margin:6px 0 0; font-size:13.5px;">Submit a payment below to keep using your account.</p>
+</div>
+{% elif subscription.status == "trial" %}
+<div class="card" style="border-left:4px solid var(--accent); margin-bottom:20px;">
+  <strong>Free trial — {{ days_left }} day{{ days_left|pluralize }} left</strong>
+  <p style="margin:6px 0 0; font-size:13.5px; color:var(--ink-soft);">Your trial ends {{ subscription.end_date }}. Subscribe anytime to continue without interruption.</p>
+</div>
+{% else %}
+<div class="card" style="margin-bottom:20px;">
+  <strong>Active until {{ subscription.end_date }}</strong>
+  <p style="margin:6px 0 0; font-size:13.5px; color:var(--ink-soft);">{{ days_left }} day{{ days_left|pluralize }} remaining on your current plan.</p>
+</div>
+{% endif %}
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:26px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Current plan</div>
+    <div style="font-size:18px; font-weight:600; margin-top:4px;">{{ subscription.plan.name }}</div>
+    <div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">{{ subscription.plan.country }} · up to {{ subscription.plan.max_users }} users</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Price</div>
+    <div style="font-size:18px; font-weight:600; margin-top:4px;">{{ subscription.plan.currency }} {{ subscription.plan.price }}</div>
+    <div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">per {{ subscription.plan.get_billing_period_display|lower }}</div>
+  </div>
+</div>
+
+{% if is_owner %}
+{% if is_gcc %}
+<h2 style="font-size:16px; margin-bottom:10px;">Submit a payment</h2>
+<p style="color:var(--ink-soft); font-size:13px; margin-top:-4px;">Paid by bank transfer or cash? Let us know and we'll confirm it on our end.</p>
+<div class="card" style="max-width:420px; margin-bottom:26px;">
+  <form class="stacked" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Submit payment</button>
+  </form>
+</div>
+{% else %}
+{% if is_india %}
+<h2 style="font-size:16px; margin-bottom:10px;">Pay now</h2>
+{% if razorpay_configured %}
+<div class="card" style="max-width:400px; margin-bottom:16px;">
+  <p style="color:var(--ink-soft); font-size:13.5px; margin-top:0;">Pay by UPI, PhonePe, Google Pay, or card — your subscription updates automatically once payment completes.</p>
+  <button id="razorpay-pay-btn" class="btn">Pay {{ subscription.plan.currency }} {{ subscription.plan.price }}</button>
+  <div id="razorpay-message" style="margin-top:10px; font-size:13.5px;"></div>
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+function csrftoken() {
+  const m = document.cookie.match(/csrftoken=([^;]+)/);
+  return m ? m[1] : '';
+}
+document.getElementById('razorpay-pay-btn').addEventListener('click', async () => {
+  const msg = document.getElementById('razorpay-message');
+  msg.textContent = 'Starting...'; msg.style.color = 'var(--ink-soft)';
+  try {
+    const res = await fetch("{% url 'webapp:billing_razorpay_order' %}", {
+      method: 'POST', headers: { 'X-CSRFToken': csrftoken() },
+    });
+    const order = await res.json();
+    if (!res.ok) { msg.textContent = order.error || 'Could not start payment.'; msg.style.color = 'var(--danger)'; return; }
+
+    const rzp = new Razorpay({
+      key: order.key_id, amount: order.amount, currency: order.currency,
+      name: order.company_name, description: order.plan_name, order_id: order.order_id,
+      handler: async function (response) {
+        msg.textContent = 'Verifying payment...'; msg.style.color = 'var(--ink-soft)';
+        const form = new FormData();
+        form.append('razorpay_payment_id', response.razorpay_payment_id);
+        form.append('razorpay_order_id', response.razorpay_order_id);
+        form.append('razorpay_signature', response.razorpay_signature);
+        const verifyRes = await fetch("{% url 'webapp:billing_razorpay_verify' %}", {
+          method: 'POST', headers: { 'X-CSRFToken': csrftoken() }, body: form,
+        });
+        const result = await verifyRes.json();
+        if (verifyRes.ok) { window.location.reload(); }
+        else { msg.textContent = result.error || 'Verification failed.'; msg.style.color = 'var(--danger)'; }
+      },
+      modal: { ondismiss: function () { msg.textContent = 'Payment cancelled.'; msg.style.color = 'var(--ink-soft)'; } },
+    });
+    rzp.open();
+    msg.textContent = '';
+  } catch (err) {
+    msg.textContent = 'Network error — try again.'; msg.style.color = 'var(--danger)';
+  }
+});
+</script>
+{% else %}
+<div class="card empty" style="margin-bottom:16px;">UPI/card payment isn't set up yet — please contact us to arrange payment.</div>
+{% endif %}
+
+<details style="margin-bottom:26px;">
+  <summary style="cursor:pointer; color:var(--accent); font-size:13.5px;">Paid another way? Let us know</summary>
+  <div class="card" style="max-width:420px; margin-top:12px;">
+    <form class="stacked" method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {{ field.errors }}
+      {% endfor %}
+      <button class="btn" style="margin-top:20px;" type="submit">Submit payment</button>
+    </form>
+  </div>
+</details>
+{% else %}
+<h2 style="font-size:16px; margin-bottom:10px;">Pay now</h2>
+{% if stripe_configured %}
+<div class="card" style="max-width:400px; margin-bottom:16px;">
+  <p style="color:var(--ink-soft); font-size:13.5px; margin-top:0;">Pay securely by card — your subscription updates automatically once payment completes.</p>
+  <a class="btn" href="{% url 'webapp:billing_stripe_checkout' %}">Pay {{ subscription.plan.currency }} {{ subscription.plan.price }} by card</a>
+</div>
+{% else %}
+<div class="card empty" style="margin-bottom:16px;">Card payment isn't set up yet — please contact us to arrange payment.</div>
+{% endif %}
+
+<details style="margin-bottom:26px;">
+  <summary style="cursor:pointer; color:var(--accent); font-size:13.5px;">Paid another way? Let us know</summary>
+  <div class="card" style="max-width:420px; margin-top:12px;">
+    <form class="stacked" method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {{ field.errors }}
+      {% endfor %}
+      <button class="btn" style="margin-top:20px;" type="submit">Submit payment</button>
+    </form>
+  </div>
+</details>
+{% endif %}
+{% endif %}
+{% endif %}
+
+<h2 style="font-size:16px; margin-bottom:10px;">Payment history</h2>
+{% if payments %}
+<table>
+  <tr><th>Date</th><th>Amount</th><th>Method</th><th>Status</th></tr>
+  {% for p in payments %}
+  <tr>
+    <td>{{ p.paid_on }}</td><td>{{ p.amount }}</td><td>{{ p.method|title }}</td>
+    <td>{% if p.is_confirmed %}Confirmed{% else %}Pending approval{% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No payments yet.</div>
+{% endif %}
+{% endif %}
+{% endblock %}

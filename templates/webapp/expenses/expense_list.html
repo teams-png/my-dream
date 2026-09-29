@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Expenses{% endblock %}
+{% block heading %}Expenses{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;">
+  <a class="btn" href="{% url 'webapp:expense_add' %}">+ Add expense</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:expense_category_list' %}">Categories</a>
+</div>
+<div class="card" style="max-width:260px; margin-bottom:20px;">
+  <div style="color:var(--ink-soft); font-size:13px;">Total expenses</div>
+  <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ total }}</div>
+</div>
+{% if expenses %}
+<table>
+  <tr><th>Date</th><th>Category</th><th>Description</th><th>Amount</th><th>Method</th></tr>
+  {% for e in expenses %}
+  <tr>
+    <td>{{ e.date }}</td><td>{{ e.category.name }}</td><td>{{ e.description|default:"—" }}</td>
+    <td>{{ e.amount }}</td><td>{{ e.payment_method|title }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No expenses recorded yet.</div>
+{% endif %}
+{% endblock %}

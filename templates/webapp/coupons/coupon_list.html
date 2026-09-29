@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Coupons{% endblock %}
+{% block heading %}Coupons{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:coupon_add' %}">+ Add coupon</a></div>
+{% if coupons %}
+<table>
+  <tr><th>Code</th><th>Discount</th><th>Valid</th><th>Used</th><th>Status</th><th></th></tr>
+  {% for c in coupons %}
+  <tr>
+    <td>{{ c.code }}</td>
+    <td>{% if c.discount_type == "percentage" %}{{ c.discount_value }}%{% else %}{{ c.discount_value }}{% endif %}</td>
+    <td>{{ c.start_date }} – {{ c.expiry_date }}</td>
+    <td>{{ c.times_used }}{% if c.usage_limit %} / {{ c.usage_limit }}{% endif %}</td>
+    <td>{% if c.is_active %}Active{% else %}Inactive{% endif %}</td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:coupon_toggle' c.id %}">{% if c.is_active %}Deactivate{% else %}Activate{% endif %}</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No coupons yet.</div>
+{% endif %}
+{% endblock %}

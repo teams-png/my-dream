@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock %}
+{% block heading %}Reports{% endblock %}
+{% block content %}
+<form method="get" class="card" style="display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin-bottom:20px;">
+  <div><label for="period">Period</label><select id="period" name="period">
+    <option value="day" {% if period == 'day' %}selected{% endif %}>Daily</option>
+    <option value="month" {% if period == 'month' %}selected{% endif %}>Monthly</option>
+    <option value="all" {% if period == 'all' %}selected{% endif %}>All time</option>
+  </select></div>
+  <div><label for="date">Date / month</label><input id="date" name="date" type="date" value="{{ selected_date }}"></div>
+  <button class="btn" type="submit">Apply</button>
+  <strong style="margin-left:auto;align-self:center;">{{ period_label }}</strong>
+</form>
+
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Revenue</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Invoices</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ invoice_count }}</div>
+  </div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Cost of goods</div><div style="font-size:26px;font-weight:600;margin-top:6px;">{{ cost_of_goods }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Gross profit</div><div style="font-size:26px;font-weight:600;margin-top:6px;">{{ gross_profit }}</div></div>
+</div>
+
+<h2 style="font-size:16px; margin-bottom:10px;">Top-selling products</h2>
+{% if top_products %}
+<table>
+  <tr><th>Dress / Variant</th><th>Size</th><th>Colour</th><th>Units sold</th><th>Revenue</th></tr>
+  {% for p in top_products %}
+  <tr><td>{{ p.product__name }}{% if p.product__variant_label %} — {{ p.product__variant_label }}{% endif %}</td><td>{{ p.product__size|default:"—" }}</td><td>{{ p.product__colour|default:"—" }}</td><td>{{ p.units_sold }}</td><td>{{ p.revenue }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No sales recorded yet.</div>
+{% endif %}
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;">
+  <div><h2 style="font-size:16px;">Top categories</h2><table><tr><th>Category</th><th>Units</th></tr>{% for p in top_categories %}<tr><td>{{ p.product__category__name|default:"Uncategorised" }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No data</td></tr>{% endfor %}</table></div>
+  <div><h2 style="font-size:16px;">Top sizes</h2><table><tr><th>Size</th><th>Units</th></tr>{% for p in top_sizes %}<tr><td>{{ p.product__size }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No size data</td></tr>{% endfor %}</table></div>
+  <div><h2 style="font-size:16px;">Top colours</h2><table><tr><th>Colour</th><th>Units</th></tr>{% for p in top_colours %}<tr><td>{{ p.product__colour }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No colour data</td></tr>{% endfor %}</table></div>
+</div>
+{% endblock %}

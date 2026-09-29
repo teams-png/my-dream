@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Contractors{% endblock %}
+{% block heading %}Contractors{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:contractor_add' %}">+ Add contractor</a></div>
+{% if contractors %}
+<table>
+  <tr><th>Name</th><th>Specialty</th><th>Phone</th><th></th></tr>
+  {% for c in contractors %}
+  <tr>
+    <td>{{ c.name }}</td><td>{{ c.specialty|default:"—" }}</td><td>{{ c.phone|default:"—" }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:contractor_edit' c.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:contractor_delete' c.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No contractors yet.</div>
+{% endif %}
+{% endblock %}

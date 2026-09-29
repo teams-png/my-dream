@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Platform Admin{% endblock %}</title>
+<style>
+  @font-face { font-family:'Inter'; src:url('{% static "fonts/Inter-Regular.ttf" %}') format('truetype'); font-weight:400; font-display:swap; }
+  @font-face { font-family:'Inter'; src:url('{% static "fonts/Inter-Medium.ttf" %}') format('truetype'); font-weight:500; font-display:swap; }
+  @font-face { font-family:'Inter'; src:url('{% static "fonts/Inter-SemiBold.ttf" %}') format('truetype'); font-weight:600; font-display:swap; }
+  @font-face { font-family:'Inter'; src:url('{% static "fonts/Inter-Bold.ttf" %}') format('truetype'); font-weight:700; font-display:swap; }
+  :root{
+    --ink:#12162b; --ink-soft:#5f6579; --line:#e7e9f2;
+    --paper:#f4f6fb; --panel:#ffffff;
+    --accent:#14532d; --accent-soft:#e6f2ea;
+    --success:#0f9d58; --success-bg:#e6f7ed;
+    --warning:#b7791f; --warning-bg:#fff6e0;
+    --danger:#c0392b; --danger-bg:#fdeceb;
+    --radius:12px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:'Inter',-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--paper); color:var(--ink); font-size:16px; line-height:1.55;
+  }
+  a{color:inherit; text-decoration:none;}
+  .shell{display:flex; min-height:100vh;}
+  .sidebar{width:236px; background:var(--panel); border-right:1px solid var(--line); padding:22px 14px; flex-shrink:0;}
+  .brand{padding:2px 10px 20px; font-weight:700; font-size:19px; margin-bottom:6px;}
+  .brand small{display:block; color:var(--ink-soft); font-weight:400; font-size:12.5px; margin-top:3px;}
+  .nav-group{padding:0;}
+  .nav-link{display:flex; align-items:center; gap:11px; padding:10px 12px; border-radius:10px; font-size:15px; font-weight:500; color:var(--ink-soft); margin-bottom:2px;}
+  .nav-link svg{flex-shrink:0; opacity:0.85;}
+  .nav-link:hover svg, .nav-link.active svg{opacity:1;}
+  .nav-link:hover{background:var(--accent-soft); color:var(--accent);}
+  .nav-link.active{background:var(--accent-soft); color:var(--accent); font-weight:600;}
+  .main{flex:1; padding:26px 34px 48px; min-width:0;}
+  .topbar{display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; padding-bottom:18px; border-bottom:1px solid var(--line);}
+  .topbar h1{font-size:25px; font-weight:700; margin:0; letter-spacing:-0.01em;}
+  .user-chip{font-size:13.5px; color:var(--ink-soft); display:flex; align-items:center; gap:10px;}
+  .user-chip a{color:var(--accent); font-weight:600;}
+  .avatar{
+    width:34px; height:34px; border-radius:50%; background:var(--accent-soft); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0;
+  }
+  .btn{display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#fff; border:1px solid transparent; padding:10px 18px; border-radius:10px; font-size:14.5px; font-weight:600; cursor:pointer;}
+  .btn:hover{opacity:0.92;}
+  .btn-secondary{background:#fff; color:var(--ink); border:1px solid var(--line);}
+  .btn-secondary:hover{background:var(--paper); opacity:1;}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; box-shadow:0 1px 3px rgba(18,22,43,0.04), 0 1px 2px rgba(18,22,43,0.03); transition:box-shadow .15s ease;}
+  .card:hover{box-shadow:0 4px 14px rgba(18,22,43,0.07);}
+  table{width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  th, td{padding:13px 15px; text-align:left; border-bottom:1px solid var(--line); font-size:14.5px;}
+  th{color:var(--ink-soft); font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.02em; background:var(--paper);}
+  tr:last-child td{border-bottom:none;}
+  tbody tr:hover td{background:#fafbfe;}
+  .empty{padding:36px 14px; text-align:center; color:var(--ink-soft);}
+  .messages{list-style:none; padding:0; margin:0 0 18px;}
+  .messages li{padding:11px 15px; border-radius:10px; margin-bottom:8px; font-size:14px; font-weight:500;}
+  .messages .success{background:var(--success-bg); color:var(--success);}
+  .messages .error{background:var(--danger-bg); color:var(--danger);}
+  form.stacked label{display:block; font-size:13.5px; font-weight:600; color:var(--ink-soft); margin:14px 0 6px;}
+  form.stacked input, form.stacked select, form.stacked textarea{
+    width:100%; padding:10px 12px; border:1.5px solid var(--line); border-radius:10px; font-size:14.5px;
+    font-family:inherit; background:#fff; transition:border-color .15s ease;
+  }
+  form.stacked input:focus, form.stacked select:focus, form.stacked textarea:focus{outline:none; border-color:var(--accent);}
+  form.stacked .errorlist{color:var(--danger); font-size:12.5px; list-style:none; padding:0; margin:4px 0 0;}
+  form.stacked .helptext{display:block; color:var(--ink-soft); font-size:12px; margin-top:4px;}
+  form.stacked ul[id$="_default_modules"]{list-style:none; padding:10px 12px; margin:6px 0; border:1px solid var(--line); border-radius:10px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px;}
+  form.stacked ul[id$="_default_modules"] label{display:flex; gap:8px; align-items:center; margin:0; color:var(--ink); font-weight:400;}
+  form.stacked ul[id$="_default_modules"] input{width:auto;}
+  .badge{display:inline-block; padding:4px 11px; border-radius:20px; font-size:12px; font-weight:600;}
+  .badge.active, .badge.paid{background:var(--success-bg); color:var(--success);}
+  .badge.trial{background:var(--warning-bg); color:var(--warning);}
+  .badge.expired, .badge.cancelled{background:var(--danger-bg); color:var(--danger);}
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="sidebar">
+    <div class="brand">Platform Admin
+      <small>Multi-Business Accounting SaaS</small>
+    </div>
+    <div class="nav-group">
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_admin_dashboard' %}active{% endif %}" href="{% url 'webapp:platform_admin_dashboard' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="9" rx="1.5" width="7" x="3" y="3"></rect><rect height="5" rx="1.5" width="7" x="14" y="3"></rect><rect height="9" rx="1.5" width="7" x="14" y="12"></rect><rect height="5" rx="1.5" width="7" x="3" y="16"></rect></svg><span>Dashboard</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_admin_company_list' %}active{% endif %}" href="{% url 'webapp:platform_admin_company_list' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"></path><circle cx="17.5" cy="8.5" r="2.7"></circle><path d="M15.5 14.2c2.7.3 5 2.5 5 5.8"></path></svg><span>Clients & Provisioning</span></a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'platform_commercial_control' %}active{% endif %}" href="{% url 'webapp:platform_commercial_control' %}"><span>Commercial Control</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_permission_catalogue' %}active{% endif %}" href="{% url 'webapp:platform_permission_catalogue' %}"><span>Permission Catalogue</span></a>
+<a class="nav-link {% if request.resolver_match.url_name == 'platform_admin_analytics' %}active{% endif %}" href="{% url 'webapp:platform_admin_analytics' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><line x1="5" x2="5" y1="21" y2="11"></line><line x1="12" x2="12" y1="21" y2="5"></line><line x1="19" x2="19" y1="21" y2="14"></line></svg><span>Analytics</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_plan_list' %}active{% endif %}" href="{% url 'webapp:platform_plan_list' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="14" rx="2" width="20" x="2" y="5"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg><span>Pricing Plans</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_pending_payments' %}active{% endif %}" href="{% url 'webapp:platform_pending_payments' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="13" rx="2" width="18" x="3" y="6"></rect><path d="M3 10h18"></path><circle cx="17" cy="14.5" r="1.3"></circle></svg><span>Pending Payments</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_user_list' %}active{% endif %}" href="{% url 'webapp:platform_user_list' %}"><span>Users & Access</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_support_list' %}active{% endif %}" href="{% url 'webapp:platform_support_list' %}"><span>Support Tickets</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'platform_audit_list' %}active{% endif %}" href="{% url 'webapp:platform_audit_list' %}"><span>Audit Log</span></a>
+      <a class="nav-link {% if 'platform_setup' in request.resolver_match.url_name or request.resolver_match.url_name == 'platform_module_list' or request.resolver_match.url_name == 'platform_business_type_list' %}active{% endif %}" href="{% url 'webapp:platform_setup' %}"><span>Product Catalogue</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'register_client' %}active{% endif %}" href="{% url 'webapp:register_client' %}">+ Add new client</a>
+    </div>
+  </nav>
+  <main class="main">
+    <div class="topbar">
+      <h1>{% block heading %}{% endblock %}</h1>
+      <div class="user-chip">
+        <span>{{ request.user.email|default:request.user.username }} · <a href="{% url 'webapp:logout' %}">Log out</a></span>
+        <div class="avatar">{{ request.user.email|default:request.user.username|slice:":1"|upper }}</div>
+      </div>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}<li class="{{ message.tags }}">{{ message }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    {% if request.resolver_match.url_name != 'platform_admin_dashboard' %}<a href="{% url 'webapp:platform_admin_dashboard' %}" class="btn btn-secondary" style="margin-bottom:18px" onclick="if (history.length > 1 && document.referrer && new URL(document.referrer).origin === location.origin) { event.preventDefault(); history.back(); }">← Back</a>{% endif %}
+    {% block content %}{% endblock %}
+  </main>
+</div>
+</body>
+</html>

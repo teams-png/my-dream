@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Services{% endblock %}
+{% block heading %}Beauty services{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:beauty_service_add' %}">+ Add service</a></div>
+{% if services %}
+<table>
+  <tr><th>Name</th><th>Duration</th><th>Price</th><th></th></tr>
+  {% for s in services %}
+  <tr>
+    <td>{{ s.name }}</td><td>{{ s.duration_minutes }} min</td><td>{{ s.price }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:beauty_service_edit' s.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:beauty_service_delete' s.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No services yet. Add one (e.g. "Facial", 45 min) before booking appointments.</div>
+{% endif %}
+{% endblock %}

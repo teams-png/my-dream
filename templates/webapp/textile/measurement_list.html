@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Measurements{% endblock %}
+{% block heading %}Measurements{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:measurement_add' %}">+ Add measurement</a></div>
+{% if measurements %}
+<table>
+  <tr><th>Customer</th><th>Garment</th><th>Taken on</th><th>Values</th><th></th></tr>
+  {% for m in measurements %}
+  <tr>
+    <td>{{ m.customer.name }}</td><td>{{ m.garment_type }}</td><td>{{ m.taken_on }}</td>
+    <td>{% for k, v in m.values.items %}{{ k }}: {{ v }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:measurement_edit' m.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:measurement_delete' m.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No measurements recorded yet.</div>
+{% endif %}
+{% endblock %}

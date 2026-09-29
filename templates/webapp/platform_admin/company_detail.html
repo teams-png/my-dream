@@ -1,0 +1,102 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}{{ company.name }}{% endblock %}
+{% block heading %}{{ company.name }}{% endblock %}
+{% block content %}
+<p style="color:var(--ink-soft); font-size:13.5px; margin-top:-10px;">{{ company.country|default:"No country set" }} · {{ company.business_type.name }} · joined {{ company.created_at|date:"d M Y" }}</p>
+
+<div style="margin-bottom:20px;">
+  <a class="btn btn-secondary" href="{% url 'webapp:platform_admin_change_plan' company.id %}">Change plan</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:platform_admin_manage_business_suites' company.id %}">Business suites</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:platform_admin_manage_modules' company.id %}">Modules</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:platform_admin_roles' company.id %}">Roles & permissions</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:platform_client_commercial_profile' company.id %}">Commercial / White-label</a>
+  {% if subscription %}<a class="btn btn-secondary" href="{% url 'webapp:platform_admin_record_payment' company.id %}">Record payment</a>{% endif %}
+  {% if company.is_active %}<a class="btn btn-secondary" href="{% url 'webapp:platform_admin_company_delete' company.id %}" style="color:var(--danger); border-color:var(--danger);">Archive client</a>{% else %}<form method="post" action="{% url 'webapp:platform_admin_company_restore' company.id %}" style="display:inline">{% csrf_token %}<button class="btn" type="submit">Restore client</button></form>{% endif %}
+</div>
+
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:22px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Total revenue</div>
+    <div style="font-size:22px; font-weight:700; margin-top:6px;">{{ revenue }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Customers</div>
+    <div style="font-size:22px; font-weight:700; margin-top:6px;">{{ customer_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Team members</div>
+    <div style="font-size:22px; font-weight:700; margin-top:6px;">{{ memberships|length }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Active modules</div>
+    <div style="font-size:22px; font-weight:700; margin-top:6px;">{{ active_modules|length }}</div>
+  </div>
+</div>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:24px;">
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; margin-bottom:12px;">Company details</div>
+    <table style="border:none;">
+      <tr><td style="color:var(--ink-soft); border:none; padding:6px 0;">Registration No.</td><td style="border:none; padding:6px 0;">{{ company.registration_number|default:"—" }}</td></tr>
+      <tr><td style="color:var(--ink-soft); border:none; padding:6px 0;">Email</td><td style="border:none; padding:6px 0;">{{ company.email|default:"—" }}</td></tr>
+      <tr><td style="color:var(--ink-soft); border:none; padding:6px 0;">Phone</td><td style="border:none; padding:6px 0;">{{ company.phone|default:"—" }}</td></tr>
+      <tr><td style="color:var(--ink-soft); border:none; padding:6px 0;">Address</td><td style="border:none; padding:6px 0;">{{ company.address|default:"—" }}</td></tr>
+      <tr><td style="color:var(--ink-soft); border:none; padding:6px 0;">Currency</td><td style="border:none; padding:6px 0;">{{ company.default_currency }}</td></tr>
+      <tr><td style="color:var(--ink-soft); border:none; padding:6px 0;">Status</td><td style="border:none; padding:6px 0;"><span class="badge {% if company.is_active %}active{% else %}cancelled{% endif %}">{% if company.is_active %}Active{% else %}Archived{% endif %}</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px; font-weight:700; margin-bottom:12px;">Business suites</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">{% for suite in business_suites %}<span class="badge active">{{ suite.business_type.name }}{% if suite.is_primary %} · Primary{% endif %}</span>{% empty %}<span>{{ company.business_type.name }}</span>{% endfor %}</div>
+    <div style="font-size:14px; font-weight:700; margin-bottom:12px;">Active modules</div>
+    {% if active_modules %}
+    <div style="display:flex; flex-wrap:wrap; gap:8px;">
+      {% for m in active_modules %}<span class="badge active">{{ m }}</span>{% endfor %}
+    </div>
+    {% else %}
+    <p style="color:var(--ink-soft); font-size:13.5px;">No modules active.</p>
+    {% endif %}
+  </div>
+</div>
+
+{% if subscription %}
+<div class="card" style="max-width:420px; margin-bottom:24px;">
+  <div style="display:flex; justify-content:space-between;">
+    <div>
+      <div style="color:var(--ink-soft); font-size:13px;">Plan</div>
+      <div style="font-size:16px; font-weight:600;">{{ subscription.plan.name }}</div>
+    </div>
+    <span class="badge {{ subscription.status }}">{{ subscription.get_status_display }}</span>
+  </div>
+  <p style="font-size:13px; color:var(--ink-soft); margin-bottom:0;">
+    {{ subscription.start_date }} to {{ subscription.end_date }}
+  </p>
+</div>
+{% endif %}
+
+<h2 style="font-size:16px; margin-bottom:10px;">Team &amp; logins</h2>
+{% if memberships %}
+<table style="margin-bottom:26px;">
+  <tr><th>Username</th><th>Email</th><th>Role</th><th></th></tr>
+  {% for m in memberships %}
+  <tr>
+    <td>{{ m.user.username }}</td><td>{{ m.user.email }}</td><td>{{ m.role.name }}</td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:platform_admin_edit_user' m.user.id %}">Edit login</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty" style="margin-bottom:26px;">No team members.</div>
+{% endif %}
+
+{% if payments %}
+<h2 style="font-size:16px; margin-bottom:10px;">Payment history</h2>
+<table>
+  <tr><th>Date</th><th>Amount</th><th>Method</th><th>Reference</th></tr>
+  {% for p in payments %}
+  <tr><td>{{ p.paid_on }}</td><td>{{ p.amount }}</td><td>{{ p.method }}</td><td>{{ p.reference|default:"—" }}</td></tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% endblock %}

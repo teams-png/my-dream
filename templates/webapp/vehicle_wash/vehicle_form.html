@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{% if editing %}Edit vehicle{% else %}Add vehicle{% endif %}{% endblock %}
+{% block heading %}{% if editing %}Edit vehicle{% else %}Add vehicle{% endif %}{% endblock %}
+{% block content %}
+{% if no_customers %}
+<div class="card" style="margin-bottom:16px;">No customers yet. <a href="{% url 'webapp:customer_add' %}">Add a customer</a> first.</div>
+{% endif %}
+<div class="card" style="max-width:420px;">
+  <form class="stacked" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Save</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:vehicle_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

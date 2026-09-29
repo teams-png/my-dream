@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Service tickets{% endblock %}
+{% block heading %}Service tickets{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:service_ticket_add' %}">+ New ticket</a></div>
+{% if tickets %}
+<table>
+  <tr><th>Customer</th><th>Cycle</th><th>Received</th><th>Status</th><th></th></tr>
+  {% for t in tickets %}
+  <tr>
+    <td>{{ t.customer.name }}</td>
+    <td>{% if t.cycle_unit %}{{ t.cycle_unit.product.name }}{% else %}{{ t.cycle_description|default:"—" }}{% endif %}</td>
+    <td>{{ t.received_date }}</td><td>{{ t.get_status_display }}</td>
+    <td>
+      {% if t.status == "received" %}<a class="btn btn-secondary" href="{% url 'webapp:service_ticket_start' t.id %}">Start</a>
+      {% elif t.status == "in_progress" %}<a class="btn btn-secondary" href="{% url 'webapp:service_ticket_complete' t.id %}">Complete</a>
+      {% elif t.status == "completed" %}<a class="btn btn-secondary" href="{% url 'webapp:service_ticket_deliver' t.id %}">Deliver</a>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No service tickets yet.</div>
+{% endif %}
+{% endblock %}

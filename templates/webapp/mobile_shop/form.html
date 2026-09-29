@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}{{ heading }}{% endblock %}{% block heading %}{{ heading }}{% endblock %}
+{% block content %}<div class="card" style="max-width:680px;"><form class="stacked" method="post">{% csrf_token %}
+{% for field in form %}<label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}{{ field.errors }}{% endfor %}
+<button class="btn" style="margin-top:18px;" type="submit">Save</button>
+{% if cancel_id %}<a class="btn btn-secondary" href="{% url cancel_url cancel_id %}">Cancel</a>{% else %}<a class="btn btn-secondary" href="{% url cancel_url %}">Cancel</a>{% endif %}
+</form></div>{% endblock %}

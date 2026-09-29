@@ -1,0 +1,29 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Pending payments{% endblock %}
+{% block heading %}Pending payments{% endblock %}
+{% block content %}
+{% if pending %}
+<table>
+  <tr><th>Client</th><th>Plan</th><th>Amount</th><th>Method</th><th>Reference</th><th>Notes</th><th>Submitted</th><th></th></tr>
+  {% for p in pending %}
+  <tr>
+    <td><a href="{% url 'webapp:platform_admin_company_detail' p.subscription.company.id %}">{{ p.subscription.company.name }}</a></td>
+    <td>{{ p.subscription.plan.name }} ({{ p.subscription.plan.country }})</td>
+    <td>{{ p.subscription.plan.currency }} {{ p.amount }}</td>
+    <td>{{ p.method|title }}</td>
+    <td>{{ p.reference|default:"—" }}</td>
+    <td>{{ p.notes|default:"—" }}</td>
+    <td>{{ p.paid_on }}</td>
+    <td>
+      <form method="post" action="{% url 'webapp:platform_approve_payment' p.id %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn">Approve</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No pending payments right now.</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Purchase reports{% endblock %}
+{% block heading %}Purchase reports{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Total purchased</div>
+    <div style="font-size:22px; font-weight:600; margin-top:6px;">{{ total_purchased }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Total paid</div>
+    <div style="font-size:22px; font-weight:600; margin-top:6px;">{{ total_paid }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Outstanding</div>
+    <div style="font-size:22px; font-weight:600; margin-top:6px; {% if outstanding > 0 %}color:var(--danger);{% endif %}">{{ outstanding }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Purchases</div>
+    <div style="font-size:22px; font-weight:600; margin-top:6px;">{{ purchase_count }}</div>
+  </div>
+</div>
+
+<h2 style="font-size:16px; margin-bottom:10px;">By supplier</h2>
+{% if by_supplier %}
+<table>
+  <tr><th>Supplier</th><th>Total</th><th>Paid</th></tr>
+  {% for row in by_supplier %}
+  <tr><td>{{ row.supplier__name }}</td><td>{{ row.total }}</td><td>{{ row.paid }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No purchases yet.</div>
+{% endif %}
+{% endblock %}

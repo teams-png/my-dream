@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock %}
+{% block heading %}Reports{% endblock %}
+{% block content %}
+<form method="get" class="card" style="display:flex;gap:10px;align-items:end;margin-bottom:16px;"><div><label>From</label><input type="date" name="start" value="{{ start }}"></div><div><label>To</label><input type="date" name="end" value="{{ end }}"></div><button class="btn">Apply</button></form>
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Total revenue</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ total_revenue }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Units sold</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ units_sold }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Units in stock</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ units_in_stock }}</div>
+  </div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Gross profit</div><div style="font-size:26px;font-weight:600;">{{ gross_profit }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Cost of goods</div><div style="font-size:26px;font-weight:600;">{{ cost_of_goods }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Stock value</div><div style="font-size:26px;font-weight:600;">{{ stock_value }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Customer dues</div><div style="font-size:26px;font-weight:600;">{{ outstanding_dues }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Handset sales</div><div style="font-size:22px;font-weight:600;">{{ handset_revenue }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Accessories</div><div style="font-size:22px;font-weight:600;">{{ accessory_revenue }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Repair income</div><div style="font-size:22px;font-weight:600;">{{ repair_income }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Open repair / warranty</div><div style="font-size:22px;font-weight:600;">{{ open_repairs }} / {{ open_warranty }}</div></div>
+</div>
+
+<h2 style="font-size:16px; margin-bottom:10px;">Top-selling products</h2>
+{% if top_products %}
+<table>
+  <tr><th>Product</th><th>Units sold</th><th>Revenue</th></tr>
+  {% for p in top_products %}
+  <tr><td>{{ p.product__name }}</td><td>{{ p.units_sold }}</td><td>{{ p.revenue }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No sales recorded yet.</div>
+{% endif %}
+{% endblock %}

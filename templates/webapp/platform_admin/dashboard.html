@@ -1,0 +1,67 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block heading %}Dashboard{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:26px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Total clients</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ total_clients }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Total revenue</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ total_revenue }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Active subscriptions</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ active_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">On trial</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ trial_count }}</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:24px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;">
+    <div><div style="font-size:17px;font-weight:700">Sales & Provisioning Control Centre</div><div style="color:var(--ink-soft);font-size:13px;margin-top:4px">Sell any business type, combine multiple business suites for one client, then control modules and permissions independently.</div></div>
+    <a class="btn" href="{% url 'webapp:register_client' %}">+ New client</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px">
+    <a class="card" href="{% url 'webapp:platform_business_type_list' %}" style="padding:15px"><b>{{ business_type_count }} Business Types</b><div style="font-size:12px;color:var(--ink-soft)">Manage sellable industry suites</div></a>
+    <a class="card" href="{% url 'webapp:platform_module_list' %}" style="padding:15px"><b>{{ module_count }} Modules</b><div style="font-size:12px;color:var(--ink-soft)">POS, accounting, inventory & custom capabilities</div></a>
+    <a class="card" href="{% url 'webapp:platform_admin_company_list' %}" style="padding:15px"><b>{{ multi_business_count }} Multi-business Clients</b><div style="font-size:12px;color:var(--ink-soft)">Clients using more than one suite</div></a>
+  </div>
+</div>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+  <div>
+    <h2 style="font-size:16px; margin-bottom:10px;">Recent clients</h2>
+    {% if recent_companies %}
+    <table>
+      <tr><th>Name</th><th>Type</th><th>Joined</th></tr>
+      {% for c in recent_companies %}
+      <tr>
+        <td><a href="{% url 'webapp:platform_admin_company_detail' c.id %}">{{ c.name }}</a></td>
+        <td>{{ c.business_type.name }}</td><td>{{ c.created_at|date:"d M Y" }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <div class="card empty">No clients yet.</div>
+    {% endif %}
+  </div>
+  <div>
+    <h2 style="font-size:16px; margin-bottom:10px;">Recent payments</h2>
+    {% if recent_payments %}
+    <table>
+      <tr><th>Client</th><th>Amount</th><th>Date</th></tr>
+      {% for p in recent_payments %}
+      <tr><td>{{ p.subscription.company.name }}</td><td>{{ p.amount }}</td><td>{{ p.paid_on }}</td></tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <div class="card empty">No payments recorded yet.</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

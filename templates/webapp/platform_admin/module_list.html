@@ -1,0 +1,6 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Module Catalogue{% endblock %}{% block heading %}Module Catalogue{% endblock %}
+{% block content %}
+<div style="display:flex; justify-content:space-between; margin-bottom:16px;"><p style="color:var(--ink-soft); margin:0;">Define reusable modules available to businesses.</p><a class="btn" href="{% url 'webapp:platform_module_add' %}">Add module</a></div>
+<table><tr><th>Name</th><th>Code</th><th>Type</th><th></th></tr>{% for module in modules %}<tr><td>{{ module.name }}</td><td><code>{{ module.code }}</code></td><td><span class="badge {% if module.is_core %}active{% else %}trial{% endif %}">{% if module.is_core %}Core{% else %}Optional{% endif %}</span></td><td><a href="{% url 'webapp:platform_module_edit' module.id %}">Edit</a></td></tr>{% empty %}<tr><td colspan="4" class="empty">No modules configured.</td></tr>{% endfor %}</table>
+{% endblock %}

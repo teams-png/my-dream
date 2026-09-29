@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Book wash{% endblock %}
+{% block heading %}Book a wash{% endblock %}
+{% block content %}
+{% if no_vehicles %}
+<div class="card" style="margin-bottom:16px;">No vehicles yet. <a href="{% url 'webapp:vehicle_add' %}">Add a vehicle</a> first.</div>
+{% endif %}
+{% if no_packages %}
+<div class="card" style="margin-bottom:16px;">No wash packages yet. <a href="{% url 'webapp:wash_package_add' %}">Add a package</a> first.</div>
+{% endif %}
+<div class="card" style="max-width:440px;">
+  <form class="stacked" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Book</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:wash_order_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

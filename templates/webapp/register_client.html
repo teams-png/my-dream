@@ -1,0 +1,48 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Provision new client{% endblock %}
+{% block heading %}Provision a new client{% endblock %}
+{% block content %}
+<style>
+.provision-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}.pick{display:flex;gap:9px;align-items:flex-start;padding:10px;border:1px solid var(--line);border-radius:8px}.pick input{width:auto;margin-top:3px}.section-title{font-size:17px;font-weight:750;margin:0 0 5px}.muted{color:var(--ink-soft);font-size:13px}.step{margin-bottom:18px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.toolbar button{border:1px solid var(--line);background:var(--bg);padding:7px 10px;border-radius:7px;cursor:pointer}
+</style>
+<form class="stacked" method="post" id="provision-form">{% csrf_token %}
+<div class="card step">
+  <div class="section-title">1. Client & owner</div><p class="muted">Create the company, owner login and commercial plan.</p>
+  {% for field in form %}<label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% if field.help_text %}<small class="muted">{{ field.help_text }}</small>{% endif %}{{ field.errors }}{% endfor %}
+</div>
+<div class="card step">
+  <div class="section-title">2. Business suites</div>
+  <p class="muted">Primary business is selected above. Add any extra businesses the same client operates. All suites share one company/accounting tenant.</p>
+  {% for group, rows in business_groups.items %}
+  <details style="border-top:1px solid var(--line);padding:10px 0" {% if group == 'restaurant' %}open{% endif %}><summary style="font-weight:700;text-transform:capitalize;cursor:pointer">{{ group }} businesses ({{ rows|length }})</summary>
+    <div class="provision-grid" style="margin-top:10px">{% for code,name in rows %}<label class="pick"><input class="suite-check" type="checkbox" name="business_suites" value="{{ code }}"><span><strong>{{ name }}</strong><br><small class="muted">{{ code }}</small></span></label>{% endfor %}</div>
+  </details>{% endfor %}
+</div>
+<div class="card step">
+  <div class="section-title">3. Modules, POS & common plugins</div>
+  <p class="muted">Every registered platform module is available here. Use recommended defaults, then add/remove anything the customer bought.</p>
+  <div class="toolbar"><button type="button" id="recommended">Apply recommended for selected businesses</button><button type="button" id="all-modules">Select all</button><button type="button" id="clear-modules">Clear optional</button></div>
+  <div class="provision-grid">{% for module,is_core in module_rows %}<label class="pick"><input class="module-check" data-core="{% if module.is_core %}1{% else %}0{% endif %}" type="checkbox" name="modules" value="{{ module.id }}" {% if module.is_core %}checked disabled{% endif %}>{% if module.is_core %}<input type="hidden" name="modules" value="{{ module.id }}">{% endif %}<span><strong>{{ module.name }}</strong><br><small class="muted">{{ module.code }}{% if module.is_core %} · Core / always on{% endif %}</small></span></label>{% empty %}<p>No modules registered. Run <code>python manage.py seed_platform</code>.</p>{% endfor %}</div>
+  <label style="margin-top:16px">Manual / custom modules (optional)</label>
+  <textarea name="custom_modules" rows="3" placeholder="Annual Maintenance System | annual_maintenance&#10;Special Approval Workflow | special_approval"></textarea>
+  <small class="muted">One per line. Use <b>Name | code</b>; if code is omitted it is generated automatically. Custom modules are created and enabled for this client.</small>
+</div>
+<div class="card"><div class="section-title">4. Review & create</div><p class="muted">After creation you can still change Business Suites, Modules, permissions, pricing and commercial limits from Client 360.</p><button class="btn" type="submit">Create & provision client</button></div>
+</form>
+{{ default_module_map|json_script:"default-module-map" }}
+{{ web_feature_ids|json_script:"web-feature-ids" }}
+<script>
+(function(){
+ const primary=document.getElementById('id_business_type');
+ const suites=[...document.querySelectorAll('.suite-check')];
+ const mods=[...document.querySelectorAll('.module-check')];
+ const defaults=JSON.parse(document.getElementById('default-module-map').textContent);
+ const webIds=JSON.parse(document.getElementById('web-feature-ids').textContent).map(String);
+ function syncPrimary(){if(!primary)return;suites.forEach(x=>{if(x.value===primary.value){x.checked=true;x.disabled=true}else{x.disabled=false}})}
+ function selectedCodes(){const out=new Set();if(primary&&primary.value)out.add(primary.value);suites.filter(x=>x.checked).forEach(x=>out.add(x.value));return [...out]}
+ function applyRecommended(){const ids=new Set(webIds);selectedCodes().forEach(c=>(defaults[c]||[]).forEach(id=>ids.add(String(id))));mods.forEach(m=>m.checked=m.dataset.core==='1'||ids.has(m.value))}
+ if(primary){primary.addEventListener('change',()=>{syncPrimary();applyRecommended()})}suites.forEach(x=>x.addEventListener('change',applyRecommended));
+ document.getElementById('recommended').onclick=applyRecommended;document.getElementById('all-modules').onclick=()=>mods.forEach(m=>m.checked=true);document.getElementById('clear-modules').onclick=()=>mods.forEach(m=>m.checked=m.dataset.core==='1');syncPrimary();applyRecommended();
+})();
+</script>
+{% endblock %}

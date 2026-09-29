@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock %}
+{% block heading %}Reports{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Booked</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ booked_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">In progress</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ in_progress_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Completed</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Cancelled</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ cancelled_count }}</div>
+  </div>
+</div>
+<div class="card" style="max-width:300px; margin-bottom:24px;">
+  <div style="color:var(--ink-soft); font-size:13px;">Revenue (completed)</div>
+  <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
+</div>
+
+<h2 style="font-size:16px; margin-bottom:10px;">Revenue by package</h2>
+{% if by_package %}
+<table>
+  <tr><th>Package</th><th>Completed</th><th>Revenue</th></tr>
+  {% for row in by_package %}
+  <tr><td>{{ row.package__name }}</td><td>{{ row.count }}</td><td>{{ row.revenue }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No completed washes yet.</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Barcode labels</title>
+<style>
+  body{ font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; margin:24px; }
+  .toolbar{ margin-bottom:16px; }
+  .toolbar button{ background:#14532D; color:#fff; border:none; padding:9px 16px; border-radius:6px; cursor:pointer; font-size:14px; }
+  .sheet{ display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
+  .label{ border:1px dashed #ccc; padding:8px; text-align:center; }
+  .label img{ max-width:100%; }
+  .label .name{ font-size:11px; margin-top:4px; }
+  @media print {
+    .toolbar{ display:none; }
+    .label{ border:none; }
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar"><button onclick="window.print()">Print</button></div>
+  <div class="sheet">
+    {% for p in items %}
+    <div class="label">
+      <img src="{% url 'webapp:product_barcode' p.id %}" alt="{{ p.sku }}">
+      <div class="name">{{ p.name }}{% if p.variant_label %} ({{ p.variant_label }}){% endif %}</div>
+    </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

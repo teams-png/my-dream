@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Brands{% endblock %}
+{% block heading %}Brands{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:brand_add' %}">+ Add brand</a></div>
+{% if brands %}
+<table>
+  <tr><th>Name</th><th></th></tr>
+  {% for b in brands %}
+  <tr>
+    <td>{{ b.name }}</td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:brand_delete' b.id %}">Delete</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No brands yet.</div>
+{% endif %}
+{% endblock %}

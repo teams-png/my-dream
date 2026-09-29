@@ -1,0 +1,16 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Edit login{% endblock %}
+{% block heading %}Edit login — {{ user_obj.username }}{% endblock %}
+{% block content %}
+<div class="card" style="max-width:400px;">
+  <form class="stacked" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Save</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Process return{% endblock %}
+{% block heading %}Return — {{ invoice.invoice_number }}{% endblock %}
+{% block content %}
+<p style="color:var(--ink-soft); font-size:13.5px;">Customer: {{ invoice.customer.name }} · Invoice total: {{ invoice.total }}</p>
+
+<form method="post">
+  {% csrf_token %}
+  <table style="margin-bottom:20px;">
+    <tr><th>Product</th><th>Sold qty</th><th>Already returned</th><th>Unit price</th><th>Return qty</th></tr>
+    {% for line in lines %}
+    <tr>
+      <td>{{ line.product.name }}</td>
+      <td>{{ line.quantity }}</td>
+      <td>{{ line.already_returned_qty }}</td>
+      <td>{{ line.unit_price }}</td>
+      <td><input type="number" name="return_qty_{{ line.id }}" min="0" max="{{ line.max_returnable }}" step="0.001" value="0" style="width:80px; padding:5px; border:1px solid var(--line); border-radius:4px;"></td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div class="card" style="max-width:420px;">
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Process return</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:sales_return_list' %}">Cancel</a>
+  </div>
+</form>
+{% endblock %}

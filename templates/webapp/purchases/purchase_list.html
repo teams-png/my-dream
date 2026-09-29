@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Purchases{% endblock %}
+{% block heading %}Purchases{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:purchase_add' %}">+ New purchase</a></div>
+{% if purchases %}
+<table>
+  <tr><th>Bill #</th><th>Date</th><th>Supplier</th><th>Total</th><th>Paid</th><th>Status</th></tr>
+  {% for p in purchases %}
+  <tr>
+    <td>{{ p.bill_number|default:"—" }}</td><td>{{ p.date }}</td>
+    <td><a href="{% url 'webapp:supplier_detail' p.supplier.id %}">{{ p.supplier.name }}</a></td>
+    <td>{{ p.total }}</td><td>{{ p.amount_paid }}</td><td>{{ p.get_status_display }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No purchases yet.</div>
+{% endif %}
+{% endblock %}

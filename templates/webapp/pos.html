@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+{% block title %}POS{% endblock %}
+{% block heading %}Point of Sale{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:1.3fr 1fr; gap:20px; align-items:start;">
+
+  <div>
+    <input id="pos-search" type="text" autocomplete="off" autofocus
+           placeholder="Scan barcode or search product by name / SKU..."
+           style="width:100%; padding:11px 14px; border:1px solid var(--line); border-radius:8px; font-size:15px; margin-bottom:14px;">
+    <div id="pos-product-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; max-height:70vh; overflow-y:auto;"></div>
+  </div>
+
+  <div class="card" style="position:sticky; top:20px;">
+    <h3 style="margin:0 0 12px; font-size:15px;">Cart</h3>
+    {% if branches|length > 1 %}
+    <label style="font-size:13px; color:var(--ink-soft);">Branch</label>
+    <select id="pos-branch" style="width:100%; padding:8px; border:1px solid var(--line); border-radius:6px; margin-bottom:12px;">
+      {% for b in branches %}<option value="{{ b.id }}" {% if b.is_default %}selected{% endif %}>{{ b.name }}</option>{% endfor %}
+    </select>
+    {% endif %}
+    <label style="font-size:13px; color:var(--ink-soft);">Customer</label>
+    <select id="pos-customer" style="width:100%; padding:8px; border:1px solid var(--line); border-radius:6px; margin-bottom:12px;">
+      <option value="">Walk-in Customer</option>
+      {% for c in customers %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}
+    </select>
+
+    <table style="width:100%; font-size:13.5px;">
+      <tbody id="pos-cart-body"></tbody>
+    </table>
+    <div id="pos-empty-cart" style="color:var(--ink-soft); font-size:13.5px; padding:16px 0; text-align:center;">Cart is empty</div>
+
+    <label style="font-size:13px; color:var(--ink-soft); margin-top:8px; display:block;">Coupon code (optional)</label>
+    <input id="pos-coupon" type="text" placeholder="e.g. SAVE10" style="width:100%; padding:7px; border:1px solid var(--line); border-radius:6px; margin-bottom:6px;">
+    <div id="pos-discount-line" style="display:none; justify-content:space-between; font-size:13.5px; color:var(--accent);">
+      <span>Discount</span><span id="pos-discount-amount">0.00</span>
+    </div>
+
+    <div style="border-top:1px solid var(--line); margin-top:12px; padding-top:12px;">
+      <div style="display:flex; justify-content:space-between; font-size:18px; font-weight:700;">
+        <span>Total</span><span id="pos-total">0.00</span>
+      </div>
+    </div>
+
+    <label style="font-size:13px; color:var(--ink-soft); margin-top:12px; display:block;">Payment method</label>
+    <select id="pos-payment-method" style="width:100%; padding:8px; border:1px solid var(--line); border-radius:6px; margin-bottom:14px;">
+      <option value="cash">Cash</option>
+      <option value="card">Card</option>
+      <option value="bank">Bank Transfer</option>
+      {% if is_mobile_shop %}<option value="credit">Credit / Due</option><option value="installment">Instalment</option>{% endif %}
+    </select>
+    {% if is_mobile_shop %}
+    <div id="mobile-payment-details" style="display:none; border:1px solid var(--line); border-radius:7px; padding:10px; margin-bottom:12px;">
+      <label style="font-size:12px;">Deposit / amount paid now</label><input id="pos-amount-paid" type="number" min="0" step="0.01" value="0" style="width:100%; margin-bottom:8px;">
+      <label style="font-size:12px;">Deposit method</label><select id="pos-deposit-method" style="width:100%; margin-bottom:8px;"><option value="cash">Cash</option><option value="card">Card</option><option value="bank">Bank</option></select>
+      <div id="installment-fields" style="display:none;">
+        <label style="font-size:12px;">Number of instalments</label><input id="pos-installment-count" type="number" min="1" value="3" style="width:100%; margin-bottom:8px;">
+        <label style="font-size:12px;">Frequency</label><select id="pos-frequency" style="width:100%; margin-bottom:8px;"><option value="monthly">Monthly</option><option value="weekly">Weekly</option></select>
+        <label style="font-size:12px;">First due date</label><input id="pos-next-due" type="date" style="width:100%;">
+      </div>
+    </div>
+    {% endif %}
+
+    <button id="pos-checkout-btn" class="btn" style="width:100%; padding:12px; font-size:15px;">Complete Sale</button>
+    <div id="pos-message" style="margin-top:10px; font-size:13.5px;"></div>
+  </div>
+</div>
+
+<script>
+const PRODUCTS = {{ products_json|safe }};
+const cart = {};
+
+function csrftoken() {
+  const m = document.cookie.match(/csrftoken=([^;]+)/);
+  return m ? m[1] : '';
+}
+
+function renderGrid(filter) {
+  const grid = document.getElementById('pos-product-grid');
+  grid.innerHTML = '';
+  const q = (filter || '').toLowerCase();
+  PRODUCTS.filter(p => !q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q))
+    .forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.style.cursor = 'pointer';
+      div.style.padding = '12px';
+      const variant = p.variant || [p.colour, p.size].filter(Boolean).join(' / ');
+      div.innerHTML = `<div style="font-weight:600; font-size:14px;">${p.name}${variant ? ' — ' + variant : ''}</div>
+        <div style="color:var(--ink-soft); font-size:12px; margin-top:2px;">${p.sku} · stock ${p.stock}</div>
+        <div style="margin-top:6px; font-weight:600;">${p.price}</div>`;
+      div.onclick = () => chooseAndAdd(p);
+      grid.appendChild(div);
+    });
+}
+
+function chooseAndAdd(p) {
+  if (p.item_type !== 'handset') return addToCart(p, null);
+  const available = p.mobile_units.filter(u => !Object.values(cart).some(i => i.mobile_unit_id === u.id));
+  if (!available.length) { alert('No IMEI unit is available for this handset.'); return; }
+  const answer = prompt('Select IMEI:\n' + available.map((u, i) => `${i + 1}. ${u.imei} (${u.condition})`).join('\n'), '1');
+  const unit = available[(parseInt(answer) || 0) - 1];
+  if (unit) addToCart(p, unit);
+}
+
+function addToCart(p, unit) {
+  const key = unit ? `${p.id}-${unit.id}` : String(p.id);
+  if (!cart[key]) {
+    cart[key] = { key, id: p.id, name: p.name, price: parseFloat(p.price), qty: 0,
+      mobile_unit_id: unit ? unit.id : null, imei: unit ? unit.imei : null };
+  }
+  cart[key].qty = unit ? 1 : cart[key].qty + 1;
+  renderCart();
+}
+
+function updateQty(id, qty) {
+  qty = parseInt(qty) || 0;
+  if (qty <= 0) { delete cart[id]; } else { cart[id].qty = qty; }
+  renderCart();
+}
+
+function removeItem(id) {
+  delete cart[id];
+  renderCart();
+}
+
+function renderCart() {
+  const body = document.getElementById('pos-cart-body');
+  const items = Object.values(cart);
+  body.innerHTML = '';
+  document.getElementById('pos-empty-cart').style.display = items.length ? 'none' : 'block';
+
+  let total = 0;
+  items.forEach(item => {
+    const lineTotal = item.price * item.qty;
+    total += lineTotal;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="padding:6px 0;">${item.name}${item.imei ? `<br><small>IMEI ${item.imei}</small>` : ''}<br>
+        ${item.imei ? '<span>Qty 1</span>' : `<input type="number" min="1" value="${item.qty}" style="width:55px; padding:3px; border:1px solid var(--line); border-radius:4px;" onchange="updateQty('${item.key}', this.value)">`}
+      </td>
+      <td style="text-align:right; padding:6px 0;">${lineTotal.toFixed(2)}
+        <br><a href="#" style="font-size:12px; color:var(--danger);" onclick="removeItem('${item.key}'); return false;">Remove</a>
+      </td>`;
+    body.appendChild(tr);
+  });
+  document.getElementById('pos-total').textContent = total.toFixed(2);
+}
+
+const searchInput = document.getElementById('pos-search');
+let scanTimer = null;
+
+function confirmScan() {
+  const msg = document.getElementById('pos-message');
+  const sku = searchInput.value.trim().toLowerCase();
+  if (!sku) return false;
+  let exact = PRODUCTS.find(p => p.sku.toLowerCase() === sku);
+  let scannedUnit = null;
+  if (!exact) {
+    exact = PRODUCTS.find(p => (scannedUnit = (p.mobile_units || []).find(u => u.imei.toLowerCase() === sku || (u.serial_number || '').toLowerCase() === sku)));
+  }
+  if (!exact) return false;
+  if (parseFloat(exact.stock) <= 0) {
+    msg.textContent = `${exact.name} is out of stock.`;
+    msg.style.color = 'var(--danger)';
+    searchInput.select();
+    return true;
+  }
+  if (exact.item_type === 'handset') {
+    scannedUnit = scannedUnit || exact.mobile_units.find(u => !Object.values(cart).some(i => i.mobile_unit_id === u.id));
+    if (!scannedUnit) { msg.textContent = 'No available IMEI unit.'; msg.style.color = 'var(--danger)'; return true; }
+  }
+  addToCart(exact, scannedUnit);
+  searchInput.value = '';
+  renderGrid('');
+  msg.textContent = `${exact.name}${exact.variant ? ' — ' + exact.variant : ''} added.`;
+  msg.style.color = 'var(--accent)';
+  try {
+    const audio = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audio.createOscillator();
+    oscillator.connect(audio.destination); oscillator.frequency.value = 880;
+    oscillator.start(); oscillator.stop(audio.currentTime + 0.06);
+  } catch (_) {}
+  return true;
+}
+
+searchInput.addEventListener('input', e => {
+  renderGrid(e.target.value);
+  clearTimeout(scanTimer);
+  scanTimer = setTimeout(confirmScan, 120);
+});
+searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault(); clearTimeout(scanTimer);
+    if (!confirmScan()) {
+      const msg = document.getElementById('pos-message');
+      msg.textContent = 'Barcode / SKU not found.'; msg.style.color = 'var(--danger)';
+      searchInput.select();
+    }
+  }
+});
+
+document.getElementById('pos-checkout-btn').addEventListener('click', async () => {
+  const items = Object.values(cart);
+  const msg = document.getElementById('pos-message');
+  if (!items.length) { msg.textContent = 'Cart is empty.'; msg.style.color = 'var(--danger)'; return; }
+
+  const body = {
+    customer_id: document.getElementById('pos-customer').value || null,
+    warehouse_id: document.getElementById('pos-branch') ? document.getElementById('pos-branch').value : null,
+    payment_method: document.getElementById('pos-payment-method').value,
+    coupon_code: document.getElementById('pos-coupon').value.trim(),
+    amount_paid: document.getElementById('pos-amount-paid') ? document.getElementById('pos-amount-paid').value : null,
+    deposit_method: document.getElementById('pos-deposit-method') ? document.getElementById('pos-deposit-method').value : null,
+    installment_count: document.getElementById('pos-installment-count') ? document.getElementById('pos-installment-count').value : null,
+    frequency: document.getElementById('pos-frequency') ? document.getElementById('pos-frequency').value : null,
+    next_due_date: document.getElementById('pos-next-due') ? document.getElementById('pos-next-due').value : null,
+    lines: items.map(i => ({ product_id: i.id, quantity: i.qty, unit_price: i.price, mobile_unit_id: i.mobile_unit_id })),
+  };
+
+  msg.textContent = 'Processing...'; msg.style.color = 'var(--ink-soft)';
+  try {
+    const res = await fetch("{% url 'webapp:pos_checkout' %}", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrftoken() },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+    if (!res.ok) { msg.textContent = data.error || 'Something went wrong.'; msg.style.color = 'var(--danger)'; return; }
+
+    let extra = '';
+    if (parseFloat(data.discount_amount) > 0) extra += ` (discount ${data.discount_amount} applied)`;
+    if (data.points_earned) extra += ` · +${data.points_earned} loyalty pts`;
+    msg.innerHTML = `Sale complete — ${data.invoice_number}${extra}. <a href="/invoices/${data.invoice_id}/pdf/" target="_blank">Print receipt</a>`;
+    msg.style.color = 'var(--accent)';
+    for (const k in cart) delete cart[k];
+    document.getElementById('pos-coupon').value = '';
+    renderCart();
+    searchInput.focus();
+  } catch (err) {
+    msg.textContent = 'Network error — try again.'; msg.style.color = 'var(--danger)';
+  }
+});
+
+renderGrid('');
+const paymentSelect = document.getElementById('pos-payment-method');
+if (document.getElementById('mobile-payment-details')) paymentSelect.addEventListener('change', () => {
+  const deferred = ['credit', 'installment'].includes(paymentSelect.value);
+  document.getElementById('mobile-payment-details').style.display = deferred ? 'block' : 'none';
+  document.getElementById('installment-fields').style.display = paymentSelect.value === 'installment' ? 'block' : 'none';
+});
+</script>
+{% endblock %}

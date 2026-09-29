@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Projects{% endblock %}
+{% block heading %}Projects{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:project_add' %}">+ New project</a></div>
+{% if projects %}
+<table>
+  <tr><th>Name</th><th>Client</th><th>Start</th><th>Status</th><th></th></tr>
+  {% for p in projects %}
+  <tr>
+    <td>{{ p.name }}</td><td>{{ p.client.name|default:"—" }}</td><td>{{ p.start_date }}</td>
+    <td>{{ p.get_status_display }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:project_detail' p.id %}">View</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:project_edit' p.id %}">Edit</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No projects yet.</div>
+{% endif %}
+{% endblock %}

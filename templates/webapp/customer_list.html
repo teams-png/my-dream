@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Customers{% endblock %}
+{% block heading %}Customers{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;">
+  <a class="btn" href="{% url 'webapp:customer_add' %}">+ Add customer</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:customer_export_csv' %}">Export CSV</a>
+</div>
+{% if customers %}
+<table>
+  <tr><th>Name</th><th>Phone</th><th>Email</th><th></th></tr>
+  {% for c in customers %}
+  <tr>
+    <td>{{ c.name }}</td><td>{{ c.phone|default:"—" }}</td><td>{{ c.email|default:"—" }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:customer_edit' c.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:customer_delete' c.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No customers yet.</div>
+{% endif %}
+{% endblock %}

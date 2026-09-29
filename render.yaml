@@ -1,0 +1,107 @@
+# Render Blueprint (Phase 1 Section 31). Commit this at the repo root and
+# use Render's "New > Blueprint" flow to provision everything below in one
+# pass, instead of clicking through each service by hand.
+#
+# This blueprint runs entirely on Render's FREE plan: one web service,
+# Postgres and Key Value (Redis). Background workers are not available on
+# the free plan, so Celery tasks run inline (CELERY_TASK_ALWAYS_EAGER) and
+# the Celery worker/beat services are listed at the bottom, commented out,
+# for when you move to a paid plan.
+#
+# During the Blueprint setup, Render asks for the values marked
+# `sync: false` below (Render won't invent these for you, on purpose —
+# see Phase 1 Section 27 "never put secrets in GitHub").
+databases:
+  - name: bookpilot-db
+    plan: free
+    databaseName: bookpilot
+    user: bookpilot
+
+services:
+  - type: web
+    name: bookpilot-web
+    runtime: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "daphne -b 0.0.0.0 -p $PORT config.asgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings.render
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: PAYMENT_CREDENTIALS_ENCRYPTION_KEY
+        generateValue: true
+      - key: DJANGO_ALLOWED_HOSTS
+        value: .onrender.com
+      - key: CSRF_TRUSTED_ORIGINS
+        value: https://*.onrender.com
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bookpilot-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: bookpilot-redis
+          type: keyvalue
+          property: connectionString
+      - key: CELERY_TASK_ALWAYS_EAGER
+        value: "True"
+      # First login for the platform owner (created once by build.sh).
+      - key: PLATFORM_ADMIN_EMAIL
+        sync: false
+      - key: PLATFORM_ADMIN_PASSWORD
+        sync: false
+      # Uploaded media (logos etc.) is lost on redeploy while this is False.
+      # Set it to "True" and fill in the AWS_* variables in the dashboard
+      # before real customers start using the app.
+      - key: USE_S3
+        value: "False"
+
+  - type: keyvalue
+    name: bookpilot-redis
+    plan: free
+    ipAllowList: []
+
+  # --- Paid plan only: uncomment, then set CELERY_TASK_ALWAYS_EAGER=False
+  # on the web service. Use the same DJANGO_SECRET_KEY on all services
+  # (an Environment Group is the easiest way).
+  #
+  # - type: worker
+  #   name: bookpilot-celery-worker
+  #   runtime: python
+  #   plan: starter
+  #   buildCommand: "pip install -r requirements/production.txt"
+  #   startCommand: "celery -A config worker --loglevel=info"
+  #   envVars:
+  #     - key: PYTHON_VERSION
+  #       value: "3.12.8"
+  #     - key: DJANGO_SETTINGS_MODULE
+  #       value: config.settings.render
+  #     - key: DJANGO_SECRET_KEY
+  #       sync: false
+  #     - key: DATABASE_URL
+  #       fromDatabase:
+  #         name: bookpilot-db
+  #         property: connectionString
+  #     - key: REDIS_URL
+  #       fromService:
+  #         name: bookpilot-redis
+  #         type: keyvalue
+  #         property: connectionString
+  #     - key: USE_S3
+  #       value: "True"
+  #     - key: AWS_ACCESS_KEY_ID
+  #       sync: false
+  #     - key: AWS_SECRET_ACCESS_KEY
+  #       sync: false
+  #     - key: AWS_STORAGE_BUCKET_NAME
+  #       sync: false
+  #     - key: AWS_S3_ENDPOINT_URL
+  #       sync: false
+  #
+  # - type: worker
+  #   name: bookpilot-celery-beat
+  #   (same as the worker above, with
+  #    startCommand: "celery -A config beat --loglevel=info")

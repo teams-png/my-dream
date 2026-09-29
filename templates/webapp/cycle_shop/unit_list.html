@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Cycle units{% endblock %}
+{% block heading %}Cycle units{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:cycle_unit_add' %}">+ Add unit</a></div>
+{% if units %}
+<table>
+  <tr><th>Product</th><th>Serial</th><th>Purchase price</th><th>Status</th><th></th></tr>
+  {% for u in units %}
+  <tr>
+    <td>{{ u.product.name }}</td><td>{{ u.serial_number }}</td><td>{{ u.purchase_price }}</td>
+    <td>{{ u.get_status_display }}</td>
+    <td>
+      {% if u.status == "in_stock" %}<a class="btn btn-secondary" href="{% url 'webapp:cycle_sell' u.id %}">Sell</a>{% endif %}
+      <a class="btn btn-secondary" href="{% url 'webapp:cycle_unit_edit' u.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:cycle_unit_delete' u.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No cycle units yet.</div>
+{% endif %}
+{% endblock %}

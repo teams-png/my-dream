@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Returns & Refunds{% endblock %}
+{% block heading %}Returns & Refunds{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:sales_return_lookup' %}">+ New return</a></div>
+{% if returns %}
+<table>
+  <tr><th>Date</th><th>Invoice</th><th>Customer</th><th>Amount</th><th>Refund method</th><th>Reason</th></tr>
+  {% for r in returns %}
+  <tr>
+    <td>{{ r.date }}</td><td>{{ r.invoice.invoice_number }}</td><td>{{ r.invoice.customer.name }}</td>
+    <td>{{ r.total }}</td><td>{{ r.get_refund_method_display }}</td><td>{{ r.reason|default:"—" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No returns yet.</div>
+{% endif %}
+{% endblock %}

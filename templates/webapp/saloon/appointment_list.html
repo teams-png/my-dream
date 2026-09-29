@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Appointments{% endblock %}
+{% block heading %}Appointments{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:saloon_appointment_book' %}">+ Book appointment</a></div>
+{% if appointments %}
+<table>
+  <tr><th>When</th><th>Customer</th><th>Service</th><th>Stylist</th><th>Status</th><th></th></tr>
+  {% for a in appointments %}
+  <tr>
+    <td>{{ a.scheduled_at|date:"d M, H:i" }}</td><td>{{ a.customer.name }}</td>
+    <td>{{ a.service.name }}</td><td>{{ a.stylist.name }}</td><td>{{ a.get_status_display }}</td>
+    <td>
+      {% if a.status == "booked" %}
+      <a class="btn btn-secondary" href="{% url 'webapp:saloon_appointment_complete' a.id %}">Complete</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:saloon_appointment_cancel' a.id %}">Cancel</a>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No appointments yet.</div>
+{% endif %}
+{% endblock %}

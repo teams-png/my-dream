@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Add team member{% endblock %}
+{% block heading %}Add team member{% endblock %}
+{% block content %}
+<p style="color:var(--ink-soft); font-size:13.5px; margin-top:0;">Creates a login for this business under the chosen role. Give the username/password to your staff member.</p>
+<div class="card" style="max-width:420px;">
+  <form class="stacked" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Add member</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:staff_members_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

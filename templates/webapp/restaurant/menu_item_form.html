@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{% if menu_item %}Edit{% else %}Add{% endif %} Menu Item{% endblock %}
+{% block heading %}{% if menu_item %}Edit{% else %}Add{% endif %} Restaurant Menu Item{% endblock %}
+{% block content %}
+<style>
+.menu-form-shell{max-width:900px;margin:auto}.menu-form-card{background:#fff;border:1px solid #e7eaf0;border-radius:20px;padding:24px;box-shadow:0 12px 35px rgba(15,23,42,.07)}.menu-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.menu-form-grid p{margin:0}.menu-form-grid label{display:block;font-weight:700;margin-bottom:7px;color:#172033}.menu-form-grid input,.menu-form-grid select,.menu-form-grid textarea{width:100%;box-sizing:border-box}.menu-form-grid p:nth-child(5){grid-column:1/-1}.menu-preview{margin:0 0 20px;padding:14px;border-radius:14px;background:#fff7ed;color:#9a3412}.menu-actions{display:flex;gap:10px;margin-top:24px}@media(max-width:700px){.menu-form-grid{grid-template-columns:1fr}.menu-form-grid p:nth-child(5){grid-column:auto}.menu-form-card{padding:16px}}
+</style>
+<div class="menu-form-shell">
+{% if menu_item and menu_item.image %}<div class="menu-preview">Current photo: <a href="{{ menu_item.image.url }}" target="_blank">View uploaded food image</a></div>{% endif %}
+<form method="post" enctype="multipart/form-data" class="menu-form-card">{% csrf_token %}<div class="menu-form-grid">{{ form.as_p }}</div><div class="menu-actions"><button class="btn" type="submit">Save Menu Item</button><a class="btn btn-secondary" href="{% url 'webapp:restaurant_setup' %}">Cancel</a></div></form>
+</div>
+{% endblock %}

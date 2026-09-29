@@ -1,0 +1,63 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Analytics{% endblock %}
+{% block heading %}Analytics{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-bottom:26px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Total revenue (all time)</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ total_revenue }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Total clients</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ total_clients }}</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:20px;">
+  <div style="font-size:14px; font-weight:600; margin-bottom:10px;">Revenue by month</div>
+  <canvas id="revenueChart" height="90"></canvas>
+</div>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+  <div class="card">
+    <div style="font-size:14px; font-weight:600; margin-bottom:10px;">Clients by country</div>
+    <canvas id="countryChart" height="140"></canvas>
+  </div>
+  <div class="card">
+    <div style="font-size:14px; font-weight:600; margin-bottom:10px;">Clients by plan</div>
+    <canvas id="planChart" height="140"></canvas>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+const accent = '#14532D', line = '#E7E9F2';
+
+new Chart(document.getElementById('revenueChart'), {
+  type: 'line',
+  data: {
+    labels: {{ revenue_labels|safe }},
+    datasets: [{ label: 'Revenue', data: {{ revenue_values|safe }}, borderColor: accent, backgroundColor: 'rgba(58,79,122,0.08)', fill: true, tension: 0.25 }]
+  },
+  options: { plugins: { legend: { display: false } }, scales: { x: { grid: { color: line } }, y: { grid: { color: line } } } }
+});
+
+new Chart(document.getElementById('countryChart'), {
+  type: 'doughnut',
+  data: {
+    labels: {{ country_labels|safe }},
+    datasets: [{ data: {{ country_values|safe }}, backgroundColor: ['#14532D', '#5F6579', '#C0392B', '#C9A46A', '#4A7C9B', '#14532D'] }]
+  },
+  options: { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } } }
+});
+
+new Chart(document.getElementById('planChart'), {
+  type: 'bar',
+  data: {
+    labels: {{ plan_labels|safe }},
+    datasets: [{ label: 'Clients', data: {{ plan_values|safe }}, backgroundColor: accent }]
+  },
+  options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { grid: { color: line } }, y: { grid: { display: false } } } }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}New sale{% endblock %}
+{% block heading %}New sale{% endblock %}
+{% block content %}
+{% if no_customers %}
+<div class="card" style="margin-bottom:16px;">No customers yet. <a href="{% url 'webapp:customer_add' %}">Add a customer</a> first.</div>
+{% endif %}
+{% if no_products %}
+<div class="card" style="margin-bottom:16px;">No products yet. <a href="{% url 'webapp:product_add' %}">Add a product</a> first.</div>
+{% endif %}
+<div class="card" style="max-width:440px;">
+  <form class="stacked" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Record sale</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:retail_sale_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

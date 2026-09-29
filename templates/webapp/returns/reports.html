@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Returns reports{% endblock %}
+{% block heading %}Returns reports{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-bottom:24px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Total refunded</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ total_refunded }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Number of returns</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ return_count }}</div>
+  </div>
+</div>
+
+<h2 style="font-size:16px; margin-bottom:10px;">Top reasons</h2>
+{% if by_reason %}
+<table>
+  <tr><th>Reason</th><th>Count</th></tr>
+  {% for row in by_reason %}
+  <tr><td>{{ row.reason }}</td><td>{{ row.count }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No returns yet.</div>
+{% endif %}
+{% endblock %}

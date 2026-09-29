@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock %}
+{% block heading %}Reports{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Booked</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ booked_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Completed</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Cancelled/No-show</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ cancelled_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Revenue</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
+  </div>
+</div>
+
+<h2 style="font-size:16px; margin-bottom:10px;">Revenue by service</h2>
+{% if by_service %}
+<table>
+  <tr><th>Service</th><th>Completed</th><th>Revenue</th></tr>
+  {% for row in by_service %}
+  <tr><td>{{ row.service__name }}</td><td>{{ row.count }}</td><td>{{ row.revenue }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No completed appointments yet.</div>
+{% endif %}
+{% endblock %}

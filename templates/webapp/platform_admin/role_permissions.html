@@ -1,0 +1,11 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}{{ role.name }} permissions{% endblock %}
+{% block heading %}{{ company.name }} · {{ role.name }}{% endblock %}
+{% block content %}
+<p><a href="{% url 'webapp:platform_admin_roles' company.id %}">← Roles</a></p>
+{% if role.name == 'Owner' %}<p>The tenant Owner role must keep every available permission.</p>{% endif %}
+<form method="post" class="stacked">{% csrf_token %}
+<div class="card" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px">
+{% for permission in permissions %}<label style="margin:0"><input type="checkbox" name="permissions" value="{{ permission.id }}" {% if permission.id in granted %}checked{% endif %}> {{ permission.label }} <small>({{ permission.code }})</small></label>{% empty %}<p>No permissions in the catalogue yet. Run seed_platform.</p>{% endfor %}
+</div><button type="submit" class="btn" style="margin-top:18px">Save permissions</button>
+</form>{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Units{% endblock %}
+{% block heading %}Units{% endblock %}
+{% block content %}
+<p style="color:var(--ink-soft); font-size:13.5px; margin-top:0;">Units of measure (pcs, kg, meter, box...) used when adding products.</p>
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:inventory_unit_add' %}">+ Add unit</a></div>
+{% if units %}
+<table>
+  <tr><th>Name</th><th></th></tr>
+  {% for u in units %}
+  <tr>
+    <td>{{ u.name }}</td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:inventory_unit_delete' u.id %}">Delete</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No units yet. Add one (e.g. "pcs") before adding products.</div>
+{% endif %}
+{% endblock %}

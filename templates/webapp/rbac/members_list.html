@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Team{% endblock %}
+{% block heading %}Team{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;">
+  <a class="btn" href="{% url 'webapp:staff_invite' %}">+ Add team member</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:role_list' %}">Manage roles</a>
+</div>
+{% if memberships %}
+<table>
+  <tr><th>Username</th><th>Email</th><th>Role</th><th></th></tr>
+  {% for m in memberships %}
+  <tr>
+    <td>{{ m.user.username }}</td><td>{{ m.user.email }}</td><td>{{ m.role.name }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:staff_role_change' m.id %}">Change role</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:staff_remove' m.id %}">Remove</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No team members yet.</div>
+{% endif %}
+{% endblock %}

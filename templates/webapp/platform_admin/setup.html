@@ -1,0 +1,21 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Platform Setup{% endblock %}
+{% block heading %}Platform Setup{% endblock %}
+{% block content %}
+<p style="color:var(--ink-soft); margin-top:-10px;">Business configuration for BookPilot. Technical system settings remain in the protected backend admin.</p>
+<div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:22px 0;">
+  <a class="card" href="{% url 'webapp:platform_module_list' %}"><strong>Module Catalogue</strong><div style="color:var(--ink-soft); margin-top:7px;">{{ module_count }} modules · core and optional features</div></a>
+  <a class="card" href="{% url 'webapp:platform_business_type_list' %}"><strong>Business Types</strong><div style="color:var(--ink-soft); margin-top:7px;">{{ business_type_count }} types · default module bundles</div></a>
+  <a class="card" href="{% url 'webapp:platform_plan_list' %}"><strong>Plans & Limits</strong><div style="color:var(--ink-soft); margin-top:7px;">Pricing, billing period and user limits</div></a>
+  <a class="card" href="{% url 'webapp:platform_payment_gateway_settings' %}"><strong>Payment Gateways</strong><div style="color:var(--ink-soft); margin-top:7px;">Add Stripe and Razorpay keys securely</div></a>
+  <a class="card" href="{% url 'webapp:platform_user_list' %}"><strong>Users & Access</strong><div style="color:var(--ink-soft); margin-top:7px;">{{ user_count }} user accounts</div></a>
+  <a class="card" href="{% url 'webapp:platform_support_list' %}"><strong>Support Queue</strong><div style="color:var(--ink-soft); margin-top:7px;">{{ open_ticket_count }} open tickets</div></a>
+  <a class="card" href="{% url 'webapp:platform_audit_list' %}"><strong>Audit Log</strong><div style="color:var(--ink-soft); margin-top:7px;">Read-only cross-company activity trail</div></a>
+</div>
+<h2 style="font-size:17px;">Integration status</h2>
+<table><tr><th>Service</th><th>Status</th><th>Configuration</th></tr>
+  <tr><td>Email</td><td><span class="badge {% if email_configured %}active{% else %}expired{% endif %}">{% if email_configured %}Configured{% else %}Not configured{% endif %}</span></td><td>Environment variables</td></tr>
+  <tr><td>Stripe</td><td><span class="badge {% if stripe_configured %}active{% else %}expired{% endif %}">{% if stripe_configured %}Configured{% else %}Not configured{% endif %}</span></td><td><a href="{% url 'webapp:platform_payment_gateway_settings' %}">Manage keys</a></td></tr>
+  <tr><td>Razorpay</td><td><span class="badge {% if razorpay_configured %}active{% else %}expired{% endif %}">{% if razorpay_configured %}Configured{% else %}Not configured{% endif %}</span></td><td><a href="{% url 'webapp:platform_payment_gateway_settings' %}">Manage keys</a></td></tr>
+</table>
+{% endblock %}

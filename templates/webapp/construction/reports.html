@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock %}
+{% block heading %}Reports{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Planning</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ planning_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Active</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ active_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Completed</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Total contract value</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ total_contract_value }}</div>
+  </div>
+</div>
+{% endblock %}

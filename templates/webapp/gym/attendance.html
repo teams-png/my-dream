@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Attendance{% endblock %}
+{% block heading %}Today's attendance{% endblock %}
+{% block content %}
+<h2 style="font-size:15px; margin:0 0 10px;">Check in a member</h2>
+{% if active_members %}
+<table style="margin-bottom:26px;">
+  <tr><th>Name</th><th>Plan</th><th></th></tr>
+  {% for m in active_members %}
+  <tr>
+    <td>{{ m.customer.name }}</td><td>{{ m.membership_plan.name }}</td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:attendance_check_in' m.id %}">Check in</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty" style="margin-bottom:26px;">No active members to check in.</div>
+{% endif %}
+
+<h2 style="font-size:15px; margin:0 0 10px;">Today's log</h2>
+{% if entries %}
+<table>
+  <tr><th>Name</th><th>Check-in</th><th>Check-out</th><th></th></tr>
+  {% for e in entries %}
+  <tr>
+    <td>{{ e.member.customer.name }}</td><td>{{ e.check_in|date:"H:i" }}</td>
+    <td>{{ e.check_out|date:"H:i"|default:"—" }}</td>
+    <td>{% if not e.check_out %}<a class="btn btn-secondary" href="{% url 'webapp:attendance_check_out' e.id %}">Check out</a>{% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No check-ins yet today.</div>
+{% endif %}
+{% endblock %}

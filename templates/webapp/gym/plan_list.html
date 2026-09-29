@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Membership plans{% endblock %}
+{% block heading %}Membership plans{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:plan_add' %}">+ Add plan</a></div>
+{% if plans %}
+<table>
+  <tr><th>Name</th><th>Duration</th><th>Price</th><th></th></tr>
+  {% for p in plans %}
+  <tr>
+    <td>{{ p.name }}</td><td>{{ p.duration_days }} days</td><td>{{ p.price }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:plan_edit' p.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:plan_delete' p.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No membership plans yet. Add one (e.g. "Monthly", 30 days) before enrolling members.</div>
+{% endif %}
+{% endblock %}

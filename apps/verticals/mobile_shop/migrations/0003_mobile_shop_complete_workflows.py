@@ -1,0 +1,25 @@
+from django.conf import settings
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+    dependencies = [
+        ("mobile_shop", "0002_mobileunit_sale_invoice_mobileunit_warehouse_and_more"),
+        ("customers", "0003_customer_credit_limit_customer_payment_terms_days"),
+        ("inventory", "0008_product_boutique_attributes"),
+        ("sales", "0011_salesinvoice_sales_sales_company_e1383c_idx_and_more"),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.AlterField(model_name="mobileunit", name="sale_invoice", field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name="mobile_units", to="sales.salesinvoice")),
+        migrations.AddField(model_name="mobilerepairjob", name="assigned_technician", field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name="mobile_repair_jobs", to=settings.AUTH_USER_MODEL)),
+        migrations.AddField(model_name="mobilerepairjob", name="labour_cost", field=models.DecimalField(decimal_places=2, default=0, max_digits=12)),
+        migrations.AddField(model_name="mobilerepairjob", name="parts_total", field=models.DecimalField(decimal_places=2, default=0, max_digits=12)),
+        migrations.AddField(model_name="mobilerepairjob", name="is_warranty_job", field=models.BooleanField(default=False)),
+        migrations.CreateModel(name="MobileRepairPart", fields=[("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")), ("quantity", models.DecimalField(decimal_places=2, default=1, max_digits=10)), ("unit_cost", models.DecimalField(decimal_places=2, default=0, max_digits=12)), ("unit_price", models.DecimalField(decimal_places=2, default=0, max_digits=12)), ("company", models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name="+", to="tenants.company")), ("job", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="parts", to="mobile_shop.mobilerepairjob")), ("product", models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to="inventory.product"))]),
+        migrations.CreateModel(name="MobileWarrantyClaim", fields=[("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")), ("claim_number", models.CharField(max_length=30)), ("issue", models.TextField()), ("status", models.CharField(choices=[("received", "Received"), ("submitted", "Submitted"), ("approved", "Approved"), ("rejected", "Rejected"), ("resolved", "Resolved")], default="received", max_length=20)), ("resolution", models.TextField(blank=True)), ("received_date", models.DateField()), ("resolved_date", models.DateField(blank=True, null=True)), ("company", models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name="+", to="tenants.company")), ("customer", models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to="customers.customer")), ("unit", models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name="warranty_claims", to="mobile_shop.mobileunit"))], options={"unique_together": {("company", "claim_number")}}),
+        migrations.CreateModel(name="MobileInstallmentPlan", fields=[("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")), ("financed_amount", models.DecimalField(decimal_places=2, max_digits=14)), ("deposit", models.DecimalField(decimal_places=2, default=0, max_digits=14)), ("installment_count", models.PositiveIntegerField(default=1)), ("frequency", models.CharField(choices=[("weekly", "Weekly"), ("monthly", "Monthly")], default="monthly", max_length=10)), ("next_due_date", models.DateField()), ("status", models.CharField(choices=[("active", "Active"), ("paid", "Paid"), ("overdue", "Overdue"), ("cancelled", "Cancelled")], default="active", max_length=12)), ("created_at", models.DateTimeField(auto_now_add=True)), ("company", models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name="+", to="tenants.company")), ("customer", models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to="customers.customer")), ("invoice", models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, related_name="mobile_installment", to="sales.salesinvoice"))]),
+        migrations.CreateModel(name="MobileInstallmentPayment", fields=[("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")), ("amount", models.DecimalField(decimal_places=2, max_digits=14)), ("date", models.DateField()), ("method", models.CharField(default="cash", max_length=20)), ("company", models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name="+", to="tenants.company")), ("customer_payment", models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to="sales.customerpayment")), ("plan", models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name="payments", to="mobile_shop.mobileinstallmentplan"))]),
+    ]

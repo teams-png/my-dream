@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Invoice {{ invoice.invoice_number }}</title>
+<style>
+  @page { size: A4; margin: 28mm 20mm; }
+  body{ font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; color:#12162B; font-size:13px; }
+  .header{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+  .company-name{ font-size:20px; font-weight:700; margin:0 0 4px; }
+  .muted{ color:#5F6579; font-size:12px; line-height:1.5; }
+  .invoice-title{ text-align:right; }
+  .invoice-title h1{ font-size:22px; margin:0 0 6px; letter-spacing:0.5px; }
+  table{ width:100%; border-collapse:collapse; margin-top:18px; }
+  th{ text-align:left; font-size:11px; text-transform:uppercase; color:#5F6579; border-bottom:1px solid #12162B; padding:8px 6px; }
+  td{ padding:9px 6px; border-bottom:1px solid #E7E9F2; }
+  .num{ text-align:right; }
+  .totals{ width:260px; margin-left:auto; margin-top:18px; }
+  .totals div{ display:flex; justify-content:space-between; padding:5px 0; }
+  .totals .grand{ font-weight:700; font-size:15px; border-top:1px solid #12162B; margin-top:6px; padding-top:8px; }
+  .bill-to{ margin-top:6px; }
+  .bill-to strong{ display:block; margin-bottom:2px; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <p class="company-name">{{ company.name }}</p>
+      <p class="muted">
+        {{ company.address|default:"" }}{% if company.phone %}<br>{{ company.phone }}{% endif %}{% if company.email %}<br>{{ company.email }}{% endif %}
+      </p>
+    </div>
+    <div class="invoice-title">
+      <h1>INVOICE</h1>
+      <p class="muted">
+        No: {{ invoice.invoice_number }}<br>
+        Date: {{ invoice.date }}<br>
+        {% if invoice.due_date %}Due: {{ invoice.due_date }}<br>{% endif %}
+        Status: {{ invoice.get_status_display }}
+      </p>
+    </div>
+  </div>
+
+  <div class="bill-to">
+    <span class="muted">Bill to</span>
+    <strong>{{ invoice.customer.name }}</strong>
+    <span class="muted">
+      {% if invoice.customer.phone %}{{ invoice.customer.phone }}<br>{% endif %}
+      {% if invoice.customer.address %}{{ invoice.customer.address }}{% endif %}
+    </span>
+  </div>
+
+  <table>
+    <tr>
+      <th>Item</th>
+      <th class="num">Qty</th>
+      <th class="num">Unit price</th>
+      <th class="num">Amount</th>
+    </tr>
+    {% for line in lines %}
+    <tr>
+      <td>{{ line.product.name }}</td>
+      <td class="num">{{ line.quantity }}</td>
+      <td class="num">{{ line.unit_price }}</td>
+      <td class="num">{{ line.line_total }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  {% if mobile_units %}
+  <div style="margin-top:18px;border:1px solid #E7E9F2;padding:12px;">
+    <strong>Handset IMEI & Warranty</strong>
+    {% for unit in mobile_units %}<p style="margin:7px 0 0;">{{ unit.product.name }} — IMEI: <b>{{ unit.imei }}</b>{% if unit.serial_number %} · Serial: {{ unit.serial_number }}{% endif %} · Warranty: {{ unit.warranty_months }} months{% if unit.warranty_expires %} (until {{ unit.warranty_expires }}){% endif %}</p>{% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="totals">
+    <div><span>Subtotal</span><span>{{ invoice.subtotal }}</span></div>
+    {% if invoice.tax_amount %}<div><span>Tax</span><span>{{ invoice.tax_amount }}</span></div>{% endif %}
+    <div class="grand"><span>Total ({{ company.default_currency }})</span><span>{{ invoice.total }}</span></div>
+    {% if invoice.amount_paid %}<div><span>Paid</span><span>{{ invoice.amount_paid }}</span></div>{% endif %}
+    {% if balance_due %}<div><span>Balance due</span><span>{{ balance_due }}</span></div>{% endif %}
+  </div>
+</body>
+</html>

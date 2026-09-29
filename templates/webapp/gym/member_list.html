@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Members{% endblock %}
+{% block heading %}Members{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:member_enroll' %}">+ Enroll member</a></div>
+{% if members %}
+<table>
+  <tr><th>Name</th><th>Plan</th><th>Start</th><th>End</th><th>Status</th><th></th></tr>
+  {% for m in members %}
+  <tr>
+    <td>{{ m.customer.name }}</td><td>{{ m.membership_plan.name }}</td>
+    <td>{{ m.membership_start }}</td><td>{{ m.membership_end }}</td><td>{{ m.get_status_display }}</td><td><a class="btn btn-secondary" href="{% url 'webapp:member_renew' m.id %}">Renew</a> <form method="post" action="{% url 'webapp:member_status_toggle' m.id %}" style="display:inline;">{% csrf_token %}<button class="btn btn-secondary">{% if m.status == 'frozen' %}Unfreeze{% else %}Freeze{% endif %}</button></form></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No members yet.</div>
+{% endif %}
+{% endblock %}

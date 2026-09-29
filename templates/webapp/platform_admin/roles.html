@@ -1,0 +1,8 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Roles & permissions{% endblock %}
+{% block heading %}Roles & permissions · {{ company.name }}{% endblock %}
+{% block content %}
+<p><a href="{% url 'webapp:platform_admin_company_detail' company.id %}">← Client</a></p>
+<table><tr><th>Role</th><th>Permissions</th><th>Action</th></tr>
+{% for role in roles %}<tr><td>{{ role.name }}</td><td>{{ role.permissions.count }}</td><td><a class="btn btn-secondary" href="{% url 'webapp:platform_admin_role_permissions' company.id role.id %}">Manage permissions</a></td></tr>{% empty %}<tr><td colspan="3">No roles created.</td></tr>{% endfor %}
+</table>{% endblock %}

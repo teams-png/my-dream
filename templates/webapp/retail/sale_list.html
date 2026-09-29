@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Sales{% endblock %}
+{% block heading %}Sales{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;">
+  <a class="btn" href="{% url 'webapp:retail_sale_add' %}">+ New sale</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:sales_export_csv' %}">Export CSV</a>
+</div>
+{% if invoices %}
+<table>
+  <tr><th>Invoice #</th><th>Date</th><th>Customer</th><th>Total</th><th>Status</th><th></th></tr>
+  {% for inv in invoices %}
+  <tr>
+    <td>{{ inv.invoice_number }}</td><td>{{ inv.date }}</td><td>{{ inv.customer.name }}</td>
+    <td>{{ inv.total }}</td><td>{{ inv.get_status_display }}</td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:invoice_pdf' inv.id %}" target="_blank">PDF</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No sales yet.</div>
+{% endif %}
+{% endblock %}

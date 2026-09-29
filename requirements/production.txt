@@ -1,0 +1,8 @@
+-r base.txt
+setuptools>=70,<81  # Razorpay 1.x imports pkg_resources, removed by newer setuptools
+gunicorn==23.0.0
+django-storages[s3]==1.14.4
+sentry-sdk==2.19.2
+whitenoise==6.8.2
+stripe>=11,<14
+razorpay>=1.4,<2

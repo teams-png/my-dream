@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Categories{% endblock %}
+{% block heading %}Categories{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:category_add' %}">+ Add category</a></div>
+{% if categories %}
+<table>
+  <tr><th>Name</th><th></th></tr>
+  {% for c in categories %}
+  <tr>
+    <td>{{ c.name }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:category_edit' c.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:category_delete' c.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No categories yet. Add one to start organizing products.</div>
+{% endif %}
+{% endblock %}

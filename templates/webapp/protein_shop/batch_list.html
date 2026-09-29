@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Batches{% endblock %}
+{% block heading %}Protein batches{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:protein_batch_add' %}">+ Add batch</a></div>
+{% if batches %}
+<table>
+  <tr><th>Product</th><th>Batch #</th><th>Expiry</th><th>Remaining</th><th>Price</th><th></th></tr>
+  {% for b in batches %}
+  <tr>
+    <td>{{ b.product.name }}</td><td>{{ b.batch_number }}</td><td>{{ b.expiry_date }}</td>
+    <td>{{ b.quantity_remaining }}</td><td>{{ b.selling_price }}</td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:protein_sell' b.id %}">Sell</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No batches in stock.</div>
+{% endif %}
+{% endblock %}

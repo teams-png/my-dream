@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Repairs{% endblock %}{% block heading %}Repair Job Cards{% endblock %}
+{% block content %}<p><a class="btn" href="{% url 'webapp:mobile_repair_add' %}">+ New job card</a></p>
+<table><tr><th>Job</th><th>Customer / Device</th><th>IMEI</th><th>Technician</th><th>Status</th><th>Estimate</th><th></th></tr>
+{% for j in jobs %}<tr><td>{{ j.job_number }}</td><td>{{ j.customer.name }}<br><small>{{ j.device_description }}</small></td><td>{{ j.imei|default:"—" }}</td><td>{{ j.assigned_technician|default:"—" }}</td><td>{{ j.get_status_display }}</td><td>{{ j.estimated_cost }}</td><td><a class="btn btn-secondary" href="{% url 'webapp:mobile_repair_detail' j.id %}">Open</a></td></tr>{% empty %}<tr><td colspan="7">No repair jobs.</td></tr>{% endfor %}</table>{% endblock %}

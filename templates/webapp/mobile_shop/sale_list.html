@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Sales{% endblock %}
+{% block heading %}Sales{% endblock %}
+{% block content %}
+{% if sales %}
+<table>
+  <tr><th>Date</th><th>Product</th><th>IMEI</th><th>Customer</th><th>Sale price</th></tr>
+  {% for s in sales %}
+  <tr>
+    <td>{{ s.sold_date }}</td><td>{{ s.product.name }}</td><td>{{ s.imei }}</td>
+    <td>{{ s.buyer.name|default:"—" }}</td><td>{{ s.sold_price }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No sales yet. Sell a phone unit from the Phone Units page to see it here.</div>
+{% endif %}
+{% endblock %}

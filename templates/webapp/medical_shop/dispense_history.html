@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Dispense history{% endblock %}
+{% block heading %}Dispense history{% endblock %}
+{% block content %}
+{% if records %}
+<table>
+  <tr><th>Date</th><th>Product</th><th>Qty</th><th>Price</th><th>Customer</th></tr>
+  {% for r in records %}
+  <tr>
+    <td>{{ r.sold_date }}</td><td>{{ r.batch.product.name }}</td><td>{{ r.quantity }}</td>
+    <td>{{ r.sold_price }}</td><td>{{ r.customer.name|default:"Walk-in" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No dispenses recorded yet.</div>
+{% endif %}
+{% endblock %}

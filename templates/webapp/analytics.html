@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Analytics{% endblock %}
+{% block heading %}Analytics{% endblock %}
+{% block content %}
+<div style="margin-bottom:18px; display:flex; gap:8px; flex-wrap:wrap;">
+  {% for key, label in periods %}
+  <a href="?period={{ key }}" class="btn {% if period == key %}{% else %}btn-secondary{% endif %}" style="font-size:13px; padding:7px 14px;">{{ label }}</a>
+  {% endfor %}
+</div>
+<p style="color:var(--ink-soft); font-size:13px; margin-top:-8px;">{{ start }} to {{ end }}</p>
+
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:26px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Sales</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ total_sales }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Expenses</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ total_expenses }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Net profit</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px; {% if net_profit < 0 %}color:var(--danger);{% endif %}">{{ net_profit }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Invoices</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ invoice_count }}</div>
+  </div>
+</div>
+
+<div style="display:grid; grid-template-columns:2fr 1fr; gap:20px; margin-bottom:26px;">
+  <div class="card">
+    <div style="font-size:14px; font-weight:600; margin-bottom:10px;">Sales by day</div>
+    <canvas id="salesChart" height="110"></canvas>
+  </div>
+  <div class="card">
+    <div style="font-size:14px; font-weight:600; margin-bottom:10px;">Payment methods</div>
+    <canvas id="methodChart" height="110"></canvas>
+  </div>
+</div>
+
+<div class="card">
+  <div style="font-size:14px; font-weight:600; margin-bottom:10px;">Top-selling products</div>
+  <canvas id="productChart" height="90"></canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+const ink = '#12162B', accent = '#14532D', line = '#E7E9F2';
+
+new Chart(document.getElementById('salesChart'), {
+  type: 'line',
+  data: {
+    labels: {{ chart_labels|safe }},
+    datasets: [{ label: 'Sales', data: {{ chart_values|safe }}, borderColor: accent, backgroundColor: 'rgba(47,93,80,0.08)', fill: true, tension: 0.25 }]
+  },
+  options: { plugins: { legend: { display: false } }, scales: { x: { grid: { color: line } }, y: { grid: { color: line } } } }
+});
+
+new Chart(document.getElementById('methodChart'), {
+  type: 'doughnut',
+  data: {
+    labels: {{ method_labels|safe }},
+    datasets: [{ data: {{ method_values|safe }}, backgroundColor: ['#14532D', '#5F6579', '#C0392B', '#C9A46A', '#4A7C9B'] }]
+  },
+  options: { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } } }
+});
+
+new Chart(document.getElementById('productChart'), {
+  type: 'bar',
+  data: {
+    labels: {{ product_labels|safe }},
+    datasets: [{ label: 'Revenue', data: {{ product_values|safe }}, backgroundColor: accent }]
+  },
+  options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { grid: { color: line } }, y: { grid: { display: false } } } }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Business Suites · {{ company.name }}{% endblock %}
+{% block heading %}Business Suites · {{ company.name }}{% endblock %}
+{% block content %}
+<div class="card" style="margin-bottom:18px;"><b>Multi-business account</b><p style="color:var(--ink-soft);margin-bottom:0">Select every operation this client runs. All selected suites stay inside the same company and consolidated accounting ledger. The primary business cannot be removed here.</p></div>
+<form method="post">{% csrf_token %}
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:20px;">
+{% for bt, enabled, primary, group in business_rows %}
+<label class="card" style="padding:15px;display:flex;gap:10px;align-items:flex-start;cursor:pointer;">
+<input type="checkbox" name="business_types" value="{{ bt.id }}" {% if enabled %}checked{% endif %} {% if primary %}disabled{% endif %} style="margin-top:5px;">
+<div><b>{{ bt.name }}</b><div style="font-size:12px;color:var(--ink-soft);text-transform:capitalize">{{ group }} suite {% if primary %}· Primary{% endif %}</div></div>
+</label>
+{% endfor %}
+</div>
+<button class="btn" type="submit">Save business suites</button> <a class="btn btn-secondary" href="{% url 'webapp:platform_admin_company_detail' company.id %}">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Clients{% endblock %}
+{% block heading %}Clients{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:register_client' %}">+ Add new client</a></div>
+{% if companies %}
+<table>
+  <tr><th>Name</th><th>Country</th><th>Business type</th><th>Plan</th><th>Subscription</th><th>Access</th><th>Joined</th></tr>
+  {% for c in companies %}
+  <tr>
+    <td><a href="{% url 'webapp:platform_admin_company_detail' c.id %}">{{ c.name }}</a></td>
+    <td>{{ c.country|default:"—" }}</td>
+    <td>{{ c.business_type.name }}</td>
+    <td>{{ c.subscription.plan.name|default:"—" }}</td>
+    <td>
+      {% if c.subscription %}
+      <span class="badge {{ c.subscription.status }}">{{ c.subscription.get_status_display }}</span>
+      {% else %}—{% endif %}
+    </td>
+    <td><span class="badge {% if c.is_active %}active{% else %}cancelled{% endif %}">{% if c.is_active %}Active{% else %}Archived{% endif %}</span></td>
+    <td>{{ c.created_at|date:"d M Y" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No clients yet.</div>
+{% endif %}
+{% endblock %}

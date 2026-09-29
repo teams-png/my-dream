@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+{% block heading %}Products{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;">
+  <a class="btn" href="{% url 'webapp:product_add' %}">+ Add product</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:barcode_print' %}">Print barcodes</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:product_import_csv' %}">Import CSV</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:product_export_csv' %}">Export CSV</a>
+</div>
+{% if products %}
+<table>
+  <tr><th>SKU</th><th>Name / Variant</th><th>Category</th><th>Stock</th><th>Cost</th><th>Selling price</th><th></th></tr>
+  {% for p in products %}
+  <tr>
+    <td>{{ p.sku }}</td><td>{{ p.name }}{% if p.attributes.model_number %}<br><small>{{ p.attributes.model_number }} · {{ p.attributes.ram }} / {{ p.attributes.storage }} · {{ p.attributes.network }}</small>{% endif %}</td><td>{{ p.category.name|default:"—" }}</td>
+    <td>{{ p.current_stock }}</td>
+    <td>{{ p.cost_price }}</td><td>{{ p.selling_price }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:product_edit' p.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:product_variant_add' p.id %}">+ Variant</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:product_barcode' p.id %}" target="_blank">Barcode</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:product_delete' p.id %}">Delete</a>
+    </td>
+  </tr>
+  {% if p.attributes %}
+  <tr>
+    <td></td>
+    <td colspan="6" style="font-size:12.5px; color:var(--ink-soft); border-top:none; padding-top:0;">
+      {% for k, v in p.attributes.items %}{{ k }}: {{ v }}{% if not forloop.last %} · {% endif %}{% endfor %}
+    </td>
+  </tr>
+  {% endif %}
+  {% for v in p.variants.all %}
+  <tr style="background:var(--paper);">
+    <td>{{ v.sku }}</td><td style="padding-left:24px;">↳ {{ v.colour|default:"—" }} / {{ v.size|default:"—" }}{% if v.material %} · {{ v.material }}{% endif %}{% if v.design %} · {{ v.design }}{% endif %}</td><td></td><td>{{ v.current_stock }}</td>
+    <td>{{ v.cost_price }}</td><td>{{ v.selling_price }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:product_edit' v.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:product_barcode' v.id %}" target="_blank">Barcode</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:product_delete' v.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No products yet.</div>
+{% endif %}
+{% endblock %}

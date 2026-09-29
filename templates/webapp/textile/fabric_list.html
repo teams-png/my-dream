@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Fabrics{% endblock %}
+{% block heading %}Fabrics{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:fabric_add' %}">+ Add fabric</a></div>
+{% if fabrics %}
+<table>
+  <tr><th>Name</th><th>Type</th><th>Color</th><th>Material</th><th>Price</th><th></th></tr>
+  {% for f in fabrics %}
+  <tr>
+    <td>{{ f.product.name }}</td><td>{{ f.get_fabric_type_display }}</td>
+    <td>{{ f.color|default:"—" }}</td><td>{{ f.material|default:"—" }}</td>
+    <td>{{ f.product.selling_price }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:fabric_edit' f.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:fabric_delete' f.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No fabrics yet.</div>
+{% endif %}
+{% endblock %}

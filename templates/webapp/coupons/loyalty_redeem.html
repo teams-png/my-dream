@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Redeem points{% endblock %}
+{% block heading %}Redeem points{% endblock %}
+{% block content %}
+<div class="card" style="max-width:400px;">
+  <form class="stacked" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Redeem</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:loyalty_accounts_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

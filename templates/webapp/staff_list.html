@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Staff{% endblock %}
+{% block heading %}Staff{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:staff_add' %}">+ Add staff</a></div>
+{% if staff %}
+<table>
+  <tr><th>Name</th><th>Role</th><th>Phone</th><th></th></tr>
+  {% for s in staff %}
+  <tr>
+    <td>{{ s.name }}</td><td>{{ s.role_title|default:"—" }}</td><td>{{ s.phone|default:"—" }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:staff_edit' s.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:staff_delete' s.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No staff yet.</div>
+{% endif %}
+{% endblock %}

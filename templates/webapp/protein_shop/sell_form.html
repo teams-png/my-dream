@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Sell{% endblock %}
+{% block heading %}Sell — {{ batch.product.name }} (batch {{ batch.batch_number }}){% endblock %}
+{% block content %}
+<p style="color:var(--ink-soft); font-size:13.5px;">{{ batch.quantity_remaining }} remaining in this batch.</p>
+<div class="card" style="max-width:420px;">
+  <form class="stacked" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Sell</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:protein_batch_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

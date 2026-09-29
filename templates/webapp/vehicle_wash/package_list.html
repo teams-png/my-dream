@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Wash packages{% endblock %}
+{% block heading %}Wash packages{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:wash_package_add' %}">+ Add package</a></div>
+{% if packages %}
+<table>
+  <tr><th>Name</th><th>Vehicle type</th><th>Price</th><th>Duration</th><th></th></tr>
+  {% for p in packages %}
+  <tr>
+    <td>{{ p.name }}</td><td>{{ p.get_vehicle_type_display }}</td><td>{{ p.price }}</td><td>{{ p.duration_minutes }} min</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:wash_package_edit' p.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:wash_package_delete' p.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No wash packages yet. Add one (e.g. "Basic Wash", car, 30 min) before booking.</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Wash orders{% endblock %}
+{% block heading %}Wash orders{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:wash_order_book' %}">+ Book wash</a></div>
+{% if orders %}
+<table>
+  <tr><th>When</th><th>Vehicle</th><th>Package</th><th>Staff</th><th>Status</th><th></th></tr>
+  {% for o in orders %}
+  <tr>
+    <td>{{ o.scheduled_at|date:"d M, H:i" }}</td><td>{{ o.vehicle.vehicle_number }}</td>
+    <td>{{ o.package.name }}</td><td>{{ o.staff.name|default:"—" }}</td><td>{{ o.get_status_display }}</td>
+    <td>
+      {% if o.status == "booked" %}
+      <a class="btn btn-secondary" href="{% url 'webapp:wash_order_start' o.id %}">Start</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:wash_order_cancel' o.id %}">Cancel</a>
+      {% elif o.status == "in_progress" %}
+      <a class="btn btn-secondary" href="{% url 'webapp:wash_order_complete' o.id %}">Complete</a>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No wash orders yet.</div>
+{% endif %}
+{% endblock %}

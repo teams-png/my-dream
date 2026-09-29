@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Import products{% endblock %}
+{% block heading %}Import products from CSV{% endblock %}
+{% block content %}
+<div class="card" style="max-width:520px; margin-bottom:20px;">
+  <p style="margin-top:0; font-size:13.5px; color:var(--ink-soft);">
+    Your CSV needs these column headers (first row):
+  </p>
+  <p style="font-family:monospace; font-size:12.5px; background:var(--paper); padding:10px; border-radius:6px;">
+    SKU, Name, Unit, Selling Price, Category, Brand, Cost Price, Reorder Level
+  </p>
+  <p style="font-size:13px; color:var(--ink-soft);">
+    Only <strong>SKU, Name, Unit, Selling Price</strong> are required — the rest are optional.
+    If a product with that SKU already exists, it's updated instead of duplicated.
+    Category/Brand/Unit names that don't exist yet are created automatically.
+  </p>
+</div>
+
+<div class="card" style="max-width:420px;">
+  <form class="stacked" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Import</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:product_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

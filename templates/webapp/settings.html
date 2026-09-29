@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Settings{% endblock %}
+{% block heading %}Business settings{% endblock %}
+{% block content %}
+<div class="card" style="max-width:460px;">
+  <form class="stacked" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Save settings</button>
+  </form>
+</div>
+{% endblock %}

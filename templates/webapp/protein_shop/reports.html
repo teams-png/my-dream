@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock %}
+{% block heading %}Reports{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Revenue</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Batches in stock</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ batches_in_stock }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Expiring in 30 days</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ expiring_soon }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Already expired</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ expired }}</div>
+  </div>
+</div>
+{% endblock %}

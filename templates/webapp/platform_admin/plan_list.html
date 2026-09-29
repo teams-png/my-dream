@@ -1,0 +1,21 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Pricing plans{% endblock %}
+{% block heading %}Pricing plans{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:platform_plan_add' %}">+ Add plan</a></div>
+{% if plans %}
+<table>
+  <tr><th>Country</th><th>Plan</th><th>Users</th><th>Price</th><th>Billing</th><th>Active</th><th></th></tr>
+  {% for p in plans %}
+  <tr>
+    <td>{{ p.country }}</td><td>{{ p.name }}</td><td>{{ p.max_users }}</td>
+    <td>{{ p.currency }} {{ p.price }}</td><td>{{ p.get_billing_period_display }}</td>
+    <td>{% if p.is_active %}Yes{% else %}No{% endif %}</td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:platform_plan_edit' p.id %}">Edit</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No pricing plans yet. Add one for each country/tier (e.g. Qatar — 1 User — QR 299).</div>
+{% endif %}
+{% endblock %}

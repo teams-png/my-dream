@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Expense categories{% endblock %}
+{% block heading %}Expense categories{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;">
+  <a class="btn" href="{% url 'webapp:expense_category_add' %}">+ Add category</a>
+  <form method="post" action="{% url 'webapp:expense_category_seed_defaults' %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-secondary">+ Add common categories (Rent, Salary, etc.)</button>
+  </form>
+</div>
+{% if categories %}
+<table>
+  <tr><th>Name</th><th></th></tr>
+  {% for c in categories %}
+  <tr><td>{{ c.name }}</td><td><a class="btn btn-secondary" href="{% url 'webapp:expense_category_delete' c.id %}">Delete</a></td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No expense categories yet (e.g. Rent, Salary, Electricity).</div>
+{% endif %}
+{% endblock %}

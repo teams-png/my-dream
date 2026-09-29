@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Add expense{% endblock %}
+{% block heading %}Add expense{% endblock %}
+{% block content %}
+{% if no_categories %}
+<div class="card" style="margin-bottom:16px;">No expense categories yet. <a href="{% url 'webapp:expense_category_add' %}">Add one</a> first (e.g. Rent, Salary).</div>
+{% endif %}
+<div class="card" style="max-width:420px;">
+  <form class="stacked" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Save</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:expense_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

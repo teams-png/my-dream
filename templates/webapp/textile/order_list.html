@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Orders{% endblock %}
+{% block heading %}Tailoring orders{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:order_add' %}">+ New order</a></div>
+{% if orders %}
+<table>
+  <tr><th>Customer</th><th>Order date</th><th>Due</th><th>Price</th><th>Status</th><th></th></tr>
+  {% for o in orders %}
+  <tr>
+    <td>{{ o.customer.name }}</td><td>{{ o.order_date }}</td><td>{{ o.expected_delivery_date }}</td>
+    <td>{{ o.price }}</td><td>{{ o.get_status_display }}</td>
+    <td>
+      {% if o.status == "pending" or o.status == "in_progress" %}
+      <a class="btn btn-secondary" href="{% url 'webapp:order_mark_ready' o.id %}">Mark ready</a>
+      {% elif o.status == "ready" %}
+      <a class="btn btn-secondary" href="{% url 'webapp:order_mark_delivered' o.id %}">Mark delivered</a>
+      {% endif %}
+      {% if o.status != "delivered" and o.status != "cancelled" %}
+      <a class="btn btn-secondary" href="{% url 'webapp:order_edit' o.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:order_cancel' o.id %}">Cancel</a>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No orders yet.</div>
+{% endif %}
+{% endblock %}

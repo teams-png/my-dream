@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ project.name }}{% endblock %}
+{% block heading %}{{ project.name }}{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Budget</div>
+    <div style="font-size:22px; font-weight:600; margin-top:6px;">{{ summary.budget }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Spent</div>
+    <div style="font-size:22px; font-weight:600; margin-top:6px;">{{ summary.total_spent }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Budget remaining</div>
+    <div style="font-size:22px; font-weight:600; margin-top:6px; {% if summary.over_budget %}color:var(--danger);{% endif %}">{{ summary.budget_remaining }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Project profit</div>
+    <div style="font-size:22px; font-weight:600; margin-top:6px;">{{ summary.project_profit }}</div>
+  </div>
+</div>
+
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:project_expense_add' %}">+ Record expense</a> <a class="btn btn-secondary" href="{% url 'webapp:project_milestone_add' project.id %}">+ Milestone</a> <a class="btn btn-secondary" href="{% url 'webapp:project_task_add' project.id %}">+ Task</a> <a class="btn btn-secondary" href="{% url 'webapp:project_timesheet_add' project.id %}">+ Timesheet</a></div>
+
+<h2 style="font-size:16px;">Milestones</h2><table><tr><th>Name</th><th>Due</th><th>Amount</th><th>Progress</th><th>Status</th></tr>{% for m in milestones %}<tr><td>{{ m.name }}</td><td>{{ m.due_date|default:"—" }}</td><td>{{ m.amount }}</td><td>{{ m.completion_percent }}%</td><td>{{ m.get_status_display }}</td></tr>{% empty %}<tr><td colspan="5">No milestones.</td></tr>{% endfor %}</table>
+<h2 style="font-size:16px;">Tasks</h2><table><tr><th>Task</th><th>Milestone</th><th>Assigned</th><th>Due</th><th>Status</th></tr>{% for t in tasks %}<tr><td>{{ t.title }}</td><td>{{ t.milestone.name|default:"—" }}</td><td>{{ t.assigned_to|default:"—" }}</td><td>{{ t.due_date|default:"—" }}</td><td>{{ t.get_status_display }}</td></tr>{% empty %}<tr><td colspan="5">No tasks.</td></tr>{% endfor %}</table>
+<h2 style="font-size:16px;">Timesheets (labour cost {{ labour_cost }})</h2><table><tr><th>Date</th><th>Employee</th><th>Task</th><th>Hours</th><th>Cost</th></tr>{% for t in timesheets %}<tr><td>{{ t.date }}</td><td>{{ t.employee }}</td><td>{{ t.task.title|default:"—" }}</td><td>{{ t.hours }}</td><td>{{ t.cost }}</td></tr>{% empty %}<tr><td colspan="5">No timesheets.</td></tr>{% endfor %}</table>
+
+<h2 style="font-size:16px; margin-bottom:10px;">Expenses</h2>
+{% if expenses %}
+<table>
+  <tr><th>Date</th><th>Category</th><th>Contractor</th><th>Amount</th><th>Description</th></tr>
+  {% for e in expenses %}
+  <tr>
+    <td>{{ e.date }}</td><td>{{ e.get_category_display }}</td><td>{{ e.contractor.name|default:"—" }}</td>
+    <td>{{ e.amount }}</td><td>{{ e.description|default:"—" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No expenses recorded yet.</div>
+{% endif %}
+{% endblock %}

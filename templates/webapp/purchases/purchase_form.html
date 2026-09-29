@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}New purchase{% endblock %}
+{% block heading %}New purchase{% endblock %}
+{% block content %}
+{% if no_suppliers %}
+<div class="card" style="margin-bottom:16px;">No suppliers yet. <a href="{% url 'webapp:supplier_add' %}">Add a supplier</a> first.</div>
+{% endif %}
+{% if no_products %}
+<div class="card" style="margin-bottom:16px;">No products yet. <a href="{% url 'webapp:product_add' %}">Add a product</a> first.</div>
+{% endif %}
+<p style="color:var(--ink-soft); font-size:13px;">This records the bill and adds the quantity to stock automatically. For multiple items, record one purchase per item for now.</p>
+<div class="card" style="max-width:440px;">
+  <form class="stacked" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <button class="btn" style="margin-top:20px;" type="submit">Record purchase</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:purchase_list' %}">Cancel</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Vehicles{% endblock %}
+{% block heading %}Vehicles{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:vehicle_add' %}">+ Add vehicle</a></div>
+{% if vehicles %}
+<table>
+  <tr><th>Number</th><th>Type</th><th>Make/Model</th><th>Customer</th><th></th></tr>
+  {% for v in vehicles %}
+  <tr>
+    <td>{{ v.vehicle_number }}</td><td>{{ v.get_vehicle_type_display }}</td>
+    <td>{{ v.make }} {{ v.model }}</td><td>{{ v.customer.name }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:vehicle_edit' v.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:vehicle_delete' v.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No vehicles yet.</div>
+{% endif %}
+{% endblock %}

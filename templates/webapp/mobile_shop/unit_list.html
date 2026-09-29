@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Phone units{% endblock %}
+{% block heading %}Phone units{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:unit_add' %}">+ Add unit</a> <a class="btn btn-secondary" href="{% url 'webapp:mobile_bulk_imei_add' %}">Bulk IMEI purchase</a></div>
+{% if units %}
+<table>
+  <tr><th>Product</th><th>IMEI / Serial</th><th>Condition</th><th>Branch</th><th>Warranty</th><th>Purchase price</th><th>Status</th><th></th></tr>
+  {% for u in units %}
+  <tr>
+    <td>{{ u.product.name }}</td><td>{{ u.imei }}<br><small>{{ u.serial_number }}</small></td><td>{{ u.get_condition_display }}</td><td>{{ u.warehouse|default:"—" }}</td><td>{{ u.warranty_months }} months{% if u.warranty_expires %}<br><small>until {{ u.warranty_expires }}</small>{% endif %}</td>
+    <td>{{ u.purchase_price }}</td><td>{{ u.get_status_display }}</td>
+    <td>{% if u.status == "in_stock" %}<a class="btn btn-secondary" href="{% url 'webapp:sell_unit' u.id %}">Sell</a>{% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No phone units yet. Add products first, then add individual units by IMEI.</div>
+{% endif %}
+{% endblock %}

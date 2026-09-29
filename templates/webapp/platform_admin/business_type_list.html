@@ -1,0 +1,6 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Business Types{% endblock %}{% block heading %}Business Types{% endblock %}
+{% block content %}
+<div style="display:flex; justify-content:space-between; margin-bottom:16px;"><p style="color:var(--ink-soft); margin:0;">Set the default modules for each kind of business.</p><a class="btn" href="{% url 'webapp:platform_business_type_add' %}">Add business type</a></div>
+<table><tr><th>Name</th><th>Code</th><th>Default modules</th><th></th></tr>{% for item in business_types %}<tr><td>{{ item.name }}</td><td><code>{{ item.code }}</code></td><td>{% for link in item.default_modules.all %}{{ link.module.name }}{% if not forloop.last %}, {% endif %}{% empty %}None{% endfor %}</td><td><a href="{% url 'webapp:platform_business_type_edit' item.id %}">Edit</a></td></tr>{% empty %}<tr><td colspan="4" class="empty">No business types configured.</td></tr>{% endfor %}</table>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock %}
+{% block heading %}Reports{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">In stock</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ in_stock_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Sold</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ sold_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Revenue</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Open tickets</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ open_tickets }}</div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Expense reports{% endblock %}
+{% block heading %}Expense reports{% endblock %}
+{% block content %}
+<div class="card" style="max-width:260px; margin-bottom:24px;">
+  <div style="color:var(--ink-soft); font-size:13px;">Total expenses</div>
+  <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ total }}</div>
+</div>
+
+<h2 style="font-size:16px; margin-bottom:10px;">By category</h2>
+{% if by_category %}
+<table>
+  <tr><th>Category</th><th>Count</th><th>Total</th></tr>
+  {% for row in by_category %}
+  <tr><td>{{ row.category__name }}</td><td>{{ row.count }}</td><td>{{ row.total }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No expenses yet.</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Suppliers{% endblock %}
+{% block heading %}Suppliers{% endblock %}
+{% block content %}
+<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:supplier_add' %}">+ Add supplier</a></div>
+{% if suppliers %}
+<table>
+  <tr><th>Name</th><th>Phone</th><th>Email</th><th></th></tr>
+  {% for s in suppliers %}
+  <tr>
+    <td><a href="{% url 'webapp:supplier_detail' s.id %}">{{ s.name }}</a></td>
+    <td>{{ s.phone|default:"—" }}</td><td>{{ s.email|default:"—" }}</td>
+    <td>
+      <a class="btn btn-secondary" href="{% url 'webapp:supplier_edit' s.id %}">Edit</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:supplier_delete' s.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">No suppliers yet.</div>
+{% endif %}
+{% endblock %}

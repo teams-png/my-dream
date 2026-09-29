@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock %}
+{% block heading %}Reports{% endblock %}
+{% block content %}
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Pending</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ pending_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">In progress</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ in_progress_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Ready</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ ready_count }}</div>
+  </div>
+  <div class="card">
+    <div style="color:var(--ink-soft); font-size:13px;">Delivered</div>
+    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ delivered_count }}</div>
+  </div>
+</div>
+<div class="card" style="max-width:300px;">
+  <div style="color:var(--ink-soft); font-size:13px;">Revenue (delivered orders)</div>
+  <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
+</div>
+{% endblock %}

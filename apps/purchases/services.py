@@ -96,10 +96,12 @@ def record_supplier_payment(*, company, user, supplier, amount, date, purchase=N
     payment = SupplierPayment.objects.create(
         company=company, supplier=supplier, purchase=purchase, amount=amount, date=date, method=method,
     )
-    accounts = {a.code: a for a in Account.objects.for_company(company).filter(code__in=["1000", "2000"])}
+    # Cash payments leave the cash box; bank, card and cheque payments leave the bank.
+    asset_code = "1000" if method == "cash" else "1010"
+    accounts = {a.code: a for a in Account.objects.for_company(company).filter(code__in=[asset_code, "2000"])}
     entry = post_journal_entry(
         company=company, date=date, user=user,
-        lines=[(accounts["2000"], amount, Decimal("0")), (accounts["1000"], Decimal("0"), amount)],
+        lines=[(accounts["2000"], amount, Decimal("0")), (accounts[asset_code], Decimal("0"), amount)],
         reference=f"SupPayment#{payment.id}", source_type="supplier_payment", source_id=payment.id,
     )
     payment.journal_entry = entry

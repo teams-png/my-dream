@@ -54,6 +54,22 @@ msgid "Finance"
 msgstr "المالية"
 
 #: templates/base.html
+msgid "Finance overview"
+msgstr "نظرة مالية"
+
+#: templates/base.html
+msgid "Cheques (PDC)"
+msgstr "الشيكات المؤجلة"
+
+#: templates/base.html
+msgid "Recurring invoices"
+msgstr "الفواتير المتكررة"
+
+#: templates/base.html
+msgid "Fixed assets"
+msgstr "الأصول الثابتة"
+
+#: templates/base.html
 msgid "Expenses"
 msgstr "المصروفات"
 
@@ -961,6 +977,300 @@ msgstr ""
 msgid "Check agent"
 msgstr "فحص الوكيل"
 
+#: templates/webapp/finance/assets.html
+msgid "Cost of assets in use"
+msgstr "تكلفة الأصول المستخدمة"
+
+#: templates/webapp/finance/assets.html
+msgid "Current book value"
+msgstr "القيمة الدفترية الحالية"
+
+#: templates/webapp/finance/assets.html
+msgid "Post depreciation"
+msgstr "ترحيل الإهلاك"
+
+#: templates/webapp/finance/assets.html
+msgid "Straight-line, up to this month"
+msgstr "القسط الثابت حتى هذا الشهر"
+
+#: templates/webapp/finance/assets.html
+msgid "Asset"
+msgstr "الأصل"
+
+#: templates/webapp/finance/assets.html
+msgid "Cost"
+msgstr "التكلفة"
+
+#: templates/webapp/finance/assets.html
+msgid "Depreciated"
+msgstr "المُهلك"
+
+#: templates/webapp/finance/assets.html
+msgid "Book value"
+msgstr "القيمة الدفترية"
+
+#: templates/webapp/finance/assets.html
+msgid "months"
+msgstr "أشهر"
+
+#: templates/webapp/finance/assets.html
+msgid "month"
+msgstr "شهر"
+
+#: templates/webapp/finance/assets.html
+msgid "Sale amount (0 if scrapped)"
+msgstr "مبلغ البيع (0 إذا أُتلف)"
+
+#: templates/webapp/finance/assets.html
+msgid "Sell / scrap"
+msgstr "بيع / إتلاف"
+
+#: templates/webapp/finance/assets.html
+msgid "Disposed"
+msgstr "مُستبعد"
+
+#: templates/webapp/finance/assets.html
+msgid "Add equipment, vehicles, furniture or computers to track their value."
+msgstr "أضف المعدات أو المركبات أو الأثاث أو الحواسيب لتتبع قيمتها."
+
+#: templates/webapp/finance/assets.html
+msgid "Add asset"
+msgstr "إضافة أصل"
+
+#: templates/webapp/finance/assets.html
+msgid "The purchase is recorded in your books automatically."
+msgstr "يُسجّل الشراء في دفاترك تلقائيًا."
+
+#: templates/webapp/finance/assets.html
+msgid "Name"
+msgstr "الاسم"
+
+#: templates/webapp/finance/assets.html
+msgid "Category"
+msgstr "الفئة"
+
+#: templates/webapp/finance/assets.html
+msgid "Asset code"
+msgstr "رمز الأصل"
+
+#: templates/webapp/finance/assets.html
+msgid "Purchase date"
+msgstr "تاريخ الشراء"
+
+#: templates/webapp/finance/assets.html
+msgid "Paid from"
+msgstr "مدفوع من"
+
+#: templates/webapp/finance/assets.html
+msgid "Notes"
+msgstr "ملاحظات"
+
+#: templates/webapp/finance/cheques.html
+msgid "Post-dated cheques"
+msgstr "الشيكات المؤجلة"
+
+#: templates/webapp/finance/cheques.html
+msgid "Open"
+msgstr "فتح"
+
+#: templates/webapp/finance/cheques.html
+msgid "All"
+msgstr "الكل"
+
+#: templates/webapp/finance/cheques.html
+msgid "Party"
+msgstr "الطرف"
+
+#: templates/webapp/finance/cheques.html
+msgid "Cheque"
+msgstr "الشيك"
+
+#: templates/webapp/finance/cheques.html
+msgid "Amount"
+msgstr "المبلغ"
+
+#: templates/webapp/finance/cheques.html
+msgid "Due"
+msgstr "مستحق"
+
+#: templates/webapp/finance/cheques.html
+msgid "Deposited"
+msgstr "مودع"
+
+#: templates/webapp/finance/cheques.html
+msgid "Cleared ✓"
+msgstr "تم الصرف ✓"
+
+#: templates/webapp/finance/cheques.html
+msgid "Why did it bounce?"
+msgstr "لماذا ارتد الشيك؟"
+
+#: templates/webapp/finance/cheques.html
+msgid "Insufficient funds"
+msgstr "رصيد غير كافٍ"
+
+#: templates/webapp/finance/cheques.html
+msgid "Bounced"
+msgstr "مرتد"
+
+#: templates/webapp/finance/cheques.html
+msgid "Cancel this cheque?"
+msgstr "إلغاء هذا الشيك؟"
+
+#: templates/webapp/finance/cheques.html
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: templates/webapp/finance/cheques.html
+msgid "No cheques here."
+msgstr "لا توجد شيكات هنا."
+
+#: templates/webapp/finance/cheques.html
+msgid "Add a cheque"
+msgstr "إضافة شيك"
+
+#: templates/webapp/finance/cheques.html
+msgid "Payments are booked only when the cheque clears."
+msgstr "تُسجّل الدفعة فقط عند صرف الشيك."
+
+#: templates/webapp/finance/cheques.html
+msgid "Supplier"
+msgstr "المورد"
+
+#: templates/webapp/finance/cheques.html
+msgid "Cheque number"
+msgstr "رقم الشيك"
+
+#: templates/webapp/finance/cheques.html
+msgid "Bank"
+msgstr "بنك"
+
+#: templates/webapp/finance/cheques.html
+msgid "Save cheque"
+msgstr "حفظ الشيك"
+
+#: templates/webapp/finance/home.html
+msgid "Cheques to receive"
+msgstr "شيكات للتحصيل"
+
+#: templates/webapp/finance/home.html
+msgid "Cheques to pay"
+msgstr "شيكات للدفع"
+
+#: templates/webapp/finance/home.html
+msgid "Recurring invoices due"
+msgstr "فواتير متكررة مستحقة"
+
+#: templates/webapp/finance/home.html
+msgid "assets · book value"
+msgstr "أصول · القيمة الدفترية"
+
+#: templates/webapp/finance/home.html
+msgid "Cheques due this week"
+msgstr "شيكات مستحقة هذا الأسبوع"
+
+#: templates/webapp/finance/home.html
+msgid "Deposit or pay these on time to avoid bounced cheques."
+msgstr "أودعها أو ادفعها في موعدها لتجنب ارتداد الشيكات."
+
+#: templates/webapp/finance/home.html
+msgid "No cheques due this week."
+msgstr "لا توجد شيكات مستحقة هذا الأسبوع."
+
+#: templates/webapp/finance/home.html
+msgid "All cheques →"
+msgstr "كل الشيكات ←"
+
+#: templates/webapp/finance/home.html
+msgid "Created automatically every day."
+msgstr "تُنشأ تلقائيًا كل يوم."
+
+#: templates/webapp/finance/home.html
+msgid "Next:"
+msgstr "التالي:"
+
+#: templates/webapp/finance/home.html
+msgid "No recurring invoices yet."
+msgstr "لا توجد فواتير متكررة بعد."
+
+#: templates/webapp/finance/home.html
+msgid "Manage →"
+msgstr "إدارة ←"
+
+#: templates/webapp/finance/recurring.html
+msgid "Schedules"
+msgstr "الجداول"
+
+#: templates/webapp/finance/recurring.html
+msgid ""
+"Invoices are created automatically on the due date (and emailed if you "
+"choose)."
+msgstr "تُنشأ الفواتير تلقائيًا في موعدها (وتُرسل بالبريد إذا اخترت ذلك)."
+
+#: templates/webapp/finance/recurring.html
+msgid "Next invoice"
+msgstr "الفاتورة التالية"
+
+#: templates/webapp/finance/recurring.html
+msgid "Created"
+msgstr "أُنشئت"
+
+#: templates/webapp/finance/recurring.html
+msgid "Stopped"
+msgstr "متوقفة"
+
+#: templates/webapp/finance/recurring.html
+msgid "Run now"
+msgstr "تشغيل الآن"
+
+#: templates/webapp/finance/recurring.html
+msgid "Pause"
+msgstr "إيقاف مؤقت"
+
+#: templates/webapp/finance/recurring.html
+msgid "Resume"
+msgstr "استئناف"
+
+#: templates/webapp/finance/recurring.html
+msgid ""
+"No schedules yet. Create one for rent, maintenance contracts, memberships or"
+" subscriptions."
+msgstr ""
+"لا توجد جداول بعد. أنشئ جدولًا للإيجار أو عقود الصيانة أو العضويات أو "
+"الاشتراكات."
+
+#: templates/webapp/finance/recurring.html
+msgid "New schedule"
+msgstr "جدول جديد"
+
+#: templates/webapp/finance/recurring.html
+msgid "Bill the same items again and again."
+msgstr "فوترة نفس الأصناف بشكل متكرر."
+
+#: templates/webapp/finance/recurring.html
+msgid "Items"
+msgstr "الأصناف"
+
+#: templates/webapp/finance/recurring.html
+msgid "Add line"
+msgstr "إضافة سطر"
+
+#: templates/webapp/finance/recurring.html
+msgid "Tax %"
+msgstr "الضريبة %"
+
+#: templates/webapp/finance/recurring.html
+msgid "Email to customer"
+msgstr "إرسال للعميل بالبريد"
+
+#: templates/webapp/finance/recurring.html
+msgid "Create schedule"
+msgstr "إنشاء الجدول"
+
+#: templates/webapp/finance/recurring.html
+msgid "Price"
+msgstr "السعر"
+
 #: templates/webapp/invoice_pdf.html
 msgid "Print"
 msgstr "طباعة"
@@ -1006,10 +1316,6 @@ msgid "Unit price"
 msgstr "سعر الوحدة"
 
 #: templates/webapp/invoice_pdf.html
-msgid "Amount"
-msgstr "المبلغ"
-
-#: templates/webapp/invoice_pdf.html
 msgid "Handset IMEI & Warranty"
 msgstr "رقم IMEI والضمان"
 
@@ -1024,10 +1330,6 @@ msgstr "· الرقم التسلسلي:"
 #: templates/webapp/invoice_pdf.html
 msgid "· Warranty:"
 msgstr "· الضمان:"
-
-#: templates/webapp/invoice_pdf.html
-msgid "months"
-msgstr "أشهر"
 
 #: templates/webapp/invoice_pdf.html
 msgid "(until"
@@ -1106,10 +1408,6 @@ msgstr ""
 #: templates/webapp/invoice_share.html
 msgid "Copy"
 msgstr "نسخ"
-
-#: templates/webapp/invoice_share.html
-msgid "Open"
-msgstr "فتح"
 
 #: templates/webapp/invoice_share.html
 msgid "Share…"
@@ -1214,10 +1512,6 @@ msgstr "العربون / المبلغ المدفوع الآن"
 #: templates/webapp/pos.html
 msgid "Deposit method"
 msgstr "طريقة الدفع"
-
-#: templates/webapp/pos.html
-msgid "Bank"
-msgstr "بنك"
 
 #: templates/webapp/pos.html
 msgid "Number of instalments"
@@ -1550,10 +1844,6 @@ msgstr "كل خطة تبدأ بـ"
 #: templates/webapp/public/landing.html
 msgid "year"
 msgstr "سنة"
-
-#: templates/webapp/public/landing.html
-msgid "month"
-msgstr "شهر"
 
 #: templates/webapp/public/landing.html
 msgid "Up to"
@@ -2270,10 +2560,6 @@ msgid "Menu categories"
 msgstr "فئات القائمة"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "All"
-msgstr "الكل"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Search dishes, category or SKU…"
 msgstr "ابحث عن طبق أو فئة أو رمز…"
 
@@ -2532,10 +2818,6 @@ msgstr "أقل"
 #: templates/webapp/restaurant/order_detail.html
 msgid "More"
 msgstr "المزيد"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Cancel"
-msgstr "إلغاء"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Add to Order"
@@ -2801,6 +3083,46 @@ msgstr "نسيتها؟ استخدم «نسيت كلمة المرور» في صف
 msgid "Reset password by email"
 msgstr "إعادة تعيين كلمة المرور بالبريد"
 
+#: apps/finance/models.py
+msgid "Received from customer"
+msgstr "مستلم من عميل"
+
+#: apps/finance/models.py
+msgid "Issued to supplier"
+msgstr "صادر لمورد"
+
+#: apps/finance/models.py
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#: apps/finance/models.py
+msgid "Cleared"
+msgstr "تم الصرف"
+
+#: apps/finance/models.py
+msgid "Cancelled"
+msgstr "ملغى"
+
+#: apps/finance/models.py
+msgid "Every 3 months"
+msgstr "كل 3 أشهر"
+
+#: apps/finance/models.py
+msgid "Yearly"
+msgstr "سنوي"
+
+#: apps/finance/models.py
+msgid "In use"
+msgstr "قيد الاستخدام"
+
+#: apps/finance/models.py
+msgid "On credit (supplier)"
+msgstr "آجل (مورد)"
+
+#: apps/finance/models.py
+msgid "Already owned (no payment now)"
+msgstr "مملوك مسبقًا (بدون دفع الآن)"
+
 #: apps/verticals/restaurant/models.py
 msgid "Available"
 msgstr "متاحة"
@@ -2816,10 +3138,6 @@ msgstr "جالس"
 #: apps/verticals/restaurant/models.py
 msgid "Completed"
 msgstr "مكتمل"
-
-#: apps/verticals/restaurant/models.py
-msgid "Cancelled"
-msgstr "ملغى"
 
 #: apps/verticals/restaurant/models.py
 msgid "No-show"
@@ -2856,3 +3174,83 @@ msgstr "في الانتظار"
 #: apps/verticals/restaurant/models.py
 msgid "Preparing"
 msgstr "قيد التحضير"
+
+#: apps/webapp/finance_views.py
+msgid "Against invoice (optional)"
+msgstr "مقابل فاتورة (اختياري)"
+
+#: apps/webapp/finance_views.py
+msgid "Against bill (optional)"
+msgstr "مقابل فاتورة شراء (اختياري)"
+
+#: apps/webapp/finance_views.py
+msgid "Cheque date"
+msgstr "تاريخ الشيك"
+
+#: apps/webapp/finance_views.py
+msgid "Received / issued on"
+msgstr "تاريخ الاستلام / الإصدار"
+
+#: apps/webapp/finance_views.py
+msgid "First invoice date"
+msgstr "تاريخ أول فاتورة"
+
+#: apps/webapp/finance_views.py
+msgid "Stop after (optional)"
+msgstr "التوقف بعد (اختياري)"
+
+#: apps/webapp/finance_views.py
+msgid "Useful life (months)"
+msgstr "العمر الإنتاجي (بالأشهر)"
+
+#: apps/webapp/finance_views.py
+msgid "Value at end of life"
+msgstr "القيمة في نهاية العمر"
+
+#: apps/webapp/finance_views.py
+msgid "Cheque saved."
+msgstr "تم حفظ الشيك."
+
+#: apps/webapp/finance_views.py
+msgid "Cheque updated."
+msgstr "تم تحديث الشيك."
+
+#: apps/webapp/finance_views.py
+msgid "Check the quantity and price on every line."
+msgstr "تحقق من الكمية والسعر في كل سطر."
+
+#: apps/webapp/finance_views.py
+msgid "Add at least one line."
+msgstr "أضف سطرًا واحدًا على الأقل."
+
+#: apps/webapp/finance_views.py
+msgid "Recurring invoice created."
+msgstr "تم إنشاء الفاتورة المتكررة."
+
+#: apps/webapp/finance_views.py
+msgid "Please fix the highlighted fields."
+msgstr "يرجى تصحيح الحقول المحددة."
+
+#: apps/webapp/finance_views.py
+msgid "%(n)s invoice(s) created."
+msgstr "تم إنشاء %(n)s فاتورة."
+
+#: apps/webapp/finance_views.py
+msgid "Nothing due yet."
+msgstr "لا شيء مستحق بعد."
+
+#: apps/webapp/finance_views.py
+msgid "%(n)s depreciation entries posted."
+msgstr "تم ترحيل %(n)s قيد إهلاك."
+
+#: apps/webapp/finance_views.py
+msgid "Depreciation is already up to date."
+msgstr "الإهلاك محدّث بالفعل."
+
+#: apps/webapp/finance_views.py
+msgid "Asset added and recorded in the books."
+msgstr "تمت إضافة الأصل وتسجيله في الدفاتر."
+
+#: apps/webapp/finance_views.py
+msgid "Asset disposed and the gain or loss recorded."
+msgstr "تم استبعاد الأصل وتسجيل الربح أو الخسارة."

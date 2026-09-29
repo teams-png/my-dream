@@ -1,0 +1,31 @@
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% translate "Finance" %}{% endblock %}
+{% block heading %}{% translate "Finance" %}{% endblock %}
+{% block content %}
+{% include "webapp/finance/_styles.html" %}
+{% with cur=active_company.default_currency %}
+<div class="fn-stats">
+  <div class="fn-stat"><div class="ic">📥</div><div><b>{{ cur }} {{ to_receive|floatformat:2 }}</b><span>{% translate "Cheques to receive" %}</span></div></div>
+  <div class="fn-stat" style="animation-delay:.05s"><div class="ic">📤</div><div><b>{{ cur }} {{ to_pay|floatformat:2 }}</b><span>{% translate "Cheques to pay" %}</span></div></div>
+  <div class="fn-stat" style="animation-delay:.1s"><div class="ic">🔁</div><div><b>{{ recurring_due }}</b><span>{% translate "Recurring invoices due" %}</span></div></div>
+  <div class="fn-stat" style="animation-delay:.15s"><div class="ic">🏗️</div><div><b>{{ cur }} {{ asset_book_value|floatformat:2 }}</b><span>{{ asset_count }} {% translate "assets · book value" %}</span></div></div>
+</div>
+<div class="fn-grid">
+  <section class="fn-card">
+    <h2>{% translate "Cheques due this week" %}</h2><p>{% translate "Deposit or pay these on time to avoid bounced cheques." %}</p>
+    <table>
+      <tr><th>{% translate "Date" %}</th><th>{% translate "Party" %}</th><th>{% translate "Cheque" %}</th><th>{% translate "Amount" %}</th><th></th></tr>
+      {% for c in due_week %}<tr class="{% if c.cheque_date <= today %}due{% endif %}"><td>{{ c.cheque_date|date:"d M" }}</td><td>{% if c.direction == 'received' %}📥{% else %}📤{% endif %} {{ c.party }}</td><td>{{ c.cheque_number }}</td><td class="money">{{ c.amount|floatformat:2 }}</td><td><span class="pill {{ c.status }}">{{ c.get_status_display }}</span></td></tr>
+      {% empty %}<tr><td colspan="5" class="fn-empty"><b>✅</b>{% translate "No cheques due this week." %}</td></tr>{% endfor %}
+    </table>
+    <p style="margin-top:12px"><a class="btn btn-secondary" href="{% url 'webapp:cheque_list' %}">{% translate "All cheques →" %}</a></p>
+  </section>
+  <section class="fn-card">
+    <h2>{% translate "Recurring invoices" %}</h2><p>{% translate "Created automatically every day." %}</p>
+    {% for r in recurring %}<div style="display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)"><div><strong>{{ r.name }}</strong><br><small style="color:var(--ink-soft)">{{ r.customer }} · {{ r.get_frequency_display }}</small></div><div style="text-align:end"><span class="money">{{ cur }} {{ r.amount|floatformat:2 }}</span><br><small style="color:var(--ink-soft)">{% translate "Next:" %} {{ r.next_run_date|date:"d M Y" }}</small></div></div>
+    {% empty %}<div class="fn-empty"><b>🔁</b>{% translate "No recurring invoices yet." %}</div>{% endfor %}
+    <p style="margin-top:12px"><a class="btn btn-secondary" href="{% url 'webapp:recurring_list' %}">{% translate "Manage →" %}</a></p>
+  </section>
+</div>
+{% endwith %}
+{% endblock %}

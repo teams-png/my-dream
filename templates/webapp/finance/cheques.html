@@ -1,0 +1,50 @@
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% translate "Cheques (PDC)" %}{% endblock %}
+{% block heading %}{% translate "Post-dated cheques" %}{% endblock %}
+{% block content %}
+{% include "webapp/finance/_styles.html" %}
+<div class="fn-grid">
+  <section class="fn-card">
+    <div class="fn-filter">
+      <a class="{% if status == 'open' %}on{% endif %}" href="?status=open">{% translate "Open" %}</a>
+      {% for code, label in statuses %}<a class="{% if status == code %}on{% endif %}" href="?status={{ code }}">{{ label }}</a>{% endfor %}
+      <a class="{% if status == 'all' %}on{% endif %}" href="?status=all">{% translate "All" %}</a>
+    </div>
+    <table>
+      <tr><th>{% translate "Date" %}</th><th>{% translate "Party" %}</th><th>{% translate "Cheque" %}</th><th>{% translate "Amount" %}</th><th>{% translate "Status" %}</th><th></th></tr>
+      {% for c in cheques %}
+      <tr class="{% if c.status == 'pending' and c.cheque_date <= soon %}due{% endif %}">
+        <td>{{ c.cheque_date|date:"d M Y" }}{% if c.status == 'pending' and c.cheque_date <= today %}<br><span class="pill due">{% translate "Due" %}</span>{% endif %}</td>
+        <td>{% if c.direction == 'received' %}📥{% else %}📤{% endif %} <strong>{{ c.party }}</strong>{% if c.invoice %}<br><small>{{ c.invoice.invoice_number }}</small>{% elif c.purchase %}<br><small>{{ c.purchase.bill_number|default:c.purchase.id }}</small>{% endif %}</td>
+        <td>{{ c.cheque_number }}<br><small style="color:var(--ink-soft)">{{ c.bank_name }}</small></td>
+        <td class="money">{{ c.amount|floatformat:2 }}</td>
+        <td><span class="pill {{ c.status }}">{{ c.get_status_display }}</span>{% if c.bounce_reason %}<br><small style="color:var(--danger)">{{ c.bounce_reason }}</small>{% endif %}</td>
+        <td><div class="fn-actions">
+          {% if c.status == 'pending' or c.status == 'bounced' %}<form method="post" action="{% url 'webapp:cheque_status' c.id %}">{% csrf_token %}<input type="hidden" name="status" value="deposited"><button>{% translate "Deposited" %}</button></form>{% endif %}
+          {% if c.status == 'pending' or c.status == 'deposited' %}<form method="post" action="{% url 'webapp:cheque_status' c.id %}">{% csrf_token %}<input type="hidden" name="status" value="cleared"><button class="ok">{% translate "Cleared ✓" %}</button></form>
+          <form method="post" action="{% url 'webapp:cheque_status' c.id %}" onsubmit="const r=prompt('{% translate "Why did it bounce?" %}','{% translate "Insufficient funds" %}');if(r===null)return false;this.reason.value=r">{% csrf_token %}<input type="hidden" name="status" value="bounced"><input type="hidden" name="reason"><button class="bad">{% translate "Bounced" %}</button></form>{% endif %}
+          {% if c.status == 'pending' or c.status == 'bounced' %}<form method="post" action="{% url 'webapp:cheque_status' c.id %}" onsubmit="return confirm('{% translate "Cancel this cheque?" %}')">{% csrf_token %}<input type="hidden" name="status" value="cancelled"><button>{% translate "Cancel" %}</button></form>{% endif %}
+        </div></td>
+      </tr>
+      {% empty %}<tr><td colspan="6" class="fn-empty"><b>🧾</b>{% translate "No cheques here." %}</td></tr>{% endfor %}
+    </table>
+  </section>
+  <section class="fn-card">
+    <h2>{% translate "Add a cheque" %}</h2><p>{% translate "Payments are booked only when the cheque clears." %}</p>
+    <form method="post" class="fn-form">{% csrf_token %}
+      {{ form.direction }}
+      <div data-dir="received"><label>{% translate "Customer" %}</label>{{ form.customer }}<label>{{ form.invoice.label }}</label>{{ form.invoice }}</div>
+      <div data-dir="issued"><label>{% translate "Supplier" %}</label>{{ form.supplier }}<label>{{ form.purchase.label }}</label>{{ form.purchase }}</div>
+      <div class="row2"><div><label>{% translate "Cheque number" %}</label>{{ form.cheque_number }}</div><div><label>{% translate "Amount" %}</label>{{ form.amount }}</div></div>
+      <div class="row2"><div><label>{{ form.cheque_date.label }}</label>{{ form.cheque_date }}</div><div><label>{{ form.received_on.label }}</label>{{ form.received_on }}</div></div>
+      <label>{% translate "Bank" %}</label>{{ form.bank_name }}
+      <label>{% translate "Notes" %}</label>{{ form.notes }}
+      {{ form.non_field_errors }}{% for f in form %}{{ f.errors }}{% endfor %}
+      <button class="btn" style="margin-top:14px;width:100%;justify-content:center">{% translate "Save cheque" %}</button>
+    </form>
+  </section>
+</div>
+<script>
+(function(){const upd=()=>{const v=document.querySelector('[name=direction]:checked')?.value||'received';document.querySelectorAll('[data-dir]').forEach(d=>d.hidden=d.dataset.dir!==v)};document.querySelectorAll('[name=direction]').forEach(r=>r.addEventListener('change',upd));upd()})();
+</script>
+{% endblock %}

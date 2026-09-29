@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import device_views, public_views, security_views, share_views, views
+from . import device_views, finance_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -95,6 +95,13 @@ urlpatterns = [
     path("purchases/reports/", views.purchase_reports, name="purchase_reports"),
 
     path("pos/", views.pos_view, name="pos"),
+    path("finance/", finance_views.finance_home, name="finance_home"),
+    path("finance/cheques/", finance_views.cheque_list, name="cheque_list"),
+    path("finance/cheques/<int:cheque_id>/status/", finance_views.cheque_status, name="cheque_status"),
+    path("finance/recurring/", finance_views.recurring_list, name="recurring_list"),
+    path("finance/recurring/<int:recurring_id>/", finance_views.recurring_action, name="recurring_action"),
+    path("finance/assets/", finance_views.asset_list, name="asset_list"),
+    path("finance/assets/<int:asset_id>/dispose/", finance_views.asset_dispose, name="asset_dispose"),
     path("devices/", device_views.devices_settings, name="devices"),
     path("devices/customer-display/", device_views.customer_display, name="customer_display"),
     path("devices/print/invoice/<int:invoice_id>.json", device_views.invoice_receipt_data, name="device_invoice_receipt"),

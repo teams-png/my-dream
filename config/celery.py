@@ -23,6 +23,10 @@ app.conf.beat_schedule = {
         "task": "apps.verticals.protein_shop.tasks.check_protein_batch_expiry",
         "schedule": 60 * 60 * 24,
     },
+    "finance-recurring-invoices-and-cheque-reminders-daily": {
+        "task": "apps.finance.tasks.run_daily_finance_jobs",
+        "schedule": 60 * 60 * 24,
+    },
     "check-stock-batches-and-overdue-documents-daily": {
         "task": "apps.notifications.tasks.check_low_stock_and_overdue_invoices",
         "schedule": 60 * 60 * 24,

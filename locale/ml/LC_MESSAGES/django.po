@@ -54,6 +54,22 @@ msgid "Finance"
 msgstr "ഫിനാൻസ്"
 
 #: templates/base.html
+msgid "Finance overview"
+msgstr "ഫിനാൻസ് അവലോകനം"
+
+#: templates/base.html
+msgid "Cheques (PDC)"
+msgstr "ചെക്കുകൾ (PDC)"
+
+#: templates/base.html
+msgid "Recurring invoices"
+msgstr "ആവർത്തന ഇൻവോയ്സുകൾ"
+
+#: templates/base.html
+msgid "Fixed assets"
+msgstr "സ്ഥിര ആസ്തികൾ"
+
+#: templates/base.html
 msgid "Expenses"
 msgstr "ചെലവുകൾ"
 
@@ -967,6 +983,303 @@ msgstr ""
 msgid "Check agent"
 msgstr "ഏജന്റ് പരിശോധിക്കുക"
 
+#: templates/webapp/finance/assets.html
+msgid "Cost of assets in use"
+msgstr "ഉപയോഗത്തിലുള്ള ആസ്തികളുടെ വില"
+
+#: templates/webapp/finance/assets.html
+msgid "Current book value"
+msgstr "നിലവിലെ ബുക്ക് വാല്യു"
+
+#: templates/webapp/finance/assets.html
+msgid "Post depreciation"
+msgstr "ഡിപ്രീസിയേഷൻ പോസ്റ്റ് ചെയ്യുക"
+
+#: templates/webapp/finance/assets.html
+msgid "Straight-line, up to this month"
+msgstr "സ്ട്രെയ്റ്റ്-ലൈൻ, ഈ മാസം വരെ"
+
+#: templates/webapp/finance/assets.html
+msgid "Asset"
+msgstr "ആസ്തി"
+
+#: templates/webapp/finance/assets.html
+msgid "Cost"
+msgstr "വില"
+
+#: templates/webapp/finance/assets.html
+msgid "Depreciated"
+msgstr "ഡിപ്രീസിയേഷൻ"
+
+#: templates/webapp/finance/assets.html
+msgid "Book value"
+msgstr "ബുക്ക് വാല്യു"
+
+#: templates/webapp/finance/assets.html
+msgid "months"
+msgstr "മാസങ്ങൾ"
+
+#: templates/webapp/finance/assets.html
+msgid "month"
+msgstr "മാസം"
+
+#: templates/webapp/finance/assets.html
+msgid "Sale amount (0 if scrapped)"
+msgstr "വിറ്റ തുക (ഉപേക്ഷിച്ചാൽ 0)"
+
+#: templates/webapp/finance/assets.html
+msgid "Sell / scrap"
+msgstr "വിൽക്കുക / ഉപേക്ഷിക്കുക"
+
+#: templates/webapp/finance/assets.html
+msgid "Disposed"
+msgstr "ഒഴിവാക്കി"
+
+#: templates/webapp/finance/assets.html
+msgid "Add equipment, vehicles, furniture or computers to track their value."
+msgstr ""
+"ഉപകരണങ്ങൾ, വാഹനങ്ങൾ, ഫർണിച്ചർ, കമ്പ്യൂട്ടറുകൾ എന്നിവ ചേർത്ത് അവയുടെ മൂല്യം "
+"ട്രാക്ക് ചെയ്യുക."
+
+#: templates/webapp/finance/assets.html
+msgid "Add asset"
+msgstr "ആസ്തി ചേർക്കുക"
+
+#: templates/webapp/finance/assets.html
+msgid "The purchase is recorded in your books automatically."
+msgstr "വാങ്ങൽ അക്കൗണ്ട്സിൽ സ്വയം രേഖപ്പെടുത്തും."
+
+#: templates/webapp/finance/assets.html
+msgid "Name"
+msgstr "പേര്"
+
+#: templates/webapp/finance/assets.html
+msgid "Category"
+msgstr "വിഭാഗം"
+
+#: templates/webapp/finance/assets.html
+msgid "Asset code"
+msgstr "ആസ്തി കോഡ്"
+
+#: templates/webapp/finance/assets.html
+msgid "Purchase date"
+msgstr "വാങ്ങിയ തീയതി"
+
+#: templates/webapp/finance/assets.html
+msgid "Paid from"
+msgstr "പണം നൽകിയത്"
+
+#: templates/webapp/finance/assets.html
+msgid "Notes"
+msgstr "കുറിപ്പുകൾ"
+
+#: templates/webapp/finance/cheques.html
+msgid "Post-dated cheques"
+msgstr "പോസ്റ്റ്-ഡേറ്റഡ് ചെക്കുകൾ"
+
+#: templates/webapp/finance/cheques.html
+msgid "Open"
+msgstr "തുറക്കുക"
+
+#: templates/webapp/finance/cheques.html
+msgid "All"
+msgstr "എല്ലാം"
+
+#: templates/webapp/finance/cheques.html
+msgid "Party"
+msgstr "കക്ഷി"
+
+#: templates/webapp/finance/cheques.html
+msgid "Cheque"
+msgstr "ചെക്ക്"
+
+#: templates/webapp/finance/cheques.html
+msgid "Amount"
+msgstr "തുക"
+
+#: templates/webapp/finance/cheques.html
+msgid "Due"
+msgstr "അടയ്ക്കേണ്ടത്"
+
+#: templates/webapp/finance/cheques.html
+msgid "Deposited"
+msgstr "ഡെപ്പോസിറ്റ് ചെയ്തു"
+
+#: templates/webapp/finance/cheques.html
+msgid "Cleared ✓"
+msgstr "ക്ലിയർ ആയി ✓"
+
+#: templates/webapp/finance/cheques.html
+msgid "Why did it bounce?"
+msgstr "എന്തുകൊണ്ട് ബൗൺസ് ആയി?"
+
+#: templates/webapp/finance/cheques.html
+msgid "Insufficient funds"
+msgstr "മതിയായ ബാലൻസ് ഇല്ല"
+
+#: templates/webapp/finance/cheques.html
+msgid "Bounced"
+msgstr "ബൗൺസ് ആയി"
+
+#: templates/webapp/finance/cheques.html
+msgid "Cancel this cheque?"
+msgstr "ഈ ചെക്ക് റദ്ദാക്കണോ?"
+
+#: templates/webapp/finance/cheques.html
+msgid "Cancel"
+msgstr "റദ്ദാക്കുക"
+
+#: templates/webapp/finance/cheques.html
+msgid "No cheques here."
+msgstr "ഇവിടെ ചെക്കുകൾ ഇല്ല."
+
+#: templates/webapp/finance/cheques.html
+msgid "Add a cheque"
+msgstr "ചെക്ക് ചേർക്കുക"
+
+#: templates/webapp/finance/cheques.html
+msgid "Payments are booked only when the cheque clears."
+msgstr "ചെക്ക് ക്ലിയർ ആകുമ്പോൾ മാത്രമേ പേയ്‌മെന്റ് രേഖപ്പെടുത്തൂ."
+
+#: templates/webapp/finance/cheques.html
+msgid "Supplier"
+msgstr "സപ്ലയർ"
+
+#: templates/webapp/finance/cheques.html
+msgid "Cheque number"
+msgstr "ചെക്ക് നമ്പർ"
+
+#: templates/webapp/finance/cheques.html
+msgid "Bank"
+msgstr "ബാങ്ക്"
+
+#: templates/webapp/finance/cheques.html
+msgid "Save cheque"
+msgstr "ചെക്ക് സേവ് ചെയ്യുക"
+
+#: templates/webapp/finance/home.html
+msgid "Cheques to receive"
+msgstr "കിട്ടാനുള്ള ചെക്കുകൾ"
+
+#: templates/webapp/finance/home.html
+msgid "Cheques to pay"
+msgstr "നൽകാനുള്ള ചെക്കുകൾ"
+
+#: templates/webapp/finance/home.html
+msgid "Recurring invoices due"
+msgstr "ആവർത്തന ഇൻവോയ്സുകൾ ബാക്കി"
+
+#: templates/webapp/finance/home.html
+msgid "assets · book value"
+msgstr "ആസ്തികൾ · ബുക്ക് വാല്യു"
+
+#: templates/webapp/finance/home.html
+msgid "Cheques due this week"
+msgstr "ഈ ആഴ്ച ഡ്യൂ ആകുന്ന ചെക്കുകൾ"
+
+#: templates/webapp/finance/home.html
+msgid "Deposit or pay these on time to avoid bounced cheques."
+msgstr "ചെക്ക് ബൗൺസ് ഒഴിവാക്കാൻ ഇവ സമയത്ത് ഡെപ്പോസിറ്റ് ചെയ്യുക / അടയ്ക്കുക."
+
+#: templates/webapp/finance/home.html
+msgid "No cheques due this week."
+msgstr "ഈ ആഴ്ച ചെക്കുകൾ ഇല്ല."
+
+#: templates/webapp/finance/home.html
+msgid "All cheques →"
+msgstr "എല്ലാ ചെക്കുകളും →"
+
+#: templates/webapp/finance/home.html
+msgid "Created automatically every day."
+msgstr "ദിവസവും സ്വയം ഉണ്ടാകും."
+
+#: templates/webapp/finance/home.html
+msgid "Next:"
+msgstr "അടുത്തത്:"
+
+#: templates/webapp/finance/home.html
+msgid "No recurring invoices yet."
+msgstr "ആവർത്തന ഇൻവോയ്സുകൾ ഇതുവരെ ഇല്ല."
+
+#: templates/webapp/finance/home.html
+msgid "Manage →"
+msgstr "നിയന്ത്രിക്കുക →"
+
+#: templates/webapp/finance/recurring.html
+msgid "Schedules"
+msgstr "ഷെഡ്യൂളുകൾ"
+
+#: templates/webapp/finance/recurring.html
+msgid ""
+"Invoices are created automatically on the due date (and emailed if you "
+"choose)."
+msgstr ""
+"നിശ്ചിത തീയതിയിൽ ഇൻവോയ്സുകൾ സ്വയം ഉണ്ടാകും (വേണമെങ്കിൽ ഇമെയിലും അയയ്ക്കും)."
+
+#: templates/webapp/finance/recurring.html
+msgid "Next invoice"
+msgstr "അടുത്ത ഇൻവോയ്സ്"
+
+#: templates/webapp/finance/recurring.html
+msgid "Created"
+msgstr "ഉണ്ടാക്കിയത്"
+
+#: templates/webapp/finance/recurring.html
+msgid "Stopped"
+msgstr "നിർത്തി"
+
+#: templates/webapp/finance/recurring.html
+msgid "Run now"
+msgstr "ഇപ്പോൾ റൺ ചെയ്യുക"
+
+#: templates/webapp/finance/recurring.html
+msgid "Pause"
+msgstr "താൽക്കാലികമായി നിർത്തുക"
+
+#: templates/webapp/finance/recurring.html
+msgid "Resume"
+msgstr "തുടരുക"
+
+#: templates/webapp/finance/recurring.html
+msgid ""
+"No schedules yet. Create one for rent, maintenance contracts, memberships or"
+" subscriptions."
+msgstr ""
+"ഷെഡ്യൂളുകൾ ഇതുവരെ ഇല്ല. വാടക, മെയിന്റനൻസ് കോൺട്രാക്റ്റ്, മെമ്പർഷിപ്പ്, "
+"സബ്സ്ക്രിപ്ഷൻ എന്നിവയ്ക്ക് ഉണ്ടാക്കാം."
+
+#: templates/webapp/finance/recurring.html
+msgid "New schedule"
+msgstr "പുതിയ ഷെഡ്യൂൾ"
+
+#: templates/webapp/finance/recurring.html
+msgid "Bill the same items again and again."
+msgstr "ഒരേ ഐറ്റങ്ങൾ വീണ്ടും വീണ്ടും ബിൽ ചെയ്യുക."
+
+#: templates/webapp/finance/recurring.html
+msgid "Items"
+msgstr "ഐറ്റങ്ങൾ"
+
+#: templates/webapp/finance/recurring.html
+msgid "Add line"
+msgstr "വരി ചേർക്കുക"
+
+#: templates/webapp/finance/recurring.html
+msgid "Tax %"
+msgstr "ടാക്സ് %"
+
+#: templates/webapp/finance/recurring.html
+msgid "Email to customer"
+msgstr "കസ്റ്റമർക്ക് ഇമെയിൽ"
+
+#: templates/webapp/finance/recurring.html
+msgid "Create schedule"
+msgstr "ഷെഡ്യൂൾ ഉണ്ടാക്കുക"
+
+#: templates/webapp/finance/recurring.html
+msgid "Price"
+msgstr "വില"
+
 #: templates/webapp/invoice_pdf.html
 msgid "Print"
 msgstr "പ്രിന്റ്"
@@ -1012,10 +1325,6 @@ msgid "Unit price"
 msgstr "യൂണിറ്റ് വില"
 
 #: templates/webapp/invoice_pdf.html
-msgid "Amount"
-msgstr "തുക"
-
-#: templates/webapp/invoice_pdf.html
 msgid "Handset IMEI & Warranty"
 msgstr "ഹാൻഡ്സെറ്റ് IMEI & വാറന്റി"
 
@@ -1030,10 +1339,6 @@ msgstr "· സീരിയൽ:"
 #: templates/webapp/invoice_pdf.html
 msgid "· Warranty:"
 msgstr "· വാറന്റി:"
-
-#: templates/webapp/invoice_pdf.html
-msgid "months"
-msgstr "മാസങ്ങൾ"
 
 #: templates/webapp/invoice_pdf.html
 msgid "(until"
@@ -1114,10 +1419,6 @@ msgstr ""
 #: templates/webapp/invoice_share.html
 msgid "Copy"
 msgstr "കോപ്പി"
-
-#: templates/webapp/invoice_share.html
-msgid "Open"
-msgstr "തുറക്കുക"
 
 #: templates/webapp/invoice_share.html
 msgid "Share…"
@@ -1222,10 +1523,6 @@ msgstr "അഡ്വാൻസ് / ഇപ്പോൾ അടച്ച തുക"
 #: templates/webapp/pos.html
 msgid "Deposit method"
 msgstr "പേയ്‌മെന്റ് രീതി"
-
-#: templates/webapp/pos.html
-msgid "Bank"
-msgstr "ബാങ്ക്"
 
 #: templates/webapp/pos.html
 msgid "Number of instalments"
@@ -1562,10 +1859,6 @@ msgstr "എല്ലാ പ്ലാനും ആരംഭിക്കുന്�
 #: templates/webapp/public/landing.html
 msgid "year"
 msgstr "വർഷം"
-
-#: templates/webapp/public/landing.html
-msgid "month"
-msgstr "മാസം"
 
 #: templates/webapp/public/landing.html
 msgid "Up to"
@@ -2291,10 +2584,6 @@ msgid "Menu categories"
 msgstr "മെനു വിഭാഗങ്ങൾ"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "All"
-msgstr "എല്ലാം"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Search dishes, category or SKU…"
 msgstr "വിഭവം, വിഭാഗം അല്ലെങ്കിൽ SKU തിരയുക…"
 
@@ -2556,10 +2845,6 @@ msgstr "കുറയ്ക്കുക"
 #: templates/webapp/restaurant/order_detail.html
 msgid "More"
 msgstr "കൂട്ടുക"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Cancel"
-msgstr "റദ്ദാക്കുക"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Add to Order"
@@ -2827,6 +3112,46 @@ msgstr "മറന്നോ? ലോഗിൻ പേജിലെ “പാസ്�
 msgid "Reset password by email"
 msgstr "ഇമെയിൽ വഴി പാസ്‌വേഡ് റീസെറ്റ്"
 
+#: apps/finance/models.py
+msgid "Received from customer"
+msgstr "കസ്റ്റമറിൽ നിന്ന് ലഭിച്ചത്"
+
+#: apps/finance/models.py
+msgid "Issued to supplier"
+msgstr "സപ്ലയർക്ക് നൽകിയത്"
+
+#: apps/finance/models.py
+msgid "Pending"
+msgstr "ബാക്കി"
+
+#: apps/finance/models.py
+msgid "Cleared"
+msgstr "ക്ലിയർ ആയി"
+
+#: apps/finance/models.py
+msgid "Cancelled"
+msgstr "റദ്ദാക്കി"
+
+#: apps/finance/models.py
+msgid "Every 3 months"
+msgstr "3 മാസം കൂടുമ്പോൾ"
+
+#: apps/finance/models.py
+msgid "Yearly"
+msgstr "വർഷംതോറും"
+
+#: apps/finance/models.py
+msgid "In use"
+msgstr "ഉപയോഗത്തിൽ"
+
+#: apps/finance/models.py
+msgid "On credit (supplier)"
+msgstr "ക്രെഡിറ്റ് (സപ്ലയർ)"
+
+#: apps/finance/models.py
+msgid "Already owned (no payment now)"
+msgstr "നേരത്തെ ഉള്ളത് (ഇപ്പോൾ പണം നൽകുന്നില്ല)"
+
 #: apps/verticals/restaurant/models.py
 msgid "Available"
 msgstr "ലഭ്യം"
@@ -2842,10 +3167,6 @@ msgstr "ഇരുന്നു"
 #: apps/verticals/restaurant/models.py
 msgid "Completed"
 msgstr "പൂർത്തിയായി"
-
-#: apps/verticals/restaurant/models.py
-msgid "Cancelled"
-msgstr "റദ്ദാക്കി"
 
 #: apps/verticals/restaurant/models.py
 msgid "No-show"
@@ -2882,3 +3203,83 @@ msgstr "ക്യൂവിൽ"
 #: apps/verticals/restaurant/models.py
 msgid "Preparing"
 msgstr "തയ്യാറാക്കുന്നു"
+
+#: apps/webapp/finance_views.py
+msgid "Against invoice (optional)"
+msgstr "ഇൻവോയ്സിനെതിരെ (ഓപ്ഷണൽ)"
+
+#: apps/webapp/finance_views.py
+msgid "Against bill (optional)"
+msgstr "ബില്ലിനെതിരെ (ഓപ്ഷണൽ)"
+
+#: apps/webapp/finance_views.py
+msgid "Cheque date"
+msgstr "ചെക്കിലെ തീയതി"
+
+#: apps/webapp/finance_views.py
+msgid "Received / issued on"
+msgstr "ലഭിച്ച / നൽകിയ തീയതി"
+
+#: apps/webapp/finance_views.py
+msgid "First invoice date"
+msgstr "ആദ്യ ഇൻവോയ്സ് തീയതി"
+
+#: apps/webapp/finance_views.py
+msgid "Stop after (optional)"
+msgstr "ഇതിനു ശേഷം നിർത്തുക (ഓപ്ഷണൽ)"
+
+#: apps/webapp/finance_views.py
+msgid "Useful life (months)"
+msgstr "ഉപയോഗ കാലാവധി (മാസം)"
+
+#: apps/webapp/finance_views.py
+msgid "Value at end of life"
+msgstr "കാലാവധി കഴിയുമ്പോഴുള്ള മൂല്യം"
+
+#: apps/webapp/finance_views.py
+msgid "Cheque saved."
+msgstr "ചെക്ക് സേവ് ചെയ്തു."
+
+#: apps/webapp/finance_views.py
+msgid "Cheque updated."
+msgstr "ചെക്ക് അപ്ഡേറ്റ് ചെയ്തു."
+
+#: apps/webapp/finance_views.py
+msgid "Check the quantity and price on every line."
+msgstr "ഓരോ വരിയിലെയും എണ്ണവും വിലയും പരിശോധിക്കുക."
+
+#: apps/webapp/finance_views.py
+msgid "Add at least one line."
+msgstr "കുറഞ്ഞത് ഒരു വരി ചേർക്കുക."
+
+#: apps/webapp/finance_views.py
+msgid "Recurring invoice created."
+msgstr "ആവർത്തന ഇൻവോയ്സ് ഉണ്ടാക്കി."
+
+#: apps/webapp/finance_views.py
+msgid "Please fix the highlighted fields."
+msgstr "അടയാളപ്പെടുത്തിയ ഫീൽഡുകൾ ശരിയാക്കുക."
+
+#: apps/webapp/finance_views.py
+msgid "%(n)s invoice(s) created."
+msgstr "%(n)s ഇൻവോയ്സ് ഉണ്ടാക്കി."
+
+#: apps/webapp/finance_views.py
+msgid "Nothing due yet."
+msgstr "ഇതുവരെ ഒന്നും ബാക്കിയില്ല."
+
+#: apps/webapp/finance_views.py
+msgid "%(n)s depreciation entries posted."
+msgstr "%(n)s ഡിപ്രീസിയേഷൻ എൻട്രികൾ പോസ്റ്റ് ചെയ്തു."
+
+#: apps/webapp/finance_views.py
+msgid "Depreciation is already up to date."
+msgstr "ഡിപ്രീസിയേഷൻ ഇതിനകം അപ്ഡേറ്റ് ആണ്."
+
+#: apps/webapp/finance_views.py
+msgid "Asset added and recorded in the books."
+msgstr "ആസ്തി ചേർത്ത് അക്കൗണ്ട്സിൽ രേഖപ്പെടുത്തി."
+
+#: apps/webapp/finance_views.py
+msgid "Asset disposed and the gain or loss recorded."
+msgstr "ആസ്തി ഒഴിവാക്കി, ലാഭമോ നഷ്ടമോ രേഖപ്പെടുത്തി."

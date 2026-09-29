@@ -1,0 +1,42 @@
+{% extends "base.html" %}{% load i18n %}
+{% block title %}{% translate "Fixed assets" %}{% endblock %}
+{% block heading %}{% translate "Fixed assets" %}{% endblock %}
+{% block content %}
+{% include "webapp/finance/_styles.html" %}
+{% with cur=active_company.default_currency %}
+<div class="fn-stats">
+  <div class="fn-stat"><div class="ic">🏗️</div><div><b>{{ cur }} {{ total_cost|floatformat:2 }}</b><span>{% translate "Cost of assets in use" %}</span></div></div>
+  <div class="fn-stat" style="animation-delay:.05s"><div class="ic">📉</div><div><b>{{ cur }} {{ total_book|floatformat:2 }}</b><span>{% translate "Current book value" %}</span></div></div>
+  <div class="fn-stat" style="animation-delay:.1s"><div class="ic">🧮</div><div><form method="post">{% csrf_token %}<input type="hidden" name="action" value="depreciate"><button class="btn">{% translate "Post depreciation" %}</button></form><span>{% translate "Straight-line, up to this month" %}</span></div></div>
+</div>
+<div class="fn-grid">
+  <section class="fn-card">
+    <table>
+      <tr><th>{% translate "Asset" %}</th><th>{% translate "Cost" %}</th><th>{% translate "Depreciated" %}</th><th>{% translate "Book value" %}</th><th></th></tr>
+      {% for a in assets %}
+      <tr>
+        <td><strong>{{ a.name }}</strong><br><small style="color:var(--ink-soft)">{{ a.category|default:"—" }} · {{ a.purchase_date|date:"d M Y" }} · {{ a.useful_life_months }} {% translate "months" %}</small></td>
+        <td class="money">{{ a.cost|floatformat:2 }}</td>
+        <td>{% widthratio a.accumulated_depreciation a.cost 100 as pct %}<div class="bar"><i style="width:{{ pct }}%"></i></div><small>{{ a.accumulated_depreciation|floatformat:2 }} · {{ a.monthly_depreciation|floatformat:2 }}/{% translate "month" %}</small></td>
+        <td class="money">{{ a.book_value|floatformat:2 }}</td>
+        <td>{% if a.status == 'active' %}<form method="post" action="{% url 'webapp:asset_dispose' a.id %}" class="fn-actions" onsubmit="const v=prompt('{% translate "Sale amount (0 if scrapped)" %}','0');if(v===null)return false;this.amount.value=v">{% csrf_token %}<input type="hidden" name="amount"><button class="bad">{% translate "Sell / scrap" %}</button></form>{% else %}<span class="pill">{% translate "Disposed" %} {{ a.disposed_on|date:"d M Y" }}</span>{% endif %}</td>
+      </tr>
+      {% empty %}<tr><td colspan="5" class="fn-empty"><b>🏗️</b>{% translate "Add equipment, vehicles, furniture or computers to track their value." %}</td></tr>{% endfor %}
+    </table>
+  </section>
+  <section class="fn-card">
+    <h2>{% translate "Add asset" %}</h2><p>{% translate "The purchase is recorded in your books automatically." %}</p>
+    <form method="post" class="fn-form">{% csrf_token %}
+      <label>{% translate "Name" %}</label>{{ form.name }}
+      <div class="row2"><div><label>{% translate "Category" %}</label>{{ form.category }}</div><div><label>{% translate "Asset code" %}</label>{{ form.asset_code }}</div></div>
+      <div class="row2"><div><label>{% translate "Purchase date" %}</label>{{ form.purchase_date }}</div><div><label>{% translate "Cost" %}</label>{{ form.cost }}</div></div>
+      <div class="row2"><div><label>{{ form.useful_life_months.label }}</label>{{ form.useful_life_months }}</div><div><label>{{ form.salvage_value.label }}</label>{{ form.salvage_value }}</div></div>
+      <label>{% translate "Paid from" %}</label>{{ form.paid_from }}
+      <label>{% translate "Notes" %}</label>{{ form.notes }}
+      {% for f in form %}{{ f.errors }}{% endfor %}
+      <button class="btn" style="margin-top:14px;width:100%;justify-content:center">{% translate "Add asset" %}</button>
+    </form>
+  </section>
+</div>
+{% endwith %}
+{% endblock %}

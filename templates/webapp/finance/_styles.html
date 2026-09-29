@@ -1,0 +1,48 @@
+<style>
+.fn-tabs{display:flex;gap:4px;padding:4px;background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:18px;overflow-x:auto;scrollbar-width:none}
+.fn-tabs a{padding:8px 14px;border-radius:10px;font-weight:600;font-size:14px;color:var(--ink-soft);white-space:nowrap}
+.fn-tabs a:hover{background:var(--paper);color:var(--ink)}
+.fn-tabs a.on{background:var(--accent);color:#fff}
+.fn-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:16px;align-items:start}
+.fn-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;animation:fnIn .45s cubic-bezier(.2,.8,.2,1) both}
+.fn-card h2{margin:0 0 4px;font-size:18px}.fn-card>p{margin:0 0 14px;color:var(--ink-soft);font-size:14px}
+@keyframes fnIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.fn-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:16px}
+.fn-stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:flex;gap:12px;align-items:center;animation:fnIn .45s both}
+.fn-stat .ic{width:44px;height:44px;border-radius:14px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0}
+.fn-stat b{display:block;font-size:21px;letter-spacing:-.02em}.fn-stat span{color:var(--ink-soft);font-size:13px}
+.fn-form label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-soft);margin:10px 0 4px}
+.fn-form input,.fn-form select,.fn-form textarea{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:14.5px;background:#fff}
+.fn-form input:focus,.fn-form select:focus{outline:none;border-color:var(--accent)}
+.fn-form input[type=checkbox]{width:auto}
+.fn-form .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fn-form .errorlist{color:var(--danger);font-size:12.5px;margin:2px 0;padding-inline-start:16px}
+.fn-form ul#id_direction{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0;margin:4px 0}
+.fn-form ul#id_direction label{margin:0;padding:10px;border:1.5px solid var(--line);border-radius:12px;display:flex;gap:8px;align-items:center;color:var(--ink);cursor:pointer;font-size:13.5px}
+.fn-form ul#id_direction label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#f1f3f8;color:var(--ink-soft);white-space:nowrap}
+.pill.pending{background:#fff6e0;color:#8a5a00}.pill.deposited{background:#e6eeff;color:#2459d6}.pill.cleared,.pill.active{background:var(--success-bg);color:var(--success)}
+.pill.bounced{background:var(--danger-bg);color:var(--danger)}.pill.due{background:#ffe9e2;color:#c2410c}
+.fn-actions{display:flex;gap:6px;flex-wrap:wrap}
+.fn-actions form{margin:0}
+.fn-actions button{font:inherit;font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:9px;border:1px solid var(--line);background:#fff;cursor:pointer}
+.fn-actions button:hover{background:var(--paper)}
+.fn-actions button.ok{background:var(--accent);color:#fff;border-color:var(--accent)}
+.fn-actions button.bad{color:var(--danger)}
+.fn-empty{text-align:center;padding:30px;color:var(--ink-soft)}
+.fn-empty b{display:block;font-size:34px;margin-bottom:6px}
+.fn-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.fn-filter a{padding:6px 12px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:600;background:#fff}
+.fn-filter a.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+tr.due td{background:#fffaf0}
+.money{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+.bar{height:6px;background:#eef0f5;border-radius:6px;overflow:hidden;min-width:80px}.bar i{display:block;height:100%;background:var(--accent);border-radius:6px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+@media(max-width:1000px){.fn-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.fn-card,.fn-stat{animation:none}}
+</style>
+{% load i18n %}<nav class="fn-tabs">
+  <a class="{% if request.resolver_match.url_name == 'finance_home' %}on{% endif %}" href="{% url 'webapp:finance_home' %}">{% translate "Overview" %}</a>
+  <a class="{% if request.resolver_match.url_name == 'cheque_list' %}on{% endif %}" href="{% url 'webapp:cheque_list' %}">{% translate "Cheques (PDC)" %}</a>
+  <a class="{% if request.resolver_match.url_name == 'recurring_list' %}on{% endif %}" href="{% url 'webapp:recurring_list' %}">{% translate "Recurring invoices" %}</a>
+  <a class="{% if request.resolver_match.url_name == 'asset_list' %}on{% endif %}" href="{% url 'webapp:asset_list' %}">{% translate "Fixed assets" %}</a>
+</nav>

@@ -175,6 +175,11 @@ def login_view(request):
         account_services.record_attempt(identifier, ip_address, successful=user is not None)
 
         if user is not None:
+            from apps.accounts import twofactor
+            if twofactor.is_enabled(user):
+                # Password was right; finish the login only after the second factor.
+                request.session["2fa_pending"] = {"user_id": user.pk, "backend": user.backend, "at": timezone.now().timestamp()}
+                return redirect("webapp:login_2fa")
             login(request, user)
             return redirect("webapp:platform_admin_dashboard" if user.is_platform_admin else "webapp:dashboard")
         messages.error(request, "Invalid username or password.")

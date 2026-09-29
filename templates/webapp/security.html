@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Security{% endblock %}
+{% block heading %}Security{% endblock %}
+{% block content %}
+<style>
+.sec{max-width:760px;margin:0 auto;display:grid;gap:16px}
+.sec-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;animation:secIn .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes secIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.sec-head{display:flex;align-items:center;gap:14px}
+.sec-ico{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;background:var(--accent-soft)}
+.sec-head h2{margin:0;font-size:19px}.sec-head p{margin:2px 0 0;color:var(--ink-soft);font-size:14px}
+.pill{margin-left:auto;font-weight:800;font-size:12.5px;padding:5px 12px;border-radius:999px}
+.pill.on{background:var(--success-bg);color:var(--success)}.pill.off{background:var(--warning-bg);color:var(--warning)}
+.steps{display:grid;grid-template-columns:220px 1fr;gap:22px;margin-top:20px;align-items:start}
+.qr{background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px;animation:secIn .5s .1s both}
+.qr svg{width:100%;height:auto;display:block}
+.steps ol{margin:0;padding-left:20px;line-height:1.7;font-size:14.5px}
+.secret{font-family:monospace;font-size:14px;background:var(--paper);padding:6px 10px;border-radius:8px;word-break:break-all;display:inline-block;margin-top:4px}
+.sec input{padding:11px 12px;border:1.5px solid var(--line);border-radius:11px;font:inherit;font-size:15px}
+.code-in{font-size:22px!important;letter-spacing:.3em;text-align:center;width:180px;font-weight:700}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.codes{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0}
+.codes code{background:var(--paper);border:1px dashed var(--line);border-radius:10px;padding:10px;text-align:center;font-size:16px;font-weight:700;letter-spacing:.05em}
+.warn{background:var(--warning-bg);color:#7a5200;border-radius:12px;padding:12px 14px;font-size:14px}
+details summary{cursor:pointer;font-weight:700;margin-top:16px}
+@media(max-width:640px){.steps{grid-template-columns:1fr}.qr{max-width:220px}}
+@media(prefers-reduced-motion:reduce){.sec-card,.qr{animation:none}}
+</style>
+<div class="sec">
+  <section class="sec-card">
+    <div class="sec-head"><div class="sec-ico">🔐</div><div><h2>Two-step login</h2><p>Ask for a code from your phone after the password.</p></div><span class="pill {% if enabled %}on{% else %}off{% endif %}">{% if enabled %}ON{% else %}OFF{% endif %}</span></div>
+
+    {% if recovery_codes %}
+      <div class="warn" style="margin-top:18px">⚠️ Save these recovery codes somewhere safe. Each works <strong>once</strong> if you lose your phone. They will not be shown again.</div>
+      <div class="codes">{% for c in recovery_codes %}<code>{{ c }}</code>{% endfor %}</div>
+      <div class="row"><button class="btn btn-secondary" type="button" onclick="navigator.clipboard.writeText('{{ recovery_codes|join:"\n" }}');this.textContent='Copied ✓'">Copy codes</button><button class="btn btn-secondary" type="button" onclick="window.print()">Print</button><a class="btn" href="{% url 'webapp:security_settings' %}">I saved them</a></div>
+    {% elif enabled %}
+      <p style="margin-top:16px">Two-step login protects your account. Recovery codes left: <strong>{{ recovery_left }}</strong>.</p>
+      <details><summary>Create new recovery codes</summary>
+        <form method="post" class="row">{% csrf_token %}<input type="hidden" name="action" value="regenerate"><input type="password" name="password" placeholder="Password" required><input name="code" placeholder="6-digit code" inputmode="numeric" required><button class="btn">Create new codes</button></form>
+      </details>
+      <details><summary style="color:var(--danger)">Turn off two-step login</summary>
+        <form method="post" class="row">{% csrf_token %}<input type="hidden" name="action" value="disable"><input type="password" name="password" placeholder="Password" required><input name="code" placeholder="6-digit code" inputmode="numeric" required><button class="btn" style="background:var(--danger)">Turn off</button></form>
+      </details>
+    {% elif setup_secret %}
+      <div class="steps">
+        <div class="qr">{{ qr_svg|safe }}</div>
+        <div>
+          <ol>
+            <li>Install <strong>Google Authenticator</strong>, Microsoft Authenticator or Authy on your phone.</li>
+            <li>Tap <strong>+</strong> and scan this QR code.<br><small>Can't scan? Enter this key:</small><br><span class="secret">{{ setup_secret }}</span></li>
+            <li>Type the 6-digit code shown in the app:</li>
+          </ol>
+          <form method="post" class="row">{% csrf_token %}<input type="hidden" name="action" value="confirm"><input class="code-in" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" required autofocus><button class="btn">Turn on</button></form>
+        </div>
+      </div>
+    {% else %}
+      <p style="margin-top:16px">Even if someone learns your password, they cannot sign in without your phone. Strongly recommended for owners and admins.</p>
+      <form method="post">{% csrf_token %}<input type="hidden" name="action" value="start"><button class="btn">Set up two-step login</button></form>
+    {% endif %}
+  </section>
+  <section class="sec-card">
+    <div class="sec-head"><div class="sec-ico">🔑</div><div><h2>Password</h2><p>Forgot it? Use “Forgot password” on the sign-in page.</p></div></div>
+    <div class="row"><a class="btn btn-secondary" href="{% url 'webapp:password_reset' %}">Reset password by email</a></div>
+  </section>
+</div>
+{% endblock %}

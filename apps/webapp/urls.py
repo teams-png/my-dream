@@ -1,11 +1,13 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import device_views, share_views, views
+from . import device_views, security_views, share_views, views
 
 app_name = "webapp"
 
 urlpatterns = [
     path("login/", views.login_view, name="login"),
+    path("login/verify/", security_views.login_2fa, name="login_2fa"),
+    path("account/security/", security_views.security_settings, name="security_settings"),
     path("logout/", views.logout_view, name="logout"),
 
     path("password-reset/", auth_views.PasswordResetView.as_view(

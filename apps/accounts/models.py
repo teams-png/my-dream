@@ -31,3 +31,20 @@ class LoginAttempt(models.Model):
 
     class Meta:
         indexes = [models.Index(fields=["identifier", "attempted_at"])]
+
+
+class TwoFactorDevice(models.Model):
+    """
+    Authenticator-app (TOTP, RFC 6238) second factor. The shared secret is
+    stored encrypted; recovery codes are stored only as hashes.
+    """
+    user = models.OneToOneField("accounts.User", on_delete=models.CASCADE, related_name="two_factor")
+    secret_encrypted = models.TextField()
+    confirmed = models.BooleanField(default=False)
+    recovery_code_hashes = models.JSONField(default=list, blank=True)
+    last_used_step = models.BigIntegerField(default=0)  # blocks re-use of the same code
+    created_at = models.DateTimeField(auto_now_add=True)
+    confirmed_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"2FA for {self.user}"

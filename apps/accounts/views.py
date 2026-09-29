@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.exceptions import AuthenticationFailed
+from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 
 from .models import User
 from .serializers import RegisterSerializer, MeSerializer
@@ -50,12 +51,27 @@ class SecureTokenObtainPairView(TokenObtainPairView):
                 status=status.HTTP_423_LOCKED,
             )
 
+        serializer = self.get_serializer(data=request.data)
         try:
-            response = super().post(request, *args, **kwargs)
+            try:
+                serializer.is_valid(raise_exception=True)
+            except TokenError as exc:
+                raise InvalidToken(exc.args[0])
         except AuthenticationFailed:
             if identifier:
                 services.record_attempt(identifier, ip_address, successful=False)
             raise
+
+        from . import twofactor
+        user = getattr(serializer, "user", None)
+        if user is not None and twofactor.is_enabled(user) and not twofactor.verify(user, request.data.get("otp", "")):
+            if identifier:
+                services.record_attempt(identifier, ip_address, successful=False)
+            return Response(
+                {"detail": "Two-factor code required. Send the authenticator code as 'otp'.", "two_factor_required": True},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
+        response = Response(serializer.validated_data, status=status.HTTP_200_OK)
 
         if identifier:
             services.record_attempt(identifier, ip_address, successful=(response.status_code == 200))

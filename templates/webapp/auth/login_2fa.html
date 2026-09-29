@@ -1,0 +1,38 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify sign-in</title>
+<style>
+  @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Regular.ttf" %}');font-weight:400}
+  @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Bold.ttf" %}');font-weight:700}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif;background:radial-gradient(circle at 20% 10%,#e6f2ea,#f4f6fb 60%);color:#12162b;padding:16px;box-sizing:border-box}
+  .box{width:min(380px,100%);background:#fff;border:1px solid #e7e9f2;border-radius:22px;padding:32px;box-shadow:0 20px 50px rgba(18,22,43,.08);text-align:center;animation:in .45s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .ico{width:64px;height:64px;border-radius:20px;background:#e6f2ea;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px}
+  h1{font-size:21px;margin:0 0 6px}
+  p{color:#5f6579;font-size:14px;margin:0 0 20px}
+  .code{width:100%;box-sizing:border-box;padding:14px;border:2px solid #e7e9f2;border-radius:14px;font:inherit;font-size:28px;letter-spacing:.35em;text-align:center;font-weight:700}
+  .code:focus{outline:none;border-color:#14532d;box-shadow:0 0 0 4px #14532d22}
+  button{width:100%;margin-top:14px;padding:13px;border:0;border-radius:12px;background:#14532d;color:#fff;font:inherit;font-weight:700;font-size:15px;cursor:pointer}
+  .msg{padding:10px 12px;border-radius:10px;background:#fdeceb;color:#c0392b;font-size:13.5px;margin-bottom:14px;animation:shake .4s}
+  @keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .alt{display:block;margin-top:16px;font-size:13px;color:#5f6579}
+  a{color:#14532d;font-weight:700}
+  @media(prefers-reduced-motion:reduce){.box,.msg{animation:none}}
+</style>
+</head>
+<body>
+<form class="box" method="post" autocomplete="off">{% csrf_token %}
+  <div class="ico">🔐</div>
+  <h1>Two-step verification</h1>
+  <p>Enter the 6-digit code from your authenticator app for <strong>{{ user_email }}</strong>.</p>
+  {% for m in messages %}<div class="msg">{{ m }}</div>{% endfor %}
+  <input class="code" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="14" placeholder="••••••" autofocus required>
+  <button type="submit">Verify & sign in</button>
+  <span class="alt">Lost your phone? Type one of your recovery codes instead.<br><a href="{% url 'webapp:login' %}">← Back to sign in</a></span>
+</form>
+<script>document.querySelector('.code').addEventListener('input',e=>{const v=e.target.value.replace(/\s/g,'');if(/^\d{6}$/.test(v))e.target.form.requestSubmit()})</script>
+</body>
+</html>

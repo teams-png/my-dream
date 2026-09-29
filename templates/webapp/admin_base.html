@@ -75,10 +75,21 @@
   .badge.active, .badge.paid{background:var(--success-bg); color:var(--success);}
   .badge.trial{background:var(--warning-bg); color:var(--warning);}
   .badge.expired, .badge.cancelled{background:var(--danger-bg); color:var(--danger);}
+  .nav-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--line);background:#fff;border-radius:11px;cursor:pointer;color:var(--ink);flex-shrink:0}
+  .topbar-title{display:flex;align-items:center;gap:12px;min-width:0}
+  .nav-scrim{position:fixed;inset:0;background:rgba(15,18,30,.45);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .25s;z-index:70}
+  .sidebar{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+  @media(max-width:900px){
+    .nav-toggle{display:inline-flex}
+    .sidebar{position:fixed;inset:0 auto 0 0;z-index:80;overflow-y:auto;transform:translateX(-105%);box-shadow:0 20px 60px rgba(0,0,0,.25);width:min(290px,86vw)}
+    .nav-open .sidebar{transform:none}.nav-open .nav-scrim{opacity:1;pointer-events:auto}
+    .main{padding:16px 16px 40px!important}
+    table{display:block;overflow-x:auto}
+  }
 </style>
 </head>
 <body>
-<div class="shell">
+<div class="shell" id="appShell">
   <nav class="sidebar">
     <div class="brand">Platform Admin
       <small>Multi-Business Accounting SaaS</small>
@@ -96,11 +107,13 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'platform_audit_list' %}active{% endif %}" href="{% url 'webapp:platform_audit_list' %}"><span>Audit Log</span></a>
       <a class="nav-link {% if 'platform_setup' in request.resolver_match.url_name or request.resolver_match.url_name == 'platform_module_list' or request.resolver_match.url_name == 'platform_business_type_list' %}active{% endif %}" href="{% url 'webapp:platform_setup' %}"><span>Product Catalogue</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'register_client' %}active{% endif %}" href="{% url 'webapp:register_client' %}">+ Add new client</a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'security_settings' %}active{% endif %}" href="{% url 'webapp:security_settings' %}"><span>🔐 Security & 2FA</span></a>
     </div>
   </nav>
+  <div class="nav-scrim" data-nav-close></div>
   <main class="main">
     <div class="topbar">
-      <h1>{% block heading %}{% endblock %}</h1>
+      <div class="topbar-title"><button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><h1>{% block heading %}{% endblock %}</h1></div>
       <div class="user-chip">
         <span>{{ request.user.email|default:request.user.username }} · <a href="{% url 'webapp:logout' %}">Log out</a></span>
         <div class="avatar">{{ request.user.email|default:request.user.username|slice:":1"|upper }}</div>
@@ -115,5 +128,6 @@
     {% block content %}{% endblock %}
   </main>
 </div>
+<script>(function(){const shell=document.getElementById('appShell');document.addEventListener('click',e=>{if(e.target.closest('[data-nav-toggle]'))shell.classList.toggle('nav-open');else if(e.target.closest('[data-nav-close]'))shell.classList.remove('nav-open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')shell.classList.remove('nav-open')})})();</script>
 </body>
 </html>

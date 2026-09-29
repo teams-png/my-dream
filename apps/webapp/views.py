@@ -3013,11 +3013,31 @@ def retail_reports(request):
 @require_permission("restaurant.manage")
 def restaurant_dashboard(request):
     company = request.company
+    today = timezone.localdate()
+    orders = list(
+        RestaurantOrder.objects.for_company(company).exclude(status__in=["paid", "cancelled"])
+        .select_related("table", "customer").prefetch_related("lines__modifiers")[:30]
+    )
+    paid_today = RestaurantOrder.objects.for_company(company).filter(status="paid", invoice__date=today)
+    tables = DiningTable.objects.for_company(company).filter(is_active=True)
+    open_order_by_table = {o.table_id: o for o in orders if o.table_id}
+    areas = list(DiningArea.objects.for_company(company).prefetch_related("tables"))
+    for area in areas:
+        for table in area.tables.all():
+            table.open_order = open_order_by_table.get(table.id)
     return render(request, "webapp/restaurant/dashboard.html", {
-        "areas": DiningArea.objects.for_company(company).prefetch_related("tables"),
-        "orders": RestaurantOrder.objects.for_company(company).exclude(status__in=["paid", "cancelled"])[:30],
+        "areas": areas,
+        "orders": orders,
         "open_shift": RestaurantShift.objects.for_company(company).filter(status="open").first(),
         "recent_shifts": RestaurantShift.objects.for_company(company).order_by("-opened_at")[:10],
+        "stats": {
+            "sales_today": paid_today.aggregate(total=Sum("invoice__total"))["total"] or Decimal("0"),
+            "paid_today": paid_today.count(),
+            "active_orders": len(orders),
+            "in_kitchen": KitchenTicket.objects.for_company(company).filter(status__in=["queued", "preparing"]).count(),
+            "tables_busy": tables.filter(status="occupied").count(),
+            "tables_total": tables.count(),
+        },
     })
 
 
@@ -3043,6 +3063,27 @@ def restaurant_table_add(request):
         messages.success(request, "Dining table added.")
         return redirect("webapp:restaurant_dashboard")
     return render(request, "webapp/platform_admin/simple_form.html", {"form": form, "form_title": "Add dining table", "cancel_url": "webapp:restaurant_dashboard"})
+
+
+@login_required
+@require_business_group("restaurant")
+@require_permission("restaurant.manage")
+def restaurant_table_status(request, table_id):
+    table = get_object_or_404(DiningTable.objects.for_company(request.company), id=table_id)
+    if request.method != "POST":
+        from django.http import HttpResponseNotAllowed
+        return HttpResponseNotAllowed(["POST"])
+    status = request.POST.get("status")
+    has_open_order = RestaurantOrder.objects.for_company(request.company).filter(table=table).exclude(status__in=["paid", "cancelled"]).exists()
+    if status not in {"available", "cleaning", "reserved"}:
+        messages.error(request, "Unknown table status.")
+    elif has_open_order:
+        messages.error(request, f"Table {table.name} still has an open order.")
+    else:
+        table.status = status
+        table.save(update_fields=["status"])
+        messages.success(request, f"Table {table.name} is now {table.get_status_display().lower()}.")
+    return redirect("webapp:restaurant_dashboard")
 
 
 @login_required
@@ -3210,7 +3251,12 @@ def restaurant_delivery_webhook(request, webhook_token):
 @require_permission("restaurant.manage")
 def restaurant_order_add(request):
     company = request.company
-    form = RestaurantOrderForm(request.POST or None, company=company)
+    initial = {}
+    if request.GET.get("table"):
+        initial = {"channel": "dine_in", "table": request.GET.get("table")}
+    elif request.GET.get("channel") in dict(RestaurantOrder.CHANNELS):
+        initial = {"channel": request.GET["channel"]}
+    form = RestaurantOrderForm(request.POST or None, company=company, initial=initial)
     if request.method == "POST" and form.is_valid():
         d = form.cleaned_data
         order = restaurant_services.create_order(
@@ -3231,6 +3277,11 @@ def restaurant_order_add(request):
 def restaurant_order_detail(request, order_id):
     company = request.company
     order = get_object_or_404(RestaurantOrder.objects.for_company(company), id=order_id)
+    if not Warehouse.objects.for_company(company).filter(is_active=True).exists():
+        # Billing needs an active stock location; tenants created before
+        # onboarding provisioned one would otherwise be unable to take payment.
+        Warehouse.objects.create(company=company, name="Main Branch", is_active=True,
+                                 is_default=not Warehouse.objects.for_company(company).filter(is_default=True).exists())
     line_form = RestaurantOrderLineForm(company=company)
     settle_form = RestaurantSettleForm(company=company, initial={"cash": order.total})
     if request.method == "POST":

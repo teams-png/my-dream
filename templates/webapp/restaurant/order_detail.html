@@ -1,41 +1,499 @@
 {% extends "base.html" %}
 {% block title %}Restaurant POS · {{ order.order_number }}{% endblock %}
 {% block heading %}Restaurant POS{% endblock %}
+{% block shell_class %}focus-mode{% endblock %}
 {% block content %}
 <style>
-.pos-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.pos-title h2{margin:0;font-size:23px}.pos-title p{margin:5px 0 0;color:#64748b}.pos-status{padding:8px 12px;border-radius:999px;background:#fff1d6;color:#c2410c;font-weight:800}.pos-layout{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(320px,.8fr);gap:18px;align-items:start}.menu-panel,.cart-panel{background:#fff;border:1px solid #e8ebf1;border-radius:22px;box-shadow:0 12px 35px rgba(15,23,42,.06)}.menu-panel{padding:20px}.cart-panel{padding:18px;position:sticky;top:16px}.menu-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}.menu-search{flex:1;min-width:190px;border:1px solid #dce1e8;border-radius:12px;padding:11px 14px;font-size:15px}.category-tabs{display:flex;gap:8px;overflow:auto;padding-bottom:5px}.cat-btn{border:0;background:#f1f5f9;color:#475569;border-radius:999px;padding:9px 14px;font-weight:700;white-space:nowrap;cursor:pointer}.cat-btn.active{background:#da291c;color:#fff}.food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:15px}.food-card{border:1px solid #e7eaf0;border-radius:17px;overflow:hidden;background:#fff;transition:.18s;position:relative}.food-card:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(15,23,42,.10)}.food-image{height:135px;background:linear-gradient(135deg,#fff1d6,#ffedd5);display:flex;align-items:center;justify-content:center;overflow:hidden}.food-image img{width:100%;height:100%;object-fit:cover}.food-placeholder{font-size:44px}.food-body{padding:13px}.food-name{font-weight:800;color:#182133;font-size:15px}.food-desc{height:34px;overflow:hidden;color:#64748b;font-size:12px;margin:5px 0}.food-meta{display:flex;justify-content:space-between;align-items:center;gap:8px}.food-price{font-weight:900;color:#b82318;font-size:16px}.food-time{font-size:11px;color:#64748b}.food-add{width:100%;border:0;background:#34231c;color:#fff;border-radius:10px;padding:9px;margin-top:10px;font-weight:800;cursor:pointer}.food-add:hover{background:#da291c}.food-add:disabled{cursor:not-allowed}.sold{opacity:.55}.sold-label,.featured-label{position:absolute;top:9px;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;z-index:2}.sold-label{right:9px;background:#991b1b;color:#fff}.featured-label{left:9px;background:#da291c;color:#fff}.cart-title{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eef0f4;padding-bottom:13px}.cart-title h2{margin:0;font-size:19px}.cart-item{padding:13px 0;border-bottom:1px solid #eef0f4}.cart-row{display:flex;justify-content:space-between;gap:12px}.cart-name{font-weight:800}.cart-note{font-size:11px;color:#64748b}.qty-actions{display:flex;align-items:center;gap:6px;margin-top:8px}.qty-actions form{margin:0}.qty-btn{width:28px;height:28px;border:1px solid #d9dee6;border-radius:8px;background:#fff;cursor:pointer;font-weight:900}.remove-btn{border:0;background:transparent;color:#dc2626;cursor:pointer;font-size:12px}.cart-total{display:flex;justify-content:space-between;font-size:20px;font-weight:900;padding:16px 0}.primary-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.primary-actions form{margin:0}.primary-actions button{width:100%}.cart-empty{text-align:center;padding:35px 10px;color:#94a3b8}.advanced{margin-top:14px}.advanced summary{cursor:pointer;font-weight:800;color:#475569;padding:10px 0}.advanced .card{box-shadow:none;margin:10px 0;border-radius:14px}.modifier-dialog{border:0;border-radius:18px;padding:0;width:min(440px,92vw);box-shadow:0 24px 70px rgba(0,0,0,.25)}.modifier-dialog::backdrop{background:rgba(15,23,42,.55)}.dialog-inner{padding:22px}.dialog-inner h3{margin-top:0}.modifier-list{display:grid;gap:9px;margin:14px 0}.modifier-choice{display:flex;justify-content:space-between;gap:10px;padding:10px;border:1px solid #e5e7eb;border-radius:10px}.dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}@media(max-width:980px){.pos-layout{grid-template-columns:1fr}.cart-panel{position:static}.food-grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr))}}@media(max-width:540px){.menu-panel{padding:12px}.food-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.food-image{height:110px}.food-body{padding:10px}.primary-actions{grid-template-columns:1fr}.pos-head{align-items:flex-start;flex-direction:column}}
-.pos-head{background:#fff4d8;border:1px solid #f5d788;border-radius:19px;padding:17px 20px}.pos-title h2{font-size:27px}.pos-status{background:#da291c;color:#fff}.menu-panel{background:#fffdf8;border-color:#f3dbaf}.food-image{background:linear-gradient(145deg,#fff3d8,#f6d887)}.food-add{background:#da291c;color:white;min-height:43px}.food-add:hover{background:#b52117}.food-price{color:#b82318}.featured-label{background:#ffc72c;color:#271a14}.cart-panel{border:2px solid #f3d792;box-shadow:0 16px 40px #75341618}.cart-title{background:#fff4d8;padding:14px;border-radius:13px}.cart-total{color:#bd291d}.cat-btn.active{background:#da291c;color:white}.primary-actions .btn{background:#da291c;color:#fff}.primary-actions .btn-secondary{background:#fff;color:#392d28;border:1px solid #f1dfbd}.food-card:focus-within{outline:2px solid #da291c}@media(max-width:540px){.cart-panel{position:sticky;bottom:0;z-index:4;max-height:65vh;overflow:auto}}
-.main:has(.pos-layout) .topbar{margin-bottom:12px;padding-bottom:10px}.main:has(.pos-layout) .restaurant-route-nav{margin-bottom:13px}.main:has(.pos-layout) .restaurant-back{margin-bottom:8px;padding:6px 11px}.main:has(.pos-layout) .restaurant-shortcuts{padding:8px;gap:6px}.main:has(.pos-layout) .restaurant-shortcut{padding:7px 10px;min-height:36px;font-size:12px}.pos-head{padding:11px 15px;margin-bottom:10px}.pos-title h2{font-size:23px}.pos-title p{margin:2px 0}.pos-jump{display:inline-flex;align-items:center;gap:5px;background:#da291c;color:#fff;border-radius:9px;padding:7px 10px;font-size:12px;font-weight:800;margin-left:12px}.pos-layout{gap:12px}.cart-panel,.menu-panel{padding:13px}.menu-tools{margin-bottom:8px}.food-image{height:116px}.cart-empty{padding:20px 8px}.cart-hint{background:#fff4d8;border:1px solid #f6df9a;color:#734319;border-radius:9px;padding:10px;margin:9px 0;font-size:13px}.primary-actions button:disabled{background:#d2d2d2;color:#505050;cursor:not-allowed}.quick-demo{background:#fff4d8;padding:18px;border-radius:14px;border:1px solid #f2db9b}.quick-demo form{margin-top:9px}
-.main:has(.pos-layout){background:#f8f7f3}.pos-head{background:linear-gradient(110deg,#251b18,#51301d 75%,#b93b19);color:#fff;border:0;border-radius:24px;padding:22px 27px;box-shadow:0 18px 35px #5c301b25}.pos-title h2{font-size:clamp(22px,2vw,32px);letter-spacing:-.04em}.pos-title p{color:#ffe5c7}.pos-jump{background:#ffc72c;color:#321b0f;margin-top:6px}.pos-status{background:#ffc72c;color:#2a1b16}.pos-layout{grid-template-columns:minmax(0,1fr) minmax(330px,360px);gap:20px}.menu-panel,.cart-panel{border-radius:24px;box-shadow:0 12px 35px #4b301513}.menu-panel{background:#fff}.menu-search{min-height:50px;border:2px solid #eee8db;border-radius:15px}.menu-search:focus{outline:3px solid #ffc72c;border-color:#da291c}.category-tabs{max-width:100%}.cat-btn{background:#fff3dc;color:#57271b;min-height:42px}.cat-btn:hover{background:#ffe4a9}.food-grid{grid-template-columns:repeat(auto-fill,minmax(175px,1fr))}.food-card{border-color:#f2e9d7;border-radius:20px;box-shadow:0 5px 16px #4b301510}.food-card:not(.sold):hover{transform:translateY(-5px);box-shadow:0 20px 32px #4b301529}.food-image{height:155px}.food-name{min-height:42px}.food-add{font-size:15px;min-height:47px}.food-add:active,.qty-btn:active{transform:scale(.94)}.cart-panel{background:#fff;top:14px}.cart-title{background:#fff4d8}.cart-item{animation:posIn .28s ease both}.qty-btn{width:38px;height:38px;font-size:19px}.remove-btn{padding:9px}.cart-total{border-top:2px dashed #ead9b9}.primary-actions button{min-height:50px}.primary-actions form:first-child button{background:#da291c}.modifier-dialog{border-radius:25px;animation:posIn .2s ease both}.modifier-dialog::backdrop{backdrop-filter:blur(5px);background:#1b1313a8}.dialog-inner{padding:26px}.dialog-inner input[type=number],.dialog-inner input[name=notes]{min-height:45px;border:1px solid #d9d5cf;border-radius:11px;padding:9px}.modifier-choice:has(input:checked){border-color:#da291c;background:#fff4dd}.pos-quickbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:4px 0 14px}.pos-quickbar a,.pos-quickbar button{display:inline-flex;align-items:center;min-height:42px;padding:9px 14px;border:1px solid #f2d5a2;background:#fff;border-radius:12px;color:#542a1b;font-weight:800;cursor:pointer;font-size:13px}.pos-quickbar a:hover,.pos-quickbar button:hover{background:#fff1cd}.pos-quickbar .pos-quick-primary{background:#ffc72c;border-color:#ffc72c}.pos-results{color:#715f53;font-size:13px;font-weight:700;padding:0 2px 10px}.pos-no-match{padding:30px;text-align:center;background:#fff7e8;border-radius:14px;color:#6a4a35}.pos-toast{position:fixed;right:22px;bottom:22px;background:#27201d;color:white;padding:14px 19px;border-radius:14px;box-shadow:0 15px 35px #0005;z-index:80;animation:posIn .24s ease}.pos-confirm{border:0;border-radius:22px;padding:0;max-width:min(420px,92vw);box-shadow:0 25px 70px #0005}.pos-confirm::backdrop{background:#201715a8;backdrop-filter:blur(5px)}.pos-confirm-inner{padding:25px}.pos-confirm-inner h3{margin:0 0 8px;font-size:23px}.pos-confirm-inner p{color:#5f5148}.pos-confirm-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}@keyframes posIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@media(max-width:1050px){.pos-layout{grid-template-columns:1fr}.cart-panel{position:static}}@media(max-width:540px){.food-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.food-image{height:112px}.cart-panel{position:static;max-height:none}.food-name{font-size:13px}.pos-head{padding:17px}.pos-quickbar{display:grid;grid-template-columns:1fr 1fr}.pos-quickbar a,.pos-quickbar button{justify-content:center}}@media(prefers-reduced-motion:reduce){.food-card,.modifier-dialog,.cart-item,.pos-toast{animation:none;transition:none}}
- .food-add.is-loading,.qty-btn:disabled{opacity:.6;cursor:wait}.food-card[hidden],.pos-no-match[hidden]{display:none!important}.cart-panel.cart-updated{animation:cartPulse .42s ease}@keyframes cartPulse{50%{box-shadow:0 0 0 5px #ffc72c99,0 16px 40px #75341618}}.pos-toast{display:block}.pos-toast.error{background:#9f261c}@media(prefers-reduced-motion:reduce){.cart-panel.cart-updated{animation:none}}
+:root{
+  --r-ink:#1d1715; --r-soft:#75665d; --r-line:#efe6da; --r-bg:#f7f3ed; --r-card:#fff;
+  --r-brand:#e03a1e; --r-brand-dark:#b92a12; --r-brand-soft:#fff0e6; --r-gold:#ffbf2e;
+  --r-green:#15935b; --r-green-soft:#e5f6ed; --r-shadow:0 10px 30px rgba(64,36,18,.08);
+  --r-ease:cubic-bezier(.2,.8,.2,1);
+}
+.rpos{
+  display:flex; flex-direction:column; height:100vh; height:100dvh; background:var(--r-bg); color:var(--r-ink);
+}
+.rpos :where(button,input,select){font-family:inherit}
+.rp-top{display:flex; align-items:center; gap:12px; padding:12px 18px; background:#fff; border-bottom:1px solid var(--r-line); flex-shrink:0}
+.rp-icon-btn{display:inline-flex; align-items:center; justify-content:center; gap:7px; min-width:42px; height:42px; padding:0 12px; border:1px solid var(--r-line); background:#fff; border-radius:12px; color:var(--r-ink); font-weight:700; font-size:14px; cursor:pointer; white-space:nowrap; transition:background .2s, transform .15s}
+.rp-icon-btn:hover{background:var(--r-brand-soft)}
+.rp-icon-btn:active{transform:scale(.95)}
+.rp-icon-btn.primary{background:var(--r-brand); border-color:var(--r-brand); color:#fff}
+.rp-icon-btn.primary:hover{background:var(--r-brand-dark)}
+.rp-icon-btn.danger{color:#b42318}
+.rp-order{display:flex; flex-direction:column; min-width:0; margin-right:auto}
+.rp-order h2{margin:0; font-size:19px; letter-spacing:-.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.rp-chips{display:flex; gap:6px; flex-wrap:wrap; margin-top:3px}
+.rp-chip{display:inline-flex; align-items:center; gap:4px; font-size:12px; font-weight:700; padding:3px 9px; border-radius:999px; background:#f4eee6; color:var(--r-soft)}
+.rp-chip.status{background:var(--r-gold); color:#3b2408}
+.rp-chip.status.kitchen,.rp-chip.status.ready,.rp-chip.status.served{background:#dbeafe; color:#1e40af}
+.rp-chip.status.paid{background:var(--r-green-soft); color:var(--r-green)}
+.rp-chip.status.cancelled{background:#fee4e2; color:#b42318}
+.rp-top-actions{display:flex; gap:8px; align-items:center}
+
+.rp-body{flex:1; min-height:0; display:grid; grid-template-columns:132px minmax(0,1fr) 380px}
+.rp-rail{overflow-y:auto; padding:14px 10px; display:flex; flex-direction:column; gap:6px; border-right:1px solid var(--r-line); background:#fffdfa}
+.cat-btn{display:flex; flex-direction:column; align-items:center; gap:4px; padding:12px 6px; border:1.5px solid transparent; border-radius:16px; background:transparent; cursor:pointer; color:var(--r-soft); font-size:12.5px; font-weight:700; text-align:center; line-height:1.2; transition:background .2s, color .2s, border-color .2s, transform .15s}
+.cat-btn .cat-ico{font-size:26px; line-height:1; transition:transform .3s var(--r-ease)}
+.cat-btn .cat-count{font-size:11px; font-weight:600; opacity:.7}
+.cat-btn:hover{background:var(--r-brand-soft); color:var(--r-ink)}
+.cat-btn:hover .cat-ico{transform:scale(1.12) rotate(-6deg)}
+.cat-btn.active{background:#fff; border-color:var(--r-brand); color:var(--r-brand); box-shadow:0 6px 18px rgba(224,58,30,.15)}
+
+.rp-menu{overflow-y:auto; padding:18px 20px 30px; scroll-behavior:smooth}
+.rp-search{position:relative; margin-bottom:10px}
+.rp-search svg{position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--r-soft)}
+.menu-search{width:100%; height:50px; padding:0 52px 0 46px; border:1.5px solid var(--r-line); border-radius:15px; background:#fff; font:inherit; font-size:15px; color:var(--r-ink); transition:border-color .2s, box-shadow .2s}
+.menu-search:focus{outline:none; border-color:var(--r-brand); box-shadow:0 0 0 4px rgba(224,58,30,.12)}
+.rp-kbd{position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:12px; font-weight:700; color:var(--r-soft); border:1px solid var(--r-line); border-radius:7px; padding:1px 8px; background:#faf6f0}
+.pos-results{font-size:13px; font-weight:700; color:var(--r-soft); margin:0 2px 12px}
+.pos-no-match{padding:40px 20px; text-align:center; background:#fff; border:1.5px dashed var(--r-line); border-radius:18px; color:var(--r-soft)}
+.food-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(172px,1fr)); gap:14px}
+.food-card{position:relative; display:flex; flex-direction:column; background:var(--r-card); border-radius:20px; overflow:hidden; box-shadow:0 2px 8px rgba(64,36,18,.06); border:1px solid #f3ebe0; transition:transform .25s var(--r-ease), box-shadow .25s var(--r-ease); animation:cardIn .45s var(--r-ease) both; animation-delay:calc(var(--i,0) * 22ms)}
+.food-card:not(.sold):hover{transform:translateY(-4px); box-shadow:var(--r-shadow)}
+.food-card:not(.sold):active{transform:scale(.97)}
+.food-card[hidden]{display:none !important}
+.food-image{position:relative; aspect-ratio:4/3; background:linear-gradient(145deg,#fff4e0,#ffe2c2); display:flex; align-items:center; justify-content:center; overflow:hidden}
+.food-image img{width:100%; height:100%; object-fit:cover; transition:transform .5s var(--r-ease)}
+.food-card:not(.sold):hover .food-image img{transform:scale(1.07)}
+.food-placeholder{font-size:46px}
+.food-badges{position:absolute; top:9px; left:9px; right:9px; display:flex; gap:5px; flex-wrap:wrap; z-index:2; pointer-events:none}
+.featured-label,.veg-label,.sold-label{font-size:10.5px; font-weight:800; padding:4px 8px; border-radius:999px; backdrop-filter:blur(4px)}
+.featured-label{background:rgba(255,191,46,.95); color:#3b2408}
+.veg-label{background:rgba(255,255,255,.92); color:var(--r-green)}
+.sold-label{background:#1d1715; color:#fff; margin-left:auto}
+.food-body{padding:11px 13px 13px; display:flex; flex-direction:column; flex:1}
+.food-name{font-weight:800; font-size:14.5px; line-height:1.3}
+.food-desc{font-size:12px; color:var(--r-soft); margin:3px 0 10px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
+.food-meta{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:auto}
+.food-price{font-weight:900; font-size:16px; color:var(--r-ink)}
+.food-price small{font-size:11px; font-weight:700; color:var(--r-soft); margin-right:2px}
+.food-time{font-size:11px; color:var(--r-soft); font-weight:600}
+.food-add{width:36px; height:36px; flex-shrink:0; border:0; border-radius:12px; background:var(--r-brand); color:#fff; font-size:22px; font-weight:600; line-height:1; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(224,58,30,.3); transition:background .2s, transform .2s var(--r-ease)}
+.food-add::after{content:""; position:absolute; inset:0; z-index:1}
+.food-card:not(.sold):hover .food-add{background:var(--r-brand-dark); transform:rotate(90deg)}
+.food-add:disabled{background:#d6cfc7; box-shadow:none; cursor:not-allowed}
+.food-add.is-loading{animation:spinPulse .8s linear infinite}
+.sold{opacity:.55; filter:grayscale(.6)}
+.quick-demo{max-width:520px; margin:40px auto; text-align:center; background:#fff; padding:34px; border-radius:24px; box-shadow:var(--r-shadow)}
+.quick-demo .qd-ico{font-size:52px; display:block; margin-bottom:8px; animation:floaty 3s ease-in-out infinite}
+.quick-demo p{color:var(--r-soft)}
+
+.cart-panel{display:flex; flex-direction:column; min-height:0; background:#fff; border-left:1px solid var(--r-line)}
+.rp-mbar{display:none}
+.cart-title{display:flex; align-items:center; justify-content:space-between; padding:16px 18px 12px}
+.cart-title h2{margin:0; font-size:18px; letter-spacing:-.01em}
+.cart-count{display:inline-flex; align-items:center; justify-content:center; min-width:28px; height:28px; padding:0 9px; border-radius:999px; background:var(--r-brand-soft); color:var(--r-brand); font-weight:800; font-size:13px}
+.cart-lines{flex:1; overflow-y:auto; padding:0 12px}
+.cart-item{display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:start; padding:12px 8px; border-radius:14px; border-bottom:1px dashed var(--r-line); animation:lineIn .35s var(--r-ease) both}
+.cart-item.is-new{animation:lineIn .35s var(--r-ease) both, lineFlash 1.2s ease .1s}
+.cart-name{font-weight:750; font-size:14.5px; line-height:1.3}
+.cart-note{font-size:12px; color:var(--r-soft); margin-top:2px}
+.cart-note .note{display:inline-block; margin-top:3px; background:#fff6db; color:#7a4b00; padding:1px 7px; border-radius:6px}
+.cart-price{font-weight:800; font-size:14.5px; white-space:nowrap}
+.cart-qty-static{display:inline-flex; align-items:center; justify-content:center; min-width:34px; height:30px; border-radius:9px; background:#f4eee6; font-weight:800; font-size:13px}
+.qty-actions{display:flex; flex-direction:column; align-items:center; gap:2px; background:#f7f1ea; border-radius:12px; padding:3px}
+.qty-actions form{margin:0}
+.qty-btn{width:30px; height:28px; border:0; border-radius:9px; background:#fff; color:var(--r-ink); font-size:17px; font-weight:800; cursor:pointer; line-height:1; box-shadow:0 1px 2px rgba(0,0,0,.06); transition:background .15s, transform .12s}
+.qty-btn:hover{background:var(--r-brand); color:#fff}
+.qty-btn:active{transform:scale(.88)}
+.qty-btn:disabled{opacity:.5; cursor:wait}
+.qty-val{font-weight:800; font-size:14px; padding:1px 0}
+.line-side{display:flex; flex-direction:column; align-items:flex-end; gap:6px}
+.remove-btn{border:0; background:transparent; color:#b8a99d; cursor:pointer; padding:4px; border-radius:8px; display:inline-flex; transition:color .15s, background .15s}
+.remove-btn:hover{color:#b42318; background:#fee4e2}
+.cart-empty{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:var(--r-soft); padding:30px 24px}
+.cart-empty .ce-ico{font-size:48px; margin-bottom:10px; animation:floaty 3s ease-in-out infinite}
+.cart-foot{padding:14px 18px 18px; border-top:1px solid var(--r-line); background:linear-gradient(#fff,#fffaf5)}
+.sum-row{display:flex; justify-content:space-between; font-size:14px; color:var(--r-soft); margin-bottom:4px}
+.cart-total{display:flex; justify-content:space-between; align-items:baseline; font-size:15px; font-weight:800; margin:6px 0 12px}
+.cart-total .amt{font-size:27px; letter-spacing:-.03em; color:var(--r-ink); font-variant-numeric:tabular-nums}
+.cart-hint{font-size:12.5px; background:#fff6db; color:#7a4b00; border-radius:10px; padding:9px 11px; margin-bottom:10px}
+.primary-actions{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.primary-actions form{margin:0}
+.rp-btn{width:100%; min-height:50px; border:1.5px solid var(--r-line); background:#fff; color:var(--r-ink); border-radius:14px; font-weight:800; font-size:14.5px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:7px; transition:background .2s, transform .12s, box-shadow .2s}
+.rp-btn:hover{background:#faf5ef}
+.rp-btn:active{transform:scale(.97)}
+.rp-btn.kitchen{background:var(--r-ink); border-color:var(--r-ink); color:#fff}
+.rp-btn.kitchen:hover{background:#3a2e29}
+.rp-btn.pay{grid-column:1 / -1; min-height:58px; background:var(--r-brand); border-color:var(--r-brand); color:#fff; font-size:16.5px; box-shadow:0 10px 24px rgba(224,58,30,.28)}
+.rp-btn.pay:hover{background:var(--r-brand-dark)}
+.rp-btn:disabled{background:#eee8e1 !important; border-color:#eee8e1 !important; color:#a39487 !important; box-shadow:none !important; cursor:not-allowed}
+.rp-more{grid-column:1 / -1; border:0; background:none; color:var(--r-soft); font-weight:700; font-size:13px; cursor:pointer; padding:6px}
+.rp-more:hover{color:var(--r-brand)}
+.cart-panel.cart-updated .cart-count{animation:bump .45s var(--r-ease)}
+
+.rp-dialog{border:0; padding:0; border-radius:26px; width:min(480px,94vw); max-height:92vh; box-shadow:0 30px 80px rgba(20,10,5,.35); color:var(--r-ink)}
+.rp-dialog[open]{animation:dialogIn .32s var(--r-ease) both}
+.rp-dialog::backdrop{background:rgba(29,23,21,.55); backdrop-filter:blur(6px)}
+.rp-dialog.wide{width:min(760px,95vw)}
+.dlg-head{position:relative; padding:22px 24px 6px}
+.dlg-head h3{margin:0; font-size:22px; letter-spacing:-.02em}
+.dlg-head p{margin:4px 0 0; color:var(--r-soft); font-size:14px}
+.dlg-close{position:absolute; right:14px; top:14px; width:36px; height:36px; border:0; background:#f4eee6; border-radius:50%; cursor:pointer; font-size:18px; color:var(--r-soft)}
+.dlg-body{padding:12px 24px}
+.dlg-foot{display:flex; gap:10px; padding:14px 24px 22px}
+.dlg-foot .rp-btn{flex:1}
+.dlg-foot .rp-btn.go{background:var(--r-brand); border-color:var(--r-brand); color:#fff}
+.dlg-foot .rp-btn.go:hover{background:var(--r-brand-dark)}
+.dlg-hero{height:150px; margin:-1px -1px 0; background:linear-gradient(145deg,#fff4e0,#ffe2c2); display:flex; align-items:center; justify-content:center; font-size:60px; overflow:hidden}
+.dlg-hero img{width:100%; height:100%; object-fit:cover}
+.stepper{display:inline-flex; align-items:center; gap:4px; background:#f7f1ea; border-radius:14px; padding:4px}
+.stepper button{width:40px; height:40px; border:0; border-radius:11px; background:#fff; font-size:20px; font-weight:800; cursor:pointer}
+.stepper input{width:54px; text-align:center; border:0; background:transparent; font:inherit; font-size:18px; font-weight:800; -moz-appearance:textfield}
+.stepper input::-webkit-inner-spin-button{display:none}
+.field-label{display:block; font-size:13px; font-weight:700; color:var(--r-soft); margin:14px 0 6px}
+.rp-input{width:100%; height:46px; padding:0 14px; border:1.5px solid var(--r-line); border-radius:12px; font:inherit; font-size:15px; background:#fff; color:var(--r-ink)}
+.rp-input:focus{outline:none; border-color:var(--r-brand); box-shadow:0 0 0 4px rgba(224,58,30,.12)}
+.modifier-list{margin:14px 0 4px}
+.modifier-list > strong{display:block; font-size:14px; margin-bottom:8px}
+.modifier-list > strong small{font-weight:600; color:var(--r-soft)}
+.modifier-choice{display:inline-flex; align-items:center; gap:8px; margin:0 6px 8px 0; padding:9px 13px; border:1.5px solid var(--r-line); border-radius:12px; cursor:pointer; font-size:14px; font-weight:600; transition:border-color .15s, background .15s}
+.modifier-choice input{accent-color:var(--r-brand)}
+.modifier-choice:has(input:checked){border-color:var(--r-brand); background:var(--r-brand-soft)}
+.modifier-choice strong{font-size:12.5px; color:var(--r-soft)}
+
+.pay-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+.pay-due{background:var(--r-ink); color:#fff; border-radius:20px; padding:18px 20px}
+.pay-due small{opacity:.7; font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.06em}
+.pay-due .big{font-size:36px; font-weight:900; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.pay-lines{margin-top:12px; font-size:13.5px}
+.pay-lines div{display:flex; justify-content:space-between; gap:10px; opacity:.85; margin-top:3px}
+.adj-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
+.adj-grid label{font-size:12px; font-weight:700; color:var(--r-soft)}
+.adj-grid input{height:42px; margin-top:4px}
+.seg{display:grid; grid-template-columns:repeat(4,1fr); gap:6px; background:#f4eee6; border-radius:14px; padding:4px}
+.seg button{border:0; background:transparent; border-radius:11px; padding:10px 4px; font-weight:800; font-size:13.5px; cursor:pointer; color:var(--r-soft); display:flex; flex-direction:column; align-items:center; gap:2px; transition:background .2s, color .2s}
+.seg button span{font-size:20px}
+.seg button.on{background:#fff; color:var(--r-ink); box-shadow:0 3px 10px rgba(0,0,0,.08)}
+.pay-panel{margin-top:14px}
+.pay-panel[hidden]{display:none}
+.quick-cash{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px}
+.quick-cash button{border:1.5px solid var(--r-line); background:#fff; border-radius:10px; padding:8px 12px; font-weight:800; cursor:pointer}
+.quick-cash button:hover{border-color:var(--r-brand); color:var(--r-brand)}
+.change-box{margin-top:12px; padding:12px 14px; border-radius:14px; background:var(--r-green-soft); color:var(--r-green); font-weight:800; display:flex; justify-content:space-between}
+.change-box.short{background:#fee4e2; color:#b42318}
+.split-rows{display:grid; gap:8px}
+.split-rows label{display:grid; grid-template-columns:90px 1fr; align-items:center; gap:10px; font-weight:700}
+.split-left{margin-top:10px; font-weight:800; font-size:14px}
+.split-left.ok{color:var(--r-green)}
+.split-left.bad{color:#b42318}
+.more-card{border:1.5px solid var(--r-line); border-radius:16px; padding:14px 16px; margin-bottom:12px}
+.more-card strong{display:block; margin-bottom:8px}
+.more-card label{display:flex; align-items:center; gap:8px; padding:5px 0; font-size:14px}
+
+.pos-toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%); display:flex; align-items:center; gap:10px; background:var(--r-ink,#1d1715); color:#fff; padding:13px 20px; border-radius:16px; box-shadow:0 18px 40px rgba(0,0,0,.3); z-index:120; font-weight:700; font-size:14.5px; animation:toastIn .35s var(--r-ease,ease) both}
+.pos-toast.error{background:#b42318}
+.pos-toast.out{animation:toastOut .3s ease both}
+.fly-dot{position:fixed; z-index:130; width:54px; height:54px; border-radius:16px; overflow:hidden; pointer-events:none; box-shadow:0 10px 25px rgba(0,0,0,.25); background:#ffe2c2; display:flex; align-items:center; justify-content:center; font-size:28px}
+.fly-dot img{width:100%; height:100%; object-fit:cover}
+
+@keyframes cardIn{from{opacity:0; transform:translateY(14px) scale(.98)}to{opacity:1; transform:none}}
+@keyframes lineIn{from{opacity:0; transform:translateX(16px)}to{opacity:1; transform:none}}
+@keyframes lineFlash{0%{background:#fff0c2}100%{background:transparent}}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
+@keyframes dialogIn{from{opacity:0; transform:translateY(24px) scale(.97)}to{opacity:1; transform:none}}
+@keyframes toastIn{from{opacity:0; transform:translate(-50%,20px)}to{opacity:1; transform:translate(-50%,0)}}
+@keyframes toastOut{to{opacity:0; transform:translate(-50%,20px)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes spinPulse{50%{opacity:.55}}
+
+@media(max-width:1180px){
+  .rp-body{grid-template-columns:minmax(0,1fr) 340px; grid-template-rows:auto minmax(0,1fr)}
+  .rp-rail{grid-column:1; flex-direction:row; overflow-x:auto; overflow-y:hidden; border-right:0; border-bottom:1px solid var(--r-line); padding:10px 14px; scrollbar-width:none}
+  .rp-rail::-webkit-scrollbar{display:none}
+  .cat-btn{flex-direction:row; flex-shrink:0; padding:9px 14px; border-radius:999px; background:#fff; border-color:var(--r-line)}
+  .cat-btn .cat-ico{font-size:18px}
+  .rp-menu{grid-column:1; grid-row:2}
+  .cart-panel{grid-column:2; grid-row:1 / span 2}
+  .rp-top-actions .label{display:none}
+}
+@media(max-width:760px){
+  .rp-top{padding:10px 12px; gap:8px}
+  .rp-top-actions .rp-hide-sm{display:none}
+  .rp-order h2{font-size:16px}
+  .rp-body{grid-template-columns:minmax(0,1fr)}
+  .rp-menu{padding:12px 12px 110px}
+  .food-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
+  .food-name{font-size:13.5px}
+  .food-desc{display:none}
+  .food-body{padding:9px 10px 10px}
+  .cart-panel{position:fixed; left:0; right:0; bottom:0; z-index:60; height:min(86dvh,720px); border:0; border-radius:24px 24px 0 0; box-shadow:0 -12px 40px rgba(40,20,10,.22); transform:translateY(calc(100% - 76px)); transition:transform .4s var(--r-ease)}
+  .ticket-open .cart-panel{transform:none}
+  .rp-mbar{display:flex; align-items:center; gap:12px; width:100%; min-height:76px; padding:12px 16px; border:0; background:transparent; cursor:pointer; text-align:left; color:var(--r-ink)}
+  .rp-mbar .mb-count{display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:14px; background:var(--r-brand); color:#fff; font-weight:900; font-size:16px}
+  .rp-mbar .mb-text{flex:1; font-weight:800; font-size:15px}
+  .rp-mbar .mb-text small{display:block; color:var(--r-soft); font-weight:600; font-size:12px}
+  .rp-mbar .mb-total{font-weight:900; font-size:18px}
+  .rp-mbar .mb-chev{transition:transform .3s}
+  .ticket-open .rp-mbar .mb-chev{transform:rotate(180deg)}
+  .rp-mbar::before{content:""; position:absolute; top:7px; left:50%; width:40px; height:4px; margin-left:-20px; border-radius:4px; background:#e3d8cb}
+  .cart-title{padding-top:4px}
+  .pay-grid{grid-template-columns:1fr}
+  .adj-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(prefers-reduced-motion:reduce){
+  .rpos *,.pos-toast,.rp-dialog[open]{animation:none !important; transition:none !important}
+}
 </style>
-<div class="pos-head"><div class="pos-title"><h2>{{ order.order_number }} · {{ order.get_channel_display }}</h2><p>{% if order.table %}Table {{ order.table.name }} · {% endif %}Touch an item to add it to the order <a class="pos-jump" href="#foodGrid">View food menu ↓</a></p></div><span class="pos-status">{{ order.get_status_display }}</span></div>
-<nav class="pos-quickbar" aria-label="Cashier actions"><a class="pos-quick-primary" href="{% url 'webapp:restaurant_order_add' %}">＋ New order</a><a href="{% url 'webapp:restaurant_dashboard' %}">▦ All orders</a><a href="{% url 'webapp:restaurant_kitchen' %}">◉ Kitchen board</a><button id="posFullScreen" type="button">⛶ Full screen</button></nav>
-{% if order.status != 'paid' and order.status != 'cancelled' %}<div style="text-align:right;margin:0 0 8px"><a class="btn btn-secondary" style="color:#b91c1c" href="{% url 'webapp:restaurant_order_cancel' order.id %}">Cancel Order</a></div>{% elif order.status == 'paid' and order.invoice %}<div style="text-align:right;margin:0 0 8px"><a class="btn btn-secondary" href="{% url 'webapp:sales_return_add' order.invoice.id %}">Return / Refund Paid Order</a></div>{% endif %}
-<div class="pos-layout"><section class="menu-panel">
-<div class="menu-tools"><input class="menu-search" id="menuSearch" type="search" placeholder="Search dishes, category or SKU…"><div class="category-tabs"><button class="cat-btn active" data-category="all">All</button>{% for category in menu_categories %}<button class="cat-btn" data-category="{{ category.id }}">{{ category.name }}</button>{% endfor %}</div></div>
-<div class="pos-results" id="posResults" aria-live="polite"></div><div class="pos-no-match" id="posNoMatch" hidden>No dishes match this search. Try another name or category.</div>
-<div class="food-grid" id="foodGrid">{% for item in menu_items %}<article class="food-card{% if not item.is_available %} sold{% endif %}" data-category="{{ item.product.category_id|default:'none' }}" data-search="{{ item.product.name|lower }} {{ item.product.sku|lower }} {{ item.product.category.name|lower }}">{% if item.is_featured %}<span class="featured-label">★ Popular</span>{% endif %}{% if not item.is_available %}<span class="sold-label">Sold out</span>{% endif %}<div class="food-image">{% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.product.name }}" loading="lazy">{% else %}<span class="food-placeholder">🍽️</span>{% endif %}</div><div class="food-body"><div class="food-name">{{ item.product.name }} {% if item.is_vegetarian %}<span title="Vegetarian">🟢</span>{% endif %}</div><div class="food-desc">{{ item.description|default:"Freshly prepared" }}</div><div class="food-meta"><span class="food-price">{{ active_company.default_currency }} {{ item.product.selling_price }}</span><span class="food-time">⏱ {{ item.preparation_minutes }} min</span></div><button class="food-add" type="button" {% if not item.is_available or order.status != 'draft' and order.status != 'held' %}disabled{% endif %} data-product-id="{{ item.product.id }}" data-product-name="{{ item.product.name }}" data-has-modifiers="{% if item.modifier_groups.all %}true{% else %}false{% endif %}">+ Add</button></div></article>{% empty %}<div class="quick-demo"><strong>No food items in this restaurant yet</strong><p>Add 20 illustrated sample dishes in 11 categories, then edit their prices and details in Restaurant Setup.</p><form method="post" action="{% url 'webapp:restaurant_demo_menu' %}">{% csrf_token %}<input type="hidden" name="order_id" value="{{ order.id }}"><button class="btn" type="submit">Add sample menu</button></form></div>{% endfor %}</div>
-</section><aside class="cart-panel"><div class="cart-title"><h2>Current Order</h2><strong>{{ order.lines.count }} items</strong></div>
-{% for line in order.lines.all %}<div class="cart-item"><div class="cart-row"><div><div class="cart-name">{{ line.product.name }}</div><div class="cart-note">{% for m in line.modifiers.all %}{{ m.modifier.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% if line.notes %} · {{ line.notes }}{% endif %}</div></div><strong>{{ active_company.default_currency }} {{ line.total }}</strong></div>{% if order.status == 'draft' or order.status == 'held' %}<div class="qty-actions"><form method="post">{% csrf_token %}<input type="hidden" name="line_id" value="{{ line.id }}"><button class="qty-btn" name="action" value="decrease_line">−</button></form><strong>{{ line.quantity }}</strong><form method="post">{% csrf_token %}<input type="hidden" name="line_id" value="{{ line.id }}"><button class="qty-btn" name="action" value="increase_line">+</button></form><form method="post">{% csrf_token %}<input type="hidden" name="line_id" value="{{ line.id }}"><button class="remove-btn" name="action" value="remove_line">Remove</button></form></div>{% endif %}</div>{% empty %}<div class="cart-empty">🛒<br>Your order is empty. Select a food card on the left.</div>{% endfor %}
-<div class="cart-total"><span>Total</span><span>{{ active_company.default_currency }} {{ order.total }}</span></div>{% if not order.lines.count %}<div class="cart-hint">Add at least one dish before sending this order to the kitchen.</div>{% endif %}
-<div class="primary-actions"><form method="post">{% csrf_token %}<button class="btn" name="action" value="send_kitchen" {% if not order.lines.count or order.status != 'draft' and order.status != 'held' %}disabled title="Add an item to this draft order first"{% endif %}>Send to Kitchen</button></form><form method="post">{% csrf_token %}<button class="btn btn-secondary" name="action" value="{% if order.status == 'held' %}resume{% else %}hold{% endif %}" {% if order.status != 'draft' and order.status != 'held' %}disabled{% endif %}>{% if order.status == 'held' %}Resume order{% else %}Hold Order{% endif %}</button></form></div>
-<details class="advanced"><summary>Payment, split & more</summary><form method="post">{% csrf_token %}<input type="hidden" name="action" value="split"><div class="card"><strong>Split selected items</strong>{% for line in order.lines.all %}<label style="display:block;margin-top:7px"><input type="checkbox" name="line_ids" value="{{ line.id }}"> {{ line.product.name }}</label>{% endfor %}<button class="btn btn-secondary" style="margin-top:10px">Split</button></div></form><form method="post" class="card">{% csrf_token %}<input type="hidden" name="action" value="merge"><strong>Merge order</strong><select name="source_order_id" style="width:100%;margin:8px 0">{% for candidate in merge_candidates %}<option value="{{ candidate.id }}">{{ candidate.order_number }}</option>{% endfor %}</select><button class="btn btn-secondary">Merge</button></form><form method="post" class="card">{% csrf_token %}<input type="hidden" name="action" value="settle"><strong>Billing & split payment</strong>{{ settle_form.as_p }}<button class="btn">Create Bill & Pay</button></form></details></aside></div>
-{% for item in menu_items %}<template id="mods-{{ item.product.id }}">{% for group in item.modifier_groups.all %}<div class="modifier-list"><strong>{{ group.name }}{% if group.is_required %} *{% endif %} <small>(choose {{ group.min_selections }}–{{ group.max_selections }})</small></strong>{% for option in group.options.all %}<label class="modifier-choice"><span><input type="checkbox" name="modifiers" value="{{ option.modifier.id }}"> {{ option.modifier.name }}</span><strong>+{{ option.modifier.price_delta }}</strong></label>{% endfor %}</div>{% empty %}<p style="color:#64748b">No add-ons for this item.</p>{% endfor %}</template>{% endfor %}
-<dialog id="itemDialog" class="modifier-dialog"><form method="post" class="dialog-inner">{% csrf_token %}<input type="hidden" name="action" value="quick_add"><input type="hidden" name="product_id" id="dialogProduct"><h3 id="dialogTitle">Add item</h3><label>Quantity<input name="quantity" type="number" min="1" step="1" value="1" style="width:100%;margin-top:6px"></label><div id="dialogModifiers"></div><label>Kitchen note<input name="notes" maxlength="255" placeholder="No onion, extra spicy…" style="width:100%;margin-top:6px"></label><div class="dialog-actions"><button type="button" class="btn btn-secondary" onclick="itemDialog.close()">Cancel</button><button class="btn">Add to Order</button></div></form></dialog>
-<dialog id="posConfirm" class="pos-confirm"><div class="pos-confirm-inner"><h3 id="posConfirmTitle">Confirm action</h3><p id="posConfirmText"></p><div class="pos-confirm-actions"><button class="btn btn-secondary" type="button" id="posConfirmCancel">Go back</button><button class="btn" type="button" id="posConfirmAccept">Continue</button></div></div></dialog>
+
+<div class="rpos" id="rpos">
+  <header class="rp-top">
+    <button class="rp-icon-btn" type="button" data-nav-toggle aria-label="Open main menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <a class="rp-icon-btn" href="{% url 'webapp:restaurant_dashboard' %}" aria-label="Back to orders"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></a>
+    <div class="rp-order">
+      <h2>{{ order.order_number }}</h2>
+      <div class="rp-chips">
+        <span class="rp-chip">{% if order.channel == 'dine_in' %}🍽️{% elif order.channel == 'delivery' %}🛵{% else %}🥡{% endif %} {{ order.get_channel_display }}</span>
+        {% if order.table %}<span class="rp-chip">🪑 Table {{ order.table.name }}</span>{% endif %}
+        {% if order.customer %}<span class="rp-chip">👤 {{ order.customer }}</span>{% endif %}
+        <span class="rp-chip status {{ order.status }}">{{ order.get_status_display }}</span>
+      </div>
+    </div>
+    <div class="rp-top-actions">
+      {% if order.status != 'paid' and order.status != 'cancelled' %}<a class="rp-icon-btn danger rp-hide-sm" href="{% url 'webapp:restaurant_order_cancel' order.id %}" title="Cancel order">✕ <span class="label">Cancel Order</span></a>{% elif order.status == 'paid' and order.invoice %}<a class="rp-icon-btn rp-hide-sm" href="{% url 'webapp:sales_return_add' order.invoice.id %}">↺ <span class="label">Return / Refund</span></a>{% endif %}
+      <a class="rp-icon-btn rp-hide-sm" href="{% url 'webapp:restaurant_kitchen' %}" title="Kitchen board">👨‍🍳 <span class="label">Kitchen</span></a>
+      <button class="rp-icon-btn rp-hide-sm" id="posFullScreen" type="button" title="Full screen">⛶</button>
+      <a class="rp-icon-btn primary" href="{% url 'webapp:restaurant_order_add' %}">＋ <span class="label">New order</span></a>
+    </div>
+  </header>
+
+  <div class="rp-body">
+    <nav class="rp-rail" aria-label="Menu categories">
+      <button class="cat-btn active" type="button" data-category="all"><span class="cat-ico">🍽️</span>All<span class="cat-count" data-count="all"></span></button>
+      {% for category in menu_categories %}<button class="cat-btn" type="button" data-category="{{ category.id }}" data-name="{{ category.name|lower }}"><span class="cat-ico">🍴</span>{{ category.name }}<span class="cat-count" data-count="{{ category.id }}"></span></button>{% endfor %}
+    </nav>
+
+    <section class="rp-menu" id="menuPanel">
+      <div class="rp-search">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input class="menu-search" id="menuSearch" type="search" placeholder="Search dishes, category or SKU…" autocomplete="off" aria-label="Search menu">
+        <span class="rp-kbd" aria-hidden="true">/</span>
+      </div>
+      <div class="pos-results" id="posResults" aria-live="polite"></div>
+      <div class="pos-no-match" id="posNoMatch" hidden>🔍 No dishes match this search. Try another name or category.</div>
+      <div class="food-grid" id="foodGrid">
+        {% for item in menu_items %}
+        <article class="food-card{% if not item.is_available %} sold{% endif %}" style="--i:{{ forloop.counter0 }}" data-category="{{ item.product.category_id|default:'none' }}" data-search="{{ item.product.name|lower }} {{ item.product.sku|lower }} {{ item.product.category.name|lower }}">
+          <div class="food-image">
+            <div class="food-badges">{% if item.is_featured %}<span class="featured-label">★ Popular</span>{% endif %}{% if item.is_vegetarian %}<span class="veg-label">● Veg</span>{% endif %}{% if not item.is_available %}<span class="sold-label">Sold out</span>{% endif %}</div>
+            {% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.product.name }}" loading="lazy">{% else %}<span class="food-placeholder">🍽️</span>{% endif %}
+          </div>
+          <div class="food-body">
+            <div class="food-name">{{ item.product.name }}</div>
+            <div class="food-desc">{{ item.description|default:"Freshly prepared" }}</div>
+            <div class="food-meta">
+              <div><div class="food-price"><small>{{ active_company.default_currency }}</small>{{ item.product.selling_price|floatformat:2 }}</div><div class="food-time">⏱ {{ item.preparation_minutes }} min</div></div>
+              <button class="food-add" type="button" aria-label="Add {{ item.product.name }}" {% if not item.is_available or order.status != 'draft' and order.status != 'held' %}disabled{% endif %} data-product-id="{{ item.product.id }}" data-product-name="{{ item.product.name }}" data-price="{{ item.product.selling_price|floatformat:2 }}" data-has-modifiers="{% if item.modifier_groups.all %}true{% else %}false{% endif %}">+</button>
+            </div>
+          </div>
+        </article>
+        {% empty %}
+        <div class="quick-demo">
+          <span class="qd-ico">🍔</span>
+          <strong>No food items in this restaurant yet</strong>
+          <p>Add 20 illustrated sample dishes in 11 categories, then edit their prices and details in Restaurant Setup.</p>
+          <form method="post" action="{% url 'webapp:restaurant_demo_menu' %}">{% csrf_token %}<input type="hidden" name="order_id" value="{{ order.id }}"><button class="rp-btn pay" type="submit">Add sample menu</button></form>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <aside class="cart-panel" id="ticket" data-subtotal="{{ order.subtotal|floatformat:2 }}" data-lines="{{ order.lines.count }}">
+      {% with line_count=order.lines.count %}
+      <button class="rp-mbar" type="button" data-ticket-toggle aria-label="Show current order">
+        <span class="mb-count">{{ line_count }}</span>
+        <span class="mb-text">{% if line_count %}View order{% else %}Order is empty{% endif %}<small>{{ order.order_number }} · tap to {% if line_count %}review & pay{% else %}see details{% endif %}</small></span>
+        <span class="mb-total">{{ active_company.default_currency }} {{ order.total|floatformat:2 }}</span>
+        <svg class="mb-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 15l6-6 6 6"/></svg>
+      </button>
+      <div class="cart-title"><h2>Current order</h2><span class="cart-count">{{ line_count }} item{{ line_count|pluralize }}</span></div>
+      {% if line_count %}
+      <div class="cart-lines">
+        {% for line in order.lines.all %}
+        <div class="cart-item" data-line-id="{{ line.id }}">
+          {% if order.status == 'draft' or order.status == 'held' %}
+          <div class="qty-actions">
+            <form method="post">{% csrf_token %}<input type="hidden" name="line_id" value="{{ line.id }}"><button class="qty-btn" name="action" value="increase_line" aria-label="Increase {{ line.product.name }}">+</button></form>
+            <span class="qty-val">{{ line.quantity|floatformat:"-3" }}</span>
+            <form method="post">{% csrf_token %}<input type="hidden" name="line_id" value="{{ line.id }}"><button class="qty-btn" name="action" value="decrease_line" aria-label="Decrease {{ line.product.name }}">−</button></form>
+          </div>
+          {% else %}<span class="cart-qty-static">{{ line.quantity|floatformat:"-3" }}×</span>{% endif %}
+          <div>
+            <div class="cart-name">{{ line.product.name }}</div>
+            <div class="cart-note">{{ active_company.default_currency }} {{ line.unit_price|floatformat:2 }} each{% for m in line.modifiers.all %}{% if forloop.first %} · {% endif %}{{ m.modifier.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% if line.notes %}<br><span class="note">📝 {{ line.notes }}</span>{% endif %}</div>
+          </div>
+          <div class="line-side">
+            <span class="cart-price">{{ line.total|floatformat:2 }}</span>
+            {% if order.status == 'draft' or order.status == 'held' %}<form method="post" class="qty-actions-remove">{% csrf_token %}<input type="hidden" name="line_id" value="{{ line.id }}"><button class="remove-btn" name="action" value="remove_line" aria-label="Remove {{ line.product.name }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button></form>{% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="cart-empty"><span class="ce-ico">🛒</span><strong>Your order is empty</strong><span>Tap a dish on the menu to add it.</span></div>
+      {% endif %}
+      <div class="cart-foot">
+        <div class="sum-row"><span>Subtotal</span><span>{{ order.subtotal|floatformat:2 }}</span></div>
+        {% if order.service_charge %}<div class="sum-row"><span>Service charge</span><span>+{{ order.service_charge|floatformat:2 }}</span></div>{% endif %}
+        {% if order.tip_amount %}<div class="sum-row"><span>Tip</span><span>+{{ order.tip_amount|floatformat:2 }}</span></div>{% endif %}
+        {% if order.discount_amount %}<div class="sum-row"><span>Discount</span><span>−{{ order.discount_amount|floatformat:2 }}</span></div>{% endif %}
+        <div class="cart-total"><span>Total</span><span class="amt" data-amount="{{ order.total|floatformat:2 }}">{{ active_company.default_currency }} {{ order.total|floatformat:2 }}</span></div>
+        {% if not line_count %}<div class="cart-hint">Add at least one dish before sending this order to the kitchen.</div>{% endif %}
+        <div class="primary-actions">
+          <form method="post">{% csrf_token %}<button class="rp-btn kitchen" name="action" value="send_kitchen" {% if not line_count or order.status != 'draft' and order.status != 'held' %}disabled title="Add an item to this draft order first"{% endif %}>👨‍🍳 Send to Kitchen</button></form>
+          <form method="post">{% csrf_token %}<button class="rp-btn" name="action" value="{% if order.status == 'held' %}resume{% else %}hold{% endif %}" {% if order.status != 'draft' and order.status != 'held' %}disabled{% endif %}>{% if order.status == 'held' %}▶ Resume order{% else %}⏸ Hold Order{% endif %}</button></form>
+          <button class="rp-btn pay" type="button" data-open="payDialog" {% if not line_count or order.status == 'paid' or order.status == 'cancelled' %}disabled{% endif %}>💳 Pay {{ active_company.default_currency }} {{ order.total|floatformat:2 }}</button>
+          <button class="rp-more" type="button" data-open="moreDialog">Split · Merge · more options</button>
+        </div>
+      </div>
+      <dialog class="rp-dialog" id="moreDialog">
+        <div class="dlg-head"><h3>More options</h3><p>Split items into a new bill or merge another open order into this one.</p><button class="dlg-close" type="button" data-close aria-label="Close">✕</button></div>
+        <div class="dlg-body">
+          <form method="post" class="more-card">{% csrf_token %}<input type="hidden" name="action" value="split"><strong>✂️ Split selected items</strong>{% for line in order.lines.all %}<label><input type="checkbox" name="line_ids" value="{{ line.id }}"> {{ line.quantity|floatformat:"-3" }} × {{ line.product.name }}</label>{% empty %}<p class="cart-note">No items to split yet.</p>{% endfor %}<button class="rp-btn" style="margin-top:8px" {% if not line_count %}disabled{% endif %}>Split into new order</button></form>
+          <form method="post" class="more-card">{% csrf_token %}<input type="hidden" name="action" value="merge"><strong>🔗 Merge another order into this one</strong><select name="source_order_id" class="rp-input">{% for candidate in merge_candidates %}<option value="{{ candidate.id }}">{{ candidate.order_number }} · {{ candidate.get_channel_display }}{% if candidate.table %} · {{ candidate.table.name }}{% endif %}</option>{% empty %}<option value="">No other open orders</option>{% endfor %}</select><button class="rp-btn" style="margin-top:8px" {% if not merge_candidates %}disabled{% endif %}>Merge orders</button></form>
+          <div class="more-card"><strong>🧾 Receipt</strong><a class="rp-btn" target="_blank" href="{% url 'webapp:restaurant_receipt_print' order.id %}">Print receipt</a></div>
+        </div>
+      </dialog>
+      {% endwith %}
+    </aside>
+  </div>
+</div>
+
+{% for item in menu_items %}<template id="mods-{{ item.product.id }}" data-image="{% if item.image %}{{ item.image.url }}{% endif %}">{% for group in item.modifier_groups.all %}<div class="modifier-list"><strong>{{ group.name }}{% if group.is_required %} *{% endif %} <small>(choose {{ group.min_selections }}–{{ group.max_selections }})</small></strong>{% for option in group.options.all %}<label class="modifier-choice"><input type="checkbox" name="modifiers" value="{{ option.modifier.id }}" data-delta="{{ option.modifier.price_delta|floatformat:2 }}"> {{ option.modifier.name }} <strong>+{{ option.modifier.price_delta|floatformat:2 }}</strong></label>{% endfor %}</div>{% empty %}<p class="cart-note">No add-ons for this item.</p>{% endfor %}</template>{% endfor %}
+
+<dialog id="itemDialog" class="rp-dialog modifier-dialog">
+  <form method="post">{% csrf_token %}
+    <input type="hidden" name="action" value="quick_add"><input type="hidden" name="product_id" id="dialogProduct">
+    <div class="dlg-hero" id="dialogHero">🍽️</div>
+    <div class="dlg-head"><h3 id="dialogTitle">Add item</h3><p>Choose add-ons and quantity.</p><button class="dlg-close" type="button" data-close aria-label="Close">✕</button></div>
+    <div class="dlg-body">
+      <div id="dialogModifiers"></div>
+      <label class="field-label" for="dialogNotes">Kitchen note</label>
+      <input class="rp-input" id="dialogNotes" name="notes" maxlength="255" placeholder="No onion, extra spicy…">
+      <label class="field-label">Quantity</label>
+      <div class="stepper"><button type="button" data-step="-1" aria-label="Less">−</button><input name="quantity" id="dialogQty" type="number" min="1" step="1" value="1" aria-label="Quantity"><button type="button" data-step="1" aria-label="More">+</button></div>
+    </div>
+    <div class="dlg-foot"><button type="button" class="rp-btn" data-close>Cancel</button><button class="rp-btn go" id="dialogSubmit">Add to Order</button></div>
+  </form>
+</dialog>
+
+<dialog id="payDialog" class="rp-dialog wide">
+  <form method="post" id="payForm">{% csrf_token %}<input type="hidden" name="action" value="settle">
+    <div class="dlg-head"><h3>Take payment</h3><p>{{ order.order_number }}{% if order.table %} · Table {{ order.table.name }}{% endif %}</p><button class="dlg-close" type="button" data-close aria-label="Close">✕</button></div>
+    <div class="dlg-body">
+      {% if settle_form.errors %}<div class="cart-hint">{{ settle_form.errors }}</div>{% endif %}
+      <div class="pay-grid">
+        <div>
+          <div class="pay-due"><small>Amount due</small><div class="big" id="payDue">0.00</div>
+            <div class="pay-lines"><div><span>Subtotal</span><span id="paySub">0.00</span></div><div><span>Service + tip</span><span id="payExtra">0.00</span></div><div><span>Discount</span><span id="payDisc">0.00</span></div></div>
+          </div>
+          <div class="adj-grid" style="margin-top:12px">
+            <label>Service charge<input class="rp-input" type="number" step="0.01" min="0" name="service_charge" id="id_service_charge" value="{{ order.service_charge|floatformat:2 }}"></label>
+            <label>Tip<input class="rp-input" type="number" step="0.01" min="0" name="tip_amount" id="id_tip_amount" value="{{ order.tip_amount|floatformat:2 }}"></label>
+            <label>Discount<input class="rp-input" type="number" step="0.01" min="0" name="discount_amount" id="id_discount_amount" value="{{ order.discount_amount|floatformat:2 }}"></label>
+          </div>
+          <div {% if settle_form.fields.warehouse.queryset.count == 1 %}hidden{% endif %}>
+            <label class="field-label" for="{{ settle_form.warehouse.id_for_label }}">Stock location</label>
+            <select class="rp-input" name="warehouse" id="{{ settle_form.warehouse.id_for_label }}" required>{% for wh in settle_form.fields.warehouse.queryset %}<option value="{{ wh.pk }}" {% if forloop.first %}selected{% endif %}>{{ wh }}</option>{% endfor %}</select>
+          </div>
+        </div>
+        <div>
+          <div class="seg" role="tablist" aria-label="Payment method">
+            <button type="button" class="on" data-method="cash"><span>💵</span>Cash</button>
+            <button type="button" data-method="card"><span>💳</span>Card</button>
+            <button type="button" data-method="bank"><span>🏦</span>Bank</button>
+            <button type="button" data-method="split"><span>➗</span>Split</button>
+          </div>
+          <div class="pay-panel" data-panel="cash">
+            <label class="field-label" for="cashGiven">Cash received from customer</label>
+            <input class="rp-input" id="cashGiven" type="number" step="0.01" min="0" inputmode="decimal">
+            <div class="quick-cash" id="quickCash"></div>
+            <div class="change-box" id="changeBox"><span>Change to return</span><span id="changeAmt">0.00</span></div>
+          </div>
+          <div class="pay-panel" data-panel="single" hidden><div class="change-box"><span id="singleLabel">Charge to card</span><span id="singleAmt">0.00</span></div></div>
+          <div class="pay-panel" data-panel="split" hidden>
+            <div class="split-rows">
+              <label>💵 Cash<input class="rp-input split-in" type="number" step="0.01" min="0" data-for="cash"></label>
+              <label>💳 Card<input class="rp-input split-in" type="number" step="0.01" min="0" data-for="card"></label>
+              <label>🏦 Bank<input class="rp-input split-in" type="number" step="0.01" min="0" data-for="bank"></label>
+            </div>
+            <div class="split-left" id="splitLeft"></div>
+          </div>
+          <input type="hidden" name="cash" id="id_cash"><input type="hidden" name="card" id="id_card"><input type="hidden" name="bank" id="id_bank">
+        </div>
+      </div>
+    </div>
+    <div class="dlg-foot"><button type="button" class="rp-btn" data-close>Back</button><button class="rp-btn go" id="payGo">Charge</button></div>
+  </form>
+</dialog>
+
+<dialog id="posConfirm" class="rp-dialog pos-confirm">
+  <div class="dlg-head"><h3 id="posConfirmTitle">Send to kitchen?</h3><p id="posConfirmText"></p></div>
+  <div class="dlg-foot"><button class="rp-btn" type="button" id="posConfirmCancel">Go back</button><button class="rp-btn go" type="button" id="posConfirmAccept">Yes, send it</button></div>
+</dialog>
+
 <script>
+const CURRENCY = "{{ active_company.default_currency|escapejs }}";
 const search=document.getElementById('menuSearch'),cards=[...document.querySelectorAll('.food-card')],itemDialog=document.getElementById('itemDialog');
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let category='all',cartBusy=false;
-function filterMenu(){const q=search.value.toLowerCase().trim();let visible=0;cards.forEach(card=>{card.hidden=!((category==='all'||card.dataset.category===category)&&card.dataset.search.includes(q));if(!card.hidden)visible++});document.getElementById('posResults').textContent=visible+' dish'+(visible===1?'':'es')+' available';document.getElementById('posNoMatch').hidden=visible!==0||cards.length===0}
-filterMenu();search.addEventListener('input',filterMenu);document.querySelectorAll('.cat-btn').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.cat-btn').forEach(other=>other.classList.remove('active'));button.classList.add('active');category=button.dataset.category;filterMenu()}));
-function notifyCart(message,error=false){document.querySelector('.pos-toast')?.remove();const toast=document.createElement('div');toast.className='pos-toast'+(error?' error':'');toast.role='status';toast.textContent=message;document.body.appendChild(toast);setTimeout(()=>toast.remove(),3200)}
-async function updateCart(data,button,successText){if(cartBusy)return false;cartBusy=true;if(button){button.disabled=true;button.classList.add('is-loading')}try{const response=await fetch(location.href,{method:'POST',body:data,credentials:'same-origin',headers:{'X-Requested-With':'XMLHttpRequest'}});if(!response.ok)throw new Error('Order could not be updated. Please try again.');if(new URL(response.url).pathname!==location.pathname){location.assign(response.url);return false}const page=new DOMParser().parseFromString(await response.text(),'text/html');const error=page.querySelector('.messages .error');if(error){notifyCart(error.textContent.trim(),true);return false}const fresh=page.querySelector('.cart-panel');if(!fresh)throw new Error('Order could not be refreshed. Please reload this page.');const old=document.querySelector('.cart-panel');const advancedOpen=old.querySelector('.advanced')?.open;old.replaceWith(fresh);if(advancedOpen)fresh.querySelector('.advanced').open=true;fresh.classList.add('cart-updated');notifyCart(successText);return true}catch(error){notifyCart(error.message,true);return false}finally{cartBusy=false;if(button?.isConnected){button.disabled=false;button.classList.remove('is-loading')}}}
+const money=n=>(Math.round((+n||0)*100)/100).toFixed(2);
+
+/* ---------- category rail ---------- */
+const ICONS=[['burger','🍔'],['pizza','🍕'],['drink','🥤'],['juice','🧃'],['coffee','☕'],['tea','🍵'],['dessert','🍨'],['sweet','🍰'],['cake','🍰'],['breakfast','🥞'],['chicken','🍗'],['side','🍟'],['fries','🍟'],['wrap','🌯'],['salad','🥗'],['kid','🧒'],['combo','🍱'],['meal','🍱'],['rice','🍚'],['biryani','🍛'],['curry','🍛'],['seafood','🦐'],['fish','🐟'],['soup','🍲'],['grill','🔥'],['bbq','🔥'],['sandwich','🥪'],['pasta','🍝'],['noodle','🍜'],['bread','🥖'],['starter','🥟'],['appetizer','🥟'],['shake','🥤'],['ice','🍦']];
+document.querySelectorAll('.cat-btn[data-name]').forEach(b=>{const hit=ICONS.find(([k])=>b.dataset.name.includes(k));if(hit)b.querySelector('.cat-ico').textContent=hit[1]});
+document.querySelectorAll('[data-count]').forEach(el=>{const c=el.dataset.count;const n=c==='all'?cards.length:cards.filter(x=>x.dataset.category===c).length;el.textContent=n?n+(n===1?' item':' items'):''});
+
+function filterMenu(){const q=search.value.toLowerCase().trim();let visible=0;cards.forEach(card=>{const show=(category==='all'||card.dataset.category===category)&&card.dataset.search.includes(q);if(show&&card.hidden&&!reduceMotion){card.style.animation='none';card.offsetHeight;card.style.animation=''}card.hidden=!show;if(show){card.style.setProperty('--i',Math.min(visible,14));visible++}});document.getElementById('posResults').textContent=cards.length?visible+' dish'+(visible===1?'':'es')+' available':'';document.getElementById('posNoMatch').hidden=visible!==0||cards.length===0}
+filterMenu();search.addEventListener('input',filterMenu);
+document.querySelectorAll('.cat-btn').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.cat-btn').forEach(o=>o.classList.remove('active'));button.classList.add('active');category=button.dataset.category;filterMenu();document.getElementById('menuPanel').scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'})}));
+document.addEventListener('keydown',e=>{if(e.key==='/'&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)&&!document.querySelector('dialog[open]')){e.preventDefault();search.focus()}});
+
+/* ---------- toasts & motion helpers ---------- */
+function notifyCart(message,error=false){document.querySelectorAll('.pos-toast').forEach(t=>t.remove());const toast=document.createElement('div');toast.className='pos-toast'+(error?' error':'');toast.setAttribute('role','status');toast.textContent=(error?'⚠️ ':'✓ ')+message;document.body.appendChild(toast);setTimeout(()=>{toast.classList.add('out');setTimeout(()=>toast.remove(),300)},2600)}
+function flyToCart(card){if(reduceMotion||!card)return;const src=card.querySelector('.food-image');const target=window.innerWidth<=760?document.querySelector('.mb-count'):document.querySelector('.cart-count');if(!src||!target)return;const a=src.getBoundingClientRect(),b=target.getBoundingClientRect();const dot=document.createElement('div');dot.className='fly-dot';const img=src.querySelector('img');dot.innerHTML=img?`<img src="${img.src}" alt="">`:'🍽️';document.body.appendChild(dot);const sx=a.left+a.width/2-27,sy=a.top+a.height/2-27,ex=b.left+b.width/2-27,ey=b.top+b.height/2-27;dot.animate([{transform:`translate(${sx}px,${sy}px) scale(1.4)`,opacity:1},{transform:`translate(${(sx+ex)/2}px,${Math.min(sy,ey)-90}px) scale(.9)`,opacity:1,offset:.55},{transform:`translate(${ex}px,${ey}px) scale(.25)`,opacity:.3}],{duration:720,easing:'cubic-bezier(.2,.7,.3,1)'}).onfinish=()=>dot.remove()}
+function countUp(el,from,to){if(reduceMotion||from===to){return}const t0=performance.now(),d=550;const step=t=>{const p=Math.min(1,(t-t0)/d),e=1-Math.pow(1-p,3);el.textContent=CURRENCY+' '+money(from+(to-from)*e);if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
+
+/* ---------- cart updates without reload ---------- */
+async function updateCart(data,button,successText){if(cartBusy)return false;cartBusy=true;if(button){button.disabled=true;button.classList.add('is-loading')}try{const response=await fetch(location.href,{method:'POST',body:data,credentials:'same-origin',headers:{'X-Requested-With':'XMLHttpRequest'}});if(!response.ok)throw new Error('Order could not be updated. Please try again.');if(new URL(response.url).pathname!==location.pathname){location.assign(response.url);return false}const page=new DOMParser().parseFromString(await response.text(),'text/html');const error=page.querySelector('.messages .error');if(error){notifyCart(error.textContent.trim(),true);return false}const fresh=page.querySelector('.cart-panel');if(!fresh)throw new Error('Order could not be refreshed. Please reload this page.');const old=document.querySelector('.cart-panel');const oldIds=new Set([...old.querySelectorAll('.cart-item')].map(x=>x.dataset.lineId));const oldTotal=parseFloat(old.querySelector('.amt')?.dataset.amount||0);const scroll=old.querySelector('.cart-lines')?.scrollTop||0;old.replaceWith(fresh);fresh.querySelectorAll('.cart-item').forEach(x=>{if(oldIds.has(x.dataset.lineId))x.style.animation='none';else x.classList.add('is-new')});const lines=fresh.querySelector('.cart-lines');if(lines){const added=fresh.querySelector('.cart-item.is-new');if(added)added.scrollIntoView({block:'nearest',behavior:reduceMotion?'auto':'smooth'});else lines.scrollTop=scroll}const amt=fresh.querySelector('.amt');if(amt)countUp(amt,oldTotal,parseFloat(amt.dataset.amount));fresh.classList.add('cart-updated');notifyCart(successText);return true}catch(error){notifyCart(error.message,true);return false}finally{cartBusy=false;if(button?.isConnected){button.disabled=false;button.classList.remove('is-loading')}}}
 function formDataForQuickAdd(id){const data=new FormData();data.set('csrfmiddlewaretoken',document.querySelector('#itemDialog [name=csrfmiddlewaretoken]').value);data.set('action','quick_add');data.set('product_id',id);data.set('quantity','1');return data}
-document.querySelectorAll('.food-add').forEach(button=>button.addEventListener('click',()=>{if(button.dataset.hasModifiers==='true'){const form=itemDialog.querySelector('form');form.reset();document.getElementById('dialogProduct').value=button.dataset.productId;document.getElementById('dialogTitle').textContent='Customize '+button.dataset.productName;const template=document.getElementById('mods-'+button.dataset.productId);document.getElementById('dialogModifiers').innerHTML=template?template.innerHTML:'';itemDialog.showModal();return}updateCart(formDataForQuickAdd(button.dataset.productId),button,button.dataset.productName+' added to your order')}));
-itemDialog.querySelector('form').addEventListener('submit',event=>{event.preventDefault();const form=event.currentTarget;updateCart(new FormData(form),form.querySelector('button[type=submit],button:not([type])'),'Item added to your order').then(saved=>{if(saved&&itemDialog.open)itemDialog.close()})});
-document.querySelector('.pos-layout').addEventListener('submit',event=>{const form=event.target;const button=event.submitter;if(!form.closest('.qty-actions')||!button)return;event.preventDefault();const data=new FormData(form);data.set('action',button.value);updateCart(data,button,'Order updated')});
+
+/* ---------- item dialog ---------- */
+let dialogPrice=0;
+function refreshDialogPrice(){const qty=Math.max(1,parseInt(document.getElementById('dialogQty').value)||1);const extra=[...itemDialog.querySelectorAll('input[name=modifiers]:checked')].reduce((s,i)=>s+parseFloat(i.dataset.delta||0),0);document.getElementById('dialogSubmit').textContent='Add to Order · '+CURRENCY+' '+money((dialogPrice+extra)*qty)}
+document.querySelectorAll('.food-add').forEach(button=>button.addEventListener('click',()=>{const card=button.closest('.food-card');if(button.dataset.hasModifiers==='true'){const form=itemDialog.querySelector('form');form.reset();document.getElementById('dialogProduct').value=button.dataset.productId;document.getElementById('dialogTitle').textContent='Customize '+button.dataset.productName;const template=document.getElementById('mods-'+button.dataset.productId);document.getElementById('dialogModifiers').innerHTML=template?template.innerHTML:'';const hero=document.getElementById('dialogHero');hero.innerHTML=template?.dataset.image?`<img src="${template.dataset.image}" alt="">`:'🍽️';dialogPrice=parseFloat(button.dataset.price)||0;refreshDialogPrice();itemDialog._card=card;itemDialog.showModal();return}flyToCart(card);updateCart(formDataForQuickAdd(button.dataset.productId),button,button.dataset.productName+' added')}));
+itemDialog.addEventListener('change',refreshDialogPrice);itemDialog.addEventListener('input',refreshDialogPrice);
+itemDialog.querySelectorAll('[data-step]').forEach(b=>b.addEventListener('click',()=>{const q=document.getElementById('dialogQty');q.value=Math.max(1,(parseInt(q.value)||1)+parseInt(b.dataset.step));refreshDialogPrice()}));
+itemDialog.querySelector('form').addEventListener('submit',event=>{event.preventDefault();const form=event.currentTarget;updateCart(new FormData(form),document.getElementById('dialogSubmit'),'Item added to your order').then(saved=>{if(saved&&itemDialog.open){itemDialog.close();flyToCart(itemDialog._card)}})});
+
+/* ---------- dialogs: open / close ---------- */
+document.addEventListener('click',e=>{const opener=e.target.closest('[data-open]');if(opener&&!opener.disabled){const d=document.getElementById(opener.dataset.open);if(d.id==='payDialog')preparePay();d.showModal()}const closer=e.target.closest('[data-close]');if(closer)closer.closest('dialog')?.close();if(e.target.tagName==='DIALOG')e.target.close();if(e.target.closest('[data-ticket-toggle]'))document.body.classList.toggle('ticket-open')});
+
+/* ---------- quantity / remove inside ticket ---------- */
+document.querySelector('.rp-body').addEventListener('submit',event=>{const form=event.target;const button=event.submitter;if(!button||!['increase_line','decrease_line','remove_line'].includes(button.value))return;event.preventDefault();const data=new FormData(form);data.set('action',button.value);updateCart(data,button,button.value==='remove_line'?'Item removed':'Order updated')});
+
 document.getElementById('posFullScreen').addEventListener('click',()=>{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen?.()});
-const confirmDialog=document.getElementById('posConfirm');let pendingForm=null;document.querySelector('.pos-layout').addEventListener('submit',event=>{const form=event.target,button=event.submitter;if(button?.value!=='send_kitchen'||form.dataset.confirmed)return;event.preventDefault();pendingForm=form;document.getElementById('posConfirmTitle').textContent='Send to kitchen?';document.getElementById('posConfirmText').textContent='The kitchen will receive this order and start preparing it.';confirmDialog.showModal()});document.getElementById('posConfirmCancel').addEventListener('click',()=>confirmDialog.close());document.getElementById('posConfirmAccept').addEventListener('click',()=>{if(pendingForm){pendingForm.dataset.confirmed='1';pendingForm.requestSubmit()}confirmDialog.close()});
+
+/* ---------- send to kitchen confirmation ---------- */
+const confirmDialog=document.getElementById('posConfirm');let pendingForm=null;
+document.querySelector('.rp-body').addEventListener('submit',event=>{const form=event.target,button=event.submitter;if(button?.value!=='send_kitchen'||form.dataset.confirmed)return;event.preventDefault();pendingForm=form;const n=document.querySelector('.cart-panel').dataset.lines;document.getElementById('posConfirmText').textContent='The kitchen will receive '+n+' item'+(n==='1'?'':'s')+' and start preparing them.';confirmDialog.showModal()});
+document.getElementById('posConfirmCancel').addEventListener('click',()=>confirmDialog.close());
+document.getElementById('posConfirmAccept').addEventListener('click',()=>{if(pendingForm){pendingForm.dataset.confirmed='1';pendingForm.requestSubmit()}confirmDialog.close()});
+
+/* ---------- payment ---------- */
+let payMethod='cash';
+const $=id=>document.getElementById(id);
+function due(){const sub=parseFloat(document.querySelector('.cart-panel').dataset.subtotal)||0;const sc=parseFloat($('id_service_charge').value)||0,tip=parseFloat($('id_tip_amount').value)||0,disc=parseFloat($('id_discount_amount').value)||0;$('paySub').textContent=money(sub);$('payExtra').textContent='+'+money(sc+tip);$('payDisc').textContent='−'+money(disc);return Math.max(0,sub+sc+tip-disc)}
+function renderPay(){const d=due();$('payDue').textContent=CURRENCY+' '+money(d);document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on',b.dataset.method===payMethod));document.querySelector('[data-panel=cash]').hidden=payMethod!=='cash';document.querySelector('[data-panel=single]').hidden=!['card','bank'].includes(payMethod);document.querySelector('[data-panel=split]').hidden=payMethod!=='split';let ok=true;const set=(c,k,b)=>{$('id_cash').value=money(c);$('id_card').value=money(k);$('id_bank').value=money(b)};if(payMethod==='cash'){set(d,0,0);const given=parseFloat($('cashGiven').value);const box=$('changeBox');if(isNaN(given)){$('changeAmt').textContent='—';box.classList.remove('short')}else{const ch=given-d;box.classList.toggle('short',ch<0);box.firstElementChild.textContent=ch<0?'Still to collect':'Change to return';$('changeAmt').textContent=CURRENCY+' '+money(Math.abs(ch));ok=ch>=0}const qc=$('quickCash');const opts=[...new Set([d,Math.ceil(d/5)*5,Math.ceil(d/10)*10,Math.ceil(d/50)*50,Math.ceil(d/100)*100])].filter(v=>v>0).slice(0,5);qc.innerHTML=opts.map((v,i)=>`<button type="button" data-cash="${v}">${i===0?'Exact':money(v)}</button>`).join('')}else if(payMethod==='split'){const v=k=>parseFloat(document.querySelector(`.split-in[data-for=${k}]`).value)||0;set(v('cash'),v('card'),v('bank'));const left=d-(v('cash')+v('card')+v('bank'));const el=$('splitLeft');ok=Math.abs(left)<0.005;el.className='split-left '+(ok?'ok':'bad');el.textContent=ok?'✓ Payments match the total':(left>0?'Remaining: ':'Over by: ')+CURRENCY+' '+money(Math.abs(left))}else{set(0,payMethod==='card'?d:0,payMethod==='bank'?d:0);$('singleLabel').textContent='Charge to '+(payMethod==='card'?'card':'bank transfer');$('singleAmt').textContent=CURRENCY+' '+money(d)}$('payGo').disabled=!ok||d<=0;$('payGo').textContent='Charge '+CURRENCY+' '+money(d)}
+function preparePay(){payMethod='cash';$('cashGiven').value='';document.querySelectorAll('.split-in').forEach(i=>i.value='');renderPay()}
+document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{payMethod=b.dataset.method;if(payMethod==='split'){const first=document.querySelector('.split-in[data-for=cash]');if(!first.value)first.value=money(due())}renderPay()}));
+$('payDialog').addEventListener('input',renderPay);
+$('quickCash').addEventListener('click',e=>{const b=e.target.closest('[data-cash]');if(b){$('cashGiven').value=money(b.dataset.cash);renderPay()}});
+$('payForm').addEventListener('submit',()=>{$('payGo').disabled=true;$('payGo').textContent='Processing…'});
+{% if settle_form.errors %}preparePay();$('payDialog').showModal();{% endif %}
+
+/* ---------- flash messages auto-hide ---------- */
+document.querySelectorAll('.messages').forEach(m=>setTimeout(()=>{m.style.transition='opacity .4s';m.style.opacity='0';setTimeout(()=>m.remove(),400)},4200));
 </script>
 {% endblock %}

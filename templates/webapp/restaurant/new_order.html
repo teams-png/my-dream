@@ -1,9 +1,56 @@
-{% extends "base.html" %}{% block title %}New restaurant order{% endblock %}{% block heading %}Start an order{% endblock %}{% block content %}
-<style>.start-shell{max-width:1000px;margin:auto}.start-hero{background:#35221b;color:white;border-radius:25px;padding:28px;margin-bottom:22px}.start-hero h2{font-size:30px;margin:0 0 7px}.start-hero p{opacity:.8;margin:0}.channel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.channel-card{border:2px solid #e5e7eb;border-radius:17px;padding:18px;background:white;cursor:pointer;display:block}.channel-card:has(input:checked){border-color:#da291c;background:#fff2d7;box-shadow:0 7px 25px #da291c22}.channel-card input{accent-color:#da291c}.channel-card strong{display:block;font-size:19px;margin-top:7px}.channel-card small{color:#64748b}.start-fields{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:20px 0}.start-fields label{display:block;font-weight:700}.start-fields select,.start-fields input,.start-fields textarea{display:block;width:100%;padding:12px;border:1px solid #d8dce4;border-radius:10px;margin-top:7px;font:inherit}.start-submit{background:#da291c;color:white;border:0;border-radius:13px;padding:16px 24px;font-size:17px;font-weight:800;cursor:pointer}.field-errors{color:#b91c1c;margin:5px 0}.table-count{margin:10px 0;color:#64748b}@media(max-width:670px){.channel-grid,.start-fields{grid-template-columns:1fr}}</style>
-<section class="start-shell"><div class="start-hero"><h2>What are we serving?</h2><p>Choose an order type, then pick dishes in the visual POS.</p></div>
-<form method="post" id="newOrder">{% csrf_token %}
-<div class="channel-grid"><label class="channel-card"><input type="radio" name="channel" value="dine_in" {% if form.channel.value == 'dine_in' %}checked{% endif %}> <strong>🍽️ Dine in</strong><small>Serve guests at a table</small></label><label class="channel-card"><input type="radio" name="channel" value="takeaway" {% if form.channel.value == 'takeaway' or not form.channel.value %}checked{% endif %}> <strong>🥡 Takeaway</strong><small>Ready to collect</small></label><label class="channel-card"><input type="radio" name="channel" value="delivery" {% if form.channel.value == 'delivery' %}checked{% endif %}> <strong>🛵 Delivery</strong><small>Send to customer</small></label></div>
-<div class="field-errors">{{ form.channel.errors }}{{ form.non_field_errors }}</div><div class="start-fields"><div id="tableField"><label>Choose table {{ form.table }}</label><div class="field-errors">{{ form.table.errors }}</div><p class="table-count">{{ tables|length }} configured tables</p></div><div><label>Customer (optional) {{ form.customer }}</label>{{ form.customer.errors }}</div><div id="addressField"><label>Delivery address {{ form.delivery_address }}</label><div class="field-errors">{{ form.delivery_address.errors }}</div></div><div id="phoneField"><label>Delivery phone {{ form.delivery_phone }}</label>{{ form.delivery_phone.errors }}</div></div>
-<button class="start-submit" type="submit">Continue to POS →</button> <a href="{% url 'webapp:restaurant_dashboard' %}">Back to orders</a></form></section>
-<script>function updateFields(){let ch=document.querySelector('[name=channel]:checked').value;document.getElementById('tableField').hidden=ch!=='dine_in';document.getElementById('addressField').hidden=ch!=='delivery';document.getElementById('phoneField').hidden=ch!=='delivery'}document.querySelectorAll('[name=channel]').forEach(x=>x.addEventListener('change',updateFields));updateFields();</script>
+{% extends "base.html" %}
+{% block title %}New restaurant order{% endblock %}
+{% block heading %}Start an order{% endblock %}
+{% block content %}
+<section class="r-start">
+  <form method="post" id="newOrder">{% csrf_token %}
+    <p class="r-step">Step 1 · Order type</p>
+    <div class="r-channels">
+      <label class="r-channel r-reveal" style="--d:0"><input type="radio" name="channel" value="dine_in" {% if form.channel.value == 'dine_in' %}checked{% endif %}><span class="c-ico">🍽️</span><span><strong>Dine in</strong><br><small>Serve guests at a table</small></span></label>
+      <label class="r-channel r-reveal" style="--d:1"><input type="radio" name="channel" value="takeaway" {% if form.channel.value == 'takeaway' or not form.channel.value %}checked{% endif %}><span class="c-ico">🥡</span><span><strong>Takeaway</strong><br><small>Ready to collect</small></span></label>
+      <label class="r-channel r-reveal" style="--d:2"><input type="radio" name="channel" value="delivery" {% if form.channel.value == 'delivery' %}checked{% endif %}><span class="c-ico">🛵</span><span><strong>Delivery</strong><br><small>Send to customer</small></span></label>
+    </div>
+    <div class="r-errors">{{ form.channel.errors }}{{ form.non_field_errors }}</div>
+
+    <div class="r-slot" id="tableField">
+      <p class="r-step">Step 2 · Choose a table <small style="color:var(--r-soft);text-transform:none;letter-spacing:0">({{ tables|length }} tables)</small></p>
+      <div class="r-pick-tables">
+        {% for table in tables %}
+        <label class="r-pick{% if table.status != 'available' %} busy{% endif %}" title="{{ table.area.name }}"><input type="radio" name="table" value="{{ table.id }}" {% if form.table.value|stringformat:"s" == table.id|stringformat:"s" %}checked{% endif %}><b>{{ table.name }}</b><small>{% if table.status == 'available' %}{{ table.capacity }} seats{% else %}{{ table.get_status_display }}{% endif %}</small></label>
+        {% empty %}
+        <div class="r-empty" style="grid-column:1/-1"><strong>No tables yet.</strong> <a href="{% url 'webapp:restaurant_table_add' %}" style="color:var(--r-brand);font-weight:700">Add a table</a></div>
+        {% endfor %}
+      </div>
+      <div class="r-errors">{{ form.table.errors }}</div>
+    </div>
+
+    <p class="r-step" style="margin-top:22px">Step <span id="detailsStep">2</span> · Details</p>
+    <div class="r-fields">
+      <div><label>Customer (optional) {{ form.customer }}</label><div class="r-errors">{{ form.customer.errors }}</div></div>
+      <div class="r-slot" id="phoneField"><label>Delivery phone {{ form.delivery_phone }}</label><div class="r-errors">{{ form.delivery_phone.errors }}</div></div>
+      <div class="r-slot" id="addressField" style="grid-column:1/-1"><label>Delivery address {{ form.delivery_address }}</label><div class="r-errors">{{ form.delivery_address.errors }}</div></div>
+    </div>
+
+    <div class="r-submit">
+      <span id="summary">Takeaway order</span>
+      <button class="r-btn brand" type="submit">Continue to menu →</button>
+    </div>
+  </form>
+</section>
+<script>
+(function(){
+  const labels={dine_in:'Dine-in',takeaway:'Takeaway',delivery:'Delivery'};
+  function update(){
+    const ch=document.querySelector('[name=channel]:checked')?.value||'takeaway';
+    document.getElementById('tableField').hidden=ch!=='dine_in';
+    document.getElementById('addressField').hidden=ch!=='delivery';
+    document.getElementById('phoneField').hidden=ch!=='delivery';
+    document.getElementById('detailsStep').textContent=ch==='dine_in'?'3':'2';
+    const t=document.querySelector('[name=table]:checked');
+    document.getElementById('summary').textContent=labels[ch]+' order'+(ch==='dine_in'?(t?' · Table '+t.parentElement.querySelector('b').textContent:' · pick a table'):'');
+  }
+  document.getElementById('newOrder').addEventListener('change',update);
+  update();
+})();
+</script>
 {% endblock %}

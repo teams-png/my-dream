@@ -234,3 +234,47 @@ def test_cashier_empty_order_and_demo_menu_flow(client, tenant_a, restaurant_dat
     assert seeded.url == pos_url
     page = client.get(pos_url)
     assert b"Classic Burger" in page.content and b"Golden Fries" in page.content
+
+
+def test_table_can_be_marked_ready_only_without_open_order(client, tenant_a, restaurant_data):
+    d = restaurant_data
+    client.force_login(d["user"])
+    table = d["table"]
+    url = reverse("webapp:restaurant_table_status", args=[table.id])
+    order = services.create_order(company=tenant_a, channel="dine_in", table=table, waiter=d["user"])
+    client.post(url, {"status": "available"})
+    table.refresh_from_db()
+    assert table.status == "occupied"  # still has an open order
+    services.cancel_order(company=tenant_a, user=d["user"], order=order, reason="Guest left")
+    DiningTable.objects.filter(pk=table.pk).update(status="cleaning")
+    assert client.get(url).status_code == 405
+    client.post(url, {"status": "available"})
+    table.refresh_from_db()
+    assert table.status == "available"
+    client.post(url, {"status": "occupied"})
+    table.refresh_from_db()
+    assert table.status == "available"  # only safe statuses can be set by hand
+
+
+def test_dashboard_floor_plan_and_table_preselect(client, tenant_a, restaurant_data):
+    d = restaurant_data
+    client.force_login(d["user"])
+    order = services.create_order(company=tenant_a, channel="dine_in", table=d["table"], waiter=d["user"])
+    page = client.get(reverse("webapp:restaurant_dashboard"))
+    assert page.status_code == 200
+    assert page.context["stats"]["active_orders"] == 1 and page.context["stats"]["tables_busy"] == 1
+    assert reverse("webapp:restaurant_order_detail", args=[order.id]).encode() in page.content
+    start = client.get(reverse("webapp:restaurant_order_add") + f"?table={d['table'].id}")
+    assert start.context["form"]["channel"].value() == "dine_in"
+    assert str(start.context["form"]["table"].value()) == str(d["table"].id)
+
+
+def test_pos_creates_stock_location_for_billing(client, tenant_a, restaurant_data):
+    from apps.inventory.models import Warehouse
+    d = restaurant_data
+    client.force_login(d["user"])
+    Warehouse.objects.filter(company=tenant_a).update(is_active=False)
+    order = services.create_order(company=tenant_a, channel="takeaway", waiter=d["user"])
+    page = client.get(reverse("webapp:restaurant_order_detail", args=[order.id]))
+    assert page.status_code == 200
+    assert page.context["settle_form"].fields["warehouse"].queryset.exists()

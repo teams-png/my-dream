@@ -97,10 +97,36 @@
   .badge.expired, .badge.cancelled{background:var(--danger-bg); color:var(--danger);}
   .general-back{display:inline-flex;align-items:center;padding:8px 14px;margin:-4px 0 18px;background:#fff;border:1px solid var(--line);border-radius:10px;font-weight:700;color:var(--ink)}
   .restaurant-route-nav{margin:-5px 0 22px}.restaurant-back{display:inline-flex;align-items:center;background:#fff;border:1px solid #f2cab2;color:#9d271b;border-radius:11px;padding:9px 15px;font-weight:800;margin-bottom:13px}.restaurant-shortcuts{display:flex;gap:9px;flex-wrap:wrap;padding:13px;background:#fffaf3;border:1px solid #fae2b4;border-radius:18px}.restaurant-shortcut{display:inline-flex;align-items:center;white-space:nowrap;min-height:44px;padding:10px 15px;border:1px solid #e9ded3;background:#fff;color:#3b2922;border-radius:11px;font-size:14px;font-weight:750;transition:transform .15s,background .15s}.restaurant-shortcut:hover{transform:translateY(-2px);background:#fff0ce}.restaurant-shortcut.selected{border-color:#da291c;box-shadow:0 0 0 1px #da291c}.restaurant-shortcut.main-action{background:#da291c;border-color:#da291c;color:#fff}.restaurant-shortcut.main-action:hover{background:#b62117}.restaurant-shortcut.main-action.selected{box-shadow:0 0 0 3px #ffc72c}.main:has(.restaurant-route-nav){--accent:#da291c;--accent-soft:#fff0e9;--paper:#fffaf4}.main:has(.restaurant-route-nav) .topbar{border-bottom-color:#f2d7ab}.main:has(.restaurant-route-nav) .topbar h1{color:#27201c}@media(max-width:700px){.restaurant-shortcuts{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;padding:11px}.restaurant-shortcut{scroll-snap-align:start}.main:has(.restaurant-route-nav){padding:18px 14px 40px}}
+  /* --- Responsive navigation drawer + focus mode (POS screens) --- */
+  .nav-toggle{display:none;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--line);background:#fff;border-radius:11px;cursor:pointer;color:var(--ink);flex-shrink:0}
+  .nav-toggle:hover{background:var(--paper)}
+  .topbar-title{display:flex;align-items:center;gap:12px;min-width:0}
+  .nav-scrim{position:fixed;inset:0;background:rgba(15,18,30,.45);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:70}
+  .sidebar{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+  @media(max-width:900px){
+    .nav-toggle{display:inline-flex}
+    .sidebar{position:fixed;inset:0 auto 0 0;z-index:80;overflow-y:auto;transform:translateX(-105%);box-shadow:0 20px 60px rgba(0,0,0,.25);width:min(290px,86vw)}
+    .nav-open .sidebar{transform:none}
+    .nav-open .nav-scrim{opacity:1;pointer-events:auto}
+    .main{padding:16px 16px 40px}
+    .topbar{margin-bottom:16px;padding-bottom:12px}
+    .topbar h1{font-size:20px}
+    .user-chip > span{display:none}
+    table{display:block;overflow-x:auto}
+  }
+  .focus-mode .sidebar{position:fixed;inset:0 auto 0 0;z-index:80;overflow-y:auto;transform:translateX(-105%);box-shadow:0 20px 60px rgba(0,0,0,.25);width:min(290px,86vw)}
+  .focus-mode.nav-open .sidebar{transform:none}
+  .focus-mode.nav-open .nav-scrim{opacity:1;pointer-events:auto}
+  .focus-mode .main{padding:0}
+  .focus-mode .main > .topbar,.focus-mode .main > .restaurant-route-nav,.focus-mode .main > .general-back{display:none}
+  .focus-mode .main > .messages{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:95;width:min(560px,92vw);animation:msgIn .35s ease both}
+  @keyframes msgIn{from{opacity:0;transform:translate(-50%,-12px)}to{opacity:1;transform:translate(-50%,0)}}
+  @media(prefers-reduced-motion:reduce){.sidebar,.nav-scrim{transition:none}}
 </style>
+{% if request.path|slice:':12' == '/restaurant/' %}<link rel="stylesheet" href="{% static 'css/restaurant.css' %}">{% endif %}
 </head>
 <body>
-<div class="shell">
+<div class="shell {% block shell_class %}{% endblock %}" id="appShell">
   {% if request.user.is_authenticated %}
   <nav class="sidebar">
     <div class="brand">{{ active_company.name|default:"Business Console" }}
@@ -348,9 +374,13 @@
     </div>
   </nav>
   {% endif %}
+  <div class="nav-scrim" data-nav-close></div>
   <main class="main">
     <div class="topbar">
-      <h1>{% block heading %}{% endblock %}</h1>
+      <div class="topbar-title">
+        {% if request.user.is_authenticated %}<button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>{% endif %}
+        <h1>{% block heading %}{% endblock %}</h1>
+      </div>
       {% if request.user.is_authenticated %}
       <div class="user-chip">
         <span>{{ request.user.email|default:request.user.username }} · <a href="{% url 'webapp:logout' %}">Log out</a></span>
@@ -387,6 +417,7 @@
     {% block content %}{% endblock %}
   </main>
 </div>
+<script>(function(){const shell=document.getElementById('appShell');if(!shell)return;const close=()=>shell.classList.remove('nav-open');document.addEventListener('click',e=>{if(e.target.closest('[data-nav-toggle]')){shell.classList.toggle('nav-open');}else if(e.target.closest('[data-nav-close]')){close();}});document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});})();</script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}</script>
 </body>
 </html>

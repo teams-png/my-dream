@@ -1,7 +1,110 @@
-{% extends "base.html" %}{% block title %}Restaurant{% endblock %}{% block heading %}Restaurant Dashboard{% endblock %}{% block content %}
-<style>.restaurant-welcome{padding:26px;border-radius:22px;background:linear-gradient(120deg,#192533,#344656);color:white;margin-bottom:18px}.restaurant-welcome h2{font-size:27px;margin:0 0 6px}.restaurant-welcome p{margin:0;color:#d5e0e9}.restaurant-welcome .btn{background:#e95c33;color:white;margin-top:17px}.restaurant-welcome .btn:hover{background:#c84424}</style><div class="restaurant-welcome"><h2>Restaurant command centre</h2><p>Take an order, send it to the kitchen and track preparation from one place.</p><a class="btn" href="{% url 'webapp:restaurant_order_add' %}">Start a new order →</a> <a class="btn" href="{% url 'webapp:restaurant_kitchen' %}">Open kitchen board</a></div>
+{% extends "base.html" %}
+{% block title %}Restaurant{% endblock %}
+{% block heading %}Restaurant Dashboard{% endblock %}
+{% block content %}
+{% with cur=active_company.default_currency %}
+<section class="r-hero r-reveal">
+  <div>
+    <h2 id="rGreeting">Welcome back 👋</h2>
+    <p>{% now "l, d F Y" %} · take orders, watch the kitchen and close the day from here.</p>
+    {% if open_shift %}
+    <span class="r-shift"><i></i>Shift open since {{ open_shift.opened_at|date:"h:i A" }}</span>
+    {% else %}
+    <span class="r-shift off"><i></i>No shift open — <a href="{% url 'webapp:restaurant_shift_open' %}" style="text-decoration:underline">open one</a> to track cash</span>
+    {% endif %}
+  </div>
+  <div class="r-hero-actions">
+    <a class="primary" href="{% url 'webapp:restaurant_order_add' %}?channel=dine_in">🍽️ Dine-in</a>
+    <a href="{% url 'webapp:restaurant_order_add' %}?channel=takeaway">🥡 Takeaway</a>
+    <a href="{% url 'webapp:restaurant_order_add' %}?channel=delivery">🛵 Delivery</a>
+    <a href="{% url 'webapp:restaurant_kitchen' %}">👨‍🍳 Kitchen</a>
+  </div>
+</section>
 
-<h2>Tables</h2><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;">{% for area in areas %}{% for table in area.tables.all %}<div class="card"><strong>{{ table.name }}</strong><div>{{ area.name }} · {{ table.capacity }} seats</div><span class="badge">{{ table.get_status_display }}</span></div>{% endfor %}{% empty %}<p>No tables configured.</p>{% endfor %}</div>
-<h2 style="margin-top:24px;">Active Orders</h2><table><tr><th>Order</th><th>Channel</th><th>Table</th><th>Status</th><th>Total</th><th>Print</th></tr>{% for order in orders %}<tr><td><a href="{% url 'webapp:restaurant_order_detail' order.id %}">{{ order.order_number }}</a></td><td>{{ order.get_channel_display }}</td><td>{{ order.table|default:"—" }}</td><td>{{ order.get_status_display }}</td><td>{{ order.total }}</td><td><a target="_blank" href="{% url 'webapp:restaurant_receipt_print' order.id %}">Receipt</a></td></tr>{% empty %}<tr><td colspan="6">No active orders.</td></tr>{% endfor %}</table>
-<h2 id="shifts" style="margin-top:24px">Shift Closing / Z Reports</h2><div style="margin-bottom:12px">{% if open_shift %}<a class="btn btn-secondary" href="{% url 'webapp:restaurant_shift_close' open_shift.id %}">Close Shift</a>{% else %}<a class="btn" href="{% url 'webapp:restaurant_shift_open' %}">Open Shift</a>{% endif %}</div><table><tr><th>Shift</th><th>Opened</th><th>Status</th><th>Expected Cash</th><th>Variance</th><th></th></tr>{% for shift in recent_shifts %}<tr><td>#{{ shift.id }}</td><td>{{ shift.opened_at|date:"d M Y, h:i A" }}</td><td>{{ shift.get_status_display }}</td><td>{{ shift.expected_cash }}</td><td>{{ shift.variance }}</td><td><a target="_blank" href="{% url 'webapp:restaurant_z_report' shift.id %}">Print Z Report</a></td></tr>{% empty %}<tr><td colspan="6">No shifts.</td></tr>{% endfor %}</table>
+<div class="r-stats">
+  <div class="r-card r-stat r-reveal" style="--d:1"><div class="ico">💰</div><div><b data-count="{{ stats.sales_today|floatformat:2 }}" data-prefix="{{ cur }} ">{{ cur }} {{ stats.sales_today|floatformat:2 }}</b><span>Sales today · {{ stats.paid_today }} bill{{ stats.paid_today|pluralize }}</span></div></div>
+  <div class="r-card r-stat r-reveal" style="--d:2"><div class="ico">🧾</div><div><b data-count="{{ stats.active_orders }}">{{ stats.active_orders }}</b><span>Open orders</span></div></div>
+  <div class="r-card r-stat r-reveal" style="--d:3"><div class="ico">🔥</div><div><b data-count="{{ stats.in_kitchen }}">{{ stats.in_kitchen }}</b><span>Tickets in kitchen</span></div></div>
+  <div class="r-card r-stat r-reveal" style="--d:4"><div class="ico">🪑</div><div><b>{{ stats.tables_busy }}<small style="font-size:15px;color:var(--r-soft)"> / {{ stats.tables_total }}</small></b><span>Tables occupied</span></div></div>
+</div>
+
+<div class="r-grid">
+  <section class="r-card r-panel r-reveal" style="--d:2">
+    <div class="r-section-title">
+      <h2>Floor plan</h2>
+      <div class="r-legend"><span style="--c:var(--r-green)">Free</span><span style="--c:var(--r-brand)">Occupied</span><span style="--c:#d99a00">Cleaning</span><span style="--c:var(--r-blue)">Reserved</span></div>
+    </div>
+    {% for area in areas %}
+    <div class="r-area">
+      <h3>{{ area.name }}</h3>
+      <div class="r-tables">
+        {% for table in area.tables.all %}{% if table.is_active %}
+          {% if table.open_order %}
+          <a class="r-table occupied" style="--d:{{ forloop.counter0 }}" href="{% url 'webapp:restaurant_order_detail' table.open_order.id %}">
+            <span class="t-name">{{ table.name }}</span><span class="t-meta">{{ table.capacity }} seats · <span data-since="{{ table.open_order.created_at|date:'c' }}"></span></span>
+            <span class="t-order">{{ table.open_order.order_number }}</span>
+            <span class="t-state">{{ cur }} {{ table.open_order.total|floatformat:2 }} →</span>
+          </a>
+          {% elif table.status == 'cleaning' or table.status == 'reserved' or table.status == 'occupied' %}
+          <div class="r-table {{ table.status }}" style="--d:{{ forloop.counter0 }}">
+            <span class="t-name">{{ table.name }}</span><span class="t-meta">{{ table.capacity }} seats · {{ table.get_status_display }}</span>
+            <form method="post" action="{% url 'webapp:restaurant_table_status' table.id %}">{% csrf_token %}<input type="hidden" name="status" value="available"><button class="r-btn small">✓ Mark ready</button></form>
+          </div>
+          {% else %}
+          <a class="r-table" style="--d:{{ forloop.counter0 }}" href="{% url 'webapp:restaurant_order_add' %}?table={{ table.id }}" title="Start a dine-in order for {{ table.name }}">
+            <span class="t-name">{{ table.name }}</span><span class="t-meta">{{ table.capacity }} seats</span>
+            <span class="t-state">＋ Start order</span>
+          </a>
+          {% endif %}
+        {% endif %}{% empty %}<p class="t-meta">No tables in this area yet.</p>{% endfor %}
+      </div>
+    </div>
+    {% empty %}
+    <div class="r-empty"><span class="big">🪑</span><strong>No dining areas yet</strong><p>Create an area (e.g. “Main Hall”), then add tables to see your floor plan.</p><a class="r-btn brand" href="{% url 'webapp:restaurant_area_add' %}">＋ Add dining area</a></div>
+    {% endfor %}
+    {% if areas %}<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="r-btn small" href="{% url 'webapp:restaurant_table_add' %}">＋ Add table</a><a class="r-btn small" href="{% url 'webapp:restaurant_area_add' %}">＋ Add area</a></div>{% endif %}
+  </section>
+
+  <section class="r-card r-panel r-reveal" style="--d:3">
+    <div class="r-section-title"><h2>Open orders</h2><small>{{ orders|length }} active</small></div>
+    <div class="r-orders">
+      {% for order in orders %}
+      <a class="r-order" style="--d:{{ forloop.counter0 }}" href="{% url 'webapp:restaurant_order_detail' order.id %}">
+        <span class="o-ico">{% if order.channel == 'dine_in' %}🍽️{% elif order.channel == 'delivery' %}🛵{% else %}🥡{% endif %}</span>
+        <span><strong>{{ order.order_number }}{% if order.table %} · {{ order.table.name }}{% endif %}</strong><small>{{ order.get_channel_display }} · <span data-since="{{ order.created_at|date:'c' }}"></span>{% if order.customer %} · {{ order.customer }}{% endif %}</small></span>
+        <span class="o-right"><span class="o-total">{{ cur }} {{ order.total|floatformat:2 }}</span><span class="r-pill {{ order.status }}">{{ order.get_status_display }}</span></span>
+      </a>
+      {% empty %}
+      <div class="r-empty"><span class="big">☕</span><strong>No open orders</strong><p>New orders will appear here.</p><a class="r-btn brand" href="{% url 'webapp:restaurant_order_add' %}">＋ Start an order</a></div>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+<section class="r-card r-shifts r-reveal" id="shifts" style="--d:4">
+  <div class="r-section-title">
+    <h2>Shifts & Z reports</h2>
+    {% if open_shift %}<a class="r-btn dark small" href="{% url 'webapp:restaurant_shift_close' open_shift.id %}">Close Shift</a>{% else %}<a class="r-btn brand small" href="{% url 'webapp:restaurant_shift_open' %}">Open Shift</a>{% endif %}
+  </div>
+  <table>
+    <tr><th>Shift</th><th>Opened</th><th>Status</th><th>Expected cash</th><th>Variance</th><th></th></tr>
+    {% for shift in recent_shifts %}<tr><td>#{{ shift.id }}</td><td>{{ shift.opened_at|date:"d M Y, h:i A" }}</td><td><span class="r-pill {% if shift.status == 'open' %}ready{% endif %}">{{ shift.get_status_display }}</span></td><td>{{ shift.expected_cash|floatformat:2 }}</td><td>{{ shift.variance|floatformat:2 }}</td><td><a target="_blank" href="{% url 'webapp:restaurant_z_report' shift.id %}">Print Z Report</a></td></tr>
+    {% empty %}<tr><td colspan="6" class="r-empty">No shifts yet.</td></tr>{% endfor %}
+  </table>
+</section>
+{% endwith %}
+<script>
+(function(){
+  const h=new Date().getHours();
+  document.getElementById('rGreeting').textContent=(h<12?'Good morning':h<17?'Good afternoon':'Good evening')+' 👋';
+  const ago=()=>document.querySelectorAll('[data-since]').forEach(el=>{const m=Math.max(0,Math.round((Date.now()-new Date(el.dataset.since))/60000));el.textContent=m<1?'just now':m<60?m+' min':Math.floor(m/60)+'h '+(m%60)+'m'});
+  ago();setInterval(ago,30000);
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const to=parseFloat(el.dataset.count)||0,dec=el.dataset.count.includes('.')?2:0,pre=el.dataset.prefix||'',t0=performance.now();
+    const step=t=>{const p=Math.min(1,(t-t0)/900),e=1-Math.pow(1-p,3);el.textContent=pre+(to*e).toFixed(dec);if(p<1)requestAnimationFrame(step)};
+    requestAnimationFrame(step);
+  });
+})();
+</script>
 {% endblock %}

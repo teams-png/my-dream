@@ -350,6 +350,7 @@ urlpatterns = [
     path("restaurant/", views.restaurant_dashboard, name="restaurant_dashboard"),
     path("restaurant/areas/add/", views.restaurant_area_add, name="restaurant_area_add"),
     path("restaurant/tables/add/", views.restaurant_table_add, name="restaurant_table_add"),
+    path("restaurant/tables/<int:table_id>/status/", views.restaurant_table_status, name="restaurant_table_status"),
     path("restaurant/setup/", views.restaurant_setup, name="restaurant_setup"),
     path("restaurant/setup/menu/add/", views.restaurant_menu_item_form, name="restaurant_menu_item_add"),
     path("restaurant/setup/demo-menu/", views.restaurant_demo_menu, name="restaurant_demo_menu"),

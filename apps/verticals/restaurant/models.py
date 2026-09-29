@@ -251,6 +251,7 @@ class RestaurantOrderLine(TenantScopedModel):
     # it was sent as part of another order that has since been merged in.
     kitchen_round = models.PositiveSmallIntegerField(default=0)
     sent_at = models.DateTimeField(null=True, blank=True)
+    offline_line_id = models.CharField(max_length=40, blank=True, db_index=True)
 
     @property
     def modifier_total(self):
@@ -335,3 +336,30 @@ class DeliveryOrderImport(TenantScopedModel):
     class Meta:
         unique_together = ("integration", "external_order_id")
         ordering = ["-received_at"]
+
+
+class OfflineOrderSync(TenantScopedModel):
+    """
+    One row per bill made on a device while it was offline. The device's
+    client_id makes syncing idempotent: re-sending the same bill (after a
+    dropped connection, a retry or a second tab) never creates a duplicate.
+    """
+    STATUS = [("synced", _("Synced")), ("attention", _("Needs attention"))]
+    client_id = models.UUIDField()
+    offline_number = models.CharField(max_length=40)
+    device_created_at = models.DateTimeField(null=True, blank=True)
+    order = models.ForeignKey(RestaurantOrder, null=True, blank=True, on_delete=models.SET_NULL, related_name="offline_syncs")
+    synced_line_ids = models.JSONField(default=list, blank=True)
+    payload = models.JSONField(default=dict)
+    status = models.CharField(max_length=12, choices=STATUS, default="synced")
+    error = models.CharField(max_length=255, blank=True)
+    synced_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["company", "client_id"], name="one_sync_per_offline_bill")]
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return self.offline_number

@@ -245,3 +245,19 @@ AR.update({
 AR.update({"Dark / light mode": "الوضع الداكن / الفاتح", "VAT / Tax No:": "الرقم الضريبي:", "Backup & export": "النسخ الاحتياطي والتصدير",
 "Download every record of this business as a zip file. Keep a copy somewhere safe.": "نزّل جميع سجلات هذا النشاط كملف مضغوط. احتفظ بنسخة في مكان آمن.",
 "Include photos and logos": "تضمين الصور والشعارات", "Download all my data": "تنزيل كل بياناتي", "API docs": "توثيق واجهة API"})
+AR.update({
+"Offline POS": "نقطة البيع دون اتصال", "Offline bills that need attention": "فواتير دون اتصال تحتاج إلى مراجعة",
+"These bills were paid while offline but could not be finished automatically. Open each one, check it and take the payment again.": "دُفعت هذه الفواتير أثناء انقطاع الاتصال ولم تكتمل تلقائيًا. افتح كل واحدة وراجعها وسجّل الدفع مرة أخرى.",
+"No internet connection": "لا يوجد اتصال بالإنترنت", "Open offline POS →": "افتح نقطة البيع دون اتصال ←", "Online": "متصل", "Sync now": "مزامنة الآن",
+"Bills on this device": "الفواتير على هذا الجهاز", "Normal POS": "نقطة البيع العادية", "New bill": "فاتورة جديدة",
+"Menu not saved on this device yet": "القائمة غير محفوظة على هذا الجهاز بعد", "Open this page once while online so the menu is saved for offline use.": "افتح هذه الصفحة مرة واحدة أثناء الاتصال لحفظ القائمة للاستخدام دون اتصال.",
+"Table": "طاولة", "Print bill": "طباعة الفاتورة", "Bills made here are kept safely until they reach the server.": "تُحفظ الفواتير هنا بأمان حتى تصل إلى الخادم.",
+"Offline": "غير متصل", "waiting to sync": "بانتظار المزامنة", "All bills synced": "تمت مزامنة كل الفواتير", "need attention": "تحتاج مراجعة",
+"No new items to send.": "لا توجد أصناف جديدة للإرسال.", "Choose a table": "اختر طاولة", "Paid · saved on this device": "مدفوع · محفوظ على هذا الجهاز",
+"Syncing…": "جارٍ المزامنة…", "Synced": "تمت المزامنة", "Error": "خطأ", "Reprint": "إعادة الطباعة", "Continue in POS →": "المتابعة في نقطة البيع ←",
+"Your session ended. Sign in again to sync your offline bills.": "انتهت جلستك. سجّل الدخول مجددًا لمزامنة فواتيرك.",
+"No internet. Keep selling — bills are saved on this device and sync automatically.": "لا يوجد إنترنت. واصل البيع — تُحفظ الفواتير على هذا الجهاز وتتم مزامنتها تلقائيًا.",
+"Internet is back. Offline bills sync automatically; you can return to the normal POS.": "عاد الإنترنت. تتم مزامنة الفواتير تلقائيًا؛ يمكنك العودة إلى نقطة البيع العادية.",
+"Add items first.": "أضف أصنافًا أولًا.", "Choose the required add-ons.": "اختر الإضافات المطلوبة.", "No bills on this device yet.": "لا توجد فواتير على هذا الجهاز بعد.",
+"Offline bill": "فاتورة دون اتصال", "Needs attention": "تحتاج مراجعة",
+})

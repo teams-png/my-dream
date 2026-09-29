@@ -47,7 +47,7 @@ from apps.verticals.medical_shop.models import MedicineBatch, DispenseRecord
 from apps.verticals.medical_shop import services as medical_services
 from apps.verticals.protein_shop.models import ProteinBatch, SaleRecord
 from apps.verticals.protein_shop import services as protein_services
-from apps.verticals.restaurant.models import DiningArea, DiningTable, FoodWaste, KitchenStation, KitchenTicket, MenuModifier, MenuModifierGroup, MenuModifierOption, RestaurantMenuItem, RestaurantProfile, RestaurantOrderLine, RecipeIngredient, RestaurantCombo, RestaurantComboItem, RestaurantOrder, RestaurantShift, TableReservation, DeliveryIntegration, DeliveryOrderImport
+from apps.verticals.restaurant.models import OfflineOrderSync, DiningArea, DiningTable, FoodWaste, KitchenStation, KitchenTicket, MenuModifier, MenuModifierGroup, MenuModifierOption, RestaurantMenuItem, RestaurantProfile, RestaurantOrderLine, RecipeIngredient, RestaurantCombo, RestaurantComboItem, RestaurantOrder, RestaurantShift, TableReservation, DeliveryIntegration, DeliveryOrderImport
 from apps.verticals.restaurant import services as restaurant_services
 from apps.verticals.construction.models import Project, Contractor, ProjectExpense, ProjectMilestone, ProjectTask, ProjectTimesheet
 from apps.verticals.construction import services as construction_services
@@ -3035,6 +3035,9 @@ def restaurant_dashboard(request):
         "orders": orders,
         "open_shift": RestaurantShift.objects.for_company(company).filter(status="open").first(),
         "recent_shifts": RestaurantShift.objects.for_company(company).order_by("-opened_at")[:10],
+        "offline_attention": list(OfflineOrderSync.objects
+                                  .for_company(company).filter(status="attention").exclude(order__status__in=["paid", "cancelled"])
+                                  .select_related("order")[:10]),
         "paid_order": RestaurantOrder.objects.for_company(company).filter(
             id=request.GET.get("paid"), status="paid").select_related("invoice").first() if (request.GET.get("paid") or "").isdigit() else None,
         "stats": {

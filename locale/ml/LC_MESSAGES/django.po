@@ -362,6 +362,10 @@ msgid "▣ Kitchen Display"
 msgstr "▣ കിച്ചൺ ഡിസ്പ്ലേ"
 
 #: templates/base.html
+msgid "Offline POS"
+msgstr "ഓഫ്‌ലൈൻ POS"
+
+#: templates/base.html
 msgid "▤ Reservations"
 msgstr "▤ റിസർവേഷനുകൾ"
 
@@ -2103,6 +2107,18 @@ msgid "💬 WhatsApp / Email"
 msgstr "💬 WhatsApp / ഇമെയിൽ"
 
 #: templates/webapp/restaurant/dashboard.html
+msgid "Offline bills that need attention"
+msgstr "ശ്രദ്ധിക്കേണ്ട ഓഫ്‌ലൈൻ ബില്ലുകൾ"
+
+#: templates/webapp/restaurant/dashboard.html
+msgid ""
+"These bills were paid while offline but could not be finished automatically."
+" Open each one, check it and take the payment again."
+msgstr ""
+"ഇന്റർനെറ്റ് ഇല്ലാത്തപ്പോൾ അടച്ച ഈ ബില്ലുകൾ സ്വയം പൂർത്തിയായില്ല. ഓരോന്നും "
+"തുറന്ന് പരിശോധിച്ച് പേയ്‌മെന്റ് വീണ്ടും രേഖപ്പെടുത്തുക."
+
+#: templates/webapp/restaurant/dashboard.html
 msgid "Welcome back 👋"
 msgstr "വീണ്ടും സ്വാഗതം 👋"
 
@@ -2308,6 +2324,14 @@ msgstr "മ"
 #: templates/webapp/restaurant/dashboard.html
 msgid "m"
 msgstr "മി"
+
+#: templates/webapp/restaurant/dashboard.html
+msgid "No internet connection"
+msgstr "ഇന്റർനെറ്റ് കണക്ഷൻ ഇല്ല"
+
+#: templates/webapp/restaurant/dashboard.html
+msgid "Open offline POS →"
+msgstr "ഓഫ്‌ലൈൻ POS തുറക്കുക →"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Kitchen board"
@@ -2551,13 +2575,267 @@ msgstr "ടേക്ക്‌എവേ ഓർഡർ"
 msgid "Continue to menu →"
 msgstr "മെനുവിലേക്ക് തുടരുക →"
 
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Open main menu"
+msgstr "പ്രധാന മെനു തുറക്കുക"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Online"
+msgstr "ഓൺലൈൻ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Sync now"
+msgstr "ഇപ്പോൾ സിങ്ക് ചെയ്യുക"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Bills on this device"
+msgstr "ഈ ഉപകരണത്തിലെ ബില്ലുകൾ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Normal POS"
+msgstr "സാധാരണ POS"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "New bill"
+msgstr "പുതിയ ബിൽ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Menu categories"
+msgstr "മെനു വിഭാഗങ്ങൾ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Search dishes, category or SKU…"
+msgstr "വിഭവം, വിഭാഗം അല്ലെങ്കിൽ SKU തിരയുക…"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Menu not saved on this device yet"
+msgstr "മെനു ഇതുവരെ ഈ ഉപകരണത്തിൽ സേവ് ചെയ്തിട്ടില്ല"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Open this page once while online so the menu is saved for offline use."
+msgstr "ഓഫ്‌ലൈനിൽ ഉപയോഗിക്കാൻ, ഇന്റർനെറ്റ് ഉള്ളപ്പോൾ ഈ പേജ് ഒരിക്കൽ തുറക്കുക."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "View order"
+msgstr "ഓർഡർ കാണുക"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Current order"
+msgstr "നിലവിലെ ഓർഡർ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Dine-in"
+msgstr "ഡൈൻ ഇൻ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Table"
+msgstr "ടേബിൾ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Your order is empty"
+msgstr "നിങ്ങളുടെ ഓർഡർ ശൂന്യമാണ്"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Tap a dish on the menu to add it."
+msgstr "ചേർക്കാൻ മെനുവിലെ വിഭവത്തിൽ ടാപ്പ് ചെയ്യുക."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Send to Kitchen"
+msgstr "കിച്ചണിലേക്ക് അയയ്ക്കുക"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Print bill"
+msgstr "ബിൽ പ്രിന്റ്"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Choose add-ons and quantity."
+msgstr "ആഡ്-ഓണുകളും എണ്ണവും തിരഞ്ഞെടുക്കുക."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Kitchen note"
+msgstr "കിച്ചണിനുള്ള കുറിപ്പ്"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Quantity"
+msgstr "എണ്ണം"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Add to Order"
+msgstr "ഓർഡറിൽ ചേർക്കുക"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Take payment"
+msgstr "പേയ്‌മെന്റ് സ്വീകരിക്കുക"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Amount due"
+msgstr "അടയ്ക്കേണ്ട തുക"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Service charge"
+msgstr "സർവീസ് ചാർജ്"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Tip"
+msgstr "ടിപ്പ്"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Split"
+msgstr "വിഭജിക്കുക"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Cash received from customer"
+msgstr "കസ്റ്റമറിൽ നിന്ന് ലഭിച്ച തുക"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Change to return"
+msgstr "തിരികെ നൽകേണ്ട ബാക്കി"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Back"
+msgstr "തിരികെ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Charge"
+msgstr "ചാർജ് ചെയ്യുക"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Bills made here are kept safely until they reach the server."
+msgstr ""
+"ഇവിടെ ഉണ്ടാക്കുന്ന ബില്ലുകൾ സെർവറിൽ എത്തുന്നതുവരെ സുരക്ഷിതമായി സൂക്ഷിക്കും."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Close"
+msgstr "അടയ്ക്കുക"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Offline"
+msgstr "ഓഫ്‌ലൈൻ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "waiting to sync"
+msgstr "സിങ്ക് ചെയ്യാൻ ബാക്കി"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "All bills synced"
+msgstr "എല്ലാ ബില്ലുകളും സിങ്ക് ആയി"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "need attention"
+msgstr "ശ്രദ്ധിക്കണം"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Sent"
+msgstr "അയച്ചു"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "No new items to send."
+msgstr "അയയ്ക്കാൻ പുതിയ ഐറ്റങ്ങൾ ഇല്ല."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Sent to kitchen"
+msgstr "കിച്ചണിലേക്ക് അയച്ചു"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Choose a table"
+msgstr "ടേബിൾ തിരഞ്ഞെടുക്കുക"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "added"
+msgstr "ചേർത്തു"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Paid · saved on this device"
+msgstr "അടച്ചു · ഈ ഉപകരണത്തിൽ സേവ് ചെയ്തു"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Still to collect"
+msgstr "ഇനിയും വാങ്ങാനുള്ളത്"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Exact"
+msgstr "കൃത്യം"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "✓ Payments match the total"
+msgstr "✓ പേയ്‌മെന്റുകൾ ആകെ തുകയുമായി ഒത്തു"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Remaining:"
+msgstr "ബാക്കി:"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Over by:"
+msgstr "അധികം:"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Syncing…"
+msgstr "സിങ്ക് ചെയ്യുന്നു…"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Synced"
+msgstr "സിങ്ക് ആയി"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Error"
+msgstr "പിശക്"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Reprint"
+msgstr "വീണ്ടും പ്രിന്റ്"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Continue in POS →"
+msgstr "POS-ൽ തുടരുക →"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Your session ended. Sign in again to sync your offline bills."
+msgstr ""
+"സെഷൻ അവസാനിച്ചു. ഓഫ്‌ലൈൻ ബില്ലുകൾ സിങ്ക് ചെയ്യാൻ വീണ്ടും ലോഗിൻ ചെയ്യുക."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid ""
+"No internet. Keep selling — bills are saved on this device and sync "
+"automatically."
+msgstr ""
+"ഇന്റർനെറ്റ് ഇല്ല. വിൽപ്പന തുടരൂ — ബില്ലുകൾ ഈ ഉപകരണത്തിൽ സേവ് ആകും, പിന്നീട് "
+"സ്വയം സിങ്ക് ആകും."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid ""
+"Internet is back. Offline bills sync automatically; you can return to the "
+"normal POS."
+msgstr ""
+"ഇന്റർനെറ്റ് തിരിച്ചുവന്നു. ഓഫ്‌ലൈൻ ബില്ലുകൾ സ്വയം സിങ്ക് ആകും; സാധാരണ "
+"POS-ലേക്ക് മടങ്ങാം."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Add items first."
+msgstr "ആദ്യം ഐറ്റങ്ങൾ ചേർക്കുക."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Choose the required add-ons."
+msgstr "ആവശ്യമായ ആഡ്-ഓണുകൾ തിരഞ്ഞെടുക്കുക."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Thank you. Please visit again."
+msgstr "നന്ദി. വീണ്ടും വരിക."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "No bills on this device yet."
+msgstr "ഈ ഉപകരണത്തിൽ ബില്ലുകൾ ഇല്ല."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Sold out"
+msgstr "തീർന്നു"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Offline bill"
+msgstr "ഓഫ്‌ലൈൻ ബിൽ"
+
 #: templates/webapp/restaurant/order_detail.html
 msgid "Restaurant POS"
 msgstr "റെസ്റ്റോറന്റ് POS"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Open main menu"
-msgstr "പ്രധാന മെനു തുറക്കുക"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Back to orders"
@@ -2592,14 +2870,6 @@ msgid "New order"
 msgstr "പുതിയ ഓർഡർ"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Menu categories"
-msgstr "മെനു വിഭാഗങ്ങൾ"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Search dishes, category or SKU…"
-msgstr "വിഭവം, വിഭാഗം അല്ലെങ്കിൽ SKU തിരയുക…"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Search menu"
 msgstr "മെനു തിരയുക"
 
@@ -2614,10 +2884,6 @@ msgstr "★ ജനപ്രിയം"
 #: templates/webapp/restaurant/order_detail.html
 msgid "● Veg"
 msgstr "● വെജ്"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Sold out"
-msgstr "തീർന്നു"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "No food items in this restaurant yet"
@@ -2640,10 +2906,6 @@ msgid "Show current order"
 msgstr "നിലവിലെ ഓർഡർ കാണിക്കുക"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "View order"
-msgstr "ഓർഡർ കാണുക"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Order is empty"
 msgstr "ഓർഡർ ശൂന്യമാണ്"
 
@@ -2660,40 +2922,12 @@ msgid "see details"
 msgstr "വിവരങ്ങൾ കാണുക"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Current order"
-msgstr "നിലവിലെ ഓർഡർ"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Sent to kitchen"
-msgstr "കിച്ചണിലേക്ക് അയച്ചു"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Sent"
-msgstr "അയച്ചു"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "New"
 msgstr "പുതിയത്"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "each"
 msgstr "ഒന്നിന്"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Your order is empty"
-msgstr "നിങ്ങളുടെ ഓർഡർ ശൂന്യമാണ്"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Tap a dish on the menu to add it."
-msgstr "ചേർക്കാൻ മെനുവിലെ വിഭവത്തിൽ ടാപ്പ് ചെയ്യുക."
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Service charge"
-msgstr "സർവീസ് ചാർജ്"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Tip"
-msgstr "ടിപ്പ്"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Add at least one dish before sending this order to the kitchen."
@@ -2703,10 +2937,6 @@ msgstr ""
 #: templates/webapp/restaurant/order_detail.html
 msgid "not yet sent — tap"
 msgstr "ഇനിയും അയച്ചിട്ടില്ല — ടാപ്പ് ചെയ്യുക"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Send to Kitchen"
-msgstr "കിച്ചണിലേക്ക് അയയ്ക്കുക"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "for the next round."
@@ -2753,10 +2983,6 @@ msgid "Move the order, update guests, split or merge bills."
 msgstr ""
 "ഓർഡർ മാറ്റാം, അതിഥികളുടെ എണ്ണം മാറ്റാം, ബില്ലുകൾ വിഭജിക്കാം അല്ലെങ്കിൽ "
 "ലയിപ്പിക്കാം."
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Close"
-msgstr "അടയ്ക്കുക"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "🔀 Move to another table"
@@ -2835,20 +3061,8 @@ msgid "Add item"
 msgstr "ഐറ്റം ചേർക്കുക"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Choose add-ons and quantity."
-msgstr "ആഡ്-ഓണുകളും എണ്ണവും തിരഞ്ഞെടുക്കുക."
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Kitchen note"
-msgstr "കിച്ചണിനുള്ള കുറിപ്പ്"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "No onion, extra spicy…"
 msgstr "ഉള്ളി വേണ്ട, എരിവ് കൂടുതൽ…"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Quantity"
-msgstr "എണ്ണം"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Less"
@@ -2859,36 +3073,12 @@ msgid "More"
 msgstr "കൂട്ടുക"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Add to Order"
-msgstr "ഓർഡറിൽ ചേർക്കുക"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Take payment"
-msgstr "പേയ്‌മെന്റ് സ്വീകരിക്കുക"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Amount due"
-msgstr "അടയ്ക്കേണ്ട തുക"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Service + tip"
 msgstr "സർവീസ് + ടിപ്പ്"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Stock location"
 msgstr "സ്റ്റോക്ക് ലൊക്കേഷൻ"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Split"
-msgstr "വിഭജിക്കുക"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Cash received from customer"
-msgstr "കസ്റ്റമറിൽ നിന്ന് ലഭിച്ച തുക"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Change to return"
-msgstr "തിരികെ നൽകേണ്ട ബാക്കി"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Charge to card"
@@ -2907,14 +3097,6 @@ msgid "🏦 Bank"
 msgstr "🏦 ബാങ്ക്"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Back"
-msgstr "തിരികെ"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Charge"
-msgstr "ചാർജ് ചെയ്യുക"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Send to kitchen?"
 msgstr "കിച്ചണിലേക്ക് അയയ്ക്കണോ?"
 
@@ -2931,10 +3113,6 @@ msgid "dish available"
 msgstr "വിഭവം ലഭ്യമാണ്"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "added"
-msgstr "ചേർത്തു"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Order updated"
 msgstr "ഓർഡർ അപ്ഡേറ്റ് ചെയ്തു"
 
@@ -2949,26 +3127,6 @@ msgstr "കസ്റ്റമൈസ് ചെയ്യുക"
 #: templates/webapp/restaurant/order_detail.html
 msgid "Items going to the kitchen:"
 msgstr "കിച്ചണിലേക്ക് പോകുന്ന ഐറ്റങ്ങൾ:"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Still to collect"
-msgstr "ഇനിയും വാങ്ങാനുള്ളത്"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Exact"
-msgstr "കൃത്യം"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "✓ Payments match the total"
-msgstr "✓ പേയ്‌മെന്റുകൾ ആകെ തുകയുമായി ഒത്തു"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Remaining:"
-msgstr "ബാക്കി:"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Over by:"
-msgstr "അധികം:"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Charge to"
@@ -2997,10 +3155,6 @@ msgstr "ലഭ്യമല്ല"
 #: templates/webapp/restaurant/receipt_print.html
 msgid "TOTAL"
 msgstr "ആകെ"
-
-#: templates/webapp/restaurant/receipt_print.html
-msgid "Thank you. Please visit again."
-msgstr "നന്ദി. വീണ്ടും വരിക."
 
 #: templates/webapp/restaurant/receipt_print.html
 msgid "Print Receipt"
@@ -3209,10 +3363,6 @@ msgid "Closed"
 msgstr "അടച്ചു"
 
 #: apps/verticals/restaurant/models.py
-msgid "Dine-in"
-msgstr "ഡൈൻ ഇൻ"
-
-#: apps/verticals/restaurant/models.py
 msgid "Draft"
 msgstr "ഡ്രാഫ്റ്റ്"
 
@@ -3235,6 +3385,10 @@ msgstr "ക്യൂവിൽ"
 #: apps/verticals/restaurant/models.py
 msgid "Preparing"
 msgstr "തയ്യാറാക്കുന്നു"
+
+#: apps/verticals/restaurant/models.py
+msgid "Needs attention"
+msgstr "ശ്രദ്ധിക്കണം"
 
 #: apps/webapp/finance_views.py
 msgid "Against invoice (optional)"

@@ -423,6 +423,7 @@
         <a class="restaurant-shortcut {% if request.resolver_match.url_name == 'restaurant_dashboard' %}selected{% endif %}" href="{% url 'webapp:restaurant_dashboard' %}">{% translate "⌂ Overview" %}</a>
         <a class="restaurant-shortcut main-action {% if request.resolver_match.url_name == 'restaurant_order_add' or request.resolver_match.url_name == 'restaurant_order_detail' %}selected{% endif %}" href="{% url 'webapp:restaurant_order_add' %}">{% translate "＋ New Order" %}</a>
         <a class="restaurant-shortcut {% if request.resolver_match.url_name == 'restaurant_kitchen' %}selected{% endif %}" href="{% url 'webapp:restaurant_kitchen' %}">{% translate "▣ Kitchen Display" %}</a>
+        <a class="restaurant-shortcut {% if request.resolver_match.url_name == 'restaurant_offline_pos' %}selected{% endif %}" href="{% url 'webapp:restaurant_offline_pos' %}">📴 {% translate "Offline POS" %}</a>
         <a class="restaurant-shortcut {% if request.resolver_match.url_name == 'restaurant_reservations' %}selected{% endif %}" href="{% url 'webapp:restaurant_reservations' %}">{% translate "▤ Reservations" %}</a>
         <a class="restaurant-shortcut {% if request.resolver_match.url_name == 'restaurant_reports' %}selected{% endif %}" href="{% url 'webapp:restaurant_reports' %}">{% translate "▥ Reports" %}</a>
         <a class="restaurant-shortcut {% if request.resolver_match.url_name == 'restaurant_waste' %}selected{% endif %}" href="{% url 'webapp:restaurant_waste' %}">{% translate "♧ Food Waste" %}</a>

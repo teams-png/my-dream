@@ -362,6 +362,10 @@ msgid "▣ Kitchen Display"
 msgstr "▣ شاشة المطبخ"
 
 #: templates/base.html
+msgid "Offline POS"
+msgstr "نقطة البيع دون اتصال"
+
+#: templates/base.html
 msgid "▤ Reservations"
 msgstr "▤ الحجوزات"
 
@@ -2083,6 +2087,18 @@ msgid "💬 WhatsApp / Email"
 msgstr "💬 واتساب / بريد"
 
 #: templates/webapp/restaurant/dashboard.html
+msgid "Offline bills that need attention"
+msgstr "فواتير دون اتصال تحتاج إلى مراجعة"
+
+#: templates/webapp/restaurant/dashboard.html
+msgid ""
+"These bills were paid while offline but could not be finished automatically."
+" Open each one, check it and take the payment again."
+msgstr ""
+"دُفعت هذه الفواتير أثناء انقطاع الاتصال ولم تكتمل تلقائيًا. افتح كل واحدة "
+"وراجعها وسجّل الدفع مرة أخرى."
+
+#: templates/webapp/restaurant/dashboard.html
 msgid "Welcome back 👋"
 msgstr "مرحبًا بعودتك 👋"
 
@@ -2286,6 +2302,14 @@ msgstr "س"
 #: templates/webapp/restaurant/dashboard.html
 msgid "m"
 msgstr "د"
+
+#: templates/webapp/restaurant/dashboard.html
+msgid "No internet connection"
+msgstr "لا يوجد اتصال بالإنترنت"
+
+#: templates/webapp/restaurant/dashboard.html
+msgid "Open offline POS →"
+msgstr "افتح نقطة البيع دون اتصال ←"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Kitchen board"
@@ -2527,13 +2551,266 @@ msgstr "طلب سفري"
 msgid "Continue to menu →"
 msgstr "متابعة إلى القائمة ←"
 
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Open main menu"
+msgstr "فتح القائمة الرئيسية"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Online"
+msgstr "متصل"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Sync now"
+msgstr "مزامنة الآن"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Bills on this device"
+msgstr "الفواتير على هذا الجهاز"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Normal POS"
+msgstr "نقطة البيع العادية"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "New bill"
+msgstr "فاتورة جديدة"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Menu categories"
+msgstr "فئات القائمة"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Search dishes, category or SKU…"
+msgstr "ابحث عن طبق أو فئة أو رمز…"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Menu not saved on this device yet"
+msgstr "القائمة غير محفوظة على هذا الجهاز بعد"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Open this page once while online so the menu is saved for offline use."
+msgstr ""
+"افتح هذه الصفحة مرة واحدة أثناء الاتصال لحفظ القائمة للاستخدام دون اتصال."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "View order"
+msgstr "عرض الطلب"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Current order"
+msgstr "الطلب الحالي"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Dine-in"
+msgstr "داخل المطعم"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Table"
+msgstr "طاولة"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Your order is empty"
+msgstr "طلبك فارغ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Tap a dish on the menu to add it."
+msgstr "اضغط على طبق من القائمة لإضافته."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Send to Kitchen"
+msgstr "إرسال إلى المطبخ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Print bill"
+msgstr "طباعة الفاتورة"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Choose add-ons and quantity."
+msgstr "اختر الإضافات والكمية."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Kitchen note"
+msgstr "ملاحظة للمطبخ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Quantity"
+msgstr "الكمية"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Add to Order"
+msgstr "أضف إلى الطلب"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Take payment"
+msgstr "تحصيل الدفع"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Amount due"
+msgstr "المبلغ المستحق"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Service charge"
+msgstr "رسوم الخدمة"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Tip"
+msgstr "الإكرامية"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Split"
+msgstr "تقسيم"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Cash received from customer"
+msgstr "المبلغ المستلم من العميل"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Change to return"
+msgstr "الباقي للعميل"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Back"
+msgstr "رجوع"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Charge"
+msgstr "تحصيل"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Bills made here are kept safely until they reach the server."
+msgstr "تُحفظ الفواتير هنا بأمان حتى تصل إلى الخادم."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Close"
+msgstr "إغلاق"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Offline"
+msgstr "غير متصل"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "waiting to sync"
+msgstr "بانتظار المزامنة"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "All bills synced"
+msgstr "تمت مزامنة كل الفواتير"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "need attention"
+msgstr "تحتاج مراجعة"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Sent"
+msgstr "أُرسل"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "No new items to send."
+msgstr "لا توجد أصناف جديدة للإرسال."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Sent to kitchen"
+msgstr "أُرسل إلى المطبخ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Choose a table"
+msgstr "اختر طاولة"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "added"
+msgstr "تمت الإضافة"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Paid · saved on this device"
+msgstr "مدفوع · محفوظ على هذا الجهاز"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Still to collect"
+msgstr "المتبقي للتحصيل"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Exact"
+msgstr "المبلغ بالضبط"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "✓ Payments match the total"
+msgstr "✓ المدفوعات تطابق الإجمالي"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Remaining:"
+msgstr "المتبقي:"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Over by:"
+msgstr "زيادة بمقدار:"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Syncing…"
+msgstr "جارٍ المزامنة…"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Synced"
+msgstr "تمت المزامنة"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Error"
+msgstr "خطأ"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Reprint"
+msgstr "إعادة الطباعة"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Continue in POS →"
+msgstr "المتابعة في نقطة البيع ←"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Your session ended. Sign in again to sync your offline bills."
+msgstr "انتهت جلستك. سجّل الدخول مجددًا لمزامنة فواتيرك."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid ""
+"No internet. Keep selling — bills are saved on this device and sync "
+"automatically."
+msgstr ""
+"لا يوجد إنترنت. واصل البيع — تُحفظ الفواتير على هذا الجهاز وتتم مزامنتها "
+"تلقائيًا."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid ""
+"Internet is back. Offline bills sync automatically; you can return to the "
+"normal POS."
+msgstr ""
+"عاد الإنترنت. تتم مزامنة الفواتير تلقائيًا؛ يمكنك العودة إلى نقطة البيع "
+"العادية."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Add items first."
+msgstr "أضف أصنافًا أولًا."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Choose the required add-ons."
+msgstr "اختر الإضافات المطلوبة."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Thank you. Please visit again."
+msgstr "شكرًا لك. نتشرف بزيارتك مجددًا."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "No bills on this device yet."
+msgstr "لا توجد فواتير على هذا الجهاز بعد."
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Sold out"
+msgstr "نفد"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Offline bill"
+msgstr "فاتورة دون اتصال"
+
 #: templates/webapp/restaurant/order_detail.html
 msgid "Restaurant POS"
 msgstr "نقطة بيع المطعم"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Open main menu"
-msgstr "فتح القائمة الرئيسية"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Back to orders"
@@ -2568,14 +2845,6 @@ msgid "New order"
 msgstr "طلب جديد"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Menu categories"
-msgstr "فئات القائمة"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Search dishes, category or SKU…"
-msgstr "ابحث عن طبق أو فئة أو رمز…"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Search menu"
 msgstr "ابحث في القائمة"
 
@@ -2590,10 +2859,6 @@ msgstr "★ الأكثر طلبًا"
 #: templates/webapp/restaurant/order_detail.html
 msgid "● Veg"
 msgstr "● نباتي"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Sold out"
-msgstr "نفد"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "No food items in this restaurant yet"
@@ -2616,10 +2881,6 @@ msgid "Show current order"
 msgstr "عرض الطلب الحالي"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "View order"
-msgstr "عرض الطلب"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Order is empty"
 msgstr "الطلب فارغ"
 
@@ -2636,18 +2897,6 @@ msgid "see details"
 msgstr "عرض التفاصيل"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Current order"
-msgstr "الطلب الحالي"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Sent to kitchen"
-msgstr "أُرسل إلى المطبخ"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Sent"
-msgstr "أُرسل"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "New"
 msgstr "جديد"
 
@@ -2656,32 +2905,12 @@ msgid "each"
 msgstr "للوحدة"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Your order is empty"
-msgstr "طلبك فارغ"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Tap a dish on the menu to add it."
-msgstr "اضغط على طبق من القائمة لإضافته."
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Service charge"
-msgstr "رسوم الخدمة"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Tip"
-msgstr "الإكرامية"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Add at least one dish before sending this order to the kitchen."
 msgstr "أضف طبقًا واحدًا على الأقل قبل إرسال الطلب إلى المطبخ."
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "not yet sent — tap"
 msgstr "لم تُرسل بعد — اضغط"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Send to Kitchen"
-msgstr "إرسال إلى المطبخ"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "for the next round."
@@ -2726,10 +2955,6 @@ msgstr "خيارات أخرى"
 #: templates/webapp/restaurant/order_detail.html
 msgid "Move the order, update guests, split or merge bills."
 msgstr "انقل الطلب، حدّث عدد الضيوف، قسّم الفواتير أو ادمجها."
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Close"
-msgstr "إغلاق"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "🔀 Move to another table"
@@ -2808,20 +3033,8 @@ msgid "Add item"
 msgstr "إضافة صنف"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Choose add-ons and quantity."
-msgstr "اختر الإضافات والكمية."
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Kitchen note"
-msgstr "ملاحظة للمطبخ"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "No onion, extra spicy…"
 msgstr "بدون بصل، حار زيادة…"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Quantity"
-msgstr "الكمية"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Less"
@@ -2832,36 +3045,12 @@ msgid "More"
 msgstr "المزيد"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Add to Order"
-msgstr "أضف إلى الطلب"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Take payment"
-msgstr "تحصيل الدفع"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Amount due"
-msgstr "المبلغ المستحق"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Service + tip"
 msgstr "الخدمة + الإكرامية"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Stock location"
 msgstr "موقع المخزون"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Split"
-msgstr "تقسيم"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Cash received from customer"
-msgstr "المبلغ المستلم من العميل"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Change to return"
-msgstr "الباقي للعميل"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Charge to card"
@@ -2880,14 +3069,6 @@ msgid "🏦 Bank"
 msgstr "🏦 بنك"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Back"
-msgstr "رجوع"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Charge"
-msgstr "تحصيل"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Send to kitchen?"
 msgstr "إرسال إلى المطبخ؟"
 
@@ -2904,10 +3085,6 @@ msgid "dish available"
 msgstr "طبق متاح"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "added"
-msgstr "تمت الإضافة"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Order updated"
 msgstr "تم تحديث الطلب"
 
@@ -2922,26 +3099,6 @@ msgstr "تخصيص"
 #: templates/webapp/restaurant/order_detail.html
 msgid "Items going to the kitchen:"
 msgstr "أصناف ستُرسل إلى المطبخ:"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Still to collect"
-msgstr "المتبقي للتحصيل"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Exact"
-msgstr "المبلغ بالضبط"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "✓ Payments match the total"
-msgstr "✓ المدفوعات تطابق الإجمالي"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Remaining:"
-msgstr "المتبقي:"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Over by:"
-msgstr "زيادة بمقدار:"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Charge to"
@@ -2970,10 +3127,6 @@ msgstr "غير متاح"
 #: templates/webapp/restaurant/receipt_print.html
 msgid "TOTAL"
 msgstr "الإجمالي"
-
-#: templates/webapp/restaurant/receipt_print.html
-msgid "Thank you. Please visit again."
-msgstr "شكرًا لك. نتشرف بزيارتك مجددًا."
 
 #: templates/webapp/restaurant/receipt_print.html
 msgid "Print Receipt"
@@ -3178,10 +3331,6 @@ msgid "Closed"
 msgstr "مغلقة"
 
 #: apps/verticals/restaurant/models.py
-msgid "Dine-in"
-msgstr "داخل المطعم"
-
-#: apps/verticals/restaurant/models.py
 msgid "Draft"
 msgstr "مسودة"
 
@@ -3204,6 +3353,10 @@ msgstr "في الانتظار"
 #: apps/verticals/restaurant/models.py
 msgid "Preparing"
 msgstr "قيد التحضير"
+
+#: apps/verticals/restaurant/models.py
+msgid "Needs attention"
+msgstr "تحتاج مراجعة"
 
 #: apps/webapp/finance_views.py
 msgid "Against invoice (optional)"

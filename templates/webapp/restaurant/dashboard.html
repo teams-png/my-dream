@@ -12,6 +12,13 @@
   <a class="r-btn small" style="background:#25d366;border-color:#25d366;color:#fff" href="{% url 'webapp:invoice_share' paid_order.invoice.id %}">{% translate "💬 WhatsApp / Email" %}</a>
 </div>
 {% endif %}
+{% if offline_attention %}
+<div class="r-card r-reveal" style="padding:14px 18px;margin-bottom:14px;border-color:#f5c2bb;background:#fff5f3">
+  <strong>⚠️ {% translate "Offline bills that need attention" %}</strong>
+  <p style="margin:4px 0 8px;color:var(--r-soft);font-size:14px">{% translate "These bills were paid while offline but could not be finished automatically. Open each one, check it and take the payment again." %}</p>
+  {% for s in offline_attention %}<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:6px 0;border-top:1px solid #f5d8d3"><strong>{{ s.offline_number }}</strong><span>→ {{ s.order.order_number }}</span><small style="color:#b42318">{{ s.error }}</small><a class="r-btn small" style="margin-inline-start:auto" href="{% url 'webapp:restaurant_order_detail' s.order.id %}">{% translate "Open" %}</a></div>{% endfor %}
+</div>
+{% endif %}
 <section class="r-hero r-reveal">
   <div>
     <h2 id="rGreeting">{% translate "Welcome back 👋" %}</h2>
@@ -148,4 +155,5 @@
   });
 })();
 </script>
+<script>document.documentElement.dataset.offlineMsg="{% translate 'No internet connection' %}";document.documentElement.dataset.offlineCta="{% translate 'Open offline POS →' %}";</script><script src="{% static 'js/offline-warm.js' %}"></script>
 {% endblock %}

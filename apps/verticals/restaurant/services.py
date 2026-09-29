@@ -147,19 +147,24 @@ def create_order(*, company, channel, table=None, customer=None, waiter=None, sh
 
 
 @transaction.atomic
-def add_order_line(*, company, order, product, quantity=1, unit_price=None, notes="", modifiers=()):
+def add_order_line(*, company, order, product, quantity=1, unit_price=None, notes="", modifiers=(), already_sold=False):
+    """already_sold=True is used when syncing an offline bill: the sale has
+    already happened, so today's menu hours and add-on rules must not block it."""
     if order.company_id != company.id or product.company_id != company.id:
         raise ValidationError("Order and product must belong to the active company.")
     if order.status not in EDITABLE_ORDER_STATUSES:
         raise ValidationError("Items cannot be added to a paid or cancelled order.")
-    try:
-        menu_item = RestaurantMenuItem.objects.for_company(company).get(product=product)
-        if not menu_item.is_orderable_now():
-            raise ValidationError("This menu item is not available at the current time.")
-    except RestaurantMenuItem.DoesNotExist:
-        pass
     modifiers = list(modifiers)
-    validate_modifier_selections(company=company, product=product, modifiers=modifiers)
+    if any(m.company_id != company.id for m in modifiers):
+        raise ValidationError("Add-ons must belong to the active company.")
+    if not already_sold:
+        try:
+            menu_item = RestaurantMenuItem.objects.for_company(company).get(product=product)
+            if not menu_item.is_orderable_now():
+                raise ValidationError("This menu item is not available at the current time.")
+        except RestaurantMenuItem.DoesNotExist:
+            pass
+        validate_modifier_selections(company=company, product=product, modifiers=modifiers)
     line = RestaurantOrderLine.objects.create(
         company=company, order=order, product=product, quantity=quantity,
         unit_price=unit_price if unit_price is not None else product.selling_price, notes=notes,

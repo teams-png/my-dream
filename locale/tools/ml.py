@@ -225,3 +225,19 @@ ML.update({
 ML.update({"Dark / light mode": "ഡാർക്ക് / ലൈറ്റ് മോഡ്", "VAT / Tax No:": "VAT / ടാക്സ് നമ്പർ:", "Backup & export": "ബാക്കപ്പും എക്സ്പോർട്ടും",
 "Download every record of this business as a zip file. Keep a copy somewhere safe.": "ഈ ബിസിനസിന്റെ എല്ലാ രേഖകളും zip ഫയലായി ഡൗൺലോഡ് ചെയ്യുക. ഒരു കോപ്പി സുരക്ഷിതമായി സൂക്ഷിക്കുക.",
 "Include photos and logos": "ഫോട്ടോകളും ലോഗോകളും ഉൾപ്പെടുത്തുക", "Download all my data": "എന്റെ എല്ലാ ഡാറ്റയും ഡൗൺലോഡ്", "API docs": "API ഡോക്സ്"})
+ML.update({
+"Offline POS": "ഓഫ്‌ലൈൻ POS", "Offline bills that need attention": "ശ്രദ്ധിക്കേണ്ട ഓഫ്‌ലൈൻ ബില്ലുകൾ",
+"These bills were paid while offline but could not be finished automatically. Open each one, check it and take the payment again.": "ഇന്റർനെറ്റ് ഇല്ലാത്തപ്പോൾ അടച്ച ഈ ബില്ലുകൾ സ്വയം പൂർത്തിയായില്ല. ഓരോന്നും തുറന്ന് പരിശോധിച്ച് പേയ്‌മെന്റ് വീണ്ടും രേഖപ്പെടുത്തുക.",
+"No internet connection": "ഇന്റർനെറ്റ് കണക്ഷൻ ഇല്ല", "Open offline POS →": "ഓഫ്‌ലൈൻ POS തുറക്കുക →", "Online": "ഓൺലൈൻ", "Sync now": "ഇപ്പോൾ സിങ്ക് ചെയ്യുക",
+"Bills on this device": "ഈ ഉപകരണത്തിലെ ബില്ലുകൾ", "Normal POS": "സാധാരണ POS", "New bill": "പുതിയ ബിൽ",
+"Menu not saved on this device yet": "മെനു ഇതുവരെ ഈ ഉപകരണത്തിൽ സേവ് ചെയ്തിട്ടില്ല", "Open this page once while online so the menu is saved for offline use.": "ഓഫ്‌ലൈനിൽ ഉപയോഗിക്കാൻ, ഇന്റർനെറ്റ് ഉള്ളപ്പോൾ ഈ പേജ് ഒരിക്കൽ തുറക്കുക.",
+"Table": "ടേബിൾ", "Print bill": "ബിൽ പ്രിന്റ്", "Bills made here are kept safely until they reach the server.": "ഇവിടെ ഉണ്ടാക്കുന്ന ബില്ലുകൾ സെർവറിൽ എത്തുന്നതുവരെ സുരക്ഷിതമായി സൂക്ഷിക്കും.",
+"Offline": "ഓഫ്‌ലൈൻ", "waiting to sync": "സിങ്ക് ചെയ്യാൻ ബാക്കി", "All bills synced": "എല്ലാ ബില്ലുകളും സിങ്ക് ആയി", "need attention": "ശ്രദ്ധിക്കണം",
+"No new items to send.": "അയയ്ക്കാൻ പുതിയ ഐറ്റങ്ങൾ ഇല്ല.", "Choose a table": "ടേബിൾ തിരഞ്ഞെടുക്കുക", "Paid · saved on this device": "അടച്ചു · ഈ ഉപകരണത്തിൽ സേവ് ചെയ്തു",
+"Syncing…": "സിങ്ക് ചെയ്യുന്നു…", "Synced": "സിങ്ക് ആയി", "Error": "പിശക്", "Reprint": "വീണ്ടും പ്രിന്റ്", "Continue in POS →": "POS-ൽ തുടരുക →",
+"Your session ended. Sign in again to sync your offline bills.": "സെഷൻ അവസാനിച്ചു. ഓഫ്‌ലൈൻ ബില്ലുകൾ സിങ്ക് ചെയ്യാൻ വീണ്ടും ലോഗിൻ ചെയ്യുക.",
+"No internet. Keep selling — bills are saved on this device and sync automatically.": "ഇന്റർനെറ്റ് ഇല്ല. വിൽപ്പന തുടരൂ — ബില്ലുകൾ ഈ ഉപകരണത്തിൽ സേവ് ആകും, പിന്നീട് സ്വയം സിങ്ക് ആകും.",
+"Internet is back. Offline bills sync automatically; you can return to the normal POS.": "ഇന്റർനെറ്റ് തിരിച്ചുവന്നു. ഓഫ്‌ലൈൻ ബില്ലുകൾ സ്വയം സിങ്ക് ആകും; സാധാരണ POS-ലേക്ക് മടങ്ങാം.",
+"Add items first.": "ആദ്യം ഐറ്റങ്ങൾ ചേർക്കുക.", "Choose the required add-ons.": "ആവശ്യമായ ആഡ്-ഓണുകൾ തിരഞ്ഞെടുക്കുക.", "No bills on this device yet.": "ഈ ഉപകരണത്തിൽ ബില്ലുകൾ ഇല്ല.",
+"Offline bill": "ഓഫ്‌ലൈൻ ബിൽ", "Needs attention": "ശ്രദ്ധിക്കണം",
+})

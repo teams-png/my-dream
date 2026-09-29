@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static %}
 {% block title %}{% translate "New restaurant order" %}{% endblock %}
 {% block heading %}{% translate "Start an order" %}{% endblock %}
 {% block content %}
@@ -55,4 +55,5 @@
   update();
 })();
 </script>
+<script>document.documentElement.dataset.offlineMsg="{% translate 'No internet connection' %}";document.documentElement.dataset.offlineCta="{% translate 'Open offline POS →' %}";</script><script src="{% static 'js/offline-warm.js' %}"></script>
 {% endblock %}

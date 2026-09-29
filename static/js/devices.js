@@ -180,6 +180,33 @@
       document.body.appendChild(frame);
     });
   }
+  function esc(t) { return String(t == null ? "" : t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+  function paperHtml(body, width) {
+    const mm = Number(width) <= 32 ? 48 : 72;
+    return `<!doctype html><html><head><meta charset="utf-8"><style>@page{size:${mm + 8}mm auto;margin:4mm}body{font:13px monospace;width:${mm}mm;margin:auto;color:#000}.c{text-align:center}.r{display:flex;justify-content:space-between;gap:8px}.l{border-top:1px dashed #000;margin:6px 0}h1{font-size:17px;margin:2px 0}.big{font-size:16px;font-weight:bold}</style></head><body>${body}</body></html>`;
+  }
+  function receiptHtml(d, width) {
+    let b = `<div class="c"><h1>${esc(d.company.name)}</h1>${d.company.address ? esc(d.company.address) + "<br>" : ""}${d.company.phone ? esc(d.company.phone) + "<br>" : ""}${d.company.vat_number ? "VAT " + esc(d.company.vat_number) : ""}<div class="l"></div><b>${esc(d.title)}</b><br>${(d.meta || []).map(esc).join("<br>")}</div><div class="l"></div>`;
+    (d.lines || []).forEach(l => { b += `<div class="r"><span>${esc(l.qty)} x ${esc(l.name)}</span><span>${esc(l.amount)}</span></div>` + (l.extra || []).map(x => `<div>&nbsp;&nbsp;${esc(x)}</div>`).join(""); });
+    b += '<div class="l"></div>' + (d.totals || []).map(([k, v]) => `<div class="r"><span>${esc(k)}</span><span>${esc(v)}</span></div>`).join("");
+    b += `<div class="r big"><span>TOTAL ${esc(d.company.currency)}</span><span>${esc(d.grand_total)}</span></div>` + (d.payments || []).map(([k, v]) => `<div class="r"><span>${esc(k)}</span><span>${esc(v)}</span></div>`).join("");
+    return paperHtml(b + `<div class="l"></div><div class="c">${esc(d.footer || "Thank you!")}</div>`, width);
+  }
+  function kotHtml(d, width) {
+    let b = `<div class="c"><h1>${esc(d.title)}</h1>${(d.meta || []).map(esc).join("<br>")}</div><div class="l"></div>`;
+    (d.lines || []).forEach(l => { b += `<div class="big">${esc(l.qty)} x ${esc(l.name)}</div>` + (l.extra || []).map(x => `<div>&nbsp;&nbsp;${esc(x)}</div>`).join(""); });
+    return paperHtml(b + '<div class="l"></div>', width);
+  }
+  function browserPrintHtml(html) {
+    return new Promise(resolve => {
+      const frame = document.createElement("iframe");
+      frame.style.cssText = "position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden";
+      frame.srcdoc = html;
+      frame.onload = () => { try { frame.contentWindow.focus(); frame.contentWindow.print(); } catch (e) { /* ignore */ } resolve(); setTimeout(() => frame.remove(), 60000); };
+      document.body.appendChild(frame);
+    });
+  }
+
   async function sendRaw(role, data) {
     const cfg = load();
     let target = cfg[role];
@@ -239,6 +266,21 @@
       if (cfg.kitchen.mode === "none") return;
       if (modeOf("kitchen") === "browser") return browserPrint(htmlUrl);
       return sendRaw("kitchen", buildKot(await getJson(dataUrl), widthOf("kitchen")));
+    },
+
+    /* print from data held on this device (used by the offline POS) */
+    async printReceiptData(data, { drawer } = {}) {
+      const cfg = load();
+      if (modeOf("receipt") === "browser") return browserPrintHtml(receiptHtml(data, widthOf("receipt")));
+      const kick = cfg.drawer.enabled && (drawer === undefined ? data.open_drawer : drawer);
+      return sendRaw("receipt", buildReceipt(data, widthOf("receipt"), kick, cfg.drawer.pin));
+    },
+
+    async printKotData(data) {
+      const cfg = load();
+      if (cfg.kitchen.mode === "none") return;
+      if (modeOf("kitchen") === "browser") return browserPrintHtml(kotHtml(data, widthOf("kitchen")));
+      return sendRaw("kitchen", buildKot(data, widthOf("kitchen")));
     },
 
     async openDrawer() {

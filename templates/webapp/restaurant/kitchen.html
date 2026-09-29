@@ -53,4 +53,5 @@ connect();
 setInterval(()=>{if(!document.hidden&&document.activeElement!==search)refresh()},20000);
 })();
 </script>
+<script>document.documentElement.dataset.offlineMsg="{% translate 'No internet connection' %}";document.documentElement.dataset.offlineCta="{% translate 'Open offline POS →' %}";</script><script src="{% static 'js/offline-warm.js' %}"></script>
 {% endblock %}

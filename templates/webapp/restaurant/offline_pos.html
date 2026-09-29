@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}{% translate "Offline POS" %}{% endblock %}
+{% block heading %}{% translate "Offline POS" %}{% endblock %}
+{% block shell_class %}focus-mode{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/restaurant-pos.css' %}">
+<style>
+.rpos [hidden],.rp-dialog [hidden]{display:none!important}
+.net{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;font-size:13px;font-weight:800;background:#e5f6ed;color:#15935b;white-space:nowrap}
+.net i{width:9px;height:9px;border-radius:50%;background:currentColor;box-shadow:0 0 0 0 currentColor;animation:netPulse 2s infinite}
+.net.off{background:#fee4e2;color:#b42318}
+@keyframes netPulse{70%{box-shadow:0 0 0 7px transparent}}
+.sync-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--r-soft)}
+.sync-chip b{color:var(--r-ink)}
+.bill-tabs{display:flex;gap:6px;overflow-x:auto;padding:0 0 12px;scrollbar-width:none}
+.bill-tabs::-webkit-scrollbar{display:none}
+.bill-tab{flex-shrink:0;border:1.5px solid var(--r-line);background:#fff;border-radius:12px;padding:7px 12px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;color:var(--r-soft)}
+.bill-tab.on{border-color:var(--r-brand);color:var(--r-brand);background:var(--r-brand-soft)}
+.bill-tab small{display:block;font-weight:600;font-size:11px}
+.order-type{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 18px 10px}
+.order-type button{border:1.5px solid var(--r-line);background:#fff;border-radius:12px;padding:9px;font:inherit;font-weight:800;font-size:13.5px;cursor:pointer}
+.order-type button.on{border-color:var(--r-brand);background:var(--r-brand-soft);color:var(--r-brand)}
+.dine-fields{display:grid;grid-template-columns:2fr 1fr;gap:6px;padding:0 18px 10px}
+.dine-fields select,.dine-fields input{height:40px;border:1.5px solid var(--r-line);border-radius:10px;padding:0 10px;font:inherit;background:#fff}
+.banner{margin:0 0 12px;padding:12px 14px;border-radius:14px;background:#fff6db;color:#7a4b00;font-size:14px;font-weight:600;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.banner a{color:var(--r-brand);font-weight:800}
+.bills-list{display:grid;gap:8px;max-height:60vh;overflow:auto}
+.bill-row{display:grid;grid-template-columns:1fr auto;gap:6px;padding:10px 12px;border:1px solid var(--r-line);border-radius:12px}
+.bill-row small{color:var(--r-soft)}
+.st{font-size:11.5px;font-weight:800;padding:2px 8px;border-radius:999px;background:#f4eee6}
+.st.pending{background:#fff3d1;color:#8a5a00}.st.synced{background:#e5f6ed;color:#15935b}.st.attention,.st.error{background:#fee4e2;color:#b42318}
+</style>
+
+<div class="rpos" id="rpos">
+  <header class="rp-top">
+    <button class="rp-icon-btn" type="button" data-nav-toggle aria-label="{% translate 'Open main menu' %}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <div class="rp-order">
+      <h2 id="billTitle">{% translate "Offline POS" %}</h2>
+      <div class="rp-chips"><span class="net" id="net"><i></i><span>{% translate "Online" %}</span></span><span class="sync-chip" id="syncChip"></span></div>
+    </div>
+    <div class="rp-top-actions">
+      <button class="rp-icon-btn" type="button" id="syncBtn">⟳ <span class="label">{% translate "Sync now" %}</span></button>
+      <button class="rp-icon-btn rp-hide-sm" type="button" data-open="billsDialog">🧾 <span class="label">{% translate "Bills on this device" %}</span></button>
+      <a class="rp-icon-btn rp-hide-sm" href="{% url 'webapp:restaurant_dashboard' %}" id="onlineLink">↩ <span class="label">{% translate "Normal POS" %}</span></a>
+      <button class="rp-icon-btn primary" type="button" id="newBill">＋ <span class="label">{% translate "New bill" %}</span></button>
+    </div>
+  </header>
+  <div class="rp-body">
+    <nav class="rp-rail" id="rail" aria-label="{% translate 'Menu categories' %}"></nav>
+    <section class="rp-menu" id="menuPanel">
+      <div class="banner" id="banner" hidden></div>
+      <div class="bill-tabs" id="billTabs"></div>
+      <div class="rp-search"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input class="menu-search" id="menuSearch" type="search" placeholder="{% translate 'Search dishes, category or SKU…' %}" autocomplete="off"></div>
+      <div class="food-grid" id="foodGrid"></div>
+      <div class="quick-demo" id="noMenu" hidden><span class="qd-ico">📴</span><strong>{% translate "Menu not saved on this device yet" %}</strong><p>{% translate "Open this page once while online so the menu is saved for offline use." %}</p></div>
+    </section>
+    <aside class="cart-panel" id="ticket">
+      <button class="rp-mbar" type="button" data-ticket-toggle><span class="mb-count" id="mbCount">0</span><span class="mb-text">{% translate "View order" %}<small id="mbNo"></small></span><span class="mb-total" id="mbTotal"></span></button>
+      <div class="cart-title"><h2>{% translate "Current order" %}</h2><span class="cart-count" id="cartCount">0</span></div>
+      <div class="order-type"><button type="button" data-channel="takeaway">🥡 {% translate "Takeaway" %}</button><button type="button" data-channel="dine_in">🍽️ {% translate "Dine-in" %}</button></div>
+      <div class="dine-fields" id="dineFields" hidden><select id="tableSel" aria-label="{% translate 'Table' %}"></select><input id="guests" type="number" min="0" max="500" placeholder="{% translate 'Guests' %}" aria-label="{% translate 'Guests' %}"></div>
+      <div class="cart-lines" id="lines"></div>
+      <div class="cart-empty" id="empty"><span class="ce-ico">🛒</span><strong>{% translate "Your order is empty" %}</strong><span>{% translate "Tap a dish on the menu to add it." %}</span></div>
+      <div class="cart-foot">
+        <div id="sums"></div>
+        <div class="cart-total"><span>{% translate "Total" %}</span><span class="amt" id="total">0.00</span></div>
+        <div class="primary-actions">
+          <button class="rp-btn kitchen" type="button" id="sendKitchen">👨‍🍳 {% translate "Send to Kitchen" %}</button>
+          <button class="rp-btn" type="button" id="printBill">🧾 {% translate "Print bill" %}</button>
+          <button class="rp-btn pay" type="button" id="payBtn">💳 {% translate "Pay" %}</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<dialog id="itemDialog" class="rp-dialog">
+  <div class="dlg-head"><h3 id="dlgTitle"></h3><p>{% translate "Choose add-ons and quantity." %}</p><button class="dlg-close" type="button" data-close>✕</button></div>
+  <div class="dlg-body"><div id="dlgGroups"></div><label class="field-label" for="dlgNote">{% translate "Kitchen note" %}</label><input class="rp-input" id="dlgNote" maxlength="255">
+    <label class="field-label">{% translate "Quantity" %}</label><div class="stepper"><button type="button" data-q="-1">−</button><input id="dlgQty" type="number" min="1" value="1"><button type="button" data-q="1">+</button></div>
+    <div class="cart-hint" id="dlgErr" hidden></div></div>
+  <div class="dlg-foot"><button class="rp-btn" type="button" data-close>{% translate "Cancel" %}</button><button class="rp-btn go" type="button" id="dlgAdd">{% translate "Add to Order" %}</button></div>
+</dialog>
+
+<dialog id="payDialog" class="rp-dialog wide">
+  <div class="dlg-head"><h3>{% translate "Take payment" %}</h3><p id="payFor"></p><button class="dlg-close" type="button" data-close>✕</button></div>
+  <div class="dlg-body"><div class="pay-grid">
+    <div><div class="pay-due"><small>{% translate "Amount due" %}</small><div class="big" id="payDue">0.00</div><div class="pay-lines" id="payLines"></div></div>
+      <div class="adj-grid" style="margin-top:12px"><label>{% translate "Service charge" %}<input class="rp-input" type="number" step="0.01" min="0" id="paySc"></label><label>{% translate "Tip" %}<input class="rp-input" type="number" step="0.01" min="0" id="payTip"></label><label>{% translate "Discount" %}<input class="rp-input" type="number" step="0.01" min="0" id="payDisc"></label></div></div>
+    <div><div class="seg"><button type="button" class="on" data-method="cash"><span>💵</span>{% translate "Cash" %}</button><button type="button" data-method="card"><span>💳</span>{% translate "Card" %}</button><button type="button" data-method="bank"><span>🏦</span>{% translate "Bank" %}</button><button type="button" data-method="split"><span>➗</span>{% translate "Split" %}</button></div>
+      <div class="pay-panel" data-panel="cash"><label class="field-label" for="cashGiven">{% translate "Cash received from customer" %}</label><input class="rp-input" id="cashGiven" type="number" step="0.01" min="0" inputmode="decimal"><div class="quick-cash" id="quickCash"></div><div class="change-box" id="changeBox"><span id="changeLbl">{% translate "Change to return" %}</span><span id="changeAmt">—</span></div></div>
+      <div class="pay-panel" data-panel="split" hidden><div class="split-rows"><label>💵 {% translate "Cash" %}<input class="rp-input split-in" type="number" step="0.01" min="0" data-for="cash"></label><label>💳 {% translate "Card" %}<input class="rp-input split-in" type="number" step="0.01" min="0" data-for="card"></label><label>🏦 {% translate "Bank" %}<input class="rp-input split-in" type="number" step="0.01" min="0" data-for="bank"></label></div><div class="split-left" id="splitLeft"></div></div>
+    </div></div></div>
+  <div class="dlg-foot"><button class="rp-btn" type="button" data-close>{% translate "Back" %}</button><button class="rp-btn go" type="button" id="payGo">{% translate "Charge" %}</button></div>
+</dialog>
+
+<dialog id="billsDialog" class="rp-dialog wide">
+  <div class="dlg-head"><h3>{% translate "Bills on this device" %}</h3><p>{% translate "Bills made here are kept safely until they reach the server." %}</p><button class="dlg-close" type="button" data-close>✕</button></div>
+  <div class="dlg-body"><div class="bills-list" id="billsList"></div></div>
+  <div class="dlg-foot"><button class="rp-btn" type="button" data-close>{% translate "Close" %}</button></div>
+</dialog>
+
+<script>
+window.OFFLINE_CFG = {
+  bootstrapUrl: "{% url 'webapp:restaurant_offline_bootstrap' %}",
+  syncUrl: "{% url 'webapp:restaurant_offline_sync' %}",
+  pageUrl: "{% url 'webapp:restaurant_offline_pos' %}",
+  loginUrl: "{% url 'webapp:login' %}",
+  orderUrl: "{% url 'webapp:restaurant_order_detail' 0 %}",
+  T: {
+    online: "{% translate 'Online' %}", offline: "{% translate 'Offline' %}", waiting: "{% translate 'waiting to sync' %}",
+    allSynced: "{% translate 'All bills synced' %}", attention: "{% translate 'need attention' %}", item: "{% translate 'item' %}", items: "{% translate 'items' %}",
+    subtotal: "{% translate 'Subtotal' %}", service: "{% translate 'Service charge' %}", tip: "{% translate 'Tip' %}", tax: "{% translate 'Tax' %}", discount: "{% translate 'Discount' %}",
+    sent: "{% translate 'Sent' %}", noNewItems: "{% translate 'No new items to send.' %}", kotPrinted: "{% translate 'Sent to kitchen' %}",
+    selectTable: "{% translate 'Choose a table' %}", tableLabel: "{% translate 'Table' %}", added: "{% translate 'added' %}", paidOk: "{% translate 'Paid · saved on this device' %}",
+    change: "{% translate 'Change to return' %}", still: "{% translate 'Still to collect' %}", exact: "{% translate 'Exact' %}", match: "{% translate '✓ Payments match the total' %}",
+    remaining: "{% translate 'Remaining:' %}", over: "{% translate 'Over by:' %}", charge: "{% translate 'Charge' %}", syncing: "{% translate 'Syncing…' %}",
+    synced: "{% translate 'Synced' %}", pending: "{% translate 'Waiting' %}", error: "{% translate 'Error' %}", open: "{% translate 'Open' %}", paid: "{% translate 'Paid' %}",
+    reprint: "{% translate 'Reprint' %}", openOnline: "{% translate 'Continue in POS →' %}", signIn: "{% translate 'Your session ended. Sign in again to sync your offline bills.' %}",
+    offlineBanner: "{% translate 'No internet. Keep selling — bills are saved on this device and sync automatically.' %}",
+    onlineBanner: "{% translate 'Internet is back. Offline bills sync automatically; you can return to the normal POS.' %}",
+    emptyBill: "{% translate 'Add items first.' %}", chooseOptions: "{% translate 'Choose the required add-ons.' %}", thanks: "{% translate 'Thank you. Please visit again.' %}",
+    kitchenOrder: "{% translate 'KITCHEN ORDER' %}", total: "{% translate 'Total' %}", newBill: "{% translate 'New bill' %}", noBills: "{% translate 'No bills on this device yet.' %}",
+    soldOut: "{% translate 'Sold out' %}", all: "{% translate 'All' %}", takeaway: "{% translate 'Takeaway' %}", dineIn: "{% translate 'Dine-in' %}", guests: "{% translate 'Guests' %}",
+    offlineBill: "{% translate 'Offline bill' %}"
+  }
+};
+</script>
+<script src="{% static 'js/devices.js' %}"></script>
+<script src="{% static 'js/offline-pos.js' %}"></script>
+{% endblock %}

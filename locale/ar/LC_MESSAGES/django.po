@@ -1466,40 +1466,120 @@ msgid "Point of Sale"
 msgstr "نقطة البيع"
 
 #: templates/webapp/pos.html
+msgid "Open main menu"
+msgstr "فتح القائمة الرئيسية"
+
+#: templates/webapp/pos.html
+msgid "Online"
+msgstr "متصل"
+
+#: templates/webapp/pos.html
+msgid "Sync now"
+msgstr "مزامنة الآن"
+
+#: templates/webapp/pos.html
+msgid "waiting to sync"
+msgstr "بانتظار المزامنة"
+
+#: templates/webapp/pos.html
+msgid "need attention"
+msgstr "تحتاج مراجعة"
+
+#: templates/webapp/pos.html
+msgid "Held sales"
+msgstr "المبيعات المعلّقة"
+
+#: templates/webapp/pos.html
+msgid "Held"
+msgstr "معلّق"
+
+#: templates/webapp/pos.html
+msgid "Offline sales"
+msgstr "مبيعات دون اتصال"
+
+#: templates/webapp/pos.html
+msgid "Printer & device settings"
+msgstr "إعدادات الطابعة والأجهزة"
+
+#: templates/webapp/pos.html
+msgid "Devices"
+msgstr "الأجهزة"
+
+#: templates/webapp/pos.html
+msgid "Full screen"
+msgstr "ملء الشاشة"
+
+#: templates/webapp/pos.html
+msgid "Product categories"
+msgstr "فئات المنتجات"
+
+#: templates/webapp/pos.html
 msgid "Scan barcode or search product by name / SKU..."
 msgstr "امسح الباركود أو ابحث عن المنتج بالاسم / الرمز..."
 
 #: templates/webapp/pos.html
-msgid "Cart"
-msgstr "السلة"
+msgid "Search products"
+msgstr "البحث عن المنتجات"
 
 #: templates/webapp/pos.html
-msgid "Branch"
-msgstr "الفرع"
+msgid "No products match."
+msgstr "لا توجد منتجات مطابقة."
+
+#: templates/webapp/pos.html
+msgid "Try another name, or scan the barcode."
+msgstr "جرّب اسمًا آخر أو امسح الباركود."
+
+#: templates/webapp/pos.html
+msgid "Show current sale"
+msgstr "عرض البيع الحالي"
+
+#: templates/webapp/pos.html
+msgid "Current sale"
+msgstr "البيع الحالي"
+
+#: templates/webapp/pos.html
+msgid "Tap to review & pay"
+msgstr "اضغط للمراجعة والدفع"
 
 #: templates/webapp/pos.html
 msgid "Walk-in Customer"
 msgstr "عميل مباشر"
 
 #: templates/webapp/pos.html
+msgid "Branch"
+msgstr "الفرع"
+
+#: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "السلة فارغة"
 
 #: templates/webapp/pos.html
-msgid "Coupon code (optional)"
-msgstr "رمز القسيمة (اختياري)"
+msgid "Scan a barcode or tap a product to start a sale."
+msgstr "امسح باركود أو اضغط على منتج لبدء البيع."
 
 #: templates/webapp/pos.html
-msgid "e.g. SAVE10"
-msgstr "مثال: SAVE10"
+msgid "Hold"
+msgstr "تعليق"
 
 #: templates/webapp/pos.html
-msgid "Discount"
-msgstr "الخصم"
+msgid "Clear"
+msgstr "مسح"
 
 #: templates/webapp/pos.html
-msgid "Payment method"
-msgstr "طريقة الدفع"
+msgid "Charge"
+msgstr "تحصيل"
+
+#: templates/webapp/pos.html
+msgid "Take payment"
+msgstr "تحصيل الدفع"
+
+#: templates/webapp/pos.html
+msgid "Close"
+msgstr "إغلاق"
+
+#: templates/webapp/pos.html
+msgid "Amount due"
+msgstr "المبلغ المستحق"
 
 #: templates/webapp/pos.html
 msgid "Cash"
@@ -1510,16 +1590,20 @@ msgid "Card"
 msgstr "بطاقة"
 
 #: templates/webapp/pos.html
-msgid "Bank Transfer"
-msgstr "تحويل بنكي"
-
-#: templates/webapp/pos.html
-msgid "Credit / Due"
-msgstr "آجل / مستحق"
+msgid "Credit"
+msgstr "آجل"
 
 #: templates/webapp/pos.html
 msgid "Instalment"
 msgstr "قسط"
+
+#: templates/webapp/pos.html
+msgid "Cash received"
+msgstr "المبلغ المستلم"
+
+#: templates/webapp/pos.html
+msgid "Change due"
+msgstr "الباقي للعميل"
 
 #: templates/webapp/pos.html
 msgid "Deposit / amount paid now"
@@ -1550,8 +1634,237 @@ msgid "First due date"
 msgstr "تاريخ أول استحقاق"
 
 #: templates/webapp/pos.html
+msgid "Coupon code (optional)"
+msgstr "رمز القسيمة (اختياري)"
+
+#: templates/webapp/pos.html
+msgid "e.g. SAVE10"
+msgstr "مثال: SAVE10"
+
+#: templates/webapp/pos.html
+msgid ""
+"You are offline. The sale is saved on this device and sent automatically "
+"when the internet is back. Coupons and credit sales need internet."
+msgstr ""
+"أنت غير متصل. يُحفظ البيع على هذا الجهاز ويُرسل تلقائيًا عند عودة الإنترنت. "
+"القسائم والبيع الآجل تحتاج إلى إنترنت."
+
+#: templates/webapp/pos.html
+msgid "Back"
+msgstr "رجوع"
+
+#: templates/webapp/pos.html
 msgid "Complete Sale"
 msgstr "إتمام البيع"
+
+#: templates/webapp/pos.html
+msgid "Print receipt"
+msgstr "طباعة الإيصال"
+
+#: templates/webapp/pos.html
+msgid "WhatsApp / email"
+msgstr "واتساب / بريد إلكتروني"
+
+#: templates/webapp/pos.html
+msgid "New sale"
+msgstr "بيع جديد"
+
+#: templates/webapp/pos.html
+msgid "Select IMEI"
+msgstr "اختر رقم IMEI"
+
+#: templates/webapp/pos.html
+msgid "Sales parked on this till. Tap one to bring it back."
+msgstr "مبيعات معلّقة على نقطة البيع هذه. اضغط على أحدها لاستعادته."
+
+#: templates/webapp/pos.html
+msgid "Offline"
+msgstr "غير متصل"
+
+#: templates/webapp/pos.html
+msgid "products"
+msgstr "منتجات"
+
+#: templates/webapp/pos.html
+msgid "in stock"
+msgstr "في المخزون"
+
+#: templates/webapp/pos.html
+msgid "Low"
+msgstr "منخفض"
+
+#: templates/webapp/pos.html
+msgid "Sold out"
+msgstr "نفد"
+
+#: templates/webapp/pos.html
+msgid "each"
+msgstr "للوحدة"
+
+#: templates/webapp/pos.html
+msgid "Remove"
+msgstr "إزالة"
+
+#: templates/webapp/pos.html
+msgid "added"
+msgstr "تمت الإضافة"
+
+#: templates/webapp/pos.html
+msgid "Barcode / SKU not found."
+msgstr "الباركود / رمز الصنف غير موجود."
+
+#: templates/webapp/pos.html
+msgid "is out of stock."
+msgstr "نفد من المخزون."
+
+#: templates/webapp/pos.html
+msgid "No IMEI unit is available for this handset."
+msgstr "لا توجد وحدة IMEI متاحة لهذا الجهاز."
+
+#: templates/webapp/pos.html
+msgid "Cart is empty."
+msgstr "السلة فارغة."
+
+#: templates/webapp/pos.html
+msgid "Processing…"
+msgstr "جارٍ المعالجة…"
+
+#: templates/webapp/pos.html
+msgid "Something went wrong."
+msgstr "حدث خطأ ما."
+
+#: templates/webapp/pos.html
+msgid "Exact"
+msgstr "المبلغ بالضبط"
+
+#: templates/webapp/pos.html
+msgid "Still to pay"
+msgstr "المتبقي للدفع"
+
+#: templates/webapp/pos.html
+msgid "Sale complete"
+msgstr "تم البيع"
+
+#: templates/webapp/pos.html
+msgid "Saved offline"
+msgstr "حُفظ دون اتصال"
+
+#: templates/webapp/pos.html
+msgid "It will be sent to the server automatically when the internet is back."
+msgstr "سيُرسل إلى الخادم تلقائيًا عند عودة الإنترنت."
+
+#: templates/webapp/pos.html
+msgid "discount applied"
+msgstr "تم تطبيق الخصم"
+
+#: templates/webapp/pos.html
+msgid "loyalty points"
+msgstr "نقاط الولاء"
+
+#: templates/webapp/pos.html
+msgid "offline sales synced"
+msgstr "مبيعات دون اتصال تمت مزامنتها"
+
+#: templates/webapp/pos.html
+msgid "offline sale needs attention — see Offline sales"
+msgstr "بيع دون اتصال يحتاج مراجعة — راجع مبيعات دون اتصال"
+
+#: templates/webapp/pos.html
+msgid "Sign in again to sync offline sales."
+msgstr "سجّل الدخول مرة أخرى لمزامنة المبيعات دون اتصال."
+
+#: templates/webapp/pos.html
+msgid "Your session has ended. Sign in again and retry."
+msgstr "انتهت جلستك. سجّل الدخول مرة أخرى وأعد المحاولة."
+
+#: templates/webapp/pos.html
+msgid "Sale held"
+msgstr "تم تعليق البيع"
+
+#: templates/webapp/pos.html
+msgid "No held sales."
+msgstr "لا توجد مبيعات معلّقة."
+
+#: templates/webapp/pos.html
+msgid "Clear this sale?"
+msgstr "مسح هذا البيع؟"
+
+#: templates/webapp/pos.html
+msgid "Select a customer for credit or instalment sales."
+msgstr "اختر عميلًا للبيع الآجل أو بالتقسيط."
+
+#: templates/webapp/pos.html
+msgid "Needs internet"
+msgstr "يحتاج إلى إنترنت"
+
+#: templates/webapp/pos.html
+msgid "Receipt"
+msgstr "إيصال"
+
+#: templates/webapp/pos.html
+msgid "Cashier"
+msgstr "الكاشير"
+
+#: templates/webapp/pos.html
+msgid "Printer"
+msgstr "الطابعة"
+
+#: templates/webapp/pos_offline_sales.html
+msgid ""
+"Sales made on a till while the internet was down. They are sent to the "
+"server automatically when the till is back online. A sale that could not be "
+"booked (for example the item was sold out or the IMEI was already sold) "
+"waits here: the customer has already paid, so fix the cause and retry, or "
+"mark it handled."
+msgstr ""
+"مبيعات تمت على نقطة البيع أثناء انقطاع الإنترنت، وتُرسل إلى الخادم تلقائيًا "
+"عند عودة الاتصال. البيع الذي تعذّر تسجيله (مثلًا نفد الصنف أو بيع رقم IMEI "
+"مسبقًا) ينتظر هنا: العميل دفع بالفعل، لذا عالج السبب وأعد المحاولة أو علّمه "
+"كمُعالج."
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Needs attention"
+msgstr "تحتاج مراجعة"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Synced"
+msgstr "تمت المزامنة"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Handled"
+msgstr "تمت معالجته"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Back to POS"
+msgstr "العودة إلى نقطة البيع"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Offline no."
+msgstr "رقم دون اتصال"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Sold at"
+msgstr "وقت البيع"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Payment"
+msgstr "الدفع"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Result"
+msgstr "النتيجة"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Retry"
+msgstr "إعادة المحاولة"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Mark handled"
+msgstr "تعليم كمُعالج"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Nothing here."
+msgstr "لا شيء هنا."
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -2439,10 +2752,6 @@ msgstr "تذكرة جديدة"
 msgid "new tickets"
 msgstr "تذاكر جديدة"
 
-#: templates/webapp/restaurant/kitchen.html
-msgid "Printer"
-msgstr "الطابعة"
-
 #: templates/webapp/restaurant/kot_print.html
 msgid "KITCHEN ORDER"
 msgstr "طلب مطبخ"
@@ -2552,18 +2861,6 @@ msgid "Continue to menu →"
 msgstr "متابعة إلى القائمة ←"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "Open main menu"
-msgstr "فتح القائمة الرئيسية"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Online"
-msgstr "متصل"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Sync now"
-msgstr "مزامنة الآن"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Bills on this device"
 msgstr "الفواتير على هذا الجهاز"
 
@@ -2641,20 +2938,16 @@ msgid "Add to Order"
 msgstr "أضف إلى الطلب"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "Take payment"
-msgstr "تحصيل الدفع"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Amount due"
-msgstr "المبلغ المستحق"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Service charge"
 msgstr "رسوم الخدمة"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Tip"
 msgstr "الإكرامية"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Discount"
+msgstr "الخصم"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Split"
@@ -2669,36 +2962,12 @@ msgid "Change to return"
 msgstr "الباقي للعميل"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "Back"
-msgstr "رجوع"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Charge"
-msgstr "تحصيل"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Bills made here are kept safely until they reach the server."
 msgstr "تُحفظ الفواتير هنا بأمان حتى تصل إلى الخادم."
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "Close"
-msgstr "إغلاق"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Offline"
-msgstr "غير متصل"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "waiting to sync"
-msgstr "بانتظار المزامنة"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "All bills synced"
 msgstr "تمت مزامنة كل الفواتير"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "need attention"
-msgstr "تحتاج مراجعة"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Sent"
@@ -2717,20 +2986,12 @@ msgid "Choose a table"
 msgstr "اختر طاولة"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "added"
-msgstr "تمت الإضافة"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Paid · saved on this device"
 msgstr "مدفوع · محفوظ على هذا الجهاز"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Still to collect"
 msgstr "المتبقي للتحصيل"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Exact"
-msgstr "المبلغ بالضبط"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "✓ Payments match the total"
@@ -2747,10 +3008,6 @@ msgstr "زيادة بمقدار:"
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Syncing…"
 msgstr "جارٍ المزامنة…"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Synced"
-msgstr "تمت المزامنة"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Error"
@@ -2801,10 +3058,6 @@ msgid "No bills on this device yet."
 msgstr "لا توجد فواتير على هذا الجهاز بعد."
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "Sold out"
-msgstr "نفد"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Offline bill"
 msgstr "فاتورة دون اتصال"
 
@@ -2835,10 +3088,6 @@ msgstr "إرجاع / استرداد"
 #: templates/webapp/restaurant/order_detail.html
 msgid "Share bill"
 msgstr "مشاركة الفاتورة"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Full screen"
-msgstr "ملء الشاشة"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "New order"
@@ -2899,10 +3148,6 @@ msgstr "عرض التفاصيل"
 #: templates/webapp/restaurant/order_detail.html
 msgid "New"
 msgstr "جديد"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "each"
-msgstr "للوحدة"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Add at least one dish before sending this order to the kitchen."
@@ -3053,6 +3298,10 @@ msgid "Stock location"
 msgstr "موقع المخزون"
 
 #: templates/webapp/restaurant/order_detail.html
+msgid "Payment method"
+msgstr "طريقة الدفع"
+
+#: templates/webapp/restaurant/order_detail.html
 msgid "Charge to card"
 msgstr "تحصيل بالبطاقة"
 
@@ -3111,10 +3360,6 @@ msgstr "البطاقة"
 #: templates/webapp/restaurant/order_detail.html
 msgid "bank transfer"
 msgstr "تحويل بنكي"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Processing…"
-msgstr "جارٍ المعالجة…"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "No menu item with code"
@@ -3335,10 +3580,6 @@ msgid "Draft"
 msgstr "مسودة"
 
 #: apps/verticals/restaurant/models.py
-msgid "Held"
-msgstr "معلّق"
-
-#: apps/verticals/restaurant/models.py
 msgid "Ready"
 msgstr "جاهز"
 
@@ -3353,10 +3594,6 @@ msgstr "في الانتظار"
 #: apps/verticals/restaurant/models.py
 msgid "Preparing"
 msgstr "قيد التحضير"
-
-#: apps/verticals/restaurant/models.py
-msgid "Needs attention"
-msgstr "تحتاج مراجعة"
 
 #: apps/webapp/finance_views.py
 msgid "Against invoice (optional)"
@@ -3437,3 +3674,15 @@ msgstr "تمت إضافة الأصل وتسجيله في الدفاتر."
 #: apps/webapp/finance_views.py
 msgid "Asset disposed and the gain or loss recorded."
 msgstr "تم استبعاد الأصل وتسجيل الربح أو الخسارة."
+
+#: apps/webapp/views.py
+msgid "Sale %(number)s booked as invoice %(invoice)s."
+msgstr "تم تسجيل البيع %(number)s كفاتورة %(invoice)s."
+
+#: apps/webapp/views.py
+msgid "Still cannot book %(number)s: %(error)s"
+msgstr "لا يزال تعذّر تسجيل %(number)s: %(error)s"
+
+#: apps/webapp/views.py
+msgid "Marked as handled."
+msgstr "تم التعليم كمُعالج."

@@ -67,6 +67,8 @@ def test_installment_collection_updates_invoice_and_plan(tenant_a, tenant_a_owne
 def test_mobile_pages_and_pos_include_complete_workflows():
     for name in ("mobile_repair_list", "mobile_warranty_list", "mobile_tradein_list", "mobile_installment_list"):
         assert reverse(f"webapp:{name}")
-    source = get_template("webapp/pos.html").template.source
+    from pathlib import Path
+    from django.conf import settings
+    source = get_template("webapp/pos.html").template.source + (Path(settings.BASE_DIR) / "static/js/retail-pos.js").read_text()
     assert "mobile_unit_id" in source
     assert "installment_count" in source

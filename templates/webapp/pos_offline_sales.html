@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Offline sales" %}{% endblock %}
+{% block heading %}{% translate "Offline sales" %}{% endblock %}
+{% block content %}
+<p style="color:var(--ink-soft);max-width:760px">{% translate "Sales made on a till while the internet was down. They are sent to the server automatically when the till is back online. A sale that could not be booked (for example the item was sold out or the IMEI was already sold) waits here: the customer has already paid, so fix the cause and retry, or mark it handled." %}</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">
+  <a class="btn{% if status != 'attention' %} btn-secondary{% endif %}" href="?status=attention">⚠ {% translate "Needs attention" %} ({{ counts.attention }})</a>
+  <a class="btn{% if status != 'synced' %} btn-secondary{% endif %}" href="?status=synced">✓ {% translate "Synced" %} ({{ counts.synced }})</a>
+  <a class="btn{% if status != 'resolved' %} btn-secondary{% endif %}" href="?status=resolved">{% translate "Handled" %} ({{ counts.resolved }})</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:pos' %}" style="margin-inline-start:auto">← {% translate "Back to POS" %}</a>
+</div>
+<div class="card" style="padding:0;overflow-x:auto">
+<table>
+  <thead><tr><th>{% translate "Offline no." %}</th><th>{% translate "Sold at" %}</th><th>{% translate "Items" %}</th><th style="text-align:right">{% translate "Total" %}</th><th>{% translate "Payment" %}</th><th>{% translate "Result" %}</th><th></th></tr></thead>
+  <tbody>
+  {% for r in records %}
+    <tr>
+      <td><strong>{{ r.offline_number }}</strong></td>
+      <td>{{ r.device_created_at|date:"d M Y H:i" }}</td>
+      <td style="font-size:13px">{% for l in r.payload.lines %}{{ l.quantity }} × {{ l.name|default:l.product_id }}{% if not forloop.last %}<br>{% endif %}{% endfor %}</td>
+      <td style="text-align:right">{{ r.payload.total }}</td>
+      <td>{{ r.payload.payment_method|default:"cash"|capfirst }}</td>
+      <td>{% if r.invoice %}<a href="{% url 'webapp:invoice_pdf' r.invoice.id %}" target="_blank">{{ r.invoice.invoice_number }}</a>{% else %}<span style="color:var(--danger)">{{ r.error }}</span>{% endif %}</td>
+      <td style="white-space:nowrap">{% if r.status == 'attention' %}
+        <form method="post" style="display:inline">{% csrf_token %}<input type="hidden" name="record_id" value="{{ r.id }}"><button class="btn" name="action" value="retry">↻ {% translate "Retry" %}</button></form>
+        <form method="post" style="display:inline">{% csrf_token %}<input type="hidden" name="record_id" value="{{ r.id }}"><button class="btn btn-secondary" name="action" value="resolve">{% translate "Mark handled" %}</button></form>
+      {% endif %}</td>
+    </tr>
+  {% empty %}
+    <tr><td colspan="7" style="text-align:center;padding:30px;color:var(--ink-soft)">{% translate "Nothing here." %}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

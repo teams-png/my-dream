@@ -109,6 +109,8 @@ urlpatterns = [
     path("devices/print/restaurant/<int:order_id>.json", device_views.restaurant_receipt_data, name="device_restaurant_receipt"),
     path("devices/print/kot/<int:ticket_id>.json", device_views.kot_data, name="device_kot"),
     path("pos/checkout/", views.pos_checkout, name="pos_checkout"),
+    path("pos/offline/sync/", views.pos_offline_sync, name="pos_offline_sync"),
+    path("pos/offline/sales/", views.pos_offline_sales, name="pos_offline_sales"),
 
     path("returns/", views.sales_return_list, name="sales_return_list"),
     path("returns/lookup/", views.sales_return_lookup, name="sales_return_lookup"),

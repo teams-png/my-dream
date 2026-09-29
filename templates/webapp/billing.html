@@ -63,8 +63,8 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 function csrftoken() {
-  const m = document.cookie.match(/csrftoken=([^;]+)/);
-  return m ? m[1] : '';
+  // the CSRF cookie is HttpOnly; read the token rendered into the page instead
+  return "{{ csrf_token }}";
 }
 document.getElementById('razorpay-pay-btn').addEventListener('click', async () => {
   const msg = document.getElementById('razorpay-message');

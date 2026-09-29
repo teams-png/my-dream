@@ -335,3 +335,35 @@ class POSPayment(models.Model):
     customer_payment = models.OneToOneField(CustomerPayment, on_delete=models.PROTECT, related_name="pos_payment")
     method = models.CharField(max_length=30)
     amount = models.DecimalField(max_digits=14, decimal_places=2)
+
+
+class OfflineSaleSync(TenantScopedModel):
+    """
+    One row per retail POS sale made on a device while it was offline. The
+    device's client_id makes syncing idempotent: re-sending the same sale
+    (after a dropped connection, a retry or a second tab) never creates a
+    second invoice.
+    """
+    STATUS = [("synced", "Synced"), ("attention", "Needs attention"), ("resolved", "Resolved")]
+    CHANNELS = [("offline", "Offline sale"), ("live", "Live till")]
+    channel = models.CharField(
+        max_length=8, choices=CHANNELS, default="offline",
+        help_text="'live' rows only remember a till request id, so a retried checkout never bills twice.",
+    )
+    client_id = models.UUIDField()
+    offline_number = models.CharField(max_length=40)
+    device_created_at = models.DateTimeField(null=True, blank=True)
+    invoice = models.ForeignKey(SalesInvoice, null=True, blank=True, on_delete=models.SET_NULL, related_name="offline_syncs")
+    payload = models.JSONField(default=dict)
+    status = models.CharField(max_length=12, choices=STATUS, default="synced")
+    error = models.CharField(max_length=255, blank=True)
+    synced_by = models.ForeignKey("accounts.User", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["company", "client_id"], name="one_sync_per_offline_sale")]
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return self.offline_number

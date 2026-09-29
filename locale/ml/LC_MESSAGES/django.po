@@ -1477,40 +1477,122 @@ msgid "Point of Sale"
 msgstr "പോയിന്റ് ഓഫ് സെയിൽ"
 
 #: templates/webapp/pos.html
+msgid "Open main menu"
+msgstr "പ്രധാന മെനു തുറക്കുക"
+
+#: templates/webapp/pos.html
+msgid "Online"
+msgstr "ഓൺലൈൻ"
+
+#: templates/webapp/pos.html
+msgid "Sync now"
+msgstr "ഇപ്പോൾ സിങ്ക് ചെയ്യുക"
+
+#: templates/webapp/pos.html
+msgid "waiting to sync"
+msgstr "സിങ്ക് ചെയ്യാൻ ബാക്കി"
+
+#: templates/webapp/pos.html
+msgid "need attention"
+msgstr "ശ്രദ്ധിക്കണം"
+
+#: templates/webapp/pos.html
+msgid "Held sales"
+msgstr "ഹോൾഡ് ചെയ്ത വിൽപ്പനകൾ"
+
+#: templates/webapp/pos.html
+msgid "Held"
+msgstr "ഹോൾഡ്"
+
+#: templates/webapp/pos.html
+msgid "Offline sales"
+msgstr "ഓഫ്‌ലൈൻ വിൽപ്പനകൾ"
+
+#: templates/webapp/pos.html
+msgid "Printer & device settings"
+msgstr "പ്രിന്റർ & ഉപകരണ ക്രമീകരണങ്ങൾ"
+
+#: templates/webapp/pos.html
+msgid "Devices"
+msgstr "ഉപകരണങ്ങൾ"
+
+#: templates/webapp/pos.html
+msgid "Full screen"
+msgstr "ഫുൾ സ്ക്രീൻ"
+
+#: templates/webapp/pos.html
+msgid "Product categories"
+msgstr "ഉൽപ്പന്ന വിഭാഗങ്ങൾ"
+
+#: templates/webapp/pos.html
 msgid "Scan barcode or search product by name / SKU..."
 msgstr "ബാർകോഡ് സ്കാൻ ചെയ്യുക അല്ലെങ്കിൽ പേര് / SKU വെച്ച് തിരയുക..."
 
 #: templates/webapp/pos.html
-msgid "Cart"
-msgstr "കാർട്ട്"
+msgid "Search products"
+msgstr "ഉൽപ്പന്നങ്ങൾ തിരയുക"
 
 #: templates/webapp/pos.html
-msgid "Branch"
-msgstr "ബ്രാഞ്ച്"
+msgid "No products match."
+msgstr "പൊരുത്തപ്പെടുന്ന ഉൽപ്പന്നങ്ങളില്ല."
+
+#: templates/webapp/pos.html
+msgid "Try another name, or scan the barcode."
+msgstr "മറ്റൊരു പേര് നോക്കുക, അല്ലെങ്കിൽ ബാർകോഡ് സ്കാൻ ചെയ്യുക."
+
+#: templates/webapp/pos.html
+msgid "Show current sale"
+msgstr "നിലവിലെ വിൽപ്പന കാണിക്കുക"
+
+#: templates/webapp/pos.html
+msgid "Current sale"
+msgstr "നിലവിലെ വിൽപ്പന"
+
+#: templates/webapp/pos.html
+msgid "Tap to review & pay"
+msgstr "പരിശോധിച്ച് പണമടയ്ക്കാൻ ടാപ്പ് ചെയ്യുക"
 
 #: templates/webapp/pos.html
 msgid "Walk-in Customer"
 msgstr "വാക്ക്-ഇൻ കസ്റ്റമർ"
 
 #: templates/webapp/pos.html
+msgid "Branch"
+msgstr "ബ്രാഞ്ച്"
+
+#: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "കാർട്ട് ശൂന്യമാണ്"
 
 #: templates/webapp/pos.html
-msgid "Coupon code (optional)"
-msgstr "കൂപ്പൺ കോഡ് (ഓപ്ഷണൽ)"
+msgid "Scan a barcode or tap a product to start a sale."
+msgstr ""
+"വിൽപ്പന തുടങ്ങാൻ ബാർകോഡ് സ്കാൻ ചെയ്യുക അല്ലെങ്കിൽ ഒരു ഉൽപ്പന്നം ടാപ്പ് "
+"ചെയ്യുക."
 
 #: templates/webapp/pos.html
-msgid "e.g. SAVE10"
-msgstr "ഉദാ. SAVE10"
+msgid "Hold"
+msgstr "ഹോൾഡ്"
 
 #: templates/webapp/pos.html
-msgid "Discount"
-msgstr "ഡിസ്കൗണ്ട്"
+msgid "Clear"
+msgstr "മായ്ക്കുക"
 
 #: templates/webapp/pos.html
-msgid "Payment method"
-msgstr "പേയ്‌മെന്റ് രീതി"
+msgid "Charge"
+msgstr "ചാർജ് ചെയ്യുക"
+
+#: templates/webapp/pos.html
+msgid "Take payment"
+msgstr "പേയ്‌മെന്റ് സ്വീകരിക്കുക"
+
+#: templates/webapp/pos.html
+msgid "Close"
+msgstr "അടയ്ക്കുക"
+
+#: templates/webapp/pos.html
+msgid "Amount due"
+msgstr "അടയ്ക്കേണ്ട തുക"
 
 #: templates/webapp/pos.html
 msgid "Cash"
@@ -1521,16 +1603,20 @@ msgid "Card"
 msgstr "കാർഡ്"
 
 #: templates/webapp/pos.html
-msgid "Bank Transfer"
-msgstr "ബാങ്ക് ട്രാൻസ്ഫർ"
-
-#: templates/webapp/pos.html
-msgid "Credit / Due"
-msgstr "ക്രെഡിറ്റ് / കുടിശ്ശിക"
+msgid "Credit"
+msgstr "കടം"
 
 #: templates/webapp/pos.html
 msgid "Instalment"
 msgstr "ഗഡു"
+
+#: templates/webapp/pos.html
+msgid "Cash received"
+msgstr "ലഭിച്ച തുക"
+
+#: templates/webapp/pos.html
+msgid "Change due"
+msgstr "തിരികെ നൽകേണ്ടത്"
 
 #: templates/webapp/pos.html
 msgid "Deposit / amount paid now"
@@ -1561,8 +1647,240 @@ msgid "First due date"
 msgstr "ആദ്യ അടവ് തീയതി"
 
 #: templates/webapp/pos.html
+msgid "Coupon code (optional)"
+msgstr "കൂപ്പൺ കോഡ് (ഓപ്ഷണൽ)"
+
+#: templates/webapp/pos.html
+msgid "e.g. SAVE10"
+msgstr "ഉദാ. SAVE10"
+
+#: templates/webapp/pos.html
+msgid ""
+"You are offline. The sale is saved on this device and sent automatically "
+"when the internet is back. Coupons and credit sales need internet."
+msgstr ""
+"നിങ്ങൾ ഓഫ്‌ലൈനാണ്. വിൽപ്പന ഈ ഉപകരണത്തിൽ സേവ് ചെയ്യും, ഇന്റർനെറ്റ് "
+"തിരിച്ചെത്തുമ്പോൾ സ്വയം അയയ്ക്കും. കൂപ്പണുകൾക്കും കടം വിൽപ്പനയ്ക്കും "
+"ഇന്റർനെറ്റ് വേണം."
+
+#: templates/webapp/pos.html
+msgid "Back"
+msgstr "തിരികെ"
+
+#: templates/webapp/pos.html
 msgid "Complete Sale"
 msgstr "വിൽപ്പന പൂർത്തിയാക്കുക"
+
+#: templates/webapp/pos.html
+msgid "Print receipt"
+msgstr "രസീത് പ്രിന്റ് ചെയ്യുക"
+
+#: templates/webapp/pos.html
+msgid "WhatsApp / email"
+msgstr "WhatsApp / ഇമെയിൽ"
+
+#: templates/webapp/pos.html
+msgid "New sale"
+msgstr "പുതിയ വിൽപ്പന"
+
+#: templates/webapp/pos.html
+msgid "Select IMEI"
+msgstr "IMEI തിരഞ്ഞെടുക്കുക"
+
+#: templates/webapp/pos.html
+msgid "Sales parked on this till. Tap one to bring it back."
+msgstr ""
+"ഈ കൗണ്ടറിൽ ഹോൾഡ് ചെയ്ത വിൽപ്പനകൾ. തിരികെ കൊണ്ടുവരാൻ ഒന്നിൽ ടാപ്പ് ചെയ്യുക."
+
+#: templates/webapp/pos.html
+msgid "Offline"
+msgstr "ഓഫ്‌ലൈൻ"
+
+#: templates/webapp/pos.html
+msgid "products"
+msgstr "ഉൽപ്പന്നങ്ങൾ"
+
+#: templates/webapp/pos.html
+msgid "in stock"
+msgstr "സ്റ്റോക്കിൽ"
+
+#: templates/webapp/pos.html
+msgid "Low"
+msgstr "കുറവ്"
+
+#: templates/webapp/pos.html
+msgid "Sold out"
+msgstr "തീർന്നു"
+
+#: templates/webapp/pos.html
+msgid "each"
+msgstr "ഒന്നിന്"
+
+#: templates/webapp/pos.html
+msgid "Remove"
+msgstr "നീക്കം ചെയ്യുക"
+
+#: templates/webapp/pos.html
+msgid "added"
+msgstr "ചേർത്തു"
+
+#: templates/webapp/pos.html
+msgid "Barcode / SKU not found."
+msgstr "ബാർകോഡ് / SKU കണ്ടെത്തിയില്ല."
+
+#: templates/webapp/pos.html
+msgid "is out of stock."
+msgstr "സ്റ്റോക്കില്ല."
+
+#: templates/webapp/pos.html
+msgid "No IMEI unit is available for this handset."
+msgstr "ഈ ഫോണിന് ലഭ്യമായ IMEI യൂണിറ്റില്ല."
+
+#: templates/webapp/pos.html
+msgid "Cart is empty."
+msgstr "കാർട്ട് ശൂന്യമാണ്."
+
+#: templates/webapp/pos.html
+msgid "Processing…"
+msgstr "പ്രോസസ് ചെയ്യുന്നു…"
+
+#: templates/webapp/pos.html
+msgid "Something went wrong."
+msgstr "എന്തോ പിശക് സംഭവിച്ചു."
+
+#: templates/webapp/pos.html
+msgid "Exact"
+msgstr "കൃത്യം"
+
+#: templates/webapp/pos.html
+msgid "Still to pay"
+msgstr "ഇനി അടയ്ക്കാനുള്ളത്"
+
+#: templates/webapp/pos.html
+msgid "Sale complete"
+msgstr "വിൽപ്പന പൂർത്തിയായി"
+
+#: templates/webapp/pos.html
+msgid "Saved offline"
+msgstr "ഓഫ്‌ലൈനായി സേവ് ചെയ്തു"
+
+#: templates/webapp/pos.html
+msgid "It will be sent to the server automatically when the internet is back."
+msgstr "ഇന്റർനെറ്റ് തിരിച്ചെത്തുമ്പോൾ ഇത് സ്വയം സെർവറിലേക്ക് അയയ്ക്കും."
+
+#: templates/webapp/pos.html
+msgid "discount applied"
+msgstr "ഡിസ്കൗണ്ട് പ്രയോഗിച്ചു"
+
+#: templates/webapp/pos.html
+msgid "loyalty points"
+msgstr "ലോയൽറ്റി പോയിന്റുകൾ"
+
+#: templates/webapp/pos.html
+msgid "offline sales synced"
+msgstr "ഓഫ്‌ലൈൻ വിൽപ്പനകൾ സിങ്ക് ചെയ്തു"
+
+#: templates/webapp/pos.html
+msgid "offline sale needs attention — see Offline sales"
+msgstr "ഓഫ്‌ലൈൻ വിൽപ്പന ശ്രദ്ധിക്കണം — ഓഫ്‌ലൈൻ വിൽപ്പനകൾ കാണുക"
+
+#: templates/webapp/pos.html
+msgid "Sign in again to sync offline sales."
+msgstr "ഓഫ്‌ലൈൻ വിൽപ്പനകൾ സിങ്ക് ചെയ്യാൻ വീണ്ടും ലോഗിൻ ചെയ്യുക."
+
+#: templates/webapp/pos.html
+msgid "Your session has ended. Sign in again and retry."
+msgstr "നിങ്ങളുടെ സെഷൻ അവസാനിച്ചു. വീണ്ടും ലോഗിൻ ചെയ്ത് ശ്രമിക്കുക."
+
+#: templates/webapp/pos.html
+msgid "Sale held"
+msgstr "വിൽപ്പന ഹോൾഡ് ചെയ്തു"
+
+#: templates/webapp/pos.html
+msgid "No held sales."
+msgstr "ഹോൾഡ് ചെയ്ത വിൽപ്പനകളില്ല."
+
+#: templates/webapp/pos.html
+msgid "Clear this sale?"
+msgstr "ഈ വിൽപ്പന മായ്ക്കണോ?"
+
+#: templates/webapp/pos.html
+msgid "Select a customer for credit or instalment sales."
+msgstr "കടം അല്ലെങ്കിൽ തവണ വിൽപ്പനയ്ക്ക് ഒരു ഉപഭോക്താവിനെ തിരഞ്ഞെടുക്കുക."
+
+#: templates/webapp/pos.html
+msgid "Needs internet"
+msgstr "ഇന്റർനെറ്റ് വേണം"
+
+#: templates/webapp/pos.html
+msgid "Receipt"
+msgstr "രസീത്"
+
+#: templates/webapp/pos.html
+msgid "Cashier"
+msgstr "കാഷ്യർ"
+
+#: templates/webapp/pos.html
+msgid "Printer"
+msgstr "പ്രിന്റർ"
+
+#: templates/webapp/pos_offline_sales.html
+msgid ""
+"Sales made on a till while the internet was down. They are sent to the "
+"server automatically when the till is back online. A sale that could not be "
+"booked (for example the item was sold out or the IMEI was already sold) "
+"waits here: the customer has already paid, so fix the cause and retry, or "
+"mark it handled."
+msgstr ""
+"ഇന്റർനെറ്റ് ഇല്ലാതിരുന്നപ്പോൾ കൗണ്ടറിൽ നടന്ന വിൽപ്പനകൾ. കൗണ്ടർ ഓൺലൈനാകുമ്പോൾ"
+" ഇവ സ്വയം സെർവറിലേക്ക് അയയ്ക്കും. ബുക്ക് ചെയ്യാൻ കഴിയാത്ത വിൽപ്പന (ഉദാ: "
+"സാധനം തീർന്നു, അല്ലെങ്കിൽ IMEI നേരത്തെ വിറ്റു) ഇവിടെ കാത്തിരിക്കും: "
+"ഉപഭോക്താവ് പണം നൽകിക്കഴിഞ്ഞു, അതിനാൽ കാരണം പരിഹരിച്ച് വീണ്ടും ശ്രമിക്കുക, "
+"അല്ലെങ്കിൽ കൈകാര്യം ചെയ്തതായി അടയാളപ്പെടുത്തുക."
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Needs attention"
+msgstr "ശ്രദ്ധിക്കണം"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Synced"
+msgstr "സിങ്ക് ആയി"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Handled"
+msgstr "കൈകാര്യം ചെയ്തു"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Back to POS"
+msgstr "POS-ലേക്ക് മടങ്ങുക"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Offline no."
+msgstr "ഓഫ്‌ലൈൻ നമ്പർ"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Sold at"
+msgstr "വിറ്റ സമയം"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Payment"
+msgstr "പേയ്മെന്റ്"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Result"
+msgstr "ഫലം"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Retry"
+msgstr "വീണ്ടും ശ്രമിക്കുക"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Mark handled"
+msgstr "കൈകാര്യം ചെയ്തതായി അടയാളപ്പെടുത്തുക"
+
+#: templates/webapp/pos_offline_sales.html
+msgid "Nothing here."
+msgstr "ഇവിടെ ഒന്നുമില്ല."
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -2463,10 +2781,6 @@ msgstr "പുതിയ ടിക്കറ്റ്"
 msgid "new tickets"
 msgstr "പുതിയ ടിക്കറ്റുകൾ"
 
-#: templates/webapp/restaurant/kitchen.html
-msgid "Printer"
-msgstr "പ്രിന്റർ"
-
 #: templates/webapp/restaurant/kot_print.html
 msgid "KITCHEN ORDER"
 msgstr "കിച്ചൺ ഓർഡർ"
@@ -2576,18 +2890,6 @@ msgid "Continue to menu →"
 msgstr "മെനുവിലേക്ക് തുടരുക →"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "Open main menu"
-msgstr "പ്രധാന മെനു തുറക്കുക"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Online"
-msgstr "ഓൺലൈൻ"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Sync now"
-msgstr "ഇപ്പോൾ സിങ്ക് ചെയ്യുക"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Bills on this device"
 msgstr "ഈ ഉപകരണത്തിലെ ബില്ലുകൾ"
 
@@ -2664,20 +2966,16 @@ msgid "Add to Order"
 msgstr "ഓർഡറിൽ ചേർക്കുക"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "Take payment"
-msgstr "പേയ്‌മെന്റ് സ്വീകരിക്കുക"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Amount due"
-msgstr "അടയ്ക്കേണ്ട തുക"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Service charge"
 msgstr "സർവീസ് ചാർജ്"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Tip"
 msgstr "ടിപ്പ്"
+
+#: templates/webapp/restaurant/offline_pos.html
+msgid "Discount"
+msgstr "ഡിസ്കൗണ്ട്"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Split"
@@ -2692,37 +2990,13 @@ msgid "Change to return"
 msgstr "തിരികെ നൽകേണ്ട ബാക്കി"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "Back"
-msgstr "തിരികെ"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Charge"
-msgstr "ചാർജ് ചെയ്യുക"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Bills made here are kept safely until they reach the server."
 msgstr ""
 "ഇവിടെ ഉണ്ടാക്കുന്ന ബില്ലുകൾ സെർവറിൽ എത്തുന്നതുവരെ സുരക്ഷിതമായി സൂക്ഷിക്കും."
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "Close"
-msgstr "അടയ്ക്കുക"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Offline"
-msgstr "ഓഫ്‌ലൈൻ"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "waiting to sync"
-msgstr "സിങ്ക് ചെയ്യാൻ ബാക്കി"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "All bills synced"
 msgstr "എല്ലാ ബില്ലുകളും സിങ്ക് ആയി"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "need attention"
-msgstr "ശ്രദ്ധിക്കണം"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Sent"
@@ -2741,20 +3015,12 @@ msgid "Choose a table"
 msgstr "ടേബിൾ തിരഞ്ഞെടുക്കുക"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "added"
-msgstr "ചേർത്തു"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Paid · saved on this device"
 msgstr "അടച്ചു · ഈ ഉപകരണത്തിൽ സേവ് ചെയ്തു"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Still to collect"
 msgstr "ഇനിയും വാങ്ങാനുള്ളത്"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Exact"
-msgstr "കൃത്യം"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "✓ Payments match the total"
@@ -2771,10 +3037,6 @@ msgstr "അധികം:"
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Syncing…"
 msgstr "സിങ്ക് ചെയ്യുന്നു…"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Synced"
-msgstr "സിങ്ക് ആയി"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Error"
@@ -2826,10 +3088,6 @@ msgid "No bills on this device yet."
 msgstr "ഈ ഉപകരണത്തിൽ ബില്ലുകൾ ഇല്ല."
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "Sold out"
-msgstr "തീർന്നു"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Offline bill"
 msgstr "ഓഫ്‌ലൈൻ ബിൽ"
 
@@ -2860,10 +3118,6 @@ msgstr "റിട്ടേൺ / റീഫണ്ട്"
 #: templates/webapp/restaurant/order_detail.html
 msgid "Share bill"
 msgstr "ബിൽ ഷെയർ ചെയ്യുക"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Full screen"
-msgstr "ഫുൾ സ്ക്രീൻ"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "New order"
@@ -2924,10 +3178,6 @@ msgstr "വിവരങ്ങൾ കാണുക"
 #: templates/webapp/restaurant/order_detail.html
 msgid "New"
 msgstr "പുതിയത്"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "each"
-msgstr "ഒന്നിന്"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Add at least one dish before sending this order to the kitchen."
@@ -3081,6 +3331,10 @@ msgid "Stock location"
 msgstr "സ്റ്റോക്ക് ലൊക്കേഷൻ"
 
 #: templates/webapp/restaurant/order_detail.html
+msgid "Payment method"
+msgstr "പേയ്‌മെന്റ് രീതി"
+
+#: templates/webapp/restaurant/order_detail.html
 msgid "Charge to card"
 msgstr "കാർഡിൽ ചാർജ് ചെയ്യുക"
 
@@ -3139,10 +3393,6 @@ msgstr "കാർഡ്"
 #: templates/webapp/restaurant/order_detail.html
 msgid "bank transfer"
 msgstr "ബാങ്ക് ട്രാൻസ്ഫർ"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "Processing…"
-msgstr "പ്രോസസ് ചെയ്യുന്നു…"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "No menu item with code"
@@ -3367,10 +3617,6 @@ msgid "Draft"
 msgstr "ഡ്രാഫ്റ്റ്"
 
 #: apps/verticals/restaurant/models.py
-msgid "Held"
-msgstr "ഹോൾഡ്"
-
-#: apps/verticals/restaurant/models.py
 msgid "Ready"
 msgstr "റെഡി"
 
@@ -3385,10 +3631,6 @@ msgstr "ക്യൂവിൽ"
 #: apps/verticals/restaurant/models.py
 msgid "Preparing"
 msgstr "തയ്യാറാക്കുന്നു"
-
-#: apps/verticals/restaurant/models.py
-msgid "Needs attention"
-msgstr "ശ്രദ്ധിക്കണം"
 
 #: apps/webapp/finance_views.py
 msgid "Against invoice (optional)"
@@ -3469,3 +3711,15 @@ msgstr "ആസ്തി ചേർത്ത് അക്കൗണ്ട്സി�
 #: apps/webapp/finance_views.py
 msgid "Asset disposed and the gain or loss recorded."
 msgstr "ആസ്തി ഒഴിവാക്കി, ലാഭമോ നഷ്ടമോ രേഖപ്പെടുത്തി."
+
+#: apps/webapp/views.py
+msgid "Sale %(number)s booked as invoice %(invoice)s."
+msgstr "വിൽപ്പന %(number)s ഇൻവോയ്സ് %(invoice)s ആയി ബുക്ക് ചെയ്തു."
+
+#: apps/webapp/views.py
+msgid "Still cannot book %(number)s: %(error)s"
+msgstr "%(number)s ഇപ്പോഴും ബുക്ക് ചെയ്യാനാകുന്നില്ല: %(error)s"
+
+#: apps/webapp/views.py
+msgid "Marked as handled."
+msgstr "കൈകാര്യം ചെയ്തതായി അടയാളപ്പെടുത്തി."

@@ -89,7 +89,10 @@ def test_retail_report_filters_and_boutique_rankings(client, tenant_a, tenant_a_
 
 
 def test_pos_template_contains_barcode_auto_add_logic():
-    source = get_template("webapp/pos.html").template.source
+    from pathlib import Path
+    from django.conf import settings
+    assert "retail-pos.js" in get_template("webapp/pos.html").template.source
+    source = (Path(settings.BASE_DIR) / "static" / "js" / "retail-pos.js").read_text()
     assert "confirmScan" in source
     assert "p.sku.toLowerCase() === sku" in source
     assert "addToCart(exact, scannedUnit)" in source

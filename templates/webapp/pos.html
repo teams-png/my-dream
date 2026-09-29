@@ -3,262 +3,175 @@
 {% load static %}
 {% block title %}{% translate "POS" %}{% endblock %}
 {% block heading %}{% translate "Point of Sale" %}{% endblock %}
+{% block shell_class %}focus-mode{% endblock %}
 {% block content %}
-<div style="display:grid; grid-template-columns:1.3fr 1fr; gap:20px; align-items:start;">
+<link rel="stylesheet" href="{% static 'css/restaurant-pos.css' %}">
+<link rel="stylesheet" href="{% static 'css/retail-pos.css' %}">
 
-  <div>
-    <input id="pos-search" type="text" autocomplete="off" autofocus
-           placeholder="{% translate 'Scan barcode or search product by name / SKU...' %}"
-           style="width:100%; padding:11px 14px; border:1px solid var(--line); border-radius:8px; font-size:15px; margin-bottom:14px;">
-    <div id="pos-product-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; max-height:70vh; overflow-y:auto;"></div>
-  </div>
-
-  <div class="card" style="position:sticky; top:20px;">
-    <h3 style="margin:0 0 12px; font-size:15px;">{% translate "Cart" %}</h3>
-    {% if branches|length > 1 %}
-    <label style="font-size:13px; color:var(--ink-soft);">{% translate "Branch" %}</label>
-    <select id="pos-branch" style="width:100%; padding:8px; border:1px solid var(--line); border-radius:6px; margin-bottom:12px;">
-      {% for b in branches %}<option value="{{ b.id }}" {% if b.is_default %}selected{% endif %}>{{ b.name }}</option>{% endfor %}
-    </select>
-    {% endif %}
-    <label style="font-size:13px; color:var(--ink-soft);">{% translate "Customer" %}</label>
-    <select id="pos-customer" style="width:100%; padding:8px; border:1px solid var(--line); border-radius:6px; margin-bottom:12px;">
-      <option value="">{% translate "Walk-in Customer" %}</option>
-      {% for c in customers %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}
-    </select>
-
-    <table style="width:100%; font-size:13.5px;">
-      <tbody id="pos-cart-body"></tbody>
-    </table>
-    <div id="pos-empty-cart" style="color:var(--ink-soft); font-size:13.5px; padding:16px 0; text-align:center;">{% translate "Cart is empty" %}</div>
-
-    <label style="font-size:13px; color:var(--ink-soft); margin-top:8px; display:block;">{% translate "Coupon code (optional)" %}</label>
-    <input id="pos-coupon" type="text" placeholder="{% translate 'e.g. SAVE10' %}" style="width:100%; padding:7px; border:1px solid var(--line); border-radius:6px; margin-bottom:6px;">
-    <div id="pos-discount-line" style="display:none; justify-content:space-between; font-size:13.5px; color:var(--accent);">
-      <span>{% translate "Discount" %}</span><span id="pos-discount-amount">0.00</span>
-    </div>
-
-    <div style="border-top:1px solid var(--line); margin-top:12px; padding-top:12px;">
-      <div style="display:flex; justify-content:space-between; font-size:18px; font-weight:700;">
-        <span>{% translate "Total" %}</span><span id="pos-total">0.00</span>
+<div class="rpos retail" id="rpos">
+  <header class="rp-top">
+    <button class="rp-icon-btn" type="button" data-nav-toggle aria-label="{% translate 'Open main menu' %}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <div class="rp-order">
+      <h2>{% translate "Point of Sale" %}</h2>
+      <div class="rp-chips">
+        <span class="rp-chip">👤 {{ request.user.get_full_name|default:request.user.email }}</span>
+        <span class="rp-chip net-chip" id="netChip">{% translate "Online" %}</span>
+        <button class="rp-chip pending" id="pendingChip" type="button" hidden title="{% translate 'Sync now' %}">⏳ <b id="pendingCount">0</b> {% translate "waiting to sync" %}</button>
+        {% if offline_attention %}<a class="rp-chip warn" href="{% url 'webapp:pos_offline_sales' %}">⚠ {{ offline_attention }} {% translate "need attention" %}</a>{% endif %}
       </div>
     </div>
-
-    <label style="font-size:13px; color:var(--ink-soft); margin-top:12px; display:block;">{% translate "Payment method" %}</label>
-    <select id="pos-payment-method" style="width:100%; padding:8px; border:1px solid var(--line); border-radius:6px; margin-bottom:14px;">
-      <option value="cash">{% translate "Cash" %}</option>
-      <option value="card">{% translate "Card" %}</option>
-      <option value="bank">{% translate "Bank Transfer" %}</option>
-      {% if is_mobile_shop %}<option value="credit">{% translate "Credit / Due" %}</option><option value="installment">{% translate "Instalment" %}</option>{% endif %}
-    </select>
-    {% if is_mobile_shop %}
-    <div id="mobile-payment-details" style="display:none; border:1px solid var(--line); border-radius:7px; padding:10px; margin-bottom:12px;">
-      <label style="font-size:12px;">{% translate "Deposit / amount paid now" %}</label><input id="pos-amount-paid" type="number" min="0" step="0.01" value="0" style="width:100%; margin-bottom:8px;">
-      <label style="font-size:12px;">{% translate "Deposit method" %}</label><select id="pos-deposit-method" style="width:100%; margin-bottom:8px;"><option value="cash">{% translate "Cash" %}</option><option value="card">{% translate "Card" %}</option><option value="bank">{% translate "Bank" %}</option></select>
-      <div id="installment-fields" style="display:none;">
-        <label style="font-size:12px;">{% translate "Number of instalments" %}</label><input id="pos-installment-count" type="number" min="1" value="3" style="width:100%; margin-bottom:8px;">
-        <label style="font-size:12px;">{% translate "Frequency" %}</label><select id="pos-frequency" style="width:100%; margin-bottom:8px;"><option value="monthly">{% translate "Monthly" %}</option><option value="weekly">{% translate "Weekly" %}</option></select>
-        <label style="font-size:12px;">{% translate "First due date" %}</label><input id="pos-next-due" type="date" style="width:100%;">
-      </div>
+    <div class="rp-top-actions">
+      <button class="rp-icon-btn" type="button" id="heldBtn" title="{% translate 'Held sales' %}">⏸️ <span class="label">{% translate "Held" %}</span> <span class="badge-n" id="heldCount" hidden>0</span></button>
+      <a class="rp-icon-btn rp-hide-sm" href="{% url 'webapp:pos_offline_sales' %}" title="{% translate 'Offline sales' %}">📴 <span class="label">{% translate "Offline sales" %}</span></a>
+      <a class="rp-icon-btn rp-hide-sm" href="{% url 'webapp:devices' %}" title="{% translate 'Printer & device settings' %}">🖨 <span class="label">{% translate "Devices" %}</span></a>
+      <button class="rp-icon-btn rp-hide-sm" id="posFullScreen" type="button" title="{% translate 'Full screen' %}">⛶</button>
+      <span class="rp-hide-sm">{% include "webapp/_language_switcher.html" %}</span><span class="rp-hide-sm">{% include "webapp/_theme_toggle.html" %}</span>
     </div>
-    {% endif %}
+  </header>
 
-    <button id="pos-checkout-btn" class="btn" style="width:100%; padding:12px; font-size:15px;">{% translate "Complete Sale" %}</button>
-    <div id="pos-message" style="margin-top:10px; font-size:13.5px;"></div>
+  <div class="rp-body">
+    <nav class="rp-rail" id="catRail" aria-label="{% translate 'Product categories' %}"></nav>
+
+    <section class="rp-menu">
+      <div class="rp-search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="pos-search" class="menu-search" type="search" autocomplete="off" autofocus
+               placeholder="{% translate 'Scan barcode or search product by name / SKU...' %}" aria-label="{% translate 'Search products' %}">
+        <span class="rp-kbd">F2</span>
+      </div>
+      <p class="pos-results" id="posResults"></p>
+      <div class="food-grid" id="pos-product-grid"></div>
+      <div class="pos-no-match" id="posNoMatch" hidden><strong>{% translate "No products match." %}</strong><br>{% translate "Try another name, or scan the barcode." %}</div>
+    </section>
+
+    <aside class="cart-panel" id="cartPanel">
+      <button class="rp-mbar" type="button" data-ticket-toggle aria-label="{% translate 'Show current sale' %}">
+        <span class="mb-count" id="mbCount">0</span>
+        <span class="mb-text">{% translate "Current sale" %}<small>{% translate "Tap to review & pay" %}</small></span>
+        <span class="mb-total" id="mbTotal">0.00</span>
+        <svg class="mb-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 15l6-6 6 6"/></svg>
+      </button>
+      <div class="cart-title"><h2>{% translate "Current sale" %}</h2><span class="cart-count" id="cartCount">0</span></div>
+      <div class="cart-setup{% if branches|length > 1 %} two{% endif %}">
+        <select id="pos-customer" class="rp-input" aria-label="{% translate 'Customer' %}">
+          <option value="">👤 {% translate "Walk-in Customer" %}</option>
+          {% for c in customers %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}
+        </select>
+        {% if branches|length > 1 %}
+        <select id="pos-branch" class="rp-input" aria-label="{% translate 'Branch' %}">
+          {% for b in branches %}<option value="{{ b.id }}" {% if b.is_default %}selected{% endif %}>🏬 {{ b.name }}</option>{% endfor %}
+        </select>
+        {% endif %}
+      </div>
+      <div class="cart-lines" id="pos-cart-body"></div>
+      <div class="cart-empty" id="pos-empty-cart"><span class="ce-ico">🛒</span><strong>{% translate "Cart is empty" %}</strong><span>{% translate "Scan a barcode or tap a product to start a sale." %}</span></div>
+      <div class="cart-foot">
+        <div class="sum-row"><span>{% translate "Items" %}</span><span id="sumItems">0</span></div>
+        <div class="cart-total"><span>{% translate "Total" %}</span><span class="amt" id="pos-total">0.00</span></div>
+        <div class="primary-actions">
+          <button class="rp-btn" type="button" id="holdBtn" disabled>⏸️ {% translate "Hold" %}</button>
+          <button class="rp-btn" type="button" id="clearBtn" disabled>✕ {% translate "Clear" %}</button>
+          <button class="rp-btn pay" type="button" id="pos-checkout-btn" disabled>{% translate "Charge" %} <span id="payAmt">0.00</span> <small>F9</small></button>
+        </div>
+      </div>
+    </aside>
   </div>
+
+  <dialog class="rp-dialog wide" id="payDialog" aria-labelledby="payTitle">
+    <form method="dialog" id="payForm">
+      <div class="dlg-head"><h3 id="payTitle">{% translate "Take payment" %}</h3><p id="payCustomer"></p><button class="dlg-close" type="button" data-close aria-label="{% translate 'Close' %}">✕</button></div>
+      <div class="dlg-body">
+        <div class="pay-grid">
+          <div class="pay-due"><small>{% translate "Amount due" %}</small><div class="big" id="payDue">0.00</div><div class="pay-lines" id="payLines"></div></div>
+          <div>
+            <div class="seg {% if is_mobile_shop %}cols-5{% else %}cols-3{% endif %}" id="paySeg" role="radiogroup">
+              <button type="button" class="on" data-method="cash"><span>💵</span>{% translate "Cash" %}</button>
+              <button type="button" data-method="card"><span>💳</span>{% translate "Card" %}</button>
+              <button type="button" data-method="bank"><span>🏦</span>{% translate "Bank" %}</button>
+              {% if is_mobile_shop %}<button type="button" data-method="credit" data-online-only><span>📒</span>{% translate "Credit" %}</button><button type="button" data-method="installment" data-online-only><span>📆</span>{% translate "Instalment" %}</button>{% endif %}
+            </div>
+            <input type="hidden" id="pos-payment-method" value="cash">
+            <div class="pay-panel" id="cashPanel">
+              <label class="field-label" for="tendered">{% translate "Cash received" %}</label>
+              <input class="rp-input" id="tendered" type="number" min="0" step="0.01" inputmode="decimal">
+              <div class="quick-cash" id="quickCash"></div>
+              <div class="change-box" id="changeBox"><span>{% translate "Change due" %}</span><span id="changeAmt">0.00</span></div>
+            </div>
+            {% if is_mobile_shop %}
+            <div class="pay-panel" id="mobile-payment-details" hidden>
+              <label class="field-label" for="pos-amount-paid">{% translate "Deposit / amount paid now" %}</label><input class="rp-input" id="pos-amount-paid" type="number" min="0" step="0.01" value="0">
+              <label class="field-label" for="pos-deposit-method">{% translate "Deposit method" %}</label><select class="rp-input" id="pos-deposit-method"><option value="cash">{% translate "Cash" %}</option><option value="card">{% translate "Card" %}</option><option value="bank">{% translate "Bank" %}</option></select>
+              <div id="installment-fields" hidden>
+                <div class="adj-grid">
+                  <label>{% translate "Number of instalments" %}<input class="rp-input" id="pos-installment-count" type="number" min="1" value="3"></label>
+                  <label>{% translate "Frequency" %}<select class="rp-input" id="pos-frequency"><option value="monthly">{% translate "Monthly" %}</option><option value="weekly">{% translate "Weekly" %}</option></select></label>
+                  <label>{% translate "First due date" %}<input class="rp-input" id="pos-next-due" type="date"></label>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            <div id="couponWrap">
+              <label class="field-label" for="pos-coupon">{% translate "Coupon code (optional)" %}</label>
+              <input class="rp-input" id="pos-coupon" type="text" autocomplete="off" placeholder="{% translate 'e.g. SAVE10' %}">
+            </div>
+            <div class="offline-note" id="offlineNote" hidden>📴 {% translate "You are offline. The sale is saved on this device and sent automatically when the internet is back. Coupons and credit sales need internet." %}</div>
+          </div>
+        </div>
+        <div class="cart-hint" id="pos-message" role="status" hidden></div>
+      </div>
+      <div class="dlg-foot"><button class="rp-btn" type="button" data-close>{% translate "Back" %}</button><button class="rp-btn go" type="submit" id="completeBtn">✓ {% translate "Complete Sale" %}</button></div>
+    </form>
+  </dialog>
+
+  <dialog class="rp-dialog" id="doneDialog" aria-labelledby="doneTitle">
+    <div class="done-hero"><div class="done-check" id="doneCheck">✓</div><h3 id="doneTitle"></h3><p id="doneSub"></p></div>
+    <div class="done-change" id="doneChange" hidden><span>{% translate "Change due" %}</span><b id="doneChangeAmt">0.00</b></div>
+    <div class="done-actions">
+      <button class="rp-btn" type="button" id="donePrint">🖨 {% translate "Print receipt" %}</button>
+      <a class="rp-btn" id="doneShare" href="#">📤 {% translate "WhatsApp / email" %}</a>
+      <button class="rp-btn go" type="button" id="doneNew">{% translate "New sale" %} ↵</button>
+    </div>
+  </dialog>
+
+  <dialog class="rp-dialog" id="imeiDialog" aria-labelledby="imeiTitle">
+    <div class="dlg-head"><h3 id="imeiTitle">{% translate "Select IMEI" %}</h3><p id="imeiProduct"></p><button class="dlg-close" type="button" data-close aria-label="{% translate 'Close' %}">✕</button></div>
+    <div class="dlg-body"><div class="pick-list" id="imeiList"></div></div>
+    <div class="dlg-foot"><button class="rp-btn" type="button" data-close>{% translate "Cancel" %}</button></div>
+  </dialog>
+
+  <dialog class="rp-dialog" id="heldDialog" aria-labelledby="heldTitle">
+    <div class="dlg-head"><h3 id="heldTitle">{% translate "Held sales" %}</h3><p>{% translate "Sales parked on this till. Tap one to bring it back." %}</p><button class="dlg-close" type="button" data-close aria-label="{% translate 'Close' %}">✕</button></div>
+    <div class="dlg-body"><div class="pick-list" id="heldList"></div></div>
+    <div class="dlg-foot"><button class="rp-btn" type="button" data-close>{% translate "Close" %}</button></div>
+  </dialog>
 </div>
 
+{{ pos_data|json_script:"posData" }}
 <script>
-const PRODUCTS = {{ products_json|safe }};
-const cart = {};
-
-function csrftoken() {
-  const m = document.cookie.match(/csrftoken=([^;]+)/);
-  return m ? m[1] : '';
-}
-
-function renderGrid(filter) {
-  const grid = document.getElementById('pos-product-grid');
-  grid.innerHTML = '';
-  const q = (filter || '').toLowerCase();
-  PRODUCTS.filter(p => !q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q))
-    .forEach(p => {
-      const div = document.createElement('div');
-      div.className = 'card';
-      div.style.cursor = 'pointer';
-      div.style.padding = '12px';
-      const variant = p.variant || [p.colour, p.size].filter(Boolean).join(' / ');
-      div.innerHTML = `<div style="font-weight:600; font-size:14px;">${p.name}${variant ? ' — ' + variant : ''}</div>
-        <div style="color:var(--ink-soft); font-size:12px; margin-top:2px;">${p.sku} · stock ${p.stock}</div>
-        <div style="margin-top:6px; font-weight:600;">${p.price}</div>`;
-      div.onclick = () => chooseAndAdd(p);
-      grid.appendChild(div);
-    });
-}
-
-function chooseAndAdd(p) {
-  if (p.item_type !== 'handset') return addToCart(p, null);
-  const available = p.mobile_units.filter(u => !Object.values(cart).some(i => i.mobile_unit_id === u.id));
-  if (!available.length) { alert('No IMEI unit is available for this handset.'); return; }
-  const answer = prompt('Select IMEI:\n' + available.map((u, i) => `${i + 1}. ${u.imei} (${u.condition})`).join('\n'), '1');
-  const unit = available[(parseInt(answer) || 0) - 1];
-  if (unit) addToCart(p, unit);
-}
-
-function addToCart(p, unit) {
-  const key = unit ? `${p.id}-${unit.id}` : String(p.id);
-  if (!cart[key]) {
-    cart[key] = { key, id: p.id, name: p.name, price: parseFloat(p.price), qty: 0,
-      mobile_unit_id: unit ? unit.id : null, imei: unit ? unit.imei : null };
+window.POS_CFG = {
+  checkoutUrl: "{% url 'webapp:pos_checkout' %}",
+  csrf: "{{ csrf_token }}",
+  syncUrl: "{% url 'webapp:pos_offline_sync' %}",
+  isMobileShop: {{ is_mobile_shop|yesno:"true,false" }},
+  T: {
+    all: "{% translate 'All' %}", online: "{% translate 'Online' %}", offline: "{% translate 'Offline' %}",
+    results: "{% translate 'products' %}", inStock: "{% translate 'in stock' %}", low: "{% translate 'Low' %}", out: "{% translate 'Sold out' %}",
+    item: "{% translate 'item' %}", items: "{% translate 'items' %}", each: "{% translate 'each' %}", remove: "{% translate 'Remove' %}",
+    added: "{% translate 'added' %}", notFound: "{% translate 'Barcode / SKU not found.' %}", outOfStock: "{% translate 'is out of stock.' %}",
+    noImei: "{% translate 'No IMEI unit is available for this handset.' %}", cartEmpty: "{% translate 'Cart is empty.' %}",
+    processing: "{% translate 'Processing…' %}", error: "{% translate 'Something went wrong.' %}", exact: "{% translate 'Exact' %}",
+    short: "{% translate 'Still to pay' %}", change: "{% translate 'Change due' %}", subtotal: "{% translate 'Subtotal' %}",
+    walkIn: "{% translate 'Walk-in Customer' %}", saleDone: "{% translate 'Sale complete' %}", savedOffline: "{% translate 'Saved offline' %}",
+    willSync: "{% translate 'It will be sent to the server automatically when the internet is back.' %}",
+    discount: "{% translate 'discount applied' %}", points: "{% translate 'loyalty points' %}", synced: "{% translate 'offline sales synced' %}",
+    attention: "{% translate 'offline sale needs attention — see Offline sales' %}", signIn: "{% translate 'Sign in again to sync offline sales.' %}", sessionEnded: "{% translate 'Your session has ended. Sign in again and retry.' %}",
+    held: "{% translate 'Sale held' %}", noHeld: "{% translate 'No held sales.' %}", clearAsk: "{% translate 'Clear this sale?' %}",
+    needCustomer: "{% translate 'Select a customer for credit or instalment sales.' %}", onlineOnly: "{% translate 'Needs internet' %}",
+    receipt: "{% translate 'Receipt' %}", thanks: "{% translate 'Thank you!' %}", cashier: "{% translate 'Cashier' %}", printer: "{% translate 'Printer' %}",
+    cash: "{% translate 'Cash' %}", card: "{% translate 'Card' %}", bank: "{% translate 'Bank' %}"
   }
-  cart[key].qty = unit ? 1 : cart[key].qty + 1;
-  renderCart();
-}
-
-function updateQty(id, qty) {
-  qty = parseInt(qty) || 0;
-  if (qty <= 0) { delete cart[id]; } else { cart[id].qty = qty; }
-  renderCart();
-}
-
-function removeItem(id) {
-  delete cart[id];
-  renderCart();
-}
-
-function renderCart() {
-  const body = document.getElementById('pos-cart-body');
-  const items = Object.values(cart);
-  body.innerHTML = '';
-  document.getElementById('pos-empty-cart').style.display = items.length ? 'none' : 'block';
-
-  let total = 0;
-  items.forEach(item => {
-    const lineTotal = item.price * item.qty;
-    total += lineTotal;
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td style="padding:6px 0;">${item.name}${item.imei ? `<br><small>IMEI ${item.imei}</small>` : ''}<br>
-        ${item.imei ? '<span>Qty 1</span>' : `<input type="number" min="1" value="${item.qty}" style="width:55px; padding:3px; border:1px solid var(--line); border-radius:4px;" onchange="updateQty('${item.key}', this.value)">`}
-      </td>
-      <td style="text-align:right; padding:6px 0;">${lineTotal.toFixed(2)}
-        <br><a href="#" style="font-size:12px; color:var(--danger);" onclick="removeItem('${item.key}'); return false;">Remove</a>
-      </td>`;
-    body.appendChild(tr);
-  });
-  document.getElementById('pos-total').textContent = total.toFixed(2);
-}
-
-const searchInput = document.getElementById('pos-search');
-let scanTimer = null;
-
-function confirmScan() {
-  const msg = document.getElementById('pos-message');
-  const sku = searchInput.value.trim().toLowerCase();
-  if (!sku) return false;
-  let exact = PRODUCTS.find(p => p.sku.toLowerCase() === sku);
-  let scannedUnit = null;
-  if (!exact) {
-    exact = PRODUCTS.find(p => (scannedUnit = (p.mobile_units || []).find(u => u.imei.toLowerCase() === sku || (u.serial_number || '').toLowerCase() === sku)));
-  }
-  if (!exact) return false;
-  if (parseFloat(exact.stock) <= 0) {
-    msg.textContent = `${exact.name} is out of stock.`;
-    msg.style.color = 'var(--danger)';
-    searchInput.select();
-    return true;
-  }
-  if (exact.item_type === 'handset') {
-    scannedUnit = scannedUnit || exact.mobile_units.find(u => !Object.values(cart).some(i => i.mobile_unit_id === u.id));
-    if (!scannedUnit) { msg.textContent = 'No available IMEI unit.'; msg.style.color = 'var(--danger)'; return true; }
-  }
-  addToCart(exact, scannedUnit);
-  searchInput.value = '';
-  renderGrid('');
-  msg.textContent = `${exact.name}${exact.variant ? ' — ' + exact.variant : ''} added.`;
-  msg.style.color = 'var(--accent)';
-  try {
-    const audio = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audio.createOscillator();
-    oscillator.connect(audio.destination); oscillator.frequency.value = 880;
-    oscillator.start(); oscillator.stop(audio.currentTime + 0.06);
-  } catch (_) {}
-  return true;
-}
-
-searchInput.addEventListener('input', e => {
-  renderGrid(e.target.value);
-  clearTimeout(scanTimer);
-  scanTimer = setTimeout(confirmScan, 120);
-});
-searchInput.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    e.preventDefault(); clearTimeout(scanTimer);
-    if (!confirmScan()) {
-      const msg = document.getElementById('pos-message');
-      msg.textContent = 'Barcode / SKU not found.'; msg.style.color = 'var(--danger)';
-      searchInput.select();
-    }
-  }
-});
-
-document.getElementById('pos-checkout-btn').addEventListener('click', async () => {
-  const items = Object.values(cart);
-  const msg = document.getElementById('pos-message');
-  if (!items.length) { msg.textContent = 'Cart is empty.'; msg.style.color = 'var(--danger)'; return; }
-
-  const body = {
-    customer_id: document.getElementById('pos-customer').value || null,
-    warehouse_id: document.getElementById('pos-branch') ? document.getElementById('pos-branch').value : null,
-    payment_method: document.getElementById('pos-payment-method').value,
-    coupon_code: document.getElementById('pos-coupon').value.trim(),
-    amount_paid: document.getElementById('pos-amount-paid') ? document.getElementById('pos-amount-paid').value : null,
-    deposit_method: document.getElementById('pos-deposit-method') ? document.getElementById('pos-deposit-method').value : null,
-    installment_count: document.getElementById('pos-installment-count') ? document.getElementById('pos-installment-count').value : null,
-    frequency: document.getElementById('pos-frequency') ? document.getElementById('pos-frequency').value : null,
-    next_due_date: document.getElementById('pos-next-due') ? document.getElementById('pos-next-due').value : null,
-    lines: items.map(i => ({ product_id: i.id, quantity: i.qty, unit_price: i.price, mobile_unit_id: i.mobile_unit_id })),
-  };
-
-  msg.textContent = 'Processing...'; msg.style.color = 'var(--ink-soft)';
-  try {
-    const res = await fetch("{% url 'webapp:pos_checkout' %}", {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrftoken() },
-      body: JSON.stringify(body),
-    });
-    const data = await res.json();
-    if (!res.ok) { msg.textContent = data.error || 'Something went wrong.'; msg.style.color = 'var(--danger)'; return; }
-
-    let extra = '';
-    if (parseFloat(data.discount_amount) > 0) extra += ` (discount ${data.discount_amount} applied)`;
-    if (data.points_earned) extra += ` · +${data.points_earned} loyalty pts`;
-    msg.innerHTML = `Sale complete — ${data.invoice_number}${extra}. <a href="/invoices/${data.invoice_id}/pdf/" target="_blank">Print receipt</a> · <a href="/invoices/${data.invoice_id}/share/">Send on WhatsApp / email</a>`;
-    msg.style.color = 'var(--accent)';
-    if (window.Devices) {
-      const cfg = Devices.load();
-      const printJob = { dataUrl: `/devices/print/invoice/${data.invoice_id}.json`, htmlUrl: `/invoices/${data.invoice_id}/pdf/` };
-      const paidCash = (body.payment_method || '') === 'cash';
-      if (cfg.autoPrintReceipt) Devices.printReceipt({ ...printJob, drawer: paidCash }).catch(e => { msg.innerHTML += ' · Printer: ' + e.message; });
-      else if (paidCash && cfg.drawer.enabled) Devices.openDrawer().catch(() => {});
-      Devices.display({ type: 'paid', total: data.total || '', paid: data.total || '', change: '0.00' });
-    }
-    for (const k in cart) delete cart[k];
-    document.getElementById('pos-coupon').value = '';
-    renderCart();
-    searchInput.focus();
-  } catch (err) {
-    msg.textContent = 'Network error — try again.'; msg.style.color = 'var(--danger)';
-  }
-});
-
-renderGrid('');
-const paymentSelect = document.getElementById('pos-payment-method');
-if (document.getElementById('mobile-payment-details')) paymentSelect.addEventListener('change', () => {
-  const deferred = ['credit', 'installment'].includes(paymentSelect.value);
-  document.getElementById('mobile-payment-details').style.display = deferred ? 'block' : 'none';
-  document.getElementById('installment-fields').style.display = paymentSelect.value === 'installment' ? 'block' : 'none';
-});
+};
 </script>
 <script src="{% static 'js/devices.js' %}"></script>
+<script src="{% static 'js/retail-pos.js' %}"></script>
 {% endblock %}

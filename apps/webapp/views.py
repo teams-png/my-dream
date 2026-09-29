@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db import transaction
 from django.db.models import Sum, Count, Q, F, DecimalField
+from django.utils.translation import gettext as _
+from django.views.decorators.cache import never_cache
 from django.db.models.deletion import ProtectedError
 from django.utils import timezone
 from django.utils import timezone as tz
@@ -3812,166 +3814,143 @@ def purchase_reports(request):
 
 # ================= POS (Point of Sale) =================
 
+def _pos_catalog(company):
+    """Product data for the POS screen, with stock from one grouped query."""
+    from apps.inventory.models import StockMovement
+
+    products = list(Product.objects.for_company(company).filter(is_active=True)
+                    .select_related("category").order_by("name"))
+    stock = dict(StockMovement.objects.for_company(company).filter(product__in=products)
+                 .values("product").annotate(total=Sum("quantity")).values_list("product", "total"))
+    is_mobile_shop = company.business_type.code == "mobile_shop"
+    handset_units = {}
+    if is_mobile_shop:
+        for unit in MobileUnit.objects.for_company(company).filter(status="in_stock").values(
+                "id", "product_id", "imei", "serial_number", "condition", "warranty_months"):
+            handset_units.setdefault(unit.pop("product_id"), []).append(unit)
+    catalog, categories = [], {}
+    for p in products:
+        item_type = (p.attributes or {}).get("item_type", "")
+        units = handset_units.get(p.id, []) if item_type == "handset" else []
+        if p.category_id:
+            categories[p.category_id] = p.category.name
+        catalog.append({
+            "id": p.id, "name": p.name, "sku": p.sku, "price": f"{p.selling_price:.2f}",
+            "stock": str(len(units) if item_type == "handset" else stock.get(p.id) or 0),
+            "tracked": p.is_stock_tracked, "reorder": p.reorder_level,
+            "category_id": p.category_id, "size": p.size, "colour": p.colour, "material": p.material,
+            "design": p.design, "variant": p.variant_label, "item_type": item_type, "mobile_units": units,
+        })
+    return catalog, [{"id": k, "name": v} for k, v in sorted(categories.items(), key=lambda kv: kv[1].lower())]
+
+
 @login_required
 @require_feature("webui_pos")
 def pos_view(request):
-    import json
-    from decimal import Decimal
+    from apps.sales.models import OfflineSaleSync
 
     company = request.company
     if company is None:
         return render(request, "webapp/no_company.html")
-
-    products = Product.objects.for_company(company).filter(is_active=True).select_related("category")
-    is_mobile_shop = company.business_type.code == "mobile_shop"
-    product_data = []
-    for p in products:
-        item_type = (p.attributes or {}).get("item_type", "")
-        available_units = []
-        if is_mobile_shop and item_type == "handset":
-            available_units = list(MobileUnit.objects.for_company(company).filter(
-                product=p, status="in_stock"
-            ).values("id", "imei", "serial_number", "condition", "warranty_months"))
-        product_data.append({
-            "id": p.id, "name": p.name, "sku": p.sku, "price": str(p.selling_price),
-            "stock": str(len(available_units) if item_type == "handset" else p.current_stock()),
-            "size": p.size, "colour": p.colour, "material": p.material, "design": p.design,
-            "variant": p.variant_label, "item_type": item_type, "mobile_units": available_units,
-            "specs": p.attributes or {},
-        })
-    customers = Customer.objects.for_company(company).filter(is_active=True).order_by("name")
-    branches = Warehouse.objects.for_company(company).filter(is_active=True).order_by("name")
-
+    catalog, categories = _pos_catalog(company)
     return render(request, "webapp/pos.html", {
-        "products_json": json.dumps(product_data),
-        "customers": customers,
-        "branches": branches,
-        "is_mobile_shop": is_mobile_shop,
+        "pos_data": {
+            "products": catalog, "categories": categories,
+            "company": {"name": company.name, "address": company.address, "phone": company.phone,
+                        "currency": company.default_currency, "vat_number": getattr(company, "vat_number", "")},
+            "cashier": request.user.get_full_name() or request.user.email or request.user.username,
+        },
+        "customers": Customer.objects.for_company(company).filter(is_active=True).order_by("name"),
+        "branches": Warehouse.objects.for_company(company).filter(is_active=True).order_by("name"),
+        "is_mobile_shop": company.business_type.code == "mobile_shop",
+        "offline_attention": OfflineSaleSync.objects.for_company(company).filter(channel="offline", status="attention").count(),
     })
 
 
 @login_required
 @require_feature("webui_pos")
-@transaction.atomic
 def pos_checkout(request):
     import json
-    from decimal import Decimal, InvalidOperation
+    from django.core.exceptions import ValidationError as DjangoValidationError
     from django.http import JsonResponse
+    from apps.sales import pos as pos_services
 
     if request.method != "POST":
         return JsonResponse({"error": "POST required"}, status=405)
-
-    company = request.company
     try:
         payload = json.loads(request.body)
     except (json.JSONDecodeError, TypeError):
         return JsonResponse({"error": "Invalid request."}, status=400)
-
-    cart = payload.get("lines") or []
-    if not cart:
-        return JsonResponse({"error": "Cart is empty."}, status=400)
-
-    payment_method = payload.get("payment_method", "cash")
-    customer_id = payload.get("customer_id")
-
-    if customer_id:
-        customer = get_object_or_404(Customer.objects.for_company(company), id=customer_id)
-    else:
-        customer, _ = Customer.objects.get_or_create(
-            company=company, name="Walk-in Customer", defaults={"is_active": True},
-        )
-
-    lines = []
-    selected_mobile_units = []
-    for item in cart:
-        product = get_object_or_404(Product.objects.for_company(company), id=item.get("product_id"))
-        try:
-            quantity = Decimal(str(item.get("quantity", 1)))
-            unit_price = Decimal(str(item.get("unit_price")))
-        except (InvalidOperation, TypeError):
-            return JsonResponse({"error": f"Bad quantity/price for {product.name}."}, status=400)
-        if quantity <= 0:
-            return JsonResponse({"error": f"Quantity for {product.name} must be positive."}, status=400)
-        mobile_unit_id = item.get("mobile_unit_id")
-        if mobile_unit_id:
-            if quantity != 1:
-                return JsonResponse({"error": "Each IMEI handset must be billed as quantity 1."}, status=400)
-            unit = get_object_or_404(MobileUnit.objects.select_for_update().for_company(company), id=mobile_unit_id, product=product)
-            if unit.status != "in_stock":
-                return JsonResponse({"error": f"IMEI {unit.imei} is no longer in stock."}, status=400)
-            selected_mobile_units.append(unit)
-        lines.append({"product": product, "quantity": quantity, "unit_price": unit_price})
-
-    subtotal = sum((l["quantity"] * l["unit_price"] for l in lines), Decimal("0"))
-    coupon_code = (payload.get("coupon_code") or "").strip()
-    discount_amount = Decimal("0")
-    coupon = None
-    if coupon_code:
-        try:
-            coupon, discount_amount = sales_services.validate_coupon(
-                company=company, code=coupon_code, subtotal=subtotal, date=tz.now().date(),
-            )
-        except Exception as exc:
-            return JsonResponse({"error": str(exc)}, status=400)
-
+    if not isinstance(payload, dict):
+        return JsonResponse({"error": "Invalid request."}, status=400)
     try:
-        invoice = sales_services.create_invoice(
-            company=company, user=request.user, customer=customer, date=tz.now().date(),
-            lines=lines, warehouse=_selected_warehouse(company, payload.get("warehouse_id")),
-            discount_amount=discount_amount, coupon_code=coupon_code,
-        )
-        amount_paid = invoice.total
-        if payment_method in {"credit", "installment"}:
-            if customer.name == "Walk-in Customer":
-                raise ValueError("Select a customer for credit or instalment sales.")
-            amount_paid = Decimal(str(payload.get("amount_paid") or 0))
-            if amount_paid < 0 or amount_paid > invoice.total:
-                raise ValueError("Paid amount must be between zero and invoice total.")
-        if amount_paid:
-            sales_services.record_customer_payment(
-                company=company, user=request.user, customer=customer, amount=amount_paid,
-                date=tz.now().date(), invoice=invoice,
-                method=(payload.get("deposit_method") or "cash") if payment_method in {"credit", "installment"} else payment_method,
-            )
-        if payment_method in {"credit", "installment"} and customer.credit_limit:
-            from apps.collections.services import customer_credit_status
-            credit = customer_credit_status(company, customer)
-            if credit["over_limit"]:
-                raise ValueError(
-                    f"Credit limit exceeded. Limit {customer.credit_limit}; outstanding {credit['outstanding']}."
-                )
-        if payment_method == "installment":
-            due_raw = payload.get("next_due_date")
-            from django.utils.dateparse import parse_date
-            due_date = parse_date(due_raw) if due_raw else tz.now().date() + timedelta(days=30)
-            MobileInstallmentPlan.objects.create(
-                company=company, invoice=invoice, customer=customer, financed_amount=invoice.total - amount_paid,
-                deposit=amount_paid, installment_count=max(1, int(payload.get("installment_count") or 1)),
-                frequency=payload.get("frequency") if payload.get("frequency") in {"weekly", "monthly"} else "monthly",
-                next_due_date=due_date,
-            )
-        for unit in selected_mobile_units:
-            unit.status = "sold"; unit.buyer = customer; unit.sold_price = next(
-                l["unit_price"] for l in lines if l["product"].id == unit.product_id
-            ); unit.sold_date = tz.now().date(); unit.sale_invoice = invoice
-            unit.warehouse = _selected_warehouse(company, payload.get("warehouse_id"))
-            unit.save(update_fields=["status", "buyer", "sold_price", "sold_date", "sale_invoice", "warehouse"])
-        if coupon:
-            sales_services.redeem_coupon_usage(coupon)
+        return JsonResponse(pos_services.live_checkout(company=request.company, user=request.user, payload=payload))
+    except (pos_services.PosError, DjangoValidationError, ValueError) as exc:
+        return JsonResponse({"error": pos_services._message(exc)}, status=400)
 
-        points_earned = None
-        if customer.name != "Walk-in Customer":
-            points_earned = customer_services.earn_points(
-                company=company, customer=customer, amount_spent=invoice.total,
-                date=tz.now().date(), reference=invoice.invoice_number,
-            )
-    except Exception as exc:
-        return JsonResponse({"error": str(exc)}, status=400)
 
-    return JsonResponse({
-        "invoice_id": invoice.id, "invoice_number": invoice.invoice_number, "total": str(invoice.total),
-        "discount_amount": str(discount_amount), "points_earned": points_earned,
-        "amount_paid": str(amount_paid), "balance": str(invoice.total - amount_paid),
+@never_cache
+@login_required
+@require_feature("webui_pos")
+def pos_offline_sync(request):
+    import json
+    from django.core.exceptions import ValidationError as DjangoValidationError
+    from django.http import JsonResponse
+    from django.middleware.csrf import get_token
+    from apps.sales import pos as pos_services
+
+    if request.method == "GET":
+        # a till whose cached page holds an old token asks for a fresh one
+        return JsonResponse({"csrf": get_token(request)})
+    if request.method != "POST":
+        return JsonResponse({"error": "POST required"}, status=405)
+    try:
+        sales = json.loads(request.body or b"{}").get("sales") or []
+    except (ValueError, AttributeError):
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+    if not isinstance(sales, list) or len(sales) > 50:
+        return JsonResponse({"error": "Send at most 50 sales at a time"}, status=400)
+    results = []
+    for payload in sales:
+        try:
+            record = pos_services.sync_offline_sale(company=request.company, user=request.user, payload=payload)
+            results.append(pos_services.result(record))
+        except (DjangoValidationError, ValueError, TypeError) as exc:
+            client_id = payload.get("client_id", "") if isinstance(payload, dict) else ""
+            results.append({"client_id": str(client_id), "status": "error", "error": pos_services._message(exc)})
+    return JsonResponse({"results": results})
+
+
+@login_required
+@require_feature("webui_pos")
+def pos_offline_sales(request):
+    from apps.sales import pos as pos_services
+    from apps.sales.models import OfflineSaleSync
+
+    company = request.company
+    if company is None:
+        return render(request, "webapp/no_company.html")
+    records = OfflineSaleSync.objects.for_company(company).filter(channel="offline").select_related("invoice", "synced_by")
+    if request.method == "POST":
+        record = get_object_or_404(records, id=request.POST.get("record_id"))
+        if request.POST.get("action") == "retry":
+            record = pos_services.retry(record, user=request.user)
+            if record.status == "synced":
+                messages.success(request, _("Sale %(number)s booked as invoice %(invoice)s.") % {
+                    "number": record.offline_number, "invoice": record.invoice.invoice_number})
+            else:
+                messages.error(request, _("Still cannot book %(number)s: %(error)s") % {
+                    "number": record.offline_number, "error": record.error})
+        elif request.POST.get("action") == "resolve" and record.status == "attention":
+            record.status = "resolved"
+            record.save(update_fields=["status", "updated_at"])
+            messages.success(request, _("Marked as handled."))
+        return redirect("webapp:pos_offline_sales")
+    status = request.GET.get("status") or "attention"
+    shown = records.filter(status=status) if status in {"synced", "attention", "resolved"} else records
+    return render(request, "webapp/pos_offline_sales.html", {
+        "records": shown[:200], "status": status,
+        "counts": {s: records.filter(status=s).count() for s in ("attention", "synced", "resolved")},
     })
 
 

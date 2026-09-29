@@ -48,3 +48,7 @@ html,body,.sidebar,.card,table,.cart-panel,.rp-top{transition:background-color .
 @media(prefers-reduced-motion:reduce){html,body,.sidebar,.card,table,.cart-panel,.rp-top,.theme-toggle{transition:none}}
 html[data-theme=dark] .rp-btn:disabled{background:#241c16!important;border-color:#241c16!important;color:#6f635a!important}
 html[data-theme=dark] .food-add:disabled{background:#3a3029}
+/* keep the main action buttons in the brand colour */
+html[data-theme=dark] :is(.rp-btn.pay,.dlg-foot .rp-btn.go,.done-actions .rp-btn.go,.rp-icon-btn.primary){background:var(--r-brand);border-color:var(--r-brand);color:#fff}
+html[data-theme=dark] .retail .food-card{border-color:var(--r-line)}
+html[data-theme=dark] .retail .cart-item.is-new{animation:lineIn .35s var(--r-ease) both}

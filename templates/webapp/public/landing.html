@@ -1,0 +1,262 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BookPilot: POS, accounting, inventory and staff in one app for restaurants, shops, salons, gyms and more.">
+<meta name="theme-color" content="#0e3b22">
+<link rel="manifest" href="/manifest.webmanifest">
+<title>BookPilot · All-in-one business software</title>
+<style>
+@font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Regular.ttf" %}');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Medium.ttf" %}');font-weight:500;font-display:swap}
+@font-face{font-family:'Inter';src:url('{% static "fonts/Inter-SemiBold.ttf" %}');font-weight:600;font-display:swap}
+@font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Bold.ttf" %}');font-weight:700;font-display:swap}
+:root{--ink:#0f1a14;--soft:#5b6b62;--line:#e4ebe6;--bg:#f6f8f5;--brand:#14532d;--brand-2:#1f7a45;--lime:#c6f432;--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+/* nav */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(246,248,245,.8);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+.nav.scrolled{border-color:var(--line);background:rgba(246,248,245,.92)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px;letter-spacing:-.02em}
+.logo i{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:flex;align-items:center;justify-content:center;color:var(--lime);font-style:normal;font-size:18px;box-shadow:0 6px 16px rgba(20,83,45,.3)}
+.nav-links{display:flex;gap:22px;margin-left:24px;font-weight:500;font-size:15px;color:var(--soft)}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:13px;font-weight:600;font-size:15px;transition:transform .2s var(--ease),box-shadow .2s,background .2s;cursor:pointer;border:0;font-family:inherit}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--brand);color:#fff;box-shadow:0 10px 24px rgba(20,83,45,.28)}
+.btn.primary:hover{background:#0e3b22;transform:translateY(-2px)}
+.btn.ghost{background:#fff;border:1px solid var(--line)}
+.btn.ghost:hover{border-color:#cbd7cf}
+.btn.lime{background:var(--lime);color:#10240f}
+.btn.lime:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(198,244,50,.35)}
+/* hero */
+.hero{position:relative;padding:70px 0 40px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-30% -10% auto auto;width:720px;height:720px;background:radial-gradient(circle,rgba(198,244,50,.35),transparent 60%);filter:blur(10px);z-index:-1;animation:drift 14s ease-in-out infinite}
+.hero::after{content:"";position:absolute;left:-200px;top:180px;width:520px;height:520px;background:radial-gradient(circle,rgba(31,122,69,.18),transparent 60%);z-index:-1;animation:drift 18s ease-in-out infinite reverse}
+@keyframes drift{50%{transform:translate(-40px,30px) scale(1.08)}}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center}
+.hero .wrap>*{min-width:0}
+body{overflow-x:hidden}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13.5px;font-weight:600;color:var(--soft)}
+.badge b{background:var(--lime);color:#10240f;padding:3px 9px;border-radius:999px;font-size:12px}
+h1{font-size:clamp(38px,5.6vw,66px);line-height:1.03;letter-spacing:-.045em;margin:18px 0 18px}
+h1 .grad{background:linear-gradient(100deg,var(--brand),#2f9e5a 50%,#8ac926);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--soft);max-width:560px;margin:0 0 28px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-cta .btn{padding:15px 24px;font-size:16px}
+.trust{display:flex;gap:18px;margin-top:26px;color:var(--soft);font-size:14px;flex-wrap:wrap}
+.trust span::before{content:"✓ ";color:var(--brand-2);font-weight:700}
+/* mock */
+.mock{position:relative;perspective:1200px}
+.screen{background:#fff;border-radius:24px;border:1px solid var(--line);box-shadow:0 40px 80px rgba(15,26,20,.14);padding:18px;transform:rotateY(-8deg) rotateX(4deg);transition:transform .6s var(--ease);animation:floatin 1s var(--ease) both}
+.mock:hover .screen{transform:none}
+@keyframes floatin{from{opacity:0;transform:translateY(40px) rotateY(-8deg) rotateX(4deg)}}
+.screen .top{display:flex;gap:6px;margin-bottom:14px}.screen .top i{width:10px;height:10px;border-radius:50%;background:#e4ebe6}
+.pos{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12px}
+.mock,.screen{max-width:100%;min-width:0}
+.dishes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-content:start}
+.dish{min-width:0;border-radius:14px;background:linear-gradient(145deg,#fff4e0,#ffe2c2);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:28px;position:relative;animation:pop .5s var(--ease) both}
+.dish small{font-size:10px;font-weight:700;margin-top:4px;color:#6b4a2b}
+.dish:nth-child(2){animation-delay:.1s}.dish:nth-child(3){animation-delay:.2s}.dish:nth-child(4){animation-delay:.3s}.dish:nth-child(5){animation-delay:.4s}.dish:nth-child(6){animation-delay:.5s}
+@keyframes pop{from{opacity:0;transform:scale(.8)}}
+.ticket{background:#0f1a14;color:#fff;border-radius:16px;padding:14px;font-size:12.5px;display:flex;flex-direction:column;gap:7px}
+.ticket .l{display:flex;justify-content:space-between;opacity:.85;animation:slide .5s var(--ease) both}
+.ticket .l:nth-child(2){animation-delay:.6s}.ticket .l:nth-child(3){animation-delay:.9s}.ticket .l:nth-child(4){animation-delay:1.2s}
+@keyframes slide{from{opacity:0;transform:translateX(12px)}}
+.ticket .tot{margin-top:auto;border-top:1px dashed #ffffff40;padding-top:8px;display:flex;justify-content:space-between;font-weight:700;font-size:16px}
+.ticket .pay{background:var(--lime);color:#10240f;border-radius:10px;text-align:center;padding:8px;font-weight:700}
+.float-card{position:absolute;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 14px;box-shadow:0 18px 40px rgba(15,26,20,.12);font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px;animation:bob 5s ease-in-out infinite}
+.float-card b{display:block;font-size:17px}
+.float-card.a{left:-24px;bottom:40px}.float-card.b{right:-14px;top:-18px;animation-delay:-2.5s}
+.float-card .ic{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;background:#e9f7ee}
+@keyframes bob{50%{transform:translateY(-10px)}}
+/* marquee */
+.marquee{overflow:hidden;padding:26px 0;border-block:1px solid var(--line);background:#fff;margin-top:50px;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee .track{display:flex;gap:14px;width:max-content;animation:scroll 40s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-weight:600;font-size:14.5px;white-space:nowrap;transition:background .2s,border-color .2s}
+.chip:hover{background:#e9f7ee;border-color:#bfe3cc}
+@keyframes scroll{to{transform:translateX(-50%)}}
+/* sections */
+section{padding:84px 0}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-2)}
+h2{font-size:clamp(30px,3.6vw,44px);letter-spacing:-.035em;line-height:1.1;margin:10px 0 14px}
+.sub{color:var(--soft);font-size:17.5px;max-width:640px}
+.center{text-align:center}.center .sub{margin:0 auto}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.feat{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.feat:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(15,26,20,.08);border-color:#cfe2d6}
+.feat .ic{width:50px;height:50px;border-radius:15px;background:#e9f7ee;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;transition:transform .4s var(--ease)}
+.feat:hover .ic{transform:rotate(-8deg) scale(1.1)}
+.feat h3{margin:0 0 6px;font-size:18px}.feat p{margin:0;color:var(--soft);font-size:15px}
+.feat.big{grid-column:span 2;background:linear-gradient(135deg,var(--brand),#0b3a20);color:#fff;border:0;position:relative;overflow:hidden}
+.feat.big p{color:#cfe6d6}.feat.big .ic{background:rgba(255,255,255,.12)}
+.feat.big::after{content:"";position:absolute;right:-60px;bottom:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(198,244,50,.4),transparent 65%)}
+.devices{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.devices span{background:rgba(255,255,255,.12);padding:6px 11px;border-radius:999px;font-size:13px;font-weight:600}
+/* business */
+.biz{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:40px}
+.biz a{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 10px;text-align:center;font-weight:600;font-size:14px;transition:transform .25s var(--ease),box-shadow .25s,border-color .25s}
+.biz a span{display:block;font-size:30px;margin-bottom:6px;transition:transform .35s var(--ease)}
+.biz a:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(15,26,20,.08);border-color:#bfe3cc}
+.biz a:hover span{transform:scale(1.2) rotate(-6deg)}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:10px}
+.stat{text-align:center;padding:24px;border-radius:22px;background:#fff;border:1px solid var(--line)}
+.stat b{display:block;font-size:40px;letter-spacing:-.04em;color:var(--brand)}
+.stat span{color:var(--soft);font-weight:500}
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,340px));justify-content:center;gap:16px;margin-top:40px}
+.plan{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;transition:transform .3s var(--ease),box-shadow .3s}
+.plan:hover{transform:translateY(-6px);box-shadow:0 26px 50px rgba(15,26,20,.1)}
+.plan.hot{border:2px solid var(--brand);position:relative}
+.plan.hot::before{content:"Recommended";position:absolute;top:-13px;left:24px;background:var(--lime);color:#10240f;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px}
+.plan h3{margin:0;font-size:19px}
+.price{font-size:40px;font-weight:700;letter-spacing:-.04em}
+.price small{font-size:15px;color:var(--soft);font-weight:500;letter-spacing:0}
+.plan ul{list-style:none;padding:0;margin:6px 0 16px;color:var(--soft);font-size:15px;display:grid;gap:7px}
+.plan li::before{content:"✓";color:var(--brand-2);font-weight:700;margin-right:8px}
+.plan .btn{margin-top:auto}
+/* faq */
+.faq{max-width:760px;margin:40px auto 0;display:grid;gap:10px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 22px;transition:border-color .2s}
+.faq details[open]{border-color:#bfe3cc}
+.faq summary{cursor:pointer;font-weight:600;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";font-size:22px;line-height:1;color:var(--brand-2);transition:transform .3s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{color:var(--soft);margin:10px 0 0}
+/* cta */
+.cta{background:radial-gradient(120% 160% at 90% 0%,#2f9e5a,var(--brand) 45%,#08271a);color:#fff;border-radius:32px;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
+.cta h2{color:#fff}.cta p{color:#cfe6d6;font-size:18px;margin:0 0 26px}
+footer{padding:40px 0;color:var(--soft);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+@media(max-width:960px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.mock{max-width:560px;margin:10px auto 0}.features{grid-template-columns:1fr 1fr}.feat.big{grid-column:span 2}.biz{grid-template-columns:repeat(3,1fr)}.stats{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:600px){.dish{font-size:22px}.dishes{gap:6px}.ticket{padding:10px;font-size:11px}.features{grid-template-columns:1fr}.feat.big{grid-column:auto}.biz{grid-template-columns:repeat(2,1fr)}.nav-cta .ghost{display:none}.float-card{display:none}.screen{transform:none}.hero{padding-top:40px}section{padding:60px 0}.cta{padding:44px 22px;border-radius:24px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="{% url 'webapp:landing' %}"><i>✦</i>BookPilot</a>
+  <nav class="nav-links"><a href="#features">Features</a><a href="#business">Businesses</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+  <div class="nav-cta"><a class="btn ghost" href="{% url 'webapp:login' %}">Sign in</a>{% if signup_enabled %}<a class="btn primary" href="{% url 'webapp:signup' %}">Start free trial</a>{% endif %}</div>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <div>
+    <span class="badge"><b>NEW</b>Kitchen alarm, printers & WhatsApp bills</span>
+    <h1>Run your whole business from <span class="grad">one simple app.</span></h1>
+    <p class="lead">POS, billing, stock, accounts, staff and reports for restaurants, shops, salons, gyms and {{ business_count }} business types. Works on your computer, tablet and phone.</p>
+    <div class="hero-cta">{% if signup_enabled %}<a class="btn primary" href="{% url 'webapp:signup' %}">Start {{ trial_days }}-day free trial →</a>{% endif %}<a class="btn ghost" href="#features">See what's inside</a></div>
+    <div class="trust"><span>No card needed</span><span>Set up in 2 minutes</span><span>Your data is private</span></div>
+  </div>
+  <div class="mock">
+    <div class="screen">
+      <div class="top"><i></i><i></i><i></i></div>
+      <div class="pos">
+        <div class="dishes"><div class="dish">🍔<small>Burger</small></div><div class="dish">🍕<small>Pizza</small></div><div class="dish">🥗<small>Salad</small></div><div class="dish">🍟<small>Fries</small></div><div class="dish">🥤<small>Drink</small></div><div class="dish">🍨<small>Dessert</small></div></div>
+        <div class="ticket"><strong>Table 4 · Dine-in</strong><div class="l"><span>2× Burger</span><span>44.00</span></div><div class="l"><span>1× Pizza</span><span>29.00</span></div><div class="l"><span>2× Drink</span><span>14.00</span></div><div class="tot"><span>Total</span><span>87.00</span></div><div class="pay">Pay</div></div>
+      </div>
+    </div>
+    <div class="float-card a"><span class="ic">📈</span><div><small>Today's sales</small><b id="salesTicker">QAR 0</b></div></div>
+    <div class="float-card b"><span class="ic">🔔</span><div><small>Kitchen</small><b>Order ready!</b></div></div>
+  </div>
+</div>
+<div class="marquee" aria-hidden="true"><div class="track">
+  {% for i in "12" %}{% for code, label, icon in popular_types %}<span class="chip">{{ icon }} {{ label }}</span>{% endfor %}{% endfor %}
+</div></div>
+</div>
+
+<section id="features"><div class="wrap">
+  <div class="center reveal"><span class="eyebrow">Everything included</span><h2>All the tools, none of the headache</h2><p class="sub">Stop juggling five apps. BookPilot connects your counter, kitchen, stock and accounts so the numbers are always right.</p></div>
+  <div class="features">
+    <div class="feat big reveal"><div class="ic">🧾</div><h3>Fast POS for every counter</h3><p>Photo menu, barcode scanning, split bills, held orders and table service. Kitchen tickets print automatically and the kitchen screen rings for new orders.</p><div class="devices"><span>🖨️ Thermal printers</span><span>💵 Cash drawer</span><span>🔍 Barcode scanner</span><span>🖥️ Customer display</span><span>🔔 Kitchen alarm</span></div></div>
+    <div class="feat reveal d1"><div class="ic">📦</div><h3>Stock that counts itself</h3><p>Every sale and purchase updates stock. Batches, expiry dates, serials and low-stock alerts.</p></div>
+    <div class="feat reveal"><div class="ic">📊</div><h3>Real accounting</h3><p>Profit & loss, balance sheet, VAT, bank reconciliation and customer dues, updated with every bill.</p></div>
+    <div class="feat reveal d1"><div class="ic">💬</div><h3>Bills on WhatsApp</h3><p>Send invoices by WhatsApp or email with one tap. Customers open them on their phone.</p></div>
+    <div class="feat reveal d2"><div class="ic">👥</div><h3>Staff & payroll</h3><p>Roles and permissions, attendance, leave, payroll and commissions.</p></div>
+    <div class="feat reveal"><div class="ic">🏬</div><h3>Many branches</h3><p>Branch stock, transfers and one view of the whole business.</p></div>
+    <div class="feat reveal d1"><div class="ic">🔐</div><h3>Bank-level security</h3><p>Two-step login, audit log and fully separated data for every business.</p></div>
+    <div class="feat reveal d2"><div class="ic">📱</div><h3>Install as an app</h3><p>Add it to your phone or tablet home screen. Works on Android, iPhone, Windows and Mac.</p></div>
+  </div>
+</div></section>
+
+<section id="business" style="background:#fff;border-block:1px solid var(--line)"><div class="wrap">
+  <div class="center reveal"><span class="eyebrow">Made for your business</span><h2>Pick your business, we set up the rest</h2><p class="sub">Menus for restaurants, IMEI tracking for mobile shops, memberships for gyms, appointments for salons: each business gets the right screens.</p></div>
+  <div class="biz">
+    {% for code, label, icon in popular_types %}<a class="reveal{% cycle '' ' d1' ' d2' %}" href="{% if signup_enabled %}{% url 'webapp:signup' %}?type={{ code }}{% else %}#pricing{% endif %}"><span>{{ icon }}</span>{{ label }}</a>{% endfor %}
+  </div>
+  <p class="center" style="color:var(--soft);margin-top:18px">…and {{ business_count }} business types in total.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="stats">
+    <div class="stat reveal"><b data-count="{{ business_count }}">{{ business_count }}</b><span>business types</span></div>
+    <div class="stat reveal d1"><b data-count="{{ module_count }}">{{ module_count }}</b><span>modules included</span></div>
+    <div class="stat reveal d2"><b data-count="{{ trial_days }}">{{ trial_days }}</b><span>days free trial</span></div>
+    <div class="stat reveal d3"><b>24/7</b><span>works in the cloud</span></div>
+  </div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+  <div class="center reveal"><span class="eyebrow">Simple pricing</span><h2>Start free. Upgrade when you grow.</h2><p class="sub">Every plan starts with a {{ trial_days }}-day free trial. No card needed.</p></div>
+  <div class="plans">
+    {% for plan in plans %}
+    <div class="plan reveal{% if plans|length > 2 and forloop.counter == 2 %} hot{% endif %}">
+      <h3>{{ plan.name }}</h3>
+      <div class="price">{{ plan.currency }} {{ plan.price|floatformat:"-2" }} <small>/ {% if plan.billing_period == 'yearly' %}year{% else %}month{% endif %}</small></div>
+      <ul>
+        <li>Up to {{ plan.max_users }} user{{ plan.max_users|pluralize }}</li>
+        <li>{{ plan.max_warehouses }} branch{{ plan.max_warehouses|pluralize:"es" }} / store{{ plan.max_warehouses|pluralize }}</li>
+        <li>{% if plan.max_invoices_per_month %}{{ plan.max_invoices_per_month }} invoices / month{% else %}Unlimited invoices{% endif %}</li>
+        <li>POS, stock, accounts & reports</li>
+        <li>WhatsApp bills & device support</li>
+      </ul>
+      {% if signup_enabled %}<a class="btn {% if plans|length > 2 and forloop.counter == 2 or plans|length == 1 %}primary{% else %}ghost{% endif %}" href="{% url 'webapp:signup' %}?plan={{ plan.id }}">Start free trial</a>{% endif %}
+    </div>
+    {% empty %}
+    <div class="plan reveal" style="grid-column:1/-1;text-align:center"><h3>Plans for every size</h3><p style="color:var(--soft)">Contact us for pricing in your country.</p></div>
+    {% endfor %}
+  </div>
+</div></section>
+
+<section id="faq" style="padding-top:20px"><div class="wrap">
+  <div class="center reveal"><span class="eyebrow">Questions</span><h2>Good to know</h2></div>
+  <div class="faq">
+    <details class="reveal"><summary>Do I need to install anything?</summary><p>No. BookPilot runs in the browser. You can add it to your home screen like an app. Printers, scanners and cash drawers connect from the Devices page.</p></details>
+    <details class="reveal"><summary>Which printers work?</summary><p>Any printer installed on your computer, plus USB, Bluetooth-serial and network (LAN) thermal receipt printers using ESC/POS. Kitchen tickets can print automatically.</p></details>
+    <details class="reveal"><summary>Is my data safe?</summary><p>Every business's data is fully separated. You can turn on two-step login, and every important change is recorded in the audit log.</p></details>
+    <details class="reveal"><summary>Can I use it for more than one shop?</summary><p>Yes. Add branches, move stock between them and see reports for one branch or all of them.</p></details>
+    <details class="reveal"><summary>What happens after the free trial?</summary><p>Pick a plan and pay by card or bank transfer from the Billing page. Your data stays exactly as it is.</p></details>
+  </div>
+</div></section>
+
+<section style="padding-top:20px"><div class="wrap">
+  <div class="cta reveal"><h2>Ready to make work easier?</h2><p>Join businesses running their counter, kitchen and accounts on BookPilot.</p>{% if signup_enabled %}<a class="btn lime" href="{% url 'webapp:signup' %}" style="padding:16px 28px;font-size:17px">Start your free trial →</a>{% else %}<a class="btn lime" href="{% url 'webapp:login' %}">Sign in</a>{% endif %}</div>
+</div></section>
+
+<footer><div class="wrap"><span>© {% now "Y" %} BookPilot</span><span><a href="{% url 'webapp:login' %}">Sign in</a>{% if signup_enabled %} · <a href="{% url 'webapp:signup' %}">Create account</a>{% endif %}</span></div></footer>
+
+<script>
+(function(){
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('scrolled',scrollY>10);onScroll();addEventListener('scroll',onScroll,{passive:true});
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);const b=e.target.querySelector('[data-count]');if(b&&!reduce){const to=+b.dataset.count,t0=performance.now();const step=t=>{const p=Math.min(1,(t-t0)/1200);b.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)}}}),{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const tick=document.getElementById('salesTicker');let v=0;
+  if(!reduce)setInterval(()=>{v+=Math.round(20+Math.random()*80);tick.textContent='QAR '+v.toLocaleString()},1400);else tick.textContent='QAR 4,820';
+})();
+</script>
+</body>
+</html>

@@ -240,3 +240,9 @@ RAZORPAY_WEBHOOK_SECRET = env("RAZORPAY_WEBHOOK_SECRET", default="")
 PAYMENT_CREDENTIALS_ENCRYPTION_KEY = env(
     "PAYMENT_CREDENTIALS_ENCRYPTION_KEY", default=SECRET_KEY,
 )
+
+# --- Public website ---
+# Self-service sign-up with a free trial. Set PUBLIC_SIGNUP_ENABLED=False to
+# accept new clients only through Platform Admin -> Add new client.
+PUBLIC_SIGNUP_ENABLED = env.bool("PUBLIC_SIGNUP_ENABLED", default=True)
+SIGNUP_LIMIT_PER_IP_PER_HOUR = env.int("SIGNUP_LIMIT_PER_IP_PER_HOUR", default=5)

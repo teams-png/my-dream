@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import device_views, security_views, share_views, views
+from . import device_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -65,7 +65,9 @@ urlpatterns = [
     path("platform/support/", views.platform_support_list, name="platform_support_list"),
     path("platform/support/<int:ticket_id>/edit/", views.platform_support_edit, name="platform_support_edit"),
     path("platform/audit-log/", views.platform_audit_list, name="platform_audit_list"),
-    path("", views.dashboard, name="dashboard"),
+    path("", public_views.home, name="dashboard"),
+    path("welcome/", public_views.landing, name="landing"),
+    path("signup/", public_views.signup, name="signup"),
 
     path("customers/", views.customer_list, name="customer_list"),
     path("customers/add/", views.customer_add, name="customer_add"),

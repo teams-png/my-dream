@@ -278,3 +278,55 @@ def test_pos_creates_stock_location_for_billing(client, tenant_a, restaurant_dat
     page = client.get(reverse("webapp:restaurant_order_detail", args=[order.id]))
     assert page.status_code == 200
     assert page.context["settle_form"].fields["warehouse"].queryset.exists()
+
+
+def test_add_items_after_kot_creates_next_round(client, tenant_a, restaurant_data):
+    from apps.verticals.restaurant.models import KitchenTicket
+    d = restaurant_data
+    order = services.create_order(company=tenant_a, channel="dine_in", table=d["table"], waiter=d["user"])
+    first = services.add_order_line(company=tenant_a, order=order, product=d["menu"], quantity=1)
+    t1 = services.send_to_kitchen(company=tenant_a, order=order)
+    first.refresh_from_db()
+    assert t1.kitchen_round == 1 and first.kitchen_round == 1 and first.sent_at
+    with pytest.raises(Exception):
+        services.update_order_line_quantity(company=tenant_a, line=first, quantity=3)
+    with pytest.raises(Exception):
+        services.send_to_kitchen(company=tenant_a, order=order)  # nothing new yet
+    second = services.add_order_line(company=tenant_a, order=order, product=d["menu"], quantity=2)
+    services.update_order_line_quantity(company=tenant_a, line=second, quantity=3)
+    t2 = services.send_to_kitchen(company=tenant_a, order=order)
+    second.refresh_from_db()
+    assert t2.kitchen_round == 2 and second.kitchen_round == 2
+    assert KitchenTicket.objects.filter(order=order).count() == 2
+    client.force_login(d["user"])
+    kot = client.get(reverse("webapp:restaurant_kot_print", args=[t2.id]))
+    assert b"ROUND 2" in kot.content and b"3 \xc3\x97 Burger" in kot.content and b"1 \xc3\x97 Burger" not in kot.content
+
+
+def test_transfer_table_and_guests(client, tenant_a, restaurant_data):
+    d = restaurant_data
+    other = DiningTable.objects.create(company=tenant_a, area=d["area"], name="T2")
+    order = services.create_order(company=tenant_a, channel="dine_in", table=d["table"], waiter=d["user"], guests=3)
+    assert order.guests == 3
+    client.force_login(d["user"])
+    url = reverse("webapp:restaurant_order_detail", args=[order.id])
+    client.post(url, {"action": "transfer", "table_id": other.id})
+    order.refresh_from_db(); d["table"].refresh_from_db(); other.refresh_from_db()
+    assert order.table_id == other.id and other.status == "occupied" and d["table"].status == "available"
+    second = services.create_order(company=tenant_a, channel="dine_in", table=d["table"], waiter=d["user"])
+    with pytest.raises(Exception):
+        services.transfer_table(company=tenant_a, order=second, table=other)
+    client.post(url, {"action": "guests", "guests": 6})
+    order.refresh_from_db()
+    assert order.guests == 6
+
+
+def test_restaurant_tax_is_billed_and_must_be_paid(tenant_a, restaurant_data):
+    d = restaurant_data
+    RestaurantProfile.objects.update_or_create(company=tenant_a, defaults={"tax_percent": Decimal("5")})
+    order = services.create_order(company=tenant_a, channel="takeaway", waiter=d["user"])
+    services.add_order_line(company=tenant_a, order=order, product=d["menu"], quantity=1)  # 20.00
+    assert order.tax_percent == Decimal("5") and order.tax_amount == Decimal("1.00") and order.total == Decimal("21.00")
+    invoice = services.settle_order(company=tenant_a, user=d["user"], order=order, warehouse=d["warehouse"],
+                                    date=date.today(), payments=[{"method": "cash", "amount": Decimal("21.00")}])
+    assert invoice.transaction_total == Decimal("21.00")

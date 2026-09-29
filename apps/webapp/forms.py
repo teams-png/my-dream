@@ -1329,6 +1329,7 @@ class RestaurantOrderForm(forms.Form):
     customer = forms.ModelChoiceField(queryset=Customer.objects.none(), required=False)
     delivery_address = forms.CharField(widget=forms.Textarea(attrs={"rows": 2}), required=False)
     delivery_phone = forms.CharField(max_length=30, required=False)
+    guests = forms.IntegerField(min_value=0, max_value=500, required=False)
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1519,7 +1520,8 @@ class FoodWasteForm(forms.ModelForm):
 class RestaurantProfileForm(forms.ModelForm):
     class Meta:
         model = RestaurantProfile
-        fields = ["tagline", "opening_hours", "delivery_minimum", "delivery_charge", "qr_ordering_enabled"]
+        fields = ["tagline", "opening_hours", "delivery_minimum", "delivery_charge", "qr_ordering_enabled",
+                  "service_charge_percent", "tax_percent"]
 
 
 class RestaurantComboForm(forms.ModelForm):

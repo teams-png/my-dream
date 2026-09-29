@@ -90,6 +90,8 @@
 .cart-name{font-weight:750; font-size:14.5px; line-height:1.3}
 .cart-note{font-size:12px; color:var(--r-soft); margin-top:2px}
 .cart-note .note{display:inline-block; margin-top:3px; background:#fff6db; color:#7a4b00; padding:1px 7px; border-radius:6px}
+.sent-tag,.new-tag{display:inline-block; font-size:10.5px; font-weight:800; padding:1px 7px; border-radius:999px; vertical-align:2px; background:var(--r-green-soft); color:var(--r-green)}
+.new-tag{background:#fff3d1; color:#8a5a00}
 .cart-price{font-weight:800; font-size:14.5px; white-space:nowrap}
 .cart-qty-static{display:inline-flex; align-items:center; justify-content:center; min-width:34px; height:30px; border-radius:9px; background:#f4eee6; font-weight:800; font-size:13px}
 .qty-actions{display:flex; flex-direction:column; align-items:center; gap:2px; background:#f7f1ea; border-radius:12px; padding:3px}
@@ -246,6 +248,7 @@
       <div class="rp-chips">
         <span class="rp-chip">{% if order.channel == 'dine_in' %}🍽️{% elif order.channel == 'delivery' %}🛵{% else %}🥡{% endif %} {{ order.get_channel_display }}</span>
         {% if order.table %}<span class="rp-chip">🪑 Table {{ order.table.name }}</span>{% endif %}
+        {% if order.guests %}<span class="rp-chip">👥 {{ order.guests }}</span>{% endif %}
         {% if order.customer %}<span class="rp-chip">👤 {{ order.customer }}</span>{% endif %}
         <span class="rp-chip status {{ order.status }}">{{ order.get_status_display }}</span>
       </div>
@@ -284,7 +287,7 @@
             <div class="food-desc">{{ item.description|default:"Freshly prepared" }}</div>
             <div class="food-meta">
               <div><div class="food-price"><small>{{ active_company.default_currency }}</small>{{ item.product.selling_price|floatformat:2 }}</div><div class="food-time">⏱ {{ item.preparation_minutes }} min</div></div>
-              <button class="food-add" type="button" aria-label="Add {{ item.product.name }}" {% if not item.is_available or order.status != 'draft' and order.status != 'held' %}disabled{% endif %} data-product-id="{{ item.product.id }}" data-product-name="{{ item.product.name }}" data-price="{{ item.product.selling_price|floatformat:2 }}" data-has-modifiers="{% if item.modifier_groups.all %}true{% else %}false{% endif %}">+</button>
+              <button class="food-add" type="button" aria-label="Add {{ item.product.name }}" {% if not item.is_available or order.status == 'paid' or order.status == 'cancelled' %}disabled{% endif %} data-product-id="{{ item.product.id }}" data-product-name="{{ item.product.name }}" data-price="{{ item.product.selling_price|floatformat:2 }}" data-has-modifiers="{% if item.modifier_groups.all %}true{% else %}false{% endif %}">+</button>
             </div>
           </div>
         </article>
@@ -299,7 +302,7 @@
       </div>
     </section>
 
-    <aside class="cart-panel" id="ticket" data-subtotal="{{ order.subtotal|floatformat:2 }}" data-lines="{{ order.lines.count }}">
+    <aside class="cart-panel" id="ticket" data-subtotal="{{ order.subtotal|floatformat:2 }}" data-lines="{{ order.lines.count }}" data-unsent="{{ unsent_count }}" data-tax-pct="{{ order.tax_percent|floatformat:2 }}">
       {% with line_count=order.lines.count %}
       <button class="rp-mbar" type="button" data-ticket-toggle aria-label="Show current order">
         <span class="mb-count">{{ line_count }}</span>
@@ -312,20 +315,20 @@
       <div class="cart-lines">
         {% for line in order.lines.all %}
         <div class="cart-item" data-line-id="{{ line.id }}">
-          {% if order.status == 'draft' or order.status == 'held' %}
+          {% if not line.sent_at and order.status != 'paid' and order.status != 'cancelled' %}
           <div class="qty-actions">
             <form method="post">{% csrf_token %}<input type="hidden" name="line_id" value="{{ line.id }}"><button class="qty-btn" name="action" value="increase_line" aria-label="Increase {{ line.product.name }}">+</button></form>
             <span class="qty-val">{{ line.quantity|floatformat:"-3" }}</span>
             <form method="post">{% csrf_token %}<input type="hidden" name="line_id" value="{{ line.id }}"><button class="qty-btn" name="action" value="decrease_line" aria-label="Decrease {{ line.product.name }}">−</button></form>
           </div>
-          {% else %}<span class="cart-qty-static">{{ line.quantity|floatformat:"-3" }}×</span>{% endif %}
+          {% else %}<span class="cart-qty-static" title="Sent to kitchen">{{ line.quantity|floatformat:"-3" }}×</span>{% endif %}
           <div>
-            <div class="cart-name">{{ line.product.name }}</div>
+            <div class="cart-name">{{ line.product.name }}{% if line.sent_at %} <span class="sent-tag">✓ Sent{% if line.kitchen_round > 1 %} · R{{ line.kitchen_round }}{% endif %}</span>{% elif order.status != 'draft' and order.status != 'held' and order.status != 'paid' and order.status != 'cancelled' %} <span class="new-tag">New</span>{% endif %}</div>
             <div class="cart-note">{{ active_company.default_currency }} {{ line.unit_price|floatformat:2 }} each{% for m in line.modifiers.all %}{% if forloop.first %} · {% endif %}{{ m.modifier.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% if line.notes %}<br><span class="note">📝 {{ line.notes }}</span>{% endif %}</div>
           </div>
           <div class="line-side">
             <span class="cart-price">{{ line.total|floatformat:2 }}</span>
-            {% if order.status == 'draft' or order.status == 'held' %}<form method="post" class="qty-actions-remove">{% csrf_token %}<input type="hidden" name="line_id" value="{{ line.id }}"><button class="remove-btn" name="action" value="remove_line" aria-label="Remove {{ line.product.name }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button></form>{% endif %}
+            {% if not line.sent_at and order.status != 'paid' and order.status != 'cancelled' %}<form method="post" class="qty-actions-remove">{% csrf_token %}<input type="hidden" name="line_id" value="{{ line.id }}"><button class="remove-btn" name="action" value="remove_line" aria-label="Remove {{ line.product.name }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button></form>{% endif %}
           </div>
         </div>
         {% endfor %}
@@ -338,18 +341,23 @@
         {% if order.service_charge %}<div class="sum-row"><span>Service charge</span><span>+{{ order.service_charge|floatformat:2 }}</span></div>{% endif %}
         {% if order.tip_amount %}<div class="sum-row"><span>Tip</span><span>+{{ order.tip_amount|floatformat:2 }}</span></div>{% endif %}
         {% if order.discount_amount %}<div class="sum-row"><span>Discount</span><span>−{{ order.discount_amount|floatformat:2 }}</span></div>{% endif %}
+        {% if order.tax_percent %}<div class="sum-row"><span>Tax ({{ order.tax_percent|floatformat:"-2" }}%)</span><span>+{{ order.tax_amount|floatformat:2 }}</span></div>{% endif %}
         <div class="cart-total"><span>Total</span><span class="amt" data-amount="{{ order.total|floatformat:2 }}">{{ active_company.default_currency }} {{ order.total|floatformat:2 }}</span></div>
-        {% if not line_count %}<div class="cart-hint">Add at least one dish before sending this order to the kitchen.</div>{% endif %}
+        {% if not line_count %}<div class="cart-hint">Add at least one dish before sending this order to the kitchen.</div>{% elif unsent_count and order.status != 'draft' and order.status != 'held' and order.status != 'paid' and order.status != 'cancelled' %}<div class="cart-hint">🆕 {{ unsent_count }} new item{{ unsent_count|pluralize }} not yet sent — tap <b>Send to Kitchen</b> for the next round.</div>{% endif %}
         <div class="primary-actions">
-          <form method="post">{% csrf_token %}<button class="rp-btn kitchen" name="action" value="send_kitchen" {% if not line_count or order.status != 'draft' and order.status != 'held' %}disabled title="Add an item to this draft order first"{% endif %}>👨‍🍳 Send to Kitchen</button></form>
+          <form method="post">{% csrf_token %}<button class="rp-btn kitchen" name="action" value="send_kitchen" {% if not unsent_count or order.status == 'paid' or order.status == 'cancelled' %}disabled title="Add an item to this draft order first"{% endif %}>👨‍🍳 Send{% if unsent_count and order.status != 'draft' and order.status != 'held' %} {{ unsent_count }} new{% else %} to Kitchen{% endif %}</button></form>
           <form method="post">{% csrf_token %}<button class="rp-btn" name="action" value="{% if order.status == 'held' %}resume{% else %}hold{% endif %}" {% if order.status != 'draft' and order.status != 'held' %}disabled{% endif %}>{% if order.status == 'held' %}▶ Resume order{% else %}⏸ Hold Order{% endif %}</button></form>
           <button class="rp-btn pay" type="button" data-open="payDialog" {% if not line_count or order.status == 'paid' or order.status == 'cancelled' %}disabled{% endif %}>💳 Pay {{ active_company.default_currency }} {{ order.total|floatformat:2 }}</button>
-          <button class="rp-more" type="button" data-open="moreDialog">Split · Merge · more options</button>
+          <button class="rp-more" type="button" data-open="moreDialog">Move table · Guests · Split · Merge</button>
         </div>
       </div>
       <dialog class="rp-dialog" id="moreDialog">
-        <div class="dlg-head"><h3>More options</h3><p>Split items into a new bill or merge another open order into this one.</p><button class="dlg-close" type="button" data-close aria-label="Close">✕</button></div>
+        <div class="dlg-head"><h3>More options</h3><p>Move the order, update guests, split or merge bills.</p><button class="dlg-close" type="button" data-close aria-label="Close">✕</button></div>
         <div class="dlg-body">
+          {% if order.status != 'paid' and order.status != 'cancelled' %}
+          <form method="post" class="more-card">{% csrf_token %}<input type="hidden" name="action" value="transfer"><strong>🔀 Move to another table</strong><select name="table_id" class="rp-input">{% for t in free_tables %}<option value="{{ t.id }}">{{ t.name }} · {{ t.area.name }} · {{ t.capacity }} seats</option>{% empty %}<option value="">No free tables</option>{% endfor %}</select><button class="rp-btn" style="margin-top:8px" {% if not free_tables %}disabled{% endif %}>Move order</button></form>
+          <form method="post" class="more-card">{% csrf_token %}<input type="hidden" name="action" value="guests"><strong>👥 Number of guests</strong><input class="rp-input" type="number" name="guests" min="0" max="500" value="{{ order.guests }}"><button class="rp-btn" style="margin-top:8px">Save guests</button></form>
+          {% endif %}
           <form method="post" class="more-card">{% csrf_token %}<input type="hidden" name="action" value="split"><strong>✂️ Split selected items</strong>{% for line in order.lines.all %}<label><input type="checkbox" name="line_ids" value="{{ line.id }}"> {{ line.quantity|floatformat:"-3" }} × {{ line.product.name }}</label>{% empty %}<p class="cart-note">No items to split yet.</p>{% endfor %}<button class="rp-btn" style="margin-top:8px" {% if not line_count %}disabled{% endif %}>Split into new order</button></form>
           <form method="post" class="more-card">{% csrf_token %}<input type="hidden" name="action" value="merge"><strong>🔗 Merge another order into this one</strong><select name="source_order_id" class="rp-input">{% for candidate in merge_candidates %}<option value="{{ candidate.id }}">{{ candidate.order_number }} · {{ candidate.get_channel_display }}{% if candidate.table %} · {{ candidate.table.name }}{% endif %}</option>{% empty %}<option value="">No other open orders</option>{% endfor %}</select><button class="rp-btn" style="margin-top:8px" {% if not merge_candidates %}disabled{% endif %}>Merge orders</button></form>
           <div class="more-card"><strong>🧾 Receipt</strong><a class="rp-btn" target="_blank" href="{% url 'webapp:restaurant_receipt_print' order.id %}">Print receipt</a></div>
@@ -386,10 +394,10 @@
       <div class="pay-grid">
         <div>
           <div class="pay-due"><small>Amount due</small><div class="big" id="payDue">0.00</div>
-            <div class="pay-lines"><div><span>Subtotal</span><span id="paySub">0.00</span></div><div><span>Service + tip</span><span id="payExtra">0.00</span></div><div><span>Discount</span><span id="payDisc">0.00</span></div></div>
+            <div class="pay-lines"><div><span>Subtotal</span><span id="paySub">0.00</span></div><div><span>Service + tip</span><span id="payExtra">0.00</span></div><div id="payTaxRow"><span>Tax</span><span id="payTax">0.00</span></div><div><span>Discount</span><span id="payDisc">0.00</span></div></div>
           </div>
           <div class="adj-grid" style="margin-top:12px">
-            <label>Service charge<input class="rp-input" type="number" step="0.01" min="0" name="service_charge" id="id_service_charge" value="{{ order.service_charge|floatformat:2 }}"></label>
+            <label>Service charge<input class="rp-input" type="number" step="0.01" min="0" name="service_charge" id="id_service_charge" value="{{ suggested_service|floatformat:2 }}"></label>
             <label>Tip<input class="rp-input" type="number" step="0.01" min="0" name="tip_amount" id="id_tip_amount" value="{{ order.tip_amount|floatformat:2 }}"></label>
             <label>Discount<input class="rp-input" type="number" step="0.01" min="0" name="discount_amount" id="id_discount_amount" value="{{ order.discount_amount|floatformat:2 }}"></label>
           </div>
@@ -438,6 +446,7 @@ const CURRENCY = "{{ active_company.default_currency|escapejs }}";
 const search=document.getElementById('menuSearch'),cards=[...document.querySelectorAll('.food-card')],itemDialog=document.getElementById('itemDialog');
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let category='all',cartBusy=false;
+function round2(v){const x=v*100,f=Math.floor(x+1e-9),d=x-f;if(Math.abs(d-0.5)<1e-7)return(f%2===0?f:f+1)/100;return Math.round(x)/100}
 const money=n=>(Math.round((+n||0)*100)/100).toFixed(2);
 
 /* ---------- category rail ---------- */
@@ -484,7 +493,7 @@ document.getElementById('posConfirmAccept').addEventListener('click',()=>{if(pen
 /* ---------- payment ---------- */
 let payMethod='cash';
 const $=id=>document.getElementById(id);
-function due(){const sub=parseFloat(document.querySelector('.cart-panel').dataset.subtotal)||0;const sc=parseFloat($('id_service_charge').value)||0,tip=parseFloat($('id_tip_amount').value)||0,disc=parseFloat($('id_discount_amount').value)||0;$('paySub').textContent=money(sub);$('payExtra').textContent='+'+money(sc+tip);$('payDisc').textContent='−'+money(disc);return Math.max(0,sub+sc+tip-disc)}
+function due(){const sub=parseFloat(document.querySelector('.cart-panel').dataset.subtotal)||0;const sc=parseFloat($('id_service_charge').value)||0,tip=parseFloat($('id_tip_amount').value)||0,disc=parseFloat($('id_discount_amount').value)||0;$('paySub').textContent=money(sub);$('payExtra').textContent='+'+money(sc+tip);$('payDisc').textContent='−'+money(disc);const pct=parseFloat(document.querySelector('.cart-panel').dataset.taxPct)||0;const tax=round2((sub+sc+tip)*pct/100);$('payTax').textContent='+'+money(tax);$('payTaxRow').hidden=!pct;return Math.max(0,sub+sc+tip+tax-disc)}
 function renderPay(){const d=due();$('payDue').textContent=CURRENCY+' '+money(d);document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on',b.dataset.method===payMethod));document.querySelector('[data-panel=cash]').hidden=payMethod!=='cash';document.querySelector('[data-panel=single]').hidden=!['card','bank'].includes(payMethod);document.querySelector('[data-panel=split]').hidden=payMethod!=='split';let ok=true;const set=(c,k,b)=>{$('id_cash').value=money(c);$('id_card').value=money(k);$('id_bank').value=money(b)};if(payMethod==='cash'){set(d,0,0);const given=parseFloat($('cashGiven').value);const box=$('changeBox');if(isNaN(given)){$('changeAmt').textContent='—';box.classList.remove('short')}else{const ch=given-d;box.classList.toggle('short',ch<0);box.firstElementChild.textContent=ch<0?'Still to collect':'Change to return';$('changeAmt').textContent=CURRENCY+' '+money(Math.abs(ch));ok=ch>=0}const qc=$('quickCash');const opts=[...new Set([d,Math.ceil(d/5)*5,Math.ceil(d/10)*10,Math.ceil(d/50)*50,Math.ceil(d/100)*100])].filter(v=>v>0).slice(0,5);qc.innerHTML=opts.map((v,i)=>`<button type="button" data-cash="${v}">${i===0?'Exact':money(v)}</button>`).join('')}else if(payMethod==='split'){const v=k=>parseFloat(document.querySelector(`.split-in[data-for=${k}]`).value)||0;set(v('cash'),v('card'),v('bank'));const left=d-(v('cash')+v('card')+v('bank'));const el=$('splitLeft');ok=Math.abs(left)<0.005;el.className='split-left '+(ok?'ok':'bad');el.textContent=ok?'✓ Payments match the total':(left>0?'Remaining: ':'Over by: ')+CURRENCY+' '+money(Math.abs(left))}else{set(0,payMethod==='card'?d:0,payMethod==='bank'?d:0);$('singleLabel').textContent='Charge to '+(payMethod==='card'?'card':'bank transfer');$('singleAmt').textContent=CURRENCY+' '+money(d)}$('payGo').disabled=!ok||d<=0;$('payGo').textContent='Charge '+CURRENCY+' '+money(d)}
 function preparePay(){payMethod='cash';$('cashGiven').value='';document.querySelectorAll('.split-in').forEach(i=>i.value='');renderPay()}
 document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{payMethod=b.dataset.method;if(payMethod==='split'){const first=document.querySelector('.split-in[data-for=cash]');if(!first.value)first.value=money(due())}renderPay()}));

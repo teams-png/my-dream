@@ -3263,6 +3263,7 @@ def restaurant_order_add(request):
             company=company, channel=d["channel"], table=d.get("table"), customer=d.get("customer"),
             waiter=request.user, shift=RestaurantShift.objects.for_company(company).filter(status="open").first(),
             delivery_address=d.get("delivery_address", ""), delivery_phone=d.get("delivery_phone", ""),
+            guests=d.get("guests") or 0,
         )
         return redirect("webapp:restaurant_order_detail", order_id=order.id)
     return render(request, "webapp/restaurant/new_order.html", {
@@ -3316,10 +3317,21 @@ def restaurant_order_detail(request, order_id):
                     restaurant_services.update_order_line_quantity(company=company, line=line, quantity=line.quantity + delta)
                 return redirect("webapp:restaurant_order_detail", order_id=order.id)
             elif action == "send_kitchen":
-                if not order.lines.exists():
-                    messages.error(request, "Add at least one menu item before sending this order to the kitchen.")
+                if not order.lines.filter(sent_at__isnull=True).exists():
+                    messages.error(request, "Add at least one new menu item before sending to the kitchen.")
                     return redirect("webapp:restaurant_order_detail", order_id=order.id)
-                restaurant_services.send_to_kitchen(company=company, order=order); messages.success(request, "KOT sent to kitchen.")
+                ticket = restaurant_services.send_to_kitchen(company=company, order=order)
+                messages.success(request, f"KOT sent to kitchen (round {ticket.kitchen_round}).")
+                return redirect(reverse("webapp:restaurant_order_detail", args=[order.id]) + f"?sent={ticket.id}")
+            elif action == "transfer":
+                table = get_object_or_404(DiningTable.objects.for_company(company), id=request.POST.get("table_id"))
+                restaurant_services.transfer_table(company=company, order=order, table=table)
+                messages.success(request, f"Order moved to table {table.name}.")
+                return redirect("webapp:restaurant_order_detail", order_id=order.id)
+            elif action == "guests":
+                order.guests = max(0, min(500, int(request.POST.get("guests") or 0)))
+                order.save(update_fields=["guests"])
+                messages.success(request, "Guest count updated.")
                 return redirect("webapp:restaurant_order_detail", order_id=order.id)
             elif action in {"hold", "resume"}:
                 restaurant_services.set_order_held(company=company, order=order, held=action == "hold")
@@ -3352,8 +3364,17 @@ def restaurant_order_detail(request, order_id):
     categories = ProductCategory.objects.for_company(company).filter(
         product__restaurant_menu_item__isnull=False
     ).distinct().order_by("name")
+    profile = RestaurantProfile.objects.for_company(company).first()
+    service_pct = profile.service_charge_percent if profile else Decimal("0")
+    suggested_service = order.service_charge
+    if not suggested_service and order.channel == "dine_in" and service_pct:
+        suggested_service = (order.subtotal * service_pct / Decimal("100")).quantize(Decimal("0.01"))
+    busy_table_ids = RestaurantOrder.objects.for_company(company).exclude(status__in=["paid", "cancelled"]).exclude(table=None).values_list("table_id", flat=True)
     return render(request, "webapp/restaurant/order_detail.html", {
         "order": order, "line_form": line_form, "settle_form": settle_form,
+        "unsent_count": order.lines.filter(sent_at__isnull=True).count(),
+        "free_tables": DiningTable.objects.for_company(company).filter(is_active=True).exclude(id__in=list(busy_table_ids)).select_related("area"),
+        "suggested_service": suggested_service, "service_pct": service_pct,
         "merge_candidates": merge_candidates, "menu_items": menu_items,
         "menu_categories": categories,
         "active_modifiers": MenuModifier.objects.for_company(company).filter(is_active=True),

@@ -25,6 +25,10 @@ class RestaurantProfile(TenantScopedModel):
     delivery_minimum = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     delivery_charge = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     qr_ordering_enabled = models.BooleanField(default=False)
+    service_charge_percent = models.DecimalField(max_digits=5, decimal_places=2, default=0,
+                                                 help_text="Suggested service charge for dine-in bills (%).")
+    tax_percent = models.DecimalField(max_digits=5, decimal_places=2, default=0,
+                                      help_text="VAT/GST charged on restaurant bills (%). 0 = no tax.")
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=["company"], name="one_restaurant_profile_per_company")]
@@ -197,6 +201,8 @@ class RestaurantOrder(TenantScopedModel):
     waiter = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name="restaurant_orders")
     shift = models.ForeignKey(RestaurantShift, null=True, blank=True, on_delete=models.PROTECT, related_name="orders")
     status = models.CharField(max_length=12, choices=STATUS, default="draft")
+    guests = models.PositiveSmallIntegerField(default=0)
+    tax_percent = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     delivery_address = models.TextField(blank=True)
     delivery_phone = models.CharField(max_length=30, blank=True)
     delivery_driver = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name="restaurant_deliveries")
@@ -221,8 +227,17 @@ class RestaurantOrder(TenantScopedModel):
         return sum((line.total for line in self.lines.all()), Decimal("0"))
 
     @property
+    def tax_amount(self):
+        taxable = self.subtotal + self.service_charge + self.tip_amount
+        return (taxable * self.tax_percent / Decimal("100")).quantize(Decimal("0.01"))
+
+    @property
     def total(self):
-        return self.subtotal + self.service_charge + self.tip_amount - self.discount_amount
+        return self.subtotal + self.service_charge + self.tip_amount + self.tax_amount - self.discount_amount
+
+    @property
+    def unsent_lines(self):
+        return [line for line in self.lines.all() if line.sent_at is None]
 
 
 class RestaurantOrderLine(TenantScopedModel):
@@ -231,6 +246,10 @@ class RestaurantOrderLine(TenantScopedModel):
     quantity = models.DecimalField(max_digits=10, decimal_places=3, default=1)
     unit_price = models.DecimalField(max_digits=12, decimal_places=2)
     notes = models.CharField(max_length=255, blank=True)
+    # Kitchen round this line was sent in (1 = first KOT). 0 with sent_at set means
+    # it was sent as part of another order that has since been merged in.
+    kitchen_round = models.PositiveSmallIntegerField(default=0)
+    sent_at = models.DateTimeField(null=True, blank=True)
 
     @property
     def modifier_total(self):
@@ -252,6 +271,7 @@ class KitchenTicket(TenantScopedModel):
     order = models.ForeignKey(RestaurantOrder, on_delete=models.CASCADE, related_name="kitchen_tickets")
     station = models.ForeignKey(KitchenStation, null=True, blank=True, on_delete=models.SET_NULL, related_name="tickets")
     ticket_number = models.CharField(max_length=30)
+    kitchen_round = models.PositiveSmallIntegerField(default=1)
     priority = models.PositiveSmallIntegerField(default=0)
     status = models.CharField(max_length=12, choices=STATUS, default="queued")
     printed_at = models.DateTimeField(auto_now_add=True)

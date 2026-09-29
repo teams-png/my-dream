@@ -27,6 +27,7 @@
     <p class="r-step" style="margin-top:22px">Step <span id="detailsStep">2</span> · Details</p>
     <div class="r-fields">
       <div><label>Customer (optional) {{ form.customer }}</label><div class="r-errors">{{ form.customer.errors }}</div></div>
+      <div class="r-slot" id="guestsField"><label>Guests <input type="number" name="guests" min="0" max="500" value="{{ form.guests.value|default:'' }}" placeholder="e.g. 4" inputmode="numeric"></label><div class="r-errors">{{ form.guests.errors }}</div></div>
       <div class="r-slot" id="phoneField"><label>Delivery phone {{ form.delivery_phone }}</label><div class="r-errors">{{ form.delivery_phone.errors }}</div></div>
       <div class="r-slot" id="addressField" style="grid-column:1/-1"><label>Delivery address {{ form.delivery_address }}</label><div class="r-errors">{{ form.delivery_address.errors }}</div></div>
     </div>
@@ -42,7 +43,7 @@
   const labels={dine_in:'Dine-in',takeaway:'Takeaway',delivery:'Delivery'};
   function update(){
     const ch=document.querySelector('[name=channel]:checked')?.value||'takeaway';
-    document.getElementById('tableField').hidden=ch!=='dine_in';
+    document.getElementById('tableField').hidden=ch!=='dine_in';document.getElementById('guestsField').hidden=ch!=='dine_in';
     document.getElementById('addressField').hidden=ch!=='delivery';
     document.getElementById('phoneField').hidden=ch!=='delivery';
     document.getElementById('detailsStep').textContent=ch==='dine_in'?'3':'2';

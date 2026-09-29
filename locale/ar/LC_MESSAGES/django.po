@@ -526,6 +526,18 @@ msgid "Your change"
 msgstr "الباقي لك"
 
 #: templates/webapp/dashboard.html
+msgid "Finish setting up your business"
+msgstr "أكمل إعداد نشاطك التجاري"
+
+#: templates/webapp/dashboard.html
+msgid "Add your logo, first products and printer in 3 quick steps."
+msgstr "أضف شعارك وأول منتجاتك والطابعة في 3 خطوات سريعة."
+
+#: templates/webapp/dashboard.html
+msgid "Continue setup"
+msgstr "متابعة الإعداد"
+
+#: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
 msgstr "انتهى اشتراكك."
 
@@ -1461,6 +1473,267 @@ msgstr "جديد هنا؟"
 msgid "Start a free trial"
 msgstr "ابدأ تجربة مجانية"
 
+#: templates/webapp/onboarding/wizard.html
+msgid "Set up your business"
+msgstr "إعداد نشاطك التجاري"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Your business"
+msgstr "نشاطك التجاري"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Menu & tables"
+msgstr "القائمة والطاولات"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Printer & devices"
+msgstr "الطابعة والأجهزة"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Welcome! Let's get you ready to sell."
+msgstr "أهلًا بك! لنجهّزك للبيع."
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"Three quick steps. These details appear on your receipts and invoices — you "
+"can change them later in Settings."
+msgstr ""
+"ثلاث خطوات سريعة. تظهر هذه البيانات على الإيصالات والفواتير — ويمكنك تغييرها"
+" لاحقًا من الإعدادات."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Business name"
+msgstr "اسم النشاط التجاري"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Logo (optional)"
+msgstr "الشعار (اختياري)"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Address"
+msgstr "العنوان"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Phone"
+msgstr "الهاتف"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "VAT / tax number (optional)"
+msgstr "الرقم الضريبي (اختياري)"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Currency"
+msgstr "العملة"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Skip setup for now"
+msgstr "تخطَّ الإعداد الآن"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Save & continue"
+msgstr "حفظ ومتابعة"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Add your menu and tables"
+msgstr "أضف قائمتك وطاولاتك"
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"Type a few dishes now — you can add photos, add-ons and more later. Or load "
+"20 sample dishes to try the POS straight away."
+msgstr ""
+"اكتب بعض الأطباق الآن — ويمكنك إضافة الصور والإضافات لاحقًا. أو حمّل 20 "
+"طبقًا تجريبيًا لتجربة نقطة البيع فورًا."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Add your first products"
+msgstr "أضف أول منتجاتك"
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"Type a few products with their opening stock. Leave the barcode empty and we"
+" will create a code. You can import a full list from Excel later."
+msgstr ""
+"اكتب بعض المنتجات مع رصيدها الافتتاحي. اترك الباركود فارغًا وسننشئ رمزًا. "
+"يمكنك استيراد قائمة كاملة من Excel لاحقًا."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Add the services you sell"
+msgstr "أضف الخدمات التي تبيعها"
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"Add a few services or packages with their prices so you can bill customers "
+"right away."
+msgstr "أضف بعض الخدمات أو الباقات بأسعارها لتتمكن من إصدار الفواتير فورًا."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Items already added:"
+msgstr "الأصناف المضافة:"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Tables:"
+msgstr "الطاولات:"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Opening stock"
+msgstr "الرصيد الافتتاحي"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Barcode / code"
+msgstr "الباركود / الرمز"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "e.g. Chicken Biryani"
+msgstr "مثال: برياني دجاج"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "e.g. Mineral Water 1.5L"
+msgstr "مثال: مياه معدنية 1.5 لتر"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "e.g. Consultation"
+msgstr "مثال: استشارة"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Optional"
+msgstr "اختياري"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "e.g. Drinks"
+msgstr "مثال: مشروبات"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Remove"
+msgstr "إزالة"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Add another row"
+msgstr "إضافة صف آخر"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Fill with examples"
+msgstr "املأ بأمثلة"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "How many tables do you have?"
+msgstr "كم عدد الطاولات لديك؟"
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"We create T1, T2, … in a “Main hall” area. Rename them or add areas later."
+msgstr ""
+"سننشئ T1 وT2 … في منطقة «الصالة الرئيسية». يمكنك إعادة تسميتها أو إضافة "
+"مناطق لاحقًا."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Number of tables"
+msgstr "عدد الطاولات"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Load 20 sample dishes"
+msgstr "تحميل 20 طبقًا تجريبيًا"
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"With photos and prices, so you can try the POS right away. Edit or delete "
+"them later."
+msgstr "مع الصور والأسعار لتجربة نقطة البيع فورًا. عدّلها أو احذفها لاحقًا."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Back"
+msgstr "رجوع"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Skip this step"
+msgstr "تخطَّ هذه الخطوة"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Connect your printer and devices"
+msgstr "وصّل الطابعة والأجهزة"
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"Receipt printers, cash drawers, barcode scanners and a customer screen work "
+"straight from the browser. Set them up once on each till — or skip, and "
+"receipts print with the normal print dialog."
+msgstr ""
+"طابعات الإيصالات وأدراج النقد وماسحات الباركود وشاشة العميل تعمل مباشرة من "
+"المتصفح. اضبطها مرة على كل نقطة بيع — أو تخطَّ ذلك وستُطبع الإيصالات من "
+"نافذة الطباعة العادية."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Receipt printer & cash drawer"
+msgstr "طابعة الإيصالات ودرج النقد"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "USB, Bluetooth-serial or network (LAN) thermal printers."
+msgstr "طابعات حرارية عبر USB أو Bluetooth أو الشبكة (LAN)."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Print a test receipt"
+msgstr "طباعة إيصال تجريبي"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Check the printer you just connected."
+msgstr "تحقق من الطابعة التي وصلتها للتو."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Most USB scanners work without any setup."
+msgstr "تعمل معظم ماسحات USB دون أي إعداد."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Kitchen printer & alarm"
+msgstr "طابعة المطبخ والتنبيه"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Print order tickets in the kitchen and ring on new orders."
+msgstr "اطبع تذاكر الطلبات في المطبخ مع تنبيه عند الطلبات الجديدة."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Finish setup"
+msgstr "إنهاء الإعداد"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "You're all set!"
+msgstr "كل شيء جاهز!"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Your business is ready. Here is what most owners do next:"
+msgstr "نشاطك جاهز. هذا ما يفعله معظم المالكين بعد ذلك:"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Open the POS"
+msgstr "افتح نقطة البيع"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Go to the dashboard"
+msgstr "اذهب إلى لوحة التحكم"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Make your first sale."
+msgstr "أجرِ أول عملية بيع."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Invite your team"
+msgstr "ادعُ فريقك"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Cashiers, waiters and accountants with their own logins."
+msgstr "كاشير ونُدُل ومحاسبون بحسابات دخول خاصة."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Business settings"
+msgstr "إعدادات النشاط"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Logo, address, VAT and currency."
+msgstr "الشعار والعنوان والضريبة والعملة."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Sent to the printer."
+msgstr "أُرسل إلى الطابعة."
+
 #: templates/webapp/pos.html
 msgid "Point of Sale"
 msgstr "نقطة البيع"
@@ -1650,10 +1923,6 @@ msgstr ""
 "القسائم والبيع الآجل تحتاج إلى إنترنت."
 
 #: templates/webapp/pos.html
-msgid "Back"
-msgstr "رجوع"
-
-#: templates/webapp/pos.html
 msgid "Complete Sale"
 msgstr "إتمام البيع"
 
@@ -1700,10 +1969,6 @@ msgstr "نفد"
 #: templates/webapp/pos.html
 msgid "each"
 msgstr "للوحدة"
-
-#: templates/webapp/pos.html
-msgid "Remove"
-msgstr "إزالة"
 
 #: templates/webapp/pos.html
 msgid "added"
@@ -2326,10 +2591,6 @@ msgstr "1 · نشاطك التجاري"
 #: templates/webapp/public/signup.html
 msgid "Business type"
 msgstr "نوع النشاط"
-
-#: templates/webapp/public/signup.html
-msgid "Business name"
-msgstr "اسم النشاط التجاري"
 
 #: templates/webapp/public/signup.html
 msgid "e.g. Spice Garden"
@@ -3511,6 +3772,10 @@ msgstr "نسيتها؟ استخدم «نسيت كلمة المرور» في صف
 msgid "Reset password by email"
 msgstr "إعادة تعيين كلمة المرور بالبريد"
 
+#: templates/webapp/settings.html
+msgid "Open the setup wizard"
+msgstr "افتح معالج الإعداد"
+
 #: apps/finance/models.py
 msgid "Received from customer"
 msgstr "مستلم من عميل"
@@ -3674,6 +3939,22 @@ msgstr "تمت إضافة الأصل وتسجيله في الدفاتر."
 #: apps/webapp/finance_views.py
 msgid "Asset disposed and the gain or loss recorded."
 msgstr "تم استبعاد الأصل وتسجيل الربح أو الخسارة."
+
+#: apps/webapp/onboarding_views.py
+msgid "Check the price and stock for “%(name)s”."
+msgstr "تحقق من السعر والمخزون لـ «%(name)s»."
+
+#: apps/webapp/onboarding_views.py
+msgid "The code %(code)s is already used by another product."
+msgstr "الرمز %(code)s مستخدم لمنتج آخر."
+
+#: apps/webapp/onboarding_views.py
+msgid "Setup skipped. You can come back to it any time from Settings."
+msgstr "تم تخطي الإعداد. يمكنك العودة إليه في أي وقت من الإعدادات."
+
+#: apps/webapp/onboarding_views.py
+msgid "Added %(items)s items and %(tables)s tables."
+msgstr "تمت إضافة %(items)s صنفًا و%(tables)s طاولة."
 
 #: apps/webapp/views.py
 msgid "Sale %(number)s booked as invoice %(invoice)s."

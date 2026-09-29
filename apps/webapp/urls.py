@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import device_views, finance_views, offline_views, public_views, security_views, share_views, views
+from . import device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -111,6 +111,8 @@ urlpatterns = [
     path("pos/checkout/", views.pos_checkout, name="pos_checkout"),
     path("pos/offline/sync/", views.pos_offline_sync, name="pos_offline_sync"),
     path("pos/offline/sales/", views.pos_offline_sales, name="pos_offline_sales"),
+    path("setup/", onboarding_views.setup_wizard, name="setup"),
+    path("setup/<slug:step>/", onboarding_views.setup_wizard, name="setup"),
 
     path("returns/", views.sales_return_list, name="sales_return_list"),
     path("returns/lookup/", views.sales_return_lookup, name="sales_return_lookup"),

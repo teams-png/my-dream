@@ -3,6 +3,13 @@
 {% block title %}{% translate "Overview" %}{% endblock %}
 {% block heading %}{% translate "Overview" %}{% endblock %}
 {% block content %}
+{% if show_setup %}
+<a href="{% url 'webapp:setup' step='business' %}" class="card" style="display:flex;align-items:center;gap:16px;margin-bottom:18px;text-decoration:none;color:inherit;border-left:4px solid var(--accent)">
+  <span style="font-size:32px">🚀</span>
+  <span style="flex:1"><strong style="font-size:16px">{% translate "Finish setting up your business" %}</strong><br><span style="color:var(--ink-soft)">{% translate "Add your logo, first products and printer in 3 quick steps." %}</span></span>
+  <span class="btn">{% translate "Continue setup" %} →</span>
+</a>
+{% endif %}
 {% if subscription %}
   {% if subscription_days_left < 0 %}
   <div class="card" style="border-left:4px solid var(--danger); margin-bottom:18px;">

@@ -44,6 +44,9 @@ class Company(models.Model):
     phone = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
     logo = models.ImageField(upload_to="company_logos/", blank=True, null=True)
+    onboarding_completed_at = models.DateTimeField(
+        null=True, blank=True, help_text="Set when the owner finishes or skips the first-run setup wizard.",
+    )
     default_currency = models.CharField(max_length=3, default="QAR")
     fiscal_year_start_month = models.PositiveSmallIntegerField(default=1)
     is_active = models.BooleanField(default=True)  # False = archived, never hard-deleted

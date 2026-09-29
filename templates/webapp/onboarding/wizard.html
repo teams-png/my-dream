@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Set up your business" %}{% endblock %}
+{% block heading %}{% translate "Set up your business" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/onboarding.css' %}">
+<div class="ob g-{{ group }}">
+  {% if step != "done" %}
+  <ol class="ob-steps">
+    <li class="{% if step == 'business' %}on{% else %}did{% endif %}">{% translate "Your business" %}</li>
+    <li class="{% if step == 'catalog' %}on{% elif step == 'devices' %}did{% endif %}">{% if group == "restaurant" %}{% translate "Menu & tables" %}{% elif group == "retail" %}{% translate "Products" %}{% else %}{% translate "Services" %}{% endif %}</li>
+    <li class="{% if step == 'devices' %}on{% endif %}">{% translate "Printer & devices" %}</li>
+  </ol>
+  {% endif %}
+
+  {% if step == "business" %}
+  <form class="ob-card" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <h2>👋 {% translate "Welcome! Let's get you ready to sell." %}</h2>
+    <p class="lead">{% translate "Three quick steps. These details appear on your receipts and invoices — you can change them later in Settings." %}</p>
+    {{ form.non_field_errors }}
+    <div class="ob-grid">
+      <div class="full"><label for="id_name">{% translate "Business name" %}</label>{{ form.name }}{{ form.name.errors }}</div>
+      <div class="full ob-logo">
+        <span class="pv" id="logoPv">{% if form.instance.logo %}<img src="{{ form.instance.logo.url }}" alt="">{% else %}🏪{% endif %}</span>
+        <div><label for="id_logo">{% translate "Logo (optional)" %}</label><input type="file" name="logo" id="id_logo" accept="image/*">{{ form.logo.errors }}</div>
+      </div>
+      <div class="full"><label for="id_address">{% translate "Address" %}</label>{{ form.address }}{{ form.address.errors }}</div>
+      <div><label for="id_phone">{% translate "Phone" %}</label>{{ form.phone }}{{ form.phone.errors }}</div>
+      <div><label for="id_vat_number">{% translate "VAT / tax number (optional)" %}</label>{{ form.vat_number }}{{ form.vat_number.errors }}</div>
+      <div><label for="id_default_currency">{% translate "Currency" %}</label>{{ form.default_currency }}{{ form.default_currency.errors }}</div>
+    </div>
+    <div class="ob-foot">
+      <button class="ob-link" type="submit" name="skip_all" value="1" formnovalidate>{% translate "Skip setup for now" %}</button>
+      <span class="grow"></span>
+      <button class="ob-btn go" type="submit">{% translate "Save & continue" %} →</button>
+    </div>
+  </form>
+
+  {% elif step == "catalog" %}
+  <form class="ob-card" method="post">{% csrf_token %}
+    {% if group == "restaurant" %}
+      <h2>🍽️ {% translate "Add your menu and tables" %}</h2>
+      <p class="lead">{% translate "Type a few dishes now — you can add photos, add-ons and more later. Or load 20 sample dishes to try the POS straight away." %}</p>
+    {% elif group == "retail" %}
+      <h2>🛍️ {% translate "Add your first products" %}</h2>
+      <p class="lead">{% translate "Type a few products with their opening stock. Leave the barcode empty and we will create a code. You can import a full list from Excel later." %}</p>
+    {% else %}
+      <h2>🧾 {% translate "Add the services you sell" %}</h2>
+      <p class="lead">{% translate "Add a few services or packages with their prices so you can bill customers right away." %}</p>
+    {% endif %}
+    {% if product_count %}<div class="ob-have">✓ {% translate "Items already added:" %} {{ product_count }}{% if group == "restaurant" and table_count %} · {% translate "Tables:" %} {{ table_count }}{% endif %}</div>{% endif %}
+
+    <div class="ob-rows" id="obRows">
+      <div class="ob-row head"><span class="c-name">{% translate "Name" %}</span><span>{% translate "Price" %}</span><span class="c-stock">{% translate "Opening stock" %}</span><span class="c-code">{% translate "Barcode / code" %}</span><span>{% translate "Category" %}</span><span></span></div>
+      {% for row in rows %}
+      <div class="ob-row">
+        <input class="c-name" name="item_name" maxlength="255" placeholder="{% if group == 'restaurant' %}{% translate 'e.g. Chicken Biryani' %}{% elif group == 'retail' %}{% translate 'e.g. Mineral Water 1.5L' %}{% else %}{% translate 'e.g. Consultation' %}{% endif %}" aria-label="{% translate 'Name' %}" value="{{ row.name|default:'' }}">
+        <input name="item_price" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="{% translate 'Price' %}" value="{{ row.price|default:'' }}">
+        <input class="c-stock" name="item_stock" type="number" min="0" step="1" inputmode="numeric" placeholder="0" aria-label="{% translate 'Opening stock' %}" value="{{ row.stock|default:'' }}">
+        <input class="c-code" name="item_code" maxlength="50" placeholder="{% translate 'Optional' %}" aria-label="{% translate 'Barcode / code' %}" value="{{ row.code|default:'' }}">
+        <input name="item_category" maxlength="100" list="obCats" placeholder="{% translate 'e.g. Drinks' %}" aria-label="{% translate 'Category' %}" value="{{ row.category|default:'' }}">
+        <button type="button" data-remove aria-label="{% translate 'Remove' %}">✕</button>
+      </div>
+      {% endfor %}
+    </div>
+    <datalist id="obCats">{% if group == "restaurant" %}<option value="Starters"><option value="Main course"><option value="Drinks"><option value="Desserts">{% elif group == "retail" %}<option value="Drinks"><option value="Snacks"><option value="Groceries"><option value="Accessories">{% else %}<option value="Services"><option value="Packages">{% endif %}</datalist>
+    <div class="ob-tools">
+      <button class="ob-chip" type="button" id="obAddRow">＋ {% translate "Add another row" %}</button>
+      <button class="ob-chip" type="button" id="obExamples">✨ {% translate "Fill with examples" %}</button>
+    </div>
+
+    {% if group == "restaurant" %}
+    <div class="ob-box"><span class="ico">🪑</span><div class="txt"><b>{% translate "How many tables do you have?" %}</b><small>{% translate "We create T1, T2, … in a “Main hall” area. Rename them or add areas later." %}</small></div><input name="tables" type="number" min="0" max="100" style="width:110px" placeholder="0" aria-label="{% translate 'Number of tables' %}"></div>
+    {% if not menu_count %}<label class="ob-box" style="cursor:pointer"><span class="ico">🍛</span><span class="txt"><b>{% translate "Load 20 sample dishes" %}</b><small>{% translate "With photos and prices, so you can try the POS right away. Edit or delete them later." %}</small></span><input type="checkbox" name="sample_menu" value="1" style="width:22px;height:22px"></label>{% endif %}
+    {% endif %}
+
+    <div class="ob-foot">
+      <a class="ob-btn" href="{% url 'webapp:setup' step='business' %}">← {% translate "Back" %}</a>
+      <span class="grow"></span>
+      <a class="ob-link" href="{% url 'webapp:setup' step='devices' %}">{% translate "Skip this step" %}</a>
+      <button class="ob-btn go" type="submit">{% translate "Save & continue" %} →</button>
+    </div>
+  </form>
+
+  {% elif step == "devices" %}
+  <form class="ob-card" method="post">{% csrf_token %}
+    <h2>🖨️ {% translate "Connect your printer and devices" %}</h2>
+    <p class="lead">{% translate "Receipt printers, cash drawers, barcode scanners and a customer screen work straight from the browser. Set them up once on each till — or skip, and receipts print with the normal print dialog." %}</p>
+    <div class="ob-dev">
+      <a href="{% url 'webapp:devices' %}" target="_blank" rel="noopener"><span class="ico">🧾</span><b>{% translate "Receipt printer & cash drawer" %}</b><small>{% translate "USB, Bluetooth-serial or network (LAN) thermal printers." %}</small></a>
+      <button type="button" id="obTest"><span class="ico">✅</span><b>{% translate "Print a test receipt" %}</b><small id="obTestMsg">{% translate "Check the printer you just connected." %}</small></button>
+      <a href="{% url 'webapp:devices' %}#scanner" target="_blank" rel="noopener"><span class="ico">🔫</span><b>{% translate "Barcode scanner" %}</b><small>{% translate "Most USB scanners work without any setup." %}</small></a>
+      {% if group == "restaurant" %}<a href="{% url 'webapp:devices' %}" target="_blank" rel="noopener"><span class="ico">👨‍🍳</span><b>{% translate "Kitchen printer & alarm" %}</b><small>{% translate "Print order tickets in the kitchen and ring on new orders." %}</small></a>{% endif %}
+    </div>
+    <div class="ob-foot">
+      <a class="ob-btn" href="{% url 'webapp:setup' step='catalog' %}">← {% translate "Back" %}</a>
+      <span class="grow"></span>
+      <button class="ob-btn go" type="submit">{% translate "Finish setup" %} ✓</button>
+    </div>
+  </form>
+
+  {% else %}
+  <div class="ob-card ob-done">
+    <div class="big">✓</div>
+    <h2>{% translate "You're all set!" %}</h2>
+    <p class="lead">{% translate "Your business is ready. Here is what most owners do next:" %}</p>
+    <div class="ob-next ob-dev">
+      <a href="{% url pos_url %}"><span class="ico">{% if group == "restaurant" %}🍽️{% elif group == "retail" %}🛒{% else %}📊{% endif %}</span><b>{% if group == "restaurant" or group == "retail" %}{% translate "Open the POS" %}{% else %}{% translate "Go to the dashboard" %}{% endif %}</b><small>{% translate "Make your first sale." %}</small></a>
+      <a href="{% url 'webapp:staff_list' %}"><span class="ico">👥</span><b>{% translate "Invite your team" %}</b><small>{% translate "Cashiers, waiters and accountants with their own logins." %}</small></a>
+      <a href="{% url 'webapp:company_settings' %}"><span class="ico">⚙️</span><b>{% translate "Business settings" %}</b><small>{% translate "Logo, address, VAT and currency." %}</small></a>
+    </div>
+  </div>
+  <div class="ob-confetti" id="obConfetti" aria-hidden="true"></div>
+  {% endif %}
+</div>
+<script src="{% static 'js/devices.js' %}"></script>
+<script>
+(function(){
+  const logo=document.getElementById('id_logo');
+  if(logo)logo.addEventListener('change',()=>{const f=logo.files[0];if(!f)return;const pv=document.getElementById('logoPv');pv.innerHTML='';const img=new Image();img.src=URL.createObjectURL(f);pv.appendChild(img)});
+  const rows=document.getElementById('obRows');
+  if(rows){
+    const blank=rows.querySelector('.ob-row:not(.head)').cloneNode(true);
+    const add=()=>{if(rows.querySelectorAll('.ob-row:not(.head)').length>={{ 20 }})return null;const r=blank.cloneNode(true);r.querySelectorAll('input').forEach(i=>i.value='');rows.appendChild(r);return r};
+    document.getElementById('obAddRow').addEventListener('click',()=>{const r=add();if(r)r.querySelector('input').focus()});
+    rows.addEventListener('click',e=>{if(e.target.closest('[data-remove]')){const r=e.target.closest('.ob-row');if(rows.querySelectorAll('.ob-row:not(.head)').length>1)r.remove();else r.querySelectorAll('input').forEach(i=>i.value='')}});
+    const EX={
+      restaurant:[["Chicken Biryani","28","","","Main course"],["Paneer Tikka","22","","","Starters"],["Fresh Lime Juice","8","","","Drinks"],["Chicken Shawarma","12","","","Main course"],["Kunafa","18","","","Desserts"]],
+      retail:[["Mineral Water 1.5L","1.50","48","","Drinks"],["Orange Juice 1L","8.00","24","","Drinks"],["Potato Chips","3.50","60","","Snacks"],["Basmati Rice 5kg","32.00","20","","Groceries"],["Phone Charger","25.00","15","","Accessories"]],
+      service:[["Consultation","150","","","Services"],["Monthly package","900","","","Packages"],["Follow-up visit","80","","","Services"]]
+    };
+    document.getElementById('obExamples').addEventListener('click',()=>{
+      const ex=EX['{{ group }}']||EX.service;
+      let list=[...rows.querySelectorAll('.ob-row:not(.head)')];
+      ex.forEach((vals,i)=>{let r=list[i]||add();if(!r)return;const ins=r.querySelectorAll('input');if(ins[0].value)return;vals.forEach((v,j)=>{ins[j].value=v})});
+    });
+  }
+  const test=document.getElementById('obTest');
+  if(test)test.addEventListener('click',()=>{const m=document.getElementById('obTestMsg');if(!window.Devices){m.textContent='—';return}Devices.testPrint('receipt').then(()=>{m.textContent='✓ {% translate "Sent to the printer." %}'}).catch(e=>{m.textContent=e.message})});
+  const conf=document.getElementById('obConfetti');
+  if(conf&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const colors=['#16a34a','#2563eb','#f59e0b','#e11d48','#7c3aed'];for(let i=0;i<70;i++){const c=document.createElement('i');c.style.left=Math.random()*100+'vw';c.style.background=colors[i%colors.length];c.style.animationDelay=Math.random()*.9+'s';conf.appendChild(c)}setTimeout(()=>conf.remove(),4000)}
+})();
+</script>
+{% endblock %}

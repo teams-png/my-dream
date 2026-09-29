@@ -367,6 +367,9 @@ def dashboard(request):
         "low_stock_count": low_stock_count,
         "recent_invoices": recent_invoices,
     })
+    role = getattr(request, "role", None)
+    context["show_setup"] = company.onboarding_completed_at is None and (
+        role is None or role.permissions.filter(permission__code="tenants.manage_roles").exists())
     return render(request, "webapp/dashboard.html", context)
 
 

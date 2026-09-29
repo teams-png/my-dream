@@ -32,7 +32,7 @@ def test_landing_for_visitors_dashboard_for_users(client):
 
 def test_signup_creates_company_owner_and_trial(client):
     resp = client.post(reverse("webapp:signup"), _data())
-    assert resp.status_code == 302 and resp.url == reverse("webapp:dashboard")
+    assert resp.status_code == 302 and resp.url == reverse("webapp:setup", kwargs={"step": "business"})
     user = User.objects.get(email="anu@spice.test")
     company = Company.objects.get(name="Spice Garden")
     assert company.default_currency == "QAR" and company.country == "Qatar"

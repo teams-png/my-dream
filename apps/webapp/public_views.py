@@ -147,7 +147,7 @@ def signup(request):
                 login(request, user, backend="django.contrib.auth.backends.ModelBackend")
                 request.session["active_company_id"] = company.id
                 messages.success(request, f"Welcome to BookPilot! Your {TRIAL_DAYS}-day free trial has started.")
-                return redirect("webapp:dashboard")
+                return redirect("webapp:setup", step="business")
     return render(request, "webapp/public/signup.html", {
         "form": form, "plans": _plans(), "trial_days": TRIAL_DAYS, "popular_types": POPULAR_TYPES,
     })

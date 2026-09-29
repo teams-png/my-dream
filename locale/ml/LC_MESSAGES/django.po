@@ -526,6 +526,18 @@ msgid "Your change"
 msgstr "നിങ്ങളുടെ ബാക്കി"
 
 #: templates/webapp/dashboard.html
+msgid "Finish setting up your business"
+msgstr "നിങ്ങളുടെ ബിസിനസ് സെറ്റപ്പ് പൂർത്തിയാക്കുക"
+
+#: templates/webapp/dashboard.html
+msgid "Add your logo, first products and printer in 3 quick steps."
+msgstr "ലോഗോ, ആദ്യ ഉൽപ്പന്നങ്ങൾ, പ്രിന്റർ — 3 എളുപ്പ ഘട്ടങ്ങളിൽ ചേർക്കുക."
+
+#: templates/webapp/dashboard.html
+msgid "Continue setup"
+msgstr "സെറ്റപ്പ് തുടരുക"
+
+#: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
 msgstr "നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ കാലാവധി കഴിഞ്ഞു."
 
@@ -1472,6 +1484,273 @@ msgstr "പുതിയ ആളാണോ?"
 msgid "Start a free trial"
 msgstr "സൗജന്യ ട്രയൽ തുടങ്ങുക"
 
+#: templates/webapp/onboarding/wizard.html
+msgid "Set up your business"
+msgstr "നിങ്ങളുടെ ബിസിനസ് സെറ്റപ്പ് ചെയ്യുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Your business"
+msgstr "നിങ്ങളുടെ ബിസിനസ്"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Menu & tables"
+msgstr "മെനു & ടേബിളുകൾ"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Printer & devices"
+msgstr "പ്രിന്റർ & ഉപകരണങ്ങൾ"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Welcome! Let's get you ready to sell."
+msgstr "സ്വാഗതം! വിൽപ്പനയ്ക്ക് തയ്യാറാകാം."
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"Three quick steps. These details appear on your receipts and invoices — you "
+"can change them later in Settings."
+msgstr ""
+"മൂന്ന് എളുപ്പ ഘട്ടങ്ങൾ. ഈ വിവരങ്ങൾ രസീതുകളിലും ഇൻവോയ്സുകളിലും വരും — "
+"പിന്നീട് Settings-ൽ മാറ്റാം."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Business name"
+msgstr "ബിസിനസിന്റെ പേര്"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Logo (optional)"
+msgstr "ലോഗോ (ഓപ്ഷണൽ)"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Address"
+msgstr "വിലാസം"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Phone"
+msgstr "ഫോൺ"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "VAT / tax number (optional)"
+msgstr "VAT / ടാക്സ് നമ്പർ (ഓപ്ഷണൽ)"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Currency"
+msgstr "കറൻസി"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Skip setup for now"
+msgstr "ഇപ്പോൾ സെറ്റപ്പ് ഒഴിവാക്കുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Save & continue"
+msgstr "സേവ് ചെയ്ത് തുടരുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Add your menu and tables"
+msgstr "മെനുവും ടേബിളുകളും ചേർക്കുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"Type a few dishes now — you can add photos, add-ons and more later. Or load "
+"20 sample dishes to try the POS straight away."
+msgstr ""
+"ഇപ്പോൾ കുറച്ച് വിഭവങ്ങൾ ടൈപ്പ് ചെയ്യുക — ഫോട്ടോകളും ആഡ്-ഓണുകളും പിന്നീട് "
+"ചേർക്കാം. അല്ലെങ്കിൽ POS ഉടൻ പരീക്ഷിക്കാൻ 20 സാമ്പിൾ വിഭവങ്ങൾ ലോഡ് ചെയ്യുക."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Add your first products"
+msgstr "ആദ്യ ഉൽപ്പന്നങ്ങൾ ചേർക്കുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"Type a few products with their opening stock. Leave the barcode empty and we"
+" will create a code. You can import a full list from Excel later."
+msgstr ""
+"കുറച്ച് ഉൽപ്പന്നങ്ങൾ ഓപ്പണിംഗ് സ്റ്റോക്കോടെ ടൈപ്പ് ചെയ്യുക. ബാർകോഡ് "
+"ഒഴിച്ചിട്ടാൽ ഞങ്ങൾ ഒരു കോഡ് ഉണ്ടാക്കും. മുഴുവൻ ലിസ്റ്റ് പിന്നീട് Excel-ൽ "
+"നിന്ന് ഇമ്പോർട്ട് ചെയ്യാം."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Add the services you sell"
+msgstr "നിങ്ങൾ നൽകുന്ന സേവനങ്ങൾ ചേർക്കുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"Add a few services or packages with their prices so you can bill customers "
+"right away."
+msgstr "ഉടൻ ബിൽ ചെയ്യാൻ കുറച്ച് സേവനങ്ങളോ പാക്കേജുകളോ വിലയോടെ ചേർക്കുക."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Items already added:"
+msgstr "ഇതിനകം ചേർത്ത ഇനങ്ങൾ:"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Tables:"
+msgstr "ടേബിളുകൾ:"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Opening stock"
+msgstr "ഓപ്പണിംഗ് സ്റ്റോക്ക്"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Barcode / code"
+msgstr "ബാർകോഡ് / കോഡ്"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "e.g. Chicken Biryani"
+msgstr "ഉദാ: ചിക്കൻ ബിരിയാണി"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "e.g. Mineral Water 1.5L"
+msgstr "ഉദാ: മിനറൽ വാട്ടർ 1.5L"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "e.g. Consultation"
+msgstr "ഉദാ: കൺസൾട്ടേഷൻ"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Optional"
+msgstr "ഓപ്ഷണൽ"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "e.g. Drinks"
+msgstr "ഉദാ: പാനീയങ്ങൾ"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Remove"
+msgstr "നീക്കം ചെയ്യുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Add another row"
+msgstr "മറ്റൊരു വരി ചേർക്കുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Fill with examples"
+msgstr "ഉദാഹരണങ്ങൾ നിറയ്ക്കുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "How many tables do you have?"
+msgstr "എത്ര ടേബിളുകൾ ഉണ്ട്?"
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"We create T1, T2, … in a “Main hall” area. Rename them or add areas later."
+msgstr ""
+"“Main hall” ഏരിയയിൽ T1, T2, … ഉണ്ടാക്കും. പേര് മാറ്റാനോ ഏരിയകൾ ചേർക്കാനോ "
+"പിന്നീട് കഴിയും."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Number of tables"
+msgstr "ടേബിളുകളുടെ എണ്ണം"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Load 20 sample dishes"
+msgstr "20 സാമ്പിൾ വിഭവങ്ങൾ ലോഡ് ചെയ്യുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"With photos and prices, so you can try the POS right away. Edit or delete "
+"them later."
+msgstr ""
+"ഫോട്ടോയും വിലയും സഹിതം, POS ഉടൻ പരീക്ഷിക്കാൻ. പിന്നീട് എഡിറ്റ് ചെയ്യുകയോ "
+"ഡിലീറ്റ് ചെയ്യുകയോ ചെയ്യാം."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Back"
+msgstr "തിരികെ"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Skip this step"
+msgstr "ഈ ഘട്ടം ഒഴിവാക്കുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Connect your printer and devices"
+msgstr "പ്രിന്ററും ഉപകരണങ്ങളും കണക്ട് ചെയ്യുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid ""
+"Receipt printers, cash drawers, barcode scanners and a customer screen work "
+"straight from the browser. Set them up once on each till — or skip, and "
+"receipts print with the normal print dialog."
+msgstr ""
+"രസീത് പ്രിന്റർ, ക്യാഷ് ഡ്രോയർ, ബാർകോഡ് സ്കാനർ, കസ്റ്റമർ സ്ക്രീൻ എന്നിവ "
+"ബ്രൗസറിൽ നിന്ന് നേരിട്ട് പ്രവർത്തിക്കും. ഓരോ കൗണ്ടറിലും ഒരിക്കൽ സെറ്റ് "
+"ചെയ്യുക — അല്ലെങ്കിൽ ഒഴിവാക്കിയാൽ സാധാരണ പ്രിന്റ് വിൻഡോയിൽ രസീത് പ്രിന്റ് "
+"ചെയ്യും."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Receipt printer & cash drawer"
+msgstr "രസീത് പ്രിന്റർ & ക്യാഷ് ഡ്രോയർ"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "USB, Bluetooth-serial or network (LAN) thermal printers."
+msgstr ""
+"USB, Bluetooth-serial അല്ലെങ്കിൽ നെറ്റ്‌വർക്ക് (LAN) തെർമൽ പ്രിന്ററുകൾ."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Print a test receipt"
+msgstr "ടെസ്റ്റ് രസീത് പ്രിന്റ് ചെയ്യുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Check the printer you just connected."
+msgstr "ഇപ്പോൾ കണക്ട് ചെയ്ത പ്രിന്റർ പരിശോധിക്കുക."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Most USB scanners work without any setup."
+msgstr "മിക്ക USB സ്കാനറുകളും സെറ്റപ്പ് ഇല്ലാതെ പ്രവർത്തിക്കും."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Kitchen printer & alarm"
+msgstr "കിച്ചൺ പ്രിന്റർ & അലാറം"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Print order tickets in the kitchen and ring on new orders."
+msgstr ""
+"കിച്ചണിൽ ഓർഡർ ടിക്കറ്റ് പ്രിന്റ് ചെയ്യുക, പുതിയ ഓർഡറിൽ അലാറം മുഴക്കുക."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Finish setup"
+msgstr "സെറ്റപ്പ് പൂർത്തിയാക്കുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "You're all set!"
+msgstr "എല്ലാം തയ്യാർ!"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Your business is ready. Here is what most owners do next:"
+msgstr "നിങ്ങളുടെ ബിസിനസ് തയ്യാറാണ്. മിക്ക ഉടമകളും അടുത്തതായി ചെയ്യുന്നത്:"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Open the POS"
+msgstr "POS തുറക്കുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Go to the dashboard"
+msgstr "ഡാഷ്ബോർഡിലേക്ക് പോകുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Make your first sale."
+msgstr "ആദ്യ വിൽപ്പന നടത്തുക."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Invite your team"
+msgstr "ടീമിനെ ക്ഷണിക്കുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Cashiers, waiters and accountants with their own logins."
+msgstr "സ്വന്തം ലോഗിനുള്ള കാഷ്യർമാർ, വെയ്റ്റർമാർ, അക്കൗണ്ടന്റുമാർ."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Business settings"
+msgstr "ബിസിനസ് ക്രമീകരണങ്ങൾ"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Logo, address, VAT and currency."
+msgstr "ലോഗോ, വിലാസം, VAT, കറൻസി."
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Sent to the printer."
+msgstr "പ്രിന്ററിലേക്ക് അയച്ചു."
+
 #: templates/webapp/pos.html
 msgid "Point of Sale"
 msgstr "പോയിന്റ് ഓഫ് സെയിൽ"
@@ -1664,10 +1943,6 @@ msgstr ""
 "ഇന്റർനെറ്റ് വേണം."
 
 #: templates/webapp/pos.html
-msgid "Back"
-msgstr "തിരികെ"
-
-#: templates/webapp/pos.html
 msgid "Complete Sale"
 msgstr "വിൽപ്പന പൂർത്തിയാക്കുക"
 
@@ -1715,10 +1990,6 @@ msgstr "തീർന്നു"
 #: templates/webapp/pos.html
 msgid "each"
 msgstr "ഒന്നിന്"
-
-#: templates/webapp/pos.html
-msgid "Remove"
-msgstr "നീക്കം ചെയ്യുക"
 
 #: templates/webapp/pos.html
 msgid "added"
@@ -2351,10 +2622,6 @@ msgstr "1 · നിങ്ങളുടെ ബിസിനസ്"
 #: templates/webapp/public/signup.html
 msgid "Business type"
 msgstr "ബിസിനസ് തരം"
-
-#: templates/webapp/public/signup.html
-msgid "Business name"
-msgstr "ബിസിനസിന്റെ പേര്"
 
 #: templates/webapp/public/signup.html
 msgid "e.g. Spice Garden"
@@ -3548,6 +3815,10 @@ msgstr "മറന്നോ? ലോഗിൻ പേജിലെ “പാസ്�
 msgid "Reset password by email"
 msgstr "ഇമെയിൽ വഴി പാസ്‌വേഡ് റീസെറ്റ്"
 
+#: templates/webapp/settings.html
+msgid "Open the setup wizard"
+msgstr "സെറ്റപ്പ് വിസാർഡ് തുറക്കുക"
+
 #: apps/finance/models.py
 msgid "Received from customer"
 msgstr "കസ്റ്റമറിൽ നിന്ന് ലഭിച്ചത്"
@@ -3711,6 +3982,23 @@ msgstr "ആസ്തി ചേർത്ത് അക്കൗണ്ട്സി�
 #: apps/webapp/finance_views.py
 msgid "Asset disposed and the gain or loss recorded."
 msgstr "ആസ്തി ഒഴിവാക്കി, ലാഭമോ നഷ്ടമോ രേഖപ്പെടുത്തി."
+
+#: apps/webapp/onboarding_views.py
+msgid "Check the price and stock for “%(name)s”."
+msgstr "“%(name)s”-ന്റെ വിലയും സ്റ്റോക്കും പരിശോധിക്കുക."
+
+#: apps/webapp/onboarding_views.py
+msgid "The code %(code)s is already used by another product."
+msgstr "%(code)s എന്ന കോഡ് മറ്റൊരു ഉൽപ്പന്നം ഉപയോഗിക്കുന്നുണ്ട്."
+
+#: apps/webapp/onboarding_views.py
+msgid "Setup skipped. You can come back to it any time from Settings."
+msgstr ""
+"സെറ്റപ്പ് ഒഴിവാക്കി. എപ്പോൾ വേണമെങ്കിലും Settings-ൽ നിന്ന് തിരികെ വരാം."
+
+#: apps/webapp/onboarding_views.py
+msgid "Added %(items)s items and %(tables)s tables."
+msgstr "%(items)s ഇനങ്ങളും %(tables)s ടേബിളുകളും ചേർത്തു."
 
 #: apps/webapp/views.py
 msgid "Sale %(number)s booked as invoice %(invoice)s."

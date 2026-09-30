@@ -6,7 +6,7 @@
 <div class="hr">
 {% include "webapp/accounts/_tabs.html" %}
 <form method="get" class="hr-actions no-print" style="margin-bottom:8px"><select class="hr-in" style="width:auto" onchange="location=this.value">{% for a in accounts %}<option value="{% url 'webapp:acc_ledger' a.id %}?period={{ preset }}" {% if a.id == account.id %}selected{% endif %}>{{ a.code }} · {{ a.name }}</option>{% endfor %}</select></form>
-{% include "webapp/accounts/_period.html" %}
+{% include "webapp/accounts/_period.html" with excel=1 %}
 <div class="hr-kpis">
   <div class="hr-kpi"><small>{% translate "Opening balance" %}</small><b>{{ opening|floatformat:2 }}</b></div>
   <div class="hr-kpi"><small>{% translate "Debit" %}</small><b>{{ total_debit|floatformat:2 }}</b></div>

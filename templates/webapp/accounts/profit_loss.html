@@ -5,7 +5,7 @@
 {% block content %}
 <div class="hr">
 {% include "webapp/accounts/_tabs.html" %}
-{% include "webapp/accounts/_period.html" %}
+{% include "webapp/accounts/_period.html" with excel=1 %}
 <div class="hr-kpis">
   <div class="hr-kpi"><small>{% translate "Income" %}</small><b>{{ pl.total_income|floatformat:2 }}</b></div>
   <div class="hr-kpi"><small>{% translate "Gross profit" %}</small><b>{{ gross_profit|floatformat:2 }}</b></div>

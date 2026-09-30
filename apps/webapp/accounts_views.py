@@ -20,6 +20,7 @@ from apps.accounting import services as acc
 from apps.accounting.models import Account, JournalEntry, JournalLine
 from apps.reports import services as reports
 
+from . import xlsx
 from .views import require_permission
 
 VIEW = "accounting.view_reports"
@@ -127,6 +128,15 @@ def profit_loss(request):
     pl = acc.profit_and_loss(company, date_from=ctx["start"], date_to=ctx["end"])
     cogs = sum((b for a, b in pl["expenses"] if a.code == "5000"), ZERO)
     gross = pl["total_income"] - cogs
+    if xlsx.wants(request):
+        period = f"{ctx['start'] or ''} – {ctx['end']}"
+        rows = [[company.name], [_("Profit & Loss"), period], [], [xlsx.Bold(_("Income"))]]
+        rows += [[a.code, a.name, b] for a, b in pl["income"]]
+        rows += [["", xlsx.Bold(_("Total income")), pl["total_income"]], [], [xlsx.Bold(_("Expenses"))]]
+        rows += [[a.code, a.name, b] for a, b in pl["expenses"]]
+        rows += [["", xlsx.Bold(_("Total expenses")), pl["total_expense"]], [],
+                 ["", xlsx.Bold(_("Gross profit")), gross], ["", xlsx.Bold(_("Net profit")), pl["net_profit"]]]
+        return xlsx.response(f"profit-loss-{ctx['end']}", [(_("Profit & Loss"), rows, 2)])
     return render(request, "webapp/accounts/profit_loss.html", {
         **ctx, "pl": pl, "cogs": cogs, "gross_profit": gross,
         "operating": [(a, b) for a, b in pl["expenses"] if a.code != "5000"],
@@ -141,6 +151,17 @@ def balance_sheet(request):
     company = request.company
     as_of = _as_of(request)
     bs = acc.balance_sheet(company, as_of=as_of)
+    if xlsx.wants(request):
+        rows = [[company.name], [_("Balance sheet"), as_of], []]
+        for label, key, total in ((_("Assets"), "assets", "total_assets"), (_("Liabilities"), "liabilities", "total_liabilities"),
+                                  (_("Equity"), "equity", "total_equity")):
+            rows.append([xlsx.Bold(label)])
+            rows += [[a.code, a.name, b] for a, b in bs[key]]
+            if key == "equity":
+                rows.append(["", _("Profit this year"), bs["retained_earnings"]])
+            rows += [["", xlsx.Bold(_("Total")), bs[total] + (bs["retained_earnings"] if key == "equity" else 0)], []]
+        rows.append(["", xlsx.Bold(_("Liabilities + equity")), bs["total_liabilities_and_equity"]])
+        return xlsx.response(f"balance-sheet-{as_of}", [(_("Balance sheet"), rows, 2)])
     return render(request, "webapp/accounts/balance_sheet.html", {
         "bs": bs, "as_of": as_of, "balanced": bs["total_assets"] == bs["total_liabilities_and_equity"],
         "difference": bs["total_assets"] - bs["total_liabilities_and_equity"]})
@@ -162,6 +183,11 @@ def trial_balance(request):
         rows.append({"account": account, "debit": debit, "credit": credit})
         total_debit += debit
         total_credit += credit
+    if xlsx.wants(request):
+        data = [[company.name, _("Trial balance"), as_of], [_("Code"), _("Account"), _("Debit"), _("Credit")]]
+        data += [[r["account"].code, r["account"].name, r["debit"] or None, r["credit"] or None] for r in rows]
+        data.append(["", xlsx.Bold(_("Total")), total_debit, total_credit])
+        return xlsx.response(f"trial-balance-{as_of}", [(_("Trial balance"), data, 2)])
     return render(request, "webapp/accounts/trial_balance.html", {
         "rows": rows, "as_of": as_of, "total_debit": total_debit, "total_credit": total_credit,
         "balanced": total_debit == total_credit})
@@ -248,6 +274,13 @@ def ledger(request, account_id):
         rows.append({"line": line, "entry": line.journal_entry, "balance": running,
                      "source": _source_label(line.journal_entry.source_type)})
     totals = lines.aggregate(d=Sum("debit"), c=Sum("credit"))
+    if xlsx.wants(request):
+        data = [[company.name, f"{account.code} {account.name}"],
+                [_("Date"), _("Entry"), _("Details"), _("Debit"), _("Credit"), _("Balance")],
+                [start, "", _("Opening balance"), None, None, opening]]
+        data += [[r["entry"].date, r["entry"].reference or r["entry"].id, r["line"].description or r["entry"].memo or r["source"],
+                  r["line"].debit or None, r["line"].credit or None, r["balance"]] for r in rows]
+        return xlsx.response(f"ledger-{account.code}", [(account.name, data, 2)])
     return render(request, "webapp/accounts/ledger.html", {
         **ctx, "account": account, "rows": rows, "opening": opening, "closing": running,
         "total_debit": totals["d"] or ZERO, "total_credit": totals["c"] or ZERO,

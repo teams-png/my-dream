@@ -20,6 +20,7 @@ from apps.inventory import services as inv
 from apps.inventory.models import (Product, ProductBatch, ProductCategory, ProductSerial, StockCount, StockCountLine,
                                    StockMovement, Warehouse)
 
+from . import xlsx
 from .views import require_permission
 
 VIEW = "inventory.view_products"
@@ -86,6 +87,14 @@ def stock_home(request):
         if show == "out" and total > 0:
             continue
         rows.append({"p": p, "per": per, "total": total, "low": is_low, "value": max(total, ZERO) * p.cost_price})
+    if xlsx.wants(request):
+        data = [[_("Item"), _("SKU"), _("Category"), *[w.name for w in warehouses], _("Total"), _("Unit"),
+                 _("Reorder level"), _("Cost"), _("Stock value"), _("Low")]]
+        data += [[r["p"].name, r["p"].sku, getattr(r["p"].category, "name", ""), *r["per"], r["total"],
+                  getattr(r["p"].unit, "name", ""), r["p"].reorder_level, r["p"].cost_price, r["value"], bool(r["low"])]
+                 for r in rows]
+        data.append([xlsx.Bold(_("Total")), *[""] * (len(warehouses) + 7), sum((r["value"] for r in rows), ZERO)])
+        return xlsx.response(f"stock-{timezone.localdate()}", [(_("Stock"), data)])
     today = timezone.localdate()
     expiring = ProductBatch.objects.for_company(company).filter(expiry_date__isnull=False, expiry_date__lte=today + timedelta(days=30)).count()
     page = Paginator(rows, 60).get_page(request.GET.get("page"))

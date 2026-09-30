@@ -5,7 +5,7 @@
 {% block content %}
 <div class="hr">
 {% include "webapp/accounts/_tabs.html" %}
-{% include "webapp/accounts/_asof.html" %}
+{% include "webapp/accounts/_asof.html" with excel=1 %}
 {% if not balanced %}<div class="hr-card" style="background:var(--hr-warn-bg)">⚠️ {% translate "Assets and liabilities + equity differ by" %} {{ difference|floatformat:2 }}. {% translate "Check opening balances or manual entries." %}</div>{% endif %}
 <div class="hr-grid2" style="grid-template-columns:1fr 1fr">
   <div class="hr-card"><h3>🏦 {% translate "Assets" %}</h3>

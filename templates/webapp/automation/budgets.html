@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static 'css/hr.css' %}">
 <style>.bar{height:10px;border-radius:99px;background:var(--hr-line);overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;border-radius:99px;background:var(--hr-ok)}.bar i.near{background:#f59e0b}.bar i.over{background:var(--hr-bad)}</style>
 <div class="hr">
-<div class="hr-month"><a class="btn btn-secondary" href="?m={{ prev|date:'Y-m' }}">‹</a><b>{{ month|date:"F Y" }}</b><a class="btn btn-secondary" href="?m={{ next|date:'Y-m' }}">›</a><a class="btn btn-secondary" href="{% url 'webapp:expense_list' %}">{% translate "Expenses" %}</a></div>
+<div class="hr-month"><a class="btn btn-secondary" href="?m={{ prev|date:'Y-m' }}">‹</a><b>{{ month|date:"F Y" }}</b><a class="btn btn-secondary" href="?m={{ next|date:'Y-m' }}">›</a>{% include "webapp/_excel_button.html" %}<a class="btn btn-secondary" href="{% url 'webapp:expense_list' %}">{% translate "Expenses" %}</a></div>
 <div class="hr-kpis">
   <div class="hr-kpi"><small>{% translate "Total budget" %}</small><b>{{ active_company.default_currency }} {{ total_budget|floatformat:2 }}</b></div>
   <div class="hr-kpi"><small>{% translate "Spent" %}</small><b>{{ total_spent|floatformat:2 }}</b></div>

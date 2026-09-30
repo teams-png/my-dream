@@ -4138,6 +4138,12 @@ def expense_list(request):
         if company else []
     )
     total = expenses.aggregate(t=Sum("amount"))["t"] or 0
+    if company and request.GET.get("format") == "xlsx":
+        from . import xlsx
+        data = [["Date", "Category", "Description", "Paid by", "Amount"]]
+        data += [[e.date, e.category.name, e.description, e.payment_method, e.amount] for e in expenses[:20000]]
+        data.append([xlsx.Bold("Total"), "", "", "", total])
+        return xlsx.response("expenses", [("Expenses", data)])
     return render(request, "webapp/expenses/expense_list.html", {"expenses": expenses, "total": total})
 
 

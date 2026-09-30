@@ -4,7 +4,7 @@
 {% block content %}
 <div style="margin-bottom:14px;">
   <a class="btn" href="{% url 'webapp:expense_add' %}">+ Add expense</a>
-  <a class="btn btn-secondary" href="{% url 'webapp:expense_category_list' %}">Categories</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:expense_category_list' %}">Categories</a>{% include "webapp/_excel_button.html" %}
 </div>
 <div class="card" style="max-width:260px; margin-bottom:20px;">
   <div style="color:var(--ink-soft); font-size:13px;">Total expenses</div>

@@ -11,7 +11,7 @@
   <a class="hr-kpi {% if stats.out %}warn{% endif %}" href="?show=out"><small>{% translate "Out of stock" %}</small><b>{{ stats.out }}</b></a>
   <a class="hr-kpi {% if stats.expiring %}warn{% endif %}" href="{% url 'webapp:stock_batches' %}?show=expiring"><small>{% translate "Batches expiring (30 days)" %}</small><b>{{ stats.expiring }}</b></a>
 </div>
-<div class="hr-actions" style="margin-bottom:12px">{% if stats.low or stats.out %}<a class="btn" href="{% url 'webapp:po_add' %}?reorder=1">🔁 {% translate "Order low-stock items" %}</a>{% endif %}<a class="btn btn-secondary" href="{% url 'webapp:count_list' %}">📋 {% translate "Start stock taking" %}</a></div>
+<div class="hr-actions" style="margin-bottom:12px">{% include "webapp/_excel_button.html" %}{% if stats.low or stats.out %}<a class="btn" href="{% url 'webapp:po_add' %}?reorder=1">🔁 {% translate "Order low-stock items" %}</a>{% endif %}<a class="btn btn-secondary" href="{% url 'webapp:count_list' %}">📋 {% translate "Start stock taking" %}</a></div>
 <form method="get" class="hr-actions" style="margin-bottom:12px">
   <a class="hr-chip {% if show == 'all' %}ok{% endif %}" style="padding:8px 12px" href="?show=all">{% translate "All" %}</a>
   <a class="hr-chip {% if show == 'low' %}ok{% endif %}" style="padding:8px 12px" href="?show=low">{% translate "Running low" %}</a>

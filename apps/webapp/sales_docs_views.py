@@ -19,6 +19,7 @@ from apps.inventory.models import Product, Warehouse
 from apps.sales import services as sales
 from apps.sales.models import DeliveryNote, Quotation, SalesInvoice, SalesOrder
 
+from . import xlsx
 from .views import require_permission
 
 CREATE = "sales.create_invoice"
@@ -332,6 +333,12 @@ def sales_invoice_list(request):
     if query:
         qs = qs.filter(Q(invoice_number__icontains=query) | Q(customer__name__icontains=query) | Q(customer__phone__icontains=query))
     totals = qs.exclude(status="void").aggregate(total=Sum("total"), paid=Sum("amount_paid"))
+    if xlsx.wants(request):
+        data = [[_("Invoice"), _("Date"), _("Due date"), _("Customer"), _("Phone"), _("Status"), _("Currency"),
+                 _("Total"), _("Paid"), _("Balance")]]
+        data += [[i.invoice_number, i.date, i.due_date, i.customer.name, i.customer.phone, i.get_status_display(),
+                  i.currency, i.total, i.amount_paid, i.total - i.amount_paid] for i in qs[:20000]]
+        return xlsx.response(f"invoices-{timezone.localdate()}", [(_("Invoices"), data)])
     params = request.GET.copy()
     params.pop("page", None)
     return render(request, "webapp/sales_docs/invoice_list.html", {

@@ -5,7 +5,7 @@
 {% block content %}
 <div class="hr">
 {% include "webapp/accounts/_tabs.html" %}
-{% include "webapp/accounts/_asof.html" %}
+{% include "webapp/accounts/_asof.html" with excel=1 %}
 <div class="hr-card hr-table" style="max-width:860px">
   <table>
     <thead><tr><th>{% translate "Account" %}</th><th class="hr-num">{% translate "Debit" %}</th><th class="hr-num">{% translate "Credit" %}</th></tr></thead>

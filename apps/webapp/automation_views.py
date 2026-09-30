@@ -15,6 +15,7 @@ from apps.notifications import rules as reminder_rules
 from apps.notifications.daily import run_daily_jobs, run_for_company
 from apps.notifications.models import DailyJobRun, NotificationRule
 
+from . import xlsx
 from .views import require_permission
 
 
@@ -127,6 +128,11 @@ def budgets(request):
         messages.success(request, _("%(count)s budgets saved.") % {"count": saved})
         return redirect("webapp:budgets")
     rows = month_rows(company, day)
+    if xlsx.wants(request):
+        data = [[_("Category"), _("Monthly budget"), _("Spent"), _("Left"), _("% used")]]
+        data += [[r["category"].name, r["budget"].monthly_amount if r["budget"] else None, r["spent"], r.get("left"),
+                  r["percent"]] for r in rows]
+        return xlsx.response(f"budgets-{day:%Y-%m}", [(_("Budgets"), data)])
     budgeted = [r for r in rows if r["budget"]]
     first = day.replace(day=1)
     prev = (first - timedelta(days=1)).replace(day=1)

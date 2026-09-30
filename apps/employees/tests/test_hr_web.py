@@ -166,7 +166,9 @@ def test_full_staff_flow_through_the_web(client, settings):
     line.refresh_from_db()
     assert PayrollRun.objects.get(company=company).status == "posted" and line.payment_status == "paid"
     page = client.get(payroll_url).content.decode()
-    assert "Anil" in page
+    assert "Anil" in page and "format=xlsx" in page
+    sheet = client.get(payroll_url + "&format=xlsx")
+    assert sheet["Content-Type"].endswith("spreadsheetml.sheet") and b"PK" == sheet.content[:2]
     slip = client.get(reverse("webapp:hr_payslip", args=[line.id])).content.decode()
     assert "wa.me/97455501234" in slip and "3180.00" in slip
 

@@ -20,7 +20,7 @@
   <a class="hr-chip {% if show == 'overdue' %}ok{% endif %}" style="padding:8px 12px" href="?show=overdue">{% translate "Overdue" %}</a>
   <a class="hr-chip {% if show == 'credit' %}ok{% endif %}" style="padding:8px 12px" href="?show=credit">{% translate "In credit" %}</a>
   <input type="hidden" name="show" value="{{ show }}"><input class="hr-in" style="flex:1 1 200px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Customer name or phone' %}"><button class="btn btn-secondary">{% translate "Search" %}</button>
-</form>
+{% include "webapp/_excel_button.html" %}</form>
 <div class="hr-list">{% for r in rows %}
   <a class="hr-row" href="{% url 'webapp:customer_account' r.customer.id %}">
     <span class="hr-av" style="width:38px;height:38px;font-size:15px">{{ r.customer.name|slice:":1"|upper }}</span>

@@ -5,7 +5,7 @@
 {% block content %}
 <div class="hr">
 {% include "webapp/hr/_tabs.html" %}
-<div class="hr-month"><a class="btn btn-secondary" href="?m={{ prev }}">‹</a><b>{{ month|date:"F Y" }}</b><a class="btn btn-secondary" href="?m={{ next }}">›</a>
+<div class="hr-month"><a class="btn btn-secondary" href="?m={{ prev }}">‹</a><b>{{ month|date:"F Y" }}</b><a class="btn btn-secondary" href="?m={{ next }}">›</a>{% if run %}{% include "webapp/_excel_button.html" %}{% endif %}
   {% if run %}<span class="hr-chip {{ run.status }}">{% if run.status == "draft" %}{% translate "Draft — check and approve" %}{% elif run.status == "posted" %}{% translate "Approved" %}{% else %}{% translate "Reversed" %}{% endif %}</span>{% endif %}</div>
 
 {% if missing %}<div class="hr-card" style="background:var(--hr-warn-bg)">⚠️ {% translate "No salary set for" %}: {% for m in missing %}<a href="{% url 'webapp:staff_edit' m.id %}"><b>{{ m.name }}</b></a>{% if not forloop.last %}, {% endif %}{% endfor %}. {% translate "They are left out of payroll." %}</div>{% endif %}

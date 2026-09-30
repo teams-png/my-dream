@@ -23,6 +23,7 @@ from apps.sales.online_pay import portal_token
 from apps.sales.allocation import allocate_payment, invoice_due, open_invoices
 from apps.sales.models import CustomerPayment, SalesInvoice, SalesReturn
 
+from . import xlsx
 from .views import require_permission
 
 PERMISSION = "sales.view_invoice"
@@ -134,6 +135,11 @@ def receivables(request):
     else:
         rows = [r for r in rows if r["balance"] > 0 or r["outstanding"] > 0]
     rows.sort(key=lambda r: (-(r["overdue"]), -(r["balance"])))
+    if xlsx.wants(request):
+        data = [[_("Customer"), _("Phone"), _("Open bills"), _("Outstanding"), _("Overdue"), _("Oldest (days overdue)"), _("Balance")]]
+        data += [[r["customer"].name, r["customer"].phone, r["count"], r["outstanding"], r["overdue"], r["oldest"], r["balance"]]
+                 for r in rows]
+        return xlsx.response(f"receivables-{today}", [(_("Receivables"), data)])
     overdue_total = sum((b["total"] for b in summary["buckets"]), ZERO) + summary["unbucketed_overdue"]
     notes_due = (CollectionNote.objects.for_company(company).filter(party_type="customer", follow_up_date__lte=today)
                  .select_related("customer").order_by("follow_up_date")[:10])
@@ -175,6 +181,12 @@ def customer_account(request, customer_id):
     opening, lines, closing = _statement(company, customer, start, end)
     open_invoices = _open_invoices(company, customer)
     balance = _balances(company).get(customer.id, ZERO)
+    if xlsx.wants(request):
+        data = [[company.name, customer.name, _("Statement")],
+                [_("Date"), _("Type"), _("Reference"), _("Billed"), _("Paid"), _("Balance")],
+                [start, _("Opening balance"), "", None, None, opening]]
+        data += [[l["date"], str(l["kind"]), l["ref"], l["debit"] or None, l["credit"] or None, l["balance"]] for l in lines]
+        return xlsx.response(f"statement-{customer.name}", [(_("Statement"), data, 2)])
     credit = collections.customer_credit_status(company, customer)
     portal = request.build_absolute_uri(reverse("webapp:customer_portal", args=[portal_token(customer)]))
     return render(request, "webapp/receivables/customer.html", {

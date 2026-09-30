@@ -10,7 +10,7 @@
   <select class="hr-in" style="width:auto" name="status"><option value="">{% translate "All" %}</option><option value="unpaid" {% if status == 'unpaid' %}selected{% endif %}>{% translate "Unpaid / part paid" %}</option>{% for k, l in statuses %}<option value="{{ k }}" {% if status == k %}selected{% endif %}>{% translate l %}</option>{% endfor %}</select>
   <input class="hr-in" style="width:auto" type="date" name="from" value="{{ start|date:'Y-m-d' }}" aria-label="{% translate 'From' %}"><input class="hr-in" style="width:auto" type="date" name="to" value="{{ end|date:'Y-m-d' }}" aria-label="{% translate 'To' %}">
   <input class="hr-in" style="flex:1 1 180px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Invoice no. or customer' %}"><button class="btn btn-secondary">{% translate "Search" %}</button>
-</form>
+{% include "webapp/_excel_button.html" %}</form>
 <div class="hr-list">{% for i in page %}
   <div class="hr-row"><a class="grow" href="{% url 'webapp:invoice_pdf' i.id %}" target="_blank"><b>{{ i.invoice_number }}</b> · {{ i.customer.name }}<small>{{ i.date|date:"j M Y" }}{% if i.due_date and i.status != 'paid' %} · {% translate "due" %} {{ i.due_date|date:"j M" }}{% endif %}</small></a>
     <span class="hr-chip {% if i.status == 'paid' %}ok{% elif i.status == 'void' %}bad{% else %}warn{% endif %}">{% translate i.get_status_display %}</span><b>{{ i.currency }} {{ i.total|floatformat:2 }}</b>

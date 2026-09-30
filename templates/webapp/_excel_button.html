@@ -1,0 +1,1 @@
+{% load i18n %}<a class="btn btn-secondary no-print" href="?{% for k, v in request.GET.items %}{% if k != "format" and k != "page" %}{{ k|urlencode }}={{ v|urlencode }}&amp;{% endif %}{% endfor %}format=xlsx" download>📊 {% translate "Excel" %}</a>

@@ -21,6 +21,7 @@ from apps.employees.models import (AdvanceRecovery, Attendance, Employee, Employ
                                    LeaveBalance, LeaveRequest, LeaveType, PayrollLine, PayrollRun, SalaryAdvance,
                                    SalaryStructure)
 
+from . import xlsx
 from .views import require_permission
 
 MANAGE = "employees.manage"
@@ -511,6 +512,17 @@ def payroll(request):
             messages.error(request, _error(exc))
         return redirect(here)
     lines = list(run.lines.select_related("employee").order_by("employee__name")) if run else []
+    if xlsx.wants(request) and run:
+        data = [[_("Staff"), _("Job"), _("Basic"), _("Allowances"), _("Overtime hours"), _("Overtime"),
+                 _("Absent days"), _("Absence deduction"), _("Gross"), _("Deductions"), _("Advance recovered"),
+                 _("Net pay"), _("Status"), _("Paid by")]]
+        data += [[l.employee.name, l.employee.role_title, l.basic_pay, l.allowances, l.overtime_hours, l.overtime_amount,
+                  l.absence_days, l.absence_deduction, l.gross_pay, l.deductions, l.advance_deduction, l.net_pay,
+                  l.get_payment_status_display(), l.payment_method] for l in lines]
+        data.append([xlsx.Bold(_("Total")), "", *[sum((getattr(l, f) for l in lines), Decimal("0")) for f in (
+            "basic_pay", "allowances", "overtime_hours", "overtime_amount", "absence_days", "absence_deduction",
+            "gross_pay", "deductions", "advance_deduction", "net_pay")]])
+        return xlsx.response(f"payroll-{key}", [(_("Payroll") + f" {key}", data)])
     hr.ensure_salary_structures(company)
     missing = _staff(company).filter(salary_structure__isnull=True)
     return render(request, "webapp/hr/payroll.html", {

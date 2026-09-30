@@ -70,7 +70,13 @@ class ActiveCompanyMiddleware:
                 request.role = membership.role
                 request.membership = membership
 
-        return self.get_response(request)
+        from apps.inventory import branch_access
+        token = branch_access.activate(branch_access.ids_for(request.membership))
+        request.branch_ids = branch_access.allowed()
+        try:
+            return self.get_response(request)
+        finally:
+            branch_access.reset(token)
 
     def _authenticate_via_jwt(self, request):
         """Best-effort: silently no-ops for anonymous/session/cookie-only requests."""

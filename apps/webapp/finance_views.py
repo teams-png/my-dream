@@ -12,6 +12,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from apps.inventory import branch_access
 from apps.customers.models import Customer
 from apps.finance import services
 from apps.finance.models import FixedAsset, PostDatedCheque, RecurringInvoice, RecurringInvoiceLine
@@ -66,7 +67,7 @@ class RecurringForm(forms.ModelForm):
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["customer"].queryset = Customer.objects.for_company(company).filter(is_active=True)
-        self.fields["warehouse"].queryset = Warehouse.objects.for_company(company).filter(is_active=True)
+        self.fields["warehouse"].queryset = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True))
 
 
 class AssetForm(forms.ModelForm):
@@ -145,7 +146,7 @@ def cheque_status(request, cheque_id):
 @finance_view
 def recurring_list(request):
     company = request.company
-    default_wh = Warehouse.objects.for_company(company).filter(is_active=True).order_by("-is_default", "id").first()
+    default_wh = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True)).order_by("-is_default", "id").first()
     form = RecurringForm(request.POST or None, company=company,
                          initial={"next_run_date": timezone.localdate(), "warehouse": default_wh})
     products = Product.objects.for_company(company).filter(is_active=True).order_by("name")

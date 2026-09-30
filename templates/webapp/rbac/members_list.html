@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block title %}Team{% endblock %}
 {% block heading %}Team{% endblock %}
 {% block content %}
@@ -8,12 +9,12 @@
 </div>
 {% if memberships %}
 <table>
-  <tr><th>Username</th><th>Email</th><th>Role</th><th></th></tr>
+  <tr><th>Username</th><th>Email</th><th>Role</th>{% if multi_branch %}<th>{% translate "Branches" %}</th>{% endif %}<th></th></tr>
   {% for m in memberships %}
   <tr>
-    <td>{{ m.user.username }}</td><td>{{ m.user.email }}</td><td>{{ m.role.name }}</td>
+    <td>{{ m.user.username }}</td><td>{{ m.user.email }}</td><td>{{ m.role.name }}</td>{% if multi_branch %}<td>{% if m.role.name == 'Owner' %}{% translate "All branches" %}{% else %}{% for w in m.warehouses.all %}{{ w.name }}{% if not forloop.last %}, {% endif %}{% empty %}{% translate "All branches" %}{% endfor %}{% endif %}</td>{% endif %}
     <td>
-      <a class="btn btn-secondary" href="{% url 'webapp:staff_role_change' m.id %}">Change role</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:staff_role_change' m.id %}">{% translate "Role & branches" %}</a>
       <a class="btn btn-secondary" href="{% url 'webapp:staff_remove' m.id %}">Remove</a>
     </td>
   </tr>

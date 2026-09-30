@@ -14,6 +14,7 @@ from django.utils import timezone
 from django.utils.dateparse import parse_date
 from django.utils.translation import gettext as _
 
+from apps.inventory import branch_access
 from apps.customers.models import Customer
 from apps.inventory.models import Product, Warehouse
 from apps.sales import services as sales
@@ -32,6 +33,9 @@ def _err(request, exc):
 
 
 def _warehouse(company, warehouse_id=None):
+    restricted = branch_access.pick(company, warehouse_id)
+    if restricted is not None:
+        return restricted
     qs = Warehouse.objects.for_company(company).filter(is_active=True)
     if warehouse_id:
         found = qs.filter(id=warehouse_id).first()
@@ -319,6 +323,8 @@ def sales_invoice_list(request):
     if company is None:
         return render(request, "webapp/no_company.html")
     qs = SalesInvoice.objects.for_company(company).select_related("customer").order_by("-date", "-id")
+    if branch_access.allowed() is not None:
+        qs = qs.filter(Q(warehouse_id__in=branch_access.allowed()) | Q(warehouse__isnull=True))
     status = request.GET.get("status") or ""
     if status == "unpaid":
         qs = qs.filter(status__in=["unpaid", "partial"])

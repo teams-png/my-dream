@@ -9,6 +9,7 @@ from django.utils import timezone
 from django.utils.dateparse import parse_date
 from django.utils.translation import gettext_lazy as _
 
+from apps.inventory import branch_access
 from apps.verticals.restaurant.models import RestaurantOrder
 
 from django.contrib.auth.decorators import login_required
@@ -50,6 +51,9 @@ def restaurant_order_list(request):
     query = (request.GET.get("q") or "").strip()
 
     orders = RestaurantOrder.objects.for_company(company)
+    if branch_access.allowed() is not None:
+        orders = orders.filter(Q(invoice__warehouse_id__in=branch_access.allowed()) | Q(invoice__isnull=True)
+                               | Q(invoice__warehouse__isnull=True))
     if start:
         orders = orders.filter(created_at__date__gte=start)
     if end:

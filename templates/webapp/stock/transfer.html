@@ -5,13 +5,13 @@
 {% block content %}
 <div class="hr">
 {% include "webapp/stock/_tabs.html" %}
-{% if warehouses|length < 2 %}<div class="hr-card hr-empty">{% translate "You have one location. Add a branch or store to move stock between them." %} <a class="btn" style="margin-top:10px" href="{% url 'webapp:branch_add' %}">＋ {% translate "Add branch" %}</a></div>
+{% if targets|length < 2 %}<div class="hr-card hr-empty">{% translate "You have one location. Add a branch or store to move stock between them." %} <a class="btn" style="margin-top:10px" href="{% url 'webapp:branch_add' %}">＋ {% translate "Add branch" %}</a></div>
 {% else %}
 <div class="hr-grid2">
 <form method="post" class="hr-card">{% csrf_token %}<h3>🔀 {% translate "Move stock" %}</h3>
   <div class="hr-form" style="margin-bottom:12px">
     <label>{% translate "From" %}<select name="from" id="fromW">{% for w in warehouses %}<option value="{{ w.id }}">{{ w.name }}</option>{% endfor %}</select></label>
-    <label>{% translate "To" %}<select name="to">{% for w in warehouses %}<option value="{{ w.id }}" {% if forloop.counter == 2 %}selected{% endif %}>{{ w.name }}</option>{% endfor %}</select></label>
+    <label>{% translate "To" %}<select name="to">{% for w in targets %}<option value="{{ w.id }}" {% if forloop.counter == 2 %}selected{% endif %}>{{ w.name }}</option>{% endfor %}</select></label>
     <label class="wide">{% translate "Reference" %}<input name="reference" maxlength="100" placeholder="{% translate 'e.g. Van 2, driver Salim' %}"></label>
   </div>
   <div class="hr-list" id="tlines">{% for i in "123" %}<div class="hr-row tl"><select class="hr-in" style="flex:3 1 200px;width:auto" name="product"><option value="">—</option>{% for p in products %}<option value="{{ p.id }}" data-stock='{{ p.stock_json|safe }}'>{{ p.name }}</option>{% endfor %}</select><input class="hr-in" style="flex:1 1 90px;width:auto" type="number" step="0.001" min="0" name="qty" placeholder="{% translate 'Qty' %}"><small class="avail" style="min-width:90px;color:var(--hr-soft)"></small></div>{% endfor %}</div>

@@ -16,6 +16,7 @@ from django.views.decorators.csrf import csrf_exempt
 from datetime import timedelta
 from decimal import Decimal
 
+from apps.inventory import branch_access
 from apps.accounts import services as account_services
 from apps.inventory.models import ProductCategory, Product, Warehouse, Unit, Brand
 from apps.customers.models import Customer
@@ -1002,6 +1003,9 @@ def reports(request):
 # ================= GYM =================
 
 def _default_warehouse(company):
+    wh = branch_access.pick(company)
+    if wh is not None:
+        return wh
     wh = Warehouse.objects.for_company(company).filter(is_default=True).first()
     if wh is None:
         wh = Warehouse.objects.for_company(company).first()
@@ -1012,6 +1016,9 @@ def _default_warehouse(company):
 
 def _selected_warehouse(company, warehouse_id):
     """Returns the requested branch/warehouse if it belongs to the company, else the default one."""
+    restricted = branch_access.pick(company, warehouse_id)
+    if restricted is not None:
+        return restricted
     if warehouse_id:
         wh = Warehouse.objects.for_company(company).filter(id=warehouse_id, is_active=True).first()
         if wh is not None:
@@ -3874,7 +3881,7 @@ def pos_view(request):
             "scale": _scale_settings(company),
         },
         "customers": Customer.objects.for_company(company).filter(is_active=True).order_by("name"),
-        "branches": Warehouse.objects.for_company(company).filter(is_active=True).order_by("name"),
+        "branches": branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True)).order_by("name"),
         "is_mobile_shop": company.business_type.code == "mobile_shop",
         "offline_attention": OfflineSaleSync.objects.for_company(company).filter(channel="offline", status="attention").count(),
     })
@@ -4195,9 +4202,11 @@ def staff_members_list(request):
     company = request.company
     memberships = (
         CompanyMembership.objects.filter(company=company, is_active=True)
-        .select_related("user", "role").order_by("user__username")
+        .select_related("user", "role").prefetch_related("warehouses").order_by("user__username")
     )
-    return render(request, "webapp/rbac/members_list.html", {"memberships": memberships})
+    return render(request, "webapp/rbac/members_list.html", {
+        "memberships": memberships,
+        "multi_branch": Warehouse.objects.for_company(company).filter(is_active=True).count() > 1})
 
 
 @login_required
@@ -4215,7 +4224,8 @@ def staff_invite(request):
                     username=form.cleaned_data["username"], email=form.cleaned_data["email"],
                     password=form.cleaned_data["password"],
                 )
-                tenant_services.invite_member(company=company, user=user, role=form.cleaned_data["role"])
+                membership = tenant_services.invite_member(company=company, user=user, role=form.cleaned_data["role"])
+                membership.warehouses.set(form.cleaned_data.get("branches") or [])
                 messages.success(request, f"{user.username} added as {form.cleaned_data['role'].name}.")
                 return redirect("webapp:staff_members_list")
             except Exception as exc:
@@ -4235,10 +4245,12 @@ def staff_role_change(request, membership_id):
         if form.is_valid():
             membership.role = form.cleaned_data["role"]
             membership.save(update_fields=["role"])
-            messages.success(request, "Role updated.")
+            membership.warehouses.set(form.cleaned_data.get("branches") or [])
+            messages.success(request, _("Role and branches updated."))
             return redirect("webapp:staff_members_list")
     else:
-        form = ChangeMemberRoleForm(company=company, initial={"role": membership.role_id})
+        form = ChangeMemberRoleForm(company=company, initial={"role": membership.role_id,
+                                                              "branches": list(membership.warehouses.values_list("id", flat=True))})
     return render(request, "webapp/rbac/change_role.html", {"form": form, "membership": membership})
 
 
@@ -4614,7 +4626,7 @@ def branch_stock_report(request):
     if company is None:
         return render(request, "webapp/no_company.html")
 
-    branches = list(Warehouse.objects.for_company(company).filter(is_active=True).order_by("name"))
+    branches = list(branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True)).order_by("name"))
     products = (
         Product.objects.for_company(company).filter(is_active=True)
         .annotate(variant_count=Count("variants")).filter(variant_count=0)

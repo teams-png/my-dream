@@ -1,0 +1,17 @@
+{% load i18n %}{% for field in form %}
+  {% if field.name == "branches" %}
+    {% if field.field.queryset.count > 1 %}
+    <fieldset class="branch-pick" style="border:1px solid var(--line,#e3e6ee);border-radius:10px;padding:10px 12px;margin-top:14px">
+      <legend style="font-weight:700;padding:0 4px">🏬 {{ field.label }}</legend>
+      {% for box in field %}<label style="display:flex;gap:8px;align-items:center;font-weight:500;margin:4px 0">{{ box.tag }} {{ box.choice_label }}</label>{% endfor %}
+      <small style="color:var(--ink-soft)">{{ field.help_text }} {% translate "Owners always see every branch." %}</small>
+      {{ field.errors }}
+    </fieldset>
+    {% endif %}
+  {% else %}
+    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+    {{ field }}
+    {{ field.errors }}
+  {% endif %}
+{% endfor %}
+<style>.branch-pick input[type=checkbox]{width:auto;margin:0}</style>

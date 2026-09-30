@@ -4,6 +4,7 @@ from decimal import Decimal
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
+from apps.inventory import branch_access
 from apps.inventory.models import Product, Unit, Warehouse
 from apps.sales import services as sales_services
 
@@ -36,6 +37,9 @@ def service_product(company, sku, name, price=Decimal("0")):
 
 
 def default_warehouse(company):
+    restricted = branch_access.pick(company)
+    if restricted is not None:
+        return restricted
     wh = (Warehouse.objects.for_company(company).filter(is_default=True).first()
           or Warehouse.objects.for_company(company).first())
     return wh or Warehouse.objects.create(company=company, name="Main", is_default=True)

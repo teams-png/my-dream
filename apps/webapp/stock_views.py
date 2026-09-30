@@ -16,6 +16,7 @@ from django.utils.dateparse import parse_date
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
 
+from apps.inventory import branch_access
 from apps.inventory import services as inv
 from apps.inventory.models import (Product, ProductBatch, ProductCategory, ProductSerial, StockCount, StockCountLine,
                                    StockMovement, Warehouse)
@@ -39,12 +40,12 @@ def _warehouses(company):
     qs = Warehouse.objects.for_company(company).filter(is_active=True).order_by("-is_default", "name")
     if not qs.exists():
         Warehouse.objects.create(company=company, name="Main Branch", is_active=True, is_default=True)
-    return qs
+    return branch_access.limit(qs)
 
 
 def _stock_map(company):
     """{(product_id, warehouse_id): qty} in one query."""
-    rows = (StockMovement.objects.for_company(company).values("product_id", "warehouse_id")
+    rows = (branch_access.limit(StockMovement.objects.for_company(company), "warehouse_id").values("product_id", "warehouse_id")
             .annotate(q=Sum("quantity")))
     return {(r["product_id"], r["warehouse_id"]): r["q"] or ZERO for r in rows}
 
@@ -111,6 +112,7 @@ def stock_history(request, product_id):
     company = request.company
     product = get_object_or_404(Product.objects.for_company(company), id=product_id)
     moves = StockMovement.objects.for_company(company).filter(product=product).select_related("warehouse", "batch", "serial").order_by("moved_at", "id")
+    moves = branch_access.limit(moves, "warehouse_id")
     warehouse = request.GET.get("warehouse") or ""
     if warehouse:
         moves = moves.filter(warehouse_id=warehouse)
@@ -166,10 +168,11 @@ def stock_transfer(request):
     company = request.company
     if company is None:
         return render(request, "webapp/no_company.html")
-    warehouses = _warehouses(company)
+    warehouses = _warehouses(company)  # a branch-restricted user moves stock out of their own branch only
+    targets = Warehouse.objects.for_company(company).filter(is_active=True).order_by("-is_default", "name")
     if request.method == "POST":
         source = warehouses.filter(id=request.POST.get("from")).first()
-        target = warehouses.filter(id=request.POST.get("to")).first()
+        target = targets.filter(id=request.POST.get("to")).first()
         moved, errors = 0, []
         with transaction.atomic():
             for pid, qty in zip(request.POST.getlist("product"), request.POST.getlist("qty")):
@@ -199,7 +202,8 @@ def stock_transfer(request):
     products = list(Product.objects.for_company(company).filter(is_active=True, is_stock_tracked=True).order_by("name"))
     for p in products:
         p.stock_json = json.dumps({str(w.id): f"{stock.get((p.id, w.id), ZERO):f}" for w in warehouses})
-    return render(request, "webapp/stock/transfer.html", {"warehouses": warehouses, "products": products, "recent": recent})
+    return render(request, "webapp/stock/transfer.html", {"warehouses": warehouses, "targets": targets, "products": products,
+                                                          "recent": recent})
 
 
 # ------------------------------------------------------------------ stock taking

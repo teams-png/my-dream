@@ -6,11 +6,7 @@
 <div class="card" style="max-width:420px;">
   <form class="stacked" method="post">
     {% csrf_token %}
-    {% for field in form %}
-      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-      {{ field }}
-      {{ field.errors }}
-    {% endfor %}
+    {% include "webapp/rbac/_member_fields.html" %}
     <button class="btn" style="margin-top:20px;" type="submit">Add member</button>
     <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:staff_members_list' %}">Cancel</a>
   </form>

@@ -103,6 +103,8 @@ class CompanyMembership(models.Model):
     role = models.ForeignKey(Role, on_delete=models.PROTECT)
     is_active = models.BooleanField(default=True)
     joined_at = models.DateTimeField(auto_now_add=True)
+    # Branches this person works at. Empty = every branch. Owners always see every branch.
+    warehouses = models.ManyToManyField("inventory.Warehouse", blank=True, related_name="+")
 
     class Meta:
         unique_together = ("user", "company")

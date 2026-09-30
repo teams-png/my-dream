@@ -12,6 +12,7 @@ from django.db import transaction
 from django.utils import timezone
 from django.utils.dateparse import parse_date, parse_datetime
 
+from apps.inventory import branch_access
 from apps.customers import services as customer_services
 from apps.customers.models import Customer
 from apps.inventory.models import Product, Warehouse
@@ -31,6 +32,9 @@ class PosError(Exception):
 
 
 def _warehouse(company, warehouse_id):
+    restricted = branch_access.pick(company, warehouse_id)
+    if restricted is not None:
+        return restricted
     if warehouse_id:
         wh = Warehouse.objects.for_company(company).filter(id=warehouse_id, is_active=True).first()
         if wh is not None:

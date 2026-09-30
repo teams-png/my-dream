@@ -1,5 +1,7 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _l
 
+from apps.inventory import branch_access
 from apps.inventory.models import ProductCategory, Product, Brand, Unit
 from apps.customers.models import Customer
 from apps.verticals.mobile_shop.models import (
@@ -313,7 +315,7 @@ class MobileUnitForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         if company is not None:
             self.fields["product"].queryset = Product.objects.for_company(company)
-            self.fields["warehouse"].queryset = Warehouse.objects.for_company(company).filter(is_active=True)
+            self.fields["warehouse"].queryset = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True))
 
 
 class MobileBulkIMEIForm(forms.Form):
@@ -328,7 +330,7 @@ class MobileBulkIMEIForm(forms.Form):
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["product"].queryset = Product.objects.for_company(company).filter(attributes__item_type="handset")
-        self.fields["warehouse"].queryset = Warehouse.objects.for_company(company).filter(is_active=True)
+        self.fields["warehouse"].queryset = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True))
         self.fields["supplier"].queryset = Supplier.objects.for_company(company).filter(is_active=True)
 
     def clean_imeis(self):
@@ -357,7 +359,7 @@ class MobileRepairJobForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields["customer"].queryset = Customer.objects.for_company(company)
         self.fields["mobile_unit"].queryset = MobileUnit.objects.for_company(company)
-        self.fields["warehouse"].queryset = Warehouse.objects.for_company(company).filter(is_active=True)
+        self.fields["warehouse"].queryset = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True))
         self.fields["service_product"].queryset = Product.objects.for_company(company).filter(is_stock_tracked=False)
         self.fields["assigned_technician"].queryset = self.fields["assigned_technician"].queryset.filter(memberships__company=company, memberships__is_active=True).distinct()
 
@@ -393,7 +395,7 @@ class MobileTradeInForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields["customer"].queryset = Customer.objects.for_company(company)
         self.fields["product"].queryset = Product.objects.for_company(company).filter(attributes__item_type="handset")
-        self.fields["warehouse"].queryset = Warehouse.objects.for_company(company).filter(is_active=True)
+        self.fields["warehouse"].queryset = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True))
 
 
 class MobileInstallmentPaymentForm(forms.ModelForm):
@@ -827,7 +829,7 @@ class SaloonPackagePurchaseForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.fields["customer"].queryset = Customer.objects.for_company(company).filter(is_active=True)
         self.fields["package"].queryset = SaloonServicePackage.objects.for_company(company).filter(is_active=True)
-        self.fields["warehouse"].queryset = Warehouse.objects.for_company(company).filter(is_active=True)
+        self.fields["warehouse"].queryset = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True))
 
 
 # ---------------- Beauty Parlour ----------------
@@ -1042,7 +1044,7 @@ class PurchaseForm(forms.Form):
         if company is not None:
             self.fields["supplier"].queryset = Supplier.objects.for_company(company).filter(is_active=True)
             self.fields["product"].queryset = Product.objects.for_company(company)
-            self.fields["warehouse"].queryset = Warehouse.objects.for_company(company).filter(is_active=True)
+            self.fields["warehouse"].queryset = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True))
 
 
 class SupplierPaymentForm(forms.Form):
@@ -1094,11 +1096,15 @@ class InviteStaffForm(forms.Form):
     email = forms.EmailField(label="Email")
     password = forms.CharField(widget=forms.PasswordInput, min_length=8, label="Login password")
     role = forms.ModelChoiceField(queryset=Role.objects.none())
+    branches = forms.ModelMultipleChoiceField(
+        queryset=Warehouse.objects.none(), required=False, widget=forms.CheckboxSelectMultiple,
+        label=_l("Branches"), help_text=_l("Tick the branches this person works at. Leave all unticked for every branch."))
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
         if company is not None:
             self.fields["role"].queryset = Role.objects.filter(company=company).order_by("name")
+            self.fields["branches"].queryset = Warehouse.objects.for_company(company).filter(is_active=True).order_by("name")
 
     def clean_username(self):
         from django.contrib.auth import get_user_model
@@ -1117,11 +1123,15 @@ class InviteStaffForm(forms.Form):
 
 class ChangeMemberRoleForm(forms.Form):
     role = forms.ModelChoiceField(queryset=Role.objects.none())
+    branches = forms.ModelMultipleChoiceField(
+        queryset=Warehouse.objects.none(), required=False, widget=forms.CheckboxSelectMultiple,
+        label=_l("Branches"), help_text=_l("Tick the branches this person works at. Leave all unticked for every branch."))
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
         if company is not None:
             self.fields["role"].queryset = Role.objects.filter(company=company).order_by("name")
+            self.fields["branches"].queryset = Warehouse.objects.for_company(company).filter(is_active=True).order_by("name")
 
 
 class CustomRoleForm(forms.Form):
@@ -1412,7 +1422,7 @@ class RestaurantSettleForm(forms.Form):
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["warehouse"].queryset = Warehouse.objects.for_company(company).filter(is_active=True)
+        self.fields["warehouse"].queryset = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True))
 
 
 class RestaurantShiftOpenForm(forms.Form):
@@ -1557,7 +1567,7 @@ class FoodWasteForm(forms.ModelForm):
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["ingredient"].queryset = Product.objects.for_company(company).filter(is_active=True, is_stock_tracked=True)
-        self.fields["warehouse"].queryset = Warehouse.objects.for_company(company).filter(is_active=True)
+        self.fields["warehouse"].queryset = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True))
 
 
 class RestaurantProfileForm(forms.ModelForm):

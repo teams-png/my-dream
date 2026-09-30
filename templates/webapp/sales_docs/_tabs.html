@@ -1,0 +1,9 @@
+{% load i18n static %}<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+{% with u=request.resolver_match.url_name %}
+<nav class="hr-tabs no-print" aria-label="{% translate 'Sales documents' %}">
+  <a class="{% if u == 'sales_invoice_list' %}on{% endif %}" href="{% url 'webapp:sales_invoice_list' %}">🧾 {% translate "Invoices" %}</a>
+  <a class="{% if u == 'quotation_list' or u == 'quotation_add' or u == 'quotation_detail' %}on{% endif %}" href="{% url 'webapp:quotation_list' %}">📝 {% translate "Quotations" %}</a>
+  <a class="{% if u == 'sales_order_list' or u == 'sales_order_add' or u == 'sales_order_detail' or u == 'delivery_note' %}on{% endif %}" href="{% url 'webapp:sales_order_list' %}">📦 {% translate "Sales orders" %}</a>
+  <a href="{% url 'webapp:receivables' %}">💵 {% translate "Money to collect" %}</a>
+</nav>
+{% endwith %}

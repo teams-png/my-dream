@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import accounts_views, booking_views, receivables_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import accounts_views, booking_views, receivables_views, sales_docs_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -70,6 +70,14 @@ urlpatterns = [
     path("welcome/", public_views.landing, name="landing"),
     path("signup/", public_views.signup, name="signup"),
 
+    path("sales/invoices/", sales_docs_views.sales_invoice_list, name="sales_invoice_list"),
+    path("sales/quotations/", sales_docs_views.quotation_list, name="quotation_list"),
+    path("sales/quotations/new/", sales_docs_views.quotation_add, name="quotation_add"),
+    path("sales/quotations/<int:quotation_id>/", sales_docs_views.quotation_detail, name="quotation_detail"),
+    path("sales/orders/", sales_docs_views.sales_order_list, name="sales_order_list"),
+    path("sales/orders/new/", sales_docs_views.sales_order_add, name="sales_order_add"),
+    path("sales/orders/<int:order_id>/", sales_docs_views.sales_order_detail, name="sales_order_detail"),
+    path("sales/deliveries/<int:delivery_id>/", sales_docs_views.delivery_note, name="delivery_note"),
     path("receivables/", receivables_views.receivables, name="receivables"),
     path("customers/<int:customer_id>/account/", receivables_views.customer_account, name="customer_account"),
     path("customers/<int:customer_id>/receive/", receivables_views.receive_payment, name="receive_payment"),

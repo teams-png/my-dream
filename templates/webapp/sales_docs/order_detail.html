@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ doc.number }}{% endblock %}
+{% block heading %}{% translate "Sales order" %} {{ doc.number }}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/sales_docs/_tabs.html" %}
+<div class="hr-actions no-print" style="margin-bottom:12px"><span class="hr-chip {% if doc.status == 'delivered' %}ok{% elif doc.status == 'cancelled' %}bad{% else %}blue{% endif %}" style="font-size:13px;padding:7px 12px">{% translate doc.get_status_display %}</span>{% if doc.quotation %}<a class="hr-chip" href="{% url 'webapp:quotation_detail' doc.quotation.id %}">{% translate "From" %} {{ doc.quotation.number }}</a>{% endif %}{% if doc.reference %}<span class="hr-chip">{% translate "Ref" %} {{ doc.reference }}</span>{% endif %}</div>
+<form method="post">{% csrf_token %}
+<div class="hr-card" style="max-width:980px">
+  {% translate "SALES ORDER" as doc_title %}{% include "webapp/sales_docs/_doc_head.html" %}
+  <div class="hr-table"><table><thead><tr><th>{% translate "Item" %}</th><th class="hr-num">{% translate "Ordered" %}</th><th class="hr-num no-print">{% translate "Delivered" %}</th><th class="hr-num no-print">{% translate "Invoiced" %}</th><th class="hr-num">{% translate "Price" %}</th><th class="hr-num">{% translate "Amount" %}</th>{% if can_deliver %}<th class="no-print">{% translate "Deliver now" %}</th>{% endif %}</tr></thead>
+  <tbody>{% for l in lines %}<tr><td>{{ l.product.name }}</td><td class="hr-num">{{ l.quantity|floatformat:"-3" }}</td><td class="hr-num no-print">{{ l.delivered|floatformat:"-3" }}</td><td class="hr-num no-print">{{ l.invoiced|floatformat:"-3" }}</td><td class="hr-num">{{ l.unit_price|floatformat:2 }}</td><td class="hr-num">{{ l.line_total|floatformat:2 }}</td>{% if can_deliver %}<td class="no-print">{% if l.to_deliver > 0 %}<input class="hr-in" style="width:100px;min-height:36px" type="number" step="0.001" min="0" max="{{ l.to_deliver|floatformat:'-3u' }}" name="d_{{ l.id }}" value="{{ l.to_deliver|floatformat:'-3u' }}">{% else %}✓{% endif %}</td>{% endif %}</tr>{% endfor %}</tbody>
+  <tfoot><tr><th colspan="5">{% translate "Total" %}</th><th class="hr-num">{{ active_company.default_currency }} {{ total|floatformat:2 }}</th>{% if can_deliver %}<th class="no-print"></th>{% endif %}</tr></tfoot></table></div>
+</div>
+<div class="hr-actions no-print">
+  {% if can_deliver %}{% if warehouses|length > 1 %}<select class="hr-in" style="width:auto" name="warehouse">{% for w in warehouses %}<option value="{{ w.id }}" {% if w.is_default %}selected{% endif %}>{{ w.name }}</option>{% endfor %}</select>{% endif %}
+    <button class="btn" name="action" value="deliver_invoice">🚚🧾 {% translate "Deliver & invoice" %}</button>
+    <button class="btn btn-secondary" name="action" value="deliver">🚚 {% translate "Deliver only" %}</button>{% endif %}
+  {% if can_invoice %}<button class="btn btn-secondary" name="action" value="invoice">🧾 {% translate "Invoice delivered items" %}</button>{% endif %}
+  {% if doc.status == "draft" %}<button class="btn btn-secondary" name="action" value="confirm">✓ {% translate "Confirm" %}</button>{% endif %}
+  <button class="btn btn-secondary" type="button" onclick="print()">🖨 {% translate "Print" %}</button>
+  <a class="btn btn-secondary" style="background:#25d366;border-color:#25d366;color:#fff" href="{{ share }}" target="_blank" rel="noopener">💬 WhatsApp</a>
+  {% if doc.status != "delivered" and doc.status != "cancelled" %}<button class="btn btn-secondary" name="action" value="cancel" onclick="return confirm('{% translate "Cancel this order?" %}')">✕ {% translate "Cancel order" %}</button>{% endif %}
+</div>
+</form>
+<div class="hr-grid2 no-print" style="margin-top:14px;grid-template-columns:1fr 1fr">
+  <div class="hr-card"><h3>🚚 {% translate "Delivery notes" %}</h3><div class="hr-list">{% for d in deliveries %}<a class="hr-row" href="{% url 'webapp:delivery_note' d.id %}"><span class="grow"><b>{{ d.number|default:d.id }}</b><small>{{ d.date|date:"j M Y" }} · {{ d.warehouse.name }}</small></span>🖨</a>{% empty %}<div class="hr-empty">{% translate "Nothing delivered yet." %}</div>{% endfor %}</div></div>
+  <div class="hr-card"><h3>🧾 {% translate "Invoices" %}</h3><div class="hr-list">{% for i in invoices %}<a class="hr-row" href="{% url 'webapp:invoice_pdf' i.id %}" target="_blank"><span class="grow"><b>{{ i.invoice_number }}</b><small>{{ i.date|date:"j M Y" }}</small></span><span class="hr-chip {% if i.status == 'paid' %}ok{% else %}warn{% endif %}">{{ i.get_status_display }}</span><b>{{ i.total|floatformat:2 }}</b></a>{% empty %}<div class="hr-empty">{% translate "Not invoiced yet." %}</div>{% endfor %}</div></div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ note.number }}{% endblock %}
+{% block heading %}{% translate "Delivery note" %} {{ note.number }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<div class="hr">
+<div class="hr-card" style="max-width:860px">
+  <div style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px">
+    <div><b style="font-size:18px">{{ active_company.name }}</b><div style="color:var(--hr-soft);font-size:13px">{{ active_company.address|default:"" }}</div></div>
+    <div style="text-align:right"><div style="font-size:22px;font-weight:800">{% translate "DELIVERY NOTE" %}</div><b>{{ note.number }}</b><div style="color:var(--hr-soft)">{{ note.date|date:"j M Y" }} · {% translate "Order" %} {{ note.sales_order.number }}</div></div>
+  </div>
+  <div style="margin-bottom:14px"><small style="color:var(--hr-soft)">{% translate "Deliver to" %}</small><div><b>{{ note.sales_order.customer.name }}</b></div><div style="color:var(--hr-soft);font-size:13px">{{ note.sales_order.customer.phone|default:"" }} {{ note.sales_order.customer.address|default:"" }}</div></div>
+  <div class="hr-table"><table><thead><tr><th>#</th><th>{% translate "Item" %}</th><th class="hr-num">{% translate "Qty" %}</th></tr></thead>
+  <tbody>{% for l in lines %}<tr><td>{{ forloop.counter }}</td><td>{{ l.so_line.product.name }}</td><td class="hr-num"><b>{{ l.quantity|floatformat:"-3" }}</b></td></tr>{% endfor %}</tbody></table></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:50px"><div style="border-top:1px solid var(--hr-line);padding-top:6px;color:var(--hr-soft)">{% translate "Delivered by" %}: {{ note.delivered_by.first_name|default:note.delivered_by.username }}</div><div style="border-top:1px solid var(--hr-line);padding-top:6px;color:var(--hr-soft)">{% translate "Received by (name & signature)" %}</div></div>
+</div>
+<div class="hr-actions no-print"><button class="btn" type="button" onclick="print()">🖨 {% translate "Print" %}</button><a class="btn btn-secondary" href="{% url 'webapp:sales_order_detail' note.sales_order.id %}">← {{ note.sales_order.number }}</a></div>
+</div>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% load i18n %}<div style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px">
+  <div>{% if active_company.logo %}<img src="{{ active_company.logo.url }}" alt="" style="max-height:54px;max-width:160px;display:block;margin-bottom:6px">{% endif %}<b style="font-size:18px">{{ active_company.name }}</b><div style="color:var(--hr-soft);font-size:13px;white-space:pre-line">{{ active_company.address|default:"" }}{% if active_company.phone %}
+{{ active_company.phone }}{% endif %}</div></div>
+  <div style="text-align:right"><div style="font-size:22px;font-weight:800;letter-spacing:.02em">{{ doc_title }}</div><div><b>{{ doc.number }}</b></div><div style="color:var(--hr-soft)">{{ doc.date|date:"j M Y" }}</div>{% if doc.valid_until %}<div style="color:var(--hr-soft)">{% translate "Valid until" %} {{ doc.valid_until|date:"j M Y" }}</div>{% endif %}</div>
+</div>
+<div style="margin-bottom:14px"><small style="color:var(--hr-soft)">{% translate "To" %}</small><div><b>{{ doc.customer.name }}</b></div><div style="color:var(--hr-soft);font-size:13px">{{ doc.customer.phone|default:"" }} {{ doc.customer.address|default:"" }}</div></div>

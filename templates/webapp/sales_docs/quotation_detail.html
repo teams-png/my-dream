@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ doc.number }}{% endblock %}
+{% block heading %}{% translate "Quotation" %} {{ doc.number }}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/sales_docs/_tabs.html" %}
+<div class="hr-actions no-print" style="margin-bottom:12px"><span class="hr-chip {% if doc.status == 'accepted' %}ok{% elif doc.status == 'rejected' %}bad{% elif doc.status == 'draft' %}warn{% else %}blue{% endif %}" style="font-size:13px;padding:7px 12px">{% translate doc.get_status_display %}</span>{% if doc.valid_until and doc.valid_until < today and doc.status != 'accepted' %}<span class="hr-chip bad">{% translate "Expired" %}</span>{% endif %}</div>
+<div class="hr-card" style="max-width:860px">
+  {% translate "QUOTATION" as doc_title %}{% include "webapp/sales_docs/_doc_head.html" %}
+  <div class="hr-table"><table><thead><tr><th>{% translate "Item" %}</th><th class="hr-num">{% translate "Qty" %}</th><th class="hr-num">{% translate "Price" %}</th><th class="hr-num">{% translate "Amount" %}</th></tr></thead>
+  <tbody>{% for l in lines %}<tr><td>{{ l.product.name }}</td><td class="hr-num">{{ l.quantity|floatformat:"-3" }}</td><td class="hr-num">{{ l.unit_price|floatformat:2 }}</td><td class="hr-num">{{ l.line_total|floatformat:2 }}</td></tr>{% endfor %}</tbody>
+  <tfoot><tr><th colspan="3">{% translate "Total" %}</th><th class="hr-num">{{ active_company.default_currency }} {{ total|floatformat:2 }}</th></tr></tfoot></table></div>
+  {% if doc.notes %}<div style="margin-top:14px;white-space:pre-line"><small style="color:var(--hr-soft)">{% translate "Notes / terms" %}</small><br>{{ doc.notes }}</div>{% endif %}
+</div>
+<div class="hr-actions no-print">
+  <button class="btn btn-secondary" type="button" onclick="print()">🖨 {% translate "Print / PDF" %}</button>
+  <a class="btn btn-secondary" style="background:#25d366;border-color:#25d366;color:#fff" href="{{ share }}" target="_blank" rel="noopener">💬 {% translate "Send on WhatsApp" %}</a>
+  <form method="post" class="hr-actions">{% csrf_token %}
+    {% if doc.status == "draft" %}<button class="btn btn-secondary" name="action" value="send">📤 {% translate "Mark as sent" %}</button>{% endif %}
+    {% if doc.status == "draft" or doc.status == "sent" %}<button class="btn btn-secondary" name="action" value="accept">✓ {% translate "Customer accepted" %}</button><button class="btn btn-secondary" name="action" value="reject">✕ {% translate "Customer rejected" %}</button>{% endif %}
+    {% if doc.status != "rejected" and not orders %}<button class="btn" name="action" value="to_invoice" onclick="return confirm('{% translate "Create an invoice now? Stock will be reduced." %}')">🧾 {% translate "Convert to invoice" %}</button><button class="btn btn-secondary" name="action" value="to_order">📦 {% translate "Convert to sales order" %}</button>{% endif %}
+  </form>
+</div>
+{% if orders %}<div class="hr-card no-print" style="margin-top:14px"><h3>📦 {% translate "Sales orders" %}</h3><div class="hr-list">{% for o in orders %}<a class="hr-row" href="{% url 'webapp:sales_order_detail' o.id %}"><span class="grow"><b>{{ o.number }}</b></span><span class="hr-chip blue">{% translate o.get_status_display %}</span></a>{% endfor %}</div></div>{% endif %}
+</div>
+{% endblock %}

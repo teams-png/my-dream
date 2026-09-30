@@ -580,7 +580,7 @@ def process_return(*, company, user, invoice, date, lines, warehouse, reason="",
 
 
 @transaction.atomic
-def create_quotation(*, company, user, customer, date, lines, notes=""):
+def create_quotation(*, company, user, customer, date, lines, notes="", valid_until=None):
     """lines: [{"product": Product, "quantity": Decimal, "unit_price": Decimal}, ...]
     No accounting entry, no stock movement (acceptance criteria: "quotation
     ... does not post accounting entries")."""
@@ -589,7 +589,10 @@ def create_quotation(*, company, user, customer, date, lines, notes=""):
     if customer.company_id != company.id:
         raise ValidationError("This customer does not belong to the active company.")
 
-    quotation = Quotation.objects.create(company=company, customer=customer, date=date, notes=notes, created_by=user)
+    from apps.tenants.services import next_counter_value
+    quotation = Quotation.objects.create(company=company, customer=customer, date=date, notes=notes, created_by=user,
+                                         valid_until=valid_until,
+                                         number=f"QT-{next_counter_value(company, 'quotation'):05d}")
     QuotationLine.objects.bulk_create([
         QuotationLine(
             quotation=quotation, product=l["product"], quantity=l["quantity"], unit_price=l["unit_price"],
@@ -653,8 +656,10 @@ def create_sales_order(*, company, user, customer, date, lines=None, quotation=N
     if not lines:
         raise ValidationError("Sales order must have at least one line.")
 
+    from apps.tenants.services import next_counter_value
     order = SalesOrder.objects.create(
         company=company, quotation=quotation, customer=customer, date=date, reference=reference, created_by=user,
+        number=f"SO-{next_counter_value(company, 'sales_order'):05d}",
     )
     SalesOrderLine.objects.bulk_create([
         SalesOrderLine(
@@ -746,8 +751,10 @@ def create_delivery(*, company, user, sales_order, warehouse, date, lines, allow
                     f"{so_line.quantity - already} remains undelivered on this order line."
                 )
 
+    from apps.tenants.services import next_counter_value
     delivery = DeliveryNote.objects.create(
         company=company, sales_order=sales_order, warehouse=warehouse, date=date, delivered_by=user,
+        number=f"DN-{next_counter_value(company, 'delivery_note'):05d}",
     )
     DeliveryLine.objects.bulk_create([
         DeliveryLine(

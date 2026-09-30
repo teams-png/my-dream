@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Invoices" %}{% endblock %}
+{% block heading %}{% translate "Sales invoices" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/sales_docs/_tabs.html" %}
+<div class="hr-kpis"><div class="hr-kpi"><small>{% translate "Total" %}</small><b>{{ active_company.default_currency }} {{ total|floatformat:2 }}</b></div><div class="hr-kpi {% if due > 0 %}warn{% endif %}"><small>{% translate "Unpaid" %}</small><b>{{ due|floatformat:2 }}</b></div></div>
+<form method="get" class="hr-actions" style="margin-bottom:12px">
+  <select class="hr-in" style="width:auto" name="status"><option value="">{% translate "All" %}</option><option value="unpaid" {% if status == 'unpaid' %}selected{% endif %}>{% translate "Unpaid / part paid" %}</option>{% for k, l in statuses %}<option value="{{ k }}" {% if status == k %}selected{% endif %}>{% translate l %}</option>{% endfor %}</select>
+  <input class="hr-in" style="width:auto" type="date" name="from" value="{{ start|date:'Y-m-d' }}" aria-label="{% translate 'From' %}"><input class="hr-in" style="width:auto" type="date" name="to" value="{{ end|date:'Y-m-d' }}" aria-label="{% translate 'To' %}">
+  <input class="hr-in" style="flex:1 1 180px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Invoice no. or customer' %}"><button class="btn btn-secondary">{% translate "Search" %}</button>
+</form>
+<div class="hr-list">{% for i in page %}
+  <div class="hr-row"><a class="grow" href="{% url 'webapp:invoice_pdf' i.id %}" target="_blank"><b>{{ i.invoice_number }}</b> · {{ i.customer.name }}<small>{{ i.date|date:"j M Y" }}{% if i.due_date and i.status != 'paid' %} · {% translate "due" %} {{ i.due_date|date:"j M" }}{% endif %}</small></a>
+    <span class="hr-chip {% if i.status == 'paid' %}ok{% elif i.status == 'void' %}bad{% else %}warn{% endif %}">{% translate i.get_status_display %}</span><b>{{ i.currency }} {{ i.total|floatformat:2 }}</b>
+    {% if i.status == 'unpaid' or i.status == 'partial' %}<a class="btn btn-secondary" href="{% url 'webapp:customer_account' i.customer_id %}">💵 {% translate "Receive" %}</a>{% endif %}
+    <a class="btn btn-secondary" href="{% url 'webapp:invoice_share' i.id %}" aria-label="{% translate 'Share' %}">📤</a></div>
+{% empty %}<div class="hr-card hr-empty">{% translate "No invoices found." %}</div>{% endfor %}</div>
+{% if page.paginator.num_pages > 1 %}<div class="hr-actions" style="justify-content:center;margin-top:14px">{% if page.has_previous %}<a class="btn btn-secondary" href="?{{ page_query }}&page={{ page.previous_page_number }}">←</a>{% endif %}<span>{{ page.number }} / {{ page.paginator.num_pages }}</span>{% if page.has_next %}<a class="btn btn-secondary" href="?{{ page_query }}&page={{ page.next_page_number }}">→</a>{% endif %}</div>{% endif %}
+</div>
+{% endblock %}

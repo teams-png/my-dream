@@ -11,8 +11,10 @@ class Quotation(TenantScopedModel):
     """
     STATUS = [("draft", "Draft"), ("sent", "Sent"), ("accepted", "Accepted"),
               ("rejected", "Rejected"), ("expired", "Expired")]
+    number = models.CharField(max_length=30, blank=True)
     customer = models.ForeignKey("customers.Customer", on_delete=models.PROTECT)
     date = models.DateField()
+    valid_until = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS, default="draft")
     notes = models.TextField(blank=True)
     created_by = models.ForeignKey(
@@ -47,6 +49,7 @@ class SalesOrder(TenantScopedModel):
         ("partially_delivered", "Partially Delivered"), ("delivered", "Delivered"),
         ("cancelled", "Cancelled"),
     ]
+    number = models.CharField(max_length=30, blank=True)
     quotation = models.ForeignKey(Quotation, null=True, blank=True, on_delete=models.SET_NULL)
     customer = models.ForeignKey("customers.Customer", on_delete=models.PROTECT)
     date = models.DateField()
@@ -78,6 +81,7 @@ class DeliveryNote(TenantScopedModel):
     recognized entirely at invoice time, same as the existing direct
     create_invoice() flow.
     """
+    number = models.CharField(max_length=30, blank=True)
     sales_order = models.ForeignKey(SalesOrder, on_delete=models.PROTECT, related_name="deliveries")
     warehouse = models.ForeignKey("inventory.Warehouse", on_delete=models.PROTECT)
     date = models.DateField()

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% if kind == "quotation" %}{% translate "Quotations" %}{% else %}{% translate "Sales orders" %}{% endif %}{% endblock %}
+{% block heading %}{% if kind == "quotation" %}{% translate "Quotations" %}{% else %}{% translate "Sales orders" %}{% endif %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/sales_docs/_tabs.html" %}
+<div class="hr-actions" style="margin-bottom:12px"><a class="btn" href="{% url new_url %}">＋ {% if kind == "quotation" %}{% translate "New quotation" %}{% else %}{% translate "New sales order" %}{% endif %}</a></div>
+<form method="get" class="hr-actions" style="margin-bottom:12px">
+  <a class="hr-chip {% if not status %}ok{% endif %}" style="padding:8px 12px" href="?">{% translate "All" %}</a>
+  {% for k, l in statuses %}<a class="hr-chip {% if status == k %}ok{% endif %}" style="padding:8px 12px" href="?status={{ k }}">{% translate l %}</a>{% endfor %}
+  <input type="hidden" name="status" value="{{ status }}"><input class="hr-in" style="flex:1 1 200px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Number or customer' %}"><button class="btn btn-secondary">{% translate "Search" %}</button>
+</form>
+<div class="hr-list">{% for d in page %}
+  <a class="hr-row" href="{% url detail_url d.id %}"><span class="grow"><b>{{ d.number|default:d.id }}</b> · {{ d.customer.name }}<small>{{ d.date|date:"j M Y" }}{% if d.valid_until %} · {% translate "valid until" %} {{ d.valid_until|date:"j M" }}{% endif %}{% if d.reference %} · {{ d.reference }}{% endif %}</small></span><span class="hr-chip {% if d.status in 'accepted,delivered' %}ok{% elif d.status in 'rejected,cancelled,expired' %}bad{% elif d.status == 'draft' %}warn{% else %}blue{% endif %}">{% translate d.get_status_display %}</span><b>{{ d.total|default:0|floatformat:2 }}</b></a>
+{% empty %}<div class="hr-card hr-empty">{% translate "Nothing here yet." %}</div>{% endfor %}</div>
+{% if page.paginator.num_pages > 1 %}<div class="hr-actions" style="justify-content:center;margin-top:14px">{% if page.has_previous %}<a class="btn btn-secondary" href="?status={{ status }}&q={{ q }}&page={{ page.previous_page_number }}">←</a>{% endif %}<span>{{ page.number }} / {{ page.paginator.num_pages }}</span>{% if page.has_next %}<a class="btn btn-secondary" href="?status={{ status }}&q={{ q }}&page={{ page.next_page_number }}">→</a>{% endif %}</div>{% endif %}
+</div>
+{% endblock %}

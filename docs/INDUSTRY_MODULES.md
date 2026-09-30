@@ -85,4 +85,20 @@ These pages put the existing ledger, sales, purchase, stock, bank and CRM servic
 | Business → Stock & inventory | Stock per location with value, adjustments (audited), transfers, stock taking, batches with expiry, serial/IMEI lookup, and movement history. Batch items sold without a chosen batch are taken from the batch that expires first. | `stock_views.py` |
 | Settings → Tax & currency, Activity log | Tax registration and codes, exchange rates, and the company's own audit trail | `banking_views.py` |
 
-Not wired up yet: `NotificationRule` (per-company reminder days) is stored but not used by the notification jobs, so it has no page.
+## Automation, online payments and control
+
+| Menu / link | What it does | Code |
+|---|---|---|
+| Settings → Reminders & alerts | Days-before settings per reminder type (customer/supplier bills due, stock expiry, memberships, the plan, overdue bills, low stock) and whether each one emails. The nightly checks run once a day through `run_daily_jobs`. | `apps/notifications/rules.py`, `daily.py` |
+| Finance → Daily report | The day's sales, money received, expenses, profit, dues, low stock and top items. It is emailed each night to owners and any extra addresses, and can be shared on WhatsApp with one tap. | `apps/notifications/daily_report.py` |
+| Finance → Budgets | A monthly budget per expense category. A notification is sent once at the warning % and once when the budget is exceeded. | `apps/expenses/budgets.py` |
+| Finance → Online payments | The business connects its own SkipCash (Qatar) or Razorpay (India) keys, which are stored encrypted. Shared bills show a **Pay now** button. The payment is confirmed with the gateway before it is applied to the oldest open bills. Bank, IBAN, UPI or Fawran details can be shown instead. | `apps/sales/online_pay.py`, `pay_views.py` |
+| Customer portal `/c/<token>/` | A signed link per customer that shows unpaid bills, a statement and recent bills, with a button to pay the whole balance. Copy it from the customer's account page; WhatsApp reminders include it. | `pay_views.py` |
+| 📊 Excel buttons | .xlsx downloads for P&L, balance sheet, trial balance, ledgers, stock, invoices, payroll, receivables, customer statements, expenses and budgets. They use a built-in writer with no extra dependency, and text never becomes a formula. | `apps/webapp/xlsx.py` |
+| Team → Role & branches | Tick the branches a team member works at. They then sell from those branches only, and see only their stock, bills and restaurant orders; stock transfers go out of their own branch. Owners always see everything. | `apps/inventory/branch_access.py` |
+
+### Nightly jobs on Render
+Render has no worker here, so `.github/workflows/daily-jobs.yml` calls `POST /cron/daily/` every night with the `X-Cron-Key` header. Setup:
+1. Copy Render's generated `CRON_SECRET` into the GitHub repository secret `CRON_SECRET`.
+2. Optionally set the repository variable `BOOKPILOT_URL` (default: the Render URL).
+3. Email settings (`EMAIL_HOST` etc.) are needed for the reminder and report emails.

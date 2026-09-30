@@ -23,6 +23,8 @@ a.hr-kpi:hover{border-color:var(--hr-accent)}
 .hr-form input,.hr-form select,.hr-form textarea,.hr-in{width:100%;box-sizing:border-box;min-height:42px;padding:9px 12px;border:1.5px solid var(--hr-line);border-radius:11px;font:inherit;font-size:15px;background:var(--panel,#fff);color:var(--hr-ink)}
 .hr-form .help{font-weight:500;font-size:12px}
 .hr-form .err{color:var(--hr-bad);font-weight:600;font-size:12.5px}
+.hr-form label.check{flex-direction:row;align-items:center;gap:10px;color:var(--hr-ink)}
+.hr-form input[type=checkbox],.hr-form input[type=radio]{width:20px;height:20px;min-height:0;padding:0;flex:none;accent-color:var(--hr-ok)}
 .hr-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:800;background:#f1f3f7;color:var(--hr-soft);white-space:nowrap}
 .hr-chip.present,.hr-chip.paid,.hr-chip.approved,.hr-chip.posted,.hr-chip.ok{background:var(--hr-ok-bg);color:var(--hr-ok)}
 .hr-chip.absent,.hr-chip.rejected,.hr-chip.reversed,.hr-chip.bad,.hr-chip.terminated{background:var(--hr-bad-bg);color:var(--hr-bad)}

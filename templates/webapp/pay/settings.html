@@ -16,9 +16,9 @@
     <label data-for="skipcash">{% translate "Client ID" %}<input name="client_id" value="{{ config.client_id }}"></label>
     <label data-for="skipcash razorpay">{% translate "Key secret" %}<input name="secret" type="password" placeholder="{% if config.secret_ciphertext %}•••••• {% translate "saved — leave blank to keep" %}{% endif %}"></label>
     <label data-for="skipcash">{% translate "Webhook key" %}<input name="webhook_key" type="password" placeholder="{% if config.webhook_key_ciphertext %}•••••• {% translate "saved — leave blank to keep" %}{% endif %}"></label>
-    <label class="wide" style="display:flex;gap:8px;align-items:center" data-for="skipcash razorpay"><input type="checkbox" name="test_mode" {% if config.test_mode %}checked{% endif %}> {% translate "Test mode (sandbox — no real money)" %}</label>
+    <label class="wide check" data-for="skipcash razorpay"><input type="checkbox" name="test_mode" {% if config.test_mode %}checked{% endif %}> {% translate "Test mode (sandbox — no real money)" %}</label>
     <label class="wide">{% translate "Other ways to pay (bank account, IBAN, UPI ID, Fawran…)" %}<textarea name="instructions" rows="3">{{ config.instructions }}</textarea></label>
-    <label class="wide" style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="portal_enabled" {% if config.portal_enabled %}checked{% endif %}> {% translate "Customers can open their account page (bills, statement, pay)" %}</label>
+    <label class="wide check"><input type="checkbox" name="portal_enabled" {% if config.portal_enabled %}checked{% endif %}> {% translate "Customers can open their account page (bills, statement, pay)" %}</label>
   </div>
   {% if is_owner %}<button class="btn" type="submit">{% translate "Save" %}</button>{% else %}<p class="hr-empty">{% translate "Only the business owner can change payment settings." %}</p>{% endif %}
 </form>

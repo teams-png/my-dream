@@ -2,6 +2,7 @@
 <html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% translate "Invoice" %} {{ invoice.invoice_number }}</title>
 <style>
   @page { size: A4; margin: 28mm 20mm; }
@@ -30,6 +31,8 @@
   .pay-box .note{flex-basis:100%;white-space:pre-line;color:#5F6579;font-size:12px}
   .pay-box.ok{border-color:#0E9F6E;background:#ECFDF5}.pay-box.warn{border-color:#d97706;background:#FFFBEB}
   @media print{.share-bar,.pay-box{display:none}}
+  @media screen and (max-width:640px){body{margin:12px;font-size:12.5px}.header{flex-direction:column;gap:14px}.invoice-title{text-align:start}
+    table{display:block;overflow-x:auto}.totals{width:100%}.share-bar{flex-wrap:wrap;justify-content:flex-start;margin:0 0 14px}.pay-box .pay-btn{width:100%}.pay-box form{flex:1 1 100%}}
 
   .lang-switch{margin:0;display:inline-flex}
   .lang-switch label{display:inline-flex;align-items:center;gap:4px;border:1px solid #e3e6ee;border-radius:10px;padding:0 6px 0 8px;background:#fff;font-size:13px;cursor:pointer}

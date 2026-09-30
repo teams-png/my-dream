@@ -673,3 +673,4 @@ ML.update({
 "Booking": "ബുക്കിംഗ്",
 })
 ML.update({"night": "രാത്രി", "day": "ദിവസം", "event": "ഇവന്റ്", "hour": "മണിക്കൂർ"})
+ML.update({"Account": "അക്കൗണ്ട്"})

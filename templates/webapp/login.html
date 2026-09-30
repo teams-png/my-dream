@@ -15,11 +15,12 @@
     margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
     font-family:'Inter',-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; background:#f4f6fb; color:#12162b;
   }
-  .box{width:340px; background:#fff; border:1px solid #e7e9f2; border-radius:12px; padding:32px; box-shadow:0 1px 2px rgba(18,22,43,0.03);}
+  *,*::before,*::after{box-sizing:border-box}
+  .box{width:min(380px,100%); background:#fff; border:1px solid #e7e9f2; border-radius:12px; padding:32px; box-shadow:0 1px 2px rgba(18,22,43,0.03);}
   .box h1{font-size:20px; font-weight:700; margin:0 0 4px;}
   .box p{color:#5f6579; font-size:13.5px; margin:0 0 22px;}
   label{display:block; font-size:13.5px; font-weight:600; color:#5f6579; margin:14px 0 6px;}
-  input{width:100%; padding:10px 12px; border:1.5px solid #e7e9f2; border-radius:10px; font-size:14.5px; font-family:inherit; transition:border-color .15s ease;}
+  input{width:100%; padding:12px 13px; font-size:16px; border:1.5px solid #e7e9f2; border-radius:10px; font-family:inherit; transition:border-color .15s ease;}
   input:focus{outline:none; border-color:#14532d;}
   button{
     width:100%; margin-top:20px; background:#14532d; color:#fff; border:none; padding:12px;
@@ -33,6 +34,7 @@
   .lang-switch select{border:0;background:transparent;font:inherit;font-size:13px;font-weight:600;padding:7px 2px;cursor:pointer;color:inherit}
   .lang-switch select:focus{outline:none}
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  @media(max-width:480px){body{padding:72px 16px 24px;align-items:flex-start}.box{padding:26px 20px;border-radius:16px}button{padding:14px;font-size:15.5px}}
   [dir=rtl] body{font-family:'Inter','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
   html[lang=ml] body{font-family:'Inter','Noto Sans Malayalam','Nirmala UI',sans-serif}
 </style>

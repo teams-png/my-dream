@@ -693,3 +693,4 @@ AR.update({
 "Booking": "الحجز",
 })
 AR.update({"night": "ليلة", "day": "يوم", "event": "فعالية", "hour": "ساعة"})
+AR.update({"Account": "الحساب"})

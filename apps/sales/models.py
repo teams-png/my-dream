@@ -371,3 +371,73 @@ class OfflineSaleSync(TenantScopedModel):
 
     def __str__(self):
         return self.offline_number
+
+
+class OnlinePaymentSettings(TenantScopedModel):
+    """The business's own payment gateway, so customers can pay invoices online.
+    Money goes straight to the business's merchant account; secrets are stored encrypted."""
+    PROVIDERS = [("", "Off"), ("skipcash", "SkipCash (Qatar)"), ("razorpay", "Razorpay (India)")]
+    provider = models.CharField(max_length=20, choices=PROVIDERS, blank=True)
+    test_mode = models.BooleanField(default=True)
+    key_id = models.CharField(max_length=255, blank=True)
+    client_id = models.CharField(max_length=255, blank=True)
+    secret_ciphertext = models.TextField(blank=True)
+    webhook_key_ciphertext = models.TextField(blank=True)
+    deposit_to = models.CharField(max_length=10, default="bank", help_text="bank or cash — the ledger account payments land in.")
+    instructions = models.TextField(blank=True, help_text="Bank transfer / UPI / Fawran details shown to customers.")
+    portal_enabled = models.BooleanField(default=True)
+
+    class Meta:
+        unique_together = ("company",)
+
+    @classmethod
+    def load(cls, company):
+        obj = cls.objects.filter(company=company).first()
+        return obj or cls.objects.create(company=company)
+
+    def _decrypt(self, value):
+        from apps.platform_admin.payment_gateways import decrypt_credential
+        try:
+            return decrypt_credential(value)
+        except Exception:
+            return ""
+
+    @property
+    def secret(self):
+        return self._decrypt(self.secret_ciphertext)
+
+    @property
+    def webhook_key(self):
+        return self._decrypt(self.webhook_key_ciphertext)
+
+    def set_secret(self, field, value):
+        from apps.platform_admin.payment_gateways import encrypt_credential
+        setattr(self, f"{field}_ciphertext", encrypt_credential(value))
+
+    @property
+    def ready(self):
+        if self.provider == "skipcash":
+            return bool(self.key_id and self.client_id and self.secret_ciphertext)
+        if self.provider == "razorpay":
+            return bool(self.key_id and self.secret_ciphertext)
+        return False
+
+
+class OnlinePayment(TenantScopedModel):
+    """One pay-now attempt by a customer, for an invoice or for their whole balance."""
+    STATUS = [("pending", "Pending"), ("paid", "Paid"), ("failed", "Failed")]
+    customer = models.ForeignKey("customers.Customer", on_delete=models.CASCADE, related_name="online_payments")
+    invoice = models.ForeignKey(SalesInvoice, null=True, blank=True, on_delete=models.SET_NULL, related_name="online_payments")
+    provider = models.CharField(max_length=20)
+    amount = models.DecimalField(max_digits=14, decimal_places=2)
+    currency = models.CharField(max_length=3)
+    transaction_id = models.CharField(max_length=64, unique=True)
+    gateway_payment_id = models.CharField(max_length=100, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS, default="pending")
+    status_detail = models.CharField(max_length=255, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    paid_at = models.DateTimeField(null=True, blank=True)
+    receipts = models.CharField(max_length=255, blank=True, help_text="Invoice numbers the payment was applied to.")
+
+    class Meta:
+        ordering = ["-created_at"]

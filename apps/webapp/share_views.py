@@ -1,10 +1,9 @@
 from django import forms
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from django.views.decorators.clickjacking import xframe_options_sameorigin
 
 from apps.sales import sharing
 from apps.sales.models import SalesInvoice
@@ -45,21 +44,3 @@ def invoice_share(request, invoice_id):
         "whatsapp_any_url": sharing.whatsapp_url(invoice, url, phone=""),
         "message": sharing.share_message(invoice, url),
     })
-
-
-@xframe_options_sameorigin
-def public_invoice(request, token):
-    """Customer-facing invoice page; no login, protected by the signed token."""
-    invoice = sharing.invoice_from_token(token)
-    if invoice is None:
-        raise Http404("This invoice link is invalid or has expired.")
-    if request.GET.get("format") == "pdf":
-        pdf = sharing.render_invoice_pdf(invoice)
-        if pdf:
-            response = HttpResponse(pdf, content_type="application/pdf")
-            response["Content-Disposition"] = f'attachment; filename="{invoice.invoice_number}.pdf"'
-            return response
-    response = HttpResponse(sharing.render_invoice_html(invoice, public_url=request.build_absolute_uri()))
-    response["X-Robots-Tag"] = "noindex, nofollow"
-    response["Referrer-Policy"] = "no-referrer"
-    return response

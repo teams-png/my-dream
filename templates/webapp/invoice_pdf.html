@@ -23,7 +23,13 @@
   .share-bar{display:flex;gap:8px;justify-content:flex-end;margin:-10px 0 18px}
   .share-bar a,.share-bar button{font:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:9px;border:1px solid #d7dae4;background:#fff;color:#12162B;cursor:pointer;text-decoration:none}
   .share-bar .primary{background:#12162B;color:#fff;border-color:#12162B}
-  @media print{.share-bar{display:none}}
+  .pay-box{border:1px solid #d7dae4;border-radius:12px;padding:14px 16px;margin:0 0 20px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+  .pay-box .due{font-size:15px;font-weight:700}
+  .pay-box form{margin:0}
+  .pay-box .pay-btn{font:inherit;font-size:15px;font-weight:700;padding:11px 22px;border-radius:10px;border:0;background:#0E9F6E;color:#fff;cursor:pointer}
+  .pay-box .note{flex-basis:100%;white-space:pre-line;color:#5F6579;font-size:12px}
+  .pay-box.ok{border-color:#0E9F6E;background:#ECFDF5}.pay-box.warn{border-color:#d97706;background:#FFFBEB}
+  @media print{.share-bar,.pay-box{display:none}}
 
   .lang-switch{margin:0;display:inline-flex}
   .lang-switch label{display:inline-flex;align-items:center;gap:4px;border:1px solid #e3e6ee;border-radius:10px;padding:0 6px 0 8px;background:#fff;font-size:13px;cursor:pointer}
@@ -36,7 +42,15 @@
 </style>
 {% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}</head>
 <body>
-  {% if public_url %}<div class="share-bar"><button class="primary" onclick="window.print()">{% translate "Print" %}</button><a href="?format=pdf">{% translate "Download PDF" %}</a></div>{% endif %}
+  {% if public_url %}<div class="share-bar"><button class="primary" onclick="window.print()">{% translate "Print" %}</button><a href="?format=pdf">{% translate "Download PDF" %}</a>{% if pay.portal_url %}<a href="{{ pay.portal_url }}">{% translate "My account" %}</a>{% endif %}</div>{% endif %}
+  {% if pay.message %}<div class="pay-box {{ pay.level }}"><span>{{ pay.message }}</span></div>{% endif %}
+  {% if pay.amount %}
+  <div class="pay-box">
+    <span class="due">{% translate "Balance due" %}: {{ pay.currency }} {{ pay.amount|floatformat:2 }}</span>
+    {% if pay.online %}<form method="post" action="{{ pay.action }}"><button class="pay-btn" type="submit">{% translate "Pay now" %}</button></form>{% endif %}
+    {% if pay.instructions %}<div class="note">{{ pay.instructions }}</div>{% endif %}
+  </div>
+  {% endif %}
   <div class="header">
     <div>
       <p class="company-name">{{ company.name }}</p>

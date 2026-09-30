@@ -12,6 +12,7 @@
   <div class="hr-actions">
     <a class="btn btn-secondary" href="{% url 'webapp:customer_edit' customer.id %}">✏️ {% translate "Edit" %}</a>
     {% if balance > 0 %}<a class="btn btn-secondary" style="background:#25d366;border-color:#25d366;color:#fff" href="{{ reminder }}" target="_blank" rel="noopener">💬 {% translate "Send reminder" %}</a>{% endif %}
+    <button class="btn btn-secondary" type="button" data-copy="{{ portal }}" data-done="{% translate "Link copied" %}" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.dataset.copy);this.textContent='✓ '+this.dataset.done">🔗 {% translate "Copy customer portal link" %}</button>
     <button class="btn btn-secondary" type="button" onclick="print()">🖨 {% translate "Print statement" %}</button>
   </div>
 </div>

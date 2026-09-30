@@ -1,0 +1,67 @@
+{% load i18n %}{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as RTL %}<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}"{% if RTL %} dir="rtl"{% endif %}>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>{{ company.name }} · {% translate "My account" %}</title>
+<style>
+  :root{--ink:#12162B;--soft:#5F6579;--line:#E7E9F2;--ok:#0E9F6E;--bad:#DC2626;--bg:#F6F7FB;--card:#fff}
+  @media (prefers-color-scheme: dark){:root{--ink:#E8EAF2;--soft:#A3A8BA;--line:#2A2F45;--bg:#0F1222;--card:#171B2E}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+  html[lang=ml] body{font-family:'Noto Sans Malayalam','Nirmala UI',sans-serif}
+  .wrap{max-width:760px;margin:0 auto;padding:20px 16px 40px}
+  header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+  h1{font-size:20px;margin:0}h2{font-size:15px;margin:0 0 10px}
+  .muted{color:var(--soft);font-size:12.5px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+  .bal{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+  .bal b{font-size:26px}
+  .btn{font:inherit;font-weight:700;font-size:15px;padding:11px 22px;border-radius:10px;border:0;background:var(--ok);color:#fff;cursor:pointer;text-decoration:none;display:inline-block}
+  .note{white-space:pre-line;color:var(--soft);font-size:13px;margin-top:10px}
+  .msg{padding:12px 14px;border-radius:12px;margin-bottom:14px;font-weight:600}
+  .msg.ok{background:#ECFDF5;color:#065F46}.msg.warn{background:#FFFBEB;color:#92400E}
+  table{width:100%;border-collapse:collapse}
+  th{text-align:start;font-size:11px;text-transform:uppercase;color:var(--soft);padding:6px;border-bottom:1px solid var(--line)}
+  td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+  .num{text-align:end;white-space:nowrap}
+  a{color:inherit}
+  .scroll{overflow-x:auto}
+  .chip{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--line)}
+  .chip.paid{background:#D1FAE5;color:#065F46}.chip.overdue{background:#FEE2E2;color:#991B1B}
+  @media print{.btn,.no-print{display:none}body{background:#fff}}
+</style>
+</head>
+<body><div class="wrap">
+<header>
+  <div><h1>{{ company.name }}</h1><div class="muted">{% if company.phone %}{{ company.phone }}{% endif %}{% if company.email %} · {{ company.email }}{% endif %}</div></div>
+  <div style="text-align:end"><b>{{ customer.name }}</b><div class="muted">{% translate "Account statement" %} · {{ today|date:"j M Y" }}</div></div>
+</header>
+{% if status.message %}<div class="msg {{ status.level }}">{{ status.message }}</div>{% endif %}
+<div class="card bal">
+  <div><div class="muted">{% if balance < 0 %}{% translate "Credit on your account" %}{% else %}{% translate "Balance due" %}{% endif %}</div>
+    <b>{{ company.default_currency }} {% if balance < 0 %}{{ balance|floatformat:2|cut:"-" }}{% else %}{{ balance|floatformat:2 }}{% endif %}</b></div>
+  {% if balance > 0 and online %}<form method="post" action="{{ pay_action }}" class="no-print"><button class="btn" type="submit">{% translate "Pay now" %}</button></form>{% endif %}
+  {% if balance > 0 and instructions %}<div class="note" style="flex-basis:100%">{{ instructions }}</div>{% endif %}
+</div>
+{% if open_invoices %}
+<div class="card"><h2>{% translate "Unpaid bills" %}</h2><div class="scroll"><table>
+  <tr><th>{% translate "Bill" %}</th><th>{% translate "Date" %}</th><th>{% translate "Due date" %}</th><th class="num">{% translate "Due" %}</th></tr>
+  {% for inv in open_invoices %}<tr><td><a href="{{ inv.link }}">{{ inv.invoice_number }}</a></td><td>{{ inv.date|date:"j M Y" }}</td>
+    <td>{{ inv.due_date|date:"j M Y"|default:"—" }}{% if inv.due_date and inv.due_date < today %} <span class="chip overdue">{% translate "Overdue" %}</span>{% endif %}</td>
+    <td class="num">{{ inv.currency }} {{ inv.due|floatformat:2 }}</td></tr>{% endfor %}
+</table></div></div>
+{% endif %}
+<div class="card"><h2>{% translate "Statement" %}</h2><div class="scroll"><table>
+  <tr><th>{% translate "Date" %}</th><th>{% translate "Details" %}</th><th class="num">{% translate "Billed" %}</th><th class="num">{% translate "Paid" %}</th><th class="num">{% translate "Balance" %}</th></tr>
+  {% for l in lines %}<tr><td>{{ l.date|date:"j M Y" }}</td><td>{{ l.kind }} · {% if l.invoice %}<a href="{{ l.link }}">{{ l.ref }}</a>{% else %}{{ l.ref }}{% endif %}</td>
+    <td class="num">{% if l.debit %}{{ l.debit|floatformat:2 }}{% endif %}</td><td class="num">{% if l.credit %}{{ l.credit|floatformat:2 }}{% endif %}</td><td class="num">{{ l.balance|floatformat:2 }}</td></tr>
+  {% empty %}<tr><td colspan="5" class="muted">{% translate "No transactions yet." %}</td></tr>{% endfor %}
+</table></div></div>
+<div class="card"><h2>{% translate "Recent bills" %}</h2><div class="scroll"><table>
+  {% for inv in recent %}<tr><td><a href="{{ inv.link }}">{{ inv.invoice_number }}</a></td><td>{{ inv.date|date:"j M Y" }}</td>
+    <td><span class="chip {% if inv.status == 'paid' %}paid{% endif %}">{{ inv.get_status_display }}</span></td><td class="num">{{ inv.currency }} {{ inv.total|floatformat:2 }}</td></tr>
+  {% empty %}<tr><td class="muted">{% translate "No bills yet." %}</td></tr>{% endfor %}
+</table></div></div>
+<p class="muted no-print" style="text-align:center"><button class="btn" style="background:var(--ink);color:var(--bg)" onclick="print()">{% translate "Print" %}</button></p>
+</div></body></html>

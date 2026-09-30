@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Online payments" %}{% endblock %}
+{% block heading %}{% translate "Online payments" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<div class="hr">
+<div class="hr-grid2">
+<form method="post" class="hr-card" autocomplete="off">{% csrf_token %}
+  <h3>💳 {% translate "Let customers pay your bills online" %}</h3>
+  <p style="color:var(--hr-soft);font-size:13px">{% translate "Customers see a Pay now button on the bill link you send them and in their account page. Money goes straight to your own merchant account, and the bill is marked paid automatically." %}</p>
+  <div class="hr-form">
+    <label>{% translate "Payment gateway" %}<select name="provider" id="provider">{% for code, label in providers %}<option value="{{ code }}" {% if config.provider == code %}selected{% endif %}>{% if code %}{{ label }}{% else %}{% translate "Off (show payment details only)" %}{% endif %}</option>{% endfor %}</select></label>
+    <label>{% translate "Money lands in" %}<select name="deposit_to"><option value="bank" {% if config.deposit_to != "cash" %}selected{% endif %}>{% translate "Bank" %}</option><option value="cash" {% if config.deposit_to == "cash" %}selected{% endif %}>{% translate "Cash" %}</option></select></label>
+    <label data-for="skipcash razorpay">{% translate "Key ID" %}<input name="key_id" value="{{ config.key_id }}"></label>
+    <label data-for="skipcash">{% translate "Client ID" %}<input name="client_id" value="{{ config.client_id }}"></label>
+    <label data-for="skipcash razorpay">{% translate "Key secret" %}<input name="secret" type="password" placeholder="{% if config.secret_ciphertext %}•••••• {% translate "saved — leave blank to keep" %}{% endif %}"></label>
+    <label data-for="skipcash">{% translate "Webhook key" %}<input name="webhook_key" type="password" placeholder="{% if config.webhook_key_ciphertext %}•••••• {% translate "saved — leave blank to keep" %}{% endif %}"></label>
+    <label class="wide" style="display:flex;gap:8px;align-items:center" data-for="skipcash razorpay"><input type="checkbox" name="test_mode" {% if config.test_mode %}checked{% endif %}> {% translate "Test mode (sandbox — no real money)" %}</label>
+    <label class="wide">{% translate "Other ways to pay (bank account, IBAN, UPI ID, Fawran…)" %}<textarea name="instructions" rows="3">{{ config.instructions }}</textarea></label>
+    <label class="wide" style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="portal_enabled" {% if config.portal_enabled %}checked{% endif %}> {% translate "Customers can open their account page (bills, statement, pay)" %}</label>
+  </div>
+  {% if is_owner %}<button class="btn" type="submit">{% translate "Save" %}</button>{% else %}<p class="hr-empty">{% translate "Only the business owner can change payment settings." %}</p>{% endif %}
+</form>
+<div class="hr-card">
+  <h3>🔧 {% translate "Set up in your gateway account" %}</h3>
+  <p style="font-size:13px"><b>SkipCash:</b> {% translate "in the SkipCash merchant portal, set these two addresses:" %}</p>
+  <div class="hr-list">
+    <div class="hr-row"><span class="grow"><small>{% translate "Return URL" %}</small><code style="word-break:break-all">{{ return_url }}</code></span></div>
+    <div class="hr-row"><span class="grow"><small>{% translate "Webhook URL" %}</small><code style="word-break:break-all">{{ webhook_url }}</code></span></div>
+  </div>
+  <p style="font-size:13px;margin-top:10px"><b>Razorpay:</b> {% translate "only the Key ID and Key secret are needed; payment links come back here by themselves." %}</p>
+  <p style="color:var(--hr-soft);font-size:12.5px">{% translate "Status" %}: {% if config.ready %}<span class="hr-chip ok">{% translate "Pay now is live" %}</span>{% elif config.provider %}<span class="hr-chip warn">{% translate "Keys missing" %}</span>{% else %}<span class="hr-chip">{% translate "Off" %}</span>{% endif %}</p>
+</div>
+</div>
+<div class="hr-card"><h3>{% translate "Online payments received" %}</h3>
+  <div class="hr-list">{% for p in payments %}
+    <div class="hr-row"><span class="grow"><b>{{ p.customer.name }}</b><small>{{ p.created_at|date:"j M Y H:i" }} · {% if p.invoice %}{{ p.invoice.invoice_number }}{% else %}{% translate "Account balance" %}{% endif %}{% if p.receipts %} → {{ p.receipts }}{% endif %}</small></span>
+      <span class="hr-chip {% if p.status == 'paid' %}ok{% elif p.status == 'failed' %}bad{% endif %}">{{ p.get_status_display }}</span><b class="hr-money">{{ p.currency }} {{ p.amount|floatformat:2 }}</b></div>
+  {% empty %}<div class="hr-empty">{% translate "No online payments yet." %}</div>{% endfor %}</div>
+</div>
+</div>
+<script>
+(function(){var sel=document.getElementById('provider');function sync(){document.querySelectorAll('[data-for]').forEach(function(el){el.style.display=el.dataset.for.split(' ').indexOf(sel.value)>=0?'':'none';});}sel.addEventListener('change',sync);sync();})();
+</script>
+{% endblock %}

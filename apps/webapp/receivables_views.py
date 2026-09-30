@@ -10,6 +10,7 @@ from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.db.models import Q, Sum
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.dateparse import parse_date
 from django.utils.translation import gettext as _
@@ -18,6 +19,8 @@ from apps.collections import services as collections
 from apps.collections.models import CollectionNote
 from apps.customers.models import Customer
 from apps.sales import services as sales
+from apps.sales.online_pay import portal_token
+from apps.sales.allocation import allocate_payment, invoice_due, open_invoices
 from apps.sales.models import CustomerPayment, SalesInvoice, SalesReturn
 
 from .views import require_permission
@@ -29,23 +32,8 @@ CENT = Decimal("0.01")
 METHODS = [("cash", "Cash"), ("card", "Card"), ("bank", "Bank transfer"), ("cheque", "Cheque")]
 
 
-def _due(invoice):
-    """What is still owed on an invoice, in the invoice's own currency."""
-    total = invoice.transaction_total if invoice.transaction_total is not None else invoice.total
-    return max(total - (invoice.transaction_amount_paid or ZERO), ZERO)
-
-
-def _open_invoices(company, customer=None):
-    qs = SalesInvoice.objects.for_company(company).exclude(status__in=["paid", "void"]).select_related("customer")
-    if customer is not None:
-        qs = qs.filter(customer=customer)
-    rows = []
-    for invoice in qs.order_by("due_date", "date", "id"):
-        due = _due(invoice)
-        if due > 0:
-            invoice.due = due
-            rows.append(invoice)
-    return rows
+_due = invoice_due
+_open_invoices = open_invoices
 
 
 def _balances(company):
@@ -90,13 +78,15 @@ def _statement(company, customer, start=None, end=None):
     return opening, lines, closing
 
 
-def _reminder_link(company, customer, balance, invoices):
+def _reminder_link(company, customer, balance, invoices, portal=""):
     currency = getattr(company, "default_currency", "")
     lines = [_("Dear %(name)s,") % {"name": customer.name},
              _("This is a friendly reminder from %(company)s.") % {"company": company.name},
              _("Amount due: %(cur)s %(amount)s") % {"cur": currency, "amount": f"{balance:.2f}"}]
     for inv in invoices[:6]:
         lines.append(f"• {inv.invoice_number} ({inv.date:%d %b}): {inv.currency} {inv.due:.2f}")
+    if portal:
+        lines.append(_("View your bills and pay online: %(url)s") % {"url": portal})
     lines.append(_("Thank you."))
     phone = "".join(ch for ch in (customer.phone or "") if ch.isdigit())
     return f"https://wa.me/{phone}?text={quote(chr(10).join(lines))}"
@@ -186,10 +176,12 @@ def customer_account(request, customer_id):
     open_invoices = _open_invoices(company, customer)
     balance = _balances(company).get(customer.id, ZERO)
     credit = collections.customer_credit_status(company, customer)
+    portal = request.build_absolute_uri(reverse("webapp:customer_portal", args=[portal_token(customer)]))
     return render(request, "webapp/receivables/customer.html", {
         "customer": customer, "opening": opening, "lines": lines, "closing": closing, "start": start, "end": end,
         "open_invoices": open_invoices, "balance": balance, "credit": credit, "methods": METHODS,
-        "today": timezone.localdate(), "reminder": _reminder_link(company, customer, balance, open_invoices),
+        "today": timezone.localdate(), "portal": portal,
+        "reminder": _reminder_link(company, customer, balance, open_invoices, portal),
         "notes": CollectionNote.objects.for_company(company).filter(customer=customer).select_related("created_by")
         .order_by("-created_at")[:20],
         "payments": CustomerPayment.objects.for_company(company).filter(customer=customer).select_related("invoice")
@@ -217,31 +209,10 @@ def receive_payment(request, customer_id):
     if amount <= 0:
         messages.error(request, _("Enter the amount received."))
         return redirect("webapp:customer_account", customer.id)
-    invoice_id = request.POST.get("invoice")
-    currency = company.default_currency.upper()
     try:
         with transaction.atomic():
-            receipts, left = [], amount
-            targets = _open_invoices(company, customer)
-            if invoice_id:
-                targets = [inv for inv in targets if str(inv.id) == invoice_id]
-                if not targets:
-                    raise ValidationError(_("This invoice is already paid."))
-                if targets[0].currency.upper() != currency and amount > targets[0].due:
-                    raise ValidationError(_("The amount is more than the invoice balance."))
-            for invoice in targets:
-                if left <= 0:
-                    break
-                if invoice.currency.upper() != currency and not invoice_id:
-                    continue  # foreign-currency invoices are paid one by one, in their own currency
-                pay = min(left, invoice.due)
-                sales.record_customer_payment(company=company, user=request.user, customer=customer, amount=pay,
-                                              date=day, invoice=invoice, method=ledger_method)
-                receipts.append(invoice.invoice_number)
-                left -= pay
-            if left > 0:
-                sales.record_customer_payment(company=company, user=request.user, customer=customer, amount=left,
-                                              date=day, invoice=None, method=ledger_method)
+            receipts, left = allocate_payment(company=company, user=request.user, customer=customer, amount=amount,
+                                              date=day, method=ledger_method, invoice_id=request.POST.get("invoice"))
     except (ValidationError, KeyError) as exc:
         messages.error(request, "; ".join(getattr(exc, "messages", [str(exc)])))
         return redirect("webapp:customer_account", customer.id)

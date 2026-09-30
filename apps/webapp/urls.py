@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -501,5 +501,11 @@ urlpatterns = [
     # ---- Invoice PDF (shared) ----
     path("invoices/<int:invoice_id>/pdf/", views.invoice_pdf, name="invoice_pdf"),
     path("invoices/<int:invoice_id>/share/", share_views.invoice_share, name="invoice_share"),
-    path("i/<str:token>/", share_views.public_invoice, name="public_invoice"),
+    path("i/<str:token>/", pay_views.public_invoice, name="public_invoice"),
+    path("i/<str:token>/pay/", pay_views.pay_invoice, name="pay_invoice"),
+    path("c/<str:token>/", pay_views.customer_portal, name="customer_portal"),
+    path("c/<str:token>/pay/", pay_views.portal_pay, name="portal_pay"),
+    path("pay/<str:company_token_value>/return/", pay_views.pay_return, name="pay_return"),
+    path("pay/<str:company_token_value>/webhook/", pay_views.pay_webhook, name="pay_webhook"),
+    path("settings/online-payments/", pay_views.online_payment_settings, name="online_payment_settings"),
 ]

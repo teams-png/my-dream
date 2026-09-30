@@ -38,13 +38,13 @@ def invoice_from_token(token):
             .filter(id=data.get("i"), company_id=data.get("c")).first())
 
 
-def render_invoice_html(invoice, *, public_url=""):
+def render_invoice_html(invoice, *, public_url="", pay=None):
     lines = SalesInvoiceLine.objects.filter(invoice=invoice).select_related("product")
     return render_to_string("webapp/invoice_pdf.html", {
         "company": invoice.company, "invoice": invoice, "lines": lines,
         "mobile_units": invoice.mobile_units.select_related("product").all(),
         "balance_due": invoice.total - invoice.amount_paid,
-        "public_url": public_url,
+        "public_url": public_url, "pay": pay,
         "zatca_qr": invoice_qr_svg(invoice),
     })
 
@@ -77,6 +77,9 @@ def share_message(invoice, url):
             f"for {invoice.currency} {invoice.total:.2f}.")
     if balance > 0:
         text += f" Balance due: {invoice.currency} {balance:.2f}."
+        from .online_pay import can_pay_online
+        if can_pay_online(company):
+            text += " You can pay online from the link below."
     return f"{text}\n{url}\nThank you!"
 
 

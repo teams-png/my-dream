@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "apps.crm",
     "apps.analytics",
     "apps.finance",
+    "apps.industry",
 
     # vertical modules (Phase 3) — Gym is the proof-of-concept
     "apps.verticals.gym",

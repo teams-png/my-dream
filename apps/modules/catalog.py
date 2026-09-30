@@ -114,11 +114,46 @@ PROJECT_TERMS = {
 }
 
 
+# Industry modules switched on per business type (on top of the group's engine).
+INDUSTRY_FEATURES = {
+    # rooms / vehicles / equipment / halls / desks booked by date and time
+    "bookings": {"hotel_apartment", "car_rental", "equipment_rental", "wedding_party_hall", "coworking_space"},
+    # products sold by weight (kg) and weighing-scale barcodes at the POS
+    "weighed": {"supermarket", "grocery_store", "fish_meat_shop", "fruits_vegetables_shop", "bakery",
+                "agricultural_supplies_store"},
+    # students, courses, monthly fees and attendance
+    "education": {"school_training_institute", "tuition_center", "nursery_daycare", "driving_school"},
+    # properties, units, tenancy contracts and monthly rent
+    "leases": {"property_management", "real_estate_brokerage"},
+    # gold rate x weight + making charge pricing
+    "gold": {"jewelry_shop"},
+}
+
+# (resource, resource plural, booking, default rate unit) for the bookings module
+BOOKING_TERMS = {
+    "hotel_apartment": ("Room", "Rooms", "Reservation", "night"),
+    "car_rental": ("Vehicle", "Vehicles", "Rental", "day"),
+    "equipment_rental": ("Equipment", "Equipment", "Rental", "day"),
+    "wedding_party_hall": ("Hall", "Halls", "Event booking", "event"),
+    "coworking_space": ("Space", "Spaces", "Booking", "hour"),
+}
+
+
+def business_features(code):
+    code = ALIASES.get(code, code)
+    return {name for name, codes in INDUSTRY_FEATURES.items() if code in codes}
+
+
 def business_profile(code):
     """Return complete UI/workflow metadata for any registered business type."""
     code = ALIASES.get(code, code)
     group = business_group(code)
-    profile = {"code": code, "group": group, "name": BUSINESS_TYPE_MAP.get(code, "Business")}
+    profile = {"code": code, "group": group, "name": BUSINESS_TYPE_MAP.get(code, "Business"),
+               "features": sorted(business_features(code))}
+    if code in BOOKING_TERMS:
+        resource, resources, booking, unit = BOOKING_TERMS[code]
+        profile.update(resource_label=resource, resources_label=resources, booking_label=booking,
+                       default_rate_unit=unit)
     if group == "service":
         profile.update(profile_type=SERVICE_PROFILE_TYPES.get(code, "organization"),
                        records_label="Clients / Subjects", work_label="Cases / Work Orders",

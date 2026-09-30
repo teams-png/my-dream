@@ -1,0 +1,87 @@
+/* Industry modules: bookings, education, property, gold. */
+.ix{--ix-green:#16a34a;--ix-amber:#d97706;--ix-red:#dc2626;--ix-blue:#2563eb;--ix-ease:cubic-bezier(.2,.8,.2,1)}
+.ix-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+.ix-toolbar .grow{flex:1}
+.ix-toolbar form{display:flex;gap:6px;margin:0}
+.ix-toolbar input,.ix-toolbar select{padding:9px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:var(--panel);color:var(--ink)}
+.ix-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.ix-stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;animation:ixIn .4s var(--ix-ease) both}
+.ix-stat small{display:block;color:var(--ink-soft);font-weight:600;font-size:12.5px}
+.ix-stat b{display:block;font-size:26px;letter-spacing:-.02em;margin-top:2px}
+.ix-stat.warn b{color:var(--ix-red)}
+.ix-stat.good b{color:var(--ix-green)}
+.ix-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px;animation:ixIn .4s var(--ix-ease) both}
+.ix-card h3{margin:0 0 10px;font-size:16px}
+.ix-grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.ix-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;background:var(--paper);color:var(--ink-soft);white-space:nowrap}
+.ix-chip.reserved,.ix-chip.active,.ix-chip.draft{background:#dbeafe;color:#1e40af}
+.ix-chip.checked_in,.ix-chip.occupied{background:#fef3c7;color:#92400e}
+.ix-chip.completed,.ix-chip.paid,.ix-chip.vacant{background:#dcfce7;color:#166534}
+.ix-chip.cancelled,.ix-chip.no_show,.ix-chip.ended,.ix-chip.withdrawn,.ix-chip.terminated{background:#f3f4f6;color:#6b7280}
+.ix-chip.late,.ix-chip.overdue,.ix-chip.due{background:#fee2e2;color:#991b1b}
+.ix-list{display:grid;gap:8px}
+.ix-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:inherit;background:var(--panel);transition:border-color .2s,transform .15s}
+.ix-row:hover{border-color:var(--accent);transform:translateX(2px)}
+.ix-row .grow{flex:1;min-width:0}
+.ix-row small{display:block;color:var(--ink-soft)}
+.ix-empty{padding:26px;text-align:center;color:var(--ink-soft)}
+.ix-form{max-width:760px}
+.ix-form .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px}
+.ix-form .fields .full{grid-column:1/-1}
+.ix-form label{display:block;font-size:13px;font-weight:700;color:var(--ink-soft);margin-bottom:5px}
+.ix-form :is(input:not([type=checkbox]),select,textarea){width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:11px;font:inherit;background:var(--panel);color:var(--ink);box-sizing:border-box}
+.ix-form :is(input,select,textarea):focus{outline:none;border-color:var(--accent)}
+.ix-form .errorlist{color:var(--danger);margin:4px 0 0;padding:0;list-style:none;font-size:13px}
+.ix-form .or{display:flex;align-items:center;gap:10px;color:var(--ink-soft);font-size:12px;font-weight:700;text-transform:uppercase;margin:4px 0}
+.ix-form .or::before,.ix-form .or::after{content:"";flex:1;border-top:1px dashed var(--line)}
+.ix-kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px}
+.ix-kv dt{color:var(--ink-soft);font-weight:600}
+.ix-kv dd{margin:0;font-weight:600}
+.ix-total{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-top:1px dashed var(--line);margin-top:8px;font-weight:800}
+.ix-total b{font-size:24px}
+.ix-actions{display:flex;flex-wrap:wrap;gap:8px}
+.ix-actions form{margin:0}
+
+/* booking calendar */
+.bk-board{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:auto;margin-bottom:18px}
+.bk-grid{min-width:900px;position:relative}
+.bk-head,.bk-row{display:grid;grid-template-columns:190px 1fr}
+.bk-head{position:sticky;top:0;z-index:3;background:var(--panel);border-bottom:1px solid var(--line)}
+.bk-days{display:grid}
+.bk-day{padding:8px 4px;text-align:center;font-size:12px;font-weight:700;color:var(--ink-soft);border-left:1px solid var(--line)}
+.bk-day b{display:block;font-size:15px;color:var(--ink)}
+.bk-day.today{background:var(--accent-soft);color:var(--accent)}
+.bk-day.weekend{background:rgba(0,0,0,.02)}
+.bk-name{padding:12px 14px;border-bottom:1px solid var(--line);position:sticky;left:0;background:var(--panel);z-index:2}
+.bk-name b{display:block;font-size:14px}
+.bk-name small{color:var(--ink-soft);font-size:12px}
+.bk-lane{position:relative;border-bottom:1px solid var(--line);min-height:58px}
+.bk-cells{position:absolute;inset:0;display:grid}
+.bk-cells a{border-left:1px solid var(--line);transition:background .15s}
+.bk-cells a:hover{background:var(--accent-soft)}
+.bk-bar{position:absolute;top:9px;bottom:9px;border-radius:10px;padding:4px 9px;font-size:12px;font-weight:700;color:#fff;text-decoration:none;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;box-shadow:0 4px 12px rgba(0,0,0,.12);z-index:1;animation:ixBar .45s var(--ix-ease) both;transition:transform .15s,box-shadow .15s}
+.bk-bar:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.18);z-index:2}
+.bk-bar small{display:block;font-weight:500;opacity:.85}
+.bk-bar.reserved{background:linear-gradient(135deg,#3b82f6,#2563eb)}
+.bk-bar.checked_in{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.bk-bar.completed{background:linear-gradient(135deg,#9ca3af,#6b7280)}
+.bk-bar.late{background:linear-gradient(135deg,#ef4444,#b91c1c)}
+.bk-now{position:absolute;top:0;bottom:0;width:2px;background:var(--ix-red);z-index:2;pointer-events:none}
+.bk-now::before{content:"";position:absolute;top:-4px;left:-4px;width:10px;height:10px;border-radius:50%;background:var(--ix-red)}
+.bk-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-soft);margin:-8px 0 16px}
+.bk-legend i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-2px;margin-right:4px}
+
+/* attendance */
+.at-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.at-grid label{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;font-weight:600}
+.at-grid label:has(input:checked){border-color:var(--ix-green);background:#f0fdf4}
+.at-grid input{width:20px;height:20px;accent-color:var(--ix-green)}
+
+@keyframes ixIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes ixBar{from{opacity:0;transform:scaleX(.6)}to{opacity:1;transform:none}}
+@media(max-width:700px){.ix-form .fields{grid-template-columns:1fr}.bk-head,.bk-row{grid-template-columns:130px 1fr}}
+@media(prefers-reduced-motion:reduce){.ix *{animation:none!important}}
+html[data-theme=dark] .ix-chip.completed,html[data-theme=dark] .ix-chip.paid,html[data-theme=dark] .ix-chip.vacant{background:#14532d;color:#bbf7d0}
+html[data-theme=dark] .ix-chip.reserved,html[data-theme=dark] .ix-chip.active{background:#1e3a8a;color:#dbeafe}
+html[data-theme=dark] .ix-chip.checked_in,html[data-theme=dark] .ix-chip.occupied{background:#78350f;color:#fef3c7}
+html[data-theme=dark] .at-grid label:has(input:checked){background:#052e16}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ booking.number }}{% endblock %}
+{% block heading %}{{ booking.number }} · {{ booking.customer.name }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar">
+    <a class="btn btn-secondary" href="{% url 'webapp:booking_board' %}">← {% translate "Booking calendar" %}</a>
+    <span class="ix-chip {% if overdue %}late{% else %}{{ booking.status }}{% endif %}" style="font-size:13px;padding:6px 12px">{% if overdue %}{% translate "Overdue" %}{% else %}{{ booking.get_status_display }}{% endif %}</span>
+    <span class="grow"></span>
+    {% if booking.status == "reserved" or booking.status == "checked_in" %}<a class="btn btn-secondary" href="{% url 'webapp:booking_edit' booking.id %}">✎ {% translate "Change dates / move" %}</a>{% endif %}
+    {% if booking.invoice %}<a class="btn btn-secondary" href="{% url 'webapp:invoice_pdf' booking.invoice.id %}" target="_blank">🧾 {{ booking.invoice.invoice_number }}</a><a class="btn btn-secondary" href="{% url 'webapp:invoice_share' booking.invoice.id %}">📤 {% translate "Share" %}</a>{% endif %}
+  </div>
+
+  <div class="ix-grid2">
+    <div class="ix-card">
+      <h3>{% translate terms.booking %}</h3>
+      <dl class="ix-kv">
+        <dt>{% translate terms.resource %}</dt><dd>{{ booking.resource.name }}{% if booking.resource.details %} <small style="color:var(--ink-soft)">· {{ booking.resource.details }}</small>{% endif %}</dd>
+        <dt>{% translate "Customer" %}</dt><dd>{{ booking.customer.name }}{% if booking.customer.phone %} · <a href="tel:{{ booking.customer.phone }}">{{ booking.customer.phone }}</a>{% endif %}</dd>
+        <dt>{% translate "From" %}</dt><dd>{{ booking.start|date:"D j M Y, H:i" }}</dd>
+        <dt>{% translate "Until" %}</dt><dd>{{ booking.end|date:"D j M Y, H:i" }}</dd>
+        <dt>{% translate "Guests / people" %}</dt><dd>{{ booking.guests }}</dd>
+        <dt>{% translate "Price" %}</dt><dd>{{ booking.rate|floatformat:"-2" }} {{ booking.get_rate_unit_display|lower }}</dd>
+        {% if booking.advance %}<dt>{% translate "Advance paid" %}</dt><dd>{{ booking.advance }} ({{ booking.advance_method }})</dd>{% endif %}
+        {% if booking.security_deposit %}<dt>{% translate "Security deposit" %}</dt><dd>{{ booking.security_deposit }} · {% if booking.deposit_returned %}<span class="ix-chip completed">{% translate "Returned" %}</span>{% else %}<span class="ix-chip checked_in">{% translate "Held" %}</span>{% endif %}</dd>{% endif %}
+        {% if booking.checked_in_at %}<dt>{% translate "Checked in" %}</dt><dd>{{ booking.checked_in_at|date:"j M Y, H:i" }}</dd>{% endif %}
+        {% if booking.checked_out_at %}<dt>{% translate "Checked out" %}</dt><dd>{{ booking.checked_out_at|date:"j M Y, H:i" }}</dd>{% endif %}
+        {% if booking.notes %}<dt>{% translate "Notes" %}</dt><dd>{{ booking.notes|linebreaksbr }}</dd>{% endif %}
+      </dl>
+      <div class="ix-actions" style="margin-top:16px">
+        {% if booking.status == "reserved" %}
+        <form method="post">{% csrf_token %}<button class="btn" name="action" value="check_in">✓ {% translate "Check in / hand over" %}</button></form>
+        <form method="post" onsubmit="return confirm('{% translate "Cancel this booking?" %}')">{% csrf_token %}<button class="btn btn-secondary" name="action" value="cancel">{% translate "Cancel booking" %}</button></form>
+        <form method="post">{% csrf_token %}<button class="btn btn-secondary" name="action" value="no_show">{% translate "No-show" %}</button></form>
+        {% endif %}
+        {% if booking.security_deposit and not booking.deposit_returned and booking.status == "completed" %}
+        <form method="post">{% csrf_token %}<button class="btn btn-secondary" name="action" value="deposit_returned">↩ {% translate "Deposit returned" %}</button></form>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if preview %}
+    <form method="post" class="ix-card ix-form">{% csrf_token %}
+      <h3>🧾 {% translate "Check out & bill" %}</h3>
+      <dl class="ix-kv">
+        <dt>{% translate "Charged for" %}</dt><dd>{{ preview.units|floatformat:"-2" }} × {{ booking.rate|floatformat:"-2" }}{% if preview.late %} <span class="ix-chip late">{% translate "late return included" %}</span>{% endif %}</dd>
+        <dt>{% translate "Rent" %}</dt><dd>{{ preview.rent }}</dd>
+        {% if booking.advance %}<dt>{% translate "Advance paid" %}</dt><dd>− {{ booking.advance }}</dd>{% endif %}
+      </dl>
+      {{ checkout.non_field_errors }}
+      <div class="fields" style="margin-top:12px">
+        <div><label for="id_extras">{% translate "Extras (minibar, fuel, damage...)" %}</label>{{ checkout.extras }}</div>
+        <div><label for="id_extras_note">{% translate "Extras note" %}</label>{{ checkout.extras_note }}</div>
+        <div><label for="id_discount">{% translate "Discount" %}</label>{{ checkout.discount }}</div>
+        <div></div>
+        <div><label for="id_paid_now">{% translate "Paid now" %}</label>{{ checkout.paid_now }}</div>
+        <div><label for="id_method">{% translate "Paid by" %}</label>{{ checkout.method }}</div>
+      </div>
+      <div class="ix-total"><span>{% translate "To pay (before extras / discount)" %}</span><b>{{ preview.due|floatformat:2 }}</b></div>
+      <button class="btn" name="action" value="check_out" style="width:100%">{% translate "Check out & create invoice" %}</button>
+    </form>
+    {% elif booking.invoice %}
+    <div class="ix-card"><h3>🧾 {% translate "Invoice" %}</h3>
+      <dl class="ix-kv"><dt>{% translate "Number" %}</dt><dd>{{ booking.invoice.invoice_number }}</dd><dt>{% translate "Total" %}</dt><dd>{{ booking.invoice.total }}</dd><dt>{% translate "Paid" %}</dt><dd>{{ booking.invoice.amount_paid }}</dd><dt>{% translate "Balance" %}</dt><dd>{{ balance|floatformat:2 }}</dd></dl>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

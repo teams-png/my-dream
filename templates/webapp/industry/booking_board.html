@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate terms.booking %}{% endblock %}
+{% block heading %}{% translate "Booking calendar" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-stats">
+    <div class="ix-stat"><small>{% translate "In use now" %}</small><b>{{ in_use }} / {{ resource_count }}</b></div>
+    <div class="ix-stat good"><small>{% translate "Occupancy" %}</small><b>{{ occupancy }}%</b></div>
+    <div class="ix-stat"><small>{% translate "Arrivals today" %}</small><b>{{ arrivals|length }}</b></div>
+    <div class="ix-stat"><small>{% translate "Due back / check-outs today" %}</small><b>{{ departures|length }}</b></div>
+    <div class="ix-stat {% if overdue %}warn{% endif %}"><small>{% translate "Overdue" %}</small><b>{{ overdue }}</b></div>
+  </div>
+
+  <div class="ix-toolbar">
+    <a class="btn btn-secondary" href="?start={{ prev_start|date:'Y-m-d' }}&days={{ days }}">←</a>
+    <a class="btn btn-secondary" href="?days={{ days }}">{% translate "Today" %}</a>
+    <a class="btn btn-secondary" href="?start={{ next_start|date:'Y-m-d' }}&days={{ days }}">→</a>
+    <form method="get"><input type="date" name="start" value="{{ window_start|date:'Y-m-d' }}" onchange="this.form.submit()"><select name="days" onchange="this.form.submit()"><option value="7" {% if days == 7 %}selected{% endif %}>7 {% translate "days" %}</option><option value="14" {% if days == 14 %}selected{% endif %}>14 {% translate "days" %}</option><option value="30" {% if days == 30 %}selected{% endif %}>30 {% translate "days" %}</option></select></form>
+    <span class="grow"></span>
+    <a class="btn btn-secondary" href="{% url 'webapp:booking_list' %}">☰ {% translate "All bookings" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:booking_resources' %}">⚙ {% translate terms.resources %}</a>
+    <a class="btn" href="{% url 'webapp:booking_add' %}">＋ {% translate "New booking" %}</a>
+  </div>
+
+  {% if not rows %}
+  <div class="ix-card ix-empty"><p style="font-size:40px;margin:0">🗓️</p><strong>{% translate "Nothing to book yet." %}</strong><p>{% translate "Add what customers book (rooms, vehicles, halls...) with their price." %}</p><a class="btn" href="{% url 'webapp:booking_resource_add' %}">＋ {% translate "Add" %} {% translate terms.resource %}</a></div>
+  {% else %}
+  <div class="bk-legend"><span><i style="background:#2563eb"></i>{% translate "Reserved" %}</span><span><i style="background:#d97706"></i>{% translate "Checked in" %}</span><span><i style="background:#b91c1c"></i>{% translate "Overdue" %}</span><span><i style="background:#6b7280"></i>{% translate "Completed" %}</span><span>{% translate "Tap an empty day to book it." %}</span></div>
+  <div class="bk-board">
+    <div class="bk-grid">
+      <div class="bk-head">
+        <div class="bk-name" style="border-bottom:0"><b>{% translate terms.resources %}</b></div>
+        <div class="bk-days" style="grid-template-columns:repeat({{ days }},1fr)">
+          {% for d in day_labels %}<div class="bk-day{% if d == today %} today{% endif %}{% if d.weekday == 4 or d.weekday == 5 %} weekend{% endif %}">{{ d|date:"D" }}<b>{{ d|date:"j" }}</b>{% if forloop.first or d.day == 1 %}{{ d|date:"M" }}{% endif %}</div>{% endfor %}
+        </div>
+      </div>
+      {% for row in rows %}
+      <div class="bk-row">
+        <div class="bk-name"><b>{{ row.resource.name }}</b><small>{{ row.resource.rate|floatformat:"-2" }} {{ row.resource.get_rate_unit_display|lower }}{% if row.resource.details %} · {{ row.resource.details|truncatechars:24 }}{% endif %}</small></div>
+        <div class="bk-lane">
+          <div class="bk-cells" style="grid-template-columns:repeat({{ days }},1fr)">{% for d in day_labels %}<a href="{% url 'webapp:booking_add' %}?resource={{ row.resource.id }}&date={{ d|date:'Y-m-d' }}" aria-label="{% translate 'Book' %} {{ row.resource.name }} {{ d|date:'j M' }}"></a>{% endfor %}</div>
+          {% for bar in row.bars %}<a class="bk-bar {% if bar.late %}late{% else %}{{ bar.booking.status }}{% endif %}" style="left:{{ bar.left }}%;width:{{ bar.width }}%;animation-delay:{{ forloop.counter0 }}0ms" href="{% url 'webapp:booking_detail' bar.booking.id %}" title="{{ bar.booking.number }} · {{ bar.booking.customer.name }}">{{ bar.booking.customer.name }}<small>{{ bar.booking.start|date:"j M H:i" }} → {{ bar.booking.end|date:"j M H:i" }}</small></a>{% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+      {% if now_left >= 0 and now_left <= 100 %}<div class="bk-now" style="left:calc(190px + (100% - 190px) * {{ now_left|stringformat:'.4f' }} / 100)"></div>{% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="ix-grid2">
+    <div class="ix-card"><h3>🛬 {% translate "Arrivals / pick-ups due" %}</h3>
+      <div class="ix-list">{% for b in arrivals %}<a class="ix-row" href="{% url 'webapp:booking_detail' b.id %}"><span class="grow"><b>{{ b.customer.name }}</b><small>{{ b.resource.name }} · {{ b.start|date:"j M H:i" }}</small></span><span class="ix-chip {% if b.start < now %}late{% else %}reserved{% endif %}">{{ b.number }}</span></a>{% empty %}<div class="ix-empty">{% translate "None today." %}</div>{% endfor %}</div></div>
+    <div class="ix-card"><h3>🛫 {% translate "Check-outs / returns due" %}</h3>
+      <div class="ix-list">{% for b in departures %}<a class="ix-row" href="{% url 'webapp:booking_detail' b.id %}"><span class="grow"><b>{{ b.customer.name }}</b><small>{{ b.resource.name }} · {{ b.end|date:"j M H:i" }}</small></span><span class="ix-chip checked_in">{{ b.number }}</span></a>{% empty %}<div class="ix-empty">{% translate "None today." %}</div>{% endfor %}</div></div>
+  </div>
+</div>
+{% endblock %}

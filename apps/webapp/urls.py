@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import booking_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -111,6 +111,14 @@ urlpatterns = [
     path("pos/checkout/", views.pos_checkout, name="pos_checkout"),
     path("pos/offline/sync/", views.pos_offline_sync, name="pos_offline_sync"),
     path("pos/offline/sales/", views.pos_offline_sales, name="pos_offline_sales"),
+    path("bookings/", booking_views.booking_board, name="booking_board"),
+    path("bookings/all/", booking_views.booking_list, name="booking_list"),
+    path("bookings/new/", booking_views.booking_add, name="booking_add"),
+    path("bookings/<int:booking_id>/", booking_views.booking_detail, name="booking_detail"),
+    path("bookings/<int:booking_id>/edit/", booking_views.booking_edit, name="booking_edit"),
+    path("bookings/resources/", booking_views.resource_list, name="booking_resources"),
+    path("bookings/resources/add/", booking_views.resource_form, name="booking_resource_add"),
+    path("bookings/resources/<int:resource_id>/edit/", booking_views.resource_form, name="booking_resource_edit"),
     path("setup/", onboarding_views.setup_wizard, name="setup"),
     path("setup/<slug:step>/", onboarding_views.setup_wizard, name="setup"),
 

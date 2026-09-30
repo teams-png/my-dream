@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate terms.booking %}{% endblock %}
+{% block heading %}{% if booking %}{% translate "Change" %} {{ booking.number }}{% else %}{% translate "New" %} {% translate terms.booking %}{% endif %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<form method="post" class="ix ix-form ix-card">{% csrf_token %}
+  {% if form.non_field_errors %}<div class="card" style="border-left:4px solid var(--danger);margin-bottom:14px;color:var(--danger)">{{ form.non_field_errors|join:" " }}</div>{% endif %}
+  <div class="fields">
+    <div class="full"><label for="id_resource">{% translate terms.resource %}</label>{{ form.resource }}{{ form.resource.errors }}</div>
+    {% if form.customer %}
+    <div class="full"><label for="id_customer">{% translate "Customer" %}</label>{{ form.customer }}{{ form.customer.errors }}</div>
+    <div class="full or">{% translate "or new customer" %}</div>
+    <div><label for="id_new_customer_name">{% translate "Name" %}</label>{{ form.new_customer_name }}</div>
+    <div><label for="id_new_customer_phone">{% translate "Phone" %}</label>{{ form.new_customer_phone }}</div>
+    {% endif %}
+    <div><label for="id_start">{% translate "From" %}</label>{{ form.start }}{{ form.start.errors }}</div>
+    <div><label for="id_end">{% translate "Until" %}</label>{{ form.end }}{{ form.end.errors }}</div>
+    <div><label for="id_guests">{% translate "Guests / people" %}</label>{{ form.guests }}{{ form.guests.errors }}</div>
+    {% if form.advance %}
+    <div></div>
+    <div><label for="id_advance">{% translate "Advance paid now" %}</label>{{ form.advance }}{{ form.advance.errors }}</div>
+    <div><label for="id_advance_method">{% translate "Paid by" %}</label>{{ form.advance_method }}</div>
+    <div><label for="id_security_deposit">{% translate "Security deposit (refundable)" %}</label>{{ form.security_deposit }}{{ form.security_deposit.errors }}</div>
+    <div class="full"><label for="id_notes">{% translate "Notes" %}</label>{{ form.notes }}</div>
+    {% endif %}
+  </div>
+  <p id="estimate" style="font-weight:700;margin:14px 0 0"></p>
+  <div class="ix-actions" style="margin-top:14px"><button class="btn" type="submit">{% if booking %}{% translate "Save changes" %}{% else %}{% translate "Book" %}{% endif %}</button><a class="btn btn-secondary" href="{% if booking %}{% url 'webapp:booking_detail' booking.id %}{% else %}{% url 'webapp:booking_board' %}{% endif %}">{% translate "Cancel" %}</a></div>
+</form>
+{{ rates|json_script:"rates" }}
+<script>
+(function(){
+  const rates=JSON.parse(document.getElementById('rates').textContent||'{}');
+  const r=document.getElementById('id_resource'),s=document.getElementById('id_start'),e=document.getElementById('id_end'),out=document.getElementById('estimate');
+  function units(unit,a,b){const h=(b-a)/36e5;if(h<=0)return 0;if(unit==='hour')return Math.max(1,Math.ceil(h-0.5));if(unit==='day')return Math.max(1,Math.ceil((h-0.5)/24));
+    if(unit==='night'){const d=Math.round((new Date(b.toDateString())-new Date(a.toDateString()))/864e5);return Math.max(1,d)}if(unit==='month')return Math.max(1,Math.ceil(h/720));return 1}
+  function show(){const x=rates[r.value];if(!x||!s.value||!e.value){out.textContent='';return}
+    const n=units(x.unit,new Date(s.value),new Date(e.value));
+    out.textContent=n?`≈ ${n} × ${x.rate} = ${(n*x.rate).toFixed(2)} (${x.label})`:'{% translate "The end must be after the start." %}'}
+  [r,s,e].forEach(el=>el&&el.addEventListener('change',show));show();
+})();
+</script>
+{% endblock %}

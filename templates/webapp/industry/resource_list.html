@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate terms.resources %}{% endblock %}
+{% block heading %}{% translate terms.resources %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar"><a class="btn btn-secondary" href="{% url 'webapp:booking_board' %}">← {% translate "Booking calendar" %}</a><span class="grow"></span><a class="btn" href="{% url 'webapp:booking_resource_add' %}">＋ {% translate "Add" %} {% translate terms.resource %}</a></div>
+  <div class="card" style="padding:0;overflow-x:auto">
+  <table>
+    <thead><tr><th>{% translate "Name" %}</th><th>{% translate "Type" %}</th><th style="text-align:right">{% translate "Price" %}</th><th>{% translate "Capacity" %}</th><th>{% translate "Details" %}</th><th>{% translate "Status" %}</th><th></th></tr></thead>
+    <tbody>
+    {% for r in resources %}
+      <tr><td><strong>{{ r.name }}</strong></td><td>{{ r.get_kind_display }}</td><td style="text-align:right">{{ r.rate|floatformat:"-2" }} <small>{{ r.get_rate_unit_display|lower }}</small></td><td>{{ r.capacity|default:"—" }}</td><td>{{ r.details|default:"—" }}</td>
+      <td>{% if r.is_active %}<span class="ix-chip completed">{% translate "Active" %}</span>{% else %}<span class="ix-chip cancelled">{% translate "Inactive" %}</span>{% endif %}</td>
+      <td><a class="btn btn-secondary" href="{% url 'webapp:booking_resource_edit' r.id %}">{% translate "Edit" %}</a></td></tr>
+    {% empty %}
+      <tr><td colspan="7" class="ix-empty">{% translate "Nothing added yet." %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

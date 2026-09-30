@@ -211,6 +211,7 @@
       <a class="nav-link" href="{% url 'webapp:platform_admin_dashboard' %}" style="color:var(--accent); font-weight:600;">{% translate "⚙ Platform Admin" %}</a>
       {% endif %}
 
+      {% include "webapp/_industry_nav.html" %}
       {% if active_company.business_type.code == "gym" or active_company.business_type.code == "fitness_center" %}
       <details class="nav-section" open>
         <summary>{% translate "Gym" %}</summary>

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "All bookings" %}{% endblock %}
+{% block heading %}{% translate "All bookings" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar">
+    <a class="btn btn-secondary" href="{% url 'webapp:booking_board' %}">← {% translate "Booking calendar" %}</a>
+    <form method="get"><input name="q" value="{{ q }}" placeholder="{% translate 'Name, phone, number...' %}"><select name="status" onchange="this.form.submit()"><option value="">{% translate "All" %}</option>{% for code, label in statuses %}<option value="{{ code }}" {% if status == code %}selected{% endif %}>{{ label }}</option>{% endfor %}</select><button class="btn btn-secondary">{% translate "Search" %}</button></form>
+    <span class="grow"></span><a class="btn" href="{% url 'webapp:booking_add' %}">＋ {% translate "New booking" %}</a>
+  </div>
+  <div class="card" style="padding:0;overflow-x:auto">
+  <table>
+    <thead><tr><th>{% translate "Number" %}</th><th>{% translate "Customer" %}</th><th>{% translate terms.resource %}</th><th>{% translate "From" %}</th><th>{% translate "Until" %}</th><th>{% translate "Status" %}</th><th>{% translate "Invoice" %}</th></tr></thead>
+    <tbody>
+    {% for b in bookings %}
+      <tr><td><a href="{% url 'webapp:booking_detail' b.id %}"><strong>{{ b.number }}</strong></a></td><td>{{ b.customer.name }}</td><td>{{ b.resource.name }}</td><td>{{ b.start|date:"j M Y H:i" }}</td><td>{{ b.end|date:"j M Y H:i" }}</td><td><span class="ix-chip {{ b.status }}">{{ b.get_status_display }}</span></td><td>{{ b.invoice.invoice_number|default:"—" }}</td></tr>
+    {% empty %}
+      <tr><td colspan="7" class="ix-empty">{% translate "No bookings found." %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

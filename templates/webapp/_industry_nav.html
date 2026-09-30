@@ -1,0 +1,11 @@
+{% load i18n %}{% with f=active_business_profile.features %}
+{% if "bookings" in f %}
+      <details class="nav-section" open>
+        <summary>🗓️ {% translate "Bookings" %}</summary>
+      <a class="nav-link {% if request.resolver_match.url_name == 'booking_board' %}active{% endif %}" href="{% url 'webapp:booking_board' %}"><span>{% translate "Booking calendar" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'booking_add' %}active{% endif %}" href="{% url 'webapp:booking_add' %}"><span>＋ {% translate "New booking" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'booking_list' %}active{% endif %}" href="{% url 'webapp:booking_list' %}"><span>{% translate "All bookings" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'booking_resources' %}active{% endif %}" href="{% url 'webapp:booking_resources' %}"><span>{% translate active_business_profile.resources_label %}</span></a>
+      </details>
+{% endif %}
+{% endwith %}

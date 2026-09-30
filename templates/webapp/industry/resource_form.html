@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate terms.resource %}{% endblock %}
+{% block heading %}{% if obj %}{% translate "Edit" %} {{ obj.name }}{% else %}{% translate "Add" %} {% translate terms.resource %}{% endif %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<form method="post" class="ix ix-form ix-card">{% csrf_token %}
+  {{ form.non_field_errors }}
+  <div class="fields">
+    <div class="full"><label for="id_name">{% translate "Name" %}</label>{{ form.name }}{{ form.name.errors }}</div>
+    <div><label for="id_kind">{% translate "Type" %}</label>{{ form.kind }}</div>
+    <div><label for="id_capacity">{% translate "Capacity (guests / seats)" %}</label>{{ form.capacity }}{{ form.capacity.errors }}</div>
+    <div><label for="id_rate">{% translate "Price" %}</label>{{ form.rate }}{{ form.rate.errors }}</div>
+    <div><label for="id_rate_unit">{% translate "Charged" %}</label>{{ form.rate_unit }}</div>
+    <div class="full"><label for="id_details">{% translate "Details (plate number, floor, size, features...)" %}</label>{{ form.details }}</div>
+    <div><label for="id_sort_order">{% translate "Order on the calendar" %}</label>{{ form.sort_order }}</div>
+    <div><label>&nbsp;</label><label style="display:flex;gap:8px;align-items:center;color:var(--ink)">{{ form.is_active }} {% translate "Available for booking" %}</label></div>
+  </div>
+  <div class="ix-actions" style="margin-top:18px"><button class="btn" type="submit">{% translate "Save" %}</button><a class="btn btn-secondary" href="{% url 'webapp:booking_resources' %}">{% translate "Cancel" %}</a></div>
+</form>
+{% endblock %}

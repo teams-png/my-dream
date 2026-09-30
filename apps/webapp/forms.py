@@ -141,7 +141,7 @@ class BusinessProductForm(ProductForm):
         "book_store": ("isbn", "author", "publisher", "grade_subject"),
         "perfume_shop": ("fragrance_family", "volume_ml", "concentration"),
         "watch_shop": ("model_number", "movement", "strap_material", "water_resistance"),
-        "jewelry_shop": ("weight_grams", "purity", "stone_details", "making_charge"),
+        "jewelry_shop": ("weight_grams", "purity", "making_mode", "making_charge", "stone_value", "stone_details"),
         "auto_spare_parts": ("part_number", "oem_number", "compatible_models"),
         "car_showroom": ("vin", "chassis_number", "model_year", "transmission", "mileage"),
         "electronics_store": ("model_number", "serial_required", "warranty_months", "technical_specs"),
@@ -186,7 +186,8 @@ class BusinessProductForm(ProductForm):
         "fragrance_family": "Fragrance family", "volume_ml": "Volume (ml)", "concentration": "Concentration",
         "model_number": "Model number", "movement": "Movement", "strap_material": "Strap material",
         "water_resistance": "Water resistance", "weight_grams": "Weight (grams)", "purity": "Purity",
-        "stone_details": "Stone details", "making_charge": "Making charge", "part_number": "Part number",
+        "stone_details": "Stone details", "making_charge": "Making charge",
+        "making_mode": "Making charge is", "stone_value": "Stones / other value", "part_number": "Part number",
         "oem_number": "OEM number", "compatible_models": "Compatible models", "vin": "VIN",
         "chassis_number": "Chassis number", "model_year": "Model year", "transmission": "Transmission",
         "mileage": "Mileage", "serial_required": "Serial tracking required", "warranty_months": "Warranty months",
@@ -221,7 +222,13 @@ class BusinessProductForm(ProductForm):
         active = set(self.INDUSTRY_FIELDS.get(self.business_code, ()))
         for name, label in self.FIELD_LABELS.items():
             if name in active:
-                if name in {"serial_required", "assembly_required"}:
+                if name == "purity" and self.business_code == "jewelry_shop":
+                    self.fields[name] = forms.ChoiceField(required=False, label="Karat", choices=[("", "—"), ("24K", "24K"), ("22K", "22K"), ("21K", "21K"), ("18K", "18K")])
+                elif name == "making_mode":
+                    self.fields[name] = forms.ChoiceField(required=False, label=label, choices=[("per_gram", "Per gram"), ("fixed", "Fixed amount"), ("percent", "% of gold value")])
+                elif name == "stone_value":
+                    self.fields[name] = forms.DecimalField(required=False, label=label, max_digits=12, decimal_places=2)
+                elif name in {"serial_required", "assembly_required"}:
                     self.fields[name] = forms.BooleanField(required=False, label=label)
                 elif name in {"production_date", "expiry_date"}:
                     self.fields[name] = forms.DateField(required=False, label=label, widget=forms.DateInput(attrs={"type": "date"}))
@@ -250,9 +257,14 @@ class BusinessProductForm(ProductForm):
     def save(self, commit=True):
         obj = super().save(commit=False)
         attrs = dict(obj.attributes or {})
+        from decimal import Decimal
         for name in self.INDUSTRY_FIELDS.get(self.business_code, ()):
             value = self.cleaned_data.get(name)
-            attrs[name] = value.isoformat() if hasattr(value, "isoformat") else value
+            if hasattr(value, "isoformat"):
+                value = value.isoformat()
+            elif isinstance(value, Decimal):
+                value = str(value)  # JSON can't hold Decimal
+            attrs[name] = value
         for name in ("wholesale_price", "carton_quantity"):
             value = self.cleaned_data.get(name)
             attrs[name] = str(value) if value is not None else ""

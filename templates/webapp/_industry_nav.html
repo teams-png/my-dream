@@ -25,6 +25,12 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'rent_run' %}active{% endif %}" href="{% url 'webapp:rent_run' %}"><span>{% translate "Monthly rent" %}</span></a>
       </details>
 {% endif %}
+{% if "gold" in f %}
+      <details class="nav-section" open>
+        <summary>🪙 {% translate "Gold" %}</summary>
+      <a class="nav-link {% if request.resolver_match.url_name == 'gold_rates' %}active{% endif %}" href="{% url 'webapp:gold_rates' %}"><span>{% translate "Gold rates & prices" %}</span></a>
+      </details>
+{% endif %}
 {% if "weighed" in f %}
       <details class="nav-section" open>
         <summary>⚖️ {% translate "Sell by weight" %}</summary>

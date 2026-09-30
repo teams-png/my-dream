@@ -236,6 +236,20 @@ class RentCharge(TenantScopedModel):
         constraints = [models.UniqueConstraint(fields=["lease", "period"], name="one_rent_per_lease_month")]
 
 
+class GoldRate(TenantScopedModel):
+    """The shop's selling rate per gram for a karat on a day (the latest one applies)."""
+    KARATS = [("24K", "24K"), ("22K", "22K"), ("21K", "21K"), ("18K", "18K")]
+    karat = models.CharField(max_length=4, choices=KARATS)
+    date = models.DateField()
+    rate_per_gram = models.DecimalField(max_digits=12, decimal_places=2)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-date", "karat"]
+        constraints = [models.UniqueConstraint(fields=["company", "karat", "date"], name="one_gold_rate_per_karat_day")]
+
+
 class AttendanceMark(models.Model):
     session = models.ForeignKey(AttendanceSession, on_delete=models.CASCADE, related_name="marks")
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE, related_name="attendance")

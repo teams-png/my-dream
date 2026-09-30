@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import booking_views, education_views, property_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import booking_views, education_views, gold_views, property_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -112,6 +112,7 @@ urlpatterns = [
     path("pos/offline/sync/", views.pos_offline_sync, name="pos_offline_sync"),
     path("pos/offline/sales/", views.pos_offline_sales, name="pos_offline_sales"),
     path("pos/scale/", scale_views.scale_settings, name="scale_settings"),
+    path("jewellery/gold-rates/", gold_views.gold_rates, name="gold_rates"),
     path("property/", property_views.property_home, name="property_home"),
     path("property/add/", property_views.property_form, name="property_add"),
     path("property/<int:property_id>/edit/", property_views.property_form, name="property_edit"),

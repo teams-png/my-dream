@@ -3832,6 +3832,11 @@ def _pos_catalog(company):
                 "id", "product_id", "imei", "serial_number", "condition", "warranty_months"):
             handset_units.setdefault(unit.pop("product_id"), []).append(unit)
     catalog, categories = [], {}
+    from apps.webapp.industry_access import company_features
+    gold_rates = None
+    if "gold" in company_features(company):
+        from apps.industry.gold import current_rates
+        gold_rates = current_rates(company)
     for p in products:
         item_type = (p.attributes or {}).get("item_type", "")
         units = handset_units.get(p.id, []) if item_type == "handset" else []
@@ -3846,6 +3851,12 @@ def _pos_catalog(company):
             "weighed": bool((p.attributes or {}).get("sold_by_weight")),
             "plu": str((p.attributes or {}).get("scale_code") or ""),
         })
+        if gold_rates is not None:
+            from apps.industry.gold import breakdown
+            parts = breakdown(p.attributes, gold_rates)
+            if parts:  # priced from today's gold rate
+                catalog[-1]["price"] = f"{parts['total']:.2f}"
+                catalog[-1]["variant"] = catalog[-1]["variant"] or f"{parts['karat']} · {parts['weight'].normalize()} g"
     return catalog, [{"id": k, "name": v} for k, v in sorted(categories.items(), key=lambda kv: kv[1].lower())]
 
 

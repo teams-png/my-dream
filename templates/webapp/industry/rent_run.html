@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Monthly rent" %}{% endblock %}
+{% block heading %}{% translate "Monthly rent" %} · {{ month_date|date:"F Y" }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar">
+    <a class="btn btn-secondary" href="?month={{ prev }}">←</a>
+    <form method="get"><input type="month" name="month" value="{{ month }}" onchange="this.form.submit()"></form>
+    <a class="btn btn-secondary" href="?month={{ next }}">→</a>
+    <span class="grow"></span><a class="btn btn-secondary" href="{% url 'webapp:property_home' %}">← {% translate "Properties" %}</a>
+  </div>
+  {% if pending %}
+  <form method="post" class="ix-card" style="border-left:4px solid var(--ix-amber)">{% csrf_token %}
+    <input type="hidden" name="month" value="{{ month }}">
+    <h3>🧾 {{ pending|length }} {% translate "rents not billed yet" %} · {{ pending_total|floatformat:"-2" }}</h3>
+    <div class="ix-list" style="max-height:260px;overflow:auto">{% for l in pending %}<div class="ix-row"><span class="grow"><b>{{ l.tenant.name }}</b><small>{{ l.unit }}</small></span><b>{{ l.monthly_rent }}</b></div>{% endfor %}</div>
+    <button class="btn" type="submit" style="margin-top:14px">{% translate "Create the rent invoices" %}</button>
+    <small style="display:block;color:var(--ink-soft);margin-top:8px">{% translate "One invoice per lease, due on the lease's due day. Running it again never bills twice." %}</small>
+  </form>
+  {% else %}
+  <div class="ix-card" style="border-left:4px solid var(--ix-green)"><b>✓ {% translate "All rent for this month is billed." %}</b></div>
+  {% endif %}
+  <div class="card" style="padding:0;overflow-x:auto">
+  <table>
+    <thead><tr><th>{% translate "Tenant" %}</th><th>{% translate "Unit" %}</th><th>{% translate "Due" %}</th><th style="text-align:right">{% translate "Rent" %}</th><th>{% translate "Invoice" %}</th><th>{% translate "Status" %}</th></tr></thead>
+    <tbody>
+    {% for c in charges %}
+      <tr><td><a href="{% url 'webapp:lease_detail' c.lease.id %}"><strong>{{ c.lease.tenant.name }}</strong></a></td><td>{{ c.lease.unit }}</td><td>{{ c.due_date|date:"j M" }}</td><td style="text-align:right">{{ c.amount }}</td>
+        <td>{% if c.invoice %}<a href="{% url 'webapp:invoice_pdf' c.invoice.id %}" target="_blank">{{ c.invoice.invoice_number }}</a>{% endif %}</td>
+        <td>{% if c.invoice and c.invoice.amount_paid >= c.invoice.total %}<span class="ix-chip paid">{% translate "Paid" %}</span>{% else %}<span class="ix-chip due">{% translate "Due" %}</span>{% endif %}</td></tr>
+    {% empty %}
+      <tr><td colspan="6" class="ix-empty">{% translate "No rent billed for this month." %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

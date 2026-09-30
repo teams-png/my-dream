@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ lease.number }}{% endblock %}
+{% block heading %}{{ lease.number }} · {{ lease.tenant.name }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar">
+    <a class="btn btn-secondary" href="{% url 'webapp:property_home' %}">← {% translate "Properties" %}</a>
+    <span class="ix-chip {{ lease.status }}" style="font-size:13px;padding:6px 12px">{{ lease.get_status_display }}</span>
+    {% if lease.status == "active" and days_left <= 60 %}<span class="ix-chip checked_in" style="font-size:13px;padding:6px 12px">{% if days_left >= 0 %}{% translate "Ends in" %} {{ days_left }} {% translate "days" %}{% else %}{% translate "Expired" %}{% endif %}</span>{% endif %}
+  </div>
+  <div class="ix-grid2">
+    <div class="ix-card">
+      <h3>📄 {% translate "Lease" %}</h3>
+      <dl class="ix-kv">
+        <dt>{% translate "Unit" %}</dt><dd>{{ lease.unit }}</dd>
+        <dt>{% translate "Tenant" %}</dt><dd>{{ lease.tenant.name }}{% if lease.tenant.phone %} · <a href="tel:{{ lease.tenant.phone }}">{{ lease.tenant.phone }}</a>{% endif %}</dd>
+        <dt>{% translate "Period" %}</dt><dd>{{ lease.start_date|date:"j M Y" }} → {{ lease.end_date|date:"j M Y" }}</dd>
+        <dt>{% translate "Monthly rent" %}</dt><dd>{{ lease.monthly_rent }} · {% translate "due on day" %} {{ lease.due_day }}</dd>
+        {% if lease.security_deposit %}<dt>{% translate "Security deposit" %}</dt><dd>{{ lease.security_deposit }} · {% if lease.deposit_returned %}<span class="ix-chip completed">{% translate "Returned" %}</span>{% else %}<span class="ix-chip checked_in">{% translate "Held" %}</span>{% endif %}</dd>{% endif %}
+        {% if lease.ended_on %}<dt>{% translate "Closed on" %}</dt><dd>{{ lease.ended_on|date:"j M Y" }}</dd>{% endif %}
+        {% if lease.notes %}<dt>{% translate "Notes" %}</dt><dd>{{ lease.notes|linebreaksbr }}</dd>{% endif %}
+      </dl>
+      <div class="ix-actions" style="margin-top:16px">
+        {% if lease.status == "active" %}
+        <form method="post">{% csrf_token %}<button class="btn" name="action" value="bill_month">🧾 {% translate "Bill this month" %}</button></form>
+        <form method="post" onsubmit="return confirm('{% translate "End this lease today?" %}')">{% csrf_token %}<button class="btn btn-secondary" name="action" value="{% if lease.end_date > today %}terminate{% else %}end{% endif %}">{% if lease.end_date > today %}{% translate "Terminate early" %}{% else %}{% translate "End lease" %}{% endif %}</button></form>
+        {% endif %}
+        {% if lease.security_deposit and not lease.deposit_returned and lease.status != "active" %}<form method="post">{% csrf_token %}<button class="btn btn-secondary" name="action" value="deposit_returned">↩ {% translate "Deposit returned" %}</button></form>{% endif %}
+      </div>
+    </div>
+    <div class="ix-card">
+      <h3>💰 {% translate "Rent" %}</h3>
+      <div class="ix-total" style="border-top:0;margin-top:0;padding-top:0"><span>{% translate "Balance due" %}</span><b style="{% if balance %}color:var(--ix-red){% endif %}">{{ balance|floatformat:2 }}</b></div>
+      <div class="ix-list">{% for c in charges %}<div class="ix-row"><span class="grow"><b>{{ c.period }}</b><small>{% translate "due" %} {{ c.due_date|date:"j M Y" }}{% if c.invoice %} · {{ c.invoice.invoice_number }}{% endif %}</small></span>
+        {% if c.invoice and c.invoice.amount_paid >= c.invoice.total %}<span class="ix-chip paid">{% translate "Paid" %}</span>{% elif c.due_date < today %}<span class="ix-chip late">{% translate "Overdue" %}</span>{% else %}<span class="ix-chip due">{% translate "Due" %}</span>{% endif %}
+        <b>{{ c.amount }}</b>{% if c.invoice %}<a class="btn btn-secondary" href="{% url 'webapp:invoice_share' c.invoice.id %}">📤</a>{% endif %}</div>{% empty %}<div class="ix-empty">{% translate "No rent billed yet." %}</div>{% endfor %}</div>
+    </div>
+  </div>
+</div>
+{% endblock %}

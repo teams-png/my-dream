@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Leases" %}{% endblock %}
+{% block heading %}{% translate "Leases" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar">
+    <a class="btn btn-secondary" href="{% url 'webapp:property_home' %}">← {% translate "Properties" %}</a>
+    {% for code, label in statuses %}<a class="btn{% if status != code %} btn-secondary{% endif %}" href="?status={{ code }}">{{ label }}</a>{% endfor %}
+    <span class="grow"></span><a class="btn" href="{% url 'webapp:lease_add' %}">＋ {% translate "New lease" %}</a>
+  </div>
+  <div class="card" style="padding:0;overflow-x:auto">
+  <table>
+    <thead><tr><th>{% translate "Number" %}</th><th>{% translate "Tenant" %}</th><th>{% translate "Unit" %}</th><th>{% translate "Period" %}</th><th style="text-align:right">{% translate "Monthly rent" %}</th><th>{% translate "Status" %}</th></tr></thead>
+    <tbody>
+    {% for l in leases %}
+      <tr><td><a href="{% url 'webapp:lease_detail' l.id %}"><strong>{{ l.number }}</strong></a></td><td>{{ l.tenant.name }}</td><td>{{ l.unit }}</td><td>{{ l.start_date|date:"j M Y" }} → {{ l.end_date|date:"j M Y" }}</td><td style="text-align:right">{{ l.monthly_rent }}</td><td><span class="ix-chip {{ l.status }}">{{ l.get_status_display }}</span></td></tr>
+    {% empty %}
+      <tr><td colspan="6" class="ix-empty">{% translate "No leases." %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

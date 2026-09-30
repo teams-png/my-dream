@@ -17,6 +17,14 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'education_dues' %}active{% endif %}" href="{% url 'webapp:education_dues' %}"><span>{% translate "Fees due" %}</span></a>
       </details>
 {% endif %}
+{% if "leases" in f %}
+      <details class="nav-section" open>
+        <summary>🏢 {% translate "Properties" %}</summary>
+      <a class="nav-link {% if request.resolver_match.url_name == 'property_home' %}active{% endif %}" href="{% url 'webapp:property_home' %}"><span>{% translate "Properties & units" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'lease_list' %}active{% endif %}" href="{% url 'webapp:lease_list' %}"><span>{% translate "Leases" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'rent_run' %}active{% endif %}" href="{% url 'webapp:rent_run' %}"><span>{% translate "Monthly rent" %}</span></a>
+      </details>
+{% endif %}
 {% if "weighed" in f %}
       <details class="nav-section" open>
         <summary>⚖️ {% translate "Sell by weight" %}</summary>

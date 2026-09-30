@@ -164,6 +164,78 @@ class AttendanceSession(TenantScopedModel):
         ordering = ["-date"]
 
 
+class Property(TenantScopedModel):
+    KINDS = [("building", "Building"), ("villa", "Villa / house"), ("compound", "Compound"),
+             ("commercial", "Commercial"), ("land", "Land / yard")]
+    name = models.CharField(max_length=150)
+    kind = models.CharField(max_length=12, choices=KINDS, default="building")
+    address = models.CharField(max_length=255, blank=True)
+    owner_name = models.CharField(max_length=150, blank=True, help_text="Landlord, if you manage it for someone else.")
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name_plural = "properties"
+
+    def __str__(self):
+        return self.name
+
+
+class RentalUnit(TenantScopedModel):
+    KINDS = [("apartment", "Apartment / flat"), ("villa", "Villa"), ("room", "Room / bed space"), ("shop", "Shop"),
+             ("office", "Office"), ("warehouse", "Warehouse"), ("other", "Other")]
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="units")
+    name = models.CharField(max_length=80)
+    kind = models.CharField(max_length=10, choices=KINDS, default="apartment")
+    bedrooms = models.PositiveSmallIntegerField(default=0)
+    size = models.CharField(max_length=40, blank=True, help_text="e.g. 120 m²")
+    monthly_rent = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    is_active = models.BooleanField(default=True)
+    product = models.ForeignKey("inventory.Product", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+
+    class Meta:
+        ordering = ["property__name", "name"]
+
+    def __str__(self):
+        return f"{self.property.name} · {self.name}"
+
+
+class Lease(TenantScopedModel):
+    STATUS = [("active", "Active"), ("ended", "Ended"), ("terminated", "Terminated early")]
+    number = models.CharField(max_length=20, blank=True)
+    unit = models.ForeignKey(RentalUnit, on_delete=models.PROTECT, related_name="leases")
+    tenant = models.ForeignKey("customers.Customer", on_delete=models.PROTECT, related_name="leases")
+    start_date = models.DateField()
+    end_date = models.DateField()
+    monthly_rent = models.DecimalField(max_digits=12, decimal_places=2)
+    due_day = models.PositiveSmallIntegerField(default=1, help_text="Day of the month rent is due (1–28).")
+    security_deposit = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    deposit_returned = models.BooleanField(default=False)
+    status = models.CharField(max_length=12, choices=STATUS, default="active")
+    ended_on = models.DateField(null=True, blank=True)
+    notes = models.TextField(blank=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-start_date"]
+
+    def __str__(self):
+        return self.number or f"Lease {self.pk}"
+
+
+class RentCharge(TenantScopedModel):
+    lease = models.ForeignKey(Lease, on_delete=models.CASCADE, related_name="charges")
+    period = models.CharField(max_length=7)
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    due_date = models.DateField()
+    invoice = models.ForeignKey("sales.SalesInvoice", null=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-period"]
+        constraints = [models.UniqueConstraint(fields=["lease", "period"], name="one_rent_per_lease_month")]
+
+
 class AttendanceMark(models.Model):
     session = models.ForeignKey(AttendanceSession, on_delete=models.CASCADE, related_name="marks")
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE, related_name="attendance")

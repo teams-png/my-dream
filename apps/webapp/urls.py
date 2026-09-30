@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import booking_views, education_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import booking_views, education_views, property_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -112,6 +112,15 @@ urlpatterns = [
     path("pos/offline/sync/", views.pos_offline_sync, name="pos_offline_sync"),
     path("pos/offline/sales/", views.pos_offline_sales, name="pos_offline_sales"),
     path("pos/scale/", scale_views.scale_settings, name="scale_settings"),
+    path("property/", property_views.property_home, name="property_home"),
+    path("property/add/", property_views.property_form, name="property_add"),
+    path("property/<int:property_id>/edit/", property_views.property_form, name="property_edit"),
+    path("property/units/add/", property_views.unit_form, name="unit_add"),
+    path("property/units/<int:unit_id>/edit/", property_views.unit_form, name="unit_edit"),
+    path("property/leases/", property_views.lease_list, name="lease_list"),
+    path("property/leases/new/", property_views.lease_add, name="lease_add"),
+    path("property/leases/<int:lease_id>/", property_views.lease_detail, name="lease_detail"),
+    path("property/rent/", property_views.rent_run, name="rent_run"),
     path("education/", education_views.education_home, name="education_home"),
     path("education/enrol/", education_views.enroll, name="education_enroll"),
     path("education/fees/", education_views.fees, name="education_fees"),

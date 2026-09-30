@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Daily report" %}{% endblock %}
+{% block heading %}{% translate "Daily report" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<div class="hr">
+<div class="hr-month"><a class="btn btn-secondary" href="?date={{ prev|date:'Y-m-d' }}">‹</a><b>{{ s.day|date:"D, j M Y" }}</b>{% if s.day < today %}<a class="btn btn-secondary" href="?date={{ next|date:'Y-m-d' }}">›</a>{% endif %}</div>
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Sales" %} · {{ s.bills }} {% translate "bills" %}</small><b>{{ s.currency }} {{ s.sales|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Money received" %}</small><b style="color:var(--hr-ok)">{{ s.received|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Expenses" %}</small><b>{{ s.expenses|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Profit today" %}</small><b style="{% if s.profit < 0 %}color:var(--hr-bad){% else %}color:var(--hr-ok){% endif %}">{{ s.profit|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "This month: sales / profit" %}</small><b>{{ s.month_sales|floatformat:0 }} / {{ s.month_profit|floatformat:0 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Cash / bank" %}</small><b>{{ s.cash|floatformat:0 }} / {{ s.bank|floatformat:0 }}</b></div>
+  <a class="hr-kpi {% if s.overdue %}warn{% endif %}" href="{% url 'webapp:receivables' %}"><small>{% translate "Customers owe (overdue)" %}</small><b>{{ s.receivable|floatformat:0 }} ({{ s.overdue|floatformat:0 }})</b></a>
+  <div class="hr-kpi"><small>{% translate "Supplier bills due in 7 days" %}</small><b>{{ s.bills_due|floatformat:2 }}</b></div>
+  <a class="hr-kpi {% if s.low_stock %}warn{% endif %}" href="{% url 'webapp:stock_home' %}?show=low"><small>{% translate "Low stock items" %}</small><b>{{ s.low_stock }}</b></a>
+</div>
+<div class="hr-grid2">
+  <div class="hr-card"><h3>🏆 {% translate "Top items" %}</h3><div class="hr-list">{% for t in s.top %}<div class="hr-row"><span class="grow"><b>{{ t.product__name }}</b><small>× {{ t.q|floatformat:"-3" }}</small></span><b>{{ t.t|floatformat:2 }}</b></div>{% empty %}<div class="hr-empty">{% translate "No sales on this day." %}</div>{% endfor %}</div>
+    <div class="hr-actions" style="margin-top:12px"><a class="btn" style="background:#25d366;border-color:#25d366" href="{{ whatsapp }}" target="_blank" rel="noopener">💬 {% translate "Send on WhatsApp" %}</a><form method="post">{% csrf_token %}<button class="btn btn-secondary" name="action" value="send">✉️ {% translate "Email it now" %}</button></form></div>
+  </div>
+  <form method="post" class="hr-card">{% csrf_token %}<h3>⚙️ {% translate "Every night" %}</h3>
+    <label style="display:flex;gap:8px;align-items:center;font-weight:600;margin-bottom:10px"><input type="checkbox" name="enabled" {% if prefs.enabled %}checked{% endif %}> {% translate "Email me this report every night" %}</label>
+    <div class="hr-form">
+      <label class="wide">{% translate "Also send to (emails, comma separated)" %}<input name="emails" value="{{ prefs.emails }}"></label>
+      <label class="wide">{% translate "WhatsApp number for the share button" %}<input name="whatsapp" value="{{ prefs.whatsapp_number }}" inputmode="tel" placeholder="974 5555 1234"></label>
+    </div>
+    <p style="color:var(--hr-soft);font-size:12.5px">{% translate "Owners always receive it:" %} {{ owners|join:", "|default:"—" }}. {% translate "Automatic WhatsApp sending needs a WhatsApp Business API account; until then use the share button." %}</p>
+    <button class="btn" type="submit">{% translate "Save" %}</button>
+  </form>
+</div>
+</div>
+{% endblock %}

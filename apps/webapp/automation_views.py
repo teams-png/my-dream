@@ -1,5 +1,6 @@
 """Reminder rules, the daily-jobs trigger (cron URL) and other automation settings."""
 import hmac
+from datetime import timedelta
 
 from django.conf import settings
 from django.contrib import messages
@@ -57,3 +58,37 @@ def reminder_settings(request):
                      "email": reminder_rules.email_enabled(company, key), "custom": has_rules})
     return render(request, "webapp/automation/reminders.html", {
         "rows": rows, "last_run": DailyJobRun.objects.order_by("-date").first()})
+
+
+@login_required
+@require_permission("accounting.view_reports")
+def daily_report(request):
+    from django.utils import timezone
+    from django.utils.dateparse import parse_date
+
+    from apps.notifications import daily_report as dr
+    from apps.notifications.models import DailyReportSettings
+
+    company = request.company
+    if company is None:
+        return render(request, "webapp/no_company.html")
+    prefs = DailyReportSettings.load(company)
+    day = parse_date(request.GET.get("date") or "") or timezone.localdate()
+    if request.method == "POST":
+        if request.POST.get("action") == "send":
+            sent = dr.send_daily_report(company, day=day, force=True)
+            messages.success(request, _("Report sent to %(count)s email address(es) and saved in Notifications.") % {"count": sent}
+                             if isinstance(sent, int) else _("Report saved."))
+        else:
+            prefs.enabled = bool(request.POST.get("enabled"))
+            prefs.emails = (request.POST.get("emails") or "")[:1000]
+            prefs.whatsapp_number = (request.POST.get("whatsapp") or "")[:30]
+            prefs.save(update_fields=["enabled", "emails", "whatsapp_number"])
+            messages.success(request, _("Daily report settings saved."))
+        return redirect(f"{request.path}?date={day.isoformat()}")
+    summary = dr.build_summary(company, day)
+    text = dr.summary_text(summary)
+    return render(request, "webapp/automation/daily_report.html", {
+        "s": summary, "prefs": prefs, "whatsapp": dr.whatsapp_link(company, text), "text": text,
+        "owners": dr.recipients(company, DailyReportSettings(company=company)),
+        "prev": day - timedelta(days=1), "next": day + timedelta(days=1), "today": timezone.localdate()})

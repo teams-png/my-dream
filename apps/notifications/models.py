@@ -114,3 +114,19 @@ class DailyJobRun(models.Model):
     started_at = models.DateTimeField(auto_now_add=True)
     finished_at = models.DateTimeField(null=True, blank=True)
     result = models.JSONField(default=dict, blank=True)
+
+
+class DailyReportSettings(TenantScopedModel):
+    """The owner's end-of-day summary: who receives it and whether it is on."""
+    enabled = models.BooleanField(default=True)
+    emails = models.TextField(blank=True, help_text="Extra email addresses, comma separated. Owners always get it.")
+    whatsapp_number = models.CharField(max_length=30, blank=True)
+    last_sent_on = models.DateField(null=True, blank=True)
+
+    class Meta:
+        unique_together = ("company",)
+
+    @classmethod
+    def load(cls, company):
+        obj = cls.objects.filter(company=company).first()
+        return obj or cls.objects.create(company=company)

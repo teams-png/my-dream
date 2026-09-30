@@ -1,3 +1,4 @@
+from django.utils.dateparse import parse_date
 from decimal import Decimal
 from django.db import transaction
 
@@ -24,6 +25,8 @@ def record_expense(*, company, user, category, date, amount, description="", pay
     )
     expense.journal_entry = entry
     expense.save(update_fields=["journal_entry"])
+    from .budgets import check_budget
+    check_budget(company, category, expense.date if hasattr(expense.date, "year") else parse_date(str(expense.date)))
     return expense
 
 

@@ -81,6 +81,7 @@ urlpatterns = [
     path("cron/daily/", automation_views.cron_daily, name="cron_daily"),
     path("settings/reminders/", automation_views.reminder_settings, name="reminder_settings"),
     path("reports/daily/", automation_views.daily_report, name="daily_report"),
+    path("expenses/budgets/", automation_views.budgets, name="budgets"),
     path("bank/", banking_views.bank_home, name="bank_home"),
     path("bank/<int:account_id>/", banking_views.bank_account, name="bank_account"),
     path("activity-log/", banking_views.audit_log, name="company_audit_log"),

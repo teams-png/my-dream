@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Budgets" %}{% endblock %}
+{% block heading %}{% translate "Expense budgets" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<style>.bar{height:10px;border-radius:99px;background:var(--hr-line);overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;border-radius:99px;background:var(--hr-ok)}.bar i.near{background:#f59e0b}.bar i.over{background:var(--hr-bad)}</style>
+<div class="hr">
+<div class="hr-month"><a class="btn btn-secondary" href="?m={{ prev|date:'Y-m' }}">‹</a><b>{{ month|date:"F Y" }}</b><a class="btn btn-secondary" href="?m={{ next|date:'Y-m' }}">›</a><a class="btn btn-secondary" href="{% url 'webapp:expense_list' %}">{% translate "Expenses" %}</a></div>
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Total budget" %}</small><b>{{ active_company.default_currency }} {{ total_budget|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Spent" %}</small><b>{{ total_spent|floatformat:2 }}</b></div>
+  <div class="hr-kpi {% if over %}warn{% endif %}"><small>{% translate "Over budget" %}</small><b>{{ over }}</b></div>
+</div>
+<form method="post" class="hr-card">{% csrf_token %}
+  <div class="hr-list">{% for r in rows %}
+    <div class="hr-row" style="align-items:flex-end">
+      <span class="grow"><b>{{ r.category.name }}</b><small>{% translate "Spent" %} {{ r.spent|floatformat:2 }}{% if r.budget %} {% translate "of" %} {{ r.budget.monthly_amount|floatformat:2 }} · {% if r.state == "over" %}<span style="color:var(--hr-bad);font-weight:700">{% translate "over by" %} {{ r.left|floatformat:2|cut:"-" }}</span>{% else %}{{ r.left|floatformat:2 }} {% translate "left" %}{% endif %}{% endif %}</small>
+        {% if r.percent is not None %}<div class="bar"><i class="{{ r.state }}" style="width:{% if r.percent > 100 %}100{% else %}{{ r.percent }}{% endif %}%"></i></div>{% endif %}</span>
+      {% if r.percent is not None %}<span class="hr-chip {% if r.state == 'over' %}bad{% elif r.state == 'near' %}warn{% else %}ok{% endif %}">{{ r.percent }}%</span>{% endif %}
+      <label style="display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:600;color:var(--hr-soft)">{% translate "Monthly budget" %}<input class="hr-in" style="width:130px" type="number" step="0.01" min="0" name="b_{{ r.category.id }}" value="{% if r.budget %}{{ r.budget.monthly_amount|floatformat:'2u' }}{% endif %}"></label>
+      <label style="display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:600;color:var(--hr-soft)">{% translate "Warn at %" %}<input class="hr-in" style="width:80px" type="number" min="1" max="100" name="a_{{ r.category.id }}" value="{{ r.budget.alert_percent|default:80 }}"></label>
+    </div>{% empty %}<div class="hr-empty">{% translate "Add expense categories first." %}</div>{% endfor %}</div>
+  <p style="color:var(--hr-soft);font-size:12.5px">{% translate "You get a notification (and email) when a category reaches the warning level and again when it goes over. Leave empty for no budget." %}</p>
+  <button class="btn" type="submit">{% translate "Save budgets" %}</button>
+</form>
+</div>
+{% endblock %}

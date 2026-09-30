@@ -92,3 +92,47 @@ def daily_report(request):
         "s": summary, "prefs": prefs, "whatsapp": dr.whatsapp_link(company, text), "text": text,
         "owners": dr.recipients(company, DailyReportSettings(company=company)),
         "prev": day - timedelta(days=1), "next": day + timedelta(days=1), "today": timezone.localdate()})
+
+
+@login_required
+@require_permission("expenses.manage")
+def budgets(request):
+    from decimal import Decimal, InvalidOperation
+
+    from django.utils import timezone
+    from django.utils.dateparse import parse_date
+
+    from apps.expenses.budgets import month_rows
+    from apps.expenses.models import ExpenseBudget, ExpenseCategory
+
+    company = request.company
+    if company is None:
+        return render(request, "webapp/no_company.html")
+    day = parse_date((request.GET.get("m") or "") + "-01") or timezone.localdate()
+    if request.method == "POST":
+        saved = 0
+        for category in ExpenseCategory.objects.for_company(company):
+            raw = (request.POST.get(f"b_{category.id}") or "").strip()
+            try:
+                amount = Decimal(raw) if raw else None
+                alert = min(max(int(request.POST.get(f"a_{category.id}") or 80), 1), 100)
+            except (InvalidOperation, ValueError):
+                continue
+            if amount is None or amount <= 0:
+                ExpenseBudget.objects.filter(company=company, category=category).delete()
+            else:
+                ExpenseBudget.objects.update_or_create(company=company, category=category,
+                                                       defaults={"monthly_amount": amount, "alert_percent": alert})
+                saved += 1
+        messages.success(request, _("%(count)s budgets saved.") % {"count": saved})
+        return redirect("webapp:budgets")
+    rows = month_rows(company, day)
+    budgeted = [r for r in rows if r["budget"]]
+    first = day.replace(day=1)
+    prev = (first - timedelta(days=1)).replace(day=1)
+    nxt = (first + timedelta(days=32)).replace(day=1)
+    return render(request, "webapp/automation/budgets.html", {
+        "rows": rows, "month": first, "prev": prev, "next": nxt,
+        "total_budget": sum((r["budget"].monthly_amount for r in budgeted), Decimal("0")),
+        "total_spent": sum((r["spent"] for r in rows), Decimal("0")),
+        "over": sum(1 for r in rows if r["state"] == "over")})

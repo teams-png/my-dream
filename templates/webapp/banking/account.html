@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ account.name }}{% endblock %}
+{% block heading %}{{ account.name }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<div class="hr">
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Balance in the books" %}</small><b>{{ summary.ledger_balance|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Balance on bank statement" %}</small><b>{{ summary.statement_balance|floatformat:2 }}</b></div>
+  <div class="hr-kpi {% if summary.difference %}warn{% endif %}"><small>{% translate "Difference" %}</small><b>{{ summary.difference|floatformat:2 }}</b></div>
+  <div class="hr-kpi {% if summary.unmatched_count %}warn{% endif %}"><small>{% translate "To reconcile" %}</small><b>{{ summary.unmatched_count }}</b></div>
+</div>
+<div class="hr-actions" style="margin-bottom:12px"><a class="btn btn-secondary" href="{% url 'webapp:bank_home' %}">← {% translate "Bank & cash" %}</a><a class="btn btn-secondary" href="{% url 'webapp:acc_ledger' account.ledger_account.id %}?period=all">📒 {% translate "Full ledger" %}</a></div>
+<div class="hr-grid2">
+<div>
+  <div class="hr-card"><h3>🧩 {% translate "Reconcile statement lines" %}</h3>
+    <div class="hr-list">{% for r in unmatched %}
+      <div class="hr-row" style="align-items:flex-start"><span class="grow"><b style="color:{% if r.amount < 0 %}var(--hr-bad){% else %}var(--hr-ok){% endif %}">{% if r.amount > 0 %}+{% endif %}{{ r.amount|floatformat:2 }}</b> · {{ r.date|date:"j M Y" }}<small>{{ r.description }} {{ r.reference }}</small>
+        {% for e in r.suggestions %}<form method="post" style="margin-top:6px">{% csrf_token %}<input type="hidden" name="action" value="match"><input type="hidden" name="row" value="{{ r.id }}"><input type="hidden" name="entry" value="{{ e.id }}"><button class="btn btn-secondary">✓ {% translate "Match" %}: {{ e.reference|default:e.memo|truncatechars:40 }} · {{ e.date|date:"j M" }}</button></form>{% endfor %}
+        <details style="margin-top:6px"><summary style="cursor:pointer;color:var(--hr-accent);font-weight:700;font-size:13px">{% translate "Not in the books? Record it" %}</summary>
+          <form method="post" class="hr-actions" style="margin-top:6px">{% csrf_token %}<input type="hidden" name="action" value="create"><input type="hidden" name="row" value="{{ r.id }}"><select class="hr-in" style="width:auto;max-width:260px" name="contra">{% for c in contra %}<option value="{{ c.id }}" {% if r.amount < 0 and c.code == "5100" %}selected{% elif r.amount > 0 and c.code == "4000" %}selected{% endif %}>{{ c.code }} · {{ c.name }}</option>{% endfor %}</select><button class="btn">{% translate "Record & match" %}</button></form></details>
+      </span></div>
+    {% empty %}<div class="hr-empty">{% translate "Nothing to reconcile." %}</div>{% endfor %}</div>
+  </div>
+  <div class="hr-card"><h3>📒 {% translate "Recent entries" %}</h3><div class="hr-list">{% for l in lines %}<a class="hr-row" href="{% url 'webapp:acc_journal_detail' l.journal_entry.id %}"><span class="grow"><b>{{ l.journal_entry.reference|default:l.journal_entry.memo|default:"—"|truncatechars:50 }}</b><small>{{ l.journal_entry.date|date:"j M Y" }}</small></span><b style="color:{% if l.credit %}var(--hr-bad){% else %}var(--hr-ok){% endif %}">{% if l.debit %}+{{ l.debit|floatformat:2 }}{% else %}−{{ l.credit|floatformat:2 }}{% endif %}</b></a>{% empty %}<div class="hr-empty">{% translate "No entries yet." %}</div>{% endfor %}</div></div>
+</div>
+<div>
+  <form method="post" enctype="multipart/form-data" class="hr-card">{% csrf_token %}<input type="hidden" name="action" value="import"><h3>⬆️ {% translate "Import bank statement" %}</h3>
+    <p style="color:var(--hr-soft);font-size:13px;margin-top:-4px">{% translate "CSV file with columns: date (YYYY-MM-DD), description, amount (+ money in, − money out) and optionally reference. The same file or lines are never imported twice." %}</p>
+    <input class="hr-in" type="file" name="statement" accept=".csv,text/csv" required><div style="margin-top:10px"><button class="btn" type="submit">{% translate "Import" %}</button></div>
+  </form>
+  <div class="hr-card"><h3>✓ {% translate "Recently matched" %}</h3><div class="hr-list">{% for r in matched %}<div class="hr-row"><span class="grow"><b>{{ r.amount|floatformat:2 }}</b> · {{ r.date|date:"j M" }}<small>{{ r.description|truncatechars:50 }}</small></span><form method="post">{% csrf_token %}<input type="hidden" name="action" value="unmatch"><input type="hidden" name="row" value="{{ r.id }}"><button class="btn btn-secondary" aria-label="{% translate 'Undo' %}">↺</button></form></div>{% empty %}<div class="hr-empty">—</div>{% endfor %}</div></div>
+</div>
+</div>
+</div>
+{% endblock %}

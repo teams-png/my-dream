@@ -1,0 +1,9 @@
+{% load i18n static %}<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+{% with u=request.resolver_match.url_name %}
+<nav class="hr-tabs no-print" aria-label="CRM">
+  <a class="{% if u == 'crm_pipeline' %}on{% endif %}" href="{% url 'webapp:crm_pipeline' %}">📊 {% translate "Pipeline" %}</a>
+  <a class="{% if u == 'lead_list' or u == 'lead_detail' %}on{% endif %}" href="{% url 'webapp:lead_list' %}">🎯 {% translate "Leads" %}</a>
+  <a href="{% url 'webapp:quotation_list' %}">📝 {% translate "Quotations" %}</a>
+  <a class="{% if u == 'pricing' or u == 'price_list_detail' %}on{% endif %}" href="{% url 'webapp:pricing' %}">🏷 {% translate "Price lists & offers" %}</a>
+</nav>
+{% endwith %}

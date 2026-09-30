@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Price lists & offers" %}{% endblock %}
+{% block heading %}{% translate "Price lists & offers" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/crm/_tabs.html" %}
+<div class="hr-grid2" style="grid-template-columns:1fr 1fr">
+<div>
+  <div class="hr-card"><h3>🏷 {% translate "Offers" %} <small>{% translate "applied in the POS and on new quotes" %}</small></h3>
+    <div class="hr-list">{% for o in offers %}<div class="hr-row" {% if not o.is_active %}style="opacity:.55"{% endif %}><span class="grow"><b>{{ o.name }}</b><small>{% if o.discount_type == "percentage" %}{{ o.discount_value|floatformat:"-2" }}% {% translate "off" %}{% else %}{{ o.discount_value|floatformat:2 }} {% translate "off" %}{% endif %} · {% if o.product %}{{ o.product.name }}{% else %}{% translate "all items" %}{% endif %} · {{ o.start_date|date:"j M" }} – {{ o.end_date|date:"j M Y" }}</small></span>{% if o.live %}<span class="hr-chip ok">{% translate "Live" %}</span>{% endif %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="toggle_offer"><input type="hidden" name="id" value="{{ o.id }}"><button class="btn btn-secondary">{% if o.is_active %}{% translate "Stop" %}{% else %}{% translate "Start" %}{% endif %}</button></form></div>{% empty %}<div class="hr-empty">{% translate "No offers yet." %}</div>{% endfor %}</div>
+    <form method="post" class="hr-form" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="offer">
+      <label class="wide">{% translate "Offer name" %}<input name="name" required placeholder="{% translate 'e.g. Ramadan 10% off' %}"></label>
+      <label>{% translate "Discount" %}<input type="number" name="value" step="0.01" min="0.01" required></label>
+      <label>{% translate "Type" %}<select name="kind"><option value="percentage">%</option><option value="fixed">{% translate "Fixed amount" %}</option></select></label>
+      <label class="wide">{% translate "Item" %}<select name="product"><option value="">{% translate "All items" %}</option>{% for p in products %}<option value="{{ p.id }}">{{ p.name }}</option>{% endfor %}</select></label>
+      <label>{% translate "From" %}<input type="date" name="start" value="{{ today|date:'Y-m-d' }}" required></label><label>{% translate "To" %}<input type="date" name="end" required></label>
+      <div class="wide"><button class="btn" type="submit">{% translate "Save offer" %}</button></div></form>
+  </div>
+</div>
+<div class="hr-card"><h3>📋 {% translate "Price lists" %} <small>{% translate "e.g. wholesale prices, a special price for one customer" %}</small></h3>
+  <div class="hr-list">{% for l in lists %}<a class="hr-row" href="{% url 'webapp:price_list_detail' l.id %}" {% if not l.is_active %}style="opacity:.55"{% endif %}><span class="grow"><b>{{ l.name }}</b><small>{% if l.customer %}{% translate "Only for" %} {{ l.customer.name }}{% else %}{% translate "Everyone" %}{% endif %} · {{ l.n }} {% translate "items" %}{% if l.end_date %} · {% translate "until" %} {{ l.end_date|date:"j M Y" }}{% endif %}</small></span>›</a>{% empty %}<div class="hr-empty">{% translate "No price lists yet." %}</div>{% endfor %}</div>
+  <form method="post" class="hr-form" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="list">
+    <label class="wide">{% translate "Name" %}<input name="name" required placeholder="{% translate 'e.g. Wholesale' %}"></label>
+    <label class="wide">{% translate "For customer (optional)" %}<select name="customer"><option value="">{% translate "Everyone" %}</option>{% for c in customers %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}</select></label>
+    <label>{% translate "From" %}<input type="date" name="start"></label><label>{% translate "To" %}<input type="date" name="end"></label>
+    <label>{% translate "Priority" %}<input type="number" name="priority" value="0"></label>
+    <div class="wide"><button class="btn btn-secondary" type="submit">{% translate "Create price list" %}</button></div></form>
+</div>
+</div>
+</div>
+{% endblock %}

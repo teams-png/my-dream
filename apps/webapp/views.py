@@ -3773,6 +3773,32 @@ def purchase_reports(request):
 
 # ================= POS (Point of Sale) =================
 
+def _price_rules(company):
+    """Bulk version of sales.services.resolve_commercial_price for walk-in customers: the highest-priority
+    general price list price, then the highest-priority live offer. Returns a function product -> (price, offer name)."""
+    from apps.sales.models import PriceListItem, Promotion
+    today = timezone.localdate()
+    list_prices = {}
+    for item in (PriceListItem.objects.filter(price_list__company=company, price_list__is_active=True, price_list__customer__isnull=True)
+                 .filter(Q(price_list__start_date__isnull=True) | Q(price_list__start_date__lte=today))
+                 .filter(Q(price_list__end_date__isnull=True) | Q(price_list__end_date__gte=today))
+                 .order_by("-price_list__priority", "price_list_id")):
+        list_prices.setdefault(item.product_id, item.unit_price)
+    promos = list(Promotion.objects.for_company(company).filter(is_active=True, start_date__lte=today, end_date__gte=today)
+                  .order_by("-priority", "id"))
+    if not list_prices and not promos:
+        return lambda product: (None, "")
+
+    def resolve(product):
+        price = list_prices.get(product.id, product.selling_price)
+        promo = next((pr for pr in promos if pr.product_id in (None, product.id)), None)
+        if promo:
+            cut = price * promo.discount_value / Decimal("100") if promo.discount_type == "percentage" else promo.discount_value
+            price = max(price - cut, Decimal("0"))
+        return price.quantize(Decimal("0.01")), promo.name if promo else ""
+    return resolve
+
+
 def _pos_catalog(company):
     """Product data for the POS screen, with stock from one grouped query."""
     from apps.inventory.models import StockMovement
@@ -3788,6 +3814,7 @@ def _pos_catalog(company):
                 "id", "product_id", "imei", "serial_number", "condition", "warranty_months"):
             handset_units.setdefault(unit.pop("product_id"), []).append(unit)
     catalog, categories = [], {}
+    offers = _price_rules(company)
     from apps.webapp.industry_access import company_features
     gold_rates = None
     if "gold" in company_features(company):
@@ -3807,6 +3834,13 @@ def _pos_catalog(company):
             "weighed": bool((p.attributes or {}).get("sold_by_weight")),
             "plu": str((p.attributes or {}).get("scale_code") or ""),
         })
+        list_price, offer = offers(p)
+        if list_price is not None and list_price != p.selling_price:
+            catalog[-1]["price"] = f"{list_price:.2f}"
+            catalog[-1]["was"] = f"{p.selling_price:.2f}"
+            catalog[-1]["offer"] = offer
+            if offer and not catalog[-1]["variant"]:
+                catalog[-1]["variant"] = f"🏷 {offer}"
         if gold_rates is not None:
             from apps.industry.gold import breakdown
             parts = breakdown(p.attributes, gold_rates)

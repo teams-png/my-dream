@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Activity log" %}{% endblock %}
+{% block heading %}{% translate "Activity log" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<div class="hr">
+<p style="color:var(--hr-soft);margin-top:-6px">{% translate "Who changed what — important changes are recorded automatically and can't be edited." %}</p>
+<form method="get" class="hr-actions" style="margin-bottom:12px"><input class="hr-in" style="flex:1 1 200px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Action, record or person' %}"><input class="hr-in" style="width:auto" type="date" name="from" value="{{ start|date:'Y-m-d' }}" aria-label="{% translate 'From' %}"><input class="hr-in" style="width:auto" type="date" name="to" value="{{ end|date:'Y-m-d' }}" aria-label="{% translate 'To' %}"><button class="btn btn-secondary">{% translate "Search" %}</button></form>
+<div class="hr-list">{% for l in page %}<div class="hr-row"><span class="grow"><b>{{ l.action_label }}</b> · {{ l.model_name }} #{{ l.object_id }}<small>{{ l.timestamp|date:"j M Y, H:i" }} · {{ l.user.email|default:l.user.username|default:"system" }}{% if l.ip_address %} · {{ l.ip_address }}{% endif %}</small>{% if l.summary %}<small style="word-break:break-word">{{ l.summary|truncatechars:200 }}</small>{% endif %}</span></div>{% empty %}<div class="hr-card hr-empty">{% translate "No activity recorded yet." %}</div>{% endfor %}</div>
+{% if page.paginator.num_pages > 1 %}<div class="hr-actions" style="justify-content:center;margin-top:14px">{% if page.has_previous %}<a class="btn btn-secondary" href="?{{ page_query }}&page={{ page.previous_page_number }}">←</a>{% endif %}<span>{{ page.number }} / {{ page.paginator.num_pages }}</span>{% if page.has_next %}<a class="btn btn-secondary" href="?{{ page_query }}&page={{ page.next_page_number }}">→</a>{% endif %}</div>{% endif %}
+</div>
+{% endblock %}

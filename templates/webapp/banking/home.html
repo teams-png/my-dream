@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Bank & cash" %}{% endblock %}
+{% block heading %}{% translate "Bank & cash" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<div class="hr">
+<div class="hr-kpis"><div class="hr-kpi"><small>{% translate "Total cash & bank" %}</small><b>{{ active_company.default_currency }} {{ total|floatformat:2 }}</b></div></div>
+<div class="hr-people" style="margin-bottom:16px">{% for a in accounts %}
+  <a class="hr-person" href="{% url 'webapp:bank_account' a.id %}"><span class="hr-av">{% if a.account_type == "cash" %}💵{% else %}🏦{% endif %}</span><span style="flex:1;min-width:0"><b>{{ a.name }}</b><small>{{ a.bank_name|default:"" }}{% if a.account_number_last4 %} ···{{ a.account_number_last4 }}{% endif %} · {{ a.ledger_account.code }}</small><span class="meta"><span class="hr-chip {% if a.balance < 0 %}bad{% else %}ok{% endif %}" style="font-size:14px">{{ a.balance|floatformat:2 }}</span>{% if a.unmatched %}<span class="hr-chip warn">{{ a.unmatched }} {% translate "to reconcile" %}</span>{% endif %}</span></span></a>
+{% endfor %}</div>
+<div class="hr-grid2" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+  <form method="post" class="hr-card">{% csrf_token %}<h3>⬇️⬆️ {% translate "Money in / out" %}</h3>
+    <div class="hr-form">
+      <label>{% translate "Type" %}<select name="action"><option value="in">⬇️ {% translate "Money in" %}</option><option value="out">⬆️ {% translate "Money out" %}</option></select></label>
+      <label>{% translate "Account" %}<select name="account">{% for a in accounts %}<option value="{{ a.id }}">{{ a.name }}</option>{% endfor %}</select></label>
+      <label>{% translate "Amount" %}<input type="number" name="amount" step="0.01" min="0.01" required></label>
+      <label>{% translate "Date" %}<input type="date" name="date" value="{{ today|date:'Y-m-d' }}"></label>
+      <label class="wide">{% translate "For / from" %}<select name="contra">{% for c in contra %}<option value="{{ c.id }}" {% if c.code == "3000" %}selected{% endif %}>{{ c.code }} · {{ c.name }}</option>{% endfor %}</select></label>
+      <label class="wide">{% translate "Note" %}<input name="memo" placeholder="{% translate 'e.g. Owner added capital, loan received, bank charges' %}"></label>
+      <div class="wide"><button class="btn" type="submit">{% translate "Save" %}</button></div>
+    </div>
+  </form>
+  <form method="post" class="hr-card">{% csrf_token %}<input type="hidden" name="action" value="transfer"><h3>🔁 {% translate "Transfer between accounts" %}</h3>
+    <div class="hr-form">
+      <label>{% translate "From" %}<select name="from">{% for a in accounts %}<option value="{{ a.id }}">{{ a.name }}</option>{% endfor %}</select></label>
+      <label>{% translate "To" %}<select name="to">{% for a in accounts %}<option value="{{ a.id }}" {% if forloop.counter == 2 %}selected{% endif %}>{{ a.name }}</option>{% endfor %}</select></label>
+      <label>{% translate "Amount" %}<input type="number" name="amount" step="0.01" min="0.01" required></label>
+      <label>{% translate "Date" %}<input type="date" name="date" value="{{ today|date:'Y-m-d' }}"></label>
+      <label class="wide">{% translate "Reference" %}<input name="reference" placeholder="{% translate 'e.g. Cash deposited to bank' %}"></label>
+      <div class="wide"><button class="btn" type="submit">{% translate "Transfer" %}</button></div>
+    </div>
+  </form>
+  <form method="post" class="hr-card">{% csrf_token %}<input type="hidden" name="action" value="add"><h3>＋ {% translate "New bank or cash account" %}</h3>
+    <div class="hr-form">
+      <label>{% translate "Name" %}<input name="name" required placeholder="{% translate 'e.g. QNB current account' %}"></label>
+      <label>{% translate "Type" %}<select name="account_type"><option value="bank">{% translate "Bank" %}</option><option value="cash">{% translate "Cash" %}</option></select></label>
+      <label>{% translate "Bank name" %}<input name="bank_name"></label>
+      <label>{% translate "Last 4 digits" %}<input name="last4" maxlength="4" inputmode="numeric"></label>
+      <label>{% translate "Opening balance" %}<input type="number" name="opening" step="0.01" min="0"></label>
+      <label>{% translate "As of" %}<input type="date" name="date" value="{{ today|date:'Y-m-d' }}"></label>
+      <div class="wide"><button class="btn" type="submit">{% translate "Add account" %}</button></div>
+    </div>
+  </form>
+</div>
+</div>
+{% endblock %}

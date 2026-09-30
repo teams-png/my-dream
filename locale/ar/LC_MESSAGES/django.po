@@ -22,6 +22,26 @@ msgid "Sales"
 msgstr "المبيعات"
 
 #: templates/base.html
+msgid "Leads & pipeline"
+msgstr "العملاء المحتملون ومسار المبيعات"
+
+#: templates/base.html
+msgid "Price lists & offers"
+msgstr "قوائم الأسعار والعروض"
+
+#: templates/base.html
+msgid "Invoices"
+msgstr "الفواتير"
+
+#: templates/base.html
+msgid "Quotations"
+msgstr "عروض الأسعار"
+
+#: templates/base.html
+msgid "Sales orders & delivery"
+msgstr "أوامر البيع والتسليم"
+
+#: templates/base.html
 msgid "POS"
 msgstr "نقطة البيع"
 
@@ -42,6 +62,10 @@ msgid "Purchases"
 msgstr "المشتريات"
 
 #: templates/base.html
+msgid "Purchase orders"
+msgstr "أوامر الشراء"
+
+#: templates/base.html
 msgid "Suppliers"
 msgstr "الموردون"
 
@@ -52,6 +76,14 @@ msgstr "تقارير المشتريات"
 #: templates/base.html
 msgid "Finance"
 msgstr "المالية"
+
+#: templates/base.html
+msgid "Bank & cash"
+msgstr "البنك والنقد"
+
+#: templates/base.html
+msgid "Accounts & reports"
+msgstr "الحسابات والتقارير"
 
 #: templates/base.html
 msgid "Finance overview"
@@ -86,6 +118,10 @@ msgid "Customers"
 msgstr "العملاء"
 
 #: templates/base.html
+msgid "Money to collect"
+msgstr "المبالغ المستحقة للتحصيل"
+
+#: templates/base.html
 msgid "Team"
 msgstr "الفريق"
 
@@ -106,6 +142,10 @@ msgid "Business"
 msgstr "النشاط التجاري"
 
 #: templates/base.html
+msgid "Stock & inventory"
+msgstr "المخزون"
+
+#: templates/base.html
 msgid "Analytics"
 msgstr "التحليلات"
 
@@ -116,6 +156,14 @@ msgstr "الفروع"
 #: templates/base.html
 msgid "Settings"
 msgstr "الإعدادات"
+
+#: templates/base.html
+msgid "Tax & currency"
+msgstr "الضريبة والعملة"
+
+#: templates/base.html
+msgid "Activity log"
+msgstr "سجل النشاط"
 
 #: templates/base.html
 msgid "Notifications"
@@ -489,6 +537,420 @@ msgstr "اللغة"
 msgid "Dark / light mode"
 msgstr "الوضع الداكن / الفاتح"
 
+#: templates/webapp/accounts/_asof.html
+msgid "As of"
+msgstr "حتى تاريخ"
+
+#: templates/webapp/accounts/_asof.html
+msgid "Print"
+msgstr "طباعة"
+
+#: templates/webapp/accounts/_period.html
+msgid "From"
+msgstr "من"
+
+#: templates/webapp/accounts/_period.html
+msgid "To"
+msgstr "إلى"
+
+#: templates/webapp/accounts/_period.html
+msgid "Apply"
+msgstr "تطبيق"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Accounts"
+msgstr "الحسابات"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Profit & Loss"
+msgstr "الأرباح والخسائر"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Balance Sheet"
+msgstr "الميزانية العمومية"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Trial Balance"
+msgstr "ميزان المراجعة"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Cash Flow"
+msgstr "التدفق النقدي"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "VAT / Tax"
+msgstr "ضريبة القيمة المضافة"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Chart of accounts"
+msgstr "دليل الحسابات"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Journal"
+msgstr "اليومية"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Assets and liabilities + equity differ by"
+msgstr "الفرق بين الأصول والخصوم + حقوق الملكية"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Check opening balances or manual entries."
+msgstr "راجع الأرصدة الافتتاحية أو القيود اليدوية."
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Assets"
+msgstr "الأصول"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Total assets"
+msgstr "إجمالي الأصول"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Liabilities & equity"
+msgstr "الخصوم وحقوق الملكية"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Liabilities"
+msgstr "الخصوم"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Total liabilities"
+msgstr "إجمالي الخصوم"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Equity"
+msgstr "حقوق الملكية"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Profit for the current year"
+msgstr "ربح السنة الحالية"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Total liabilities & equity"
+msgstr "إجمالي الخصوم وحقوق الملكية"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Balanced"
+msgstr "متوازن"
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "Opening cash & bank"
+msgstr "النقد والبنك الافتتاحي"
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "Money in"
+msgstr "الأموال الواردة"
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "Money out"
+msgstr "الأموال الصادرة"
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "Closing cash & bank"
+msgstr "النقد والبنك الختامي"
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "Net"
+msgstr "الصافي"
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "No cash or bank movement in this period."
+msgstr "لا حركة نقدية أو بنكية في هذه الفترة."
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "Net change"
+msgstr "صافي التغير"
+
+#: templates/webapp/accounts/chart.html
+msgid "System account"
+msgstr "حساب نظام"
+
+#: templates/webapp/accounts/chart.html
+msgid "Switched off"
+msgstr "متوقف"
+
+#: templates/webapp/accounts/chart.html
+msgid "Switch off"
+msgstr "إيقاف"
+
+#: templates/webapp/accounts/chart.html
+msgid "Switch on"
+msgstr "تشغيل"
+
+#: templates/webapp/accounts/chart.html
+msgid "New account"
+msgstr "حساب جديد"
+
+#: templates/webapp/accounts/chart.html
+msgid "Code"
+msgstr "الرمز"
+
+#: templates/webapp/accounts/chart.html
+msgid "Name"
+msgstr "الاسم"
+
+#: templates/webapp/accounts/chart.html
+msgid "e.g. Rent expense"
+msgstr "مثلاً مصروف الإيجار"
+
+#: templates/webapp/accounts/chart.html
+msgid "Type"
+msgstr "النوع"
+
+#: templates/webapp/accounts/chart.html
+msgid "Add account"
+msgstr "إضافة حساب"
+
+#: templates/webapp/accounts/chart.html
+msgid ""
+"Codes: 1xxx assets, 2xxx liabilities, 3xxx equity, 4xxx income, 5xxx "
+"expenses."
+msgstr ""
+"الرموز: 1xxx أصول، 2xxx خصوم، 3xxx حقوق ملكية، 4xxx إيرادات، 5xxx مصروفات."
+
+#: templates/webapp/accounts/home.html
+msgid "Profit this month"
+msgstr "ربح هذا الشهر"
+
+#: templates/webapp/accounts/home.html
+msgid "Profit this year"
+msgstr "ربح هذه السنة"
+
+#: templates/webapp/accounts/home.html
+msgid "Cash in hand"
+msgstr "النقد في الصندوق"
+
+#: templates/webapp/accounts/home.html
+msgid "Bank"
+msgstr "بنك"
+
+#: templates/webapp/accounts/home.html
+msgid "Customers owe you"
+msgstr "مستحق من العملاء"
+
+#: templates/webapp/accounts/home.html
+msgid "You owe suppliers"
+msgstr "مستحق للموردين"
+
+#: templates/webapp/accounts/home.html
+msgid "Tax payable"
+msgstr "الضريبة المستحقة"
+
+#: templates/webapp/accounts/home.html
+msgid "Last 6 months"
+msgstr "آخر 6 أشهر"
+
+#: templates/webapp/accounts/home.html
+msgid "Income"
+msgstr "الإيرادات"
+
+#: templates/webapp/accounts/home.html
+msgid "Income, costs and profit for any period"
+msgstr "الإيرادات والتكاليف والأرباح لأي فترة"
+
+#: templates/webapp/accounts/home.html
+msgid "What the business owns and owes"
+msgstr "ما تملكه المنشأة وما عليها"
+
+#: templates/webapp/accounts/home.html
+msgid "Every account's debit and credit balance"
+msgstr "رصيد كل حساب مدين ودائن"
+
+#: templates/webapp/accounts/home.html
+msgid "Money in and out of cash and bank"
+msgstr "الأموال الواردة والصادرة من النقد والبنك"
+
+#: templates/webapp/accounts/home.html
+msgid "Tax collected and paid"
+msgstr "الضريبة المحصلة والمدفوعة"
+
+#: templates/webapp/accounts/home.html
+msgid "Latest entries"
+msgstr "أحدث القيود"
+
+#: templates/webapp/accounts/home.html
+msgid "Journal entry"
+msgstr "قيد يومية"
+
+#: templates/webapp/accounts/home.html
+msgid ""
+"No entries yet. Sales, purchases, expenses and salaries are recorded here "
+"automatically."
+msgstr ""
+"لا قيود بعد. تُسجل المبيعات والمشتريات والمصروفات والرواتب هنا تلقائياً."
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "by"
+msgstr "بواسطة"
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Cancelled"
+msgstr "ملغى"
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Note"
+msgstr "ملاحظة"
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Debit"
+msgstr "مدين"
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Credit"
+msgstr "آجل"
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Total"
+msgstr "الإجمالي"
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Cancel this journal entry? It will be removed from all reports."
+msgstr "إلغاء هذا القيد؟ سيُزال من جميع التقارير."
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Cancel entry"
+msgstr "إلغاء القيد"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "New journal entry"
+msgstr "قيد يومية جديد"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "Date"
+msgstr "التاريخ"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "Reference"
+msgstr "المرجع"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "e.g. Opening balance"
+msgstr "مثلاً الرصيد الافتتاحي"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "Add line"
+msgstr "إضافة سطر"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "Save entry"
+msgstr "حفظ القيد"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "Difference"
+msgstr "الفرق"
+
+#: templates/webapp/accounts/journal_list.html
+msgid "Journal entries"
+msgstr "قيود اليومية"
+
+#: templates/webapp/accounts/journal_list.html
+msgid "Reference or note"
+msgstr "المرجع أو الملاحظة"
+
+#: templates/webapp/accounts/journal_list.html
+msgid "All types"
+msgstr "كل الأنواع"
+
+#: templates/webapp/accounts/journal_list.html
+msgid "Search"
+msgstr "بحث"
+
+#: templates/webapp/accounts/journal_list.html
+msgid "No entries in this period."
+msgstr "لا قيود في هذه الفترة."
+
+#: templates/webapp/accounts/ledger.html
+msgid "Ledger"
+msgstr "دفتر الأستاذ"
+
+#: templates/webapp/accounts/ledger.html
+msgid "Opening balance"
+msgstr "الرصيد الافتتاحي"
+
+#: templates/webapp/accounts/ledger.html
+msgid "Closing balance"
+msgstr "الرصيد الختامي"
+
+#: templates/webapp/accounts/ledger.html
+msgid "Details"
+msgstr "التفاصيل"
+
+#: templates/webapp/accounts/ledger.html
+msgid "Balance"
+msgstr "الرصيد"
+
+#: templates/webapp/accounts/profit_loss.html
+msgid "Gross profit"
+msgstr "إجمالي الربح"
+
+#: templates/webapp/accounts/profit_loss.html
+msgid "Net profit"
+msgstr "صافي الربح"
+
+#: templates/webapp/accounts/profit_loss.html
+msgid "Total income"
+msgstr "إجمالي الإيرادات"
+
+#: templates/webapp/accounts/profit_loss.html
+msgid "Cost of goods sold"
+msgstr "تكلفة البضاعة المباعة"
+
+#: templates/webapp/accounts/profit_loss.html
+msgid "Total expenses"
+msgstr "إجمالي المصروفات"
+
+#: templates/webapp/accounts/profit_loss.html
+msgid "Net loss"
+msgstr "صافي الخسارة"
+
+#: templates/webapp/accounts/trial_balance.html
+msgid "No transactions yet."
+msgstr "لا معاملات بعد."
+
+#: templates/webapp/accounts/trial_balance.html
+msgid "Not balanced"
+msgstr "غير متوازن"
+
+#: templates/webapp/accounts/vat.html
+msgid "VAT / Tax report"
+msgstr "تقرير الضريبة"
+
+#: templates/webapp/accounts/vat.html
+msgid "Tax collected on sales"
+msgstr "الضريبة المحصلة على المبيعات"
+
+#: templates/webapp/accounts/vat.html
+msgid "Tax paid on purchases"
+msgstr "الضريبة المدفوعة على المشتريات"
+
+#: templates/webapp/accounts/vat.html
+msgid "Tax to reclaim"
+msgstr "ضريبة قابلة للاسترداد"
+
+#: templates/webapp/accounts/vat.html
+msgid "Tax to pay"
+msgstr "ضريبة مستحقة الدفع"
+
+#: templates/webapp/accounts/vat.html
+msgid "Sales by tax code"
+msgstr "المبيعات حسب رمز الضريبة"
+
+#: templates/webapp/accounts/vat.html
+msgid "Taxable"
+msgstr "خاضع للضريبة"
+
+#: templates/webapp/accounts/vat.html
+msgid "Tax"
+msgstr "الضريبة"
+
+#: templates/webapp/accounts/vat.html
+msgid "No tax codes used."
+msgstr "لم تُستخدم رموز ضريبية."
+
+#: templates/webapp/accounts/vat.html
+msgid "Purchases by tax code"
+msgstr "المشتريات حسب رمز الضريبة"
+
 #: templates/webapp/admin_base.html
 msgid "Platform Admin"
 msgstr "إدارة المنصة"
@@ -565,6 +1027,541 @@ msgstr "فقدت هاتفك؟ اكتب أحد رموز الاسترداد بدل
 msgid "← Back to sign in"
 msgstr "→ العودة لتسجيل الدخول"
 
+#: templates/webapp/banking/account.html
+msgid "Balance in the books"
+msgstr "الرصيد في الدفاتر"
+
+#: templates/webapp/banking/account.html
+msgid "Balance on bank statement"
+msgstr "الرصيد في كشف البنك"
+
+#: templates/webapp/banking/account.html
+msgid "To reconcile"
+msgstr "للمطابقة"
+
+#: templates/webapp/banking/account.html
+msgid "Full ledger"
+msgstr "دفتر الأستاذ الكامل"
+
+#: templates/webapp/banking/account.html
+msgid "Reconcile statement lines"
+msgstr "مطابقة بنود الكشف"
+
+#: templates/webapp/banking/account.html
+msgid "Match"
+msgstr "مطابقة"
+
+#: templates/webapp/banking/account.html
+msgid "Not in the books? Record it"
+msgstr "غير مسجل؟ سجّله"
+
+#: templates/webapp/banking/account.html
+msgid "Record & match"
+msgstr "تسجيل ومطابقة"
+
+#: templates/webapp/banking/account.html
+msgid "Nothing to reconcile."
+msgstr "لا شيء للمطابقة."
+
+#: templates/webapp/banking/account.html
+msgid "Recent entries"
+msgstr "القيود الأخيرة"
+
+#: templates/webapp/banking/account.html
+msgid "No entries yet."
+msgstr "لا قيود بعد."
+
+#: templates/webapp/banking/account.html
+msgid "Import bank statement"
+msgstr "استيراد كشف البنك"
+
+#: templates/webapp/banking/account.html
+msgid ""
+"CSV file with columns: date (YYYY-MM-DD), description, amount (+ money in, −"
+" money out) and optionally reference. The same file or lines are never "
+"imported twice."
+msgstr ""
+"ملف CSV بالأعمدة: date (YYYY-MM-DD) وdescription وamount (+ وارد، − صادر) "
+"وreference اختيارياً. لا يُستورد الملف أو البنود مرتين."
+
+#: templates/webapp/banking/account.html
+msgid "Import"
+msgstr "استيراد"
+
+#: templates/webapp/banking/account.html
+msgid "Recently matched"
+msgstr "المطابقة مؤخراً"
+
+#: templates/webapp/banking/account.html
+msgid "Undo"
+msgstr "تراجع"
+
+#: templates/webapp/banking/audit.html
+msgid ""
+"Who changed what — important changes are recorded automatically and can't be"
+" edited."
+msgstr "من غيّر ماذا — تُسجل التغييرات المهمة تلقائياً ولا يمكن تعديلها."
+
+#: templates/webapp/banking/audit.html
+msgid "Action, record or person"
+msgstr "الإجراء أو السجل أو الشخص"
+
+#: templates/webapp/banking/audit.html
+msgid "No activity recorded yet."
+msgstr "لم يُسجل نشاط بعد."
+
+#: templates/webapp/banking/home.html
+msgid "Total cash & bank"
+msgstr "إجمالي النقد والبنك"
+
+#: templates/webapp/banking/home.html
+msgid "to reconcile"
+msgstr "للمطابقة"
+
+#: templates/webapp/banking/home.html
+msgid "Money in / out"
+msgstr "الوارد / الصادر"
+
+#: templates/webapp/banking/home.html
+msgid "Amount"
+msgstr "المبلغ"
+
+#: templates/webapp/banking/home.html
+msgid "For / from"
+msgstr "لـ / من"
+
+#: templates/webapp/banking/home.html
+msgid "e.g. Owner added capital, loan received, bank charges"
+msgstr "مثلاً رأس مال من المالك، قرض مستلم، رسوم بنكية"
+
+#: templates/webapp/banking/home.html
+msgid "Save"
+msgstr "حفظ"
+
+#: templates/webapp/banking/home.html
+msgid "Transfer between accounts"
+msgstr "تحويل بين الحسابات"
+
+#: templates/webapp/banking/home.html
+msgid "e.g. Cash deposited to bank"
+msgstr "مثلاً إيداع نقد في البنك"
+
+#: templates/webapp/banking/home.html
+msgid "Transfer"
+msgstr "تحويل"
+
+#: templates/webapp/banking/home.html
+msgid "New bank or cash account"
+msgstr "حساب بنكي أو نقدي جديد"
+
+#: templates/webapp/banking/home.html
+msgid "e.g. QNB current account"
+msgstr "مثلاً الحساب الجاري QNB"
+
+#: templates/webapp/banking/home.html
+msgid "Cash"
+msgstr "نقدًا"
+
+#: templates/webapp/banking/home.html
+msgid "Bank name"
+msgstr "اسم البنك"
+
+#: templates/webapp/banking/home.html
+msgid "Last 4 digits"
+msgstr "آخر 4 أرقام"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Tax registration"
+msgstr "التسجيل الضريبي"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Tax name"
+msgstr "اسم الضريبة"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Tax registration number"
+msgstr "الرقم الضريبي"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Tax codes"
+msgstr "رموز الضريبة"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "price includes tax"
+msgstr "السعر شامل الضريبة"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "from"
+msgstr "من"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "No tax codes yet."
+msgstr "لا رموز ضريبية بعد."
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Standard VAT"
+msgstr "ضريبة قياسية"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Rate %"
+msgstr "النسبة %"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Prices include tax"
+msgstr "الأسعار شاملة الضريبة"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Add tax code"
+msgstr "إضافة رمز ضريبي"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Exchange rates"
+msgstr "أسعار الصرف"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "unit"
+msgstr "وحدة"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Currency"
+msgstr "العملة"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Rate"
+msgstr "السعر"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Save rate"
+msgstr "حفظ السعر"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "No exchange rates yet."
+msgstr "لا أسعار صرف بعد."
+
+#: templates/webapp/crm/_tabs.html
+msgid "Pipeline"
+msgstr "مسار المبيعات"
+
+#: templates/webapp/crm/_tabs.html
+msgid "Leads"
+msgstr "العملاء المحتملون"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Customer account"
+msgstr "حساب العميل"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Reopen"
+msgstr "إعادة فتح"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Mark lost"
+msgstr "تسجيل كخاسر"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Activity"
+msgstr "النشاط"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Follow up on (optional)"
+msgstr "المتابعة في (اختياري)"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "What happened / what to do"
+msgstr "ماذا حدث / ماذا يجب فعله"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "due"
+msgstr "مستحق"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Done"
+msgstr "تم"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "No activity yet."
+msgstr "لا نشاط بعد."
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Make them a customer"
+msgstr "تحويله إلى عميل"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Possible existing customers:"
+msgstr "عملاء قد يكونون موجودين:"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Use the first match / create new"
+msgstr "استخدام أول تطابق / إنشاء جديد"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Then write a quotation"
+msgstr "ثم كتابة عرض سعر"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Convert to customer"
+msgstr "تحويل إلى عميل"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Deals"
+msgstr "الصفقات"
+
+#: templates/webapp/crm/leads.html
+msgid "All"
+msgstr "الكل"
+
+#: templates/webapp/crm/leads.html
+msgid "Name, company, phone"
+msgstr "الاسم، الشركة، الهاتف"
+
+#: templates/webapp/crm/leads.html
+msgid "to do"
+msgstr "للتنفيذ"
+
+#: templates/webapp/crm/leads.html
+msgid "No leads here."
+msgstr "لا عملاء محتملون هنا."
+
+#: templates/webapp/crm/leads.html
+msgid "New lead"
+msgstr "عميل محتمل جديد"
+
+#: templates/webapp/crm/leads.html
+msgid "Company"
+msgstr "الشركة"
+
+#: templates/webapp/crm/leads.html
+msgid "Phone"
+msgstr "الهاتف"
+
+#: templates/webapp/crm/leads.html
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: templates/webapp/crm/leads.html
+msgid "Came from"
+msgstr "المصدر"
+
+#: templates/webapp/crm/leads.html
+msgid "Assigned to"
+msgstr "مسند إلى"
+
+#: templates/webapp/crm/leads.html
+msgid "What do they want?"
+msgstr "ماذا يريدون؟"
+
+#: templates/webapp/crm/leads.html
+msgid "Add lead"
+msgstr "إضافة عميل محتمل"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Sales pipeline"
+msgstr "مسار المبيعات"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Open deals value"
+msgstr "قيمة الصفقات المفتوحة"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Expected (by chance of winning)"
+msgstr "المتوقع (حسب فرصة الفوز)"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Won"
+msgstr "رابحة"
+
+#: templates/webapp/crm/pipeline.html
+msgid "New leads"
+msgstr "عملاء محتملون جدد"
+
+#: templates/webapp/crm/pipeline.html
+msgid "To do"
+msgstr "المهام"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Everyone"
+msgstr "الجميع"
+
+#: templates/webapp/crm/pipeline.html
+msgid "My deals"
+msgstr "صفقاتي"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Stage"
+msgstr "المرحلة"
+
+#: templates/webapp/crm/pipeline.html
+msgid "New deal"
+msgstr "صفقة جديدة"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Deal"
+msgstr "الصفقة"
+
+#: templates/webapp/crm/pipeline.html
+msgid "e.g. Office fit-out, 20 laptops"
+msgstr "مثلاً تجهيز مكتب، 20 حاسوباً"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Customer"
+msgstr "العميل"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Value"
+msgstr "القيمة"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Expected close"
+msgstr "الإغلاق المتوقع"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Add deal"
+msgstr "إضافة صفقة"
+
+#: templates/webapp/crm/price_list.html
+msgid "Price list"
+msgstr "قائمة الأسعار"
+
+#: templates/webapp/crm/price_list.html
+msgid "Only for"
+msgstr "فقط لـ"
+
+#: templates/webapp/crm/price_list.html
+msgid "Item"
+msgstr "الصنف"
+
+#: templates/webapp/crm/price_list.html
+msgid "Normal price"
+msgstr "السعر العادي"
+
+#: templates/webapp/crm/price_list.html
+msgid "List price"
+msgstr "سعر القائمة"
+
+#: templates/webapp/crm/price_list.html
+msgid "Remove"
+msgstr "إزالة"
+
+#: templates/webapp/crm/price_list.html
+msgid "No items yet."
+msgstr "لا أصناف بعد."
+
+#: templates/webapp/crm/price_list.html
+msgid "Set a price"
+msgstr "تحديد سعر"
+
+#: templates/webapp/crm/price_list.html
+msgid "Price"
+msgstr "السعر"
+
+#: templates/webapp/crm/price_list.html
+msgid "All items at once"
+msgstr "كل الأصناف دفعة واحدة"
+
+#: templates/webapp/crm/price_list.html
+msgid "Change from normal price %"
+msgstr "التغيير عن السعر العادي %"
+
+#: templates/webapp/crm/price_list.html
+msgid "Set a price for every item?"
+msgstr "تحديد سعر لكل الأصناف؟"
+
+#: templates/webapp/crm/price_list.html
+msgid "e.g. -10 = 10% below the normal price (wholesale), 5 = 5% above."
+msgstr "مثلاً -10 = أقل بـ10% من السعر العادي (جملة)، 5 = أعلى بـ5%."
+
+#: templates/webapp/crm/pricing.html
+msgid "Offers"
+msgstr "العروض"
+
+#: templates/webapp/crm/pricing.html
+msgid "applied in the POS and on new quotes"
+msgstr "تُطبق في نقطة البيع وعروض الأسعار الجديدة"
+
+#: templates/webapp/crm/pricing.html
+msgid "off"
+msgstr "خصم"
+
+#: templates/webapp/crm/pricing.html
+msgid "all items"
+msgstr "كل الأصناف"
+
+#: templates/webapp/crm/pricing.html
+msgid "Live"
+msgstr "فعّال"
+
+#: templates/webapp/crm/pricing.html
+msgid "Stop"
+msgstr "إيقاف"
+
+#: templates/webapp/crm/pricing.html
+msgid "Start"
+msgstr "ابدأ"
+
+#: templates/webapp/crm/pricing.html
+msgid "No offers yet."
+msgstr "لا عروض بعد."
+
+#: templates/webapp/crm/pricing.html
+msgid "Offer name"
+msgstr "اسم العرض"
+
+#: templates/webapp/crm/pricing.html
+msgid "e.g. Ramadan 10% off"
+msgstr "مثلاً خصم رمضان 10%"
+
+#: templates/webapp/crm/pricing.html
+msgid "Discount"
+msgstr "الخصم"
+
+#: templates/webapp/crm/pricing.html
+msgid "Fixed amount"
+msgstr "مبلغ ثابت"
+
+#: templates/webapp/crm/pricing.html
+msgid "All items"
+msgstr "كل الأصناف"
+
+#: templates/webapp/crm/pricing.html
+msgid "Save offer"
+msgstr "حفظ العرض"
+
+#: templates/webapp/crm/pricing.html
+msgid "Price lists"
+msgstr "قوائم الأسعار"
+
+#: templates/webapp/crm/pricing.html
+msgid "e.g. wholesale prices, a special price for one customer"
+msgstr "مثلاً أسعار الجملة، سعر خاص لعميل"
+
+#: templates/webapp/crm/pricing.html
+msgid "items"
+msgstr "أصناف"
+
+#: templates/webapp/crm/pricing.html
+msgid "until"
+msgstr "حتى"
+
+#: templates/webapp/crm/pricing.html
+msgid "No price lists yet."
+msgstr "لا قوائم أسعار بعد."
+
+#: templates/webapp/crm/pricing.html
+msgid "e.g. Wholesale"
+msgstr "مثلاً الجملة"
+
+#: templates/webapp/crm/pricing.html
+msgid "For customer (optional)"
+msgstr "لعميل (اختياري)"
+
+#: templates/webapp/crm/pricing.html
+msgid "Priority"
+msgstr "الأولوية"
+
+#: templates/webapp/crm/pricing.html
+msgid "Create price list"
+msgstr "إنشاء قائمة أسعار"
+
 #: templates/webapp/customer_display.html
 msgid "Customer display ·"
 msgstr "شاشة العميل ·"
@@ -602,16 +1599,44 @@ msgid "item"
 msgstr "صنف"
 
 #: templates/webapp/customer_display.html
-msgid "items"
-msgstr "أصناف"
-
-#: templates/webapp/customer_display.html
 msgid "Paid"
 msgstr "مدفوع"
 
 #: templates/webapp/customer_display.html
 msgid "Your change"
 msgstr "الباقي لك"
+
+#: templates/webapp/customer_list.html
+msgid "Add customer"
+msgstr "إضافة عميل"
+
+#: templates/webapp/customer_list.html
+msgid "Export CSV"
+msgstr "تصدير CSV"
+
+#: templates/webapp/customer_list.html
+msgid "Name, phone or email"
+msgstr "الاسم أو الهاتف أو البريد"
+
+#: templates/webapp/customer_list.html
+msgid "Owes"
+msgstr "مدين بـ"
+
+#: templates/webapp/customer_list.html
+msgid "Edit"
+msgstr "تعديل"
+
+#: templates/webapp/customer_list.html
+msgid "Delete"
+msgstr "حذف"
+
+#: templates/webapp/customer_list.html
+msgid "No customers match your search."
+msgstr "لا عملاء مطابقين."
+
+#: templates/webapp/customer_list.html
+msgid "No customers yet."
+msgstr "لا عملاء بعد."
 
 #: templates/webapp/dashboard.html
 msgid "Finish setting up your business"
@@ -756,18 +1781,6 @@ msgstr "أحدث المبيعات"
 #: templates/webapp/dashboard.html
 msgid "Invoice"
 msgstr "فاتورة"
-
-#: templates/webapp/dashboard.html
-msgid "Customer"
-msgstr "العميل"
-
-#: templates/webapp/dashboard.html
-msgid "Date"
-msgstr "التاريخ"
-
-#: templates/webapp/dashboard.html
-msgid "Total"
-msgstr "الإجمالي"
 
 #: templates/webapp/dashboard.html
 msgid "Status"
@@ -1162,10 +2175,6 @@ msgid "The purchase is recorded in your books automatically."
 msgstr "يُسجّل الشراء في دفاترك تلقائيًا."
 
 #: templates/webapp/finance/assets.html
-msgid "Name"
-msgstr "الاسم"
-
-#: templates/webapp/finance/assets.html
 msgid "Category"
 msgstr "الفئة"
 
@@ -1194,20 +2203,12 @@ msgid "Open"
 msgstr "فتح"
 
 #: templates/webapp/finance/cheques.html
-msgid "All"
-msgstr "الكل"
-
-#: templates/webapp/finance/cheques.html
 msgid "Party"
 msgstr "الطرف"
 
 #: templates/webapp/finance/cheques.html
 msgid "Cheque"
 msgstr "الشيك"
-
-#: templates/webapp/finance/cheques.html
-msgid "Amount"
-msgstr "المبلغ"
 
 #: templates/webapp/finance/cheques.html
 msgid "Due"
@@ -1260,10 +2261,6 @@ msgstr "المورد"
 #: templates/webapp/finance/cheques.html
 msgid "Cheque number"
 msgstr "رقم الشيك"
-
-#: templates/webapp/finance/cheques.html
-msgid "Bank"
-msgstr "بنك"
 
 #: templates/webapp/finance/cheques.html
 msgid "Save cheque"
@@ -1372,10 +2369,6 @@ msgid "Items"
 msgstr "الأصناف"
 
 #: templates/webapp/finance/recurring.html
-msgid "Add line"
-msgstr "إضافة سطر"
-
-#: templates/webapp/finance/recurring.html
 msgid "Tax %"
 msgstr "الضريبة %"
 
@@ -1386,10 +2379,6 @@ msgstr "إرسال للعميل بالبريد"
 #: templates/webapp/finance/recurring.html
 msgid "Create schedule"
 msgstr "إنشاء الجدول"
-
-#: templates/webapp/finance/recurring.html
-msgid "Price"
-msgstr "السعر"
 
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
@@ -1428,16 +2417,8 @@ msgid "Advances"
 msgstr "السلف"
 
 #: templates/webapp/hr/advances.html
-msgid "Cash"
-msgstr "نقدًا"
-
-#: templates/webapp/hr/advances.html
 msgid "Monthly"
 msgstr "شهري"
-
-#: templates/webapp/hr/advances.html
-msgid "Balance"
-msgstr "الرصيد"
 
 #: templates/webapp/hr/advances.html
 msgid "Paid back in cash / bank"
@@ -1446,10 +2427,6 @@ msgstr "سُدد نقداً / بنكياً"
 #: templates/webapp/hr/advances.html
 msgid "Received in"
 msgstr "استُلم في"
-
-#: templates/webapp/hr/advances.html
-msgid "Save"
-msgstr "حفظ"
 
 #: templates/webapp/hr/advances.html
 msgid "Cleared"
@@ -1552,10 +2529,6 @@ msgid "Take attendance"
 msgstr "تسجيل الحضور"
 
 #: templates/webapp/hr/attendance_month.html
-msgid "Print"
-msgstr "طباعة"
-
-#: templates/webapp/hr/attendance_month.html
 msgid "Unpaid"
 msgstr "غير مدفوع"
 
@@ -1590,10 +2563,6 @@ msgstr "ينتهي اليوم"
 #: templates/webapp/hr/documents.html
 msgid "days left"
 msgstr "يوم متبقٍ"
-
-#: templates/webapp/hr/documents.html
-msgid "Delete"
-msgstr "حذف"
 
 #: templates/webapp/hr/documents.html
 msgid "Remove this document?"
@@ -1870,14 +2839,6 @@ msgid "Login"
 msgstr "الدخول"
 
 #: templates/webapp/hr/staff_detail.html
-msgid "Edit"
-msgstr "تعديل"
-
-#: templates/webapp/hr/staff_detail.html
-msgid "Remove"
-msgstr "إزالة"
-
-#: templates/webapp/hr/staff_detail.html
 msgid "Salary"
 msgstr "الراتب"
 
@@ -1950,10 +2911,6 @@ msgid "Edit staff"
 msgstr "تعديل الموظف"
 
 #: templates/webapp/hr/staff_form.html
-msgid "Details"
-msgstr "التفاصيل"
-
-#: templates/webapp/hr/staff_form.html
 msgid ""
 "Absent days, unpaid leave and salary advances are deducted automatically "
 "when you run payroll."
@@ -1991,10 +2948,6 @@ msgstr "احتساب الرواتب"
 #: templates/webapp/hr/staff_list.html
 msgid "Name, phone or job title"
 msgstr "الاسم أو الهاتف أو المسمى"
-
-#: templates/webapp/hr/staff_list.html
-msgid "Search"
-msgstr "بحث"
 
 #: templates/webapp/hr/staff_list.html
 msgid "Current staff"
@@ -2093,10 +3046,6 @@ msgid "Share"
 msgstr "مشاركة"
 
 #: templates/webapp/industry/booking_detail.html
-msgid "From"
-msgstr "من"
-
-#: templates/webapp/industry/booking_detail.html
 msgid "Until"
 msgstr "حتى"
 
@@ -2169,10 +3118,6 @@ msgid "Extras note"
 msgstr "ملاحظة الإضافات"
 
 #: templates/webapp/industry/booking_detail.html
-msgid "Discount"
-msgstr "الخصم"
-
-#: templates/webapp/industry/booking_detail.html
 msgid "Paid now"
 msgstr "المدفوع الآن"
 
@@ -2203,10 +3148,6 @@ msgstr "جديد"
 #: templates/webapp/industry/booking_form.html
 msgid "or new customer"
 msgstr "أو عميل جديد"
-
-#: templates/webapp/industry/booking_form.html
-msgid "Phone"
-msgstr "الهاتف"
 
 #: templates/webapp/industry/booking_form.html
 msgid "Advance paid now"
@@ -2392,10 +3333,6 @@ msgid "Bill the first fee now (this month's fee, or the one-time fee)"
 msgstr "فوترة الرسوم الأولى الآن (رسوم هذا الشهر أو الرسوم لمرة واحدة)"
 
 #: templates/webapp/industry/fees.html
-msgid "Invoices"
-msgstr "الفواتير"
-
-#: templates/webapp/industry/fees.html
 msgid "Billed"
 msgstr "المفوتر"
 
@@ -2484,10 +3421,6 @@ msgstr "أسعار متأخرة عن السعر"
 #: templates/webapp/industry/gold_rates.html
 msgid "On each product set weight (g), karat and making charge."
 msgstr "حدد لكل منتج الوزن (غ) والعيار والمصنعية."
-
-#: templates/webapp/industry/gold_rates.html
-msgid "Item"
-msgstr "الصنف"
 
 #: templates/webapp/industry/gold_rates.html
 msgid "Weight"
@@ -2580,10 +3513,6 @@ msgid "Balance due"
 msgstr "الرصيد المستحق"
 
 #: templates/webapp/industry/lease_detail.html
-msgid "due"
-msgstr "مستحق"
-
-#: templates/webapp/industry/lease_detail.html
 msgid "No rent billed yet."
 msgstr "لم يُفوتر إيجار بعد."
 
@@ -2598,10 +3527,6 @@ msgstr "عقد إيجار جديد"
 #: templates/webapp/industry/lease_form.html
 msgid "or new tenant"
 msgstr "أو مستأجر جديد"
-
-#: templates/webapp/industry/lease_form.html
-msgid "Start"
-msgstr "ابدأ"
 
 #: templates/webapp/industry/lease_form.html
 msgid "End"
@@ -2676,10 +3601,6 @@ msgid "Owner"
 msgstr "المالك"
 
 #: templates/webapp/industry/property_home.html
-msgid "until"
-msgstr "حتى"
-
-#: templates/webapp/industry/property_home.html
 msgid "No units yet."
 msgstr "لا وحدات بعد."
 
@@ -2710,10 +3631,6 @@ msgstr "تمت فوترة كل إيجارات هذا الشهر."
 #: templates/webapp/industry/rent_run.html
 msgid "No rent billed for this month."
 msgstr "لم يُفوتر إيجار لهذا الشهر."
-
-#: templates/webapp/industry/resource_form.html
-msgid "Type"
-msgstr "النوع"
 
 #: templates/webapp/industry/resource_form.html
 msgid "Capacity (guests / seats)"
@@ -2875,10 +3792,6 @@ msgstr "(حتى"
 msgid "Subtotal"
 msgstr "المجموع الفرعي"
 
-#: templates/webapp/invoice_pdf.html
-msgid "Tax"
-msgstr "الضريبة"
-
 #: templates/webapp/invoice_share.html
 msgid "Share invoice"
 msgstr "مشاركة الفاتورة"
@@ -3016,10 +3929,6 @@ msgstr "العنوان"
 #: templates/webapp/onboarding/wizard.html
 msgid "VAT / tax number (optional)"
 msgstr "الرقم الضريبي (اختياري)"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Currency"
-msgstr "العملة"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Skip setup for now"
@@ -3345,10 +4254,6 @@ msgstr "المبلغ المستحق"
 #: templates/webapp/pos.html
 msgid "Card"
 msgstr "بطاقة"
-
-#: templates/webapp/pos.html
-msgid "Credit"
-msgstr "آجل"
 
 #: templates/webapp/pos.html
 msgid "Instalment"
@@ -4125,10 +5030,6 @@ msgid "Phone (optional)"
 msgstr "الهاتف (اختياري)"
 
 #: templates/webapp/public/signup.html
-msgid "Email"
-msgstr "البريد الإلكتروني"
-
-#: templates/webapp/public/signup.html
 msgid "I agree to the terms of service and privacy policy."
 msgstr "أوافق على شروط الخدمة وسياسة الخصوصية."
 
@@ -4155,6 +5056,334 @@ msgstr "أسعار الهند، تُحاسَب بالروبية."
 #: templates/webapp/public/signup.html
 msgid "You can change the plan any time from Billing."
 msgstr "يمكنك تغيير الباقة في أي وقت من صفحة الفوترة."
+
+#: templates/webapp/purchase_docs/_tabs.html
+msgid "Bills"
+msgstr "الفواتير"
+
+#: templates/webapp/purchase_docs/grn.html
+msgid "Goods receipt"
+msgstr "استلام البضاعة"
+
+#: templates/webapp/purchase_docs/grn.html
+msgid "GOODS RECEIPT NOTE"
+msgstr "إشعار استلام بضاعة"
+
+#: templates/webapp/purchase_docs/grn.html
+msgid "PO"
+msgstr "أمر شراء"
+
+#: templates/webapp/purchase_docs/grn.html
+msgid "Received by"
+msgstr "استلمه"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Purchase order"
+msgstr "أمر شراء"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Ref"
+msgstr "مرجع"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "PURCHASE ORDER"
+msgstr "أمر شراء"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Expected delivery"
+msgstr "التسليم المتوقع"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Ordered"
+msgstr "المطلوب"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Received"
+msgstr "المستلم"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Receive now"
+msgstr "استلام الآن"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Supplier's bill no."
+msgstr "رقم فاتورة المورد"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Receive & record bill"
+msgstr "استلام وتسجيل الفاتورة"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Receive only"
+msgstr "استلام فقط"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Record bill for received items"
+msgstr "تسجيل فاتورة المستلم"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Confirm"
+msgstr "تأكيد"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Send to supplier"
+msgstr "إرسال للمورد"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Cancel this purchase order?"
+msgstr "إلغاء أمر الشراء هذا؟"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Goods received"
+msgstr "البضاعة المستلمة"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Nothing received yet."
+msgstr "لم يُستلم شيء بعد."
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Supplier bills"
+msgstr "فواتير الموردين"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "No bill yet."
+msgstr "لا فاتورة بعد."
+
+#: templates/webapp/purchase_docs/po_list.html
+msgid "New purchase order"
+msgstr "أمر شراء جديد"
+
+#: templates/webapp/purchase_docs/po_list.html
+msgid "Order low-stock items"
+msgstr "طلب الأصناف منخفضة المخزون"
+
+#: templates/webapp/purchase_docs/po_list.html
+msgid "Number or supplier"
+msgstr "الرقم أو المورد"
+
+#: templates/webapp/purchase_docs/po_list.html
+msgid "expected"
+msgstr "متوقع"
+
+#: templates/webapp/purchase_docs/po_list.html
+msgid "No purchase orders yet."
+msgstr "لا أوامر شراء بعد."
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Bill"
+msgstr "فاتورة"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Supplier bill"
+msgstr "فاتورة المورد"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Bill total"
+msgstr "إجمالي الفاتورة"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Return qty"
+msgstr "كمية الإرجاع"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Return items to supplier"
+msgstr "إرجاع أصناف للمورد"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Refund"
+msgstr "الاسترداد"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "From stock at"
+msgstr "من مخزون"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Reason"
+msgstr "السبب"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "e.g. Damaged on arrival"
+msgstr "مثلاً تالف عند الوصول"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Save return"
+msgstr "حفظ الإرجاع"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Pay supplier"
+msgstr "الدفع للمورد"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Payments"
+msgstr "المدفوعات"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "No payments yet."
+msgstr "لا مدفوعات بعد."
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Returns"
+msgstr "المرتجعات"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "No returns."
+msgstr "لا مرتجعات."
+
+#: templates/webapp/purchases/purchase_list.html
+msgid "New purchase"
+msgstr "شراء جديد"
+
+#: templates/webapp/purchases/purchase_list.html
+msgid "No purchases yet."
+msgstr "لا مشتريات بعد."
+
+#: templates/webapp/receivables/customer.html
+msgid "Send reminder"
+msgstr "إرسال تذكير"
+
+#: templates/webapp/receivables/customer.html
+msgid "Print statement"
+msgstr "طباعة الكشف"
+
+#: templates/webapp/receivables/customer.html
+msgid "In credit (advance)"
+msgstr "رصيد دائن (دفعة مقدمة)"
+
+#: templates/webapp/receivables/customer.html
+msgid "Balance owed"
+msgstr "الرصيد المستحق"
+
+#: templates/webapp/receivables/customer.html
+msgid "Unpaid bills"
+msgstr "فواتير غير مدفوعة"
+
+#: templates/webapp/receivables/customer.html
+msgid "Credit limit"
+msgstr "حد الائتمان"
+
+#: templates/webapp/receivables/customer.html
+msgid "No limit"
+msgstr "بلا حد"
+
+#: templates/webapp/receivables/customer.html
+msgid "Over the limit"
+msgstr "تجاوز الحد"
+
+#: templates/webapp/receivables/customer.html
+msgid "Statement"
+msgstr "كشف الحساب"
+
+#: templates/webapp/receivables/customer.html
+msgid "Statement of account"
+msgstr "كشف حساب"
+
+#: templates/webapp/receivables/customer.html
+msgid "No transactions."
+msgstr "لا معاملات."
+
+#: templates/webapp/receivables/customer.html
+msgid "Receive payment"
+msgstr "استلام دفعة"
+
+#: templates/webapp/receivables/customer.html
+msgid "Apply to"
+msgstr "تطبيق على"
+
+#: templates/webapp/receivables/customer.html
+msgid "Oldest bills first"
+msgstr "الفواتير الأقدم أولاً"
+
+#: templates/webapp/receivables/customer.html
+msgid "Save payment"
+msgstr "حفظ الدفعة"
+
+#: templates/webapp/receivables/customer.html
+msgid "Extra money is kept as an advance and used for the next bills."
+msgstr "يُحتفظ بالمبلغ الزائد كدفعة مقدمة للفواتير القادمة."
+
+#: templates/webapp/receivables/customer.html
+msgid "All bills are paid."
+msgstr "كل الفواتير مدفوعة."
+
+#: templates/webapp/receivables/customer.html
+msgid "Follow-up notes"
+msgstr "ملاحظات المتابعة"
+
+#: templates/webapp/receivables/customer.html
+msgid "e.g. Promised to pay on Thursday"
+msgstr "مثلاً وعد بالدفع يوم الخميس"
+
+#: templates/webapp/receivables/customer.html
+msgid "Follow up on"
+msgstr "المتابعة في"
+
+#: templates/webapp/receivables/customer.html
+msgid "Save note"
+msgstr "حفظ الملاحظة"
+
+#: templates/webapp/receivables/customer.html
+msgid "follow up"
+msgstr "متابعة"
+
+#: templates/webapp/receivables/customer.html
+msgid "No notes yet."
+msgstr "لا ملاحظات بعد."
+
+#: templates/webapp/receivables/customer.html
+msgid "Credit settings"
+msgstr "إعدادات الائتمان"
+
+#: templates/webapp/receivables/customer.html
+msgid "Credit limit (0 = no limit)"
+msgstr "حد الائتمان (0 = بلا حد)"
+
+#: templates/webapp/receivables/customer.html
+msgid "Days to pay"
+msgstr "أيام السداد"
+
+#: templates/webapp/receivables/home.html
+msgid "Not yet due"
+msgstr "غير مستحق بعد"
+
+#: templates/webapp/receivables/home.html
+msgid "Received this month"
+msgstr "المحصّل هذا الشهر"
+
+#: templates/webapp/receivables/home.html
+msgid "Overdue by age"
+msgstr "المتأخر حسب العمر"
+
+#: templates/webapp/receivables/home.html
+msgid "Follow-ups due"
+msgstr "متابعات مستحقة"
+
+#: templates/webapp/receivables/home.html
+msgid "Owing"
+msgstr "مدينون"
+
+#: templates/webapp/receivables/home.html
+msgid "In credit"
+msgstr "رصيد دائن"
+
+#: templates/webapp/receivables/home.html
+msgid "Customer name or phone"
+msgstr "اسم العميل أو هاتفه"
+
+#: templates/webapp/receivables/home.html
+msgid "unpaid bills"
+msgstr "فواتير غير مدفوعة"
+
+#: templates/webapp/receivables/home.html
+msgid "oldest"
+msgstr "الأقدم"
+
+#: templates/webapp/receivables/home.html
+msgid "days late"
+msgstr "يوم تأخير"
+
+#: templates/webapp/receivables/home.html
+msgid "Nobody owes you money."
+msgstr "لا أحد مدين لك."
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Restaurant"
@@ -4496,10 +5725,6 @@ msgstr "تحديث الطلب؟"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Go back"
 msgstr "رجوع"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "Confirm"
-msgstr "تأكيد"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "shown"
@@ -5155,18 +6380,6 @@ msgid "Order type"
 msgstr "نوع الطلب"
 
 #: templates/webapp/restaurant/order_list.html
-msgid "All types"
-msgstr "كل الأنواع"
-
-#: templates/webapp/restaurant/order_list.html
-msgid "To"
-msgstr "إلى"
-
-#: templates/webapp/restaurant/order_list.html
-msgid "Bill"
-msgstr "فاتورة"
-
-#: templates/webapp/restaurant/order_list.html
 msgid "guests"
 msgstr "ضيوف"
 
@@ -5193,6 +6406,194 @@ msgstr "الإجمالي"
 #: templates/webapp/restaurant/receipt_print.html
 msgid "Print Receipt"
 msgstr "طباعة الإيصال"
+
+#: templates/webapp/sales_docs/_doc_head.html
+msgid "Valid until"
+msgstr "صالح حتى"
+
+#: templates/webapp/sales_docs/_tabs.html
+msgid "Sales documents"
+msgstr "مستندات المبيعات"
+
+#: templates/webapp/sales_docs/_tabs.html
+msgid "Sales orders"
+msgstr "أوامر البيع"
+
+#: templates/webapp/sales_docs/delivery_note.html
+msgid "Delivery note"
+msgstr "إشعار التسليم"
+
+#: templates/webapp/sales_docs/delivery_note.html
+msgid "DELIVERY NOTE"
+msgstr "إشعار تسليم"
+
+#: templates/webapp/sales_docs/delivery_note.html
+msgid "Order"
+msgstr "الطلب"
+
+#: templates/webapp/sales_docs/delivery_note.html
+msgid "Deliver to"
+msgstr "التسليم إلى"
+
+#: templates/webapp/sales_docs/delivery_note.html
+msgid "Delivered by"
+msgstr "سلّمه"
+
+#: templates/webapp/sales_docs/delivery_note.html
+msgid "Received by (name & signature)"
+msgstr "المستلم (الاسم والتوقيع)"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "— New supplier —"
+msgstr "— مورد جديد —"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "— New customer —"
+msgstr "— عميل جديد —"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "New supplier name"
+msgstr "اسم المورد الجديد"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "New customer name"
+msgstr "اسم العميل الجديد"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "Customer PO / reference"
+msgstr "أمر شراء العميل / المرجع"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "Notes / terms"
+msgstr "ملاحظات / شروط"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "e.g. Delivery in 3 days. Prices include installation."
+msgstr "مثلاً التسليم خلال 3 أيام. الأسعار تشمل التركيب."
+
+#: templates/webapp/sales_docs/invoice_list.html
+msgid "Sales invoices"
+msgstr "فواتير المبيعات"
+
+#: templates/webapp/sales_docs/invoice_list.html
+msgid "Unpaid / part paid"
+msgstr "غير مدفوعة / مدفوعة جزئياً"
+
+#: templates/webapp/sales_docs/invoice_list.html
+msgid "Invoice no. or customer"
+msgstr "رقم الفاتورة أو العميل"
+
+#: templates/webapp/sales_docs/invoice_list.html
+msgid "Receive"
+msgstr "استلام"
+
+#: templates/webapp/sales_docs/invoice_list.html
+msgid "No invoices found."
+msgstr "لم يُعثر على فواتير."
+
+#: templates/webapp/sales_docs/list.html
+msgid "New quotation"
+msgstr "عرض سعر جديد"
+
+#: templates/webapp/sales_docs/list.html
+msgid "New sales order"
+msgstr "أمر بيع جديد"
+
+#: templates/webapp/sales_docs/list.html
+msgid "Number or customer"
+msgstr "الرقم أو العميل"
+
+#: templates/webapp/sales_docs/list.html
+msgid "valid until"
+msgstr "صالح حتى"
+
+#: templates/webapp/sales_docs/list.html
+msgid "Nothing here yet."
+msgstr "لا شيء هنا بعد."
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Sales order"
+msgstr "أمر بيع"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "SALES ORDER"
+msgstr "أمر بيع"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Delivered"
+msgstr "المُسلّم"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Invoiced"
+msgstr "المفوتر"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Deliver now"
+msgstr "التسليم الآن"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Deliver & invoice"
+msgstr "تسليم وفوترة"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Deliver only"
+msgstr "تسليم فقط"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Invoice delivered items"
+msgstr "فوترة المُسلّم"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Cancel this order?"
+msgstr "إلغاء هذا الطلب؟"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Delivery notes"
+msgstr "إشعارات التسليم"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Nothing delivered yet."
+msgstr "لم يُسلّم شيء بعد."
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Not invoiced yet."
+msgstr "لم يُفوتر بعد."
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Quotation"
+msgstr "عرض سعر"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "QUOTATION"
+msgstr "عرض سعر"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Print / PDF"
+msgstr "طباعة / PDF"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Mark as sent"
+msgstr "تعليم كمرسل"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Customer accepted"
+msgstr "قبله العميل"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Customer rejected"
+msgstr "رفضه العميل"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Create an invoice now? Stock will be reduced."
+msgstr "إنشاء فاتورة الآن؟ سينخفض المخزون."
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Convert to invoice"
+msgstr "تحويل إلى فاتورة"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Convert to sales order"
+msgstr "تحويل إلى أمر بيع"
 
 #: templates/webapp/security.html
 msgid "Security"
@@ -5328,6 +6729,309 @@ msgstr "إعادة تعيين كلمة المرور بالبريد"
 msgid "Open the setup wizard"
 msgstr "افتح معالج الإعداد"
 
+#: templates/webapp/stock/_tabs.html
+msgid "Stock"
+msgstr "المخزون"
+
+#: templates/webapp/stock/_tabs.html
+msgid "Adjust"
+msgstr "تعديل"
+
+#: templates/webapp/stock/_tabs.html
+msgid "Stock taking"
+msgstr "جرد المخزون"
+
+#: templates/webapp/stock/_tabs.html
+msgid "Batches & expiry"
+msgstr "الدفعات والصلاحية"
+
+#: templates/webapp/stock/_tabs.html
+msgid "Serial numbers"
+msgstr "الأرقام التسلسلية"
+
+#: templates/webapp/stock/adjust.html
+msgid "Adjust stock"
+msgstr "تعديل المخزون"
+
+#: templates/webapp/stock/adjust.html
+msgid "Add or remove stock"
+msgstr "إضافة أو خصم مخزون"
+
+#: templates/webapp/stock/adjust.html
+msgid "Remove from stock"
+msgstr "خصم من المخزون"
+
+#: templates/webapp/stock/adjust.html
+msgid "Add to stock"
+msgstr "إضافة إلى المخزون"
+
+#: templates/webapp/stock/adjust.html
+msgid "Location"
+msgstr "الموقع"
+
+#: templates/webapp/stock/adjust.html
+msgid "Recent adjustments"
+msgstr "التعديلات الأخيرة"
+
+#: templates/webapp/stock/adjust.html
+msgid "No adjustments yet."
+msgstr "لا تعديلات بعد."
+
+#: templates/webapp/stock/batches.html
+msgid "Value expired or expiring in 30 days"
+msgstr "قيمة المنتهي أو المنتهي خلال 30 يوماً"
+
+#: templates/webapp/stock/batches.html
+msgid "Expired / expiring"
+msgstr "منتهي / قارب الانتهاء"
+
+#: templates/webapp/stock/batches.html
+msgid "Batch"
+msgstr "الدفعة"
+
+#: templates/webapp/stock/batches.html
+msgid "No expiry date"
+msgstr "بلا تاريخ انتهاء"
+
+#: templates/webapp/stock/batches.html
+msgid "Write off"
+msgstr "شطب"
+
+#: templates/webapp/stock/batches.html
+msgid "No batches here."
+msgstr "لا دفعات هنا."
+
+#: templates/webapp/stock/batches.html
+msgid "Receive a batch"
+msgstr "استلام دفعة"
+
+#: templates/webapp/stock/batches.html
+msgid "Batch / lot number"
+msgstr "رقم الدفعة / التشغيلة"
+
+#: templates/webapp/stock/batches.html
+msgid "Expiry date"
+msgstr "تاريخ الانتهاء"
+
+#: templates/webapp/stock/batches.html
+msgid "Made on"
+msgstr "تاريخ الإنتاج"
+
+#: templates/webapp/stock/batches.html
+msgid "Quantity received"
+msgstr "الكمية المستلمة"
+
+#: templates/webapp/stock/batches.html
+msgid "Save batch"
+msgstr "حفظ الدفعة"
+
+#: templates/webapp/stock/batches.html
+msgid "Sales take stock from the batch that expires first."
+msgstr "تُسحب المبيعات من الدفعة الأقرب انتهاءً أولاً."
+
+#: templates/webapp/stock/count_detail.html
+msgid "Stock count"
+msgstr "جرد"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Counted"
+msgstr "المعدود"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Differences"
+msgstr "الفروقات"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Shortage value"
+msgstr "قيمة النقص"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Extra value"
+msgstr "قيمة الزيادة"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Stock was corrected."
+msgstr "تم تصحيح المخزون."
+
+#: templates/webapp/stock/count_detail.html
+msgid "Scan or type to find an item"
+msgstr "امسح أو اكتب للبحث عن صنف"
+
+#: templates/webapp/stock/count_detail.html
+msgid "System"
+msgstr "النظام"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Leave an item empty if you haven't counted it — it won't be changed."
+msgstr "اترك الصنف فارغاً إن لم تعدّه — لن يتغير."
+
+#: templates/webapp/stock/count_detail.html
+msgid "Save progress"
+msgstr "حفظ التقدم"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Finish the count and correct the stock?"
+msgstr "إنهاء الجرد وتصحيح المخزون؟"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Finish & correct stock"
+msgstr "إنهاء وتصحيح المخزون"
+
+#: templates/webapp/stock/counts.html
+msgid "Counts"
+msgstr "عمليات الجرد"
+
+#: templates/webapp/stock/counts.html
+msgid "In progress"
+msgstr "قيد التنفيذ"
+
+#: templates/webapp/stock/counts.html
+msgid "No stock counts yet."
+msgstr "لا عمليات جرد بعد."
+
+#: templates/webapp/stock/counts.html
+msgid "Start a new count"
+msgstr "بدء جرد جديد"
+
+#: templates/webapp/stock/counts.html
+msgid ""
+"Count what is on the shelf. When you finish, the system stock is corrected "
+"and the difference is recorded."
+msgstr "عدّ ما على الرف. عند الانتهاء يُصحح المخزون ويُسجل الفرق."
+
+#: templates/webapp/stock/counts.html
+msgid "Category (optional)"
+msgstr "الفئة (اختياري)"
+
+#: templates/webapp/stock/counts.html
+msgid "Start counting"
+msgstr "بدء الجرد"
+
+#: templates/webapp/stock/history.html
+msgid "Stock history"
+msgstr "سجل المخزون"
+
+#: templates/webapp/stock/history.html
+msgid "Current stock"
+msgstr "المخزون الحالي"
+
+#: templates/webapp/stock/history.html
+msgid "All locations"
+msgstr "كل المواقع"
+
+#: templates/webapp/stock/history.html
+msgid "When"
+msgstr "متى"
+
+#: templates/webapp/stock/history.html
+msgid "What"
+msgstr "ماذا"
+
+#: templates/webapp/stock/history.html
+msgid "In / out"
+msgstr "وارد / صادر"
+
+#: templates/webapp/stock/history.html
+msgid "No stock movements yet."
+msgstr "لا حركات مخزون بعد."
+
+#: templates/webapp/stock/home.html
+msgid "Stock value (cost)"
+msgstr "قيمة المخزون (بالتكلفة)"
+
+#: templates/webapp/stock/home.html
+msgid "Running low"
+msgstr "منخفض"
+
+#: templates/webapp/stock/home.html
+msgid "Out of stock"
+msgstr "نفد المخزون"
+
+#: templates/webapp/stock/home.html
+msgid "Batches expiring (30 days)"
+msgstr "دفعات تنتهي (30 يوماً)"
+
+#: templates/webapp/stock/home.html
+msgid "Start stock taking"
+msgstr "بدء الجرد"
+
+#: templates/webapp/stock/home.html
+msgid "All categories"
+msgstr "كل الفئات"
+
+#: templates/webapp/stock/home.html
+msgid "Item name or code"
+msgstr "اسم الصنف أو رمزه"
+
+#: templates/webapp/stock/home.html
+msgid "Reorder at"
+msgstr "حد إعادة الطلب"
+
+#: templates/webapp/stock/home.html
+msgid "No items."
+msgstr "لا أصناف."
+
+#: templates/webapp/stock/serials.html
+msgid "Serial numbers / IMEI"
+msgstr "الأرقام التسلسلية / IMEI"
+
+#: templates/webapp/stock/serials.html
+msgid "Scan or type a serial / IMEI"
+msgstr "امسح أو اكتب الرقم التسلسلي / IMEI"
+
+#: templates/webapp/stock/serials.html
+msgid "received"
+msgstr "استُلم"
+
+#: templates/webapp/stock/serials.html
+msgid "No serial numbers."
+msgstr "لا أرقام تسلسلية."
+
+#: templates/webapp/stock/serials.html
+msgid "Add serial numbers to stock"
+msgstr "إضافة أرقام تسلسلية إلى المخزون"
+
+#: templates/webapp/stock/serials.html
+msgid "Serial numbers (one per line, or scan one after another)"
+msgstr "الأرقام التسلسلية (رقم في كل سطر أو امسحها تباعاً)"
+
+#: templates/webapp/stock/transfer.html
+msgid "Transfer stock"
+msgstr "نقل المخزون"
+
+#: templates/webapp/stock/transfer.html
+msgid "Transfer stock between locations"
+msgstr "نقل المخزون بين المواقع"
+
+#: templates/webapp/stock/transfer.html
+msgid ""
+"You have one location. Add a branch or store to move stock between them."
+msgstr "لديك موقع واحد. أضف فرعاً أو مخزناً لنقل المخزون بينهما."
+
+#: templates/webapp/stock/transfer.html
+msgid "Add branch"
+msgstr "إضافة فرع"
+
+#: templates/webapp/stock/transfer.html
+msgid "Move stock"
+msgstr "نقل المخزون"
+
+#: templates/webapp/stock/transfer.html
+msgid "e.g. Van 2, driver Salim"
+msgstr "مثلاً الشاحنة 2، السائق سالم"
+
+#: templates/webapp/stock/transfer.html
+msgid "Recent transfers"
+msgstr "التحويلات الأخيرة"
+
+#: templates/webapp/stock/transfer.html
+msgid "No transfers yet."
+msgstr "لا تحويلات بعد."
+
+#: templates/webapp/stock/transfer.html
+msgid "Available"
+msgstr "متاحة"
+
 #: apps/finance/models.py
 msgid "Received from customer"
 msgstr "مستلم من عميل"
@@ -5339,10 +7043,6 @@ msgstr "صادر لمورد"
 #: apps/finance/models.py
 msgid "Pending"
 msgstr "قيد الانتظار"
-
-#: apps/finance/models.py
-msgid "Cancelled"
-msgstr "ملغى"
 
 #: apps/finance/models.py
 msgid "Every 3 months"
@@ -5363,10 +7063,6 @@ msgstr "آجل (مورد)"
 #: apps/finance/models.py
 msgid "Already owned (no payment now)"
 msgstr "مملوك مسبقًا (بدون دفع الآن)"
-
-#: apps/verticals/restaurant/models.py
-msgid "Available"
-msgstr "متاحة"
 
 #: apps/verticals/restaurant/models.py
 msgid "Booked"
@@ -5395,6 +7091,170 @@ msgstr "في الانتظار"
 #: apps/verticals/restaurant/models.py
 msgid "Preparing"
 msgstr "قيد التحضير"
+
+#: apps/webapp/accounts_views.py
+msgid "Customer payments"
+msgstr "مدفوعات العملاء"
+
+#: apps/webapp/accounts_views.py
+msgid "Supplier payments"
+msgstr "مدفوعات الموردين"
+
+#: apps/webapp/accounts_views.py
+msgid "Salaries paid"
+msgstr "الرواتب المدفوعة"
+
+#: apps/webapp/accounts_views.py
+msgid "Advance repayments"
+msgstr "سداد السلف"
+
+#: apps/webapp/accounts_views.py
+msgid "Sales returns"
+msgstr "مرتجعات المبيعات"
+
+#: apps/webapp/accounts_views.py
+msgid "Purchase returns"
+msgstr "مرتجعات المشتريات"
+
+#: apps/webapp/accounts_views.py
+msgid "Manual entries"
+msgstr "قيود يدوية"
+
+#: apps/webapp/accounts_views.py
+msgid "POS sales"
+msgstr "مبيعات نقطة البيع"
+
+#: apps/webapp/accounts_views.py
+msgid "This month"
+msgstr "هذا الشهر"
+
+#: apps/webapp/accounts_views.py
+msgid "Last month"
+msgstr "الشهر الماضي"
+
+#: apps/webapp/accounts_views.py
+msgid "This quarter"
+msgstr "هذا الربع"
+
+#: apps/webapp/accounts_views.py
+msgid "This year"
+msgstr "هذه السنة"
+
+#: apps/webapp/accounts_views.py
+msgid "Last year"
+msgstr "السنة الماضية"
+
+#: apps/webapp/accounts_views.py
+msgid "All time"
+msgstr "كل الأوقات"
+
+#: apps/webapp/accounts_views.py
+msgid "Enter a code, a name and a type."
+msgstr "أدخل الرمز والاسم والنوع."
+
+#: apps/webapp/accounts_views.py
+msgid "Account %(code)s added."
+msgstr "تمت إضافة الحساب %(code)s."
+
+#: apps/webapp/accounts_views.py
+msgid "An account with this code already exists."
+msgstr "يوجد حساب بهذا الرمز."
+
+#: apps/webapp/accounts_views.py
+msgid "System accounts can't be switched off."
+msgstr "لا يمكن إيقاف حسابات النظام."
+
+#: apps/webapp/accounts_views.py
+msgid "You don't have permission to do that."
+msgstr "ليس لديك صلاحية لذلك."
+
+#: apps/webapp/accounts_views.py
+msgid "Journal entry cancelled."
+msgstr "تم إلغاء القيد."
+
+#: apps/webapp/accounts_views.py
+msgid "Amounts must be numbers."
+msgstr "يجب أن تكون المبالغ أرقاماً."
+
+#: apps/webapp/accounts_views.py
+msgid "Choose an account on every line."
+msgstr "اختر حساباً في كل سطر."
+
+#: apps/webapp/accounts_views.py
+msgid "Each line needs either a debit or a credit."
+msgstr "كل سطر يحتاج مديناً أو دائناً."
+
+#: apps/webapp/accounts_views.py
+msgid "Enter a valid date."
+msgstr "أدخل تاريخاً صحيحاً."
+
+#: apps/webapp/accounts_views.py
+msgid "A journal entry needs at least two lines."
+msgstr "القيد يحتاج سطرين على الأقل."
+
+#: apps/webapp/accounts_views.py
+msgid "Debits and credits must be equal."
+msgstr "يجب أن يتساوى المدين والدائن."
+
+#: apps/webapp/accounts_views.py
+msgid "Journal entry saved."
+msgstr "تم حفظ القيد."
+
+#: apps/webapp/banking_views.py
+msgid "Enter a name for the account."
+msgstr "أدخل اسماً للحساب."
+
+#: apps/webapp/banking_views.py
+msgid "Account %(name)s added."
+msgstr "تمت إضافة الحساب %(name)s."
+
+#: apps/webapp/banking_views.py
+msgid "Enter an amount."
+msgstr "أدخل مبلغاً."
+
+#: apps/webapp/banking_views.py
+msgid "%(amount)s moved from %(from)s to %(to)s."
+msgstr "تم نقل %(amount)s من %(from)s إلى %(to)s."
+
+#: apps/webapp/banking_views.py
+msgid "Saved."
+msgstr "تم الحفظ."
+
+#: apps/webapp/banking_views.py
+msgid "Choose the CSV file from your bank."
+msgstr "اختر ملف CSV من بنكك."
+
+#: apps/webapp/banking_views.py
+msgid "%(count)s statement lines imported (%(skipped)s already there)."
+msgstr "تم استيراد %(count)s بنود (%(skipped)s موجودة مسبقاً)."
+
+#: apps/webapp/banking_views.py
+msgid "Matched."
+msgstr "تمت المطابقة."
+
+#: apps/webapp/banking_views.py
+msgid "Entry recorded and matched."
+msgstr "تم تسجيل القيد ومطابقته."
+
+#: apps/webapp/banking_views.py
+msgid "Tax registration saved."
+msgstr "تم حفظ التسجيل الضريبي."
+
+#: apps/webapp/banking_views.py
+msgid "Tax code added."
+msgstr "تمت إضافة رمز الضريبة."
+
+#: apps/webapp/banking_views.py
+msgid "Enter a 3-letter currency code and a rate above zero."
+msgstr "أدخل رمز عملة من 3 أحرف وسعراً أكبر من صفر."
+
+#: apps/webapp/banking_views.py
+msgid "Entered manually"
+msgstr "مُدخل يدوياً"
+
+#: apps/webapp/banking_views.py
+msgid "Exchange rate saved."
+msgstr "تم حفظ سعر الصرف."
 
 #: apps/webapp/booking_views.py
 msgid "Choose a customer or type a new customer's name."
@@ -5432,13 +7292,65 @@ msgstr "تم تسجيل إرجاع مبلغ التأمين."
 msgid "Checked out. Invoice %(number)s created."
 msgstr "تم تسجيل الخروج. أُنشئت الفاتورة %(number)s."
 
+#: apps/webapp/crm_views.py
+msgid "Enter what the deal is about."
+msgstr "أدخل موضوع الصفقة."
+
+#: apps/webapp/crm_views.py
+msgid "Deal added."
+msgstr "تمت إضافة الصفقة."
+
+#: apps/webapp/crm_views.py
+msgid "Enter the person's name."
+msgstr "أدخل اسم الشخص."
+
+#: apps/webapp/crm_views.py
+msgid "Lead %(name)s added."
+msgstr "تمت إضافة العميل المحتمل %(name)s."
+
+#: apps/webapp/crm_views.py
+msgid "Enter what happened or what to do."
+msgstr "أدخل ما حدث أو ما يجب فعله."
+
+#: apps/webapp/crm_views.py
+msgid "%(name)s is now a customer. A deal was added to the pipeline."
+msgstr "أصبح %(name)s عميلاً. أُضيفت صفقة إلى المسار."
+
+#: apps/webapp/crm_views.py
+msgid ""
+"A customer with the same name, phone or email already exists. Pick them "
+"below or confirm to use the match."
+msgstr ""
+"يوجد عميل بنفس الاسم أو الهاتف أو البريد. اختره أدناه أو أكّد استخدام "
+"التطابق."
+
+#: apps/webapp/crm_views.py
+msgid "Enter a name for the price list."
+msgstr "أدخل اسماً لقائمة الأسعار."
+
+#: apps/webapp/crm_views.py
+msgid "Enter a name, valid dates and a discount."
+msgstr "أدخل اسماً وتواريخ صحيحة وخصماً."
+
+#: apps/webapp/crm_views.py
+msgid "Offer saved. The POS and new quotes use it automatically."
+msgstr "تم حفظ العرض. تستخدمه نقطة البيع وعروض الأسعار الجديدة تلقائياً."
+
+#: apps/webapp/crm_views.py
+msgid "The price can't be negative."
+msgstr "لا يمكن أن يكون السعر سالباً."
+
+#: apps/webapp/crm_views.py
+msgid "%(item)s: %(price)s"
+msgstr "%(item)s: %(price)s"
+
+#: apps/webapp/crm_views.py
+msgid "%(count)s prices set."
+msgstr "تم تحديد %(count)s أسعار."
+
 #: apps/webapp/education_views.py
 msgid "Courses"
 msgstr "الدورات"
-
-#: apps/webapp/education_views.py
-msgid "Batch"
-msgstr "الدفعة"
 
 #: apps/webapp/education_views.py
 msgid "Class"
@@ -5649,16 +7561,8 @@ msgid "Leave type"
 msgstr "نوع الإجازة"
 
 #: apps/webapp/hr_views.py
-msgid "Reason"
-msgstr "السبب"
-
-#: apps/webapp/hr_views.py
 msgid "Document"
 msgstr "المستند"
-
-#: apps/webapp/hr_views.py
-msgid "Expiry date"
-msgstr "تاريخ الانتهاء"
 
 #: apps/webapp/hr_views.py
 msgid "%(name)s removed."
@@ -5797,6 +7701,106 @@ msgstr "إيجار هذا الشهر مفوتر مسبقاً."
 msgid "%(count)s rent invoices created for %(month)s."
 msgstr "أُنشئت %(count)s فواتير إيجار لشهر %(month)s."
 
+#: apps/webapp/purchase_docs_views.py
+msgid "Choose a supplier or type a new supplier's name."
+msgstr "اختر مورداً أو اكتب اسم مورد جديد."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Purchase order %(number)s created."
+msgstr "تم إنشاء أمر الشراء %(number)s."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Purchase order cancelled."
+msgstr "تم إلغاء أمر الشراء."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Enter the quantity received."
+msgstr "أدخل الكمية المستلمة."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Goods receipt %(number)s saved. Stock updated."
+msgstr "تم حفظ الاستلام %(number)s. تم تحديث المخزون."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Supplier bill saved (%(total)s)."
+msgstr "تم حفظ فاتورة المورد (%(total)s)."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Nothing received is waiting for a bill."
+msgstr "لا مستلم بانتظار الفاتورة."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "You can return at most %(qty)s of %(item)s."
+msgstr "يمكنك إرجاع %(qty)s كحد أقصى من %(item)s."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Enter the quantity to return."
+msgstr "أدخل كمية الإرجاع."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Return %(number)s saved. Stock reduced."
+msgstr "تم حفظ الإرجاع %(number)s. انخفض المخزون."
+
+#: apps/webapp/receivables_views.py
+msgid "On account"
+msgstr "على الحساب"
+
+#: apps/webapp/receivables_views.py
+msgid "Return (credit)"
+msgstr "مرتجع (دائن)"
+
+#: apps/webapp/receivables_views.py
+msgid "Dear %(name)s,"
+msgstr "عزيزي %(name)s،"
+
+#: apps/webapp/receivables_views.py
+msgid "This is a friendly reminder from %(company)s."
+msgstr "هذا تذكير ودي من %(company)s."
+
+#: apps/webapp/receivables_views.py
+msgid "Amount due: %(cur)s %(amount)s"
+msgstr "المبلغ المستحق: %(cur)s %(amount)s"
+
+#: apps/webapp/receivables_views.py
+msgid "Thank you."
+msgstr "شكراً لك."
+
+#: apps/webapp/receivables_views.py
+msgid "Note saved."
+msgstr "تم حفظ الملاحظة."
+
+#: apps/webapp/receivables_views.py
+msgid "Credit settings saved."
+msgstr "تم حفظ إعدادات الائتمان."
+
+#: apps/webapp/receivables_views.py
+msgid "Enter valid numbers."
+msgstr "أدخل أرقاماً صحيحة."
+
+#: apps/webapp/receivables_views.py
+msgid "Enter the amount received."
+msgstr "أدخل المبلغ المستلم."
+
+#: apps/webapp/receivables_views.py
+msgid "This invoice is already paid."
+msgstr "هذه الفاتورة مدفوعة مسبقاً."
+
+#: apps/webapp/receivables_views.py
+msgid "The amount is more than the invoice balance."
+msgstr "المبلغ أكبر من رصيد الفاتورة."
+
+#: apps/webapp/receivables_views.py
+msgid "Payment of %(amount)s received from %(name)s."
+msgstr "تم استلام %(amount)s من %(name)s."
+
+#: apps/webapp/receivables_views.py
+msgid "Applied to: %(list)s."
+msgstr "طُبقت على: %(list)s."
+
+#: apps/webapp/receivables_views.py
+msgid "%(amount)s kept as advance on account."
+msgstr "احتُفظ بـ%(amount)s كدفعة مقدمة."
+
 #: apps/webapp/restaurant_order_views.py
 msgid "Yesterday"
 msgstr "أمس"
@@ -5809,9 +7813,53 @@ msgstr "آخر 7 أيام"
 msgid "Last 30 days"
 msgstr "آخر 30 يوماً"
 
-#: apps/webapp/restaurant_order_views.py
-msgid "All time"
-msgstr "كل الأوقات"
+#: apps/webapp/sales_docs_views.py
+msgid "Quantities and prices must be numbers."
+msgstr "يجب أن تكون الكميات والأسعار أرقاماً."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Choose an item on every line."
+msgstr "اختر صنفاً في كل سطر."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quantity must be more than zero."
+msgstr "يجب أن تكون الكمية أكبر من صفر."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Add at least one item."
+msgstr "أضف صنفاً واحداً على الأقل."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quotation %(number)s created."
+msgstr "تم إنشاء عرض السعر %(number)s."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Sales order %(number)s created."
+msgstr "تم إنشاء أمر البيع %(number)s."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Invoice %(number)s created from the quotation."
+msgstr "تم إنشاء الفاتورة %(number)s من عرض السعر."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Order cancelled."
+msgstr "تم إلغاء الطلب."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Enter the quantity to deliver."
+msgstr "أدخل كمية التسليم."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Delivery note %(number)s saved. Stock updated."
+msgstr "تم حفظ إشعار التسليم %(number)s. تم تحديث المخزون."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Invoice %(number)s created."
+msgstr "تم إنشاء الفاتورة %(number)s."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Nothing delivered is waiting to be invoiced."
+msgstr "لا تسليم بانتظار الفوترة."
 
 #: apps/webapp/scale_views.py
 msgid "Use 1–3 digit prefixes separated by commas, e.g. 20,21,22."
@@ -5828,6 +7876,82 @@ msgstr "3 منازل عشرية كحد أقصى."
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "تم حفظ إعدادات الميزان."
+
+#: apps/webapp/stock_views.py
+msgid "Damaged"
+msgstr "تالف"
+
+#: apps/webapp/stock_views.py
+msgid "Lost / stolen"
+msgstr "مفقود / مسروق"
+
+#: apps/webapp/stock_views.py
+msgid "Own use"
+msgstr "استخدام شخصي"
+
+#: apps/webapp/stock_views.py
+msgid "Found extra"
+msgstr "زيادة موجودة"
+
+#: apps/webapp/stock_views.py
+msgid "Correction"
+msgstr "تصحيح"
+
+#: apps/webapp/stock_views.py
+msgid "Choose an item, a location and a quantity."
+msgstr "اختر صنفاً وموقعاً وكمية."
+
+#: apps/webapp/stock_views.py
+msgid "Stock of %(item)s changed by %(qty)s."
+msgstr "تغير مخزون %(item)s بمقدار %(qty)s."
+
+#: apps/webapp/stock_views.py
+msgid "Choose both locations, an item and a quantity on every line."
+msgstr "اختر الموقعين وصنفاً وكمية في كل سطر."
+
+#: apps/webapp/stock_views.py
+msgid "%(count)s items moved from %(from)s to %(to)s."
+msgstr "تم نقل %(count)s أصناف من %(from)s إلى %(to)s."
+
+#: apps/webapp/stock_views.py
+msgid "Choose a location that has items to count."
+msgstr "اختر موقعاً به أصناف للجرد."
+
+#: apps/webapp/stock_views.py
+msgid "Counted quantities must be zero or more."
+msgstr "يجب أن تكون الكميات المعدودة صفراً أو أكثر."
+
+#: apps/webapp/stock_views.py
+msgid "Stock count completed. Stock corrected where it was different."
+msgstr "اكتمل الجرد. صُحح المخزون حيث وُجد فرق."
+
+#: apps/webapp/stock_views.py
+msgid "Progress saved."
+msgstr "تم حفظ التقدم."
+
+#: apps/webapp/stock_views.py
+msgid "Choose an item and enter the batch number."
+msgstr "اختر صنفاً وأدخل رقم الدفعة."
+
+#: apps/webapp/stock_views.py
+msgid "Batch received"
+msgstr "دفعة مستلمة"
+
+#: apps/webapp/stock_views.py
+msgid "Batch %(number)s saved."
+msgstr "تم حفظ الدفعة %(number)s."
+
+#: apps/webapp/stock_views.py
+msgid "Choose an item, a location and enter at least one serial number."
+msgstr "اختر صنفاً وموقعاً وأدخل رقماً تسلسلياً واحداً على الأقل."
+
+#: apps/webapp/stock_views.py
+msgid "%(count)s serial numbers added to stock."
+msgstr "تمت إضافة %(count)s أرقام تسلسلية إلى المخزون."
+
+#: apps/webapp/stock_views.py
+msgid "Already registered: %(list)s"
+msgstr "مسجلة مسبقاً: %(list)s"
 
 #: apps/webapp/views.py
 msgid "Sale %(number)s booked as invoice %(invoice)s."

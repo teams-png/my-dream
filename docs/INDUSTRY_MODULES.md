@@ -69,3 +69,20 @@ The **People → Staff & HR / Attendance / Payroll & advances** menu is availabl
   - Approve: Dr 5200 gross; Cr 2200 net, 2250 deductions, 1300 advances.
   - Pay: Dr 2200, Cr Cash/Bank. Payslips can be printed or sent on WhatsApp.
 - **Documents:** QID, passport, visa and similar, sorted by expiry. The existing expiry notifications apply.
+
+## Business back-office (every business type)
+
+These pages put the existing ledger, sales, purchase, stock, bank and CRM services on the web. Each one works on phones and has Malayalam and Arabic.
+
+| Menu | What it does | Code |
+|---|---|---|
+| Finance → Accounts & reports | P&L, balance sheet, trial balance, cash flow, VAT/tax, chart of accounts, ledgers, manual journal entries (balanced; manual ones can be cancelled) | `accounts_views.py` |
+| Finance → Bank & cash | Cash/bank accounts with balances, money in/out, transfers, CSV statement import (no duplicates), suggested matching and reconciliation | `banking_views.py` |
+| People → Money to collect | Ageing (0-30/31-60/61-90/90+), customer statements, payments that settle the oldest bills first (extra money is kept as an advance), WhatsApp reminders, follow-up notes, credit limits | `receivables_views.py` |
+| Sales → Invoices / Quotations / Sales orders | QT-/SO-/DN- numbered documents. A quote becomes an invoice or an order. Orders can be delivered in parts, each part with a delivery note. Delivered items are invoiced without taking stock out twice. | `sales_docs_views.py` |
+| Sales → Leads & pipeline, Price lists & offers | Leads with activities and conversion to customers, a pipeline board, price lists (per customer or general), and offers applied in the POS and on new quotes | `crm_views.py` |
+| Purchases → Purchase orders | PO → partial goods receipts (GRN) → supplier bill, a prefill for low-stock items, a bill page with payments and returns (capped at what was bought) | `purchase_docs_views.py` |
+| Business → Stock & inventory | Stock per location with value, adjustments (audited), transfers, stock taking, batches with expiry, serial/IMEI lookup, and movement history. Batch items sold without a chosen batch are taken from the batch that expires first. | `stock_views.py` |
+| Settings → Tax & currency, Activity log | Tax registration and codes, exchange rates, and the company's own audit trail | `banking_views.py` |
+
+Not wired up yet: `NotificationRule` (per-company reminder days) is stored but not used by the notification jobs, so it has no page.

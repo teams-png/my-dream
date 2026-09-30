@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ plist.name }}{% endblock %}
+{% block heading %}{% translate "Price list" %}: {{ plist.name }}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/crm/_tabs.html" %}
+<div class="hr-actions" style="margin-bottom:12px"><span class="hr-chip blue" style="padding:7px 12px">{% if plist.customer %}{% translate "Only for" %} {{ plist.customer.name }}{% else %}{% translate "Everyone" %}{% endif %}</span><form method="post" action="{% url 'webapp:pricing' %}">{% csrf_token %}<input type="hidden" name="action" value="toggle_list"><input type="hidden" name="id" value="{{ plist.id }}"><button class="btn btn-secondary">{% if plist.is_active %}{% translate "Switch off" %}{% else %}{% translate "Switch on" %}{% endif %}</button></form></div>
+<div class="hr-grid2">
+<div class="hr-card hr-table"><table><thead><tr><th>{% translate "Item" %}</th><th class="hr-num">{% translate "Normal price" %}</th><th class="hr-num">{% translate "List price" %}</th><th></th></tr></thead>
+<tbody>{% for i in items %}<tr><td>{{ i.product.name }}</td><td class="hr-num">{{ i.product.selling_price|floatformat:2 }}</td><td class="hr-num"><b>{{ i.unit_price|floatformat:2 }}</b></td><td><form method="post">{% csrf_token %}<input type="hidden" name="action" value="remove"><input type="hidden" name="id" value="{{ i.id }}"><button class="btn btn-secondary" aria-label="{% translate 'Remove' %}">✕</button></form></td></tr>{% empty %}<tr><td colspan="4" class="hr-empty">{% translate "No items yet." %}</td></tr>{% endfor %}</tbody></table></div>
+<div>
+  <form method="post" class="hr-card">{% csrf_token %}<input type="hidden" name="action" value="item"><h3>＋ {% translate "Set a price" %}</h3>
+    <div class="hr-form"><label class="wide">{% translate "Item" %}<select name="product" required>{% for p in products %}<option value="{{ p.id }}">{{ p.name }} ({{ p.selling_price|floatformat:2 }})</option>{% endfor %}</select></label><label>{% translate "Price" %}<input type="number" name="price" step="0.01" min="0" required></label><div style="align-self:end"><button class="btn">{% translate "Save" %}</button></div></div></form>
+  <form method="post" class="hr-card">{% csrf_token %}<input type="hidden" name="action" value="bulk"><h3>⚡ {% translate "All items at once" %}</h3>
+    <div class="hr-form"><label>{% translate "Change from normal price %" %}<input type="number" name="percent" step="0.01" value="-10"></label><div style="align-self:end"><button class="btn btn-secondary" onclick="return confirm('{% translate "Set a price for every item?" %}')">{% translate "Apply" %}</button></div></div>
+    <p style="color:var(--hr-soft);font-size:12.5px;margin:8px 0 0">{% translate "e.g. -10 = 10% below the normal price (wholesale), 5 = 5% above." %}</p></form>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Tax & currency" %}{% endblock %}
+{% block heading %}{% translate "Tax & currency" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<div class="hr">
+<div class="hr-grid2">
+<div>
+  <form method="post" class="hr-card">{% csrf_token %}<input type="hidden" name="action" value="scheme"><h3>🧾 {% translate "Tax registration" %}</h3>
+    <div class="hr-form"><label>{% translate "Tax name" %}<input name="name" value="{{ scheme.name|default:'VAT' }}"></label><label>{% translate "Tax registration number" %}<input name="registration" value="{{ scheme.registration_number|default:'' }}"></label><div class="wide"><button class="btn" type="submit">{% translate "Save" %}</button></div></div></form>
+  <div class="hr-card"><h3>％ {% translate "Tax codes" %}</h3>
+    <div class="hr-list">{% for c in codes %}<div class="hr-row" {% if not c.is_active %}style="opacity:.55"{% endif %}><span class="grow"><b>{{ c.code }} · {{ c.name }}</b><small>{{ c.rate|floatformat:"-2" }}% · {% translate c.get_classification_display %}{% if c.inclusive %} · {% translate "price includes tax" %}{% endif %} · {% translate "from" %} {{ c.effective_from|date:"j M Y" }}</small></span><form method="post">{% csrf_token %}<input type="hidden" name="action" value="toggle_code"><input type="hidden" name="id" value="{{ c.id }}"><button class="btn btn-secondary">{% if c.is_active %}{% translate "Switch off" %}{% else %}{% translate "Switch on" %}{% endif %}</button></form></div>{% empty %}<div class="hr-empty">{% translate "No tax codes yet." %}</div>{% endfor %}</div>
+    <form method="post" class="hr-form" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="code">
+      <label>{% translate "Code" %}<input name="code" required maxlength="30" placeholder="VAT5"></label><label>{% translate "Name" %}<input name="name" required placeholder="{% translate 'Standard VAT' %}"></label>
+      <label>{% translate "Rate %" %}<input type="number" name="rate" step="0.01" min="0" value="5"></label><label>{% translate "Type" %}<select name="classification">{% for k, l in classifications %}<option value="{{ k }}">{% translate l %}</option>{% endfor %}</select></label>
+      <label>{% translate "From" %}<input type="date" name="from" value="{{ today|date:'Y-m-d' }}"></label><label style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" name="inclusive" style="width:auto;min-height:0"> {% translate "Prices include tax" %}</label>
+      <div class="wide"><button class="btn btn-secondary" type="submit">{% translate "Add tax code" %}</button></div></form>
+  </div>
+</div>
+<div class="hr-card"><h3>💱 {% translate "Exchange rates" %} <small>1 {% translate "unit" %} = ? {{ active_company.default_currency }}</small></h3>
+  <form method="post" class="hr-form" style="margin-bottom:12px">{% csrf_token %}<input type="hidden" name="action" value="rate">
+    <label>{% translate "Currency" %}<input name="currency" maxlength="3" required placeholder="USD" style="text-transform:uppercase"></label><label>{% translate "Rate" %}<input type="number" name="rate" step="0.00000001" min="0" required placeholder="3.64"></label><label>{% translate "Date" %}<input type="date" name="date" value="{{ today|date:'Y-m-d' }}"></label><div style="align-self:end"><button class="btn btn-secondary" type="submit">{% translate "Save rate" %}</button></div></form>
+  <div class="hr-list">{% for r in rates %}<div class="hr-row"><span class="grow"><b>{{ r.currency }}</b><small>{{ r.effective_date|date:"j M Y" }} · {{ r.source }}</small></span><b>{{ r.rate|floatformat:"-6" }}</b></div>{% empty %}<div class="hr-empty">{% translate "No exchange rates yet." %}</div>{% endfor %}</div>
+</div>
+</div>
+</div>
+{% endblock %}

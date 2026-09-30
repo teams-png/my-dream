@@ -36,7 +36,9 @@ const opts='<option value="">—</option>'+cat.map(p=>`<option value="${p.id}">$
 const fill=row=>{const s=row.querySelector('.pSel');s.innerHTML=opts;const init=row.querySelector('.pInit');if(init&&init.value){s.value=init.value;init.value=''}};
 const calc=()=>{let g=0;box.querySelectorAll('.dl').forEach(r=>{const t=(parseFloat(r.querySelector('.qty').value)||0)*(parseFloat(r.querySelector('.price').value)||0);r.querySelector('.lt').textContent=t.toFixed(2);g+=t});document.getElementById('grand').textContent=g.toFixed(2)};
 box.querySelectorAll('.dl').forEach(fill);
-box.addEventListener('change',e=>{if(e.target.classList.contains('pSel')){const p=byId[e.target.value];const row=e.target.closest('.dl');if(p){row.querySelector('.price').value=p.price;const q=row.querySelector('.qty');if(!q.value)q.value=1}}calc()});
+const priceUrl="{% url 'webapp:price_lookup' %}",isSale={% if kind == "po" %}false{% else %}true{% endif %};
+box.addEventListener('change',e=>{if(e.target.classList.contains('pSel')){const p=byId[e.target.value];const row=e.target.closest('.dl');if(p){const pr=row.querySelector('.price');pr.value=p.price;const q=row.querySelector('.qty');if(!q.value)q.value=1;
+ if(isSale){fetch(priceUrl+'?product='+p.id+'&customer='+(document.getElementById('custSel').value||''),{credentials:'same-origin'}).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.price){pr.value=d.price;pr.title=d.offer||'';calc()}}).catch(()=>{})}}}calc()});
 box.addEventListener('input',calc);
 box.addEventListener('click',e=>{if(e.target.classList.contains('rm')){const rows=box.querySelectorAll('.dl');if(rows.length>1)e.target.closest('.dl').remove();else{e.target.closest('.dl').querySelectorAll('input').forEach(i=>i.value='');e.target.closest('.dl').querySelector('.pSel').value=''}calc()}});
 document.getElementById('addRow').addEventListener('click',()=>{const r=box.querySelector('.dl').cloneNode(true);r.querySelectorAll('input').forEach(i=>i.value='');r.querySelector('.qty').value=1;fill(r);box.appendChild(r);r.querySelector('.pSel').focus()});

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Leads" %}{% endblock %}
+{% block heading %}{% translate "Leads" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/crm/_tabs.html" %}
+<div class="hr-grid2">
+<div>
+  <form method="get" class="hr-actions" style="margin-bottom:12px">{% for k, l in statuses %}<a class="hr-chip {% if status == k %}ok{% endif %}" style="padding:8px 12px" href="?status={{ k }}">{% translate l %}</a>{% endfor %}<a class="hr-chip {% if not status %}ok{% endif %}" style="padding:8px 12px" href="?status=">{% translate "All" %}</a><input type="hidden" name="status" value="{{ status }}"><input class="hr-in" style="flex:1 1 180px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Name, company, phone' %}"><button class="btn btn-secondary">{% translate "Search" %}</button></form>
+  <div class="hr-list">{% for l in leads %}<a class="hr-row" href="{% url 'webapp:lead_detail' l.id %}"><span class="hr-av" style="width:38px;height:38px;font-size:15px">{{ l.name|slice:":1"|upper }}</span><span class="grow"><b>{{ l.name }}</b>{% if l.company_name %} · {{ l.company_name }}{% endif %}<small>{{ l.phone|default:"" }}{% if l.source %} · {{ l.source }}{% endif %} · {{ l.created_at|date:"j M" }}{% if l.assigned_to %} · {{ l.assigned_to.first_name|default:l.assigned_to.username }}{% endif %}</small></span>{% if l.todo %}<span class="hr-chip warn">{{ l.todo }} {% translate "to do" %}</span>{% endif %}<span class="hr-chip {% if l.status == 'converted' %}ok{% elif l.status == 'lost' %}bad{% elif l.status == 'qualified' %}blue{% endif %}">{% translate l.get_status_display %}</span></a>{% empty %}<div class="hr-card hr-empty">{% translate "No leads here." %}</div>{% endfor %}</div>
+</div>
+<form method="post" class="hr-card">{% csrf_token %}<h3>＋ {% translate "New lead" %}</h3>
+  <div class="hr-form">
+    <label>{% translate "Name" %}<input name="name" required></label><label>{% translate "Company" %}<input name="company_name"></label>
+    <label>{% translate "Phone" %}<input name="phone" inputmode="tel"></label><label>{% translate "Email" %}<input type="email" name="email"></label>
+    <label>{% translate "Came from" %}<input name="source" list="srcs"><datalist id="srcs">{% for s in sources %}<option value="{{ s }}">{% endfor %}</datalist></label>
+    <label>{% translate "Assigned to" %}<select name="assigned_to">{% for u in users %}<option value="{{ u.id }}" {% if u == request.user %}selected{% endif %}>{{ u.first_name|default:u.email|default:u.username }}</option>{% endfor %}</select></label>
+    <label class="wide">{% translate "What do they want?" %}<input name="note"></label>
+    <div class="wide"><button class="btn" type="submit">{% translate "Add lead" %}</button></div>
+  </div>
+</form>
+</div>
+</div>
+{% endblock %}

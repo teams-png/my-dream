@@ -22,6 +22,26 @@ msgid "Sales"
 msgstr "വിൽപ്പന"
 
 #: templates/base.html
+msgid "Leads & pipeline"
+msgstr "ലീഡുകളും പൈപ്പ്‌ലൈനും"
+
+#: templates/base.html
+msgid "Price lists & offers"
+msgstr "വില പട്ടികയും ഓഫറുകളും"
+
+#: templates/base.html
+msgid "Invoices"
+msgstr "ഇൻവോയ്സുകൾ"
+
+#: templates/base.html
+msgid "Quotations"
+msgstr "ക്വട്ടേഷനുകൾ"
+
+#: templates/base.html
+msgid "Sales orders & delivery"
+msgstr "സെയിൽസ് ഓർഡറും ഡെലിവറിയും"
+
+#: templates/base.html
 msgid "POS"
 msgstr "POS"
 
@@ -42,6 +62,10 @@ msgid "Purchases"
 msgstr "പർച്ചേസുകൾ"
 
 #: templates/base.html
+msgid "Purchase orders"
+msgstr "പർച്ചേസ് ഓർഡറുകൾ"
+
+#: templates/base.html
 msgid "Suppliers"
 msgstr "സപ്ലയർമാർ"
 
@@ -52,6 +76,14 @@ msgstr "പർച്ചേസ് റിപ്പോർട്ടുകൾ"
 #: templates/base.html
 msgid "Finance"
 msgstr "ഫിനാൻസ്"
+
+#: templates/base.html
+msgid "Bank & cash"
+msgstr "ബാങ്കും ക്യാഷും"
+
+#: templates/base.html
+msgid "Accounts & reports"
+msgstr "അക്കൗണ്ട്സ് & റിപ്പോർട്ടുകൾ"
 
 #: templates/base.html
 msgid "Finance overview"
@@ -86,6 +118,10 @@ msgid "Customers"
 msgstr "കസ്റ്റമർമാർ"
 
 #: templates/base.html
+msgid "Money to collect"
+msgstr "പിരിച്ചെടുക്കാനുള്ള പണം"
+
+#: templates/base.html
 msgid "Team"
 msgstr "ടീം"
 
@@ -106,6 +142,10 @@ msgid "Business"
 msgstr "ബിസിനസ്"
 
 #: templates/base.html
+msgid "Stock & inventory"
+msgstr "സ്റ്റോക്ക് & ഇൻവെന്ററി"
+
+#: templates/base.html
 msgid "Analytics"
 msgstr "അനലിറ്റിക്സ്"
 
@@ -116,6 +156,14 @@ msgstr "ബ്രാഞ്ചുകൾ"
 #: templates/base.html
 msgid "Settings"
 msgstr "സെറ്റിംഗ്സ്"
+
+#: templates/base.html
+msgid "Tax & currency"
+msgstr "നികുതിയും കറൻസിയും"
+
+#: templates/base.html
+msgid "Activity log"
+msgstr "പ്രവർത്തന രേഖ"
 
 #: templates/base.html
 msgid "Notifications"
@@ -489,6 +537,422 @@ msgstr "ഭാഷ"
 msgid "Dark / light mode"
 msgstr "ഡാർക്ക് / ലൈറ്റ് മോഡ്"
 
+#: templates/webapp/accounts/_asof.html
+msgid "As of"
+msgstr "തീയതി വരെ"
+
+#: templates/webapp/accounts/_asof.html
+msgid "Print"
+msgstr "പ്രിന്റ്"
+
+#: templates/webapp/accounts/_period.html
+msgid "From"
+msgstr "മുതൽ"
+
+#: templates/webapp/accounts/_period.html
+msgid "To"
+msgstr "വരെ"
+
+#: templates/webapp/accounts/_period.html
+msgid "Apply"
+msgstr "പ്രയോഗിക്കുക"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Accounts"
+msgstr "അക്കൗണ്ട്സ്"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Profit & Loss"
+msgstr "ലാഭനഷ്ടം"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Balance Sheet"
+msgstr "ബാലൻസ് ഷീറ്റ്"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Trial Balance"
+msgstr "ട്രയൽ ബാലൻസ്"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Cash Flow"
+msgstr "ക്യാഷ് ഫ്ലോ"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "VAT / Tax"
+msgstr "VAT / നികുതി"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Chart of accounts"
+msgstr "അക്കൗണ്ട് പട്ടിക"
+
+#: templates/webapp/accounts/_tabs.html
+msgid "Journal"
+msgstr "ജേർണൽ"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Assets and liabilities + equity differ by"
+msgstr "ആസ്തിയും ബാധ്യത + മൂലധനവും തമ്മിലുള്ള വ്യത്യാസം"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Check opening balances or manual entries."
+msgstr "ഓപ്പണിംഗ് ബാലൻസുകളോ മാനുവൽ എൻട്രികളോ പരിശോധിക്കുക."
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Assets"
+msgstr "ആസ്തികൾ"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Total assets"
+msgstr "ആകെ ആസ്തി"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Liabilities & equity"
+msgstr "ബാധ്യതകളും മൂലധനവും"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Liabilities"
+msgstr "ബാധ്യതകൾ"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Total liabilities"
+msgstr "ആകെ ബാധ്യത"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Equity"
+msgstr "മൂലധനം"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Profit for the current year"
+msgstr "ഈ വർഷത്തെ ലാഭം"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Total liabilities & equity"
+msgstr "ആകെ ബാധ്യതയും മൂലധനവും"
+
+#: templates/webapp/accounts/balance_sheet.html
+msgid "Balanced"
+msgstr "ബാലൻസ്ഡ്"
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "Opening cash & bank"
+msgstr "തുടക്കത്തിലെ ക്യാഷ് & ബാങ്ക്"
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "Money in"
+msgstr "വന്ന പണം"
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "Money out"
+msgstr "പോയ പണം"
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "Closing cash & bank"
+msgstr "അവസാനത്തെ ക്യാഷ് & ബാങ്ക്"
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "Net"
+msgstr "നെറ്റ്"
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "No cash or bank movement in this period."
+msgstr "ഈ കാലയളവിൽ ക്യാഷ്/ബാങ്ക് നീക്കമില്ല."
+
+#: templates/webapp/accounts/cash_flow.html
+msgid "Net change"
+msgstr "ആകെ മാറ്റം"
+
+#: templates/webapp/accounts/chart.html
+msgid "System account"
+msgstr "സിസ്റ്റം അക്കൗണ്ട്"
+
+#: templates/webapp/accounts/chart.html
+msgid "Switched off"
+msgstr "ഓഫ് ആണ്"
+
+#: templates/webapp/accounts/chart.html
+msgid "Switch off"
+msgstr "ഓഫ് ചെയ്യുക"
+
+#: templates/webapp/accounts/chart.html
+msgid "Switch on"
+msgstr "ഓൺ ചെയ്യുക"
+
+#: templates/webapp/accounts/chart.html
+msgid "New account"
+msgstr "പുതിയ അക്കൗണ്ട്"
+
+#: templates/webapp/accounts/chart.html
+msgid "Code"
+msgstr "കോഡ്"
+
+#: templates/webapp/accounts/chart.html
+msgid "Name"
+msgstr "പേര്"
+
+#: templates/webapp/accounts/chart.html
+msgid "e.g. Rent expense"
+msgstr "ഉദാ. വാടക ചെലവ്"
+
+#: templates/webapp/accounts/chart.html
+msgid "Type"
+msgstr "തരം"
+
+#: templates/webapp/accounts/chart.html
+msgid "Add account"
+msgstr "അക്കൗണ്ട് ചേർക്കുക"
+
+#: templates/webapp/accounts/chart.html
+msgid ""
+"Codes: 1xxx assets, 2xxx liabilities, 3xxx equity, 4xxx income, 5xxx "
+"expenses."
+msgstr ""
+"കോഡുകൾ: 1xxx ആസ്തി, 2xxx ബാധ്യത, 3xxx മൂലധനം, 4xxx വരുമാനം, 5xxx ചെലവ്."
+
+#: templates/webapp/accounts/home.html
+msgid "Profit this month"
+msgstr "ഈ മാസത്തെ ലാഭം"
+
+#: templates/webapp/accounts/home.html
+msgid "Profit this year"
+msgstr "ഈ വർഷത്തെ ലാഭം"
+
+#: templates/webapp/accounts/home.html
+msgid "Cash in hand"
+msgstr "കൈയിലുള്ള ക്യാഷ്"
+
+#: templates/webapp/accounts/home.html
+msgid "Bank"
+msgstr "ബാങ്ക്"
+
+#: templates/webapp/accounts/home.html
+msgid "Customers owe you"
+msgstr "ഉപഭോക്താക്കൾ തരാനുള്ളത്"
+
+#: templates/webapp/accounts/home.html
+msgid "You owe suppliers"
+msgstr "സപ്ലയർമാർക്ക് കൊടുക്കാനുള്ളത്"
+
+#: templates/webapp/accounts/home.html
+msgid "Tax payable"
+msgstr "അടയ്ക്കാനുള്ള നികുതി"
+
+#: templates/webapp/accounts/home.html
+msgid "Last 6 months"
+msgstr "കഴിഞ്ഞ 6 മാസം"
+
+#: templates/webapp/accounts/home.html
+msgid "Income"
+msgstr "വരുമാനം"
+
+#: templates/webapp/accounts/home.html
+msgid "Income, costs and profit for any period"
+msgstr "ഏത് കാലയളവിലെയും വരുമാനം, ചെലവ്, ലാഭം"
+
+#: templates/webapp/accounts/home.html
+msgid "What the business owns and owes"
+msgstr "ബിസിനസിന്റെ ആസ്തിയും ബാധ്യതയും"
+
+#: templates/webapp/accounts/home.html
+msgid "Every account's debit and credit balance"
+msgstr "ഓരോ അക്കൗണ്ടിന്റെയും ഡെബിറ്റ്/ക്രെഡിറ്റ് ബാലൻസ്"
+
+#: templates/webapp/accounts/home.html
+msgid "Money in and out of cash and bank"
+msgstr "ക്യാഷിലും ബാങ്കിലും വന്നതും പോയതുമായ പണം"
+
+#: templates/webapp/accounts/home.html
+msgid "Tax collected and paid"
+msgstr "പിരിച്ചതും അടച്ചതുമായ നികുതി"
+
+#: templates/webapp/accounts/home.html
+msgid "Latest entries"
+msgstr "പുതിയ എൻട്രികൾ"
+
+#: templates/webapp/accounts/home.html
+msgid "Journal entry"
+msgstr "ജേർണൽ എൻട്രി"
+
+#: templates/webapp/accounts/home.html
+msgid ""
+"No entries yet. Sales, purchases, expenses and salaries are recorded here "
+"automatically."
+msgstr ""
+"ഇതുവരെ എൻട്രികൾ ഇല്ല. വിൽപ്പന, വാങ്ങൽ, ചെലവ്, ശമ്പളം എല്ലാം ഇവിടെ സ്വയം "
+"രേഖപ്പെടുത്തും."
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "by"
+msgstr "ചെയ്തത്"
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Cancelled"
+msgstr "റദ്ദാക്കി"
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Note"
+msgstr "കുറിപ്പ്"
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Debit"
+msgstr "ഡെബിറ്റ്"
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Credit"
+msgstr "കടം"
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Total"
+msgstr "ആകെ"
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Cancel this journal entry? It will be removed from all reports."
+msgstr ""
+"ഈ ജേർണൽ എൻട്രി റദ്ദാക്കണോ? എല്ലാ റിപ്പോർട്ടുകളിൽ നിന്നും നീക്കം ചെയ്യും."
+
+#: templates/webapp/accounts/journal_detail.html
+msgid "Cancel entry"
+msgstr "എൻട്രി റദ്ദാക്കുക"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "New journal entry"
+msgstr "പുതിയ ജേർണൽ എൻട്രി"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "Date"
+msgstr "തീയതി"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "Reference"
+msgstr "റഫറൻസ്"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "e.g. Opening balance"
+msgstr "ഉദാ. ഓപ്പണിംഗ് ബാലൻസ്"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "Add line"
+msgstr "വരി ചേർക്കുക"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "Save entry"
+msgstr "എൻട്രി സേവ് ചെയ്യുക"
+
+#: templates/webapp/accounts/journal_form.html
+msgid "Difference"
+msgstr "വ്യത്യാസം"
+
+#: templates/webapp/accounts/journal_list.html
+msgid "Journal entries"
+msgstr "ജേർണൽ എൻട്രികൾ"
+
+#: templates/webapp/accounts/journal_list.html
+msgid "Reference or note"
+msgstr "റഫറൻസ് അല്ലെങ്കിൽ കുറിപ്പ്"
+
+#: templates/webapp/accounts/journal_list.html
+msgid "All types"
+msgstr "എല്ലാ തരവും"
+
+#: templates/webapp/accounts/journal_list.html
+msgid "Search"
+msgstr "തിരയുക"
+
+#: templates/webapp/accounts/journal_list.html
+msgid "No entries in this period."
+msgstr "ഈ കാലയളവിൽ എൻട്രികൾ ഇല്ല."
+
+#: templates/webapp/accounts/ledger.html
+msgid "Ledger"
+msgstr "ലെഡ്ജർ"
+
+#: templates/webapp/accounts/ledger.html
+msgid "Opening balance"
+msgstr "ഓപ്പണിംഗ് ബാലൻസ്"
+
+#: templates/webapp/accounts/ledger.html
+msgid "Closing balance"
+msgstr "ക്ലോസിംഗ് ബാലൻസ്"
+
+#: templates/webapp/accounts/ledger.html
+msgid "Details"
+msgstr "വിവരങ്ങൾ"
+
+#: templates/webapp/accounts/ledger.html
+msgid "Balance"
+msgstr "ബാക്കി"
+
+#: templates/webapp/accounts/profit_loss.html
+msgid "Gross profit"
+msgstr "മൊത്ത ലാഭം"
+
+#: templates/webapp/accounts/profit_loss.html
+msgid "Net profit"
+msgstr "അറ്റ ലാഭം"
+
+#: templates/webapp/accounts/profit_loss.html
+msgid "Total income"
+msgstr "ആകെ വരുമാനം"
+
+#: templates/webapp/accounts/profit_loss.html
+msgid "Cost of goods sold"
+msgstr "വിറ്റ സാധനങ്ങളുടെ വില"
+
+#: templates/webapp/accounts/profit_loss.html
+msgid "Total expenses"
+msgstr "ആകെ ചെലവ്"
+
+#: templates/webapp/accounts/profit_loss.html
+msgid "Net loss"
+msgstr "അറ്റ നഷ്ടം"
+
+#: templates/webapp/accounts/trial_balance.html
+msgid "No transactions yet."
+msgstr "ഇതുവരെ ഇടപാടുകൾ ഇല്ല."
+
+#: templates/webapp/accounts/trial_balance.html
+msgid "Not balanced"
+msgstr "ബാലൻസ് അല്ല"
+
+#: templates/webapp/accounts/vat.html
+msgid "VAT / Tax report"
+msgstr "VAT / നികുതി റിപ്പോർട്ട്"
+
+#: templates/webapp/accounts/vat.html
+msgid "Tax collected on sales"
+msgstr "വിൽപ്പനയിൽ പിരിച്ച നികുതി"
+
+#: templates/webapp/accounts/vat.html
+msgid "Tax paid on purchases"
+msgstr "വാങ്ങലിൽ അടച്ച നികുതി"
+
+#: templates/webapp/accounts/vat.html
+msgid "Tax to reclaim"
+msgstr "തിരികെ ലഭിക്കേണ്ട നികുതി"
+
+#: templates/webapp/accounts/vat.html
+msgid "Tax to pay"
+msgstr "അടയ്ക്കേണ്ട നികുതി"
+
+#: templates/webapp/accounts/vat.html
+msgid "Sales by tax code"
+msgstr "നികുതി കോഡ് പ്രകാരം വിൽപ്പന"
+
+#: templates/webapp/accounts/vat.html
+msgid "Taxable"
+msgstr "നികുതി ബാധകം"
+
+#: templates/webapp/accounts/vat.html
+msgid "Tax"
+msgstr "ടാക്സ്"
+
+#: templates/webapp/accounts/vat.html
+msgid "No tax codes used."
+msgstr "നികുതി കോഡുകൾ ഉപയോഗിച്ചിട്ടില്ല."
+
+#: templates/webapp/accounts/vat.html
+msgid "Purchases by tax code"
+msgstr "നികുതി കോഡ് പ്രകാരം വാങ്ങൽ"
+
 #: templates/webapp/admin_base.html
 msgid "Platform Admin"
 msgstr "പ്ലാറ്റ്ഫോം അഡ്മിൻ"
@@ -565,6 +1029,542 @@ msgstr "ഫോൺ നഷ്ടപ്പെട്ടോ? പകരം ഒരു �
 msgid "← Back to sign in"
 msgstr "← ലോഗിനിലേക്ക് തിരികെ"
 
+#: templates/webapp/banking/account.html
+msgid "Balance in the books"
+msgstr "പുസ്തകത്തിലെ ബാലൻസ്"
+
+#: templates/webapp/banking/account.html
+msgid "Balance on bank statement"
+msgstr "ബാങ്ക് സ്റ്റേറ്റ്മെന്റിലെ ബാലൻസ്"
+
+#: templates/webapp/banking/account.html
+msgid "To reconcile"
+msgstr "ഒത്തുനോക്കാനുള്ളത്"
+
+#: templates/webapp/banking/account.html
+msgid "Full ledger"
+msgstr "മുഴുവൻ ലെഡ്ജർ"
+
+#: templates/webapp/banking/account.html
+msgid "Reconcile statement lines"
+msgstr "സ്റ്റേറ്റ്മെന്റ് ലൈനുകൾ ഒത്തുനോക്കുക"
+
+#: templates/webapp/banking/account.html
+msgid "Match"
+msgstr "ഒത്തുചേർക്കുക"
+
+#: templates/webapp/banking/account.html
+msgid "Not in the books? Record it"
+msgstr "പുസ്തകത്തിൽ ഇല്ലേ? രേഖപ്പെടുത്തുക"
+
+#: templates/webapp/banking/account.html
+msgid "Record & match"
+msgstr "രേഖപ്പെടുത്തി ഒത്തുചേർക്കുക"
+
+#: templates/webapp/banking/account.html
+msgid "Nothing to reconcile."
+msgstr "ഒത്തുനോക്കാൻ ഒന്നുമില്ല."
+
+#: templates/webapp/banking/account.html
+msgid "Recent entries"
+msgstr "സമീപകാല എൻട്രികൾ"
+
+#: templates/webapp/banking/account.html
+msgid "No entries yet."
+msgstr "ഇതുവരെ എൻട്രികൾ ഇല്ല."
+
+#: templates/webapp/banking/account.html
+msgid "Import bank statement"
+msgstr "ബാങ്ക് സ്റ്റേറ്റ്മെന്റ് ഇംപോർട്ട് ചെയ്യുക"
+
+#: templates/webapp/banking/account.html
+msgid ""
+"CSV file with columns: date (YYYY-MM-DD), description, amount (+ money in, −"
+" money out) and optionally reference. The same file or lines are never "
+"imported twice."
+msgstr ""
+"കോളങ്ങളുള്ള CSV ഫയൽ: date (YYYY-MM-DD), description, amount (+ വന്നത്, − "
+"പോയത്), reference (ഓപ്ഷണൽ). ഒരേ ഫയലോ ലൈനുകളോ രണ്ടുതവണ ഇംപോർട്ട് ആകില്ല."
+
+#: templates/webapp/banking/account.html
+msgid "Import"
+msgstr "ഇംപോർട്ട്"
+
+#: templates/webapp/banking/account.html
+msgid "Recently matched"
+msgstr "അടുത്തിടെ ഒത്തുചേർത്തവ"
+
+#: templates/webapp/banking/account.html
+msgid "Undo"
+msgstr "പഴയപടിയാക്കുക"
+
+#: templates/webapp/banking/audit.html
+msgid ""
+"Who changed what — important changes are recorded automatically and can't be"
+" edited."
+msgstr ""
+"ആര് എന്ത് മാറ്റി — പ്രധാന മാറ്റങ്ങൾ സ്വയം രേഖപ്പെടുത്തും, മാറ്റാൻ കഴിയില്ല."
+
+#: templates/webapp/banking/audit.html
+msgid "Action, record or person"
+msgstr "പ്രവർത്തനം, രേഖ അല്ലെങ്കിൽ വ്യക്തി"
+
+#: templates/webapp/banking/audit.html
+msgid "No activity recorded yet."
+msgstr "ഇതുവരെ പ്രവർത്തനം രേഖപ്പെടുത്തിയിട്ടില്ല."
+
+#: templates/webapp/banking/home.html
+msgid "Total cash & bank"
+msgstr "ആകെ ക്യാഷ് & ബാങ്ക്"
+
+#: templates/webapp/banking/home.html
+msgid "to reconcile"
+msgstr "ഒത്തുനോക്കാൻ"
+
+#: templates/webapp/banking/home.html
+msgid "Money in / out"
+msgstr "പണം വരവ് / പോക്ക്"
+
+#: templates/webapp/banking/home.html
+msgid "Amount"
+msgstr "തുക"
+
+#: templates/webapp/banking/home.html
+msgid "For / from"
+msgstr "എന്തിന് / എവിടെ നിന്ന്"
+
+#: templates/webapp/banking/home.html
+msgid "e.g. Owner added capital, loan received, bank charges"
+msgstr "ഉദാ. ഉടമ മൂലധനം ചേർത്തു, ലോൺ ലഭിച്ചു, ബാങ്ക് ചാർജ്"
+
+#: templates/webapp/banking/home.html
+msgid "Save"
+msgstr "സേവ് ചെയ്യുക"
+
+#: templates/webapp/banking/home.html
+msgid "Transfer between accounts"
+msgstr "അക്കൗണ്ടുകൾ തമ്മിൽ മാറ്റുക"
+
+#: templates/webapp/banking/home.html
+msgid "e.g. Cash deposited to bank"
+msgstr "ഉദാ. ക്യാഷ് ബാങ്കിൽ നിക്ഷേപിച്ചു"
+
+#: templates/webapp/banking/home.html
+msgid "Transfer"
+msgstr "ട്രാൻസ്ഫർ"
+
+#: templates/webapp/banking/home.html
+msgid "New bank or cash account"
+msgstr "പുതിയ ബാങ്ക്/ക്യാഷ് അക്കൗണ്ട്"
+
+#: templates/webapp/banking/home.html
+msgid "e.g. QNB current account"
+msgstr "ഉദാ. QNB കറന്റ് അക്കൗണ്ട്"
+
+#: templates/webapp/banking/home.html
+msgid "Cash"
+msgstr "ക്യാഷ്"
+
+#: templates/webapp/banking/home.html
+msgid "Bank name"
+msgstr "ബാങ്കിന്റെ പേര്"
+
+#: templates/webapp/banking/home.html
+msgid "Last 4 digits"
+msgstr "അവസാന 4 അക്കം"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Tax registration"
+msgstr "നികുതി രജിസ്ട്രേഷൻ"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Tax name"
+msgstr "നികുതിയുടെ പേര്"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Tax registration number"
+msgstr "നികുതി രജിസ്ട്രേഷൻ നമ്പർ"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Tax codes"
+msgstr "നികുതി കോഡുകൾ"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "price includes tax"
+msgstr "വിലയിൽ നികുതി ഉൾപ്പെടുന്നു"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "from"
+msgstr "മുതൽ"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "No tax codes yet."
+msgstr "ഇതുവരെ നികുതി കോഡുകൾ ഇല്ല."
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Standard VAT"
+msgstr "സാധാരണ VAT"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Rate %"
+msgstr "നിരക്ക് %"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Prices include tax"
+msgstr "വിലയിൽ നികുതി ഉൾപ്പെടുന്നു"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Add tax code"
+msgstr "നികുതി കോഡ് ചേർക്കുക"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Exchange rates"
+msgstr "വിനിമയ നിരക്കുകൾ"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "unit"
+msgstr "യൂണിറ്റ്"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Currency"
+msgstr "കറൻസി"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Rate"
+msgstr "നിരക്ക്"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "Save rate"
+msgstr "നിരക്ക് സേവ് ചെയ്യുക"
+
+#: templates/webapp/banking/tax_currency.html
+msgid "No exchange rates yet."
+msgstr "ഇതുവരെ വിനിമയ നിരക്കുകൾ ഇല്ല."
+
+#: templates/webapp/crm/_tabs.html
+msgid "Pipeline"
+msgstr "പൈപ്പ്‌ലൈൻ"
+
+#: templates/webapp/crm/_tabs.html
+msgid "Leads"
+msgstr "ലീഡുകൾ"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Customer account"
+msgstr "ഉപഭോക്തൃ അക്കൗണ്ട്"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Reopen"
+msgstr "വീണ്ടും തുറക്കുക"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Mark lost"
+msgstr "നഷ്ടമായി രേഖപ്പെടുത്തുക"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Activity"
+msgstr "പ്രവർത്തനം"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Follow up on (optional)"
+msgstr "ഫോളോ അപ്പ് തീയതി (ഓപ്ഷണൽ)"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "What happened / what to do"
+msgstr "എന്ത് സംഭവിച്ചു / എന്ത് ചെയ്യണം"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "due"
+msgstr "അടയ്ക്കേണ്ടത്"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Done"
+msgstr "കഴിഞ്ഞു"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "No activity yet."
+msgstr "ഇതുവരെ പ്രവർത്തനം ഇല്ല."
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Make them a customer"
+msgstr "ഉപഭോക്താവാക്കുക"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Possible existing customers:"
+msgstr "നിലവിലുള്ളവരാകാം:"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Use the first match / create new"
+msgstr "ആദ്യ പൊരുത്തം ഉപയോഗിക്കുക / പുതിയത്"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Then write a quotation"
+msgstr "പിന്നെ ക്വട്ടേഷൻ എഴുതുക"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Convert to customer"
+msgstr "ഉപഭോക്താവാക്കുക"
+
+#: templates/webapp/crm/lead_detail.html
+msgid "Deals"
+msgstr "ഡീലുകൾ"
+
+#: templates/webapp/crm/leads.html
+msgid "All"
+msgstr "എല്ലാം"
+
+#: templates/webapp/crm/leads.html
+msgid "Name, company, phone"
+msgstr "പേര്, കമ്പനി, ഫോൺ"
+
+#: templates/webapp/crm/leads.html
+msgid "to do"
+msgstr "ചെയ്യാനുണ്ട്"
+
+#: templates/webapp/crm/leads.html
+msgid "No leads here."
+msgstr "ഇവിടെ ലീഡുകൾ ഇല്ല."
+
+#: templates/webapp/crm/leads.html
+msgid "New lead"
+msgstr "പുതിയ ലീഡ്"
+
+#: templates/webapp/crm/leads.html
+msgid "Company"
+msgstr "കമ്പനി"
+
+#: templates/webapp/crm/leads.html
+msgid "Phone"
+msgstr "ഫോൺ"
+
+#: templates/webapp/crm/leads.html
+msgid "Email"
+msgstr "ഇമെയിൽ"
+
+#: templates/webapp/crm/leads.html
+msgid "Came from"
+msgstr "എവിടെ നിന്ന് വന്നു"
+
+#: templates/webapp/crm/leads.html
+msgid "Assigned to"
+msgstr "ചുമതല"
+
+#: templates/webapp/crm/leads.html
+msgid "What do they want?"
+msgstr "അവർക്ക് എന്താണ് വേണ്ടത്?"
+
+#: templates/webapp/crm/leads.html
+msgid "Add lead"
+msgstr "ലീഡ് ചേർക്കുക"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Sales pipeline"
+msgstr "സെയിൽസ് പൈപ്പ്‌ലൈൻ"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Open deals value"
+msgstr "തുറന്ന ഡീലുകളുടെ മൂല്യം"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Expected (by chance of winning)"
+msgstr "പ്രതീക്ഷിക്കുന്നത് (വിജയ സാധ്യത പ്രകാരം)"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Won"
+msgstr "വിജയിച്ചത്"
+
+#: templates/webapp/crm/pipeline.html
+msgid "New leads"
+msgstr "പുതിയ ലീഡുകൾ"
+
+#: templates/webapp/crm/pipeline.html
+msgid "To do"
+msgstr "ചെയ്യാനുള്ളവ"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Everyone"
+msgstr "എല്ലാവരും"
+
+#: templates/webapp/crm/pipeline.html
+msgid "My deals"
+msgstr "എന്റെ ഡീലുകൾ"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Stage"
+msgstr "ഘട്ടം"
+
+#: templates/webapp/crm/pipeline.html
+msgid "New deal"
+msgstr "പുതിയ ഡീൽ"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Deal"
+msgstr "ഡീൽ"
+
+#: templates/webapp/crm/pipeline.html
+msgid "e.g. Office fit-out, 20 laptops"
+msgstr "ഉദാ. ഓഫീസ് ഫിറ്റ്-ഔട്ട്, 20 ലാപ്‌ടോപ്പുകൾ"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Customer"
+msgstr "കസ്റ്റമർ"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Value"
+msgstr "മൂല്യം"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Expected close"
+msgstr "പ്രതീക്ഷിക്കുന്ന തീയതി"
+
+#: templates/webapp/crm/pipeline.html
+msgid "Add deal"
+msgstr "ഡീൽ ചേർക്കുക"
+
+#: templates/webapp/crm/price_list.html
+msgid "Price list"
+msgstr "വില പട്ടിക"
+
+#: templates/webapp/crm/price_list.html
+msgid "Only for"
+msgstr "ഇവർക്ക് മാത്രം"
+
+#: templates/webapp/crm/price_list.html
+msgid "Item"
+msgstr "ഐറ്റം"
+
+#: templates/webapp/crm/price_list.html
+msgid "Normal price"
+msgstr "സാധാരണ വില"
+
+#: templates/webapp/crm/price_list.html
+msgid "List price"
+msgstr "പട്ടികയിലെ വില"
+
+#: templates/webapp/crm/price_list.html
+msgid "Remove"
+msgstr "നീക്കം ചെയ്യുക"
+
+#: templates/webapp/crm/price_list.html
+msgid "No items yet."
+msgstr "ഇതുവരെ ഐറ്റങ്ങൾ ഇല്ല."
+
+#: templates/webapp/crm/price_list.html
+msgid "Set a price"
+msgstr "വില സെറ്റ് ചെയ്യുക"
+
+#: templates/webapp/crm/price_list.html
+msgid "Price"
+msgstr "വില"
+
+#: templates/webapp/crm/price_list.html
+msgid "All items at once"
+msgstr "എല്ലാ ഐറ്റങ്ങൾക്കും ഒരുമിച്ച്"
+
+#: templates/webapp/crm/price_list.html
+msgid "Change from normal price %"
+msgstr "സാധാരണ വിലയിൽ നിന്നുള്ള മാറ്റം %"
+
+#: templates/webapp/crm/price_list.html
+msgid "Set a price for every item?"
+msgstr "എല്ലാ ഐറ്റങ്ങൾക്കും വില സെറ്റ് ചെയ്യണോ?"
+
+#: templates/webapp/crm/price_list.html
+msgid "e.g. -10 = 10% below the normal price (wholesale), 5 = 5% above."
+msgstr "ഉദാ. -10 = സാധാരണ വിലയേക്കാൾ 10% കുറവ് (മൊത്തവില), 5 = 5% കൂടുതൽ."
+
+#: templates/webapp/crm/pricing.html
+msgid "Offers"
+msgstr "ഓഫറുകൾ"
+
+#: templates/webapp/crm/pricing.html
+msgid "applied in the POS and on new quotes"
+msgstr "POS-ലും പുതിയ ക്വട്ടേഷനുകളിലും ബാധകം"
+
+#: templates/webapp/crm/pricing.html
+msgid "off"
+msgstr "കിഴിവ്"
+
+#: templates/webapp/crm/pricing.html
+msgid "all items"
+msgstr "എല്ലാ ഐറ്റങ്ങളും"
+
+#: templates/webapp/crm/pricing.html
+msgid "Live"
+msgstr "നടക്കുന്നു"
+
+#: templates/webapp/crm/pricing.html
+msgid "Stop"
+msgstr "നിർത്തുക"
+
+#: templates/webapp/crm/pricing.html
+msgid "Start"
+msgstr "തുടങ്ങുക"
+
+#: templates/webapp/crm/pricing.html
+msgid "No offers yet."
+msgstr "ഇതുവരെ ഓഫറുകൾ ഇല്ല."
+
+#: templates/webapp/crm/pricing.html
+msgid "Offer name"
+msgstr "ഓഫറിന്റെ പേര്"
+
+#: templates/webapp/crm/pricing.html
+msgid "e.g. Ramadan 10% off"
+msgstr "ഉദാ. റമദാൻ 10% കിഴിവ്"
+
+#: templates/webapp/crm/pricing.html
+msgid "Discount"
+msgstr "ഡിസ്കൗണ്ട്"
+
+#: templates/webapp/crm/pricing.html
+msgid "Fixed amount"
+msgstr "നിശ്ചിത തുക"
+
+#: templates/webapp/crm/pricing.html
+msgid "All items"
+msgstr "എല്ലാ ഐറ്റങ്ങളും"
+
+#: templates/webapp/crm/pricing.html
+msgid "Save offer"
+msgstr "ഓഫർ സേവ് ചെയ്യുക"
+
+#: templates/webapp/crm/pricing.html
+msgid "Price lists"
+msgstr "വില പട്ടികകൾ"
+
+#: templates/webapp/crm/pricing.html
+msgid "e.g. wholesale prices, a special price for one customer"
+msgstr "ഉദാ. മൊത്തവില, ഒരു ഉപഭോക്താവിനുള്ള പ്രത്യേക വില"
+
+#: templates/webapp/crm/pricing.html
+msgid "items"
+msgstr "ഐറ്റങ്ങൾ"
+
+#: templates/webapp/crm/pricing.html
+msgid "until"
+msgstr "വരെ"
+
+#: templates/webapp/crm/pricing.html
+msgid "No price lists yet."
+msgstr "ഇതുവരെ വില പട്ടികകൾ ഇല്ല."
+
+#: templates/webapp/crm/pricing.html
+msgid "e.g. Wholesale"
+msgstr "ഉദാ. മൊത്തവില"
+
+#: templates/webapp/crm/pricing.html
+msgid "For customer (optional)"
+msgstr "ഉപഭോക്താവിന് (ഓപ്ഷണൽ)"
+
+#: templates/webapp/crm/pricing.html
+msgid "Priority"
+msgstr "മുൻഗണന"
+
+#: templates/webapp/crm/pricing.html
+msgid "Create price list"
+msgstr "വില പട്ടിക ഉണ്ടാക്കുക"
+
 #: templates/webapp/customer_display.html
 msgid "Customer display ·"
 msgstr "കസ്റ്റമർ ഡിസ്പ്ലേ ·"
@@ -602,16 +1602,44 @@ msgid "item"
 msgstr "ഐറ്റം"
 
 #: templates/webapp/customer_display.html
-msgid "items"
-msgstr "ഐറ്റങ്ങൾ"
-
-#: templates/webapp/customer_display.html
 msgid "Paid"
 msgstr "അടച്ചു"
 
 #: templates/webapp/customer_display.html
 msgid "Your change"
 msgstr "നിങ്ങളുടെ ബാക്കി"
+
+#: templates/webapp/customer_list.html
+msgid "Add customer"
+msgstr "ഉപഭോക്താവിനെ ചേർക്കുക"
+
+#: templates/webapp/customer_list.html
+msgid "Export CSV"
+msgstr "CSV എക്സ്പോർട്ട്"
+
+#: templates/webapp/customer_list.html
+msgid "Name, phone or email"
+msgstr "പേര്, ഫോൺ അല്ലെങ്കിൽ ഇമെയിൽ"
+
+#: templates/webapp/customer_list.html
+msgid "Owes"
+msgstr "തരാനുണ്ട്"
+
+#: templates/webapp/customer_list.html
+msgid "Edit"
+msgstr "എഡിറ്റ്"
+
+#: templates/webapp/customer_list.html
+msgid "Delete"
+msgstr "ഡിലീറ്റ്"
+
+#: templates/webapp/customer_list.html
+msgid "No customers match your search."
+msgstr "തിരയലിൽ ഉപഭോക്താക്കൾ ഇല്ല."
+
+#: templates/webapp/customer_list.html
+msgid "No customers yet."
+msgstr "ഇതുവരെ ഉപഭോക്താക്കൾ ഇല്ല."
 
 #: templates/webapp/dashboard.html
 msgid "Finish setting up your business"
@@ -756,18 +1784,6 @@ msgstr "സമീപകാല വിൽപ്പന"
 #: templates/webapp/dashboard.html
 msgid "Invoice"
 msgstr "ഇൻവോയ്സ്"
-
-#: templates/webapp/dashboard.html
-msgid "Customer"
-msgstr "കസ്റ്റമർ"
-
-#: templates/webapp/dashboard.html
-msgid "Date"
-msgstr "തീയതി"
-
-#: templates/webapp/dashboard.html
-msgid "Total"
-msgstr "ആകെ"
 
 #: templates/webapp/dashboard.html
 msgid "Status"
@@ -1171,10 +2187,6 @@ msgid "The purchase is recorded in your books automatically."
 msgstr "വാങ്ങൽ അക്കൗണ്ട്സിൽ സ്വയം രേഖപ്പെടുത്തും."
 
 #: templates/webapp/finance/assets.html
-msgid "Name"
-msgstr "പേര്"
-
-#: templates/webapp/finance/assets.html
 msgid "Category"
 msgstr "വിഭാഗം"
 
@@ -1203,20 +2215,12 @@ msgid "Open"
 msgstr "തുറക്കുക"
 
 #: templates/webapp/finance/cheques.html
-msgid "All"
-msgstr "എല്ലാം"
-
-#: templates/webapp/finance/cheques.html
 msgid "Party"
 msgstr "കക്ഷി"
 
 #: templates/webapp/finance/cheques.html
 msgid "Cheque"
 msgstr "ചെക്ക്"
-
-#: templates/webapp/finance/cheques.html
-msgid "Amount"
-msgstr "തുക"
 
 #: templates/webapp/finance/cheques.html
 msgid "Due"
@@ -1269,10 +2273,6 @@ msgstr "സപ്ലയർ"
 #: templates/webapp/finance/cheques.html
 msgid "Cheque number"
 msgstr "ചെക്ക് നമ്പർ"
-
-#: templates/webapp/finance/cheques.html
-msgid "Bank"
-msgstr "ബാങ്ക്"
 
 #: templates/webapp/finance/cheques.html
 msgid "Save cheque"
@@ -1382,10 +2382,6 @@ msgid "Items"
 msgstr "ഐറ്റങ്ങൾ"
 
 #: templates/webapp/finance/recurring.html
-msgid "Add line"
-msgstr "വരി ചേർക്കുക"
-
-#: templates/webapp/finance/recurring.html
 msgid "Tax %"
 msgstr "ടാക്സ് %"
 
@@ -1396,10 +2392,6 @@ msgstr "കസ്റ്റമർക്ക് ഇമെയിൽ"
 #: templates/webapp/finance/recurring.html
 msgid "Create schedule"
 msgstr "ഷെഡ്യൂൾ ഉണ്ടാക്കുക"
-
-#: templates/webapp/finance/recurring.html
-msgid "Price"
-msgstr "വില"
 
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
@@ -1438,16 +2430,8 @@ msgid "Advances"
 msgstr "അഡ്വാൻസുകൾ"
 
 #: templates/webapp/hr/advances.html
-msgid "Cash"
-msgstr "ക്യാഷ്"
-
-#: templates/webapp/hr/advances.html
 msgid "Monthly"
 msgstr "മാസംതോറും"
-
-#: templates/webapp/hr/advances.html
-msgid "Balance"
-msgstr "ബാക്കി"
 
 #: templates/webapp/hr/advances.html
 msgid "Paid back in cash / bank"
@@ -1456,10 +2440,6 @@ msgstr "പണമായി / ബാങ്ക് വഴി തിരികെ ന
 #: templates/webapp/hr/advances.html
 msgid "Received in"
 msgstr "ലഭിച്ചത്"
-
-#: templates/webapp/hr/advances.html
-msgid "Save"
-msgstr "സേവ് ചെയ്യുക"
 
 #: templates/webapp/hr/advances.html
 msgid "Cleared"
@@ -1562,10 +2542,6 @@ msgid "Take attendance"
 msgstr "ഹാജർ എടുക്കുക"
 
 #: templates/webapp/hr/attendance_month.html
-msgid "Print"
-msgstr "പ്രിന്റ്"
-
-#: templates/webapp/hr/attendance_month.html
 msgid "Unpaid"
 msgstr "ശമ്പളമില്ലാത്തത്"
 
@@ -1601,10 +2577,6 @@ msgstr "ഇന്ന് കാലാവധി തീരും"
 #: templates/webapp/hr/documents.html
 msgid "days left"
 msgstr "ദിവസം ബാക്കി"
-
-#: templates/webapp/hr/documents.html
-msgid "Delete"
-msgstr "ഡിലീറ്റ്"
 
 #: templates/webapp/hr/documents.html
 msgid "Remove this document?"
@@ -1885,14 +2857,6 @@ msgid "Login"
 msgstr "ലോഗിൻ"
 
 #: templates/webapp/hr/staff_detail.html
-msgid "Edit"
-msgstr "എഡിറ്റ്"
-
-#: templates/webapp/hr/staff_detail.html
-msgid "Remove"
-msgstr "നീക്കം ചെയ്യുക"
-
-#: templates/webapp/hr/staff_detail.html
 msgid "Salary"
 msgstr "ശമ്പളം"
 
@@ -1965,10 +2929,6 @@ msgid "Edit staff"
 msgstr "സ്റ്റാഫ് എഡിറ്റ്"
 
 #: templates/webapp/hr/staff_form.html
-msgid "Details"
-msgstr "വിവരങ്ങൾ"
-
-#: templates/webapp/hr/staff_form.html
 msgid ""
 "Absent days, unpaid leave and salary advances are deducted automatically "
 "when you run payroll."
@@ -2007,10 +2967,6 @@ msgstr "ശമ്പളം കണക്കാക്കുക"
 #: templates/webapp/hr/staff_list.html
 msgid "Name, phone or job title"
 msgstr "പേര്, ഫോൺ അല്ലെങ്കിൽ ജോലി"
-
-#: templates/webapp/hr/staff_list.html
-msgid "Search"
-msgstr "തിരയുക"
 
 #: templates/webapp/hr/staff_list.html
 msgid "Current staff"
@@ -2111,10 +3067,6 @@ msgid "Share"
 msgstr "ഷെയർ"
 
 #: templates/webapp/industry/booking_detail.html
-msgid "From"
-msgstr "മുതൽ"
-
-#: templates/webapp/industry/booking_detail.html
 msgid "Until"
 msgstr "വരെ"
 
@@ -2187,10 +3139,6 @@ msgid "Extras note"
 msgstr "അധിക ചാർജ് കുറിപ്പ്"
 
 #: templates/webapp/industry/booking_detail.html
-msgid "Discount"
-msgstr "ഡിസ്കൗണ്ട്"
-
-#: templates/webapp/industry/booking_detail.html
 msgid "Paid now"
 msgstr "ഇപ്പോൾ അടച്ചത്"
 
@@ -2221,10 +3169,6 @@ msgstr "പുതിയത്"
 #: templates/webapp/industry/booking_form.html
 msgid "or new customer"
 msgstr "അല്ലെങ്കിൽ പുതിയ ഉപഭോക്താവ്"
-
-#: templates/webapp/industry/booking_form.html
-msgid "Phone"
-msgstr "ഫോൺ"
 
 #: templates/webapp/industry/booking_form.html
 msgid "Advance paid now"
@@ -2411,10 +3355,6 @@ msgid "Bill the first fee now (this month's fee, or the one-time fee)"
 msgstr "ആദ്യ ഫീസ് ഇപ്പോൾ ബിൽ ചെയ്യുക (ഈ മാസത്തെ അല്ലെങ്കിൽ ഒറ്റത്തവണ ഫീസ്)"
 
 #: templates/webapp/industry/fees.html
-msgid "Invoices"
-msgstr "ഇൻവോയ്സുകൾ"
-
-#: templates/webapp/industry/fees.html
 msgid "Billed"
 msgstr "ബിൽ ചെയ്തത്"
 
@@ -2506,10 +3446,6 @@ msgstr "നിരക്കിന് പിന്നിലുള്ള വില�
 msgid "On each product set weight (g), karat and making charge."
 msgstr ""
 "ഓരോ ഉൽപ്പന്നത്തിലും തൂക്കം (ഗ്രാം), കാരറ്റ്, പണിക്കൂലി സെറ്റ് ചെയ്യുക."
-
-#: templates/webapp/industry/gold_rates.html
-msgid "Item"
-msgstr "ഐറ്റം"
 
 #: templates/webapp/industry/gold_rates.html
 msgid "Weight"
@@ -2604,10 +3540,6 @@ msgid "Balance due"
 msgstr "ബാക്കി തുക"
 
 #: templates/webapp/industry/lease_detail.html
-msgid "due"
-msgstr "അടയ്ക്കേണ്ടത്"
-
-#: templates/webapp/industry/lease_detail.html
 msgid "No rent billed yet."
 msgstr "ഇതുവരെ വാടക ബിൽ ചെയ്തിട്ടില്ല."
 
@@ -2622,10 +3554,6 @@ msgstr "പുതിയ വാടക കരാർ"
 #: templates/webapp/industry/lease_form.html
 msgid "or new tenant"
 msgstr "അല്ലെങ്കിൽ പുതിയ വാടകക്കാരൻ"
-
-#: templates/webapp/industry/lease_form.html
-msgid "Start"
-msgstr "തുടങ്ങുക"
 
 #: templates/webapp/industry/lease_form.html
 msgid "End"
@@ -2700,10 +3628,6 @@ msgid "Owner"
 msgstr "ഉടമ"
 
 #: templates/webapp/industry/property_home.html
-msgid "until"
-msgstr "വരെ"
-
-#: templates/webapp/industry/property_home.html
 msgid "No units yet."
 msgstr "യൂണിറ്റുകൾ ഇതുവരെ ഇല്ല."
 
@@ -2734,10 +3658,6 @@ msgstr "ഈ മാസത്തെ എല്ലാ വാടകയും ബി�
 #: templates/webapp/industry/rent_run.html
 msgid "No rent billed for this month."
 msgstr "ഈ മാസം വാടക ബിൽ ചെയ്തിട്ടില്ല."
-
-#: templates/webapp/industry/resource_form.html
-msgid "Type"
-msgstr "തരം"
 
 #: templates/webapp/industry/resource_form.html
 msgid "Capacity (guests / seats)"
@@ -2901,10 +3821,6 @@ msgstr "(വരെ"
 msgid "Subtotal"
 msgstr "സബ്ടോട്ടൽ"
 
-#: templates/webapp/invoice_pdf.html
-msgid "Tax"
-msgstr "ടാക്സ്"
-
 #: templates/webapp/invoice_share.html
 msgid "Share invoice"
 msgstr "ഇൻവോയ്സ് ഷെയർ ചെയ്യുക"
@@ -3044,10 +3960,6 @@ msgstr "വിലാസം"
 #: templates/webapp/onboarding/wizard.html
 msgid "VAT / tax number (optional)"
 msgstr "VAT / ടാക്സ് നമ്പർ (ഓപ്ഷണൽ)"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Currency"
-msgstr "കറൻസി"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Skip setup for now"
@@ -3381,10 +4293,6 @@ msgstr "അടയ്ക്കേണ്ട തുക"
 #: templates/webapp/pos.html
 msgid "Card"
 msgstr "കാർഡ്"
-
-#: templates/webapp/pos.html
-msgid "Credit"
-msgstr "കടം"
 
 #: templates/webapp/pos.html
 msgid "Instalment"
@@ -4173,10 +5081,6 @@ msgid "Phone (optional)"
 msgstr "ഫോൺ (ഓപ്ഷണൽ)"
 
 #: templates/webapp/public/signup.html
-msgid "Email"
-msgstr "ഇമെയിൽ"
-
-#: templates/webapp/public/signup.html
 msgid "I agree to the terms of service and privacy policy."
 msgstr "സേവന നിബന്ധനകളും സ്വകാര്യതാ നയവും ഞാൻ അംഗീകരിക്കുന്നു."
 
@@ -4203,6 +5107,334 @@ msgstr "ഇന്ത്യ വില, INR-ൽ ബിൽ ചെയ്യും."
 #: templates/webapp/public/signup.html
 msgid "You can change the plan any time from Billing."
 msgstr "Billing-ൽ നിന്ന് എപ്പോൾ വേണമെങ്കിലും പ്ലാൻ മാറ്റാം."
+
+#: templates/webapp/purchase_docs/_tabs.html
+msgid "Bills"
+msgstr "ബില്ലുകൾ"
+
+#: templates/webapp/purchase_docs/grn.html
+msgid "Goods receipt"
+msgstr "സാധനം ലഭിച്ചത്"
+
+#: templates/webapp/purchase_docs/grn.html
+msgid "GOODS RECEIPT NOTE"
+msgstr "സാധനം ലഭിച്ച രസീത്"
+
+#: templates/webapp/purchase_docs/grn.html
+msgid "PO"
+msgstr "PO"
+
+#: templates/webapp/purchase_docs/grn.html
+msgid "Received by"
+msgstr "സ്വീകരിച്ചത്"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Purchase order"
+msgstr "പർച്ചേസ് ഓർഡർ"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Ref"
+msgstr "റഫ."
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "PURCHASE ORDER"
+msgstr "പർച്ചേസ് ഓർഡർ"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Expected delivery"
+msgstr "പ്രതീക്ഷിക്കുന്ന ഡെലിവറി"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Ordered"
+msgstr "ഓർഡർ ചെയ്തത്"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Received"
+msgstr "ലഭിച്ചത്"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Receive now"
+msgstr "ഇപ്പോൾ സ്വീകരിക്കുക"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Supplier's bill no."
+msgstr "സപ്ലയറുടെ ബിൽ നമ്പർ"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Receive & record bill"
+msgstr "സ്വീകരിച്ച് ബിൽ രേഖപ്പെടുത്തുക"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Receive only"
+msgstr "സ്വീകരിക്കുക മാത്രം"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Record bill for received items"
+msgstr "ലഭിച്ചവയുടെ ബിൽ രേഖപ്പെടുത്തുക"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Confirm"
+msgstr "സ്ഥിരീകരിക്കുക"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Send to supplier"
+msgstr "സപ്ലയർക്ക് അയയ്ക്കുക"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Cancel this purchase order?"
+msgstr "ഈ പർച്ചേസ് ഓർഡർ റദ്ദാക്കണോ?"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Goods received"
+msgstr "ലഭിച്ച സാധനങ്ങൾ"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Nothing received yet."
+msgstr "ഇതുവരെ ഒന്നും ലഭിച്ചില്ല."
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "Supplier bills"
+msgstr "സപ്ലയർ ബില്ലുകൾ"
+
+#: templates/webapp/purchase_docs/po_detail.html
+msgid "No bill yet."
+msgstr "ഇതുവരെ ബിൽ ഇല്ല."
+
+#: templates/webapp/purchase_docs/po_list.html
+msgid "New purchase order"
+msgstr "പുതിയ പർച്ചേസ് ഓർഡർ"
+
+#: templates/webapp/purchase_docs/po_list.html
+msgid "Order low-stock items"
+msgstr "കുറഞ്ഞ സ്റ്റോക്ക് ഐറ്റങ്ങൾ ഓർഡർ ചെയ്യുക"
+
+#: templates/webapp/purchase_docs/po_list.html
+msgid "Number or supplier"
+msgstr "നമ്പർ അല്ലെങ്കിൽ സപ്ലയർ"
+
+#: templates/webapp/purchase_docs/po_list.html
+msgid "expected"
+msgstr "പ്രതീക്ഷിക്കുന്നത്"
+
+#: templates/webapp/purchase_docs/po_list.html
+msgid "No purchase orders yet."
+msgstr "ഇതുവരെ പർച്ചേസ് ഓർഡറുകൾ ഇല്ല."
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Bill"
+msgstr "ബിൽ"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Supplier bill"
+msgstr "സപ്ലയർ ബിൽ"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Bill total"
+msgstr "ബിൽ തുക"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Return qty"
+msgstr "തിരികെ നൽകുന്ന എണ്ണം"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Return items to supplier"
+msgstr "സപ്ലയർക്ക് തിരികെ നൽകുക"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Refund"
+msgstr "റീഫണ്ട്"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "From stock at"
+msgstr "ഈ സ്ഥലത്തെ സ്റ്റോക്കിൽ നിന്ന്"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Reason"
+msgstr "കാരണം"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "e.g. Damaged on arrival"
+msgstr "ഉദാ. എത്തിയപ്പോൾ കേടായിരുന്നു"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Save return"
+msgstr "റിട്ടേൺ സേവ് ചെയ്യുക"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Pay supplier"
+msgstr "സപ്ലയർക്ക് പണം നൽകുക"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Payments"
+msgstr "പേയ്‌മെന്റുകൾ"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "No payments yet."
+msgstr "ഇതുവരെ പേയ്‌മെന്റുകൾ ഇല്ല."
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "Returns"
+msgstr "റിട്ടേണുകൾ"
+
+#: templates/webapp/purchase_docs/purchase_detail.html
+msgid "No returns."
+msgstr "റിട്ടേണുകൾ ഇല്ല."
+
+#: templates/webapp/purchases/purchase_list.html
+msgid "New purchase"
+msgstr "പുതിയ വാങ്ങൽ"
+
+#: templates/webapp/purchases/purchase_list.html
+msgid "No purchases yet."
+msgstr "ഇതുവരെ വാങ്ങലുകൾ ഇല്ല."
+
+#: templates/webapp/receivables/customer.html
+msgid "Send reminder"
+msgstr "ഓർമ്മപ്പെടുത്തൽ അയയ്ക്കുക"
+
+#: templates/webapp/receivables/customer.html
+msgid "Print statement"
+msgstr "സ്റ്റേറ്റ്മെന്റ് പ്രിന്റ്"
+
+#: templates/webapp/receivables/customer.html
+msgid "In credit (advance)"
+msgstr "അഡ്വാൻസ് ബാക്കി"
+
+#: templates/webapp/receivables/customer.html
+msgid "Balance owed"
+msgstr "തരാനുള്ള ബാക്കി"
+
+#: templates/webapp/receivables/customer.html
+msgid "Unpaid bills"
+msgstr "അടയ്ക്കാത്ത ബില്ലുകൾ"
+
+#: templates/webapp/receivables/customer.html
+msgid "Credit limit"
+msgstr "ക്രെഡിറ്റ് പരിധി"
+
+#: templates/webapp/receivables/customer.html
+msgid "No limit"
+msgstr "പരിധിയില്ല"
+
+#: templates/webapp/receivables/customer.html
+msgid "Over the limit"
+msgstr "പരിധി കടന്നു"
+
+#: templates/webapp/receivables/customer.html
+msgid "Statement"
+msgstr "സ്റ്റേറ്റ്മെന്റ്"
+
+#: templates/webapp/receivables/customer.html
+msgid "Statement of account"
+msgstr "അക്കൗണ്ട് സ്റ്റേറ്റ്മെന്റ്"
+
+#: templates/webapp/receivables/customer.html
+msgid "No transactions."
+msgstr "ഇടപാടുകൾ ഇല്ല."
+
+#: templates/webapp/receivables/customer.html
+msgid "Receive payment"
+msgstr "പണം സ്വീകരിക്കുക"
+
+#: templates/webapp/receivables/customer.html
+msgid "Apply to"
+msgstr "ഇതിലേക്ക്"
+
+#: templates/webapp/receivables/customer.html
+msgid "Oldest bills first"
+msgstr "പഴയ ബില്ലുകൾ ആദ്യം"
+
+#: templates/webapp/receivables/customer.html
+msgid "Save payment"
+msgstr "പേയ്‌മെന്റ് സേവ് ചെയ്യുക"
+
+#: templates/webapp/receivables/customer.html
+msgid "Extra money is kept as an advance and used for the next bills."
+msgstr "അധിക പണം അഡ്വാൻസായി സൂക്ഷിച്ച് അടുത്ത ബില്ലുകൾക്ക് ഉപയോഗിക്കും."
+
+#: templates/webapp/receivables/customer.html
+msgid "All bills are paid."
+msgstr "എല്ലാ ബില്ലുകളും അടച്ചു."
+
+#: templates/webapp/receivables/customer.html
+msgid "Follow-up notes"
+msgstr "ഫോളോ-അപ്പ് കുറിപ്പുകൾ"
+
+#: templates/webapp/receivables/customer.html
+msgid "e.g. Promised to pay on Thursday"
+msgstr "ഉദാ. വ്യാഴാഴ്ച അടയ്ക്കാമെന്ന് പറഞ്ഞു"
+
+#: templates/webapp/receivables/customer.html
+msgid "Follow up on"
+msgstr "ഫോളോ അപ്പ് തീയതി"
+
+#: templates/webapp/receivables/customer.html
+msgid "Save note"
+msgstr "കുറിപ്പ് സേവ് ചെയ്യുക"
+
+#: templates/webapp/receivables/customer.html
+msgid "follow up"
+msgstr "ഫോളോ അപ്പ്"
+
+#: templates/webapp/receivables/customer.html
+msgid "No notes yet."
+msgstr "ഇതുവരെ കുറിപ്പുകൾ ഇല്ല."
+
+#: templates/webapp/receivables/customer.html
+msgid "Credit settings"
+msgstr "ക്രെഡിറ്റ് സെറ്റിംഗ്സ്"
+
+#: templates/webapp/receivables/customer.html
+msgid "Credit limit (0 = no limit)"
+msgstr "ക്രെഡിറ്റ് പരിധി (0 = പരിധിയില്ല)"
+
+#: templates/webapp/receivables/customer.html
+msgid "Days to pay"
+msgstr "അടയ്ക്കാനുള്ള ദിവസങ്ങൾ"
+
+#: templates/webapp/receivables/home.html
+msgid "Not yet due"
+msgstr "കാലാവധി ആയിട്ടില്ല"
+
+#: templates/webapp/receivables/home.html
+msgid "Received this month"
+msgstr "ഈ മാസം ലഭിച്ചത്"
+
+#: templates/webapp/receivables/home.html
+msgid "Overdue by age"
+msgstr "വൈകിയ ദിവസങ്ങൾ പ്രകാരം"
+
+#: templates/webapp/receivables/home.html
+msgid "Follow-ups due"
+msgstr "ഫോളോ-അപ്പ് ചെയ്യാനുള്ളവ"
+
+#: templates/webapp/receivables/home.html
+msgid "Owing"
+msgstr "തരാനുള്ളവർ"
+
+#: templates/webapp/receivables/home.html
+msgid "In credit"
+msgstr "അഡ്വാൻസ് ഉള്ളവർ"
+
+#: templates/webapp/receivables/home.html
+msgid "Customer name or phone"
+msgstr "ഉപഭോക്താവിന്റെ പേര് അല്ലെങ്കിൽ ഫോൺ"
+
+#: templates/webapp/receivables/home.html
+msgid "unpaid bills"
+msgstr "അടയ്ക്കാത്ത ബില്ലുകൾ"
+
+#: templates/webapp/receivables/home.html
+msgid "oldest"
+msgstr "ഏറ്റവും പഴയത്"
+
+#: templates/webapp/receivables/home.html
+msgid "days late"
+msgstr "ദിവസം വൈകി"
+
+#: templates/webapp/receivables/home.html
+msgid "Nobody owes you money."
+msgstr "ആരും പണം തരാനില്ല."
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Restaurant"
@@ -4548,10 +5780,6 @@ msgstr "ഓർഡർ അപ്ഡേറ്റ് ചെയ്യണോ?"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Go back"
 msgstr "തിരികെ"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "Confirm"
-msgstr "സ്ഥിരീകരിക്കുക"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "shown"
@@ -5211,18 +6439,6 @@ msgid "Order type"
 msgstr "ഓർഡർ തരം"
 
 #: templates/webapp/restaurant/order_list.html
-msgid "All types"
-msgstr "എല്ലാ തരവും"
-
-#: templates/webapp/restaurant/order_list.html
-msgid "To"
-msgstr "വരെ"
-
-#: templates/webapp/restaurant/order_list.html
-msgid "Bill"
-msgstr "ബിൽ"
-
-#: templates/webapp/restaurant/order_list.html
 msgid "guests"
 msgstr "അതിഥികൾ"
 
@@ -5249,6 +6465,194 @@ msgstr "ആകെ"
 #: templates/webapp/restaurant/receipt_print.html
 msgid "Print Receipt"
 msgstr "രസീത് പ്രിന്റ്"
+
+#: templates/webapp/sales_docs/_doc_head.html
+msgid "Valid until"
+msgstr "കാലാവധി"
+
+#: templates/webapp/sales_docs/_tabs.html
+msgid "Sales documents"
+msgstr "സെയിൽസ് രേഖകൾ"
+
+#: templates/webapp/sales_docs/_tabs.html
+msgid "Sales orders"
+msgstr "സെയിൽസ് ഓർഡറുകൾ"
+
+#: templates/webapp/sales_docs/delivery_note.html
+msgid "Delivery note"
+msgstr "ഡെലിവറി നോട്ട്"
+
+#: templates/webapp/sales_docs/delivery_note.html
+msgid "DELIVERY NOTE"
+msgstr "ഡെലിവറി നോട്ട്"
+
+#: templates/webapp/sales_docs/delivery_note.html
+msgid "Order"
+msgstr "ഓർഡർ"
+
+#: templates/webapp/sales_docs/delivery_note.html
+msgid "Deliver to"
+msgstr "ഡെലിവറി വിലാസം"
+
+#: templates/webapp/sales_docs/delivery_note.html
+msgid "Delivered by"
+msgstr "ഡെലിവർ ചെയ്തത്"
+
+#: templates/webapp/sales_docs/delivery_note.html
+msgid "Received by (name & signature)"
+msgstr "സ്വീകരിച്ചത് (പേരും ഒപ്പും)"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "— New supplier —"
+msgstr "— പുതിയ സപ്ലയർ —"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "— New customer —"
+msgstr "— പുതിയ ഉപഭോക്താവ് —"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "New supplier name"
+msgstr "പുതിയ സപ്ലയറുടെ പേര്"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "New customer name"
+msgstr "പുതിയ ഉപഭോക്താവിന്റെ പേര്"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "Customer PO / reference"
+msgstr "ഉപഭോക്താവിന്റെ PO / റഫറൻസ്"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "Notes / terms"
+msgstr "കുറിപ്പുകൾ / നിബന്ധനകൾ"
+
+#: templates/webapp/sales_docs/editor.html
+msgid "e.g. Delivery in 3 days. Prices include installation."
+msgstr "ഉദാ. 3 ദിവസത്തിനുള്ളിൽ ഡെലിവറി. വിലയിൽ ഇൻസ്റ്റാളേഷൻ ഉൾപ്പെടുന്നു."
+
+#: templates/webapp/sales_docs/invoice_list.html
+msgid "Sales invoices"
+msgstr "സെയിൽസ് ഇൻവോയ്സുകൾ"
+
+#: templates/webapp/sales_docs/invoice_list.html
+msgid "Unpaid / part paid"
+msgstr "അടയ്ക്കാത്തത് / ഭാഗികം"
+
+#: templates/webapp/sales_docs/invoice_list.html
+msgid "Invoice no. or customer"
+msgstr "ഇൻവോയ്സ് നമ്പർ അല്ലെങ്കിൽ ഉപഭോക്താവ്"
+
+#: templates/webapp/sales_docs/invoice_list.html
+msgid "Receive"
+msgstr "സ്വീകരിക്കുക"
+
+#: templates/webapp/sales_docs/invoice_list.html
+msgid "No invoices found."
+msgstr "ഇൻവോയ്സുകൾ കണ്ടെത്തിയില്ല."
+
+#: templates/webapp/sales_docs/list.html
+msgid "New quotation"
+msgstr "പുതിയ ക്വട്ടേഷൻ"
+
+#: templates/webapp/sales_docs/list.html
+msgid "New sales order"
+msgstr "പുതിയ സെയിൽസ് ഓർഡർ"
+
+#: templates/webapp/sales_docs/list.html
+msgid "Number or customer"
+msgstr "നമ്പർ അല്ലെങ്കിൽ ഉപഭോക്താവ്"
+
+#: templates/webapp/sales_docs/list.html
+msgid "valid until"
+msgstr "കാലാവധി"
+
+#: templates/webapp/sales_docs/list.html
+msgid "Nothing here yet."
+msgstr "ഇവിടെ ഇതുവരെ ഒന്നുമില്ല."
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Sales order"
+msgstr "സെയിൽസ് ഓർഡർ"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "SALES ORDER"
+msgstr "സെയിൽസ് ഓർഡർ"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Delivered"
+msgstr "ഡെലിവർ ചെയ്തത്"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Invoiced"
+msgstr "ഇൻവോയ്സ് ചെയ്തത്"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Deliver now"
+msgstr "ഇപ്പോൾ ഡെലിവർ ചെയ്യുക"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Deliver & invoice"
+msgstr "ഡെലിവർ ചെയ്ത് ഇൻവോയ്സ്"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Deliver only"
+msgstr "ഡെലിവർ മാത്രം"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Invoice delivered items"
+msgstr "ഡെലിവർ ചെയ്തവയ്ക്ക് ഇൻവോയ്സ്"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Cancel this order?"
+msgstr "ഈ ഓർഡർ റദ്ദാക്കണോ?"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Delivery notes"
+msgstr "ഡെലിവറി നോട്ടുകൾ"
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Nothing delivered yet."
+msgstr "ഇതുവരെ ഒന്നും ഡെലിവർ ചെയ്തില്ല."
+
+#: templates/webapp/sales_docs/order_detail.html
+msgid "Not invoiced yet."
+msgstr "ഇതുവരെ ഇൻവോയ്സ് ചെയ്തില്ല."
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Quotation"
+msgstr "ക്വട്ടേഷൻ"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "QUOTATION"
+msgstr "ക്വട്ടേഷൻ"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Print / PDF"
+msgstr "പ്രിന്റ് / PDF"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Mark as sent"
+msgstr "അയച്ചതായി രേഖപ്പെടുത്തുക"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Customer accepted"
+msgstr "ഉപഭോക്താവ് സ്വീകരിച്ചു"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Customer rejected"
+msgstr "ഉപഭോക്താവ് നിരസിച്ചു"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Create an invoice now? Stock will be reduced."
+msgstr "ഇപ്പോൾ ഇൻവോയ്സ് ഉണ്ടാക്കണോ? സ്റ്റോക്ക് കുറയും."
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Convert to invoice"
+msgstr "ഇൻവോയ്സ് ആക്കുക"
+
+#: templates/webapp/sales_docs/quotation_detail.html
+msgid "Convert to sales order"
+msgstr "സെയിൽസ് ഓർഡർ ആക്കുക"
 
 #: templates/webapp/security.html
 msgid "Security"
@@ -5388,6 +6792,314 @@ msgstr "ഇമെയിൽ വഴി പാസ്‌വേഡ് റീസെറ
 msgid "Open the setup wizard"
 msgstr "സെറ്റപ്പ് വിസാർഡ് തുറക്കുക"
 
+#: templates/webapp/stock/_tabs.html
+msgid "Stock"
+msgstr "സ്റ്റോക്ക്"
+
+#: templates/webapp/stock/_tabs.html
+msgid "Adjust"
+msgstr "ക്രമീകരിക്കുക"
+
+#: templates/webapp/stock/_tabs.html
+msgid "Stock taking"
+msgstr "സ്റ്റോക്ക് എണ്ണൽ"
+
+#: templates/webapp/stock/_tabs.html
+msgid "Batches & expiry"
+msgstr "ബാച്ചും കാലാവധിയും"
+
+#: templates/webapp/stock/_tabs.html
+msgid "Serial numbers"
+msgstr "സീരിയൽ നമ്പറുകൾ"
+
+#: templates/webapp/stock/adjust.html
+msgid "Adjust stock"
+msgstr "സ്റ്റോക്ക് ക്രമീകരിക്കുക"
+
+#: templates/webapp/stock/adjust.html
+msgid "Add or remove stock"
+msgstr "സ്റ്റോക്ക് കൂട്ടുക / കുറയ്ക്കുക"
+
+#: templates/webapp/stock/adjust.html
+msgid "Remove from stock"
+msgstr "സ്റ്റോക്കിൽ നിന്ന് കുറയ്ക്കുക"
+
+#: templates/webapp/stock/adjust.html
+msgid "Add to stock"
+msgstr "സ്റ്റോക്കിൽ ചേർക്കുക"
+
+#: templates/webapp/stock/adjust.html
+msgid "Location"
+msgstr "സ്ഥലം"
+
+#: templates/webapp/stock/adjust.html
+msgid "Recent adjustments"
+msgstr "സമീപകാല ക്രമീകരണങ്ങൾ"
+
+#: templates/webapp/stock/adjust.html
+msgid "No adjustments yet."
+msgstr "ഇതുവരെ ക്രമീകരണങ്ങൾ ഇല്ല."
+
+#: templates/webapp/stock/batches.html
+msgid "Value expired or expiring in 30 days"
+msgstr "കാലാവധി തീർന്നതോ 30 ദിവസത്തിനുള്ളിൽ തീരുന്നതോ ആയ മൂല്യം"
+
+#: templates/webapp/stock/batches.html
+msgid "Expired / expiring"
+msgstr "കാലാവധി തീർന്നത് / തീരുന്നത്"
+
+#: templates/webapp/stock/batches.html
+msgid "Batch"
+msgstr "ബാച്ച്"
+
+#: templates/webapp/stock/batches.html
+msgid "No expiry date"
+msgstr "കാലാവധി തീയതി ഇല്ല"
+
+#: templates/webapp/stock/batches.html
+msgid "Write off"
+msgstr "എഴുതിത്തള്ളുക"
+
+#: templates/webapp/stock/batches.html
+msgid "No batches here."
+msgstr "ഇവിടെ ബാച്ചുകൾ ഇല്ല."
+
+#: templates/webapp/stock/batches.html
+msgid "Receive a batch"
+msgstr "ബാച്ച് സ്വീകരിക്കുക"
+
+#: templates/webapp/stock/batches.html
+msgid "Batch / lot number"
+msgstr "ബാച്ച് / ലോട്ട് നമ്പർ"
+
+#: templates/webapp/stock/batches.html
+msgid "Expiry date"
+msgstr "കാലാവധി തീയതി"
+
+#: templates/webapp/stock/batches.html
+msgid "Made on"
+msgstr "നിർമ്മിച്ച തീയതി"
+
+#: templates/webapp/stock/batches.html
+msgid "Quantity received"
+msgstr "ലഭിച്ച എണ്ണം"
+
+#: templates/webapp/stock/batches.html
+msgid "Save batch"
+msgstr "ബാച്ച് സേവ് ചെയ്യുക"
+
+#: templates/webapp/stock/batches.html
+msgid "Sales take stock from the batch that expires first."
+msgstr "വിൽപ്പനയിൽ ആദ്യം കാലാവധി തീരുന്ന ബാച്ചിൽ നിന്ന് എടുക്കും."
+
+#: templates/webapp/stock/count_detail.html
+msgid "Stock count"
+msgstr "സ്റ്റോക്ക് എണ്ണൽ"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Counted"
+msgstr "എണ്ണിയത്"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Differences"
+msgstr "വ്യത്യാസങ്ങൾ"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Shortage value"
+msgstr "കുറവിന്റെ മൂല്യം"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Extra value"
+msgstr "അധികത്തിന്റെ മൂല്യം"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Stock was corrected."
+msgstr "സ്റ്റോക്ക് ശരിയാക്കി."
+
+#: templates/webapp/stock/count_detail.html
+msgid "Scan or type to find an item"
+msgstr "ഐറ്റം കണ്ടെത്താൻ സ്കാൻ ചെയ്യുക അല്ലെങ്കിൽ ടൈപ്പ് ചെയ്യുക"
+
+#: templates/webapp/stock/count_detail.html
+msgid "System"
+msgstr "സിസ്റ്റം"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Leave an item empty if you haven't counted it — it won't be changed."
+msgstr "എണ്ണാത്ത ഐറ്റം ഒഴിച്ചിടുക — അത് മാറ്റില്ല."
+
+#: templates/webapp/stock/count_detail.html
+msgid "Save progress"
+msgstr "പുരോഗതി സേവ് ചെയ്യുക"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Finish the count and correct the stock?"
+msgstr "എണ്ണൽ പൂർത്തിയാക്കി സ്റ്റോക്ക് ശരിയാക്കണോ?"
+
+#: templates/webapp/stock/count_detail.html
+msgid "Finish & correct stock"
+msgstr "പൂർത്തിയാക്കി സ്റ്റോക്ക് ശരിയാക്കുക"
+
+#: templates/webapp/stock/counts.html
+msgid "Counts"
+msgstr "എണ്ണലുകൾ"
+
+#: templates/webapp/stock/counts.html
+msgid "In progress"
+msgstr "നടക്കുന്നു"
+
+#: templates/webapp/stock/counts.html
+msgid "No stock counts yet."
+msgstr "ഇതുവരെ സ്റ്റോക്ക് എണ്ണൽ ഇല്ല."
+
+#: templates/webapp/stock/counts.html
+msgid "Start a new count"
+msgstr "പുതിയ എണ്ണൽ തുടങ്ങുക"
+
+#: templates/webapp/stock/counts.html
+msgid ""
+"Count what is on the shelf. When you finish, the system stock is corrected "
+"and the difference is recorded."
+msgstr ""
+"ഷെൽഫിലുള്ളത് എണ്ണുക. പൂർത്തിയാക്കുമ്പോൾ സിസ്റ്റം സ്റ്റോക്ക് ശരിയാക്കി "
+"വ്യത്യാസം രേഖപ്പെടുത്തും."
+
+#: templates/webapp/stock/counts.html
+msgid "Category (optional)"
+msgstr "വിഭാഗം (ഓപ്ഷണൽ)"
+
+#: templates/webapp/stock/counts.html
+msgid "Start counting"
+msgstr "എണ്ണാൻ തുടങ്ങുക"
+
+#: templates/webapp/stock/history.html
+msgid "Stock history"
+msgstr "സ്റ്റോക്ക് ചരിത്രം"
+
+#: templates/webapp/stock/history.html
+msgid "Current stock"
+msgstr "നിലവിലെ സ്റ്റോക്ക്"
+
+#: templates/webapp/stock/history.html
+msgid "All locations"
+msgstr "എല്ലാ സ്ഥലങ്ങളും"
+
+#: templates/webapp/stock/history.html
+msgid "When"
+msgstr "എപ്പോൾ"
+
+#: templates/webapp/stock/history.html
+msgid "What"
+msgstr "എന്ത്"
+
+#: templates/webapp/stock/history.html
+msgid "In / out"
+msgstr "വരവ് / പോക്ക്"
+
+#: templates/webapp/stock/history.html
+msgid "No stock movements yet."
+msgstr "ഇതുവരെ സ്റ്റോക്ക് നീക്കമില്ല."
+
+#: templates/webapp/stock/home.html
+msgid "Stock value (cost)"
+msgstr "സ്റ്റോക്ക് മൂല്യം (വാങ്ങിയ വില)"
+
+#: templates/webapp/stock/home.html
+msgid "Running low"
+msgstr "കുറഞ്ഞുവരുന്നു"
+
+#: templates/webapp/stock/home.html
+msgid "Out of stock"
+msgstr "സ്റ്റോക്ക് തീർന്നു"
+
+#: templates/webapp/stock/home.html
+msgid "Batches expiring (30 days)"
+msgstr "കാലാവധി തീരുന്ന ബാച്ചുകൾ (30 ദിവസം)"
+
+#: templates/webapp/stock/home.html
+msgid "Start stock taking"
+msgstr "സ്റ്റോക്ക് എണ്ണൽ തുടങ്ങുക"
+
+#: templates/webapp/stock/home.html
+msgid "All categories"
+msgstr "എല്ലാ വിഭാഗങ്ങളും"
+
+#: templates/webapp/stock/home.html
+msgid "Item name or code"
+msgstr "ഐറ്റം പേര് അല്ലെങ്കിൽ കോഡ്"
+
+#: templates/webapp/stock/home.html
+msgid "Reorder at"
+msgstr "വീണ്ടും ഓർഡർ ചെയ്യേണ്ട അളവ്"
+
+#: templates/webapp/stock/home.html
+msgid "No items."
+msgstr "ഐറ്റങ്ങൾ ഇല്ല."
+
+#: templates/webapp/stock/serials.html
+msgid "Serial numbers / IMEI"
+msgstr "സീരിയൽ നമ്പർ / IMEI"
+
+#: templates/webapp/stock/serials.html
+msgid "Scan or type a serial / IMEI"
+msgstr "സീരിയൽ / IMEI സ്കാൻ ചെയ്യുക അല്ലെങ്കിൽ ടൈപ്പ് ചെയ്യുക"
+
+#: templates/webapp/stock/serials.html
+msgid "received"
+msgstr "ലഭിച്ചത്"
+
+#: templates/webapp/stock/serials.html
+msgid "No serial numbers."
+msgstr "സീരിയൽ നമ്പറുകൾ ഇല്ല."
+
+#: templates/webapp/stock/serials.html
+msgid "Add serial numbers to stock"
+msgstr "സീരിയൽ നമ്പറുകൾ സ്റ്റോക്കിൽ ചേർക്കുക"
+
+#: templates/webapp/stock/serials.html
+msgid "Serial numbers (one per line, or scan one after another)"
+msgstr ""
+"സീരിയൽ നമ്പറുകൾ (ഓരോ വരിയിൽ ഒന്ന്, അല്ലെങ്കിൽ ഒന്നിനുപുറകെ സ്കാൻ ചെയ്യുക)"
+
+#: templates/webapp/stock/transfer.html
+msgid "Transfer stock"
+msgstr "സ്റ്റോക്ക് മാറ്റുക"
+
+#: templates/webapp/stock/transfer.html
+msgid "Transfer stock between locations"
+msgstr "സ്ഥലങ്ങൾ തമ്മിൽ സ്റ്റോക്ക് മാറ്റുക"
+
+#: templates/webapp/stock/transfer.html
+msgid ""
+"You have one location. Add a branch or store to move stock between them."
+msgstr ""
+"നിങ്ങൾക്ക് ഒരു സ്ഥലം മാത്രമേയുള്ളൂ. സ്റ്റോക്ക് മാറ്റാൻ ഒരു ബ്രാഞ്ചോ സ്റ്റോറോ"
+" ചേർക്കുക."
+
+#: templates/webapp/stock/transfer.html
+msgid "Add branch"
+msgstr "ബ്രാഞ്ച് ചേർക്കുക"
+
+#: templates/webapp/stock/transfer.html
+msgid "Move stock"
+msgstr "സ്റ്റോക്ക് മാറ്റുക"
+
+#: templates/webapp/stock/transfer.html
+msgid "e.g. Van 2, driver Salim"
+msgstr "ഉദാ. വാൻ 2, ഡ്രൈവർ സലിം"
+
+#: templates/webapp/stock/transfer.html
+msgid "Recent transfers"
+msgstr "സമീപകാല മാറ്റങ്ങൾ"
+
+#: templates/webapp/stock/transfer.html
+msgid "No transfers yet."
+msgstr "ഇതുവരെ മാറ്റങ്ങൾ ഇല്ല."
+
+#: templates/webapp/stock/transfer.html
+msgid "Available"
+msgstr "ലഭ്യം"
+
 #: apps/finance/models.py
 msgid "Received from customer"
 msgstr "കസ്റ്റമറിൽ നിന്ന് ലഭിച്ചത്"
@@ -5399,10 +7111,6 @@ msgstr "സപ്ലയർക്ക് നൽകിയത്"
 #: apps/finance/models.py
 msgid "Pending"
 msgstr "ബാക്കി"
-
-#: apps/finance/models.py
-msgid "Cancelled"
-msgstr "റദ്ദാക്കി"
 
 #: apps/finance/models.py
 msgid "Every 3 months"
@@ -5423,10 +7131,6 @@ msgstr "ക്രെഡിറ്റ് (സപ്ലയർ)"
 #: apps/finance/models.py
 msgid "Already owned (no payment now)"
 msgstr "നേരത്തെ ഉള്ളത് (ഇപ്പോൾ പണം നൽകുന്നില്ല)"
-
-#: apps/verticals/restaurant/models.py
-msgid "Available"
-msgstr "ലഭ്യം"
 
 #: apps/verticals/restaurant/models.py
 msgid "Booked"
@@ -5455,6 +7159,172 @@ msgstr "ക്യൂവിൽ"
 #: apps/verticals/restaurant/models.py
 msgid "Preparing"
 msgstr "തയ്യാറാക്കുന്നു"
+
+#: apps/webapp/accounts_views.py
+msgid "Customer payments"
+msgstr "ഉപഭോക്തൃ പേയ്‌മെന്റുകൾ"
+
+#: apps/webapp/accounts_views.py
+msgid "Supplier payments"
+msgstr "സപ്ലയർ പേയ്‌മെന്റുകൾ"
+
+#: apps/webapp/accounts_views.py
+msgid "Salaries paid"
+msgstr "നൽകിയ ശമ്പളം"
+
+#: apps/webapp/accounts_views.py
+msgid "Advance repayments"
+msgstr "അഡ്വാൻസ് തിരിച്ചടവ്"
+
+#: apps/webapp/accounts_views.py
+msgid "Sales returns"
+msgstr "സെയിൽസ് റിട്ടേണുകൾ"
+
+#: apps/webapp/accounts_views.py
+msgid "Purchase returns"
+msgstr "പർച്ചേസ് റിട്ടേണുകൾ"
+
+#: apps/webapp/accounts_views.py
+msgid "Manual entries"
+msgstr "മാനുവൽ എൻട്രികൾ"
+
+#: apps/webapp/accounts_views.py
+msgid "POS sales"
+msgstr "POS വിൽപ്പന"
+
+#: apps/webapp/accounts_views.py
+msgid "This month"
+msgstr "ഈ മാസം"
+
+#: apps/webapp/accounts_views.py
+msgid "Last month"
+msgstr "കഴിഞ്ഞ മാസം"
+
+#: apps/webapp/accounts_views.py
+msgid "This quarter"
+msgstr "ഈ പാദം"
+
+#: apps/webapp/accounts_views.py
+msgid "This year"
+msgstr "ഈ വർഷം"
+
+#: apps/webapp/accounts_views.py
+msgid "Last year"
+msgstr "കഴിഞ്ഞ വർഷം"
+
+#: apps/webapp/accounts_views.py
+msgid "All time"
+msgstr "എല്ലാ കാലവും"
+
+#: apps/webapp/accounts_views.py
+msgid "Enter a code, a name and a type."
+msgstr "കോഡ്, പേര്, തരം നൽകുക."
+
+#: apps/webapp/accounts_views.py
+msgid "Account %(code)s added."
+msgstr "അക്കൗണ്ട് %(code)s ചേർത്തു."
+
+#: apps/webapp/accounts_views.py
+msgid "An account with this code already exists."
+msgstr "ഈ കോഡിൽ ഒരു അക്കൗണ്ട് നിലവിലുണ്ട്."
+
+#: apps/webapp/accounts_views.py
+msgid "System accounts can't be switched off."
+msgstr "സിസ്റ്റം അക്കൗണ്ടുകൾ ഓഫ് ചെയ്യാൻ കഴിയില്ല."
+
+#: apps/webapp/accounts_views.py
+msgid "You don't have permission to do that."
+msgstr "നിങ്ങൾക്ക് അതിന് അനുമതിയില്ല."
+
+#: apps/webapp/accounts_views.py
+msgid "Journal entry cancelled."
+msgstr "ജേർണൽ എൻട്രി റദ്ദാക്കി."
+
+#: apps/webapp/accounts_views.py
+msgid "Amounts must be numbers."
+msgstr "തുകകൾ സംഖ്യകളായിരിക്കണം."
+
+#: apps/webapp/accounts_views.py
+msgid "Choose an account on every line."
+msgstr "ഓരോ വരിയിലും അക്കൗണ്ട് തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/accounts_views.py
+msgid "Each line needs either a debit or a credit."
+msgstr "ഓരോ വരിയിലും ഡെബിറ്റോ ക്രെഡിറ്റോ വേണം."
+
+#: apps/webapp/accounts_views.py
+msgid "Enter a valid date."
+msgstr "ശരിയായ തീയതി നൽകുക."
+
+#: apps/webapp/accounts_views.py
+msgid "A journal entry needs at least two lines."
+msgstr "ജേർണൽ എൻട്രിക്ക് കുറഞ്ഞത് രണ്ട് വരി വേണം."
+
+#: apps/webapp/accounts_views.py
+msgid "Debits and credits must be equal."
+msgstr "ഡെബിറ്റും ക്രെഡിറ്റും തുല്യമായിരിക്കണം."
+
+#: apps/webapp/accounts_views.py
+msgid "Journal entry saved."
+msgstr "ജേർണൽ എൻട്രി സേവ് ചെയ്തു."
+
+#: apps/webapp/banking_views.py
+msgid "Enter a name for the account."
+msgstr "അക്കൗണ്ടിന് പേര് നൽകുക."
+
+#: apps/webapp/banking_views.py
+msgid "Account %(name)s added."
+msgstr "അക്കൗണ്ട് %(name)s ചേർത്തു."
+
+#: apps/webapp/banking_views.py
+msgid "Enter an amount."
+msgstr "തുക നൽകുക."
+
+#: apps/webapp/banking_views.py
+msgid "%(amount)s moved from %(from)s to %(to)s."
+msgstr "%(amount)s %(from)s-ൽ നിന്ന് %(to)s-ലേക്ക് മാറ്റി."
+
+#: apps/webapp/banking_views.py
+msgid "Saved."
+msgstr "സേവ് ചെയ്തു."
+
+#: apps/webapp/banking_views.py
+msgid "Choose the CSV file from your bank."
+msgstr "ബാങ്കിൽ നിന്നുള്ള CSV ഫയൽ തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/banking_views.py
+msgid "%(count)s statement lines imported (%(skipped)s already there)."
+msgstr ""
+"%(count)s സ്റ്റേറ്റ്മെന്റ് ലൈനുകൾ ഇംപോർട്ട് ചെയ്തു (%(skipped)s നേരത്തെ "
+"ഉണ്ടായിരുന്നു)."
+
+#: apps/webapp/banking_views.py
+msgid "Matched."
+msgstr "ഒത്തുചേർത്തു."
+
+#: apps/webapp/banking_views.py
+msgid "Entry recorded and matched."
+msgstr "എൻട്രി രേഖപ്പെടുത്തി ഒത്തുചേർത്തു."
+
+#: apps/webapp/banking_views.py
+msgid "Tax registration saved."
+msgstr "നികുതി രജിസ്ട്രേഷൻ സേവ് ചെയ്തു."
+
+#: apps/webapp/banking_views.py
+msgid "Tax code added."
+msgstr "നികുതി കോഡ് ചേർത്തു."
+
+#: apps/webapp/banking_views.py
+msgid "Enter a 3-letter currency code and a rate above zero."
+msgstr "3 അക്ഷര കറൻസി കോഡും പൂജ്യത്തിന് മുകളിലുള്ള നിരക്കും നൽകുക."
+
+#: apps/webapp/banking_views.py
+msgid "Entered manually"
+msgstr "കൈകൊണ്ട് നൽകിയത്"
+
+#: apps/webapp/banking_views.py
+msgid "Exchange rate saved."
+msgstr "വിനിമയ നിരക്ക് സേവ് ചെയ്തു."
 
 #: apps/webapp/booking_views.py
 msgid "Choose a customer or type a new customer's name."
@@ -5492,13 +7362,65 @@ msgstr "സെക്യൂരിറ്റി ഡെപ്പോസിറ്റ�
 msgid "Checked out. Invoice %(number)s created."
 msgstr "ചെക്ക്-ഔട്ട് ചെയ്തു. ഇൻവോയ്സ് %(number)s ഉണ്ടാക്കി."
 
+#: apps/webapp/crm_views.py
+msgid "Enter what the deal is about."
+msgstr "ഡീൽ എന്തിനെക്കുറിച്ചാണെന്ന് നൽകുക."
+
+#: apps/webapp/crm_views.py
+msgid "Deal added."
+msgstr "ഡീൽ ചേർത്തു."
+
+#: apps/webapp/crm_views.py
+msgid "Enter the person's name."
+msgstr "വ്യക്തിയുടെ പേര് നൽകുക."
+
+#: apps/webapp/crm_views.py
+msgid "Lead %(name)s added."
+msgstr "ലീഡ് %(name)s ചേർത്തു."
+
+#: apps/webapp/crm_views.py
+msgid "Enter what happened or what to do."
+msgstr "എന്ത് സംഭവിച്ചു അല്ലെങ്കിൽ എന്ത് ചെയ്യണം എന്ന് നൽകുക."
+
+#: apps/webapp/crm_views.py
+msgid "%(name)s is now a customer. A deal was added to the pipeline."
+msgstr "%(name)s ഇപ്പോൾ ഉപഭോക്താവാണ്. പൈപ്പ്‌ലൈനിൽ ഒരു ഡീൽ ചേർത്തു."
+
+#: apps/webapp/crm_views.py
+msgid ""
+"A customer with the same name, phone or email already exists. Pick them "
+"below or confirm to use the match."
+msgstr ""
+"ഇതേ പേര്, ഫോൺ അല്ലെങ്കിൽ ഇമെയിൽ ഉള്ള ഉപഭോക്താവ് നിലവിലുണ്ട്. താഴെ നിന്ന് "
+"തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ സ്ഥിരീകരിക്കുക."
+
+#: apps/webapp/crm_views.py
+msgid "Enter a name for the price list."
+msgstr "വില പട്ടികയ്ക്ക് പേര് നൽകുക."
+
+#: apps/webapp/crm_views.py
+msgid "Enter a name, valid dates and a discount."
+msgstr "പേര്, ശരിയായ തീയതികൾ, കിഴിവ് എന്നിവ നൽകുക."
+
+#: apps/webapp/crm_views.py
+msgid "Offer saved. The POS and new quotes use it automatically."
+msgstr "ഓഫർ സേവ് ചെയ്തു. POS-ഉം പുതിയ ക്വട്ടേഷനുകളും ഇത് സ്വയം ഉപയോഗിക്കും."
+
+#: apps/webapp/crm_views.py
+msgid "The price can't be negative."
+msgstr "വില നെഗറ്റീവ് ആകരുത്."
+
+#: apps/webapp/crm_views.py
+msgid "%(item)s: %(price)s"
+msgstr "%(item)s: %(price)s"
+
+#: apps/webapp/crm_views.py
+msgid "%(count)s prices set."
+msgstr "%(count)s വിലകൾ സെറ്റ് ചെയ്തു."
+
 #: apps/webapp/education_views.py
 msgid "Courses"
 msgstr "കോഴ്സുകൾ"
-
-#: apps/webapp/education_views.py
-msgid "Batch"
-msgstr "ബാച്ച്"
 
 #: apps/webapp/education_views.py
 msgid "Class"
@@ -5710,16 +7632,8 @@ msgid "Leave type"
 msgstr "ലീവ് തരം"
 
 #: apps/webapp/hr_views.py
-msgid "Reason"
-msgstr "കാരണം"
-
-#: apps/webapp/hr_views.py
 msgid "Document"
 msgstr "രേഖ"
-
-#: apps/webapp/hr_views.py
-msgid "Expiry date"
-msgstr "കാലാവധി തീയതി"
 
 #: apps/webapp/hr_views.py
 msgid "%(name)s removed."
@@ -5860,6 +7774,106 @@ msgstr "ഈ മാസത്തെ വാടക ഇതിനകം ബിൽ ച�
 msgid "%(count)s rent invoices created for %(month)s."
 msgstr "%(month)s-ന് %(count)s വാടക ഇൻവോയ്സുകൾ ഉണ്ടാക്കി."
 
+#: apps/webapp/purchase_docs_views.py
+msgid "Choose a supplier or type a new supplier's name."
+msgstr "സപ്ലയറെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ പേര് ടൈപ്പ് ചെയ്യുക."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Purchase order %(number)s created."
+msgstr "പർച്ചേസ് ഓർഡർ %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Purchase order cancelled."
+msgstr "പർച്ചേസ് ഓർഡർ റദ്ദാക്കി."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Enter the quantity received."
+msgstr "ലഭിച്ച എണ്ണം നൽകുക."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Goods receipt %(number)s saved. Stock updated."
+msgstr "സാധനം ലഭിച്ചത് %(number)s സേവ് ചെയ്തു. സ്റ്റോക്ക് അപ്ഡേറ്റ് ചെയ്തു."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Supplier bill saved (%(total)s)."
+msgstr "സപ്ലയർ ബിൽ സേവ് ചെയ്തു (%(total)s)."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Nothing received is waiting for a bill."
+msgstr "ബിൽ ചെയ്യാനുള്ള ലഭിച്ച സാധനങ്ങളില്ല."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "You can return at most %(qty)s of %(item)s."
+msgstr "%(item)s പരമാവധി %(qty)s മാത്രമേ തിരികെ നൽകാനാകൂ."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Enter the quantity to return."
+msgstr "തിരികെ നൽകുന്ന എണ്ണം നൽകുക."
+
+#: apps/webapp/purchase_docs_views.py
+msgid "Return %(number)s saved. Stock reduced."
+msgstr "റിട്ടേൺ %(number)s സേവ് ചെയ്തു. സ്റ്റോക്ക് കുറച്ചു."
+
+#: apps/webapp/receivables_views.py
+msgid "On account"
+msgstr "അക്കൗണ്ടിൽ"
+
+#: apps/webapp/receivables_views.py
+msgid "Return (credit)"
+msgstr "റിട്ടേൺ (ക്രെഡിറ്റ്)"
+
+#: apps/webapp/receivables_views.py
+msgid "Dear %(name)s,"
+msgstr "പ്രിയ %(name)s,"
+
+#: apps/webapp/receivables_views.py
+msgid "This is a friendly reminder from %(company)s."
+msgstr "%(company)s-ൽ നിന്നുള്ള സൗഹൃദ ഓർമ്മപ്പെടുത്തൽ."
+
+#: apps/webapp/receivables_views.py
+msgid "Amount due: %(cur)s %(amount)s"
+msgstr "അടയ്ക്കാനുള്ള തുക: %(cur)s %(amount)s"
+
+#: apps/webapp/receivables_views.py
+msgid "Thank you."
+msgstr "നന്ദി."
+
+#: apps/webapp/receivables_views.py
+msgid "Note saved."
+msgstr "കുറിപ്പ് സേവ് ചെയ്തു."
+
+#: apps/webapp/receivables_views.py
+msgid "Credit settings saved."
+msgstr "ക്രെഡിറ്റ് സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
+
+#: apps/webapp/receivables_views.py
+msgid "Enter valid numbers."
+msgstr "ശരിയായ സംഖ്യകൾ നൽകുക."
+
+#: apps/webapp/receivables_views.py
+msgid "Enter the amount received."
+msgstr "ലഭിച്ച തുക നൽകുക."
+
+#: apps/webapp/receivables_views.py
+msgid "This invoice is already paid."
+msgstr "ഈ ഇൻവോയ്സ് നേരത്തെ അടച്ചു."
+
+#: apps/webapp/receivables_views.py
+msgid "The amount is more than the invoice balance."
+msgstr "തുക ഇൻവോയ്സ് ബാക്കിയേക്കാൾ കൂടുതലാണ്."
+
+#: apps/webapp/receivables_views.py
+msgid "Payment of %(amount)s received from %(name)s."
+msgstr "%(name)s-ൽ നിന്ന് %(amount)s ലഭിച്ചു."
+
+#: apps/webapp/receivables_views.py
+msgid "Applied to: %(list)s."
+msgstr "ഇതിലേക്ക്: %(list)s."
+
+#: apps/webapp/receivables_views.py
+msgid "%(amount)s kept as advance on account."
+msgstr "%(amount)s അഡ്വാൻസായി സൂക്ഷിച്ചു."
+
 #: apps/webapp/restaurant_order_views.py
 msgid "Yesterday"
 msgstr "ഇന്നലെ"
@@ -5872,9 +7886,53 @@ msgstr "കഴിഞ്ഞ 7 ദിവസം"
 msgid "Last 30 days"
 msgstr "കഴിഞ്ഞ 30 ദിവസം"
 
-#: apps/webapp/restaurant_order_views.py
-msgid "All time"
-msgstr "എല്ലാ കാലവും"
+#: apps/webapp/sales_docs_views.py
+msgid "Quantities and prices must be numbers."
+msgstr "എണ്ണവും വിലയും സംഖ്യകളായിരിക്കണം."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Choose an item on every line."
+msgstr "ഓരോ വരിയിലും ഐറ്റം തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quantity must be more than zero."
+msgstr "എണ്ണം പൂജ്യത്തേക്കാൾ കൂടുതലായിരിക്കണം."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Add at least one item."
+msgstr "കുറഞ്ഞത് ഒരു ഐറ്റം ചേർക്കുക."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quotation %(number)s created."
+msgstr "ക്വട്ടേഷൻ %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Sales order %(number)s created."
+msgstr "സെയിൽസ് ഓർഡർ %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Invoice %(number)s created from the quotation."
+msgstr "ക്വട്ടേഷനിൽ നിന്ന് ഇൻവോയ്സ് %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Order cancelled."
+msgstr "ഓർഡർ റദ്ദാക്കി."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Enter the quantity to deliver."
+msgstr "ഡെലിവർ ചെയ്യുന്ന എണ്ണം നൽകുക."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Delivery note %(number)s saved. Stock updated."
+msgstr "ഡെലിവറി നോട്ട് %(number)s സേവ് ചെയ്തു. സ്റ്റോക്ക് അപ്ഡേറ്റ് ചെയ്തു."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Invoice %(number)s created."
+msgstr "ഇൻവോയ്സ് %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Nothing delivered is waiting to be invoiced."
+msgstr "ഇൻവോയ്സ് ചെയ്യാനുള്ള ഡെലിവറി ഇല്ല."
 
 #: apps/webapp/scale_views.py
 msgid "Use 1–3 digit prefixes separated by commas, e.g. 20,21,22."
@@ -5891,6 +7949,83 @@ msgstr "പരമാവധി 3 ദശാംശം."
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "സ്കെയിൽ സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
+
+#: apps/webapp/stock_views.py
+msgid "Damaged"
+msgstr "കേടായത്"
+
+#: apps/webapp/stock_views.py
+msgid "Lost / stolen"
+msgstr "നഷ്ടപ്പെട്ടത് / മോഷണം"
+
+#: apps/webapp/stock_views.py
+msgid "Own use"
+msgstr "സ്വന്തം ഉപയോഗം"
+
+#: apps/webapp/stock_views.py
+msgid "Found extra"
+msgstr "അധികം കണ്ടെത്തി"
+
+#: apps/webapp/stock_views.py
+msgid "Correction"
+msgstr "തിരുത്തൽ"
+
+#: apps/webapp/stock_views.py
+msgid "Choose an item, a location and a quantity."
+msgstr "ഐറ്റം, സ്ഥലം, എണ്ണം തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/stock_views.py
+msgid "Stock of %(item)s changed by %(qty)s."
+msgstr "%(item)s-ന്റെ സ്റ്റോക്ക് %(qty)s മാറ്റി."
+
+#: apps/webapp/stock_views.py
+msgid "Choose both locations, an item and a quantity on every line."
+msgstr "രണ്ട് സ്ഥലങ്ങളും, ഓരോ വരിയിലും ഐറ്റവും എണ്ണവും തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/stock_views.py
+msgid "%(count)s items moved from %(from)s to %(to)s."
+msgstr "%(count)s ഐറ്റങ്ങൾ %(from)s-ൽ നിന്ന് %(to)s-ലേക്ക് മാറ്റി."
+
+#: apps/webapp/stock_views.py
+msgid "Choose a location that has items to count."
+msgstr "എണ്ണാൻ ഐറ്റങ്ങളുള്ള സ്ഥലം തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/stock_views.py
+msgid "Counted quantities must be zero or more."
+msgstr "എണ്ണിയ അളവ് പൂജ്യമോ അതിൽ കൂടുതലോ ആയിരിക്കണം."
+
+#: apps/webapp/stock_views.py
+msgid "Stock count completed. Stock corrected where it was different."
+msgstr ""
+"സ്റ്റോക്ക് എണ്ണൽ പൂർത്തിയായി. വ്യത്യാസമുള്ളിടത്ത് സ്റ്റോക്ക് ശരിയാക്കി."
+
+#: apps/webapp/stock_views.py
+msgid "Progress saved."
+msgstr "പുരോഗതി സേവ് ചെയ്തു."
+
+#: apps/webapp/stock_views.py
+msgid "Choose an item and enter the batch number."
+msgstr "ഐറ്റം തിരഞ്ഞെടുത്ത് ബാച്ച് നമ്പർ നൽകുക."
+
+#: apps/webapp/stock_views.py
+msgid "Batch received"
+msgstr "ബാച്ച് ലഭിച്ചു"
+
+#: apps/webapp/stock_views.py
+msgid "Batch %(number)s saved."
+msgstr "ബാച്ച് %(number)s സേവ് ചെയ്തു."
+
+#: apps/webapp/stock_views.py
+msgid "Choose an item, a location and enter at least one serial number."
+msgstr "ഐറ്റം, സ്ഥലം തിരഞ്ഞെടുത്ത് കുറഞ്ഞത് ഒരു സീരിയൽ നമ്പർ നൽകുക."
+
+#: apps/webapp/stock_views.py
+msgid "%(count)s serial numbers added to stock."
+msgstr "%(count)s സീരിയൽ നമ്പറുകൾ സ്റ്റോക്കിൽ ചേർത്തു."
+
+#: apps/webapp/stock_views.py
+msgid "Already registered: %(list)s"
+msgstr "നേരത്തെ ചേർത്തവ: %(list)s"
 
 #: apps/webapp/views.py
 msgid "Sale %(number)s booked as invoice %(invoice)s."

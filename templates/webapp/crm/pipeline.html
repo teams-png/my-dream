@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Sales pipeline" %}{% endblock %}
+{% block heading %}{% translate "Sales pipeline" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/crm/_tabs.html" %}
+<style>.pl{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:12px;overflow-x:auto;padding-bottom:8px}.pl-col{background:var(--panel,#fff);border:1px solid var(--hr-line);border-radius:16px;padding:10px;min-height:120px}.pl-col h4{margin:2px 4px 10px;display:flex;justify-content:space-between;font-size:14px}.pl-card{border:1px solid var(--hr-line);border-radius:12px;padding:10px;margin-bottom:8px;background:var(--bg,#fafbfd)}.pl-card b{display:block}.pl-card small{color:var(--hr-soft);display:block}.pl-card select{margin-top:6px;width:100%;min-height:32px;border:1px solid var(--hr-line);border-radius:8px;font:inherit;font-size:12.5px;background:var(--panel,#fff);color:inherit}</style>
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Open deals value" %}</small><b>{{ active_company.default_currency }} {{ open_value|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Expected (by chance of winning)" %}</small><b>{{ weighted|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Won" %}</small><b style="color:var(--hr-ok)">{{ won|floatformat:2 }}</b></div>
+  <a class="hr-kpi" href="{% url 'webapp:lead_list' %}"><small>{% translate "New leads" %}</small><b>{{ new_leads }}</b></a>
+</div>
+{% if todo %}<div class="hr-card"><h3>✅ {% translate "To do" %}</h3><div class="hr-list">{% for a in todo %}<div class="hr-row"><span class="grow"><b>{{ a.subject }}</b><small>{% if a.lead %}<a href="{% url 'webapp:lead_detail' a.lead.id %}">{{ a.lead.name }}</a>{% elif a.opportunity %}{{ a.opportunity.title }}{% endif %}{% if a.due_at %} · {% if a.due_at < now %}<span style="color:var(--hr-bad)">{% endif %}{{ a.due_at|date:"j M" }}{% if a.due_at < now %}</span>{% endif %}{% endif %}</small></span><form method="post">{% csrf_token %}<input type="hidden" name="action" value="done"><input type="hidden" name="id" value="{{ a.id }}"><button class="btn btn-secondary">✓</button></form></div>{% endfor %}</div></div>{% endif %}
+<div class="hr-actions" style="margin-bottom:10px"><a class="hr-chip {% if not mine %}ok{% endif %}" style="padding:8px 12px" href="?">{% translate "Everyone" %}</a><a class="hr-chip {% if mine %}ok{% endif %}" style="padding:8px 12px" href="?mine=1">{% translate "My deals" %}</a></div>
+<div class="pl">{% for c in columns %}<div class="pl-col"><h4><span>{{ c.stage.name }} <small style="color:var(--hr-soft)">{{ c.deals|length }}</small></span><small>{{ c.total|floatformat:0 }}</small></h4>
+  {% for d in c.deals %}<div class="pl-card"><b>{{ d.title }}</b><small>{% if d.customer %}{{ d.customer.name }}{% elif d.lead %}{{ d.lead.name }}{% endif %}{% if d.expected_close_date %} · {{ d.expected_close_date|date:"j M" }}{% endif %}</small><small><b style="display:inline">{{ d.expected_value|floatformat:2 }}</b>{% if d.assigned_to %} · {{ d.assigned_to.first_name|default:d.assigned_to.username }}{% endif %}</small>
+    <form method="post">{% csrf_token %}<input type="hidden" name="action" value="move"><input type="hidden" name="id" value="{{ d.id }}"><select name="stage" onchange="this.form.submit()" aria-label="{% translate 'Stage' %}">{% for s in stages %}<option value="{{ s.id }}" {% if s.id == d.stage_id %}selected{% endif %}>→ {{ s.name }}</option>{% endfor %}</select></form></div>{% empty %}<small style="color:var(--hr-soft);display:block;padding:6px">—</small>{% endfor %}
+</div>{% endfor %}</div>
+<form method="post" class="hr-card" style="margin-top:14px">{% csrf_token %}<input type="hidden" name="action" value="add"><h3>＋ {% translate "New deal" %}</h3>
+  <div class="hr-form"><label>{% translate "Deal" %}<input name="title" required placeholder="{% translate 'e.g. Office fit-out, 20 laptops' %}"></label><label>{% translate "Customer" %}<select name="customer"><option value="">—</option>{% for c in customers %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}</select></label><label>{% translate "Value" %}<input type="number" name="value" step="0.01" min="0" value="0"></label><label>{% translate "Expected close" %}<input type="date" name="close"></label><div class="wide"><button class="btn" type="submit">{% translate "Add deal" %}</button></div></div></form>
+</div>
+{% endblock %}

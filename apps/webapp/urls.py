@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import booking_views, education_views, gold_views, property_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import booking_views, education_views, gold_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -417,6 +417,7 @@ urlpatterns = [
     path("restaurant/setup/integrations/add/", views.restaurant_integration_form, name="restaurant_integration_add"),
     path("restaurant/setup/integrations/<int:integration_id>/edit/", views.restaurant_integration_form, name="restaurant_integration_edit"),
     path("restaurant/integrations/webhook/<uuid:webhook_token>/", views.restaurant_delivery_webhook, name="restaurant_delivery_webhook"),
+    path("restaurant/orders/", restaurant_order_views.restaurant_order_list, name="restaurant_order_list"),
     path("restaurant/orders/add/", views.restaurant_order_add, name="restaurant_order_add"),
     path("restaurant/orders/<int:order_id>/", views.restaurant_order_detail, name="restaurant_order_detail"),
     path("restaurant/kitchen/", views.restaurant_kitchen, name="restaurant_kitchen"),

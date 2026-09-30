@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Orders" %}{% endblock %}
+{% block heading %}{% translate "Orders" %}{% endblock %}
+{% block content %}
+<style>
+.ol-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.ol-kpi{padding:16px 18px}.ol-kpi small{display:block;color:var(--r-soft);font-weight:700;font-size:12.5px}.ol-kpi b{display:block;font-size:22px;margin-top:4px;letter-spacing:-.02em}
+.ol-bar{display:flex;flex-direction:column;gap:10px;padding:14px;margin-bottom:14px}
+.ol-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ol-chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 13px;border-radius:999px;border:1px solid var(--r-line);background:#fff;color:var(--r-ink);font-weight:700;font-size:13.5px;white-space:nowrap}
+.ol-chip i{font-style:normal;min-width:20px;padding:0 6px;border-radius:999px;background:#f4eee6;color:var(--r-soft);font-size:12px;text-align:center}
+.ol-chip.on{background:var(--r-ink);border-color:var(--r-ink);color:#fff}.ol-chip.on i{background:rgba(255,255,255,.2);color:#fff}
+.ol-scroll{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}.ol-scroll::-webkit-scrollbar{display:none}
+.ol-search{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ol-search input,.ol-search select{min-height:40px;padding:0 12px;border:1px solid var(--r-line);border-radius:12px;background:#fff;font:inherit}
+.ol-search input[type=search]{flex:1 1 220px}
+.ol-list{display:flex;flex-direction:column;gap:10px}
+.ol-order{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.4fr) auto auto;gap:14px;align-items:center;padding:14px 18px;color:inherit;transition:transform .15s var(--r-ease),box-shadow .2s}
+.ol-order:hover{transform:translateY(-2px);box-shadow:var(--r-shadow)}
+.ol-no{font-weight:800;font-size:15.5px}.ol-no small{display:block;color:var(--r-soft);font-weight:600;font-size:12.5px;margin-top:2px}
+.ol-meta{color:var(--r-soft);font-size:13.5px;line-height:1.5}.ol-meta b{color:var(--r-ink);font-weight:700}
+.ol-total{text-align:right;font-weight:800;font-size:17px;white-space:nowrap}.ol-total small{display:block;color:var(--r-soft);font-weight:600;font-size:12px}
+.ol-actions{display:flex;gap:6px;justify-content:flex-end}
+.r-pill.paid{background:var(--r-green-soft);color:var(--r-green)}.r-pill.cancelled{background:#fdecec;color:#b42318}
+.ol-empty{padding:40px 20px;text-align:center;color:var(--r-soft)}.ol-empty b{display:block;font-size:34px;margin-bottom:6px}
+.ol-pages{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:16px;color:var(--r-soft);font-weight:700}
+@media(max-width:900px){.ol-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.ol-order{grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;padding:14px}.ol-meta{grid-column:1/-1;order:3}.ol-actions{grid-column:1/-1;order:4;justify-content:flex-start}.ol-kpi b{font-size:19px}}
+</style>
+
+<div class="ol-kpis">
+  <div class="r-card ol-kpi"><small>{% translate "Sales" %}</small><b>{{ active_company.default_currency }} {{ summary.sales|floatformat:2 }}</b></div>
+  <div class="r-card ol-kpi"><small>{% translate "Paid orders" %}</small><b>{{ summary.paid }}</b></div>
+  <div class="r-card ol-kpi"><small>{% translate "Average bill" %}</small><b>{{ summary.average|floatformat:2 }}</b></div>
+  <div class="r-card ol-kpi"><small>{% translate "Open / cancelled" %}</small><b>{{ summary.open }} / {{ summary.cancelled }}</b></div>
+</div>
+
+<div class="r-card ol-bar">
+  <div class="ol-scroll">{% for key, label, count, url in tabs %}<a class="ol-chip {% if status == key %}on{% endif %}" href="{{ url }}">{{ label }} <i>{{ count }}</i></a>{% endfor %}</div>
+  <div class="ol-scroll">{% for key, label, url in periods %}<a class="ol-chip {% if period == key %}on{% endif %}" href="{{ url }}">{{ label }}</a>{% endfor %}</div>
+  <form method="get" class="ol-search">
+    <input type="hidden" name="status" value="{{ status }}">
+    <input type="search" name="q" value="{{ q }}" placeholder="{% translate 'Order no., bill no., customer, table...' %}">
+    <select name="channel" aria-label="{% translate 'Order type' %}"><option value="">{% translate "All types" %}</option>{% for key, label in channels %}<option value="{{ key }}" {% if channel == key %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+    <input type="date" name="from" value="{{ start|date:'Y-m-d' }}" aria-label="{% translate 'From' %}">
+    <input type="date" name="to" value="{{ end|date:'Y-m-d' }}" aria-label="{% translate 'To' %}">
+    <button class="r-btn dark small" type="submit">{% translate "Search" %}</button>
+  </form>
+</div>
+
+<div class="ol-list">
+{% for o in page %}
+  <div class="r-card ol-order">
+    <a class="ol-no" href="{% url 'webapp:restaurant_order_detail' o.id %}">#{{ o.order_number }}<small>{{ o.created_at|date:"j M, g:i A" }}{% if o.invoice %} · {% translate "Bill" %} {{ o.invoice.invoice_number }}{% endif %}</small></a>
+    <div class="ol-meta">
+      <span class="r-pill {{ o.status }}">{{ o.get_status_display }}</span>
+      <b>{{ o.get_channel_display }}</b>{% if o.table %} · {% translate "Table" %} {{ o.table.name }}{% endif %}{% if o.guests %} · {{ o.guests }} {% translate "guests" %}{% endif %}<br>
+      {{ o.item_count|floatformat:"-3" }} {% translate "items" %}{% if o.customer %} · {{ o.customer.name }}{% endif %}{% if o.waiter %} · {{ o.waiter.first_name|default:o.waiter.username }}{% endif %}{% if o.methods %} · {% for m in o.methods %}{{ m|title }}{% if not forloop.last %} + {% endif %}{% endfor %}{% endif %}
+      {% if o.status == "cancelled" and o.cancelled_reason %}<br><span style="color:#b42318">{{ o.cancelled_reason }}</span>{% endif %}
+    </div>
+    <div class="ol-total">{{ active_company.default_currency }} {{ o.bill_total|floatformat:2 }}{% if o.invoice and o.invoice.status != "paid" %}<small>{{ o.invoice.get_status_display }}</small>{% endif %}</div>
+    <div class="ol-actions">
+      <a class="r-btn small" href="{% url 'webapp:restaurant_order_detail' o.id %}">{% translate "View" %}</a>
+      {% if o.status == "paid" %}<a class="r-btn small" href="{% url 'webapp:restaurant_receipt_print' o.id %}" target="_blank" rel="noopener">🖨 {% translate "Receipt" %}</a>{% endif %}
+    </div>
+  </div>
+{% empty %}
+  <div class="r-card ol-empty"><b>🧾</b>{% translate "No orders for this filter." %}<br><a class="r-btn brand small" style="margin-top:14px" href="{% url 'webapp:restaurant_order_add' %}">＋ {% translate "New Order" %}</a></div>
+{% endfor %}
+</div>
+
+{% if page.paginator.num_pages > 1 %}
+<div class="ol-pages">
+  {% if page.has_previous %}<a class="r-btn small" href="{{ page_link }}&page={{ page.previous_page_number }}">← {% translate "Newer" %}</a>{% endif %}
+  <span>{{ page.number }} / {{ page.paginator.num_pages }}</span>
+  {% if page.has_next %}<a class="r-btn small" href="{{ page_link }}&page={{ page.next_page_number }}">{% translate "Older" %} →</a>{% endif %}
+</div>
+{% endif %}
+{% endblock %}

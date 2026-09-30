@@ -330,3 +330,36 @@ def test_restaurant_tax_is_billed_and_must_be_paid(tenant_a, restaurant_data):
     invoice = services.settle_order(company=tenant_a, user=d["user"], order=order, warehouse=d["warehouse"],
                                     date=date.today(), payments=[{"method": "cash", "amount": Decimal("21.00")}])
     assert invoice.transaction_total == Decimal("21.00")
+
+
+def test_order_history_lists_paid_open_and_cancelled_orders(client, tenant_a, restaurant_data):
+    d = restaurant_data
+    paid = services.create_order(company=tenant_a, channel="dine_in", table=d["table"], waiter=d["user"])
+    services.add_order_line(company=tenant_a, order=paid, product=d["menu"], quantity=2)
+    services.send_to_kitchen(company=tenant_a, order=paid)
+    invoice = services.settle_order(company=tenant_a, user=d["user"], order=paid, warehouse=d["warehouse"],
+                                    date=date.today(), payments=[{"method": "card", "amount": Decimal("40")}])
+    open_order = services.create_order(company=tenant_a, channel="takeaway", waiter=d["user"])
+    services.add_order_line(company=tenant_a, order=open_order, product=d["menu"])
+    cancelled = services.create_order(company=tenant_a, channel="delivery", waiter=d["user"], delivery_address="West Bay")
+    services.add_order_line(company=tenant_a, order=cancelled, product=d["menu"])
+    services.cancel_order(company=tenant_a, user=d["user"], order=cancelled, reason="Customer changed mind")
+    client.force_login(d["user"])
+    url = reverse("webapp:restaurant_order_list")
+
+    page = client.get(url).content.decode()
+    for order in (paid, open_order, cancelled):
+        assert order.order_number in page
+    assert invoice.invoice_number in page and "Customer changed mind" in page and "Card" in page
+    assert "40.00" in page  # today's sales
+
+    paid_only = client.get(url, {"status": "paid"}).content.decode()
+    assert paid.order_number in paid_only and open_order.order_number not in paid_only
+    assert reverse("webapp:restaurant_receipt_print", args=[paid.id]) in paid_only
+    by_bill = client.get(url, {"q": invoice.invoice_number}).content.decode()
+    assert paid.order_number in by_bill and cancelled.order_number not in by_bill
+    takeaway = client.get(url, {"channel": "takeaway"}).content.decode()
+    assert open_order.order_number in takeaway and paid.order_number not in takeaway
+    yesterday = client.get(url, {"period": "yesterday"}).content.decode()
+    assert paid.order_number not in yesterday
+    assert client.get(url, {"from": "2020-01-01", "to": "bad"}).status_code == 200

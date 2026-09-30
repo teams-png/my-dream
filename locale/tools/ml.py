@@ -674,3 +674,11 @@ ML.update({
 })
 ML.update({"night": "രാത്രി", "day": "ദിവസം", "event": "ഇവന്റ്", "hour": "മണിക്കൂർ"})
 ML.update({"Account": "അക്കൗണ്ട്"})
+# Restaurant order history
+ML.update({"Orders (bills)": "ഓർഡറുകൾ (ബില്ലുകൾ)", "All orders": "എല്ലാ ഓർഡറുകളും", "Paid orders": "പണം അടച്ച ഓർഡറുകൾ",
+"Average bill": "ശരാശരി ബിൽ", "Open / cancelled": "തുറന്നത് / റദ്ദാക്കിയത്",
+"Order no., bill no., customer, table...": "ഓർഡർ നമ്പർ, ബിൽ നമ്പർ, ഉപഭോക്താവ്, ടേബിൾ...", "Order type": "ഓർഡർ തരം",
+"All types": "എല്ലാ തരവും", "To": "വരെ", "Bill": "ബിൽ", "guests": "അതിഥികൾ", "No orders for this filter.": "ഈ ഫിൽട്ടറിൽ ഓർഡറുകൾ ഇല്ല.",
+"Newer": "പുതിയവ", "Older": "പഴയവ", "Yesterday": "ഇന്നലെ", "Last 7 days": "കഴിഞ്ഞ 7 ദിവസം", "Last 30 days": "കഴിഞ്ഞ 30 ദിവസം",
+"All time": "എല്ലാ കാലവും"})
+ML.update({"View": "കാണുക"})

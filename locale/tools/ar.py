@@ -694,3 +694,11 @@ AR.update({
 })
 AR.update({"night": "ليلة", "day": "يوم", "event": "فعالية", "hour": "ساعة"})
 AR.update({"Account": "الحساب"})
+# Restaurant order history
+AR.update({"Orders (bills)": "الطلبات (الفواتير)", "All orders": "كل الطلبات", "Paid orders": "الطلبات المدفوعة",
+"Average bill": "متوسط الفاتورة", "Open / cancelled": "مفتوحة / ملغاة",
+"Order no., bill no., customer, table...": "رقم الطلب، رقم الفاتورة، العميل، الطاولة...", "Order type": "نوع الطلب",
+"All types": "كل الأنواع", "To": "إلى", "Bill": "فاتورة", "guests": "ضيوف", "No orders for this filter.": "لا توجد طلبات لهذا الفلتر.",
+"Newer": "الأحدث", "Older": "الأقدم", "Yesterday": "أمس", "Last 7 days": "آخر 7 أيام", "Last 30 days": "آخر 30 يوماً",
+"All time": "كل الأوقات"})
+AR.update({"View": "عرض"})

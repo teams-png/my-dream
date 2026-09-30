@@ -409,6 +409,66 @@ msgstr "تثبيت BookPilot"
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية»."
 
+#: templates/webapp/_industry_nav.html
+msgid "Bookings"
+msgstr "الحجوزات"
+
+#: templates/webapp/_industry_nav.html
+msgid "Booking calendar"
+msgstr "تقويم الحجوزات"
+
+#: templates/webapp/_industry_nav.html
+msgid "New booking"
+msgstr "حجز جديد"
+
+#: templates/webapp/_industry_nav.html
+msgid "All bookings"
+msgstr "كل الحجوزات"
+
+#: templates/webapp/_industry_nav.html
+msgid "Enrol"
+msgstr "تسجيل"
+
+#: templates/webapp/_industry_nav.html
+msgid "Monthly fees"
+msgstr "الرسوم الشهرية"
+
+#: templates/webapp/_industry_nav.html
+msgid "Fees due"
+msgstr "الرسوم المستحقة"
+
+#: templates/webapp/_industry_nav.html
+msgid "Properties"
+msgstr "العقارات"
+
+#: templates/webapp/_industry_nav.html
+msgid "Properties & units"
+msgstr "العقارات والوحدات"
+
+#: templates/webapp/_industry_nav.html
+msgid "Leases"
+msgstr "عقود الإيجار"
+
+#: templates/webapp/_industry_nav.html
+msgid "Monthly rent"
+msgstr "الإيجار الشهري"
+
+#: templates/webapp/_industry_nav.html
+msgid "Gold"
+msgstr "الذهب"
+
+#: templates/webapp/_industry_nav.html
+msgid "Gold rates & prices"
+msgstr "أسعار الذهب والأسعار"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sell by weight"
+msgstr "البيع بالوزن"
+
+#: templates/webapp/_industry_nav.html
+msgid "Weighing scale"
+msgstr "الميزان"
+
 #: templates/webapp/_language_switcher.html
 msgid "Language"
 msgstr "اللغة"
@@ -769,7 +829,7 @@ msgstr ""
 
 #: templates/webapp/devices.html
 msgid "--kiosk-printing"
-msgstr ""
+msgstr "--kiosk-printing"
 
 #: templates/webapp/devices.html
 msgid "to print without the dialog."
@@ -1007,7 +1067,7 @@ msgstr ""
 
 #: templates/webapp/devices.html
 msgid "python scripts/print_agent.py"
-msgstr ""
+msgstr "python scripts/print_agent.py"
 
 #: templates/webapp/devices.html
 msgid "(from the project, needs Python 3)."
@@ -1019,7 +1079,7 @@ msgstr "عنوان وكيل الطباعة"
 
 #: templates/webapp/devices.html
 msgid "http://127.0.0.1:8719"
-msgstr ""
+msgstr "http://127.0.0.1:8719"
 
 #: templates/webapp/devices.html
 msgid "Check agent"
@@ -1319,6 +1379,833 @@ msgstr "إنشاء الجدول"
 msgid "Price"
 msgstr "السعر"
 
+#: templates/webapp/industry/booking_board.html
+msgid "In use now"
+msgstr "قيد الاستخدام الآن"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Occupancy"
+msgstr "نسبة الإشغال"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Arrivals today"
+msgstr "الوصول اليوم"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Due back / check-outs today"
+msgstr "الإرجاع / المغادرة اليوم"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Overdue"
+msgstr "متأخر"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Today"
+msgstr "اليوم"
+
+#: templates/webapp/industry/booking_board.html
+msgid "days"
+msgstr "أيام"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Nothing to book yet."
+msgstr "لا يوجد شيء للحجز بعد."
+
+#: templates/webapp/industry/booking_board.html
+msgid "Add what customers book (rooms, vehicles, halls...) with their price."
+msgstr "أضف ما يحجزه العملاء (غرف، مركبات، قاعات...) مع السعر."
+
+#: templates/webapp/industry/booking_board.html
+msgid "Add"
+msgstr "إضافة"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Reserved"
+msgstr "محجوزة"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Checked in"
+msgstr "تم تسجيل الدخول"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Completed"
+msgstr "مكتمل"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Tap an empty day to book it."
+msgstr "اضغط على يوم فارغ لحجزه."
+
+#: templates/webapp/industry/booking_board.html
+msgid "Book"
+msgstr "احجز"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Arrivals / pick-ups due"
+msgstr "الوصول / الاستلام المستحق"
+
+#: templates/webapp/industry/booking_board.html
+msgid "None today."
+msgstr "لا شيء اليوم."
+
+#: templates/webapp/industry/booking_board.html
+msgid "Check-outs / returns due"
+msgstr "المغادرة / الإرجاع المستحق"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Change dates / move"
+msgstr "تغيير التواريخ / النقل"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Share"
+msgstr "مشاركة"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "From"
+msgstr "من"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Until"
+msgstr "حتى"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Guests / people"
+msgstr "الضيوف / الأشخاص"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Advance paid"
+msgstr "الدفعة المقدمة"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Security deposit"
+msgstr "مبلغ التأمين"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Returned"
+msgstr "تم الإرجاع"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Held"
+msgstr "معلّق"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Checked out"
+msgstr "تم تسجيل الخروج"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Check in / hand over"
+msgstr "تسجيل الدخول / التسليم"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Cancel this booking?"
+msgstr "إلغاء هذا الحجز؟"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Cancel booking"
+msgstr "إلغاء الحجز"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "No-show"
+msgstr "لم يحضر"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Deposit returned"
+msgstr "تم إرجاع التأمين"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Check out & bill"
+msgstr "تسجيل الخروج والفوترة"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Charged for"
+msgstr "محسوب لـ"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "late return included"
+msgstr "شامل التأخير في الإرجاع"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Rent"
+msgstr "الإيجار"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Extras (minibar, fuel, damage...)"
+msgstr "إضافات (ميني بار، وقود، أضرار...)"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Extras note"
+msgstr "ملاحظة الإضافات"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Discount"
+msgstr "الخصم"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Paid now"
+msgstr "المدفوع الآن"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Paid by"
+msgstr "طريقة الدفع"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "To pay (before extras / discount)"
+msgstr "المستحق (قبل الإضافات / الخصم)"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Check out & create invoice"
+msgstr "تسجيل الخروج وإنشاء فاتورة"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Number"
+msgstr "الرقم"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Balance"
+msgstr "الرصيد"
+
+#: templates/webapp/industry/booking_form.html
+msgid "Change"
+msgstr "تغيير"
+
+#: templates/webapp/industry/booking_form.html
+msgid "New"
+msgstr "جديد"
+
+#: templates/webapp/industry/booking_form.html
+msgid "or new customer"
+msgstr "أو عميل جديد"
+
+#: templates/webapp/industry/booking_form.html
+msgid "Phone"
+msgstr "الهاتف"
+
+#: templates/webapp/industry/booking_form.html
+msgid "Advance paid now"
+msgstr "الدفعة المقدمة الآن"
+
+#: templates/webapp/industry/booking_form.html
+msgid "Security deposit (refundable)"
+msgstr "مبلغ التأمين (مسترد)"
+
+#: templates/webapp/industry/booking_form.html
+msgid "Save changes"
+msgstr "حفظ التغييرات"
+
+#: templates/webapp/industry/booking_form.html
+msgid "The end must be after the start."
+msgstr "يجب أن تكون النهاية بعد البداية."
+
+#: templates/webapp/industry/booking_list.html
+msgid "Name, phone, number..."
+msgstr "الاسم، الهاتف، الرقم..."
+
+#: templates/webapp/industry/booking_list.html
+msgid "Search"
+msgstr "بحث"
+
+#: templates/webapp/industry/booking_list.html
+msgid "No bookings found."
+msgstr "لم يتم العثور على حجوزات."
+
+#: templates/webapp/industry/course_detail.html
+msgid "once"
+msgstr "مرة واحدة"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Edit"
+msgstr "تعديل"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Taken for this day — you can change it."
+msgstr "تم أخذه لهذا اليوم — يمكنك تغييره."
+
+#: templates/webapp/industry/course_detail.html
+msgid "Save attendance"
+msgstr "حفظ الحضور"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Nobody enrolled on this day."
+msgstr "لا يوجد مسجلون في هذا اليوم."
+
+#: templates/webapp/industry/course_detail.html
+msgid "Recent attendance"
+msgstr "الحضور الأخير"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Taken"
+msgstr "مأخوذ"
+
+#: templates/webapp/industry/course_detail.html
+msgid "No attendance taken yet."
+msgstr "لم يتم أخذ الحضور بعد."
+
+#: templates/webapp/industry/course_detail.html
+msgid "Guardian"
+msgstr "ولي الأمر"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Since"
+msgstr "منذ"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Fee"
+msgstr "الرسوم"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Withdraw this student? No more fees will be billed."
+msgstr "سحب هذا الطالب؟ لن تُفوتر رسوم أخرى."
+
+#: templates/webapp/industry/course_detail.html
+msgid "Withdraw"
+msgstr "سحب"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Nobody enrolled yet."
+msgstr "لا يوجد مسجلون بعد."
+
+#: templates/webapp/industry/course_form.html
+msgid "Charged"
+msgstr "محسوب"
+
+#: templates/webapp/industry/course_form.html
+msgid "Schedule"
+msgstr "الجدول"
+
+#: templates/webapp/industry/course_form.html
+msgid "Teacher / instructor"
+msgstr "المعلم / المدرب"
+
+#: templates/webapp/industry/course_form.html
+msgid "Seats (0 = no limit)"
+msgstr "المقاعد (0 = بلا حد)"
+
+#: templates/webapp/industry/course_form.html
+msgid "Open for enrolment"
+msgstr "مفتوح للتسجيل"
+
+#: templates/webapp/industry/course_form.html
+msgid "Save"
+msgstr "حفظ"
+
+#: templates/webapp/industry/dues.html
+msgid ""
+"Record a payment from the invoice, or send the invoice link by WhatsApp or "
+"email as a reminder."
+msgstr ""
+"سجّل دفعة من الفاتورة، أو أرسل رابط الفاتورة عبر واتساب أو البريد كتذكير."
+
+#: templates/webapp/industry/dues.html
+msgid "total"
+msgstr "الإجمالي"
+
+#: templates/webapp/industry/dues.html
+msgid "paid"
+msgstr "مدفوع"
+
+#: templates/webapp/industry/dues.html
+msgid "Remind"
+msgstr "تذكير"
+
+#: templates/webapp/industry/dues.html
+msgid "No fees due. Everyone has paid."
+msgstr "لا رسوم مستحقة. الجميع دفع."
+
+#: templates/webapp/industry/education_home.html
+msgid "fees"
+msgstr "رسوم"
+
+#: templates/webapp/industry/education_home.html
+msgid "Active"
+msgstr "نشط"
+
+#: templates/webapp/industry/education_home.html
+msgid "Billed this month"
+msgstr "المفوتر هذا الشهر"
+
+#: templates/webapp/industry/education_home.html
+msgid "Collected"
+msgstr "المحصّل"
+
+#: templates/webapp/industry/education_home.html
+msgid "Fees due (all months)"
+msgstr "الرسوم المستحقة (كل الأشهر)"
+
+#: templates/webapp/industry/education_home.html
+msgid "fees for this month are not billed yet"
+msgstr "رسوم هذا الشهر لم تُفوتر بعد"
+
+#: templates/webapp/industry/education_home.html
+msgid "Create all the invoices in one step."
+msgstr "أنشئ كل الفواتير بخطوة واحدة."
+
+#: templates/webapp/industry/education_home.html
+msgid "Generate fees"
+msgstr "إنشاء الرسوم"
+
+#: templates/webapp/industry/education_home.html
+msgid "Closed"
+msgstr "مغلقة"
+
+#: templates/webapp/industry/education_home.html
+msgid "No"
+msgstr "لا"
+
+#: templates/webapp/industry/education_home.html
+msgid "yet."
+msgstr "بعد."
+
+#: templates/webapp/industry/enroll_form.html
+msgid "or new"
+msgstr "أو جديد"
+
+#: templates/webapp/industry/enroll_form.html
+msgid "Parent / guardian"
+msgstr "ولي الأمر"
+
+#: templates/webapp/industry/enroll_form.html
+msgid "Guardian phone"
+msgstr "هاتف ولي الأمر"
+
+#: templates/webapp/industry/enroll_form.html
+msgid "Start date"
+msgstr "تاريخ البدء"
+
+#: templates/webapp/industry/enroll_form.html
+msgid "Discount %"
+msgstr "الخصم %"
+
+#: templates/webapp/industry/enroll_form.html
+msgid "Bill the first fee now (this month's fee, or the one-time fee)"
+msgstr "فوترة الرسوم الأولى الآن (رسوم هذا الشهر أو الرسوم لمرة واحدة)"
+
+#: templates/webapp/industry/fees.html
+msgid "Invoices"
+msgstr "الفواتير"
+
+#: templates/webapp/industry/fees.html
+msgid "Billed"
+msgstr "المفوتر"
+
+#: templates/webapp/industry/fees.html
+msgid "Outstanding"
+msgstr "المستحق"
+
+#: templates/webapp/industry/fees.html
+msgid "fees not billed yet"
+msgstr "رسوم لم تُفوتر بعد"
+
+#: templates/webapp/industry/fees.html
+msgid "Create the invoices"
+msgstr "إنشاء الفواتير"
+
+#: templates/webapp/industry/fees.html
+msgid ""
+"One invoice per student with all their courses. Running it again never bills"
+" twice."
+msgstr "فاتورة واحدة لكل طالب بكل دوراته. إعادة التشغيل لا تُفوتر مرتين."
+
+#: templates/webapp/industry/fees.html
+msgid "All fees for this month are billed."
+msgstr "تمت فوترة كل رسوم هذا الشهر."
+
+#: templates/webapp/industry/fees.html
+msgid "Student"
+msgstr "الطالب"
+
+#: templates/webapp/industry/fees.html
+msgid "Course"
+msgstr "الدورة"
+
+#: templates/webapp/industry/fees.html
+msgid "Send"
+msgstr "إرسال"
+
+#: templates/webapp/industry/fees.html
+msgid "No fees billed for this month."
+msgstr "لم تُفوتر رسوم لهذا الشهر."
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Gold rates"
+msgstr "أسعار الذهب"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Gold rates & jewellery prices"
+msgstr "أسعار الذهب والمجوهرات"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Today's rate per gram"
+msgstr "سعر الغرام اليوم"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "now"
+msgstr "الآن"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "not set"
+msgstr "غير محدد"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Update the selling price of every item to the new rate"
+msgstr "تحديث سعر بيع كل صنف حسب السعر الجديد"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Save rates"
+msgstr "حفظ الأسعار"
+
+#: templates/webapp/industry/gold_rates.html
+msgid ""
+"The POS always prices gold items with the latest rate. Price = weight × rate"
+" + making charge + stones."
+msgstr ""
+"نقطة البيع تسعّر الذهب دائماً بآخر سعر. السعر = الوزن × السعر + المصنعية + "
+"الأحجار."
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Items priced by gold rate"
+msgstr "أصناف مسعّرة حسب سعر الذهب"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "prices behind the rate"
+msgstr "أسعار متأخرة عن السعر"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "On each product set weight (g), karat and making charge."
+msgstr "حدد لكل منتج الوزن (غ) والعيار والمصنعية."
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Item"
+msgstr "الصنف"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Weight"
+msgstr "الوزن"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Karat"
+msgstr "العيار"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Making"
+msgstr "المصنعية"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Stones"
+msgstr "الأحجار"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Price now"
+msgstr "السعر الآن"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Saved price"
+msgstr "السعر المحفوظ"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Set the karat and today's rate"
+msgstr "حدد العيار وسعر اليوم"
+
+#: templates/webapp/industry/gold_rates.html
+msgid ""
+"No items with a weight yet. Open a product and fill in weight, karat and "
+"making charge."
+msgstr "لا أصناف بوزن بعد. افتح منتجاً وأدخل الوزن والعيار والمصنعية."
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Rate history"
+msgstr "سجل الأسعار"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "No rates saved yet."
+msgstr "لم تُحفظ أسعار بعد."
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Ends in"
+msgstr "ينتهي خلال"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Expired"
+msgstr "منتهي"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Lease"
+msgstr "عقد الإيجار"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Unit"
+msgstr "الوحدة"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Tenant"
+msgstr "المستأجر"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Period"
+msgstr "الفترة"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "due on day"
+msgstr "مستحق في يوم"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Closed on"
+msgstr "أُغلق في"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Bill this month"
+msgstr "فوترة هذا الشهر"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "End this lease today?"
+msgstr "إنهاء هذا العقد اليوم؟"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Terminate early"
+msgstr "إنهاء مبكر"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "End lease"
+msgstr "إنهاء العقد"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Balance due"
+msgstr "الرصيد المستحق"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "due"
+msgstr "مستحق"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "No rent billed yet."
+msgstr "لم يُفوتر إيجار بعد."
+
+#: templates/webapp/industry/lease_form.html
+msgid "New lease"
+msgstr "عقد جديد"
+
+#: templates/webapp/industry/lease_form.html
+msgid "New lease / tenancy contract"
+msgstr "عقد إيجار جديد"
+
+#: templates/webapp/industry/lease_form.html
+msgid "or new tenant"
+msgstr "أو مستأجر جديد"
+
+#: templates/webapp/industry/lease_form.html
+msgid "Start"
+msgstr "ابدأ"
+
+#: templates/webapp/industry/lease_form.html
+msgid "End"
+msgstr "النهاية"
+
+#: templates/webapp/industry/lease_form.html
+msgid "Rent due on day"
+msgstr "يوم استحقاق الإيجار"
+
+#: templates/webapp/industry/lease_form.html
+msgid "Bill the first month's rent now"
+msgstr "فوترة إيجار الشهر الأول الآن"
+
+#: templates/webapp/industry/lease_form.html
+msgid "Create lease"
+msgstr "إنشاء العقد"
+
+#: templates/webapp/industry/lease_list.html
+msgid "No leases."
+msgstr "لا توجد عقود."
+
+#: templates/webapp/industry/property_home.html
+msgid "Properties & tenants"
+msgstr "العقارات والمستأجرون"
+
+#: templates/webapp/industry/property_home.html
+msgid "Vacant"
+msgstr "شاغر"
+
+#: templates/webapp/industry/property_home.html
+msgid "Monthly rent roll"
+msgstr "سجل الإيجارات الشهري"
+
+#: templates/webapp/industry/property_home.html
+msgid "Collected this month"
+msgstr "المحصّل هذا الشهر"
+
+#: templates/webapp/industry/property_home.html
+msgid "rents for this month are not billed yet"
+msgstr "إيجارات هذا الشهر لم تُفوتر بعد"
+
+#: templates/webapp/industry/property_home.html
+msgid "Create all the rent invoices in one step."
+msgstr "أنشئ كل فواتير الإيجار بخطوة واحدة."
+
+#: templates/webapp/industry/property_home.html
+msgid "Bill rent"
+msgstr "فوترة الإيجار"
+
+#: templates/webapp/industry/property_home.html
+msgid "Property"
+msgstr "العقار"
+
+#: templates/webapp/industry/property_home.html
+msgid "Overdue rent"
+msgstr "الإيجار المتأخر"
+
+#: templates/webapp/industry/property_home.html
+msgid "No overdue rent."
+msgstr "لا إيجار متأخر."
+
+#: templates/webapp/industry/property_home.html
+msgid "Leases ending in 60 days"
+msgstr "عقود تنتهي خلال 60 يوماً"
+
+#: templates/webapp/industry/property_home.html
+msgid "None."
+msgstr "لا شيء."
+
+#: templates/webapp/industry/property_home.html
+msgid "Owner"
+msgstr "المالك"
+
+#: templates/webapp/industry/property_home.html
+msgid "until"
+msgstr "حتى"
+
+#: templates/webapp/industry/property_home.html
+msgid "No units yet."
+msgstr "لا وحدات بعد."
+
+#: templates/webapp/industry/property_home.html
+msgid "Add your first property, then its units."
+msgstr "أضف أول عقار ثم وحداته."
+
+#: templates/webapp/industry/rent_run.html
+msgid "rents not billed yet"
+msgstr "إيجارات لم تُفوتر بعد"
+
+#: templates/webapp/industry/rent_run.html
+msgid "Create the rent invoices"
+msgstr "إنشاء فواتير الإيجار"
+
+#: templates/webapp/industry/rent_run.html
+msgid ""
+"One invoice per lease, due on the lease's due day. Running it again never "
+"bills twice."
+msgstr ""
+"فاتورة واحدة لكل عقد، مستحقة في يوم الاستحقاق. إعادة التشغيل لا تُفوتر "
+"مرتين."
+
+#: templates/webapp/industry/rent_run.html
+msgid "All rent for this month is billed."
+msgstr "تمت فوترة كل إيجارات هذا الشهر."
+
+#: templates/webapp/industry/rent_run.html
+msgid "No rent billed for this month."
+msgstr "لم يُفوتر إيجار لهذا الشهر."
+
+#: templates/webapp/industry/resource_form.html
+msgid "Type"
+msgstr "النوع"
+
+#: templates/webapp/industry/resource_form.html
+msgid "Capacity (guests / seats)"
+msgstr "السعة (ضيوف / مقاعد)"
+
+#: templates/webapp/industry/resource_form.html
+msgid "Details (plate number, floor, size, features...)"
+msgstr "التفاصيل (رقم اللوحة، الطابق، الحجم، المزايا...)"
+
+#: templates/webapp/industry/resource_form.html
+msgid "Order on the calendar"
+msgstr "الترتيب في التقويم"
+
+#: templates/webapp/industry/resource_form.html
+msgid "Available for booking"
+msgstr "متاح للحجز"
+
+#: templates/webapp/industry/resource_list.html
+msgid "Capacity"
+msgstr "السعة"
+
+#: templates/webapp/industry/resource_list.html
+msgid "Details"
+msgstr "التفاصيل"
+
+#: templates/webapp/industry/resource_list.html
+msgid "Inactive"
+msgstr "غير نشط"
+
+#: templates/webapp/industry/resource_list.html
+msgid "Nothing added yet."
+msgstr "لم يُضف شيء بعد."
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Weighing scale & sell by weight"
+msgstr "الميزان والبيع بالوزن"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Scale barcode format"
+msgstr "صيغة باركود الميزان"
+
+#: templates/webapp/industry/scale_settings.html
+msgid ""
+"Most shop scales print an EAN-13 label: prefix + item code + weight (or "
+"price) + check digit. Scan it at the POS and the item is added with its "
+"weight."
+msgstr ""
+"معظم موازين المحلات تطبع ملصق EAN-13: بادئة + رمز الصنف + الوزن (أو السعر) +"
+" رقم تحقق. امسحه في نقطة البيع فيُضاف الصنف بوزنه."
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Barcode prefixes"
+msgstr "بادئات الباركود"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Item code digits"
+msgstr "عدد أرقام رمز الصنف"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "The label contains"
+msgstr "الملصق يحتوي على"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Decimals in the value"
+msgstr "المنازل العشرية في القيمة"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Example label"
+msgstr "مثال ملصق"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "prefix"
+msgstr "البادئة"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "item code"
+msgstr "رمز الصنف"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Products sold by weight"
+msgstr "منتجات تُباع بالوزن"
+
+#: templates/webapp/industry/scale_settings.html
+msgid ""
+"Open a product and tick “Sold by weight”. Its price is per kg, and the POS "
+"asks for the weight."
+msgstr ""
+"افتح منتجاً وفعّل “يُباع بالوزن”. سعره لكل كغ، وتطلب نقطة البيع الوزن."
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Scale code"
+msgstr "رمز الميزان"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "No products sold by weight yet."
+msgstr "لا منتجات تُباع بالوزن بعد."
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Go to products"
+msgstr "الذهاب إلى المنتجات"
+
 #: templates/webapp/invoice_pdf.html
 msgid "Print"
 msgstr "طباعة"
@@ -1356,10 +2243,6 @@ msgid "Bill to"
 msgstr "فاتورة إلى"
 
 #: templates/webapp/invoice_pdf.html
-msgid "Item"
-msgstr "الصنف"
-
-#: templates/webapp/invoice_pdf.html
 msgid "Qty"
 msgstr "الكمية"
 
@@ -1394,10 +2277,6 @@ msgstr "المجموع الفرعي"
 #: templates/webapp/invoice_pdf.html
 msgid "Tax"
 msgstr "الضريبة"
-
-#: templates/webapp/invoice_pdf.html
-msgid "Balance due"
-msgstr "الرصيد المستحق"
 
 #: templates/webapp/invoice_share.html
 msgid "Share invoice"
@@ -1536,10 +2415,6 @@ msgstr "الشعار (اختياري)"
 #: templates/webapp/onboarding/wizard.html
 msgid "Address"
 msgstr "العنوان"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Phone"
-msgstr "الهاتف"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "VAT / tax number (optional)"
@@ -1787,10 +2662,6 @@ msgid "Held sales"
 msgstr "المبيعات المعلّقة"
 
 #: templates/webapp/pos.html
-msgid "Held"
-msgstr "معلّق"
-
-#: templates/webapp/pos.html
 msgid "Offline sales"
 msgstr "مبيعات دون اتصال"
 
@@ -1965,6 +2836,18 @@ msgstr "بيع جديد"
 #: templates/webapp/pos.html
 msgid "Select IMEI"
 msgstr "اختر رقم IMEI"
+
+#: templates/webapp/pos.html
+msgid "Weight (kg)"
+msgstr "الوزن (كغ)"
+
+#: templates/webapp/pos.html
+msgid "or amount"
+msgstr "أو المبلغ"
+
+#: templates/webapp/pos.html
+msgid "Add to sale"
+msgstr "أضف إلى البيع"
 
 #: templates/webapp/pos.html
 msgid "Sales parked on this till. Tap one to bring it back."
@@ -2212,10 +3095,6 @@ msgid "business types. Works on your computer, tablet and phone."
 msgstr "نوع نشاط. يعمل على الكمبيوتر والجهاز اللوحي والهاتف."
 
 #: templates/webapp/public/landing.html
-msgid "Start"
-msgstr "ابدأ"
-
-#: templates/webapp/public/landing.html
 msgid "See what's inside"
 msgstr "شاهد ما بالداخل"
 
@@ -2277,7 +3156,7 @@ msgstr "ادفع"
 
 #: templates/webapp/public/landing.html
 msgid "QAR 0"
-msgstr ""
+msgstr "QAR 0"
 
 #: templates/webapp/public/landing.html
 msgid "Kitchen"
@@ -2705,10 +3584,6 @@ msgid "Restaurant"
 msgstr "المطعم"
 
 #: templates/webapp/restaurant/dashboard.html
-msgid "paid"
-msgstr "مدفوع"
-
-#: templates/webapp/restaurant/dashboard.html
 msgid "· invoice"
 msgstr "· الفاتورة"
 
@@ -2811,10 +3686,6 @@ msgstr "مشغولة"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Cleaning"
 msgstr "قيد التنظيف"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "Reserved"
-msgstr "محجوزة"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "seats ·"
@@ -3267,10 +4138,6 @@ msgid "Tip"
 msgstr "الإكرامية"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "Discount"
-msgstr "الخصم"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Split"
 msgstr "تقسيم"
 
@@ -3465,10 +4332,6 @@ msgstr "المراجعة والدفع"
 #: templates/webapp/restaurant/order_detail.html
 msgid "see details"
 msgstr "عرض التفاصيل"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "New"
-msgstr "جديد"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Add at least one dish before sending this order to the kitchen."
@@ -3723,10 +4586,6 @@ msgid "⚠️ Save these recovery codes somewhere safe. Each works"
 msgstr "⚠️ احفظ رموز الاسترداد هذه في مكان آمن. كل رمز يعمل"
 
 #: templates/webapp/security.html
-msgid "once"
-msgstr "مرة واحدة"
-
-#: templates/webapp/security.html
 msgid "if you lose your phone. They will not be shown again."
 msgstr "إذا فقدت هاتفك. لن تُعرض مرة أخرى."
 
@@ -3889,18 +4748,6 @@ msgid "Seated"
 msgstr "جالس"
 
 #: apps/verticals/restaurant/models.py
-msgid "Completed"
-msgstr "مكتمل"
-
-#: apps/verticals/restaurant/models.py
-msgid "No-show"
-msgstr "لم يحضر"
-
-#: apps/verticals/restaurant/models.py
-msgid "Closed"
-msgstr "مغلقة"
-
-#: apps/verticals/restaurant/models.py
 msgid "Draft"
 msgstr "مسودة"
 
@@ -3919,6 +4766,102 @@ msgstr "في الانتظار"
 #: apps/verticals/restaurant/models.py
 msgid "Preparing"
 msgstr "قيد التحضير"
+
+#: apps/webapp/booking_views.py
+msgid "Choose a customer or type a new customer's name."
+msgstr "اختر عميلاً أو اكتب اسم عميل جديد."
+
+#: apps/webapp/booking_views.py
+msgid "%(name)s saved."
+msgstr "تم حفظ %(name)s."
+
+#: apps/webapp/booking_views.py
+msgid "%(number)s booked."
+msgstr "تم حجز %(number)s."
+
+#: apps/webapp/booking_views.py
+msgid "Booking updated."
+msgstr "تم تحديث الحجز."
+
+#: apps/webapp/booking_views.py
+msgid "Checked in."
+msgstr "تم تسجيل الدخول."
+
+#: apps/webapp/booking_views.py
+msgid "Booking cancelled."
+msgstr "تم إلغاء الحجز."
+
+#: apps/webapp/booking_views.py
+msgid "Marked as no-show."
+msgstr "تم التسجيل كعدم حضور."
+
+#: apps/webapp/booking_views.py
+msgid "Security deposit marked as returned."
+msgstr "تم تسجيل إرجاع مبلغ التأمين."
+
+#: apps/webapp/booking_views.py
+msgid "Checked out. Invoice %(number)s created."
+msgstr "تم تسجيل الخروج. أُنشئت الفاتورة %(number)s."
+
+#: apps/webapp/education_views.py
+msgid "Courses"
+msgstr "الدورات"
+
+#: apps/webapp/education_views.py
+msgid "Batch"
+msgstr "الدفعة"
+
+#: apps/webapp/education_views.py
+msgid "Class"
+msgstr "الصف"
+
+#: apps/webapp/education_views.py
+msgid "Classes"
+msgstr "الصفوف"
+
+#: apps/webapp/education_views.py
+msgid "Package"
+msgstr "الباقة"
+
+#: apps/webapp/education_views.py
+msgid "Students"
+msgstr "الطلاب"
+
+#: apps/webapp/education_views.py
+msgid "Child"
+msgstr "الطفل"
+
+#: apps/webapp/education_views.py
+msgid "Children"
+msgstr "الأطفال"
+
+#: apps/webapp/education_views.py
+msgid "Learner"
+msgstr "المتعلم"
+
+#: apps/webapp/education_views.py
+msgid "Learners"
+msgstr "المتعلمون"
+
+#: apps/webapp/education_views.py
+msgid "Choose a student or type a new student's name."
+msgstr "اختر طالباً أو اكتب اسم طالب جديد."
+
+#: apps/webapp/education_views.py
+msgid "Attendance saved for %(day)s."
+msgstr "تم حفظ الحضور ليوم %(day)s."
+
+#: apps/webapp/education_views.py
+msgid "%(name)s updated."
+msgstr "تم تحديث %(name)s."
+
+#: apps/webapp/education_views.py
+msgid "%(name)s enrolled in %(course)s."
+msgstr "تم تسجيل %(name)s في %(course)s."
+
+#: apps/webapp/education_views.py
+msgid "%(count)s fee invoices created for %(month)s."
+msgstr "أُنشئت %(count)s فواتير رسوم لشهر %(month)s."
 
 #: apps/webapp/finance_views.py
 msgid "Against invoice (optional)"
@@ -4000,6 +4943,14 @@ msgstr "تمت إضافة الأصل وتسجيله في الدفاتر."
 msgid "Asset disposed and the gain or loss recorded."
 msgstr "تم استبعاد الأصل وتسجيل الربح أو الخسارة."
 
+#: apps/webapp/gold_views.py
+msgid "%(count)s rates saved; %(changed)s item prices updated."
+msgstr "تم حفظ %(count)s أسعار؛ وتحديث أسعار %(changed)s أصناف."
+
+#: apps/webapp/industry_access.py
+msgid "This module isn't part of your business type."
+msgstr "هذه الوحدة ليست ضمن نوع نشاطك."
+
 #: apps/webapp/onboarding_views.py
 msgid "Check the price and stock for “%(name)s”."
 msgstr "تحقق من السعر والمخزون لـ «%(name)s»."
@@ -4015,6 +4966,54 @@ msgstr "تم تخطي الإعداد. يمكنك العودة إليه في أي
 #: apps/webapp/onboarding_views.py
 msgid "Added %(items)s items and %(tables)s tables."
 msgstr "تمت إضافة %(items)s صنفًا و%(tables)s طاولة."
+
+#: apps/webapp/property_views.py
+msgid "Choose a tenant or type a new tenant's name."
+msgstr "اختر مستأجراً أو اكتب اسم مستأجر جديد."
+
+#: apps/webapp/property_views.py
+msgid "New property"
+msgstr "عقار جديد"
+
+#: apps/webapp/property_views.py
+msgid "New unit"
+msgstr "وحدة جديدة"
+
+#: apps/webapp/property_views.py
+msgid "Lease %(number)s created."
+msgstr "تم إنشاء العقد %(number)s."
+
+#: apps/webapp/property_views.py
+msgid "Lease closed."
+msgstr "تم إغلاق العقد."
+
+#: apps/webapp/property_views.py
+msgid "Rent billed."
+msgstr "تمت فوترة الإيجار."
+
+#: apps/webapp/property_views.py
+msgid "This month's rent is already billed."
+msgstr "إيجار هذا الشهر مفوتر مسبقاً."
+
+#: apps/webapp/property_views.py
+msgid "%(count)s rent invoices created for %(month)s."
+msgstr "أُنشئت %(count)s فواتير إيجار لشهر %(month)s."
+
+#: apps/webapp/scale_views.py
+msgid "Use 1–3 digit prefixes separated by commas, e.g. 20,21,22."
+msgstr "استخدم بادئات من 1–3 أرقام مفصولة بفواصل، مثل 20,21,22."
+
+#: apps/webapp/scale_views.py
+msgid "Prefix and item code must leave at least 3 digits for the value."
+msgstr "يجب أن تترك البادئة ورمز الصنف 3 أرقام على الأقل للقيمة."
+
+#: apps/webapp/scale_views.py
+msgid "At most 3 decimals."
+msgstr "3 منازل عشرية كحد أقصى."
+
+#: apps/webapp/scale_views.py
+msgid "Scale settings saved."
+msgstr "تم حفظ إعدادات الميزان."
 
 #: apps/webapp/views.py
 msgid "Sale %(number)s booked as invoice %(invoice)s."
@@ -4082,3 +5081,67 @@ msgstr "تم إلغاء الدفع أو رفضه — لم يتم خصم أي م�
 msgid ""
 "Your payment is being confirmed. This page will show it within a minute."
 msgstr "جارٍ تأكيد دفعتك. ستظهر في هذه الصفحة خلال دقيقة."
+
+#: apps/modules/catalog.py
+msgid "Room"
+msgstr "الغرفة"
+
+#: apps/modules/catalog.py
+msgid "Rooms"
+msgstr "الغرف"
+
+#: apps/modules/catalog.py
+msgid "Reservation"
+msgstr "الحجز"
+
+#: apps/modules/catalog.py
+msgid "night"
+msgstr "ليلة"
+
+#: apps/modules/catalog.py
+msgid "Vehicle"
+msgstr "المركبة"
+
+#: apps/modules/catalog.py
+msgid "Rental"
+msgstr "التأجير"
+
+#: apps/modules/catalog.py
+msgid "day"
+msgstr "يوم"
+
+#: apps/modules/catalog.py
+msgid "Equipment"
+msgstr "المعدات"
+
+#: apps/modules/catalog.py
+msgid "Hall"
+msgstr "القاعة"
+
+#: apps/modules/catalog.py
+msgid "Halls"
+msgstr "القاعات"
+
+#: apps/modules/catalog.py
+msgid "Event booking"
+msgstr "حجز فعالية"
+
+#: apps/modules/catalog.py
+msgid "event"
+msgstr "فعالية"
+
+#: apps/modules/catalog.py
+msgid "Space"
+msgstr "المساحة"
+
+#: apps/modules/catalog.py
+msgid "Spaces"
+msgstr "المساحات"
+
+#: apps/modules/catalog.py
+msgid "Booking"
+msgstr "الحجز"
+
+#: apps/modules/catalog.py
+msgid "hour"
+msgstr "ساعة"

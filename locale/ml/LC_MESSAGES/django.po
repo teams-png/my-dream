@@ -409,6 +409,66 @@ msgstr "BookPilot ഇൻസ്റ്റാൾ ചെയ്യുക"
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "Share ബട്ടൺ അമർത്തി “Add to Home Screen” തിരഞ്ഞെടുക്കുക."
 
+#: templates/webapp/_industry_nav.html
+msgid "Bookings"
+msgstr "ബുക്കിംഗുകൾ"
+
+#: templates/webapp/_industry_nav.html
+msgid "Booking calendar"
+msgstr "ബുക്കിംഗ് കലണ്ടർ"
+
+#: templates/webapp/_industry_nav.html
+msgid "New booking"
+msgstr "പുതിയ ബുക്കിംഗ്"
+
+#: templates/webapp/_industry_nav.html
+msgid "All bookings"
+msgstr "എല്ലാ ബുക്കിംഗുകളും"
+
+#: templates/webapp/_industry_nav.html
+msgid "Enrol"
+msgstr "ചേർക്കുക (എൻറോൾ)"
+
+#: templates/webapp/_industry_nav.html
+msgid "Monthly fees"
+msgstr "മാസ ഫീസ്"
+
+#: templates/webapp/_industry_nav.html
+msgid "Fees due"
+msgstr "അടയ്ക്കാനുള്ള ഫീസ്"
+
+#: templates/webapp/_industry_nav.html
+msgid "Properties"
+msgstr "പ്രോപ്പർട്ടികൾ"
+
+#: templates/webapp/_industry_nav.html
+msgid "Properties & units"
+msgstr "പ്രോപ്പർട്ടികളും യൂണിറ്റുകളും"
+
+#: templates/webapp/_industry_nav.html
+msgid "Leases"
+msgstr "വാടക കരാറുകൾ"
+
+#: templates/webapp/_industry_nav.html
+msgid "Monthly rent"
+msgstr "മാസ വാടക"
+
+#: templates/webapp/_industry_nav.html
+msgid "Gold"
+msgstr "സ്വർണം"
+
+#: templates/webapp/_industry_nav.html
+msgid "Gold rates & prices"
+msgstr "സ്വർണ നിരക്കും വിലയും"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sell by weight"
+msgstr "തൂക്കത്തിൽ വിൽപ്പന"
+
+#: templates/webapp/_industry_nav.html
+msgid "Weighing scale"
+msgstr "തൂക്ക യന്ത്രം"
+
 #: templates/webapp/_language_switcher.html
 msgid "Language"
 msgstr "ഭാഷ"
@@ -772,7 +832,7 @@ msgstr ""
 
 #: templates/webapp/devices.html
 msgid "--kiosk-printing"
-msgstr ""
+msgstr "--kiosk-printing"
 
 #: templates/webapp/devices.html
 msgid "to print without the dialog."
@@ -1014,7 +1074,7 @@ msgstr ""
 
 #: templates/webapp/devices.html
 msgid "python scripts/print_agent.py"
-msgstr ""
+msgstr "python scripts/print_agent.py"
 
 #: templates/webapp/devices.html
 msgid "(from the project, needs Python 3)."
@@ -1026,7 +1086,7 @@ msgstr "ഏജന്റ് വിലാസം"
 
 #: templates/webapp/devices.html
 msgid "http://127.0.0.1:8719"
-msgstr ""
+msgstr "http://127.0.0.1:8719"
 
 #: templates/webapp/devices.html
 msgid "Check agent"
@@ -1329,6 +1389,843 @@ msgstr "ഷെഡ്യൂൾ ഉണ്ടാക്കുക"
 msgid "Price"
 msgstr "വില"
 
+#: templates/webapp/industry/booking_board.html
+msgid "In use now"
+msgstr "ഇപ്പോൾ ഉപയോഗത്തിൽ"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Occupancy"
+msgstr "ഒക്യുപൻസി"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Arrivals today"
+msgstr "ഇന്നത്തെ വരവുകൾ"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Due back / check-outs today"
+msgstr "ഇന്ന് തിരികെ / ചെക്ക്-ഔട്ട്"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Overdue"
+msgstr "കാലാവധി കഴിഞ്ഞത്"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Today"
+msgstr "ഇന്ന്"
+
+#: templates/webapp/industry/booking_board.html
+msgid "days"
+msgstr "ദിവസം"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Nothing to book yet."
+msgstr "ബുക്ക് ചെയ്യാൻ ഒന്നും ഇതുവരെ ഇല്ല."
+
+#: templates/webapp/industry/booking_board.html
+msgid "Add what customers book (rooms, vehicles, halls...) with their price."
+msgstr ""
+"ഉപഭോക്താക്കൾ ബുക്ക് ചെയ്യുന്നവ (മുറികൾ, വാഹനങ്ങൾ, ഹാളുകൾ...) വിലയോടെ "
+"ചേർക്കുക."
+
+#: templates/webapp/industry/booking_board.html
+msgid "Add"
+msgstr "ചേർക്കുക"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Reserved"
+msgstr "റിസർവ് ചെയ്തു"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Checked in"
+msgstr "ചെക്ക്-ഇൻ ചെയ്തു"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Completed"
+msgstr "പൂർത്തിയായി"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Tap an empty day to book it."
+msgstr "ബുക്ക് ചെയ്യാൻ ഒഴിഞ്ഞ ദിവസത്തിൽ തൊടുക."
+
+#: templates/webapp/industry/booking_board.html
+msgid "Book"
+msgstr "ബുക്ക് ചെയ്യുക"
+
+#: templates/webapp/industry/booking_board.html
+msgid "Arrivals / pick-ups due"
+msgstr "വരവുകൾ / എടുക്കാനുള്ളവ"
+
+#: templates/webapp/industry/booking_board.html
+msgid "None today."
+msgstr "ഇന്ന് ഒന്നുമില്ല."
+
+#: templates/webapp/industry/booking_board.html
+msgid "Check-outs / returns due"
+msgstr "ചെക്ക്-ഔട്ട് / തിരികെ നൽകേണ്ടവ"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Change dates / move"
+msgstr "തീയതി മാറ്റുക / മാറ്റിവയ്ക്കുക"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Share"
+msgstr "ഷെയർ"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "From"
+msgstr "മുതൽ"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Until"
+msgstr "വരെ"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Guests / people"
+msgstr "അതിഥികൾ / ആളുകൾ"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Advance paid"
+msgstr "അഡ്വാൻസ് അടച്ചത്"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Security deposit"
+msgstr "സെക്യൂരിറ്റി ഡെപ്പോസിറ്റ്"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Returned"
+msgstr "തിരികെ നൽകി"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Held"
+msgstr "ഹോൾഡ്"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Checked out"
+msgstr "ചെക്ക്-ഔട്ട് ചെയ്തു"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Check in / hand over"
+msgstr "ചെക്ക്-ഇൻ / കൈമാറുക"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Cancel this booking?"
+msgstr "ഈ ബുക്കിംഗ് റദ്ദാക്കണോ?"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Cancel booking"
+msgstr "ബുക്കിംഗ് റദ്ദാക്കുക"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "No-show"
+msgstr "വന്നില്ല"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Deposit returned"
+msgstr "ഡെപ്പോസിറ്റ് തിരികെ നൽകി"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Check out & bill"
+msgstr "ചെക്ക്-ഔട്ട് & ബിൽ"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Charged for"
+msgstr "ചാർജ് ചെയ്തത്"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "late return included"
+msgstr "വൈകി തിരികെ നൽകിയത് ഉൾപ്പെടെ"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Rent"
+msgstr "വാടക"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Extras (minibar, fuel, damage...)"
+msgstr "അധിക ചാർജുകൾ (മിനിബാർ, ഇന്ധനം, കേടുപാട്...)"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Extras note"
+msgstr "അധിക ചാർജ് കുറിപ്പ്"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Discount"
+msgstr "ഡിസ്കൗണ്ട്"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Paid now"
+msgstr "ഇപ്പോൾ അടച്ചത്"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Paid by"
+msgstr "അടച്ച രീതി"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "To pay (before extras / discount)"
+msgstr "അടയ്ക്കാനുള്ളത് (അധിക ചാർജ് / ഡിസ്കൗണ്ട് മുമ്പ്)"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Check out & create invoice"
+msgstr "ചെക്ക്-ഔട്ട് ചെയ്ത് ഇൻവോയ്സ് ഉണ്ടാക്കുക"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Number"
+msgstr "നമ്പർ"
+
+#: templates/webapp/industry/booking_detail.html
+msgid "Balance"
+msgstr "ബാക്കി"
+
+#: templates/webapp/industry/booking_form.html
+msgid "Change"
+msgstr "മാറ്റുക"
+
+#: templates/webapp/industry/booking_form.html
+msgid "New"
+msgstr "പുതിയത്"
+
+#: templates/webapp/industry/booking_form.html
+msgid "or new customer"
+msgstr "അല്ലെങ്കിൽ പുതിയ ഉപഭോക്താവ്"
+
+#: templates/webapp/industry/booking_form.html
+msgid "Phone"
+msgstr "ഫോൺ"
+
+#: templates/webapp/industry/booking_form.html
+msgid "Advance paid now"
+msgstr "ഇപ്പോൾ അടച്ച അഡ്വാൻസ്"
+
+#: templates/webapp/industry/booking_form.html
+msgid "Security deposit (refundable)"
+msgstr "സെക്യൂരിറ്റി ഡെപ്പോസിറ്റ് (തിരികെ ലഭിക്കും)"
+
+#: templates/webapp/industry/booking_form.html
+msgid "Save changes"
+msgstr "മാറ്റങ്ങൾ സേവ് ചെയ്യുക"
+
+#: templates/webapp/industry/booking_form.html
+msgid "The end must be after the start."
+msgstr "അവസാനം തുടക്കത്തിന് ശേഷമായിരിക്കണം."
+
+#: templates/webapp/industry/booking_list.html
+msgid "Name, phone, number..."
+msgstr "പേര്, ഫോൺ, നമ്പർ..."
+
+#: templates/webapp/industry/booking_list.html
+msgid "Search"
+msgstr "തിരയുക"
+
+#: templates/webapp/industry/booking_list.html
+msgid "No bookings found."
+msgstr "ബുക്കിംഗുകൾ ഒന്നും കണ്ടെത്തിയില്ല."
+
+#: templates/webapp/industry/course_detail.html
+msgid "once"
+msgstr "ഒരു തവണ"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Edit"
+msgstr "എഡിറ്റ്"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Taken for this day — you can change it."
+msgstr "ഈ ദിവസത്തേത് എടുത്തു — മാറ്റാം."
+
+#: templates/webapp/industry/course_detail.html
+msgid "Save attendance"
+msgstr "ഹാജർ സേവ് ചെയ്യുക"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Nobody enrolled on this day."
+msgstr "ഈ ദിവസം ആരും ചേർന്നിട്ടില്ല."
+
+#: templates/webapp/industry/course_detail.html
+msgid "Recent attendance"
+msgstr "സമീപകാല ഹാജർ"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Taken"
+msgstr "എടുത്തു"
+
+#: templates/webapp/industry/course_detail.html
+msgid "No attendance taken yet."
+msgstr "ഇതുവരെ ഹാജർ എടുത്തിട്ടില്ല."
+
+#: templates/webapp/industry/course_detail.html
+msgid "Guardian"
+msgstr "രക്ഷിതാവ്"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Since"
+msgstr "മുതൽ"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Fee"
+msgstr "ഫീസ്"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Withdraw this student? No more fees will be billed."
+msgstr "ഈ വിദ്യാർത്ഥിയെ ഒഴിവാക്കണോ? ഇനി ഫീസ് ബിൽ ചെയ്യില്ല."
+
+#: templates/webapp/industry/course_detail.html
+msgid "Withdraw"
+msgstr "ഒഴിവാക്കുക"
+
+#: templates/webapp/industry/course_detail.html
+msgid "Nobody enrolled yet."
+msgstr "ഇതുവരെ ആരും ചേർന്നിട്ടില്ല."
+
+#: templates/webapp/industry/course_form.html
+msgid "Charged"
+msgstr "ചാർജ് ചെയ്തു"
+
+#: templates/webapp/industry/course_form.html
+msgid "Schedule"
+msgstr "സമയക്രമം"
+
+#: templates/webapp/industry/course_form.html
+msgid "Teacher / instructor"
+msgstr "അധ്യാപകൻ / പരിശീലകൻ"
+
+#: templates/webapp/industry/course_form.html
+msgid "Seats (0 = no limit)"
+msgstr "സീറ്റുകൾ (0 = പരിധിയില്ല)"
+
+#: templates/webapp/industry/course_form.html
+msgid "Open for enrolment"
+msgstr "പ്രവേശനം തുറന്നിരിക്കുന്നു"
+
+#: templates/webapp/industry/course_form.html
+msgid "Save"
+msgstr "സേവ് ചെയ്യുക"
+
+#: templates/webapp/industry/dues.html
+msgid ""
+"Record a payment from the invoice, or send the invoice link by WhatsApp or "
+"email as a reminder."
+msgstr ""
+"ഇൻവോയ്സിൽ നിന്ന് പേയ്‌മെന്റ് രേഖപ്പെടുത്തുക, അല്ലെങ്കിൽ ഓർമ്മപ്പെടുത്തലായി "
+"WhatsApp/ഇമെയിൽ വഴി ഇൻവോയ്സ് ലിങ്ക് അയയ്ക്കുക."
+
+#: templates/webapp/industry/dues.html
+msgid "total"
+msgstr "ആകെ"
+
+#: templates/webapp/industry/dues.html
+msgid "paid"
+msgstr "അടച്ചു"
+
+#: templates/webapp/industry/dues.html
+msgid "Remind"
+msgstr "ഓർമ്മിപ്പിക്കുക"
+
+#: templates/webapp/industry/dues.html
+msgid "No fees due. Everyone has paid."
+msgstr "ബാക്കി ഫീസ് ഇല്ല. എല്ലാവരും അടച്ചു."
+
+#: templates/webapp/industry/education_home.html
+msgid "fees"
+msgstr "ഫീസ്"
+
+#: templates/webapp/industry/education_home.html
+msgid "Active"
+msgstr "സജീവം"
+
+#: templates/webapp/industry/education_home.html
+msgid "Billed this month"
+msgstr "ഈ മാസം ബിൽ ചെയ്തത്"
+
+#: templates/webapp/industry/education_home.html
+msgid "Collected"
+msgstr "ലഭിച്ചത്"
+
+#: templates/webapp/industry/education_home.html
+msgid "Fees due (all months)"
+msgstr "അടയ്ക്കാനുള്ള ഫീസ് (എല്ലാ മാസവും)"
+
+#: templates/webapp/industry/education_home.html
+msgid "fees for this month are not billed yet"
+msgstr "ഈ മാസത്തെ ഫീസ് ഇതുവരെ ബിൽ ചെയ്തിട്ടില്ല"
+
+#: templates/webapp/industry/education_home.html
+msgid "Create all the invoices in one step."
+msgstr "എല്ലാ ഇൻവോയ്സുകളും ഒറ്റയടിക്ക് ഉണ്ടാക്കുക."
+
+#: templates/webapp/industry/education_home.html
+msgid "Generate fees"
+msgstr "ഫീസ് ഉണ്ടാക്കുക"
+
+#: templates/webapp/industry/education_home.html
+msgid "Closed"
+msgstr "അടച്ചു"
+
+#: templates/webapp/industry/education_home.html
+msgid "No"
+msgstr "ഇല്ല"
+
+#: templates/webapp/industry/education_home.html
+msgid "yet."
+msgstr "ഇതുവരെ ഇല്ല."
+
+#: templates/webapp/industry/enroll_form.html
+msgid "or new"
+msgstr "അല്ലെങ്കിൽ പുതിയത്"
+
+#: templates/webapp/industry/enroll_form.html
+msgid "Parent / guardian"
+msgstr "മാതാപിതാക്കൾ / രക്ഷിതാവ്"
+
+#: templates/webapp/industry/enroll_form.html
+msgid "Guardian phone"
+msgstr "രക്ഷിതാവിന്റെ ഫോൺ"
+
+#: templates/webapp/industry/enroll_form.html
+msgid "Start date"
+msgstr "ആരംഭ തീയതി"
+
+#: templates/webapp/industry/enroll_form.html
+msgid "Discount %"
+msgstr "ഡിസ്കൗണ്ട് %"
+
+#: templates/webapp/industry/enroll_form.html
+msgid "Bill the first fee now (this month's fee, or the one-time fee)"
+msgstr "ആദ്യ ഫീസ് ഇപ്പോൾ ബിൽ ചെയ്യുക (ഈ മാസത്തെ അല്ലെങ്കിൽ ഒറ്റത്തവണ ഫീസ്)"
+
+#: templates/webapp/industry/fees.html
+msgid "Invoices"
+msgstr "ഇൻവോയ്സുകൾ"
+
+#: templates/webapp/industry/fees.html
+msgid "Billed"
+msgstr "ബിൽ ചെയ്തത്"
+
+#: templates/webapp/industry/fees.html
+msgid "Outstanding"
+msgstr "ബാക്കി"
+
+#: templates/webapp/industry/fees.html
+msgid "fees not billed yet"
+msgstr "ഫീസ് ഇതുവരെ ബിൽ ചെയ്തിട്ടില്ല"
+
+#: templates/webapp/industry/fees.html
+msgid "Create the invoices"
+msgstr "ഇൻവോയ്സുകൾ ഉണ്ടാക്കുക"
+
+#: templates/webapp/industry/fees.html
+msgid ""
+"One invoice per student with all their courses. Running it again never bills"
+" twice."
+msgstr ""
+"ഓരോ വിദ്യാർത്ഥിക്കും എല്ലാ കോഴ്സുകളും ചേർത്ത് ഒരു ഇൻവോയ്സ്. വീണ്ടും "
+"ചെയ്താലും രണ്ടുതവണ ബിൽ ആകില്ല."
+
+#: templates/webapp/industry/fees.html
+msgid "All fees for this month are billed."
+msgstr "ഈ മാസത്തെ എല്ലാ ഫീസും ബിൽ ചെയ്തു."
+
+#: templates/webapp/industry/fees.html
+msgid "Student"
+msgstr "വിദ്യാർത്ഥി"
+
+#: templates/webapp/industry/fees.html
+msgid "Course"
+msgstr "കോഴ്സ്"
+
+#: templates/webapp/industry/fees.html
+msgid "Send"
+msgstr "അയയ്ക്കുക"
+
+#: templates/webapp/industry/fees.html
+msgid "No fees billed for this month."
+msgstr "ഈ മാസം ഫീസ് ബിൽ ചെയ്തിട്ടില്ല."
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Gold rates"
+msgstr "സ്വർണ നിരക്ക്"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Gold rates & jewellery prices"
+msgstr "സ്വർണ നിരക്കും ആഭരണ വിലയും"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Today's rate per gram"
+msgstr "ഇന്നത്തെ ഗ്രാം നിരക്ക്"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "now"
+msgstr "ഇപ്പോൾ"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "not set"
+msgstr "സെറ്റ് ചെയ്തിട്ടില്ല"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Update the selling price of every item to the new rate"
+msgstr "എല്ലാ ഐറ്റങ്ങളുടെയും വിൽപ്പന വില പുതിയ നിരക്കിലേക്ക് മാറ്റുക"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Save rates"
+msgstr "നിരക്ക് സേവ് ചെയ്യുക"
+
+#: templates/webapp/industry/gold_rates.html
+msgid ""
+"The POS always prices gold items with the latest rate. Price = weight × rate"
+" + making charge + stones."
+msgstr ""
+"POS എപ്പോഴും ഏറ്റവും പുതിയ നിരക്കിൽ സ്വർണ വില കണക്കാക്കും. വില = തൂക്കം × "
+"നിരക്ക് + പണിക്കൂലി + കല്ലുകൾ."
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Items priced by gold rate"
+msgstr "സ്വർണ നിരക്കിൽ വില കണക്കാക്കുന്ന ഐറ്റങ്ങൾ"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "prices behind the rate"
+msgstr "നിരക്കിന് പിന്നിലുള്ള വിലകൾ"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "On each product set weight (g), karat and making charge."
+msgstr ""
+"ഓരോ ഉൽപ്പന്നത്തിലും തൂക്കം (ഗ്രാം), കാരറ്റ്, പണിക്കൂലി സെറ്റ് ചെയ്യുക."
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Item"
+msgstr "ഐറ്റം"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Weight"
+msgstr "തൂക്കം"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Karat"
+msgstr "കാരറ്റ്"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Making"
+msgstr "പണിക്കൂലി"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Stones"
+msgstr "കല്ലുകൾ"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Price now"
+msgstr "ഇപ്പോഴത്തെ വില"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Saved price"
+msgstr "സേവ് ചെയ്ത വില"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Set the karat and today's rate"
+msgstr "കാരറ്റും ഇന്നത്തെ നിരക്കും സെറ്റ് ചെയ്യുക"
+
+#: templates/webapp/industry/gold_rates.html
+msgid ""
+"No items with a weight yet. Open a product and fill in weight, karat and "
+"making charge."
+msgstr ""
+"തൂക്കമുള്ള ഐറ്റങ്ങൾ ഇതുവരെ ഇല്ല. ഒരു ഉൽപ്പന്നം തുറന്ന് തൂക്കം, കാരറ്റ്, "
+"പണിക്കൂലി നൽകുക."
+
+#: templates/webapp/industry/gold_rates.html
+msgid "Rate history"
+msgstr "നിരക്ക് ചരിത്രം"
+
+#: templates/webapp/industry/gold_rates.html
+msgid "No rates saved yet."
+msgstr "നിരക്കുകൾ ഇതുവരെ സേവ് ചെയ്തിട്ടില്ല."
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Ends in"
+msgstr "അവസാനിക്കാൻ"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Expired"
+msgstr "കാലാവധി കഴിഞ്ഞു"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Lease"
+msgstr "വാടക കരാർ"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Unit"
+msgstr "യൂണിറ്റ്"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Tenant"
+msgstr "വാടകക്കാരൻ"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Period"
+msgstr "കാലയളവ്"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "due on day"
+msgstr "അടയ്ക്കേണ്ട ദിവസം"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Closed on"
+msgstr "അവസാനിച്ചത്"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Bill this month"
+msgstr "ഈ മാസം ബിൽ ചെയ്യുക"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "End this lease today?"
+msgstr "ഈ കരാർ ഇന്ന് അവസാനിപ്പിക്കണോ?"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Terminate early"
+msgstr "നേരത്തെ അവസാനിപ്പിക്കുക"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "End lease"
+msgstr "കരാർ അവസാനിപ്പിക്കുക"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "Balance due"
+msgstr "ബാക്കി തുക"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "due"
+msgstr "അടയ്ക്കേണ്ടത്"
+
+#: templates/webapp/industry/lease_detail.html
+msgid "No rent billed yet."
+msgstr "ഇതുവരെ വാടക ബിൽ ചെയ്തിട്ടില്ല."
+
+#: templates/webapp/industry/lease_form.html
+msgid "New lease"
+msgstr "പുതിയ കരാർ"
+
+#: templates/webapp/industry/lease_form.html
+msgid "New lease / tenancy contract"
+msgstr "പുതിയ വാടക കരാർ"
+
+#: templates/webapp/industry/lease_form.html
+msgid "or new tenant"
+msgstr "അല്ലെങ്കിൽ പുതിയ വാടകക്കാരൻ"
+
+#: templates/webapp/industry/lease_form.html
+msgid "Start"
+msgstr "തുടങ്ങുക"
+
+#: templates/webapp/industry/lease_form.html
+msgid "End"
+msgstr "അവസാനം"
+
+#: templates/webapp/industry/lease_form.html
+msgid "Rent due on day"
+msgstr "വാടക അടയ്ക്കേണ്ട ദിവസം"
+
+#: templates/webapp/industry/lease_form.html
+msgid "Bill the first month's rent now"
+msgstr "ആദ്യ മാസ വാടക ഇപ്പോൾ ബിൽ ചെയ്യുക"
+
+#: templates/webapp/industry/lease_form.html
+msgid "Create lease"
+msgstr "കരാർ ഉണ്ടാക്കുക"
+
+#: templates/webapp/industry/lease_list.html
+msgid "No leases."
+msgstr "കരാറുകൾ ഇല്ല."
+
+#: templates/webapp/industry/property_home.html
+msgid "Properties & tenants"
+msgstr "പ്രോപ്പർട്ടികളും വാടകക്കാരും"
+
+#: templates/webapp/industry/property_home.html
+msgid "Vacant"
+msgstr "ഒഴിവ്"
+
+#: templates/webapp/industry/property_home.html
+msgid "Monthly rent roll"
+msgstr "മാസ വാടക പട്ടിക"
+
+#: templates/webapp/industry/property_home.html
+msgid "Collected this month"
+msgstr "ഈ മാസം ലഭിച്ചത്"
+
+#: templates/webapp/industry/property_home.html
+msgid "rents for this month are not billed yet"
+msgstr "ഈ മാസത്തെ വാടക ഇതുവരെ ബിൽ ചെയ്തിട്ടില്ല"
+
+#: templates/webapp/industry/property_home.html
+msgid "Create all the rent invoices in one step."
+msgstr "എല്ലാ വാടക ഇൻവോയ്സുകളും ഒറ്റയടിക്ക് ഉണ്ടാക്കുക."
+
+#: templates/webapp/industry/property_home.html
+msgid "Bill rent"
+msgstr "വാടക ബിൽ ചെയ്യുക"
+
+#: templates/webapp/industry/property_home.html
+msgid "Property"
+msgstr "പ്രോപ്പർട്ടി"
+
+#: templates/webapp/industry/property_home.html
+msgid "Overdue rent"
+msgstr "കുടിശ്ശിക വാടക"
+
+#: templates/webapp/industry/property_home.html
+msgid "No overdue rent."
+msgstr "കുടിശ്ശിക വാടക ഇല്ല."
+
+#: templates/webapp/industry/property_home.html
+msgid "Leases ending in 60 days"
+msgstr "60 ദിവസത്തിനുള്ളിൽ അവസാനിക്കുന്ന കരാറുകൾ"
+
+#: templates/webapp/industry/property_home.html
+msgid "None."
+msgstr "ഒന്നുമില്ല."
+
+#: templates/webapp/industry/property_home.html
+msgid "Owner"
+msgstr "ഉടമ"
+
+#: templates/webapp/industry/property_home.html
+msgid "until"
+msgstr "വരെ"
+
+#: templates/webapp/industry/property_home.html
+msgid "No units yet."
+msgstr "യൂണിറ്റുകൾ ഇതുവരെ ഇല്ല."
+
+#: templates/webapp/industry/property_home.html
+msgid "Add your first property, then its units."
+msgstr "ആദ്യം പ്രോപ്പർട്ടി ചേർക്കുക, പിന്നെ അതിന്റെ യൂണിറ്റുകൾ."
+
+#: templates/webapp/industry/rent_run.html
+msgid "rents not billed yet"
+msgstr "വാടക ഇതുവരെ ബിൽ ചെയ്തിട്ടില്ല"
+
+#: templates/webapp/industry/rent_run.html
+msgid "Create the rent invoices"
+msgstr "വാടക ഇൻവോയ്സുകൾ ഉണ്ടാക്കുക"
+
+#: templates/webapp/industry/rent_run.html
+msgid ""
+"One invoice per lease, due on the lease's due day. Running it again never "
+"bills twice."
+msgstr ""
+"ഓരോ കരാറിനും ഒരു ഇൻവോയ്സ്, കരാറിലെ തീയതിയിൽ അടയ്ക്കണം. വീണ്ടും ചെയ്താലും "
+"രണ്ടുതവണ ബിൽ ആകില്ല."
+
+#: templates/webapp/industry/rent_run.html
+msgid "All rent for this month is billed."
+msgstr "ഈ മാസത്തെ എല്ലാ വാടകയും ബിൽ ചെയ്തു."
+
+#: templates/webapp/industry/rent_run.html
+msgid "No rent billed for this month."
+msgstr "ഈ മാസം വാടക ബിൽ ചെയ്തിട്ടില്ല."
+
+#: templates/webapp/industry/resource_form.html
+msgid "Type"
+msgstr "തരം"
+
+#: templates/webapp/industry/resource_form.html
+msgid "Capacity (guests / seats)"
+msgstr "ശേഷി (അതിഥികൾ / സീറ്റുകൾ)"
+
+#: templates/webapp/industry/resource_form.html
+msgid "Details (plate number, floor, size, features...)"
+msgstr "വിവരങ്ങൾ (നമ്പർ പ്ലേറ്റ്, നില, വലുപ്പം, സൗകര്യങ്ങൾ...)"
+
+#: templates/webapp/industry/resource_form.html
+msgid "Order on the calendar"
+msgstr "കലണ്ടറിലെ ക്രമം"
+
+#: templates/webapp/industry/resource_form.html
+msgid "Available for booking"
+msgstr "ബുക്കിംഗിന് ലഭ്യം"
+
+#: templates/webapp/industry/resource_list.html
+msgid "Capacity"
+msgstr "ശേഷി"
+
+#: templates/webapp/industry/resource_list.html
+msgid "Details"
+msgstr "വിവരങ്ങൾ"
+
+#: templates/webapp/industry/resource_list.html
+msgid "Inactive"
+msgstr "നിഷ്ക്രിയം"
+
+#: templates/webapp/industry/resource_list.html
+msgid "Nothing added yet."
+msgstr "ഇതുവരെ ഒന്നും ചേർത്തിട്ടില്ല."
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Weighing scale & sell by weight"
+msgstr "തൂക്ക യന്ത്രവും തൂക്കത്തിലുള്ള വിൽപ്പനയും"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Scale barcode format"
+msgstr "സ്കെയിൽ ബാർകോഡ് ഫോർമാറ്റ്"
+
+#: templates/webapp/industry/scale_settings.html
+msgid ""
+"Most shop scales print an EAN-13 label: prefix + item code + weight (or "
+"price) + check digit. Scan it at the POS and the item is added with its "
+"weight."
+msgstr ""
+"മിക്ക കടകളിലെ സ്കെയിലുകളും EAN-13 ലേബൽ പ്രിന്റ് ചെയ്യും: പ്രിഫിക്സ് + ഐറ്റം "
+"കോഡ് + തൂക്കം (അല്ലെങ്കിൽ വില) + ചെക്ക് അക്കം. POS-ൽ സ്കാൻ ചെയ്താൽ ഐറ്റം "
+"തൂക്കത്തോടെ ചേർക്കപ്പെടും."
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Barcode prefixes"
+msgstr "ബാർകോഡ് പ്രിഫിക്സുകൾ"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Item code digits"
+msgstr "ഐറ്റം കോഡ് അക്കങ്ങൾ"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "The label contains"
+msgstr "ലേബലിൽ ഉള്ളത്"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Decimals in the value"
+msgstr "മൂല്യത്തിലെ ദശാംശങ്ങൾ"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Example label"
+msgstr "ഉദാഹരണ ലേബൽ"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "prefix"
+msgstr "പ്രിഫിക്സ്"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "item code"
+msgstr "ഐറ്റം കോഡ്"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Products sold by weight"
+msgstr "തൂക്കത്തിൽ വിൽക്കുന്ന ഉൽപ്പന്നങ്ങൾ"
+
+#: templates/webapp/industry/scale_settings.html
+msgid ""
+"Open a product and tick “Sold by weight”. Its price is per kg, and the POS "
+"asks for the weight."
+msgstr ""
+"ഒരു ഉൽപ്പന്നം തുറന്ന് “Sold by weight” ടിക്ക് ചെയ്യുക. വില കിലോയ്ക്ക് "
+"ആയിരിക്കും, POS തൂക്കം ചോദിക്കും."
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Scale code"
+msgstr "സ്കെയിൽ കോഡ്"
+
+#: templates/webapp/industry/scale_settings.html
+msgid "No products sold by weight yet."
+msgstr "തൂക്കത്തിൽ വിൽക്കുന്ന ഉൽപ്പന്നങ്ങൾ ഇതുവരെ ഇല്ല."
+
+#: templates/webapp/industry/scale_settings.html
+msgid "Go to products"
+msgstr "ഉൽപ്പന്നങ്ങളിലേക്ക് പോകുക"
+
 #: templates/webapp/invoice_pdf.html
 msgid "Print"
 msgstr "പ്രിന്റ്"
@@ -1366,10 +2263,6 @@ msgid "Bill to"
 msgstr "ബിൽ ചെയ്യുന്നത്"
 
 #: templates/webapp/invoice_pdf.html
-msgid "Item"
-msgstr "ഐറ്റം"
-
-#: templates/webapp/invoice_pdf.html
 msgid "Qty"
 msgstr "എണ്ണം"
 
@@ -1404,10 +2297,6 @@ msgstr "സബ്ടോട്ടൽ"
 #: templates/webapp/invoice_pdf.html
 msgid "Tax"
 msgstr "ടാക്സ്"
-
-#: templates/webapp/invoice_pdf.html
-msgid "Balance due"
-msgstr "ബാക്കി തുക"
 
 #: templates/webapp/invoice_share.html
 msgid "Share invoice"
@@ -1548,10 +2437,6 @@ msgstr "ലോഗോ (ഓപ്ഷണൽ)"
 #: templates/webapp/onboarding/wizard.html
 msgid "Address"
 msgstr "വിലാസം"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Phone"
-msgstr "ഫോൺ"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "VAT / tax number (optional)"
@@ -1805,10 +2690,6 @@ msgid "Held sales"
 msgstr "ഹോൾഡ് ചെയ്ത വിൽപ്പനകൾ"
 
 #: templates/webapp/pos.html
-msgid "Held"
-msgstr "ഹോൾഡ്"
-
-#: templates/webapp/pos.html
 msgid "Offline sales"
 msgstr "ഓഫ്‌ലൈൻ വിൽപ്പനകൾ"
 
@@ -1986,6 +2867,18 @@ msgstr "പുതിയ വിൽപ്പന"
 #: templates/webapp/pos.html
 msgid "Select IMEI"
 msgstr "IMEI തിരഞ്ഞെടുക്കുക"
+
+#: templates/webapp/pos.html
+msgid "Weight (kg)"
+msgstr "തൂക്കം (കിലോ)"
+
+#: templates/webapp/pos.html
+msgid "or amount"
+msgstr "അല്ലെങ്കിൽ തുക"
+
+#: templates/webapp/pos.html
+msgid "Add to sale"
+msgstr "വിൽപ്പനയിൽ ചേർക്കുക"
 
 #: templates/webapp/pos.html
 msgid "Sales parked on this till. Tap one to bring it back."
@@ -2235,10 +3128,6 @@ msgstr ""
 "റിപ്പോർട്ടുകൾ. കമ്പ്യൂട്ടറിലും ടാബ്‌ലെറ്റിലും ഫോണിലും പ്രവർത്തിക്കും."
 
 #: templates/webapp/public/landing.html
-msgid "Start"
-msgstr "തുടങ്ങുക"
-
-#: templates/webapp/public/landing.html
 msgid "See what's inside"
 msgstr "എന്തൊക്കെയുണ്ടെന്ന് കാണുക"
 
@@ -2300,7 +3189,7 @@ msgstr "പേ ചെയ്യുക"
 
 #: templates/webapp/public/landing.html
 msgid "QAR 0"
-msgstr ""
+msgstr "QAR 0"
 
 #: templates/webapp/public/landing.html
 msgid "Kitchen"
@@ -2737,10 +3626,6 @@ msgid "Restaurant"
 msgstr "റെസ്റ്റോറന്റ്"
 
 #: templates/webapp/restaurant/dashboard.html
-msgid "paid"
-msgstr "അടച്ചു"
-
-#: templates/webapp/restaurant/dashboard.html
 msgid "· invoice"
 msgstr "· ഇൻവോയ്സ്"
 
@@ -2844,10 +3729,6 @@ msgstr "തിരക്കിൽ"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Cleaning"
 msgstr "ക്ലീനിംഗ്"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "Reserved"
-msgstr "റിസർവ് ചെയ്തു"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "seats ·"
@@ -3302,10 +4183,6 @@ msgid "Tip"
 msgstr "ടിപ്പ്"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "Discount"
-msgstr "ഡിസ്കൗണ്ട്"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Split"
 msgstr "വിഭജിക്കുക"
 
@@ -3502,10 +4379,6 @@ msgstr "പരിശോധിച്ച് പേ ചെയ്യുക"
 #: templates/webapp/restaurant/order_detail.html
 msgid "see details"
 msgstr "വിവരങ്ങൾ കാണുക"
-
-#: templates/webapp/restaurant/order_detail.html
-msgid "New"
-msgstr "പുതിയത്"
 
 #: templates/webapp/restaurant/order_detail.html
 msgid "Add at least one dish before sending this order to the kitchen."
@@ -3764,10 +4637,6 @@ msgstr ""
 "⚠️ ഈ റിക്കവറി കോഡുകൾ സുരക്ഷിതമായി സൂക്ഷിക്കുക. ഓരോന്നും പ്രവർത്തിക്കും"
 
 #: templates/webapp/security.html
-msgid "once"
-msgstr "ഒരു തവണ"
-
-#: templates/webapp/security.html
 msgid "if you lose your phone. They will not be shown again."
 msgstr "ഫോൺ നഷ്ടപ്പെട്ടാൽ. ഇവ വീണ്ടും കാണിക്കില്ല."
 
@@ -3933,18 +4802,6 @@ msgid "Seated"
 msgstr "ഇരുന്നു"
 
 #: apps/verticals/restaurant/models.py
-msgid "Completed"
-msgstr "പൂർത്തിയായി"
-
-#: apps/verticals/restaurant/models.py
-msgid "No-show"
-msgstr "വന്നില്ല"
-
-#: apps/verticals/restaurant/models.py
-msgid "Closed"
-msgstr "അടച്ചു"
-
-#: apps/verticals/restaurant/models.py
 msgid "Draft"
 msgstr "ഡ്രാഫ്റ്റ്"
 
@@ -3963,6 +4820,103 @@ msgstr "ക്യൂവിൽ"
 #: apps/verticals/restaurant/models.py
 msgid "Preparing"
 msgstr "തയ്യാറാക്കുന്നു"
+
+#: apps/webapp/booking_views.py
+msgid "Choose a customer or type a new customer's name."
+msgstr "ഒരു ഉപഭോക്താവിനെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ പേര് ടൈപ്പ് ചെയ്യുക."
+
+#: apps/webapp/booking_views.py
+msgid "%(name)s saved."
+msgstr "%(name)s സേവ് ചെയ്തു."
+
+#: apps/webapp/booking_views.py
+msgid "%(number)s booked."
+msgstr "%(number)s ബുക്ക് ചെയ്തു."
+
+#: apps/webapp/booking_views.py
+msgid "Booking updated."
+msgstr "ബുക്കിംഗ് അപ്ഡേറ്റ് ചെയ്തു."
+
+#: apps/webapp/booking_views.py
+msgid "Checked in."
+msgstr "ചെക്ക്-ഇൻ ചെയ്തു."
+
+#: apps/webapp/booking_views.py
+msgid "Booking cancelled."
+msgstr "ബുക്കിംഗ് റദ്ദാക്കി."
+
+#: apps/webapp/booking_views.py
+msgid "Marked as no-show."
+msgstr "വന്നില്ല എന്ന് രേഖപ്പെടുത്തി."
+
+#: apps/webapp/booking_views.py
+msgid "Security deposit marked as returned."
+msgstr "സെക്യൂരിറ്റി ഡെപ്പോസിറ്റ് തിരികെ നൽകിയതായി രേഖപ്പെടുത്തി."
+
+#: apps/webapp/booking_views.py
+msgid "Checked out. Invoice %(number)s created."
+msgstr "ചെക്ക്-ഔട്ട് ചെയ്തു. ഇൻവോയ്സ് %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/education_views.py
+msgid "Courses"
+msgstr "കോഴ്സുകൾ"
+
+#: apps/webapp/education_views.py
+msgid "Batch"
+msgstr "ബാച്ച്"
+
+#: apps/webapp/education_views.py
+msgid "Class"
+msgstr "ക്ലാസ്"
+
+#: apps/webapp/education_views.py
+msgid "Classes"
+msgstr "ക്ലാസുകൾ"
+
+#: apps/webapp/education_views.py
+msgid "Package"
+msgstr "പാക്കേജ്"
+
+#: apps/webapp/education_views.py
+msgid "Students"
+msgstr "വിദ്യാർത്ഥികൾ"
+
+#: apps/webapp/education_views.py
+msgid "Child"
+msgstr "കുട്ടി"
+
+#: apps/webapp/education_views.py
+msgid "Children"
+msgstr "കുട്ടികൾ"
+
+#: apps/webapp/education_views.py
+msgid "Learner"
+msgstr "പഠിതാവ്"
+
+#: apps/webapp/education_views.py
+msgid "Learners"
+msgstr "പഠിതാക്കൾ"
+
+#: apps/webapp/education_views.py
+msgid "Choose a student or type a new student's name."
+msgstr ""
+"ഒരു വിദ്യാർത്ഥിയെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ പേര് ടൈപ്പ് ചെയ്യുക."
+
+#: apps/webapp/education_views.py
+msgid "Attendance saved for %(day)s."
+msgstr "%(day)s-ലെ ഹാജർ സേവ് ചെയ്തു."
+
+#: apps/webapp/education_views.py
+msgid "%(name)s updated."
+msgstr "%(name)s അപ്ഡേറ്റ് ചെയ്തു."
+
+#: apps/webapp/education_views.py
+msgid "%(name)s enrolled in %(course)s."
+msgstr "%(name)s %(course)s-ൽ ചേർന്നു."
+
+#: apps/webapp/education_views.py
+msgid "%(count)s fee invoices created for %(month)s."
+msgstr "%(month)s-ന് %(count)s ഫീസ് ഇൻവോയ്സുകൾ ഉണ്ടാക്കി."
 
 #: apps/webapp/finance_views.py
 msgid "Against invoice (optional)"
@@ -4044,6 +4998,14 @@ msgstr "ആസ്തി ചേർത്ത് അക്കൗണ്ട്സി�
 msgid "Asset disposed and the gain or loss recorded."
 msgstr "ആസ്തി ഒഴിവാക്കി, ലാഭമോ നഷ്ടമോ രേഖപ്പെടുത്തി."
 
+#: apps/webapp/gold_views.py
+msgid "%(count)s rates saved; %(changed)s item prices updated."
+msgstr "%(count)s നിരക്കുകൾ സേവ് ചെയ്തു; %(changed)s ഐറ്റം വിലകൾ മാറ്റി."
+
+#: apps/webapp/industry_access.py
+msgid "This module isn't part of your business type."
+msgstr "ഈ മൊഡ്യൂൾ നിങ്ങളുടെ ബിസിനസ് തരത്തിൽ ഇല്ല."
+
 #: apps/webapp/onboarding_views.py
 msgid "Check the price and stock for “%(name)s”."
 msgstr "“%(name)s”-ന്റെ വിലയും സ്റ്റോക്കും പരിശോധിക്കുക."
@@ -4060,6 +5022,54 @@ msgstr ""
 #: apps/webapp/onboarding_views.py
 msgid "Added %(items)s items and %(tables)s tables."
 msgstr "%(items)s ഇനങ്ങളും %(tables)s ടേബിളുകളും ചേർത്തു."
+
+#: apps/webapp/property_views.py
+msgid "Choose a tenant or type a new tenant's name."
+msgstr "ഒരു വാടകക്കാരനെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ പേര് ടൈപ്പ് ചെയ്യുക."
+
+#: apps/webapp/property_views.py
+msgid "New property"
+msgstr "പുതിയ പ്രോപ്പർട്ടി"
+
+#: apps/webapp/property_views.py
+msgid "New unit"
+msgstr "പുതിയ യൂണിറ്റ്"
+
+#: apps/webapp/property_views.py
+msgid "Lease %(number)s created."
+msgstr "കരാർ %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/property_views.py
+msgid "Lease closed."
+msgstr "കരാർ അവസാനിപ്പിച്ചു."
+
+#: apps/webapp/property_views.py
+msgid "Rent billed."
+msgstr "വാടക ബിൽ ചെയ്തു."
+
+#: apps/webapp/property_views.py
+msgid "This month's rent is already billed."
+msgstr "ഈ മാസത്തെ വാടക ഇതിനകം ബിൽ ചെയ്തു."
+
+#: apps/webapp/property_views.py
+msgid "%(count)s rent invoices created for %(month)s."
+msgstr "%(month)s-ന് %(count)s വാടക ഇൻവോയ്സുകൾ ഉണ്ടാക്കി."
+
+#: apps/webapp/scale_views.py
+msgid "Use 1–3 digit prefixes separated by commas, e.g. 20,21,22."
+msgstr "കോമ ഇട്ട് 1–3 അക്ക പ്രിഫിക്സുകൾ നൽകുക, ഉദാ. 20,21,22."
+
+#: apps/webapp/scale_views.py
+msgid "Prefix and item code must leave at least 3 digits for the value."
+msgstr "പ്രിഫിക്സും ഐറ്റം കോഡും കഴിഞ്ഞ് മൂല്യത്തിന് കുറഞ്ഞത് 3 അക്കം വേണം."
+
+#: apps/webapp/scale_views.py
+msgid "At most 3 decimals."
+msgstr "പരമാവധി 3 ദശാംശം."
+
+#: apps/webapp/scale_views.py
+msgid "Scale settings saved."
+msgstr "സ്കെയിൽ സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
 
 #: apps/webapp/views.py
 msgid "Sale %(number)s booked as invoice %(invoice)s."
@@ -4129,3 +5139,67 @@ msgid ""
 "Your payment is being confirmed. This page will show it within a minute."
 msgstr ""
 "നിങ്ങളുടെ പേയ്മെന്റ് സ്ഥിരീകരിക്കുന്നു. ഒരു മിനിറ്റിനുള്ളിൽ ഇവിടെ കാണാം."
+
+#: apps/modules/catalog.py
+msgid "Room"
+msgstr "മുറി"
+
+#: apps/modules/catalog.py
+msgid "Rooms"
+msgstr "മുറികൾ"
+
+#: apps/modules/catalog.py
+msgid "Reservation"
+msgstr "റിസർവേഷൻ"
+
+#: apps/modules/catalog.py
+msgid "night"
+msgstr "രാത്രി"
+
+#: apps/modules/catalog.py
+msgid "Vehicle"
+msgstr "വാഹനം"
+
+#: apps/modules/catalog.py
+msgid "Rental"
+msgstr "വാടക"
+
+#: apps/modules/catalog.py
+msgid "day"
+msgstr "ദിവസം"
+
+#: apps/modules/catalog.py
+msgid "Equipment"
+msgstr "ഉപകരണങ്ങൾ"
+
+#: apps/modules/catalog.py
+msgid "Hall"
+msgstr "ഹാൾ"
+
+#: apps/modules/catalog.py
+msgid "Halls"
+msgstr "ഹാളുകൾ"
+
+#: apps/modules/catalog.py
+msgid "Event booking"
+msgstr "ഇവന്റ് ബുക്കിംഗ്"
+
+#: apps/modules/catalog.py
+msgid "event"
+msgstr "ഇവന്റ്"
+
+#: apps/modules/catalog.py
+msgid "Space"
+msgstr "സ്ഥലം"
+
+#: apps/modules/catalog.py
+msgid "Spaces"
+msgstr "സ്ഥലങ്ങൾ"
+
+#: apps/modules/catalog.py
+msgid "Booking"
+msgstr "ബുക്കിംഗ്"
+
+#: apps/modules/catalog.py
+msgid "hour"
+msgstr "മണിക്കൂർ"

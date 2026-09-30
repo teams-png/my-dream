@@ -32,6 +32,12 @@ def msgids():
             continue
         for match in PY_PATTERN.finditer(text):
             found.setdefault(match.group(2), str(path.relative_to(ROOT)))
+    # per-business-type words shown through {% translate variable %}
+    catalog = (ROOT / "apps" / "modules" / "catalog.py").read_text(encoding="utf-8")
+    for block in re.findall(r"(?:BOOKING|EDUCATION)_TERMS = \{(.*?)\n\}", catalog, re.S):
+        for words in re.findall(r"\((\".*?)\)", block):
+            for word in re.findall(r"\"([^\"]+)\"", words):
+                found.setdefault(word, "apps/modules/catalog.py")
     return found
 
 

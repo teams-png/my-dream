@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block heading %}{% translate "Stock history" %}: {{ product.name }}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/stock/_tabs.html" %}
+<div class="hr-kpis"><div class="hr-kpi"><small>{% translate "Current stock" %}</small><b>{{ balance|floatformat:"-3" }} {{ product.unit.name }}</b></div></div>
+<form method="get" class="hr-actions" style="margin-bottom:12px">{% if warehouses|length > 1 %}<select class="hr-in" style="width:auto" name="warehouse" onchange="this.form.submit()"><option value="">{% translate "All locations" %}</option>{% for w in warehouses %}<option value="{{ w.id }}" {% if warehouse == w.id|stringformat:"s" %}selected{% endif %}>{{ w.name }}</option>{% endfor %}</select>{% endif %}<a class="btn btn-secondary" href="{% url 'webapp:stock_adjust' %}?product={{ product.id }}">± {% translate "Adjust" %}</a></form>
+<div class="hr-card hr-table"><table><thead><tr><th>{% translate "When" %}</th><th>{% translate "What" %}</th><th>{% translate "Location" %}</th><th class="hr-num">{% translate "In / out" %}</th><th class="hr-num">{% translate "Balance" %}</th></tr></thead>
+<tbody>{% for r in rows %}<tr><td>{{ r.m.moved_at|date:"j M Y, H:i" }}</td><td class="wrap">{{ r.m.get_reason_display }}{% if r.m.reference %} · <small>{{ r.m.reference }}</small>{% endif %}{% if r.m.batch %} · <span class="hr-chip blue">{{ r.m.batch.batch_number }}</span>{% endif %}{% if r.m.serial %} · <span class="hr-chip">{{ r.m.serial.serial_number }}</span>{% endif %}</td><td>{{ r.m.warehouse.name }}</td><td class="hr-num"><b style="color:{% if r.m.quantity < 0 %}var(--hr-bad){% else %}var(--hr-ok){% endif %}">{% if r.m.quantity > 0 %}+{% endif %}{{ r.m.quantity|floatformat:"-3" }}</b></td><td class="hr-num">{{ r.balance|floatformat:"-3" }}</td></tr>{% empty %}<tr><td colspan="5" class="hr-empty">{% translate "No stock movements yet." %}</td></tr>{% endfor %}</tbody></table></div>
+</div>
+{% endblock %}

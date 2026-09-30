@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Batches & expiry" %}{% endblock %}
+{% block heading %}{% translate "Batches & expiry" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/stock/_tabs.html" %}
+<div class="hr-kpis"><div class="hr-kpi {% if at_risk %}warn{% endif %}"><small>{% translate "Value expired or expiring in 30 days" %}</small><b>{{ active_company.default_currency }} {{ at_risk|floatformat:2 }}</b></div></div>
+<div class="hr-grid2">
+<div>
+  <div class="hr-actions" style="margin-bottom:10px"><a class="hr-chip {% if show == 'stock' %}ok{% endif %}" style="padding:8px 12px" href="?show=stock">{% translate "In stock" %}</a><a class="hr-chip {% if show == 'expiring' %}ok{% endif %}" style="padding:8px 12px" href="?show=expiring">{% translate "Expired / expiring" %}</a><a class="hr-chip {% if show == 'all' %}ok{% endif %}" style="padding:8px 12px" href="?show=all">{% translate "All" %}</a></div>
+  <div class="hr-list">{% for r in rows %}<div class="hr-row"><span class="grow"><b>{{ r.b.product.name }}</b> · {% translate "Batch" %} {{ r.b.batch_number }}<small>{% if r.b.expiry_date %}{% translate "Expires" %} {{ r.b.expiry_date|date:"j M Y" }}{% else %}{% translate "No expiry date" %}{% endif %}</small></span>
+    {% if r.state == "expired" %}<span class="hr-chip bad">{% translate "Expired" %}</span>{% elif r.state == "soon" %}<span class="hr-chip warn">{{ r.days }} {% translate "days left" %}</span>{% endif %}
+    <b>{{ r.stock|floatformat:"-3" }}</b>{% if r.state != "ok" and r.stock > 0 %}<a class="btn btn-secondary" href="{% url 'webapp:stock_adjust' %}?product={{ r.b.product.id }}">{% translate "Write off" %}</a>{% endif %}</div>{% empty %}<div class="hr-card hr-empty">{% translate "No batches here." %}</div>{% endfor %}</div>
+</div>
+<form method="post" class="hr-card">{% csrf_token %}<h3>＋ {% translate "Receive a batch" %}</h3>
+  <div class="hr-form">
+    <label class="wide">{% translate "Item" %}<select name="product" required><option value="">—</option>{% for p in products %}<option value="{{ p.id }}">{{ p.name }} · {{ p.sku }}</option>{% endfor %}</select></label>
+    <label>{% translate "Batch / lot number" %}<input name="batch_number" required maxlength="100"></label>
+    <label>{% translate "Expiry date" %}<input type="date" name="expiry_date"></label>
+    <label>{% translate "Made on" %}<input type="date" name="manufacture_date"></label>
+    <label>{% translate "Quantity received" %}<input type="number" name="quantity" step="0.001" min="0"></label>
+    {% if warehouses|length > 1 %}<label>{% translate "Location" %}<select name="warehouse">{% for w in warehouses %}<option value="{{ w.id }}">{{ w.name }}</option>{% endfor %}</select></label>{% else %}<input type="hidden" name="warehouse" value="{{ warehouses.0.id }}">{% endif %}
+    <div class="wide"><button class="btn" type="submit">{% translate "Save batch" %}</button></div>
+  </div>
+  <p style="color:var(--hr-soft);font-size:12.5px;margin:10px 0 0">{% translate "Sales take stock from the batch that expires first." %}</p>
+</form>
+</div>
+</div>
+{% endblock %}

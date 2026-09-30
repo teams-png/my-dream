@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Stock count" %} #{{ count.id }}{% endblock %}
+{% block heading %}{% translate "Stock count" %} #{{ count.id }} · {{ count.warehouse.name }}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/stock/_tabs.html" %}
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Counted" %}</small><b>{{ counted }} / {{ lines|length }}</b></div>
+  <div class="hr-kpi {% if differences %}warn{% endif %}"><small>{% translate "Differences" %}</small><b>{{ differences }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Shortage value" %}</small><b style="color:var(--hr-bad)">{{ short_value|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Extra value" %}</small><b style="color:var(--hr-ok)">{{ extra_value|floatformat:2 }}</b></div>
+</div>
+{% if count.status == "completed" %}<div class="hr-card" style="background:var(--hr-ok-bg)">✓ {% translate "Completed" %} {{ count.completed_at|date:"j M Y, H:i" }}. {% translate "Stock was corrected." %}</div>{% endif %}
+<form method="post">{% csrf_token %}
+{% if count.status == "draft" %}<input class="hr-in no-print" id="find" type="search" placeholder="🔍 {% translate 'Scan or type to find an item' %}" style="margin-bottom:10px">{% endif %}
+<div class="hr-card hr-table"><table><thead><tr><th>{% translate "Item" %}</th><th class="hr-num">{% translate "System" %}</th><th class="hr-num">{% translate "Counted" %}</th><th class="hr-num">{% translate "Difference" %}</th></tr></thead>
+<tbody>{% for l in lines %}<tr class="cl" data-k="{{ l.product.name|lower }} {{ l.product.sku|lower }} {{ l.product.barcode|default:''|lower }}"><td class="wrap"><b>{{ l.product.name }}</b> <small style="color:var(--hr-soft)">{{ l.product.sku }}</small></td><td class="hr-num">{{ l.system_quantity|floatformat:"-3" }}</td>
+<td class="hr-num">{% if count.status == "draft" %}<input class="hr-in cnt" style="width:110px;min-height:38px;text-align:right" type="number" step="0.001" min="0" name="c_{{ l.id }}" value="{% if l.counted_quantity is not None %}{{ l.counted_quantity|floatformat:'-3u' }}{% endif %}" data-sys="{{ l.system_quantity|floatformat:'-3u' }}" inputmode="decimal">{% else %}{{ l.counted_quantity|default_if_none:"—"|floatformat:"-3" }}{% endif %}</td>
+<td class="hr-num var">{% if l.variance %}<b style="color:{% if l.variance < 0 %}var(--hr-bad){% else %}var(--hr-ok){% endif %}">{% if l.variance > 0 %}+{% endif %}{{ l.variance|floatformat:"-3" }}</b>{% endif %}</td></tr>{% endfor %}</tbody></table></div>
+{% if count.status == "draft" %}<div class="att-save"><span>{% translate "Leave an item empty if you haven't counted it — it won't be changed." %}</span><span class="hr-actions"><button class="btn" style="background:rgba(255,255,255,.18);color:#fff" name="action" value="save">{% translate "Save progress" %}</button><button class="btn" name="action" value="complete" onclick="return confirm('{% translate "Finish the count and correct the stock?" %}')">✓ {% translate "Finish & correct stock" %}</button></span></div>{% endif %}
+</form>
+<script>(function(){const f=document.getElementById('find');document.querySelectorAll('.cnt').forEach(i=>i.addEventListener('input',()=>{const cell=i.closest('tr').querySelector('.var');if(i.value===''){cell.textContent='';return}const d=Math.round((parseFloat(i.value)-parseFloat(i.dataset.sys))*1000)/1000;cell.innerHTML=d?`<b style="color:${d<0?'var(--hr-bad)':'var(--hr-ok)'}">${d>0?'+':''}${d}</b>`:'✓'}));if(f)f.addEventListener('input',()=>{const q=f.value.trim().toLowerCase();let first=null;document.querySelectorAll('.cl').forEach(r=>{const hit=!q||r.dataset.k.includes(q);r.style.display=hit?'':'none';if(hit&&!first)first=r});if(q&&first&&f.value.length>3)first.querySelector('.cnt').focus()})})();</script>
+</div>
+{% endblock %}

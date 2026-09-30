@@ -163,6 +163,25 @@ def create_invoice(*, company, user, customer, date, lines, warehouse, due_date=
             sell_serial_stock(
                 company=company, product=product, serial=l["serial"], reference=invoice.invoice_number,
             )
+        elif product.tracking_type == "batch":
+            # No batch chosen (POS, quick sale): take stock from the batches that expire first.
+            from apps.inventory.services import suggest_fefo_batches
+            remaining = Decimal(l["quantity"])
+            today = invoice.date if hasattr(invoice.date, "year") else parse_date(str(invoice.date))
+            for suggestion in suggest_fefo_batches(company=company, product=product, warehouse=warehouse,
+                                                   quantity_needed=remaining):
+                batch = suggestion["batch"]
+                if product.block_expired_batch_sale and batch.expiry_date and batch.expiry_date < today:
+                    continue
+                take = min(remaining, suggestion["available_quantity"])
+                record_stock_movement(company=company, product=product, warehouse=warehouse, quantity=-take,
+                                      reason="sale", reference=invoice.invoice_number, batch=batch)
+                remaining -= take
+                if remaining <= 0:
+                    break
+            if remaining > 0:
+                record_stock_movement(company=company, product=product, warehouse=warehouse, quantity=-remaining,
+                                      reason="sale", reference=invoice.invoice_number)
         else:
             record_stock_movement(
                 company=company, product=product, warehouse=warehouse,

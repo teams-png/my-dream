@@ -1,0 +1,11 @@
+{% load i18n static %}<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+{% with u=request.resolver_match.url_name %}
+<nav class="hr-tabs no-print" aria-label="{% translate 'Stock' %}">
+  <a class="{% if u == 'stock_home' or u == 'stock_history' %}on{% endif %}" href="{% url 'webapp:stock_home' %}">📦 {% translate "Stock" %}</a>
+  <a class="{% if u == 'stock_adjust' %}on{% endif %}" href="{% url 'webapp:stock_adjust' %}">± {% translate "Adjust" %}</a>
+  <a class="{% if u == 'stock_transfer' %}on{% endif %}" href="{% url 'webapp:stock_transfer' %}">🔀 {% translate "Transfer" %}</a>
+  <a class="{% if u == 'count_list' or u == 'count_detail' %}on{% endif %}" href="{% url 'webapp:count_list' %}">📋 {% translate "Stock taking" %}</a>
+  <a class="{% if u == 'stock_batches' %}on{% endif %}" href="{% url 'webapp:stock_batches' %}">⏳ {% translate "Batches & expiry" %}</a>
+  <a class="{% if u == 'stock_serials' %}on{% endif %}" href="{% url 'webapp:stock_serials' %}">🔢 {% translate "Serial numbers" %}</a>
+</nav>
+{% endwith %}

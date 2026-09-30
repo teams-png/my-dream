@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -217,6 +217,14 @@ urlpatterns = [
     path("notifications/<int:notification_id>/read/", views.notification_mark_read, name="notification_mark_read"),
     path("notifications/mark-all-read/", views.notification_mark_all_read, name="notification_mark_all_read"),
 
+    path("stock/", stock_views.stock_home, name="stock_home"),
+    path("stock/item/<int:product_id>/", stock_views.stock_history, name="stock_history"),
+    path("stock/adjust/", stock_views.stock_adjust, name="stock_adjust"),
+    path("stock/transfer/", stock_views.stock_transfer, name="stock_transfer"),
+    path("stock/counts/", stock_views.count_list, name="count_list"),
+    path("stock/counts/<int:count_id>/", stock_views.count_detail, name="count_detail"),
+    path("stock/batches/", stock_views.batches, name="stock_batches"),
+    path("stock/serials/", stock_views.serials, name="stock_serials"),
     path("branches/", views.branch_list, name="branch_list"),
     path("branches/add/", views.branch_add, name="branch_add"),
     path("branches/<int:branch_id>/edit/", views.branch_edit, name="branch_edit"),

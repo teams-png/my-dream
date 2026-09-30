@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Stock" %}{% endblock %}
+{% block heading %}{% translate "Stock & inventory" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/stock/_tabs.html" %}
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Stock value (cost)" %}</small><b>{{ active_company.default_currency }} {{ stats.value|floatformat:2 }}</b></div>
+  <a class="hr-kpi {% if stats.low %}warn{% endif %}" href="?show=low"><small>{% translate "Running low" %}</small><b>{{ stats.low }}</b></a>
+  <a class="hr-kpi {% if stats.out %}warn{% endif %}" href="?show=out"><small>{% translate "Out of stock" %}</small><b>{{ stats.out }}</b></a>
+  <a class="hr-kpi {% if stats.expiring %}warn{% endif %}" href="{% url 'webapp:stock_batches' %}?show=expiring"><small>{% translate "Batches expiring (30 days)" %}</small><b>{{ stats.expiring }}</b></a>
+</div>
+<div class="hr-actions" style="margin-bottom:12px">{% if stats.low or stats.out %}<a class="btn" href="{% url 'webapp:po_add' %}?reorder=1">🔁 {% translate "Order low-stock items" %}</a>{% endif %}<a class="btn btn-secondary" href="{% url 'webapp:count_list' %}">📋 {% translate "Start stock taking" %}</a></div>
+<form method="get" class="hr-actions" style="margin-bottom:12px">
+  <a class="hr-chip {% if show == 'all' %}ok{% endif %}" style="padding:8px 12px" href="?show=all">{% translate "All" %}</a>
+  <a class="hr-chip {% if show == 'low' %}ok{% endif %}" style="padding:8px 12px" href="?show=low">{% translate "Running low" %}</a>
+  <a class="hr-chip {% if show == 'out' %}ok{% endif %}" style="padding:8px 12px" href="?show=out">{% translate "Out of stock" %}</a>
+  <input type="hidden" name="show" value="{{ show }}">
+  <select class="hr-in" style="width:auto" name="category" onchange="this.form.submit()"><option value="">{% translate "All categories" %}</option>{% for c in categories %}<option value="{{ c.id }}" {% if category == c.id|stringformat:"s" %}selected{% endif %}>{{ c.name }}</option>{% endfor %}</select>
+  <input class="hr-in" style="flex:1 1 180px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Item name or code' %}"><button class="btn btn-secondary">{% translate "Search" %}</button>
+</form>
+<div class="hr-card hr-table">
+  <table><thead><tr><th>{% translate "Item" %}</th>{% if warehouses|length > 1 %}{% for w in warehouses %}<th class="hr-num">{{ w.name }}</th>{% endfor %}{% endif %}<th class="hr-num">{% translate "Stock" %}</th><th class="hr-num">{% translate "Reorder at" %}</th><th class="hr-num">{% translate "Value" %}</th><th></th></tr></thead>
+  <tbody>{% for r in page %}<tr><td><a href="{% url 'webapp:stock_history' r.p.id %}"><b>{{ r.p.name }}</b></a> <small style="color:var(--hr-soft)">{{ r.p.sku }}</small></td>
+    {% if warehouses|length > 1 %}{% for q in r.per %}<td class="hr-num">{{ q|floatformat:"-3" }}</td>{% endfor %}{% endif %}
+    <td class="hr-num"><b style="{% if r.total <= 0 %}color:var(--hr-bad){% elif r.low %}color:#b45309{% endif %}">{{ r.total|floatformat:"-3" }}</b> <small>{{ r.p.unit.name }}</small></td><td class="hr-num">{{ r.p.reorder_level }}</td><td class="hr-num">{{ r.value|floatformat:2 }}</td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:stock_adjust' %}?product={{ r.p.id }}" aria-label="{% translate 'Adjust' %}">±</a></td></tr>
+  {% empty %}<tr><td colspan="9" class="hr-empty">{% translate "No items." %}</td></tr>{% endfor %}</tbody></table>
+</div>
+{% if page.paginator.num_pages > 1 %}<div class="hr-actions" style="justify-content:center">{% if page.has_previous %}<a class="btn btn-secondary" href="?show={{ show }}&q={{ q }}&category={{ category }}&page={{ page.previous_page_number }}">←</a>{% endif %}<span>{{ page.number }} / {{ page.paginator.num_pages }}</span>{% if page.has_next %}<a class="btn btn-secondary" href="?show={{ show }}&q={{ q }}&category={{ category }}&page={{ page.next_page_number }}">→</a>{% endif %}</div>{% endif %}
+</div>
+{% endblock %}

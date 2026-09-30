@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Stock taking" %}{% endblock %}
+{% block heading %}{% translate "Stock taking" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/stock/_tabs.html" %}
+<div class="hr-grid2">
+<div class="hr-card"><h3>📋 {% translate "Counts" %}</h3><div class="hr-list">{% for c in counts %}<a class="hr-row" href="{% url 'webapp:count_detail' c.id %}"><span class="grow"><b>#{{ c.id }} · {{ c.warehouse.name }}</b><small>{{ c.date|date:"j M Y" }} · {{ c.created_by.email|default:c.created_by.username }}</small></span><span class="hr-chip {% if c.status == 'completed' %}ok{% else %}warn{% endif %}">{% if c.status == 'completed' %}{% translate "Completed" %}{% else %}{% translate "In progress" %}{% endif %}</span></a>{% empty %}<div class="hr-empty">{% translate "No stock counts yet." %}</div>{% endfor %}</div></div>
+<form method="post" class="hr-card">{% csrf_token %}<h3>＋ {% translate "Start a new count" %}</h3>
+  <p style="color:var(--hr-soft);margin-top:-4px">{% translate "Count what is on the shelf. When you finish, the system stock is corrected and the difference is recorded." %}</p>
+  <div class="hr-form">
+    <label>{% translate "Location" %}<select name="warehouse">{% for w in warehouses %}<option value="{{ w.id }}">{{ w.name }}</option>{% endfor %}</select></label>
+    <label>{% translate "Category (optional)" %}<select name="category"><option value="">{% translate "All items" %}</option>{% for c in categories %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}</select></label>
+    <div class="wide"><button class="btn" type="submit">{% translate "Start counting" %}</button></div>
+  </div>
+</form>
+</div>
+</div>
+{% endblock %}

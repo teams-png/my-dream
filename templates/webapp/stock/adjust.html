@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Adjust stock" %}{% endblock %}
+{% block heading %}{% translate "Adjust stock" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/stock/_tabs.html" %}
+<div class="hr-grid2">
+<form method="post" class="hr-card">{% csrf_token %}<h3>± {% translate "Add or remove stock" %}</h3>
+  <div class="hr-form">
+    <label class="wide">{% translate "Item" %}<select name="product" required><option value="">—</option>{% for p in products %}<option value="{{ p.id }}" {% if selected == p.id|stringformat:"s" %}selected{% endif %}>{{ p.name }} · {{ p.sku }}</option>{% endfor %}</select></label>
+    <label>{% translate "Change" %}<select name="direction"><option value="out">➖ {% translate "Remove from stock" %}</option><option value="in">➕ {% translate "Add to stock" %}</option></select></label>
+    <label>{% translate "Quantity" %}<input type="number" name="quantity" step="0.001" min="0.001" required></label>
+    <label>{% translate "Reason" %}<select name="reason">{% for k, l in reasons %}<option value="{{ k }}">{{ l }}</option>{% endfor %}</select></label>
+    {% if warehouses|length > 1 %}<label>{% translate "Location" %}<select name="warehouse">{% for w in warehouses %}<option value="{{ w.id }}">{{ w.name }}</option>{% endfor %}</select></label>{% else %}<input type="hidden" name="warehouse" value="{{ warehouses.0.id }}">{% endif %}
+    <label class="wide">{% translate "Note" %}<input name="note" maxlength="80"></label>
+    <div class="wide"><button class="btn" type="submit">{% translate "Save" %}</button></div>
+  </div>
+</form>
+<div class="hr-card"><h3>🕘 {% translate "Recent adjustments" %}</h3><div class="hr-list">{% for m in recent %}<div class="hr-row"><span class="grow"><b>{{ m.product.name }}</b><small>{{ m.moved_at|date:"j M, H:i" }} · {{ m.warehouse.name }}{% if m.reference %} · {{ m.reference }}{% endif %}</small></span><b style="color:{% if m.quantity < 0 %}var(--hr-bad){% else %}var(--hr-ok){% endif %}">{% if m.quantity > 0 %}+{% endif %}{{ m.quantity|floatformat:"-3" }}</b></div>{% empty %}<div class="hr-empty">{% translate "No adjustments yet." %}</div>{% endfor %}</div></div>
+</div>
+</div>
+{% endblock %}

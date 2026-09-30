@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Serial numbers" %}{% endblock %}
+{% block heading %}{% translate "Serial numbers / IMEI" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/stock/_tabs.html" %}
+<div class="hr-kpis"><div class="hr-kpi"><small>{% translate "Units in stock" %}</small><b>{{ in_stock }}</b></div></div>
+<form method="get" class="hr-actions" style="margin-bottom:12px"><input class="hr-in" style="flex:1 1 220px;width:auto" type="search" name="q" value="{{ q }}" placeholder="🔍 {% translate 'Scan or type a serial / IMEI' %}" autofocus><select class="hr-in" style="width:auto" name="status"><option value="">{% translate "All" %}</option>{% for k, l in statuses %}<option value="{{ k }}" {% if status == k %}selected{% endif %}>{% translate l %}</option>{% endfor %}</select><button class="btn btn-secondary">{% translate "Search" %}</button></form>
+{% if found %}<div class="hr-card" style="border-color:var(--hr-accent)"><h3>🔎 {{ found.serial_number }} <span class="hr-chip {% if found.status == 'in_stock' %}ok{% else %}blue{% endif %}">{% translate found.get_status_display %}</span></h3><div><b>{{ found.product.name }}</b> · {{ found.warehouse.name }}{% if found.received_date %} · {% translate "received" %} {{ found.received_date|date:"j M Y" }}{% endif %}</div>
+  <div class="hr-list" style="margin-top:10px">{% for m in found.moves %}<div class="hr-row"><span class="grow">{{ m.get_reason_display }} · {{ m.reference }}<small>{{ m.moved_at|date:"j M Y, H:i" }} · {{ m.warehouse.name }}</small></span><b>{% if m.quantity > 0 %}+{% endif %}{{ m.quantity|floatformat:"-3" }}</b></div>{% endfor %}</div></div>{% endif %}
+<div class="hr-grid2">
+<div class="hr-list">{% for s in page %}<div class="hr-row"><span class="grow"><b>{{ s.serial_number }}</b><small>{{ s.product.name }} · {{ s.warehouse.name }}</small></span><span class="hr-chip {% if s.status == 'in_stock' %}ok{% else %}blue{% endif %}">{% translate s.get_status_display %}</span></div>{% empty %}<div class="hr-card hr-empty">{% translate "No serial numbers." %}</div>{% endfor %}</div>
+<form method="post" class="hr-card">{% csrf_token %}<h3>＋ {% translate "Add serial numbers to stock" %}</h3>
+  <div class="hr-form">
+    <label class="wide">{% translate "Item" %}<select name="product" required><option value="">—</option>{% for p in products %}<option value="{{ p.id }}">{{ p.name }}</option>{% endfor %}</select></label>
+    {% if warehouses|length > 1 %}<label class="wide">{% translate "Location" %}<select name="warehouse">{% for w in warehouses %}<option value="{{ w.id }}">{{ w.name }}</option>{% endfor %}</select></label>{% else %}<input type="hidden" name="warehouse" value="{{ warehouses.0.id }}">{% endif %}
+    <label class="wide">{% translate "Serial numbers (one per line, or scan one after another)" %}<textarea name="serials" rows="6" required></textarea></label>
+    <div class="wide"><button class="btn" type="submit">{% translate "Add to stock" %}</button></div>
+  </div>
+</form>
+</div>
+</div>
+{% endblock %}

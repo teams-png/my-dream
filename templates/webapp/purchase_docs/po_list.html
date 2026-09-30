@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Purchase orders" %}{% endblock %}
+{% block heading %}{% translate "Purchase orders" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/purchase_docs/_tabs.html" %}
+<div class="hr-actions" style="margin-bottom:12px"><a class="btn" href="{% url 'webapp:po_add' %}">＋ {% translate "New purchase order" %}</a><a class="btn btn-secondary" href="{% url 'webapp:po_add' %}?reorder=1">🔁 {% translate "Order low-stock items" %}</a></div>
+<form method="get" class="hr-actions" style="margin-bottom:12px">
+  <a class="hr-chip {% if not status %}ok{% endif %}" style="padding:8px 12px" href="?">{% translate "All" %}</a>
+  {% for k, l in statuses %}<a class="hr-chip {% if status == k %}ok{% endif %}" style="padding:8px 12px" href="?status={{ k }}">{% translate l %}</a>{% endfor %}
+  <input type="hidden" name="status" value="{{ status }}"><input class="hr-in" style="flex:1 1 200px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Number or supplier' %}"><button class="btn btn-secondary">{% translate "Search" %}</button>
+</form>
+<div class="hr-list">{% for d in page %}
+  <a class="hr-row" href="{% url 'webapp:po_detail' d.id %}"><span class="grow"><b>{{ d.number|default:d.id }}</b> · {{ d.supplier.name }}<small>{{ d.date|date:"j M Y" }}{% if d.expected_date %} · {% translate "expected" %} {{ d.expected_date|date:"j M" }}{% endif %}{% if d.reference %} · {{ d.reference }}{% endif %}</small></span><span class="hr-chip {% if d.status == 'received' %}ok{% elif d.status == 'cancelled' %}bad{% elif d.status == 'draft' %}warn{% else %}blue{% endif %}">{% translate d.get_status_display %}</span><b>{{ d.total|default:0|floatformat:2 }}</b></a>
+{% empty %}<div class="hr-card hr-empty">{% translate "No purchase orders yet." %}</div>{% endfor %}</div>
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% load i18n static %}<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+{% with u=request.resolver_match.url_name %}
+<nav class="hr-tabs no-print" aria-label="{% translate 'Purchases' %}">
+  <a class="{% if u == 'purchase_list' or u == 'purchase_detail' %}on{% endif %}" href="{% url 'webapp:purchase_list' %}">🧾 {% translate "Bills" %}</a>
+  <a class="{% if u == 'po_list' or u == 'po_add' or u == 'po_detail' or u == 'grn_detail' %}on{% endif %}" href="{% url 'webapp:po_list' %}">📋 {% translate "Purchase orders" %}</a>
+  <a href="{% url 'webapp:supplier_list' %}">🏭 {% translate "Suppliers" %}</a>
+</nav>
+{% endwith %}

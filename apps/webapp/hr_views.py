@@ -379,7 +379,7 @@ def leave(request):
                     if request.POST.get("approve_now"):
                         hr.review_leave(company=company, request=request_obj, reviewer=request.user, approve=True)
                     messages.success(request, _("Leave saved for %(name)s (%(days)s days).") % {
-                        "name": data["employee"].name, "days": request_obj.days.normalize()})
+                        "name": data["employee"].name, "days": f"{request_obj.days.normalize():f}"})
                     return redirect("webapp:hr_leave")
             elif action in ("approve", "reject"):
                 leave_request = get_object_or_404(LeaveRequest.objects.for_company(company), id=request.POST.get("id"))

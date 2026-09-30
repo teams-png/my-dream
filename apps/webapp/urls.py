@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import accounts_views, booking_views, receivables_views, sales_docs_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -111,6 +111,11 @@ urlpatterns = [
     path("suppliers/<int:supplier_id>/", views.supplier_detail, name="supplier_detail"),
     path("suppliers/<int:supplier_id>/pay/", views.supplier_payment_add, name="supplier_payment_add"),
 
+    path("purchases/orders/", purchase_docs_views.po_list, name="po_list"),
+    path("purchases/orders/new/", purchase_docs_views.po_add, name="po_add"),
+    path("purchases/orders/<int:po_id>/", purchase_docs_views.po_detail, name="po_detail"),
+    path("purchases/receipts/<int:grn_id>/", purchase_docs_views.grn_detail, name="grn_detail"),
+    path("purchases/<int:purchase_id>/", purchase_docs_views.purchase_detail, name="purchase_detail"),
     path("purchases/", views.purchase_list, name="purchase_list"),
     path("purchases/add/", views.purchase_add, name="purchase_add"),
     path("purchases/reports/", views.purchase_reports, name="purchase_reports"),

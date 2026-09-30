@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Bill" %} {{ bill.bill_number|default:bill.id }}{% endblock %}
+{% block heading %}{% translate "Supplier bill" %} {{ bill.bill_number|default:bill.id }}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/purchase_docs/_tabs.html" %}
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Bill total" %}</small><b>{{ active_company.default_currency }} {{ bill.total|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Paid" %}</small><b>{{ bill.amount_paid|floatformat:2 }}</b></div>
+  <div class="hr-kpi {% if due > 0 %}warn{% endif %}"><small>{% translate "Still to pay" %}</small><b>{{ due|floatformat:2 }}</b></div>
+  {% if returned_total %}<div class="hr-kpi"><small>{% translate "Returned" %}</small><b>{{ returned_total|floatformat:2 }}</b></div>{% endif %}
+</div>
+<div class="hr-card" style="max-width:980px">
+  <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px"><div><a href="{% url 'webapp:supplier_detail' bill.supplier.id %}"><b style="font-size:17px">{{ bill.supplier.name }}</b></a><div style="color:var(--hr-soft)">{{ bill.date|date:"j M Y" }}{% if bill.due_date %} · {% translate "due" %} {{ bill.due_date|date:"j M Y" }}{% endif %}{% if bill.purchase_order %} · <a href="{% url 'webapp:po_detail' bill.purchase_order.id %}">{{ bill.purchase_order.number }}</a>{% endif %}</div></div><span class="hr-chip {% if bill.status == 'paid' %}ok{% else %}warn{% endif %}" style="align-self:flex-start">{% translate bill.get_status_display %}</span></div>
+  <form method="post">{% csrf_token %}<input type="hidden" name="action" value="return">
+  <div class="hr-table"><table><thead><tr><th>{% translate "Item" %}</th><th class="hr-num">{% translate "Qty" %}</th><th class="hr-num">{% translate "Cost" %}</th><th class="hr-num">{% translate "Amount" %}</th>{% if any_returnable %}<th class="no-print">{% translate "Return qty" %}</th>{% endif %}</tr></thead>
+  <tbody>{% for l in lines %}<tr><td>{{ l.product.name }}</td><td class="hr-num">{{ l.quantity|floatformat:"-3" }}</td><td class="hr-num">{{ l.unit_cost|floatformat:2 }}</td><td class="hr-num">{{ l.line_total|floatformat:2 }}</td>{% if any_returnable %}<td class="no-print">{% if l.can_return > 0 %}<input class="hr-in" style="width:90px;min-height:36px" type="number" step="0.001" min="0" max="{{ l.can_return|floatformat:'-3u' }}" name="q_{{ l.id }}" placeholder="0">{% else %}—{% endif %}</td>{% endif %}</tr>{% endfor %}</tbody>
+  <tfoot>{% if bill.tax_amount %}<tr><th colspan="3">{% translate "Tax" %}</th><th class="hr-num">{{ bill.tax_amount|floatformat:2 }}</th>{% if any_returnable %}<th></th>{% endif %}</tr>{% endif %}<tr><th colspan="3">{% translate "Total" %}</th><th class="hr-num">{{ bill.total|floatformat:2 }}</th>{% if any_returnable %}<th></th>{% endif %}</tr></tfoot></table></div>
+  {% if any_returnable %}<details class="no-print" style="margin-top:12px"><summary style="cursor:pointer;font-weight:700;color:var(--hr-accent)">↩ {% translate "Return items to supplier" %}</summary>
+    <div class="hr-form" style="margin-top:10px">
+      <label>{% translate "Refund" %}<select name="refund_method">{% for k, l in methods %}<option value="{{ k }}">{% translate l %}</option>{% endfor %}</select></label>
+      {% if warehouses|length > 1 %}<label>{% translate "From stock at" %}<select name="warehouse">{% for w in warehouses %}<option value="{{ w.id }}" {% if w.is_default %}selected{% endif %}>{{ w.name }}</option>{% endfor %}</select></label>{% endif %}
+      <label class="wide">{% translate "Reason" %}<input name="reason" placeholder="{% translate 'e.g. Damaged on arrival' %}"></label>
+      <div class="wide"><button class="btn" type="submit">{% translate "Save return" %}</button></div>
+    </div></details>{% endif %}
+  </form>
+</div>
+<div class="hr-actions no-print">{% if due > 0 %}<a class="btn" href="{% url 'webapp:supplier_payment_add' bill.supplier.id %}">💵 {% translate "Pay supplier" %}</a>{% endif %}<button class="btn btn-secondary" type="button" onclick="print()">🖨 {% translate "Print" %}</button></div>
+<div class="hr-grid2 no-print" style="margin-top:14px;grid-template-columns:1fr 1fr">
+  <div class="hr-card"><h3>💵 {% translate "Payments" %}</h3><div class="hr-list">{% for p in payments %}<div class="hr-row"><span class="grow"><b>{{ p.amount|floatformat:2 }}</b><small>{{ p.date|date:"j M Y" }} · {{ p.method }}</small></span></div>{% empty %}<div class="hr-empty">{% translate "No payments yet." %}</div>{% endfor %}</div></div>
+  <div class="hr-card"><h3>↩ {% translate "Returns" %}</h3><div class="hr-list">{% for r in returns %}<div class="hr-row"><span class="grow"><b>{{ r.number|default:r.id }}</b> · {{ r.total|floatformat:2 }}<small>{{ r.date|date:"j M Y" }} · {% translate r.get_refund_method_display %}{% if r.reason %} · {{ r.reason }}{% endif %}</small><small>{% for rl in r.lines.all %}{{ rl.product.name }} × {{ rl.quantity|floatformat:"-3" }}{% if not forloop.last %}, {% endif %}{% endfor %}</small></span></div>{% empty %}<div class="hr-empty">{% translate "No returns." %}</div>{% endfor %}</div></div>
+</div>
+</div>
+{% endblock %}

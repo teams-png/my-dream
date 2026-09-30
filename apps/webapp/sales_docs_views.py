@@ -94,7 +94,7 @@ def _editor_context(request, company, title, kind, initial_lines=None, **extra):
 def _share_text(company, title, number, customer, lines, total):
     rows = [f"{company.name}", f"{title} {number}", customer.name]
     for line in lines:
-        rows.append(f"• {line.product.name} × {line.quantity.normalize()} @ {line.unit_price} = {line.line_total:.2f}")
+        rows.append(f"• {line.product.name} × {line.quantity.normalize():f} @ {line.unit_price} = {line.line_total:.2f}")
     rows.append(f"{_('Total')}: {company.default_currency} {total:.2f}")
     phone = "".join(ch for ch in (customer.phone or "") if ch.isdigit())
     return f"https://wa.me/{phone}?text={quote(chr(10).join(rows))}"

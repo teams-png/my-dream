@@ -1,20 +1,13 @@
 {% extends "base.html" %}
-{% block title %}Purchases{% endblock %}
-{% block heading %}Purchases{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Purchases" %}{% endblock %}
+{% block heading %}{% translate "Supplier bills" %}{% endblock %}
 {% block content %}
-<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:purchase_add' %}">+ New purchase</a></div>
-{% if purchases %}
-<table>
-  <tr><th>Bill #</th><th>Date</th><th>Supplier</th><th>Total</th><th>Paid</th><th>Status</th></tr>
-  {% for p in purchases %}
-  <tr>
-    <td>{{ p.bill_number|default:"—" }}</td><td>{{ p.date }}</td>
-    <td><a href="{% url 'webapp:supplier_detail' p.supplier.id %}">{{ p.supplier.name }}</a></td>
-    <td>{{ p.total }}</td><td>{{ p.amount_paid }}</td><td>{{ p.get_status_display }}</td>
-  </tr>
-  {% endfor %}
-</table>
-{% else %}
-<div class="card empty">No purchases yet.</div>
-{% endif %}
+<div class="hr">
+{% include "webapp/purchase_docs/_tabs.html" %}
+<div class="hr-actions" style="margin-bottom:12px"><a class="btn" href="{% url 'webapp:purchase_add' %}">＋ {% translate "New purchase" %}</a><a class="btn btn-secondary" href="{% url 'webapp:po_add' %}">📋 {% translate "New purchase order" %}</a></div>
+<div class="hr-list">{% for p in purchases %}
+  <a class="hr-row" href="{% url 'webapp:purchase_detail' p.id %}"><span class="grow"><b>{{ p.bill_number|default:"—" }}</b> · {{ p.supplier.name }}<small>{{ p.date|date:"j M Y" }}{% if p.due_date and p.status != 'paid' %} · {% translate "due" %} {{ p.due_date|date:"j M" }}{% endif %}</small></span><span class="hr-chip {% if p.status == 'paid' %}ok{% else %}warn{% endif %}">{% translate p.get_status_display %}</span><b>{{ p.total|floatformat:2 }}</b></a>
+{% empty %}<div class="hr-card hr-empty">{% translate "No purchases yet." %}</div>{% endfor %}</div>
+</div>
 {% endblock %}

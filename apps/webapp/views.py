@@ -3812,7 +3812,7 @@ def _pos_catalog(company):
             parts = breakdown(p.attributes, gold_rates)
             if parts:  # priced from today's gold rate
                 catalog[-1]["price"] = f"{parts['total']:.2f}"
-                catalog[-1]["variant"] = catalog[-1]["variant"] or f"{parts['karat']} · {parts['weight'].normalize()} g"
+                catalog[-1]["variant"] = catalog[-1]["variant"] or f"{parts['karat']} · {parts['weight'].normalize():f} g"
     return catalog, [{"id": k, "name": v} for k, v in sorted(categories.items(), key=lambda kv: kv[1].lower())]
 
 

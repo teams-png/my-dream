@@ -18,8 +18,10 @@ class PurchaseOrder(TenantScopedModel):
         ("partially_received", "Partially Received"), ("received", "Received"),
         ("cancelled", "Cancelled"),
     ]
+    number = models.CharField(max_length=30, blank=True)
     supplier = models.ForeignKey("suppliers.Supplier", on_delete=models.PROTECT)
     date = models.DateField()
+    expected_date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS, default="draft")
     reference = models.CharField(max_length=50, blank=True)
     created_by = models.ForeignKey(
@@ -46,6 +48,7 @@ class GoodsReceiptNote(TenantScopedModel):
     isn't confirmed until the supplier's bill arrives (see
     apps.accounting.services.DEFAULT_CHART_OF_ACCOUNTS, account 2050).
     """
+    number = models.CharField(max_length=30, blank=True)
     purchase_order = models.ForeignKey(PurchaseOrder, on_delete=models.PROTECT, related_name="receipts")
     warehouse = models.ForeignKey("inventory.Warehouse", on_delete=models.PROTECT)
     date = models.DateField()
@@ -126,6 +129,7 @@ class PurchaseReturn(TenantScopedModel):
     cash refund from the supplier.
     """
     REFUND_METHOD = [("cash", "Cash"), ("bank", "Bank"), ("supplier_credit", "Supplier Credit")]
+    number = models.CharField(max_length=30, blank=True)
     purchase = models.ForeignKey(Purchase, on_delete=models.PROTECT, related_name="returns")
     date = models.DateField()
     reason = models.TextField(blank=True)

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ doc.number }}{% endblock %}
+{% block heading %}{% translate "Purchase order" %} {{ doc.number }}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/purchase_docs/_tabs.html" %}
+<div class="hr-actions no-print" style="margin-bottom:12px"><span class="hr-chip {% if doc.status == 'received' %}ok{% elif doc.status == 'cancelled' %}bad{% else %}blue{% endif %}" style="font-size:13px;padding:7px 12px">{% translate doc.get_status_display %}</span>{% if doc.reference %}<span class="hr-chip">{% translate "Ref" %} {{ doc.reference }}</span>{% endif %}</div>
+<form method="post">{% csrf_token %}
+<div class="hr-card" style="max-width:980px">
+  <div style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px">
+    <div><b style="font-size:18px">{{ active_company.name }}</b><div style="color:var(--hr-soft);font-size:13px">{{ active_company.address|default:"" }} {{ active_company.phone|default:"" }}</div></div>
+    <div style="text-align:right"><div style="font-size:22px;font-weight:800">{% translate "PURCHASE ORDER" %}</div><b>{{ doc.number }}</b><div style="color:var(--hr-soft)">{{ doc.date|date:"j M Y" }}</div>{% if doc.expected_date %}<div style="color:var(--hr-soft)">{% translate "Expected delivery" %} {{ doc.expected_date|date:"j M Y" }}</div>{% endif %}</div>
+  </div>
+  <div style="margin-bottom:14px"><small style="color:var(--hr-soft)">{% translate "Supplier" %}</small><div><a href="{% url 'webapp:supplier_detail' doc.supplier.id %}"><b>{{ doc.supplier.name }}</b></a></div><div style="color:var(--hr-soft);font-size:13px">{{ doc.supplier.phone|default:"" }} {{ doc.supplier.address|default:"" }}</div></div>
+  <div class="hr-table"><table><thead><tr><th>{% translate "Item" %}</th><th class="hr-num">{% translate "Ordered" %}</th><th class="hr-num no-print">{% translate "Received" %}</th><th class="hr-num no-print">{% translate "Billed" %}</th><th class="hr-num">{% translate "Cost" %}</th><th class="hr-num">{% translate "Amount" %}</th>{% if can_receive %}<th class="no-print">{% translate "Receive now" %}</th>{% endif %}</tr></thead>
+  <tbody>{% for l in lines %}<tr><td>{{ l.product.name }}</td><td class="hr-num">{{ l.quantity|floatformat:"-3" }}</td><td class="hr-num no-print">{{ l.received|floatformat:"-3" }}</td><td class="hr-num no-print">{{ l.billed|floatformat:"-3" }}</td><td class="hr-num">{{ l.unit_cost|floatformat:2 }}</td><td class="hr-num">{{ l.line_total|floatformat:2 }}</td>{% if can_receive %}<td class="no-print">{% if l.to_receive > 0 %}<input class="hr-in" style="width:100px;min-height:36px" type="number" step="0.001" min="0" name="r_{{ l.id }}" value="{{ l.to_receive|floatformat:'-3u' }}">{% else %}✓{% endif %}</td>{% endif %}</tr>{% endfor %}</tbody>
+  <tfoot><tr><th colspan="5">{% translate "Total" %}</th><th class="hr-num">{{ active_company.default_currency }} {{ total|floatformat:2 }}</th>{% if can_receive %}<th class="no-print"></th>{% endif %}</tr></tfoot></table></div>
+</div>
+<div class="hr-actions no-print">
+  {% if can_receive or can_bill %}<input class="hr-in" style="width:auto" name="bill_number" maxlength="30" placeholder="{% translate "Supplier's bill no." %}">{% endif %}
+  {% if can_receive %}{% if warehouses|length > 1 %}<select class="hr-in" style="width:auto" name="warehouse">{% for w in warehouses %}<option value="{{ w.id }}" {% if w.is_default %}selected{% endif %}>{{ w.name }}</option>{% endfor %}</select>{% endif %}
+    <button class="btn" name="action" value="receive_bill">📥🧾 {% translate "Receive & record bill" %}</button>
+    <button class="btn btn-secondary" name="action" value="receive">📥 {% translate "Receive only" %}</button>{% endif %}
+  {% if can_bill %}<button class="btn btn-secondary" name="action" value="bill">🧾 {% translate "Record bill for received items" %}</button>{% endif %}
+  {% if doc.status == "draft" %}<button class="btn btn-secondary" name="action" value="confirm">✓ {% translate "Confirm" %}</button>{% endif %}
+  <button class="btn btn-secondary" type="button" onclick="print()">🖨 {% translate "Print" %}</button>
+  <a class="btn btn-secondary" style="background:#25d366;border-color:#25d366;color:#fff" href="{{ share }}" target="_blank" rel="noopener">💬 {% translate "Send to supplier" %}</a>
+  {% if doc.status == "draft" or doc.status == "confirmed" %}<button class="btn btn-secondary" name="action" value="cancel" onclick="return confirm('{% translate "Cancel this purchase order?" %}')">✕ {% translate "Cancel" %}</button>{% endif %}
+</div>
+</form>
+<div class="hr-grid2 no-print" style="margin-top:14px;grid-template-columns:1fr 1fr">
+  <div class="hr-card"><h3>📥 {% translate "Goods received" %}</h3><div class="hr-list">{% for g in receipts %}<a class="hr-row" href="{% url 'webapp:grn_detail' g.id %}"><span class="grow"><b>{{ g.number|default:g.id }}</b><small>{{ g.date|date:"j M Y" }} · {{ g.warehouse.name }}</small></span>🖨</a>{% empty %}<div class="hr-empty">{% translate "Nothing received yet." %}</div>{% endfor %}</div></div>
+  <div class="hr-card"><h3>🧾 {% translate "Supplier bills" %}</h3><div class="hr-list">{% for b in bills %}<a class="hr-row" href="{% url 'webapp:purchase_detail' b.id %}"><span class="grow"><b>{{ b.bill_number|default:b.id }}</b><small>{{ b.date|date:"j M Y" }}</small></span><span class="hr-chip {% if b.status == 'paid' %}ok{% else %}warn{% endif %}">{% translate b.get_status_display %}</span><b>{{ b.total|floatformat:2 }}</b></a>{% empty %}<div class="hr-empty">{% translate "No bill yet." %}</div>{% endfor %}</div></div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ grn.number }}{% endblock %}
+{% block heading %}{% translate "Goods receipt" %} {{ grn.number }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<div class="hr">
+<div class="hr-card" style="max-width:860px">
+  <div style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px">
+    <div><b style="font-size:18px">{{ active_company.name }}</b></div>
+    <div style="text-align:right"><div style="font-size:22px;font-weight:800">{% translate "GOODS RECEIPT NOTE" %}</div><b>{{ grn.number }}</b><div style="color:var(--hr-soft)">{{ grn.date|date:"j M Y" }} · {% translate "PO" %} {{ grn.purchase_order.number }} · {{ grn.warehouse.name }}</div></div>
+  </div>
+  <div style="margin-bottom:14px"><small style="color:var(--hr-soft)">{% translate "Supplier" %}</small><div><b>{{ grn.purchase_order.supplier.name }}</b></div></div>
+  <div class="hr-table"><table><thead><tr><th>#</th><th>{% translate "Item" %}</th><th class="hr-num">{% translate "Qty" %}</th><th class="hr-num">{% translate "Cost" %}</th><th class="hr-num">{% translate "Amount" %}</th></tr></thead>
+  <tbody>{% for l in lines %}<tr><td>{{ forloop.counter }}</td><td>{{ l.po_line.product.name }}</td><td class="hr-num"><b>{{ l.quantity|floatformat:"-3" }}</b></td><td class="hr-num">{{ l.unit_cost|floatformat:2 }}</td><td class="hr-num">{{ l.line_total|floatformat:2 }}</td></tr>{% endfor %}</tbody></table></div>
+  <div style="margin-top:40px;border-top:1px solid var(--hr-line);padding-top:6px;color:var(--hr-soft);max-width:300px">{% translate "Received by" %}: {{ grn.received_by.first_name|default:grn.received_by.username }}</div>
+</div>
+<div class="hr-actions no-print"><button class="btn" type="button" onclick="print()">🖨 {% translate "Print" %}</button><a class="btn btn-secondary" href="{% url 'webapp:po_detail' grn.purchase_order.id %}">← {{ grn.purchase_order.number }}</a></div>
+</div>
+{% endblock %}

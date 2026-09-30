@@ -132,7 +132,9 @@ def process_purchase_return(*, company, user, purchase, date, lines, warehouse, 
 
     total = sum((Decimal(l["quantity"]) * Decimal(l["unit_cost"]) for l in lines), Decimal("0"))
 
+    from apps.tenants.services import next_counter_value
     purchase_return = PurchaseReturn.objects.create(
+        number=f"PR-{next_counter_value(company, 'purchase_return'):05d}",
         company=company, purchase=purchase, date=date, reason=reason, total=total, refund_method=refund_method,
     )
     PurchaseReturnLine.objects.bulk_create([
@@ -185,7 +187,7 @@ def process_purchase_return(*, company, user, purchase, date, lines, warehouse, 
 
 
 @transaction.atomic
-def create_purchase_order(*, company, user, supplier, date, lines, reference=""):
+def create_purchase_order(*, company, user, supplier, date, lines, reference="", expected_date=None):
     """
     lines: [{"product": Product, "quantity": Decimal, "unit_cost": Decimal}, ...]
     No accounting entry, no stock movement — a PO is a request, not a
@@ -197,8 +199,10 @@ def create_purchase_order(*, company, user, supplier, date, lines, reference="")
     if supplier.company_id != company.id:
         raise ValidationError("This supplier does not belong to the active company.")
 
+    from apps.tenants.services import next_counter_value
     po = PurchaseOrder.objects.create(
         company=company, supplier=supplier, date=date, reference=reference, created_by=user,
+        expected_date=expected_date, number=f"PO-{next_counter_value(company, 'purchase_order'):05d}",
     )
     PurchaseOrderLine.objects.bulk_create([
         PurchaseOrderLine(
@@ -296,8 +300,10 @@ def create_goods_receipt(*, company, user, purchase_order, warehouse, date, line
                     f"{po_line.quantity - already} remains unreceived on this PO line."
                 )
 
+    from apps.tenants.services import next_counter_value
     grn = GoodsReceiptNote.objects.create(
         company=company, purchase_order=purchase_order, warehouse=warehouse, date=date, received_by=user,
+        number=f"GRN-{next_counter_value(company, 'goods_receipt'):05d}",
     )
     GoodsReceiptNoteLine.objects.bulk_create([
         GoodsReceiptNoteLine(

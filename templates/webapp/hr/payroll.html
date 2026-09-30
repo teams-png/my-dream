@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Payroll" %}{% endblock %}
+{% block heading %}{% translate "Payroll" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/hr/_tabs.html" %}
+<div class="hr-month"><a class="btn btn-secondary" href="?m={{ prev }}">‹</a><b>{{ month|date:"F Y" }}</b><a class="btn btn-secondary" href="?m={{ next }}">›</a>
+  {% if run %}<span class="hr-chip {{ run.status }}">{% if run.status == "draft" %}{% translate "Draft — check and approve" %}{% elif run.status == "posted" %}{% translate "Approved" %}{% else %}{% translate "Reversed" %}{% endif %}</span>{% endif %}</div>
+
+{% if missing %}<div class="hr-card" style="background:var(--hr-warn-bg)">⚠️ {% translate "No salary set for" %}: {% for m in missing %}<a href="{% url 'webapp:staff_edit' m.id %}"><b>{{ m.name }}</b></a>{% if not forloop.last %}, {% endif %}{% endfor %}. {% translate "They are left out of payroll." %}</div>{% endif %}
+
+{% if not run %}
+<div class="hr-card hr-empty"><div style="font-size:40px">💰</div>
+  <p>{% translate "Calculate salaries for this month. Absent days, unpaid leave, approved overtime and salary advances are included automatically." %}</p>
+  <form method="post">{% csrf_token %}<input type="hidden" name="m" value="{{ key }}"><button class="btn" name="action" value="create" {% if not staff_count %}disabled{% endif %}>{% translate "Calculate payroll" %} · {{ month|date:"F Y" }}</button></form>
+</div>
+{% else %}
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Gross salaries" %}</small><b>{{ run.total_gross|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Deductions" %}</small><b>{{ run.total_deductions|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Advances recovered" %}</small><b>{{ run.total_advances|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Net to pay" %}</small><b>{{ active_company.default_currency }} {{ run.total_net|floatformat:2 }}</b></div>
+  {% if run.status == "posted" %}<div class="hr-kpi {% if unpaid %}warn{% endif %}"><small>{% translate "Still to pay" %}</small><b>{{ unpaid|length }}</b></div>{% endif %}
+</div>
+<div class="hr-card hr-table">
+  <table>
+    <thead><tr><th>{% translate "Staff" %}</th><th class="hr-num">{% translate "Basic" %}</th><th class="hr-num">{% translate "Allowances" %}</th><th class="hr-num">{% translate "Overtime" %}</th><th class="hr-num">{% translate "Absence" %}</th><th class="hr-num">{% translate "Deductions" %}</th><th class="hr-num">{% translate "Advance" %}</th><th class="hr-num">{% translate "Net pay" %}</th><th></th></tr></thead>
+    <tbody>{% for l in lines %}
+      <tr><td><a href="{% url 'webapp:staff_detail' l.employee.id %}"><b>{{ l.employee.name }}</b></a></td>
+        <td class="hr-num">{{ l.basic_pay|floatformat:2 }}</td><td class="hr-num">{{ l.allowances|floatformat:2 }}</td>
+        <td class="hr-num">{% if l.overtime_amount %}{{ l.overtime_amount|floatformat:2 }} <small>({{ l.overtime_hours|floatformat:"-1" }}h)</small>{% else %}—{% endif %}</td>
+        <td class="hr-num">{% if l.absence_deduction %}−{{ l.absence_deduction|floatformat:2 }} <small>({{ l.absence_days|floatformat:"-1" }}d)</small>{% else %}—{% endif %}</td>
+        <td class="hr-num">{% if l.deductions %}−{{ l.deductions|floatformat:2 }}{% else %}—{% endif %}</td>
+        <td class="hr-num">{% if l.advance_deduction %}−{{ l.advance_deduction|floatformat:2 }}{% else %}—{% endif %}</td>
+        <td class="hr-num"><b>{{ l.net_pay|floatformat:2 }}</b></td>
+        <td><div class="hr-actions" style="flex-wrap:nowrap"><a class="btn btn-secondary" href="{% url 'webapp:hr_payslip' l.id %}">🧾 {% translate "Payslip" %}</a>
+          {% if run.status == "posted" %}{% if l.payment_status == "paid" %}<span class="hr-chip paid">✓ {% translate "Paid" %}</span>{% else %}<form method="post" class="hr-actions" style="flex-wrap:nowrap">{% csrf_token %}<input type="hidden" name="m" value="{{ key }}"><input type="hidden" name="line" value="{{ l.id }}"><select class="hr-in" name="method" style="width:auto;min-height:36px">{% for k, lab in methods %}<option value="{{ k }}">{{ lab }}</option>{% endfor %}</select><button class="btn" name="action" value="pay">{% translate "Pay" %}</button></form>{% endif %}{% endif %}</div></td></tr>
+    {% endfor %}</tbody>
+  </table>
+</div>
+<div class="hr-actions">
+  {% if run.status == "draft" %}
+    <form method="post">{% csrf_token %}<input type="hidden" name="m" value="{{ key }}"><button class="btn" name="action" value="post" onclick="return confirm('{% translate "Approve this payroll? Salaries and advance recoveries will be recorded in the accounts." %}')">✓ {% translate "Approve payroll" %}</button></form>
+    <form method="post">{% csrf_token %}<input type="hidden" name="m" value="{{ key }}"><button class="btn btn-secondary" name="action" value="recalculate">↻ {% translate "Recalculate" %}</button></form>
+  {% elif run.status == "posted" %}
+    {% if unpaid %}<form method="post" class="hr-actions">{% csrf_token %}<input type="hidden" name="m" value="{{ key }}"><select class="hr-in" name="method" style="width:auto">{% for k, lab in methods %}<option value="{{ k }}">{{ lab }}</option>{% endfor %}</select><button class="btn" name="action" value="pay">💵 {% translate "Pay all" %} ({{ unpaid|length }})</button></form>
+    {% else %}<span class="hr-chip paid" style="font-size:14px;padding:8px 14px">✓ {% translate "All salaries paid" %}</span>{% endif %}
+    {% if not totals.paid %}<form method="post">{% csrf_token %}<input type="hidden" name="m" value="{{ key }}"><button class="btn btn-secondary" name="action" value="reverse" onclick="return confirm('{% translate "Reverse this payroll?" %}')">↩ {% translate "Reverse" %}</button></form>{% endif %}
+  {% else %}
+    <form method="post">{% csrf_token %}<input type="hidden" name="m" value="{{ key }}"><button class="btn" name="action" value="reopen">↻ {% translate "Calculate again" %}</button></form>
+  {% endif %}
+</div>
+{% endif %}
+
+{% if recent %}<div class="hr-card" style="margin-top:18px"><h3>🗂 {% translate "Past payrolls" %}</h3><div class="hr-list">{% for r in recent %}<a class="hr-row" href="?m={{ r.period.start_date|date:'Y-m' }}"><span class="grow"><b>{{ r.period.name }}</b></span><span class="hr-chip {{ r.status }}">{{ r.get_status_display }}</span><b>{{ r.total_net|floatformat:2 }}</b></a>{% endfor %}</div></div>{% endif %}
+</div>
+{% endblock %}

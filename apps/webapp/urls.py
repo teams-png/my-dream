@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import booking_views, education_views, gold_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import booking_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -75,10 +75,19 @@ urlpatterns = [
     path("customers/<int:customer_id>/edit/", views.customer_edit, name="customer_edit"),
     path("customers/<int:customer_id>/delete/", views.customer_delete, name="customer_delete"),
 
-    path("staff/", views.staff_list, name="staff_list"),
-    path("staff/add/", views.staff_add, name="staff_add"),
-    path("staff/<int:staff_id>/edit/", views.staff_edit, name="staff_edit"),
-    path("staff/<int:staff_id>/delete/", views.staff_delete, name="staff_delete"),
+    path("staff/", hr_views.staff_list, name="staff_list"),
+    path("staff/add/", hr_views.staff_add, name="staff_add"),
+    path("staff/<int:staff_id>/", hr_views.staff_detail, name="staff_detail"),
+    path("staff/<int:staff_id>/edit/", hr_views.staff_edit, name="staff_edit"),
+    path("staff/<int:staff_id>/delete/", hr_views.staff_delete, name="staff_delete"),
+    path("staff/attendance/", hr_views.attendance, name="hr_attendance"),
+    path("staff/attendance/month/", hr_views.attendance_month, name="hr_attendance_month"),
+    path("staff/leave/", hr_views.leave, name="hr_leave"),
+    path("staff/advances/", hr_views.advances, name="hr_advances"),
+    path("staff/payroll/", hr_views.payroll, name="hr_payroll"),
+    path("staff/payslip/<int:line_id>/", hr_views.payslip, name="hr_payslip"),
+    path("staff/documents/", hr_views.documents, name="hr_documents"),
+    path("staff/settings/", hr_views.hr_settings, name="hr_settings"),
 
     path("units/", views.inventory_unit_list, name="inventory_unit_list"),
     path("units/add/", views.inventory_unit_add, name="inventory_unit_add"),

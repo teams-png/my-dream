@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Leave" %}{% endblock %}
+{% block heading %}{% translate "Leave & holidays" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/hr/_tabs.html" %}
+<div class="hr-grid2">
+<div>
+  <div class="hr-card"><h3>⏳ {% translate "Waiting for approval" %} <small>{{ pending|length }}</small></h3>
+    <div class="hr-list">{% for r in pending %}
+      <div class="hr-row"><span class="grow"><b>{{ r.employee.name }}</b> · {{ r.leave_type.name }}<small>{{ r.start_date|date:"j M" }} – {{ r.end_date|date:"j M Y" }} · {{ r.days|floatformat:"-1" }} {% translate "days" %}{% if r.reason %} · {{ r.reason }}{% endif %}</small></span>
+        <form method="post" class="hr-actions">{% csrf_token %}<input type="hidden" name="id" value="{{ r.id }}"><button class="btn" name="action" value="approve">✓ {% translate "Approve" %}</button><button class="btn btn-secondary" name="action" value="reject">✕ {% translate "Reject" %}</button></form></div>
+    {% empty %}<div class="hr-empty">{% translate "Nothing to approve." %}</div>{% endfor %}</div>
+  </div>
+  <div class="hr-card"><h3>🌴 {% translate "Leave balance" %} <small>{{ year }}</small></h3>
+    <div class="hr-list">{% for person, rows in balances.items %}<div class="hr-row"><span class="grow"><b>{{ person.name }}</b></span>{% for b in rows %}<span class="hr-chip blue">{{ b.leave_type.name }}: {{ b.available|floatformat:"-1" }}</span>{% endfor %}</div>{% empty %}<div class="hr-empty">{% translate "Balances appear after the first leave request." %}</div>{% endfor %}</div>
+  </div>
+  <div class="hr-card"><h3>🕘 {% translate "Recent" %}</h3>
+    <div class="hr-list">{% for r in recent %}<div class="hr-row"><span class="grow"><b>{{ r.employee.name }}</b> · {{ r.leave_type.name }}<small>{{ r.start_date|date:"j M" }} – {{ r.end_date|date:"j M Y" }} · {{ r.days|floatformat:"-1" }} {% translate "days" %}</small></span><span class="hr-chip {{ r.status }}">{{ r.get_status_display }}</span></div>{% empty %}<div class="hr-empty">{% translate "No leave yet." %}</div>{% endfor %}</div>
+  </div>
+</div>
+<div>
+  <div class="hr-card"><h3>＋ {% translate "Add leave" %}</h3>
+    <form method="post" class="hr-form">{% csrf_token %}<input type="hidden" name="action" value="request">
+      {% for f in form %}{% include "webapp/hr/_field.html" with f=f cls="wide" %}{% endfor %}
+      <label class="wide" style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" name="approve_now" checked style="width:auto;min-height:0"> {% translate "Approve now" %}</label>
+      <div class="wide"><button class="btn" type="submit">{% translate "Save leave" %}</button></div>
+    </form>
+  </div>
+  <div class="hr-card"><h3>🏷 {% translate "Leave types" %}</h3>
+    <div class="hr-list">{% for t in types %}<div class="hr-row"><span class="grow"><b>{{ t.name }}</b><small>{{ t.annual_entitlement|floatformat:"-1" }} {% translate "days a year" %}</small></span><span class="hr-chip {% if t.paid %}ok{% else %}warn{% endif %}">{% if t.paid %}{% translate "Paid" %}{% else %}{% translate "Unpaid" %}{% endif %}</span></div>{% endfor %}</div>
+    <form method="post" class="hr-form" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="add_type">
+      <label>{% translate "Name" %}<input name="name" required maxlength="120"></label>
+      <label>{% translate "Days a year" %}<input name="days" type="number" min="0" step="0.5" value="0"></label>
+      <label style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" name="paid" checked style="width:auto;min-height:0"> {% translate "Paid leave" %}</label>
+      <div><button class="btn btn-secondary" type="submit">{% translate "Add" %}</button></div>
+    </form>
+  </div>
+  <div class="hr-card"><h3>🎉 {% translate "Holidays" %}</h3>
+    <div class="hr-list">{% for h in holidays %}<div class="hr-row"><span class="grow"><b>{{ h.name }}</b><small>{{ h.date|date:"D, j M Y" }}</small></span><form method="post">{% csrf_token %}<input type="hidden" name="id" value="{{ h.id }}"><button class="btn btn-secondary" name="action" value="delete_holiday" aria-label="{% translate 'Delete' %}">✕</button></form></div>{% empty %}<div class="hr-empty">{% translate "No holidays added." %}</div>{% endfor %}</div>
+    <form method="post" class="hr-form" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="add_holiday">
+      <label>{% translate "Date" %}<input type="date" name="date" required></label>
+      <label>{% translate "Name" %}<input name="name" required maxlength="120" placeholder="{% translate 'e.g. National Day' %}"></label>
+      <div><button class="btn btn-secondary" type="submit">{% translate "Add holiday" %}</button></div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

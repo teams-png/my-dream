@@ -52,3 +52,20 @@ WhatsApp/email sharing, VAT and reports work the same everywhere.
 - Enter the day's rate per gram for 24K/22K/21K/18K. The history is kept.
 - On each jewellery product, set the weight, karat, making charge (per gram, fixed, or % of gold value) and the stones value.
 - Price = weight × rate + making + stones. The POS always uses the latest rate. Saving rates can also update every item's stored selling price.
+
+## Staff & HR (every business type)
+
+The **People → Staff & HR / Attendance / Payroll & advances** menu is available to all 108 business types. The views are in `apps/webapp/hr_views.py` and the rules are in `apps/employees/services.py`.
+
+- **Staff:** details, job title, a linked login, and monthly salary (basic, allowances, fixed deductions, overtime rate). Someone with salary history is moved to former staff instead of being deleted.
+- **Attendance:** one screen per day (present / absent / half day / leave / holiday, plus check-in/out times) and a month grid.
+- **Leave:** requests with approve/reject, balances per leave type, paid and unpaid types, and holidays. Weekly off days come from HR settings (Friday by default in the Gulf, Sunday in India).
+- **Salary advances:** paid from cash or bank (Dr 1300 Staff Salary Advances, Cr Cash/Bank) with a monthly instalment.
+  - Payroll deducts the instalment automatically, oldest advance first, and never below zero net pay.
+  - Staff can also pay back in cash or by bank.
+  - Reversing a payroll puts the recovered amounts back on the advance.
+- **Payroll:** calculate the month, then approve and pay.
+  - Calculate: gross = basic + allowances + approved overtime − unpaid absence. Unpaid absence is (basic + allowances) ÷ days in the month × (absent + ½ half days + approved unpaid leave).
+  - Approve: Dr 5200 gross; Cr 2200 net, 2250 deductions, 1300 advances.
+  - Pay: Dr 2200, Cr Cash/Bank. Payslips can be printed or sent on WhatsApp.
+- **Documents:** QID, passport, visa and similar, sorted by expiry. The existing expiry notifications apply.

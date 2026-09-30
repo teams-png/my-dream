@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Attendance" %}{% endblock %}
+{% block heading %}{% translate "Monthly attendance" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/hr/_tabs.html" %}
+<div class="hr-month"><a class="btn btn-secondary" href="?m={{ prev }}">‹</a><b>{{ month|date:"F Y" }}</b><a class="btn btn-secondary" href="?m={{ next }}">›</a><a class="btn btn-secondary" href="{% url 'webapp:hr_attendance' %}">{% translate "Take attendance" %}</a><button class="btn btn-secondary no-print" type="button" onclick="print()">🖨 {% translate "Print" %}</button></div>
+<div class="mg"><table>
+  <thead><tr><th>{% translate "Staff" %}</th>{% for d in days %}<th class="{% if d.weekday in off or d in holidays %}off{% endif %}">{{ d.day }}<br><small>{{ d|date:"D"|slice:":2" }}</small></th>{% endfor %}<th>P</th><th>A</th><th>½</th><th>L</th><th>{% translate "Unpaid" %}</th></tr></thead>
+  <tbody>{% for r in rows %}<tr><td><a href="{% url 'webapp:staff_detail' r.person.id %}?m={{ key }}"><b>{{ r.person.name }}</b></a></td>{% for c in r.cells %}<td class="{% if c.off %}off {% endif %}{% if c.letter == '½' %}half{% else %}{{ c.letter }}{% endif %}">{{ c.letter }}</td>{% endfor %}<td>{{ r.totals.present }}</td><td>{{ r.totals.absent }}</td><td>{{ r.totals.half_day }}</td><td>{{ r.totals.leave }}</td><td><b>{{ r.unpaid|floatformat:"-1" }}</b></td></tr>{% empty %}<tr><td colspan="40" class="hr-empty">{% translate "No staff yet." %}</td></tr>{% endfor %}</tbody>
+</table></div>
+<p style="color:var(--hr-soft);font-size:13px">{% translate "Unpaid = absent days + half days + approved unpaid leave. These are deducted in payroll when absence deduction is on (HR settings)." %}</p>
+</div>
+{% endblock %}

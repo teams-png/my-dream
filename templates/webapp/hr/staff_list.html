@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Staff" %}{% endblock %}
+{% block heading %}{% translate "Staff & HR" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/hr/_tabs.html" %}
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Active staff" %}</small><b>{{ stats.count }}</b></div>
+  <a class="hr-kpi" href="{% url 'webapp:hr_attendance' %}"><small>{% translate "Present today" %}</small><b>{{ stats.present }} / {{ stats.count }}</b></a>
+  {% if stats.payroll is not None %}<a class="hr-kpi" href="{% url 'webapp:hr_payroll' %}"><small>{% translate "Monthly salaries" %}</small><b>{{ active_company.default_currency }} {{ stats.payroll|floatformat:2 }}</b></a>{% endif %}
+  <a class="hr-kpi {% if stats.advances %}warn{% endif %}" href="{% url 'webapp:hr_advances' %}"><small>{% translate "Advances to recover" %}</small><b>{{ stats.advances|floatformat:2 }}</b></a>
+  {% if stats.pending_leave %}<a class="hr-kpi warn" href="{% url 'webapp:hr_leave' %}"><small>{% translate "Leave to approve" %}</small><b>{{ stats.pending_leave }}</b></a>{% endif %}
+  {% if stats.documents %}<a class="hr-kpi warn" href="{% url 'webapp:hr_documents' %}"><small>{% translate "Documents expiring (30 days)" %}</small><b>{{ stats.documents }}</b></a>{% endif %}
+</div>
+
+<div class="hr-actions" style="margin-bottom:14px">
+  <a class="btn" href="{% url 'webapp:staff_add' %}">＋ {% translate "Add staff" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:hr_attendance' %}">🗓️ {% translate "Take attendance" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:hr_advances' %}">💵 {% translate "Give advance" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:hr_payroll' %}">💰 {% translate "Run payroll" %}</a>
+</div>
+
+<form method="get" class="hr-actions" style="margin-bottom:14px">
+  <input class="hr-in" style="flex:1 1 220px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Name, phone or job title' %}">
+  <input type="hidden" name="show" value="{{ show }}">
+  <button class="btn btn-secondary" type="submit">{% translate "Search" %}</button>
+  {% if show == "former" %}<a class="btn btn-secondary" href="?show=active">{% translate "Current staff" %}</a>{% else %}<a class="btn btn-secondary" href="?show=former">{% translate "Former staff" %}</a>{% endif %}
+</form>
+
+{% if staff %}
+<div class="hr-people">
+  {% for p in staff %}
+  <a class="hr-person" href="{% url 'webapp:staff_detail' p.id %}">
+    <span class="hr-av">{{ p.name|slice:":1"|upper }}</span>
+    <span style="min-width:0;flex:1">
+      <b>{{ p.name }}</b>
+      <small>{{ p.role_title|default:"—" }}{% if p.phone %} · {{ p.phone }}{% endif %}</small>
+      <span class="meta">
+        {% if p.is_active %}{% if p.today %}<span class="hr-chip {{ p.today }}">{% if p.today == "present" %}{% translate "Present" %}{% elif p.today == "absent" %}{% translate "Absent" %}{% elif p.today == "half_day" %}{% translate "Half day" %}{% elif p.today == "leave" %}{% translate "Leave" %}{% else %}{% translate "Holiday" %}{% endif %}</span>{% else %}<span class="hr-chip">{% translate "Not marked" %}</span>{% endif %}{% else %}<span class="hr-chip terminated">{% translate "Former" %}</span>{% endif %}
+        <span class="hr-chip">{{ active_company.default_currency }} {{ p.monthly|floatformat:2 }}</span>
+        {% if p.advance_balance %}<span class="hr-chip warn">{% translate "Advance" %} {{ p.advance_balance|floatformat:2 }}</span>{% endif %}
+      </span>
+    </span>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<div class="hr-card hr-empty"><div style="font-size:40px">👥</div>{% if q %}{% translate "No staff match your search." %}{% elif show == "former" %}{% translate "No former staff." %}{% else %}{% translate "No staff yet. Add your first staff member with their salary." %}<div style="margin-top:12px"><a class="btn" href="{% url 'webapp:staff_add' %}">＋ {% translate "Add staff" %}</a></div>{% endif %}</div>
+{% endif %}
+</div>
+{% endblock %}

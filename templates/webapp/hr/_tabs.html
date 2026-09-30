@@ -1,0 +1,12 @@
+{% load i18n static %}<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+{% with u=request.resolver_match.url_name %}
+<nav class="hr-tabs" aria-label="{% translate 'Staff & HR' %}">
+  <a class="{% if u == 'staff_list' or u == 'staff_detail' or u == 'staff_add' or u == 'staff_edit' %}on{% endif %}" href="{% url 'webapp:staff_list' %}">👥 {% translate "Staff" %}</a>
+  <a class="{% if u == 'hr_attendance' or u == 'hr_attendance_month' %}on{% endif %}" href="{% url 'webapp:hr_attendance' %}">🗓️ {% translate "Attendance" %}</a>
+  <a class="{% if u == 'hr_leave' %}on{% endif %}" href="{% url 'webapp:hr_leave' %}">🌴 {% translate "Leave" %}</a>
+  <a class="{% if u == 'hr_advances' %}on{% endif %}" href="{% url 'webapp:hr_advances' %}">💵 {% translate "Salary advances" %}</a>
+  <a class="{% if u == 'hr_payroll' or u == 'hr_payslip' %}on{% endif %}" href="{% url 'webapp:hr_payroll' %}">💰 {% translate "Payroll" %}</a>
+  <a class="{% if u == 'hr_documents' %}on{% endif %}" href="{% url 'webapp:hr_documents' %}">📄 {% translate "Documents" %}</a>
+  <a class="{% if u == 'hr_settings' %}on{% endif %}" href="{% url 'webapp:hr_settings' %}">⚙️ {% translate "HR settings" %}</a>
+</nav>
+{% endwith %}

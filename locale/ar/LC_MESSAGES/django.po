@@ -90,6 +90,18 @@ msgid "Team"
 msgstr "الفريق"
 
 #: templates/base.html
+msgid "Staff & HR"
+msgstr "الموظفون والموارد البشرية"
+
+#: templates/base.html
+msgid "Attendance"
+msgstr "الحضور"
+
+#: templates/base.html
+msgid "Payroll & advances"
+msgstr "الرواتب والسلف"
+
+#: templates/base.html
 msgid "Business"
 msgstr "النشاط التجاري"
 
@@ -138,10 +150,6 @@ msgid "Membership Plans"
 msgstr "خطط العضوية"
 
 #: templates/base.html
-msgid "Attendance"
-msgstr "الحضور"
-
-#: templates/base.html
 msgid "Reports"
 msgstr "التقارير"
 
@@ -156,10 +164,6 @@ msgstr "المواعيد"
 #: templates/base.html
 msgid "Services"
 msgstr "الخدمات"
-
-#: templates/base.html
-msgid "Staff"
-msgstr "الموظفون"
 
 #: templates/base.html
 msgid "Mobile Shop"
@@ -1387,6 +1391,639 @@ msgstr "إنشاء الجدول"
 msgid "Price"
 msgstr "السعر"
 
+#: templates/webapp/hr/_tabs.html
+msgid "Staff"
+msgstr "الموظفون"
+
+#: templates/webapp/hr/_tabs.html
+msgid "Leave"
+msgstr "الإجازة"
+
+#: templates/webapp/hr/_tabs.html
+msgid "Salary advances"
+msgstr "سلف الرواتب"
+
+#: templates/webapp/hr/_tabs.html
+msgid "Payroll"
+msgstr "الرواتب"
+
+#: templates/webapp/hr/_tabs.html
+msgid "Documents"
+msgstr "المستندات"
+
+#: templates/webapp/hr/_tabs.html
+msgid "HR settings"
+msgstr "إعدادات الموارد البشرية"
+
+#: templates/webapp/hr/advances.html
+msgid "To recover"
+msgstr "المتبقي للاسترداد"
+
+#: templates/webapp/hr/advances.html
+msgid "Given this month"
+msgstr "المصروف هذا الشهر"
+
+#: templates/webapp/hr/advances.html
+msgid "Advances"
+msgstr "السلف"
+
+#: templates/webapp/hr/advances.html
+msgid "Cash"
+msgstr "نقدًا"
+
+#: templates/webapp/hr/advances.html
+msgid "Monthly"
+msgstr "شهري"
+
+#: templates/webapp/hr/advances.html
+msgid "Balance"
+msgstr "الرصيد"
+
+#: templates/webapp/hr/advances.html
+msgid "Paid back in cash / bank"
+msgstr "سُدد نقداً / بنكياً"
+
+#: templates/webapp/hr/advances.html
+msgid "Received in"
+msgstr "استُلم في"
+
+#: templates/webapp/hr/advances.html
+msgid "Save"
+msgstr "حفظ"
+
+#: templates/webapp/hr/advances.html
+msgid "Cleared"
+msgstr "تم الصرف"
+
+#: templates/webapp/hr/advances.html
+msgid "No advances to recover."
+msgstr "لا سلف للاسترداد."
+
+#: templates/webapp/hr/advances.html
+msgid "Give an advance"
+msgstr "صرف سلفة"
+
+#: templates/webapp/hr/advances.html
+msgid "Give advance"
+msgstr "صرف سلفة"
+
+#: templates/webapp/hr/advances.html
+msgid ""
+"The advance is recorded in the accounts and deducted from the salary when "
+"you run payroll, month by month until it is cleared."
+msgstr ""
+"تُسجل السلفة في الحسابات وتُخصم من الراتب عند احتساب الرواتب شهرياً حتى "
+"تُسدد."
+
+#: templates/webapp/hr/attendance.html
+msgid "Today"
+msgstr "اليوم"
+
+#: templates/webapp/hr/attendance.html
+msgid "Month view"
+msgstr "عرض الشهر"
+
+#: templates/webapp/hr/attendance.html
+msgid "Holiday"
+msgstr "عطلة"
+
+#: templates/webapp/hr/attendance.html
+msgid "This is a weekly off day."
+msgstr "هذا يوم العطلة الأسبوعية."
+
+#: templates/webapp/hr/attendance.html
+msgid "Mark all present"
+msgstr "تسجيل الجميع حاضرين"
+
+#: templates/webapp/hr/attendance.html
+msgid "Mark all holiday"
+msgstr "تسجيل الجميع عطلة"
+
+#: templates/webapp/hr/attendance.html
+msgid "On approved leave"
+msgstr "في إجازة معتمدة"
+
+#: templates/webapp/hr/attendance.html
+msgid "P"
+msgstr "ح"
+
+#: templates/webapp/hr/attendance.html
+msgid "A"
+msgstr "غ"
+
+#: templates/webapp/hr/attendance.html
+msgid "L"
+msgstr "إ"
+
+#: templates/webapp/hr/attendance.html
+msgid "H"
+msgstr "ع"
+
+#: templates/webapp/hr/attendance.html
+msgid "Check in"
+msgstr "وقت الحضور"
+
+#: templates/webapp/hr/attendance.html
+msgid "Check out"
+msgstr "وقت الانصراف"
+
+#: templates/webapp/hr/attendance.html
+msgid "P = Present · A = Absent · ½ = Half day · L = Leave · H = Holiday"
+msgstr "ح = حاضر · غ = غائب · ½ = نصف يوم · إ = إجازة · ع = عطلة"
+
+#: templates/webapp/hr/attendance.html
+msgid "Save attendance"
+msgstr "حفظ الحضور"
+
+#: templates/webapp/hr/attendance.html
+msgid "Add staff first."
+msgstr "أضف الموظفين أولاً."
+
+#: templates/webapp/hr/attendance.html
+msgid "Add staff"
+msgstr "إضافة موظف"
+
+#: templates/webapp/hr/attendance_month.html
+msgid "Monthly attendance"
+msgstr "الحضور الشهري"
+
+#: templates/webapp/hr/attendance_month.html
+msgid "Take attendance"
+msgstr "تسجيل الحضور"
+
+#: templates/webapp/hr/attendance_month.html
+msgid "Print"
+msgstr "طباعة"
+
+#: templates/webapp/hr/attendance_month.html
+msgid "Unpaid"
+msgstr "غير مدفوع"
+
+#: templates/webapp/hr/attendance_month.html
+msgid "No staff yet."
+msgstr "لا يوجد موظفون بعد."
+
+#: templates/webapp/hr/attendance_month.html
+msgid ""
+"Unpaid = absent days + half days + approved unpaid leave. These are deducted"
+" in payroll when absence deduction is on (HR settings)."
+msgstr ""
+"غير مدفوع = أيام الغياب + أنصاف الأيام + الإجازة غير المدفوعة المعتمدة. "
+"تُخصم من الراتب عند تفعيل خصم الغياب."
+
+#: templates/webapp/hr/documents.html
+msgid "Staff documents"
+msgstr "مستندات الموظفين"
+
+#: templates/webapp/hr/documents.html
+msgid "soonest expiry first"
+msgstr "الأقرب انتهاءً أولاً"
+
+#: templates/webapp/hr/documents.html
+msgid "Expired"
+msgstr "منتهي"
+
+#: templates/webapp/hr/documents.html
+msgid "Expires today"
+msgstr "ينتهي اليوم"
+
+#: templates/webapp/hr/documents.html
+msgid "days left"
+msgstr "يوم متبقٍ"
+
+#: templates/webapp/hr/documents.html
+msgid "Delete"
+msgstr "حذف"
+
+#: templates/webapp/hr/documents.html
+msgid "Remove this document?"
+msgstr "حذف هذا المستند؟"
+
+#: templates/webapp/hr/documents.html
+msgid ""
+"No documents yet. Add QID, passport, visa or work permit to get expiry "
+"alerts."
+msgstr ""
+"لا مستندات بعد. أضف البطاقة الشخصية أو الجواز أو التأشيرة أو تصريح العمل "
+"لتلقي تنبيهات الانتهاء."
+
+#: templates/webapp/hr/documents.html
+msgid "Add document"
+msgstr "إضافة مستند"
+
+#: templates/webapp/hr/leave.html
+msgid "Leave & holidays"
+msgstr "الإجازات والعطل"
+
+#: templates/webapp/hr/leave.html
+msgid "Waiting for approval"
+msgstr "بانتظار الموافقة"
+
+#: templates/webapp/hr/leave.html
+msgid "days"
+msgstr "أيام"
+
+#: templates/webapp/hr/leave.html
+msgid "Approve"
+msgstr "موافقة"
+
+#: templates/webapp/hr/leave.html
+msgid "Reject"
+msgstr "رفض"
+
+#: templates/webapp/hr/leave.html
+msgid "Nothing to approve."
+msgstr "لا شيء للموافقة."
+
+#: templates/webapp/hr/leave.html
+msgid "Leave balance"
+msgstr "رصيد الإجازات"
+
+#: templates/webapp/hr/leave.html
+msgid "Balances appear after the first leave request."
+msgstr "تظهر الأرصدة بعد أول طلب إجازة."
+
+#: templates/webapp/hr/leave.html
+msgid "Recent"
+msgstr "الأحدث"
+
+#: templates/webapp/hr/leave.html
+msgid "No leave yet."
+msgstr "لا إجازات بعد."
+
+#: templates/webapp/hr/leave.html
+msgid "Add leave"
+msgstr "إضافة إجازة"
+
+#: templates/webapp/hr/leave.html
+msgid "Approve now"
+msgstr "الموافقة الآن"
+
+#: templates/webapp/hr/leave.html
+msgid "Save leave"
+msgstr "حفظ الإجازة"
+
+#: templates/webapp/hr/leave.html
+msgid "Leave types"
+msgstr "أنواع الإجازات"
+
+#: templates/webapp/hr/leave.html
+msgid "days a year"
+msgstr "يوم في السنة"
+
+#: templates/webapp/hr/leave.html
+msgid "Days a year"
+msgstr "أيام في السنة"
+
+#: templates/webapp/hr/leave.html
+msgid "Paid leave"
+msgstr "إجازة مدفوعة"
+
+#: templates/webapp/hr/leave.html
+msgid "Add"
+msgstr "إضافة"
+
+#: templates/webapp/hr/leave.html
+msgid "Holidays"
+msgstr "العطل"
+
+#: templates/webapp/hr/leave.html
+msgid "No holidays added."
+msgstr "لم تُضف عطل."
+
+#: templates/webapp/hr/leave.html
+msgid "e.g. National Day"
+msgstr "مثلاً اليوم الوطني"
+
+#: templates/webapp/hr/leave.html
+msgid "Add holiday"
+msgstr "إضافة عطلة"
+
+#: templates/webapp/hr/payroll.html
+msgid "Draft — check and approve"
+msgstr "مسودة — راجع واعتمد"
+
+#: templates/webapp/hr/payroll.html
+msgid "Approved"
+msgstr "معتمد"
+
+#: templates/webapp/hr/payroll.html
+msgid "Reversed"
+msgstr "معكوس"
+
+#: templates/webapp/hr/payroll.html
+msgid "No salary set for"
+msgstr "لم يُحدد راتب لـ"
+
+#: templates/webapp/hr/payroll.html
+msgid "They are left out of payroll."
+msgstr "تم استبعادهم من الرواتب."
+
+#: templates/webapp/hr/payroll.html
+msgid ""
+"Calculate salaries for this month. Absent days, unpaid leave, approved "
+"overtime and salary advances are included automatically."
+msgstr ""
+"احسب رواتب هذا الشهر. تُضاف أيام الغياب والإجازة غير المدفوعة والعمل الإضافي"
+" والسلف تلقائياً."
+
+#: templates/webapp/hr/payroll.html
+msgid "Calculate payroll"
+msgstr "احتساب الرواتب"
+
+#: templates/webapp/hr/payroll.html
+msgid "Gross salaries"
+msgstr "إجمالي الرواتب"
+
+#: templates/webapp/hr/payroll.html
+msgid "Deductions"
+msgstr "الخصومات"
+
+#: templates/webapp/hr/payroll.html
+msgid "Advances recovered"
+msgstr "السلف المستردة"
+
+#: templates/webapp/hr/payroll.html
+msgid "Net to pay"
+msgstr "الصافي للدفع"
+
+#: templates/webapp/hr/payroll.html
+msgid "Still to pay"
+msgstr "المتبقي للدفع"
+
+#: templates/webapp/hr/payroll.html
+msgid "Basic"
+msgstr "الأساسي"
+
+#: templates/webapp/hr/payroll.html
+msgid "Allowances"
+msgstr "البدلات"
+
+#: templates/webapp/hr/payroll.html
+msgid "Overtime"
+msgstr "العمل الإضافي"
+
+#: templates/webapp/hr/payroll.html
+msgid "Absence"
+msgstr "الغياب"
+
+#: templates/webapp/hr/payroll.html
+msgid "Advance"
+msgstr "السلفة"
+
+#: templates/webapp/hr/payroll.html
+msgid "Net pay"
+msgstr "صافي الراتب"
+
+#: templates/webapp/hr/payroll.html
+msgid "Payslip"
+msgstr "قسيمة الراتب"
+
+#: templates/webapp/hr/payroll.html
+msgid "Pay"
+msgstr "ادفع"
+
+#: templates/webapp/hr/payroll.html
+msgid ""
+"Approve this payroll? Salaries and advance recoveries will be recorded in "
+"the accounts."
+msgstr "اعتماد هذه الرواتب؟ ستُسجل الرواتب واسترداد السلف في الحسابات."
+
+#: templates/webapp/hr/payroll.html
+msgid "Approve payroll"
+msgstr "اعتماد الرواتب"
+
+#: templates/webapp/hr/payroll.html
+msgid "Recalculate"
+msgstr "إعادة الاحتساب"
+
+#: templates/webapp/hr/payroll.html
+msgid "Pay all"
+msgstr "دفع الكل"
+
+#: templates/webapp/hr/payroll.html
+msgid "All salaries paid"
+msgstr "تم دفع جميع الرواتب"
+
+#: templates/webapp/hr/payroll.html
+msgid "Reverse this payroll?"
+msgstr "عكس هذه الرواتب؟"
+
+#: templates/webapp/hr/payroll.html
+msgid "Reverse"
+msgstr "عكس"
+
+#: templates/webapp/hr/payroll.html
+msgid "Calculate again"
+msgstr "احتساب مجدداً"
+
+#: templates/webapp/hr/payroll.html
+msgid "Past payrolls"
+msgstr "الرواتب السابقة"
+
+#: templates/webapp/hr/payslip.html
+msgid "Basic salary"
+msgstr "الراتب الأساسي"
+
+#: templates/webapp/hr/payslip.html
+msgid "Gross pay"
+msgstr "إجمالي الراتب"
+
+#: templates/webapp/hr/payslip.html
+msgid "Salary advance recovered"
+msgstr "استرداد السلفة"
+
+#: templates/webapp/hr/payslip.html
+msgid "Not paid yet"
+msgstr "لم يُدفع بعد"
+
+#: templates/webapp/hr/payslip.html
+msgid "Advance balance remaining"
+msgstr "رصيد السلفة المتبقي"
+
+#: templates/webapp/hr/payslip.html
+msgid "Send on WhatsApp"
+msgstr "إرسال عبر واتساب"
+
+#: templates/webapp/hr/settings.html
+msgid "Weekly off days"
+msgstr "أيام العطلة الأسبوعية"
+
+#: templates/webapp/hr/settings.html
+msgid "Not counted as leave days."
+msgstr "لا تُحتسب أيام إجازة."
+
+#: templates/webapp/hr/settings.html
+msgid "Deduct absent days, half days and unpaid leave from salary"
+msgstr "خصم أيام الغياب وأنصاف الأيام والإجازة غير المدفوعة من الراتب"
+
+#: templates/webapp/hr/settings.html
+msgid "Daily rate = (basic + allowances) ÷ days in the month."
+msgstr "الأجر اليومي = (الأساسي + البدلات) ÷ أيام الشهر."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Joined"
+msgstr "تاريخ الالتحاق"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Login"
+msgstr "الدخول"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Edit"
+msgstr "تعديل"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Remove"
+msgstr "إزالة"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Salary"
+msgstr "الراتب"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "per month"
+msgstr "شهرياً"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Fixed deductions"
+msgstr "خصومات ثابتة"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Overtime rate per hour"
+msgstr "أجر الساعة الإضافية"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Present"
+msgstr "حاضر"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Absent"
+msgstr "غائب"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Half day"
+msgstr "نصف يوم"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Unpaid days"
+msgstr "أيام غير مدفوعة"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Payslips"
+msgstr "قسائم الرواتب"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Gross"
+msgstr "الإجمالي"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No payslips yet."
+msgstr "لا قسائم بعد."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Balance to recover"
+msgstr "الرصيد المتبقي"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Next salary deduction"
+msgstr "خصم الراتب القادم"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No advances."
+msgstr "لا سلف."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No leave taken."
+msgstr "لم تُؤخذ إجازات."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Expires"
+msgstr "ينتهي"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No documents."
+msgstr "لا مستندات."
+
+#: templates/webapp/hr/staff_form.html
+msgid "Edit staff"
+msgstr "تعديل الموظف"
+
+#: templates/webapp/hr/staff_form.html
+msgid "Details"
+msgstr "التفاصيل"
+
+#: templates/webapp/hr/staff_form.html
+msgid ""
+"Absent days, unpaid leave and salary advances are deducted automatically "
+"when you run payroll."
+msgstr ""
+"تُخصم أيام الغياب والإجازة غير المدفوعة والسلف تلقائياً عند احتساب الرواتب."
+
+#: templates/webapp/hr/staff_list.html
+msgid "Active staff"
+msgstr "الموظفون النشطون"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Present today"
+msgstr "الحاضرون اليوم"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Monthly salaries"
+msgstr "الرواتب الشهرية"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Advances to recover"
+msgstr "سلف للاسترداد"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Leave to approve"
+msgstr "إجازات للموافقة"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Documents expiring (30 days)"
+msgstr "مستندات تنتهي (30 يوماً)"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Run payroll"
+msgstr "احتساب الرواتب"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Name, phone or job title"
+msgstr "الاسم أو الهاتف أو المسمى"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Search"
+msgstr "بحث"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Current staff"
+msgstr "الموظفون الحاليون"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Former staff"
+msgstr "الموظفون السابقون"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Not marked"
+msgstr "غير مسجل"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Former"
+msgstr "سابق"
+
+#: templates/webapp/hr/staff_list.html
+msgid "No staff match your search."
+msgstr "لا موظفين مطابقين."
+
+#: templates/webapp/hr/staff_list.html
+msgid "No former staff."
+msgstr "لا موظفين سابقين."
+
+#: templates/webapp/hr/staff_list.html
+msgid "No staff yet. Add your first staff member with their salary."
+msgstr "لا موظفين بعد. أضف أول موظف مع راتبه."
+
 #: templates/webapp/industry/booking_board.html
 msgid "In use now"
 msgstr "قيد الاستخدام الآن"
@@ -1408,24 +2045,12 @@ msgid "Overdue"
 msgstr "متأخر"
 
 #: templates/webapp/industry/booking_board.html
-msgid "Today"
-msgstr "اليوم"
-
-#: templates/webapp/industry/booking_board.html
-msgid "days"
-msgstr "أيام"
-
-#: templates/webapp/industry/booking_board.html
 msgid "Nothing to book yet."
 msgstr "لا يوجد شيء للحجز بعد."
 
 #: templates/webapp/industry/booking_board.html
 msgid "Add what customers book (rooms, vehicles, halls...) with their price."
 msgstr "أضف ما يحجزه العملاء (غرف، مركبات، قاعات...) مع السعر."
-
-#: templates/webapp/industry/booking_board.html
-msgid "Add"
-msgstr "إضافة"
 
 #: templates/webapp/industry/booking_board.html
 msgid "Reserved"
@@ -1567,10 +2192,6 @@ msgstr "تسجيل الخروج وإنشاء فاتورة"
 msgid "Number"
 msgstr "الرقم"
 
-#: templates/webapp/industry/booking_detail.html
-msgid "Balance"
-msgstr "الرصيد"
-
 #: templates/webapp/industry/booking_form.html
 msgid "Change"
 msgstr "تغيير"
@@ -1608,10 +2229,6 @@ msgid "Name, phone, number..."
 msgstr "الاسم، الهاتف، الرقم..."
 
 #: templates/webapp/industry/booking_list.html
-msgid "Search"
-msgstr "بحث"
-
-#: templates/webapp/industry/booking_list.html
 msgid "No bookings found."
 msgstr "لم يتم العثور على حجوزات."
 
@@ -1620,16 +2237,8 @@ msgid "once"
 msgstr "مرة واحدة"
 
 #: templates/webapp/industry/course_detail.html
-msgid "Edit"
-msgstr "تعديل"
-
-#: templates/webapp/industry/course_detail.html
 msgid "Taken for this day — you can change it."
 msgstr "تم أخذه لهذا اليوم — يمكنك تغييره."
-
-#: templates/webapp/industry/course_detail.html
-msgid "Save attendance"
-msgstr "حفظ الحضور"
 
 #: templates/webapp/industry/course_detail.html
 msgid "Nobody enrolled on this day."
@@ -1690,10 +2299,6 @@ msgstr "المقاعد (0 = بلا حد)"
 #: templates/webapp/industry/course_form.html
 msgid "Open for enrolment"
 msgstr "مفتوح للتسجيل"
-
-#: templates/webapp/industry/course_form.html
-msgid "Save"
-msgstr "حفظ"
 
 #: templates/webapp/industry/dues.html
 msgid ""
@@ -1931,10 +2536,6 @@ msgid "Ends in"
 msgstr "ينتهي خلال"
 
 #: templates/webapp/industry/lease_detail.html
-msgid "Expired"
-msgstr "منتهي"
-
-#: templates/webapp/industry/lease_detail.html
 msgid "Lease"
 msgstr "عقد الإيجار"
 
@@ -2135,10 +2736,6 @@ msgid "Capacity"
 msgstr "السعة"
 
 #: templates/webapp/industry/resource_list.html
-msgid "Details"
-msgstr "التفاصيل"
-
-#: templates/webapp/industry/resource_list.html
 msgid "Inactive"
 msgstr "غير نشط"
 
@@ -2213,10 +2810,6 @@ msgstr "لا منتجات تُباع بالوزن بعد."
 #: templates/webapp/industry/scale_settings.html
 msgid "Go to products"
 msgstr "الذهاب إلى المنتجات"
-
-#: templates/webapp/invoice_pdf.html
-msgid "Print"
-msgstr "طباعة"
 
 #: templates/webapp/invoice_pdf.html
 msgid "Download PDF"
@@ -2303,10 +2896,6 @@ msgid ""
 "No phone saved for this customer, so WhatsApp will ask you to choose a "
 "contact."
 msgstr "لا يوجد رقم محفوظ لهذا العميل، لذا سيطلب منك واتساب اختيار جهة اتصال."
-
-#: templates/webapp/invoice_share.html
-msgid "Send on WhatsApp"
-msgstr "إرسال عبر واتساب"
 
 #: templates/webapp/invoice_share.html
 msgid "Send to a different number →"
@@ -2509,10 +3098,6 @@ msgstr "اختياري"
 #: templates/webapp/onboarding/wizard.html
 msgid "e.g. Drinks"
 msgstr "مثال: مشروبات"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Remove"
-msgstr "إزالة"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Add another row"
@@ -2758,10 +3343,6 @@ msgid "Amount due"
 msgstr "المبلغ المستحق"
 
 #: templates/webapp/pos.html
-msgid "Cash"
-msgstr "نقدًا"
-
-#: templates/webapp/pos.html
 msgid "Card"
 msgstr "بطاقة"
 
@@ -2796,10 +3377,6 @@ msgstr "عدد الأقساط"
 #: templates/webapp/pos.html
 msgid "Frequency"
 msgstr "التكرار"
-
-#: templates/webapp/pos.html
-msgid "Monthly"
-msgstr "شهري"
 
 #: templates/webapp/pos.html
 msgid "Weekly"
@@ -2916,10 +3493,6 @@ msgstr "حدث خطأ ما."
 #: templates/webapp/pos.html
 msgid "Exact"
 msgstr "المبلغ بالضبط"
-
-#: templates/webapp/pos.html
-msgid "Still to pay"
-msgstr "المتبقي للدفع"
 
 #: templates/webapp/pos.html
 msgid "Sale complete"
@@ -3157,10 +3730,6 @@ msgstr "1× بيتزا"
 #: templates/webapp/public/landing.html
 msgid "2× Drink"
 msgstr "2× مشروب"
-
-#: templates/webapp/public/landing.html
-msgid "Pay"
-msgstr "ادفع"
 
 #: templates/webapp/public/landing.html
 msgid "QAR 0"
@@ -4772,10 +5341,6 @@ msgid "Pending"
 msgstr "قيد الانتظار"
 
 #: apps/finance/models.py
-msgid "Cleared"
-msgstr "تم الصرف"
-
-#: apps/finance/models.py
 msgid "Cancelled"
 msgstr "ملغى"
 
@@ -5010,6 +5575,175 @@ msgstr "تم استبعاد الأصل وتسجيل الربح أو الخسار
 #: apps/webapp/gold_views.py
 msgid "%(count)s rates saved; %(changed)s item prices updated."
 msgstr "تم حفظ %(count)s أسعار؛ وتحديث أسعار %(changed)s أصناف."
+
+#: apps/webapp/hr_views.py
+msgid "Monday"
+msgstr "الاثنين"
+
+#: apps/webapp/hr_views.py
+msgid "Tuesday"
+msgstr "الثلاثاء"
+
+#: apps/webapp/hr_views.py
+msgid "Wednesday"
+msgstr "الأربعاء"
+
+#: apps/webapp/hr_views.py
+msgid "Thursday"
+msgstr "الخميس"
+
+#: apps/webapp/hr_views.py
+msgid "Friday"
+msgstr "الجمعة"
+
+#: apps/webapp/hr_views.py
+msgid "Saturday"
+msgstr "السبت"
+
+#: apps/webapp/hr_views.py
+msgid "Sunday"
+msgstr "الأحد"
+
+#: apps/webapp/hr_views.py
+msgid "Basic salary (monthly)"
+msgstr "الراتب الأساسي (شهري)"
+
+#: apps/webapp/hr_views.py
+msgid "Allowances (housing, transport...)"
+msgstr "البدلات (سكن، مواصلات...)"
+
+#: apps/webapp/hr_views.py
+msgid "Job title"
+msgstr "المسمى الوظيفي"
+
+#: apps/webapp/hr_views.py
+msgid "Login (optional)"
+msgstr "الدخول (اختياري)"
+
+#: apps/webapp/hr_views.py
+msgid "This login is already linked to another staff member."
+msgstr "هذا الدخول مرتبط بموظف آخر."
+
+#: apps/webapp/hr_views.py
+msgid "Staff member"
+msgstr "الموظف"
+
+#: apps/webapp/hr_views.py
+msgid "Advance amount"
+msgstr "مبلغ السلفة"
+
+#: apps/webapp/hr_views.py
+msgid "Deduct from salary each month"
+msgstr "الخصم الشهري من الراتب"
+
+#: apps/webapp/hr_views.py
+msgid "Leave empty to deduct it all from the next salary."
+msgstr "اتركه فارغاً لخصمها كاملة من الراتب القادم."
+
+#: apps/webapp/hr_views.py
+msgid "Reason / note"
+msgstr "السبب / ملاحظة"
+
+#: apps/webapp/hr_views.py
+msgid "Leave type"
+msgstr "نوع الإجازة"
+
+#: apps/webapp/hr_views.py
+msgid "Reason"
+msgstr "السبب"
+
+#: apps/webapp/hr_views.py
+msgid "Document"
+msgstr "المستند"
+
+#: apps/webapp/hr_views.py
+msgid "Expiry date"
+msgstr "تاريخ الانتهاء"
+
+#: apps/webapp/hr_views.py
+msgid "%(name)s removed."
+msgstr "تم حذف %(name)s."
+
+#: apps/webapp/hr_views.py
+msgid "%(name)s has salary history, so they were moved to former staff."
+msgstr "لدى %(name)s سجل رواتب، لذا نُقل إلى الموظفين السابقين."
+
+#: apps/webapp/hr_views.py
+msgid "Attendance saved for %(count)s staff on %(day)s."
+msgstr "تم حفظ حضور %(count)s موظفين ليوم %(day)s."
+
+#: apps/webapp/hr_views.py
+msgid "Leave saved for %(name)s (%(days)s days)."
+msgstr "تم حفظ إجازة %(name)s (%(days)s أيام)."
+
+#: apps/webapp/hr_views.py
+msgid "Leave approved."
+msgstr "تمت الموافقة على الإجازة."
+
+#: apps/webapp/hr_views.py
+msgid "Leave rejected."
+msgstr "تم رفض الإجازة."
+
+#: apps/webapp/hr_views.py
+msgid "Leave type added."
+msgstr "تمت إضافة نوع الإجازة."
+
+#: apps/webapp/hr_views.py
+msgid "Holiday saved."
+msgstr "تم حفظ العطلة."
+
+#: apps/webapp/hr_views.py
+msgid "Annual leave"
+msgstr "إجازة سنوية"
+
+#: apps/webapp/hr_views.py
+msgid "Sick leave"
+msgstr "إجازة مرضية"
+
+#: apps/webapp/hr_views.py
+msgid "Unpaid leave"
+msgstr "إجازة بدون راتب"
+
+#: apps/webapp/hr_views.py
+msgid "Repayment recorded."
+msgstr "تم تسجيل السداد."
+
+#: apps/webapp/hr_views.py
+msgid ""
+"Advance of %(amount)s given to %(name)s. It will be deducted from salary."
+msgstr "صُرفت سلفة %(amount)s إلى %(name)s وستُخصم من الراتب."
+
+#: apps/webapp/hr_views.py
+msgid "Payroll calculated for %(count)s staff."
+msgstr "تم احتساب رواتب %(count)s موظفين."
+
+#: apps/webapp/hr_views.py
+msgid "Payroll approved. Salaries can now be paid."
+msgstr "تم اعتماد الرواتب. يمكن الآن دفعها."
+
+#: apps/webapp/hr_views.py
+msgid "%(count)s salaries paid."
+msgstr "تم دفع %(count)s رواتب."
+
+#: apps/webapp/hr_views.py
+msgid "Payroll reversed."
+msgstr "تم عكس الرواتب."
+
+#: apps/webapp/hr_views.py
+msgid "Reversed payroll removed. You can calculate it again."
+msgstr "تمت إزالة الرواتب المعكوسة. يمكنك احتسابها مجدداً."
+
+#: apps/webapp/hr_views.py
+msgid "Document removed."
+msgstr "تم حذف المستند."
+
+#: apps/webapp/hr_views.py
+msgid "Document saved."
+msgstr "تم حفظ المستند."
+
+#: apps/webapp/hr_views.py
+msgid "HR settings saved."
+msgstr "تم حفظ إعدادات الموارد البشرية."
 
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."

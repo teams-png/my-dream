@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Attendance" %}{% endblock %}
+{% block heading %}{% translate "Attendance" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/hr/_tabs.html" %}
+<div class="hr-month">
+  <a class="btn btn-secondary" href="?date={{ prev|date:'Y-m-d' }}">‹</a>
+  <b>{{ day|date:"D, j M Y" }}</b>
+  <a class="btn btn-secondary" href="?date={{ next|date:'Y-m-d' }}">›</a>
+  <form method="get" style="display:inline-flex;gap:6px"><input class="hr-in" style="width:auto" type="date" name="date" value="{{ day|date:'Y-m-d' }}" onchange="this.form.submit()"></form>
+  {% if day != today %}<a class="btn btn-secondary" href="?">{% translate "Today" %}</a>{% endif %}
+  <a class="btn btn-secondary" href="{% url 'webapp:hr_attendance_month' %}?m={{ day|date:'Y-m' }}">📅 {% translate "Month view" %}</a>
+</div>
+{% if holiday %}<div class="hr-card" style="background:var(--hr-blue-bg)">🎉 {% translate "Holiday" %}: <b>{{ holiday.name }}</b></div>{% elif is_off %}<div class="hr-card" style="background:var(--hr-blue-bg)">{% translate "This is a weekly off day." %}</div>{% endif %}
+
+{% if staff %}
+<form method="post">{% csrf_token %}<input type="hidden" name="date" value="{{ day|date:'Y-m-d' }}">
+<div class="hr-actions" style="margin-bottom:10px">
+  <button class="btn btn-secondary" type="button" data-all="present">✓ {% translate "Mark all present" %}</button>
+  {% if holiday or is_off %}<button class="btn btn-secondary" type="button" data-all="holiday">{% translate "Mark all holiday" %}</button>{% endif %}
+</div>
+<div class="hr-list">
+{% for p in staff %}
+  <div class="att-row">
+    <div><b>{{ p.name }}</b><small style="display:block;color:var(--hr-soft)">{{ p.role_title|default:"" }}{% if p.on_leave %} · <span class="hr-chip leave">{% translate "On approved leave" %}</span>{% endif %}</small></div>
+    <div class="att-seg" role="radiogroup" aria-label="{{ p.name }}">
+      {% for code, label in statuses %}<input type="radio" id="s{{ p.id }}{{ code }}" name="s_{{ p.id }}" value="{{ code }}" {% if p.mark and p.mark.status == code %}checked{% elif not p.mark and p.on_leave and code == "leave" %}checked{% endif %}><label class="{{ code }}" for="s{{ p.id }}{{ code }}" title="{% translate label %}">{% if code == "present" %}{% translate "P" %}{% elif code == "absent" %}{% translate "A" %}{% elif code == "half_day" %}½{% elif code == "leave" %}{% translate "L" %}{% else %}{% translate "H" %}{% endif %}</label>{% endfor %}
+    </div>
+    <div class="att-times"><input type="time" name="in_{{ p.id }}" value="{{ p.mark.check_in|time:'H:i' }}" aria-label="{% translate 'Check in' %}"><input type="time" name="out_{{ p.id }}" value="{{ p.mark.check_out|time:'H:i' }}" aria-label="{% translate 'Check out' %}"></div>
+  </div>
+{% endfor %}
+</div>
+<div class="att-save"><span>{% translate "P = Present · A = Absent · ½ = Half day · L = Leave · H = Holiday" %}</span><button class="btn" type="submit">{% translate "Save attendance" %}</button></div>
+</form>
+<script>document.querySelectorAll('[data-all]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('input[type=radio][value="'+b.dataset.all+'"]').forEach(r=>r.checked=true)}));</script>
+{% else %}
+<div class="hr-card hr-empty">{% translate "Add staff first." %} <a href="{% url 'webapp:staff_add' %}">＋ {% translate "Add staff" %}</a></div>
+{% endif %}
+</div>
+{% endblock %}

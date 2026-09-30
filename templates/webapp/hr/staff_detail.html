@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ employee.name }}{% endblock %}
+{% block heading %}{{ employee.name }}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/hr/_tabs.html" %}
+<div class="hr-card" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+  <span class="hr-av" style="width:56px;height:56px;font-size:22px">{{ employee.name|slice:":1"|upper }}</span>
+  <div style="flex:1 1 220px;min-width:0">
+    <b style="font-size:19px">{{ employee.name }}</b> <span class="hr-chip {{ employee.employment_status }}">{{ employee.get_employment_status_display }}</span>
+    <div style="color:var(--hr-soft);margin-top:3px">{{ employee.role_title|default:"—" }}{% if employee.phone %} · <a href="tel:{{ employee.phone }}">{{ employee.phone }}</a>{% endif %}{% if employee.joined_date %} · {% translate "Joined" %} {{ employee.joined_date|date:"j M Y" }}{% endif %}{% if employee.user %} · {% translate "Login" %}: {{ employee.user.email|default:employee.user.username }}{% endif %}</div>
+  </div>
+  <div class="hr-actions">
+    <a class="btn btn-secondary" href="{% url 'webapp:staff_edit' employee.id %}">✏️ {% translate "Edit" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:hr_advances' %}?employee={{ employee.id }}">💵 {% translate "Give advance" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:staff_delete' employee.id %}">🗑 {% translate "Remove" %}</a>
+  </div>
+</div>
+
+<div class="hr-grid2">
+<div>
+  <div class="hr-card"><h3>💰 {% translate "Salary" %} <small>{% translate "per month" %}</small></h3>
+    <table class="hr-money">
+      <tr><td>{% translate "Basic salary" %}</td><td>{{ structure.basic_pay|default:employee.salary|floatformat:2 }}</td></tr>
+      <tr><td>{% translate "Allowances" %}</td><td>{{ allowances|floatformat:2 }}</td></tr>
+      {% if deductions %}<tr class="minus"><td>{% translate "Fixed deductions" %}</td><td>− {{ deductions|floatformat:2 }}</td></tr>{% endif %}
+      {% if structure.overtime_hourly_rate %}<tr><td>{% translate "Overtime rate per hour" %}</td><td>{{ structure.overtime_hourly_rate|floatformat:2 }}</td></tr>{% endif %}
+    </table>
+  </div>
+
+  <div class="hr-card"><h3>🗓️ {% translate "Attendance" %}</h3>
+    <div class="hr-month"><a class="btn btn-secondary" href="?m={{ prev }}">‹</a><b>{{ month|date:"F Y" }}</b><a class="btn btn-secondary" href="?m={{ next }}">›</a></div>
+    <div class="hr-actions">
+      <span class="hr-chip present">{% translate "Present" %} {{ counts.present|default:0 }}</span>
+      <span class="hr-chip absent">{% translate "Absent" %} {{ counts.absent|default:0 }}</span>
+      <span class="hr-chip half_day">{% translate "Half day" %} {{ counts.half_day|default:0 }}</span>
+      <span class="hr-chip leave">{% translate "Leave" %} {{ counts.leave|default:0 }}</span>
+      {% if absence %}<span class="hr-chip bad">{% translate "Unpaid days" %} {{ absence|floatformat:"-1" }}</span>{% endif %}
+    </div>
+  </div>
+
+  <div class="hr-card"><h3>🧾 {% translate "Payslips" %}</h3>
+    <div class="hr-list">{% for l in payslips %}
+      <a class="hr-row" href="{% url 'webapp:hr_payslip' l.id %}"><span class="grow"><b>{{ l.payroll_run.period.name }}</b><small>{% translate "Gross" %} {{ l.gross_pay|floatformat:2 }}{% if l.advance_deduction %} · {% translate "Advance" %} −{{ l.advance_deduction|floatformat:2 }}{% endif %}</small></span><span class="hr-chip {{ l.payment_status }}">{% if l.payment_status == "paid" %}{% translate "Paid" %}{% else %}{% translate "Unpaid" %}{% endif %}</span><b>{{ l.net_pay|floatformat:2 }}</b></a>
+    {% empty %}<div class="hr-empty">{% translate "No payslips yet." %}</div>{% endfor %}</div>
+  </div>
+</div>
+<div>
+  <div class="hr-card"><h3>💵 {% translate "Salary advances" %}</h3>
+    <div class="hr-kpis" style="margin-bottom:12px"><div class="hr-kpi {% if advance_balance %}warn{% endif %}"><small>{% translate "Balance to recover" %}</small><b>{{ advance_balance|floatformat:2 }}</b></div><div class="hr-kpi"><small>{% translate "Next salary deduction" %}</small><b>{{ next_deduction|floatformat:2 }}</b></div></div>
+    <div class="hr-list">{% for a in advances %}<div class="hr-row"><span class="grow"><b>{{ a.amount|floatformat:2 }}</b> · {{ a.date|date:"j M Y" }}<small>{{ a.reason|default:"" }} {% translate "Monthly" %} {{ a.monthly_deduction|floatformat:2 }}</small></span>{% if a.outstanding > 0 %}<span class="hr-chip warn">{% translate "Balance" %} {{ a.outstanding|floatformat:2 }}</span>{% else %}<span class="hr-chip ok">{% translate "Cleared" %}</span>{% endif %}</div>{% empty %}<div class="hr-empty">{% translate "No advances." %}</div>{% endfor %}</div>
+  </div>
+
+  <div class="hr-card"><h3>🌴 {% translate "Leave" %}</h3>
+    {% if balances %}<div class="hr-actions" style="margin-bottom:10px">{% for b in balances %}<span class="hr-chip blue">{{ b.leave_type.name }}: {{ b.available|floatformat:"-1" }} {% translate "left" %}</span>{% endfor %}</div>{% endif %}
+    <div class="hr-list">{% for r in leaves %}<div class="hr-row"><span class="grow"><b>{{ r.leave_type.name }}</b><small>{{ r.start_date|date:"j M" }} – {{ r.end_date|date:"j M Y" }} · {{ r.days|floatformat:"-1" }} {% translate "days" %}</small></span><span class="hr-chip {{ r.status }}">{{ r.get_status_display }}</span></div>{% empty %}<div class="hr-empty">{% translate "No leave taken." %}</div>{% endfor %}</div>
+  </div>
+
+  <div class="hr-card"><h3>📄 {% translate "Documents" %}</h3>
+    <div class="hr-list">{% for d in documents %}<div class="hr-row"><span class="grow"><b>{{ d.document_type }}</b><small>{{ d.document_number|default:"" }}</small></span>{% if d.expiry_date %}<span class="hr-chip {% if d.expiry_date < today %}bad{% else %}ok{% endif %}">{% translate "Expires" %} {{ d.expiry_date|date:"j M Y" }}</span>{% endif %}</div>{% empty %}<div class="hr-empty">{% translate "No documents." %}</div>{% endfor %}</div>
+    <a class="btn btn-secondary" style="margin-top:10px" href="{% url 'webapp:hr_documents' %}?employee={{ employee.id }}">＋ {% translate "Add document" %}</a>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,1 @@
+{% load i18n %}<label class="{{ cls }}">{{ f.label }}{% if f.field.required %} *{% endif %}{{ f }}{% if f.help_text %}<span class="help">{{ f.help_text }}</span>{% endif %}{% for e in f.errors %}<span class="err">{{ e }}</span>{% endfor %}</label>

@@ -1251,60 +1251,6 @@ def spa_service_delete(request, service_id):
 
 
 @login_required
-def staff_list(request):
-    company = request.company
-    staff = Employee.objects.for_company(company).order_by("name") if company else []
-    return render(request, "webapp/staff_list.html", {"staff": staff})
-
-
-@login_required
-def staff_add(request):
-    company = request.company
-    if request.method == "POST":
-        form = EmployeeForm(request.POST)
-        if form.is_valid():
-            obj = form.save(commit=False)
-            obj.company = company
-            obj.save()
-            messages.success(request, "Staff member added.")
-            return redirect("webapp:staff_list")
-    else:
-        form = EmployeeForm()
-    return render(request, "webapp/staff_form.html", {"form": form})
-
-
-@login_required
-def staff_edit(request, staff_id):
-    company = request.company
-    obj = get_object_or_404(Employee.objects.for_company(company), id=staff_id)
-    if request.method == "POST":
-        form = EmployeeForm(request.POST, instance=obj)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Staff member updated.")
-            return redirect("webapp:staff_list")
-    else:
-        form = EmployeeForm(instance=obj)
-    return render(request, "webapp/staff_form.html", {"form": form, "editing": True})
-
-
-@login_required
-def staff_delete(request, staff_id):
-    company = request.company
-    obj = get_object_or_404(Employee.objects.for_company(company), id=staff_id)
-    if request.method == "POST":
-        try:
-            obj.delete()
-            messages.success(request, "Staff member deleted.")
-        except ProtectedError:
-            messages.error(request, "Can't delete — this staff member has appointments or other records linked to them.")
-        return redirect("webapp:staff_list")
-    return render(request, "webapp/confirm_delete.html", {
-        "object": obj, "cancel_url": "webapp:staff_list", "delete_url": "webapp:staff_delete", "delete_id": staff_id,
-    })
-
-
-@login_required
 def appointment_list(request):
     company = request.company
     appts = (

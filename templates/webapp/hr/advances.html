@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Salary advances" %}{% endblock %}
+{% block heading %}{% translate "Salary advances" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/hr/_tabs.html" %}
+<div class="hr-kpis">
+  <div class="hr-kpi {% if total_outstanding %}warn{% endif %}"><small>{% translate "To recover" %}</small><b>{{ active_company.default_currency }} {{ total_outstanding|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Given this month" %}</small><b>{{ given_month|floatformat:2 }}</b></div>
+</div>
+<div class="hr-grid2">
+<div class="hr-card"><h3>📋 {% translate "Advances" %}
+  <span class="hr-actions" style="margin-left:auto"><a class="hr-chip {% if show == 'open' %}ok{% endif %}" href="?show=open">{% translate "Open" %}</a><a class="hr-chip {% if show == 'all' %}ok{% endif %}" href="?show=all">{% translate "All" %}</a></span></h3>
+  <div class="hr-list">
+  {% for a in rows %}
+    <div class="hr-row" style="align-items:flex-start">
+      <span class="grow"><a href="{% url 'webapp:staff_detail' a.employee.id %}"><b>{{ a.employee.name }}</b></a> · {{ a.amount|floatformat:2 }}
+        <small>{{ a.date|date:"j M Y" }} · {% if a.method == "bank" %}{% translate "Bank" %}{% else %}{% translate "Cash" %}{% endif %} · {% translate "Monthly" %} {{ a.monthly_deduction|floatformat:2 }}{% if a.reason %} · {{ a.reason }}{% endif %}</small>
+        {% with rec=a.recoveries.all %}{% if rec %}<small>{% for r in rec %}{{ r.date|date:"j M" }}: −{{ r.amount|floatformat:2 }} ({{ r.get_source_display }}){% if not forloop.last %}, {% endif %}{% endfor %}</small>{% endif %}{% endwith %}
+      </span>
+      {% if a.outstanding > 0 %}<span class="hr-chip warn">{% translate "Balance" %} {{ a.outstanding|floatformat:2 }}</span>
+        <details style="width:100%"><summary style="cursor:pointer;color:var(--hr-accent);font-weight:700;font-size:13px">{% translate "Paid back in cash / bank" %}</summary>
+          <form method="post" class="hr-form" style="margin-top:8px">{% csrf_token %}<input type="hidden" name="action" value="repay"><input type="hidden" name="id" value="{{ a.id }}">
+            <label>{% translate "Amount" %}<input type="number" name="amount" step="0.01" min="0.01" max="{{ a.outstanding|floatformat:'2u' }}" value="{{ a.outstanding|floatformat:'2u' }}" required></label>
+            <label>{% translate "Date" %}<input type="date" name="date" value="{{ today|date:'Y-m-d' }}"></label>
+            <label>{% translate "Received in" %}<select name="method">{% for k, l in methods %}<option value="{{ k }}">{{ l }}</option>{% endfor %}</select></label>
+            <div><button class="btn btn-secondary" type="submit">{% translate "Save" %}</button></div>
+          </form></details>
+      {% else %}<span class="hr-chip ok">{% translate "Cleared" %}</span>{% endif %}
+    </div>
+  {% empty %}<div class="hr-empty">{% translate "No advances to recover." %}</div>{% endfor %}
+  </div>
+</div>
+<div class="hr-card"><h3>💵 {% translate "Give an advance" %}</h3>
+  <form method="post" class="hr-form">{% csrf_token %}
+    {% for f in form %}{% include "webapp/hr/_field.html" with f=f cls="wide" %}{% endfor %}
+    <div class="wide"><button class="btn" type="submit">{% translate "Give advance" %}</button></div>
+  </form>
+  <p style="color:var(--hr-soft);font-size:13px;margin:12px 0 0">{% translate "The advance is recorded in the accounts and deducted from the salary when you run payroll, month by month until it is cleared." %}</p>
+</div>
+</div>
+</div>
+{% endblock %}

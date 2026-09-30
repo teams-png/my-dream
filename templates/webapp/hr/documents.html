@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Staff documents" %}{% endblock %}
+{% block heading %}{% translate "Staff documents" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/hr/_tabs.html" %}
+<div class="hr-grid2">
+<div class="hr-card"><h3>📄 {% translate "Documents" %} <small>{% translate "soonest expiry first" %}</small></h3>
+  <div class="hr-list">{% for d in docs %}
+    <div class="hr-row"><span class="grow"><a href="{% url 'webapp:staff_detail' d.employee.id %}"><b>{{ d.employee.name }}</b></a> · {{ d.document_type }}<small>{{ d.document_number|default:"" }}{% if d.notes %} · {{ d.notes }}{% endif %}</small></span>
+      {% if d.expiry_date %}<span class="hr-chip {% if d.days_left < 0 %}bad{% elif d.days_left <= 30 %}warn{% else %}ok{% endif %}">{% if d.days_left < 0 %}{% translate "Expired" %}{% elif d.days_left == 0 %}{% translate "Expires today" %}{% else %}{{ d.days_left }} {% translate "days left" %}{% endif %} · {{ d.expiry_date|date:"j M Y" }}</span>{% endif %}
+      <form method="post">{% csrf_token %}<input type="hidden" name="id" value="{{ d.id }}"><button class="btn btn-secondary" name="action" value="delete" aria-label="{% translate 'Delete' %}" onclick="return confirm('{% translate "Remove this document?" %}')">✕</button></form></div>
+  {% empty %}<div class="hr-empty">{% translate "No documents yet. Add QID, passport, visa or work permit to get expiry alerts." %}</div>{% endfor %}</div>
+</div>
+<div class="hr-card"><h3>＋ {% translate "Add document" %}</h3>
+  <form method="post" class="hr-form">{% csrf_token %}{% if request.GET.employee %}<input type="hidden" name="next" value="{% url 'webapp:staff_detail' request.GET.employee %}">{% endif %}
+    {% for f in form %}{% include "webapp/hr/_field.html" with f=f cls="wide" %}{% endfor %}
+    <datalist id="docTypes"><option value="QID"><option value="Passport"><option value="Visa"><option value="Work permit"><option value="Health card"><option value="Driving licence"><option value="Aadhaar"><option value="Contract"></datalist>
+    <div class="wide"><button class="btn" type="submit">{% translate "Save" %}</button></div>
+  </form>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -19,6 +19,7 @@ DEFAULT_CHART_OF_ACCOUNTS = [
     ("1010", "Bank", "asset", True),
     ("1100", "Accounts Receivable", "asset", True),
     ("1200", "Inventory", "asset", True),
+    ("1300", "Staff Salary Advances", "asset", True),
     ("2000", "Accounts Payable", "liability", True),
     ("2050", "Goods Received Not Invoiced (GRNI)", "liability", True),
     ("2100", "Tax Payable", "liability", True),

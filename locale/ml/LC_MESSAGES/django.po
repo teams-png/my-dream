@@ -90,6 +90,18 @@ msgid "Team"
 msgstr "ടീം"
 
 #: templates/base.html
+msgid "Staff & HR"
+msgstr "സ്റ്റാഫ് & HR"
+
+#: templates/base.html
+msgid "Attendance"
+msgstr "ഹാജർ"
+
+#: templates/base.html
+msgid "Payroll & advances"
+msgstr "ശമ്പളം & അഡ്വാൻസ്"
+
+#: templates/base.html
 msgid "Business"
 msgstr "ബിസിനസ്"
 
@@ -138,10 +150,6 @@ msgid "Membership Plans"
 msgstr "മെമ്പർഷിപ്പ് പ്ലാനുകൾ"
 
 #: templates/base.html
-msgid "Attendance"
-msgstr "ഹാജർ"
-
-#: templates/base.html
 msgid "Reports"
 msgstr "റിപ്പോർട്ടുകൾ"
 
@@ -156,10 +164,6 @@ msgstr "അപ്പോയിന്റ്മെന്റുകൾ"
 #: templates/base.html
 msgid "Services"
 msgstr "സേവനങ്ങൾ"
-
-#: templates/base.html
-msgid "Staff"
-msgstr "സ്റ്റാഫ്"
 
 #: templates/base.html
 msgid "Mobile Shop"
@@ -1397,6 +1401,645 @@ msgstr "ഷെഡ്യൂൾ ഉണ്ടാക്കുക"
 msgid "Price"
 msgstr "വില"
 
+#: templates/webapp/hr/_tabs.html
+msgid "Staff"
+msgstr "സ്റ്റാഫ്"
+
+#: templates/webapp/hr/_tabs.html
+msgid "Leave"
+msgstr "ലീവ്"
+
+#: templates/webapp/hr/_tabs.html
+msgid "Salary advances"
+msgstr "ശമ്പള അഡ്വാൻസ്"
+
+#: templates/webapp/hr/_tabs.html
+msgid "Payroll"
+msgstr "ശമ്പളം (Payroll)"
+
+#: templates/webapp/hr/_tabs.html
+msgid "Documents"
+msgstr "രേഖകൾ"
+
+#: templates/webapp/hr/_tabs.html
+msgid "HR settings"
+msgstr "HR സെറ്റിംഗ്സ്"
+
+#: templates/webapp/hr/advances.html
+msgid "To recover"
+msgstr "തിരികെ പിടിക്കാനുള്ളത്"
+
+#: templates/webapp/hr/advances.html
+msgid "Given this month"
+msgstr "ഈ മാസം നൽകിയത്"
+
+#: templates/webapp/hr/advances.html
+msgid "Advances"
+msgstr "അഡ്വാൻസുകൾ"
+
+#: templates/webapp/hr/advances.html
+msgid "Cash"
+msgstr "ക്യാഷ്"
+
+#: templates/webapp/hr/advances.html
+msgid "Monthly"
+msgstr "മാസംതോറും"
+
+#: templates/webapp/hr/advances.html
+msgid "Balance"
+msgstr "ബാക്കി"
+
+#: templates/webapp/hr/advances.html
+msgid "Paid back in cash / bank"
+msgstr "പണമായി / ബാങ്ക് വഴി തിരികെ നൽകി"
+
+#: templates/webapp/hr/advances.html
+msgid "Received in"
+msgstr "ലഭിച്ചത്"
+
+#: templates/webapp/hr/advances.html
+msgid "Save"
+msgstr "സേവ് ചെയ്യുക"
+
+#: templates/webapp/hr/advances.html
+msgid "Cleared"
+msgstr "ക്ലിയർ ആയി"
+
+#: templates/webapp/hr/advances.html
+msgid "No advances to recover."
+msgstr "തിരികെ പിടിക്കാൻ അഡ്വാൻസുകൾ ഇല്ല."
+
+#: templates/webapp/hr/advances.html
+msgid "Give an advance"
+msgstr "അഡ്വാൻസ് നൽകുക"
+
+#: templates/webapp/hr/advances.html
+msgid "Give advance"
+msgstr "അഡ്വാൻസ് നൽകുക"
+
+#: templates/webapp/hr/advances.html
+msgid ""
+"The advance is recorded in the accounts and deducted from the salary when "
+"you run payroll, month by month until it is cleared."
+msgstr ""
+"അഡ്വാൻസ് അക്കൗണ്ടിൽ രേഖപ്പെടുത്തും. ശമ്പളം കണക്കാക്കുമ്പോൾ തീരുന്നതുവരെ ഓരോ "
+"മാസവും ശമ്പളത്തിൽ നിന്ന് കുറയ്ക്കും."
+
+#: templates/webapp/hr/attendance.html
+msgid "Today"
+msgstr "ഇന്ന്"
+
+#: templates/webapp/hr/attendance.html
+msgid "Month view"
+msgstr "മാസ കാഴ്ച"
+
+#: templates/webapp/hr/attendance.html
+msgid "Holiday"
+msgstr "അവധി"
+
+#: templates/webapp/hr/attendance.html
+msgid "This is a weekly off day."
+msgstr "ഇത് ആഴ്ചയിലെ അവധി ദിവസമാണ്."
+
+#: templates/webapp/hr/attendance.html
+msgid "Mark all present"
+msgstr "എല്ലാവരും ഹാജർ"
+
+#: templates/webapp/hr/attendance.html
+msgid "Mark all holiday"
+msgstr "എല്ലാവർക്കും അവധി"
+
+#: templates/webapp/hr/attendance.html
+msgid "On approved leave"
+msgstr "അനുവദിച്ച ലീവിൽ"
+
+#: templates/webapp/hr/attendance.html
+msgid "P"
+msgstr "P"
+
+#: templates/webapp/hr/attendance.html
+msgid "A"
+msgstr "A"
+
+#: templates/webapp/hr/attendance.html
+msgid "L"
+msgstr "L"
+
+#: templates/webapp/hr/attendance.html
+msgid "H"
+msgstr "H"
+
+#: templates/webapp/hr/attendance.html
+msgid "Check in"
+msgstr "വന്ന സമയം"
+
+#: templates/webapp/hr/attendance.html
+msgid "Check out"
+msgstr "പോയ സമയം"
+
+#: templates/webapp/hr/attendance.html
+msgid "P = Present · A = Absent · ½ = Half day · L = Leave · H = Holiday"
+msgstr "P = ഹാജർ · A = ഹാജരില്ല · ½ = പകുതി ദിവസം · L = ലീവ് · H = അവധി"
+
+#: templates/webapp/hr/attendance.html
+msgid "Save attendance"
+msgstr "ഹാജർ സേവ് ചെയ്യുക"
+
+#: templates/webapp/hr/attendance.html
+msgid "Add staff first."
+msgstr "ആദ്യം സ്റ്റാഫിനെ ചേർക്കുക."
+
+#: templates/webapp/hr/attendance.html
+msgid "Add staff"
+msgstr "സ്റ്റാഫിനെ ചേർക്കുക"
+
+#: templates/webapp/hr/attendance_month.html
+msgid "Monthly attendance"
+msgstr "മാസ ഹാജർ"
+
+#: templates/webapp/hr/attendance_month.html
+msgid "Take attendance"
+msgstr "ഹാജർ എടുക്കുക"
+
+#: templates/webapp/hr/attendance_month.html
+msgid "Print"
+msgstr "പ്രിന്റ്"
+
+#: templates/webapp/hr/attendance_month.html
+msgid "Unpaid"
+msgstr "ശമ്പളമില്ലാത്തത്"
+
+#: templates/webapp/hr/attendance_month.html
+msgid "No staff yet."
+msgstr "ഇതുവരെ സ്റ്റാഫ് ഇല്ല."
+
+#: templates/webapp/hr/attendance_month.html
+msgid ""
+"Unpaid = absent days + half days + approved unpaid leave. These are deducted"
+" in payroll when absence deduction is on (HR settings)."
+msgstr ""
+"ശമ്പളമില്ലാത്ത ദിവസങ്ങൾ = ഹാജരില്ലാത്ത ദിവസങ്ങൾ + പകുതി ദിവസങ്ങൾ + അനുവദിച്ച"
+" ശമ്പളമില്ലാത്ത ലീവ്. HR സെറ്റിംഗ്സിൽ ഓൺ ആണെങ്കിൽ ഇവ ശമ്പളത്തിൽ നിന്ന് "
+"കുറയ്ക്കും."
+
+#: templates/webapp/hr/documents.html
+msgid "Staff documents"
+msgstr "സ്റ്റാഫ് രേഖകൾ"
+
+#: templates/webapp/hr/documents.html
+msgid "soonest expiry first"
+msgstr "ആദ്യം കാലാവധി തീരുന്നവ"
+
+#: templates/webapp/hr/documents.html
+msgid "Expired"
+msgstr "കാലാവധി കഴിഞ്ഞു"
+
+#: templates/webapp/hr/documents.html
+msgid "Expires today"
+msgstr "ഇന്ന് കാലാവധി തീരും"
+
+#: templates/webapp/hr/documents.html
+msgid "days left"
+msgstr "ദിവസം ബാക്കി"
+
+#: templates/webapp/hr/documents.html
+msgid "Delete"
+msgstr "ഡിലീറ്റ്"
+
+#: templates/webapp/hr/documents.html
+msgid "Remove this document?"
+msgstr "ഈ രേഖ നീക്കം ചെയ്യണോ?"
+
+#: templates/webapp/hr/documents.html
+msgid ""
+"No documents yet. Add QID, passport, visa or work permit to get expiry "
+"alerts."
+msgstr ""
+"ഇതുവരെ രേഖകൾ ഇല്ല. കാലാവധി അലർട്ട് ലഭിക്കാൻ QID, പാസ്‌പോർട്ട്, വിസ, വർക്ക് "
+"പെർമിറ്റ് ചേർക്കുക."
+
+#: templates/webapp/hr/documents.html
+msgid "Add document"
+msgstr "രേഖ ചേർക്കുക"
+
+#: templates/webapp/hr/leave.html
+msgid "Leave & holidays"
+msgstr "ലീവും അവധികളും"
+
+#: templates/webapp/hr/leave.html
+msgid "Waiting for approval"
+msgstr "അനുമതിക്കായി കാത്തിരിക്കുന്നു"
+
+#: templates/webapp/hr/leave.html
+msgid "days"
+msgstr "ദിവസം"
+
+#: templates/webapp/hr/leave.html
+msgid "Approve"
+msgstr "അനുവദിക്കുക"
+
+#: templates/webapp/hr/leave.html
+msgid "Reject"
+msgstr "നിരസിക്കുക"
+
+#: templates/webapp/hr/leave.html
+msgid "Nothing to approve."
+msgstr "അനുമതി നൽകാൻ ഒന്നുമില്ല."
+
+#: templates/webapp/hr/leave.html
+msgid "Leave balance"
+msgstr "ലീവ് ബാക്കി"
+
+#: templates/webapp/hr/leave.html
+msgid "Balances appear after the first leave request."
+msgstr "ആദ്യ ലീവ് അപേക്ഷയ്ക്ക് ശേഷം ബാക്കി കാണിക്കും."
+
+#: templates/webapp/hr/leave.html
+msgid "Recent"
+msgstr "സമീപകാലം"
+
+#: templates/webapp/hr/leave.html
+msgid "No leave yet."
+msgstr "ഇതുവരെ ലീവ് ഇല്ല."
+
+#: templates/webapp/hr/leave.html
+msgid "Add leave"
+msgstr "ലീവ് ചേർക്കുക"
+
+#: templates/webapp/hr/leave.html
+msgid "Approve now"
+msgstr "ഇപ്പോൾ അനുവദിക്കുക"
+
+#: templates/webapp/hr/leave.html
+msgid "Save leave"
+msgstr "ലീവ് സേവ് ചെയ്യുക"
+
+#: templates/webapp/hr/leave.html
+msgid "Leave types"
+msgstr "ലീവ് തരങ്ങൾ"
+
+#: templates/webapp/hr/leave.html
+msgid "days a year"
+msgstr "ദിവസം / വർഷം"
+
+#: templates/webapp/hr/leave.html
+msgid "Days a year"
+msgstr "വർഷത്തിൽ ദിവസങ്ങൾ"
+
+#: templates/webapp/hr/leave.html
+msgid "Paid leave"
+msgstr "ശമ്പളമുള്ള ലീവ്"
+
+#: templates/webapp/hr/leave.html
+msgid "Add"
+msgstr "ചേർക്കുക"
+
+#: templates/webapp/hr/leave.html
+msgid "Holidays"
+msgstr "അവധികൾ"
+
+#: templates/webapp/hr/leave.html
+msgid "No holidays added."
+msgstr "അവധികൾ ചേർത്തിട്ടില്ല."
+
+#: templates/webapp/hr/leave.html
+msgid "e.g. National Day"
+msgstr "ഉദാ. ദേശീയ ദിനം"
+
+#: templates/webapp/hr/leave.html
+msgid "Add holiday"
+msgstr "അവധി ചേർക്കുക"
+
+#: templates/webapp/hr/payroll.html
+msgid "Draft — check and approve"
+msgstr "ഡ്രാഫ്റ്റ് — പരിശോധിച്ച് അനുവദിക്കുക"
+
+#: templates/webapp/hr/payroll.html
+msgid "Approved"
+msgstr "അനുവദിച്ചു"
+
+#: templates/webapp/hr/payroll.html
+msgid "Reversed"
+msgstr "റിവേഴ്സ് ചെയ്തു"
+
+#: templates/webapp/hr/payroll.html
+msgid "No salary set for"
+msgstr "ശമ്പളം സെറ്റ് ചെയ്തിട്ടില്ല"
+
+#: templates/webapp/hr/payroll.html
+msgid "They are left out of payroll."
+msgstr "അവരെ ശമ്പള കണക്കിൽ ഉൾപ്പെടുത്തിയിട്ടില്ല."
+
+#: templates/webapp/hr/payroll.html
+msgid ""
+"Calculate salaries for this month. Absent days, unpaid leave, approved "
+"overtime and salary advances are included automatically."
+msgstr ""
+"ഈ മാസത്തെ ശമ്പളം കണക്കാക്കുക. ഹാജരില്ലാത്ത ദിവസങ്ങൾ, ശമ്പളമില്ലാത്ത ലീവ്, "
+"ഓവർടൈം, അഡ്വാൻസ് എല്ലാം സ്വയം ഉൾപ്പെടുത്തും."
+
+#: templates/webapp/hr/payroll.html
+msgid "Calculate payroll"
+msgstr "ശമ്പളം കണക്കാക്കുക"
+
+#: templates/webapp/hr/payroll.html
+msgid "Gross salaries"
+msgstr "ആകെ ശമ്പളം"
+
+#: templates/webapp/hr/payroll.html
+msgid "Deductions"
+msgstr "കിഴിവുകൾ"
+
+#: templates/webapp/hr/payroll.html
+msgid "Advances recovered"
+msgstr "തിരികെ പിടിച്ച അഡ്വാൻസ്"
+
+#: templates/webapp/hr/payroll.html
+msgid "Net to pay"
+msgstr "നൽകേണ്ട തുക"
+
+#: templates/webapp/hr/payroll.html
+msgid "Still to pay"
+msgstr "ഇനി അടയ്ക്കാനുള്ളത്"
+
+#: templates/webapp/hr/payroll.html
+msgid "Basic"
+msgstr "അടിസ്ഥാനം"
+
+#: templates/webapp/hr/payroll.html
+msgid "Allowances"
+msgstr "അലവൻസുകൾ"
+
+#: templates/webapp/hr/payroll.html
+msgid "Overtime"
+msgstr "ഓവർടൈം"
+
+#: templates/webapp/hr/payroll.html
+msgid "Absence"
+msgstr "ഹാജരില്ലായ്മ"
+
+#: templates/webapp/hr/payroll.html
+msgid "Advance"
+msgstr "അഡ്വാൻസ്"
+
+#: templates/webapp/hr/payroll.html
+msgid "Net pay"
+msgstr "ലഭിക്കേണ്ട ശമ്പളം"
+
+#: templates/webapp/hr/payroll.html
+msgid "Payslip"
+msgstr "പേസ്ലിപ്പ്"
+
+#: templates/webapp/hr/payroll.html
+msgid "Pay"
+msgstr "പേ ചെയ്യുക"
+
+#: templates/webapp/hr/payroll.html
+msgid ""
+"Approve this payroll? Salaries and advance recoveries will be recorded in "
+"the accounts."
+msgstr ""
+"ഈ ശമ്പളം അനുവദിക്കണോ? ശമ്പളവും അഡ്വാൻസ് തിരിച്ചുപിടിക്കലും അക്കൗണ്ടിൽ "
+"രേഖപ്പെടുത്തും."
+
+#: templates/webapp/hr/payroll.html
+msgid "Approve payroll"
+msgstr "ശമ്പളം അനുവദിക്കുക"
+
+#: templates/webapp/hr/payroll.html
+msgid "Recalculate"
+msgstr "വീണ്ടും കണക്കാക്കുക"
+
+#: templates/webapp/hr/payroll.html
+msgid "Pay all"
+msgstr "എല്ലാവർക്കും നൽകുക"
+
+#: templates/webapp/hr/payroll.html
+msgid "All salaries paid"
+msgstr "എല്ലാ ശമ്പളവും നൽകി"
+
+#: templates/webapp/hr/payroll.html
+msgid "Reverse this payroll?"
+msgstr "ഈ ശമ്പളം റിവേഴ്സ് ചെയ്യണോ?"
+
+#: templates/webapp/hr/payroll.html
+msgid "Reverse"
+msgstr "റിവേഴ്സ്"
+
+#: templates/webapp/hr/payroll.html
+msgid "Calculate again"
+msgstr "വീണ്ടും കണക്കാക്കുക"
+
+#: templates/webapp/hr/payroll.html
+msgid "Past payrolls"
+msgstr "മുൻ ശമ്പളങ്ങൾ"
+
+#: templates/webapp/hr/payslip.html
+msgid "Basic salary"
+msgstr "അടിസ്ഥാന ശമ്പളം"
+
+#: templates/webapp/hr/payslip.html
+msgid "Gross pay"
+msgstr "ആകെ ശമ്പളം"
+
+#: templates/webapp/hr/payslip.html
+msgid "Salary advance recovered"
+msgstr "അഡ്വാൻസ് കുറച്ചത്"
+
+#: templates/webapp/hr/payslip.html
+msgid "Not paid yet"
+msgstr "ഇതുവരെ നൽകിയിട്ടില്ല"
+
+#: templates/webapp/hr/payslip.html
+msgid "Advance balance remaining"
+msgstr "ബാക്കി അഡ്വാൻസ്"
+
+#: templates/webapp/hr/payslip.html
+msgid "Send on WhatsApp"
+msgstr "WhatsApp-ൽ അയയ്ക്കുക"
+
+#: templates/webapp/hr/settings.html
+msgid "Weekly off days"
+msgstr "ആഴ്ചയിലെ അവധി ദിവസങ്ങൾ"
+
+#: templates/webapp/hr/settings.html
+msgid "Not counted as leave days."
+msgstr "ലീവ് ദിവസങ്ങളായി കണക്കാക്കില്ല."
+
+#: templates/webapp/hr/settings.html
+msgid "Deduct absent days, half days and unpaid leave from salary"
+msgstr ""
+"ഹാജരില്ലാത്ത ദിവസങ്ങൾ, പകുതി ദിവസങ്ങൾ, ശമ്പളമില്ലാത്ത ലീവ് ശമ്പളത്തിൽ നിന്ന്"
+" കുറയ്ക്കുക"
+
+#: templates/webapp/hr/settings.html
+msgid "Daily rate = (basic + allowances) ÷ days in the month."
+msgstr "ദിവസ നിരക്ക് = (അടിസ്ഥാനം + അലവൻസ്) ÷ മാസത്തിലെ ദിവസങ്ങൾ."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Joined"
+msgstr "ചേർന്നത്"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Login"
+msgstr "ലോഗിൻ"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Edit"
+msgstr "എഡിറ്റ്"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Remove"
+msgstr "നീക്കം ചെയ്യുക"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Salary"
+msgstr "ശമ്പളം"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "per month"
+msgstr "മാസത്തിൽ"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Fixed deductions"
+msgstr "സ്ഥിര കിഴിവുകൾ"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Overtime rate per hour"
+msgstr "ഓവർടൈം നിരക്ക് / മണിക്കൂർ"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Present"
+msgstr "ഹാജർ"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Absent"
+msgstr "ഹാജരില്ല"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Half day"
+msgstr "പകുതി ദിവസം"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Unpaid days"
+msgstr "ശമ്പളമില്ലാത്ത ദിവസം"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Payslips"
+msgstr "പേസ്ലിപ്പുകൾ"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Gross"
+msgstr "ആകെ"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No payslips yet."
+msgstr "ഇതുവരെ പേസ്ലിപ്പ് ഇല്ല."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Balance to recover"
+msgstr "തിരികെ പിടിക്കാനുള്ള ബാക്കി"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Next salary deduction"
+msgstr "അടുത്ത ശമ്പളത്തിലെ കിഴിവ്"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No advances."
+msgstr "അഡ്വാൻസുകൾ ഇല്ല."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No leave taken."
+msgstr "ലീവ് എടുത്തിട്ടില്ല."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Expires"
+msgstr "കാലാവധി"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No documents."
+msgstr "രേഖകൾ ഇല്ല."
+
+#: templates/webapp/hr/staff_form.html
+msgid "Edit staff"
+msgstr "സ്റ്റാഫ് എഡിറ്റ്"
+
+#: templates/webapp/hr/staff_form.html
+msgid "Details"
+msgstr "വിവരങ്ങൾ"
+
+#: templates/webapp/hr/staff_form.html
+msgid ""
+"Absent days, unpaid leave and salary advances are deducted automatically "
+"when you run payroll."
+msgstr ""
+"ശമ്പളം കണക്കാക്കുമ്പോൾ ഹാജരില്ലാത്ത ദിവസങ്ങൾ, ശമ്പളമില്ലാത്ത ലീവ്, അഡ്വാൻസ് "
+"എന്നിവ സ്വയം കുറയ്ക്കും."
+
+#: templates/webapp/hr/staff_list.html
+msgid "Active staff"
+msgstr "സജീവ സ്റ്റാഫ്"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Present today"
+msgstr "ഇന്ന് ഹാജർ"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Monthly salaries"
+msgstr "മാസ ശമ്പളം"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Advances to recover"
+msgstr "തിരികെ പിടിക്കാനുള്ള അഡ്വാൻസ്"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Leave to approve"
+msgstr "അനുവദിക്കാനുള്ള ലീവ്"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Documents expiring (30 days)"
+msgstr "കാലാവധി തീരുന്ന രേഖകൾ (30 ദിവസം)"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Run payroll"
+msgstr "ശമ്പളം കണക്കാക്കുക"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Name, phone or job title"
+msgstr "പേര്, ഫോൺ അല്ലെങ്കിൽ ജോലി"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Search"
+msgstr "തിരയുക"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Current staff"
+msgstr "നിലവിലെ സ്റ്റാഫ്"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Former staff"
+msgstr "മുൻ സ്റ്റാഫ്"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Not marked"
+msgstr "രേഖപ്പെടുത്തിയിട്ടില്ല"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Former"
+msgstr "മുൻ"
+
+#: templates/webapp/hr/staff_list.html
+msgid "No staff match your search."
+msgstr "തിരയലിൽ സ്റ്റാഫ് ഇല്ല."
+
+#: templates/webapp/hr/staff_list.html
+msgid "No former staff."
+msgstr "മുൻ സ്റ്റാഫ് ഇല്ല."
+
+#: templates/webapp/hr/staff_list.html
+msgid "No staff yet. Add your first staff member with their salary."
+msgstr "ഇതുവരെ സ്റ്റാഫ് ഇല്ല. ആദ്യ സ്റ്റാഫിനെ ശമ്പളത്തോടെ ചേർക്കുക."
+
 #: templates/webapp/industry/booking_board.html
 msgid "In use now"
 msgstr "ഇപ്പോൾ ഉപയോഗത്തിൽ"
@@ -1418,14 +2061,6 @@ msgid "Overdue"
 msgstr "കാലാവധി കഴിഞ്ഞത്"
 
 #: templates/webapp/industry/booking_board.html
-msgid "Today"
-msgstr "ഇന്ന്"
-
-#: templates/webapp/industry/booking_board.html
-msgid "days"
-msgstr "ദിവസം"
-
-#: templates/webapp/industry/booking_board.html
 msgid "Nothing to book yet."
 msgstr "ബുക്ക് ചെയ്യാൻ ഒന്നും ഇതുവരെ ഇല്ല."
 
@@ -1434,10 +2069,6 @@ msgid "Add what customers book (rooms, vehicles, halls...) with their price."
 msgstr ""
 "ഉപഭോക്താക്കൾ ബുക്ക് ചെയ്യുന്നവ (മുറികൾ, വാഹനങ്ങൾ, ഹാളുകൾ...) വിലയോടെ "
 "ചേർക്കുക."
-
-#: templates/webapp/industry/booking_board.html
-msgid "Add"
-msgstr "ചേർക്കുക"
 
 #: templates/webapp/industry/booking_board.html
 msgid "Reserved"
@@ -1579,10 +2210,6 @@ msgstr "ചെക്ക്-ഔട്ട് ചെയ്ത് ഇൻവോയ്
 msgid "Number"
 msgstr "നമ്പർ"
 
-#: templates/webapp/industry/booking_detail.html
-msgid "Balance"
-msgstr "ബാക്കി"
-
 #: templates/webapp/industry/booking_form.html
 msgid "Change"
 msgstr "മാറ്റുക"
@@ -1620,10 +2247,6 @@ msgid "Name, phone, number..."
 msgstr "പേര്, ഫോൺ, നമ്പർ..."
 
 #: templates/webapp/industry/booking_list.html
-msgid "Search"
-msgstr "തിരയുക"
-
-#: templates/webapp/industry/booking_list.html
 msgid "No bookings found."
 msgstr "ബുക്കിംഗുകൾ ഒന്നും കണ്ടെത്തിയില്ല."
 
@@ -1632,16 +2255,8 @@ msgid "once"
 msgstr "ഒരു തവണ"
 
 #: templates/webapp/industry/course_detail.html
-msgid "Edit"
-msgstr "എഡിറ്റ്"
-
-#: templates/webapp/industry/course_detail.html
 msgid "Taken for this day — you can change it."
 msgstr "ഈ ദിവസത്തേത് എടുത്തു — മാറ്റാം."
-
-#: templates/webapp/industry/course_detail.html
-msgid "Save attendance"
-msgstr "ഹാജർ സേവ് ചെയ്യുക"
 
 #: templates/webapp/industry/course_detail.html
 msgid "Nobody enrolled on this day."
@@ -1702,10 +2317,6 @@ msgstr "സീറ്റുകൾ (0 = പരിധിയില്ല)"
 #: templates/webapp/industry/course_form.html
 msgid "Open for enrolment"
 msgstr "പ്രവേശനം തുറന്നിരിക്കുന്നു"
-
-#: templates/webapp/industry/course_form.html
-msgid "Save"
-msgstr "സേവ് ചെയ്യുക"
 
 #: templates/webapp/industry/dues.html
 msgid ""
@@ -1949,10 +2560,6 @@ msgid "Ends in"
 msgstr "അവസാനിക്കാൻ"
 
 #: templates/webapp/industry/lease_detail.html
-msgid "Expired"
-msgstr "കാലാവധി കഴിഞ്ഞു"
-
-#: templates/webapp/industry/lease_detail.html
 msgid "Lease"
 msgstr "വാടക കരാർ"
 
@@ -2153,10 +2760,6 @@ msgid "Capacity"
 msgstr "ശേഷി"
 
 #: templates/webapp/industry/resource_list.html
-msgid "Details"
-msgstr "വിവരങ്ങൾ"
-
-#: templates/webapp/industry/resource_list.html
 msgid "Inactive"
 msgstr "നിഷ്ക്രിയം"
 
@@ -2233,10 +2836,6 @@ msgstr "തൂക്കത്തിൽ വിൽക്കുന്ന ഉൽപ�
 #: templates/webapp/industry/scale_settings.html
 msgid "Go to products"
 msgstr "ഉൽപ്പന്നങ്ങളിലേക്ക് പോകുക"
-
-#: templates/webapp/invoice_pdf.html
-msgid "Print"
-msgstr "പ്രിന്റ്"
 
 #: templates/webapp/invoice_pdf.html
 msgid "Download PDF"
@@ -2325,10 +2924,6 @@ msgid ""
 msgstr ""
 "ഈ കസ്റ്റമറുടെ ഫോൺ നമ്പർ ഇല്ല, അതിനാൽ WhatsApp ഒരു കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കാൻ"
 " ആവശ്യപ്പെടും."
-
-#: templates/webapp/invoice_share.html
-msgid "Send on WhatsApp"
-msgstr "WhatsApp-ൽ അയയ്ക്കുക"
 
 #: templates/webapp/invoice_share.html
 msgid "Send to a different number →"
@@ -2532,10 +3127,6 @@ msgstr "ഓപ്ഷണൽ"
 #: templates/webapp/onboarding/wizard.html
 msgid "e.g. Drinks"
 msgstr "ഉദാ: പാനീയങ്ങൾ"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Remove"
-msgstr "നീക്കം ചെയ്യുക"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Add another row"
@@ -2788,10 +3379,6 @@ msgid "Amount due"
 msgstr "അടയ്ക്കേണ്ട തുക"
 
 #: templates/webapp/pos.html
-msgid "Cash"
-msgstr "ക്യാഷ്"
-
-#: templates/webapp/pos.html
 msgid "Card"
 msgstr "കാർഡ്"
 
@@ -2826,10 +3413,6 @@ msgstr "ഗഡുക്കളുടെ എണ്ണം"
 #: templates/webapp/pos.html
 msgid "Frequency"
 msgstr "ആവൃത്തി"
-
-#: templates/webapp/pos.html
-msgid "Monthly"
-msgstr "മാസംതോറും"
 
 #: templates/webapp/pos.html
 msgid "Weekly"
@@ -2948,10 +3531,6 @@ msgstr "എന്തോ പിശക് സംഭവിച്ചു."
 #: templates/webapp/pos.html
 msgid "Exact"
 msgstr "കൃത്യം"
-
-#: templates/webapp/pos.html
-msgid "Still to pay"
-msgstr "ഇനി അടയ്ക്കാനുള്ളത്"
 
 #: templates/webapp/pos.html
 msgid "Sale complete"
@@ -3190,10 +3769,6 @@ msgstr "1× പിസ"
 #: templates/webapp/public/landing.html
 msgid "2× Drink"
 msgstr "2× ഡ്രിങ്ക്"
-
-#: templates/webapp/public/landing.html
-msgid "Pay"
-msgstr "പേ ചെയ്യുക"
 
 #: templates/webapp/public/landing.html
 msgid "QAR 0"
@@ -4826,10 +5401,6 @@ msgid "Pending"
 msgstr "ബാക്കി"
 
 #: apps/finance/models.py
-msgid "Cleared"
-msgstr "ക്ലിയർ ആയി"
-
-#: apps/finance/models.py
 msgid "Cancelled"
 msgstr "റദ്ദാക്കി"
 
@@ -5065,6 +5636,176 @@ msgstr "ആസ്തി ഒഴിവാക്കി, ലാഭമോ നഷ്�
 #: apps/webapp/gold_views.py
 msgid "%(count)s rates saved; %(changed)s item prices updated."
 msgstr "%(count)s നിരക്കുകൾ സേവ് ചെയ്തു; %(changed)s ഐറ്റം വിലകൾ മാറ്റി."
+
+#: apps/webapp/hr_views.py
+msgid "Monday"
+msgstr "തിങ്കൾ"
+
+#: apps/webapp/hr_views.py
+msgid "Tuesday"
+msgstr "ചൊവ്വ"
+
+#: apps/webapp/hr_views.py
+msgid "Wednesday"
+msgstr "ബുധൻ"
+
+#: apps/webapp/hr_views.py
+msgid "Thursday"
+msgstr "വ്യാഴം"
+
+#: apps/webapp/hr_views.py
+msgid "Friday"
+msgstr "വെള്ളി"
+
+#: apps/webapp/hr_views.py
+msgid "Saturday"
+msgstr "ശനി"
+
+#: apps/webapp/hr_views.py
+msgid "Sunday"
+msgstr "ഞായർ"
+
+#: apps/webapp/hr_views.py
+msgid "Basic salary (monthly)"
+msgstr "അടിസ്ഥാന ശമ്പളം (മാസം)"
+
+#: apps/webapp/hr_views.py
+msgid "Allowances (housing, transport...)"
+msgstr "അലവൻസുകൾ (താമസം, യാത്ര...)"
+
+#: apps/webapp/hr_views.py
+msgid "Job title"
+msgstr "ജോലി"
+
+#: apps/webapp/hr_views.py
+msgid "Login (optional)"
+msgstr "ലോഗിൻ (ഓപ്ഷണൽ)"
+
+#: apps/webapp/hr_views.py
+msgid "This login is already linked to another staff member."
+msgstr "ഈ ലോഗിൻ മറ്റൊരു സ്റ്റാഫുമായി ബന്ധിപ്പിച്ചിട്ടുണ്ട്."
+
+#: apps/webapp/hr_views.py
+msgid "Staff member"
+msgstr "സ്റ്റാഫ്"
+
+#: apps/webapp/hr_views.py
+msgid "Advance amount"
+msgstr "അഡ്വാൻസ് തുക"
+
+#: apps/webapp/hr_views.py
+msgid "Deduct from salary each month"
+msgstr "ഓരോ മാസവും ശമ്പളത്തിൽ നിന്ന് കുറയ്ക്കേണ്ടത്"
+
+#: apps/webapp/hr_views.py
+msgid "Leave empty to deduct it all from the next salary."
+msgstr "ഒഴിച്ചിട്ടാൽ അടുത്ത ശമ്പളത്തിൽ നിന്ന് മുഴുവനും കുറയ്ക്കും."
+
+#: apps/webapp/hr_views.py
+msgid "Reason / note"
+msgstr "കാരണം / കുറിപ്പ്"
+
+#: apps/webapp/hr_views.py
+msgid "Leave type"
+msgstr "ലീവ് തരം"
+
+#: apps/webapp/hr_views.py
+msgid "Reason"
+msgstr "കാരണം"
+
+#: apps/webapp/hr_views.py
+msgid "Document"
+msgstr "രേഖ"
+
+#: apps/webapp/hr_views.py
+msgid "Expiry date"
+msgstr "കാലാവധി തീയതി"
+
+#: apps/webapp/hr_views.py
+msgid "%(name)s removed."
+msgstr "%(name)s നീക്കം ചെയ്തു."
+
+#: apps/webapp/hr_views.py
+msgid "%(name)s has salary history, so they were moved to former staff."
+msgstr "%(name)s-ന് ശമ്പള ചരിത്രം ഉള്ളതിനാൽ മുൻ സ്റ്റാഫിലേക്ക് മാറ്റി."
+
+#: apps/webapp/hr_views.py
+msgid "Attendance saved for %(count)s staff on %(day)s."
+msgstr "%(day)s-ലെ %(count)s സ്റ്റാഫിന്റെ ഹാജർ സേവ് ചെയ്തു."
+
+#: apps/webapp/hr_views.py
+msgid "Leave saved for %(name)s (%(days)s days)."
+msgstr "%(name)s-ന്റെ ലീവ് സേവ് ചെയ്തു (%(days)s ദിവസം)."
+
+#: apps/webapp/hr_views.py
+msgid "Leave approved."
+msgstr "ലീവ് അനുവദിച്ചു."
+
+#: apps/webapp/hr_views.py
+msgid "Leave rejected."
+msgstr "ലീവ് നിരസിച്ചു."
+
+#: apps/webapp/hr_views.py
+msgid "Leave type added."
+msgstr "ലീവ് തരം ചേർത്തു."
+
+#: apps/webapp/hr_views.py
+msgid "Holiday saved."
+msgstr "അവധി സേവ് ചെയ്തു."
+
+#: apps/webapp/hr_views.py
+msgid "Annual leave"
+msgstr "വാർഷിക ലീവ്"
+
+#: apps/webapp/hr_views.py
+msgid "Sick leave"
+msgstr "അസുഖ ലീവ്"
+
+#: apps/webapp/hr_views.py
+msgid "Unpaid leave"
+msgstr "ശമ്പളമില്ലാത്ത ലീവ്"
+
+#: apps/webapp/hr_views.py
+msgid "Repayment recorded."
+msgstr "തിരിച്ചടവ് രേഖപ്പെടുത്തി."
+
+#: apps/webapp/hr_views.py
+msgid ""
+"Advance of %(amount)s given to %(name)s. It will be deducted from salary."
+msgstr ""
+"%(name)s-ന് %(amount)s അഡ്വാൻസ് നൽകി. ഇത് ശമ്പളത്തിൽ നിന്ന് കുറയ്ക്കും."
+
+#: apps/webapp/hr_views.py
+msgid "Payroll calculated for %(count)s staff."
+msgstr "%(count)s സ്റ്റാഫിന്റെ ശമ്പളം കണക്കാക്കി."
+
+#: apps/webapp/hr_views.py
+msgid "Payroll approved. Salaries can now be paid."
+msgstr "ശമ്പളം അനുവദിച്ചു. ഇനി ശമ്പളം നൽകാം."
+
+#: apps/webapp/hr_views.py
+msgid "%(count)s salaries paid."
+msgstr "%(count)s ശമ്പളം നൽകി."
+
+#: apps/webapp/hr_views.py
+msgid "Payroll reversed."
+msgstr "ശമ്പളം റിവേഴ്സ് ചെയ്തു."
+
+#: apps/webapp/hr_views.py
+msgid "Reversed payroll removed. You can calculate it again."
+msgstr "റിവേഴ്സ് ചെയ്ത ശമ്പളം നീക്കി. വീണ്ടും കണക്കാക്കാം."
+
+#: apps/webapp/hr_views.py
+msgid "Document removed."
+msgstr "രേഖ നീക്കം ചെയ്തു."
+
+#: apps/webapp/hr_views.py
+msgid "Document saved."
+msgstr "രേഖ സേവ് ചെയ്തു."
+
+#: apps/webapp/hr_views.py
+msgid "HR settings saved."
+msgstr "HR സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
 
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."

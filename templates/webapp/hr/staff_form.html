@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% if employee %}{{ employee.name }}{% else %}{% translate "Add staff" %}{% endif %}{% endblock %}
+{% block heading %}{% if employee %}{% translate "Edit staff" %}{% else %}{% translate "Add staff" %}{% endif %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/hr/_tabs.html" %}
+<form method="post" style="max-width:860px">{% csrf_token %}
+  {% if form.non_field_errors %}<div class="hr-card" style="color:var(--hr-bad)">{{ form.non_field_errors }}</div>{% endif %}
+  <div class="hr-card"><h3>👤 {% translate "Details" %}</h3>
+    <div class="hr-form">
+      {% include "webapp/hr/_field.html" with f=form.name %}
+      {% include "webapp/hr/_field.html" with f=form.phone %}
+      {% include "webapp/hr/_field.html" with f=form.role_title %}
+      {% include "webapp/hr/_field.html" with f=form.joined_date %}
+      {% include "webapp/hr/_field.html" with f=form.employment_status %}
+      {% include "webapp/hr/_field.html" with f=form.user %}
+    </div>
+  </div>
+  <div class="hr-card"><h3>💰 {% translate "Salary" %} <small>{% translate "per month" %}</small></h3>
+    <div class="hr-form">
+      {% include "webapp/hr/_field.html" with f=form.basic_pay %}
+      {% include "webapp/hr/_field.html" with f=form.allowance %}
+      {% include "webapp/hr/_field.html" with f=form.deduction %}
+      {% include "webapp/hr/_field.html" with f=form.overtime_rate %}
+    </div>
+    <p class="help" style="color:var(--hr-soft);margin:12px 0 0;font-size:13px">{% translate "Absent days, unpaid leave and salary advances are deducted automatically when you run payroll." %}</p>
+  </div>
+  <div class="hr-actions">
+    <button class="btn" type="submit">{% translate "Save" %}</button>
+    <a class="btn btn-secondary" href="{% if employee %}{% url 'webapp:staff_detail' employee.id %}{% else %}{% url 'webapp:staff_list' %}{% endif %}">{% translate "Cancel" %}</a>
+  </div>
+</form>
+</div>
+{% endblock %}

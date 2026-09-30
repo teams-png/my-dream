@@ -59,7 +59,7 @@ class WorkShift(TenantScopedModel):
 
 
 class Attendance(TenantScopedModel):
-    STATUS = [("present", "Present"), ("absent", "Absent"), ("leave", "Leave"), ("holiday", "Holiday")]
+    STATUS = [("present", "Present"), ("absent", "Absent"), ("half_day", "Half day"), ("leave", "Leave"), ("holiday", "Holiday")]
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="attendance_records")
     date = models.DateField()
     status = models.CharField(max_length=20, choices=STATUS)
@@ -167,6 +167,7 @@ class PayrollRun(TenantScopedModel):
     total_gross = models.DecimalField(max_digits=16, decimal_places=2, default=0)
     total_deductions = models.DecimalField(max_digits=16, decimal_places=2, default=0)
     total_net = models.DecimalField(max_digits=16, decimal_places=2, default=0)
+    total_advances = models.DecimalField(max_digits=16, decimal_places=2, default=0)
     created_by = models.ForeignKey("accounts.User", on_delete=models.PROTECT, related_name="created_payroll_runs")
     posted_by = models.ForeignKey("accounts.User", null=True, blank=True, on_delete=models.PROTECT, related_name="posted_payroll_runs")
     posted_at = models.DateTimeField(null=True, blank=True)
@@ -187,5 +188,69 @@ class PayrollLine(TenantScopedModel):
     net_pay = models.DecimalField(max_digits=14, decimal_places=2)
     payment_status = models.CharField(max_length=20, choices=PAYMENT, default="unpaid")
     paid_at = models.DateTimeField(null=True, blank=True)
+    # unpaid absence (attendance absent / half day + approved unpaid leave) reduces gross pay
+    absence_days = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    absence_deduction = models.DecimalField(max_digits=14, decimal_places=2, default=0)
+    # salary advance instalment recovered from this payslip (net = gross - deductions - advance)
+    advance_deduction = models.DecimalField(max_digits=14, decimal_places=2, default=0)
+    payment_method = models.CharField(max_length=20, blank=True)
     class Meta:
         unique_together = ("company", "payroll_run", "employee")
+
+
+class HRSettings(TenantScopedModel):
+    """Per-company payroll rules. Weekly off days use Python weekday numbers (Mon=0 ... Sun=6)."""
+    weekly_off_days = models.JSONField(default=list, blank=True)
+    deduct_absence = models.BooleanField(default=True)
+    currency_note = models.CharField(max_length=80, blank=True)
+
+    GULF = {"qatar", "united arab emirates", "uae", "saudi arabia", "kuwait", "bahrain", "oman"}
+
+    class Meta:
+        unique_together = ("company",)
+
+    @classmethod
+    def load(cls, company):
+        obj = cls.objects.for_company(company).first()
+        if obj is None:
+            country = (company.country or "").strip().lower()
+            off = [4] if country in cls.GULF else [6] if country == "india" else [5, 6]
+            obj = cls.objects.create(company=company, weekly_off_days=off)
+        return obj
+
+
+class SalaryAdvance(TenantScopedModel):
+    """Money paid to a staff member ahead of salary, recovered from payslips in instalments."""
+    METHODS = [("cash", "Cash"), ("bank", "Bank")]
+    employee = models.ForeignKey(Employee, on_delete=models.PROTECT, related_name="advances")
+    date = models.DateField()
+    amount = models.DecimalField(max_digits=14, decimal_places=2)
+    monthly_deduction = models.DecimalField(max_digits=14, decimal_places=2)
+    method = models.CharField(max_length=10, choices=METHODS, default="cash")
+    reason = models.CharField(max_length=255, blank=True)
+    given_by = models.ForeignKey("accounts.User", null=True, blank=True, on_delete=models.PROTECT, related_name="+")
+    journal_entry = models.OneToOneField("accounting.JournalEntry", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-date", "-id"]
+
+    @property
+    def recovered(self):
+        from decimal import Decimal
+        return sum((r.amount for r in self.recoveries.all()), Decimal("0"))
+
+    @property
+    def outstanding(self):
+        return self.amount - self.recovered
+
+
+class AdvanceRecovery(TenantScopedModel):
+    """One repayment of an advance: from a posted payslip, or paid back in cash/bank."""
+    SOURCES = [("payroll", "Salary deduction"), ("cash", "Paid back in cash"), ("bank", "Paid back by bank")]
+    advance = models.ForeignKey(SalaryAdvance, on_delete=models.CASCADE, related_name="recoveries")
+    payroll_line = models.ForeignKey(PayrollLine, null=True, blank=True, on_delete=models.CASCADE, related_name="advance_recoveries")
+    date = models.DateField()
+    amount = models.DecimalField(max_digits=14, decimal_places=2)
+    source = models.CharField(max_length=10, choices=SOURCES, default="payroll")
+    journal_entry = models.OneToOneField("accounting.JournalEntry", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")

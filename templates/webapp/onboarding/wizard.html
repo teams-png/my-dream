@@ -106,7 +106,7 @@
     <p class="lead">{% translate "Your business is ready. Here is what most owners do next:" %}</p>
     <div class="ob-next ob-dev">
       <a href="{% url pos_url %}"><span class="ico">{% if group == "restaurant" %}🍽️{% elif group == "retail" %}🛒{% else %}📊{% endif %}</span><b>{% if group == "restaurant" or group == "retail" %}{% translate "Open the POS" %}{% else %}{% translate "Go to the dashboard" %}{% endif %}</b><small>{% translate "Make your first sale." %}</small></a>
-      <a href="{% url 'webapp:staff_list' %}"><span class="ico">👥</span><b>{% translate "Invite your team" %}</b><small>{% translate "Cashiers, waiters and accountants with their own logins." %}</small></a>
+      <a href="{% url 'webapp:staff_members_list' %}"><span class="ico">👥</span><b>{% translate "Invite your team" %}</b><small>{% translate "Cashiers, waiters and accountants with their own logins." %}</small></a>
       <a href="{% url 'webapp:company_settings' %}"><span class="ico">⚙️</span><b>{% translate "Business settings" %}</b><small>{% translate "Logo, address, VAT and currency." %}</small></a>
     </div>
   </div>

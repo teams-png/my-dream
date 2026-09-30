@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Payslip" %} · {{ line.employee.name }}{% endblock %}
+{% block heading %}{% translate "Payslip" %}{% endblock %}
+{% block content %}
+<div class="hr">
+<div class="no-print">{% include "webapp/hr/_tabs.html" %}</div>
+<div class="hr-card" style="max-width:640px">
+  <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+    <div><b style="font-size:18px">{{ active_company.name }}</b><div style="color:var(--hr-soft)">{% translate "Payslip" %} · {{ period.name }}</div></div>
+    <div style="text-align:right"><b>{{ line.employee.name }}</b><div style="color:var(--hr-soft)">{{ line.employee.role_title|default:"" }}</div></div>
+  </div>
+  <table class="hr-money">
+    <tr><td>{% translate "Basic salary" %}</td><td>{{ line.basic_pay|floatformat:2 }}</td></tr>
+    <tr><td>{% translate "Allowances" %}</td><td>{{ line.allowances|floatformat:2 }}</td></tr>
+    {% if line.overtime_amount %}<tr><td>{% translate "Overtime" %} ({{ line.overtime_hours|floatformat:"-1" }} h)</td><td>{{ line.overtime_amount|floatformat:2 }}</td></tr>{% endif %}
+    {% if line.absence_deduction %}<tr class="minus"><td>{% translate "Absence" %} ({{ line.absence_days|floatformat:"-1" }} {% translate "days" %})</td><td>− {{ line.absence_deduction|floatformat:2 }}</td></tr>{% endif %}
+    <tr><td><b>{% translate "Gross pay" %}</b></td><td><b>{{ line.gross_pay|floatformat:2 }}</b></td></tr>
+    {% if line.deductions %}<tr class="minus"><td>{% translate "Deductions" %}</td><td>− {{ line.deductions|floatformat:2 }}</td></tr>{% endif %}
+    {% if line.advance_deduction %}<tr class="minus"><td>{% translate "Salary advance recovered" %}</td><td>− {{ line.advance_deduction|floatformat:2 }}</td></tr>{% endif %}
+    <tr class="total"><td>{% translate "Net pay" %}</td><td>{{ active_company.default_currency }} {{ line.net_pay|floatformat:2 }}</td></tr>
+  </table>
+  <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px;color:var(--hr-soft);font-size:13px">
+    <span>{% if line.payment_status == "paid" %}✓ {% translate "Paid" %} {{ line.paid_at|date:"j M Y" }}{% if line.payment_method %} · {% if line.payment_method == "bank" %}{% translate "Bank" %}{% else %}{% translate "Cash" %}{% endif %}{% endif %}{% else %}{% translate "Not paid yet" %}{% endif %}</span>
+    {% if advance_balance %}<span>{% translate "Advance balance remaining" %}: {{ advance_balance|floatformat:2 }}</span>{% endif %}
+  </div>
+</div>
+<div class="hr-actions no-print">
+  <button class="btn" type="button" onclick="print()">🖨 {% translate "Print" %}</button>
+  <a class="btn btn-secondary" style="background:#25d366;border-color:#25d366;color:#fff" href="{{ whatsapp }}" target="_blank" rel="noopener">💬 {% translate "Send on WhatsApp" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:hr_payroll' %}?m={{ period.start_date|date:'Y-m' }}">← {% translate "Payroll" %}</a>
+</div>
+</div>
+{% endblock %}

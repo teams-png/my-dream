@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate terms.course %}{% endblock %}
+{% block heading %}{% if obj %}{% translate "Edit" %} {{ obj.name }}{% else %}{% translate "New" %} {% translate terms.course|lower %}{% endif %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<form method="post" class="ix ix-form ix-card">{% csrf_token %}
+  {{ form.non_field_errors }}
+  <div class="fields">
+    <div class="full"><label for="id_name">{% translate "Name" %}</label>{{ form.name }}{{ form.name.errors }}</div>
+    <div><label for="id_fee">{% translate "Fee" %}</label>{{ form.fee }}{{ form.fee.errors }}</div>
+    <div><label for="id_billing">{% translate "Charged" %}</label>{{ form.billing }}</div>
+    <div><label for="id_schedule">{% translate "Schedule" %}</label>{{ form.schedule }}</div>
+    <div><label for="id_teacher">{% translate "Teacher / instructor" %}</label>{{ form.teacher }}</div>
+    <div><label for="id_capacity">{% translate "Seats (0 = no limit)" %}</label>{{ form.capacity }}</div>
+    <div><label>&nbsp;</label><label style="display:flex;gap:8px;align-items:center;color:var(--ink)">{{ form.is_active }} {% translate "Open for enrolment" %}</label></div>
+  </div>
+  <div class="ix-actions" style="margin-top:18px"><button class="btn" type="submit">{% translate "Save" %}</button><a class="btn btn-secondary" href="{% url 'webapp:education_home' %}">{% translate "Cancel" %}</a></div>
+</form>
+{% endblock %}

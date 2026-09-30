@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ course.name }}{% endblock %}
+{% block heading %}{{ course.name }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar">
+    <a class="btn btn-secondary" href="{% url 'webapp:education_home' %}">← {% translate terms.courses %}</a>
+    <span class="ix-chip">{{ course.fee|floatformat:"-2" }} {% if course.billing == "monthly" %}/ {% translate "month" %}{% else %}{% translate "once" %}{% endif %}</span>
+    {% if course.schedule %}<span class="ix-chip">🕒 {{ course.schedule }}</span>{% endif %}
+    {% if course.teacher %}<span class="ix-chip">👤 {{ course.teacher }}</span>{% endif %}
+    <span class="grow"></span>
+    <a class="btn btn-secondary" href="{% url 'webapp:education_course_edit' course.id %}">✎ {% translate "Edit" %}</a>
+    <a class="btn" href="{% url 'webapp:education_enroll' %}?course={{ course.id }}">＋ {% translate "Enrol" %} {% translate terms.student|lower %}</a>
+  </div>
+
+  <div class="ix-grid2">
+    <form method="post" class="ix-card">{% csrf_token %}
+      <input type="hidden" name="action" value="attendance">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px">
+        <h3 style="margin:0">✅ {% translate "Attendance" %}</h3>
+        <input type="date" name="date" value="{{ day|date:'Y-m-d' }}" onchange="location.search='?date='+this.value" style="padding:8px 10px;border:1px solid var(--line);border-radius:10px;font:inherit;background:var(--panel);color:var(--ink)">
+      </div>
+      {% if session %}<p style="margin:-4px 0 10px;color:var(--ix-green);font-weight:700;font-size:13px">✓ {% translate "Taken for this day — you can change it." %}</p>{% endif %}
+      {% if active_rows %}
+      <div class="at-grid">{% for r in active_rows %}<label><input type="checkbox" name="present" value="{{ r.e.id }}" {% if r.present %}checked{% endif %}>{{ r.e.student.name }}</label>{% endfor %}</div>
+      <div class="ix-actions" style="margin-top:14px"><button class="btn" type="submit">{% translate "Save attendance" %}</button></div>
+      {% else %}<div class="ix-empty">{% translate "Nobody enrolled on this day." %}</div>{% endif %}
+    </form>
+
+    <div class="ix-card">
+      <h3>📅 {% translate "Recent attendance" %}</h3>
+      <div class="ix-list">{% for s in sessions %}<a class="ix-row" href="?date={{ s.date|date:'Y-m-d' }}"><span class="grow"><b>{{ s.date|date:"D j M Y" }}</b></span><span class="ix-chip completed">{% translate "Taken" %}</span></a>{% empty %}<div class="ix-empty">{% translate "No attendance taken yet." %}</div>{% endfor %}</div>
+    </div>
+  </div>
+
+  <div class="card" style="padding:0;overflow-x:auto">
+  <table>
+    <thead><tr><th>{% translate terms.student %}</th><th>{% translate "Guardian" %}</th><th>{% translate "Since" %}</th><th style="text-align:right">{% translate "Fee" %}</th><th>{% translate "Attendance" %}</th><th>{% translate "Status" %}</th><th></th></tr></thead>
+    <tbody>
+    {% for r in rows %}
+      <tr>
+        <td><strong>{{ r.e.student.name }}</strong>{% if r.e.student.phone %}<br><small>{{ r.e.student.phone }}</small>{% endif %}</td>
+        <td>{{ r.e.guardian_name|default:"—" }}{% if r.e.guardian_phone %}<br><small><a href="tel:{{ r.e.guardian_phone }}">{{ r.e.guardian_phone }}</a></small>{% endif %}</td>
+        <td>{{ r.e.start_date|date:"j M Y" }}</td>
+        <td style="text-align:right">{{ r.e.fee|floatformat:"-2" }}{% if r.e.discount_percent %}<br><small>−{{ r.e.discount_percent|floatformat:"-2" }}%</small>{% endif %}</td>
+        <td>{% if r.rate %}{% widthratio r.rate.0 r.rate.1 100 %}% <small>({{ r.rate.0 }}/{{ r.rate.1 }})</small>{% else %}—{% endif %}</td>
+        <td><span class="ix-chip {{ r.e.status }}">{{ r.e.get_status_display }}</span></td>
+        <td style="white-space:nowrap">{% if r.e.status == "active" %}
+          <form method="post" style="display:inline">{% csrf_token %}<input type="hidden" name="enrollment" value="{{ r.e.id }}"><button class="btn btn-secondary" name="action" value="complete">{% translate "Completed" %}</button></form>
+          <form method="post" style="display:inline" onsubmit="return confirm('{% translate "Withdraw this student? No more fees will be billed." %}')">{% csrf_token %}<input type="hidden" name="enrollment" value="{{ r.e.id }}"><button class="btn btn-secondary" name="action" value="withdraw">{% translate "Withdraw" %}</button></form>
+        {% endif %}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="7" class="ix-empty">{% translate "Nobody enrolled yet." %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

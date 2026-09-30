@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import booking_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import booking_views, education_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -111,6 +111,14 @@ urlpatterns = [
     path("pos/checkout/", views.pos_checkout, name="pos_checkout"),
     path("pos/offline/sync/", views.pos_offline_sync, name="pos_offline_sync"),
     path("pos/offline/sales/", views.pos_offline_sales, name="pos_offline_sales"),
+    path("pos/scale/", scale_views.scale_settings, name="scale_settings"),
+    path("education/", education_views.education_home, name="education_home"),
+    path("education/enrol/", education_views.enroll, name="education_enroll"),
+    path("education/fees/", education_views.fees, name="education_fees"),
+    path("education/dues/", education_views.dues, name="education_dues"),
+    path("education/courses/add/", education_views.course_form, name="education_course_add"),
+    path("education/courses/<int:course_id>/", education_views.course_detail, name="education_course"),
+    path("education/courses/<int:course_id>/edit/", education_views.course_form, name="education_course_edit"),
     path("bookings/", booking_views.booking_board, name="booking_board"),
     path("bookings/all/", booking_views.booking_list, name="booking_list"),
     path("bookings/new/", booking_views.booking_add, name="booking_add"),

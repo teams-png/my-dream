@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Monthly fees" %}{% endblock %}
+{% block heading %}{% translate "Monthly fees" %} · {{ month_date|date:"F Y" }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar">
+    <a class="btn btn-secondary" href="?month={{ prev }}">←</a>
+    <form method="get"><input type="month" name="month" value="{{ month }}" onchange="this.form.submit()"></form>
+    <a class="btn btn-secondary" href="?month={{ next }}">→</a>
+    <span class="grow"></span>
+    <a class="btn btn-secondary" href="{% url 'webapp:education_dues' %}">⏰ {% translate "Fees due" %}</a>
+  </div>
+  <div class="ix-stats">
+    <div class="ix-stat"><small>{% translate "Invoices" %}</small><b>{{ summary.count }}</b></div>
+    <div class="ix-stat"><small>{% translate "Billed" %}</small><b>{{ summary.billed|floatformat:"-2" }}</b></div>
+    <div class="ix-stat good"><small>{% translate "Collected" %}</small><b>{{ summary.collected|floatformat:"-2" }}</b></div>
+    <div class="ix-stat {% if summary.outstanding %}warn{% endif %}"><small>{% translate "Outstanding" %}</small><b>{{ summary.outstanding|floatformat:"-2" }}</b></div>
+  </div>
+
+  {% if pending %}
+  <form method="post" class="ix-card" style="border-left:4px solid var(--ix-amber)">{% csrf_token %}
+    <input type="hidden" name="month" value="{{ month }}">
+    <h3>🧾 {{ pending|length }} {% translate "fees not billed yet" %} · {{ pending_total|floatformat:"-2" }}</h3>
+    <div class="ix-list" style="max-height:260px;overflow:auto">{% for e in pending %}<div class="ix-row"><span class="grow"><b>{{ e.student.name }}</b><small>{{ e.course.name }}</small></span><b>{{ e.fee|floatformat:"-2" }}</b></div>{% endfor %}</div>
+    <button class="btn" type="submit" style="margin-top:14px">{% translate "Create the invoices" %}</button>
+    <small style="display:block;color:var(--ink-soft);margin-top:8px">{% translate "One invoice per student with all their courses. Running it again never bills twice." %}</small>
+  </form>
+  {% else %}
+  <div class="ix-card" style="border-left:4px solid var(--ix-green)"><b>✓ {% translate "All fees for this month are billed." %}</b></div>
+  {% endif %}
+
+  <div class="card" style="padding:0;overflow-x:auto">
+  <table>
+    <thead><tr><th>{% translate "Student" %}</th><th>{% translate "Course" %}</th><th style="text-align:right">{% translate "Fee" %}</th><th>{% translate "Invoice" %}</th><th>{% translate "Status" %}</th><th></th></tr></thead>
+    <tbody>
+    {% for c in charges %}
+      <tr><td><strong>{{ c.enrollment.student.name }}</strong></td><td>{{ c.enrollment.course.name }}</td><td style="text-align:right">{{ c.amount }}</td>
+        <td>{% if c.invoice %}<a href="{% url 'webapp:invoice_pdf' c.invoice.id %}" target="_blank">{{ c.invoice.invoice_number }}</a>{% else %}—{% endif %}</td>
+        <td>{% if c.invoice and c.invoice.amount_paid >= c.invoice.total %}<span class="ix-chip paid">{% translate "Paid" %}</span>{% else %}<span class="ix-chip due">{% translate "Due" %}</span>{% endif %}</td>
+        <td>{% if c.invoice %}<a class="btn btn-secondary" href="{% url 'webapp:invoice_share' c.invoice.id %}">📤 {% translate "Send" %}</a>{% endif %}</td></tr>
+    {% empty %}
+      <tr><td colspan="6" class="ix-empty">{% translate "No fees billed for this month." %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

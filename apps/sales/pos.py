@@ -78,7 +78,7 @@ def checkout(*, company, user, payload, sale_date=None):
             if product is None:
                 raise PosError(f"Product #{item.get('product_id') if isinstance(item, dict) else '?'} no longer exists.")
             try:
-                quantity = Decimal(str(item.get("quantity", 1)))
+                quantity = Decimal(str(item.get("quantity", 1))).quantize(Decimal("0.001"))
                 unit_price = Decimal(str(item.get("unit_price"))).quantize(Decimal("0.01"))
             except (InvalidOperation, TypeError, ValueError):
                 raise PosError(f"Bad quantity/price for {product.name}.")

@@ -236,6 +236,14 @@ class BusinessProductForm(ProductForm):
                 if self.instance and self.instance.pk:
                     self.fields[name].initial = (self.instance.attributes or {}).get(name, "")
         attrs = self.instance.attributes if self.instance and self.instance.pk else {}
+        from apps.modules.catalog import business_features
+        self.weighed = "weighed" in business_features(self.business_code)
+        if self.weighed:
+            self.fields["sold_by_weight"] = forms.BooleanField(
+                required=False, label="Sold by weight (price is per kg)", initial=bool(attrs.get("sold_by_weight")))
+            self.fields["scale_code"] = forms.CharField(
+                required=False, max_length=10, label="Scale item code (PLU)", initial=attrs.get("scale_code", ""),
+                help_text="The item number programmed in the weighing scale, e.g. 123.")
         self.fields["wholesale_price"].initial = attrs.get("wholesale_price")
         self.fields["carton_quantity"].initial = attrs.get("carton_quantity")
 
@@ -248,6 +256,9 @@ class BusinessProductForm(ProductForm):
         for name in ("wholesale_price", "carton_quantity"):
             value = self.cleaned_data.get(name)
             attrs[name] = str(value) if value is not None else ""
+        if self.weighed:
+            attrs["sold_by_weight"] = bool(self.cleaned_data.get("sold_by_weight"))
+            attrs["scale_code"] = (self.cleaned_data.get("scale_code") or "").strip().lstrip("0")
         obj.attributes = attrs
         if self.cleaned_data.get("serial_required"):
             obj.tracking_type = "serial"

@@ -3843,8 +3843,16 @@ def _pos_catalog(company):
             "tracked": p.is_stock_tracked, "reorder": p.reorder_level,
             "category_id": p.category_id, "size": p.size, "colour": p.colour, "material": p.material,
             "design": p.design, "variant": p.variant_label, "item_type": item_type, "mobile_units": units,
+            "weighed": bool((p.attributes or {}).get("sold_by_weight")),
+            "plu": str((p.attributes or {}).get("scale_code") or ""),
         })
     return catalog, [{"id": k, "name": v} for k, v in sorted(categories.items(), key=lambda kv: kv[1].lower())]
+
+
+def _scale_settings(company):
+    from apps.industry.models import ScaleSettings
+    from apps.webapp.industry_access import company_features
+    return ScaleSettings.load(company).as_dict() if "weighed" in company_features(company) else None
 
 
 @login_required
@@ -3862,6 +3870,7 @@ def pos_view(request):
             "company": {"name": company.name, "address": company.address, "phone": company.phone,
                         "currency": company.default_currency, "vat_number": getattr(company, "vat_number", "")},
             "cashier": request.user.get_full_name() or request.user.email or request.user.username,
+            "scale": _scale_settings(company),
         },
         "customers": Customer.objects.for_company(company).filter(is_active=True).order_by("name"),
         "branches": Warehouse.objects.for_company(company).filter(is_active=True).order_by("name"),

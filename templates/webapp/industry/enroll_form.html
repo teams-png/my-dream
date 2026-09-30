@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Enrol" %}{% endblock %}
+{% block heading %}{% translate "Enrol" %} {% translate terms.student|lower %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<form method="post" class="ix ix-form ix-card">{% csrf_token %}
+  {% if form.non_field_errors %}<div class="card" style="border-left:4px solid var(--danger);margin-bottom:14px;color:var(--danger)">{{ form.non_field_errors|join:" " }}</div>{% endif %}
+  <div class="fields">
+    <div class="full"><label for="id_course">{% translate terms.course %}</label>{{ form.course }}{{ form.course.errors }}</div>
+    <div class="full"><label for="id_student">{% translate terms.student %}</label>{{ form.student }}{{ form.student.errors }}</div>
+    <div class="full or">{% translate "or new" %}</div>
+    <div><label for="id_new_student_name">{% translate "Name" %}</label>{{ form.new_student_name }}</div>
+    <div><label for="id_new_student_phone">{% translate "Phone" %}</label>{{ form.new_student_phone }}</div>
+    <div><label for="id_guardian_name">{% translate "Parent / guardian" %}</label>{{ form.guardian_name }}</div>
+    <div><label for="id_guardian_phone">{% translate "Guardian phone" %}</label>{{ form.guardian_phone }}</div>
+    <div><label for="id_start_date">{% translate "Start date" %}</label>{{ form.start_date }}{{ form.start_date.errors }}</div>
+    <div><label for="id_discount_percent">{% translate "Discount %" %}</label>{{ form.discount_percent }}{{ form.discount_percent.errors }}</div>
+    <div class="full"><label for="id_notes">{% translate "Notes" %}</label>{{ form.notes }}</div>
+    <div class="full"><label style="display:flex;gap:8px;align-items:center;color:var(--ink)">{{ form.bill_now }} {% translate "Bill the first fee now (this month's fee, or the one-time fee)" %}</label></div>
+  </div>
+  <div class="ix-actions" style="margin-top:18px"><button class="btn" type="submit">{% translate "Enrol" %}</button><a class="btn btn-secondary" href="{% url 'webapp:education_home' %}">{% translate "Cancel" %}</a></div>
+</form>
+{% endblock %}

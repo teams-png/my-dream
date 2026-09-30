@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate terms.courses %}{% endblock %}
+{% block heading %}{% translate terms.courses %} & {% translate "fees" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-stats">
+    <div class="ix-stat"><small>{% translate "Active" %} {% translate terms.students|lower %}</small><b>{{ active_students }}</b></div>
+    <div class="ix-stat"><small>{% translate "Billed this month" %}</small><b>{{ summary.billed|floatformat:"-2" }}</b></div>
+    <div class="ix-stat good"><small>{% translate "Collected" %}</small><b>{{ summary.collected|floatformat:"-2" }}</b></div>
+    <div class="ix-stat {% if dues_total %}warn{% endif %}"><small>{% translate "Fees due (all months)" %}</small><b>{{ dues_total|floatformat:"-2" }}</b></div>
+  </div>
+
+  {% if not_billed %}
+  <a class="ix-card ix-row" href="{% url 'webapp:education_fees' %}?month={{ month }}" style="border-left:4px solid var(--ix-amber)">
+    <span style="font-size:28px">🧾</span><span class="grow"><b>{{ not_billed }} {% translate "fees for this month are not billed yet" %}</b><small>{% translate "Create all the invoices in one step." %}</small></span><span class="btn">{% translate "Generate fees" %} →</span>
+  </a>
+  {% endif %}
+
+  <div class="ix-toolbar">
+    <a class="btn" href="{% url 'webapp:education_enroll' %}">＋ {% translate "Enrol" %} {% translate terms.student|lower %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:education_course_add' %}">＋ {% translate "New" %} {% translate terms.course|lower %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:education_fees' %}">🧾 {% translate "Monthly fees" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:education_dues' %}">⏰ {% translate "Fees due" %}{% if dues_count %} ({{ dues_count }}){% endif %}</a>
+  </div>
+
+  <div class="ix-grid2">
+    {% for c in courses %}
+    <a class="ix-card ix-row" href="{% url 'webapp:education_course' c.id %}" style="display:block;animation-delay:{{ forloop.counter0 }}0ms">
+      <div style="display:flex;justify-content:space-between;align-items:start;gap:10px">
+        <div><b style="font-size:17px">{{ c.name }}</b><small style="display:block;color:var(--ink-soft)">{{ c.schedule|default:"" }}{% if c.teacher %} · {{ c.teacher }}{% endif %}</small></div>
+        {% if not c.is_active %}<span class="ix-chip cancelled">{% translate "Closed" %}</span>{% endif %}
+      </div>
+      <div style="display:flex;gap:18px;margin-top:12px">
+        <div><small style="color:var(--ink-soft)">{% translate terms.students %}</small><b style="display:block;font-size:20px">{{ c.active_count }}{% if c.capacity %}<small style="font-size:13px;color:var(--ink-soft)"> / {{ c.capacity }}</small>{% endif %}</b></div>
+        <div><small style="color:var(--ink-soft)">{% translate "Fee" %}</small><b style="display:block;font-size:20px">{{ c.fee|floatformat:"-2" }}<small style="font-size:13px;color:var(--ink-soft)"> {% if c.billing == "monthly" %}/ {% translate "month" %}{% else %}{% translate "once" %}{% endif %}</small></b></div>
+      </div>
+    </a>
+    {% empty %}
+    <div class="ix-card ix-empty" style="grid-column:1/-1"><p style="font-size:40px;margin:0">🎓</p><strong>{% translate "No" %} {% translate terms.courses|lower %} {% translate "yet." %}</strong><p><a class="btn" href="{% url 'webapp:education_course_add' %}">＋ {% translate "New" %} {% translate terms.course|lower %}</a></p></div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

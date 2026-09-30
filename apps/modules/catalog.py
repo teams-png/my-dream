@@ -139,6 +139,15 @@ BOOKING_TERMS = {
 }
 
 
+# (course, courses, student, students) for the education module
+EDUCATION_TERMS = {
+    "school_training_institute": ("Course", "Courses", "Student", "Students"),
+    "tuition_center": ("Batch", "Batches", "Student", "Students"),
+    "nursery_daycare": ("Class", "Classes", "Child", "Children"),
+    "driving_school": ("Package", "Packages", "Learner", "Learners"),
+}
+
+
 def business_features(code):
     code = ALIASES.get(code, code)
     return {name for name, codes in INDUSTRY_FEATURES.items() if code in codes}
@@ -154,6 +163,9 @@ def business_profile(code):
         resource, resources, booking, unit = BOOKING_TERMS[code]
         profile.update(resource_label=resource, resources_label=resources, booking_label=booking,
                        default_rate_unit=unit)
+    if code in EDUCATION_TERMS:
+        course, courses, student, students = EDUCATION_TERMS[code]
+        profile.update(course_label=course, courses_label=courses, student_label=student, students_label=students)
     if group == "service":
         profile.update(profile_type=SERVICE_PROFILE_TYPES.get(code, "organization"),
                        records_label="Clients / Subjects", work_label="Cases / Work Orders",

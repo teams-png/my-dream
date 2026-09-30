@@ -139,6 +139,21 @@
     <div class="dlg-foot"><button class="rp-btn" type="button" data-close>{% translate "Cancel" %}</button></div>
   </dialog>
 
+  <dialog class="rp-dialog" id="weighDialog" aria-labelledby="weighName">
+    <form method="dialog" id="weighForm">
+      <div class="dlg-head"><h3 id="weighName"></h3><p id="weighPrice"></p><button class="dlg-close" type="button" data-close aria-label="{% translate 'Close' %}">✕</button></div>
+      <div class="dlg-body">
+        <label class="field-label" for="weighKg">{% translate "Weight (kg)" %}</label>
+        <input class="rp-input" id="weighKg" type="number" min="0" step="0.001" inputmode="decimal" placeholder="0.000" style="font-size:24px;height:58px;font-weight:800">
+        <div class="quick-cash" id="weighQuick"><button type="button" data-kg="0.25">¼ kg</button><button type="button" data-kg="0.5">½ kg</button><button type="button" data-kg="1">1 kg</button><button type="button" data-kg="1.5">1.5 kg</button><button type="button" data-kg="2">2 kg</button></div>
+        <label class="field-label" for="weighAmt">{% translate "or amount" %} ({{ active_company.default_currency }})</label>
+        <input class="rp-input" id="weighAmt" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00">
+        <div class="change-box" style="margin-top:14px"><span>{% translate "Price" %}</span><span id="weighTotal"></span></div>
+      </div>
+      <div class="dlg-foot"><button class="rp-btn" type="button" data-close>{% translate "Cancel" %}</button><button class="rp-btn go" type="submit" id="weighAdd" disabled>＋ {% translate "Add to sale" %}</button></div>
+    </form>
+  </dialog>
+
   <dialog class="rp-dialog" id="heldDialog" aria-labelledby="heldTitle">
     <div class="dlg-head"><h3 id="heldTitle">{% translate "Held sales" %}</h3><p>{% translate "Sales parked on this till. Tap one to bring it back." %}</p><button class="dlg-close" type="button" data-close aria-label="{% translate 'Close' %}">✕</button></div>
     <div class="dlg-body"><div class="pick-list" id="heldList"></div></div>

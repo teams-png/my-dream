@@ -15,6 +15,8 @@
   /* ------------------------------------------------------------ helpers */
   function round2(v) { const x = v * 100, f = Math.floor(x + 1e-9), d = x - f; if (Math.abs(d - 0.5) < 1e-7) return (f % 2 === 0 ? f : f + 1) / 100; return Math.round(x) / 100; }
   const money = n => round2(+n || 0).toFixed(2);
+  const round3 = n => Math.round((+n || 0) * 1000) / 1000;
+  const qtyText = i => (i.weighed ? round3(i.qty).toFixed(3) + " kg" : String(i.qty));
   const esc = t => String(t == null ? "" : t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const hue = s => { let h = 0; for (const ch of String(s)) h = (h * 31 + ch.charCodeAt(0)) % 360; return h; };
   const initials = s => String(s).trim().split(/\s+/).slice(0, 2).map(w => w[0] || "").join("").toUpperCase();
@@ -75,7 +77,7 @@
         <div class="food-body">
           <div class="food-name">${esc(label(p))}</div>
           <div class="prod-sku">${esc(p.sku)}</div>
-          <div class="food-meta"><span class="food-price"><small>${esc(CUR)}</small>${esc(p.price)}</span>
+          <div class="food-meta"><span class="food-price"><small>${esc(CUR)}</small>${esc(p.price)}${p.weighed ? `<small> /kg</small>` : ""}</span>
             <button class="food-add" type="button" aria-label="${esc(label(p))}">+</button></div>
         </div>
       </article>`).join("");
@@ -111,6 +113,7 @@
 
   /* ------------------------------------------------------------ cart */
   function chooseAndAdd(p, fromEl) {
+    if (p.weighed) return openWeigh(p, fromEl);
     if (p.item_type !== "handset") return addToCart(p, null, fromEl);
     const units = p.mobile_units.filter(u => !cart[p.id + "-" + u.id]);
     if (!units.length) return toast(T.noImei, true);
@@ -124,17 +127,52 @@
     $("imeiDialog").showModal();
   }
 
-  function addToCart(p, unit, fromEl) {
+  function addToCart(p, unit, fromEl, qty) {
     const key = unit ? `${p.id}-${unit.id}` : String(p.id);
     if (!cart[key]) {
       cart[key] = { key, id: p.id, name: label(p), sku: p.sku, price: parseFloat(p.price), qty: 0,
-        mobile_unit_id: unit ? unit.id : null, imei: unit ? unit.imei : null, isNew: true };
+        mobile_unit_id: unit ? unit.id : null, imei: unit ? unit.imei : null, weighed: !!p.weighed, isNew: true };
     }
-    cart[key].qty = unit ? 1 : cart[key].qty + 1;
+    cart[key].qty = unit ? 1 : (p.weighed ? round3(cart[key].qty + (qty || 0)) : cart[key].qty + (qty || 1));
     cart[key].isNew = true;
     if (fromEl) fly(fromEl);
     changed();
   }
+
+  /* sold by weight: type the kg (or the amount) the scale shows */
+  let weighing = null;
+  function openWeigh(p, fromEl) {
+    weighing = { p, fromEl };
+    $("weighName").textContent = label(p);
+    $("weighPrice").textContent = `${CUR} ${money(p.price)} / kg`;
+    $("weighKg").value = ""; $("weighAmt").value = "";
+    updateWeigh();
+    $("weighDialog").showModal();
+    setTimeout(() => $("weighKg").focus(), 50);
+  }
+  function updateWeigh() {
+    const kg = round3($("weighKg").value);
+    $("weighTotal").textContent = weighing ? `${CUR} ${money(kg * parseFloat(weighing.p.price))}` : "";
+    $("weighAdd").disabled = !(kg > 0);
+  }
+  $("weighKg").addEventListener("input", () => { $("weighAmt").value = ""; updateWeigh(); });
+  $("weighAmt").addEventListener("input", () => {
+    const price = parseFloat(weighing.p.price) || 0;
+    $("weighKg").value = price ? round3(parseFloat($("weighAmt").value || 0) / price) : "";
+    updateWeigh();
+  });
+  $("weighQuick").addEventListener("click", e => {
+    const b = e.target.closest("[data-kg]"); if (!b) return;
+    $("weighKg").value = b.dataset.kg; $("weighAmt").value = ""; updateWeigh();
+  });
+  $("weighForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const kg = round3($("weighKg").value);
+    if (!(kg > 0) || !weighing) return;
+    $("weighDialog").close();
+    addToCart(weighing.p, null, weighing.fromEl, kg);
+    weighing = null;
+  });
 
   function fly(el) {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -159,15 +197,17 @@
   }
 
   function renderCart() {
-    const items = lines(), total = cartTotal(), count = items.reduce((s, i) => s + i.qty, 0);
+    const items = lines(), total = cartTotal(), count = items.reduce((s, i) => s + (i.weighed ? 1 : i.qty), 0);
     $("pos-empty-cart").hidden = items.length > 0;
     $("pos-cart-body").innerHTML = items.map(i => `
       <div class="cart-item${i.isNew ? " is-new" : ""}" data-key="${esc(i.key)}">
         <span class="cart-ico" style="--h:${hue(i.name.split(" — ")[0])}">${esc(initials(i.name))}</span>
         <div class="line-mid">
           <div class="cart-name">${esc(i.name)}</div>
-          <div class="cart-note">${i.imei ? "IMEI " + esc(i.imei) : `<span class="each">${money(i.price)} ${T.each}</span>`}</div>
-          ${i.imei ? "" : `<div class="row"><div class="cart-qty"><button class="qty-btn" type="button" data-step="-1" aria-label="−">−</button><input type="number" min="0" step="1" value="${i.qty}" aria-label="Qty" data-qty><button class="qty-btn" type="button" data-step="1" aria-label="+">+</button></div></div>`}
+          <div class="cart-note">${i.imei ? "IMEI " + esc(i.imei) : `<span class="each">${money(i.price)} ${i.weighed ? "/ kg" : T.each}</span>`}</div>
+          ${i.imei ? "" : i.weighed
+            ? `<div class="row"><div class="cart-qty"><button class="qty-btn" type="button" data-step="-0.1" aria-label="−">−</button><input type="number" min="0" step="0.001" value="${round3(i.qty).toFixed(3)}" aria-label="kg" data-qty style="width:62px"><button class="qty-btn" type="button" data-step="0.1" aria-label="+">+</button></div><span class="each">kg</span></div>`
+            : `<div class="row"><div class="cart-qty"><button class="qty-btn" type="button" data-step="-1" aria-label="−">−</button><input type="number" min="0" step="1" value="${i.qty}" aria-label="Qty" data-qty><button class="qty-btn" type="button" data-step="1" aria-label="+">+</button></div></div>`}
         </div>
         <div class="line-side"><span class="cart-price">${money(i.price * i.qty)}</span>
           <button class="remove-btn" type="button" data-remove title="${T.remove}" aria-label="${T.remove}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button></div>
@@ -182,12 +222,12 @@
     ["pos-checkout-btn", "holdBtn", "clearBtn"].forEach(id => { $(id).disabled = !items.length; });
     const panel = $("cartPanel");
     panel.classList.remove("cart-updated"); void panel.offsetWidth; panel.classList.add("cart-updated");
-    if (window.Devices) Devices.display({ type: "cart", lines: items.map(i => ({ qty: i.qty, name: i.name, amount: money(i.price * i.qty) })), breakdown: [], total: money(total) });
+    if (window.Devices) Devices.display({ type: "cart", lines: items.map(i => ({ qty: qtyText(i), name: i.name, amount: money(i.price * i.qty) })), breakdown: [], total: money(total) });
   }
 
   function setQty(key, qty) {
-    qty = Math.floor(+qty || 0);
     const item = cart[key]; if (!item) return;
+    qty = item.weighed ? round3(qty) : Math.floor(+qty || 0);
     if (qty <= 0) delete cart[key];
     else {
       const p = PRODUCTS.find(x => x.id === item.id);
@@ -202,7 +242,7 @@
     const key = row.dataset.key;
     if (e.target.closest("[data-remove]")) { delete cart[key]; changed(); }
     const step = e.target.closest("[data-step]");
-    if (step) setQty(key, cart[key].qty + +step.dataset.step);
+    if (step) setQty(key, round3(cart[key].qty + +step.dataset.step));
   });
   $("pos-cart-body").addEventListener("change", e => {
     if (e.target.matches("[data-qty]")) setQty(e.target.closest(".cart-item").dataset.key, e.target.value);
@@ -221,15 +261,45 @@
   const searchInput = $("pos-search");
   let scanTimer = null;
 
+  /* EAN-13 label from the shop's weighing scale: prefix + item code + weight (or price) + check digit */
+  function scaleLabel(code) {
+    const cfg = DATA.scale;
+    if (!cfg || !/^\d{13}$/.test(code)) return null;
+    const prefix = cfg.prefixes.find(pf => code.startsWith(pf));
+    if (!prefix) return null;
+    const item = code.substr(prefix.length, cfg.codeDigits).replace(/^0+/, "");
+    const raw = code.substring(prefix.length + cfg.codeDigits, 12);
+    const value = parseInt(raw, 10) / Math.pow(10, cfg.decimals);
+    const p = PRODUCTS.find(x => x.weighed && ((x.plu && x.plu === item) || x.sku.replace(/^0+/, "") === item));
+    if (!p || !(value > 0)) return null;
+    const kg = cfg.valueType === "price" ? round3(value / (parseFloat(p.price) || 1)) : round3(value);
+    return { p, kg };
+  }
+
   function confirmScan() {
     const sku = searchInput.value.trim().toLowerCase();
     if (!sku) return false;
+    const weighed = scaleLabel(sku);
+    if (weighed) {
+      addToCart(weighed.p, null, null, weighed.kg);
+      searchInput.value = "";
+      filterGrid();
+      toast(`✓ ${label(weighed.p)} · ${weighed.kg.toFixed(3)} kg`);
+      beep(880);
+      return true;
+    }
     let exact = PRODUCTS.find(p => p.sku.toLowerCase() === sku);
     let scannedUnit = null;
     if (!exact) {
       exact = PRODUCTS.find(p => (scannedUnit = (p.mobile_units || []).find(u => u.imei.toLowerCase() === sku || (u.serial_number || "").toLowerCase() === sku)));
     }
     if (!exact) return false;
+    if (exact.weighed) {
+      searchInput.value = "";
+      filterGrid();
+      openWeigh(exact);
+      return true;
+    }
     if (exact.item_type === "handset") {
       if (scannedUnit && cart[exact.id + "-" + scannedUnit.id]) scannedUnit = null;
       scannedUnit = scannedUnit || exact.mobile_units.find(u => !cart[exact.id + "-" + u.id]);

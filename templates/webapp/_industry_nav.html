@@ -8,4 +8,19 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'booking_resources' %}active{% endif %}" href="{% url 'webapp:booking_resources' %}"><span>{% translate active_business_profile.resources_label %}</span></a>
       </details>
 {% endif %}
+{% if "education" in f %}
+      <details class="nav-section" open>
+        <summary>🎓 {% translate active_business_profile.courses_label %}</summary>
+      <a class="nav-link {% if request.resolver_match.url_name == 'education_home' %}active{% endif %}" href="{% url 'webapp:education_home' %}"><span>{% translate active_business_profile.courses_label %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'education_enroll' %}active{% endif %}" href="{% url 'webapp:education_enroll' %}"><span>＋ {% translate "Enrol" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'education_fees' %}active{% endif %}" href="{% url 'webapp:education_fees' %}"><span>{% translate "Monthly fees" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'education_dues' %}active{% endif %}" href="{% url 'webapp:education_dues' %}"><span>{% translate "Fees due" %}</span></a>
+      </details>
+{% endif %}
+{% if "weighed" in f %}
+      <details class="nav-section" open>
+        <summary>⚖️ {% translate "Sell by weight" %}</summary>
+      <a class="nav-link {% if request.resolver_match.url_name == 'scale_settings' %}active{% endif %}" href="{% url 'webapp:scale_settings' %}"><span>{% translate "Weighing scale" %}</span></a>
+      </details>
+{% endif %}
 {% endwith %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Weighing scale" %}{% endblock %}
+{% block heading %}{% translate "Weighing scale & sell by weight" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix ix-grid2">
+  <form method="post" class="ix-card ix-form">{% csrf_token %}
+    <h3>⚖️ {% translate "Scale barcode format" %}</h3>
+    <p style="color:var(--ink-soft);margin-top:-4px">{% translate "Most shop scales print an EAN-13 label: prefix + item code + weight (or price) + check digit. Scan it at the POS and the item is added with its weight." %}</p>
+    {{ form.non_field_errors }}
+    <div class="fields">
+      <div class="full"><label for="id_prefixes">{% translate "Barcode prefixes" %}</label>{{ form.prefixes }}{{ form.prefixes.errors }}</div>
+      <div><label for="id_code_digits">{% translate "Item code digits" %}</label>{{ form.code_digits }}{{ form.code_digits.errors }}</div>
+      <div><label for="id_value_type">{% translate "The label contains" %}</label>{{ form.value_type }}</div>
+      <div><label for="id_value_decimals">{% translate "Decimals in the value" %}</label>{{ form.value_decimals }}{{ form.value_decimals.errors }}</div>
+    </div>
+    <div class="ix-card" style="margin:16px 0 0;background:var(--paper)">
+      <small style="color:var(--ink-soft);font-weight:700">{% translate "Example label" %}</small>
+      <div style="font:700 22px ui-monospace,monospace;letter-spacing:2px;margin:6px 0"><span style="color:#2563eb">{{ example.prefix }}</span><span style="color:#16a34a">{{ example.code }}</span><span style="color:#d97706">{{ example.value }}</span><span style="color:var(--ink-soft)">{{ example.check }}</span></div>
+      <small><span style="color:#2563eb">■</span> {% translate "prefix" %} · <span style="color:#16a34a">■</span> {% translate "item code" %} {{ example.code }} · <span style="color:#d97706">■</span> {{ example.meaning }}</small>
+    </div>
+    <div class="ix-actions" style="margin-top:16px"><button class="btn" type="submit">{% translate "Save" %}</button></div>
+  </form>
+  <div class="ix-card">
+    <h3>🥩 {% translate "Products sold by weight" %}</h3>
+    <p style="color:var(--ink-soft);margin-top:-4px">{% translate "Open a product and tick “Sold by weight”. Its price is per kg, and the POS asks for the weight." %}</p>
+    <div class="ix-list">{% for p in weighed %}<a class="ix-row" href="{% url 'webapp:product_edit' p.id %}"><span class="grow"><b>{{ p.name }}</b><small>{% translate "Scale code" %}: {{ p.attributes.scale_code|default:"—" }} · {{ p.sku }}</small></span><b>{{ p.selling_price }} / kg</b></a>{% empty %}<div class="ix-empty">{% translate "No products sold by weight yet." %}</div>{% endfor %}</div>
+    <p style="margin-top:14px"><a class="btn btn-secondary" href="{% url 'webapp:product_list' %}">{% translate "Go to products" %} →</a></p>
+  </div>
+</div>
+{% endblock %}

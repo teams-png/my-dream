@@ -67,3 +67,107 @@ class Booking(TenantScopedModel):
 
     def __str__(self):
         return self.number or f"Booking {self.pk}"
+
+
+# ----------------------------------------------------------------- sell by weight
+
+class ScaleSettings(TenantScopedModel):
+    """
+    How the shop's weighing scale prints its EAN-13 labels, e.g. 21 00123 01250 7:
+    prefix "21", item code "00123", value "01250" (1.250 kg or 12.50 price), check digit.
+    """
+    VALUE_TYPES = [("weight", "Weight (kg)"), ("price", "Price")]
+    prefixes = models.CharField(max_length=60, default="20,21,22,23,24,25,26,27,28,29",
+                                help_text="Barcode prefixes the scale uses, comma separated.")
+    code_digits = models.PositiveSmallIntegerField(default=5, help_text="Digits of the item code after the prefix.")
+    value_type = models.CharField(max_length=8, choices=VALUE_TYPES, default="weight")
+    value_decimals = models.PositiveSmallIntegerField(default=3, help_text="3 = grams (weight), 2 = cents (price).")
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["company"], name="one_scale_setting_per_company")]
+
+    @classmethod
+    def load(cls, company):
+        obj, _ = cls.objects.get_or_create(company=company)
+        return obj
+
+    def as_dict(self):
+        return {"prefixes": [p.strip() for p in self.prefixes.split(",") if p.strip()], "codeDigits": self.code_digits,
+                "valueType": self.value_type, "decimals": self.value_decimals}
+
+
+# ----------------------------------------------------------------- education
+
+class Course(TenantScopedModel):
+    """A course, class or batch students enrol in (or a driving package)."""
+    BILLING = [("monthly", "Monthly fee"), ("once", "One-time fee")]
+    name = models.CharField(max_length=150)
+    fee = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    billing = models.CharField(max_length=8, choices=BILLING, default="monthly")
+    schedule = models.CharField(max_length=150, blank=True, help_text="e.g. Sun–Thu 4–6 pm")
+    teacher = models.CharField(max_length=120, blank=True)
+    capacity = models.PositiveSmallIntegerField(default=0, help_text="0 = no limit")
+    is_active = models.BooleanField(default=True)
+    product = models.ForeignKey("inventory.Product", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
+
+class Enrollment(TenantScopedModel):
+    STATUS = [("active", "Active"), ("completed", "Completed"), ("withdrawn", "Withdrawn")]
+    student = models.ForeignKey("customers.Customer", on_delete=models.PROTECT, related_name="enrollments")
+    course = models.ForeignKey(Course, on_delete=models.PROTECT, related_name="enrollments")
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS, default="active")
+    discount_percent = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    guardian_name = models.CharField(max_length=120, blank=True)
+    guardian_phone = models.CharField(max_length=20, blank=True)
+    notes = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["student__name"]
+
+    def __str__(self):
+        return f"{self.student} · {self.course}"
+
+    @property
+    def fee(self):
+        from decimal import Decimal
+        return (self.course.fee * (Decimal("100") - self.discount_percent) / Decimal("100")).quantize(Decimal("0.01"))
+
+
+class FeeCharge(TenantScopedModel):
+    """One billed fee: a month ("2026-10") or the one-time fee ("once") of an enrollment."""
+    enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE, related_name="charges")
+    period = models.CharField(max_length=7)
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    invoice = models.ForeignKey("sales.SalesInvoice", null=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["enrollment", "period"], name="one_fee_per_enrollment_period")]
+
+
+class AttendanceSession(TenantScopedModel):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="sessions")
+    date = models.DateField()
+    taken_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["course", "date"], name="one_attendance_per_course_day")]
+        ordering = ["-date"]
+
+
+class AttendanceMark(models.Model):
+    session = models.ForeignKey(AttendanceSession, on_delete=models.CASCADE, related_name="marks")
+    enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE, related_name="attendance")
+    present = models.BooleanField(default=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["session", "enrollment"], name="one_mark_per_student_session")]

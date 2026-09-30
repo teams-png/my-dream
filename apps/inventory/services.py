@@ -318,7 +318,7 @@ def complete_stock_count(*, company, user, stock_count):
 # ---------------------------------------------------------------- expiry alerts
 
 
-def check_batch_expiry_and_notify(company, near_expiry_days=30):
+def check_batch_expiry_and_notify(company, near_expiry_days=None):
     """
     Dedup via BatchAlertLog — each batch notifies at most once for
     'near_expiry' and once for 'expired', ever (not once per day), same
@@ -327,8 +327,10 @@ def check_batch_expiry_and_notify(company, near_expiry_days=30):
     from datetime import timedelta
     from apps.notifications.services import notify_batch_near_expiry, notify_batch_expired
 
+    from apps.notifications.rules import once, threshold_for, thresholds
+    days_rules = [near_expiry_days] if near_expiry_days is not None else (thresholds(company, "product_expiry") or [30])
     today = timezone.localdate()
-    horizon = today + timedelta(days=near_expiry_days)
+    horizon = today + timedelta(days=max(days_rules))
     created = []
     warehouses = list(Warehouse.objects.for_company(company))
 
@@ -349,9 +351,13 @@ def check_batch_expiry_and_notify(company, near_expiry_days=30):
             continue
 
         _, is_new = BatchAlertLog.objects.get_or_create(company=company, batch=batch, alert_type=alert_type)
-        if is_new:
-            if alert_type == "expired":
+        if alert_type == "expired":
+            if is_new:
                 created.append(notify_batch_expired(company, batch))
-            else:
-                created.append(notify_batch_near_expiry(company, batch, (batch.expiry_date - today).days))
+            continue
+        # near expiry: once per configured threshold (e.g. 30, 7 and 1 days before)
+        days_left = (batch.expiry_date - today).days
+        step = threshold_for(days_left, days_rules)
+        if step is not None and once(company, f"batch:{batch.id}:near:{step}"):
+            created.append(notify_batch_near_expiry(company, batch, days_left))
     return created

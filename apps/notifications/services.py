@@ -16,6 +16,9 @@ def notify(*, company, title, message="", notif_type="general", recipient=None, 
     notification = Notification.objects.create(
         company=company, recipient=recipient, notif_type=notif_type, title=title, message=message,
     )
+    from .rules import email_enabled
+    if not email_enabled(company, notif_type):
+        return notification
     recipients = [recipient] if recipient else [m.user for m in company.memberships.filter(is_active=True).select_related("user")]
     for user in recipients:
         if not user or not user.email:

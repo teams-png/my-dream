@@ -48,3 +48,10 @@ def check_low_stock_and_overdue_invoices():
         check_overdue_invoices_and_notify(company)
         from apps.inventory.services import check_batch_expiry_and_notify
         check_batch_expiry_and_notify(company)
+
+
+@shared_task
+def run_daily_jobs_task():
+    """Celery beat entry point for apps.notifications.daily.run_daily_jobs."""
+    from .daily import run_daily_jobs
+    return run_daily_jobs()

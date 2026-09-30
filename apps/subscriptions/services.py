@@ -175,7 +175,8 @@ def run_daily_expiry_check():
             notify_subscription_expired(sub.company)
             continue
 
-        if days_left in EXPIRY_NOTIFY_THRESHOLDS:
+        from apps.notifications.rules import thresholds
+        if days_left in (thresholds(sub.company, "subscription_expiring") or EXPIRY_NOTIFY_THRESHOLDS):
             from apps.notifications.services import notify_subscription_expiring
             notify_subscription_expiring(sub.company, days_left)
 

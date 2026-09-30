@@ -96,3 +96,21 @@ class NotificationDelivery(TenantScopedModel):
     class Meta:
         unique_together = ("company", "idempotency_key")
         indexes = [models.Index(fields=("company", "status", "created_at"))]
+
+
+class ReminderLog(TenantScopedModel):
+    """Dedup marker for threshold reminders ("invoice 12 due in 3 days", "batch 7 expires in 15 days"), so
+    each reminder fires once however often the daily job runs."""
+    key = models.CharField(max_length=120)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("company", "key")
+
+
+class DailyJobRun(models.Model):
+    """One row per day the daily jobs ran (platform-wide); stops a second trigger on the same day repeating them."""
+    date = models.DateField(unique=True)
+    started_at = models.DateTimeField(auto_now_add=True)
+    finished_at = models.DateTimeField(null=True, blank=True)
+    result = models.JSONField(default=dict, blank=True)

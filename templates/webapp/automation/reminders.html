@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Reminders" %}{% endblock %}
+{% block heading %}{% translate "Reminders & alerts" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<div class="hr">
+<p style="color:var(--hr-soft);margin-top:-6px">{% translate "Choose how many days before each event you want to be reminded. Reminders appear in Notifications and are emailed to your team if email is on." %}</p>
+<form method="post" class="hr-card" style="max-width:860px">{% csrf_token %}
+  <div class="hr-list">{% for r in rows %}
+    <div class="hr-row" style="align-items:flex-start">
+      <span class="grow"><b>{{ r.label }}</b><small>{{ r.help }}</small></span>
+      {% if r.uses_days %}<label style="display:flex;flex-direction:column;gap:3px;font-size:12px;font-weight:600;color:var(--hr-soft)">{% translate "Days before (e.g. 15, 7, 1)" %}<input class="hr-in" style="width:170px" name="days_{{ r.key }}" value="{{ r.days }}" inputmode="numeric" pattern="[0-9, ]*"></label>{% endif %}
+      <label style="display:flex;gap:6px;align-items:center;font-weight:600;padding-top:18px"><input type="checkbox" name="email_{{ r.key }}" {% if r.email %}checked{% endif %}> {% translate "Email" %}</label>
+    </div>{% endfor %}
+  </div>
+  <p style="color:var(--hr-soft);font-size:12.5px">{% translate "0 means on the day itself." %}</p>
+  <button class="btn" type="submit">{% translate "Save" %}</button>
+</form>
+<div class="hr-card" style="max-width:860px"><h3>⏱ {% translate "Daily checks" %}</h3>
+  <p style="color:var(--hr-soft);margin-top:-4px">{% translate "The checks run automatically every night." %} {% if last_run %}{% translate "Last run" %}: <b>{{ last_run.started_at|date:"j M Y, H:i" }}</b>{% else %}<b style="color:var(--hr-bad)">{% translate "Not run yet — ask your administrator to set up the nightly job." %}</b>{% endif %}</p>
+  <form method="post">{% csrf_token %}<button class="btn btn-secondary" name="action" value="run">▶ {% translate "Run checks now" %}</button></form>
+</div>
+</div>
+{% endblock %}

@@ -46,6 +46,8 @@ services:
           name: bookpilot-redis
           type: keyvalue
           property: connectionString
+      - key: CRON_SECRET
+        generateValue: true
       - key: CELERY_TASK_ALWAYS_EAGER
         value: "True"
       # First login for the platform owner (created once by build.sh).

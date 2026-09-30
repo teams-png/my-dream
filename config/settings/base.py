@@ -239,6 +239,8 @@ X_FRAME_OPTIONS = "DENY"
 GCC_COUNTRIES = ["Qatar", "UAE", "United Arab Emirates", "Saudi Arabia", "Oman", "Kuwait", "Bahrain"]
 
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY", default="")
+# Shared secret for POST /cron/daily/ (the nightly GitHub Action sends it as X-Cron-Key).
+CRON_SECRET = env("CRON_SECRET", default="")
 STRIPE_PUBLISHABLE_KEY = env("STRIPE_PUBLISHABLE_KEY", default="")
 STRIPE_WEBHOOK_SECRET = env("STRIPE_WEBHOOK_SECRET", default="")
 

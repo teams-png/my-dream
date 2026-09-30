@@ -1,0 +1,27 @@
+name: daily-jobs
+
+# Runs BookPilot's once-a-day jobs (reminders, overdue and expiry alerts, recurring invoices,
+# the owner's daily report, budget alerts) on the live site, which has no background worker.
+# Set up once in the repository settings:
+#   Settings → Secrets and variables → Actions
+#     Variables: BOOKPILOT_URL  (e.g. https://bookpilot-web.onrender.com)
+#     Secrets:   CRON_SECRET    (the same value as CRON_SECRET in the Render environment)
+
+on:
+  schedule:
+    - cron: "30 20 * * *"   # 20:30 UTC = 23:30 Qatar / 02:00 India
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call the daily jobs URL
+        env:
+          URL: ${{ vars.BOOKPILOT_URL || 'https://bookpilot-web.onrender.com' }}
+          KEY: ${{ secrets.CRON_SECRET }}
+        run: |
+          if [ -z "$KEY" ]; then echo "CRON_SECRET is not set; skipping."; exit 0; fi
+          # the free Render service may be asleep: wake it first, then run
+          curl -s -o /dev/null --max-time 120 "$URL/login/" || true
+          curl -fsS --retry 3 --retry-delay 20 --max-time 300 -X POST -H "X-Cron-Key: $KEY" "$URL/cron/daily/"

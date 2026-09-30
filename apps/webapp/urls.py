@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -78,6 +78,8 @@ urlpatterns = [
     path("sales/orders/new/", sales_docs_views.sales_order_add, name="sales_order_add"),
     path("sales/orders/<int:order_id>/", sales_docs_views.sales_order_detail, name="sales_order_detail"),
     path("sales/deliveries/<int:delivery_id>/", sales_docs_views.delivery_note, name="delivery_note"),
+    path("cron/daily/", automation_views.cron_daily, name="cron_daily"),
+    path("settings/reminders/", automation_views.reminder_settings, name="reminder_settings"),
     path("bank/", banking_views.bank_home, name="bank_home"),
     path("bank/<int:account_id>/", banking_views.bank_account, name="bank_account"),
     path("activity-log/", banking_views.audit_log, name="company_audit_log"),

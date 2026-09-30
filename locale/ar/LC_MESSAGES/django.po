@@ -82,6 +82,10 @@ msgid "Bank & cash"
 msgstr "البنك والنقد"
 
 #: templates/base.html
+msgid "Daily report"
+msgstr "التقرير اليومي"
+
+#: templates/base.html
 msgid "Accounts & reports"
 msgstr "الحسابات والتقارير"
 
@@ -104,6 +108,14 @@ msgstr "الأصول الثابتة"
 #: templates/base.html
 msgid "Expenses"
 msgstr "المصروفات"
+
+#: templates/base.html
+msgid "Budgets"
+msgstr "الميزانيات"
+
+#: templates/base.html
+msgid "Online payments"
+msgstr "الدفع الإلكتروني"
 
 #: templates/base.html
 msgid "Billing"
@@ -156,6 +168,10 @@ msgstr "الفروع"
 #: templates/base.html
 msgid "Settings"
 msgstr "الإعدادات"
+
+#: templates/base.html
+msgid "Reminders & alerts"
+msgstr "التذكيرات والتنبيهات"
 
 #: templates/base.html
 msgid "Tax & currency"
@@ -468,6 +484,10 @@ msgstr "تثبيت BookPilot"
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية»."
+
+#: templates/webapp/_excel_button.html
+msgid "Excel"
+msgstr "إكسل"
 
 #: templates/webapp/_industry_nav.html
 msgid "Bookings"
@@ -1027,6 +1047,182 @@ msgstr "فقدت هاتفك؟ اكتب أحد رموز الاسترداد بدل
 msgid "← Back to sign in"
 msgstr "→ العودة لتسجيل الدخول"
 
+#: templates/webapp/automation/budgets.html
+msgid "Expense budgets"
+msgstr "ميزانيات المصروفات"
+
+#: templates/webapp/automation/budgets.html
+msgid "Total budget"
+msgstr "إجمالي الميزانية"
+
+#: templates/webapp/automation/budgets.html
+msgid "Spent"
+msgstr "المصروف"
+
+#: templates/webapp/automation/budgets.html
+msgid "Over budget"
+msgstr "تجاوز الميزانية"
+
+#: templates/webapp/automation/budgets.html
+msgid "of"
+msgstr "من"
+
+#: templates/webapp/automation/budgets.html
+msgid "over by"
+msgstr "تجاوز بمقدار"
+
+#: templates/webapp/automation/budgets.html
+msgid "left"
+msgstr "متبقية"
+
+#: templates/webapp/automation/budgets.html
+msgid "Monthly budget"
+msgstr "الميزانية الشهرية"
+
+#: templates/webapp/automation/budgets.html
+msgid "Warn at %"
+msgstr "التنبيه عند %"
+
+#: templates/webapp/automation/budgets.html
+msgid "Add expense categories first."
+msgstr "أضف فئات المصروفات أولاً."
+
+#: templates/webapp/automation/budgets.html
+msgid ""
+"You get a notification (and email) when a category reaches the warning level"
+" and again when it goes over. Leave empty for no budget."
+msgstr ""
+"ستصلك إشعارات (وبريد إلكتروني) عندما تبلغ الفئة مستوى التنبيه ومرة أخرى عند "
+"تجاوزها. اتركه فارغاً لعدم تحديد ميزانية."
+
+#: templates/webapp/automation/budgets.html
+msgid "Save budgets"
+msgstr "حفظ الميزانيات"
+
+#: templates/webapp/automation/daily_report.html
+msgid "bills"
+msgstr "فواتير"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Money received"
+msgstr "المبالغ المستلمة"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Profit today"
+msgstr "ربح اليوم"
+
+#: templates/webapp/automation/daily_report.html
+msgid "This month: sales / profit"
+msgstr "هذا الشهر: المبيعات / الربح"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Cash / bank"
+msgstr "النقد / البنك"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Customers owe (overdue)"
+msgstr "مستحقات العملاء (المتأخرة)"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Supplier bills due in 7 days"
+msgstr "فواتير الموردين المستحقة خلال 7 أيام"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Low stock items"
+msgstr "أصناف منخفضة المخزون"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Top items"
+msgstr "الأصناف الأكثر مبيعاً"
+
+#: templates/webapp/automation/daily_report.html
+msgid "No sales on this day."
+msgstr "لا توجد مبيعات في هذا اليوم."
+
+#: templates/webapp/automation/daily_report.html
+msgid "Send on WhatsApp"
+msgstr "إرسال عبر واتساب"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Email it now"
+msgstr "أرسله بالبريد الآن"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Every night"
+msgstr "كل ليلة"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Email me this report every night"
+msgstr "أرسل لي هذا التقرير بالبريد كل ليلة"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Also send to (emails, comma separated)"
+msgstr "أرسل أيضاً إلى (بريد إلكتروني، مفصولة بفواصل)"
+
+#: templates/webapp/automation/daily_report.html
+msgid "WhatsApp number for the share button"
+msgstr "رقم واتساب لزر المشاركة"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Owners always receive it:"
+msgstr "يستلمه المالكون دائماً:"
+
+#: templates/webapp/automation/daily_report.html
+msgid ""
+"Automatic WhatsApp sending needs a WhatsApp Business API account; until then"
+" use the share button."
+msgstr ""
+"الإرسال التلقائي عبر واتساب يتطلب حساب WhatsApp Business API؛ حتى ذلك الحين "
+"استخدم زر المشاركة."
+
+#: templates/webapp/automation/daily_report.html
+msgid "Save"
+msgstr "حفظ"
+
+#: templates/webapp/automation/reminders.html
+msgid "Reminders"
+msgstr "التذكيرات"
+
+#: templates/webapp/automation/reminders.html
+msgid ""
+"Choose how many days before each event you want to be reminded. Reminders "
+"appear in Notifications and are emailed to your team if email is on."
+msgstr ""
+"اختر قبل كم يوماً من كل حدث تريد التذكير. تظهر التذكيرات في الإشعارات وتُرسل"
+" لفريقك بالبريد إذا كان البريد مفعلاً."
+
+#: templates/webapp/automation/reminders.html
+msgid "Days before (e.g. 15, 7, 1)"
+msgstr "عدد الأيام قبل (مثلاً 15، 7، 1)"
+
+#: templates/webapp/automation/reminders.html
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: templates/webapp/automation/reminders.html
+msgid "0 means on the day itself."
+msgstr "0 تعني في نفس اليوم."
+
+#: templates/webapp/automation/reminders.html
+msgid "Daily checks"
+msgstr "الفحوصات اليومية"
+
+#: templates/webapp/automation/reminders.html
+msgid "The checks run automatically every night."
+msgstr "تعمل الفحوصات تلقائياً كل ليلة."
+
+#: templates/webapp/automation/reminders.html
+msgid "Last run"
+msgstr "آخر تشغيل"
+
+#: templates/webapp/automation/reminders.html
+msgid "Not run yet — ask your administrator to set up the nightly job."
+msgstr "لم تعمل بعد — اطلب من المسؤول إعداد المهمة الليلية."
+
+#: templates/webapp/automation/reminders.html
+msgid "Run checks now"
+msgstr "شغّل الفحوصات الآن"
+
 #: templates/webapp/banking/account.html
 msgid "Balance in the books"
 msgstr "الرصيد في الدفاتر"
@@ -1133,10 +1329,6 @@ msgstr "لـ / من"
 #: templates/webapp/banking/home.html
 msgid "e.g. Owner added capital, loan received, bank charges"
 msgstr "مثلاً رأس مال من المالك، قرض مستلم، رسوم بنكية"
-
-#: templates/webapp/banking/home.html
-msgid "Save"
-msgstr "حفظ"
 
 #: templates/webapp/banking/home.html
 msgid "Transfer between accounts"
@@ -1333,10 +1525,6 @@ msgstr "الشركة"
 #: templates/webapp/crm/leads.html
 msgid "Phone"
 msgstr "الهاتف"
-
-#: templates/webapp/crm/leads.html
-msgid "Email"
-msgstr "البريد الإلكتروني"
 
 #: templates/webapp/crm/leads.html
 msgid "Came from"
@@ -1663,10 +1851,6 @@ msgid "Free trial —"
 msgstr "تجربة مجانية —"
 
 #: templates/webapp/dashboard.html
-msgid "left"
-msgstr "متبقية"
-
-#: templates/webapp/dashboard.html
 msgid "View billing →"
 msgstr "عرض الفواتير ←"
 
@@ -1685,10 +1869,6 @@ msgstr "إيرادات هذا الشهر"
 #: templates/webapp/dashboard.html
 msgid "Outstanding dues"
 msgstr "المستحقات"
-
-#: templates/webapp/dashboard.html
-msgid "Low stock items"
-msgstr "أصناف منخفضة المخزون"
 
 #: templates/webapp/dashboard.html
 msgid "Business overview"
@@ -2810,10 +2990,6 @@ msgstr "لم يُدفع بعد"
 msgid "Advance balance remaining"
 msgstr "رصيد السلفة المتبقي"
 
-#: templates/webapp/hr/payslip.html
-msgid "Send on WhatsApp"
-msgstr "إرسال عبر واتساب"
-
 #: templates/webapp/hr/settings.html
 msgid "Weekly off days"
 msgstr "أيام العطلة الأسبوعية"
@@ -3733,6 +3909,14 @@ msgid "Download PDF"
 msgstr "تنزيل PDF"
 
 #: templates/webapp/invoice_pdf.html
+msgid "My account"
+msgstr "حسابي"
+
+#: templates/webapp/invoice_pdf.html
+msgid "Pay now"
+msgstr "ادفع الآن"
+
+#: templates/webapp/invoice_pdf.html
 msgid "VAT / Tax No:"
 msgstr "الرقم الضريبي:"
 
@@ -4134,6 +4318,145 @@ msgstr "الشعار والعنوان والضريبة والعملة."
 #: templates/webapp/onboarding/wizard.html
 msgid "Sent to the printer."
 msgstr "أُرسل إلى الطابعة."
+
+#: templates/webapp/pay/portal.html
+msgid "Account statement"
+msgstr "كشف الحساب"
+
+#: templates/webapp/pay/portal.html
+msgid "Credit on your account"
+msgstr "رصيد دائن في حسابك"
+
+#: templates/webapp/pay/portal.html
+msgid "Unpaid bills"
+msgstr "فواتير غير مدفوعة"
+
+#: templates/webapp/pay/portal.html
+msgid "Bill"
+msgstr "فاتورة"
+
+#: templates/webapp/pay/portal.html
+msgid "Due date"
+msgstr "تاريخ الاستحقاق"
+
+#: templates/webapp/pay/portal.html
+msgid "Statement"
+msgstr "كشف الحساب"
+
+#: templates/webapp/pay/portal.html
+msgid "Recent bills"
+msgstr "الفواتير الأخيرة"
+
+#: templates/webapp/pay/portal.html
+msgid "No bills yet."
+msgstr "لا توجد فواتير بعد."
+
+#: templates/webapp/pay/settings.html
+msgid "Let customers pay your bills online"
+msgstr "اسمح للعملاء بدفع فواتيرك إلكترونياً"
+
+#: templates/webapp/pay/settings.html
+msgid ""
+"Customers see a Pay now button on the bill link you send them and in their "
+"account page. Money goes straight to your own merchant account, and the bill"
+" is marked paid automatically."
+msgstr ""
+"يرى العملاء زر «ادفع الآن» في رابط الفاتورة المرسل وفي صفحة حسابهم. تذهب "
+"الأموال مباشرة إلى حساب التاجر الخاص بك، وتُسجَّل الفاتورة مدفوعة تلقائياً."
+
+#: templates/webapp/pay/settings.html
+msgid "Payment gateway"
+msgstr "بوابة الدفع"
+
+#: templates/webapp/pay/settings.html
+msgid "Off (show payment details only)"
+msgstr "متوقف (عرض بيانات الدفع فقط)"
+
+#: templates/webapp/pay/settings.html
+msgid "Money lands in"
+msgstr "تُودع الأموال في"
+
+#: templates/webapp/pay/settings.html
+msgid "Key ID"
+msgstr "معرّف المفتاح"
+
+#: templates/webapp/pay/settings.html
+msgid "Client ID"
+msgstr "معرّف العميل"
+
+#: templates/webapp/pay/settings.html
+msgid "Key secret"
+msgstr "المفتاح السري"
+
+#: templates/webapp/pay/settings.html
+msgid "saved — leave blank to keep"
+msgstr "محفوظ — اتركه فارغاً للإبقاء عليه"
+
+#: templates/webapp/pay/settings.html
+msgid "Webhook key"
+msgstr "مفتاح الويب هوك"
+
+#: templates/webapp/pay/settings.html
+msgid "Test mode (sandbox — no real money)"
+msgstr "وضع الاختبار (بدون أموال حقيقية)"
+
+#: templates/webapp/pay/settings.html
+msgid "Other ways to pay (bank account, IBAN, UPI ID, Fawran…)"
+msgstr "طرق دفع أخرى (حساب بنكي، IBAN، UPI، فورًا…)"
+
+#: templates/webapp/pay/settings.html
+msgid "Customers can open their account page (bills, statement, pay)"
+msgstr "يمكن للعملاء فتح صفحة حسابهم (الفواتير، الكشف، الدفع)"
+
+#: templates/webapp/pay/settings.html
+msgid "Only the business owner can change payment settings."
+msgstr "فقط مالك النشاط يمكنه تغيير إعدادات الدفع."
+
+#: templates/webapp/pay/settings.html
+msgid "Set up in your gateway account"
+msgstr "الإعداد في حساب بوابة الدفع"
+
+#: templates/webapp/pay/settings.html
+msgid "in the SkipCash merchant portal, set these two addresses:"
+msgstr "في بوابة تجار SkipCash، أدخل هذين العنوانين:"
+
+#: templates/webapp/pay/settings.html
+msgid "Return URL"
+msgstr "رابط العودة"
+
+#: templates/webapp/pay/settings.html
+msgid "Webhook URL"
+msgstr "رابط الويب هوك"
+
+#: templates/webapp/pay/settings.html
+msgid ""
+"only the Key ID and Key secret are needed; payment links come back here by "
+"themselves."
+msgstr "يكفي معرّف المفتاح والمفتاح السري؛ روابط الدفع تعود إلى هنا تلقائياً."
+
+#: templates/webapp/pay/settings.html
+msgid "Pay now is live"
+msgstr "الدفع الإلكتروني مفعّل"
+
+#: templates/webapp/pay/settings.html
+msgid "Keys missing"
+msgstr "المفاتيح ناقصة"
+
+#: templates/webapp/pay/settings.html
+msgid "Off"
+msgstr "متوقف"
+
+#: templates/webapp/pay/settings.html
+msgid "Online payments received"
+msgstr "الدفعات الإلكترونية المستلمة"
+
+#: templates/webapp/pay/settings.html
+msgid "Account balance"
+msgstr "رصيد الحساب"
+
+#: templates/webapp/pay/settings.html
+msgid "No online payments yet."
+msgstr "لا توجد دفعات إلكترونية بعد."
 
 #: templates/webapp/pos.html
 msgid "Point of Sale"
@@ -5170,10 +5493,6 @@ msgid "No purchase orders yet."
 msgstr "لا أوامر شراء بعد."
 
 #: templates/webapp/purchase_docs/purchase_detail.html
-msgid "Bill"
-msgstr "فاتورة"
-
-#: templates/webapp/purchase_docs/purchase_detail.html
 msgid "Supplier bill"
 msgstr "فاتورة المورد"
 
@@ -5237,9 +5556,29 @@ msgstr "شراء جديد"
 msgid "No purchases yet."
 msgstr "لا مشتريات بعد."
 
+#: templates/webapp/rbac/_member_fields.html
+msgid "Owners always see every branch."
+msgstr "المالكون يرون جميع الفروع دائماً."
+
+#: templates/webapp/rbac/change_role.html
+msgid "Role & branches"
+msgstr "الدور والفروع"
+
+#: templates/webapp/rbac/members_list.html
+msgid "All branches"
+msgstr "جميع الفروع"
+
 #: templates/webapp/receivables/customer.html
 msgid "Send reminder"
 msgstr "إرسال تذكير"
+
+#: templates/webapp/receivables/customer.html
+msgid "Link copied"
+msgstr "تم نسخ الرابط"
+
+#: templates/webapp/receivables/customer.html
+msgid "Copy customer portal link"
+msgstr "نسخ رابط بوابة العميل"
 
 #: templates/webapp/receivables/customer.html
 msgid "Print statement"
@@ -5254,10 +5593,6 @@ msgid "Balance owed"
 msgstr "الرصيد المستحق"
 
 #: templates/webapp/receivables/customer.html
-msgid "Unpaid bills"
-msgstr "فواتير غير مدفوعة"
-
-#: templates/webapp/receivables/customer.html
 msgid "Credit limit"
 msgstr "حد الائتمان"
 
@@ -5268,10 +5603,6 @@ msgstr "بلا حد"
 #: templates/webapp/receivables/customer.html
 msgid "Over the limit"
 msgstr "تجاوز الحد"
-
-#: templates/webapp/receivables/customer.html
-msgid "Statement"
-msgstr "كشف الحساب"
 
 #: templates/webapp/receivables/customer.html
 msgid "Statement of account"
@@ -5464,10 +5795,6 @@ msgstr "مبيعات اليوم ·"
 #: templates/webapp/restaurant/dashboard.html
 msgid "bill"
 msgstr "فاتورة"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "bills"
-msgstr "فواتير"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Open orders"
@@ -7064,6 +7391,70 @@ msgstr "آجل (مورد)"
 msgid "Already owned (no payment now)"
 msgstr "مملوك مسبقًا (بدون دفع الآن)"
 
+#: apps/notifications/rules.py
+msgid "Customer bills due"
+msgstr "فواتير العملاء المستحقة"
+
+#: apps/notifications/rules.py
+msgid "Remind before a customer's bill is due"
+msgstr "التذكير قبل استحقاق فاتورة العميل"
+
+#: apps/notifications/rules.py
+msgid "Supplier bills due"
+msgstr "فواتير الموردين المستحقة"
+
+#: apps/notifications/rules.py
+msgid "Remind before you must pay a supplier"
+msgstr "التذكير قبل موعد الدفع للمورد"
+
+#: apps/notifications/rules.py
+msgid "Stock expiring"
+msgstr "مخزون قارب على الانتهاء"
+
+#: apps/notifications/rules.py
+msgid "Batches with stock that will expire"
+msgstr "دفعات بها مخزون ستنتهي صلاحيتها"
+
+#: apps/notifications/rules.py
+msgid "Memberships ending"
+msgstr "عضويات على وشك الانتهاء"
+
+#: apps/notifications/rules.py
+msgid "Gym / club memberships about to end"
+msgstr "عضويات النادي على وشك الانتهاء"
+
+#: apps/notifications/rules.py
+msgid "Your BookPilot plan"
+msgstr "خطة BookPilot الخاصة بك"
+
+#: apps/notifications/rules.py
+msgid "Before your own subscription ends"
+msgstr "قبل انتهاء اشتراكك"
+
+#: apps/notifications/rules.py
+msgid "Overdue bills"
+msgstr "الفواتير المتأخرة"
+
+#: apps/notifications/rules.py
+msgid "Customer or supplier bills past their due date"
+msgstr "فواتير العملاء أو الموردين بعد تاريخ الاستحقاق"
+
+#: apps/notifications/rules.py
+msgid "Low stock"
+msgstr "مخزون منخفض"
+
+#: apps/notifications/rules.py
+msgid "Items at or below their reorder level"
+msgstr "أصناف عند حد إعادة الطلب أو أقل"
+
+#: apps/sales/allocation.py
+msgid "This invoice is already paid."
+msgstr "هذه الفاتورة مدفوعة مسبقاً."
+
+#: apps/sales/allocation.py
+msgid "The amount is more than the invoice balance."
+msgstr "المبلغ أكبر من رصيد الفاتورة."
+
 #: apps/verticals/restaurant/models.py
 msgid "Booked"
 msgstr "محجوز"
@@ -7149,6 +7540,18 @@ msgid "All time"
 msgstr "كل الأوقات"
 
 #: apps/webapp/accounts_views.py
+msgid "Balance sheet"
+msgstr "الميزانية العمومية"
+
+#: apps/webapp/accounts_views.py
+msgid "Liabilities + equity"
+msgstr "الخصوم + حقوق الملكية"
+
+#: apps/webapp/accounts_views.py
+msgid "Trial balance"
+msgstr "ميزان المراجعة"
+
+#: apps/webapp/accounts_views.py
 msgid "Enter a code, a name and a type."
 msgstr "أدخل الرمز والاسم والنوع."
 
@@ -7167,6 +7570,10 @@ msgstr "لا يمكن إيقاف حسابات النظام."
 #: apps/webapp/accounts_views.py
 msgid "You don't have permission to do that."
 msgstr "ليس لديك صلاحية لذلك."
+
+#: apps/webapp/accounts_views.py
+msgid "Entry"
+msgstr "القيد"
 
 #: apps/webapp/accounts_views.py
 msgid "Journal entry cancelled."
@@ -7199,6 +7606,38 @@ msgstr "يجب أن يتساوى المدين والدائن."
 #: apps/webapp/accounts_views.py
 msgid "Journal entry saved."
 msgstr "تم حفظ القيد."
+
+#: apps/webapp/automation_views.py
+msgid "Checks finished. New reminders are in Notifications."
+msgstr "انتهت الفحوصات. التذكيرات الجديدة في الإشعارات."
+
+#: apps/webapp/automation_views.py
+msgid "Reminder settings saved."
+msgstr "تم حفظ إعدادات التذكير."
+
+#: apps/webapp/automation_views.py
+msgid "Report sent to %(count)s email address(es) and saved in Notifications."
+msgstr "تم إرسال التقرير إلى %(count)s بريد إلكتروني وحفظه في الإشعارات."
+
+#: apps/webapp/automation_views.py
+msgid "Report saved."
+msgstr "تم حفظ التقرير."
+
+#: apps/webapp/automation_views.py
+msgid "Daily report settings saved."
+msgstr "تم حفظ إعدادات التقرير اليومي."
+
+#: apps/webapp/automation_views.py
+msgid "%(count)s budgets saved."
+msgstr "تم حفظ %(count)s ميزانية."
+
+#: apps/webapp/automation_views.py
+msgid "Left"
+msgstr "المتبقي"
+
+#: apps/webapp/automation_views.py
+msgid "% used"
+msgstr "% مستخدم"
 
 #: apps/webapp/banking_views.py
 msgid "Enter a name for the account."
@@ -7484,6 +7923,11 @@ msgstr "تمت إضافة الأصل وتسجيله في الدفاتر."
 msgid "Asset disposed and the gain or loss recorded."
 msgstr "تم استبعاد الأصل وتسجيل الربح أو الخسارة."
 
+#: apps/webapp/forms.py
+msgid ""
+"Tick the branches this person works at. Leave all unticked for every branch."
+msgstr "حدد الفروع التي يعمل بها هذا الشخص. اترك الكل دون تحديد لجميع الفروع."
+
 #: apps/webapp/gold_views.py
 msgid "%(count)s rates saved; %(changed)s item prices updated."
 msgstr "تم حفظ %(count)s أسعار؛ وتحديث أسعار %(changed)s أصناف."
@@ -7638,6 +8082,26 @@ msgid "Reversed payroll removed. You can calculate it again."
 msgstr "تمت إزالة الرواتب المعكوسة. يمكنك احتسابها مجدداً."
 
 #: apps/webapp/hr_views.py
+msgid "Job"
+msgstr "الوظيفة"
+
+#: apps/webapp/hr_views.py
+msgid "Overtime hours"
+msgstr "ساعات العمل الإضافي"
+
+#: apps/webapp/hr_views.py
+msgid "Absent days"
+msgstr "أيام الغياب"
+
+#: apps/webapp/hr_views.py
+msgid "Absence deduction"
+msgstr "خصم الغياب"
+
+#: apps/webapp/hr_views.py
+msgid "Advance recovered"
+msgstr "السلفة المستردة"
+
+#: apps/webapp/hr_views.py
 msgid "Document removed."
 msgstr "تم حذف المستند."
 
@@ -7668,6 +8132,29 @@ msgstr "تم تخطي الإعداد. يمكنك العودة إليه في أي
 #: apps/webapp/onboarding_views.py
 msgid "Added %(items)s items and %(tables)s tables."
 msgstr "تمت إضافة %(items)s صنفًا و%(tables)s طاولة."
+
+#: apps/webapp/pay_views.py
+msgid "Payment received — thank you!"
+msgstr "تم استلام الدفعة — شكراً لك!"
+
+#: apps/webapp/pay_views.py
+msgid "The payment was not completed. No money was taken."
+msgstr "لم تكتمل عملية الدفع. لم يتم خصم أي مبلغ."
+
+#: apps/webapp/pay_views.py
+msgid "Your payment is being confirmed. Refresh this page in a minute."
+msgstr "جارٍ تأكيد دفعتك. حدّث هذه الصفحة بعد دقيقة."
+
+#: apps/webapp/pay_views.py
+msgid ""
+"Saved, but some keys are missing — the Pay now button stays hidden until "
+"they are filled in."
+msgstr ""
+"تم الحفظ، لكن بعض المفاتيح ناقصة — سيبقى زر «ادفع الآن» مخفياً حتى تكتمل."
+
+#: apps/webapp/pay_views.py
+msgid "Payment settings saved."
+msgstr "تم حفظ إعدادات الدفع."
 
 #: apps/webapp/property_views.py
 msgid "Choose a tenant or type a new tenant's name."
@@ -7762,8 +8249,24 @@ msgid "Amount due: %(cur)s %(amount)s"
 msgstr "المبلغ المستحق: %(cur)s %(amount)s"
 
 #: apps/webapp/receivables_views.py
+msgid "View your bills and pay online: %(url)s"
+msgstr "اعرض فواتيرك وادفع إلكترونياً: %(url)s"
+
+#: apps/webapp/receivables_views.py
 msgid "Thank you."
 msgstr "شكراً لك."
+
+#: apps/webapp/receivables_views.py
+msgid "Open bills"
+msgstr "الفواتير المفتوحة"
+
+#: apps/webapp/receivables_views.py
+msgid "Oldest (days overdue)"
+msgstr "الأقدم (أيام التأخير)"
+
+#: apps/webapp/receivables_views.py
+msgid "Receivables"
+msgstr "المستحقات"
 
 #: apps/webapp/receivables_views.py
 msgid "Note saved."
@@ -7780,14 +8283,6 @@ msgstr "أدخل أرقاماً صحيحة."
 #: apps/webapp/receivables_views.py
 msgid "Enter the amount received."
 msgstr "أدخل المبلغ المستلم."
-
-#: apps/webapp/receivables_views.py
-msgid "This invoice is already paid."
-msgstr "هذه الفاتورة مدفوعة مسبقاً."
-
-#: apps/webapp/receivables_views.py
-msgid "The amount is more than the invoice balance."
-msgstr "المبلغ أكبر من رصيد الفاتورة."
 
 #: apps/webapp/receivables_views.py
 msgid "Payment of %(amount)s received from %(name)s."
@@ -7898,6 +8393,14 @@ msgid "Correction"
 msgstr "تصحيح"
 
 #: apps/webapp/stock_views.py
+msgid "Reorder level"
+msgstr "حد إعادة الطلب"
+
+#: apps/webapp/stock_views.py
+msgid "Stock value"
+msgstr "قيمة المخزون"
+
+#: apps/webapp/stock_views.py
 msgid "Choose an item, a location and a quantity."
 msgstr "اختر صنفاً وموقعاً وكمية."
 
@@ -7964,6 +8467,10 @@ msgstr "لا يزال تعذّر تسجيل %(number)s: %(error)s"
 #: apps/webapp/views.py
 msgid "Marked as handled."
 msgstr "تم التعليم كمُعالج."
+
+#: apps/webapp/views.py
+msgid "Role and branches updated."
+msgstr "تم تحديث الدور والفروع."
 
 #: apps/webapp/views.py
 msgid "That plan can't be selected."

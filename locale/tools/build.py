@@ -16,7 +16,7 @@ from ar import AR  # noqa: E402
 from ml import ML  # noqa: E402
 
 PATTERN = re.compile(r"{%\s*translate\s+([\"'])(.*?)\1(?:\s+as\s+\w+)?\s*%}")
-PY_PATTERN = re.compile(r"""(?:\b_|\bgettext_lazy)\(\s*(["'])(.+?)\1\s*[,)]""")
+PY_PATTERN = re.compile(r"""(?:\b_l?|\bgettext_lazy)\(\s*(["'])(.+?)\1\s*[,)]""")
 
 
 def msgids():

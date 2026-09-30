@@ -82,6 +82,10 @@ msgid "Bank & cash"
 msgstr "ബാങ്കും ക്യാഷും"
 
 #: templates/base.html
+msgid "Daily report"
+msgstr "ദിവസ റിപ്പോർട്ട്"
+
+#: templates/base.html
 msgid "Accounts & reports"
 msgstr "അക്കൗണ്ട്സ് & റിപ്പോർട്ടുകൾ"
 
@@ -104,6 +108,14 @@ msgstr "സ്ഥിര ആസ്തികൾ"
 #: templates/base.html
 msgid "Expenses"
 msgstr "ചെലവുകൾ"
+
+#: templates/base.html
+msgid "Budgets"
+msgstr "ബജറ്റുകൾ"
+
+#: templates/base.html
+msgid "Online payments"
+msgstr "ഓൺലൈൻ പേയ്‌മെന്റ്"
 
 #: templates/base.html
 msgid "Billing"
@@ -156,6 +168,10 @@ msgstr "ബ്രാഞ്ചുകൾ"
 #: templates/base.html
 msgid "Settings"
 msgstr "സെറ്റിംഗ്സ്"
+
+#: templates/base.html
+msgid "Reminders & alerts"
+msgstr "ഓർമ്മപ്പെടുത്തലുകളും അലേർട്ടുകളും"
 
 #: templates/base.html
 msgid "Tax & currency"
@@ -468,6 +484,10 @@ msgstr "BookPilot ഇൻസ്റ്റാൾ ചെയ്യുക"
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "Share ബട്ടൺ അമർത്തി “Add to Home Screen” തിരഞ്ഞെടുക്കുക."
+
+#: templates/webapp/_excel_button.html
+msgid "Excel"
+msgstr "എക്സൽ"
 
 #: templates/webapp/_industry_nav.html
 msgid "Bookings"
@@ -1029,6 +1049,184 @@ msgstr "ഫോൺ നഷ്ടപ്പെട്ടോ? പകരം ഒരു �
 msgid "← Back to sign in"
 msgstr "← ലോഗിനിലേക്ക് തിരികെ"
 
+#: templates/webapp/automation/budgets.html
+msgid "Expense budgets"
+msgstr "ചെലവ് ബജറ്റുകൾ"
+
+#: templates/webapp/automation/budgets.html
+msgid "Total budget"
+msgstr "ആകെ ബജറ്റ്"
+
+#: templates/webapp/automation/budgets.html
+msgid "Spent"
+msgstr "ചെലവാക്കിയത്"
+
+#: templates/webapp/automation/budgets.html
+msgid "Over budget"
+msgstr "ബജറ്റ് കവിഞ്ഞു"
+
+#: templates/webapp/automation/budgets.html
+msgid "of"
+msgstr "ൽ"
+
+#: templates/webapp/automation/budgets.html
+msgid "over by"
+msgstr "കവിഞ്ഞത്"
+
+#: templates/webapp/automation/budgets.html
+msgid "left"
+msgstr "ബാക്കി"
+
+#: templates/webapp/automation/budgets.html
+msgid "Monthly budget"
+msgstr "മാസ ബജറ്റ്"
+
+#: templates/webapp/automation/budgets.html
+msgid "Warn at %"
+msgstr "മുന്നറിയിപ്പ് % ൽ"
+
+#: templates/webapp/automation/budgets.html
+msgid "Add expense categories first."
+msgstr "ആദ്യം ചെലവ് വിഭാഗങ്ങൾ ചേർക്കുക."
+
+#: templates/webapp/automation/budgets.html
+msgid ""
+"You get a notification (and email) when a category reaches the warning level"
+" and again when it goes over. Leave empty for no budget."
+msgstr ""
+"ഒരു വിഭാഗം മുന്നറിയിപ്പ് നിലയിൽ എത്തുമ്പോഴും ബജറ്റ് കവിയുമ്പോഴും അറിയിപ്പ് "
+"(ഇമെയിലും) ലഭിക്കും. ബജറ്റ് വേണ്ടെങ്കിൽ ഒഴിച്ചിടുക."
+
+#: templates/webapp/automation/budgets.html
+msgid "Save budgets"
+msgstr "ബജറ്റുകൾ സേവ് ചെയ്യുക"
+
+#: templates/webapp/automation/daily_report.html
+msgid "bills"
+msgstr "ബില്ലുകൾ"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Money received"
+msgstr "ലഭിച്ച പണം"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Profit today"
+msgstr "ഇന്നത്തെ ലാഭം"
+
+#: templates/webapp/automation/daily_report.html
+msgid "This month: sales / profit"
+msgstr "ഈ മാസം: വിൽപ്പന / ലാഭം"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Cash / bank"
+msgstr "ക്യാഷ് / ബാങ്ക്"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Customers owe (overdue)"
+msgstr "കസ്റ്റമർമാർ തരാനുള്ളത് (കാലാവധി കഴിഞ്ഞത്)"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Supplier bills due in 7 days"
+msgstr "7 ദിവസത്തിനകം അടയ്ക്കേണ്ട സപ്ലയർ ബില്ലുകൾ"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Low stock items"
+msgstr "സ്റ്റോക്ക് കുറഞ്ഞ ഐറ്റങ്ങൾ"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Top items"
+msgstr "കൂടുതൽ വിറ്റ ഇനങ്ങൾ"
+
+#: templates/webapp/automation/daily_report.html
+msgid "No sales on this day."
+msgstr "ഈ ദിവസം വിൽപ്പനയില്ല."
+
+#: templates/webapp/automation/daily_report.html
+msgid "Send on WhatsApp"
+msgstr "WhatsApp-ൽ അയയ്ക്കുക"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Email it now"
+msgstr "ഇപ്പോൾ ഇമെയിൽ ചെയ്യുക"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Every night"
+msgstr "എല്ലാ രാത്രിയും"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Email me this report every night"
+msgstr "ഈ റിപ്പോർട്ട് എല്ലാ രാത്രിയും എനിക്ക് ഇമെയിൽ ചെയ്യുക"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Also send to (emails, comma separated)"
+msgstr "ഇവർക്കും അയയ്ക്കുക (ഇമെയിലുകൾ, കോമ ഇട്ട്)"
+
+#: templates/webapp/automation/daily_report.html
+msgid "WhatsApp number for the share button"
+msgstr "ഷെയർ ബട്ടണിനുള്ള വാട്സ്ആപ്പ് നമ്പർ"
+
+#: templates/webapp/automation/daily_report.html
+msgid "Owners always receive it:"
+msgstr "ഉടമകൾക്ക് എപ്പോഴും ലഭിക്കും:"
+
+#: templates/webapp/automation/daily_report.html
+msgid ""
+"Automatic WhatsApp sending needs a WhatsApp Business API account; until then"
+" use the share button."
+msgstr ""
+"സ്വയം വാട്സ്ആപ്പ് അയയ്ക്കാൻ WhatsApp Business API അക്കൗണ്ട് വേണം; അതുവരെ "
+"ഷെയർ ബട്ടൺ ഉപയോഗിക്കുക."
+
+#: templates/webapp/automation/daily_report.html
+msgid "Save"
+msgstr "സേവ് ചെയ്യുക"
+
+#: templates/webapp/automation/reminders.html
+msgid "Reminders"
+msgstr "ഓർമ്മപ്പെടുത്തലുകൾ"
+
+#: templates/webapp/automation/reminders.html
+msgid ""
+"Choose how many days before each event you want to be reminded. Reminders "
+"appear in Notifications and are emailed to your team if email is on."
+msgstr ""
+"ഓരോ കാര്യത്തിനും എത്ര ദിവസം മുമ്പ് ഓർമ്മപ്പെടുത്തണമെന്ന് തിരഞ്ഞെടുക്കുക. "
+"ഓർമ്മപ്പെടുത്തലുകൾ അറിയിപ്പുകളിൽ കാണും, ഇമെയിൽ ഓണാണെങ്കിൽ ടീമിന് ഇമെയിലും "
+"ലഭിക്കും."
+
+#: templates/webapp/automation/reminders.html
+msgid "Days before (e.g. 15, 7, 1)"
+msgstr "എത്ര ദിവസം മുമ്പ് (ഉദാ: 15, 7, 1)"
+
+#: templates/webapp/automation/reminders.html
+msgid "Email"
+msgstr "ഇമെയിൽ"
+
+#: templates/webapp/automation/reminders.html
+msgid "0 means on the day itself."
+msgstr "0 എന്നാൽ അന്നേ ദിവസം തന്നെ."
+
+#: templates/webapp/automation/reminders.html
+msgid "Daily checks"
+msgstr "ദിവസേനയുള്ള പരിശോധനകൾ"
+
+#: templates/webapp/automation/reminders.html
+msgid "The checks run automatically every night."
+msgstr "പരിശോധനകൾ എല്ലാ രാത്രിയും സ്വയം നടക്കും."
+
+#: templates/webapp/automation/reminders.html
+msgid "Last run"
+msgstr "അവസാനം നടന്നത്"
+
+#: templates/webapp/automation/reminders.html
+msgid "Not run yet — ask your administrator to set up the nightly job."
+msgstr ""
+"ഇതുവരെ നടന്നിട്ടില്ല — രാത്രി ജോലി സജ്ജമാക്കാൻ അഡ്മിനിസ്ട്രേറ്ററോട് പറയുക."
+
+#: templates/webapp/automation/reminders.html
+msgid "Run checks now"
+msgstr "ഇപ്പോൾ പരിശോധിക്കുക"
+
 #: templates/webapp/banking/account.html
 msgid "Balance in the books"
 msgstr "പുസ്തകത്തിലെ ബാലൻസ്"
@@ -1136,10 +1334,6 @@ msgstr "എന്തിന് / എവിടെ നിന്ന്"
 #: templates/webapp/banking/home.html
 msgid "e.g. Owner added capital, loan received, bank charges"
 msgstr "ഉദാ. ഉടമ മൂലധനം ചേർത്തു, ലോൺ ലഭിച്ചു, ബാങ്ക് ചാർജ്"
-
-#: templates/webapp/banking/home.html
-msgid "Save"
-msgstr "സേവ് ചെയ്യുക"
 
 #: templates/webapp/banking/home.html
 msgid "Transfer between accounts"
@@ -1336,10 +1530,6 @@ msgstr "കമ്പനി"
 #: templates/webapp/crm/leads.html
 msgid "Phone"
 msgstr "ഫോൺ"
-
-#: templates/webapp/crm/leads.html
-msgid "Email"
-msgstr "ഇമെയിൽ"
 
 #: templates/webapp/crm/leads.html
 msgid "Came from"
@@ -1666,10 +1856,6 @@ msgid "Free trial —"
 msgstr "സൗജന്യ ട്രയൽ —"
 
 #: templates/webapp/dashboard.html
-msgid "left"
-msgstr "ബാക്കി"
-
-#: templates/webapp/dashboard.html
 msgid "View billing →"
 msgstr "ബില്ലിംഗ് കാണുക →"
 
@@ -1688,10 +1874,6 @@ msgstr "ഈ മാസത്തെ വരുമാനം"
 #: templates/webapp/dashboard.html
 msgid "Outstanding dues"
 msgstr "കുടിശ്ശിക"
-
-#: templates/webapp/dashboard.html
-msgid "Low stock items"
-msgstr "സ്റ്റോക്ക് കുറഞ്ഞ ഐറ്റങ്ങൾ"
 
 #: templates/webapp/dashboard.html
 msgid "Business overview"
@@ -2826,10 +3008,6 @@ msgstr "ഇതുവരെ നൽകിയിട്ടില്ല"
 msgid "Advance balance remaining"
 msgstr "ബാക്കി അഡ്വാൻസ്"
 
-#: templates/webapp/hr/payslip.html
-msgid "Send on WhatsApp"
-msgstr "WhatsApp-ൽ അയയ്ക്കുക"
-
 #: templates/webapp/hr/settings.html
 msgid "Weekly off days"
 msgstr "ആഴ്ചയിലെ അവധി ദിവസങ്ങൾ"
@@ -3762,6 +3940,14 @@ msgid "Download PDF"
 msgstr "PDF ഡൗൺലോഡ്"
 
 #: templates/webapp/invoice_pdf.html
+msgid "My account"
+msgstr "എന്റെ അക്കൗണ്ട്"
+
+#: templates/webapp/invoice_pdf.html
+msgid "Pay now"
+msgstr "ഇപ്പോൾ പണമടയ്ക്കുക"
+
+#: templates/webapp/invoice_pdf.html
 msgid "VAT / Tax No:"
 msgstr "VAT / ടാക്സ് നമ്പർ:"
 
@@ -4171,6 +4357,150 @@ msgstr "ലോഗോ, വിലാസം, VAT, കറൻസി."
 #: templates/webapp/onboarding/wizard.html
 msgid "Sent to the printer."
 msgstr "പ്രിന്ററിലേക്ക് അയച്ചു."
+
+#: templates/webapp/pay/portal.html
+msgid "Account statement"
+msgstr "അക്കൗണ്ട് സ്റ്റേറ്റ്മെന്റ്"
+
+#: templates/webapp/pay/portal.html
+msgid "Credit on your account"
+msgstr "നിങ്ങളുടെ അക്കൗണ്ടിലെ ക്രെഡിറ്റ്"
+
+#: templates/webapp/pay/portal.html
+msgid "Unpaid bills"
+msgstr "അടയ്ക്കാത്ത ബില്ലുകൾ"
+
+#: templates/webapp/pay/portal.html
+msgid "Bill"
+msgstr "ബിൽ"
+
+#: templates/webapp/pay/portal.html
+msgid "Due date"
+msgstr "അടയ്ക്കേണ്ട തീയതി"
+
+#: templates/webapp/pay/portal.html
+msgid "Statement"
+msgstr "സ്റ്റേറ്റ്മെന്റ്"
+
+#: templates/webapp/pay/portal.html
+msgid "Recent bills"
+msgstr "സമീപകാല ബില്ലുകൾ"
+
+#: templates/webapp/pay/portal.html
+msgid "No bills yet."
+msgstr "ഇതുവരെ ബില്ലുകളില്ല."
+
+#: templates/webapp/pay/settings.html
+msgid "Let customers pay your bills online"
+msgstr "കസ്റ്റമർമാർക്ക് ബില്ലുകൾ ഓൺലൈനായി അടയ്ക്കാൻ അനുവദിക്കുക"
+
+#: templates/webapp/pay/settings.html
+msgid ""
+"Customers see a Pay now button on the bill link you send them and in their "
+"account page. Money goes straight to your own merchant account, and the bill"
+" is marked paid automatically."
+msgstr ""
+"നിങ്ങൾ അയയ്ക്കുന്ന ബിൽ ലിങ്കിലും അവരുടെ അക്കൗണ്ട് പേജിലും കസ്റ്റമർക്ക് "
+"'ഇപ്പോൾ പണമടയ്ക്കുക' ബട്ടൺ കാണും. പണം നേരിട്ട് നിങ്ങളുടെ മർച്ചന്റ് "
+"അക്കൗണ്ടിലേക്ക് വരും, ബിൽ സ്വയം 'അടച്ചു' ആകും."
+
+#: templates/webapp/pay/settings.html
+msgid "Payment gateway"
+msgstr "പേയ്‌മെന്റ് ഗേറ്റ്‌വേ"
+
+#: templates/webapp/pay/settings.html
+msgid "Off (show payment details only)"
+msgstr "ഓഫ് (പണമടയ്ക്കൽ വിവരങ്ങൾ മാത്രം കാണിക്കുക)"
+
+#: templates/webapp/pay/settings.html
+msgid "Money lands in"
+msgstr "പണം എത്തുന്നത്"
+
+#: templates/webapp/pay/settings.html
+msgid "Key ID"
+msgstr "കീ ഐഡി"
+
+#: templates/webapp/pay/settings.html
+msgid "Client ID"
+msgstr "ക്ലയന്റ് ഐഡി"
+
+#: templates/webapp/pay/settings.html
+msgid "Key secret"
+msgstr "കീ സീക്രട്ട്"
+
+#: templates/webapp/pay/settings.html
+msgid "saved — leave blank to keep"
+msgstr "സേവ് ചെയ്തിട്ടുണ്ട് — മാറ്റേണ്ടെങ്കിൽ ഒഴിച്ചിടുക"
+
+#: templates/webapp/pay/settings.html
+msgid "Webhook key"
+msgstr "വെബ്‌ഹുക്ക് കീ"
+
+#: templates/webapp/pay/settings.html
+msgid "Test mode (sandbox — no real money)"
+msgstr "ടെസ്റ്റ് മോഡ് (സാൻഡ്‌ബോക്സ് — യഥാർത്ഥ പണമില്ല)"
+
+#: templates/webapp/pay/settings.html
+msgid "Other ways to pay (bank account, IBAN, UPI ID, Fawran…)"
+msgstr "പണമടയ്ക്കാനുള്ള മറ്റ് വഴികൾ (ബാങ്ക് അക്കൗണ്ട്, IBAN, UPI ID, Fawran…)"
+
+#: templates/webapp/pay/settings.html
+msgid "Customers can open their account page (bills, statement, pay)"
+msgstr ""
+"കസ്റ്റമർക്ക് അവരുടെ അക്കൗണ്ട് പേജ് തുറക്കാം (ബില്ലുകൾ, സ്റ്റേറ്റ്മെന്റ്, "
+"പണമടയ്ക്കൽ)"
+
+#: templates/webapp/pay/settings.html
+msgid "Only the business owner can change payment settings."
+msgstr "ബിസിനസ് ഉടമയ്ക്ക് മാത്രമേ പേയ്‌മെന്റ് സെറ്റിംഗ്സ് മാറ്റാൻ കഴിയൂ."
+
+#: templates/webapp/pay/settings.html
+msgid "Set up in your gateway account"
+msgstr "നിങ്ങളുടെ ഗേറ്റ്‌വേ അക്കൗണ്ടിൽ സജ്ജമാക്കുക"
+
+#: templates/webapp/pay/settings.html
+msgid "in the SkipCash merchant portal, set these two addresses:"
+msgstr "SkipCash മർച്ചന്റ് പോർട്ടലിൽ ഈ രണ്ട് വിലാസങ്ങൾ നൽകുക:"
+
+#: templates/webapp/pay/settings.html
+msgid "Return URL"
+msgstr "റിട്ടേൺ URL"
+
+#: templates/webapp/pay/settings.html
+msgid "Webhook URL"
+msgstr "വെബ്‌ഹുക്ക് URL"
+
+#: templates/webapp/pay/settings.html
+msgid ""
+"only the Key ID and Key secret are needed; payment links come back here by "
+"themselves."
+msgstr ""
+"കീ ഐഡിയും കീ സീക്രട്ടും മാത്രം മതി; പേയ്‌മെന്റ് ലിങ്കുകൾ സ്വയം ഇവിടേക്ക് "
+"തിരിച്ചുവരും."
+
+#: templates/webapp/pay/settings.html
+msgid "Pay now is live"
+msgstr "ഓൺലൈൻ പേയ്‌മെന്റ് സജീവം"
+
+#: templates/webapp/pay/settings.html
+msgid "Keys missing"
+msgstr "കീകൾ ഇല്ല"
+
+#: templates/webapp/pay/settings.html
+msgid "Off"
+msgstr "ഓഫ്"
+
+#: templates/webapp/pay/settings.html
+msgid "Online payments received"
+msgstr "ലഭിച്ച ഓൺലൈൻ പേയ്‌മെന്റുകൾ"
+
+#: templates/webapp/pay/settings.html
+msgid "Account balance"
+msgstr "അക്കൗണ്ട് ബാലൻസ്"
+
+#: templates/webapp/pay/settings.html
+msgid "No online payments yet."
+msgstr "ഇതുവരെ ഓൺലൈൻ പേയ്‌മെന്റുകളില്ല."
 
 #: templates/webapp/pos.html
 msgid "Point of Sale"
@@ -5221,10 +5551,6 @@ msgid "No purchase orders yet."
 msgstr "ഇതുവരെ പർച്ചേസ് ഓർഡറുകൾ ഇല്ല."
 
 #: templates/webapp/purchase_docs/purchase_detail.html
-msgid "Bill"
-msgstr "ബിൽ"
-
-#: templates/webapp/purchase_docs/purchase_detail.html
 msgid "Supplier bill"
 msgstr "സപ്ലയർ ബിൽ"
 
@@ -5288,9 +5614,29 @@ msgstr "പുതിയ വാങ്ങൽ"
 msgid "No purchases yet."
 msgstr "ഇതുവരെ വാങ്ങലുകൾ ഇല്ല."
 
+#: templates/webapp/rbac/_member_fields.html
+msgid "Owners always see every branch."
+msgstr "ഉടമകൾക്ക് എല്ലാ ബ്രാഞ്ചുകളും കാണാം."
+
+#: templates/webapp/rbac/change_role.html
+msgid "Role & branches"
+msgstr "റോളും ബ്രാഞ്ചുകളും"
+
+#: templates/webapp/rbac/members_list.html
+msgid "All branches"
+msgstr "എല്ലാ ബ്രാഞ്ചുകളും"
+
 #: templates/webapp/receivables/customer.html
 msgid "Send reminder"
 msgstr "ഓർമ്മപ്പെടുത്തൽ അയയ്ക്കുക"
+
+#: templates/webapp/receivables/customer.html
+msgid "Link copied"
+msgstr "ലിങ്ക് കോപ്പി ചെയ്തു"
+
+#: templates/webapp/receivables/customer.html
+msgid "Copy customer portal link"
+msgstr "കസ്റ്റമർ പോർട്ടൽ ലിങ്ക് കോപ്പി ചെയ്യുക"
 
 #: templates/webapp/receivables/customer.html
 msgid "Print statement"
@@ -5305,10 +5651,6 @@ msgid "Balance owed"
 msgstr "തരാനുള്ള ബാക്കി"
 
 #: templates/webapp/receivables/customer.html
-msgid "Unpaid bills"
-msgstr "അടയ്ക്കാത്ത ബില്ലുകൾ"
-
-#: templates/webapp/receivables/customer.html
 msgid "Credit limit"
 msgstr "ക്രെഡിറ്റ് പരിധി"
 
@@ -5319,10 +5661,6 @@ msgstr "പരിധിയില്ല"
 #: templates/webapp/receivables/customer.html
 msgid "Over the limit"
 msgstr "പരിധി കടന്നു"
-
-#: templates/webapp/receivables/customer.html
-msgid "Statement"
-msgstr "സ്റ്റേറ്റ്മെന്റ്"
 
 #: templates/webapp/receivables/customer.html
 msgid "Statement of account"
@@ -5516,10 +5854,6 @@ msgstr "ഇന്നത്തെ വിൽപ്പന ·"
 #: templates/webapp/restaurant/dashboard.html
 msgid "bill"
 msgstr "ബിൽ"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "bills"
-msgstr "ബില്ലുകൾ"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Open orders"
@@ -7132,6 +7466,70 @@ msgstr "ക്രെഡിറ്റ് (സപ്ലയർ)"
 msgid "Already owned (no payment now)"
 msgstr "നേരത്തെ ഉള്ളത് (ഇപ്പോൾ പണം നൽകുന്നില്ല)"
 
+#: apps/notifications/rules.py
+msgid "Customer bills due"
+msgstr "കസ്റ്റമർ ബില്ലുകളുടെ അവധി"
+
+#: apps/notifications/rules.py
+msgid "Remind before a customer's bill is due"
+msgstr "കസ്റ്റമറുടെ ബിൽ അവധിക്ക് മുമ്പ് ഓർമ്മിപ്പിക്കുക"
+
+#: apps/notifications/rules.py
+msgid "Supplier bills due"
+msgstr "സപ്ലയർ ബില്ലുകളുടെ അവധി"
+
+#: apps/notifications/rules.py
+msgid "Remind before you must pay a supplier"
+msgstr "സപ്ലയർക്ക് പണം നൽകേണ്ടതിന് മുമ്പ് ഓർമ്മിപ്പിക്കുക"
+
+#: apps/notifications/rules.py
+msgid "Stock expiring"
+msgstr "കാലാവധി തീരുന്ന സ്റ്റോക്ക്"
+
+#: apps/notifications/rules.py
+msgid "Batches with stock that will expire"
+msgstr "കാലാവധി തീരാറായ സ്റ്റോക്കുള്ള ബാച്ചുകൾ"
+
+#: apps/notifications/rules.py
+msgid "Memberships ending"
+msgstr "അവസാനിക്കുന്ന മെമ്പർഷിപ്പുകൾ"
+
+#: apps/notifications/rules.py
+msgid "Gym / club memberships about to end"
+msgstr "തീരാറായ ജിം / ക്ലബ് മെമ്പർഷിപ്പുകൾ"
+
+#: apps/notifications/rules.py
+msgid "Your BookPilot plan"
+msgstr "നിങ്ങളുടെ BookPilot പ്ലാൻ"
+
+#: apps/notifications/rules.py
+msgid "Before your own subscription ends"
+msgstr "നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ തീരുന്നതിന് മുമ്പ്"
+
+#: apps/notifications/rules.py
+msgid "Overdue bills"
+msgstr "കാലാവധി കഴിഞ്ഞ ബില്ലുകൾ"
+
+#: apps/notifications/rules.py
+msgid "Customer or supplier bills past their due date"
+msgstr "അവധി കഴിഞ്ഞ കസ്റ്റമർ / സപ്ലയർ ബില്ലുകൾ"
+
+#: apps/notifications/rules.py
+msgid "Low stock"
+msgstr "സ്റ്റോക്ക് കുറവ്"
+
+#: apps/notifications/rules.py
+msgid "Items at or below their reorder level"
+msgstr "റീഓർഡർ നിലയിലോ താഴെയോ ഉള്ള ഇനങ്ങൾ"
+
+#: apps/sales/allocation.py
+msgid "This invoice is already paid."
+msgstr "ഈ ഇൻവോയ്സ് നേരത്തെ അടച്ചു."
+
+#: apps/sales/allocation.py
+msgid "The amount is more than the invoice balance."
+msgstr "തുക ഇൻവോയ്സ് ബാക്കിയേക്കാൾ കൂടുതലാണ്."
+
 #: apps/verticals/restaurant/models.py
 msgid "Booked"
 msgstr "ബുക്ക് ചെയ്തു"
@@ -7217,6 +7615,18 @@ msgid "All time"
 msgstr "എല്ലാ കാലവും"
 
 #: apps/webapp/accounts_views.py
+msgid "Balance sheet"
+msgstr "ബാലൻസ് ഷീറ്റ്"
+
+#: apps/webapp/accounts_views.py
+msgid "Liabilities + equity"
+msgstr "ബാധ്യതകൾ + മൂലധനം"
+
+#: apps/webapp/accounts_views.py
+msgid "Trial balance"
+msgstr "ട്രയൽ ബാലൻസ്"
+
+#: apps/webapp/accounts_views.py
 msgid "Enter a code, a name and a type."
 msgstr "കോഡ്, പേര്, തരം നൽകുക."
 
@@ -7235,6 +7645,10 @@ msgstr "സിസ്റ്റം അക്കൗണ്ടുകൾ ഓഫ് ച
 #: apps/webapp/accounts_views.py
 msgid "You don't have permission to do that."
 msgstr "നിങ്ങൾക്ക് അതിന് അനുമതിയില്ല."
+
+#: apps/webapp/accounts_views.py
+msgid "Entry"
+msgstr "എൻട്രി"
 
 #: apps/webapp/accounts_views.py
 msgid "Journal entry cancelled."
@@ -7267,6 +7681,40 @@ msgstr "ഡെബിറ്റും ക്രെഡിറ്റും തുല�
 #: apps/webapp/accounts_views.py
 msgid "Journal entry saved."
 msgstr "ജേർണൽ എൻട്രി സേവ് ചെയ്തു."
+
+#: apps/webapp/automation_views.py
+msgid "Checks finished. New reminders are in Notifications."
+msgstr "പരിശോധന പൂർത്തിയായി. പുതിയ ഓർമ്മപ്പെടുത്തലുകൾ അറിയിപ്പുകളിൽ ഉണ്ട്."
+
+#: apps/webapp/automation_views.py
+msgid "Reminder settings saved."
+msgstr "ഓർമ്മപ്പെടുത്തൽ സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
+
+#: apps/webapp/automation_views.py
+msgid "Report sent to %(count)s email address(es) and saved in Notifications."
+msgstr ""
+"റിപ്പോർട്ട് %(count)s ഇമെയിൽ വിലാസത്തിലേക്ക് അയച്ചു, അറിയിപ്പുകളിലും സേവ് "
+"ചെയ്തു."
+
+#: apps/webapp/automation_views.py
+msgid "Report saved."
+msgstr "റിപ്പോർട്ട് സേവ് ചെയ്തു."
+
+#: apps/webapp/automation_views.py
+msgid "Daily report settings saved."
+msgstr "ദിവസ റിപ്പോർട്ട് സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
+
+#: apps/webapp/automation_views.py
+msgid "%(count)s budgets saved."
+msgstr "%(count)s ബജറ്റുകൾ സേവ് ചെയ്തു."
+
+#: apps/webapp/automation_views.py
+msgid "Left"
+msgstr "ബാക്കി"
+
+#: apps/webapp/automation_views.py
+msgid "% used"
+msgstr "% ഉപയോഗിച്ചു"
 
 #: apps/webapp/banking_views.py
 msgid "Enter a name for the account."
@@ -7555,6 +8003,13 @@ msgstr "ആസ്തി ചേർത്ത് അക്കൗണ്ട്സി�
 msgid "Asset disposed and the gain or loss recorded."
 msgstr "ആസ്തി ഒഴിവാക്കി, ലാഭമോ നഷ്ടമോ രേഖപ്പെടുത്തി."
 
+#: apps/webapp/forms.py
+msgid ""
+"Tick the branches this person works at. Leave all unticked for every branch."
+msgstr ""
+"ഈ ആൾ ജോലി ചെയ്യുന്ന ബ്രാഞ്ചുകൾ ടിക്ക് ചെയ്യുക. എല്ലാ ബ്രാഞ്ചിനും ഒന്നും "
+"ടിക്ക് ചെയ്യേണ്ട."
+
 #: apps/webapp/gold_views.py
 msgid "%(count)s rates saved; %(changed)s item prices updated."
 msgstr "%(count)s നിരക്കുകൾ സേവ് ചെയ്തു; %(changed)s ഐറ്റം വിലകൾ മാറ്റി."
@@ -7710,6 +8165,26 @@ msgid "Reversed payroll removed. You can calculate it again."
 msgstr "റിവേഴ്സ് ചെയ്ത ശമ്പളം നീക്കി. വീണ്ടും കണക്കാക്കാം."
 
 #: apps/webapp/hr_views.py
+msgid "Job"
+msgstr "ജോലി"
+
+#: apps/webapp/hr_views.py
+msgid "Overtime hours"
+msgstr "ഓവർടൈം മണിക്കൂർ"
+
+#: apps/webapp/hr_views.py
+msgid "Absent days"
+msgstr "ഹാജരില്ലാത്ത ദിവസങ്ങൾ"
+
+#: apps/webapp/hr_views.py
+msgid "Absence deduction"
+msgstr "ഹാജരില്ലായ്മ കിഴിവ്"
+
+#: apps/webapp/hr_views.py
+msgid "Advance recovered"
+msgstr "തിരിച്ചുപിടിച്ച അഡ്വാൻസ്"
+
+#: apps/webapp/hr_views.py
 msgid "Document removed."
 msgstr "രേഖ നീക്കം ചെയ്തു."
 
@@ -7741,6 +8216,32 @@ msgstr ""
 #: apps/webapp/onboarding_views.py
 msgid "Added %(items)s items and %(tables)s tables."
 msgstr "%(items)s ഇനങ്ങളും %(tables)s ടേബിളുകളും ചേർത്തു."
+
+#: apps/webapp/pay_views.py
+msgid "Payment received — thank you!"
+msgstr "പണം ലഭിച്ചു — നന്ദി!"
+
+#: apps/webapp/pay_views.py
+msgid "The payment was not completed. No money was taken."
+msgstr "പേയ്‌മെന്റ് പൂർത്തിയായില്ല. പണമൊന്നും എടുത്തിട്ടില്ല."
+
+#: apps/webapp/pay_views.py
+msgid "Your payment is being confirmed. Refresh this page in a minute."
+msgstr ""
+"നിങ്ങളുടെ പേയ്‌മെന്റ് സ്ഥിരീകരിക്കുന്നു. ഒരു മിനിറ്റിന് ശേഷം ഈ പേജ് റിഫ്രഷ് "
+"ചെയ്യുക."
+
+#: apps/webapp/pay_views.py
+msgid ""
+"Saved, but some keys are missing — the Pay now button stays hidden until "
+"they are filled in."
+msgstr ""
+"സേവ് ചെയ്തു, പക്ഷേ ചില കീകൾ ഇല്ല — അവ നൽകുന്നതുവരെ 'ഇപ്പോൾ പണമടയ്ക്കുക' "
+"ബട്ടൺ കാണില്ല."
+
+#: apps/webapp/pay_views.py
+msgid "Payment settings saved."
+msgstr "പേയ്‌മെന്റ് സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
 
 #: apps/webapp/property_views.py
 msgid "Choose a tenant or type a new tenant's name."
@@ -7835,8 +8336,24 @@ msgid "Amount due: %(cur)s %(amount)s"
 msgstr "അടയ്ക്കാനുള്ള തുക: %(cur)s %(amount)s"
 
 #: apps/webapp/receivables_views.py
+msgid "View your bills and pay online: %(url)s"
+msgstr "നിങ്ങളുടെ ബില്ലുകൾ കാണാനും ഓൺലൈനായി അടയ്ക്കാനും: %(url)s"
+
+#: apps/webapp/receivables_views.py
 msgid "Thank you."
 msgstr "നന്ദി."
+
+#: apps/webapp/receivables_views.py
+msgid "Open bills"
+msgstr "തുറന്ന ബില്ലുകൾ"
+
+#: apps/webapp/receivables_views.py
+msgid "Oldest (days overdue)"
+msgstr "ഏറ്റവും പഴയത് (വൈകിയ ദിവസങ്ങൾ)"
+
+#: apps/webapp/receivables_views.py
+msgid "Receivables"
+msgstr "കിട്ടാനുള്ളവ"
 
 #: apps/webapp/receivables_views.py
 msgid "Note saved."
@@ -7853,14 +8370,6 @@ msgstr "ശരിയായ സംഖ്യകൾ നൽകുക."
 #: apps/webapp/receivables_views.py
 msgid "Enter the amount received."
 msgstr "ലഭിച്ച തുക നൽകുക."
-
-#: apps/webapp/receivables_views.py
-msgid "This invoice is already paid."
-msgstr "ഈ ഇൻവോയ്സ് നേരത്തെ അടച്ചു."
-
-#: apps/webapp/receivables_views.py
-msgid "The amount is more than the invoice balance."
-msgstr "തുക ഇൻവോയ്സ് ബാക്കിയേക്കാൾ കൂടുതലാണ്."
 
 #: apps/webapp/receivables_views.py
 msgid "Payment of %(amount)s received from %(name)s."
@@ -7971,6 +8480,14 @@ msgid "Correction"
 msgstr "തിരുത്തൽ"
 
 #: apps/webapp/stock_views.py
+msgid "Reorder level"
+msgstr "റീഓർഡർ നില"
+
+#: apps/webapp/stock_views.py
+msgid "Stock value"
+msgstr "സ്റ്റോക്ക് മൂല്യം"
+
+#: apps/webapp/stock_views.py
 msgid "Choose an item, a location and a quantity."
 msgstr "ഐറ്റം, സ്ഥലം, എണ്ണം തിരഞ്ഞെടുക്കുക."
 
@@ -8038,6 +8555,10 @@ msgstr "%(number)s ഇപ്പോഴും ബുക്ക് ചെയ്യ�
 #: apps/webapp/views.py
 msgid "Marked as handled."
 msgstr "കൈകാര്യം ചെയ്തതായി അടയാളപ്പെടുത്തി."
+
+#: apps/webapp/views.py
+msgid "Role and branches updated."
+msgstr "റോളും ബ്രാഞ്ചുകളും പുതുക്കി."
 
 #: apps/webapp/views.py
 msgid "That plan can't be selected."

@@ -844,8 +844,18 @@ def mobile_installment_payment(request, plan_id):
 @login_required
 def customer_list(request):
     company = request.company
-    customers = Customer.objects.for_company(company).order_by("name") if company else []
-    return render(request, "webapp/customer_list.html", {"customers": customers})
+    if company is None:
+        return render(request, "webapp/no_company.html")
+    from .receivables_views import _balances
+    query = (request.GET.get("q") or "").strip()
+    customers = Customer.objects.for_company(company).order_by("name")
+    if query:
+        customers = customers.filter(Q(name__icontains=query) | Q(phone__icontains=query) | Q(email__icontains=query))
+    customers = list(customers[:500])
+    balances = _balances(company)
+    for customer in customers:
+        customer.balance = balances.get(customer.id, 0)
+    return render(request, "webapp/customer_list.html", {"customers": customers, "q": query})
 
 
 @login_required

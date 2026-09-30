@@ -1,25 +1,27 @@
 {% extends "base.html" %}
-{% block title %}Customers{% endblock %}
-{% block heading %}Customers{% endblock %}
+{% load i18n static %}
+{% block title %}{% translate "Customers" %}{% endblock %}
+{% block heading %}{% translate "Customers" %}{% endblock %}
 {% block content %}
-<div style="margin-bottom:14px;">
-  <a class="btn" href="{% url 'webapp:customer_add' %}">+ Add customer</a>
-  <a class="btn btn-secondary" href="{% url 'webapp:customer_export_csv' %}">Export CSV</a>
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<div class="hr">
+<div class="hr-actions" style="margin-bottom:12px">
+  <a class="btn" href="{% url 'webapp:customer_add' %}">＋ {% translate "Add customer" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:receivables' %}">💵 {% translate "Money to collect" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:customer_export_csv' %}">⬇ {% translate "Export CSV" %}</a>
 </div>
+<form method="get" class="hr-actions" style="margin-bottom:12px"><input class="hr-in" style="flex:1 1 220px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Name, phone or email' %}"><button class="btn btn-secondary">{% translate "Search" %}</button></form>
 {% if customers %}
-<table>
-  <tr><th>Name</th><th>Phone</th><th>Email</th><th></th></tr>
-  {% for c in customers %}
-  <tr>
-    <td>{{ c.name }}</td><td>{{ c.phone|default:"—" }}</td><td>{{ c.email|default:"—" }}</td>
-    <td>
-      <a class="btn btn-secondary" href="{% url 'webapp:customer_edit' c.id %}">Edit</a>
-      <a class="btn btn-secondary" href="{% url 'webapp:customer_delete' c.id %}">Delete</a>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="hr-list">{% for c in customers %}
+  <div class="hr-row">
+    <a class="grow" href="{% url 'webapp:customer_account' c.id %}" style="display:flex;gap:10px;align-items:center;min-width:0"><span class="hr-av" style="width:38px;height:38px;font-size:15px">{{ c.name|slice:":1"|upper }}</span><span style="min-width:0"><b>{{ c.name }}</b><small style="display:block;color:var(--hr-soft)">{{ c.phone|default:"" }}{% if c.email %} · {{ c.email }}{% endif %}</small></span></a>
+    {% if c.balance > 0 %}<span class="hr-chip warn">{% translate "Owes" %} {{ c.balance|floatformat:2 }}</span>{% elif c.balance < 0 %}<span class="hr-chip ok">{% translate "Credit" %} {{ c.balance|floatformat:2 }}</span>{% endif %}
+    <a class="btn btn-secondary" href="{% url 'webapp:customer_edit' c.id %}">{% translate "Edit" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:customer_delete' c.id %}" aria-label="{% translate 'Delete' %}">🗑</a>
+  </div>
+{% endfor %}</div>
 {% else %}
-<div class="card empty">No customers yet.</div>
+<div class="hr-card hr-empty">{% if q %}{% translate "No customers match your search." %}{% else %}{% translate "No customers yet." %}{% endif %}</div>
 {% endif %}
+</div>
 {% endblock %}

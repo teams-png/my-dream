@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Money to collect" %}{% endblock %}
+{% block heading %}{% translate "Money to collect" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<div class="hr">
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Customers owe you" %}</small><b>{{ active_company.default_currency }} {{ summary.total_outstanding|floatformat:2 }}</b></div>
+  <a class="hr-kpi {% if overdue_total %}warn{% endif %}" href="?show=overdue"><small>{% translate "Overdue" %}</small><b>{{ overdue_total|floatformat:2 }}</b></a>
+  <div class="hr-kpi"><small>{% translate "Not yet due" %}</small><b>{{ summary.not_due|add:summary.no_due_date|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Received this month" %}</small><b style="color:var(--hr-ok)">{{ received_month|floatformat:2 }}</b></div>
+</div>
+<div class="hr-card"><h3>⏳ {% translate "Overdue by age" %}</h3>
+  <div class="hr-kpis" style="margin:0">{% for b in summary.buckets %}<div class="hr-kpi" style="{% if b.total %}border-color:{% if forloop.last %}var(--hr-bad){% else %}#f59e0b{% endif %}{% endif %}"><small>{{ b.label }} {% translate "days" %} · {{ b.count }}</small><b>{{ b.total|floatformat:2 }}</b></div>{% endfor %}</div>
+</div>
+{% if notes_due %}<div class="hr-card" style="background:var(--hr-warn-bg)"><h3>📞 {% translate "Follow-ups due" %}</h3><div class="hr-list">{% for n in notes_due %}<a class="hr-row" href="{% url 'webapp:customer_account' n.customer_id %}"><span class="grow"><b>{{ n.customer.name }}</b><small>{{ n.follow_up_date|date:"j M" }} · {{ n.note|truncatechars:90 }}</small></span>›</a>{% endfor %}</div></div>{% endif %}
+<form method="get" class="hr-actions" style="margin-bottom:12px">
+  <a class="hr-chip {% if show == 'owing' %}ok{% endif %}" style="padding:8px 12px" href="?show=owing">{% translate "Owing" %}</a>
+  <a class="hr-chip {% if show == 'overdue' %}ok{% endif %}" style="padding:8px 12px" href="?show=overdue">{% translate "Overdue" %}</a>
+  <a class="hr-chip {% if show == 'credit' %}ok{% endif %}" style="padding:8px 12px" href="?show=credit">{% translate "In credit" %}</a>
+  <input type="hidden" name="show" value="{{ show }}"><input class="hr-in" style="flex:1 1 200px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Customer name or phone' %}"><button class="btn btn-secondary">{% translate "Search" %}</button>
+</form>
+<div class="hr-list">{% for r in rows %}
+  <a class="hr-row" href="{% url 'webapp:customer_account' r.customer.id %}">
+    <span class="hr-av" style="width:38px;height:38px;font-size:15px">{{ r.customer.name|slice:":1"|upper }}</span>
+    <span class="grow"><b>{{ r.customer.name }}</b><small>{{ r.customer.phone|default:"" }}{% if r.count %} · {{ r.count }} {% translate "unpaid bills" %}{% endif %}{% if r.oldest %} · {% translate "oldest" %} {{ r.oldest }} {% translate "days late" %}{% endif %}</small></span>
+    {% if r.overdue %}<span class="hr-chip bad">{% translate "Overdue" %} {{ r.overdue|floatformat:2 }}</span>{% endif %}
+    <b style="{% if r.balance < 0 %}color:var(--hr-ok){% endif %}">{{ r.balance|floatformat:2 }}</b>
+  </a>
+{% empty %}<div class="hr-card hr-empty"><div style="font-size:36px">🎉</div>{% translate "Nobody owes you money." %}</div>{% endfor %}</div>
+</div>
+{% endblock %}

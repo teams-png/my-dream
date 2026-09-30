@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import accounts_views, booking_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import accounts_views, booking_views, receivables_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -70,6 +70,9 @@ urlpatterns = [
     path("welcome/", public_views.landing, name="landing"),
     path("signup/", public_views.signup, name="signup"),
 
+    path("receivables/", receivables_views.receivables, name="receivables"),
+    path("customers/<int:customer_id>/account/", receivables_views.customer_account, name="customer_account"),
+    path("customers/<int:customer_id>/receive/", receivables_views.receive_payment, name="receive_payment"),
     path("customers/", views.customer_list, name="customer_list"),
     path("customers/add/", views.customer_add, name="customer_add"),
     path("customers/<int:customer_id>/edit/", views.customer_edit, name="customer_edit"),

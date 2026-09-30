@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ customer.name }}{% endblock %}
+{% block heading %}{{ customer.name }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<div class="hr">
+<div class="hr-card no-print" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+  <span class="hr-av" style="width:54px;height:54px;font-size:21px">{{ customer.name|slice:":1"|upper }}</span>
+  <div style="flex:1 1 220px;min-width:0"><b style="font-size:18px">{{ customer.name }}</b>
+    <div style="color:var(--hr-soft)">{% if customer.phone %}<a href="tel:{{ customer.phone }}">{{ customer.phone }}</a>{% endif %}{% if customer.email %} · {{ customer.email }}{% endif %}{% if customer.address %} · {{ customer.address|truncatechars:60 }}{% endif %}</div></div>
+  <div class="hr-actions">
+    <a class="btn btn-secondary" href="{% url 'webapp:customer_edit' customer.id %}">✏️ {% translate "Edit" %}</a>
+    {% if balance > 0 %}<a class="btn btn-secondary" style="background:#25d366;border-color:#25d366;color:#fff" href="{{ reminder }}" target="_blank" rel="noopener">💬 {% translate "Send reminder" %}</a>{% endif %}
+    <button class="btn btn-secondary" type="button" onclick="print()">🖨 {% translate "Print statement" %}</button>
+  </div>
+</div>
+<div class="hr-kpis no-print">
+  <div class="hr-kpi {% if balance > 0 %}warn{% endif %}"><small>{% if balance < 0 %}{% translate "In credit (advance)" %}{% else %}{% translate "Balance owed" %}{% endif %}</small><b>{{ active_company.default_currency }} {{ balance|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Unpaid bills" %}</small><b>{{ open_invoices|length }}</b></div>
+  <div class="hr-kpi {% if credit.over_limit %}warn{% endif %}"><small>{% translate "Credit limit" %}</small><b>{% if credit.credit_limit %}{{ credit.credit_limit|floatformat:2 }}{% else %}{% translate "No limit" %}{% endif %}</b>{% if credit.over_limit %}<small style="color:var(--hr-bad)">{% translate "Over the limit" %}</small>{% endif %}</div>
+</div>
+
+<div class="hr-grid2">
+<div>
+  <div class="hr-card"><h3>🧾 {% translate "Statement" %}</h3>
+    <form method="get" class="hr-actions no-print" style="margin-bottom:10px"><input class="hr-in" style="width:auto" type="date" name="from" value="{{ start|date:'Y-m-d' }}" aria-label="{% translate 'From' %}"><input class="hr-in" style="width:auto" type="date" name="to" value="{{ end|date:'Y-m-d' }}" aria-label="{% translate 'To' %}"><button class="btn btn-secondary">{% translate "Apply" %}</button>{% if start or end %}<a class="btn btn-secondary" href="?">{% translate "All" %}</a>{% endif %}</form>
+    <div class="print-head" style="display:none"><b>{{ active_company.name }}</b> — {% translate "Statement of account" %}: <b>{{ customer.name }}</b>{% if start %} · {{ start|date:"j M Y" }} – {{ end|default:today|date:"j M Y" }}{% endif %}</div>
+    <div class="hr-table"><table>
+      <thead><tr><th>{% translate "Date" %}</th><th>{% translate "Details" %}</th><th class="hr-num">{% translate "Bill" %}</th><th class="hr-num">{% translate "Paid" %}</th><th class="hr-num">{% translate "Balance" %}</th></tr></thead>
+      <tbody><tr><td></td><td class="wrap"><i>{% translate "Opening balance" %}</i></td><td></td><td></td><td class="hr-num">{{ opening|floatformat:2 }}</td></tr>
+      {% for l in lines %}<tr><td>{{ l.date|date:"j M Y" }}</td><td class="wrap">{% if l.invoice %}<a href="{% url 'webapp:invoice_pdf' l.invoice.id %}" target="_blank">{{ l.kind }} {{ l.ref }}</a>{% else %}{{ l.kind }} · {{ l.ref }}{% endif %}</td><td class="hr-num">{% if l.debit %}{{ l.debit|floatformat:2 }}{% endif %}</td><td class="hr-num">{% if l.credit %}{{ l.credit|floatformat:2 }}{% endif %}</td><td class="hr-num"><b>{{ l.balance|floatformat:2 }}</b></td></tr>
+      {% empty %}<tr><td colspan="5" class="hr-empty">{% translate "No transactions." %}</td></tr>{% endfor %}</tbody>
+      <tfoot><tr><th colspan="4">{% translate "Closing balance" %}</th><th class="hr-num">{{ active_company.default_currency }} {{ closing|floatformat:2 }}</th></tr></tfoot>
+    </table></div>
+  </div>
+</div>
+<div class="no-print">
+  <div class="hr-card"><h3>💵 {% translate "Receive payment" %}</h3>
+    <form method="post" action="{% url 'webapp:receive_payment' customer.id %}" class="hr-form">{% csrf_token %}
+      <label>{% translate "Amount" %}<input type="number" name="amount" step="0.01" min="0.01" required value="{% if balance > 0 %}{{ balance|floatformat:'2u' }}{% endif %}"></label>
+      <label>{% translate "Date" %}<input type="date" name="date" value="{{ today|date:'Y-m-d' }}"></label>
+      <label>{% translate "Paid by" %}<select name="method">{% for k, l in methods %}<option value="{{ k }}">{% translate l %}</option>{% endfor %}</select></label>
+      <label>{% translate "Apply to" %}<select name="invoice"><option value="">{% translate "Oldest bills first" %}</option>{% for inv in open_invoices %}<option value="{{ inv.id }}">{{ inv.invoice_number }} · {{ inv.currency }} {{ inv.due|floatformat:2 }}</option>{% endfor %}</select></label>
+      <div class="wide"><button class="btn" type="submit">✓ {% translate "Save payment" %}</button></div>
+    </form>
+    <p style="color:var(--hr-soft);font-size:12.5px;margin:10px 0 0">{% translate "Extra money is kept as an advance and used for the next bills." %}</p>
+  </div>
+
+  <div class="hr-card"><h3>📄 {% translate "Unpaid bills" %}</h3>
+    <div class="hr-list">{% for inv in open_invoices %}<div class="hr-row"><span class="grow"><a href="{% url 'webapp:invoice_pdf' inv.id %}" target="_blank"><b>{{ inv.invoice_number }}</b></a><small>{{ inv.date|date:"j M Y" }}{% if inv.due_date %} · {% translate "due" %} {{ inv.due_date|date:"j M Y" }}{% endif %}</small></span>{% if inv.due_date and inv.due_date < today %}<span class="hr-chip bad">{% translate "Overdue" %}</span>{% endif %}<b>{{ inv.currency }} {{ inv.due|floatformat:2 }}</b></div>{% empty %}<div class="hr-empty">{% translate "All bills are paid." %}</div>{% endfor %}</div>
+  </div>
+
+  <div class="hr-card"><h3>📞 {% translate "Follow-up notes" %}</h3>
+    <form method="post" class="hr-form" style="margin-bottom:10px">{% csrf_token %}<input type="hidden" name="action" value="note">
+      <label class="wide">{% translate "Note" %}<input name="note" required placeholder="{% translate 'e.g. Promised to pay on Thursday' %}"></label>
+      <label>{% translate "Follow up on" %}<input type="date" name="follow_up"></label>
+      <div style="align-self:end"><button class="btn btn-secondary">{% translate "Save note" %}</button></div>
+    </form>
+    <div class="hr-list">{% for n in notes %}<div class="hr-row"><span class="grow">{{ n.note }}<small>{{ n.created_at|date:"j M Y" }} · {{ n.created_by.email|default:n.created_by.username }}{% if n.follow_up_date %} · {% translate "follow up" %} {{ n.follow_up_date|date:"j M" }}{% endif %}</small></span></div>{% empty %}<div class="hr-empty">{% translate "No notes yet." %}</div>{% endfor %}</div>
+  </div>
+
+  <div class="hr-card"><h3>⚙️ {% translate "Credit settings" %}</h3>
+    <form method="post" class="hr-form">{% csrf_token %}<input type="hidden" name="action" value="credit_limit">
+      <label>{% translate "Credit limit (0 = no limit)" %}<input type="number" name="credit_limit" step="0.01" min="0" value="{{ customer.credit_limit|floatformat:'2u' }}"></label>
+      <label>{% translate "Days to pay" %}<input type="number" name="terms" min="0" value="{{ customer.payment_terms_days }}"></label>
+      <div class="wide"><button class="btn btn-secondary">{% translate "Save" %}</button></div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

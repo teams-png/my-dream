@@ -81,3 +81,4 @@ html[data-theme=dark] .mg td.off,html[data-theme=dark] .mg th.off{background:rgb
 .hr-money td[colspan]{text-align:left!important}
 .hr-table td:first-child{white-space:normal;min-width:140px}
 @media(max-width:700px){.hr-table td,.hr-table th{padding:8px 8px;font-size:13px}}
+.hr-table td.wrap{white-space:normal}

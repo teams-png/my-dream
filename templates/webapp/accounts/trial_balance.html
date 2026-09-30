@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Trial Balance" %}{% endblock %}
+{% block heading %}{% translate "Trial Balance" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/accounts/_tabs.html" %}
+{% include "webapp/accounts/_asof.html" %}
+<div class="hr-card hr-table" style="max-width:860px">
+  <table>
+    <thead><tr><th>{% translate "Account" %}</th><th class="hr-num">{% translate "Debit" %}</th><th class="hr-num">{% translate "Credit" %}</th></tr></thead>
+    <tbody>{% for r in rows %}<tr><td><a href="{% url 'webapp:acc_ledger' r.account.id %}?period=all">{{ r.account.code }} · {{ r.account.name }}</a></td><td class="hr-num">{% if r.debit %}{{ r.debit|floatformat:2 }}{% endif %}</td><td class="hr-num">{% if r.credit %}{{ r.credit|floatformat:2 }}{% endif %}</td></tr>{% empty %}<tr><td colspan="3" class="hr-empty">{% translate "No transactions yet." %}</td></tr>{% endfor %}</tbody>
+    <tfoot><tr><th>{% translate "Total" %} {% if balanced %}<span class="hr-chip ok">✓ {% translate "Balanced" %}</span>{% else %}<span class="hr-chip bad">{% translate "Not balanced" %}</span>{% endif %}</th><th class="hr-num">{{ total_debit|floatformat:2 }}</th><th class="hr-num">{{ total_credit|floatformat:2 }}</th></tr></tfoot>
+  </table>
+</div>
+</div>
+{% endblock %}

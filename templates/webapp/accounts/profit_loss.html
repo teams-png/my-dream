@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Profit & Loss" %}{% endblock %}
+{% block heading %}{% translate "Profit & Loss" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/accounts/_tabs.html" %}
+{% include "webapp/accounts/_period.html" %}
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Income" %}</small><b>{{ pl.total_income|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Gross profit" %}</small><b>{{ gross_profit|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Expenses" %}</small><b>{{ pl.total_expense|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Net profit" %}{% if margin is not None %} · {{ margin }}%{% endif %}</small><b style="{% if pl.net_profit < 0 %}color:var(--hr-bad){% else %}color:var(--hr-ok){% endif %}">{{ active_company.default_currency }} {{ pl.net_profit|floatformat:2 }}</b></div>
+</div>
+<div class="hr-card" style="max-width:760px">
+  <table class="hr-money">
+    <tr><td colspan="2"><b>{% translate "Income" %}</b></td></tr>
+    {% for a, b in pl.income %}<tr><td>&nbsp;&nbsp;<a href="{% url 'webapp:acc_ledger' a.id %}?from={{ start|date:'Y-m-d' }}&to={{ end|date:'Y-m-d' }}">{{ a.code }} · {{ a.name }}</a></td><td>{{ b|floatformat:2 }}</td></tr>{% empty %}<tr><td>&nbsp;&nbsp;—</td><td>0.00</td></tr>{% endfor %}
+    <tr><td><b>{% translate "Total income" %}</b></td><td><b>{{ pl.total_income|floatformat:2 }}</b></td></tr>
+    {% if cogs %}<tr class="minus"><td>{% translate "Cost of goods sold" %}</td><td>− {{ cogs|floatformat:2 }}</td></tr>
+    <tr><td><b>{% translate "Gross profit" %}</b></td><td><b>{{ gross_profit|floatformat:2 }}</b></td></tr>{% endif %}
+    <tr><td colspan="2" style="padding-top:18px"><b>{% translate "Expenses" %}</b></td></tr>
+    {% for a, b in operating %}<tr><td>&nbsp;&nbsp;<a href="{% url 'webapp:acc_ledger' a.id %}?from={{ start|date:'Y-m-d' }}&to={{ end|date:'Y-m-d' }}">{{ a.code }} · {{ a.name }}</a></td><td>{{ b|floatformat:2 }}</td></tr>{% empty %}<tr><td>&nbsp;&nbsp;—</td><td>0.00</td></tr>{% endfor %}
+    <tr><td><b>{% translate "Total expenses" %}</b></td><td><b>{{ operating_total|floatformat:2 }}</b></td></tr>
+    <tr class="total"><td>{% if pl.net_profit < 0 %}{% translate "Net loss" %}{% else %}{% translate "Net profit" %}{% endif %}</td><td style="{% if pl.net_profit < 0 %}color:var(--hr-bad){% endif %}">{{ active_company.default_currency }} {{ pl.net_profit|floatformat:2 }}</td></tr>
+  </table>
+</div>
+</div>
+{% endblock %}

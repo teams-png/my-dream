@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Balance Sheet" %}{% endblock %}
+{% block heading %}{% translate "Balance Sheet" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/accounts/_tabs.html" %}
+{% include "webapp/accounts/_asof.html" %}
+{% if not balanced %}<div class="hr-card" style="background:var(--hr-warn-bg)">⚠️ {% translate "Assets and liabilities + equity differ by" %} {{ difference|floatformat:2 }}. {% translate "Check opening balances or manual entries." %}</div>{% endif %}
+<div class="hr-grid2" style="grid-template-columns:1fr 1fr">
+  <div class="hr-card"><h3>🏦 {% translate "Assets" %}</h3>
+    <table class="hr-money">{% for a, b in bs.assets %}<tr><td><a href="{% url 'webapp:acc_ledger' a.id %}?period=all">{{ a.code }} · {{ a.name }}</a></td><td>{{ b|floatformat:2 }}</td></tr>{% empty %}<tr><td>—</td><td>0.00</td></tr>{% endfor %}
+    <tr class="total"><td>{% translate "Total assets" %}</td><td>{{ bs.total_assets|floatformat:2 }}</td></tr></table>
+  </div>
+  <div class="hr-card"><h3>📋 {% translate "Liabilities & equity" %}</h3>
+    <table class="hr-money">
+      <tr><td colspan="2"><b>{% translate "Liabilities" %}</b></td></tr>
+      {% for a, b in bs.liabilities %}<tr><td>&nbsp;&nbsp;<a href="{% url 'webapp:acc_ledger' a.id %}?period=all">{{ a.code }} · {{ a.name }}</a></td><td>{{ b|floatformat:2 }}</td></tr>{% empty %}<tr><td>&nbsp;&nbsp;—</td><td>0.00</td></tr>{% endfor %}
+      <tr><td><b>{% translate "Total liabilities" %}</b></td><td><b>{{ bs.total_liabilities|floatformat:2 }}</b></td></tr>
+      <tr><td colspan="2" style="padding-top:16px"><b>{% translate "Equity" %}</b></td></tr>
+      {% for a, b in bs.equity %}<tr><td>&nbsp;&nbsp;<a href="{% url 'webapp:acc_ledger' a.id %}?period=all">{{ a.code }} · {{ a.name }}</a></td><td>{{ b|floatformat:2 }}</td></tr>{% endfor %}
+      <tr><td>&nbsp;&nbsp;{% translate "Profit for the current year" %}</td><td>{{ bs.retained_earnings|floatformat:2 }}</td></tr>
+      <tr class="total"><td>{% translate "Total liabilities & equity" %}</td><td>{{ bs.total_liabilities_and_equity|floatformat:2 }}</td></tr>
+    </table>
+  </div>
+</div>
+{% if balanced %}<p style="color:var(--hr-ok);font-weight:700">✓ {% translate "Balanced" %}</p>{% endif %}
+</div>
+{% endblock %}

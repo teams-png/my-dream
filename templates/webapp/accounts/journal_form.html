@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Journal entry" %}{% endblock %}
+{% block heading %}{% translate "New journal entry" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/accounts/_tabs.html" %}
+<form method="post" class="hr-card" style="max-width:980px">{% csrf_token %}
+  <div class="hr-form" style="margin-bottom:14px">
+    <label>{% translate "Date" %}<input type="date" name="date" value="{{ posted.date }}" required></label>
+    <label>{% translate "Reference" %}<input name="reference" value="{{ posted.reference }}" maxlength="100" placeholder="{% translate 'e.g. Opening balance' %}"></label>
+    <label class="wide">{% translate "Note" %}<input name="memo" value="{{ posted.memo }}"></label>
+  </div>
+  <div class="hr-list" id="jlines">
+    {% for r in posted.rows %}<div class="hr-row jl" style="align-items:flex-end">
+      <label style="flex:2 1 220px;display:flex;flex-direction:column;gap:4px;font-size:12.5px;font-weight:600;color:var(--hr-soft)">{% translate "Account" %}<select class="hr-in" name="account"><option value="">—</option>{% for a in accounts %}<option value="{{ a.id }}" {% if r.account == a.id|stringformat:"s" %}selected{% endif %}>{{ a.code }} · {{ a.name }}</option>{% endfor %}</select></label>
+      <label style="flex:1 1 110px;display:flex;flex-direction:column;gap:4px;font-size:12.5px;font-weight:600;color:var(--hr-soft)">{% translate "Debit" %}<input class="hr-in jd" type="number" step="0.01" min="0" name="debit" value="{{ r.debit }}"></label>
+      <label style="flex:1 1 110px;display:flex;flex-direction:column;gap:4px;font-size:12.5px;font-weight:600;color:var(--hr-soft)">{% translate "Credit" %}<input class="hr-in jc" type="number" step="0.01" min="0" name="credit" value="{{ r.credit }}"></label>
+      <label style="flex:2 1 160px;display:flex;flex-direction:column;gap:4px;font-size:12.5px;font-weight:600;color:var(--hr-soft)">{% translate "Note" %}<input class="hr-in" name="note" value="{{ r.note }}"></label>
+    </div>{% endfor %}
+  </div>
+  <div class="hr-actions" style="margin-top:12px;justify-content:space-between">
+    <button class="btn btn-secondary" type="button" id="addLine">＋ {% translate "Add line" %}</button>
+    <span><b>{% translate "Debit" %}</b> <span id="td">0.00</span> · <b>{% translate "Credit" %}</b> <span id="tc">0.00</span> <span id="diff" class="hr-chip"></span></span>
+  </div>
+  <div style="margin-top:16px"><button class="btn" type="submit">{% translate "Save entry" %}</button></div>
+</form>
+</div>
+<script>
+(function(){const box=document.getElementById('jlines');const sum=()=>{let d=0,c=0;box.querySelectorAll('.jd').forEach(i=>d+=parseFloat(i.value)||0);box.querySelectorAll('.jc').forEach(i=>c+=parseFloat(i.value)||0);document.getElementById('td').textContent=d.toFixed(2);document.getElementById('tc').textContent=c.toFixed(2);const el=document.getElementById('diff');const x=Math.round((d-c)*100)/100;el.textContent=x===0&&d>0?'✓ {% translate "Balanced" %}':(x?'{% translate "Difference" %} '+Math.abs(x).toFixed(2):'');el.className='hr-chip '+(x===0&&d>0?'ok':'warn')};
+box.addEventListener('input',sum);document.getElementById('addLine').addEventListener('click',()=>{const row=box.querySelector('.jl').cloneNode(true);row.querySelectorAll('input').forEach(i=>i.value='');row.querySelector('select').value='';box.appendChild(row)});sum();})();
+</script>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Journal" %}{% endblock %}
+{% block heading %}{% translate "Journal entries" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/accounts/_tabs.html" %}
+<div class="hr-actions" style="margin-bottom:12px"><a class="btn" href="{% url 'webapp:acc_journal_add' %}">＋ {% translate "Journal entry" %}</a></div>
+{% include "webapp/accounts/_period.html" %}
+<form method="get" class="hr-actions no-print" style="margin-bottom:14px">
+  <input type="hidden" name="period" value="{{ preset }}">
+  <input class="hr-in" style="flex:1 1 200px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Reference or note' %}">
+  <select class="hr-in" style="width:auto" name="source"><option value="">{% translate "All types" %}</option>{% for k, l in sources %}<option value="{{ k }}" {% if source == k %}selected{% endif %}>{{ l }}</option>{% endfor %}</select>
+  <button class="btn btn-secondary" type="submit">{% translate "Search" %}</button>
+</form>
+<div class="hr-list">{% for e in page %}
+  <a class="hr-row" href="{% url 'webapp:acc_journal_detail' e.id %}" {% if e.is_void %}style="opacity:.55"{% endif %}>
+    <span class="grow"><b>#{{ e.id }} · {{ e.reference|default:e.source_label }}</b><small>{{ e.date|date:"j M Y" }} · {{ e.source_label }}{% if e.memo %} · {{ e.memo|truncatechars:70 }}{% endif %}</small>
+      <small>{% for l in e.lines.all|slice:":4" %}{{ l.account.name }}{% if l.debit %} Dr {{ l.debit|floatformat:2 }}{% else %} Cr {{ l.credit|floatformat:2 }}{% endif %}{% if not forloop.last %} · {% endif %}{% endfor %}</small></span>
+    {% if e.is_void %}<span class="hr-chip bad">{% translate "Cancelled" %}</span>{% endif %}<b>{{ e.total|floatformat:2 }}</b></a>
+{% empty %}<div class="hr-card hr-empty">{% translate "No entries in this period." %}</div>{% endfor %}</div>
+{% if page.paginator.num_pages > 1 %}<div class="hr-actions" style="justify-content:center;margin-top:14px">{% if page.has_previous %}<a class="btn btn-secondary" href="?{{ page_query }}&page={{ page.previous_page_number }}">←</a>{% endif %}<span>{{ page.number }} / {{ page.paginator.num_pages }}</span>{% if page.has_next %}<a class="btn btn-secondary" href="?{{ page_query }}&page={{ page.next_page_number }}">→</a>{% endif %}</div>{% endif %}
+</div>
+{% endblock %}

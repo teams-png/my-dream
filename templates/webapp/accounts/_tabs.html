@@ -1,0 +1,13 @@
+{% load i18n static %}<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+{% with u=request.resolver_match.url_name %}
+<nav class="hr-tabs no-print" aria-label="{% translate 'Accounts' %}">
+  <a class="{% if u == 'acc_home' %}on{% endif %}" href="{% url 'webapp:acc_home' %}">📊 {% translate "Overview" %}</a>
+  <a class="{% if u == 'acc_pl' %}on{% endif %}" href="{% url 'webapp:acc_pl' %}">📈 {% translate "Profit & Loss" %}</a>
+  <a class="{% if u == 'acc_bs' %}on{% endif %}" href="{% url 'webapp:acc_bs' %}">⚖️ {% translate "Balance Sheet" %}</a>
+  <a class="{% if u == 'acc_tb' %}on{% endif %}" href="{% url 'webapp:acc_tb' %}">🧮 {% translate "Trial Balance" %}</a>
+  <a class="{% if u == 'acc_cf' %}on{% endif %}" href="{% url 'webapp:acc_cf' %}">💧 {% translate "Cash Flow" %}</a>
+  <a class="{% if u == 'acc_vat' %}on{% endif %}" href="{% url 'webapp:acc_vat' %}">🧾 {% translate "VAT / Tax" %}</a>
+  <a class="{% if u == 'acc_chart' or u == 'acc_ledger' %}on{% endif %}" href="{% url 'webapp:acc_chart' %}">📚 {% translate "Chart of accounts" %}</a>
+  <a class="{% if u == 'acc_journal' or u == 'acc_journal_detail' or u == 'acc_journal_add' %}on{% endif %}" href="{% url 'webapp:acc_journal' %}">✍️ {% translate "Journal" %}</a>
+</nav>
+{% endwith %}

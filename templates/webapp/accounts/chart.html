@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Chart of accounts" %}{% endblock %}
+{% block heading %}{% translate "Chart of accounts" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/accounts/_tabs.html" %}
+<div class="hr-grid2">
+<div>
+{% for g in groups %}
+  <div class="hr-card"><h3>{{ g.label }} <small style="margin-left:auto">{{ g.total|floatformat:2 }}</small></h3>
+    <div class="hr-list">{% for a, b in g.rows %}
+      <div class="hr-row" {% if not a.is_active %}style="opacity:.55"{% endif %}><a class="grow" href="{% url 'webapp:acc_ledger' a.id %}?period=all"><b>{{ a.code }} · {{ a.name }}</b><small>{% if a.is_system_account %}{% translate "System account" %}{% endif %}{% if not a.is_active %} {% translate "Switched off" %}{% endif %}</small></a><b>{{ b|floatformat:2 }}</b>
+        {% if not a.is_system_account %}<form method="post">{% csrf_token %}<input type="hidden" name="id" value="{{ a.id }}"><button class="btn btn-secondary" name="action" value="{% if a.is_active %}deactivate{% else %}activate{% endif %}">{% if a.is_active %}{% translate "Switch off" %}{% else %}{% translate "Switch on" %}{% endif %}</button></form>{% endif %}</div>
+    {% empty %}<div class="hr-empty">—</div>{% endfor %}</div>
+  </div>
+{% endfor %}
+</div>
+<div class="hr-card"><h3>＋ {% translate "New account" %}</h3>
+  <form method="post" class="hr-form">{% csrf_token %}<input type="hidden" name="action" value="add">
+    <label>{% translate "Code" %}<input name="code" required maxlength="20" placeholder="5300"></label>
+    <label>{% translate "Name" %}<input name="name" required maxlength="150" placeholder="{% translate 'e.g. Rent expense' %}"></label>
+    <label class="wide">{% translate "Type" %}<select name="type">{% for k, l in types %}<option value="{{ k }}">{{ l }}</option>{% endfor %}</select></label>
+    <div class="wide"><button class="btn" type="submit">{% translate "Add account" %}</button></div>
+  </form>
+  <p style="color:var(--hr-soft);font-size:13px;margin:12px 0 0">{% translate "Codes: 1xxx assets, 2xxx liabilities, 3xxx equity, 4xxx income, 5xxx expenses." %}</p>
+</div>
+</div>
+</div>
+{% endblock %}

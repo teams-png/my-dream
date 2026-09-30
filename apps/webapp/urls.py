@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import booking_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
+from . import accounts_views, booking_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, public_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -105,6 +105,17 @@ urlpatterns = [
     path("purchases/reports/", views.purchase_reports, name="purchase_reports"),
 
     path("pos/", views.pos_view, name="pos"),
+    path("accounts/", accounts_views.accounts_home, name="acc_home"),
+    path("accounts/profit-loss/", accounts_views.profit_loss, name="acc_pl"),
+    path("accounts/balance-sheet/", accounts_views.balance_sheet, name="acc_bs"),
+    path("accounts/trial-balance/", accounts_views.trial_balance, name="acc_tb"),
+    path("accounts/cash-flow/", accounts_views.cash_flow, name="acc_cf"),
+    path("accounts/vat/", accounts_views.vat_report, name="acc_vat"),
+    path("accounts/chart/", accounts_views.chart_of_accounts, name="acc_chart"),
+    path("accounts/ledger/<int:account_id>/", accounts_views.ledger, name="acc_ledger"),
+    path("accounts/journal/", accounts_views.journal_list, name="acc_journal"),
+    path("accounts/journal/add/", accounts_views.journal_add, name="acc_journal_add"),
+    path("accounts/journal/<int:entry_id>/", accounts_views.journal_detail, name="acc_journal_detail"),
     path("finance/", finance_views.finance_home, name="finance_home"),
     path("finance/cheques/", finance_views.cheque_list, name="cheque_list"),
     path("finance/cheques/<int:cheque_id>/status/", finance_views.cheque_status, name="cheque_status"),

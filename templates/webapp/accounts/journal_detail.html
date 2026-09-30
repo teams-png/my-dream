@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Journal entry" %} #{{ entry.id }}{% endblock %}
+{% block heading %}{% translate "Journal entry" %} #{{ entry.id }}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/accounts/_tabs.html" %}
+<div class="hr-card" style="max-width:820px">
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;margin-bottom:12px">
+    <div><b style="font-size:17px">{{ entry.reference|default:source }}</b><div style="color:var(--hr-soft)">{{ entry.date|date:"j M Y" }} · {{ source }} · {% translate "by" %} {{ entry.posted_by.email|default:entry.posted_by.username }}</div>{% if entry.memo %}<div style="margin-top:6px">{{ entry.memo }}</div>{% endif %}</div>
+    {% if entry.is_void %}<span class="hr-chip bad" style="align-self:flex-start">{% translate "Cancelled" %}</span>{% endif %}
+  </div>
+  <div class="hr-table"><table><thead><tr><th>{% translate "Account" %}</th><th>{% translate "Note" %}</th><th class="hr-num">{% translate "Debit" %}</th><th class="hr-num">{% translate "Credit" %}</th></tr></thead>
+  <tbody>{% for l in lines %}<tr><td><a href="{% url 'webapp:acc_ledger' l.account.id %}?period=all">{{ l.account.code }} · {{ l.account.name }}</a></td><td>{{ l.description }}</td><td class="hr-num">{% if l.debit %}{{ l.debit|floatformat:2 }}{% endif %}</td><td class="hr-num">{% if l.credit %}{{ l.credit|floatformat:2 }}{% endif %}</td></tr>{% endfor %}</tbody>
+  <tfoot><tr><th colspan="2">{% translate "Total" %}</th><th class="hr-num">{{ total_debit|floatformat:2 }}</th><th class="hr-num">{{ total_credit|floatformat:2 }}</th></tr></tfoot></table></div>
+</div>
+<div class="hr-actions no-print">
+  <a class="btn btn-secondary" href="{% url 'webapp:acc_journal' %}">← {% translate "Journal" %}</a>
+  <button class="btn btn-secondary" type="button" onclick="print()">🖨 {% translate "Print" %}</button>
+  {% if can_void %}<form method="post">{% csrf_token %}<button class="btn btn-secondary" name="action" value="void" onclick="return confirm('{% translate "Cancel this journal entry? It will be removed from all reports." %}')">✕ {% translate "Cancel entry" %}</button></form>{% endif %}
+</div>
+</div>
+{% endblock %}

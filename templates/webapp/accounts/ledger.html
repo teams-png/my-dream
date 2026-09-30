@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ account.name }}{% endblock %}
+{% block heading %}{% translate "Ledger" %}: {{ account.code }} · {{ account.name }}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/accounts/_tabs.html" %}
+<form method="get" class="hr-actions no-print" style="margin-bottom:8px"><select class="hr-in" style="width:auto" onchange="location=this.value">{% for a in accounts %}<option value="{% url 'webapp:acc_ledger' a.id %}?period={{ preset }}" {% if a.id == account.id %}selected{% endif %}>{{ a.code }} · {{ a.name }}</option>{% endfor %}</select></form>
+{% include "webapp/accounts/_period.html" %}
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Opening balance" %}</small><b>{{ opening|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Debit" %}</small><b>{{ total_debit|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Credit" %}</small><b>{{ total_credit|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Closing balance" %}</small><b>{{ closing|floatformat:2 }}</b></div>
+</div>
+<div class="hr-card hr-table">
+  <table><thead><tr><th>{% translate "Date" %}</th><th>{% translate "Details" %}</th><th class="hr-num">{% translate "Debit" %}</th><th class="hr-num">{% translate "Credit" %}</th><th class="hr-num">{% translate "Balance" %}</th></tr></thead>
+  <tbody>{% for r in rows %}<tr><td>{{ r.entry.date|date:"j M Y" }}</td><td style="white-space:normal"><a href="{% url 'webapp:acc_journal_detail' r.entry.id %}"><b>{{ r.entry.reference|default:r.source }}</b></a> <small style="color:var(--hr-soft)">{{ r.source }}{% if r.entry.memo %} · {{ r.entry.memo|truncatechars:60 }}{% endif %}</small></td><td class="hr-num">{% if r.line.debit %}{{ r.line.debit|floatformat:2 }}{% endif %}</td><td class="hr-num">{% if r.line.credit %}{{ r.line.credit|floatformat:2 }}{% endif %}</td><td class="hr-num"><b>{{ r.balance|floatformat:2 }}</b></td></tr>{% empty %}<tr><td colspan="5" class="hr-empty">{% translate "No entries in this period." %}</td></tr>{% endfor %}</tbody></table>
+</div>
+</div>
+{% endblock %}

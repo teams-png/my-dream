@@ -77,3 +77,7 @@ a.hr-kpi:hover{border-color:var(--hr-accent)}
 @media(max-width:700px){.att-row{grid-template-columns:minmax(0,1fr)}.hr-kpi b{font-size:19px}.hr-card{padding:14px}}
 html[data-theme=dark] .mg td.off,html[data-theme=dark] .mg th.off{background:rgba(255,255,255,.04)}
 @media print{.sidebar,.topbar,.hr-tabs,.no-print,.nav-scrim{display:none!important}.main{padding:0!important}.hr-card{border:0}}
+@media print{.print-head{display:block!important;margin-bottom:12px;font-size:15px}.hr-kpi{border:1px solid #ccc}}
+.hr-money td[colspan]{text-align:left!important}
+.hr-table td:first-child{white-space:normal;min-width:140px}
+@media(max-width:700px){.hr-table td,.hr-table th{padding:8px 8px;font-size:13px}}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "VAT / Tax" %}{% endblock %}
+{% block heading %}{% translate "VAT / Tax report" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/accounts/_tabs.html" %}
+{% include "webapp/accounts/_period.html" %}
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Tax collected on sales" %}</small><b>{{ tax.tax_collected|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Tax paid on purchases" %}</small><b>{{ tax.tax_paid|floatformat:2 }}</b></div>
+  <div class="hr-kpi {% if tax.net_tax_payable > 0 %}warn{% endif %}"><small>{% if tax.net_tax_payable < 0 %}{% translate "Tax to reclaim" %}{% else %}{% translate "Tax to pay" %}{% endif %}</small><b>{{ active_company.default_currency }} {{ tax.net_tax_payable|floatformat:2 }}</b></div>
+</div>
+<div class="hr-grid2" style="grid-template-columns:1fr 1fr">
+  <div class="hr-card hr-table"><h3>{% translate "Sales by tax code" %}</h3><table><thead><tr><th>{% translate "Code" %}</th><th class="hr-num">{% translate "Taxable" %}</th><th class="hr-num">{% translate "Tax" %}</th></tr></thead><tbody>{% for r in tax.sales_by_tax_code %}<tr><td>{{ r.tax_code__code }} <small>{{ r.tax_code__classification }}</small></td><td class="hr-num">{{ r.taxable|floatformat:2 }}</td><td class="hr-num">{{ r.tax|floatformat:2 }}</td></tr>{% empty %}<tr><td colspan="3" class="hr-empty">{% translate "No tax codes used." %}</td></tr>{% endfor %}</tbody></table></div>
+  <div class="hr-card hr-table"><h3>{% translate "Purchases by tax code" %}</h3><table><thead><tr><th>{% translate "Code" %}</th><th class="hr-num">{% translate "Taxable" %}</th><th class="hr-num">{% translate "Tax" %}</th></tr></thead><tbody>{% for r in tax.purchases_by_tax_code %}<tr><td>{{ r.tax_code__code }} <small>{{ r.tax_code__classification }}</small></td><td class="hr-num">{{ r.taxable|floatformat:2 }}</td><td class="hr-num">{{ r.tax|floatformat:2 }}</td></tr>{% empty %}<tr><td colspan="3" class="hr-empty">{% translate "No tax codes used." %}</td></tr>{% endfor %}</tbody></table></div>
+</div>
+</div>
+{% endblock %}

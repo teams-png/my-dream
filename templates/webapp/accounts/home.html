@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Accounts" %}{% endblock %}
+{% block heading %}{% translate "Accounts" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/accounts/_tabs.html" %}
+<div class="hr-kpis">
+  <a class="hr-kpi" href="{% url 'webapp:acc_pl' %}"><small>{% translate "Profit this month" %}</small><b style="{% if month.net_profit < 0 %}color:var(--hr-bad){% else %}color:var(--hr-ok){% endif %}">{{ active_company.default_currency }} {{ month.net_profit|floatformat:2 }}</b></a>
+  <a class="hr-kpi" href="{% url 'webapp:acc_pl' %}?period=year"><small>{% translate "Profit this year" %}</small><b>{{ year.net_profit|floatformat:2 }}</b></a>
+  <a class="hr-kpi" href="{% url 'webapp:acc_cf' %}"><small>{% translate "Cash in hand" %}</small><b>{{ cash|floatformat:2 }}</b></a>
+  <a class="hr-kpi" href="{% url 'webapp:acc_cf' %}"><small>{% translate "Bank" %}</small><b>{{ bank|floatformat:2 }}</b></a>
+  <a class="hr-kpi" href="{% url 'webapp:acc_bs' %}"><small>{% translate "Customers owe you" %}</small><b>{{ receivable|floatformat:2 }}</b></a>
+  <a class="hr-kpi" href="{% url 'webapp:acc_bs' %}"><small>{% translate "You owe suppliers" %}</small><b>{{ payable|floatformat:2 }}</b></a>
+  <a class="hr-kpi" href="{% url 'webapp:acc_vat' %}"><small>{% translate "Tax payable" %}</small><b>{{ tax|floatformat:2 }}</b></a>
+</div>
+<div class="hr-grid2">
+  <div class="hr-card"><h3>📈 {% translate "Last 6 months" %} <small><span style="color:var(--hr-ok)">■</span> {% translate "Income" %} <span style="color:#e67e22">■</span> {% translate "Expenses" %}</small></h3>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:end;height:190px;padding-top:10px">
+      {% for t in trend %}<div style="display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end" title="{{ t.month|date:'M Y' }}: {{ t.net|floatformat:2 }}">
+        <div style="display:flex;gap:3px;align-items:flex-end;height:140px;width:100%;justify-content:center"><span style="width:40%;max-width:22px;height:{{ t.income_pct }}%;min-height:2px;background:var(--hr-ok);border-radius:6px 6px 0 0"></span><span style="width:40%;max-width:22px;height:{{ t.expense_pct }}%;min-height:2px;background:#e67e22;border-radius:6px 6px 0 0"></span></div>
+        <small style="font-weight:700;color:var(--hr-soft)">{{ t.month|date:"M" }}</small><small style="font-weight:800;font-size:11px;{% if t.net < 0 %}color:var(--hr-bad){% endif %}">{{ t.net|floatformat:0 }}</small></div>{% endfor %}
+    </div>
+  </div>
+  <div class="hr-card"><h3>📑 {% translate "Reports" %}</h3>
+    <div class="hr-list">
+      <a class="hr-row" href="{% url 'webapp:acc_pl' %}"><span class="grow"><b>{% translate "Profit & Loss" %}</b><small>{% translate "Income, costs and profit for any period" %}</small></span>›</a>
+      <a class="hr-row" href="{% url 'webapp:acc_bs' %}"><span class="grow"><b>{% translate "Balance Sheet" %}</b><small>{% translate "What the business owns and owes" %}</small></span>›</a>
+      <a class="hr-row" href="{% url 'webapp:acc_tb' %}"><span class="grow"><b>{% translate "Trial Balance" %}</b><small>{% translate "Every account's debit and credit balance" %}</small></span>›</a>
+      <a class="hr-row" href="{% url 'webapp:acc_cf' %}"><span class="grow"><b>{% translate "Cash Flow" %}</b><small>{% translate "Money in and out of cash and bank" %}</small></span>›</a>
+      <a class="hr-row" href="{% url 'webapp:acc_vat' %}"><span class="grow"><b>{% translate "VAT / Tax" %}</b><small>{% translate "Tax collected and paid" %}</small></span>›</a>
+    </div>
+  </div>
+</div>
+<div class="hr-card"><h3>✍️ {% translate "Latest entries" %} <a class="btn btn-secondary" style="margin-left:auto" href="{% url 'webapp:acc_journal_add' %}">＋ {% translate "Journal entry" %}</a></h3>
+  <div class="hr-list">{% for e in recent %}<a class="hr-row" href="{% url 'webapp:acc_journal_detail' e.id %}"><span class="grow"><b>{{ e.reference|default:e.memo|default:"—"|truncatechars:60 }}</b><small>{{ e.date|date:"j M Y" }}{% if e.memo %} · {{ e.memo|truncatechars:80 }}{% endif %}</small></span>›</a>{% empty %}<div class="hr-empty">{% translate "No entries yet. Sales, purchases, expenses and salaries are recorded here automatically." %}</div>{% endfor %}</div>
+</div>
+</div>
+{% endblock %}

@@ -167,7 +167,7 @@ def invite_member(*, company, user, role):
     """
     current_count = CompanyMembership.objects.filter(company=company, is_active=True).count()
     subscription = getattr(company, "subscription", None)
-    if subscription and current_count >= subscription.plan.max_users:
+    if subscription and current_count >= subscription.plan.max_users and not subscription.plan.extra_user_price:
         raise ValueError(
             f"This company's plan allows a maximum of {subscription.plan.max_users} users."
         )

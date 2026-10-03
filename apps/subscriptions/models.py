@@ -16,6 +16,12 @@ class SubscriptionPlan(models.Model):
     )
     max_users = models.PositiveIntegerField(default=5)
     max_warehouses = models.PositiveIntegerField(default=1)
+    extra_user_price = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0,
+        help_text="Price per year for each user above max_users. 0 = no extra users (upgrade the plan instead).")
+    extra_branch_price = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0,
+        help_text="Price per year for each branch above max_warehouses. 0 = branches are free.")
     max_invoices_per_month = models.PositiveIntegerField(default=0, help_text="0 means unlimited")
     storage_limit_mb = models.PositiveIntegerField(default=0, help_text="0 means not enforced")
     grace_period_days = models.PositiveSmallIntegerField(default=0)

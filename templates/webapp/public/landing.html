@@ -129,6 +129,10 @@ h2{font-size:clamp(30px,3.6vw,44px);letter-spacing:-.035em;line-height:1.1;margi
 .seg-tabs button.on{background:#fff;color:var(--ink);box-shadow:0 4px 12px rgba(0,0,0,.08)}
 .cur-pick{font-size:14px;font-weight:700;color:var(--soft)}
 .cur-pick select{border:1.5px solid var(--line);border-radius:999px;padding:8px 12px;font:inherit;background:#fff}
+.addons{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:22px auto 0;max-width:760px}
+.addon{flex:1 1 260px;display:flex;align-items:center;gap:14px;background:#fff;border:1px dashed var(--brand-2);border-radius:18px;padding:16px 18px}
+.addon .ico{font-size:26px}.addon b{display:block;font-size:16px}.addon span{color:var(--soft);font-size:14px}
+.addon .amt{margin-left:auto;font-weight:700;font-size:20px;white-space:nowrap}.addon .amt small{font-size:13px;color:var(--soft);font-weight:500}
 .plan .approx{font-size:14px;color:var(--soft);font-weight:600;margin-top:-4px}
 .plan-swap{animation:planIn .45s var(--ease) both}
 @keyframes planIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -253,6 +257,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <label class="cur-pick">{% translate "Show in" %} <select id="curPick"><option value="">QAR</option>{% for code in pricing.fx %}{% if code != "QAR" %}<option value="{{ code }}">{{ code }}</option>{% endif %}{% endfor %}</select></label>
   </div>
   <div class="plans" id="planCards"></div>
+  <div class="addons reveal" id="addonBox" hidden></div>
   <p class="sub" id="priceNote" style="font-size:14px;margin:18px auto 0;text-align:center"></p>
   <noscript><div class="plans">{% for plan in plans %}<div class="plan"><h3>{{ plan.name }} ({{ plan.country }})</h3><div class="price">{{ plan.currency }} {{ plan.price|floatformat:"-2" }}</div></div>{% endfor %}</div></noscript>
   </div>
@@ -285,6 +290,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     start:"{% translate 'Start free trial' %}",all:"{% translate 'All features for your business type' %}",
     feats:["{% translate 'POS, stock, accounts & reports' %}","{% translate 'WhatsApp bills & device support' %}","{% translate 'Unlimited invoices' %}"],
     billed:"{% translate 'Prices are per year. Customers outside India are billed in QAR; other currencies are an estimate.' %}",
+    branch1:"{% translate '1 branch included' %}",xUser:"{% translate 'Extra user' %}",xBranch:"{% translate 'Extra branch' %}",
+    xUserNote:"{% translate 'for each user after' %}",xBranchNote:"{% translate 'for each branch after the first' %}",
+    perUser:"{% translate 'per extra user / year' %}",perBranch:"{% translate 'per extra branch / year' %}",
     india:"{% translate 'Prices are per year, billed in INR.' %}",approx:"{% translate 'approx.' %}"};
   let tier='standard',region='Global';
   try{const saved=localStorage.getItem('bp.cur');if(saved&&P.fx[saved])cur.value=saved}catch(_){}
@@ -300,9 +308,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       <h3>${p.users} ${p.users>1?T.users:T.user}</h3>
       <div class="price">${p.currency} ${fmt(p.price)} <small>/ ${T.year}</small></div>
       ${c&&fx?`<div class="approx">≈ ${c} ${fmt(p.price*fx.rate)}${fx.exact?'':' ('+T.approx+')'}</div>`:''}
-      <ul><li>${T.upTo} ${p.users} ${p.users>1?T.users:T.user}</li>${T.feats.map(f=>`<li>${f}</li>`).join('')}<li>${T.all}</li></ul>
+      <ul><li>${T.upTo} ${p.users} ${p.users>1?T.users:T.user}${p.extra_user?` · +${p.currency} ${fmt(p.extra_user)} ${T.perUser}`:''}</li><li>${T.branch1}${p.extra_branch?` · +${p.currency} ${fmt(p.extra_branch)} ${T.perBranch}`:''}</li>${T.feats.map(f=>`<li>${f}</li>`).join('')}<li>${T.all}</li></ul>
       ${signup?`<a class="btn ${i===1?'primary':'ghost'}" href="${signup}?plan=${p.id}">${T.start}</a>`:''}</div>`).join('');
     note.textContent=region==='India'?T.india:T.billed;
+    const top=list[list.length-1],ab=document.getElementById('addonBox');
+    const conv=v=>c&&fx?` <small>≈ ${c} ${fmt(v*fx.rate)}</small>`:'';
+    const parts=[];
+    if(top&&top.extra_user)parts.push(`<div class="addon"><span class="ico">👤</span><div><b>${T.xUser}</b><span>${T.xUserNote} ${top.users}</span></div><div class="amt">${top.currency} ${fmt(top.extra_user)}${conv(top.extra_user)}<br><small>/ ${T.year}</small></div></div>`);
+    if(top&&top.extra_branch)parts.push(`<div class="addon"><span class="ico">🏬</span><div><b>${T.xBranch}</b><span>${T.xBranchNote}</span></div><div class="amt">${top.currency} ${fmt(top.extra_branch)}${conv(top.extra_branch)}<br><small>/ ${T.year}</small></div></div>`);
+    ab.innerHTML=parts.join('');ab.hidden=!parts.length;
   }
   document.getElementById('tierTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){tier=b.dataset.tier;render()}});
   document.getElementById('regionTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){region=b.dataset.region;render()}});

@@ -1467,6 +1467,54 @@ msgstr "നിരക്ക് സേവ് ചെയ്യുക"
 msgid "No exchange rates yet."
 msgstr "ഇതുവരെ വിനിമയ നിരക്കുകൾ ഇല്ല."
 
+#: templates/webapp/billing.html
+msgid "up to"
+msgstr "വരെ"
+
+#: templates/webapp/billing.html
+msgid "users"
+msgstr "യൂസർമാർ"
+
+#: templates/webapp/billing.html
+msgid "using"
+msgstr "ഉപയോഗിക്കുന്നത്"
+
+#: templates/webapp/billing.html
+msgid "branches"
+msgstr "ബ്രാഞ്ചുകൾ"
+
+#: templates/webapp/billing.html
+msgid "Each extra user"
+msgstr "ഓരോ അധിക യൂസർക്കും"
+
+#: templates/webapp/billing.html
+msgid "year"
+msgstr "വർഷം"
+
+#: templates/webapp/billing.html
+msgid "Each extra branch"
+msgstr "ഓരോ അധിക ബ്രാഞ്ചിനും"
+
+#: templates/webapp/billing.html
+msgid "Price"
+msgstr "വില"
+
+#: templates/webapp/billing.html
+msgid "Plan"
+msgstr "പ്ലാൻ"
+
+#: templates/webapp/billing.html
+msgid "extra users"
+msgstr "അധിക യൂസർമാർ"
+
+#: templates/webapp/billing.html
+msgid "extra branches"
+msgstr "അധിക ബ്രാഞ്ചുകൾ"
+
+#: templates/webapp/billing.html
+msgid "extra user"
+msgstr "അധിക യൂസർ"
+
 #: templates/webapp/careers/_form.html
 msgid "Full name (as in passport)"
 msgstr "മുഴുവൻ പേര് (പാസ്പോർട്ടിലുള്ളതുപോലെ)"
@@ -2086,10 +2134,6 @@ msgstr "ഇതുവരെ ഐറ്റങ്ങൾ ഇല്ല."
 #: templates/webapp/crm/price_list.html
 msgid "Set a price"
 msgstr "വില സെറ്റ് ചെയ്യുക"
-
-#: templates/webapp/crm/price_list.html
-msgid "Price"
-msgstr "വില"
 
 #: templates/webapp/crm/price_list.html
 msgid "All items at once"
@@ -5852,14 +5896,6 @@ msgid "user"
 msgstr "യൂസർ"
 
 #: templates/webapp/public/landing.html
-msgid "users"
-msgstr "യൂസർമാർ"
-
-#: templates/webapp/public/landing.html
-msgid "year"
-msgstr "വർഷം"
-
-#: templates/webapp/public/landing.html
 msgid "Up to"
 msgstr "പരമാവധി"
 
@@ -5886,6 +5922,34 @@ msgid ""
 msgstr ""
 "വില വർഷത്തേക്കാണ്. ഇന്ത്യക്ക് പുറത്തുള്ളവർക്ക് QAR-ൽ ബിൽ ചെയ്യും; മറ്റ് "
 "കറൻസികൾ ഏകദേശ കണക്കാണ്."
+
+#: templates/webapp/public/landing.html
+msgid "1 branch included"
+msgstr "1 ബ്രാഞ്ച് ഉൾപ്പെടെ"
+
+#: templates/webapp/public/landing.html
+msgid "Extra user"
+msgstr "അധിക യൂസർ"
+
+#: templates/webapp/public/landing.html
+msgid "Extra branch"
+msgstr "അധിക ബ്രാഞ്ച്"
+
+#: templates/webapp/public/landing.html
+msgid "for each user after"
+msgstr "ഈ എണ്ണത്തിന് ശേഷം ഓരോ യൂസർക്കും:"
+
+#: templates/webapp/public/landing.html
+msgid "for each branch after the first"
+msgstr "ആദ്യത്തേതിന് ശേഷം ഓരോ ബ്രാഞ്ചിനും"
+
+#: templates/webapp/public/landing.html
+msgid "per extra user / year"
+msgstr "ഓരോ അധിക യൂസർക്കും / വർഷം"
+
+#: templates/webapp/public/landing.html
+msgid "per extra branch / year"
+msgstr "ഓരോ അധിക ബ്രാഞ്ചിനും / വർഷം"
 
 #: templates/webapp/public/landing.html
 msgid "Prices are per year, billed in INR."

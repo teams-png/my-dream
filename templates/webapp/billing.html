@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block title %}Billing{% endblock %}
 {% block heading %}Billing &amp; Subscription{% endblock %}
 {% block content %}
@@ -27,12 +28,19 @@
   <div class="card">
     <div style="color:var(--ink-soft); font-size:13px;">Current plan</div>
     <div style="font-size:18px; font-weight:600; margin-top:4px;">{{ subscription.plan.name }}</div>
-    <div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">{{ subscription.plan.country }} · up to {{ subscription.plan.max_users }} users</div>
+    <div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">{{ subscription.plan.country }} · {% translate "up to" %} {{ subscription.plan.max_users }} {% translate "users" %} · {% translate "using" %} {{ addons.users }} {% translate "users" %}, {{ addons.branches }} {% translate "branches" %}</div>
+    {% if addons.extra_user_price or addons.extra_branch_price %}<div style="font-size:12.5px; color:var(--ink-soft); margin-top:6px;">{% if addons.extra_user_price %}{% translate "Each extra user" %}: {{ subscription.plan.currency }} {{ addons.extra_user_price|floatformat:"-2" }} / {% translate "year" %}. {% endif %}{% if addons.extra_branch_price %}{% translate "Each extra branch" %}: {{ subscription.plan.currency }} {{ addons.extra_branch_price|floatformat:"-2" }} / {% translate "year" %}.{% endif %}</div>{% endif %}
   </div>
   <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Price</div>
-    <div style="font-size:18px; font-weight:600; margin-top:4px;">{{ subscription.plan.currency }} {{ subscription.plan.price|floatformat:"-2" }}</div>
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Price" %}</div>
+    <div style="font-size:18px; font-weight:600; margin-top:4px;">{{ subscription.plan.currency }} {{ addons.total|floatformat:"-2" }}</div>
     <div style="font-size:13px; color:var(--ink-soft); margin-top:2px;">per {{ subscription.plan.get_billing_period_display|lower }}{% if price_estimate %} · ≈ {{ active_company.default_currency }} {{ price_estimate }}{% endif %}</div>
+    {% if addons.extra_users or addons.extra_branches %}
+    <div style="font-size:13px; margin-top:8px; line-height:1.7">
+      {% translate "Plan" %}: {{ subscription.plan.currency }} {{ addons.plan_price|floatformat:"-2" }}<br>
+      {% if addons.extra_users %}+ {{ addons.extra_users }} {% translate "extra users" %} × {{ addons.extra_user_price|floatformat:"-2" }} = {{ addons.users_amount|floatformat:"-2" }}<br>{% endif %}
+      {% if addons.extra_branches %}+ {{ addons.extra_branches }} {% translate "extra branches" %} × {{ addons.extra_branch_price|floatformat:"-2" }} = {{ addons.branches_amount|floatformat:"-2" }}{% endif %}
+    </div>{% endif %}
   </div>
 </div>
 
@@ -45,6 +53,7 @@
           style="text-align:left; cursor:pointer; font:inherit; color:inherit; {% if plan.id == subscription.plan_id %}border:2px solid var(--accent); cursor:default;{% endif %}">
     <div style="font-weight:700;">{{ plan.max_users }} user{{ plan.max_users|pluralize }}</div>
     <div style="font-size:18px; font-weight:700; margin-top:4px;">{{ plan.currency }} {{ plan.price|floatformat:"-2" }}<small style="font-weight:500; color:var(--ink-soft);"> / year</small></div>
+    {% if plan.extra_user_price %}<div style="font-size:12px; color:var(--ink-soft);">+ {{ plan.extra_user_price|floatformat:"-2" }} / {% translate "extra user" %}</div>{% endif %}
     {% if estimate %}<div style="font-size:12.5px; color:var(--ink-soft);">≈ {{ active_company.default_currency }} {{ estimate }}</div>{% endif %}
     <div style="font-size:12.5px; margin-top:6px; color:var(--accent); font-weight:600;">{% if plan.id == subscription.plan_id %}✓ Current plan{% else %}Switch to this plan{% endif %}</div>
   </button>
@@ -61,7 +70,7 @@
     {% csrf_token %}
     <label for="skipcash-phone">Mobile number (for the payment receipt)</label>
     <input id="skipcash-phone" name="phone" type="tel" inputmode="tel" required value="{{ company_phone }}" placeholder="+974 5555 1234" pattern="[+0-9 ]{8,20}">
-    <button class="btn" style="margin-top:16px; width:100%;" type="submit">Pay {{ subscription.plan.currency }} {{ subscription.plan.price }} securely →</button>
+    <button class="btn" style="margin-top:16px; width:100%;" type="submit">Pay {{ subscription.plan.currency }} {{ addons.total|floatformat:"-2" }} securely →</button>
   </form>
   <p style="font-size:12px; color:var(--ink-soft); margin:10px 0 0;">🔒 You pay on SkipCash's secure page. We never see your card details.</p>
 </div>
@@ -86,7 +95,7 @@
 {% if razorpay_configured %}
 <div class="card" style="max-width:400px; margin-bottom:16px;">
   <p style="color:var(--ink-soft); font-size:13.5px; margin-top:0;">Pay by UPI, PhonePe, Google Pay, or card — your subscription updates automatically once payment completes.</p>
-  <button id="razorpay-pay-btn" class="btn">Pay {{ subscription.plan.currency }} {{ subscription.plan.price }}</button>
+  <button id="razorpay-pay-btn" class="btn">Pay {{ subscription.plan.currency }} {{ addons.total|floatformat:"-2" }}</button>
   <div id="razorpay-message" style="margin-top:10px; font-size:13.5px;"></div>
 </div>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -153,7 +162,7 @@ document.getElementById('razorpay-pay-btn').addEventListener('click', async () =
 {% if stripe_configured %}
 <div class="card" style="max-width:400px; margin-bottom:16px;">
   <p style="color:var(--ink-soft); font-size:13.5px; margin-top:0;">Pay securely by card — your subscription updates automatically once payment completes.</p>
-  <a class="btn" href="{% url 'webapp:billing_stripe_checkout' %}">Pay {{ subscription.plan.currency }} {{ subscription.plan.price }} by card</a>
+  <a class="btn" href="{% url 'webapp:billing_stripe_checkout' %}">Pay {{ subscription.plan.currency }} {{ addons.total|floatformat:"-2" }} by card</a>
 </div>
 {% else %}
 <div class="card empty" style="margin-bottom:16px;">Card payment isn't set up yet — please contact us to arrange payment.</div>

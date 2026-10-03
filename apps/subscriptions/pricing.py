@@ -28,6 +28,9 @@ PRICE_TABLE = {
 }
 TIER_LABEL = {"standard": "Business", "large": "Large Shop"}
 
+# Yearly add-ons: each user above the biggest plan's users, and each branch above the first.
+ADDON_PRICES = {GLOBAL: {"user": 100, "branch": 100}}
+
 # How much of each currency one QAR buys, for display only. The GCC
 # currencies and USD are pegged, so these are exact; the others float and
 # are approximate — override with the DISPLAY_FX_PER_QAR setting.
@@ -79,11 +82,42 @@ def ensure_default_plans(modules=()):
                          currency=REGION_CURRENCY[region])
             if SubscriptionPlan.objects.filter(**match).exclude(name="Starter", price=0).exists():
                 continue
-            plan = SubscriptionPlan.objects.create(name=plan_name(tier, users), price=Decimal(price), **match)
+            addon = ADDON_PRICES.get(region, {})
+            plan = SubscriptionPlan.objects.create(
+                name=plan_name(tier, users), price=Decimal(price),
+                extra_user_price=Decimal(addon.get("user", 0)) if users == max(USER_STEPS) else Decimal("0"),
+                extra_branch_price=Decimal(addon.get("branch", 0)), **match)
             created += 1
             if modules:
                 plan.modules.set(modules)
     return created
+
+
+def usage(company):
+    """(active users, active branches) of a company."""
+    from apps.inventory.models import Warehouse
+    from apps.tenants.models import CompanyMembership
+    users = CompanyMembership.objects.filter(company=company, is_active=True).count()
+    branches = Warehouse.objects.for_company(company).filter(is_active=True).count()
+    return users, max(branches, 1)
+
+
+def addons(subscription, company=None):
+    """What the subscription costs per period: the plan plus extra users and extra branches in use."""
+    plan = subscription.plan
+    users, branches = usage(company or subscription.company)
+    extra_users = max(users - plan.max_users, 0) if plan.extra_user_price else 0
+    extra_branches = max(branches - plan.max_warehouses, 0) if plan.extra_branch_price else 0
+    users_amount = plan.extra_user_price * extra_users
+    branches_amount = plan.extra_branch_price * extra_branches
+    return {"users": users, "branches": branches, "extra_users": extra_users, "extra_branches": extra_branches,
+            "extra_user_price": plan.extra_user_price, "extra_branch_price": plan.extra_branch_price,
+            "users_amount": users_amount, "branches_amount": branches_amount,
+            "plan_price": plan.price, "total": plan.price + users_amount + branches_amount, "currency": plan.currency}
+
+
+def amount_due(subscription):
+    return addons(subscription)["total"]
 
 
 def fx_rates():

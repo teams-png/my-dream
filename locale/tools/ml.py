@@ -1874,3 +1874,22 @@ ML.update({
 ML.update({
     "Only the business owner can open this page.": "ബിസിനസ് ഉടമയ്ക്ക് മാത്രമേ ഈ പേജ് തുറക്കാൻ കഴിയൂ.",
 })
+
+ML.update({
+    "up to": "വരെ",
+    "using": "ഉപയോഗിക്കുന്നത്",
+    "branches": "ബ്രാഞ്ചുകൾ",
+    "Each extra user": "ഓരോ അധിക യൂസർക്കും",
+    "Each extra branch": "ഓരോ അധിക ബ്രാഞ്ചിനും",
+    "Plan": "പ്ലാൻ",
+    "extra users": "അധിക യൂസർമാർ",
+    "extra branches": "അധിക ബ്രാഞ്ചുകൾ",
+    "extra user": "അധിക യൂസർ",
+    "1 branch included": "1 ബ്രാഞ്ച് ഉൾപ്പെടെ",
+    "Extra user": "അധിക യൂസർ",
+    "Extra branch": "അധിക ബ്രാഞ്ച്",
+    "for each user after": "ഈ എണ്ണത്തിന് ശേഷം ഓരോ യൂസർക്കും:",
+    "for each branch after the first": "ആദ്യത്തേതിന് ശേഷം ഓരോ ബ്രാഞ്ചിനും",
+    "per extra user / year": "ഓരോ അധിക യൂസർക്കും / വർഷം",
+    "per extra branch / year": "ഓരോ അധിക ബ്രാഞ്ചിനും / വർഷം",
+})

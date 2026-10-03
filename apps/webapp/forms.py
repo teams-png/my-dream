@@ -1228,7 +1228,7 @@ class EditUserCredentialsForm(forms.Form):
 class SubscriptionPlanForm(forms.ModelForm):
     class Meta:
         model = SubscriptionPlan
-        fields = ["name", "country", "currency", "price", "billing_period", "max_users", "max_warehouses", "max_invoices_per_month", "storage_limit_mb", "grace_period_days", "modules", "is_active"]
+        fields = ["name", "country", "currency", "price", "billing_period", "max_users", "extra_user_price", "max_warehouses", "extra_branch_price", "max_invoices_per_month", "storage_limit_mb", "grace_period_days", "modules", "is_active"]
 
 
 class PlatformModuleForm(forms.ModelForm):

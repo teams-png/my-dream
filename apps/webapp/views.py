@@ -5076,7 +5076,7 @@ def billing_view(request):
     elif request.GET.get("stripe_cancelled"):
         messages.error(request, "Checkout was cancelled — no charge was made.")
 
-    from apps.subscriptions.pricing import local_estimate, plans_for
+    from apps.subscriptions.pricing import addons, amount_due, local_estimate, plans_for
     available_plans = list(plans_for(company.country, company.business_type.code)) if subscription else []
 
     if request.method == "POST" and request.POST.get("change_plan"):
@@ -5085,7 +5085,7 @@ def billing_view(request):
         users = CompanyMembership.objects.filter(company=company, is_active=True).count()
         if not is_owner or plan is None or subscription is None:
             messages.error(request, _("That plan can't be selected."))
-        elif users > plan.max_users:
+        elif users > plan.max_users and not plan.extra_user_price:
             messages.error(request, _("You have %(users)s active users; this plan allows %(max)s. Remove users first.") % {
                 "users": users, "max": plan.max_users})
         else:
@@ -5107,7 +5107,7 @@ def billing_view(request):
             messages.success(request, "Payment submitted — a platform admin will confirm it shortly.")
             return redirect("webapp:billing")
     else:
-        form = BillingPaymentForm(initial={"amount": subscription.plan.price if subscription else None})
+        form = BillingPaymentForm(initial={"amount": amount_due(subscription) if subscription else None})
 
     gateway = get_payment_gateway_config()
     return render(request, "webapp/billing.html", {
@@ -5121,8 +5121,9 @@ def billing_view(request):
         "skipcash_ready": _skipcash_ready(gateway, subscription),
         "company_phone": company.phone,
         "available_plans": [(p, local_estimate(p.price, p.currency, company.default_currency)) for p in available_plans],
-        "price_estimate": local_estimate(subscription.plan.price, subscription.plan.currency, company.default_currency)
+        "price_estimate": local_estimate(amount_due(subscription), subscription.plan.currency, company.default_currency)
         if subscription else None,
+        "addons": addons(subscription) if subscription else None,
     })
 
 
@@ -5273,6 +5274,7 @@ def billing_stripe_checkout(request):
         messages.error(request, "Only the business owner can pay.")
         return redirect("webapp:billing")
 
+    from apps.subscriptions.pricing import amount_due
     stripe.api_key = gateway.stripe_secret_key
     plan = subscription.plan
     success_url = request.build_absolute_uri(reverse("webapp:billing")) + "?stripe_success=1"
@@ -5286,7 +5288,7 @@ def billing_stripe_checkout(request):
                 "price_data": {
                     "currency": plan.currency.lower(),
                     "product_data": {"name": f"{plan.name} — {company.name}"},
-                    "unit_amount": int(plan.price * 100),
+                    "unit_amount": int(amount_due(subscription) * 100),
                 },
                 "quantity": 1,
             }],
@@ -5355,7 +5357,8 @@ def billing_razorpay_order(request):
         return JsonResponse({"error": "No subscription found."}, status=400)
 
     client = razorpay.Client(auth=(gateway.razorpay_key_id, gateway.razorpay_key_secret))
-    amount_paise = int(subscription.plan.price * 100)
+    from apps.subscriptions.pricing import amount_due
+    amount_paise = int(amount_due(subscription) * 100)
     try:
         order = client.order.create({
             "amount": amount_paise,
@@ -5401,8 +5404,9 @@ def billing_razorpay_verify(request):
     except razorpay.errors.SignatureVerificationError:
         return JsonResponse({"error": "Payment verification failed."}, status=400)
 
+    from apps.subscriptions.pricing import amount_due
     subscription_services.confirm_razorpay_payment(
-        subscription, amount=subscription.plan.price, reference=payment_id,
+        subscription, amount=amount_due(subscription), reference=payment_id,
     )
     return JsonResponse({"success": True})
 

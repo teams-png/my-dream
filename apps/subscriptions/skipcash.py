@@ -78,13 +78,15 @@ def _result(response):
 
 def start_checkout(config, *, subscription, user, first_name, last_name, phone, email):
     """Creates the payment at SkipCash and returns (GatewayCheckout, pay_url)."""
+    from .pricing import amount_due
     plan = subscription.plan
+    amount = amount_due(subscription)
     checkout = GatewayCheckout.objects.create(
         subscription=subscription, gateway="skipcash", transaction_id=f"BP-{subscription.id}-{uuid.uuid4().hex[:12]}",
-        amount=plan.price, currency=plan.currency, created_by=user,
+        amount=amount, currency=plan.currency, created_by=user,
     )
     data = {
-        "Uid": str(uuid.uuid4()), "KeyId": config.skipcash_key_id, "Amount": f"{plan.price:.2f}",
+        "Uid": str(uuid.uuid4()), "KeyId": config.skipcash_key_id, "Amount": f"{amount:.2f}",
         "FirstName": (first_name or "Customer")[:50], "LastName": (last_name or first_name or "Customer")[:50],
         "Phone": phone[:20], "Email": email[:100], "TransactionId": checkout.transaction_id,
         "Custom1": f"subscription:{subscription.id}",

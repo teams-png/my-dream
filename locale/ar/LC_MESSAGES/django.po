@@ -1462,6 +1462,54 @@ msgstr "حفظ السعر"
 msgid "No exchange rates yet."
 msgstr "لا أسعار صرف بعد."
 
+#: templates/webapp/billing.html
+msgid "up to"
+msgstr "حتى"
+
+#: templates/webapp/billing.html
+msgid "users"
+msgstr "مستخدمين"
+
+#: templates/webapp/billing.html
+msgid "using"
+msgstr "المستخدم"
+
+#: templates/webapp/billing.html
+msgid "branches"
+msgstr "فروع"
+
+#: templates/webapp/billing.html
+msgid "Each extra user"
+msgstr "كل مستخدم إضافي"
+
+#: templates/webapp/billing.html
+msgid "year"
+msgstr "سنة"
+
+#: templates/webapp/billing.html
+msgid "Each extra branch"
+msgstr "كل فرع إضافي"
+
+#: templates/webapp/billing.html
+msgid "Price"
+msgstr "السعر"
+
+#: templates/webapp/billing.html
+msgid "Plan"
+msgstr "الخطة"
+
+#: templates/webapp/billing.html
+msgid "extra users"
+msgstr "مستخدمون إضافيون"
+
+#: templates/webapp/billing.html
+msgid "extra branches"
+msgstr "فروع إضافية"
+
+#: templates/webapp/billing.html
+msgid "extra user"
+msgstr "مستخدم إضافي"
+
 #: templates/webapp/careers/_form.html
 msgid "Full name (as in passport)"
 msgstr "الاسم الكامل (كما في الجواز)"
@@ -2071,10 +2119,6 @@ msgstr "لا أصناف بعد."
 #: templates/webapp/crm/price_list.html
 msgid "Set a price"
 msgstr "تحديد سعر"
-
-#: templates/webapp/crm/price_list.html
-msgid "Price"
-msgstr "السعر"
 
 #: templates/webapp/crm/price_list.html
 msgid "All items at once"
@@ -5781,14 +5825,6 @@ msgid "user"
 msgstr "مستخدم"
 
 #: templates/webapp/public/landing.html
-msgid "users"
-msgstr "مستخدمين"
-
-#: templates/webapp/public/landing.html
-msgid "year"
-msgstr "سنة"
-
-#: templates/webapp/public/landing.html
 msgid "Up to"
 msgstr "حتى"
 
@@ -5815,6 +5851,34 @@ msgid ""
 msgstr ""
 "الأسعار سنوية. يُحاسَب العملاء خارج الهند بالريال القطري؛ العملات الأخرى "
 "تقديرية."
+
+#: templates/webapp/public/landing.html
+msgid "1 branch included"
+msgstr "يشمل فرعاً واحداً"
+
+#: templates/webapp/public/landing.html
+msgid "Extra user"
+msgstr "مستخدم إضافي"
+
+#: templates/webapp/public/landing.html
+msgid "Extra branch"
+msgstr "فرع إضافي"
+
+#: templates/webapp/public/landing.html
+msgid "for each user after"
+msgstr "لكل مستخدم بعد"
+
+#: templates/webapp/public/landing.html
+msgid "for each branch after the first"
+msgstr "لكل فرع بعد الأول"
+
+#: templates/webapp/public/landing.html
+msgid "per extra user / year"
+msgstr "لكل مستخدم إضافي / سنة"
+
+#: templates/webapp/public/landing.html
+msgid "per extra branch / year"
+msgstr "لكل فرع إضافي / سنة"
 
 #: templates/webapp/public/landing.html
 msgid "Prices are per year, billed in INR."

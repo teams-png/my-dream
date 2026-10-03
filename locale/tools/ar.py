@@ -1894,3 +1894,22 @@ AR.update({
 AR.update({
     "Only the business owner can open this page.": "فقط مالك النشاط يمكنه فتح هذه الصفحة.",
 })
+
+AR.update({
+    "up to": "حتى",
+    "using": "المستخدم",
+    "branches": "فروع",
+    "Each extra user": "كل مستخدم إضافي",
+    "Each extra branch": "كل فرع إضافي",
+    "Plan": "الخطة",
+    "extra users": "مستخدمون إضافيون",
+    "extra branches": "فروع إضافية",
+    "extra user": "مستخدم إضافي",
+    "1 branch included": "يشمل فرعاً واحداً",
+    "Extra user": "مستخدم إضافي",
+    "Extra branch": "فرع إضافي",
+    "for each user after": "لكل مستخدم بعد",
+    "for each branch after the first": "لكل فرع بعد الأول",
+    "per extra user / year": "لكل مستخدم إضافي / سنة",
+    "per extra branch / year": "لكل فرع إضافي / سنة",
+})

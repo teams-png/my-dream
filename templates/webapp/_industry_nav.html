@@ -25,6 +25,15 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'rent_run' %}active{% endif %}" href="{% url 'webapp:rent_run' %}"><span>{% translate "Monthly rent" %}</span></a>
       </details>
 {% endif %}
+{% if "recruitment" in f %}
+      <details class="nav-section" open>
+        <summary>🧑‍💼 {% translate "Recruitment" %}</summary>
+      <a class="nav-link {% if request.resolver_match.url_name == 'rec_home' %}active{% endif %}" href="{% url 'webapp:rec_home' %}"><span>{% translate "Overview" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'rec_clients' %}active{% endif %}" href="{% url 'webapp:rec_clients' %}"><span>{% translate "Clients" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name|slice:':7' == 'rec_job' %}active{% endif %}" href="{% url 'webapp:rec_jobs' %}"><span>{% translate "Job orders" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name|slice:':13' == 'rec_candidate' or request.resolver_match.url_name == 'rec_placement' %}active{% endif %}" href="{% url 'webapp:rec_candidates' %}"><span>{% translate "Candidates" %}</span></a>
+      </details>
+{% endif %}
 {% if "gold" in f %}
       <details class="nav-section" open>
         <summary>🪙 {% translate "Gold" %}</summary>

@@ -257,3 +257,117 @@ class AttendanceMark(models.Model):
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=["session", "enrollment"], name="one_mark_per_student_session")]
+
+
+# ------------------------------------------------------------------ recruitment
+
+class JobOrder(TenantScopedModel):
+    """A client's demand: how many people, for which position, on what terms."""
+    STATUS = [("open", "Open"), ("on_hold", "On hold"), ("filled", "Filled"), ("closed", "Closed")]
+    GENDER = [("any", "Any"), ("male", "Male"), ("female", "Female")]
+    number = models.CharField(max_length=20, blank=True)
+    client = models.ForeignKey("customers.Customer", on_delete=models.PROTECT, related_name="job_orders")
+    position = models.CharField(max_length=150)
+    vacancies = models.PositiveIntegerField(default=1)
+    work_location = models.CharField(max_length=150, blank=True)
+    nationality = models.CharField(max_length=100, blank=True, help_text="Preferred nationality, if any.")
+    gender = models.CharField(max_length=10, choices=GENDER, default="any")
+    salary = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+    benefits = models.CharField(max_length=255, blank=True, help_text="Accommodation, food, transport…")
+    requirements = models.TextField(blank=True)
+    contract_months = models.PositiveIntegerField(null=True, blank=True)
+    fee_per_placement = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    guarantee_days = models.PositiveIntegerField(default=90, help_text="Free replacement period after joining.")
+    deadline = models.DateField(null=True, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS, default="open")
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.number} {self.position}"
+
+
+class Candidate(TenantScopedModel):
+    STATUS = [("available", "Available"), ("in_process", "In process"), ("placed", "Placed"),
+              ("not_suitable", "Not suitable")]
+    GENDER = [("", "—"), ("male", "Male"), ("female", "Female")]
+    number = models.CharField(max_length=20, blank=True)
+    name = models.CharField(max_length=150)
+    phone = models.CharField(max_length=30, blank=True)
+    email = models.EmailField(blank=True)
+    nationality = models.CharField(max_length=100, blank=True)
+    gender = models.CharField(max_length=10, choices=GENDER, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    passport_no = models.CharField(max_length=30, blank=True)
+    passport_expiry = models.DateField(null=True, blank=True)
+    trade = models.CharField(max_length=150, blank=True, help_text="Position / skill, e.g. Electrician, Driver, Nurse.")
+    experience_years = models.DecimalField(max_digits=4, decimal_places=1, null=True, blank=True)
+    gulf_experience = models.BooleanField(default=False)
+    current_location = models.CharField(max_length=150, blank=True)
+    expected_salary = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+    languages = models.CharField(max_length=150, blank=True)
+    education = models.CharField(max_length=150, blank=True)
+    agent = models.ForeignKey("suppliers.Supplier", null=True, blank=True, on_delete=models.SET_NULL,
+                              related_name="candidates", help_text="Sub-agent who sent this candidate.")
+    cv = models.FileField(upload_to="recruitment/cv/%Y/%m/", blank=True)
+    notes = models.TextField(blank=True)
+    status = models.CharField(max_length=15, choices=STATUS, default="available")
+    customer = models.ForeignKey("customers.Customer", null=True, blank=True, on_delete=models.SET_NULL, related_name="+",
+                                 help_text="Billing record when the candidate pays a fee.")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return self.name
+
+
+class Placement(TenantScopedModel):
+    """One candidate put forward for one job order, followed until they join (or drop out)."""
+    STAGES = [("submitted", "CV sent"), ("shortlisted", "Shortlisted"), ("interview", "Interview"),
+              ("selected", "Selected"), ("medical", "Medical"), ("visa", "Visa"), ("ticket", "Ticket"),
+              ("deployed", "Joined / deployed"), ("rejected", "Rejected"), ("withdrawn", "Withdrawn")]
+    ACTIVE = ["submitted", "shortlisted", "interview", "selected", "medical", "visa", "ticket"]
+    MEDICAL = [("", "—"), ("pending", "Pending"), ("fit", "Fit"), ("unfit", "Unfit")]
+    job_order = models.ForeignKey(JobOrder, on_delete=models.CASCADE, related_name="placements")
+    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, related_name="placements")
+    stage = models.CharField(max_length=12, choices=STAGES, default="submitted")
+    interview_at = models.DateTimeField(null=True, blank=True)
+    offered_salary = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+    medical_date = models.DateField(null=True, blank=True)
+    medical_result = models.CharField(max_length=10, choices=MEDICAL, blank=True)
+    visa_number = models.CharField(max_length=50, blank=True)
+    visa_expiry = models.DateField(null=True, blank=True)
+    ticket_date = models.DateField(null=True, blank=True)
+    joining_date = models.DateField(null=True, blank=True)
+    guarantee_until = models.DateField(null=True, blank=True)
+    fee = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    candidate_fee = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    candidate_invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    notes = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["job_order", "candidate"], name="one_placement_per_job_candidate")]
+        ordering = ["-updated_at"]
+
+    @property
+    def is_active(self):
+        return self.stage in self.ACTIVE
+
+
+class PlacementCost(TenantScopedModel):
+    TYPES = [("medical", "Medical"), ("visa", "Visa"), ("ticket", "Air ticket"), ("agent", "Agent commission"),
+             ("documents", "Documents / attestation"), ("other", "Other")]
+    placement = models.ForeignKey(Placement, on_delete=models.CASCADE, related_name="costs")
+    cost_type = models.CharField(max_length=12, choices=TYPES)
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    date = models.DateField()
+    paid_to = models.CharField(max_length=150, blank=True)
+    expense = models.ForeignKey("expenses.Expense", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Recruitment" %}{% endblock %}
+{% block heading %}{% translate "Recruitment" %}{% endblock %}
+{% block content %}
+{% include "webapp/recruitment/_head.html" %}
+<div class="ix">
+  <div class="ix-toolbar">
+    <a class="btn" href="{% url 'webapp:rec_job_add' %}">＋ {% translate "New job order" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:rec_candidate_add' %}">＋ {% translate "New candidate" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:rec_clients' %}">＋ {% translate "New client" %}</a>
+  </div>
+  <div class="ix-stats">
+    <a class="ix-stat" href="{% url 'webapp:rec_jobs' %}" style="text-decoration:none;color:inherit"><small>{% translate "Open job orders" %}</small><b>{{ o.open_jobs }}</b></a>
+    <div class="ix-stat"><small>{% translate "People still needed" %}</small><b>{{ o.open_vacancies }}</b></div>
+    <a class="ix-stat" href="{% url 'webapp:rec_candidates' %}?status=available" style="text-decoration:none;color:inherit"><small>{% translate "Candidates available" %}</small><b>{{ o.available }}</b></a>
+    <div class="ix-stat"><small>{% translate "In process" %}</small><b>{{ o.in_process }}</b></div>
+    <div class="ix-stat good"><small>{% translate "Joined this month" %}</small><b>{{ o.deployed_month }}</b></div>
+    <div class="ix-stat"><small>{% translate "Fees billed this month" %}</small><b>{{ o.fees_month|floatformat:0 }}</b></div>
+    {% if o.to_bill %}<div class="ix-stat warn"><small>{% translate "Joined but not billed" %}</small><b>{{ o.to_bill }}</b></div>{% endif %}
+  </div>
+  <div class="ix-card"><h3>{% translate "Pipeline" %}</h3>
+    <div class="rc-steps">{% for code, label, n in pipeline %}<span class="{% if n %}done{% endif %}">{% translate label %}: {{ n }}</span>{% endfor %}</div>
+  </div>
+  <div class="ix-grid2">
+    <div class="ix-card"><h3>💼 {% translate "Open job orders" %}</h3><div class="ix-list">
+      {% for j in jobs %}<a class="ix-row" href="{% url 'webapp:rec_job_detail' j.id %}"><span class="grow"><b>{{ j.position }}</b><small>{{ j.number }} · {{ j.client.name }}{% if j.work_location %} · {{ j.work_location }}{% endif %}</small></span><span class="ix-chip">{{ j.done }}/{{ j.vacancies }}</span>{% if j.active %}<span class="ix-chip in_process">{{ j.active }} {% translate "in process" %}</span>{% endif %}</a>
+      {% empty %}<div class="ix-empty">{% translate "No open job orders. Add the client's demand to start." %}</div>{% endfor %}
+    </div></div>
+    <div class="ix-card"><h3>🗓️ {% translate "Interviews (next 7 days)" %}</h3><div class="ix-list">
+      {% for p in o.interviews %}<a class="ix-row" href="{% url 'webapp:rec_placement' p.id %}"><span class="grow"><b>{{ p.candidate.name }}</b><small>{{ p.job_order.position }} · {{ p.job_order.client.name }}</small></span><b>{{ p.interview_at|date:"D j M H:i" }}</b></a>
+      {% empty %}<div class="ix-empty">{% translate "No interviews scheduled." %}</div>{% endfor %}
+    </div></div>
+    <div class="ix-card"><h3>🛂 {% translate "Passports expiring (6 months)" %}</h3><div class="ix-list">
+      {% for c in o.passports %}<a class="ix-row" href="{% url 'webapp:rec_candidate_detail' c.id %}"><span class="grow"><b>{{ c.name }}</b><small>{{ c.passport_no }}</small></span><span class="ix-chip {% if c.passport_expiry < today %}late{% else %}due{% endif %}">{{ c.passport_expiry|date:"j M Y" }}</span></a>
+      {% empty %}<div class="ix-empty">{% translate "Nothing expiring soon." %}</div>{% endfor %}
+    </div></div>
+    <div class="ix-card"><h3>✈️ {% translate "Visas expiring before travel" %}</h3><div class="ix-list">
+      {% for p in o.visas %}<a class="ix-row" href="{% url 'webapp:rec_placement' p.id %}"><span class="grow"><b>{{ p.candidate.name }}</b><small>{{ p.job_order.number }} · {{ p.visa_number }}</small></span><span class="ix-chip due">{{ p.visa_expiry|date:"j M Y" }}</span></a>
+      {% empty %}<div class="ix-empty">{% translate "Nothing expiring soon." %}</div>{% endfor %}
+    </div></div>
+  </div>
+</div>
+{% endblock %}

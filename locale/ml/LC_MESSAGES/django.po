@@ -534,6 +534,22 @@ msgid "Monthly rent"
 msgstr "മാസ വാടക"
 
 #: templates/webapp/_industry_nav.html
+msgid "Recruitment"
+msgstr "റിക്രൂട്ട്മെന്റ്"
+
+#: templates/webapp/_industry_nav.html
+msgid "Clients"
+msgstr "ക്ലയന്റുകൾ"
+
+#: templates/webapp/_industry_nav.html
+msgid "Job orders"
+msgstr "ജോബ് ഓർഡറുകൾ"
+
+#: templates/webapp/_industry_nav.html
+msgid "Candidates"
+msgstr "ഉദ്യോഗാർത്ഥികൾ"
+
+#: templates/webapp/_industry_nav.html
 msgid "Gold"
 msgstr "സ്വർണം"
 
@@ -1950,6 +1966,18 @@ msgstr "ആകെ പ്രോജക്റ്റുകൾ"
 #: templates/webapp/dashboard.html
 msgid "Revenue"
 msgstr "വരുമാനം"
+
+#: templates/webapp/dashboard.html
+msgid "Open job orders (people needed)"
+msgstr "തുറന്ന ജോബ് ഓർഡറുകൾ (വേണ്ട ആളുകൾ)"
+
+#: templates/webapp/dashboard.html
+msgid "Candidates in process"
+msgstr "പ്രോസസിലുള്ള ഉദ്യോഗാർത്ഥികൾ"
+
+#: templates/webapp/dashboard.html
+msgid "Joined this month"
+msgstr "ഈ മാസം ജോയിൻ ചെയ്തവർ"
 
 #: templates/webapp/dashboard.html
 msgid "Units in stock"
@@ -4327,6 +4355,14 @@ msgid "Your business is ready. Here is what most owners do next:"
 msgstr "നിങ്ങളുടെ ബിസിനസ് തയ്യാറാണ്. മിക്ക ഉടമകളും അടുത്തതായി ചെയ്യുന്നത്:"
 
 #: templates/webapp/onboarding/wizard.html
+msgid "Add your first client"
+msgstr "ആദ്യ ക്ലയന്റിനെ ചേർക്കുക"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Then their job order and candidates."
+msgstr "പിന്നെ അവരുടെ ജോബ് ഓർഡറും ഉദ്യോഗാർത്ഥികളും."
+
+#: templates/webapp/onboarding/wizard.html
 msgid "Open the POS"
 msgstr "POS തുറക്കുക"
 
@@ -5774,6 +5810,402 @@ msgstr "ദിവസം വൈകി"
 msgid "Nobody owes you money."
 msgstr "ആരും പണം തരാനില്ല."
 
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "View CV"
+msgstr "CV കാണുക"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Passport has expired."
+msgstr "പാസ്പോർട്ടിന്റെ കാലാവധി കഴിഞ്ഞു."
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Profile"
+msgstr "പ്രൊഫൈൽ"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Position / skill"
+msgstr "തസ്തിക / സ്കിൽ"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Nationality"
+msgstr "രാജ്യം (നാഷണാലിറ്റി)"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Date of birth"
+msgstr "ജനനത്തീയതി"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Passport"
+msgstr "പാസ്പോർട്ട്"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "exp."
+msgstr "കാലാവധി"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Experience"
+msgstr "പരിചയം"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "yrs"
+msgstr "വർഷം"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Gulf experience"
+msgstr "ഗൾഫ് പരിചയം"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Current location"
+msgstr "ഇപ്പോഴുള്ള സ്ഥലം"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Expected salary"
+msgstr "പ്രതീക്ഷിക്കുന്ന ശമ്പളം"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Languages"
+msgstr "ഭാഷകൾ"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Education"
+msgstr "വിദ്യാഭ്യാസം"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Sub-agent"
+msgstr "സബ്-ഏജന്റ്"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Jobs"
+msgstr "ജോലികൾ"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Not put forward for any job yet."
+msgstr "ഇതുവരെ ഒരു ജോലിക്കും നിർദ്ദേശിച്ചിട്ടില്ല."
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Put forward for"
+msgstr "ഈ ജോലിക്ക് നിർദ്ദേശിക്കുക"
+
+#: templates/webapp/recruitment/candidate_form.html
+msgid "Sub-agents are kept under Suppliers."
+msgstr "സബ്-ഏജന്റുമാരെ സപ്ലയർമാരുടെ കീഴിലാണ് സൂക്ഷിക്കുന്നത്."
+
+#: templates/webapp/recruitment/candidates.html
+msgid "Name, passport, skill, nationality"
+msgstr "പേര്, പാസ്പോർട്ട്, സ്കിൽ, നാഷണാലിറ്റി"
+
+#: templates/webapp/recruitment/candidates.html
+msgid "New candidate"
+msgstr "പുതിയ ഉദ്യോഗാർത്ഥി"
+
+#: templates/webapp/recruitment/candidates.html
+msgid "Passport expired"
+msgstr "പാസ്പോർട്ട് കാലാവധി കഴിഞ്ഞു"
+
+#: templates/webapp/recruitment/candidates.html
+msgid "No candidates yet."
+msgstr "ഇതുവരെ ഉദ്യോഗാർത്ഥികളില്ല."
+
+#: templates/webapp/recruitment/clients.html
+msgid "Add a client (employer)"
+msgstr "ക്ലയന്റിനെ (തൊഴിലുടമ) ചേർക്കുക"
+
+#: templates/webapp/recruitment/clients.html
+msgid "Save client"
+msgstr "ക്ലയന്റിനെ സേവ് ചെയ്യുക"
+
+#: templates/webapp/recruitment/clients.html
+msgid "Save & add job order"
+msgstr "സേവ് ചെയ്ത് ജോബ് ഓർഡർ ചേർക്കുക"
+
+#: templates/webapp/recruitment/clients.html
+msgid "Name or phone"
+msgstr "പേര് അല്ലെങ്കിൽ ഫോൺ"
+
+#: templates/webapp/recruitment/clients.html
+msgid "open"
+msgstr "തുറന്നത്"
+
+#: templates/webapp/recruitment/clients.html
+msgid "placed"
+msgstr "നിയമിച്ചു"
+
+#: templates/webapp/recruitment/clients.html
+msgid "New job order"
+msgstr "പുതിയ ജോബ് ഓർഡർ"
+
+#: templates/webapp/recruitment/clients.html
+msgid "No clients yet. Add your first employer on the left."
+msgstr "ഇതുവരെ ക്ലയന്റുകളില്ല. ആദ്യ തൊഴിലുടമയെ ചേർക്കുക."
+
+#: templates/webapp/recruitment/home.html
+msgid "New client"
+msgstr "പുതിയ ക്ലയന്റ്"
+
+#: templates/webapp/recruitment/home.html
+msgid "Open job orders"
+msgstr "തുറന്ന ജോബ് ഓർഡറുകൾ"
+
+#: templates/webapp/recruitment/home.html
+msgid "People still needed"
+msgstr "ഇനിയും വേണ്ട ആളുകൾ"
+
+#: templates/webapp/recruitment/home.html
+msgid "Candidates available"
+msgstr "ലഭ്യമായ ഉദ്യോഗാർത്ഥികൾ"
+
+#: templates/webapp/recruitment/home.html
+msgid "In process"
+msgstr "പ്രോസസിൽ"
+
+#: templates/webapp/recruitment/home.html
+msgid "Fees billed this month"
+msgstr "ഈ മാസം ബിൽ ചെയ്ത ഫീസ്"
+
+#: templates/webapp/recruitment/home.html
+msgid "Joined but not billed"
+msgstr "ജോയിൻ ചെയ്തു, ബിൽ ചെയ്തില്ല"
+
+#: templates/webapp/recruitment/home.html
+msgid "in process"
+msgstr "പ്രോസസിൽ"
+
+#: templates/webapp/recruitment/home.html
+msgid "No open job orders. Add the client's demand to start."
+msgstr "തുറന്ന ജോബ് ഓർഡറുകളില്ല. തുടങ്ങാൻ ക്ലയന്റിന്റെ ഡിമാൻഡ് ചേർക്കുക."
+
+#: templates/webapp/recruitment/home.html
+msgid "Interviews (next 7 days)"
+msgstr "ഇന്റർവ്യൂകൾ (അടുത്ത 7 ദിവസം)"
+
+#: templates/webapp/recruitment/home.html
+msgid "No interviews scheduled."
+msgstr "ഇന്റർവ്യൂ ഒന്നും നിശ്ചയിച്ചിട്ടില്ല."
+
+#: templates/webapp/recruitment/home.html
+msgid "Passports expiring (6 months)"
+msgstr "കാലാവധി തീരുന്ന പാസ്പോർട്ടുകൾ (6 മാസം)"
+
+#: templates/webapp/recruitment/home.html
+msgid "Nothing expiring soon."
+msgstr "ഉടനെ ഒന്നും കാലാവധി തീരുന്നില്ല."
+
+#: templates/webapp/recruitment/home.html
+msgid "Visas expiring before travel"
+msgstr "യാത്രയ്ക്ക് മുമ്പ് കാലാവധി തീരുന്ന വിസകൾ"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Share job on WhatsApp"
+msgstr "ജോലി വാട്സ്ആപ്പിൽ ഷെയർ ചെയ്യുക"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Update client"
+msgstr "ക്ലയന്റിനെ അറിയിക്കുക"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Client"
+msgstr "ക്ലയന്റ്"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Joined / needed"
+msgstr "ജോയിൻ ചെയ്തവർ / വേണ്ടത്"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Our fee per person"
+msgstr "ഒരാൾക്ക് ഞങ്ങളുടെ ഫീസ്"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Location"
+msgstr "സ്ഥലം"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Needed by"
+msgstr "വേണ്ട തീയതി"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Requirements"
+msgstr "ആവശ്യകതകൾ"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Not billed yet"
+msgstr "ഇതുവരെ ബിൽ ചെയ്തിട്ടില്ല"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Move to"
+msgstr "ഇതിലേക്ക് മാറ്റുക"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Rejected / withdrawn"
+msgstr "നിരസിച്ചവർ / പിന്മാറിയവർ"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Add candidates to this job"
+msgstr "ഈ ജോലിക്ക് ഉദ്യോഗാർത്ഥികളെ ചേർക്കുക"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Matching available candidates"
+msgstr "യോജിക്കുന്ന ലഭ്യമായ ഉദ്യോഗാർത്ഥികൾ"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "show all"
+msgstr "എല്ലാം കാണിക്കുക"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "in another process"
+msgstr "മറ്റൊരു പ്രോസസിൽ"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "…or a new candidate"
+msgstr "…അല്ലെങ്കിൽ പുതിയ ഉദ്യോഗാർത്ഥി"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Full name"
+msgstr "മുഴുവൻ പേര്"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Phone / WhatsApp"
+msgstr "ഫോൺ / വാട്സ്ആപ്പ്"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Passport number"
+msgstr "പാസ്പോർട്ട് നമ്പർ"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Add to job"
+msgstr "ജോലിയിലേക്ക് ചേർക്കുക"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Add a full candidate profile with CV →"
+msgstr "CV സഹിതം മുഴുവൻ പ്രൊഫൈൽ ചേർക്കുക →"
+
+#: templates/webapp/recruitment/jobs.html
+msgid "Position, number or client"
+msgstr "തസ്തിക, നമ്പർ അല്ലെങ്കിൽ ക്ലയന്റ്"
+
+#: templates/webapp/recruitment/jobs.html
+msgid "joined"
+msgstr "ജോയിൻ ചെയ്തു"
+
+#: templates/webapp/recruitment/jobs.html
+msgid "No job orders here."
+msgstr "ഇവിടെ ജോബ് ഓർഡറുകളില്ല."
+
+#: templates/webapp/recruitment/placement.html
+msgid "Candidate"
+msgstr "ഉദ്യോഗാർത്ഥി"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Send interview details"
+msgstr "ഇന്റർവ്യൂ വിവരങ്ങൾ അയയ്ക്കുക"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Tell candidate: selected"
+msgstr "ഉദ്യോഗാർത്ഥിയെ അറിയിക്കുക: സെലക്ട് ആയി"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Send travel date"
+msgstr "യാത്രാ തീയതി അയയ്ക്കുക"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Progress"
+msgstr "പുരോഗതി"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Interview date & time"
+msgstr "ഇന്റർവ്യൂ തീയതിയും സമയവും"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Offered salary"
+msgstr "ഓഫർ ചെയ്ത ശമ്പളം"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Medical date"
+msgstr "മെഡിക്കൽ തീയതി"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Medical result"
+msgstr "മെഡിക്കൽ ഫലം"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Visa number"
+msgstr "വിസ നമ്പർ"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Visa expiry"
+msgstr "വിസ കാലാവധി"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Travel / ticket date"
+msgstr "യാത്ര / ടിക്കറ്റ് തീയതി"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Joining date"
+msgstr "ജോയിനിംഗ് തീയതി"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Replacement guarantee until"
+msgstr "റീപ്ലേസ്മെന്റ് ഗ്യാരണ്ടി വരെ"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Fees & profit"
+msgstr "ഫീസും ലാഭവും"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Client fee"
+msgstr "ക്ലയന്റ് ഫീസ്"
+
+#: templates/webapp/recruitment/placement.html
+msgid "not billed"
+msgstr "ബിൽ ചെയ്തിട്ടില്ല"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Candidate fee"
+msgstr "ഉദ്യോഗാർത്ഥിയുടെ ഫീസ്"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Our costs"
+msgstr "ഞങ്ങളുടെ ചെലവുകൾ"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Profit"
+msgstr "ലാഭം"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Bill the client"
+msgstr "ക്ലയന്റിന് ബിൽ ചെയ്യുക"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Create invoice"
+msgstr "ഇൻവോയ്സ് ഉണ്ടാക്കുക"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Candidate processing fee (optional)"
+msgstr "ഉദ്യോഗാർത്ഥിയുടെ പ്രോസസിംഗ് ഫീസ് (ഐച്ഛികം)"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Bill candidate"
+msgstr "ഉദ്യോഗാർത്ഥിക്ക് ബിൽ ചെയ്യുക"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Costs (medical, visa, ticket, agent…)"
+msgstr "ചെലവുകൾ (മെഡിക്കൽ, വിസ, ടിക്കറ്റ്, ഏജന്റ്…)"
+
+#: templates/webapp/recruitment/placement.html
+msgid "No costs yet."
+msgstr "ഇതുവരെ ചെലവുകളില്ല."
+
+#: templates/webapp/recruitment/placement.html
+msgid "For"
+msgstr "എന്തിന്"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Paid to"
+msgstr "ആർക്ക് നൽകി"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Add cost"
+msgstr "ചെലവ് ചേർക്കുക"
+
 #: templates/webapp/restaurant/dashboard.html
 msgid "Restaurant"
 msgstr "റെസ്റ്റോറന്റ്"
@@ -7163,10 +7595,6 @@ msgid "Add to stock"
 msgstr "സ്റ്റോക്കിൽ ചേർക്കുക"
 
 #: templates/webapp/stock/adjust.html
-msgid "Location"
-msgstr "സ്ഥലം"
-
-#: templates/webapp/stock/adjust.html
 msgid "Recent adjustments"
 msgstr "സമീപകാല ക്രമീകരണങ്ങൾ"
 
@@ -8004,6 +8432,14 @@ msgid "Asset disposed and the gain or loss recorded."
 msgstr "ആസ്തി ഒഴിവാക്കി, ലാഭമോ നഷ്ടമോ രേഖപ്പെടുത്തി."
 
 #: apps/webapp/forms.py
+msgid "…or new client name"
+msgstr "…അല്ലെങ്കിൽ പുതിയ ക്ലയന്റിന്റെ പേര്"
+
+#: apps/webapp/forms.py
+msgid "New client phone"
+msgstr "പുതിയ ക്ലയന്റിന്റെ ഫോൺ"
+
+#: apps/webapp/forms.py
 msgid ""
 "Tick the branches this person works at. Leave all unticked for every branch."
 msgstr ""
@@ -8382,6 +8818,284 @@ msgstr "ഇതിലേക്ക്: %(list)s."
 #: apps/webapp/receivables_views.py
 msgid "%(amount)s kept as advance on account."
 msgstr "%(amount)s അഡ്വാൻസായി സൂക്ഷിച്ചു."
+
+#: apps/webapp/recruitment_views.py
+msgid "Company / client name"
+msgstr "കമ്പനി / ക്ലയന്റിന്റെ പേര്"
+
+#: apps/webapp/recruitment_views.py
+msgid "Address & contact person"
+msgstr "വിലാസവും ബന്ധപ്പെടേണ്ട ആളും"
+
+#: apps/webapp/recruitment_views.py
+msgid "Position / job title"
+msgstr "തസ്തിക / ജോലിയുടെ പേര്"
+
+#: apps/webapp/recruitment_views.py
+msgid "Number of people"
+msgstr "ആളുകളുടെ എണ്ണം"
+
+#: apps/webapp/recruitment_views.py
+msgid "Work location"
+msgstr "ജോലി സ്ഥലം"
+
+#: apps/webapp/recruitment_views.py
+msgid "Preferred nationality"
+msgstr "ഇഷ്ടപ്പെട്ട നാഷണാലിറ്റി"
+
+#: apps/webapp/recruitment_views.py
+msgid "Salary (per month)"
+msgstr "ശമ്പളം (മാസം)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Benefits"
+msgstr "ആനുകൂല്യങ്ങൾ"
+
+#: apps/webapp/recruitment_views.py
+msgid "Contract (months)"
+msgstr "കരാർ (മാസങ്ങൾ)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Our fee per person (charged to client)"
+msgstr "ഒരാൾക്ക് ഞങ്ങളുടെ ഫീസ് (ക്ലയന്റിൽ നിന്ന്)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Replacement guarantee (days)"
+msgstr "റീപ്ലേസ്മെന്റ് ഗ്യാരണ്ടി (ദിവസം)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Gender"
+msgstr "ലിംഗം"
+
+#: apps/webapp/recruitment_views.py
+msgid "Choose a client or type a new client's name."
+msgstr "ക്ലയന്റിനെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ പേര് ടൈപ്പ് ചെയ്യുക."
+
+#: apps/webapp/recruitment_views.py
+msgid "Passport expiry"
+msgstr "പാസ്പോർട്ട് കാലാവധി"
+
+#: apps/webapp/recruitment_views.py
+msgid "Experience (years)"
+msgstr "പരിചയം (വർഷം)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Has Gulf experience"
+msgstr "ഗൾഫ് പരിചയമുണ്ട്"
+
+#: apps/webapp/recruitment_views.py
+msgid "Sub-agent (if any)"
+msgstr "സബ്-ഏജന്റ് (ഉണ്ടെങ്കിൽ)"
+
+#: apps/webapp/recruitment_views.py
+msgid "CV / documents (PDF, Word or photo)"
+msgstr "CV / രേഖകൾ (PDF, Word അല്ലെങ്കിൽ ഫോട്ടോ)"
+
+#: apps/webapp/recruitment_views.py
+msgid "The file is too large (max 8 MB)."
+msgstr "ഫയൽ വളരെ വലുതാണ് (പരമാവധി 8 MB)."
+
+#: apps/webapp/recruitment_views.py
+msgid "Upload a PDF, Word file or photo."
+msgstr "PDF, Word ഫയൽ അല്ലെങ്കിൽ ഫോട്ടോ അപ്‌ലോഡ് ചെയ്യുക."
+
+#: apps/webapp/recruitment_views.py
+msgid "Client %(name)s added."
+msgstr "ക്ലയന്റ് %(name)s ചേർത്തു."
+
+#: apps/webapp/recruitment_views.py
+msgid "Job order %(number)s created."
+msgstr "ജോബ് ഓർഡർ %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/recruitment_views.py
+msgid "Job order saved."
+msgstr "ജോബ് ഓർഡർ സേവ് ചെയ്തു."
+
+#: apps/webapp/recruitment_views.py
+msgid "Choose candidates or type a new candidate's name."
+msgstr "ഉദ്യോഗാർത്ഥികളെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ പേര് ടൈപ്പ് ചെയ്യുക."
+
+#: apps/webapp/recruitment_views.py
+msgid "%(count)s candidates added to this job."
+msgstr "%(count)s ഉദ്യോഗാർത്ഥികളെ ഈ ജോലിയിലേക്ക് ചേർത്തു."
+
+#: apps/webapp/recruitment_views.py
+msgid "Already added or not suitable: %(names)s"
+msgstr "നേരത്തേ ചേർത്തവർ അല്ലെങ്കിൽ യോജിക്കാത്തവർ: %(names)s"
+
+#: apps/webapp/recruitment_views.py
+msgid "Job opening"
+msgstr "ജോലി ഒഴിവ്"
+
+#: apps/webapp/recruitment_views.py
+msgid "Vacancies"
+msgstr "ഒഴിവുകൾ"
+
+#: apps/webapp/recruitment_views.py
+msgid "Candidate %(name)s added."
+msgstr "ഉദ്യോഗാർത്ഥി %(name)s ചേർത്തു."
+
+#: apps/webapp/recruitment_views.py
+msgid "Another candidate has this passport number."
+msgstr "ഈ പാസ്പോർട്ട് നമ്പർ മറ്റൊരു ഉദ്യോഗാർത്ഥിക്കുണ്ട്."
+
+#: apps/webapp/recruitment_views.py
+msgid "Candidate saved."
+msgstr "ഉദ്യോഗാർത്ഥിയെ സേവ് ചെയ്തു."
+
+#: apps/webapp/recruitment_views.py
+msgid "Added to %(job)s."
+msgstr "%(job)s ലേക്ക് ചേർത്തു."
+
+#: apps/webapp/recruitment_views.py
+msgid "Passport expires in %(d)s days."
+msgstr "പാസ്പോർട്ട് %(d)s ദിവസത്തിനകം കാലാവധി തീരും."
+
+#: apps/webapp/recruitment_views.py
+msgid "Hello %(name)s, this is %(company)s."
+msgstr "ഹലോ %(name)s, ഇത് %(company)s ആണ്."
+
+#: apps/webapp/recruitment_views.py
+msgid "Invoice %(number)s created for the client."
+msgstr "ക്ലയന്റിനായി ഇൻവോയ്സ് %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/recruitment_views.py
+msgid "Invoice %(number)s created for the candidate."
+msgstr "ഉദ്യോഗാർത്ഥിക്കായി ഇൻവോയ്സ് %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/recruitment_views.py
+msgid "Cost recorded in expenses."
+msgstr "ചെലവ് എക്സ്പെൻസിൽ രേഖപ്പെടുത്തി."
+
+#: apps/webapp/recruitment_views.py
+msgid ""
+"Dear %(name)s, your interview for %(position)s (%(client)s) is on %(when)s. "
+"Please bring your passport and CV."
+msgstr ""
+"പ്രിയ %(name)s, %(position)s (%(client)s) തസ്തികയിലേക്കുള്ള നിങ്ങളുടെ "
+"ഇന്റർവ്യൂ %(when)s ന് ആണ്. പാസ്പോർട്ടും CV-യും കൊണ്ടുവരിക."
+
+#: apps/webapp/recruitment_views.py
+msgid ""
+"Congratulations %(name)s! You are selected for %(position)s with %(client)s."
+msgstr ""
+"അഭിനന്ദനങ്ങൾ %(name)s! %(client)s ൽ %(position)s ആയി നിങ്ങളെ തിരഞ്ഞെടുത്തു."
+
+#: apps/webapp/recruitment_views.py
+msgid ""
+"Dear %(name)s, your travel date is %(date)s. Please be ready with your "
+"passport."
+msgstr ""
+"പ്രിയ %(name)s, നിങ്ങളുടെ യാത്രാ തീയതി %(date)s ആണ്. പാസ്പോർട്ടുമായി "
+"തയ്യാറായിരിക്കുക."
+
+#: apps/webapp/recruitment_views.py
+msgid "On hold"
+msgstr "ഹോൾഡിൽ"
+
+#: apps/webapp/recruitment_views.py
+msgid "Filled"
+msgstr "നിറഞ്ഞു"
+
+#: apps/webapp/recruitment_views.py
+msgid "Placed"
+msgstr "നിയമിച്ചു"
+
+#: apps/webapp/recruitment_views.py
+msgid "Not suitable"
+msgstr "യോജിക്കില്ല"
+
+#: apps/webapp/recruitment_views.py
+msgid "CV sent"
+msgstr "CV അയച്ചു"
+
+#: apps/webapp/recruitment_views.py
+msgid "Shortlisted"
+msgstr "ഷോർട്ട്‌ലിസ്റ്റ് ചെയ്തു"
+
+#: apps/webapp/recruitment_views.py
+msgid "Interview"
+msgstr "ഇന്റർവ്യൂ"
+
+#: apps/webapp/recruitment_views.py
+msgid "Selected"
+msgstr "സെലക്ട് ആയി"
+
+#: apps/webapp/recruitment_views.py
+msgid "Medical"
+msgstr "മെഡിക്കൽ"
+
+#: apps/webapp/recruitment_views.py
+msgid "Visa"
+msgstr "വിസ"
+
+#: apps/webapp/recruitment_views.py
+msgid "Ticket"
+msgstr "ടിക്കറ്റ്"
+
+#: apps/webapp/recruitment_views.py
+msgid "Joined / deployed"
+msgstr "ജോയിൻ ചെയ്തു"
+
+#: apps/webapp/recruitment_views.py
+msgid "Rejected"
+msgstr "നിരസിച്ചു"
+
+#: apps/webapp/recruitment_views.py
+msgid "Withdrawn"
+msgstr "പിന്മാറി"
+
+#: apps/webapp/recruitment_views.py
+msgid "Fit"
+msgstr "ഫിറ്റ്"
+
+#: apps/webapp/recruitment_views.py
+msgid "Unfit"
+msgstr "അൺഫിറ്റ്"
+
+#: apps/webapp/recruitment_views.py
+msgid "Air ticket"
+msgstr "വിമാന ടിക്കറ്റ്"
+
+#: apps/webapp/recruitment_views.py
+msgid "Agent commission"
+msgstr "ഏജന്റ് കമ്മീഷൻ"
+
+#: apps/webapp/recruitment_views.py
+msgid "Documents / attestation"
+msgstr "രേഖകൾ / അറ്റസ്റ്റേഷൻ"
+
+#: apps/webapp/recruitment_views.py
+msgid "Other"
+msgstr "മറ്റുള്ളവ"
+
+#: apps/webapp/recruitment_views.py
+msgid "Any"
+msgstr "ഏതും"
+
+#: apps/webapp/recruitment_views.py
+msgid "Male"
+msgstr "പുരുഷൻ"
+
+#: apps/webapp/recruitment_views.py
+msgid "Female"
+msgstr "സ്ത്രീ"
+
+#: apps/webapp/recruitment_views.py
+msgid "Bank transfer"
+msgstr "ബാങ്ക് ട്രാൻസ്ഫർ"
+
+#: apps/webapp/recruitment_views.py
+msgid "Free replacement period after joining."
+msgstr "ജോയിൻ ചെയ്ത ശേഷമുള്ള സൗജന്യ റീപ്ലേസ്മെന്റ് കാലയളവ്."
+
+#: apps/webapp/recruitment_views.py
+msgid "Preferred nationality, if any."
+msgstr "ഇഷ്ടപ്പെട്ട നാഷണാലിറ്റി, ഉണ്ടെങ്കിൽ."
+
+#: apps/webapp/recruitment_views.py
+msgid "Accommodation, food, transport…"
+msgstr "താമസം, ഭക്ഷണം, യാത്ര…"
 
 #: apps/webapp/restaurant_order_views.py
 msgid "Yesterday"

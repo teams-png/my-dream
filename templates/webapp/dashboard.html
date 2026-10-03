@@ -220,7 +220,21 @@
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
   </div>
 
-  {% elif active_company.business_type.code == "advertising_agency" or active_company.business_type.code == "digital_marketing_agency" or active_company.business_type.code == "web_development" or active_company.business_type.code == "it_services" or active_company.business_type.code == "software_company" or active_company.business_type.code == "accounting_audit" or active_company.business_type.code == "recruitment_agency" or active_company.business_type.code == "security_services" or active_company.business_type.code == "event_management" or active_company.business_type.code == "cleaning_company" or active_company.business_type.code == "maintenance_company" or active_company.business_type.code == "landscaping_company" %}
+  {% elif active_company.business_type.code == "recruitment_agency" %}
+  <a class="card" href="{% url 'webapp:rec_jobs' %}" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Open job orders (people needed)" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ rec.open_jobs }} ({{ rec.open_vacancies }})</div>
+  </a>
+  <a class="card" href="{% url 'webapp:rec_candidates' %}" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Candidates in process" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ rec.in_process }}</div>
+  </a>
+  <a class="card" href="{% url 'webapp:rec_home' %}" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Joined this month" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ rec.deployed_month }}</div>
+  </a>
+
+  {% elif active_company.business_type.code == "advertising_agency" or active_company.business_type.code == "digital_marketing_agency" or active_company.business_type.code == "web_development" or active_company.business_type.code == "it_services" or active_company.business_type.code == "software_company" or active_company.business_type.code == "accounting_audit" or active_company.business_type.code == "security_services" or active_company.business_type.code == "event_management" or active_company.business_type.code == "cleaning_company" or active_company.business_type.code == "maintenance_company" or active_company.business_type.code == "landscaping_company" %}
   <div class="card">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Active projects" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ active_projects }}</div>

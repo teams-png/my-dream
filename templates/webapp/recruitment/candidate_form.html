@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
+{% block heading %}{{ title }}{% endblock %}
+{% block content %}
+{% include "webapp/recruitment/_head.html" %}
+<form method="post" enctype="multipart/form-data" class="ix ix-form ix-card">{% csrf_token %}
+  {{ form.non_field_errors }}
+  <div class="fields">
+    {% for field in form %}
+      {% if field.field.widget.input_type == "checkbox" %}
+      <div class="full"><label style="display:flex;gap:8px;align-items:center;color:var(--ink)">{{ field }} {{ field.label }}</label></div>
+      {% else %}
+      <div{% if field.name == "name" or field.name == "notes" or field.name == "cv" %} class="full"{% endif %}><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{{ field.errors }}{% if field.name == "agent" %}<small style="color:var(--ink-soft)">{% translate "Sub-agents are kept under Suppliers." %}</small>{% endif %}</div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="ix-toolbar" style="margin-top:18px"><button class="btn" type="submit">{% translate "Save" %}</button><a class="btn btn-secondary" href="{% if candidate %}{% url 'webapp:rec_candidate_detail' candidate.id %}{% else %}{% url 'webapp:rec_candidates' %}{% endif %}">{% translate "Cancel" %}</a></div>
+</form>
+{% endblock %}

@@ -326,9 +326,12 @@ def dashboard(request):
             "today_appt_count": appts.filter(scheduled_at__date=tz.now().date()).count(),
             "completed_count": appts.filter(status="completed").count(),
         })
+    elif biz_code == "recruitment_agency":
+        from apps.industry.recruitment import overview as recruitment_overview
+        context["rec"] = recruitment_overview(company)
     elif biz_code in (
         "advertising_agency", "digital_marketing_agency", "web_development", "it_services",
-        "software_company", "accounting_audit", "recruitment_agency", "security_services",
+        "software_company", "accounting_audit", "security_services",
         "event_management", "cleaning_company", "maintenance_company", "landscaping_company",
     ):
         projects = Project.objects.for_company(company)

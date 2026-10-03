@@ -1,0 +1,24 @@
+{% load static %}<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.rc-board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(210px,1fr);gap:10px;overflow-x:auto;padding-bottom:8px}
+.rc-col{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px;min-height:120px}
+.rc-col h4{margin:0 0 8px;font-size:13px;display:flex;justify-content:space-between;color:var(--ink-soft)}
+.rc-card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:9px 10px;margin-bottom:8px;text-decoration:none;color:inherit}
+.rc-card b{display:block;font-size:14px}.rc-card small{display:block;color:var(--ink-soft);font-size:12px}
+.rc-card form{display:flex;gap:6px;margin-top:7px}.rc-card select{flex:1;min-width:0;padding:5px 6px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:12px;background:var(--panel);color:var(--ink)}
+.rc-card button{padding:5px 9px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:700;font-size:12px;cursor:pointer}
+.rc-steps{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 14px}
+.rc-steps span{padding:5px 10px;border-radius:999px;font-size:12px;font-weight:700;background:var(--paper);color:var(--ink-soft)}
+.rc-steps span.done{background:#dcfce7;color:#166534}.rc-steps span.now{background:var(--accent);color:#fff}
+.rc-pick{max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:6px}
+.rc-pick label{display:flex;gap:9px;align-items:center;padding:7px 8px;border-radius:9px;cursor:pointer;font-weight:500;color:var(--ink)}
+.rc-pick label:hover{background:var(--paper)}.rc-pick small{color:var(--ink-soft)}
+.ix-chip.open,.ix-chip.available,.ix-chip.in_process,.ix-chip.interview,.ix-chip.shortlisted,.ix-chip.submitted{background:#dbeafe;color:#1e40af}
+.ix-chip.filled,.ix-chip.placed,.ix-chip.deployed,.ix-chip.selected{background:#dcfce7;color:#166534}
+.ix-chip.on_hold,.ix-chip.medical,.ix-chip.visa,.ix-chip.ticket{background:#fef3c7;color:#92400e}
+.ix-chip.closed,.ix-chip.not_suitable,.ix-chip.rejected{background:#f3f4f6;color:#6b7280}
+.rc-inline{display:flex;flex-wrap:wrap;gap:8px;align-items:end}.rc-inline>*{flex:1 1 150px}
+.rc-inline input,.rc-inline select{width:100%;padding:9px 11px;border:1.5px solid var(--line);border-radius:10px;font:inherit;background:var(--panel);color:var(--ink);box-sizing:border-box}
+.rc-inline label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-soft);margin-bottom:4px}
+.rc-inline .btn{flex:0 0 auto}
+</style>

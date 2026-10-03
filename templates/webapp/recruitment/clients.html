@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Clients" %}{% endblock %}
+{% block heading %}{% translate "Clients" %}{% endblock %}
+{% block content %}
+{% include "webapp/recruitment/_head.html" %}
+<div class="ix">
+  <div class="ix-grid2">
+    <form method="post" class="ix-card ix-form" id="add">{% csrf_token %}<h3>＋ {% translate "Add a client (employer)" %}</h3>
+      {{ form.non_field_errors }}
+      <div class="fields">{% for field in form %}<div{% if field.name == "name" or field.name == "address" %} class="full"{% endif %}><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{{ field.errors }}</div>{% endfor %}</div>
+      <div class="ix-toolbar" style="margin:14px 0 0"><button class="btn" type="submit">{% translate "Save client" %}</button><button class="btn btn-secondary" type="submit" name="then" value="job">{% translate "Save & add job order" %}</button></div>
+    </form>
+    <div class="ix-card"><h3>{% translate "Clients" %} ({{ clients|length }})</h3>
+      <form method="get" class="ix-toolbar"><input type="search" name="q" value="{{ q }}" placeholder="{% translate 'Name or phone' %}" style="flex:1"><button class="btn btn-secondary">{% translate "Search" %}</button></form>
+      <div class="ix-list">
+      {% for c in clients %}<div class="ix-row"><span class="grow"><b>{{ c.name }}</b><small>{{ c.phone|default:"—" }}{% if c.email %} · {{ c.email }}{% endif %}</small></span>
+        {% if c.open_jobs %}<a class="ix-chip open" href="{% url 'webapp:rec_jobs' %}?client={{ c.id }}&status=open">{{ c.open_jobs }} {% translate "open" %}</a>{% endif %}
+        {% if c.placed %}<span class="ix-chip placed">{{ c.placed }} {% translate "placed" %}</span>{% endif %}
+        <a class="btn btn-secondary" href="{% url 'webapp:rec_job_add' %}?client={{ c.id }}" title="{% translate 'New job order' %}">＋</a>
+        <a class="btn btn-secondary" href="{% url 'webapp:customer_account' c.id %}" title="{% translate 'Account' %}">💵</a></div>
+      {% empty %}<div class="ix-empty">{% translate "No clients yet. Add your first employer on the left." %}</div>{% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

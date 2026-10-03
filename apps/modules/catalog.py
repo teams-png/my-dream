@@ -127,6 +127,8 @@ INDUSTRY_FEATURES = {
     "leases": {"property_management", "real_estate_brokerage"},
     # gold rate x weight + making charge pricing
     "gold": {"jewelry_shop"},
+    # clients' job orders, candidates and the placement pipeline up to joining
+    "recruitment": {"recruitment_agency"},
 }
 
 # (resource, resource plural, booking, default rate unit) for the bookings module

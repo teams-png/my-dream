@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ c.name }}{% endblock %}
+{% block heading %}{{ c.name }}{% endblock %}
+{% block content %}
+{% include "webapp/recruitment/_head.html" %}
+<div class="ix">
+  <div class="ix-toolbar">
+    <a class="btn btn-secondary" href="{% url 'webapp:rec_candidates' %}">← {% translate "Candidates" %}</a>
+    <span class="ix-chip {{ c.status }}">{{ c.get_status_display }}</span><span class="grow"></span>
+    <a class="btn btn-secondary" href="{% url 'webapp:rec_candidate_edit' c.id %}">✏️ {% translate "Edit" %}</a>
+    {% if c.phone %}<a class="btn btn-secondary" style="background:#25d366;border-color:#25d366;color:#fff" href="{{ whatsapp }}" target="_blank" rel="noopener">💬 WhatsApp</a>{% endif %}
+    {% if c.cv %}<a class="btn btn-secondary" href="{% url 'webapp:rec_candidate_cv' c.id %}" target="_blank">📎 {% translate "View CV" %}</a>{% endif %}
+  </div>
+  {% if passport_days is not None and passport_days < 180 %}<div class="ix-card" style="background:#fef3c7;color:#92400e">⚠️ {% if passport_days < 0 %}{% translate "Passport has expired." %}{% else %}{{ passport_note }}{% endif %}</div>{% endif %}
+  <div class="ix-grid2">
+    <div class="ix-card"><h3>{% translate "Profile" %} · {{ c.number }}</h3>
+      <dl class="ix-kv">
+        <dt>{% translate "Position / skill" %}</dt><dd>{{ c.trade|default:"—" }}</dd>
+        <dt>{% translate "Phone" %}</dt><dd>{{ c.phone|default:"—" }}</dd>
+        <dt>{% translate "Email" %}</dt><dd>{{ c.email|default:"—" }}</dd>
+        <dt>{% translate "Nationality" %}</dt><dd>{{ c.nationality|default:"—" }}{% if c.gender %} · {{ c.get_gender_display }}{% endif %}</dd>
+        <dt>{% translate "Date of birth" %}</dt><dd>{{ c.date_of_birth|date:"j M Y"|default:"—" }}</dd>
+        <dt>{% translate "Passport" %}</dt><dd>{{ c.passport_no|default:"—" }}{% if c.passport_expiry %} · {% translate "exp." %} {{ c.passport_expiry|date:"j M Y" }}{% endif %}</dd>
+        <dt>{% translate "Experience" %}</dt><dd>{{ c.experience_years|floatformat:"-1"|default:"—" }} {% translate "yrs" %}{% if c.gulf_experience %} · {% translate "Gulf experience" %}{% endif %}</dd>
+        <dt>{% translate "Current location" %}</dt><dd>{{ c.current_location|default:"—" }}</dd>
+        <dt>{% translate "Expected salary" %}</dt><dd>{{ c.expected_salary|floatformat:0|default:"—" }}</dd>
+        <dt>{% translate "Languages" %}</dt><dd>{{ c.languages|default:"—" }}</dd>
+        <dt>{% translate "Education" %}</dt><dd>{{ c.education|default:"—" }}</dd>
+        <dt>{% translate "Sub-agent" %}</dt><dd>{{ c.agent.name|default:"—" }}</dd>
+      </dl>
+      {% if c.notes %}<p style="white-space:pre-line;margin:12px 0 0">{{ c.notes }}</p>{% endif %}
+    </div>
+    <div class="ix-card"><h3>{% translate "Jobs" %}</h3>
+      <div class="ix-list">{% for p in placements %}<a class="ix-row" href="{% url 'webapp:rec_placement' p.id %}"><span class="grow"><b>{{ p.job_order.position }}</b><small>{{ p.job_order.number }} · {{ p.job_order.client.name }}</small></span><span class="ix-chip {{ p.stage }}">{{ p.get_stage_display }}</span></a>
+      {% empty %}<div class="ix-empty">{% translate "Not put forward for any job yet." %}</div>{% endfor %}</div>
+      {% if open_jobs and c.status != "not_suitable" %}
+      <form method="post" class="rc-inline" style="margin-top:14px">{% csrf_token %}<input type="hidden" name="action" value="submit">
+        <div><label>{% translate "Put forward for" %}</label><select name="job">{% for j in open_jobs %}<option value="{{ j.id }}">{{ j.number }} · {{ j.position }} · {{ j.client.name }}</option>{% endfor %}</select></div>
+        <button class="btn" type="submit">{% translate "Add" %}</button></form>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

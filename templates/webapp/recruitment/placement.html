@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ c.name }} · {{ job.position }}{% endblock %}
+{% block heading %}{{ c.name }} → {{ job.position }}{% endblock %}
+{% block content %}
+{% include "webapp/recruitment/_head.html" %}
+<div class="ix">
+  <div class="ix-toolbar">
+    <a class="btn btn-secondary" href="{% url 'webapp:rec_job_detail' job.id %}">← {{ job.number }}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:rec_candidate_detail' c.id %}">👤 {% translate "Candidate" %}</a>
+    <span class="grow"></span>
+    {% if c.phone %}{% if p.stage == "interview" %}<a class="btn btn-secondary" href="{{ wa.interview }}" target="_blank" rel="noopener">💬 {% translate "Send interview details" %}</a>{% elif p.stage == "selected" %}<a class="btn btn-secondary" href="{{ wa.selected }}" target="_blank" rel="noopener">💬 {% translate "Tell candidate: selected" %}</a>{% elif p.stage == "ticket" %}<a class="btn btn-secondary" href="{{ wa.ticket }}" target="_blank" rel="noopener">💬 {% translate "Send travel date" %}</a>{% endif %}{% endif %}
+    {% if job.client.phone %}<a class="btn btn-secondary" href="{{ wa_client }}" target="_blank" rel="noopener">💬 {% translate "Update client" %}</a>{% endif %}
+  </div>
+  <div class="rc-steps">{% for label, state in steps %}<span class="{{ state }}">{% translate label %}</span>{% endfor %}{% if p.stage == "rejected" or p.stage == "withdrawn" %}<span class="now" style="background:#6b7280">{{ p.get_stage_display }}</span>{% endif %}</div>
+
+  <div class="ix-grid2">
+    <form method="post" class="ix-card ix-form">{% csrf_token %}<input type="hidden" name="action" value="update">
+      <h3>{% translate "Progress" %}</h3>
+      <div class="fields">
+        <div class="full"><label>{% translate "Stage" %}</label><select name="stage">{% for code, label in stages %}<option value="{{ code }}" {% if code == p.stage %}selected{% endif %}>{% translate label %}</option>{% endfor %}</select></div>
+        <div><label>{% translate "Interview date & time" %}</label><input type="datetime-local" name="interview_at" value="{{ p.interview_at|date:'Y-m-d\TH:i' }}"></div>
+        <div><label>{% translate "Offered salary" %}</label><input name="offered_salary" inputmode="decimal" value="{{ p.offered_salary|default_if_none:'' }}"></div>
+        <div><label>{% translate "Medical date" %}</label><input type="date" name="medical_date" value="{{ p.medical_date|date:'Y-m-d' }}"></div>
+        <div><label>{% translate "Medical result" %}</label><select name="medical_result">{% for code, label in medical %}<option value="{{ code }}" {% if code == p.medical_result %}selected{% endif %}>{% translate label %}</option>{% endfor %}</select></div>
+        <div><label>{% translate "Visa number" %}</label><input name="visa_number" value="{{ p.visa_number }}"></div>
+        <div><label>{% translate "Visa expiry" %}</label><input type="date" name="visa_expiry" value="{{ p.visa_expiry|date:'Y-m-d' }}"></div>
+        <div><label>{% translate "Travel / ticket date" %}</label><input type="date" name="ticket_date" value="{{ p.ticket_date|date:'Y-m-d' }}"></div>
+        <div><label>{% translate "Joining date" %}</label><input type="date" name="joining_date" value="{{ p.joining_date|date:'Y-m-d' }}"></div>
+        <div class="full"><label>{% translate "Notes" %}</label><textarea name="notes" rows="2">{{ p.notes }}</textarea></div>
+      </div>
+      {% if p.guarantee_until %}<p style="color:var(--ink-soft);font-size:13px">🛡 {% translate "Replacement guarantee until" %} {{ p.guarantee_until|date:"j M Y" }}</p>{% endif %}
+      <button class="btn" type="submit" style="margin-top:12px">{% translate "Save" %}</button>
+    </form>
+
+    <div>
+      <div class="ix-card"><h3>💵 {% translate "Fees & profit" %}</h3>
+        <dl class="ix-kv">
+          <dt>{% translate "Client fee" %}</dt><dd>{% if p.invoice %}<a href="{% url 'webapp:invoice_share' p.invoice.id %}">{{ p.invoice.invoice_number }}</a> · {{ p.fee|floatformat:2 }} <span class="ix-chip {{ p.invoice.status }}">{{ p.invoice.get_status_display }}</span>{% else %}{{ p.fee|floatformat:2 }} — {% translate "not billed" %}{% endif %}</dd>
+          <dt>{% translate "Candidate fee" %}</dt><dd>{% if p.candidate_invoice %}<a href="{% url 'webapp:invoice_share' p.candidate_invoice.id %}">{{ p.candidate_invoice.invoice_number }}</a> · {{ p.candidate_fee|floatformat:2 }}{% else %}—{% endif %}</dd>
+          <dt>{% translate "Our costs" %}</dt><dd>{{ money.costs|floatformat:2 }}</dd>
+          <dt>{% translate "Profit" %}</dt><dd style="color:{% if money.profit < 0 %}var(--ix-red){% else %}var(--ix-green){% endif %}">{{ money.profit|floatformat:2 }}</dd>
+        </dl>
+        {% if not p.invoice %}<form method="post" class="rc-inline" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="bill_client"><div><label>{% translate "Bill the client" %}</label><input name="amount" inputmode="decimal" value="{{ p.fee|floatformat:2 }}"></div><button class="btn" type="submit">🧾 {% translate "Create invoice" %}</button></form>{% endif %}
+        {% if not p.candidate_invoice %}<form method="post" class="rc-inline" style="margin-top:10px">{% csrf_token %}<input type="hidden" name="action" value="bill_candidate"><div><label>{% translate "Candidate processing fee (optional)" %}</label><input name="amount" inputmode="decimal" placeholder="0.00"></div><button class="btn btn-secondary" type="submit">🧾 {% translate "Bill candidate" %}</button></form>{% endif %}
+      </div>
+      <div class="ix-card"><h3>🧾 {% translate "Costs (medical, visa, ticket, agent…)" %}</h3>
+        <div class="ix-list">{% for x in costs %}<div class="ix-row"><span class="grow"><b>{{ x.get_cost_type_display }}</b><small>{{ x.date|date:"j M Y" }}{% if x.paid_to %} · {{ x.paid_to }}{% endif %}</small></span><b>{{ x.amount|floatformat:2 }}</b></div>{% empty %}<div class="ix-empty">{% translate "No costs yet." %}</div>{% endfor %}</div>
+        <form method="post" class="rc-inline" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="cost">
+          <div><label>{% translate "For" %}</label><select name="cost_type">{% for code, label in cost_types %}<option value="{{ code }}">{% translate label %}</option>{% endfor %}</select></div>
+          <div><label>{% translate "Amount" %}</label><input name="amount" inputmode="decimal" required></div>
+          <div><label>{% translate "Paid to" %}</label><input name="paid_to"></div>
+          <div><label>{% translate "Paid by" %}</label><select name="method">{% for code, label in methods %}<option value="{{ code }}">{% translate label %}</option>{% endfor %}</select></div>
+          <button class="btn" type="submit">＋ {% translate "Add cost" %}</button></form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

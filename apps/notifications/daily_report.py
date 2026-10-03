@@ -111,3 +111,9 @@ def send_daily_report(company, day=None, force=False):
 @register
 def daily_owner_report(company):
     return send_daily_report(company)
+
+
+@register
+def recruitment_reminders(company):
+    from apps.industry.recruitment import daily_reminders
+    return daily_reminders(company)

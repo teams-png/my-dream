@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, security_views, share_views, views
+from . import accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -172,6 +172,18 @@ urlpatterns = [
     path("property/leases/new/", property_views.lease_add, name="lease_add"),
     path("property/leases/<int:lease_id>/", property_views.lease_detail, name="lease_detail"),
     path("property/rent/", property_views.rent_run, name="rent_run"),
+    path("recruitment/", recruitment_views.rec_home, name="rec_home"),
+    path("recruitment/clients/", recruitment_views.rec_clients, name="rec_clients"),
+    path("recruitment/jobs/", recruitment_views.rec_jobs, name="rec_jobs"),
+    path("recruitment/jobs/new/", recruitment_views.rec_job_add, name="rec_job_add"),
+    path("recruitment/jobs/<int:job_id>/", recruitment_views.rec_job_detail, name="rec_job_detail"),
+    path("recruitment/jobs/<int:job_id>/edit/", recruitment_views.rec_job_edit, name="rec_job_edit"),
+    path("recruitment/candidates/", recruitment_views.rec_candidates, name="rec_candidates"),
+    path("recruitment/candidates/new/", recruitment_views.rec_candidate_add, name="rec_candidate_add"),
+    path("recruitment/candidates/<int:candidate_id>/", recruitment_views.rec_candidate_detail, name="rec_candidate_detail"),
+    path("recruitment/candidates/<int:candidate_id>/edit/", recruitment_views.rec_candidate_edit, name="rec_candidate_edit"),
+    path("recruitment/candidates/<int:candidate_id>/cv/", recruitment_views.rec_candidate_cv, name="rec_candidate_cv"),
+    path("recruitment/placements/<int:placement_id>/", recruitment_views.rec_placement, name="rec_placement"),
     path("education/", education_views.education_home, name="education_home"),
     path("education/enrol/", education_views.enroll, name="education_enroll"),
     path("education/fees/", education_views.fees, name="education_fees"),

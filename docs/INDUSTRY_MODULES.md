@@ -53,6 +53,19 @@ WhatsApp/email sharing, VAT and reports work the same everywhere.
 - On each jewellery product, set the weight, karat, making charge (per gram, fixed, or % of gold value) and the stones value.
 - Price = weight × rate + making + stones. The POS always uses the latest rate. Saving rates can also update every item's stored selling price.
 
+## Recruitment (recruitment_agency)
+Menu: 🧑‍💼 Recruitment. It replaces the generic project menu for this type.
+- **Clients:** employers, kept as customers. Add one, then go straight to its job order. The job-order form can also create a new client inline.
+- **Job orders (JO-):** position, how many people, location, salary and benefits, preferred nationality and gender, our fee per person, the replacement guarantee period and the needed-by date. A board shows each candidate per stage, with a one-tap move. Matching candidates are suggested, and new ones can be added inline. The job can be shared on WhatsApp, and the client can get a status update.
+- **Candidates (CN-):** passport (no duplicates, with expiry), trade, nationality, experience, expected salary, sub-agent (a supplier) and a CV upload (PDF, Word or photo, up to 8 MB, served only to logged-in users). There is an Excel export.
+- **Placement:** CV sent → shortlisted → interview (date and time) → selected → medical (an unfit result rejects the placement) → visa (number and expiry) → ticket → joined.
+  - Joining sets the guarantee end date. The job is marked filled once every vacancy has joined, and nobody can join beyond the vacancies.
+  - The client and the candidate can each be billed once.
+  - Costs (medical, visa, ticket, agent commission, documents) are recorded in Expenses under "Recruitment costs". Profit is shown per placement.
+  - WhatsApp messages for the interview, selection and travel date are ready to send.
+- **Nightly reminders:** passports expiring within 90 days, visas expiring before travel (14 days), today's interviews and guarantees ending in 7 days.
+- The generic project form, used by every project-type business, can now create a new client inline.
+
 ## Staff & HR (every business type)
 
 The **People → Staff & HR / Attendance / Payroll & advances** menu is available to all 108 business types. The views are in `apps/webapp/hr_views.py` and the rules are in `apps/employees/services.py`.

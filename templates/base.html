@@ -419,6 +419,8 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'saloon_reports' %}active{% endif %}" href="{% url 'webapp:saloon_reports' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><line x1="5" x2="5" y1="21" y2="11"></line><line x1="12" x2="12" y1="21" y2="5"></line><line x1="19" x2="19" y1="21" y2="14"></line></svg><span>{% translate "Reports" %}</span></a>
       </details>
 
+      {% elif active_business_group == "project" and "recruitment" in active_business_profile.features %}
+
       {% elif active_business_group == "project" %}
       <details class="nav-section" open>
         <summary>{{ active_company.business_type.name }}</summary>

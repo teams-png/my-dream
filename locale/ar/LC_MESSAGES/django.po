@@ -534,6 +534,22 @@ msgid "Monthly rent"
 msgstr "الإيجار الشهري"
 
 #: templates/webapp/_industry_nav.html
+msgid "Recruitment"
+msgstr "التوظيف"
+
+#: templates/webapp/_industry_nav.html
+msgid "Clients"
+msgstr "العملاء"
+
+#: templates/webapp/_industry_nav.html
+msgid "Job orders"
+msgstr "طلبات التوظيف"
+
+#: templates/webapp/_industry_nav.html
+msgid "Candidates"
+msgstr "المرشحون"
+
+#: templates/webapp/_industry_nav.html
 msgid "Gold"
 msgstr "الذهب"
 
@@ -1945,6 +1961,18 @@ msgstr "إجمالي المشاريع"
 #: templates/webapp/dashboard.html
 msgid "Revenue"
 msgstr "الإيرادات"
+
+#: templates/webapp/dashboard.html
+msgid "Open job orders (people needed)"
+msgstr "طلبات التوظيف المفتوحة (العدد المطلوب)"
+
+#: templates/webapp/dashboard.html
+msgid "Candidates in process"
+msgstr "المرشحون قيد الإجراء"
+
+#: templates/webapp/dashboard.html
+msgid "Joined this month"
+msgstr "التحقوا هذا الشهر"
 
 #: templates/webapp/dashboard.html
 msgid "Units in stock"
@@ -4288,6 +4316,14 @@ msgid "Your business is ready. Here is what most owners do next:"
 msgstr "نشاطك جاهز. هذا ما يفعله معظم المالكين بعد ذلك:"
 
 #: templates/webapp/onboarding/wizard.html
+msgid "Add your first client"
+msgstr "أضف أول عميل"
+
+#: templates/webapp/onboarding/wizard.html
+msgid "Then their job order and candidates."
+msgstr "ثم طلب التوظيف والمرشحين."
+
+#: templates/webapp/onboarding/wizard.html
 msgid "Open the POS"
 msgstr "افتح نقطة البيع"
 
@@ -5716,6 +5752,402 @@ msgstr "يوم تأخير"
 msgid "Nobody owes you money."
 msgstr "لا أحد مدين لك."
 
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "View CV"
+msgstr "عرض السيرة الذاتية"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Passport has expired."
+msgstr "انتهت صلاحية جواز السفر."
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Profile"
+msgstr "الملف"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Position / skill"
+msgstr "الوظيفة / المهارة"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Nationality"
+msgstr "الجنسية"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Date of birth"
+msgstr "تاريخ الميلاد"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Passport"
+msgstr "جواز السفر"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "exp."
+msgstr "ينتهي"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Experience"
+msgstr "الخبرة"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "yrs"
+msgstr "سنوات"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Gulf experience"
+msgstr "خبرة خليجية"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Current location"
+msgstr "الموقع الحالي"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Expected salary"
+msgstr "الراتب المتوقع"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Languages"
+msgstr "اللغات"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Education"
+msgstr "التعليم"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Sub-agent"
+msgstr "الوكيل الفرعي"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Jobs"
+msgstr "الوظائف"
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Not put forward for any job yet."
+msgstr "لم يُرشح لأي وظيفة بعد."
+
+#: templates/webapp/recruitment/candidate_detail.html
+msgid "Put forward for"
+msgstr "ترشيح لـ"
+
+#: templates/webapp/recruitment/candidate_form.html
+msgid "Sub-agents are kept under Suppliers."
+msgstr "يُحفظ الوكلاء الفرعيون ضمن الموردين."
+
+#: templates/webapp/recruitment/candidates.html
+msgid "Name, passport, skill, nationality"
+msgstr "الاسم، الجواز، المهارة، الجنسية"
+
+#: templates/webapp/recruitment/candidates.html
+msgid "New candidate"
+msgstr "مرشح جديد"
+
+#: templates/webapp/recruitment/candidates.html
+msgid "Passport expired"
+msgstr "الجواز منتهي"
+
+#: templates/webapp/recruitment/candidates.html
+msgid "No candidates yet."
+msgstr "لا يوجد مرشحون بعد."
+
+#: templates/webapp/recruitment/clients.html
+msgid "Add a client (employer)"
+msgstr "إضافة عميل (صاحب عمل)"
+
+#: templates/webapp/recruitment/clients.html
+msgid "Save client"
+msgstr "حفظ العميل"
+
+#: templates/webapp/recruitment/clients.html
+msgid "Save & add job order"
+msgstr "حفظ وإضافة طلب توظيف"
+
+#: templates/webapp/recruitment/clients.html
+msgid "Name or phone"
+msgstr "الاسم أو الهاتف"
+
+#: templates/webapp/recruitment/clients.html
+msgid "open"
+msgstr "مفتوح"
+
+#: templates/webapp/recruitment/clients.html
+msgid "placed"
+msgstr "تم توظيفه"
+
+#: templates/webapp/recruitment/clients.html
+msgid "New job order"
+msgstr "طلب توظيف جديد"
+
+#: templates/webapp/recruitment/clients.html
+msgid "No clients yet. Add your first employer on the left."
+msgstr "لا يوجد عملاء بعد. أضف أول صاحب عمل."
+
+#: templates/webapp/recruitment/home.html
+msgid "New client"
+msgstr "عميل جديد"
+
+#: templates/webapp/recruitment/home.html
+msgid "Open job orders"
+msgstr "طلبات التوظيف المفتوحة"
+
+#: templates/webapp/recruitment/home.html
+msgid "People still needed"
+msgstr "العدد المتبقي المطلوب"
+
+#: templates/webapp/recruitment/home.html
+msgid "Candidates available"
+msgstr "المرشحون المتاحون"
+
+#: templates/webapp/recruitment/home.html
+msgid "In process"
+msgstr "قيد الإجراء"
+
+#: templates/webapp/recruitment/home.html
+msgid "Fees billed this month"
+msgstr "الرسوم المفوترة هذا الشهر"
+
+#: templates/webapp/recruitment/home.html
+msgid "Joined but not billed"
+msgstr "التحقوا ولم تُصدر فاتورة"
+
+#: templates/webapp/recruitment/home.html
+msgid "in process"
+msgstr "قيد الإجراء"
+
+#: templates/webapp/recruitment/home.html
+msgid "No open job orders. Add the client's demand to start."
+msgstr "لا توجد طلبات مفتوحة. أضف طلب العميل للبدء."
+
+#: templates/webapp/recruitment/home.html
+msgid "Interviews (next 7 days)"
+msgstr "المقابلات (الأيام السبعة القادمة)"
+
+#: templates/webapp/recruitment/home.html
+msgid "No interviews scheduled."
+msgstr "لا توجد مقابلات مجدولة."
+
+#: templates/webapp/recruitment/home.html
+msgid "Passports expiring (6 months)"
+msgstr "جوازات تنتهي (6 أشهر)"
+
+#: templates/webapp/recruitment/home.html
+msgid "Nothing expiring soon."
+msgstr "لا شيء ينتهي قريباً."
+
+#: templates/webapp/recruitment/home.html
+msgid "Visas expiring before travel"
+msgstr "تأشيرات تنتهي قبل السفر"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Share job on WhatsApp"
+msgstr "مشاركة الوظيفة على واتساب"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Update client"
+msgstr "تحديث العميل"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Client"
+msgstr "العميل"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Joined / needed"
+msgstr "التحقوا / المطلوب"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Our fee per person"
+msgstr "رسومنا للشخص"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Location"
+msgstr "الموقع"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Needed by"
+msgstr "مطلوب بحلول"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Requirements"
+msgstr "المتطلبات"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Not billed yet"
+msgstr "لم تصدر فاتورة بعد"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Move to"
+msgstr "نقل إلى"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Rejected / withdrawn"
+msgstr "مرفوض / منسحب"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Add candidates to this job"
+msgstr "إضافة مرشحين لهذه الوظيفة"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Matching available candidates"
+msgstr "المرشحون المتاحون المطابقون"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "show all"
+msgstr "عرض الكل"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "in another process"
+msgstr "في إجراء آخر"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "…or a new candidate"
+msgstr "…أو مرشح جديد"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Full name"
+msgstr "الاسم الكامل"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Phone / WhatsApp"
+msgstr "الهاتف / واتساب"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Passport number"
+msgstr "رقم الجواز"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Add to job"
+msgstr "إضافة للوظيفة"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Add a full candidate profile with CV →"
+msgstr "إضافة ملف كامل مع السيرة الذاتية ←"
+
+#: templates/webapp/recruitment/jobs.html
+msgid "Position, number or client"
+msgstr "الوظيفة أو الرقم أو العميل"
+
+#: templates/webapp/recruitment/jobs.html
+msgid "joined"
+msgstr "التحقوا"
+
+#: templates/webapp/recruitment/jobs.html
+msgid "No job orders here."
+msgstr "لا توجد طلبات هنا."
+
+#: templates/webapp/recruitment/placement.html
+msgid "Candidate"
+msgstr "المرشح"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Send interview details"
+msgstr "إرسال تفاصيل المقابلة"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Tell candidate: selected"
+msgstr "إبلاغ المرشح: تم اختياره"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Send travel date"
+msgstr "إرسال موعد السفر"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Progress"
+msgstr "التقدم"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Interview date & time"
+msgstr "تاريخ ووقت المقابلة"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Offered salary"
+msgstr "الراتب المعروض"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Medical date"
+msgstr "تاريخ الفحص الطبي"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Medical result"
+msgstr "نتيجة الفحص الطبي"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Visa number"
+msgstr "رقم التأشيرة"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Visa expiry"
+msgstr "انتهاء التأشيرة"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Travel / ticket date"
+msgstr "تاريخ السفر / التذكرة"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Joining date"
+msgstr "تاريخ الالتحاق"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Replacement guarantee until"
+msgstr "ضمان الاستبدال حتى"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Fees & profit"
+msgstr "الرسوم والربح"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Client fee"
+msgstr "رسوم العميل"
+
+#: templates/webapp/recruitment/placement.html
+msgid "not billed"
+msgstr "لم تصدر فاتورة"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Candidate fee"
+msgstr "رسوم المرشح"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Our costs"
+msgstr "تكاليفنا"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Profit"
+msgstr "الربح"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Bill the client"
+msgstr "فوترة العميل"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Create invoice"
+msgstr "إنشاء فاتورة"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Candidate processing fee (optional)"
+msgstr "رسوم معالجة المرشح (اختياري)"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Bill candidate"
+msgstr "فوترة المرشح"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Costs (medical, visa, ticket, agent…)"
+msgstr "التكاليف (طبي، تأشيرة، تذكرة، وكيل…)"
+
+#: templates/webapp/recruitment/placement.html
+msgid "No costs yet."
+msgstr "لا توجد تكاليف بعد."
+
+#: templates/webapp/recruitment/placement.html
+msgid "For"
+msgstr "مقابل"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Paid to"
+msgstr "مدفوع إلى"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Add cost"
+msgstr "إضافة تكلفة"
+
 #: templates/webapp/restaurant/dashboard.html
 msgid "Restaurant"
 msgstr "المطعم"
@@ -7093,10 +7525,6 @@ msgid "Add to stock"
 msgstr "إضافة إلى المخزون"
 
 #: templates/webapp/stock/adjust.html
-msgid "Location"
-msgstr "الموقع"
-
-#: templates/webapp/stock/adjust.html
 msgid "Recent adjustments"
 msgstr "التعديلات الأخيرة"
 
@@ -7924,6 +8352,14 @@ msgid "Asset disposed and the gain or loss recorded."
 msgstr "تم استبعاد الأصل وتسجيل الربح أو الخسارة."
 
 #: apps/webapp/forms.py
+msgid "…or new client name"
+msgstr "…أو اسم عميل جديد"
+
+#: apps/webapp/forms.py
+msgid "New client phone"
+msgstr "هاتف العميل الجديد"
+
+#: apps/webapp/forms.py
 msgid ""
 "Tick the branches this person works at. Leave all unticked for every branch."
 msgstr "حدد الفروع التي يعمل بها هذا الشخص. اترك الكل دون تحديد لجميع الفروع."
@@ -8295,6 +8731,281 @@ msgstr "طُبقت على: %(list)s."
 #: apps/webapp/receivables_views.py
 msgid "%(amount)s kept as advance on account."
 msgstr "احتُفظ بـ%(amount)s كدفعة مقدمة."
+
+#: apps/webapp/recruitment_views.py
+msgid "Company / client name"
+msgstr "اسم الشركة / العميل"
+
+#: apps/webapp/recruitment_views.py
+msgid "Address & contact person"
+msgstr "العنوان وجهة الاتصال"
+
+#: apps/webapp/recruitment_views.py
+msgid "Position / job title"
+msgstr "المسمى الوظيفي"
+
+#: apps/webapp/recruitment_views.py
+msgid "Number of people"
+msgstr "عدد الأشخاص"
+
+#: apps/webapp/recruitment_views.py
+msgid "Work location"
+msgstr "موقع العمل"
+
+#: apps/webapp/recruitment_views.py
+msgid "Preferred nationality"
+msgstr "الجنسية المفضلة"
+
+#: apps/webapp/recruitment_views.py
+msgid "Salary (per month)"
+msgstr "الراتب (شهرياً)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Benefits"
+msgstr "المزايا"
+
+#: apps/webapp/recruitment_views.py
+msgid "Contract (months)"
+msgstr "العقد (أشهر)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Our fee per person (charged to client)"
+msgstr "رسومنا للشخص (على العميل)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Replacement guarantee (days)"
+msgstr "ضمان الاستبدال (أيام)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Gender"
+msgstr "الجنس"
+
+#: apps/webapp/recruitment_views.py
+msgid "Choose a client or type a new client's name."
+msgstr "اختر عميلاً أو اكتب اسم عميل جديد."
+
+#: apps/webapp/recruitment_views.py
+msgid "Passport expiry"
+msgstr "انتهاء الجواز"
+
+#: apps/webapp/recruitment_views.py
+msgid "Experience (years)"
+msgstr "الخبرة (سنوات)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Has Gulf experience"
+msgstr "لديه خبرة خليجية"
+
+#: apps/webapp/recruitment_views.py
+msgid "Sub-agent (if any)"
+msgstr "الوكيل الفرعي (إن وجد)"
+
+#: apps/webapp/recruitment_views.py
+msgid "CV / documents (PDF, Word or photo)"
+msgstr "السيرة الذاتية / المستندات (PDF أو Word أو صورة)"
+
+#: apps/webapp/recruitment_views.py
+msgid "The file is too large (max 8 MB)."
+msgstr "الملف كبير جداً (الحد 8 ميجابايت)."
+
+#: apps/webapp/recruitment_views.py
+msgid "Upload a PDF, Word file or photo."
+msgstr "ارفع ملف PDF أو Word أو صورة."
+
+#: apps/webapp/recruitment_views.py
+msgid "Client %(name)s added."
+msgstr "تمت إضافة العميل %(name)s."
+
+#: apps/webapp/recruitment_views.py
+msgid "Job order %(number)s created."
+msgstr "تم إنشاء طلب التوظيف %(number)s."
+
+#: apps/webapp/recruitment_views.py
+msgid "Job order saved."
+msgstr "تم حفظ طلب التوظيف."
+
+#: apps/webapp/recruitment_views.py
+msgid "Choose candidates or type a new candidate's name."
+msgstr "اختر مرشحين أو اكتب اسم مرشح جديد."
+
+#: apps/webapp/recruitment_views.py
+msgid "%(count)s candidates added to this job."
+msgstr "تمت إضافة %(count)s مرشح لهذه الوظيفة."
+
+#: apps/webapp/recruitment_views.py
+msgid "Already added or not suitable: %(names)s"
+msgstr "مضاف مسبقاً أو غير مناسب: %(names)s"
+
+#: apps/webapp/recruitment_views.py
+msgid "Job opening"
+msgstr "وظيفة شاغرة"
+
+#: apps/webapp/recruitment_views.py
+msgid "Vacancies"
+msgstr "الشواغر"
+
+#: apps/webapp/recruitment_views.py
+msgid "Candidate %(name)s added."
+msgstr "تمت إضافة المرشح %(name)s."
+
+#: apps/webapp/recruitment_views.py
+msgid "Another candidate has this passport number."
+msgstr "مرشح آخر لديه رقم الجواز هذا."
+
+#: apps/webapp/recruitment_views.py
+msgid "Candidate saved."
+msgstr "تم حفظ المرشح."
+
+#: apps/webapp/recruitment_views.py
+msgid "Added to %(job)s."
+msgstr "تمت الإضافة إلى %(job)s."
+
+#: apps/webapp/recruitment_views.py
+msgid "Passport expires in %(d)s days."
+msgstr "ينتهي الجواز خلال %(d)s يوماً."
+
+#: apps/webapp/recruitment_views.py
+msgid "Hello %(name)s, this is %(company)s."
+msgstr "مرحباً %(name)s، معك %(company)s."
+
+#: apps/webapp/recruitment_views.py
+msgid "Invoice %(number)s created for the client."
+msgstr "تم إنشاء الفاتورة %(number)s للعميل."
+
+#: apps/webapp/recruitment_views.py
+msgid "Invoice %(number)s created for the candidate."
+msgstr "تم إنشاء الفاتورة %(number)s للمرشح."
+
+#: apps/webapp/recruitment_views.py
+msgid "Cost recorded in expenses."
+msgstr "تم تسجيل التكلفة في المصروفات."
+
+#: apps/webapp/recruitment_views.py
+msgid ""
+"Dear %(name)s, your interview for %(position)s (%(client)s) is on %(when)s. "
+"Please bring your passport and CV."
+msgstr ""
+"عزيزي %(name)s، مقابلتك لوظيفة %(position)s (%(client)s) في %(when)s. يرجى "
+"إحضار الجواز والسيرة الذاتية."
+
+#: apps/webapp/recruitment_views.py
+msgid ""
+"Congratulations %(name)s! You are selected for %(position)s with %(client)s."
+msgstr "مبروك %(name)s! تم اختيارك لوظيفة %(position)s لدى %(client)s."
+
+#: apps/webapp/recruitment_views.py
+msgid ""
+"Dear %(name)s, your travel date is %(date)s. Please be ready with your "
+"passport."
+msgstr "عزيزي %(name)s، موعد سفرك %(date)s. يرجى الاستعداد مع جواز سفرك."
+
+#: apps/webapp/recruitment_views.py
+msgid "On hold"
+msgstr "معلق"
+
+#: apps/webapp/recruitment_views.py
+msgid "Filled"
+msgstr "مكتمل"
+
+#: apps/webapp/recruitment_views.py
+msgid "Placed"
+msgstr "تم توظيفه"
+
+#: apps/webapp/recruitment_views.py
+msgid "Not suitable"
+msgstr "غير مناسب"
+
+#: apps/webapp/recruitment_views.py
+msgid "CV sent"
+msgstr "أُرسلت السيرة"
+
+#: apps/webapp/recruitment_views.py
+msgid "Shortlisted"
+msgstr "في القائمة المختصرة"
+
+#: apps/webapp/recruitment_views.py
+msgid "Interview"
+msgstr "مقابلة"
+
+#: apps/webapp/recruitment_views.py
+msgid "Selected"
+msgstr "تم الاختيار"
+
+#: apps/webapp/recruitment_views.py
+msgid "Medical"
+msgstr "الفحص الطبي"
+
+#: apps/webapp/recruitment_views.py
+msgid "Visa"
+msgstr "التأشيرة"
+
+#: apps/webapp/recruitment_views.py
+msgid "Ticket"
+msgstr "التذكرة"
+
+#: apps/webapp/recruitment_views.py
+msgid "Joined / deployed"
+msgstr "التحق بالعمل"
+
+#: apps/webapp/recruitment_views.py
+msgid "Rejected"
+msgstr "مرفوض"
+
+#: apps/webapp/recruitment_views.py
+msgid "Withdrawn"
+msgstr "انسحب"
+
+#: apps/webapp/recruitment_views.py
+msgid "Fit"
+msgstr "لائق"
+
+#: apps/webapp/recruitment_views.py
+msgid "Unfit"
+msgstr "غير لائق"
+
+#: apps/webapp/recruitment_views.py
+msgid "Air ticket"
+msgstr "تذكرة طيران"
+
+#: apps/webapp/recruitment_views.py
+msgid "Agent commission"
+msgstr "عمولة الوكيل"
+
+#: apps/webapp/recruitment_views.py
+msgid "Documents / attestation"
+msgstr "المستندات / التصديق"
+
+#: apps/webapp/recruitment_views.py
+msgid "Other"
+msgstr "أخرى"
+
+#: apps/webapp/recruitment_views.py
+msgid "Any"
+msgstr "أي"
+
+#: apps/webapp/recruitment_views.py
+msgid "Male"
+msgstr "ذكر"
+
+#: apps/webapp/recruitment_views.py
+msgid "Female"
+msgstr "أنثى"
+
+#: apps/webapp/recruitment_views.py
+msgid "Bank transfer"
+msgstr "تحويل بنكي"
+
+#: apps/webapp/recruitment_views.py
+msgid "Free replacement period after joining."
+msgstr "فترة الاستبدال المجاني بعد الالتحاق."
+
+#: apps/webapp/recruitment_views.py
+msgid "Preferred nationality, if any."
+msgstr "الجنسية المفضلة إن وجدت."
+
+#: apps/webapp/recruitment_views.py
+msgid "Accommodation, food, transport…"
+msgstr "السكن، الطعام، المواصلات…"
 
 #: apps/webapp/restaurant_order_views.py
 msgid "Yesterday"

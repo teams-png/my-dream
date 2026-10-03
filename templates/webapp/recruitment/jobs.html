@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Job orders" %}{% endblock %}
+{% block heading %}{% translate "Job orders" %}{% endblock %}
+{% block content %}
+{% include "webapp/recruitment/_head.html" %}
+<div class="ix">
+  <div class="ix-toolbar">
+    {% for code, label in statuses %}<a class="btn{% if status != code %} btn-secondary{% endif %}" href="?status={{ code }}">{% translate label %}</a>{% endfor %}
+    <a class="btn{% if status != 'all' %} btn-secondary{% endif %}" href="?status=all">{% translate "All" %}</a>
+    <form method="get"><input type="hidden" name="status" value="{{ status }}"><input type="search" name="q" value="{{ q }}" placeholder="{% translate 'Position, number or client' %}"></form>
+    <span class="grow"></span><a class="btn" href="{% url 'webapp:rec_job_add' %}">＋ {% translate "New job order" %}</a>
+  </div>
+  <div class="ix-list">
+  {% for j in page %}<a class="ix-row" href="{% url 'webapp:rec_job_detail' j.id %}"><span class="grow"><b>{{ j.position }}</b><small>{{ j.number }} · {{ j.client.name }}{% if j.work_location %} · {{ j.work_location }}{% endif %}{% if j.deadline %} · {% translate "Needed by" %} {{ j.deadline|date:"j M" }}{% endif %}</small></span>
+    <span class="ix-chip">{{ j.done }}/{{ j.vacancies }} {% translate "joined" %}</span>{% if j.active %}<span class="ix-chip in_process">{{ j.active }} {% translate "in process" %}</span>{% endif %}<span class="ix-chip {{ j.status }}">{{ j.get_status_display }}</span></a>
+  {% empty %}<div class="ix-card ix-empty">{% translate "No job orders here." %} <a class="btn" style="margin-top:10px" href="{% url 'webapp:rec_job_add' %}">＋ {% translate "New job order" %}</a></div>{% endfor %}
+  </div>
+  {% if page.has_other_pages %}<div class="ix-toolbar" style="margin-top:12px">{% if page.has_previous %}<a class="btn btn-secondary" href="?status={{ status }}&q={{ q|urlencode }}&page={{ page.previous_page_number }}">‹</a>{% endif %}<span>{{ page.number }} / {{ page.paginator.num_pages }}</span>{% if page.has_next %}<a class="btn btn-secondary" href="?status={{ status }}&q={{ q|urlencode }}&page={{ page.next_page_number }}">›</a>{% endif %}</div>{% endif %}
+</div>
+{% endblock %}

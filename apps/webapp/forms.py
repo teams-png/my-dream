@@ -922,6 +922,8 @@ class SellProteinForm(forms.Form):
 class ProjectForm(forms.Form):
     name = forms.CharField(max_length=255)
     client = forms.ModelChoiceField(queryset=Customer.objects.none(), required=False)
+    new_client_name = forms.CharField(max_length=255, required=False, label=_l("…or new client name"))
+    new_client_phone = forms.CharField(max_length=20, required=False, label=_l("New client phone"))
     site_address = forms.CharField(widget=forms.Textarea, required=False)
     start_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
     end_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), required=False)
@@ -940,6 +942,16 @@ class ProjectForm(forms.Form):
             profile = business_profile(company.business_type.code)
             self.fields["name"].label = profile.get("projects_label", "Project").rstrip("s") + " name"
             self.fields["site_address"].label = profile.get("location_label", "Location / Scope")
+        self.company = company
+
+    def clean(self):
+        cleaned = super().clean()
+        name = (cleaned.get("new_client_name") or "").strip()
+        if not cleaned.get("client") and name and getattr(self, "company", None) is not None and not self._errors:
+            existing = Customer.objects.for_company(self.company).filter(name__iexact=name).first()
+            cleaned["client"] = existing or Customer.objects.create(
+                company=self.company, name=name[:255], phone=(cleaned.get("new_client_phone") or "")[:20])
+        return cleaned
 
 
 class ContractorForm(forms.ModelForm):

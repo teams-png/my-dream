@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ job.number }} · {{ job.position }}{% endblock %}
+{% block heading %}{{ job.position }}{% endblock %}
+{% block content %}
+{% include "webapp/recruitment/_head.html" %}
+<div class="ix">
+  <div class="ix-toolbar">
+    <a class="btn btn-secondary" href="{% url 'webapp:rec_jobs' %}">← {% translate "Job orders" %}</a>
+    <span class="ix-chip {{ job.status }}">{{ job.get_status_display }}</span>
+    <span class="grow"></span>
+    <a class="btn btn-secondary" href="{% url 'webapp:rec_job_edit' job.id %}">✏️ {% translate "Edit" %}</a>
+    <a class="btn btn-secondary" href="{{ share }}" target="_blank" rel="noopener">📣 {% translate "Share job on WhatsApp" %}</a>
+    {% if job.client.phone %}<a class="btn btn-secondary" href="{{ client_update }}" target="_blank" rel="noopener">💬 {% translate "Update client" %}</a>{% endif %}
+    <form method="post">{% csrf_token %}{% if job.status == "open" %}<button class="btn btn-secondary" name="action" value="hold">⏸ {% translate "Hold" %}</button><button class="btn btn-secondary" name="action" value="close">✓ {% translate "Close" %}</button>{% else %}<button class="btn" name="action" value="reopen">↺ {% translate "Reopen" %}</button>{% endif %}</form>
+  </div>
+  <div class="ix-stats">
+    <div class="ix-stat"><small>{% translate "Client" %}</small><b style="font-size:17px">{{ job.client.name }}</b><small>{{ job.number }}</small></div>
+    <div class="ix-stat good"><small>{% translate "Joined / needed" %}</small><b>{{ deployed }} / {{ job.vacancies }}</b></div>
+    <div class="ix-stat"><small>{% translate "Salary" %}</small><b style="font-size:20px">{{ job.salary|floatformat:0|default:"—" }}</b><small>{{ job.benefits }}</small></div>
+    <div class="ix-stat"><small>{% translate "Our fee per person" %}</small><b style="font-size:20px">{{ job.fee_per_placement|floatformat:0 }}</b></div>
+    <div class="ix-stat"><small>{% translate "Location" %}</small><b style="font-size:17px">{{ job.work_location|default:"—" }}</b><small>{% if job.nationality %}{{ job.nationality }} · {% endif %}{{ job.get_gender_display }}{% if job.deadline %} · {% translate "Needed by" %} {{ job.deadline|date:"j M Y" }}{% endif %}</small></div>
+  </div>
+  {% if job.requirements %}<div class="ix-card" style="white-space:pre-line"><h3>{% translate "Requirements" %}</h3>{{ job.requirements }}</div>{% endif %}
+
+  <div class="ix-card"><h3>{% translate "Pipeline" %}</h3>
+    <div class="rc-board">
+    {% for col in columns %}
+      <div class="rc-col"><h4><span>{% translate col.label %}</span><span>{{ col.items|length }}</span></h4>
+      {% for p in col.items %}
+        <div class="rc-card"><a href="{% url 'webapp:rec_placement' p.id %}" style="text-decoration:none;color:inherit"><b>{{ p.candidate.name }}</b><small>{{ p.candidate.trade|default:"" }}{% if p.candidate.nationality %} · {{ p.candidate.nationality }}{% endif %}</small>
+          {% if p.interview_at and p.stage == "interview" %}<small>🗓 {{ p.interview_at|date:"j M H:i" }}</small>{% endif %}
+          {% if p.stage == "deployed" %}<small>{% if p.invoice %}✓ {% translate "Billed" %} {{ p.invoice.invoice_number }}{% else %}⚠️ {% translate "Not billed yet" %}{% endif %}</small>{% endif %}</a>
+          {% if p.stage != "deployed" %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="move"><input type="hidden" name="placement" value="{{ p.id }}">
+            <select name="stage" aria-label="{% translate 'Move to' %}">{% for code, label in stages %}<option value="{{ code }}" {% if code == p.stage %}selected{% endif %}>{% translate label %}</option>{% endfor %}</select><button>✓</button></form>{% endif %}
+        </div>
+      {% empty %}<small style="color:var(--ink-soft)">—</small>{% endfor %}
+      </div>
+    {% endfor %}
+    </div>
+    {% if dropped %}<details style="margin-top:10px"><summary>{% translate "Rejected / withdrawn" %} ({{ dropped|length }})</summary><div class="ix-list" style="margin-top:8px">{% for p in dropped %}<a class="ix-row" href="{% url 'webapp:rec_placement' p.id %}"><span class="grow"><b>{{ p.candidate.name }}</b></span><span class="ix-chip {{ p.stage }}">{{ p.get_stage_display }}</span></a>{% endfor %}</div></details>{% endif %}
+  </div>
+
+  {% if job.status == "open" or job.status == "on_hold" %}
+  <form method="post" class="ix-card">{% csrf_token %}<input type="hidden" name="action" value="submit">
+    <h3>＋ {% translate "Add candidates to this job" %}</h3>
+    {% if suggest %}<p style="color:var(--ink-soft);font-size:13px;margin:0 0 8px">{% translate "Matching available candidates" %} · <a href="?all=1">{% translate "show all" %}</a></p>
+    <div class="rc-pick">{% for c in suggest %}<label><input type="checkbox" name="candidate" value="{{ c.id }}"><span><b>{{ c.name }}</b> <small>{{ c.trade }}{% if c.nationality %} · {{ c.nationality }}{% endif %}{% if c.experience_years %} · {{ c.experience_years|floatformat:"-1" }} {% translate "yrs" %}{% endif %}{% if c.status == "in_process" %} · {% translate "in another process" %}{% endif %}</small></span></label>{% endfor %}</div>{% endif %}
+    <p style="font-weight:700;margin:14px 0 6px">{% translate "…or a new candidate" %}</p>
+    <div class="rc-inline"><div><label>{% translate "Full name" %}</label><input name="new_name"></div><div><label>{% translate "Phone / WhatsApp" %}</label><input name="new_phone" inputmode="tel"></div><div><label>{% translate "Passport number" %}</label><input name="new_passport"></div><button class="btn" type="submit">{% translate "Add to job" %}</button></div>
+    <p style="margin:10px 0 0"><a href="{% url 'webapp:rec_candidate_add' %}?job={{ job.id }}">{% translate "Add a full candidate profile with CV →" %}</a></p>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

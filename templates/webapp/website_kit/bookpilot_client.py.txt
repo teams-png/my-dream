@@ -1,0 +1,104 @@
+{% autoescape off %}"""
+BookPilot client for {{ company }} — use it in any Python website (Django, Flask, FastAPI, scripts).
+
+    pip install requests
+
+    from bookpilot_client import BookPilot
+    bp = BookPilot()                     # already set up for {{ company }}
+    bp.info()                            # name, phone, email, address, logo…
+    bp.catalogue()                       # menu / services / products / rooms / courses / jobs
+    bp.send_enquiry(name="Ali", phone="+974 5555 1234", message="Do you deliver?")
+{% if booking_slug %}    bp.booking_options()                 # what can be booked + labels
+    bp.send_booking(name="Ali", phone="+974…", date="2026-12-01", time="18:30", item=3, guests=2)
+{% endif %}{% if careers_slug %}    bp.jobs()                            # open jobs shown on the website
+    bp.send_application(name="Ravi", phone="+91…", passport_no="P123", job=7, cv_path="cv.pdf")
+{% endif %}
+Keep API_KEY secret: use it only on the server (never in browser JavaScript).
+"""
+import os
+
+import requests
+
+BASE_URL = os.environ.get("BOOKPILOT_URL", "{{ base }}")
+KIT_ID = os.environ.get("BOOKPILOT_KIT_ID", "{{ kit_id }}")
+API_KEY = os.environ.get("BOOKPILOT_API_KEY", "{{ api_key }}")
+BOOKING_SLUG = os.environ.get("BOOKPILOT_BOOKING", "{{ booking_slug }}")
+CAREERS_SLUG = os.environ.get("BOOKPILOT_CAREERS", "{{ careers_slug }}")
+
+
+class BookPilotError(Exception):
+    pass
+
+
+class BookPilot:
+    def __init__(self, base_url=BASE_URL, kit_id=KIT_ID, api_key=API_KEY, booking_slug=BOOKING_SLUG,
+                 careers_slug=CAREERS_SLUG, timeout=20):
+        self.base = base_url.rstrip("/")
+        self.kit_id, self.api_key, self.timeout = kit_id, api_key, timeout
+        self.booking_slug, self.careers_slug = booking_slug, careers_slug
+        self.session = requests.Session()
+        self.session.headers.update({"Accept": "application/json", "User-Agent": "bookpilot-client/1.0"})
+
+    # ---------------------------------------------------------------- read
+    def _get(self, path):
+        response = self.session.get(self.base + path, timeout=self.timeout)
+        response.raise_for_status()
+        return response.json()
+
+    def info(self):
+        return self._get(f"/kit/{self.kit_id}/info.json")
+
+    def catalogue(self):
+        return self._get(f"/kit/{self.kit_id}/catalogue.json")
+
+    def booking_options(self):
+        if not self.booking_slug:
+            raise BookPilotError("This business has no online booking.")
+        return self._get(f"/book/{self.booking_slug}/options.json")
+
+    def jobs(self):
+        if not self.careers_slug:
+            raise BookPilotError("This business has no careers form.")
+        return self._get(f"/careers/{self.careers_slug}/jobs.json")
+
+    # ---------------------------------------------------------------- send
+    def _post(self, path, data, files=None):
+        response = self.session.post(self.base + path, data=data, files=files, timeout=self.timeout,
+                                     headers={"X-Api-Key": self.api_key})
+        try:
+            body = response.json()
+        except ValueError:
+            raise BookPilotError(f"BookPilot answered with HTTP {response.status_code}")
+        if not body.get("ok"):
+            raise BookPilotError(body.get("error") or f"HTTP {response.status_code}")
+        return body  # {"ok": True, "reference": "…"}
+
+    def send_enquiry(self, *, name, phone="", email="", subject="", message="", company=""):
+        return self._post(f"/kit/{self.kit_id}/enquiry/", {"name": name, "phone": phone, "email": email,
+                                                             "subject": subject, "message": message, "company": company})
+
+    def send_booking(self, **fields):
+        """name, phone, date (YYYY-MM-DD) and, depending on the business: time, end_date, end_time,
+        item (service / room id), item_name, guests, email, notes."""
+        if not self.booking_slug:
+            raise BookPilotError("This business has no online booking.")
+        return self._post(f"/book/{self.booking_slug}/submit/?format=json", fields)
+
+    def send_application(self, *, cv_path=None, **fields):
+        """name, phone, passport_no, job (id or title), trade, nationality, email, experience_years, …"""
+        if not self.careers_slug:
+            raise BookPilotError("This business has no careers form.")
+        files = None
+        if cv_path:
+            files = {"cv": (os.path.basename(cv_path), open(cv_path, "rb"))}
+        try:
+            return self._post(f"/careers/{self.careers_slug}/apply/?format=json", fields, files=files)
+        finally:
+            if files:
+                files["cv"][1].close()
+
+
+if __name__ == "__main__":
+    bp = BookPilot()
+    print(bp.info()["name"], "-", len(bp.catalogue()["items"]), "items")
+{% endautoescape %}

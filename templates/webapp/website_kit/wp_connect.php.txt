@@ -1,0 +1,189 @@
+{% autoescape off %}<?php
+/**
+ * Plugin Name: BookPilot Connect — {{ company|cut:'*/' }}
+ * Description: Connects this website to {{ company|cut:'*/' }}'s BookPilot account: contact form, live catalogue, business details{% if booking_slug %}, online booking{% endif %}{% if careers_slug %}, jobs and job applications{% endif %}. Everything submitted here goes straight to BookPilot.
+ * Version: 1.0.0
+ * Author: BookPilot
+ * License: GPLv2 or later
+ * Requires at least: 5.0
+ * Requires PHP: 7.2
+ */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+function bookpilot_connect_defaults() {
+    return array(
+        'base' => '{{ base }}',
+        'kit_id' => '{{ kit_id }}',
+        'booking_slug' => '{{ booking_slug }}',
+        'careers_slug' => '{{ careers_slug }}',
+    );
+}
+
+function bookpilot_connect_opt($key) {
+    $saved = get_option('bookpilot_connect', array());
+    $defaults = bookpilot_connect_defaults();
+    return isset($saved[$key]) && $saved[$key] !== '' ? $saved[$key] : $defaults[$key];
+}
+
+function bookpilot_connect_url($path) {
+    return rtrim(bookpilot_connect_opt('base'), '/') . $path;
+}
+
+function bookpilot_connect_attrs($atts) {
+    $out = '';
+    foreach ($atts as $key => $value) {
+        if ($value !== '' && $value !== null) {
+            $out .= ' data-' . sanitize_key($key) . '="' . esc_attr($value) . '"';
+        }
+    }
+    return $out;
+}
+
+function bookpilot_connect_widget($class, $script_handle, $path, $atts) {
+    wp_enqueue_script($script_handle, esc_url(bookpilot_connect_url($path)), array(), '1.0.0', true);
+    return '<div class="' . esc_attr($class) . '"' . bookpilot_connect_attrs($atts) . '></div>';
+}
+
+/* [bookpilot_enquiry title="Contact us" lang="ar" thanks="https://…"] — contact form, goes to BookPilot CRM leads */
+function bookpilot_connect_enquiry($atts) {
+    $a = shortcode_atts(array('title' => '', 'lang' => '', 'color' => '', 'thanks' => ''), $atts, 'bookpilot_enquiry');
+    return bookpilot_connect_widget('bookpilot-enquiry', 'bookpilot-enquiry', '/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/enquiry.js', $a);
+}
+add_shortcode('bookpilot_enquiry', 'bookpilot_connect_enquiry');
+
+/* [bookpilot_booking item="…" lang="ar" thanks="…"] — online booking form */
+function bookpilot_connect_booking($atts) {
+    $slug = bookpilot_connect_opt('booking_slug');
+    if (!$slug) {
+        return '';
+    }
+    $a = shortcode_atts(array('item' => '', 'lang' => '', 'color' => '', 'thanks' => '', 'title' => ''), $atts, 'bookpilot_booking');
+    return bookpilot_connect_widget('bookpilot-booking', 'bookpilot-booking', '/book/' . rawurlencode($slug) . '/form.js', $a);
+}
+add_shortcode('bookpilot_booking', 'bookpilot_connect_booking');
+
+/* [bookpilot_form job="Electrician" lang="ar" thanks="…"] — detailed job application form */
+function bookpilot_connect_jobform($atts) {
+    $slug = bookpilot_connect_opt('careers_slug');
+    if (!$slug) {
+        return '';
+    }
+    $a = shortcode_atts(array('job' => '', 'lang' => '', 'color' => '', 'thanks' => '', 'title' => ''), $atts, 'bookpilot_form');
+    return bookpilot_connect_widget('bookpilot-form', 'bookpilot-form', '/careers/' . rawurlencode($slug) . '/form.js', $a);
+}
+add_shortcode('bookpilot_form', 'bookpilot_connect_jobform');
+
+function bookpilot_connect_fetch($path, $cache_key) {
+    $cached = get_transient($cache_key);
+    if ($cached !== false) {
+        return $cached;
+    }
+    $response = wp_remote_get(bookpilot_connect_url($path), array('timeout' => 10));
+    if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
+        return null;
+    }
+    $data = json_decode(wp_remote_retrieve_body($response), true);
+    if (!is_array($data)) {
+        return null;
+    }
+    set_transient($cache_key, $data, 5 * MINUTE_IN_SECONDS);
+    return $data;
+}
+
+/* [bookpilot_catalogue category="Drinks" limit="12"] — menu / services / products / rooms / courses / jobs (server-rendered, good for SEO) */
+function bookpilot_connect_catalogue($atts) {
+    $a = shortcode_atts(array('category' => '', 'limit' => 0), $atts, 'bookpilot_catalogue');
+    $data = bookpilot_connect_fetch('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/catalogue.json', 'bookpilot_catalogue_' . md5(bookpilot_connect_opt('kit_id')));
+    if (!$data || empty($data['items'])) {
+        return '';
+    }
+    $units = array('hour' => '/ hour', 'day' => '/ day', 'night' => '/ night', 'month' => '/ month', 'monthly' => '/ month');
+    $count = 0;
+    $html = '<div class="bookpilot-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px">';
+    foreach ($data['items'] as $item) {
+        if ($a['category'] !== '' && (!isset($item['category']) || strcasecmp($item['category'], $a['category']) !== 0)) {
+            continue;
+        }
+        if ((int) $a['limit'] > 0 && $count >= (int) $a['limit']) {
+            break;
+        }
+        $count++;
+        $html .= '<div style="border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;background:#fff">';
+        if (!empty($item['image'])) {
+            $html .= '<img src="' . esc_url($item['image']) . '" alt="" loading="lazy" style="width:100%;height:150px;object-fit:cover">';
+        }
+        $html .= '<div style="padding:12px 14px"><strong>' . esc_html($item['name']) . '</strong>';
+        if (!empty($item['location'])) {
+            $html .= '<div style="color:#64748b;font-size:13px">' . esc_html($item['location']) . '</div>';
+        }
+        if (!empty($item['description'])) {
+            $html .= '<div style="color:#64748b;font-size:13.5px">' . esc_html($item['description']) . '</div>';
+        }
+        if (!empty($item['price'])) {
+            $unit = isset($item['unit'], $units[$item['unit']]) ? ' ' . $units[$item['unit']] : '';
+            $html .= '<div style="font-weight:700;margin-top:6px">' . esc_html($data['currency'] . ' ' . $item['price'] . $unit) . '</div>';
+        }
+        $html .= '</div></div>';
+    }
+    return $html . '</div>';
+}
+add_shortcode('bookpilot_catalogue', 'bookpilot_connect_catalogue');
+
+/* [bookpilot_info field="phone"] — name, phone, email, address, country, currency, vat_number */
+function bookpilot_connect_info($atts) {
+    $a = shortcode_atts(array('field' => 'name'), $atts, 'bookpilot_info');
+    $data = bookpilot_connect_fetch('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/info.json', 'bookpilot_info_' . md5(bookpilot_connect_opt('kit_id')));
+    $field = sanitize_key($a['field']);
+    return ($data && isset($data[$field]) && is_scalar($data[$field])) ? esc_html($data[$field]) : '';
+}
+add_shortcode('bookpilot_info', 'bookpilot_connect_info');
+
+function bookpilot_connect_menu() {
+    add_options_page('BookPilot Connect', 'BookPilot Connect', 'manage_options', 'bookpilot-connect', 'bookpilot_connect_page');
+}
+add_action('admin_menu', 'bookpilot_connect_menu');
+
+function bookpilot_connect_register() {
+    register_setting('bookpilot_connect', 'bookpilot_connect', array('type' => 'array', 'sanitize_callback' => 'bookpilot_connect_sanitize'));
+}
+add_action('admin_init', 'bookpilot_connect_register');
+
+function bookpilot_connect_sanitize($input) {
+    $clean = array();
+    $clean['base'] = isset($input['base']) ? esc_url_raw($input['base']) : '';
+    foreach (array('kit_id', 'booking_slug', 'careers_slug') as $key) {
+        $clean[$key] = isset($input[$key]) ? sanitize_title($input[$key]) : '';
+    }
+    delete_transient('bookpilot_catalogue_' . md5(bookpilot_connect_opt('kit_id')));
+    delete_transient('bookpilot_info_' . md5(bookpilot_connect_opt('kit_id')));
+    return $clean;
+}
+
+function bookpilot_connect_page() {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+    $labels = array('base' => 'BookPilot address', 'kit_id' => 'Kit ID', 'booking_slug' => 'Booking form name', 'careers_slug' => 'Careers form name');
+    ?>
+    <div class="wrap">
+        <h1>BookPilot Connect</h1>
+        <p>Already filled in for {{ company|force_escape }}. Shortcodes: <code>[bookpilot_enquiry]</code> <code>[bookpilot_catalogue]</code> <code>[bookpilot_info field="phone"]</code>{% if booking_slug %} <code>[bookpilot_booking]</code>{% endif %}{% if careers_slug %} <code>[bookpilot_form]</code>{% endif %}</p>
+        <form method="post" action="options.php">
+            <?php settings_fields('bookpilot_connect'); ?>
+            <table class="form-table" role="presentation">
+                <?php foreach ($labels as $key => $label) : ?>
+                <tr>
+                    <th scope="row"><label for="bp-<?php echo esc_attr($key); ?>"><?php echo esc_html($label); ?></label></th>
+                    <td><input class="regular-text" id="bp-<?php echo esc_attr($key); ?>" name="bookpilot_connect[<?php echo esc_attr($key); ?>]" value="<?php echo esc_attr(bookpilot_connect_opt($key)); ?>"></td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
+            <?php submit_button(); ?>
+        </form>
+    </div>
+    <?php
+}
+{% endautoescape %}

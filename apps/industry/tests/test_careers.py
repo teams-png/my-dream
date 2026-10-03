@@ -148,6 +148,13 @@ def test_connected_external_career_page(two_agencies):
     site.enabled = False
     site.save()
     c = t["a_client"]
+    owner = t["a"].memberships.first().user
+    # clients can't connect a domain themselves
+    c.post(reverse("webapp:rec_website"), {"action": "connect", "allowed_origins": "mite.socialdrive.qa/careers"})
+    site.refresh_from_db()
+    assert site.allowed_origins == ""
+    owner.is_platform_admin = True  # the BookPilot admin does it
+    owner.save()
     c.post(reverse("webapp:rec_website"), {"action": "connect", "allowed_origins": "mite.socialdrive.qa/careers"})
     site.refresh_from_db()
     assert site.allowed_origins == "https://mite.socialdrive.qa"
@@ -202,7 +209,11 @@ def test_detailed_form_widget_and_wordpress_plugin(two_agencies):
     Client().post(url, {"name": "Ok Person", "phone": "+97455512345", "passport_no": "OK1", "date_of_birth": "not-a-date",
                         "expected_salary": "abc"}, HTTP_ORIGIN="https://x.example")
     assert Candidate.objects.for_company(t["a"]).filter(name="Ok Person").exists()
-    # plugin download has this agency's form address
+    # plugin download is for the platform admin only
+    assert t["a_client"].get(reverse("webapp:rec_wp_plugin")).status_code == 302
+    owner = t["a"].memberships.first().user
+    owner.is_platform_admin = True
+    owner.save()
     z = zipfile.ZipFile(io.BytesIO(t["a_client"].get(reverse("webapp:rec_wp_plugin")).content))
     php = z.read("bookpilot-recruitment-form/bookpilot-recruitment-form.php").decode()
     assert "add_shortcode('bookpilot_form'" in php and f"/careers/{site.slug}/form.js" in php and "Plugin Name:" in php

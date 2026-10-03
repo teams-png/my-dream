@@ -12,6 +12,14 @@
     <button class="btn btn-secondary" type="button" data-copy="{{ url }}" data-done="{% translate "Link copied" %}" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.dataset.copy);this.textContent='✓ '+this.dataset.done">🔗 {% translate "Copy link" %}</button>
     {% if applications %}<a class="btn btn-secondary" href="{% url 'webapp:rec_home' %}">📥 {{ applications }} {% translate "new applications" %}</a>{% endif %}
   </div>
+{% if not request.user.is_platform_admin %}
+  <div class="ix-card" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+    <b>🌐 {% translate "Your website" %}:</b>
+    {% if kit.allowed_origins %}<span class="ix-chip {% if kit.last_check_ok %}paid{% else %}due{% endif %}">{% if kit.last_check_ok %}{% translate "Connected" %}{% else %}{% translate "Being set up" %}{% endif %}</span> <code>{{ kit.allowed_origins.splitlines.0 }}</code>
+    {% else %}<span style="color:var(--ink-soft)">{% translate "Not connected yet — your BookPilot team sets this up for you." %}</span>{% endif %}
+  </div>
+{% endif %}
+{% if request.user.is_platform_admin %}
   <div class="ix-card" style="border-color:var(--accent);border-width:2px">
     <h3>📝 {% translate "Recruitment form for your website (WordPress or any site)" %}</h3>
     <p style="margin-top:0;color:var(--ink-soft)">{% translate "A complete application form: job, experience, personal details, passport, contact, CV upload. Every application comes straight to Candidates, the dashboard and the job's pipeline — only for your agency." %}</p>
@@ -47,6 +55,7 @@
     <p style="font-size:12.5px;color:var(--ink-soft);margin:10px 0 0">{% translate "It reads the name, phone, email, passport, position and CV fields of the form automatically. If the position typed or chosen matches one of your open job orders, the person is added to that job's pipeline." %}</p>
     {% endif %}
   </div>
+{% endif %}
   <div class="ix-grid2">
     <form method="post" class="ix-card ix-form">{% csrf_token %}
       <h3>🌐 {% translate "Your website" %} <small style="font-weight:500;color:var(--ink-soft)">({% translate "optional — a ready-made careers page" %})</small></h3>
@@ -66,6 +75,7 @@
         <div class="rc-pick">{% for j in jobs %}<label><input type="checkbox" name="publish" value="{{ j.id }}" {% if j.publish_online %}checked{% endif %}><span><b>{{ j.position }}</b> <small>{{ j.number }} · {{ j.work_location|default:"—" }} · {{ j.get_status_display }}</small></span></label>{% empty %}<div class="ix-empty">{% translate "No open job orders." %} <a href="{% url 'webapp:rec_job_add' %}">＋ {% translate "New job order" %}</a></div>{% endfor %}</div>
         {% if jobs %}<button class="btn" type="submit" style="margin-top:12px">{% translate "Save" %}</button>{% endif %}
       </form>
+      {% if request.user.is_platform_admin %}
       <div class="ix-card">
         <h3>🧩 {% translate "Already have a website?" %}</h3>
         <p style="font-size:13.5px;margin-top:0">{% translate "Use any of these on the agency's own website. Applications still come straight here." %}</p>
@@ -80,6 +90,7 @@
           <form method="post">{% csrf_token %}<button class="btn btn-secondary" name="action" value="new_key">↻ {% translate "New API key" %}</button></form>
         </details>
       </div>
+      {% endif %}
     </div>
   </div>
 </div>

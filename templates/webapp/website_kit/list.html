@@ -1,0 +1,20 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Website kit{% endblock %}
+{% block heading %}🧩 Website kit{% endblock %}
+{% block content %}
+<p style="color:var(--ink-soft);margin-top:0">Connect a client's website (WordPress, HTML or Python) to their BookPilot account: set the domain, then use the plugin or code. Only platform admins see this.</p>
+<form method="get" style="display:flex;gap:8px;margin-bottom:14px"><input name="q" value="{{ q }}" placeholder="Client, business type or email" style="flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:10px"><button class="btn btn-secondary">Search</button></form>
+<table>
+  <tr><th>Client</th><th>Business type</th><th>Forms</th><th>Website</th><th></th></tr>
+  {% for r in rows %}
+  <tr>
+    <td><b>{{ r.company.name }}</b><div style="font-size:12px;color:var(--ink-soft)">{{ r.company.email }}</div></td>
+    <td>{{ r.company.business_type.name }}</td>
+    <td style="font-size:13px">Enquiry{% if r.caps.booking %} · Booking{% endif %}{% if r.caps.careers %} · Jobs{% endif %} · {{ r.caps.catalogue|capfirst }}</td>
+    <td style="font-size:13px">{% if r.kit and r.kit.allowed_origins %}{% if r.kit.last_check_ok %}🟢{% else %}🟡{% endif %} {{ r.kit.allowed_origins.splitlines.0 }}{% else %}<span style="color:var(--ink-soft)">Not connected</span>{% endif %}</td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:kit_detail' r.company.id %}">Open kit →</a></td>
+  </tr>
+  {% empty %}<tr><td colspan="5" class="empty">No clients.</td></tr>{% endfor %}
+</table>
+{% if page.has_other_pages %}<div style="margin-top:12px;display:flex;gap:8px">{% if page.has_previous %}<a class="btn btn-secondary" href="?q={{ q|urlencode }}&page={{ page.previous_page_number }}">‹</a>{% endif %}<span>{{ page.number }} / {{ page.paginator.num_pages }}</span>{% if page.has_next %}<a class="btn btn-secondary" href="?q={{ q|urlencode }}&page={{ page.next_page_number }}">›</a>{% endif %}</div>{% endif %}
+{% endblock %}

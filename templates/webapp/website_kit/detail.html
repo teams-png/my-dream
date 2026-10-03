@@ -1,0 +1,105 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Website kit · {{ company.name }}{% endblock %}
+{% block heading %}🧩 {{ company.name }}{% endblock %}
+{% block content %}
+<style>
+.wk{display:grid;gap:16px}.wk .card h3{margin:0 0 10px;font-size:16px}.wk .muted{color:var(--ink-soft);font-size:13px}
+.wk textarea.code{width:100%;font:12.5px/1.45 ui-monospace,Menlo,monospace;padding:10px;border:1px solid var(--line);border-radius:10px;background:#f8fafc;color:#0f172a;resize:vertical}
+.wk .row{display:flex;flex-wrap:wrap;gap:8px;align-items:end}.wk .row>div{flex:1 1 240px}.wk input[type=text],.wk input:not([type]),.wk input[type=url]{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px}
+.wk .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:900px){.wk .two{grid-template-columns:1fr}}
+.wk code{word-break:break-all}.wk .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#f1f5f9}
+.wk .ok{background:#dcfce7;color:#166534}.wk .warn{background:#fef3c7;color:#92400e}.wk table td{vertical-align:top}
+</style>
+<div class="wk">
+  <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+    <a class="btn btn-secondary" href="{% url 'webapp:kit_list' %}">← All clients</a>
+    <span class="pill">{{ company.business_type.name }}</span>
+    <span class="pill">Enquiry{% if caps.booking %} · Booking ({{ caps.booking }}){% endif %}{% if caps.careers %} · Jobs{% endif %} · Catalogue: {{ caps.catalogue }}</span>
+    <span class="muted">From websites so far: {{ stats.leads }} enquiries · {{ stats.bookings }} booking requests · {{ stats.applications }} job applications</span>
+  </div>
+
+  <div class="card" style="border:2px solid var(--accent)">
+    <h3>🌐 1. Client website domain</h3>
+    {% if kit.allowed_origins %}
+      <p style="margin:0 0 8px">{% if kit.last_check_ok %}<span class="pill ok">Connected</span>{% else %}<span class="pill warn">Domain set — form not found yet</span>{% endif %}
+        {% for o in kit.allowed_origins.splitlines %}<code>{{ o }}</code>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+      {% if kit.last_check %}<p class="muted" style="margin:0 0 10px">{{ kit.last_check }} · {{ kit.last_checked_at|date:"j M Y H:i" }}</p>{% endif %}
+    {% else %}<p class="muted" style="margin-top:0">Enter the client's website address. After connecting, forms on that site send straight to this client's BookPilot.</p>{% endif %}
+    <form method="post" class="row">{% csrf_token %}
+      <div><label class="muted">Website address</label><input name="domain" value="{{ kit.allowed_origins.splitlines.0|default:'' }}" placeholder="www.client.com"></div>
+      <div><label class="muted">Page with the form (optional, for the test)</label><input name="page" placeholder="https://www.client.com/contact"></div>
+      <button class="btn" name="action" value="connect">Connect & test</button>
+      {% if kit.allowed_origins %}<button class="btn btn-secondary" name="action" value="test">Test again</button><button class="btn btn-secondary" name="action" value="disconnect" onclick="return confirm('Disconnect this website?')">Disconnect</button>{% endif %}
+    </form>
+  </div>
+
+  <div class="two">
+    <div class="card">
+      <h3>2. WordPress</h3>
+      <p style="margin-top:0"><a class="btn" href="{% url 'webapp:kit_wp_plugin' company.id %}">⬇ BookPilot Connect plugin (.zip)</a></p>
+      <p class="muted">Plugins → Add New → Upload → Activate. Everything is pre-filled for {{ company.name }}. Shortcodes:</p>
+      <table style="font-size:13px">
+        <tr><td><code>[bookpilot_enquiry]</code></td><td>Contact form → CRM leads</td></tr>
+        <tr><td><code>[bookpilot_catalogue]</code></td><td>Live {{ caps.catalogue }} (server-rendered, SEO friendly)</td></tr>
+        <tr><td><code>[bookpilot_info field="phone"]</code></td><td>name / phone / email / address</td></tr>
+        {% if caps.booking %}<tr><td><code>[bookpilot_booking]</code></td><td>Booking form → Booking requests</td></tr>{% endif %}
+        {% if caps.careers %}<tr><td><code>[bookpilot_form]</code></td><td>Job application form → Candidates</td></tr>{% endif %}
+      </table>
+      <p class="muted">Options on forms: <code>lang="ar"</code> <code>thanks="https://…"</code> <code>color="#…"</code></p>
+    </div>
+    <div class="card">
+      <h3>3. Python (Django / Flask / FastAPI)</h3>
+      <p style="margin-top:0"><a class="btn" href="{% url 'webapp:kit_python_client' company.id %}">⬇ bookpilot_client.py</a></p>
+      <textarea class="code" rows="13" readonly onclick="this.select()"># pip install requests — put bookpilot_client.py next to your app
+from bookpilot_client import BookPilot
+bp = BookPilot()
+
+# Django view
+def menu(request):
+    return render(request, "menu.html", {"items": bp.catalogue()["items"]})
+
+def contact(request):
+    if request.method == "POST":
+        bp.send_enquiry(name=request.POST["name"], phone=request.POST["phone"], message=request.POST["message"])
+{% if caps.booking %}
+# bp.send_booking(name=…, phone=…, date="2026-12-01", time="18:30", item=…, guests=2){% endif %}{% if caps.careers %}
+# bp.send_application(name=…, phone=…, passport_no=…, job=…, cv_path="cv.pdf"){% endif %}</textarea>
+      <p class="muted" style="margin-bottom:6px">Server API key (keep secret, never in browser code):</p>
+      <form method="post" class="row">{% csrf_token %}<div><input readonly value="{{ kit.api_key }}" onclick="this.select()"></div><button class="btn btn-secondary" name="action" value="new_key" onclick="return confirm('Old key stops working. Continue?')">↻ New key</button></form>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>4. Plain HTML website (or any builder: Wix, Webflow, Elementor "HTML")</h3>
+    <div class="two">{% for title, code in snippets %}
+      <div><p style="margin:0 0 6px;font-weight:600">{{ title }}</p><textarea class="code" rows="3" readonly onclick="this.select()">{{ code }}</textarea></div>
+    {% endfor %}</div>
+    <p class="muted">Each form takes <code>data-lang="ar"</code>, <code>data-thanks="https://…"</code>, <code>data-color="#…"</code> on the &lt;div&gt;.</p>
+  </div>
+
+  <div class="card">
+    <h3>5. Data feeds & endpoints</h3>
+    <table style="font-size:13px">
+      <tr><td>Business info (JSON)</td><td><a href="{{ urls.info }}" target="_blank"><code>{{ urls.info }}</code></a></td></tr>
+      <tr><td>Catalogue (JSON)</td><td><a href="{{ urls.catalogue }}" target="_blank"><code>{{ urls.catalogue }}</code></a></td></tr>
+      <tr><td>Send enquiry (POST)</td><td><code>{{ urls.enquiry }}</code></td></tr>
+      {% if urls.booking_options %}<tr><td>Booking options (JSON)</td><td><a href="{{ urls.booking_options }}" target="_blank"><code>{{ urls.booking_options }}</code></a></td></tr>
+      <tr><td>Send booking (POST)</td><td><code>{{ urls.booking_submit }}?format=json</code></td></tr>
+      <tr><td>Hosted booking page</td><td><a href="{{ urls.booking_page }}" target="_blank"><code>{{ urls.booking_page }}</code></a></td></tr>{% endif %}
+      {% if urls.careers_jobs %}<tr><td>Jobs (JSON)</td><td><a href="{{ urls.careers_jobs }}" target="_blank"><code>{{ urls.careers_jobs }}</code></a></td></tr>
+      <tr><td>Send application (POST)</td><td><code>{{ urls.careers_apply }}?format=json</code></td></tr>
+      <tr><td>Hosted careers page</td><td><code>{{ urls.careers_page }}</code> (when switched on below)</td></tr>{% endif %}
+    </table>
+    <p class="muted">POST from a server with header <code>X-Api-Key</code> (no rate limit). From browsers the forms work on any connected site.</p>
+  </div>
+
+  <div class="two">
+    <form method="post" class="card">{% csrf_token %}<input type="hidden" name="action" value="kit"><h3>⚙️ Kit settings</h3>
+      {{ form.as_p }}<button class="btn" type="submit">Save</button></form>
+    <div>
+      {% if bform %}<form method="post" class="card">{% csrf_token %}<input type="hidden" name="action" value="booking"><h3>📅 Booking form settings</h3>{{ bform.as_p }}<button class="btn" type="submit">Save</button></form>{% endif %}
+      {% if cform %}<form method="post" class="card" style="margin-top:16px">{% csrf_token %}<input type="hidden" name="action" value="careers"><h3>💼 Careers settings</h3>{{ cform.as_p }}<button class="btn" type="submit">Save</button></form>{% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

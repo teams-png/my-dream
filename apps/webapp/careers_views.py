@@ -19,7 +19,7 @@ from django.views.decorators.csrf import csrf_exempt
 from apps.industry import careers as svc
 from apps.industry.models import CareersSite, JobOrder
 
-from .online_booking_views import owner_only
+from .online_booking_views import owner_only, platform_admin_only
 from .recruitment_views import recruitment_view
 
 RATE_LIMIT = 8  # applications per hour per IP and site
@@ -134,6 +134,12 @@ def _origin(request):
 @csrf_exempt  # opened from other websites and inside iframes; protected by a honeypot, origin check and rate limit
 def careers_apply(request, slug):
     widget = request.GET.get("widget") == "1"
+    api_key = request.headers.get("X-Api-Key", "")
+    if api_key:  # a client website's server (Python / PHP) sending with the website-kit key
+        from apps.industry import website_kit
+        candidate_site = svc.receiving_site(slug, widget=True)
+        if candidate_site and website_kit.key_ok(candidate_site.company, api_key):
+            widget = True
     site = svc.receiving_site(slug, widget=widget)
     if site is None:
         raise Http404("This careers page is not available.")
@@ -142,7 +148,8 @@ def careers_apply(request, slug):
     origin = _origin(request)
     own_page = origin == f"{request.scheme}://{request.get_host()}"
     from_connected_site = origin in svc.origins(site) or (widget and bool(origin))
-    trusted = bool(request.headers.get("X-Api-Key")) and request.headers.get("X-Api-Key") == site.api_key
+    from apps.industry import website_kit
+    trusted = bool(api_key) and (api_key == site.api_key or website_kit.key_ok(site.company, api_key))
     if not site.enabled and not (from_connected_site or trusted):
         raise Http404("This careers page is not available.")
     job_value = request.POST.get("job") or request.GET.get("job")
@@ -318,6 +325,8 @@ def rec_website(request):
                 job.save(update_fields=["publish_online"])
         messages.success(request, _("Jobs on the website updated."))
         return redirect("webapp:rec_website")
+    if request.method == "POST" and request.POST.get("action") in ("connect", "new_key") and not request.user.is_platform_admin:
+        return redirect("webapp:rec_website")
     if request.method == "POST" and request.POST.get("action") == "connect":
         form = SiteForm({**{f: getattr(site, f) for f in SiteForm.Meta.fields}, "enabled": site.enabled,
                          "ask_passport": site.ask_passport, "allowed_origins": request.POST.get("allowed_origins", "")},
@@ -336,6 +345,8 @@ def rec_website(request):
         messages.success(request, _("New API key created. Update it on your own website."))
         return redirect("webapp:rec_website")
     form = SiteForm(request.POST or None, instance=site)
+    if not request.user.is_platform_admin:
+        form.fields.pop("allowed_origins", None)
     if request.method == "POST" and form.is_valid():
         form.save()
         messages.success(request, _("Website saved."))
@@ -346,8 +357,9 @@ def rec_website(request):
     connect_js = request.build_absolute_uri(reverse("webapp:careers_connect_js", args=[site.slug]))
     form_js = request.build_absolute_uri(reverse("webapp:careers_form_js", args=[site.slug]))
     from apps.industry.models import Placement
+    from apps.industry.website_kit import kit_for
     return render(request, "webapp/careers/settings.html", {
-        "site": site, "form": form, "url": url, "connect_tag": f'<script src="{connect_js}" defer></script>',
+        "site": site, "form": form, "kit": kit_for(company), "url": url, "connect_tag": f'<script src="{connect_js}" defer></script>',
         "form_tag": f'<div class="bookpilot-form"></div>\n<script src="{form_js}" defer></script>',
         "connected": sorted(svc.origins(site)), "apply_url": apply_url, "jobs_json": jobs_json,
         "embed": f'<iframe src="{url}?embed=1" style="width:100%;min-height:900px;border:0" title="Careers"></iframe>',
@@ -359,7 +371,7 @@ def rec_website(request):
 
 
 @recruitment_view
-@owner_only
+@platform_admin_only
 def rec_wp_plugin(request):
     """A ready-to-install WordPress plugin with this agency's form address already filled in."""
     import io

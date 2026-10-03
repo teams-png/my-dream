@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
+from . import website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -43,6 +43,15 @@ urlpatterns = [
     path("platform/clients/<int:company_id>/restore/", views.platform_admin_company_restore, name="platform_admin_company_restore"),
     path("platform/clients/<int:company_id>/roles/", views.platform_admin_roles, name="platform_admin_roles"),
     path("platform/clients/<int:company_id>/roles/<int:role_id>/permissions/", views.platform_admin_role_permissions, name="platform_admin_role_permissions"),
+    path("platform/website-kit/", website_kit_views.kit_list, name="kit_list"),
+    path("platform/website-kit/<int:company_id>/", website_kit_views.kit_detail, name="kit_detail"),
+    path("platform/website-kit/<int:company_id>/wordpress-plugin.zip", website_kit_views.kit_wp_plugin, name="kit_wp_plugin"),
+    path("platform/website-kit/<int:company_id>/bookpilot_client.py", website_kit_views.kit_python_client, name="kit_python_client"),
+    path("kit/<slug:public_id>/info.json", website_kit_views.kit_info, name="kit_info"),
+    path("kit/<slug:public_id>/catalogue.json", website_kit_views.kit_catalogue, name="kit_catalogue"),
+    path("kit/<slug:public_id>/enquiry/", website_kit_views.kit_enquiry, name="kit_enquiry"),
+    path("kit/<slug:public_id>/enquiry.js", website_kit_views.kit_enquiry_js, name="kit_enquiry_js"),
+    path("kit/<slug:public_id>/catalogue.js", website_kit_views.kit_catalogue_js, name="kit_catalogue_js"),
     path("platform/plans/", views.platform_plan_list, name="platform_plan_list"),
     path("platform/plans/add/", views.platform_plan_add, name="platform_plan_add"),
     path("platform/plans/<int:plan_id>/edit/", views.platform_plan_edit, name="platform_plan_edit"),

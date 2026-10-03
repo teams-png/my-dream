@@ -450,3 +450,24 @@ class OnlineBooking(TenantScopedModel):
 
     def __str__(self):
         return self.number or f"Request {self.pk}"
+
+
+# ------------------------------------------------------------------ website kit (platform admin builds client sites)
+
+class WebsiteKit(TenantScopedModel):
+    """Everything a client's own website (WordPress / HTML / Python) needs to talk to BookPilot.
+    public_id is safe to put in page source; api_key is only for server-to-server calls."""
+    public_id = models.SlugField(max_length=60, unique=True)
+    api_key = models.CharField(max_length=48, unique=True)
+    allowed_origins = models.TextField(blank=True, help_text="Client website addresses, one per line.")
+    connected_at = models.DateTimeField(null=True, blank=True)
+    last_checked_at = models.DateTimeField(null=True, blank=True)
+    last_check = models.CharField(max_length=255, blank=True)
+    last_check_ok = models.BooleanField(default=False)
+    enquiry_enabled = models.BooleanField(default=True)
+    accent_color = models.CharField(max_length=7, default="#0f766e")
+    notes = models.TextField(blank=True, help_text="Admin notes: hosting, logins, domain…")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.public_id

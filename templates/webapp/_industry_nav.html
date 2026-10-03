@@ -51,7 +51,7 @@
       <details class="nav-section" {% if request.resolver_match.url_name|slice:':3' == 'ob_' %}open{% endif %}>
         <summary>🌐 {% translate "Online booking" %}</summary>
       <a class="nav-link {% if request.resolver_match.url_name == 'ob_inbox' or request.resolver_match.url_name == 'ob_detail' %}active{% endif %}" href="{% url 'webapp:ob_inbox' %}"><span>{% translate "Booking requests" %}</span></a>
-      {% if request.role.name == "Owner" %}<a class="nav-link {% if request.resolver_match.url_name == 'ob_settings' %}active{% endif %}" href="{% url 'webapp:ob_settings' %}"><span>{% translate "Website form & WordPress" %}</span></a>{% endif %}
+      {% if request.role.name == "Owner" %}<a class="nav-link {% if request.resolver_match.url_name == 'ob_settings' %}active{% endif %}" href="{% url 'webapp:ob_settings' %}"><span>{% if request.user.is_platform_admin %}{% translate "Website form & WordPress" %}{% else %}{% translate "Booking settings" %}{% endif %}</span></a>{% endif %}
       </details>
 {% endif %}
 {% endwith %}

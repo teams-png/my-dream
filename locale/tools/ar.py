@@ -1913,3 +1913,10 @@ AR.update({
     "per extra user / year": "لكل مستخدم إضافي / سنة",
     "per extra branch / year": "لكل فرع إضافي / سنة",
 })
+
+AR.update({
+    "Booking settings": "إعدادات الحجز",
+    "Being set up": "قيد الإعداد",
+    "Not connected yet — your BookPilot team sets this up for you.": "غير متصل بعد — سيقوم فريق BookPilot بإعداده لك.",
+    "Your BookPilot team sets up your website for you.": "يقوم فريق BookPilot بإعداد موقعك الإلكتروني لك.",
+})

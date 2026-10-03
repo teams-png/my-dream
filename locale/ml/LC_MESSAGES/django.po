@@ -581,6 +581,10 @@ msgstr "ബുക്കിംഗ് അഭ്യർത്ഥനകൾ"
 msgid "Website form & WordPress"
 msgstr "വെബ്സൈറ്റ് ഫോം & WordPress"
 
+#: templates/webapp/_industry_nav.html
+msgid "Booking settings"
+msgstr "ബുക്കിംഗ് ക്രമീകരണങ്ങൾ"
+
 #: templates/webapp/_language_switcher.html
 msgid "Language"
 msgstr "ഭാഷ"
@@ -1724,6 +1728,23 @@ msgid "new applications"
 msgstr "പുതിയ അപേക്ഷകൾ"
 
 #: templates/webapp/careers/settings.html
+msgid "Your website"
+msgstr "നിങ്ങളുടെ വെബ്സൈറ്റ്"
+
+#: templates/webapp/careers/settings.html
+msgid "Connected"
+msgstr "കണക്ട് ചെയ്തു"
+
+#: templates/webapp/careers/settings.html
+msgid "Being set up"
+msgstr "സജ്ജമാക്കുന്നു"
+
+#: templates/webapp/careers/settings.html
+msgid "Not connected yet — your BookPilot team sets this up for you."
+msgstr ""
+"ഇതുവരെ ബന്ധിപ്പിച്ചിട്ടില്ല — BookPilot ടീം ഇത് നിങ്ങൾക്കായി സജ്ജമാക്കും."
+
+#: templates/webapp/careers/settings.html
 msgid "Recruitment form for your website (WordPress or any site)"
 msgstr ""
 "നിങ്ങളുടെ വെബ്സൈറ്റിനുള്ള റിക്രൂട്ട്മെന്റ് ഫോം (WordPress അല്ലെങ്കിൽ ഏത് "
@@ -1802,10 +1823,6 @@ msgid "Connect"
 msgstr "കണക്ട് ചെയ്യുക"
 
 #: templates/webapp/careers/settings.html
-msgid "Connected"
-msgstr "കണക്ട് ചെയ്തു"
-
-#: templates/webapp/careers/settings.html
 msgid "Last step:"
 msgstr "അവസാന ഘട്ടം:"
 
@@ -1826,10 +1843,6 @@ msgstr ""
 "ഫോമിലെ പേര്, ഫോൺ, ഇമെയിൽ, പാസ്പോർട്ട്, തസ്തിക, CV എന്നിവ സ്വയം എടുക്കും. "
 "നൽകിയ തസ്തിക തുറന്ന ഒരു ജോബ് ഓർഡറുമായി യോജിച്ചാൽ ആ ജോലിയുടെ pipeline-ലേക്ക് "
 "ചേർക്കും."
-
-#: templates/webapp/careers/settings.html
-msgid "Your website"
-msgstr "നിങ്ങളുടെ വെബ്സൈറ്റ്"
 
 #: templates/webapp/careers/settings.html
 msgid "optional — a ready-made careers page"
@@ -9336,6 +9349,10 @@ msgstr ""
 #: apps/webapp/online_booking_views.py
 msgid "Online booking isn't available for this business type."
 msgstr "ഈ ബിസിനസ് തരത്തിന് ഓൺലൈൻ ബുക്കിംഗ് ലഭ്യമല്ല."
+
+#: apps/webapp/online_booking_views.py
+msgid "Your BookPilot team sets up your website for you."
+msgstr "BookPilot ടീം നിങ്ങളുടെ വെബ്സൈറ്റ് നിങ്ങൾക്കായി സജ്ജമാക്കും."
 
 #: apps/webapp/online_booking_views.py
 msgid "Only the business owner can open this page."

@@ -1,7 +1,7 @@
-<?php
+{% autoescape off %}<?php
 /**
  * Plugin Name: BookPilot Booking Form
- * Description: Online booking form for {{ company }}. Every booking request goes straight to BookPilot (Booking requests + dashboard). Use the shortcode [bookpilot_booking] on any page.
+ * Description: Online booking form for {{ company|cut:'*/' }}. Every booking request goes straight to BookPilot (Booking requests + dashboard). Use the shortcode [bookpilot_booking] on any page.
  * Version: 1.0.0
  * Author: BookPilot
  * License: GPLv2 or later
@@ -61,7 +61,7 @@ function bookpilot_booking_settings_page() {
                     <th scope="row"><label for="bookpilot_booking_url">Form address</label></th>
                     <td><input name="bookpilot_booking_url" id="bookpilot_booking_url" type="url" class="large-text"
                                value="<?php echo esc_attr(bookpilot_booking_url()); ?>">
-                        <p class="description">Already filled in for {{ company }}. Change it only if BookPilot gives you a new address.</p></td>
+                        <p class="description">Already filled in for {{ company|force_escape }}. Change it only if BookPilot gives you a new address.</p></td>
                 </tr>
             </table>
             <?php submit_button(); ?>
@@ -69,3 +69,4 @@ function bookpilot_booking_settings_page() {
     </div>
     <?php
 }
+{% endautoescape %}

@@ -581,6 +581,10 @@ msgstr "طلبات الحجز"
 msgid "Website form & WordPress"
 msgstr "نموذج الموقع وووردبريس"
 
+#: templates/webapp/_industry_nav.html
+msgid "Booking settings"
+msgstr "إعدادات الحجز"
+
 #: templates/webapp/_language_switcher.html
 msgid "Language"
 msgstr "اللغة"
@@ -1719,6 +1723,22 @@ msgid "new applications"
 msgstr "طلبات جديدة"
 
 #: templates/webapp/careers/settings.html
+msgid "Your website"
+msgstr "موقعك"
+
+#: templates/webapp/careers/settings.html
+msgid "Connected"
+msgstr "متصل"
+
+#: templates/webapp/careers/settings.html
+msgid "Being set up"
+msgstr "قيد الإعداد"
+
+#: templates/webapp/careers/settings.html
+msgid "Not connected yet — your BookPilot team sets this up for you."
+msgstr "غير متصل بعد — سيقوم فريق BookPilot بإعداده لك."
+
+#: templates/webapp/careers/settings.html
 msgid "Recruitment form for your website (WordPress or any site)"
 msgstr "نموذج توظيف لموقعك (ووردبريس أو أي موقع)"
 
@@ -1794,10 +1814,6 @@ msgid "Connect"
 msgstr "ربط"
 
 #: templates/webapp/careers/settings.html
-msgid "Connected"
-msgstr "متصل"
-
-#: templates/webapp/careers/settings.html
 msgid "Last step:"
 msgstr "الخطوة الأخيرة:"
 
@@ -1816,10 +1832,6 @@ msgstr ""
 "يقرأ تلقائياً حقول الاسم والهاتف والبريد والجواز والوظيفة والسيرة الذاتية. "
 "إذا طابقت الوظيفة المختارة أحد طلبات التوظيف المفتوحة، يُضاف المتقدم إلى "
 "مسارها."
-
-#: templates/webapp/careers/settings.html
-msgid "Your website"
-msgstr "موقعك"
 
 #: templates/webapp/careers/settings.html
 msgid "optional — a ready-made careers page"
@@ -9234,6 +9246,10 @@ msgstr "طلبات كثيرة من هذا الاتصال. يرجى الاتصا�
 #: apps/webapp/online_booking_views.py
 msgid "Online booking isn't available for this business type."
 msgstr "الحجز الإلكتروني غير متاح لهذا النوع من الأنشطة."
+
+#: apps/webapp/online_booking_views.py
+msgid "Your BookPilot team sets up your website for you."
+msgstr "يقوم فريق BookPilot بإعداد موقعك الإلكتروني لك."
 
 #: apps/webapp/online_booking_views.py
 msgid "Only the business owner can open this page."

@@ -139,6 +139,10 @@ def test_restaurant_table_and_validation():
 def test_wordpress_plugin_and_retail_has_no_booking():
     salon, client = _signup("saloon", "wp@t.qa")
     site = svc.site_for(salon)
+    assert client.get(reverse("webapp:ob_wp_plugin")).status_code == 302  # clients don't get the plugin
+    owner = salon.memberships.first().user
+    owner.is_platform_admin = True
+    owner.save()
     z = zipfile.ZipFile(io.BytesIO(client.get(reverse("webapp:ob_wp_plugin")).content))
     php = z.read("bookpilot-booking-form/bookpilot-booking-form.php").decode()
     assert "add_shortcode('bookpilot_booking'" in php and f"/book/{site.slug}/form.js" in php and "bookpilot_form" not in php
@@ -153,7 +157,9 @@ def test_website_form_and_plugin_are_owner_only():
                                            ("recruitment_agency", "webapp:rec_website", "webapp:rec_wp_plugin")):
         company, owner_client = _signup(code, f"own-{code}@t.qa")
         assert reverse(settings_url) in owner_client.get(reverse("webapp:dashboard")).content.decode()
-        assert owner_client.get(reverse(plugin_url)).status_code == 200
+        page = owner_client.get(reverse(settings_url)).content.decode()
+        assert owner_client.get(reverse(settings_url)).status_code == 200 and "form.js" not in page  # no code for clients
+        assert owner_client.get(reverse(plugin_url)).status_code == 302
         staff = get_user_model().objects.create_user(username=f"staff-{code}", email=f"staff-{code}@t.qa", password="Pass-12345!")
         CompanyMembership.objects.create(user=staff, company=company, role=Role.objects.get(company=company, name="Staff"))
         c = Client()

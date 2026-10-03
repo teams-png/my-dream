@@ -1893,3 +1893,10 @@ ML.update({
     "per extra user / year": "ഓരോ അധിക യൂസർക്കും / വർഷം",
     "per extra branch / year": "ഓരോ അധിക ബ്രാഞ്ചിനും / വർഷം",
 })
+
+ML.update({
+    "Booking settings": "ബുക്കിംഗ് ക്രമീകരണങ്ങൾ",
+    "Being set up": "സജ്ജമാക്കുന്നു",
+    "Not connected yet — your BookPilot team sets this up for you.": "ഇതുവരെ ബന്ധിപ്പിച്ചിട്ടില്ല — BookPilot ടീം ഇത് നിങ്ങൾക്കായി സജ്ജമാക്കും.",
+    "Your BookPilot team sets up your website for you.": "BookPilot ടീം നിങ്ങളുടെ വെബ്സൈറ്റ് നിങ്ങൾക്കായി സജ്ജമാക്കും.",
+})

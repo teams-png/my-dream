@@ -12,6 +12,14 @@
     <a class="btn btn-secondary" href="{{ share }}" target="_blank" rel="noopener">💬 {% translate "Share" %}</a>
   </div>
   {% if not items and kind != "table" and kind != "event" %}<div class="ix-card" style="background:#fef3c7;color:#92400e">⚠️ {% translate "Add what customers can book first — it is listed in the form." %} {% if items_url %}<a href="{% url items_url %}">{% translate "Add now →" %}</a>{% endif %}</div>{% endif %}
+{% if not request.user.is_platform_admin %}
+  <div class="ix-card" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+    <b>🌐 {% translate "Your website" %}:</b>
+    {% if kit.allowed_origins %}<span class="ix-chip {% if kit.last_check_ok %}paid{% else %}due{% endif %}">{% if kit.last_check_ok %}{% translate "Connected" %}{% else %}{% translate "Being set up" %}{% endif %}</span> <code>{{ kit.allowed_origins.splitlines.0 }}</code>
+    {% else %}<span style="color:var(--ink-soft)">{% translate "Not connected yet — your BookPilot team sets this up for you." %}</span>{% endif %}
+  </div>
+{% endif %}
+{% if request.user.is_platform_admin %}
   <div class="ix-card" style="border-color:var(--accent);border-width:2px">
     <h3>📝 {% translate "Booking form for your website (WordPress or any site)" %}</h3>
     <p style="margin-top:0;color:var(--ink-soft)">{% translate "Customers book on your own website; every request comes to Booking requests here and on the dashboard, only for your business." %}</p>
@@ -32,6 +40,7 @@
       </div>
     </div>
   </div>
+{% endif %}
   <form method="post" class="ix-card ix-form" style="max-width:none">{% csrf_token %}
     <h3>⚙️ {% translate "Settings" %}</h3>
     <div class="fields">

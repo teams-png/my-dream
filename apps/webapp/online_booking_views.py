@@ -53,6 +53,11 @@ def _too_many(request, site):
         return False
 
 
+def _kit_key(request, site):
+    from apps.industry import website_kit
+    return website_kit.key_ok(site.company, request.headers.get("X-Api-Key", ""))
+
+
 def _site_or_404(slug):
     site = svc.public_site(slug)
     if site is None:
@@ -129,7 +134,7 @@ def book_submit(request, slug):
     if response is None:
         if request.POST.get("company_website"):
             body, status = {"ok": True}, 201
-        elif _too_many(request, site):
+        elif not _kit_key(request, site) and _too_many(request, site):
             body, status = {"ok": False, "error": _("Too many requests from this connection. Please call or WhatsApp us.")}, 429
         else:
             own = origin == f"{request.scheme}://{request.get_host()}"
@@ -159,6 +164,19 @@ def _booking_view(view):
             return redirect("webapp:dashboard")
         return view(request, *args, **kwargs)
     wrapped.__name__ = view.__name__
+    return wrapped
+
+
+def platform_admin_only(view):
+    """Plugin downloads and website code are for the BookPilot platform admin, who builds client websites."""
+    from functools import wraps
+
+    @wraps(view)
+    def wrapped(request, *args, **kwargs):
+        if not getattr(request.user, "is_platform_admin", False):
+            messages.error(request, _("Your BookPilot team sets up your website for you."))
+            return redirect("webapp:dashboard")
+        return view(request, *args, **kwargs)
     return wrapped
 
 
@@ -300,8 +318,9 @@ def ob_settings(request):
     page = request.build_absolute_uri(reverse("webapp:book_page", args=[site.slug]))
     form_js = request.build_absolute_uri(reverse("webapp:book_form_js", args=[site.slug]))
     kind = svc.booking_kind(company)
+    from apps.industry.website_kit import kit_for
     return render(request, "webapp/online_booking/settings.html", {
-        "site": site, "form": form, "page": page, "kind": kind, "items": svc.items(company, kind),
+        "site": site, "form": form, "kit": kit_for(company), "page": page, "kind": kind, "items": svc.items(company, kind),
         "form_tag": f'<div class="bookpilot-booking"></div>\n<script src="{form_js}" defer></script>',
         "share": f"https://wa.me/?text={quote((site.headline or company.name) + chr(10) + page)}",
         "items_url": {"resource": "webapp:booking_resources", "appointment": _services_url(company)}.get(kind),
@@ -315,7 +334,7 @@ def _services_url(company):
 
 
 @_booking_view
-@owner_only
+@platform_admin_only
 def ob_wp_plugin(request):
     site = svc.site_for(request.company)
     form_js = request.build_absolute_uri(reverse("webapp:book_form_js", args=[site.slug]))

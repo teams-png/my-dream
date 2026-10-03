@@ -1,7 +1,7 @@
-<?php
+{% autoescape off %}<?php
 /**
  * Plugin Name: BookPilot Recruitment Form
- * Description: Detailed job application form for {{ company }}. Every application goes straight to the BookPilot recruitment dashboard (candidates, CVs, job pipeline). Use the shortcode [bookpilot_form] on any page.
+ * Description: Detailed job application form for {{ company|cut:'*/' }}. Every application goes straight to the BookPilot recruitment dashboard (candidates, CVs, job pipeline). Use the shortcode [bookpilot_form] on any page.
  * Version: 1.0.0
  * Author: BookPilot
  * License: GPLv2 or later
@@ -61,7 +61,7 @@ function bookpilot_form_settings_page() {
                     <th scope="row"><label for="bookpilot_form_url">Form address</label></th>
                     <td><input name="bookpilot_form_url" id="bookpilot_form_url" type="url" class="large-text"
                                value="<?php echo esc_attr(bookpilot_form_url()); ?>">
-                        <p class="description">Already filled in for {{ company }}. Change it only if BookPilot gives you a new address.</p></td>
+                        <p class="description">Already filled in for {{ company|force_escape }}. Change it only if BookPilot gives you a new address.</p></td>
                 </tr>
             </table>
             <?php submit_button(); ?>
@@ -69,3 +69,4 @@ function bookpilot_form_settings_page() {
     </div>
     <?php
 }
+{% endautoescape %}

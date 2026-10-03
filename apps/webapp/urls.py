@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
+from . import online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -172,6 +172,14 @@ urlpatterns = [
     path("property/leases/new/", property_views.lease_add, name="lease_add"),
     path("property/leases/<int:lease_id>/", property_views.lease_detail, name="lease_detail"),
     path("property/rent/", property_views.rent_run, name="rent_run"),
+    path("online-bookings/", online_booking_views.ob_inbox, name="ob_inbox"),
+    path("online-bookings/<int:request_id>/", online_booking_views.ob_detail, name="ob_detail"),
+    path("online-bookings/settings/", online_booking_views.ob_settings, name="ob_settings"),
+    path("online-bookings/wordpress-plugin.zip", online_booking_views.ob_wp_plugin, name="ob_wp_plugin"),
+    path("book/<slug:slug>/", online_booking_views.book_page, name="book_page"),
+    path("book/<slug:slug>/options.json", online_booking_views.book_options, name="book_options"),
+    path("book/<slug:slug>/form.js", online_booking_views.book_form_js, name="book_form_js"),
+    path("book/<slug:slug>/submit/", online_booking_views.book_submit, name="book_submit"),
     path("recruitment/website/", careers_views.rec_website, name="rec_website"),
     path("careers/<slug:slug>/", careers_views.careers_home, name="careers_home"),
     path("careers/<slug:slug>/jobs/<int:job_id>/", careers_views.careers_job, name="careers_job"),

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Booking requests" %}{% endblock %}
+{% block heading %}{% translate "Booking requests" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar">
+    {% for code, label, n in tabs %}<a class="btn{% if status != code %} btn-secondary{% endif %}" href="?status={{ code }}">{% translate label %} ({{ n }})</a>{% endfor %}
+    <span class="grow"></span><a class="btn btn-secondary" href="{% url 'webapp:ob_settings' %}">🌐 {% translate "Website form & WordPress" %}</a>
+  </div>
+  <div class="ix-list">
+  {% for r in requests %}
+    <a class="ix-row" href="{% url 'webapp:ob_detail' r.id %}"><span class="grow"><b>{{ r.name }}</b><small>{{ r.item_name|default:r.get_kind_display }} · {{ r.date|date:"D j M" }}{% if r.time %} {{ r.time|time:"H:i" }}{% endif %}{% if r.end_date %} → {{ r.end_date|date:"j M" }}{% endif %}{% if r.kind != "appointment" %} · {{ r.guests }} 👤{% endif %} · {{ r.phone }}</small></span>
+      {% if r.source %}<span class="ix-chip">🌐 {{ r.source|truncatechars:24 }}</span>{% endif %}<span class="ix-chip {% if r.status == 'new' %}due{% elif r.status == 'confirmed' %}paid{% else %}cancelled{% endif %}">{{ r.get_status_display }}</span></a>
+  {% empty %}
+    <div class="ix-card ix-empty">{% if status == "new" %}{% translate "No new booking requests." %} <a href="{% url 'webapp:ob_settings' %}">{% translate "Put the booking form on your website →" %}</a>{% else %}{% translate "Nothing here." %}{% endif %}</div>
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}

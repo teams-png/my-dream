@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Website form & WordPress" %}{% endblock %}
+{% block heading %}{% translate "Online booking" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-card" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+    <span class="ix-chip {% if site.enabled %}paid{% else %}cancelled{% endif %}">{% if site.enabled %}🟢 {% translate "On" %}{% else %}⚪ {% translate "Off" %}{% endif %}</span>
+    <code style="word-break:break-all;flex:1 1 240px">{{ page }}</code>
+    <a class="btn" href="{{ page }}" target="_blank" rel="noopener">↗ {% translate "Open booking page" %}</a>
+    <a class="btn btn-secondary" href="{{ share }}" target="_blank" rel="noopener">💬 {% translate "Share" %}</a>
+  </div>
+  {% if not items and kind != "table" and kind != "event" %}<div class="ix-card" style="background:#fef3c7;color:#92400e">⚠️ {% translate "Add what customers can book first — it is listed in the form." %} {% if items_url %}<a href="{% url items_url %}">{% translate "Add now →" %}</a>{% endif %}</div>{% endif %}
+  <div class="ix-card" style="border-color:var(--accent);border-width:2px">
+    <h3>📝 {% translate "Booking form for your website (WordPress or any site)" %}</h3>
+    <p style="margin-top:0;color:var(--ink-soft)">{% translate "Customers book on your own website; every request comes to Booking requests here and on the dashboard, only for your business." %}</p>
+    <div class="ix-grid2">
+      <div>
+        <p style="font-weight:700;margin:0 0 6px">{% translate "Option 1 — WordPress plugin (easiest)" %}</p>
+        <ol style="margin:0 0 10px;padding-inline-start:20px;font-size:13.5px;line-height:1.7">
+          <li>{% translate "Download the plugin" %}: <a class="btn btn-secondary" style="padding:5px 10px" href="{% url 'webapp:ob_wp_plugin' %}">⬇ bookpilot-booking-form.zip</a></li>
+          <li>{% translate "WordPress → Plugins → Add New → Upload Plugin → Activate." %}</li>
+          <li>{% translate "On your booking page add the shortcode" %} <code>[bookpilot_booking]</code></li>
+        </ol>
+        <p style="font-size:12.5px;color:var(--ink-soft);margin:0">{% translate "Options:" %} <code>[bookpilot_booking lang="ar"]</code> <code>[bookpilot_booking item="…"]</code> <code>[bookpilot_booking thanks="https://…"]</code></p>
+      </div>
+      <div>
+        <p style="font-weight:700;margin:0 0 6px">{% translate "Option 2 — paste this code (any website, WordPress “Custom HTML” block, Elementor “HTML”)" %}</p>
+        <textarea readonly rows="3" style="width:100%;font:12.5px monospace;padding:9px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)" onclick="this.select()">{{ form_tag }}</textarea>
+        <button class="btn btn-secondary" type="button" style="margin-top:8px" data-copy="{{ form_tag }}" data-done="{% translate "Link copied" %}" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.dataset.copy);this.textContent='✓ '+this.dataset.done">📋 {% translate "Copy code" %}</button>
+      </div>
+    </div>
+  </div>
+  <form method="post" class="ix-card ix-form" style="max-width:none">{% csrf_token %}
+    <h3>⚙️ {% translate "Settings" %}</h3>
+    <div class="fields">
+    {% for field in form %}
+      {% if field.field.widget.input_type == "checkbox" %}<div class="full"><label style="display:flex;gap:8px;align-items:center;color:var(--ink)">{{ field }} {{ field.label }}</label></div>
+      {% else %}<div{% if field.name == "headline" or field.name == "note" %} class="full"{% endif %}><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{{ field.errors }}</div>{% endif %}
+    {% endfor %}
+    </div>
+    <button class="btn" type="submit" style="margin-top:14px">{% translate "Save" %}</button>
+  </form>
+</div>
+{% endblock %}

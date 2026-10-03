@@ -349,6 +349,13 @@ def dashboard(request):
             "revenue": sold_units.aggregate(total=Sum("sold_price"))["total"] or 0,
         })
 
+    from apps.industry.models import OnlineBooking
+    from apps.modules.catalog import online_booking_kind
+    if online_booking_kind(biz_code):
+        new_requests = OnlineBooking.objects.for_company(company).filter(status="new")
+        context["online_requests"] = new_requests.count()
+        context["online_requests_next"] = new_requests.order_by("date", "time")[:4]
+
     # Universal, vertical-independent widgets — every company has sales, expenses
     # and customers regardless of business type, so these render on every dashboard.
     today = tz.now().date()
@@ -1005,6 +1012,11 @@ def reports(request):
 
 # ================= GYM =================
 
+def _prefill(request):
+    """Initial values from the query string, e.g. when an online booking request is turned into an appointment."""
+    return {k: request.GET[k] for k in ("customer", "service", "scheduled_at") if request.GET.get(k)}
+
+
 def _default_warehouse(company):
     wh = branch_access.pick(company)
     if wh is not None:
@@ -1303,7 +1315,7 @@ def appointment_book(request):
             except Exception as exc:
                 messages.error(request, f"Couldn't book appointment: {exc}")
     else:
-        form = BookAppointmentForm(company=company)
+        form = BookAppointmentForm(company=company, initial=_prefill(request))
 
     no_services = not SpaService.objects.for_company(company).filter(is_active=True).exists()
     no_staff = not Employee.objects.for_company(company).filter(is_active=True).exists()
@@ -2225,7 +2237,7 @@ def saloon_appointment_book(request):
             except Exception as exc:
                 messages.error(request, f"Couldn't book: {exc}")
     else:
-        form = BookSaloonAppointmentForm(company=company)
+        form = BookSaloonAppointmentForm(company=company, initial=_prefill(request))
     no_services = not SaloonService.objects.for_company(company).filter(is_active=True).exists()
     no_staff = not Employee.objects.for_company(company).filter(is_active=True).exists()
     no_customers = not Customer.objects.for_company(company).exists()
@@ -2469,7 +2481,7 @@ def beauty_appointment_book(request):
             except Exception as exc:
                 messages.error(request, f"Couldn't book: {exc}")
     else:
-        form = BookBeautyAppointmentForm(company=company)
+        form = BookBeautyAppointmentForm(company=company, initial=_prefill(request))
     no_services = not BeautyService.objects.for_company(company).filter(is_active=True).exists()
     no_staff = not Employee.objects.for_company(company).filter(is_active=True).exists()
     no_customers = not Customer.objects.for_company(company).exists()

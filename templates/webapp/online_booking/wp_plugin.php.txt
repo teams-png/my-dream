@@ -1,0 +1,71 @@
+<?php
+/**
+ * Plugin Name: BookPilot Booking Form
+ * Description: Online booking form for {{ company }}. Every booking request goes straight to BookPilot (Booking requests + dashboard). Use the shortcode [bookpilot_booking] on any page.
+ * Version: 1.0.0
+ * Author: BookPilot
+ * License: GPLv2 or later
+ * Requires at least: 5.0
+ */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+define('BOOKPILOT_BOOKING_DEFAULT_URL', '{{ form_js }}');
+
+function bookpilot_booking_url() {
+    $url = get_option('bookpilot_booking_url', '');
+    return $url ? $url : BOOKPILOT_BOOKING_DEFAULT_URL;
+}
+
+/**
+ * [bookpilot_booking item="Haircut" lang="ar" color="#0f766e" thanks="https://example.com/thank-you" title="Book now"]
+ */
+function bookpilot_booking_shortcode($atts) {
+    $a = shortcode_atts(array('item' => '', 'lang' => '', 'color' => '', 'thanks' => '', 'title' => ''), $atts, 'bookpilot_booking');
+    wp_enqueue_script('bookpilot-booking', esc_url(bookpilot_booking_url()), array(), '1.0.0', true);
+    $attrs = '';
+    foreach ($a as $key => $value) {
+        if ($value !== '') {
+            $attrs .= ' data-' . $key . '="' . esc_attr($value) . '"';
+        }
+    }
+    return '<div class="bookpilot-booking"' . $attrs . '></div>';
+}
+add_shortcode('bookpilot_booking', 'bookpilot_booking_shortcode');
+
+function bookpilot_booking_settings_menu() {
+    add_options_page('BookPilot Booking Form', 'BookPilot Booking', 'manage_options', 'bookpilot-booking', 'bookpilot_booking_settings_page');
+}
+add_action('admin_menu', 'bookpilot_booking_settings_menu');
+
+function bookpilot_booking_register_settings() {
+    register_setting('bookpilot_booking', 'bookpilot_booking_url', array('type' => 'string', 'sanitize_callback' => 'esc_url_raw'));
+}
+add_action('admin_init', 'bookpilot_booking_register_settings');
+
+function bookpilot_booking_settings_page() {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+    ?>
+    <div class="wrap">
+        <h1>BookPilot Booking Form</h1>
+        <p>Add <code>[bookpilot_booking]</code> to any page or post (Gutenberg "Shortcode" block, Elementor "Shortcode" widget, etc.).</p>
+        <p>Options: <code>[bookpilot_booking item="Haircut" lang="ar" color="#0f766e" thanks="https://your-site.com/thank-you"]</code></p>
+        <form method="post" action="options.php">
+            <?php settings_fields('bookpilot_booking'); ?>
+            <table class="form-table" role="presentation">
+                <tr>
+                    <th scope="row"><label for="bookpilot_booking_url">Form address</label></th>
+                    <td><input name="bookpilot_booking_url" id="bookpilot_booking_url" type="url" class="large-text"
+                               value="<?php echo esc_attr(bookpilot_booking_url()); ?>">
+                        <p class="description">Already filled in for {{ company }}. Change it only if BookPilot gives you a new address.</p></td>
+                </tr>
+            </table>
+            <?php submit_button(); ?>
+        </form>
+    </div>
+    <?php
+}

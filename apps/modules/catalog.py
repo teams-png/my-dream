@@ -160,7 +160,7 @@ def business_profile(code):
     code = ALIASES.get(code, code)
     group = business_group(code)
     profile = {"code": code, "group": group, "name": BUSINESS_TYPE_MAP.get(code, "Business"),
-               "features": sorted(business_features(code))}
+               "features": sorted(business_features(code)), "online_booking": online_booking_kind(code)}
     if code in BOOKING_TERMS:
         resource, resources, booking, unit = BOOKING_TERMS[code]
         profile.update(resource_label=resource, resources_label=resources, booking_label=booking,
@@ -180,6 +180,20 @@ def business_profile(code):
     else:
         profile.update(records_label="Customers", work_label="Sales", provider_label="Suppliers")
     return profile
+
+
+def online_booking_kind(code):
+    """Which online booking form a business type gets (None = it doesn't take bookings)."""
+    code = ALIASES.get(code, code)
+    if "bookings" in business_features(code):
+        return "resource"
+    if code in ("restaurant", "cafe_juice_shop"):
+        return "table"
+    if code in ("catering_company", "event_management"):
+        return "event"
+    if code in ("saloon", "spa", "beauty_parlour", "gym", "vehicle_wash") or business_group(code) == "service":
+        return "appointment"
+    return None
 
 
 def business_group(code):

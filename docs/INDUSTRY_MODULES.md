@@ -83,6 +83,23 @@ Menu: 🧑‍💼 Recruitment. It replaces the generic project menu for this typ
     - Works from any domain (CORS reflects the caller's origin for widget posts). Honeypot and rate limit apply.
   - Code: `apps/industry/careers.py`, `apps/webapp/careers_views.py`, `templates/webapp/careers/` (`connect.js`, `form.js`, `wp_plugin.php.txt`).
 
+## Online booking (every business type that takes bookings)
+Menu: 🌐 Online booking → Booking requests and Website form & WordPress. It covers 41 types (`catalog.online_booking_kind`):
+- **appointment** (32 types): salon, spa, beauty parlour, gym, vehicle wash and every service-group type (clinics, garages, consultants…). The form lists their services or packages with price and duration.
+- **resource** (5 types): hotel, car rental, equipment rental, wedding hall, coworking. The form lists rooms, vehicles or spaces with their rate and asks for start/end dates or times and the number of people (checked against capacity).
+- **table** (2 types): restaurant, café. Date, time and party size.
+- **event** (2 types): catering, event management. Date, type of event and number of guests.
+
+How it works:
+- The business puts the form on its website, either by pasting `<div class="bookpilot-booking"></div><script src="…/book/<name>/form.js" defer></script>` or with the WordPress plugin (`[bookpilot_booking]` with options `item`, `lang`, `color` and `thanks`). It also has a BookPilot page at `/book/<name>/`.
+- Each submission becomes an `OnlineBooking` request for **that business only**. The business gets a notification and a dashboard banner.
+- Staff **confirm** or **decline** each request:
+  - A table request becomes a `TableReservation`.
+  - A resource request becomes a `Booking`. Clashes are shown and refused.
+  - An appointment opens the type's appointment form already filled in (customer, service, time); staff pick the stylist or therapist. The invoice logic is unchanged.
+  - A WhatsApp reply is ready in both cases.
+- Protections: honeypot, 10 requests per hour per IP, minimum notice and how far ahead people can book.
+
 ## Staff & HR (every business type)
 
 The **People → Staff & HR / Attendance / Payroll & advances** menu is available to all 108 business types. The views are in `apps/webapp/hr_views.py` and the rules are in `apps/employees/services.py`.

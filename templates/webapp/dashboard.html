@@ -29,6 +29,12 @@
   {% endif %}
 {% endif %}
 
+{% if online_requests %}
+<a class="card" href="{% url 'webapp:ob_inbox' %}" style="display:block;text-decoration:none;color:inherit;margin-bottom:16px;border:2px solid var(--accent)">
+  <b>🌐 {% translate "New online booking requests" %}: {{ online_requests }}</b>
+  <div style="color:var(--ink-soft);font-size:13.5px;margin-top:4px">{% for r in online_requests_next %}{{ r.name }} · {{ r.date|date:"j M" }}{% if r.time %} {{ r.time|time:"H:i" }}{% endif %}{% if not forloop.last %} — {% endif %}{% endfor %}</div>
+</a>
+{% endif %}
 <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:16px;">
   <div class="card" style="border-top:3px solid var(--accent);">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Today's sales" %}</div>

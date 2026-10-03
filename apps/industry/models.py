@@ -398,3 +398,55 @@ class CareersSite(TenantScopedModel):
 
     def __str__(self):
         return self.slug
+
+
+# ------------------------------------------------------------------ online booking (website / WordPress)
+
+class BookingSite(TenantScopedModel):
+    """A business's online booking form: on its own website (widget / WordPress plugin) or a BookPilot page."""
+    slug = models.SlugField(max_length=60, unique=True)
+    enabled = models.BooleanField(default=True)
+    headline = models.CharField(max_length=200, blank=True)
+    note = models.CharField(max_length=255, blank=True, help_text="Shown above the form, e.g. opening hours.")
+    accent_color = models.CharField(max_length=7, default="#0f766e")
+    whatsapp = models.CharField(max_length=30, blank=True)
+    min_notice_hours = models.PositiveSmallIntegerField(default=1)
+    max_days_ahead = models.PositiveSmallIntegerField(default=90)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.slug
+
+
+class OnlineBooking(TenantScopedModel):
+    """A booking request from the website. Staff confirm it, which creates the real appointment / booking / table."""
+    KINDS = [("appointment", "Appointment"), ("resource", "Booking"), ("table", "Table reservation"), ("event", "Event enquiry")]
+    STATUS = [("new", "New"), ("confirmed", "Confirmed"), ("declined", "Declined"), ("cancelled", "Cancelled")]
+    number = models.CharField(max_length=20, blank=True)
+    kind = models.CharField(max_length=12, choices=KINDS)
+    status = models.CharField(max_length=10, choices=STATUS, default="new")
+    name = models.CharField(max_length=150)
+    phone = models.CharField(max_length=30)
+    email = models.EmailField(blank=True)
+    item_id = models.PositiveIntegerField(null=True, blank=True, help_text="Service or resource chosen.")
+    item_name = models.CharField(max_length=200, blank=True)
+    date = models.DateField()
+    time = models.TimeField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    end_time = models.TimeField(null=True, blank=True)
+    guests = models.PositiveSmallIntegerField(default=1)
+    notes = models.TextField(blank=True)
+    source = models.CharField(max_length=120, blank=True)
+    customer = models.ForeignKey("customers.Customer", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    linked = models.CharField(max_length=40, blank=True, help_text="What it became, e.g. booking:12 or reservation:4.")
+    reply = models.CharField(max_length=255, blank=True)
+    handled_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    handled_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [models.Index(fields=["company", "status"])]
+
+    def __str__(self):
+        return self.number or f"Request {self.pk}"

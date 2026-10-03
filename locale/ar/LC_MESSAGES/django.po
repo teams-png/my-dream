@@ -569,6 +569,18 @@ msgstr "البيع بالوزن"
 msgid "Weighing scale"
 msgstr "الميزان"
 
+#: templates/webapp/_industry_nav.html
+msgid "Online booking"
+msgstr "الحجز الإلكتروني"
+
+#: templates/webapp/_industry_nav.html
+msgid "Booking requests"
+msgstr "طلبات الحجز"
+
+#: templates/webapp/_industry_nav.html
+msgid "Website form & WordPress"
+msgstr "نموذج الموقع وووردبريس"
+
 #: templates/webapp/_language_switcher.html
 msgid "Language"
 msgstr "اللغة"
@@ -2275,6 +2287,10 @@ msgstr "عرض الفواتير ←"
 #: templates/webapp/dashboard.html
 msgid "Subscription renews in"
 msgstr "يتجدد الاشتراك خلال"
+
+#: templates/webapp/dashboard.html
+msgid "New online booking requests"
+msgstr "طلبات حجز إلكترونية جديدة"
 
 #: templates/webapp/dashboard.html
 msgid "Today's sales"
@@ -4741,6 +4757,112 @@ msgstr "الشعار والعنوان والضريبة والعملة."
 msgid "Sent to the printer."
 msgstr "أُرسل إلى الطابعة."
 
+#: templates/webapp/online_booking/detail.html
+msgid "Booking request"
+msgstr "طلب حجز"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Open booking"
+msgstr "فتح الحجز"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Wants"
+msgstr "المطلوب"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Received"
+msgstr "المستلم"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Reason"
+msgstr "السبب"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Confirm"
+msgstr "تأكيد"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Booked"
+msgstr "محجوز"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Free"
+msgstr "متاحة"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Table (optional)"
+msgstr "الطاولة (اختياري)"
+
+#: templates/webapp/online_booking/detail.html
+msgid ""
+"Next you'll choose the staff member; the appointment form opens already "
+"filled in."
+msgstr "بعدها تختار الموظف؛ يفتح نموذج الموعد معبأً مسبقاً."
+
+#: templates/webapp/online_booking/detail.html
+msgid "Confirm booking"
+msgstr "تأكيد الحجز"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Decline"
+msgstr "رفض"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Reason (optional), e.g. fully booked"
+msgstr "السبب (اختياري)، مثل: محجوز بالكامل"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Tell the customer"
+msgstr "أبلغ العميل"
+
+#: templates/webapp/online_booking/inbox.html
+msgid "No new booking requests."
+msgstr "لا توجد طلبات حجز جديدة."
+
+#: templates/webapp/online_booking/inbox.html
+msgid "Put the booking form on your website →"
+msgstr "ضع نموذج الحجز على موقعك ←"
+
+#: templates/webapp/online_booking/inbox.html
+msgid "Nothing here."
+msgstr "لا شيء هنا."
+
+#: templates/webapp/online_booking/settings.html
+msgid "On"
+msgstr "مفعّل"
+
+#: templates/webapp/online_booking/settings.html
+msgid "Off"
+msgstr "متوقف"
+
+#: templates/webapp/online_booking/settings.html
+msgid "Open booking page"
+msgstr "فتح صفحة الحجز"
+
+#: templates/webapp/online_booking/settings.html
+msgid "Add what customers can book first — it is listed in the form."
+msgstr "أضف أولاً ما يمكن للعملاء حجزه — سيظهر في النموذج."
+
+#: templates/webapp/online_booking/settings.html
+msgid "Add now →"
+msgstr "أضف الآن ←"
+
+#: templates/webapp/online_booking/settings.html
+msgid "Booking form for your website (WordPress or any site)"
+msgstr "نموذج حجز لموقعك (ووردبريس أو أي موقع)"
+
+#: templates/webapp/online_booking/settings.html
+msgid ""
+"Customers book on your own website; every request comes to Booking requests "
+"here and on the dashboard, only for your business."
+msgstr ""
+"يحجز العملاء على موقعك؛ يصل كل طلب إلى طلبات الحجز هنا وإلى لوحة التحكم — "
+"لنشاطك فقط."
+
+#: templates/webapp/online_booking/settings.html
+msgid "On your booking page add the shortcode"
+msgstr "أضف الكود المختصر في صفحة الحجز"
+
 #: templates/webapp/pay/portal.html
 msgid "Account statement"
 msgstr "كشف الحساب"
@@ -4863,10 +4985,6 @@ msgstr "الدفع الإلكتروني مفعّل"
 #: templates/webapp/pay/settings.html
 msgid "Keys missing"
 msgstr "المفاتيح ناقصة"
-
-#: templates/webapp/pay/settings.html
-msgid "Off"
-msgstr "متوقف"
 
 #: templates/webapp/pay/settings.html
 msgid "Online payments received"
@@ -5264,10 +5382,6 @@ msgstr "إعادة المحاولة"
 #: templates/webapp/pos_offline_sales.html
 msgid "Mark handled"
 msgstr "تعليم كمُعالج"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Nothing here."
-msgstr "لا شيء هنا."
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -5843,10 +5957,6 @@ msgid "Ordered"
 msgstr "المطلوب"
 
 #: templates/webapp/purchase_docs/po_detail.html
-msgid "Received"
-msgstr "المستلم"
-
-#: templates/webapp/purchase_docs/po_detail.html
 msgid "Receive now"
 msgstr "استلام الآن"
 
@@ -5865,10 +5975,6 @@ msgstr "استلام فقط"
 #: templates/webapp/purchase_docs/po_detail.html
 msgid "Record bill for received items"
 msgstr "تسجيل فاتورة المستلم"
-
-#: templates/webapp/purchase_docs/po_detail.html
-msgid "Confirm"
-msgstr "تأكيد"
 
 #: templates/webapp/purchase_docs/po_detail.html
 msgid "Send to supplier"
@@ -5937,10 +6043,6 @@ msgstr "الاسترداد"
 #: templates/webapp/purchase_docs/purchase_detail.html
 msgid "From stock at"
 msgstr "من مخزون"
-
-#: templates/webapp/purchase_docs/purchase_detail.html
-msgid "Reason"
-msgstr "السبب"
 
 #: templates/webapp/purchase_docs/purchase_detail.html
 msgid "e.g. Damaged on arrival"
@@ -6613,10 +6715,6 @@ msgstr "طاولات مشغولة"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Floor plan"
 msgstr "مخطط الصالة"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "Free"
-msgstr "متاحة"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Occupied"
@@ -8250,10 +8348,6 @@ msgid "The amount is more than the invoice balance."
 msgstr "المبلغ أكبر من رصيد الفاتورة."
 
 #: apps/verticals/restaurant/models.py
-msgid "Booked"
-msgstr "محجوز"
-
-#: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "جالس"
 
@@ -9069,6 +9163,106 @@ msgstr "تم تخطي الإعداد. يمكنك العودة إليه في أي
 msgid "Added %(items)s items and %(tables)s tables."
 msgstr "تمت إضافة %(items)s صنفًا و%(tables)s طاولة."
 
+#: apps/webapp/online_booking_views.py
+msgid "Too many requests from this connection. Please call or WhatsApp us."
+msgstr "طلبات كثيرة من هذا الاتصال. يرجى الاتصال أو مراسلتنا عبر واتساب."
+
+#: apps/webapp/online_booking_views.py
+msgid "Online booking isn't available for this business type."
+msgstr "الحجز الإلكتروني غير متاح لهذا النوع من الأنشطة."
+
+#: apps/webapp/online_booking_views.py
+msgid "Booking confirmed. Send the confirmation on WhatsApp."
+msgstr "تم تأكيد الحجز. أرسل التأكيد عبر واتساب."
+
+#: apps/webapp/online_booking_views.py
+msgid "Choose the staff member and save to finish the appointment."
+msgstr "اختر الموظف واحفظ لإتمام الموعد."
+
+#: apps/webapp/online_booking_views.py
+msgid "Request declined. Let the customer know on WhatsApp."
+msgstr "تم رفض الطلب. أبلغ العميل عبر واتساب."
+
+#: apps/webapp/online_booking_views.py
+msgid "Online booking is on"
+msgstr "الحجز الإلكتروني مفعّل"
+
+#: apps/webapp/online_booking_views.py
+msgid "Note above the form"
+msgstr "ملاحظة أعلى النموذج"
+
+#: apps/webapp/online_booking_views.py
+msgid "Minimum notice (hours)"
+msgstr "أقل مدة إشعار (ساعات)"
+
+#: apps/webapp/online_booking_views.py
+msgid "How many days ahead people can book"
+msgstr "كم يوماً مقدماً يمكن الحجز"
+
+#: apps/webapp/online_booking_views.py
+msgid "Online booking settings saved."
+msgstr "تم حفظ إعدادات الحجز الإلكتروني."
+
+#: apps/webapp/online_booking_views.py
+msgid "Appointment"
+msgstr "موعد"
+
+#: apps/webapp/online_booking_views.py
+msgid "Booking"
+msgstr "الحجز"
+
+#: apps/webapp/online_booking_views.py
+msgid "Table reservation"
+msgstr "حجز طاولة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Event enquiry"
+msgstr "استفسار عن مناسبة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Confirmed"
+msgstr "مؤكد"
+
+#: apps/webapp/online_booking_views.py
+msgid "Declined"
+msgstr "مرفوض"
+
+#: apps/webapp/online_booking_views.py
+msgid "Enter your name and a phone / WhatsApp number."
+msgstr "أدخل اسمك ورقم الهاتف / واتساب."
+
+#: apps/webapp/online_booking_views.py
+msgid "Choose a date."
+msgstr "اختر التاريخ."
+
+#: apps/webapp/online_booking_views.py
+msgid "Choose a date from today onwards."
+msgstr "اختر تاريخاً من اليوم فصاعداً."
+
+#: apps/webapp/online_booking_views.py
+msgid "Choose a time."
+msgstr "اختر الوقت."
+
+#: apps/webapp/online_booking_views.py
+msgid "Choose what you want to book."
+msgstr "اختر ما تريد حجزه."
+
+#: apps/webapp/online_booking_views.py
+msgid "Choose the check-out / return date."
+msgstr "اختر تاريخ المغادرة / الإرجاع."
+
+#: apps/webapp/online_booking_views.py
+msgid "The end date must be after the start date."
+msgstr "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء."
+
+#: apps/webapp/online_booking_views.py
+msgid "Online booking is not available."
+msgstr "الحجز الإلكتروني غير متاح."
+
+#: apps/webapp/online_booking_views.py
+msgid "Shown above the form, e.g. opening hours."
+msgstr "يظهر أعلى النموذج، مثل ساعات العمل."
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "تم استلام الدفعة — شكراً لك!"
@@ -9789,10 +9983,6 @@ msgstr "المساحة"
 #: apps/modules/catalog.py
 msgid "Spaces"
 msgstr "المساحات"
-
-#: apps/modules/catalog.py
-msgid "Booking"
-msgstr "الحجز"
 
 #: apps/modules/catalog.py
 msgid "hour"

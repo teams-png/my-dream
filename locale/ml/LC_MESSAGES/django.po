@@ -569,6 +569,18 @@ msgstr "തൂക്കത്തിൽ വിൽപ്പന"
 msgid "Weighing scale"
 msgstr "തൂക്ക യന്ത്രം"
 
+#: templates/webapp/_industry_nav.html
+msgid "Online booking"
+msgstr "ഓൺലൈൻ ബുക്കിംഗ്"
+
+#: templates/webapp/_industry_nav.html
+msgid "Booking requests"
+msgstr "ബുക്കിംഗ് അഭ്യർത്ഥനകൾ"
+
+#: templates/webapp/_industry_nav.html
+msgid "Website form & WordPress"
+msgstr "വെബ്സൈറ്റ് ഫോം & WordPress"
+
 #: templates/webapp/_language_switcher.html
 msgid "Language"
 msgstr "ഭാഷ"
@@ -2290,6 +2302,10 @@ msgstr "ബില്ലിംഗ് കാണുക →"
 #: templates/webapp/dashboard.html
 msgid "Subscription renews in"
 msgstr "സബ്സ്ക്രിപ്ഷൻ പുതുക്കാൻ"
+
+#: templates/webapp/dashboard.html
+msgid "New online booking requests"
+msgstr "പുതിയ ഓൺലൈൻ ബുക്കിംഗ് അഭ്യർത്ഥനകൾ"
 
 #: templates/webapp/dashboard.html
 msgid "Today's sales"
@@ -4790,6 +4806,115 @@ msgstr "ലോഗോ, വിലാസം, VAT, കറൻസി."
 msgid "Sent to the printer."
 msgstr "പ്രിന്ററിലേക്ക് അയച്ചു."
 
+#: templates/webapp/online_booking/detail.html
+msgid "Booking request"
+msgstr "ബുക്കിംഗ് അഭ്യർത്ഥന"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Open booking"
+msgstr "ബുക്കിംഗ് തുറക്കുക"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Wants"
+msgstr "ആവശ്യം"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Received"
+msgstr "ലഭിച്ചത്"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Reason"
+msgstr "കാരണം"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Confirm"
+msgstr "സ്ഥിരീകരിക്കുക"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Booked"
+msgstr "ബുക്ക് ചെയ്തു"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Free"
+msgstr "ഫ്രീ"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Table (optional)"
+msgstr "ടേബിൾ (ഐച്ഛികം)"
+
+#: templates/webapp/online_booking/detail.html
+msgid ""
+"Next you'll choose the staff member; the appointment form opens already "
+"filled in."
+msgstr ""
+"അടുത്തതായി സ്റ്റാഫിനെ തിരഞ്ഞെടുക്കാം; അപ്പോയിന്റ്മെന്റ് ഫോം വിവരങ്ങൾ നിറച്ച്"
+" തുറക്കും."
+
+#: templates/webapp/online_booking/detail.html
+msgid "Confirm booking"
+msgstr "ബുക്കിംഗ് സ്ഥിരീകരിക്കുക"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Decline"
+msgstr "നിരസിക്കുക"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Reason (optional), e.g. fully booked"
+msgstr "കാരണം (ഐച്ഛികം), ഉദാ: ഫുൾ ബുക്ക്ഡ്"
+
+#: templates/webapp/online_booking/detail.html
+msgid "Tell the customer"
+msgstr "കസ്റ്റമറെ അറിയിക്കുക"
+
+#: templates/webapp/online_booking/inbox.html
+msgid "No new booking requests."
+msgstr "പുതിയ ബുക്കിംഗ് അഭ്യർത്ഥനകളില്ല."
+
+#: templates/webapp/online_booking/inbox.html
+msgid "Put the booking form on your website →"
+msgstr "ബുക്കിംഗ് ഫോം നിങ്ങളുടെ വെബ്സൈറ്റിൽ ചേർക്കുക →"
+
+#: templates/webapp/online_booking/inbox.html
+msgid "Nothing here."
+msgstr "ഇവിടെ ഒന്നുമില്ല."
+
+#: templates/webapp/online_booking/settings.html
+msgid "On"
+msgstr "ഓൺ"
+
+#: templates/webapp/online_booking/settings.html
+msgid "Off"
+msgstr "ഓഫ്"
+
+#: templates/webapp/online_booking/settings.html
+msgid "Open booking page"
+msgstr "ബുക്കിംഗ് പേജ് തുറക്കുക"
+
+#: templates/webapp/online_booking/settings.html
+msgid "Add what customers can book first — it is listed in the form."
+msgstr "കസ്റ്റമർക്ക് ബുക്ക് ചെയ്യാവുന്നവ ആദ്യം ചേർക്കുക — അവ ഫോമിൽ കാണിക്കും."
+
+#: templates/webapp/online_booking/settings.html
+msgid "Add now →"
+msgstr "ഇപ്പോൾ ചേർക്കുക →"
+
+#: templates/webapp/online_booking/settings.html
+msgid "Booking form for your website (WordPress or any site)"
+msgstr ""
+"നിങ്ങളുടെ വെബ്സൈറ്റിനുള്ള ബുക്കിംഗ് ഫോം (WordPress അല്ലെങ്കിൽ ഏത് സൈറ്റും)"
+
+#: templates/webapp/online_booking/settings.html
+msgid ""
+"Customers book on your own website; every request comes to Booking requests "
+"here and on the dashboard, only for your business."
+msgstr ""
+"കസ്റ്റമർ നിങ്ങളുടെ സ്വന്തം വെബ്സൈറ്റിൽ ബുക്ക് ചെയ്യും; ഓരോ അഭ്യർത്ഥനയും "
+"ഇവിടെ Booking requests-ലും ഡാഷ്ബോർഡിലും വരും — നിങ്ങളുടെ ബിസിനസിന് മാത്രം."
+
+#: templates/webapp/online_booking/settings.html
+msgid "On your booking page add the shortcode"
+msgstr "നിങ്ങളുടെ ബുക്കിംഗ് പേജിൽ ഈ shortcode ചേർക്കുക"
+
 #: templates/webapp/pay/portal.html
 msgid "Account statement"
 msgstr "അക്കൗണ്ട് സ്റ്റേറ്റ്മെന്റ്"
@@ -4917,10 +5042,6 @@ msgstr "ഓൺലൈൻ പേയ്‌മെന്റ് സജീവം"
 #: templates/webapp/pay/settings.html
 msgid "Keys missing"
 msgstr "കീകൾ ഇല്ല"
-
-#: templates/webapp/pay/settings.html
-msgid "Off"
-msgstr "ഓഫ്"
 
 #: templates/webapp/pay/settings.html
 msgid "Online payments received"
@@ -5323,10 +5444,6 @@ msgstr "വീണ്ടും ശ്രമിക്കുക"
 #: templates/webapp/pos_offline_sales.html
 msgid "Mark handled"
 msgstr "കൈകാര്യം ചെയ്തതായി അടയാളപ്പെടുത്തുക"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Nothing here."
-msgstr "ഇവിടെ ഒന്നുമില്ല."
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -5911,10 +6028,6 @@ msgid "Ordered"
 msgstr "ഓർഡർ ചെയ്തത്"
 
 #: templates/webapp/purchase_docs/po_detail.html
-msgid "Received"
-msgstr "ലഭിച്ചത്"
-
-#: templates/webapp/purchase_docs/po_detail.html
 msgid "Receive now"
 msgstr "ഇപ്പോൾ സ്വീകരിക്കുക"
 
@@ -5933,10 +6046,6 @@ msgstr "സ്വീകരിക്കുക മാത്രം"
 #: templates/webapp/purchase_docs/po_detail.html
 msgid "Record bill for received items"
 msgstr "ലഭിച്ചവയുടെ ബിൽ രേഖപ്പെടുത്തുക"
-
-#: templates/webapp/purchase_docs/po_detail.html
-msgid "Confirm"
-msgstr "സ്ഥിരീകരിക്കുക"
 
 #: templates/webapp/purchase_docs/po_detail.html
 msgid "Send to supplier"
@@ -6005,10 +6114,6 @@ msgstr "റീഫണ്ട്"
 #: templates/webapp/purchase_docs/purchase_detail.html
 msgid "From stock at"
 msgstr "ഈ സ്ഥലത്തെ സ്റ്റോക്കിൽ നിന്ന്"
-
-#: templates/webapp/purchase_docs/purchase_detail.html
-msgid "Reason"
-msgstr "കാരണം"
 
 #: templates/webapp/purchase_docs/purchase_detail.html
 msgid "e.g. Damaged on arrival"
@@ -6682,10 +6787,6 @@ msgstr "തിരക്കുള്ള ടേബിളുകൾ"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Floor plan"
 msgstr "ഫ്ലോർ പ്ലാൻ"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "Free"
-msgstr "ഫ്രീ"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Occupied"
@@ -8335,10 +8436,6 @@ msgid "The amount is more than the invoice balance."
 msgstr "തുക ഇൻവോയ്സ് ബാക്കിയേക്കാൾ കൂടുതലാണ്."
 
 #: apps/verticals/restaurant/models.py
-msgid "Booked"
-msgstr "ബുക്ക് ചെയ്തു"
-
-#: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "ഇരുന്നു"
 
@@ -9166,6 +9263,109 @@ msgstr ""
 msgid "Added %(items)s items and %(tables)s tables."
 msgstr "%(items)s ഇനങ്ങളും %(tables)s ടേബിളുകളും ചേർത്തു."
 
+#: apps/webapp/online_booking_views.py
+msgid "Too many requests from this connection. Please call or WhatsApp us."
+msgstr ""
+"ഈ കണക്ഷനിൽ നിന്ന് വളരെയധികം അഭ്യർത്ഥനകൾ. ദയവായി വിളിക്കുക അല്ലെങ്കിൽ "
+"WhatsApp ചെയ്യുക."
+
+#: apps/webapp/online_booking_views.py
+msgid "Online booking isn't available for this business type."
+msgstr "ഈ ബിസിനസ് തരത്തിന് ഓൺലൈൻ ബുക്കിംഗ് ലഭ്യമല്ല."
+
+#: apps/webapp/online_booking_views.py
+msgid "Booking confirmed. Send the confirmation on WhatsApp."
+msgstr "ബുക്കിംഗ് സ്ഥിരീകരിച്ചു. സ്ഥിരീകരണം WhatsApp-ൽ അയയ്ക്കുക."
+
+#: apps/webapp/online_booking_views.py
+msgid "Choose the staff member and save to finish the appointment."
+msgstr ""
+"അപ്പോയിന്റ്മെന്റ് പൂർത്തിയാക്കാൻ സ്റ്റാഫിനെ തിരഞ്ഞെടുത്ത് സേവ് ചെയ്യുക."
+
+#: apps/webapp/online_booking_views.py
+msgid "Request declined. Let the customer know on WhatsApp."
+msgstr "അഭ്യർത്ഥന നിരസിച്ചു. കസ്റ്റമറെ WhatsApp-ൽ അറിയിക്കുക."
+
+#: apps/webapp/online_booking_views.py
+msgid "Online booking is on"
+msgstr "ഓൺലൈൻ ബുക്കിംഗ് ഓൺ ആണ്"
+
+#: apps/webapp/online_booking_views.py
+msgid "Note above the form"
+msgstr "ഫോമിന് മുകളിലുള്ള കുറിപ്പ്"
+
+#: apps/webapp/online_booking_views.py
+msgid "Minimum notice (hours)"
+msgstr "കുറഞ്ഞ മുൻകൂർ സമയം (മണിക്കൂർ)"
+
+#: apps/webapp/online_booking_views.py
+msgid "How many days ahead people can book"
+msgstr "എത്ര ദിവസം മുമ്പ് വരെ ബുക്ക് ചെയ്യാം"
+
+#: apps/webapp/online_booking_views.py
+msgid "Online booking settings saved."
+msgstr "ഓൺലൈൻ ബുക്കിംഗ് സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
+
+#: apps/webapp/online_booking_views.py
+msgid "Appointment"
+msgstr "അപ്പോയിന്റ്മെന്റ്"
+
+#: apps/webapp/online_booking_views.py
+msgid "Booking"
+msgstr "ബുക്കിംഗ്"
+
+#: apps/webapp/online_booking_views.py
+msgid "Table reservation"
+msgstr "ടേബിൾ റിസർവേഷൻ"
+
+#: apps/webapp/online_booking_views.py
+msgid "Event enquiry"
+msgstr "ഇവന്റ് അന്വേഷണം"
+
+#: apps/webapp/online_booking_views.py
+msgid "Confirmed"
+msgstr "സ്ഥിരീകരിച്ചു"
+
+#: apps/webapp/online_booking_views.py
+msgid "Declined"
+msgstr "നിരസിച്ചു"
+
+#: apps/webapp/online_booking_views.py
+msgid "Enter your name and a phone / WhatsApp number."
+msgstr "പേരും ഫോൺ / WhatsApp നമ്പറും നൽകുക."
+
+#: apps/webapp/online_booking_views.py
+msgid "Choose a date."
+msgstr "തീയതി തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/online_booking_views.py
+msgid "Choose a date from today onwards."
+msgstr "ഇന്നു മുതലുള്ള തീയതി തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/online_booking_views.py
+msgid "Choose a time."
+msgstr "സമയം തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/online_booking_views.py
+msgid "Choose what you want to book."
+msgstr "എന്താണ് ബുക്ക് ചെയ്യേണ്ടതെന്ന് തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/online_booking_views.py
+msgid "Choose the check-out / return date."
+msgstr "ചെക്ക്-ഔട്ട് / തിരികെ നൽകുന്ന തീയതി തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/online_booking_views.py
+msgid "The end date must be after the start date."
+msgstr "അവസാന തീയതി തുടക്ക തീയതിക്ക് ശേഷമായിരിക്കണം."
+
+#: apps/webapp/online_booking_views.py
+msgid "Online booking is not available."
+msgstr "ഓൺലൈൻ ബുക്കിംഗ് ലഭ്യമല്ല."
+
+#: apps/webapp/online_booking_views.py
+msgid "Shown above the form, e.g. opening hours."
+msgstr "ഫോമിന് മുകളിൽ കാണിക്കും, ഉദാ: പ്രവർത്തന സമയം."
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "പണം ലഭിച്ചു — നന്ദി!"
@@ -9895,10 +10095,6 @@ msgstr "സ്ഥലം"
 #: apps/modules/catalog.py
 msgid "Spaces"
 msgstr "സ്ഥലങ്ങൾ"
-
-#: apps/modules/catalog.py
-msgid "Booking"
-msgstr "ബുക്കിംഗ്"
 
 #: apps/modules/catalog.py
 msgid "hour"

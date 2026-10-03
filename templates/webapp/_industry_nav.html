@@ -47,4 +47,11 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'scale_settings' %}active{% endif %}" href="{% url 'webapp:scale_settings' %}"><span>{% translate "Weighing scale" %}</span></a>
       </details>
 {% endif %}
+{% if active_business_profile.online_booking %}
+      <details class="nav-section" {% if request.resolver_match.url_name|slice:':3' == 'ob_' %}open{% endif %}>
+        <summary>🌐 {% translate "Online booking" %}</summary>
+      <a class="nav-link {% if request.resolver_match.url_name == 'ob_inbox' or request.resolver_match.url_name == 'ob_detail' %}active{% endif %}" href="{% url 'webapp:ob_inbox' %}"><span>{% translate "Booking requests" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'ob_settings' %}active{% endif %}" href="{% url 'webapp:ob_settings' %}"><span>{% translate "Website form & WordPress" %}</span></a>
+      </details>
+{% endif %}
 {% endwith %}

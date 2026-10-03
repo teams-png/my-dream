@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ r.number }}{% endblock %}
+{% block heading %}{% translate "Booking request" %} {{ r.number }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar"><a class="btn btn-secondary" href="{% url 'webapp:ob_inbox' %}">← {% translate "Booking requests" %}</a>
+    <span class="ix-chip {% if r.status == 'new' %}due{% elif r.status == 'confirmed' %}paid{% else %}cancelled{% endif %}">{{ r.get_status_display }}</span>
+    {% if linked_url %}<a class="btn btn-secondary" href="{{ linked_url }}">↗ {% translate "Open booking" %}</a>{% endif %}</div>
+  <div class="ix-grid2">
+    <div class="ix-card"><h3>{{ r.name }}</h3>
+      <dl class="ix-kv">
+        <dt>{% translate "Phone" %}</dt><dd><a href="tel:{{ r.phone }}">{{ r.phone }}</a></dd>
+        {% if r.email %}<dt>{% translate "Email" %}</dt><dd>{{ r.email }}</dd>{% endif %}
+        <dt>{% translate "Wants" %}</dt><dd>{{ r.item_name|default:r.get_kind_display }}</dd>
+        <dt>{% translate "Date" %}</dt><dd>{{ r.date|date:"l, j M Y" }}{% if r.time %} · {{ r.time|time:"H:i" }}{% endif %}</dd>
+        {% if r.end_date or r.end_time %}<dt>{% translate "Until" %}</dt><dd>{{ r.end_date|date:"l, j M Y"|default:"" }}{% if r.end_time %} {{ r.end_time|time:"H:i" }}{% endif %}</dd>{% endif %}
+        {% if r.kind != "appointment" %}<dt>{% translate "People" %}</dt><dd>{{ r.guests }}</dd>{% endif %}
+        {% if r.source %}<dt>{% translate "From" %}</dt><dd>{{ r.source }}</dd>{% endif %}
+        <dt>{% translate "Received" %}</dt><dd>{{ r.created_at|date:"j M Y H:i" }}</dd>
+      </dl>
+      {% if r.notes %}<p style="white-space:pre-line;margin:12px 0 0">{{ r.notes }}</p>{% endif %}
+      {% if r.reply %}<p style="color:var(--ink-soft)">{% translate "Reason" %}: {{ r.reply }}</p>{% endif %}
+    </div>
+    <div>
+    {% if r.status == "new" %}
+      <form method="post" class="ix-card">{% csrf_token %}<input type="hidden" name="action" value="confirm">
+        <h3>✓ {% translate "Confirm" %}</h3>
+        {% if r.kind == "resource" %}
+          {% if window %}<p style="color:var(--ink-soft);font-size:13px;margin-top:0">{{ window.0|date:"j M H:i" }} → {{ window.1|date:"j M H:i" }}</p>{% endif %}
+          <div class="ix-list">{% for x in resources %}<label class="ix-row" style="cursor:pointer"><input type="radio" name="resource" value="{{ x.id }}" {% if x.id == r.item_id and not x.busy %}checked{% endif %} {% if x.busy %}disabled{% endif %}><span class="grow"><b>{{ x.name }}</b><small>{{ x.details }}</small></span>{% if x.busy %}<span class="ix-chip late">{% translate "Booked" %}</span>{% else %}<span class="ix-chip paid">{% translate "Free" %}</span>{% endif %}</label>{% endfor %}</div>
+        {% elif r.kind == "table" and tables %}
+          <label style="font-size:13px;font-weight:700;color:var(--ink-soft)">{% translate "Table (optional)" %}</label>
+          <select name="table" style="width:100%;padding:10px;border:1.5px solid var(--line);border-radius:10px;margin-bottom:10px"><option value="">—</option>{% for tb in tables %}<option value="{{ tb.id }}">{{ tb }}</option>{% endfor %}</select>
+        {% elif r.kind == "appointment" %}
+          <p style="color:var(--ink-soft);font-size:13px;margin-top:0">{% translate "Next you'll choose the staff member; the appointment form opens already filled in." %}</p>
+        {% endif %}
+        <button class="btn" type="submit" style="margin-top:12px">✓ {% translate "Confirm booking" %}</button>
+      </form>
+      <form method="post" class="ix-card">{% csrf_token %}<input type="hidden" name="action" value="decline">
+        <h3>✕ {% translate "Decline" %}</h3>
+        <input name="reason" placeholder="{% translate 'Reason (optional), e.g. fully booked' %}" style="width:100%;padding:10px;border:1.5px solid var(--line);border-radius:10px">
+        <button class="btn btn-secondary" type="submit" style="margin-top:10px">{% translate "Decline" %}</button>
+      </form>
+    {% else %}
+      <div class="ix-card"><h3>💬 {% translate "Tell the customer" %}</h3>
+        <a class="btn" style="background:#25d366;border-color:#25d366" href="{% if r.status == 'confirmed' %}{{ wa_ok }}{% else %}{{ wa_no }}{% endif %}" target="_blank" rel="noopener">WhatsApp</a>
+        <p style="color:var(--ink-soft);font-size:13px">{{ r.handled_at|date:"j M Y H:i" }}{% if r.handled_by %} · {{ r.handled_by }}{% endif %}</p></div>
+    {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

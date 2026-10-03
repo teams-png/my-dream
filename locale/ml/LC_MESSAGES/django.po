@@ -550,6 +550,10 @@ msgid "Candidates"
 msgstr "ഉദ്യോഗാർത്ഥികൾ"
 
 #: templates/webapp/_industry_nav.html
+msgid "Careers website"
+msgstr "കരിയേഴ്സ് വെബ്സൈറ്റ്"
+
+#: templates/webapp/_industry_nav.html
 msgid "Gold"
 msgstr "സ്വർണം"
 
@@ -1451,6 +1455,310 @@ msgstr "നിരക്ക് സേവ് ചെയ്യുക"
 msgid "No exchange rates yet."
 msgstr "ഇതുവരെ വിനിമയ നിരക്കുകൾ ഇല്ല."
 
+#: templates/webapp/careers/_form.html
+msgid "Full name (as in passport)"
+msgstr "മുഴുവൻ പേര് (പാസ്പോർട്ടിലുള്ളതുപോലെ)"
+
+#: templates/webapp/careers/_form.html
+msgid "Phone / WhatsApp"
+msgstr "ഫോൺ / വാട്സ്ആപ്പ്"
+
+#: templates/webapp/careers/_form.html
+msgid "Nationality"
+msgstr "രാജ്യം (നാഷണാലിറ്റി)"
+
+#: templates/webapp/careers/_form.html
+msgid "Passport number"
+msgstr "പാസ്പോർട്ട് നമ്പർ"
+
+#: templates/webapp/careers/_form.html
+msgid "Position / skill"
+msgstr "തസ്തിക / സ്കിൽ"
+
+#: templates/webapp/careers/_form.html
+msgid "Experience (years)"
+msgstr "പരിചയം (വർഷം)"
+
+#: templates/webapp/careers/_form.html
+msgid "Where are you now?"
+msgstr "ഇപ്പോൾ എവിടെയാണ്?"
+
+#: templates/webapp/careers/_form.html
+msgid "City, country"
+msgstr "നഗരം, രാജ്യം"
+
+#: templates/webapp/careers/_form.html
+msgid "CV (PDF, Word or photo, max 8 MB)"
+msgstr "CV (PDF, Word അല്ലെങ്കിൽ ഫോട്ടോ, പരമാവധി 8 MB)"
+
+#: templates/webapp/careers/_form.html
+msgid "Message (optional)"
+msgstr "സന്ദേശം (ഓപ്ഷണൽ)"
+
+#: templates/webapp/careers/_form.html
+msgid "Apply for this job"
+msgstr "ഈ ജോലിക്ക് അപേക്ഷിക്കുക"
+
+#: templates/webapp/careers/_form.html
+msgid "Send my CV"
+msgstr "എന്റെ CV അയയ്ക്കുക"
+
+#: templates/webapp/careers/_form.html
+msgid "Your details are shared only with"
+msgstr "നിങ്ങളുടെ വിവരങ്ങൾ ഇവരുമായി മാത്രമേ പങ്കിടൂ:"
+
+#: templates/webapp/careers/apply.html
+msgid "All jobs"
+msgstr "എല്ലാ ജോലികളും"
+
+#: templates/webapp/careers/apply.html
+msgid "Location"
+msgstr "സ്ഥലം"
+
+#: templates/webapp/careers/apply.html
+msgid "Vacancies"
+msgstr "ഒഴിവുകൾ"
+
+#: templates/webapp/careers/apply.html
+msgid "Salary"
+msgstr "ശമ്പളം"
+
+#: templates/webapp/careers/apply.html
+msgid "Contract"
+msgstr "കരാർ"
+
+#: templates/webapp/careers/apply.html
+msgid "months"
+msgstr "മാസങ്ങൾ"
+
+#: templates/webapp/careers/apply.html
+msgid "Apply by"
+msgstr "അവസാന തീയതി"
+
+#: templates/webapp/careers/apply.html
+msgid "Benefits"
+msgstr "ആനുകൂല്യങ്ങൾ"
+
+#: templates/webapp/careers/apply.html
+msgid "Requirements"
+msgstr "ആവശ്യകതകൾ"
+
+#: templates/webapp/careers/apply.html
+msgid "Share with a friend"
+msgstr "സുഹൃത്തിന് ഷെയർ ചെയ്യുക"
+
+#: templates/webapp/careers/apply.html
+msgid "Send your CV"
+msgstr "നിങ്ങളുടെ CV അയയ്ക്കുക"
+
+#: templates/webapp/careers/apply.html
+msgid "Send your CV and we will call you when a matching job opens."
+msgstr "CV അയയ്ക്കൂ, യോജിച്ച ജോലി വരുമ്പോൾ ഞങ്ങൾ വിളിക്കാം."
+
+#: templates/webapp/careers/base.html
+msgid "Careers"
+msgstr "ജോലികൾ"
+
+#: templates/webapp/careers/base.html
+msgid "Jobs"
+msgstr "ജോലികൾ"
+
+#: templates/webapp/careers/base.html
+msgid "About us"
+msgstr "ഞങ്ങളെക്കുറിച്ച്"
+
+#: templates/webapp/careers/base.html
+msgid "Licence"
+msgstr "ലൈസൻസ്"
+
+#: templates/webapp/careers/base.html
+msgid "We never ask job seekers for money to apply."
+msgstr "അപേക്ഷിക്കാൻ ഞങ്ങൾ ഒരിക്കലും പണം ചോദിക്കില്ല."
+
+#: templates/webapp/careers/closed.html
+msgid "This job is no longer open"
+msgstr "ഈ ജോലി ഇപ്പോൾ ലഭ്യമല്ല"
+
+#: templates/webapp/careers/closed.html
+msgid "See open jobs"
+msgstr "ഒഴിവുകൾ കാണുക"
+
+#: templates/webapp/careers/home.html
+msgid "We are hiring"
+msgstr "ഞങ്ങൾ നിയമനം നടത്തുന്നു"
+
+#: templates/webapp/careers/home.html
+msgid "Jobs in"
+msgstr "ജോലികൾ:"
+
+#: templates/webapp/careers/home.html
+msgid "Open jobs"
+msgstr "ഒഴിവുകൾ"
+
+#: templates/webapp/careers/home.html
+msgid "Job title, e.g. Driver, Nurse, Electrician"
+msgstr "ജോലി, ഉദാ: ഡ്രൈവർ, നഴ്സ്, ഇലക്ട്രീഷ്യൻ"
+
+#: templates/webapp/careers/home.html
+msgid "Search jobs"
+msgstr "ജോലികൾ തിരയുക"
+
+#: templates/webapp/careers/home.html
+msgid "All locations"
+msgstr "എല്ലാ സ്ഥലങ്ങളും"
+
+#: templates/webapp/careers/home.html
+msgid "vacancies"
+msgstr "ഒഴിവുകൾ"
+
+#: templates/webapp/careers/home.html
+msgid "View & apply"
+msgstr "കാണുക & അപേക്ഷിക്കുക"
+
+#: templates/webapp/careers/home.html
+msgid "No jobs match your search."
+msgstr "തിരയലിന് യോജിച്ച ജോലികളില്ല."
+
+#: templates/webapp/careers/home.html
+msgid "No open jobs right now."
+msgstr "ഇപ്പോൾ ഒഴിവുകളില്ല."
+
+#: templates/webapp/careers/home.html
+msgid "Send your CV for future jobs"
+msgstr "ഭാവി ഒഴിവുകൾക്കായി CV അയയ്ക്കുക"
+
+#: templates/webapp/careers/home.html
+msgid "What we do"
+msgstr "ഞങ്ങൾ ചെയ്യുന്നത്"
+
+#: templates/webapp/careers/home.html
+msgid "Didn't find your job?"
+msgstr "നിങ്ങളുടെ ജോലി കണ്ടില്ലേ?"
+
+#: templates/webapp/careers/settings.html
+msgid "Live"
+msgstr "നടക്കുന്നു"
+
+#: templates/webapp/careers/settings.html
+msgid "Not live yet"
+msgstr "ഇതുവരെ ലൈവ് അല്ല"
+
+#: templates/webapp/careers/settings.html
+msgid "Open website"
+msgstr "വെബ്സൈറ്റ് തുറക്കുക"
+
+#: templates/webapp/careers/settings.html
+msgid "Share"
+msgstr "ഷെയർ"
+
+#: templates/webapp/careers/settings.html
+msgid "Link copied"
+msgstr "ലിങ്ക് കോപ്പി ചെയ്തു"
+
+#: templates/webapp/careers/settings.html
+msgid "Copy link"
+msgstr "ലിങ്ക് കോപ്പി ചെയ്യുക"
+
+#: templates/webapp/careers/settings.html
+msgid "new applications"
+msgstr "പുതിയ അപേക്ഷകൾ"
+
+#: templates/webapp/careers/settings.html
+msgid "Your website"
+msgstr "നിങ്ങളുടെ വെബ്സൈറ്റ്"
+
+#: templates/webapp/careers/settings.html
+msgid "The logo and business name come from Settings → Business settings."
+msgstr "ലോഗോയും ബിസിനസ് പേരും Settings → Business settings-ൽ നിന്നാണ്."
+
+#: templates/webapp/careers/settings.html
+msgid "Save website"
+msgstr "വെബ്സൈറ്റ് സേവ് ചെയ്യുക"
+
+#: templates/webapp/careers/settings.html
+msgid "Jobs shown on the website"
+msgstr "വെബ്സൈറ്റിൽ കാണിക്കുന്ന ജോലികൾ"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"Only ticked open jobs are shown. The client's name is never shown to job "
+"seekers."
+msgstr ""
+"ടിക്ക് ചെയ്ത തുറന്ന ജോലികൾ മാത്രം കാണിക്കും. ക്ലയന്റിന്റെ പേര് ഒരിക്കലും "
+"കാണിക്കില്ല."
+
+#: templates/webapp/careers/settings.html
+msgid "No open job orders."
+msgstr "തുറന്ന ജോബ് ഓർഡറുകളില്ല."
+
+#: templates/webapp/careers/settings.html
+msgid "New job order"
+msgstr "പുതിയ ജോബ് ഓർഡർ"
+
+#: templates/webapp/careers/settings.html
+msgid "Already have a website?"
+msgstr "ഇതിനകം വെബ്സൈറ്റ് ഉണ്ടോ?"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"Use any of these on the agency's own website. Applications still come "
+"straight here."
+msgstr ""
+"ഏജൻസിയുടെ സ്വന്തം വെബ്സൈറ്റിൽ ഇവയിലൊന്ന് ഉപയോഗിക്കുക. അപേക്ഷകൾ നേരെ ഇവിടെ "
+"വരും."
+
+#: templates/webapp/careers/settings.html
+msgid "Link a “Careers” button to"
+msgstr "“Careers” ബട്ടൺ ഇതിലേക്ക് ലിങ്ക് ചെയ്യുക"
+
+#: templates/webapp/careers/settings.html
+msgid "Or show the jobs inside a page (paste this code)"
+msgstr "അല്ലെങ്കിൽ ഒരു പേജിനുള്ളിൽ ജോലികൾ കാണിക്കുക (ഈ കോഡ് പേസ്റ്റ് ചെയ്യുക)"
+
+#: templates/webapp/careers/settings.html
+msgid "For the web developer: own form or job list"
+msgstr "വെബ് ഡെവലപ്പർക്ക്: സ്വന്തം ഫോം അല്ലെങ്കിൽ ജോബ് ലിസ്റ്റ്"
+
+#: templates/webapp/careers/settings.html
+msgid "Job list (JSON):"
+msgstr "ജോബ് ലിസ്റ്റ് (JSON):"
+
+#: templates/webapp/careers/settings.html
+msgid "Apply form posts to:"
+msgstr "അപേക്ഷാ ഫോം അയയ്ക്കേണ്ടത്:"
+
+#: templates/webapp/careers/settings.html
+msgid "add the website address above so it may send applications"
+msgstr "അപേക്ഷകൾ അയയ്ക്കാൻ മുകളിൽ വെബ്സൈറ്റ് വിലാസം ചേർക്കുക"
+
+#: templates/webapp/careers/settings.html
+msgid "Server-to-server API key (keep secret):"
+msgstr "സെർവർ API കീ (രഹസ്യമായി സൂക്ഷിക്കുക):"
+
+#: templates/webapp/careers/settings.html
+msgid "New API key"
+msgstr "പുതിയ API കീ"
+
+#: templates/webapp/careers/thanks.html
+msgid "Application received"
+msgstr "അപേക്ഷ ലഭിച്ചു"
+
+#: templates/webapp/careers/thanks.html
+msgid ""
+"Thank you. Our team will review your details and contact you on WhatsApp or "
+"phone."
+msgstr ""
+"നന്ദി. ഞങ്ങളുടെ ടീം നിങ്ങളുടെ വിവരങ്ങൾ പരിശോധിച്ച് WhatsApp-ലോ ഫോണിലോ "
+"ബന്ധപ്പെടും."
+
+#: templates/webapp/careers/thanks.html
+msgid "Your reference"
+msgstr "നിങ്ങളുടെ റഫറൻസ്"
+
+#: templates/webapp/careers/thanks.html
+msgid "See more jobs"
+msgstr "കൂടുതൽ ജോലികൾ കാണുക"
+
 #: templates/webapp/crm/_tabs.html
 msgid "Pipeline"
 msgstr "പൈപ്പ്‌ലൈൻ"
@@ -1694,10 +2002,6 @@ msgstr "കിഴിവ്"
 #: templates/webapp/crm/pricing.html
 msgid "all items"
 msgstr "എല്ലാ ഐറ്റങ്ങളും"
-
-#: templates/webapp/crm/pricing.html
-msgid "Live"
-msgstr "നടക്കുന്നു"
 
 #: templates/webapp/crm/pricing.html
 msgid "Stop"
@@ -2361,10 +2665,6 @@ msgstr "ഡിപ്രീസിയേഷൻ"
 #: templates/webapp/finance/assets.html
 msgid "Book value"
 msgstr "ബുക്ക് വാല്യു"
-
-#: templates/webapp/finance/assets.html
-msgid "months"
-msgstr "മാസങ്ങൾ"
 
 #: templates/webapp/finance/assets.html
 msgid "month"
@@ -3063,10 +3363,6 @@ msgid "Login"
 msgstr "ലോഗിൻ"
 
 #: templates/webapp/hr/staff_detail.html
-msgid "Salary"
-msgstr "ശമ്പളം"
-
-#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "മാസത്തിൽ"
 
@@ -3267,10 +3563,6 @@ msgstr "ചെക്ക്-ഔട്ട് / തിരികെ നൽകേണ�
 #: templates/webapp/industry/booking_detail.html
 msgid "Change dates / move"
 msgstr "തീയതി മാറ്റുക / മാറ്റിവയ്ക്കുക"
-
-#: templates/webapp/industry/booking_detail.html
-msgid "Share"
-msgstr "ഷെയർ"
 
 #: templates/webapp/industry/booking_detail.html
 msgid "Until"
@@ -4070,10 +4362,6 @@ msgstr "ഓൺലൈനിൽ കാണാനുള്ള ലിങ്കിന�
 #: templates/webapp/invoice_share.html
 msgid "Customer email"
 msgstr "കസ്റ്റമറുടെ ഇമെയിൽ"
-
-#: templates/webapp/invoice_share.html
-msgid "Message (optional)"
-msgstr "സന്ദേശം (ഓപ്ഷണൽ)"
 
 #: templates/webapp/invoice_share.html
 msgid "Send email"
@@ -5667,10 +5955,6 @@ msgid "Send reminder"
 msgstr "ഓർമ്മപ്പെടുത്തൽ അയയ്ക്കുക"
 
 #: templates/webapp/receivables/customer.html
-msgid "Link copied"
-msgstr "ലിങ്ക് കോപ്പി ചെയ്തു"
-
-#: templates/webapp/receivables/customer.html
 msgid "Copy customer portal link"
 msgstr "കസ്റ്റമർ പോർട്ടൽ ലിങ്ക് കോപ്പി ചെയ്യുക"
 
@@ -5823,14 +6107,6 @@ msgid "Profile"
 msgstr "പ്രൊഫൈൽ"
 
 #: templates/webapp/recruitment/candidate_detail.html
-msgid "Position / skill"
-msgstr "തസ്തിക / സ്കിൽ"
-
-#: templates/webapp/recruitment/candidate_detail.html
-msgid "Nationality"
-msgstr "രാജ്യം (നാഷണാലിറ്റി)"
-
-#: templates/webapp/recruitment/candidate_detail.html
 msgid "Date of birth"
 msgstr "ജനനത്തീയതി"
 
@@ -5875,10 +6151,6 @@ msgid "Sub-agent"
 msgstr "സബ്-ഏജന്റ്"
 
 #: templates/webapp/recruitment/candidate_detail.html
-msgid "Jobs"
-msgstr "ജോലികൾ"
-
-#: templates/webapp/recruitment/candidate_detail.html
 msgid "Not put forward for any job yet."
 msgstr "ഇതുവരെ ഒരു ജോലിക്കും നിർദ്ദേശിച്ചിട്ടില്ല."
 
@@ -5891,6 +6163,10 @@ msgid "Sub-agents are kept under Suppliers."
 msgstr "സബ്-ഏജന്റുമാരെ സപ്ലയർമാരുടെ കീഴിലാണ് സൂക്ഷിക്കുന്നത്."
 
 #: templates/webapp/recruitment/candidates.html
+msgid "From website"
+msgstr "വെബ്സൈറ്റിൽ നിന്ന്"
+
+#: templates/webapp/recruitment/candidates.html
 msgid "Name, passport, skill, nationality"
 msgstr "പേര്, പാസ്പോർട്ട്, സ്കിൽ, നാഷണാലിറ്റി"
 
@@ -5901,6 +6177,10 @@ msgstr "പുതിയ ഉദ്യോഗാർത്ഥി"
 #: templates/webapp/recruitment/candidates.html
 msgid "Passport expired"
 msgstr "പാസ്പോർട്ട് കാലാവധി കഴിഞ്ഞു"
+
+#: templates/webapp/recruitment/candidates.html
+msgid "Website"
+msgstr "വെബ്സൈറ്റ്"
 
 #: templates/webapp/recruitment/candidates.html
 msgid "No candidates yet."
@@ -5929,10 +6209,6 @@ msgstr "തുറന്നത്"
 #: templates/webapp/recruitment/clients.html
 msgid "placed"
 msgstr "നിയമിച്ചു"
-
-#: templates/webapp/recruitment/clients.html
-msgid "New job order"
-msgstr "പുതിയ ജോബ് ഓർഡർ"
 
 #: templates/webapp/recruitment/clients.html
 msgid "No clients yet. Add your first employer on the left."
@@ -5967,6 +6243,14 @@ msgid "Joined but not billed"
 msgstr "ജോയിൻ ചെയ്തു, ബിൽ ചെയ്തില്ല"
 
 #: templates/webapp/recruitment/home.html
+msgid "New online applications"
+msgstr "പുതിയ ഓൺലൈൻ അപേക്ഷകൾ"
+
+#: templates/webapp/recruitment/home.html
+msgid "General application"
+msgstr "പൊതു അപേക്ഷ"
+
+#: templates/webapp/recruitment/home.html
 msgid "in process"
 msgstr "പ്രോസസിൽ"
 
@@ -5995,6 +6279,10 @@ msgid "Visas expiring before travel"
 msgstr "യാത്രയ്ക്ക് മുമ്പ് കാലാവധി തീരുന്ന വിസകൾ"
 
 #: templates/webapp/recruitment/job_detail.html
+msgid "On website"
+msgstr "വെബ്സൈറ്റിൽ ഉണ്ട്"
+
+#: templates/webapp/recruitment/job_detail.html
 msgid "Share job on WhatsApp"
 msgstr "ജോലി വാട്സ്ആപ്പിൽ ഷെയർ ചെയ്യുക"
 
@@ -6015,16 +6303,8 @@ msgid "Our fee per person"
 msgstr "ഒരാൾക്ക് ഞങ്ങളുടെ ഫീസ്"
 
 #: templates/webapp/recruitment/job_detail.html
-msgid "Location"
-msgstr "സ്ഥലം"
-
-#: templates/webapp/recruitment/job_detail.html
 msgid "Needed by"
 msgstr "വേണ്ട തീയതി"
-
-#: templates/webapp/recruitment/job_detail.html
-msgid "Requirements"
-msgstr "ആവശ്യകതകൾ"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Not billed yet"
@@ -6061,14 +6341,6 @@ msgstr "…അല്ലെങ്കിൽ പുതിയ ഉദ്യോഗാ�
 #: templates/webapp/recruitment/job_detail.html
 msgid "Full name"
 msgstr "മുഴുവൻ പേര്"
-
-#: templates/webapp/recruitment/job_detail.html
-msgid "Phone / WhatsApp"
-msgstr "ഫോൺ / വാട്സ്ആപ്പ്"
-
-#: templates/webapp/recruitment/job_detail.html
-msgid "Passport number"
-msgstr "പാസ്പോർട്ട് നമ്പർ"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Add to job"
@@ -7743,10 +8015,6 @@ msgid "Current stock"
 msgstr "നിലവിലെ സ്റ്റോക്ക്"
 
 #: templates/webapp/stock/history.html
-msgid "All locations"
-msgstr "എല്ലാ സ്ഥലങ്ങളും"
-
-#: templates/webapp/stock/history.html
 msgid "When"
 msgstr "എപ്പോൾ"
 
@@ -8237,6 +8505,139 @@ msgstr "സെക്യൂരിറ്റി ഡെപ്പോസിറ്റ�
 #: apps/webapp/booking_views.py
 msgid "Checked out. Invoice %(number)s created."
 msgstr "ചെക്ക്-ഔട്ട് ചെയ്തു. ഇൻവോയ്സ് %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/careers_views.py
+msgid ""
+"Too many applications from this connection. Please try again later or "
+"contact us on WhatsApp."
+msgstr ""
+"ഈ കണക്ഷനിൽ നിന്ന് വളരെയധികം അപേക്ഷകൾ. പിന്നീട് ശ്രമിക്കുക അല്ലെങ്കിൽ "
+"WhatsApp-ൽ ബന്ധപ്പെടുക."
+
+#: apps/webapp/careers_views.py
+msgid "Web address name"
+msgstr "വെബ് വിലാസത്തിലെ പേര്"
+
+#: apps/webapp/careers_views.py
+msgid "Brand colour"
+msgstr "ബ്രാൻഡ് നിറം"
+
+#: apps/webapp/careers_views.py
+msgid "Website is live"
+msgstr "വെബ്സൈറ്റ് ലൈവ് ആണ്"
+
+#: apps/webapp/careers_views.py
+msgid "Headline"
+msgstr "തലക്കെട്ട്"
+
+#: apps/webapp/careers_views.py
+msgid "About your agency"
+msgstr "നിങ്ങളുടെ ഏജൻസിയെക്കുറിച്ച്"
+
+#: apps/webapp/careers_views.py
+msgid "Services (one per line)"
+msgstr "സേവനങ്ങൾ (ഓരോ വരിയിൽ ഒന്ന്)"
+
+#: apps/webapp/careers_views.py
+msgid "Countries you recruit for"
+msgstr "നിങ്ങൾ റിക്രൂട്ട് ചെയ്യുന്ന രാജ്യങ്ങൾ"
+
+#: apps/webapp/careers_views.py
+msgid "WhatsApp number"
+msgstr "WhatsApp നമ്പർ"
+
+#: apps/webapp/careers_views.py
+msgid "Office address"
+msgstr "ഓഫീസ് വിലാസം"
+
+#: apps/webapp/careers_views.py
+msgid "Licence number"
+msgstr "ലൈസൻസ് നമ്പർ"
+
+#: apps/webapp/careers_views.py
+msgid "Ask for passport number"
+msgstr "പാസ്പോർട്ട് നമ്പർ ചോദിക്കുക"
+
+#: apps/webapp/careers_views.py
+msgid "Your own website address (optional, one per line)"
+msgstr "നിങ്ങളുടെ സ്വന്തം വെബ്സൈറ്റ് വിലാസം (ഐച്ഛികം, ഓരോ വരിയിൽ ഒന്ന്)"
+
+#: apps/webapp/careers_views.py
+msgid "Enter a short name for the address, e.g. gulf-manpower."
+msgstr "വിലാസത്തിന് ഒരു ചെറിയ പേര് നൽകുക, ഉദാ: gulf-manpower."
+
+#: apps/webapp/careers_views.py
+msgid "This name is taken. Try another one."
+msgstr "ഈ പേര് എടുത്തിട്ടുണ്ട്. മറ്റൊന്ന് ശ്രമിക്കുക."
+
+#: apps/webapp/careers_views.py
+msgid "Website addresses must start with https://"
+msgstr "വെബ്സൈറ്റ് വിലാസം https:// ൽ തുടങ്ങണം"
+
+#: apps/webapp/careers_views.py
+msgid "Jobs on the website updated."
+msgstr "വെബ്സൈറ്റിലെ ജോലികൾ പുതുക്കി."
+
+#: apps/webapp/careers_views.py
+msgid "New API key created. Update it on your own website."
+msgstr "പുതിയ API കീ ഉണ്ടാക്കി. നിങ്ങളുടെ വെബ്സൈറ്റിൽ അത് മാറ്റുക."
+
+#: apps/webapp/careers_views.py
+msgid "Website saved."
+msgstr "വെബ്സൈറ്റ് സേവ് ചെയ്തു."
+
+#: apps/webapp/careers_views.py
+msgid "Upload your CV as PDF, Word or a photo."
+msgstr "CV PDF, Word അല്ലെങ്കിൽ ഫോട്ടോ ആയി അപ്‌ലോഡ് ചെയ്യുക."
+
+#: apps/webapp/careers_views.py
+msgid "The CV file is too large (max 8 MB)."
+msgstr "CV ഫയൽ വളരെ വലുതാണ് (പരമാവധി 8 MB)."
+
+#: apps/webapp/careers_views.py
+msgid "Enter your full name and a phone / WhatsApp number."
+msgstr "മുഴുവൻ പേരും ഫോൺ / WhatsApp നമ്പറും നൽകുക."
+
+#: apps/webapp/careers_views.py
+msgid "Enter your passport number."
+msgstr "പാസ്പോർട്ട് നമ്പർ നൽകുക."
+
+#: apps/webapp/careers_views.py
+msgid "Applied online"
+msgstr "ഓൺലൈനായി അപേക്ഷിച്ചു"
+
+#: apps/webapp/careers_views.py
+msgid "Office"
+msgstr "ഓഫീസ്"
+
+#: apps/webapp/careers_views.py
+msgid "Referral"
+msgstr "റഫറൽ"
+
+#: apps/webapp/careers_views.py
+msgid "Show this job on the careers website."
+msgstr "ഈ ജോലി കരിയേഴ്സ് വെബ്സൈറ്റിൽ കാണിക്കുക."
+
+#: apps/webapp/careers_views.py
+msgid "What job seekers see. The client's name is never shown."
+msgstr "ജോലി അന്വേഷകർ കാണുന്നത്. ക്ലയന്റിന്റെ പേര് ഒരിക്കലും കാണിക്കില്ല."
+
+#: apps/webapp/careers_views.py
+msgid "Countries you recruit for, e.g. Qatar, UAE, Saudi Arabia."
+msgstr "റിക്രൂട്ട് ചെയ്യുന്ന രാജ്യങ്ങൾ, ഉദാ: Qatar, UAE, Saudi Arabia."
+
+#: apps/webapp/careers_views.py
+msgid "Your own website addresses that may send applications, one per line."
+msgstr ""
+"അപേക്ഷകൾ അയയ്ക്കാവുന്ന നിങ്ങളുടെ വെബ്സൈറ്റ് വിലാസങ്ങൾ, ഓരോ വരിയിൽ ഒന്ന്."
+
+#: apps/webapp/careers_views.py
+msgid "Recruitment licence number, shown in the footer."
+msgstr "റിക്രൂട്ട്മെന്റ് ലൈസൻസ് നമ്പർ, താഴെ കാണിക്കും."
+
+#: apps/webapp/careers_views.py
+msgid "One per line."
+msgstr "ഓരോ വരിയിൽ ഒന്ന്."
 
 #: apps/webapp/crm_views.py
 msgid "Enter what the deal is about."
@@ -8848,10 +9249,6 @@ msgid "Salary (per month)"
 msgstr "ശമ്പളം (മാസം)"
 
 #: apps/webapp/recruitment_views.py
-msgid "Benefits"
-msgstr "ആനുകൂല്യങ്ങൾ"
-
-#: apps/webapp/recruitment_views.py
 msgid "Contract (months)"
 msgstr "കരാർ (മാസങ്ങൾ)"
 
@@ -8868,16 +9265,20 @@ msgid "Gender"
 msgstr "ലിംഗം"
 
 #: apps/webapp/recruitment_views.py
+msgid "Show on our careers website"
+msgstr "ഞങ്ങളുടെ കരിയേഴ്സ് വെബ്സൈറ്റിൽ കാണിക്കുക"
+
+#: apps/webapp/recruitment_views.py
+msgid "Job description for the website"
+msgstr "വെബ്സൈറ്റിനുള്ള ജോലി വിവരണം"
+
+#: apps/webapp/recruitment_views.py
 msgid "Choose a client or type a new client's name."
 msgstr "ക്ലയന്റിനെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ പേര് ടൈപ്പ് ചെയ്യുക."
 
 #: apps/webapp/recruitment_views.py
 msgid "Passport expiry"
 msgstr "പാസ്പോർട്ട് കാലാവധി"
-
-#: apps/webapp/recruitment_views.py
-msgid "Experience (years)"
-msgstr "പരിചയം (വർഷം)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Has Gulf experience"
@@ -8926,10 +9327,6 @@ msgstr "നേരത്തേ ചേർത്തവർ അല്ലെങ്ക�
 #: apps/webapp/recruitment_views.py
 msgid "Job opening"
 msgstr "ജോലി ഒഴിവ്"
-
-#: apps/webapp/recruitment_views.py
-msgid "Vacancies"
-msgstr "ഒഴിവുകൾ"
 
 #: apps/webapp/recruitment_views.py
 msgid "Candidate %(name)s added."

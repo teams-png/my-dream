@@ -11,7 +11,8 @@
     <div><label for="{{ form.new_client_name.id_for_label }}">{{ form.new_client_name.label }}</label>{{ form.new_client_name }}</div>
     <div class="full" id="newClientPhone"><label for="{{ form.new_client_phone.id_for_label }}">{{ form.new_client_phone.label }}</label>{{ form.new_client_phone }}</div>
     {% for field in form %}{% if field.name != "client" and field.name != "new_client_name" and field.name != "new_client_phone" %}
-    <div{% if field.name == "position" or field.name == "requirements" %} class="full"{% endif %}><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{{ field.errors }}{% if field.help_text %}<small style="color:var(--ink-soft)">{% translate field.help_text %}</small>{% endif %}</div>
+    {% if field.field.widget.input_type == "checkbox" %}<div class="full"><label style="display:flex;gap:8px;align-items:center;color:var(--ink)">{{ field }} 🌐 {{ field.label }}</label></div>{% else %}
+    <div{% if field.name == "position" or field.name == "requirements" or field.name == "public_summary" %} class="full"{% endif %}><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{{ field.errors }}{% if field.help_text %}<small style="color:var(--ink-soft)">{% translate field.help_text %}</small>{% endif %}</div>{% endif %}
     {% endif %}{% endfor %}
   </div>
   <div class="ix-toolbar" style="margin-top:18px"><button class="btn" type="submit">{% translate "Save" %}</button><a class="btn btn-secondary" href="{% if job %}{% url 'webapp:rec_job_detail' job.id %}{% else %}{% url 'webapp:rec_jobs' %}{% endif %}">{% translate "Cancel" %}</a></div>

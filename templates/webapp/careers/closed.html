@@ -1,0 +1,9 @@
+{% extends "webapp/careers/base.html" %}
+{% load i18n %}
+{% block body %}
+<section><div class="wrap" style="max-width:620px;text-align:center;padding-top:30px">
+  <h1>{% translate "This job is no longer open" %}</h1>
+  <p style="color:var(--soft)">{% translate "Send your CV and we will call you when a matching job opens." %}</p>
+  <p style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn" href="{% url 'webapp:careers_home' site.slug %}">{% translate "See open jobs" %}</a><a class="btn ghost" href="{% url 'webapp:careers_apply' site.slug %}">📄 {% translate "Send your CV" %}</a></p>
+</div></section>
+{% endblock %}

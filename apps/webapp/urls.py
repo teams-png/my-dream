@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
+from . import careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -172,6 +172,12 @@ urlpatterns = [
     path("property/leases/new/", property_views.lease_add, name="lease_add"),
     path("property/leases/<int:lease_id>/", property_views.lease_detail, name="lease_detail"),
     path("property/rent/", property_views.rent_run, name="rent_run"),
+    path("recruitment/website/", careers_views.rec_website, name="rec_website"),
+    path("careers/<slug:slug>/", careers_views.careers_home, name="careers_home"),
+    path("careers/<slug:slug>/jobs/<int:job_id>/", careers_views.careers_job, name="careers_job"),
+    path("careers/<slug:slug>/apply/", careers_views.careers_apply, name="careers_apply"),
+    path("careers/<slug:slug>/thanks/", careers_views.careers_thanks, name="careers_thanks"),
+    path("careers/<slug:slug>/jobs.json", careers_views.careers_jobs_json, name="careers_jobs_json"),
     path("recruitment/", recruitment_views.rec_home, name="rec_home"),
     path("recruitment/clients/", recruitment_views.rec_clients, name="rec_clients"),
     path("recruitment/jobs/", recruitment_views.rec_jobs, name="rec_jobs"),

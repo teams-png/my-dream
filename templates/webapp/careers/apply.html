@@ -1,0 +1,29 @@
+{% extends "webapp/careers/base.html" %}
+{% load i18n %}
+{% block title %}{% if job %}{{ job.position }} · {% endif %}{{ company.name }}{% endblock %}
+{% block og %}{% if job %}{{ job.position }}{% if job.work_location %} · {{ job.work_location }}{% endif %}{% else %}{{ company.name }}{% endif %}{% endblock %}
+{% block body %}
+<section><div class="wrap grid2">
+  <div>
+    <p style="margin:0 0 6px"><a href="{% url 'webapp:careers_home' site.slug %}{% if embed %}?embed=1{% endif %}" style="color:var(--soft);text-decoration:none">← {% translate "All jobs" %}</a></p>
+    {% if job %}
+      <h1 style="font-size:clamp(26px,4vw,38px);letter-spacing:-.02em;margin:0 0 6px">{{ job.position }}</h1>
+      <div class="facts">
+        {% if job.work_location %}<div><small>{% translate "Location" %}</small><b>{{ job.work_location }}</b></div>{% endif %}
+        <div><small>{% translate "Vacancies" %}</small><b>{{ job.vacancies }}</b></div>
+        {% if job.salary %}<div><small>{% translate "Salary" %}</small><b>{{ company.default_currency }} {{ job.salary|floatformat:0 }}</b></div>{% endif %}
+        {% if job.contract_months %}<div><small>{% translate "Contract" %}</small><b>{{ job.contract_months }} {% translate "months" %}</b></div>{% endif %}
+        {% if job.nationality %}<div><small>{% translate "Nationality" %}</small><b>{{ job.nationality }}</b></div>{% endif %}
+        {% if job.deadline %}<div><small>{% translate "Apply by" %}</small><b>{{ job.deadline|date:"j M Y" }}</b></div>{% endif %}
+      </div>
+      {% if job.benefits %}<p><b>{% translate "Benefits" %}:</b> {{ job.benefits }}</p>{% endif %}
+      {% if job.public_summary %}<div style="white-space:pre-line;color:var(--soft)">{{ job.public_summary }}</div>{% elif job.requirements %}<h3>{% translate "Requirements" %}</h3><div style="white-space:pre-line;color:var(--soft)">{{ job.requirements }}</div>{% endif %}
+      {% if wa %}<p style="margin-top:18px"><a class="btn ghost" href="https://wa.me/?text={{ job.position|urlencode }}%20%E2%80%94%20{{ request.build_absolute_uri|urlencode }}" target="_blank" rel="noopener">↗ {% translate "Share with a friend" %}</a></p>{% endif %}
+    {% else %}
+      <h1 style="font-size:clamp(26px,4vw,38px);letter-spacing:-.02em;margin:0 0 6px">{% translate "Send your CV" %}</h1>
+      <p style="color:var(--soft)">{% translate "Send your CV and we will call you when a matching job opens." %}</p>
+    {% endif %}
+  </div>
+  <div class="card">{% include "webapp/careers/_form.html" %}</div>
+</div></section>
+{% endblock %}

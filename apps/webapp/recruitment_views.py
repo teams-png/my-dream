@@ -52,14 +52,17 @@ class JobOrderForm(forms.ModelForm):
     class Meta:
         model = JobOrder
         fields = ["client", "position", "vacancies", "work_location", "nationality", "gender", "salary", "benefits",
-                  "contract_months", "fee_per_placement", "guarantee_days", "deadline", "requirements", "status"]
+                  "contract_months", "fee_per_placement", "guarantee_days", "deadline", "requirements", "publish_online",
+                  "public_summary", "status"]
         labels = {"client": _l("Client"), "position": _l("Position / job title"), "vacancies": _l("Number of people"),
                   "work_location": _l("Work location"), "nationality": _l("Preferred nationality"),
                   "salary": _l("Salary (per month)"), "benefits": _l("Benefits"),
                   "contract_months": _l("Contract (months)"), "fee_per_placement": _l("Our fee per person (charged to client)"),
                   "guarantee_days": _l("Replacement guarantee (days)"), "deadline": _l("Needed by"),
-                  "requirements": _l("Requirements"), "gender": _l("Gender"), "status": _l("Status")}
-        widgets = {"deadline": DATE, "requirements": forms.Textarea(attrs={"rows": 3})}
+                  "requirements": _l("Requirements"), "gender": _l("Gender"), "status": _l("Status"),
+                  "publish_online": _l("Show on our careers website"), "public_summary": _l("Job description for the website")}
+        widgets = {"deadline": DATE, "requirements": forms.Textarea(attrs={"rows": 3}),
+                   "public_summary": forms.Textarea(attrs={"rows": 3})}
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
@@ -114,6 +117,10 @@ def rec_home(request):
     company = request.company
     return render(request, "webapp/recruitment/home.html", {
         "o": svc.overview(company), "pipeline": svc.pipeline_counts(company),
+        "applied": Placement.objects.for_company(company).filter(stage="applied").select_related("candidate", "job_order")
+        .order_by("-created_at")[:10],
+        "general": Candidate.objects.for_company(company).filter(source="website", placements__isnull=True,
+                                                                 status="available").order_by("-created_at")[:10],
         "jobs": JobOrder.objects.for_company(company).filter(status="open").select_related("client")
         .annotate(done=Count("placements", filter=Q(placements__stage="deployed")),
                   active=Count("placements", filter=Q(placements__stage__in=Placement.ACTIVE)))[:8],
@@ -292,6 +299,9 @@ def rec_candidates(request):
     status = request.GET.get("status") or ""
     if status in dict(Candidate.STATUS):
         qs = qs.filter(status=status)
+    source = request.GET.get("source") or ""
+    if source in dict(Candidate.SOURCES):
+        qs = qs.filter(source=source)
     query = (request.GET.get("q") or "").strip()
     if query:
         qs = qs.filter(Q(name__icontains=query) | Q(phone__icontains=query) | Q(passport_no__icontains=query)
@@ -304,7 +314,7 @@ def rec_candidates(request):
         return xlsx.response(f"candidates-{timezone.localdate()}", [(_("Candidates"), data)])
     return render(request, "webapp/recruitment/candidates.html", {
         "page": Paginator(qs, 40).get_page(request.GET.get("page")), "status": status, "q": query,
-        "statuses": Candidate.STATUS, "today": timezone.localdate()})
+        "statuses": Candidate.STATUS, "today": timezone.localdate(), "source": source})
 
 
 @recruitment_view

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Careers website" %}{% endblock %}
+{% block heading %}{% translate "Careers website" %}{% endblock %}
+{% block content %}
+{% include "webapp/recruitment/_head.html" %}
+<div class="ix">
+  <div class="ix-card" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;{% if site.enabled %}border-color:#16a34a{% endif %}">
+    <span class="ix-chip {% if site.enabled %}placed{% else %}closed{% endif %}">{% if site.enabled %}🟢 {% translate "Live" %}{% else %}⚪ {% translate "Not live yet" %}{% endif %}</span>
+    <code style="word-break:break-all;flex:1 1 260px">{{ url }}</code>
+    {% if site.enabled %}<a class="btn" href="{{ url }}" target="_blank" rel="noopener">↗ {% translate "Open website" %}</a><a class="btn btn-secondary" href="{{ share }}" target="_blank" rel="noopener">💬 {% translate "Share" %}</a>{% endif %}
+    <button class="btn btn-secondary" type="button" data-copy="{{ url }}" data-done="{% translate "Link copied" %}" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.dataset.copy);this.textContent='✓ '+this.dataset.done">🔗 {% translate "Copy link" %}</button>
+    {% if applications %}<a class="btn btn-secondary" href="{% url 'webapp:rec_home' %}">📥 {{ applications }} {% translate "new applications" %}</a>{% endif %}
+  </div>
+  <div class="ix-grid2">
+    <form method="post" class="ix-card ix-form">{% csrf_token %}
+      <h3>🌐 {% translate "Your website" %}</h3>
+      <div class="fields">
+      {% for field in form %}
+        {% if field.field.widget.input_type == "checkbox" %}<div class="full"><label style="display:flex;gap:8px;align-items:center;color:var(--ink)">{{ field }} {{ field.label }}</label></div>
+        {% else %}<div{% if field.name == "headline" or field.name == "about" or field.name == "services" or field.name == "allowed_origins" or field.name == "countries" %} class="full"{% endif %}><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{{ field.errors }}{% if field.help_text %}<small style="color:var(--ink-soft)">{% translate field.help_text %}</small>{% endif %}</div>{% endif %}
+      {% endfor %}
+      </div>
+      <p style="color:var(--ink-soft);font-size:13px">{% translate "The logo and business name come from Settings → Business settings." %}</p>
+      <button class="btn" type="submit" style="margin-top:8px">{% translate "Save website" %}</button>
+    </form>
+    <div>
+      <form method="post" class="ix-card">{% csrf_token %}<input type="hidden" name="action" value="jobs">
+        <h3>💼 {% translate "Jobs shown on the website" %}</h3>
+        <p style="color:var(--ink-soft);font-size:13px;margin-top:0">{% translate "Only ticked open jobs are shown. The client's name is never shown to job seekers." %}</p>
+        <div class="rc-pick">{% for j in jobs %}<label><input type="checkbox" name="publish" value="{{ j.id }}" {% if j.publish_online %}checked{% endif %}><span><b>{{ j.position }}</b> <small>{{ j.number }} · {{ j.work_location|default:"—" }} · {{ j.get_status_display }}</small></span></label>{% empty %}<div class="ix-empty">{% translate "No open job orders." %} <a href="{% url 'webapp:rec_job_add' %}">＋ {% translate "New job order" %}</a></div>{% endfor %}</div>
+        {% if jobs %}<button class="btn" type="submit" style="margin-top:12px">{% translate "Save" %}</button>{% endif %}
+      </form>
+      <div class="ix-card">
+        <h3>🧩 {% translate "Already have a website?" %}</h3>
+        <p style="font-size:13.5px;margin-top:0">{% translate "Use any of these on the agency's own website. Applications still come straight here." %}</p>
+        <p style="font-weight:700;margin:12px 0 4px">1. {% translate "Link a “Careers” button to" %}</p><code style="word-break:break-all">{{ url }}</code>
+        <p style="font-weight:700;margin:14px 0 4px">2. {% translate "Or show the jobs inside a page (paste this code)" %}</p>
+        <textarea readonly rows="3" style="width:100%;font:12px monospace;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)" onclick="this.select()">{{ embed }}</textarea>
+        <details style="margin-top:12px"><summary style="font-weight:700;cursor:pointer">3. {% translate "For the web developer: own form or job list" %}</summary>
+          <p style="font-size:13px">{% translate "Job list (JSON):" %} <code style="word-break:break-all">{{ jobs_json }}</code></p>
+          <p style="font-size:13px">{% translate "Apply form posts to:" %} <code style="word-break:break-all">{{ apply_url }}</code> ({% translate "add the website address above so it may send applications" %})</p>
+          <textarea readonly rows="11" style="width:100%;font:12px monospace;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)" onclick="this.select()">{{ form_snippet }}</textarea>
+          <p style="font-size:13px">{% translate "Server-to-server API key (keep secret):" %} <code>{{ site.api_key }}</code></p>
+          <form method="post">{% csrf_token %}<button class="btn btn-secondary" name="action" value="new_key">↻ {% translate "New API key" %}</button></form>
+        </details>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

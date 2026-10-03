@@ -1,0 +1,11 @@
+{% extends "webapp/careers/base.html" %}
+{% load i18n %}
+{% block body %}
+<section><div class="wrap" style="max-width:620px;text-align:center;padding-top:30px">
+  <div style="width:76px;height:76px;border-radius:50%;background:var(--tint);color:var(--brand);display:grid;place-items:center;font-size:38px;margin:0 auto 16px">✓</div>
+  <h1 style="margin:0 0 8px">{% translate "Application received" %}</h1>
+  <p style="color:var(--soft)">{% translate "Thank you. Our team will review your details and contact you on WhatsApp or phone." %}</p>
+  {% if ref %}<p>{% translate "Your reference" %}: <b>{{ ref }}</b></p>{% endif %}
+  <p style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px"><a class="btn" href="{% url 'webapp:careers_home' site.slug %}{% if embed %}?embed=1{% endif %}">{% translate "See more jobs" %}</a>{% if wa %}<a class="btn wa" href="https://wa.me/{{ wa }}" target="_blank" rel="noopener">WhatsApp</a>{% endif %}</p>
+</div></section>
+{% endblock %}

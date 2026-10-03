@@ -8,12 +8,13 @@
   <div class="ix-toolbar">
     <a class="btn{% if status %} btn-secondary{% endif %}" href="?">{% translate "All" %}</a>
     {% for code, label in statuses %}<a class="btn{% if status != code %} btn-secondary{% endif %}" href="?status={{ code }}">{% translate label %}</a>{% endfor %}
+    <a class="btn{% if source != 'website' %} btn-secondary{% endif %}" href="?source=website">🌐 {% translate "From website" %}</a>
     <form method="get"><input type="hidden" name="status" value="{{ status }}"><input type="search" name="q" value="{{ q }}" placeholder="{% translate 'Name, passport, skill, nationality' %}"></form>
     <span class="grow"></span>{% include "webapp/_excel_button.html" %}<a class="btn" href="{% url 'webapp:rec_candidate_add' %}">＋ {% translate "New candidate" %}</a>
   </div>
   <div class="ix-list">
   {% for c in page %}<a class="ix-row" href="{% url 'webapp:rec_candidate_detail' c.id %}"><span class="grow"><b>{{ c.name }}</b><small>{{ c.trade|default:"—" }}{% if c.nationality %} · {{ c.nationality }}{% endif %}{% if c.experience_years %} · {{ c.experience_years|floatformat:"-1" }} {% translate "yrs" %}{% endif %}{% if c.passport_no %} · 🛂 {{ c.passport_no }}{% endif %}{% if c.agent %} · {{ c.agent.name }}{% endif %}</small></span>
-    {% if c.passport_expiry and c.passport_expiry < today %}<span class="ix-chip late">{% translate "Passport expired" %}</span>{% endif %}{% if c.cv %}<span class="ix-chip">📎 CV</span>{% endif %}<span class="ix-chip {{ c.status }}">{{ c.get_status_display }}</span></a>
+    {% if c.passport_expiry and c.passport_expiry < today %}<span class="ix-chip late">{% translate "Passport expired" %}</span>{% endif %}{% if c.source == "website" %}<span class="ix-chip website">🌐 {% translate "Website" %}</span>{% endif %}{% if c.cv %}<span class="ix-chip">📎 CV</span>{% endif %}<span class="ix-chip {{ c.status }}">{{ c.get_status_display }}</span></a>
   {% empty %}<div class="ix-card ix-empty">{% translate "No candidates yet." %} <a class="btn" style="margin-top:10px" href="{% url 'webapp:rec_candidate_add' %}">＋ {% translate "New candidate" %}</a></div>{% endfor %}
   </div>
   {% if page.has_other_pages %}<div class="ix-toolbar" style="margin-top:12px">{% if page.has_previous %}<a class="btn btn-secondary" href="?status={{ status }}&q={{ q|urlencode }}&page={{ page.previous_page_number }}">‹</a>{% endif %}<span>{{ page.number }} / {{ page.paginator.num_pages }}</span>{% if page.has_next %}<a class="btn btn-secondary" href="?status={{ status }}&q={{ q|urlencode }}&page={{ page.next_page_number }}">›</a>{% endif %}</div>{% endif %}

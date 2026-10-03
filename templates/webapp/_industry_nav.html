@@ -32,6 +32,7 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'rec_clients' %}active{% endif %}" href="{% url 'webapp:rec_clients' %}"><span>{% translate "Clients" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name|slice:':7' == 'rec_job' %}active{% endif %}" href="{% url 'webapp:rec_jobs' %}"><span>{% translate "Job orders" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name|slice:':13' == 'rec_candidate' or request.resolver_match.url_name == 'rec_placement' %}active{% endif %}" href="{% url 'webapp:rec_candidates' %}"><span>{% translate "Candidates" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'rec_website' %}active{% endif %}" href="{% url 'webapp:rec_website' %}"><span>🌐 {% translate "Careers website" %}</span></a>
       </details>
 {% endif %}
 {% if "gold" in f %}

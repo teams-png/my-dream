@@ -280,6 +280,8 @@ class JobOrder(TenantScopedModel):
     guarantee_days = models.PositiveIntegerField(default=90, help_text="Free replacement period after joining.")
     deadline = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS, default="open")
+    publish_online = models.BooleanField(default=False, help_text="Show this job on the careers website.")
+    public_summary = models.TextField(blank=True, help_text="What job seekers see. The client's name is never shown.")
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -315,6 +317,8 @@ class Candidate(TenantScopedModel):
     cv = models.FileField(upload_to="recruitment/cv/%Y/%m/", blank=True)
     notes = models.TextField(blank=True)
     status = models.CharField(max_length=15, choices=STATUS, default="available")
+    SOURCES = [("office", "Office"), ("website", "Website"), ("agent", "Sub-agent"), ("referral", "Referral")]
+    source = models.CharField(max_length=10, choices=SOURCES, default="office")
     customer = models.ForeignKey("customers.Customer", null=True, blank=True, on_delete=models.SET_NULL, related_name="+",
                                  help_text="Billing record when the candidate pays a fee.")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -328,10 +332,10 @@ class Candidate(TenantScopedModel):
 
 class Placement(TenantScopedModel):
     """One candidate put forward for one job order, followed until they join (or drop out)."""
-    STAGES = [("submitted", "CV sent"), ("shortlisted", "Shortlisted"), ("interview", "Interview"),
+    STAGES = [("applied", "Applied online"), ("submitted", "CV sent"), ("shortlisted", "Shortlisted"), ("interview", "Interview"),
               ("selected", "Selected"), ("medical", "Medical"), ("visa", "Visa"), ("ticket", "Ticket"),
               ("deployed", "Joined / deployed"), ("rejected", "Rejected"), ("withdrawn", "Withdrawn")]
-    ACTIVE = ["submitted", "shortlisted", "interview", "selected", "medical", "visa", "ticket"]
+    ACTIVE = ["applied", "submitted", "shortlisted", "interview", "selected", "medical", "visa", "ticket"]
     MEDICAL = [("", "—"), ("pending", "Pending"), ("fit", "Fit"), ("unfit", "Unfit")]
     job_order = models.ForeignKey(JobOrder, on_delete=models.CASCADE, related_name="placements")
     candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, related_name="placements")
@@ -371,3 +375,26 @@ class PlacementCost(TenantScopedModel):
     date = models.DateField()
     paid_to = models.CharField(max_length=150, blank=True)
     expense = models.ForeignKey("expenses.Expense", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+
+
+class CareersSite(TenantScopedModel):
+    """A recruitment agency's public website: who they are, open jobs and an apply form.
+    Applications land in that agency's own candidates and job pipelines only."""
+    enabled = models.BooleanField(default=False)
+    slug = models.SlugField(max_length=60, unique=True)
+    headline = models.CharField(max_length=200, blank=True)
+    about = models.TextField(blank=True)
+    services = models.TextField(blank=True, help_text="One per line.")
+    countries = models.CharField(max_length=255, blank=True, help_text="Countries you recruit for, e.g. Qatar, UAE, Saudi Arabia.")
+    whatsapp = models.CharField(max_length=30, blank=True)
+    email = models.EmailField(blank=True)
+    address = models.CharField(max_length=255, blank=True)
+    licence = models.CharField(max_length=120, blank=True, help_text="Recruitment licence number, shown in the footer.")
+    accent_color = models.CharField(max_length=7, default="#0f766e")
+    ask_passport = models.BooleanField(default=True)
+    allowed_origins = models.TextField(blank=True, help_text="Your own website addresses that may send applications, one per line.")
+    api_key = models.CharField(max_length=40, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.slug

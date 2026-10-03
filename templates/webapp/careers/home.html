@@ -1,0 +1,44 @@
+{% extends "webapp/careers/base.html" %}
+{% load i18n %}
+{% block body %}
+<section class="hero"><div class="wrap">
+  <span class="tag">{% translate "We are hiring" %}</span>
+  <h1>{{ site.headline|default:company.name }}</h1>
+  {% if site.countries %}<p>{% translate "Jobs in" %} {{ site.countries }}</p>{% endif %}
+  <div class="cta"><a class="btn" href="#jobs">{% translate "See open jobs" %} ({{ job_count }})</a><a class="btn ghost" href="{% url 'webapp:careers_apply' site.slug %}">📄 {% translate "Send your CV" %}</a>{% if wa %}<a class="btn wa" href="https://wa.me/{{ wa }}" target="_blank" rel="noopener">WhatsApp</a>{% endif %}</div>
+</div></section>
+
+<section id="jobs"><div class="wrap">
+  <h2>{% translate "Open jobs" %}</h2>
+  <form class="search" method="get">{% if embed %}<input type="hidden" name="embed" value="1">{% endif %}
+    <input type="search" name="q" value="{{ q }}" placeholder="{% translate 'Job title, e.g. Driver, Nurse, Electrician' %}" aria-label="{% translate 'Search jobs' %}">
+    {% if places|length > 1 %}<select name="where" onchange="this.form.submit()" aria-label="{% translate 'Location' %}"><option value="">{% translate "All locations" %}</option>{% for p in places %}<option {% if p == where %}selected{% endif %}>{{ p }}</option>{% endfor %}</select>{% endif %}
+    <button class="btn" type="submit">{% translate "Search" %}</button>
+  </form>
+  <div class="jobs">
+  {% for j in jobs %}
+    <a class="job" href="{% url 'webapp:careers_job' site.slug j.id %}{% if embed %}?embed=1{% endif %}">
+      <h3>{{ j.position }}</h3>
+      <div class="meta">{% if j.work_location %}<span>📍 {{ j.work_location }}</span>{% endif %}<span>👥 {{ j.vacancies }} {% translate "vacancies" %}</span>{% if j.salary %}<span>💰 {{ company.default_currency }} {{ j.salary|floatformat:0 }}</span>{% endif %}</div>
+      {% if j.public_summary or j.benefits %}<p>{{ j.public_summary|default:j.benefits }}</p>{% endif %}
+      <span class="go">{% translate "View & apply" %} →</span>
+    </a>
+  {% empty %}
+    <div class="empty" style="grid-column:1/-1">{% if q or where %}{% translate "No jobs match your search." %}{% else %}{% translate "No open jobs right now." %}{% endif %}<br><a class="btn" style="margin-top:14px" href="{% url 'webapp:careers_apply' site.slug %}{% if embed %}?embed=1{% endif %}">📄 {% translate "Send your CV for future jobs" %}</a></div>
+  {% endfor %}
+  </div>
+</div></section>
+
+{% if site.about or services %}
+<section id="about"><div class="wrap grid2">
+  {% if site.about %}<div><h2>{% translate "About us" %}</h2><div style="white-space:pre-line;color:var(--soft)">{{ site.about }}</div>
+    {% if countries %}<div class="pills">{% for c in countries %}<span>🌍 {{ c }}</span>{% endfor %}</div>{% endif %}</div>{% endif %}
+  {% if services %}<div><h2>{% translate "What we do" %}</h2><ul class="services">{% for s in services %}<li>{{ s }}</li>{% endfor %}</ul></div>{% endif %}
+</div></section>
+{% endif %}
+
+<section><div class="wrap"><div class="card" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:var(--tint);border-color:transparent">
+  <div><h2 style="margin:0 0 4px">{% translate "Didn't find your job?" %}</h2><span style="color:var(--soft)">{% translate "Send your CV and we will call you when a matching job opens." %}</span></div>
+  <a class="btn" href="{% url 'webapp:careers_apply' site.slug %}{% if embed %}?embed=1{% endif %}">📄 {% translate "Send your CV" %}</a>
+</div></div></section>
+{% endblock %}

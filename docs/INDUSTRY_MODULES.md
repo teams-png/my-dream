@@ -65,6 +65,14 @@ Menu: 🧑‍💼 Recruitment. It replaces the generic project menu for this typ
   - WhatsApp messages for the interview, selection and travel date are ready to send.
 - **Nightly reminders:** passports expiring within 90 days, visas expiring before travel (14 days), today's interviews and guarantees ending in 7 days.
 - The generic project form, used by every project-type business, can now create a new client inline.
+- **Careers website** (Recruitment → 🌐 Careers website):
+  - Each agency gets its own public site at `/careers/<name>/`. It shows their name, logo, colour, headline, about text, services, countries, WhatsApp and licence, with an EN/AR/ML switch.
+  - Only open jobs ticked "Show on website" are listed, and the client's name is never shown.
+  - Job seekers apply with name, phone, passport, nationality, experience and a CV. The application becomes a candidate in **that agency only**, in the "Applied online" stage of the job, or as a general application. The agency gets a notification.
+  - If the same passport or phone applies again, the existing candidate is updated instead of duplicated.
+  - Spam protection: a honeypot field, 8 applications per hour per IP, and a check on CV file type and size.
+  - For an agency that already has a website: a Careers link, an iframe embed (`?embed=1`), a public JSON job feed (`jobs.json`), and a form or JSON POST from their own domain, allowed through CORS for the addresses they list. Their server can send `X-Api-Key` to skip the rate limit.
+  - Code: `apps/industry/careers.py`, `apps/webapp/careers_views.py`, `templates/webapp/careers/`.
 
 ## Staff & HR (every business type)
 

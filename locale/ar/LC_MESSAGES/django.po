@@ -550,6 +550,10 @@ msgid "Candidates"
 msgstr "المرشحون"
 
 #: templates/webapp/_industry_nav.html
+msgid "Careers website"
+msgstr "موقع الوظائف"
+
+#: templates/webapp/_industry_nav.html
 msgid "Gold"
 msgstr "الذهب"
 
@@ -1446,6 +1450,305 @@ msgstr "حفظ السعر"
 msgid "No exchange rates yet."
 msgstr "لا أسعار صرف بعد."
 
+#: templates/webapp/careers/_form.html
+msgid "Full name (as in passport)"
+msgstr "الاسم الكامل (كما في الجواز)"
+
+#: templates/webapp/careers/_form.html
+msgid "Phone / WhatsApp"
+msgstr "الهاتف / واتساب"
+
+#: templates/webapp/careers/_form.html
+msgid "Nationality"
+msgstr "الجنسية"
+
+#: templates/webapp/careers/_form.html
+msgid "Passport number"
+msgstr "رقم الجواز"
+
+#: templates/webapp/careers/_form.html
+msgid "Position / skill"
+msgstr "الوظيفة / المهارة"
+
+#: templates/webapp/careers/_form.html
+msgid "Experience (years)"
+msgstr "الخبرة (سنوات)"
+
+#: templates/webapp/careers/_form.html
+msgid "Where are you now?"
+msgstr "أين أنت الآن؟"
+
+#: templates/webapp/careers/_form.html
+msgid "City, country"
+msgstr "المدينة، الدولة"
+
+#: templates/webapp/careers/_form.html
+msgid "CV (PDF, Word or photo, max 8 MB)"
+msgstr "السيرة الذاتية (PDF أو Word أو صورة، حتى 8 ميجابايت)"
+
+#: templates/webapp/careers/_form.html
+msgid "Message (optional)"
+msgstr "الرسالة (اختياري)"
+
+#: templates/webapp/careers/_form.html
+msgid "Apply for this job"
+msgstr "قدّم على هذه الوظيفة"
+
+#: templates/webapp/careers/_form.html
+msgid "Send my CV"
+msgstr "أرسل سيرتي الذاتية"
+
+#: templates/webapp/careers/_form.html
+msgid "Your details are shared only with"
+msgstr "تتم مشاركة بياناتك فقط مع"
+
+#: templates/webapp/careers/apply.html
+msgid "All jobs"
+msgstr "كل الوظائف"
+
+#: templates/webapp/careers/apply.html
+msgid "Location"
+msgstr "الموقع"
+
+#: templates/webapp/careers/apply.html
+msgid "Vacancies"
+msgstr "الشواغر"
+
+#: templates/webapp/careers/apply.html
+msgid "Salary"
+msgstr "الراتب"
+
+#: templates/webapp/careers/apply.html
+msgid "Contract"
+msgstr "العقد"
+
+#: templates/webapp/careers/apply.html
+msgid "months"
+msgstr "أشهر"
+
+#: templates/webapp/careers/apply.html
+msgid "Apply by"
+msgstr "آخر موعد للتقديم"
+
+#: templates/webapp/careers/apply.html
+msgid "Benefits"
+msgstr "المزايا"
+
+#: templates/webapp/careers/apply.html
+msgid "Requirements"
+msgstr "المتطلبات"
+
+#: templates/webapp/careers/apply.html
+msgid "Share with a friend"
+msgstr "شاركها مع صديق"
+
+#: templates/webapp/careers/apply.html
+msgid "Send your CV"
+msgstr "أرسل سيرتك الذاتية"
+
+#: templates/webapp/careers/apply.html
+msgid "Send your CV and we will call you when a matching job opens."
+msgstr "أرسل سيرتك الذاتية وسنتصل بك عند توفر وظيفة مناسبة."
+
+#: templates/webapp/careers/base.html
+msgid "Careers"
+msgstr "الوظائف"
+
+#: templates/webapp/careers/base.html
+msgid "Jobs"
+msgstr "الوظائف"
+
+#: templates/webapp/careers/base.html
+msgid "About us"
+msgstr "من نحن"
+
+#: templates/webapp/careers/base.html
+msgid "Licence"
+msgstr "الترخيص"
+
+#: templates/webapp/careers/base.html
+msgid "We never ask job seekers for money to apply."
+msgstr "لا نطلب أي مبلغ من الباحثين عن عمل للتقديم."
+
+#: templates/webapp/careers/closed.html
+msgid "This job is no longer open"
+msgstr "هذه الوظيفة لم تعد متاحة"
+
+#: templates/webapp/careers/closed.html
+msgid "See open jobs"
+msgstr "عرض الوظائف المتاحة"
+
+#: templates/webapp/careers/home.html
+msgid "We are hiring"
+msgstr "نحن نوظّف"
+
+#: templates/webapp/careers/home.html
+msgid "Jobs in"
+msgstr "وظائف في"
+
+#: templates/webapp/careers/home.html
+msgid "Open jobs"
+msgstr "الوظائف المتاحة"
+
+#: templates/webapp/careers/home.html
+msgid "Job title, e.g. Driver, Nurse, Electrician"
+msgstr "المسمى، مثل: سائق، ممرض، كهربائي"
+
+#: templates/webapp/careers/home.html
+msgid "Search jobs"
+msgstr "ابحث عن وظائف"
+
+#: templates/webapp/careers/home.html
+msgid "All locations"
+msgstr "كل المواقع"
+
+#: templates/webapp/careers/home.html
+msgid "vacancies"
+msgstr "شواغر"
+
+#: templates/webapp/careers/home.html
+msgid "View & apply"
+msgstr "عرض وتقديم"
+
+#: templates/webapp/careers/home.html
+msgid "No jobs match your search."
+msgstr "لا توجد وظائف مطابقة لبحثك."
+
+#: templates/webapp/careers/home.html
+msgid "No open jobs right now."
+msgstr "لا توجد وظائف متاحة حالياً."
+
+#: templates/webapp/careers/home.html
+msgid "Send your CV for future jobs"
+msgstr "أرسل سيرتك للوظائف القادمة"
+
+#: templates/webapp/careers/home.html
+msgid "What we do"
+msgstr "خدماتنا"
+
+#: templates/webapp/careers/home.html
+msgid "Didn't find your job?"
+msgstr "لم تجد وظيفتك؟"
+
+#: templates/webapp/careers/settings.html
+msgid "Live"
+msgstr "فعّال"
+
+#: templates/webapp/careers/settings.html
+msgid "Not live yet"
+msgstr "غير منشور بعد"
+
+#: templates/webapp/careers/settings.html
+msgid "Open website"
+msgstr "فتح الموقع"
+
+#: templates/webapp/careers/settings.html
+msgid "Share"
+msgstr "مشاركة"
+
+#: templates/webapp/careers/settings.html
+msgid "Link copied"
+msgstr "تم نسخ الرابط"
+
+#: templates/webapp/careers/settings.html
+msgid "Copy link"
+msgstr "نسخ الرابط"
+
+#: templates/webapp/careers/settings.html
+msgid "new applications"
+msgstr "طلبات جديدة"
+
+#: templates/webapp/careers/settings.html
+msgid "Your website"
+msgstr "موقعك"
+
+#: templates/webapp/careers/settings.html
+msgid "The logo and business name come from Settings → Business settings."
+msgstr "الشعار واسم النشاط من الإعدادات ← إعدادات النشاط."
+
+#: templates/webapp/careers/settings.html
+msgid "Save website"
+msgstr "حفظ الموقع"
+
+#: templates/webapp/careers/settings.html
+msgid "Jobs shown on the website"
+msgstr "الوظائف المعروضة على الموقع"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"Only ticked open jobs are shown. The client's name is never shown to job "
+"seekers."
+msgstr ""
+"تُعرض الوظائف المفتوحة المحددة فقط. لا يظهر اسم العميل للباحثين عن عمل."
+
+#: templates/webapp/careers/settings.html
+msgid "No open job orders."
+msgstr "لا توجد طلبات توظيف مفتوحة."
+
+#: templates/webapp/careers/settings.html
+msgid "New job order"
+msgstr "طلب توظيف جديد"
+
+#: templates/webapp/careers/settings.html
+msgid "Already have a website?"
+msgstr "لديك موقع بالفعل؟"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"Use any of these on the agency's own website. Applications still come "
+"straight here."
+msgstr "استخدم أياً من هذه على موقع الوكالة. ستصل الطلبات إلى هنا مباشرة."
+
+#: templates/webapp/careers/settings.html
+msgid "Link a “Careers” button to"
+msgstr "اربط زر «الوظائف» بـ"
+
+#: templates/webapp/careers/settings.html
+msgid "Or show the jobs inside a page (paste this code)"
+msgstr "أو اعرض الوظائف داخل صفحة (الصق هذا الكود)"
+
+#: templates/webapp/careers/settings.html
+msgid "For the web developer: own form or job list"
+msgstr "لمطور الموقع: نموذج خاص أو قائمة وظائف"
+
+#: templates/webapp/careers/settings.html
+msgid "Job list (JSON):"
+msgstr "قائمة الوظائف (JSON):"
+
+#: templates/webapp/careers/settings.html
+msgid "Apply form posts to:"
+msgstr "يُرسل نموذج التقديم إلى:"
+
+#: templates/webapp/careers/settings.html
+msgid "add the website address above so it may send applications"
+msgstr "أضف عنوان الموقع أعلاه ليتمكن من إرسال الطلبات"
+
+#: templates/webapp/careers/settings.html
+msgid "Server-to-server API key (keep secret):"
+msgstr "مفتاح API للخادم (احتفظ به سراً):"
+
+#: templates/webapp/careers/settings.html
+msgid "New API key"
+msgstr "مفتاح API جديد"
+
+#: templates/webapp/careers/thanks.html
+msgid "Application received"
+msgstr "تم استلام الطلب"
+
+#: templates/webapp/careers/thanks.html
+msgid ""
+"Thank you. Our team will review your details and contact you on WhatsApp or "
+"phone."
+msgstr "شكراً لك. سيراجع فريقنا بياناتك ويتواصل معك عبر واتساب أو الهاتف."
+
+#: templates/webapp/careers/thanks.html
+msgid "Your reference"
+msgstr "رقمك المرجعي"
+
+#: templates/webapp/careers/thanks.html
+msgid "See more jobs"
+msgstr "عرض المزيد من الوظائف"
+
 #: templates/webapp/crm/_tabs.html
 msgid "Pipeline"
 msgstr "مسار المبيعات"
@@ -1689,10 +1992,6 @@ msgstr "خصم"
 #: templates/webapp/crm/pricing.html
 msgid "all items"
 msgstr "كل الأصناف"
-
-#: templates/webapp/crm/pricing.html
-msgid "Live"
-msgstr "فعّال"
 
 #: templates/webapp/crm/pricing.html
 msgid "Stop"
@@ -2349,10 +2648,6 @@ msgstr "المُهلك"
 #: templates/webapp/finance/assets.html
 msgid "Book value"
 msgstr "القيمة الدفترية"
-
-#: templates/webapp/finance/assets.html
-msgid "months"
-msgstr "أشهر"
 
 #: templates/webapp/finance/assets.html
 msgid "month"
@@ -3043,10 +3338,6 @@ msgid "Login"
 msgstr "الدخول"
 
 #: templates/webapp/hr/staff_detail.html
-msgid "Salary"
-msgstr "الراتب"
-
-#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "شهرياً"
 
@@ -3244,10 +3535,6 @@ msgstr "المغادرة / الإرجاع المستحق"
 #: templates/webapp/industry/booking_detail.html
 msgid "Change dates / move"
 msgstr "تغيير التواريخ / النقل"
-
-#: templates/webapp/industry/booking_detail.html
-msgid "Share"
-msgstr "مشاركة"
 
 #: templates/webapp/industry/booking_detail.html
 msgid "Until"
@@ -4037,10 +4324,6 @@ msgstr "يرسل الفاتورة كملف PDF مرفق مع رابط لعرضه
 #: templates/webapp/invoice_share.html
 msgid "Customer email"
 msgstr "بريد العميل"
-
-#: templates/webapp/invoice_share.html
-msgid "Message (optional)"
-msgstr "الرسالة (اختياري)"
 
 #: templates/webapp/invoice_share.html
 msgid "Send email"
@@ -5609,10 +5892,6 @@ msgid "Send reminder"
 msgstr "إرسال تذكير"
 
 #: templates/webapp/receivables/customer.html
-msgid "Link copied"
-msgstr "تم نسخ الرابط"
-
-#: templates/webapp/receivables/customer.html
 msgid "Copy customer portal link"
 msgstr "نسخ رابط بوابة العميل"
 
@@ -5765,14 +6044,6 @@ msgid "Profile"
 msgstr "الملف"
 
 #: templates/webapp/recruitment/candidate_detail.html
-msgid "Position / skill"
-msgstr "الوظيفة / المهارة"
-
-#: templates/webapp/recruitment/candidate_detail.html
-msgid "Nationality"
-msgstr "الجنسية"
-
-#: templates/webapp/recruitment/candidate_detail.html
 msgid "Date of birth"
 msgstr "تاريخ الميلاد"
 
@@ -5817,10 +6088,6 @@ msgid "Sub-agent"
 msgstr "الوكيل الفرعي"
 
 #: templates/webapp/recruitment/candidate_detail.html
-msgid "Jobs"
-msgstr "الوظائف"
-
-#: templates/webapp/recruitment/candidate_detail.html
 msgid "Not put forward for any job yet."
 msgstr "لم يُرشح لأي وظيفة بعد."
 
@@ -5833,6 +6100,10 @@ msgid "Sub-agents are kept under Suppliers."
 msgstr "يُحفظ الوكلاء الفرعيون ضمن الموردين."
 
 #: templates/webapp/recruitment/candidates.html
+msgid "From website"
+msgstr "من الموقع"
+
+#: templates/webapp/recruitment/candidates.html
 msgid "Name, passport, skill, nationality"
 msgstr "الاسم، الجواز، المهارة، الجنسية"
 
@@ -5843,6 +6114,10 @@ msgstr "مرشح جديد"
 #: templates/webapp/recruitment/candidates.html
 msgid "Passport expired"
 msgstr "الجواز منتهي"
+
+#: templates/webapp/recruitment/candidates.html
+msgid "Website"
+msgstr "الموقع"
 
 #: templates/webapp/recruitment/candidates.html
 msgid "No candidates yet."
@@ -5871,10 +6146,6 @@ msgstr "مفتوح"
 #: templates/webapp/recruitment/clients.html
 msgid "placed"
 msgstr "تم توظيفه"
-
-#: templates/webapp/recruitment/clients.html
-msgid "New job order"
-msgstr "طلب توظيف جديد"
 
 #: templates/webapp/recruitment/clients.html
 msgid "No clients yet. Add your first employer on the left."
@@ -5909,6 +6180,14 @@ msgid "Joined but not billed"
 msgstr "التحقوا ولم تُصدر فاتورة"
 
 #: templates/webapp/recruitment/home.html
+msgid "New online applications"
+msgstr "طلبات إلكترونية جديدة"
+
+#: templates/webapp/recruitment/home.html
+msgid "General application"
+msgstr "طلب عام"
+
+#: templates/webapp/recruitment/home.html
 msgid "in process"
 msgstr "قيد الإجراء"
 
@@ -5937,6 +6216,10 @@ msgid "Visas expiring before travel"
 msgstr "تأشيرات تنتهي قبل السفر"
 
 #: templates/webapp/recruitment/job_detail.html
+msgid "On website"
+msgstr "على الموقع"
+
+#: templates/webapp/recruitment/job_detail.html
 msgid "Share job on WhatsApp"
 msgstr "مشاركة الوظيفة على واتساب"
 
@@ -5957,16 +6240,8 @@ msgid "Our fee per person"
 msgstr "رسومنا للشخص"
 
 #: templates/webapp/recruitment/job_detail.html
-msgid "Location"
-msgstr "الموقع"
-
-#: templates/webapp/recruitment/job_detail.html
 msgid "Needed by"
 msgstr "مطلوب بحلول"
-
-#: templates/webapp/recruitment/job_detail.html
-msgid "Requirements"
-msgstr "المتطلبات"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Not billed yet"
@@ -6003,14 +6278,6 @@ msgstr "…أو مرشح جديد"
 #: templates/webapp/recruitment/job_detail.html
 msgid "Full name"
 msgstr "الاسم الكامل"
-
-#: templates/webapp/recruitment/job_detail.html
-msgid "Phone / WhatsApp"
-msgstr "الهاتف / واتساب"
-
-#: templates/webapp/recruitment/job_detail.html
-msgid "Passport number"
-msgstr "رقم الجواز"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Add to job"
@@ -7671,10 +7938,6 @@ msgid "Current stock"
 msgstr "المخزون الحالي"
 
 #: templates/webapp/stock/history.html
-msgid "All locations"
-msgstr "كل المواقع"
-
-#: templates/webapp/stock/history.html
 msgid "When"
 msgstr "متى"
 
@@ -8158,6 +8421,136 @@ msgstr "تم تسجيل إرجاع مبلغ التأمين."
 #: apps/webapp/booking_views.py
 msgid "Checked out. Invoice %(number)s created."
 msgstr "تم تسجيل الخروج. أُنشئت الفاتورة %(number)s."
+
+#: apps/webapp/careers_views.py
+msgid ""
+"Too many applications from this connection. Please try again later or "
+"contact us on WhatsApp."
+msgstr "طلبات كثيرة من هذا الاتصال. حاول لاحقاً أو تواصل معنا عبر واتساب."
+
+#: apps/webapp/careers_views.py
+msgid "Web address name"
+msgstr "اسم عنوان الموقع"
+
+#: apps/webapp/careers_views.py
+msgid "Brand colour"
+msgstr "لون العلامة"
+
+#: apps/webapp/careers_views.py
+msgid "Website is live"
+msgstr "الموقع منشور"
+
+#: apps/webapp/careers_views.py
+msgid "Headline"
+msgstr "العنوان الرئيسي"
+
+#: apps/webapp/careers_views.py
+msgid "About your agency"
+msgstr "عن وكالتك"
+
+#: apps/webapp/careers_views.py
+msgid "Services (one per line)"
+msgstr "الخدمات (واحدة في كل سطر)"
+
+#: apps/webapp/careers_views.py
+msgid "Countries you recruit for"
+msgstr "الدول التي توظف لها"
+
+#: apps/webapp/careers_views.py
+msgid "WhatsApp number"
+msgstr "رقم واتساب"
+
+#: apps/webapp/careers_views.py
+msgid "Office address"
+msgstr "عنوان المكتب"
+
+#: apps/webapp/careers_views.py
+msgid "Licence number"
+msgstr "رقم الترخيص"
+
+#: apps/webapp/careers_views.py
+msgid "Ask for passport number"
+msgstr "طلب رقم الجواز"
+
+#: apps/webapp/careers_views.py
+msgid "Your own website address (optional, one per line)"
+msgstr "عنوان موقعك الخاص (اختياري، واحد في كل سطر)"
+
+#: apps/webapp/careers_views.py
+msgid "Enter a short name for the address, e.g. gulf-manpower."
+msgstr "أدخل اسماً قصيراً للعنوان، مثل gulf-manpower."
+
+#: apps/webapp/careers_views.py
+msgid "This name is taken. Try another one."
+msgstr "هذا الاسم مستخدم. جرّب اسماً آخر."
+
+#: apps/webapp/careers_views.py
+msgid "Website addresses must start with https://"
+msgstr "يجب أن يبدأ عنوان الموقع بـ https://"
+
+#: apps/webapp/careers_views.py
+msgid "Jobs on the website updated."
+msgstr "تم تحديث الوظائف على الموقع."
+
+#: apps/webapp/careers_views.py
+msgid "New API key created. Update it on your own website."
+msgstr "تم إنشاء مفتاح API جديد. حدّثه في موقعك."
+
+#: apps/webapp/careers_views.py
+msgid "Website saved."
+msgstr "تم حفظ الموقع."
+
+#: apps/webapp/careers_views.py
+msgid "Upload your CV as PDF, Word or a photo."
+msgstr "ارفع سيرتك الذاتية بصيغة PDF أو Word أو صورة."
+
+#: apps/webapp/careers_views.py
+msgid "The CV file is too large (max 8 MB)."
+msgstr "ملف السيرة الذاتية كبير جداً (الحد 8 ميجابايت)."
+
+#: apps/webapp/careers_views.py
+msgid "Enter your full name and a phone / WhatsApp number."
+msgstr "أدخل اسمك الكامل ورقم الهاتف / واتساب."
+
+#: apps/webapp/careers_views.py
+msgid "Enter your passport number."
+msgstr "أدخل رقم جواز سفرك."
+
+#: apps/webapp/careers_views.py
+msgid "Applied online"
+msgstr "قدّم إلكترونياً"
+
+#: apps/webapp/careers_views.py
+msgid "Office"
+msgstr "المكتب"
+
+#: apps/webapp/careers_views.py
+msgid "Referral"
+msgstr "توصية"
+
+#: apps/webapp/careers_views.py
+msgid "Show this job on the careers website."
+msgstr "اعرض هذه الوظيفة على موقع الوظائف."
+
+#: apps/webapp/careers_views.py
+msgid "What job seekers see. The client's name is never shown."
+msgstr "ما يراه الباحثون عن عمل. لا يظهر اسم العميل أبداً."
+
+#: apps/webapp/careers_views.py
+msgid "Countries you recruit for, e.g. Qatar, UAE, Saudi Arabia."
+msgstr "الدول التي توظف لها، مثل قطر، الإمارات، السعودية."
+
+#: apps/webapp/careers_views.py
+msgid "Your own website addresses that may send applications, one per line."
+msgstr "عناوين مواقعك التي يمكنها إرسال الطلبات، واحد في كل سطر."
+
+#: apps/webapp/careers_views.py
+msgid "Recruitment licence number, shown in the footer."
+msgstr "رقم ترخيص التوظيف، يظهر في أسفل الصفحة."
+
+#: apps/webapp/careers_views.py
+msgid "One per line."
+msgstr "واحد في كل سطر."
 
 #: apps/webapp/crm_views.py
 msgid "Enter what the deal is about."
@@ -8761,10 +9154,6 @@ msgid "Salary (per month)"
 msgstr "الراتب (شهرياً)"
 
 #: apps/webapp/recruitment_views.py
-msgid "Benefits"
-msgstr "المزايا"
-
-#: apps/webapp/recruitment_views.py
 msgid "Contract (months)"
 msgstr "العقد (أشهر)"
 
@@ -8781,16 +9170,20 @@ msgid "Gender"
 msgstr "الجنس"
 
 #: apps/webapp/recruitment_views.py
+msgid "Show on our careers website"
+msgstr "اعرض على موقع الوظائف"
+
+#: apps/webapp/recruitment_views.py
+msgid "Job description for the website"
+msgstr "وصف الوظيفة للموقع"
+
+#: apps/webapp/recruitment_views.py
 msgid "Choose a client or type a new client's name."
 msgstr "اختر عميلاً أو اكتب اسم عميل جديد."
 
 #: apps/webapp/recruitment_views.py
 msgid "Passport expiry"
 msgstr "انتهاء الجواز"
-
-#: apps/webapp/recruitment_views.py
-msgid "Experience (years)"
-msgstr "الخبرة (سنوات)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Has Gulf experience"
@@ -8839,10 +9232,6 @@ msgstr "مضاف مسبقاً أو غير مناسب: %(names)s"
 #: apps/webapp/recruitment_views.py
 msgid "Job opening"
 msgstr "وظيفة شاغرة"
-
-#: apps/webapp/recruitment_views.py
-msgid "Vacancies"
-msgstr "الشواغر"
 
 #: apps/webapp/recruitment_views.py
 msgid "Candidate %(name)s added."

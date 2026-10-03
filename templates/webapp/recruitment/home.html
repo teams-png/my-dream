@@ -9,6 +9,7 @@
     <a class="btn" href="{% url 'webapp:rec_job_add' %}">＋ {% translate "New job order" %}</a>
     <a class="btn btn-secondary" href="{% url 'webapp:rec_candidate_add' %}">＋ {% translate "New candidate" %}</a>
     <a class="btn btn-secondary" href="{% url 'webapp:rec_clients' %}">＋ {% translate "New client" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:rec_website' %}">🌐 {% translate "Careers website" %}</a>
   </div>
   <div class="ix-stats">
     <a class="ix-stat" href="{% url 'webapp:rec_jobs' %}" style="text-decoration:none;color:inherit"><small>{% translate "Open job orders" %}</small><b>{{ o.open_jobs }}</b></a>
@@ -22,6 +23,12 @@
   <div class="ix-card"><h3>{% translate "Pipeline" %}</h3>
     <div class="rc-steps">{% for code, label, n in pipeline %}<span class="{% if n %}done{% endif %}">{% translate label %}: {{ n }}</span>{% endfor %}</div>
   </div>
+  {% if applied or general %}
+  <div class="ix-card" style="border-color:var(--accent)"><h3>🌐 {% translate "New online applications" %}</h3><div class="ix-list">
+    {% for p in applied %}<a class="ix-row" href="{% url 'webapp:rec_placement' p.id %}"><span class="grow"><b>{{ p.candidate.name }}</b><small>{{ p.job_order.position }} · {{ p.job_order.number }} · {{ p.candidate.phone }}</small></span><span class="ix-chip applied">{{ p.created_at|date:"j M H:i" }}</span></a>{% endfor %}
+    {% for c in general %}<a class="ix-row" href="{% url 'webapp:rec_candidate_detail' c.id %}"><span class="grow"><b>{{ c.name }}</b><small>{% translate "General application" %}{% if c.trade %} · {{ c.trade }}{% endif %} · {{ c.phone }}</small></span><span class="ix-chip applied">{{ c.created_at|date:"j M H:i" }}</span></a>{% endfor %}
+  </div></div>
+  {% endif %}
   <div class="ix-grid2">
     <div class="ix-card"><h3>💼 {% translate "Open job orders" %}</h3><div class="ix-list">
       {% for j in jobs %}<a class="ix-row" href="{% url 'webapp:rec_job_detail' j.id %}"><span class="grow"><b>{{ j.position }}</b><small>{{ j.number }} · {{ j.client.name }}{% if j.work_location %} · {{ j.work_location }}{% endif %}</small></span><span class="ix-chip">{{ j.done }}/{{ j.vacancies }}</span>{% if j.active %}<span class="ix-chip in_process">{{ j.active }} {% translate "in process" %}</span>{% endif %}</a>

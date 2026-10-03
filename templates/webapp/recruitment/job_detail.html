@@ -7,7 +7,7 @@
 <div class="ix">
   <div class="ix-toolbar">
     <a class="btn btn-secondary" href="{% url 'webapp:rec_jobs' %}">← {% translate "Job orders" %}</a>
-    <span class="ix-chip {{ job.status }}">{{ job.get_status_display }}</span>
+    <span class="ix-chip {{ job.status }}">{{ job.get_status_display }}</span>{% if job.publish_online %}<a class="ix-chip website" href="{% url 'webapp:rec_website' %}">🌐 {% translate "On website" %}</a>{% endif %}
     <span class="grow"></span>
     <a class="btn btn-secondary" href="{% url 'webapp:rec_job_edit' job.id %}">✏️ {% translate "Edit" %}</a>
     <a class="btn btn-secondary" href="{{ share }}" target="_blank" rel="noopener">📣 {% translate "Share job on WhatsApp" %}</a>

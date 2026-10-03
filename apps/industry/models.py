@@ -471,3 +471,45 @@ class WebsiteKit(TenantScopedModel):
 
     def __str__(self):
         return self.public_id
+
+
+class SiteDesign(TenantScopedModel):
+    """A ready-made website hosted by BookPilot for a business. Menu / services / rooms / jobs, offers and
+    contact details come live from the business's own BookPilot data; the owner picks the look."""
+    THEMES = [("fresh", "Fresh"), ("bold", "Bold"), ("elegant", "Elegant"), ("minimal", "Minimal")]
+    FONTS = [("Inter", "Inter"), ("Poppins", "Poppins"), ("Playfair Display", "Playfair Display"),
+             ("Cairo", "Cairo (Arabic)"), ("Lora", "Lora"), ("Montserrat", "Montserrat")]
+    DOMAIN_STATUS = [("", "No own domain"), ("pending", "Waiting for DNS"), ("live", "Live")]
+
+    enabled = models.BooleanField(default=False, help_text="Website add-on switched on by the platform admin.")
+    published = models.BooleanField(default=False)
+    theme = models.CharField(max_length=12, choices=THEMES, default="fresh")
+    font = models.CharField(max_length=30, choices=FONTS, default="Poppins")
+    primary_color = models.CharField(max_length=7, default="#0f766e")
+    accent_color = models.CharField(max_length=7, default="#f59e0b")
+    logo = models.ImageField(upload_to="site_logos/", blank=True, null=True, help_text="Leave empty to use the company logo.")
+    hero_image = models.ImageField(upload_to="site_heroes/", blank=True, null=True)
+    hero_title = models.CharField(max_length=150, blank=True)
+    hero_subtitle = models.CharField(max_length=255, blank=True)
+    about = models.TextField(blank=True)
+    opening_hours = models.TextField(blank=True, help_text="One line per day or range, e.g. Sat–Thu 10am–11pm")
+    map_url = models.URLField(blank=True, help_text="Google Maps link")
+    whatsapp = models.CharField(max_length=30, blank=True)
+    instagram = models.CharField(max_length=120, blank=True)
+    facebook = models.CharField(max_length=120, blank=True)
+    tiktok = models.CharField(max_length=120, blank=True)
+    show_catalogue = models.BooleanField(default=True)
+    show_offers = models.BooleanField(default=True)
+    show_booking = models.BooleanField(default=True)
+    show_careers = models.BooleanField(default=True)
+    show_contact = models.BooleanField(default=True)
+    # platform admin only
+    custom_domain = models.CharField(max_length=253, blank=True, null=True, unique=True)
+    domain_status = models.CharField(max_length=10, choices=DOMAIN_STATUS, blank=True, default="")
+    custom_css = models.TextField(blank=True)
+    custom_html = models.TextField(blank=True, help_text="Extra section shown above the contact section.")
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Website · {self.company_id}"

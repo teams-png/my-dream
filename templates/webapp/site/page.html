@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ company.name }}{% if design.hero_subtitle %} · {{ design.hero_subtitle }}{% endif %}</title>
+<meta name="description" content="{{ design.hero_subtitle|default:design.about|truncatechars:150 }}">
+{% if logo %}<link rel="icon" href="{{ logo }}">{% endif %}
+<meta property="og:title" content="{{ company.name }}">{% if hero or logo %}<meta property="og:image" content="{{ hero|default:logo }}">{% endif %}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ design.font|urlencode }}:wght@400;600;700;800&display=swap">
+<style>
+:root{--p:{{ design.primary_color }};--a:{{ design.accent_color }};--bg:#ffffff;--ink:#0f172a;--soft:#64748b;--line:#e2e8f0;--card:#ffffff;--tint:#f8fafc;--r:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:"{{ design.font }}",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+img{max-width:100%;display:block}a{color:var(--p)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:12px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--ink);text-decoration:none;min-width:0}
+.brand img{width:40px;height:40px;object-fit:contain;border-radius:10px}.brand span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+nav.links{display:flex;gap:18px;margin-inline-start:auto;font-weight:600;font-size:14px}nav.links a{color:var(--ink);text-decoration:none}nav.links a:hover{color:var(--p)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;background:var(--p);color:#fff;font-weight:700;text-decoration:none;border:0}
+.btn.alt{background:var(--a);color:#111}.btn.ghost{background:transparent;color:var(--p);border:2px solid var(--p)}
+@media(max-width:760px){nav.links{display:none}header.top .btn{margin-inline-start:auto;padding:9px 14px;font-size:14px}}
+.hero{position:relative;padding:88px 0 76px;background:linear-gradient(135deg,var(--p),color-mix(in srgb,var(--p) 55%,#000));color:#fff;overflow:hidden}
+.hero.has-img{background-size:cover;background-position:center}
+.hero.has-img::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.66),rgba(0,0,0,.25))}
+.hero .wrap{position:relative}.hero h1{font-size:clamp(32px,6vw,56px);line-height:1.08;margin:0 0 14px;max-width:760px;letter-spacing:-.02em}
+.hero p{font-size:clamp(16px,2.4vw,20px);margin:0 0 26px;max-width:620px;opacity:.92}.hero .ctas{display:flex;flex-wrap:wrap;gap:10px}
+.hero .btn{background:#fff;color:var(--p)}.hero .btn.alt{background:var(--a);color:#111}
+.section{padding:64px 0}.section.tint{background:var(--tint)}
+.section h2{font-size:clamp(26px,4vw,36px);margin:0 0 8px;letter-spacing:-.01em}.section .lead{color:var(--soft);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:6px}
+.card img{width:calc(100% + 36px);margin:-18px -18px 8px;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r) var(--r) 0 0;max-width:none}
+.card h3{margin:0;font-size:17px}.card .desc{color:var(--soft);font-size:14px;margin:0}.card .row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:6px}
+.price{font-weight:800;color:var(--p)}.tag{font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--p) 12%,#fff);color:var(--p)}
+.veg{background:#dcfce7;color:#166534}
+.cat{margin:30px 0 14px;font-size:20px;display:flex;align-items:center;gap:10px}.cat::after{content:"";flex:1;height:1px;background:var(--line)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:6px;scrollbar-width:none}.tabs a{white-space:nowrap;padding:7px 14px;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:14px;font-weight:600}
+.offer{background:linear-gradient(135deg,var(--a),color-mix(in srgb,var(--a) 60%,#fff));color:#111;border:0}
+.offer .big{font-size:32px;font-weight:800;line-height:1}
+.two{display:grid;grid-template-columns:1.2fr 1fr;gap:28px}@media(max-width:820px){.two{grid-template-columns:1fr}}
+.hours li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line)}.hours{list-style:none;padding:0;margin:0}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+footer{background:#0b1220;color:#cbd5e1;padding:40px 0 28px;font-size:14px}footer a{color:#fff}
+footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}footer h4{color:#fff;margin:0 0 8px}
+.wa{position:fixed;bottom:18px;inset-inline-end:18px;z-index:30;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.preview-bar{background:#fef3c7;color:#92400e;text-align:center;font-size:13px;padding:6px 10px;font-weight:600}
+/* themes */
+body.t-bold{--bg:#0b1220;--ink:#f1f5f9;--soft:#94a3b8;--line:#1e293b;--card:#111a2e;--tint:#0f172a}
+body.t-bold .card .tag{background:#1e293b}
+body.t-elegant{--r:4px;--tint:#faf7f2;--bg:#fffdf9}body.t-elegant .hero{text-align:center}body.t-elegant .hero h1,body.t-elegant .hero p{margin-inline:auto}
+body.t-elegant .hero .ctas{justify-content:center}body.t-elegant .section h2,body.t-elegant .section .lead{text-align:center}
+body.t-elegant .section h2{font-weight:600;letter-spacing:.02em}
+body.t-minimal{--r:10px}body.t-minimal .hero{background:var(--tint);color:var(--ink)}body.t-minimal .hero .btn{background:var(--p);color:#fff}
+body.t-minimal .hero.has-img{color:#fff}body.t-minimal .card{border-width:0 0 1px;border-radius:0;padding-inline:0}body.t-minimal .card img{width:100%;margin:0 0 8px;border-radius:var(--r)}
+{{ design.custom_css|safe }}
+</style>
+</head>
+<body class="site t-{{ design.theme }}">
+{% if preview %}<div class="preview-bar">Preview{% if not design.published %} — not public yet{% endif %}</div>{% endif %}
+<header class="top"><div class="wrap">
+  <a class="brand" href="#top">{% if logo %}<img src="{{ logo }}" alt="">{% endif %}<span>{{ company.name }}</span></a>
+  <nav class="links">
+    {% if groups %}<a href="#catalogue">{{ catalogue_title }}</a>{% endif %}
+    {% if offers %}<a href="#offers">Offers</a>{% endif %}
+    {% if booking_slug %}<a href="#book">Book</a>{% endif %}
+    {% if careers_slug %}<a href="#apply">Apply</a>{% endif %}
+    {% if design.about or hours %}<a href="#about">About</a>{% endif %}
+    <a href="#contact">Contact</a>
+  </nav>
+  {% if booking_slug %}<a class="btn" href="#book">Book now</a>{% elif company.phone %}<a class="btn" href="tel:{{ phone_link }}">Call us</a>{% endif %}
+</div></header>
+
+<section id="top" class="hero{% if hero %} has-img{% endif %}"{% if hero %} style="background-image:url('{{ hero }}')"{% endif %}>
+  <div class="wrap">
+    <h1>{{ design.hero_title|default:company.name }}</h1>
+    {% if design.hero_subtitle %}<p>{{ design.hero_subtitle }}</p>{% endif %}
+    <div class="ctas">
+      {% if groups %}<a class="btn" href="#catalogue">{{ catalogue_title }}</a>{% endif %}
+      {% if booking_slug %}<a class="btn alt" href="#book">Book now</a>{% endif %}
+      {% if whatsapp %}<a class="btn alt" href="https://wa.me/{{ whatsapp }}" target="_blank" rel="noopener">WhatsApp</a>{% endif %}
+    </div>
+  </div>
+</section>
+
+{% if offers %}
+<section id="offers" class="section tint"><div class="wrap">
+  <h2>Offers</h2><p class="lead">Available now</p>
+  <div class="grid">{% for o in offers %}
+    <div class="card offer"><div class="big">{{ o.discount }} off</div><h3>{{ o.name }}</h3>
+      {% if o.product %}<p class="desc" style="color:#111">{{ o.product }}</p>{% endif %}
+      <p class="desc" style="color:#111;opacity:.75">Until {{ o.until|date:"j M Y" }}</p></div>
+  {% endfor %}</div>
+</div></section>
+{% endif %}
+
+{% if groups %}
+<section id="catalogue" class="section"><div class="wrap">
+  <h2>{{ catalogue_title }}</h2>
+  {% if groups|length > 1 %}<div class="tabs">{% for g in groups %}{% if g.name %}<a href="#cat-{{ forloop.counter }}">{{ g.name }}</a>{% endif %}{% endfor %}</div>{% endif %}
+  {% for g in groups %}
+    {% if g.name %}<h3 class="cat" id="cat-{{ forloop.counter }}">{{ g.name }}</h3>{% endif %}
+    <div class="grid">{% for item in g.items %}
+      <div class="card">
+        {% if item.image %}<img src="{{ item.image }}" alt="{{ item.name }}" loading="lazy">{% endif %}
+        <h3>{{ item.name }}</h3>
+        {% if item.description %}<p class="desc">{{ item.description|truncatechars:160 }}</p>{% endif %}
+        {% if item.location %}<p class="desc">📍 {{ item.location }}{% if item.vacancies %} · {{ item.vacancies }} vacancies{% endif %}</p>{% endif %}
+        {% if item.teacher %}<p class="desc">👤 {{ item.teacher }}</p>{% endif %}
+        <div class="row">
+          {% if item.price %}<span class="price">{{ currency }} {{ item.price }}{% if item.unit %} <small style="font-weight:600;color:var(--soft)">/ {{ item.unit }}</small>{% endif %}</span>{% else %}<span></span>{% endif %}
+          {% if item.vegetarian %}<span class="tag veg">Veg</span>{% elif item.minutes %}<span class="tag">{{ item.minutes }} min</span>{% elif item.capacity %}<span class="tag">👥 {{ item.capacity }}</span>{% endif %}
+        </div>
+      </div>
+    {% endfor %}</div>
+  {% endfor %}
+</div></section>
+{% endif %}
+
+{% if booking_slug %}
+<section id="book" class="section tint"><div class="wrap" style="max-width:760px">
+  <h2>Book now</h2><p class="lead">Send your request — we confirm by phone or WhatsApp.</p>
+  <div class="panel"><div class="bookpilot-booking"></div></div>
+  <script src="{% url 'webapp:book_form_js' booking_slug %}" defer></script>
+</div></section>
+{% endif %}
+
+{% if careers_slug %}
+<section id="apply" class="section{% if not booking_slug %} tint{% endif %}"><div class="wrap" style="max-width:860px">
+  <h2>Apply for a job</h2><p class="lead">Send your details and CV — our team will contact you.</p>
+  <div class="panel"><div class="bookpilot-form"></div></div>
+  <script src="{% url 'webapp:careers_form_js' careers_slug %}" defer></script>
+</div></section>
+{% endif %}
+
+{% if design.about or hours or design.map_url %}
+<section id="about" class="section"><div class="wrap two">
+  <div>
+    <h2>About us</h2>
+    {% if design.about %}<p style="white-space:pre-line;color:var(--soft)">{{ design.about }}</p>{% endif %}
+    {% if design.map_url %}<p><a class="btn ghost" href="{{ design.map_url }}" target="_blank" rel="noopener">📍 Open in Google Maps</a></p>{% endif %}
+  </div>
+  {% if hours %}<div class="panel"><h3 style="margin-top:0">Opening hours</h3><ul class="hours">{% for h in hours %}<li>{{ h }}</li>{% endfor %}</ul></div>{% endif %}
+</div></section>
+{% endif %}
+
+{% if design.custom_html %}<section class="section custom"><div class="wrap">{{ design.custom_html|safe }}</div></section>{% endif %}
+
+<section id="contact" class="section tint"><div class="wrap two">
+  <div>
+    <h2>Contact us</h2>
+    <p class="lead">We usually reply within the day.</p>
+    {% if company.phone %}<p>📞 <a href="tel:{{ phone_link }}">{{ company.phone }}</a></p>{% endif %}
+    {% if whatsapp %}<p>💬 <a href="https://wa.me/{{ whatsapp }}" target="_blank" rel="noopener">WhatsApp</a></p>{% endif %}
+    {% if company.email %}<p>✉️ <a href="mailto:{{ company.email }}">{{ company.email }}</a></p>{% endif %}
+    {% if company.address %}<p style="white-space:pre-line">📍 {{ company.address }}</p>{% endif %}
+  </div>
+  {% if design.show_contact and kit.enquiry_enabled %}
+  <div class="panel"><div class="bookpilot-enquiry"></div></div>
+  <script src="{% url 'webapp:kit_enquiry_js' kit.public_id %}" defer></script>
+  {% endif %}
+</div></section>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div><h4>{{ company.name }}</h4>{% if company.address %}<div style="white-space:pre-line">{{ company.address }}</div>{% endif %}</div>
+    <div><h4>Contact</h4>{% if company.phone %}<div>{{ company.phone }}</div>{% endif %}{% if company.email %}<div>{{ company.email }}</div>{% endif %}</div>
+    {% if socials %}<div><h4>Follow us</h4>{% for name, url in socials %}<div><a href="{{ url }}" target="_blank" rel="noopener">{{ name }}</a></div>{% endfor %}</div>{% endif %}
+  </div>
+  <p style="margin:26px 0 0;opacity:.7">© {{ year }} {{ company.name }}{% if info.vat_number %} · VAT {{ info.vat_number }}{% endif %}</p>
+</div></footer>
+{% if whatsapp %}<a class="wa" href="https://wa.me/{{ whatsapp }}" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>{% endif %}
+</body>
+</html>

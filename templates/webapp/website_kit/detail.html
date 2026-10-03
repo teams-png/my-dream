@@ -18,6 +18,13 @@
     <span class="muted">From websites so far: {{ stats.leads }} enquiries · {{ stats.bookings }} booking requests · {{ stats.applications }} job applications</span>
   </div>
 
+  <div class="card" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:linear-gradient(135deg,#ecfeff,#f0fdf4)">
+    <div style="flex:1 1 320px"><h3 style="margin:0 0 4px">✨ Ready-made website (hosted by BookPilot)</h3>
+      <span class="muted">No WordPress needed: design, logo, theme, own domain and custom CSS/HTML. Menu, offers, phone and address update live from POS.
+      {% if site_design %} · {% if site_design.enabled %}{% if site_design.published %}<span class="pill ok">Live</span>{% else %}<span class="pill warn">Draft</span>{% endif %}{% else %}<span class="pill">Add-on off</span>{% endif %}{% if site_design.custom_domain %} <code>{{ site_design.custom_domain }}</code> ({{ site_design.get_domain_status_display }}){% endif %}{% endif %}</span></div>
+    <a class="btn" href="{% url 'webapp:site_admin_editor' company.id %}">Open website builder →</a>
+  </div>
+
   <div class="card" style="border:2px solid var(--accent)">
     <h3>🌐 1. Client website domain</h3>
     {% if kit.allowed_origins %}

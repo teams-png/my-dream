@@ -585,6 +585,10 @@ msgstr "نموذج الموقع وووردبريس"
 msgid "Booking settings"
 msgstr "إعدادات الحجز"
 
+#: templates/webapp/_industry_nav.html
+msgid "My website"
+msgstr "موقعي الإلكتروني"
+
 #: templates/webapp/_language_switcher.html
 msgid "Language"
 msgstr "اللغة"
@@ -8032,6 +8036,51 @@ msgstr "إعادة تعيين كلمة المرور بالبريد"
 msgid "Open the setup wizard"
 msgstr "افتح معالج الإعداد"
 
+#: templates/webapp/site/editor.html
+msgid "Website kit"
+msgstr "عدة الموقع"
+
+#: templates/webapp/site/editor.html
+msgid "Website add-on is off"
+msgstr "إضافة الموقع غير مفعّلة"
+
+#: templates/webapp/site/editor.html
+msgid "Draft — not public yet"
+msgstr "مسودة — غير منشور بعد"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"A ready website for your business — menu, offers, booking and contact "
+"details update automatically from BookPilot. Ask your BookPilot team to "
+"switch on the Website add-on."
+msgstr ""
+"موقع جاهز لنشاطك — القائمة والعروض والحجز وبيانات التواصل تتحدث تلقائياً من "
+"BookPilot. اطلب من فريق BookPilot تفعيل إضافة الموقع."
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Menu, prices, offers, phone and address come straight from BookPilot — "
+"change them there and the website updates."
+msgstr ""
+"القائمة والأسعار والعروض والهاتف والعنوان تأتي مباشرة من BookPilot — غيّرها "
+"هناك ويتحدث الموقع."
+
+#: templates/webapp/site/editor.html
+msgid "Design"
+msgstr "التصميم"
+
+#: templates/webapp/site/editor.html
+msgid "Sections"
+msgstr "الأقسام"
+
+#: templates/webapp/site/editor.html
+msgid "Preview"
+msgstr "معاينة"
+
+#: templates/webapp/site/editor.html
+msgid "Open full page"
+msgstr "فتح الصفحة كاملة"
+
 #: templates/webapp/stock/_tabs.html
 msgid "Stock"
 msgstr "المخزون"
@@ -9856,6 +9905,78 @@ msgstr "3 منازل عشرية كحد أقصى."
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "تم حفظ إعدادات الميزان."
+
+#: apps/webapp/site_views.py
+msgid "Main colour"
+msgstr "اللون الرئيسي"
+
+#: apps/webapp/site_views.py
+msgid "Highlight colour"
+msgstr "لون التمييز"
+
+#: apps/webapp/site_views.py
+msgid "Font"
+msgstr "الخط"
+
+#: apps/webapp/site_views.py
+msgid "Logo"
+msgstr "الشعار"
+
+#: apps/webapp/site_views.py
+msgid "Cover photo"
+msgstr "صورة الغلاف"
+
+#: apps/webapp/site_views.py
+msgid "Big title"
+msgstr "العنوان الكبير"
+
+#: apps/webapp/site_views.py
+msgid "Line under the title"
+msgstr "سطر تحت العنوان"
+
+#: apps/webapp/site_views.py
+msgid "Opening hours"
+msgstr "ساعات العمل"
+
+#: apps/webapp/site_views.py
+msgid "Google Maps link"
+msgstr "رابط خرائط Google"
+
+#: apps/webapp/site_views.py
+msgid "Show menu / services / products"
+msgstr "إظهار القائمة / الخدمات / المنتجات"
+
+#: apps/webapp/site_views.py
+msgid "Show offers"
+msgstr "إظهار العروض"
+
+#: apps/webapp/site_views.py
+msgid "Show booking form"
+msgstr "إظهار نموذج الحجز"
+
+#: apps/webapp/site_views.py
+msgid "Show jobs"
+msgstr "إظهار الوظائف"
+
+#: apps/webapp/site_views.py
+msgid "Show contact form"
+msgstr "إظهار نموذج التواصل"
+
+#: apps/webapp/site_views.py
+msgid "Leave empty to use the company logo."
+msgstr "اتركه فارغاً لاستخدام شعار الشركة."
+
+#: apps/webapp/site_views.py
+msgid "One line each, e.g. Sat–Thu 10am–11pm"
+msgstr "سطر لكل يوم، مثلاً السبت–الخميس 10ص–11م"
+
+#: apps/webapp/site_views.py
+msgid "Menu"
+msgstr "القائمة"
+
+#: apps/webapp/site_views.py
+msgid "Phone, address & logo"
+msgstr "الهاتف والعنوان والشعار"
 
 #: apps/webapp/stock_views.py
 msgid "Damaged"

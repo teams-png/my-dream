@@ -20,7 +20,7 @@ from django.views.decorators.csrf import csrf_exempt
 from apps.industry import careers as careers_svc
 from apps.industry import online_booking as booking_svc
 from apps.industry import website_kit as svc
-from apps.industry.models import BookingSite, CareersSite, OnlineBooking, WebsiteKit
+from apps.industry.models import BookingSite, CareersSite, OnlineBooking, SiteDesign, WebsiteKit
 from apps.tenants.models import Company
 
 from .views import superuser_required
@@ -270,7 +270,8 @@ def kit_detail(request, company_id):
              "applications": _count_applications(company)}
     ctx = {"company": company, "kit": kit, "caps": caps, "form": form, "bform": bform, "cform": cform, "urls": urls,
            "booking_site": booking_site, "careers_site": careers_site, "stats": stats,
-           "base": request.build_absolute_uri("/").rstrip("/")}
+           "base": request.build_absolute_uri("/").rstrip("/"),
+           "site_design": SiteDesign.objects.filter(company=company).first()}
     ctx["snippets"] = _snippets(ctx)
     return render(request, "webapp/website_kit/detail.html", ctx)
 

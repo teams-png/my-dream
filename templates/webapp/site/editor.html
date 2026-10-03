@@ -1,0 +1,113 @@
+{% extends base_template %}
+{% load i18n %}
+{% block title %}{% translate "My website" %}{% endblock %}
+{% block heading %}🌐 {% translate "My website" %}{% if admin %} · {{ company.name }}{% endif %}{% endblock %}
+{% block content %}
+<style>
+.se{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px;align-items:start}
+@media(max-width:1000px){.se{grid-template-columns:1fr}}
+.se>div,.se>div>*,.se .grid2>*{min-width:0}.se .card{overflow-wrap:anywhere}
+.se .card h3{margin:0 0 10px;font-size:16px}.se .muted{color:var(--ink-soft);font-size:13px}
+.se form p{margin:0 0 12px}.se form label{display:block;font-weight:600;font-size:13px;margin-bottom:4px}
+.se form input:not([type=checkbox]):not([type=color]):not([type=file]),.se form select,.se form textarea{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--surface,#fff);color:inherit;box-sizing:border-box}
+.se form input[type=color]{width:64px;height:38px;border:1px solid var(--line);border-radius:10px;padding:2px}
+.se .helptext{display:block;color:var(--ink-soft);font-size:12px;margin-top:3px}
+.se .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}@media(max-width:600px){.se .grid2{grid-template-columns:1fr}}
+.se .checks label{display:flex;gap:8px;align-items:center;font-weight:500}.se .checks p{margin:0 0 6px}
+.se .preview{position:sticky;top:12px}.se iframe{width:100%;height:78vh;border:1px solid var(--line);border-radius:14px;background:#fff}
+.se .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#f1f5f9;color:#334155}
+.se .ok{background:#dcfce7;color:#166534}.se .warn{background:#fef3c7;color:#92400e}
+.se code{word-break:break-all}.se .errorlist{color:#b91c1c;margin:4px 0;padding-inline-start:18px;font-size:13px}
+</style>
+<div class="se">
+  <div style="display:grid;gap:16px">
+    {% if admin %}<div><a class="btn btn-secondary" href="{% url 'webapp:kit_detail' company.id %}">← {% translate "Website kit" %}</a></div>{% endif %}
+    <div class="card">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+        {% if not design.enabled %}<span class="pill warn">{% translate "Website add-on is off" %}</span>
+        {% elif design.published %}<span class="pill ok">🟢 {% translate "Live" %}</span>{% else %}<span class="pill warn">{% translate "Draft — not public yet" %}</span>{% endif %}
+        {% if design.published and design.enabled %}<a href="{{ public }}" target="_blank" rel="noopener"><code>{{ public }}</code></a>{% endif %}
+        {% if own %}<span class="pill {% if design.domain_status == 'live' %}ok{% else %}warn{% endif %}">{{ own }} · {{ design.get_domain_status_display }}</span>{% endif %}
+      </div>
+      {% if not design.enabled and not admin %}
+        <p style="margin:12px 0 0">{% translate "A ready website for your business — menu, offers, booking and contact details update automatically from BookPilot. Ask your BookPilot team to switch on the Website add-on." %}</p>
+      {% else %}
+        <p class="muted" style="margin:10px 0 0">{% translate "Menu, prices, offers, phone and address come straight from BookPilot — change them there and the website updates." %}
+        {% for label, url in links %}<a href="{{ url }}">{{ label }}</a>{% if not forloop.last %} · {% endif %}{% endfor %}</p>
+      {% endif %}
+    </div>
+
+    {% if admin %}
+    <div class="card" style="border:2px solid var(--accent)">
+      <h3>🛠 Platform admin — add-on, own domain & custom code</h3>
+      <form method="post">{% csrf_token %}<input type="hidden" name="action" value="admin">
+        {{ aform.non_field_errors }}
+        <p class="checks"><label>{{ aform.enabled }} {{ aform.enabled.label }}</label></p>
+        <div class="grid2">
+          <p>{{ aform.custom_domain.label_tag }}{{ aform.custom_domain }}{{ aform.custom_domain.errors }}</p>
+          <p>{{ aform.domain_status.label_tag }}{{ aform.domain_status }}</p>
+        </div>
+        <div class="muted" style="margin:-4px 0 12px;line-height:1.6">
+          <b>Own domain steps:</b> 1) At the client's domain company add a DNS record: <code>CNAME www → {{ host }}</code> (bare domain: ALIAS/ANAME to {{ host }}, or forward it to www).
+          2) In Render → bookpilot-web → Settings → Custom Domains add the same domain (Render issues the SSL certificate).
+          3) When it opens, set status to <b>Live</b>. Until then the site works at <code>{{ public }}</code>.
+        </div>
+        <p>{{ aform.custom_css.label_tag }}{{ aform.custom_css }}<span class="helptext">Added after the theme styles. Use .site, .hero, .section, .card…</span></p>
+        <p>{{ aform.custom_html.label_tag }}{{ aform.custom_html }}<span class="helptext">{{ aform.custom_html.help_text }}</span></p>
+        <button class="btn" type="submit">Save admin settings</button>
+      </form>
+    </div>
+    {% endif %}
+
+    {% if design.enabled or admin %}
+    <div class="card">
+      <h3>🎨 {% translate "Design" %}</h3>
+      <form method="post" enctype="multipart/form-data">{% csrf_token %}<input type="hidden" name="action" value="design">
+        {{ form.non_field_errors }}
+        <p class="checks"><label>{{ form.published }} {{ form.published.label }}</label></p>
+        <div class="grid2">
+          <p>{{ form.theme.label_tag }}{{ form.theme }}</p>
+          <p>{{ form.font.label_tag }}{{ form.font }}</p>
+          <p>{{ form.primary_color.label_tag }}{{ form.primary_color }}</p>
+          <p>{{ form.accent_color.label_tag }}{{ form.accent_color }}</p>
+          <p>{{ form.logo.label_tag }}{{ form.logo }}<span class="helptext">{{ form.logo.help_text }}</span>{{ form.logo.errors }}</p>
+          <p>{{ form.hero_image.label_tag }}{{ form.hero_image }}{{ form.hero_image.errors }}</p>
+        </div>
+        <p>{{ form.hero_title.label_tag }}{{ form.hero_title }}</p>
+        <p>{{ form.hero_subtitle.label_tag }}{{ form.hero_subtitle }}</p>
+        <p>{{ form.about.label_tag }}{{ form.about }}</p>
+        <div class="grid2">
+          <p>{{ form.opening_hours.label_tag }}{{ form.opening_hours }}<span class="helptext">{{ form.opening_hours.help_text }}</span></p>
+          <div>
+            <p>{{ form.whatsapp.label_tag }}{{ form.whatsapp }}</p>
+            <p>{{ form.map_url.label_tag }}{{ form.map_url }}{{ form.map_url.errors }}</p>
+          </div>
+          <p>{{ form.instagram.label_tag }}{{ form.instagram }}</p>
+          <p>{{ form.facebook.label_tag }}{{ form.facebook }}</p>
+          <p>{{ form.tiktok.label_tag }}{{ form.tiktok }}</p>
+        </div>
+        <div class="checks" style="margin-bottom:12px">
+          <b style="display:block;margin-bottom:6px">{% translate "Sections" %}</b>
+          <p><label>{{ form.show_catalogue }} {{ form.show_catalogue.label }}</label></p>
+          <p><label>{{ form.show_offers }} {{ form.show_offers.label }}</label></p>
+          <p><label>{{ form.show_booking }} {{ form.show_booking.label }}</label></p>
+          <p><label>{{ form.show_careers }} {{ form.show_careers.label }}</label></p>
+          <p><label>{{ form.show_contact }} {{ form.show_contact.label }}</label></p>
+        </div>
+        <button class="btn" type="submit">{% translate "Save website" %}</button>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if design.enabled or admin %}
+  <div class="preview">
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+      <b>{% translate "Preview" %}</b>
+      <a class="btn btn-secondary" style="padding:5px 10px" href="{{ preview }}" target="_blank" rel="noopener">↗ {% translate "Open full page" %}</a>
+    </div>
+    <iframe src="{{ preview }}" title="{% translate 'Preview' %}" loading="lazy"></iframe>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

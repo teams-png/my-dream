@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
+from . import site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -47,6 +47,9 @@ urlpatterns = [
     path("platform/website-kit/<int:company_id>/", website_kit_views.kit_detail, name="kit_detail"),
     path("platform/website-kit/<int:company_id>/wordpress-plugin.zip", website_kit_views.kit_wp_plugin, name="kit_wp_plugin"),
     path("platform/website-kit/<int:company_id>/bookpilot_client.py", website_kit_views.kit_python_client, name="kit_python_client"),
+    path("platform/website-kit/<int:company_id>/site/", site_views.site_admin_editor, name="site_admin_editor"),
+    path("website/", site_views.site_editor, name="site_editor"),
+    path("site/<slug:public_id>/", site_views.site_public, name="site_public"),
     path("kit/<slug:public_id>/info.json", website_kit_views.kit_info, name="kit_info"),
     path("kit/<slug:public_id>/catalogue.json", website_kit_views.kit_catalogue, name="kit_catalogue"),
     path("kit/<slug:public_id>/enquiry/", website_kit_views.kit_enquiry, name="kit_enquiry"),

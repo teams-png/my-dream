@@ -85,6 +85,7 @@ LOGIN_REDIRECT_URL = "webapp:dashboard"
 LOGOUT_REDIRECT_URL = "webapp:login"
 
 MIDDLEWARE = [
+    "apps.webapp.site_middleware.CustomDomainMiddleware",  # client websites on their own domains
     "django.middleware.security.SecurityMiddleware",
     "apps.common.middleware.RequestContextMiddleware",
     "corsheaders.middleware.CorsMiddleware",

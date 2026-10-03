@@ -54,4 +54,7 @@
       {% if request.role.name == "Owner" %}<a class="nav-link {% if request.resolver_match.url_name == 'ob_settings' %}active{% endif %}" href="{% url 'webapp:ob_settings' %}"><span>{% if request.user.is_platform_admin %}{% translate "Website form & WordPress" %}{% else %}{% translate "Booking settings" %}{% endif %}</span></a>{% endif %}
       </details>
 {% endif %}
+{% if request.role.name == "Owner" %}
+      <a class="nav-link {% if request.resolver_match.url_name == 'site_editor' %}active{% endif %}" href="{% url 'webapp:site_editor' %}"><span>🌐 {% translate "My website" %}</span></a>
+{% endif %}
 {% endwith %}

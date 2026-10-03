@@ -1815,3 +1815,17 @@ AR.update({
     "Show on our careers website": "اعرض على موقع الوظائف",
     "Job description for the website": "وصف الوظيفة للموقع",
 })
+
+AR.update({
+    "Connect your existing career page": "ربط صفحة الوظائف الحالية",
+    "People keep applying on your own website as they do now. A copy of every application also comes here: to Candidates, the dashboard and the job's pipeline.": "يواصل المتقدمون التقديم على موقعك كالمعتاد، وتصل نسخة من كل طلب إلى هنا: المرشحون ولوحة التحكم ومسار الوظيفة.",
+    "Your website address": "عنوان موقعك",
+    "Connect": "ربط",
+    "Connected": "متصل",
+    "Last step:": "الخطوة الأخيرة:",
+    "ask your web developer to paste this one line on the career page (before </body>):": "اطلب من مطور موقعك لصق هذا السطر في صفحة الوظائف (قبل </body>):",
+    "Copy code": "نسخ الكود",
+    "It reads the name, phone, email, passport, position and CV fields of the form automatically. If the position typed or chosen matches one of your open job orders, the person is added to that job's pipeline.": "يقرأ تلقائياً حقول الاسم والهاتف والبريد والجواز والوظيفة والسيرة الذاتية. إذا طابقت الوظيفة المختارة أحد طلبات التوظيف المفتوحة، يُضاف المتقدم إلى مسارها.",
+    "optional — a ready-made careers page": "اختياري — صفحة وظائف جاهزة",
+    "Website connected. Applications from it will come here.": "تم ربط الموقع. ستصل الطلبات منه إلى هنا.",
+})

@@ -1795,3 +1795,17 @@ ML.update({
     "Show on our careers website": "ഞങ്ങളുടെ കരിയേഴ്സ് വെബ്സൈറ്റിൽ കാണിക്കുക",
     "Job description for the website": "വെബ്സൈറ്റിനുള്ള ജോലി വിവരണം",
 })
+
+ML.update({
+    "Connect your existing career page": "നിലവിലുള്ള career പേജ് കണക്ട് ചെയ്യുക",
+    "People keep applying on your own website as they do now. A copy of every application also comes here: to Candidates, the dashboard and the job's pipeline.": "ആളുകൾ ഇപ്പോഴത്തെപ്പോലെ നിങ്ങളുടെ വെബ്സൈറ്റിൽ തന്നെ അപേക്ഷിക്കും. ഓരോ അപേക്ഷയുടെയും കോപ്പി ഇവിടെയും വരും: Candidates, ഡാഷ്ബോർഡ്, ജോലിയുടെ pipeline.",
+    "Your website address": "നിങ്ങളുടെ വെബ്സൈറ്റ് വിലാസം",
+    "Connect": "കണക്ട് ചെയ്യുക",
+    "Connected": "കണക്ട് ചെയ്തു",
+    "Last step:": "അവസാന ഘട്ടം:",
+    "ask your web developer to paste this one line on the career page (before </body>):": "ഈ ഒരു വരി career പേജിൽ (</body> ന് മുമ്പ്) പേസ്റ്റ് ചെയ്യാൻ വെബ് ഡെവലപ്പറോട് പറയുക:",
+    "Copy code": "കോഡ് കോപ്പി ചെയ്യുക",
+    "It reads the name, phone, email, passport, position and CV fields of the form automatically. If the position typed or chosen matches one of your open job orders, the person is added to that job's pipeline.": "ഫോമിലെ പേര്, ഫോൺ, ഇമെയിൽ, പാസ്പോർട്ട്, തസ്തിക, CV എന്നിവ സ്വയം എടുക്കും. നൽകിയ തസ്തിക തുറന്ന ഒരു ജോബ് ഓർഡറുമായി യോജിച്ചാൽ ആ ജോലിയുടെ pipeline-ലേക്ക് ചേർക്കും.",
+    "optional — a ready-made careers page": "ഐച്ഛികം — തയ്യാറായ careers പേജ്",
+    "Website connected. Applications from it will come here.": "വെബ്സൈറ്റ് കണക്ട് ചെയ്തു. അതിൽ നിന്നുള്ള അപേക്ഷകൾ ഇവിടെ വരും.",
+})

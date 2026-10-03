@@ -35,6 +35,25 @@ def public_site(slug):
     return CareersSite.objects.select_related("company").filter(slug=slug, enabled=True, company__is_active=True).first()
 
 
+def receiving_site(slug):
+    """A site that accepts applications: its own BookPilot page is live, or the agency connected its own website."""
+    site = CareersSite.objects.select_related("company").filter(slug=slug, company__is_active=True).first()
+    if site and (site.enabled or site.allowed_origins.strip()):
+        return site
+    return None
+
+
+def match_job(site, value):
+    """A job id, or a position title typed/selected on the agency's own career page."""
+    value = (value or "").strip()
+    if not value:
+        return None
+    jobs = JobOrder.objects.for_company(site.company).filter(status="open")
+    if value.isdigit():
+        return jobs.filter(id=int(value)).first()
+    return jobs.filter(position__iexact=value[:150]).order_by("-created_at").first()
+
+
 def public_jobs(site):
     return (JobOrder.objects.for_company(site.company).filter(status="open", publish_online=True)
             .order_by("-created_at"))
@@ -78,7 +97,7 @@ def _find_existing(company, passport, phone):
 
 
 @transaction.atomic
-def apply(site, data, cv=None, job=None):
+def apply(site, data, cv=None, job=None, source_note=""):
     """data: name, phone, email, nationality, passport_no, trade, experience_years, current_location, message.
     Returns (candidate, placement or None, is_new_candidate)."""
     company = site.company
@@ -94,8 +113,8 @@ def apply(site, data, cv=None, job=None):
         years = round(float(data.get("experience_years") or 0), 1) or None
     except (TypeError, ValueError):
         years = None
-    note = (data.get("message") or "").strip()[:2000]
-    stamp = f"[{timezone.localdate():%d %b %Y} website] "
+    note = (data.get("message") or "").strip()[:2000] or (f"Applied via {source_note}" if source_note else "")
+    stamp = f"[{timezone.localdate():%d %b %Y} {source_note or 'website'}] "
     candidate = _find_existing(company, passport, phone)
     is_new = candidate is None
     if is_new:

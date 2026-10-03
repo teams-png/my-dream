@@ -118,41 +118,85 @@ def careers_job(request, slug, job_id):
                                                           "embed": request.GET.get("embed") == "1"})
 
 
+def _origin(request):
+    from urllib.parse import urlsplit
+    for header in ("Origin", "Referer"):
+        value = request.headers.get(header) or ""
+        if value:
+            parts = urlsplit(value)
+            if parts.scheme and parts.netloc:
+                return f"{parts.scheme}://{parts.netloc}"
+    return ""
+
+
 @xframe_options_exempt
-@csrf_exempt  # opened from other websites and inside iframes; protected by a honeypot and rate limit
+@csrf_exempt  # opened from other websites and inside iframes; protected by a honeypot, origin check and rate limit
 def careers_apply(request, slug):
-    site = _site_or_404(slug)
+    site = svc.receiving_site(slug)
+    if site is None:
+        raise Http404("This careers page is not available.")
     if request.method == "OPTIONS":
         return _cors(request, site, HttpResponse())
-    job = svc.public_job(site, request.POST.get("job") or request.GET.get("job")) if (request.POST.get("job") or request.GET.get("job")) else None
+    origin = _origin(request)
+    own_page = origin == f"{request.scheme}://{request.get_host()}"
+    from_connected_site = origin in svc.origins(site)
+    trusted = bool(request.headers.get("X-Api-Key")) and request.headers.get("X-Api-Key") == site.api_key
+    if not site.enabled and not (from_connected_site or trusted):
+        raise Http404("This careers page is not available.")
+    job_value = request.POST.get("job") or request.GET.get("job")
+    job = svc.match_job(site, job_value) if (from_connected_site or trusted) else (
+        svc.public_job(site, job_value) if job_value else None)
+    if job is None and (from_connected_site or trusted) and request.POST.get("trade"):
+        job = svc.match_job(site, request.POST.get("trade"))
     wants_json = "application/json" in request.headers.get("Accept", "") or request.GET.get("format") == "json"
     if request.method != "POST":
-        return _public(request, "webapp/careers/apply.html", {**_base(site), "no_float": True, "job": job, "post": {},
+        if not site.enabled:
+            raise Http404
+        return _public(request, "webapp/careers/apply.html", {**_base(site), "job": job, "post": {}, "no_float": True,
                                                               "embed": request.GET.get("embed") == "1"})
     if request.POST.get("company_website"):  # honeypot: people never see this field
+        if wants_json:
+            return _cors(request, site, JsonResponse({"ok": True}, status=201))
         return redirect(reverse("webapp:careers_thanks", args=[slug]))
-    trusted = request.headers.get("X-Api-Key") == site.api_key
     error = None
     if not trusted and _too_many(request, site):
         error = _("Too many applications from this connection. Please try again later or contact us on WhatsApp.")
     else:
+        note = "" if own_page or not origin else origin.split("://", 1)[-1]
         try:
-            candidate, placement, _new = svc.apply(site, request.POST, cv=request.FILES.get("cv"), job=job)
+            candidate, placement, _new = svc.apply(site, request.POST, cv=request.FILES.get("cv"), job=job, source_note=note)
         except ValidationError as exc:
             error = " ".join(_(m) for m in exc.messages)
     if wants_json:
         body = {"ok": False, "error": error} if error else {"ok": True, "reference": candidate.number}
         return _cors(request, site, JsonResponse(body, status=400 if error else 201))
     if error:
-        return _public(request, "webapp/careers/apply.html", {**_base(site), "no_float": True, "job": job, "post": request.POST, "error": error,
-                                                              "embed": request.POST.get("embed") == "1"}, status=400)
+        return _public(request, "webapp/careers/apply.html", {**_base(site), "job": job, "post": request.POST, "error": error,
+                                                              "no_float": True, "embed": request.POST.get("embed") == "1"},
+                       status=400)
     nxt = (request.POST.get("next") or "").strip()
     if nxt and any(nxt == o or nxt.startswith(o + "/") for o in svc.origins(site)):
         return redirect(f"{nxt}{'&' if '?' in nxt else '?'}applied=1")
+    if not site.enabled and origin:
+        return redirect(f"{origin}/?applied=1")
     url = reverse("webapp:careers_thanks", args=[slug]) + f"?ref={candidate.number}"
     if request.POST.get("embed") == "1":
         url += "&embed=1"
     return redirect(url)
+
+
+def careers_connect_js(request, slug):
+    """One-line connector for the agency's existing career page: it sends each submitted application here too."""
+    site = svc.receiving_site(slug)
+    if site is None:
+        return HttpResponse("/* BookPilot: careers connector is not set up */", content_type="application/javascript")
+    endpoint = request.build_absolute_uri(reverse("webapp:careers_apply", args=[slug])) + "?format=json"
+    from django.template.loader import render_to_string
+    body = render_to_string("webapp/careers/connect.js", {"endpoint": json.dumps(endpoint)})
+    response = HttpResponse(body, content_type="application/javascript; charset=utf-8")
+    response["Cache-Control"] = "public, max-age=300"
+    response["Access-Control-Allow-Origin"] = "*"
+    return response
 
 
 @xframe_options_exempt
@@ -214,14 +258,24 @@ class SiteForm(forms.ModelForm):
         return color if re.fullmatch(r"#[0-9a-fA-F]{6}", color) else "#0f766e"
 
     def clean_allowed_origins(self):
+        from urllib.parse import urlsplit
         lines = []
-        for line in self.cleaned_data["allowed_origins"].splitlines():
-            line = line.strip().rstrip("/")
+        for line in self.cleaned_data["allowed_origins"].replace(",", "\n").splitlines():
+            line = line.strip()
             if not line:
                 continue
-            if not line.startswith(("https://", "http://")):
+            if "://" not in line:
+                line = "https://" + line
+            parts = urlsplit(line)
+            if parts.scheme not in ("https", "http") or not parts.netloc or "." not in parts.netloc:
                 raise ValidationError(_("Website addresses must start with https://"))
-            lines.append(line)
+            for origin in {f"{parts.scheme}://{parts.netloc.lower()}"}:
+                if origin not in lines:
+                    lines.append(origin)
+            host = parts.netloc.lower()
+            twin = host[4:] if host.startswith("www.") else f"www.{host}" if host.count(".") == 1 else None
+            if twin and f"{parts.scheme}://{twin}" not in lines:
+                lines.append(f"{parts.scheme}://{twin}")
         return "\n".join(lines)
 
 
@@ -238,6 +292,17 @@ def rec_website(request):
                 job.save(update_fields=["publish_online"])
         messages.success(request, _("Jobs on the website updated."))
         return redirect("webapp:rec_website")
+    if request.method == "POST" and request.POST.get("action") == "connect":
+        form = SiteForm({**{f: getattr(site, f) for f in SiteForm.Meta.fields}, "enabled": site.enabled,
+                         "ask_passport": site.ask_passport, "allowed_origins": request.POST.get("allowed_origins", "")},
+                        instance=site)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Website connected. Applications from it will come here."))
+        else:
+            for error in form.errors.get("allowed_origins", []):
+                messages.error(request, error)
+        return redirect("webapp:rec_website")
     if request.method == "POST" and request.POST.get("action") == "new_key":
         import secrets
         site.api_key = secrets.token_urlsafe(30)[:40]
@@ -252,9 +317,11 @@ def rec_website(request):
     url = request.build_absolute_uri(reverse("webapp:careers_home", args=[site.slug]))
     apply_url = request.build_absolute_uri(reverse("webapp:careers_apply", args=[site.slug]))
     jobs_json = request.build_absolute_uri(reverse("webapp:careers_jobs_json", args=[site.slug]))
+    connect_js = request.build_absolute_uri(reverse("webapp:careers_connect_js", args=[site.slug]))
     from apps.industry.models import Placement
     return render(request, "webapp/careers/settings.html", {
-        "site": site, "form": form, "url": url, "apply_url": apply_url, "jobs_json": jobs_json,
+        "site": site, "form": form, "url": url, "connect_tag": f'<script src="{connect_js}" defer></script>',
+        "connected": sorted(svc.origins(site)), "apply_url": apply_url, "jobs_json": jobs_json,
         "embed": f'<iframe src="{url}?embed=1" style="width:100%;min-height:900px;border:0" title="Careers"></iframe>',
         "form_snippet": _form_snippet(apply_url, site),
         "jobs": JobOrder.objects.for_company(company).filter(status__in=["open", "on_hold"]).select_related("client").order_by("-created_at"),

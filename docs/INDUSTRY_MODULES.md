@@ -72,7 +72,12 @@ Menu: 🧑‍💼 Recruitment. It replaces the generic project menu for this typ
   - If the same passport or phone applies again, the existing candidate is updated instead of duplicated.
   - Spam protection: a honeypot field, 8 applications per hour per IP, and a check on CV file type and size.
   - For an agency that already has a website: a Careers link, an iframe embed (`?embed=1`), a public JSON job feed (`jobs.json`), and a form or JSON POST from their own domain, allowed through CORS for the addresses they list. Their server can send `X-Api-Key` to skip the rate limit.
-  - Code: `apps/industry/careers.py`, `apps/webapp/careers_views.py`, `templates/webapp/careers/`.
+  - **Connect an existing career page** (no new website needed): enter the agency's domain under "Connect your existing career page" and paste one line on their career page: `<script src="…/careers/<name>/connect.js" defer></script>`.
+    - The script finds the career form and maps its fields automatically: first and last name, mobile, email, passport, position, nationality, experience and the CV file. Fields it doesn't recognise go into the message.
+    - It sends a copy of each application here, and the site's own form keeps working, whether it is a normal post or an AJAX/WordPress form.
+    - A position matching an open job order (by title) puts the person in that job's "Applied online" stage.
+    - Only listed domains are accepted. The hosted BookPilot page can stay switched off.
+  - Code: `apps/industry/careers.py`, `apps/webapp/careers_views.py`, `templates/webapp/careers/` (including `connect.js`).
 
 ## Staff & HR (every business type)
 

@@ -178,6 +178,7 @@ urlpatterns = [
     path("careers/<slug:slug>/apply/", careers_views.careers_apply, name="careers_apply"),
     path("careers/<slug:slug>/thanks/", careers_views.careers_thanks, name="careers_thanks"),
     path("careers/<slug:slug>/jobs.json", careers_views.careers_jobs_json, name="careers_jobs_json"),
+    path("careers/<slug:slug>/connect.js", careers_views.careers_connect_js, name="careers_connect_js"),
     path("recruitment/", recruitment_views.rec_home, name="rec_home"),
     path("recruitment/clients/", recruitment_views.rec_clients, name="rec_clients"),
     path("recruitment/jobs/", recruitment_views.rec_jobs, name="rec_jobs"),

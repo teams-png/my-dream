@@ -1659,8 +1659,61 @@ msgid "new applications"
 msgstr "طلبات جديدة"
 
 #: templates/webapp/careers/settings.html
+msgid "Connect your existing career page"
+msgstr "ربط صفحة الوظائف الحالية"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"People keep applying on your own website as they do now. A copy of every "
+"application also comes here: to Candidates, the dashboard and the job's "
+"pipeline."
+msgstr ""
+"يواصل المتقدمون التقديم على موقعك كالمعتاد، وتصل نسخة من كل طلب إلى هنا: "
+"المرشحون ولوحة التحكم ومسار الوظيفة."
+
+#: templates/webapp/careers/settings.html
+msgid "Your website address"
+msgstr "عنوان موقعك"
+
+#: templates/webapp/careers/settings.html
+msgid "Connect"
+msgstr "ربط"
+
+#: templates/webapp/careers/settings.html
+msgid "Connected"
+msgstr "متصل"
+
+#: templates/webapp/careers/settings.html
+msgid "Last step:"
+msgstr "الخطوة الأخيرة:"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"ask your web developer to paste this one line on the career page (before "
+"</body>):"
+msgstr "اطلب من مطور موقعك لصق هذا السطر في صفحة الوظائف (قبل </body>):"
+
+#: templates/webapp/careers/settings.html
+msgid "Copy code"
+msgstr "نسخ الكود"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"It reads the name, phone, email, passport, position and CV fields of the "
+"form automatically. If the position typed or chosen matches one of your open"
+" job orders, the person is added to that job's pipeline."
+msgstr ""
+"يقرأ تلقائياً حقول الاسم والهاتف والبريد والجواز والوظيفة والسيرة الذاتية. "
+"إذا طابقت الوظيفة المختارة أحد طلبات التوظيف المفتوحة، يُضاف المتقدم إلى "
+"مسارها."
+
+#: templates/webapp/careers/settings.html
 msgid "Your website"
 msgstr "موقعك"
+
+#: templates/webapp/careers/settings.html
+msgid "optional — a ready-made careers page"
+msgstr "اختياري — صفحة وظائف جاهزة"
 
 #: templates/webapp/careers/settings.html
 msgid "The logo and business name come from Settings → Business settings."
@@ -8491,6 +8544,10 @@ msgstr "يجب أن يبدأ عنوان الموقع بـ https://"
 #: apps/webapp/careers_views.py
 msgid "Jobs on the website updated."
 msgstr "تم تحديث الوظائف على الموقع."
+
+#: apps/webapp/careers_views.py
+msgid "Website connected. Applications from it will come here."
+msgstr "تم ربط الموقع. ستصل الطلبات منه إلى هنا."
 
 #: apps/webapp/careers_views.py
 msgid "New API key created. Update it on your own website."

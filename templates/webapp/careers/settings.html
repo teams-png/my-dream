@@ -12,9 +12,23 @@
     <button class="btn btn-secondary" type="button" data-copy="{{ url }}" data-done="{% translate "Link copied" %}" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.dataset.copy);this.textContent='✓ '+this.dataset.done">🔗 {% translate "Copy link" %}</button>
     {% if applications %}<a class="btn btn-secondary" href="{% url 'webapp:rec_home' %}">📥 {{ applications }} {% translate "new applications" %}</a>{% endif %}
   </div>
+  <div class="ix-card" style="border-color:var(--accent)">
+    <h3>🔌 {% translate "Connect your existing career page" %}</h3>
+    <p style="margin-top:0;color:var(--ink-soft)">{% translate "People keep applying on your own website as they do now. A copy of every application also comes here: to Candidates, the dashboard and the job's pipeline." %}</p>
+    <form method="post" class="rc-inline">{% csrf_token %}<input type="hidden" name="action" value="connect">
+      <div style="flex:1 1 320px"><label>{% translate "Your website address" %}</label><input name="allowed_origins" value="{{ site.allowed_origins }}" placeholder="https://www.youragency.com"></div>
+      <button class="btn" type="submit">{% translate "Connect" %}</button></form>
+    {% if connected %}
+    <p style="margin:14px 0 6px;font-weight:700">✓ {% translate "Connected" %}: {{ connected|join:", " }}</p>
+    <p style="margin:12px 0 6px"><b>{% translate "Last step:" %}</b> {% translate "ask your web developer to paste this one line on the career page (before </body>):" %}</p>
+    <textarea readonly rows="2" style="width:100%;font:12.5px monospace;padding:9px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)" onclick="this.select()">{{ connect_tag }}</textarea>
+    <button class="btn btn-secondary" type="button" style="margin-top:8px" data-copy="{{ connect_tag }}" data-done="{% translate "Link copied" %}" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.dataset.copy);this.textContent='✓ '+this.dataset.done">📋 {% translate "Copy code" %}</button>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:10px 0 0">{% translate "It reads the name, phone, email, passport, position and CV fields of the form automatically. If the position typed or chosen matches one of your open job orders, the person is added to that job's pipeline." %}</p>
+    {% endif %}
+  </div>
   <div class="ix-grid2">
     <form method="post" class="ix-card ix-form">{% csrf_token %}
-      <h3>🌐 {% translate "Your website" %}</h3>
+      <h3>🌐 {% translate "Your website" %} <small style="font-weight:500;color:var(--ink-soft)">({% translate "optional — a ready-made careers page" %})</small></h3>
       <div class="fields">
       {% for field in form %}
         {% if field.field.widget.input_type == "checkbox" %}<div class="full"><label style="display:flex;gap:8px;align-items:center;color:var(--ink)">{{ field }} {{ field.label }}</label></div>

@@ -139,3 +139,37 @@ def test_settings_page_publish_jobs_and_slug(two_agencies):
     careers.site_for(t["b"])
     t["b_client"].post(reverse("webapp:rec_website"), {"slug": "gulf-jobs-qa", "accent_color": "#000000"})
     assert CareersSite.objects.get(company=t["b"]).slug != "gulf-jobs-qa"
+
+
+def test_connected_external_career_page(two_agencies):
+    """The agency keeps its own website (BookPilot page off); applications from that site still arrive."""
+    t = two_agencies
+    site = t["site"]
+    site.enabled = False
+    site.save()
+    c = t["a_client"]
+    c.post(reverse("webapp:rec_website"), {"action": "connect", "allowed_origins": "mite.socialdrive.qa/careers"})
+    site.refresh_from_db()
+    assert site.allowed_origins == "https://mite.socialdrive.qa"
+    page = c.get(reverse("webapp:rec_website")).content.decode()
+    assert f"/careers/{site.slug}/connect.js" in page
+    js = Client().get(reverse("webapp:careers_connect_js", args=[site.slug]))
+    assert js["Content-Type"].startswith("application/javascript") and f"/careers/{site.slug}/apply/?format=json" in js.content.decode()
+    assert "{{" not in js.content.decode()
+    # the hosted page stays off
+    assert Client().get(reverse("webapp:careers_home", args=[site.slug])).status_code == 404
+    url = reverse("webapp:careers_apply", args=[site.slug]) + "?format=json"
+    ok = Client().post(url, {"name": "Joseph", "phone": "+91 99999 11111", "passport_no": "J1",
+                             "trade": "heavy driver", "message": "From their form"},
+                       HTTP_ORIGIN="https://mite.socialdrive.qa")
+    assert ok.status_code == 201 and ok["Access-Control-Allow-Origin"] == "https://mite.socialdrive.qa"
+    joseph = Candidate.objects.for_company(t["a"]).get(name="Joseph")
+    assert Placement.objects.get(candidate=joseph).job_order == t["job"]  # matched by position title
+    assert "mite.socialdrive.qa" in joseph.notes
+    # a site that is not connected cannot post into this agency
+    bad = Client().post(url, {"name": "Spam", "phone": "+97455550000", "passport_no": "X9"}, HTTP_ORIGIN="https://evil.test")
+    assert bad.status_code == 404 and not Candidate.objects.for_company(t["a"]).filter(name="Spam").exists()
+    # the hidden (unpublished) open job can still be matched from the agency's own page
+    Client().post(url, {"name": "Maria", "phone": "+63 917 000 0000", "passport_no": "M1", "job": "Hidden Job"},
+                  HTTP_ORIGIN="https://mite.socialdrive.qa")
+    assert Placement.objects.get(candidate__name="Maria").job_order == t["hidden"]

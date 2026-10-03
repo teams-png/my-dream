@@ -1664,8 +1664,64 @@ msgid "new applications"
 msgstr "പുതിയ അപേക്ഷകൾ"
 
 #: templates/webapp/careers/settings.html
+msgid "Connect your existing career page"
+msgstr "നിലവിലുള്ള career പേജ് കണക്ട് ചെയ്യുക"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"People keep applying on your own website as they do now. A copy of every "
+"application also comes here: to Candidates, the dashboard and the job's "
+"pipeline."
+msgstr ""
+"ആളുകൾ ഇപ്പോഴത്തെപ്പോലെ നിങ്ങളുടെ വെബ്സൈറ്റിൽ തന്നെ അപേക്ഷിക്കും. ഓരോ "
+"അപേക്ഷയുടെയും കോപ്പി ഇവിടെയും വരും: Candidates, ഡാഷ്ബോർഡ്, ജോലിയുടെ "
+"pipeline."
+
+#: templates/webapp/careers/settings.html
+msgid "Your website address"
+msgstr "നിങ്ങളുടെ വെബ്സൈറ്റ് വിലാസം"
+
+#: templates/webapp/careers/settings.html
+msgid "Connect"
+msgstr "കണക്ട് ചെയ്യുക"
+
+#: templates/webapp/careers/settings.html
+msgid "Connected"
+msgstr "കണക്ട് ചെയ്തു"
+
+#: templates/webapp/careers/settings.html
+msgid "Last step:"
+msgstr "അവസാന ഘട്ടം:"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"ask your web developer to paste this one line on the career page (before "
+"</body>):"
+msgstr ""
+"ഈ ഒരു വരി career പേജിൽ (</body> ന് മുമ്പ്) പേസ്റ്റ് ചെയ്യാൻ വെബ് ഡെവലപ്പറോട്"
+" പറയുക:"
+
+#: templates/webapp/careers/settings.html
+msgid "Copy code"
+msgstr "കോഡ് കോപ്പി ചെയ്യുക"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"It reads the name, phone, email, passport, position and CV fields of the "
+"form automatically. If the position typed or chosen matches one of your open"
+" job orders, the person is added to that job's pipeline."
+msgstr ""
+"ഫോമിലെ പേര്, ഫോൺ, ഇമെയിൽ, പാസ്പോർട്ട്, തസ്തിക, CV എന്നിവ സ്വയം എടുക്കും. "
+"നൽകിയ തസ്തിക തുറന്ന ഒരു ജോബ് ഓർഡറുമായി യോജിച്ചാൽ ആ ജോലിയുടെ pipeline-ലേക്ക് "
+"ചേർക്കും."
+
+#: templates/webapp/careers/settings.html
 msgid "Your website"
 msgstr "നിങ്ങളുടെ വെബ്സൈറ്റ്"
+
+#: templates/webapp/careers/settings.html
+msgid "optional — a ready-made careers page"
+msgstr "ഐച്ഛികം — തയ്യാറായ careers പേജ്"
 
 #: templates/webapp/careers/settings.html
 msgid "The logo and business name come from Settings → Business settings."
@@ -8577,6 +8633,10 @@ msgstr "വെബ്സൈറ്റ് വിലാസം https:// ൽ തുട
 #: apps/webapp/careers_views.py
 msgid "Jobs on the website updated."
 msgstr "വെബ്സൈറ്റിലെ ജോലികൾ പുതുക്കി."
+
+#: apps/webapp/careers_views.py
+msgid "Website connected. Applications from it will come here."
+msgstr "വെബ്സൈറ്റ് കണക്ട് ചെയ്തു. അതിൽ നിന്നുള്ള അപേക്ഷകൾ ഇവിടെ വരും."
 
 #: apps/webapp/careers_views.py
 msgid "New API key created. Update it on your own website."

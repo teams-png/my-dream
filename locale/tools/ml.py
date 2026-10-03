@@ -1809,3 +1809,15 @@ ML.update({
     "optional — a ready-made careers page": "ഐച്ഛികം — തയ്യാറായ careers പേജ്",
     "Website connected. Applications from it will come here.": "വെബ്സൈറ്റ് കണക്ട് ചെയ്തു. അതിൽ നിന്നുള്ള അപേക്ഷകൾ ഇവിടെ വരും.",
 })
+
+ML.update({
+    "Recruitment form for your website (WordPress or any site)": "നിങ്ങളുടെ വെബ്സൈറ്റിനുള്ള റിക്രൂട്ട്മെന്റ് ഫോം (WordPress അല്ലെങ്കിൽ ഏത് സൈറ്റും)",
+    "A complete application form: job, experience, personal details, passport, contact, CV upload. Every application comes straight to Candidates, the dashboard and the job's pipeline — only for your agency.": "പൂർണ്ണമായ അപേക്ഷാ ഫോം: ജോലി, പരിചയം, വ്യക്തിഗത വിവരങ്ങൾ, പാസ്പോർട്ട്, കോൺടാക്ട്, CV അപ്‌ലോഡ്. ഓരോ അപേക്ഷയും നേരെ Candidates, ഡാഷ്ബോർഡ്, ജോലിയുടെ pipeline എന്നിവയിലേക്ക് വരും — നിങ്ങളുടെ ഏജൻസിക്ക് മാത്രം.",
+    "Option 1 — WordPress plugin (easiest)": "വഴി 1 — WordPress plugin (ഏറ്റവും എളുപ്പം)",
+    "Download the plugin": "plugin ഡൗൺലോഡ് ചെയ്യുക",
+    "WordPress → Plugins → Add New → Upload Plugin → Activate.": "WordPress → Plugins → Add New → Upload Plugin → Activate.",
+    "On the Careers page add the shortcode": "Careers പേജിൽ ഈ shortcode ചേർക്കുക",
+    "Options:": "ഓപ്ഷനുകൾ:",
+    "Option 2 — paste this code (any website, WordPress “Custom HTML” block, Elementor “HTML”)": "വഴി 2 — ഈ കോഡ് പേസ്റ്റ് ചെയ്യുക (ഏത് വെബ്സൈറ്റും, WordPress “Custom HTML” block, Elementor “HTML”)",
+    "The job list in the form shows the jobs ticked under “Jobs shown on the website” below. Button colour = Brand colour.": "ഫോമിലെ ജോലി ലിസ്റ്റിൽ താഴെ “Jobs shown on the website”-ൽ ടിക്ക് ചെയ്ത ജോലികൾ കാണിക്കും. ബട്ടണിന്റെ നിറം = Brand colour.",
+})

@@ -12,6 +12,27 @@
     <button class="btn btn-secondary" type="button" data-copy="{{ url }}" data-done="{% translate "Link copied" %}" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.dataset.copy);this.textContent='✓ '+this.dataset.done">🔗 {% translate "Copy link" %}</button>
     {% if applications %}<a class="btn btn-secondary" href="{% url 'webapp:rec_home' %}">📥 {{ applications }} {% translate "new applications" %}</a>{% endif %}
   </div>
+  <div class="ix-card" style="border-color:var(--accent);border-width:2px">
+    <h3>📝 {% translate "Recruitment form for your website (WordPress or any site)" %}</h3>
+    <p style="margin-top:0;color:var(--ink-soft)">{% translate "A complete application form: job, experience, personal details, passport, contact, CV upload. Every application comes straight to Candidates, the dashboard and the job's pipeline — only for your agency." %}</p>
+    <div class="ix-grid2">
+      <div>
+        <p style="font-weight:700;margin:0 0 6px">{% translate "Option 1 — WordPress plugin (easiest)" %}</p>
+        <ol style="margin:0 0 10px;padding-inline-start:20px;font-size:13.5px;line-height:1.7">
+          <li>{% translate "Download the plugin" %}: <a class="btn btn-secondary" style="padding:5px 10px" href="{% url 'webapp:rec_wp_plugin' %}">⬇ bookpilot-recruitment-form.zip</a></li>
+          <li>{% translate "WordPress → Plugins → Add New → Upload Plugin → Activate." %}</li>
+          <li>{% translate "On the Careers page add the shortcode" %} <code>[bookpilot_form]</code></li>
+        </ol>
+        <p style="font-size:12.5px;color:var(--ink-soft);margin:0">{% translate "Options:" %} <code>[bookpilot_form lang="ar"]</code> <code>[bookpilot_form job="Electrician"]</code> <code>[bookpilot_form thanks="https://…/thank-you"]</code></p>
+      </div>
+      <div>
+        <p style="font-weight:700;margin:0 0 6px">{% translate "Option 2 — paste this code (any website, WordPress “Custom HTML” block, Elementor “HTML”)" %}</p>
+        <textarea readonly rows="3" style="width:100%;font:12.5px monospace;padding:9px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)" onclick="this.select()">{{ form_tag }}</textarea>
+        <button class="btn btn-secondary" type="button" style="margin-top:8px" data-copy="{{ form_tag }}" data-done="{% translate "Link copied" %}" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.dataset.copy);this.textContent='✓ '+this.dataset.done">📋 {% translate "Copy code" %}</button>
+      </div>
+    </div>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin:12px 0 0">{% translate "The job list in the form shows the jobs ticked under “Jobs shown on the website” below. Button colour = Brand colour." %}</p>
+  </div>
   <div class="ix-card" style="border-color:var(--accent)">
     <h3>🔌 {% translate "Connect your existing career page" %}</h3>
     <p style="margin-top:0;color:var(--ink-soft)">{% translate "People keep applying on your own website as they do now. A copy of every application also comes here: to Candidates, the dashboard and the job's pipeline." %}</p>

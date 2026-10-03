@@ -1,0 +1,71 @@
+<?php
+/**
+ * Plugin Name: BookPilot Recruitment Form
+ * Description: Detailed job application form for {{ company }}. Every application goes straight to the BookPilot recruitment dashboard (candidates, CVs, job pipeline). Use the shortcode [bookpilot_form] on any page.
+ * Version: 1.0.0
+ * Author: BookPilot
+ * License: GPLv2 or later
+ * Requires at least: 5.0
+ */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+define('BOOKPILOT_FORM_DEFAULT_URL', '{{ form_js }}');
+
+function bookpilot_form_url() {
+    $url = get_option('bookpilot_form_url', '');
+    return $url ? $url : BOOKPILOT_FORM_DEFAULT_URL;
+}
+
+/**
+ * [bookpilot_form job="Electrician" lang="ar" color="#0f766e" thanks="https://example.com/thank-you" title="Apply now"]
+ */
+function bookpilot_form_shortcode($atts) {
+    $a = shortcode_atts(array('job' => '', 'lang' => '', 'color' => '', 'thanks' => '', 'title' => ''), $atts, 'bookpilot_form');
+    wp_enqueue_script('bookpilot-form', esc_url(bookpilot_form_url()), array(), '1.0.0', true);
+    $attrs = '';
+    foreach ($a as $key => $value) {
+        if ($value !== '') {
+            $attrs .= ' data-' . $key . '="' . esc_attr($value) . '"';
+        }
+    }
+    return '<div class="bookpilot-form"' . $attrs . '></div>';
+}
+add_shortcode('bookpilot_form', 'bookpilot_form_shortcode');
+
+function bookpilot_form_settings_menu() {
+    add_options_page('BookPilot Recruitment Form', 'BookPilot Form', 'manage_options', 'bookpilot-form', 'bookpilot_form_settings_page');
+}
+add_action('admin_menu', 'bookpilot_form_settings_menu');
+
+function bookpilot_form_register_settings() {
+    register_setting('bookpilot_form', 'bookpilot_form_url', array('type' => 'string', 'sanitize_callback' => 'esc_url_raw'));
+}
+add_action('admin_init', 'bookpilot_form_register_settings');
+
+function bookpilot_form_settings_page() {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+    ?>
+    <div class="wrap">
+        <h1>BookPilot Recruitment Form</h1>
+        <p>Add <code>[bookpilot_form]</code> to any page or post (Gutenberg "Shortcode" block, Elementor "Shortcode" widget, etc.).</p>
+        <p>Options: <code>[bookpilot_form job="Electrician" lang="ar" color="#0f766e" thanks="https://your-site.com/thank-you"]</code></p>
+        <form method="post" action="options.php">
+            <?php settings_fields('bookpilot_form'); ?>
+            <table class="form-table" role="presentation">
+                <tr>
+                    <th scope="row"><label for="bookpilot_form_url">Form address</label></th>
+                    <td><input name="bookpilot_form_url" id="bookpilot_form_url" type="url" class="large-text"
+                               value="<?php echo esc_attr(bookpilot_form_url()); ?>">
+                        <p class="description">Already filled in for {{ company }}. Change it only if BookPilot gives you a new address.</p></td>
+                </tr>
+            </table>
+            <?php submit_button(); ?>
+        </form>
+    </div>
+    <?php
+}

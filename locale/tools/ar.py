@@ -1829,3 +1829,15 @@ AR.update({
     "optional — a ready-made careers page": "اختياري — صفحة وظائف جاهزة",
     "Website connected. Applications from it will come here.": "تم ربط الموقع. ستصل الطلبات منه إلى هنا.",
 })
+
+AR.update({
+    "Recruitment form for your website (WordPress or any site)": "نموذج توظيف لموقعك (ووردبريس أو أي موقع)",
+    "A complete application form: job, experience, personal details, passport, contact, CV upload. Every application comes straight to Candidates, the dashboard and the job's pipeline — only for your agency.": "نموذج تقديم كامل: الوظيفة، الخبرة، البيانات الشخصية، الجواز، التواصل، رفع السيرة الذاتية. يصل كل طلب مباشرة إلى المرشحين ولوحة التحكم ومسار الوظيفة — لوكالتك فقط.",
+    "Option 1 — WordPress plugin (easiest)": "الخيار 1 — إضافة ووردبريس (الأسهل)",
+    "Download the plugin": "تنزيل الإضافة",
+    "WordPress → Plugins → Add New → Upload Plugin → Activate.": "ووردبريس ← الإضافات ← أضف جديد ← رفع إضافة ← تفعيل.",
+    "On the Careers page add the shortcode": "أضف الكود المختصر في صفحة الوظائف",
+    "Options:": "خيارات:",
+    "Option 2 — paste this code (any website, WordPress “Custom HTML” block, Elementor “HTML”)": "الخيار 2 — الصق هذا الكود (أي موقع، كتلة «HTML مخصص» في ووردبريس، «HTML» في إليمنتور)",
+    "The job list in the form shows the jobs ticked under “Jobs shown on the website” below. Button colour = Brand colour.": "تعرض قائمة الوظائف في النموذج الوظائف المحددة في «الوظائف المعروضة على الموقع» أدناه. لون الزر = لون العلامة.",
+})

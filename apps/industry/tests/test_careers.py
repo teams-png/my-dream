@@ -173,3 +173,37 @@ def test_connected_external_career_page(two_agencies):
     Client().post(url, {"name": "Maria", "phone": "+63 917 000 0000", "passport_no": "M1", "job": "Hidden Job"},
                   HTTP_ORIGIN="https://mite.socialdrive.qa")
     assert Placement.objects.get(candidate__name="Maria").job_order == t["hidden"]
+
+
+def test_detailed_form_widget_and_wordpress_plugin(two_agencies):
+    import io
+    import zipfile
+    t = two_agencies
+    site = t["site"]
+    site.enabled = False
+    site.allowed_origins = ""
+    site.save()
+    js = Client().get(reverse("webapp:careers_form_js", args=[site.slug])).content.decode()
+    assert "widget=1" in js and "Gulf Manpower" in js and "{{" not in js and "{%" not in js
+    url = reverse("webapp:careers_apply", args=[site.slug]) + "?format=json&widget=1"
+    resp = Client().post(url, {
+        "job": t["job"].id, "trade": "Heavy Driver", "name": "Abdul Rahman", "phone": "+880 1711 000000",
+        "nationality": "Bangladeshi", "gender": "male", "date_of_birth": "1992-04-10", "passport_no": "bd1234567",
+        "passport_expiry": "2030-01-31", "experience_years": "7", "gulf_experience": "yes", "expected_salary": "2,800",
+        "education": "SSC", "languages": "Bengali, Hindi", "driving_licence": "GCC", "notice_period": "Immediately",
+        "marital_status": "Married"}, HTTP_ORIGIN="https://any-wordpress-site.com")
+    assert resp.status_code == 201 and resp["Access-Control-Allow-Origin"] == "https://any-wordpress-site.com"
+    c = Candidate.objects.for_company(t["a"]).get(name="Abdul Rahman")
+    assert c.gender == "male" and str(c.date_of_birth) == "1992-04-10" and str(c.passport_expiry) == "2030-01-31"
+    assert c.expected_salary == Decimal("2800") and c.gulf_experience and c.education == "SSC"
+    assert "Driving licence: GCC" in c.notes and "Marital status: Married" in c.notes
+    assert Placement.objects.get(candidate=c).job_order == t["job"]
+    # bad optional values are ignored, the application still arrives
+    Client().post(url, {"name": "Ok Person", "phone": "+97455512345", "passport_no": "OK1", "date_of_birth": "not-a-date",
+                        "expected_salary": "abc"}, HTTP_ORIGIN="https://x.example")
+    assert Candidate.objects.for_company(t["a"]).filter(name="Ok Person").exists()
+    # plugin download has this agency's form address
+    z = zipfile.ZipFile(io.BytesIO(t["a_client"].get(reverse("webapp:rec_wp_plugin")).content))
+    php = z.read("bookpilot-recruitment-form/bookpilot-recruitment-form.php").decode()
+    assert "add_shortcode('bookpilot_form'" in php and f"/careers/{site.slug}/form.js" in php and "Plugin Name:" in php
+    assert "bookpilot_form" in t["a_client"].get(reverse("webapp:rec_website")).content.decode()

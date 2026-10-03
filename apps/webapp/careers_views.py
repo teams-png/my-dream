@@ -132,14 +132,15 @@ def _origin(request):
 @xframe_options_exempt
 @csrf_exempt  # opened from other websites and inside iframes; protected by a honeypot, origin check and rate limit
 def careers_apply(request, slug):
-    site = svc.receiving_site(slug)
+    widget = request.GET.get("widget") == "1"
+    site = svc.receiving_site(slug, widget=widget)
     if site is None:
         raise Http404("This careers page is not available.")
     if request.method == "OPTIONS":
         return _cors(request, site, HttpResponse())
     origin = _origin(request)
     own_page = origin == f"{request.scheme}://{request.get_host()}"
-    from_connected_site = origin in svc.origins(site)
+    from_connected_site = origin in svc.origins(site) or (widget and bool(origin))
     trusted = bool(request.headers.get("X-Api-Key")) and request.headers.get("X-Api-Key") == site.api_key
     if not site.enabled and not (from_connected_site or trusted):
         raise Http404("This careers page is not available.")
@@ -169,7 +170,12 @@ def careers_apply(request, slug):
             error = " ".join(_(m) for m in exc.messages)
     if wants_json:
         body = {"ok": False, "error": error} if error else {"ok": True, "reference": candidate.number}
-        return _cors(request, site, JsonResponse(body, status=400 if error else 201))
+        response = JsonResponse(body, status=400 if error else 201)
+        if widget and origin:  # the form widget runs on any website the agency puts it on
+            response["Access-Control-Allow-Origin"] = origin
+            response["Vary"] = "Origin"
+            return response
+        return _cors(request, site, response)
     if error:
         return _public(request, "webapp/careers/apply.html", {**_base(site), "job": job, "post": request.POST, "error": error,
                                                               "no_float": True, "embed": request.POST.get("embed") == "1"},
@@ -183,6 +189,22 @@ def careers_apply(request, slug):
     if request.POST.get("embed") == "1":
         url += "&embed=1"
     return redirect(url)
+
+
+def careers_form_js(request, slug):
+    """The detailed application form for any website: <div class="bookpilot-form"></div> + this script."""
+    site = svc.receiving_site(slug, widget=True)
+    if site is None:
+        return HttpResponse("/* BookPilot: recruitment form is not set up */", content_type="application/javascript")
+    from django.template.loader import render_to_string
+    cfg = {"endpoint": request.build_absolute_uri(reverse("webapp:careers_apply", args=[slug])) + "?format=json&widget=1",
+           "jobs": request.build_absolute_uri(reverse("webapp:careers_jobs_json", args=[slug])),
+           "company": site.company.name, "color": site.accent_color or "#0f766e", "ask_passport": site.ask_passport}
+    body = render_to_string("webapp/careers/form.js", {"cfg": json.dumps(cfg).replace("</", "<\\/")})
+    response = HttpResponse(body, content_type="application/javascript; charset=utf-8")
+    response["Cache-Control"] = "public, max-age=300"
+    response["Access-Control-Allow-Origin"] = "*"
+    return response
 
 
 def careers_connect_js(request, slug):
@@ -207,7 +229,9 @@ def careers_thanks(request, slug):
 
 
 def careers_jobs_json(request, slug):
-    site = _site_or_404(slug)
+    site = svc.receiving_site(slug, widget=True)
+    if site is None:
+        raise Http404
     base = request.build_absolute_uri(reverse("webapp:careers_home", args=[slug]))
     jobs = [{"id": j.id, "position": j.position, "location": j.work_location, "vacancies": j.vacancies,
              "salary": f"{j.salary:.0f}" if j.salary else None, "currency": site.company.default_currency,
@@ -318,9 +342,11 @@ def rec_website(request):
     apply_url = request.build_absolute_uri(reverse("webapp:careers_apply", args=[site.slug]))
     jobs_json = request.build_absolute_uri(reverse("webapp:careers_jobs_json", args=[site.slug]))
     connect_js = request.build_absolute_uri(reverse("webapp:careers_connect_js", args=[site.slug]))
+    form_js = request.build_absolute_uri(reverse("webapp:careers_form_js", args=[site.slug]))
     from apps.industry.models import Placement
     return render(request, "webapp/careers/settings.html", {
         "site": site, "form": form, "url": url, "connect_tag": f'<script src="{connect_js}" defer></script>',
+        "form_tag": f'<div class="bookpilot-form"></div>\n<script src="{form_js}" defer></script>',
         "connected": sorted(svc.origins(site)), "apply_url": apply_url, "jobs_json": jobs_json,
         "embed": f'<iframe src="{url}?embed=1" style="width:100%;min-height:900px;border:0" title="Careers"></iframe>',
         "form_snippet": _form_snippet(apply_url, site),
@@ -328,6 +354,25 @@ def rec_website(request):
         "applications": Placement.objects.for_company(company).filter(stage="applied").count(),
         "share": f"https://wa.me/?text={_share_text(site, url)}",
     })
+
+
+@recruitment_view
+def rec_wp_plugin(request):
+    """A ready-to-install WordPress plugin with this agency's form address already filled in."""
+    import io
+    import zipfile
+    from django.template.loader import render_to_string
+    site = svc.site_for(request.company)
+    form_js = request.build_absolute_uri(reverse("webapp:careers_form_js", args=[site.slug]))
+    php = render_to_string("webapp/careers/wp_plugin.php.txt", {"form_js": form_js, "company": site.company.name})
+    readme = render_to_string("webapp/careers/wp_readme.txt", {"company": site.company.name})
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("bookpilot-recruitment-form/bookpilot-recruitment-form.php", php)
+        z.writestr("bookpilot-recruitment-form/readme.txt", readme)
+    response = HttpResponse(buf.getvalue(), content_type="application/zip")
+    response["Content-Disposition"] = 'attachment; filename="bookpilot-recruitment-form.zip"'
+    return response
 
 
 def _share_text(site, url):

@@ -1659,6 +1659,60 @@ msgid "new applications"
 msgstr "طلبات جديدة"
 
 #: templates/webapp/careers/settings.html
+msgid "Recruitment form for your website (WordPress or any site)"
+msgstr "نموذج توظيف لموقعك (ووردبريس أو أي موقع)"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"A complete application form: job, experience, personal details, passport, "
+"contact, CV upload. Every application comes straight to Candidates, the "
+"dashboard and the job's pipeline — only for your agency."
+msgstr ""
+"نموذج تقديم كامل: الوظيفة، الخبرة، البيانات الشخصية، الجواز، التواصل، رفع "
+"السيرة الذاتية. يصل كل طلب مباشرة إلى المرشحين ولوحة التحكم ومسار الوظيفة — "
+"لوكالتك فقط."
+
+#: templates/webapp/careers/settings.html
+msgid "Option 1 — WordPress plugin (easiest)"
+msgstr "الخيار 1 — إضافة ووردبريس (الأسهل)"
+
+#: templates/webapp/careers/settings.html
+msgid "Download the plugin"
+msgstr "تنزيل الإضافة"
+
+#: templates/webapp/careers/settings.html
+msgid "WordPress → Plugins → Add New → Upload Plugin → Activate."
+msgstr "ووردبريس ← الإضافات ← أضف جديد ← رفع إضافة ← تفعيل."
+
+#: templates/webapp/careers/settings.html
+msgid "On the Careers page add the shortcode"
+msgstr "أضف الكود المختصر في صفحة الوظائف"
+
+#: templates/webapp/careers/settings.html
+msgid "Options:"
+msgstr "خيارات:"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"Option 2 — paste this code (any website, WordPress “Custom HTML” block, "
+"Elementor “HTML”)"
+msgstr ""
+"الخيار 2 — الصق هذا الكود (أي موقع، كتلة «HTML مخصص» في ووردبريس، «HTML» في "
+"إليمنتور)"
+
+#: templates/webapp/careers/settings.html
+msgid "Copy code"
+msgstr "نسخ الكود"
+
+#: templates/webapp/careers/settings.html
+msgid ""
+"The job list in the form shows the jobs ticked under “Jobs shown on the "
+"website” below. Button colour = Brand colour."
+msgstr ""
+"تعرض قائمة الوظائف في النموذج الوظائف المحددة في «الوظائف المعروضة على "
+"الموقع» أدناه. لون الزر = لون العلامة."
+
+#: templates/webapp/careers/settings.html
 msgid "Connect your existing career page"
 msgstr "ربط صفحة الوظائف الحالية"
 
@@ -1692,10 +1746,6 @@ msgid ""
 "ask your web developer to paste this one line on the career page (before "
 "</body>):"
 msgstr "اطلب من مطور موقعك لصق هذا السطر في صفحة الوظائف (قبل </body>):"
-
-#: templates/webapp/careers/settings.html
-msgid "Copy code"
-msgstr "نسخ الكود"
 
 #: templates/webapp/careers/settings.html
 msgid ""

@@ -77,7 +77,11 @@ Menu: 🧑‍💼 Recruitment. It replaces the generic project menu for this typ
     - It sends a copy of each application here, and the site's own form keeps working, whether it is a normal post or an AJAX/WordPress form.
     - A position matching an open job order (by title) puts the person in that job's "Applied online" stage.
     - Only listed domains are accepted. The hosted BookPilot page can stay switched off.
-  - Code: `apps/industry/careers.py`, `apps/webapp/careers_views.py`, `templates/webapp/careers/` (including `connect.js`).
+  - **Detailed recruitment form for any website** (common to every agency): `<div class="bookpilot-form"></div><script src="…/careers/<name>/form.js" defer></script>`, or the downloadable **WordPress plugin** (`[bookpilot_form]` shortcode, with options `job`, `lang` (en/ar), `color` and `thanks`).
+    - Fields: job (published jobs or "any"), trade, experience, Gulf experience, expected salary, qualification, languages, driving licence, joining time, name, gender, DOB, nationality, marital status, phone, email, location, passport number and expiry, CV, message, and consent.
+    - Profile fields are saved on the candidate. The rest goes into notes.
+    - Works from any domain (CORS reflects the caller's origin for widget posts). Honeypot and rate limit apply.
+  - Code: `apps/industry/careers.py`, `apps/webapp/careers_views.py`, `templates/webapp/careers/` (`connect.js`, `form.js`, `wp_plugin.php.txt`).
 
 ## Staff & HR (every business type)
 

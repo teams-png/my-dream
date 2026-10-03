@@ -29,7 +29,8 @@ PRICE_TABLE = {
 TIER_LABEL = {"standard": "Business", "large": "Large Shop"}
 
 # Yearly add-ons: each user above the biggest plan's users, and each branch above the first.
-ADDON_PRICES = {GLOBAL: {"user": 100, "branch": 100}}
+# India follows the same ratio as its plan prices (QAR 899 plan = INR 8,999), so QAR 100 = INR 1,000.
+ADDON_PRICES = {GLOBAL: {"user": 100, "branch": 100}, INDIA: {"user": 1000, "branch": 1000}}
 
 # How much of each currency one QAR buys, for display only. The GCC
 # currencies and USD are pegged, so these are exact; the others float and

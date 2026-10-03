@@ -32,7 +32,11 @@ def _users(company, n, start=0):
 def test_new_plans_have_the_addon_prices(plans):
     assert plans[5].extra_user_price == Decimal("100") and plans[3].extra_user_price == 0
     assert all(p.extra_branch_price == Decimal("100") for p in plans.values())
-    assert not SubscriptionPlan.objects.filter(country="India", currency="INR").exclude(extra_user_price=0).exists()
+    from apps.subscriptions.pricing import plan_name
+    india5 = SubscriptionPlan.objects.get(country="India", currency="INR", tier="standard", name=plan_name("standard", 5))
+    india3 = SubscriptionPlan.objects.get(country="India", currency="INR", tier="standard", name=plan_name("standard", 3))
+    assert india5.extra_user_price == Decimal("1000") and india5.extra_branch_price == Decimal("1000")
+    assert india3.extra_user_price == 0 and india3.extra_branch_price == Decimal("1000")
 
 
 def test_extra_users_and_branches_are_charged(tenant_a, plans):

@@ -19,6 +19,7 @@ from django.views.decorators.csrf import csrf_exempt
 from apps.industry import careers as svc
 from apps.industry.models import CareersSite, JobOrder
 
+from .online_booking_views import owner_only
 from .recruitment_views import recruitment_view
 
 RATE_LIMIT = 8  # applications per hour per IP and site
@@ -304,6 +305,7 @@ class SiteForm(forms.ModelForm):
 
 
 @recruitment_view
+@owner_only
 def rec_website(request):
     company = request.company
     site = svc.site_for(company)
@@ -357,6 +359,7 @@ def rec_website(request):
 
 
 @recruitment_view
+@owner_only
 def rec_wp_plugin(request):
     """A ready-to-install WordPress plugin with this agency's form address already filled in."""
     import io

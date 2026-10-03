@@ -144,3 +144,21 @@ def test_wordpress_plugin_and_retail_has_no_booking():
     assert "add_shortcode('bookpilot_booking'" in php and f"/book/{site.slug}/form.js" in php and "bookpilot_form" not in php
     shop, shop_client = _signup("supermarket", "shop@t.qa")
     assert shop_client.get(reverse("webapp:ob_inbox")).status_code == 302
+
+
+def test_website_form_and_plugin_are_owner_only():
+    from django.contrib.auth import get_user_model
+    from apps.tenants.models import CompanyMembership, Role
+    for code, settings_url, plugin_url in (("saloon", "webapp:ob_settings", "webapp:ob_wp_plugin"),
+                                           ("recruitment_agency", "webapp:rec_website", "webapp:rec_wp_plugin")):
+        company, owner_client = _signup(code, f"own-{code}@t.qa")
+        assert reverse(settings_url) in owner_client.get(reverse("webapp:dashboard")).content.decode()
+        assert owner_client.get(reverse(plugin_url)).status_code == 200
+        staff = get_user_model().objects.create_user(username=f"staff-{code}", email=f"staff-{code}@t.qa", password="Pass-12345!")
+        CompanyMembership.objects.create(user=staff, company=company, role=Role.objects.get(company=company, name="Staff"))
+        c = Client()
+        c.force_login(staff)
+        assert reverse(settings_url) not in c.get(reverse("webapp:dashboard")).content.decode()
+        assert c.get(reverse(settings_url)).status_code == 302 and c.get(reverse(plugin_url)).status_code == 302
+    # staff still handle the booking requests
+    assert c.get(reverse("webapp:rec_home")).status_code == 200

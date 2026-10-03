@@ -32,7 +32,7 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'rec_clients' %}active{% endif %}" href="{% url 'webapp:rec_clients' %}"><span>{% translate "Clients" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name|slice:':7' == 'rec_job' %}active{% endif %}" href="{% url 'webapp:rec_jobs' %}"><span>{% translate "Job orders" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name|slice:':13' == 'rec_candidate' or request.resolver_match.url_name == 'rec_placement' %}active{% endif %}" href="{% url 'webapp:rec_candidates' %}"><span>{% translate "Candidates" %}</span></a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'rec_website' %}active{% endif %}" href="{% url 'webapp:rec_website' %}"><span>🌐 {% translate "Careers website" %}</span></a>
+      {% if request.role.name == "Owner" %}<a class="nav-link {% if request.resolver_match.url_name == 'rec_website' %}active{% endif %}" href="{% url 'webapp:rec_website' %}"><span>🌐 {% translate "Careers website" %}</span></a>{% endif %}
       </details>
 {% endif %}
 {% if "gold" in f %}
@@ -51,7 +51,7 @@
       <details class="nav-section" {% if request.resolver_match.url_name|slice:':3' == 'ob_' %}open{% endif %}>
         <summary>🌐 {% translate "Online booking" %}</summary>
       <a class="nav-link {% if request.resolver_match.url_name == 'ob_inbox' or request.resolver_match.url_name == 'ob_detail' %}active{% endif %}" href="{% url 'webapp:ob_inbox' %}"><span>{% translate "Booking requests" %}</span></a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'ob_settings' %}active{% endif %}" href="{% url 'webapp:ob_settings' %}"><span>{% translate "Website form & WordPress" %}</span></a>
+      {% if request.role.name == "Owner" %}<a class="nav-link {% if request.resolver_match.url_name == 'ob_settings' %}active{% endif %}" href="{% url 'webapp:ob_settings' %}"><span>{% translate "Website form & WordPress" %}</span></a>{% endif %}
       </details>
 {% endif %}
 {% endwith %}

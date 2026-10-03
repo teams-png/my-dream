@@ -9274,6 +9274,10 @@ msgid "Online booking isn't available for this business type."
 msgstr "ഈ ബിസിനസ് തരത്തിന് ഓൺലൈൻ ബുക്കിംഗ് ലഭ്യമല്ല."
 
 #: apps/webapp/online_booking_views.py
+msgid "Only the business owner can open this page."
+msgstr "ബിസിനസ് ഉടമയ്ക്ക് മാത്രമേ ഈ പേജ് തുറക്കാൻ കഴിയൂ."
+
+#: apps/webapp/online_booking_views.py
 msgid "Booking confirmed. Send the confirmation on WhatsApp."
 msgstr "ബുക്കിംഗ് സ്ഥിരീകരിച്ചു. സ്ഥിരീകരണം WhatsApp-ൽ അയയ്ക്കുക."
 

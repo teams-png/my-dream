@@ -9,7 +9,7 @@
     <a class="btn" href="{% url 'webapp:rec_job_add' %}">＋ {% translate "New job order" %}</a>
     <a class="btn btn-secondary" href="{% url 'webapp:rec_candidate_add' %}">＋ {% translate "New candidate" %}</a>
     <a class="btn btn-secondary" href="{% url 'webapp:rec_clients' %}">＋ {% translate "New client" %}</a>
-    <a class="btn btn-secondary" href="{% url 'webapp:rec_website' %}">🌐 {% translate "Careers website" %}</a>
+    {% if request.role.name == "Owner" %}<a class="btn btn-secondary" href="{% url 'webapp:rec_website' %}">🌐 {% translate "Careers website" %}</a>{% endif %}
   </div>
   <div class="ix-stats">
     <a class="ix-stat" href="{% url 'webapp:rec_jobs' %}" style="text-decoration:none;color:inherit"><small>{% translate "Open job orders" %}</small><b>{{ o.open_jobs }}</b></a>

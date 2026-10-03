@@ -1870,3 +1870,7 @@ ML.update({
     "Online booking is not available.": "ഓൺലൈൻ ബുക്കിംഗ് ലഭ്യമല്ല.",
     "Shown above the form, e.g. opening hours.": "ഫോമിന് മുകളിൽ കാണിക്കും, ഉദാ: പ്രവർത്തന സമയം.",
 })
+
+ML.update({
+    "Only the business owner can open this page.": "ബിസിനസ് ഉടമയ്ക്ക് മാത്രമേ ഈ പേജ് തുറക്കാൻ കഴിയൂ.",
+})

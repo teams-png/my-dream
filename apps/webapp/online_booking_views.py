@@ -162,6 +162,19 @@ def _booking_view(view):
     return wrapped
 
 
+def owner_only(view):
+    """Website form, WordPress plugin and careers-site settings are for the business owner only."""
+    from functools import wraps
+
+    @wraps(view)
+    def wrapped(request, *args, **kwargs):
+        if getattr(getattr(request, "role", None), "name", None) != "Owner":
+            messages.error(request, _("Only the business owner can open this page."))
+            return redirect("webapp:dashboard")
+        return view(request, *args, **kwargs)
+    return wrapped
+
+
 def _wa(phone, text):
     return f"https://wa.me/{''.join(ch for ch in (phone or '') if ch.isdigit())}?text={quote(text)}"
 
@@ -275,6 +288,7 @@ class SiteForm(forms.ModelForm):
 
 
 @_booking_view
+@owner_only
 def ob_settings(request):
     company = request.company
     site = svc.site_for(company)
@@ -301,6 +315,7 @@ def _services_url(company):
 
 
 @_booking_view
+@owner_only
 def ob_wp_plugin(request):
     site = svc.site_for(request.company)
     form_js = request.build_absolute_uri(reverse("webapp:book_form_js", args=[site.slug]))

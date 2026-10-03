@@ -1890,3 +1890,7 @@ AR.update({
     "Online booking is not available.": "الحجز الإلكتروني غير متاح.",
     "Shown above the form, e.g. opening hours.": "يظهر أعلى النموذج، مثل ساعات العمل.",
 })
+
+AR.update({
+    "Only the business owner can open this page.": "فقط مالك النشاط يمكنه فتح هذه الصفحة.",
+})

@@ -9172,6 +9172,10 @@ msgid "Online booking isn't available for this business type."
 msgstr "الحجز الإلكتروني غير متاح لهذا النوع من الأنشطة."
 
 #: apps/webapp/online_booking_views.py
+msgid "Only the business owner can open this page."
+msgstr "فقط مالك النشاط يمكنه فتح هذه الصفحة."
+
+#: apps/webapp/online_booking_views.py
 msgid "Booking confirmed. Send the confirmation on WhatsApp."
 msgstr "تم تأكيد الحجز. أرسل التأكيد عبر واتساب."
 

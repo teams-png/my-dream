@@ -94,7 +94,14 @@ def test_removing_sample_expenses_voids_their_ledger_entries():
     starter_kit.install(company, owner)
     entry_ids = list(Expense.objects.for_company(company).values_list("journal_entry_id", flat=True))
     assert len(entry_ids) == 9
+    from apps.accounting.models import Account
+    from apps.accounting.services import account_balance
+    cash = Account.objects.for_company(company).get(code="1000")
+    assert account_balance(cash) > 0  # opening cash covers the sample expenses
+    opening = JournalEntry.objects.for_company(company).get(source_type="starter_kit")
     starter_kit.remove(company)
+    opening.refresh_from_db()
+    assert opening.is_void
     assert not Expense.objects.for_company(company).exists()
     assert JournalEntry.objects.filter(id__in=entry_ids, is_void=True).count() == 9
 

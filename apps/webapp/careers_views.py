@@ -21,6 +21,7 @@ from apps.industry.models import CareersSite, JobOrder
 
 from .online_booking_views import owner_only, platform_admin_only
 from .recruitment_views import recruitment_view
+from apps.common.safe_json import script_json
 
 RATE_LIMIT = 8  # applications per hour per IP and site
 LANGS = {"en", "ar", "ml"}
@@ -222,7 +223,7 @@ def careers_connect_js(request, slug):
         return HttpResponse("/* BookPilot: careers connector is not set up */", content_type="application/javascript")
     endpoint = request.build_absolute_uri(reverse("webapp:careers_apply", args=[slug])) + "?format=json"
     from django.template.loader import render_to_string
-    body = render_to_string("webapp/careers/connect.js", {"endpoint": json.dumps(endpoint)})
+    body = render_to_string("webapp/careers/connect.js", {"endpoint": script_json(endpoint)})
     response = HttpResponse(body, content_type="application/javascript; charset=utf-8")
     response["Cache-Control"] = "public, max-age=300"
     response["Access-Control-Allow-Origin"] = "*"

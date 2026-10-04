@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 
+from apps.common.validators import validate_upload_file
+
 from apps.tenants.models import TenantScopedModel
 
 RATE_UNITS = [("hour", "Per hour"), ("day", "Per day"), ("night", "Per night"), ("month", "Per month"),
@@ -487,8 +489,9 @@ class SiteDesign(TenantScopedModel):
     font = models.CharField(max_length=30, choices=FONTS, default="Poppins")
     primary_color = models.CharField(max_length=7, default="#0f766e")
     accent_color = models.CharField(max_length=7, default="#f59e0b")
-    logo = models.ImageField(upload_to="site_logos/", blank=True, null=True, help_text="Leave empty to use the company logo.")
-    hero_image = models.ImageField(upload_to="site_heroes/", blank=True, null=True)
+    logo = models.ImageField(upload_to="site_logos/", blank=True, null=True, help_text="Leave empty to use the company logo.",
+                             validators=[validate_upload_file])
+    hero_image = models.ImageField(upload_to="site_heroes/", blank=True, null=True, validators=[validate_upload_file])
     hero_title = models.CharField(max_length=150, blank=True)
     hero_subtitle = models.CharField(max_length=255, blank=True)
     about = models.TextField(blank=True)

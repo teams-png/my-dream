@@ -22,6 +22,7 @@ from apps.sales.models import DeliveryNote, Quotation, SalesInvoice, SalesOrder
 
 from . import xlsx
 from .views import require_permission
+from apps.common.safe_json import script_json
 
 CREATE = "sales.create_invoice"
 VIEW = "sales.view_invoice"
@@ -91,7 +92,7 @@ def _editor_context(request, company, title, kind, initial_lines=None, **extra):
     if request.method == "POST":
         rows = [{"product": p, "qty": q, "price": pr} for p, q, pr in zip(
             request.POST.getlist("product"), request.POST.getlist("qty"), request.POST.getlist("price"))] or rows
-    return {"title": title, "kind": kind, "rows": rows, "catalog_json": json.dumps(_catalog(company)),
+    return {"title": title, "kind": kind, "rows": rows, "catalog_json": script_json(_catalog(company)),
             "customers": Customer.objects.for_company(company).filter(is_active=True).order_by("name")[:2000],
             "today": timezone.localdate(), "post": request.POST, **extra}
 

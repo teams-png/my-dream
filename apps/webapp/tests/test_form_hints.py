@@ -84,3 +84,17 @@ def test_page_ships_examples_for_hand_written_forms(client):
     page = client.get(reverse("webapp:branch_add")).content.decode()
     assert 'id="bp-form-samples"' in page and "form-hints.js" in page
     assert "Main branch" in page and "22K gold bangle" in page
+
+
+def test_next_parameter_never_leaves_the_site(rf):
+    from apps.common.safe_redirect import safe_next
+    for bad in ("https://evil.example/", "//evil.example/x", "/\\evil.example", "javascript:alert(1)"):
+        assert safe_next(rf.post("/", {"next": bad}), "/fallback/") == "/fallback/"
+    assert safe_next(rf.post("/", {"next": "/restaurant/setup/"}), "/fallback/") == "/restaurant/setup/"
+
+
+def test_script_json_cannot_close_a_script_tag():
+    import json
+    from apps.common.safe_json import script_json
+    value = script_json({"name": "</script><script>alert(1)</script>"})
+    assert "</script>" not in value and json.loads(value)["name"].startswith("</script>")

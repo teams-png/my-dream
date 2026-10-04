@@ -21,6 +21,7 @@ from apps.suppliers.models import Supplier
 
 from .sales_docs_views import _err, _parse_lines, _warehouse
 from .views import require_permission
+from apps.common.safe_json import script_json
 
 CREATE = "purchases.create_purchase"
 VIEW = "purchases.view_purchase"
@@ -112,7 +113,7 @@ def po_add(request):
                 rows.append({"product": str(product.id), "qty": f"{need.normalize():f}", "price": f"{product.cost_price:.2f}"})
         rows = rows[:60] or [{"product": "", "qty": "1", "price": ""}]
     return render(request, "webapp/sales_docs/editor.html", {
-        "title": _("New purchase order"), "kind": "po", "rows": rows, "catalog_json": json.dumps(_cost_catalog(company)),
+        "title": _("New purchase order"), "kind": "po", "rows": rows, "catalog_json": script_json(_cost_catalog(company)),
         "customers": Supplier.objects.for_company(company).filter(is_active=True).order_by("name")[:2000],
         "today": timezone.localdate(), "post": request.POST, "show_reference": True, "show_expected": True})
 

@@ -3,6 +3,8 @@ import uuid
 
 from django.conf import settings
 from django.db import models
+
+from apps.common.validators import validate_upload_file
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
@@ -78,7 +80,7 @@ class RestaurantMenuItem(TenantScopedModel):
         "inventory.Product", on_delete=models.CASCADE, related_name="restaurant_menu_item"
     )
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to="restaurant/menu/%Y/%m/", blank=True)
+    image = models.ImageField(upload_to="restaurant/menu/%Y/%m/", blank=True, validators=[validate_upload_file])
     preparation_minutes = models.PositiveSmallIntegerField(default=10)
     spice_level = models.CharField(max_length=10, choices=SPICE_LEVELS, default="none")
     is_vegetarian = models.BooleanField(default=False)

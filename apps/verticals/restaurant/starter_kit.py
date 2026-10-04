@@ -181,6 +181,17 @@ def _install_expenses(company, user):
         return
     first_of_month = timezone.localdate().replace(day=1)
     last_month = (first_of_month - datetime.timedelta(days=1)).replace(day=1)
+    # the owner's opening cash pays for the sample expenses, so the books never start with negative cash
+    from apps.accounting.models import Account
+    from apps.accounting.services import post_journal_entry
+    accounts = {a.code: a for a in Account.objects.for_company(company).filter(code__in=["1000", "3000"])}
+    if len(accounts) == 2:
+        capital = _money(company, data.OPENING_CAPITAL)
+        entry = post_journal_entry(company=company, date=last_month, user=user,
+                                   lines=[(accounts["1000"], capital, Decimal("0")), (accounts["3000"], Decimal("0"), capital)],
+                                   reference="Opening cash (sample)", memo="Kerala starter kit sample opening balance",
+                                   source_type="starter_kit")
+        _track(company, "journal", entry)
     for category_name, description, amount, day in data.EXPENSES:
         category, created = ExpenseCategory.objects.for_company(company).get_or_create(name=category_name, defaults={"company": company})
         if created:
@@ -216,6 +227,8 @@ def remove(company):
         ids.setdefault(kind, []).append(object_id)
     kept = 0
 
+    from apps.accounting.models import JournalEntry
+    JournalEntry.objects.for_company(company).filter(id__in=ids.get("journal", [])).update(is_void=True)
     for expense in Expense.objects.for_company(company).filter(id__in=ids.get("expense", [])):
         if expense.journal_entry_id:  # posted entries are voided, never deleted
             entry = expense.journal_entry

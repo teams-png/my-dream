@@ -1,4 +1,6 @@
 from django.db import models
+
+from apps.common.validators import validate_upload_file
 from django.conf import settings
 from .managers import TenantManager
 
@@ -43,7 +45,7 @@ class Company(models.Model):
     address = models.TextField(blank=True)
     phone = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
-    logo = models.ImageField(upload_to="company_logos/", blank=True, null=True)
+    logo = models.ImageField(upload_to="company_logos/", blank=True, null=True, validators=[validate_upload_file])
     onboarding_completed_at = models.DateTimeField(
         null=True, blank=True, help_text="Set when the owner finishes or skips the first-run setup wizard.",
     )

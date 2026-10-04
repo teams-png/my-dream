@@ -227,6 +227,8 @@ EXPENSES = [
     ("Transportation", "Delivery bike fuel", 600, 25),
 ]
 
+OPENING_CAPITAL = 30000  # QAR; the owner's sample opening cash
+
 TABLES = [("Family hall", "F", 6, 4), ("Main hall", "T", 8, 4), ("Outdoor", "O", 4, 2)]
 
 MODIFIERS = {

@@ -23,6 +23,7 @@ from apps.inventory.models import (Product, ProductBatch, ProductCategory, Produ
 
 from . import xlsx
 from .views import require_permission
+from apps.common.safe_json import script_json
 
 VIEW = "inventory.view_products"
 MANAGE = "inventory.manage_stock"
@@ -201,7 +202,7 @@ def stock_transfer(request):
     stock = _stock_map(company)
     products = list(Product.objects.for_company(company).filter(is_active=True, is_stock_tracked=True).order_by("name"))
     for p in products:
-        p.stock_json = json.dumps({str(w.id): f"{stock.get((p.id, w.id), ZERO):f}" for w in warehouses})
+        p.stock_json = script_json({str(w.id): f"{stock.get((p.id, w.id), ZERO):f}" for w in warehouses})
     return render(request, "webapp/stock/transfer.html", {"warehouses": warehouses, "targets": targets, "products": products,
                                                           "recent": recent})
 

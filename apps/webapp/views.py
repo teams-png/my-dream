@@ -73,6 +73,7 @@ from apps.customers import services as customer_services
 from apps.notifications.models import Notification
 from apps.notifications import services as notification_services
 from functools import wraps
+from apps.common.safe_json import script_json
 from .forms import (
     CategoryForm, ProductForm, MobileProductForm, BusinessProductForm, MobileUnitForm, MobileBulkIMEIForm,
     MobileRepairJobForm, MobileRepairPartForm, MobileWarrantyClaimForm, MobileTradeInForm,
@@ -3190,7 +3191,8 @@ def restaurant_menu_item_toggle(request, menu_item_id):
         item.is_available = not item.is_available
         item.save(update_fields=["is_available"])
         messages.success(request, f"{item.product.name} marked {'available' if item.is_available else 'sold out'}.")
-    return redirect(request.POST.get("next") or "webapp:restaurant_setup")
+    from apps.common.safe_redirect import safe_next
+    return redirect(safe_next(request, "webapp:restaurant_setup"))
 
 
 def _restaurant_setup_form(request, form_class, title):
@@ -4460,12 +4462,12 @@ def analytics_view(request):
         "total_sales": total_sales, "total_expenses": total_expenses,
         "net_profit": total_sales - total_expenses,
         "invoice_count": invoices.count(),
-        "chart_labels": json.dumps(chart_labels),
-        "chart_values": json.dumps(chart_values),
-        "product_labels": json.dumps(product_labels),
-        "product_values": json.dumps(product_values),
-        "method_labels": json.dumps(method_labels),
-        "method_values": json.dumps(method_values),
+        "chart_labels": script_json(chart_labels),
+        "chart_values": script_json(chart_values),
+        "product_labels": script_json(product_labels),
+        "product_values": script_json(product_values),
+        "method_labels": script_json(method_labels),
+        "method_values": script_json(method_values),
     }
     return render(request, "webapp/analytics.html", context)
 
@@ -4781,10 +4783,10 @@ def product_import_csv(request):
 
                 unit, _ = Unit.objects.get_or_create(company=company, name=unit_name)
                 category = None
-                if row.get("Category", "").strip():
+                if (row.get("Category") or "").strip():
                     category, _ = ProductCategory.objects.get_or_create(company=company, name=row["Category"].strip())
                 brand = None
-                if row.get("Brand", "").strip():
+                if (row.get("Brand") or "").strip():
                     brand, _ = Brand.objects.get_or_create(company=company, name=row["Brand"].strip())
                 try:
                     attributes = json.loads(row.get("Attributes JSON") or "{}")
@@ -5096,12 +5098,12 @@ def platform_admin_analytics(request):
     context = {
         "total_revenue": payments.aggregate(t=Sum("amount"))["t"] or 0,
         "total_clients": companies.count(),
-        "country_labels": json.dumps(country_labels),
-        "country_values": json.dumps(country_values),
-        "plan_labels": json.dumps(plan_labels),
-        "plan_values": json.dumps(plan_values),
-        "revenue_labels": json.dumps(revenue_labels),
-        "revenue_values": json.dumps(revenue_values),
+        "country_labels": script_json(country_labels),
+        "country_values": script_json(country_values),
+        "plan_labels": script_json(plan_labels),
+        "plan_values": script_json(plan_values),
+        "revenue_labels": script_json(revenue_labels),
+        "revenue_values": script_json(revenue_values),
     }
     return render(request, "webapp/platform_admin/analytics.html", context)
 

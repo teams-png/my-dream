@@ -167,7 +167,7 @@ def rec_jobs(request):
     status = request.GET.get("status", "open")
     jobs = JobOrder.objects.for_company(company).select_related("client").annotate(
         done=Count("placements", filter=Q(placements__stage="deployed")),
-        active=Count("placements", filter=Q(placements__stage__in=Placement.ACTIVE)))
+        active=Count("placements", filter=Q(placements__stage__in=Placement.ACTIVE))).order_by("-id")
     if status in dict(JobOrder.STATUS):
         jobs = jobs.filter(status=status)
     if request.GET.get("client"):

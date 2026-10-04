@@ -46,3 +46,20 @@ SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# Errors (with tracebacks) go to the Render log; without this Django only prints them when DEBUG is on.
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {"plain": {"format": "%(asctime)s %(levelname)s %(name)s %(message)s"}},
+    "handlers": {"console": {"class": "logging.StreamHandler", "formatter": "plain"}},
+    "root": {"handlers": ["console"], "level": "INFO"},
+    "loggers": {"django.request": {"handlers": ["console"], "level": "ERROR", "propagate": False}},
+}
+
+SENTRY_DSN = env("SENTRY_DSN", default="")
+if SENTRY_DSN:  # optional error alerts: set SENTRY_DSN in Render's environment
+    import sentry_sdk
+    sentry_sdk.init(dsn=SENTRY_DSN, send_default_pii=False,
+                    traces_sample_rate=env.float("SENTRY_TRACES_SAMPLE_RATE", default=0.0),
+                    environment=env("SENTRY_ENVIRONMENT", default="render"))

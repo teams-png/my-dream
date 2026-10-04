@@ -140,7 +140,8 @@ def cheque_status(request, cheque_id):
             messages.success(request, _("Cheque updated."))
         except ValidationError as exc:
             messages.error(request, " ".join(exc.messages))
-    return redirect(request.POST.get("next") or "webapp:cheque_list")
+    from apps.common.safe_redirect import safe_next
+    return redirect(safe_next(request, "webapp:cheque_list"))
 
 
 @finance_view

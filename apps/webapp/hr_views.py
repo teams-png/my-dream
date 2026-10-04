@@ -33,8 +33,8 @@ WEEKDAYS = [(0, gettext_lazy("Monday")), (1, gettext_lazy("Tuesday")), (2, gette
 
 
 def _next(request, fallback):
-    target = request.POST.get("next") or ""
-    return target if target.startswith("/") and not target.startswith("//") else fallback
+    from apps.common.safe_redirect import safe_next
+    return safe_next(request, fallback)
 
 
 def _error(exc):

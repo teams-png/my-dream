@@ -22,6 +22,7 @@ from apps.reports import services as reports
 
 from . import xlsx
 from .views import require_permission
+from apps.common.ids import pick_id
 
 VIEW = "accounting.view_reports"
 POST = "accounting.post_journal_entry"
@@ -235,7 +236,7 @@ def chart_of_accounts(request):
                     except IntegrityError:
                         messages.error(request, _("An account with this code already exists."))
             elif action in ("deactivate", "activate"):
-                account = get_object_or_404(Account.objects.for_company(company), id=request.POST.get("id"))
+                account = get_object_or_404(Account.objects.for_company(company), id=pick_id(request.POST.get("id")))
                 if account.is_system_account and action == "deactivate":
                     messages.error(request, _("System accounts can't be switched off."))
                 else:

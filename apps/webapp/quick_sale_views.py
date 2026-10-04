@@ -13,6 +13,7 @@ from apps.verticals.restaurant import quick_sale as svc
 from apps.verticals.restaurant.models import RestaurantMenuItem, RestaurantProfile
 
 from .views import require_business_group, require_permission
+from apps.common.ids import pick_id
 
 
 def counter_view(view):
@@ -60,7 +61,7 @@ def quick_sale_submit(request):
 @counter_view
 @require_POST
 def quick_sale_pin(request):
-    item = RestaurantMenuItem.objects.for_company(request.company).filter(product_id=request.POST.get("product")).first()
+    item = RestaurantMenuItem.objects.for_company(request.company).filter(product_id=pick_id(request.POST.get("product"))).first()
     if item is None:
         return JsonResponse({"ok": False}, status=404)
     item.is_quick = not item.is_quick

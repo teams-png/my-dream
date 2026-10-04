@@ -21,6 +21,7 @@ from apps.banking.models import BankAccount, StatementTransaction
 from apps.sales.models import ExchangeRate, TaxCode, TaxScheme
 
 from .views import require_permission
+from apps.common.ids import pick_id
 
 MANAGE = "banking.manage"
 VIEW = "banking.view"
@@ -91,8 +92,8 @@ def bank_home(request):
                         account.save(update_fields=["opening_balance", "opening_balance_date"])
                     messages.success(request, _("Account %(name)s added.") % {"name": account.name})
                 elif action == "transfer":
-                    source = BankAccount.objects.for_company(company).get(id=request.POST.get("from"))
-                    target = BankAccount.objects.for_company(company).get(id=request.POST.get("to"))
+                    source = BankAccount.objects.for_company(company).get(id=pick_id(request.POST.get("from")))
+                    target = BankAccount.objects.for_company(company).get(id=pick_id(request.POST.get("to")))
                     amount = _amount(request.POST.get("amount"))
                     if not amount:
                         raise ValidationError(_("Enter an amount."))
@@ -101,8 +102,8 @@ def bank_home(request):
                     messages.success(request, _("%(amount)s moved from %(from)s to %(to)s.") % {
                         "amount": amount, "from": source.name, "to": target.name})
                 elif action in ("in", "out"):
-                    account = BankAccount.objects.for_company(company).get(id=request.POST.get("account"))
-                    contra = _contra_accounts(company).get(id=request.POST.get("contra"))
+                    account = BankAccount.objects.for_company(company).get(id=pick_id(request.POST.get("account")))
+                    contra = _contra_accounts(company).get(id=pick_id(request.POST.get("contra")))
                     amount = _amount(request.POST.get("amount"))
                     if not amount:
                         raise ValidationError(_("Enter an amount."))
@@ -144,16 +145,16 @@ def bank_account(request, account_id):
                     messages.success(request, _("%(count)s statement lines imported (%(skipped)s already there).") % {
                         "count": batch.row_count, "skipped": batch.skipped_duplicate_count})
                 elif action == "match":
-                    row = StatementTransaction.objects.for_company(company).get(id=request.POST.get("row"), bank_account=account)
-                    entry = JournalEntry.objects.for_company(company).get(id=request.POST.get("entry"))
+                    row = StatementTransaction.objects.for_company(company).get(id=pick_id(request.POST.get("row")), bank_account=account)
+                    entry = JournalEntry.objects.for_company(company).get(id=pick_id(request.POST.get("entry")))
                     bank.match_transaction(company=company, statement_transaction=row, journal_entry=entry, user=request.user)
                     messages.success(request, _("Matched."))
                 elif action == "unmatch":
-                    row = StatementTransaction.objects.for_company(company).get(id=request.POST.get("row"), bank_account=account)
+                    row = StatementTransaction.objects.for_company(company).get(id=pick_id(request.POST.get("row")), bank_account=account)
                     bank.unmatch_transaction(company=company, statement_transaction=row, user=request.user)
                 elif action == "create":
-                    row = StatementTransaction.objects.for_company(company).get(id=request.POST.get("row"), bank_account=account)
-                    contra = _contra_accounts(company).get(id=request.POST.get("contra"))
+                    row = StatementTransaction.objects.for_company(company).get(id=pick_id(request.POST.get("row")), bank_account=account)
+                    contra = _contra_accounts(company).get(id=pick_id(request.POST.get("contra")))
                     record = bank.record_deposit if row.amount > 0 else bank.record_withdrawal
                     record(company=company, bank_account=account, contra_account=contra, amount=abs(row.amount), date=row.date,
                            user=request.user, reference=row.reference[:100], memo=row.description, statement_transaction=row)
@@ -228,7 +229,7 @@ def tax_currency(request):
                         effective_from=parse_date(request.POST.get("from") or "") or timezone.localdate())
                     messages.success(request, _("Tax code added."))
                 elif action == "toggle_code":
-                    code = TaxCode.objects.for_company(company).get(id=request.POST.get("id"))
+                    code = TaxCode.objects.for_company(company).get(id=pick_id(request.POST.get("id")))
                     code.is_active = not code.is_active
                     code.save(update_fields=["is_active"])
                 elif action == "rate":

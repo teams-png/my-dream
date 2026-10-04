@@ -24,6 +24,7 @@ from apps.inventory.models import (Product, ProductBatch, ProductCategory, Produ
 from . import xlsx
 from .views import require_permission
 from apps.common.safe_json import script_json
+from apps.common.ids import pick_id
 
 VIEW = "inventory.view_products"
 MANAGE = "inventory.manage_stock"
@@ -137,8 +138,8 @@ def stock_adjust(request):
         return render(request, "webapp/no_company.html")
     warehouses = _warehouses(company)
     if request.method == "POST":
-        product = Product.objects.for_company(company).filter(id=request.POST.get("product")).first()
-        warehouse = warehouses.filter(id=request.POST.get("warehouse")).first()
+        product = Product.objects.for_company(company).filter(id=pick_id(request.POST.get("product"))).first()
+        warehouse = warehouses.filter(id=pick_id(request.POST.get("warehouse"))).first()
         qty = _dec(request.POST.get("quantity") or "")
         direction = request.POST.get("direction")
         reason = request.POST.get("reason") or "correction"
@@ -172,8 +173,8 @@ def stock_transfer(request):
     warehouses = _warehouses(company)  # a branch-restricted user moves stock out of their own branch only
     targets = Warehouse.objects.for_company(company).filter(is_active=True).order_by("-is_default", "name")
     if request.method == "POST":
-        source = warehouses.filter(id=request.POST.get("from")).first()
-        target = targets.filter(id=request.POST.get("to")).first()
+        source = warehouses.filter(id=pick_id(request.POST.get("from"))).first()
+        target = targets.filter(id=pick_id(request.POST.get("to"))).first()
         moved, errors = 0, []
         with transaction.atomic():
             for pid, qty in zip(request.POST.getlist("product"), request.POST.getlist("qty")):
@@ -217,10 +218,10 @@ def count_list(request):
         return render(request, "webapp/no_company.html")
     warehouses = _warehouses(company)
     if request.method == "POST":
-        warehouse = warehouses.filter(id=request.POST.get("warehouse")).first()
+        warehouse = warehouses.filter(id=pick_id(request.POST.get("warehouse"))).first()
         products = Product.objects.for_company(company).filter(is_active=True, is_stock_tracked=True).order_by("name")
         if request.POST.get("category"):
-            products = products.filter(category_id=request.POST.get("category"))
+            products = products.filter(category_id=pick_id(request.POST.get("category")))
         if not warehouse or not products.exists():
             messages.error(request, _("Choose a location that has items to count."))
         else:
@@ -282,8 +283,8 @@ def batches(request):
         if request.role and not request.role.permissions.filter(permission__code=MANAGE).exists():
             messages.error(request, _("You don't have permission to do that."))
             return redirect("webapp:stock_batches")
-        product = Product.objects.for_company(company).filter(id=request.POST.get("product")).first()
-        warehouse = warehouses.filter(id=request.POST.get("warehouse")).first()
+        product = Product.objects.for_company(company).filter(id=pick_id(request.POST.get("product"))).first()
+        warehouse = warehouses.filter(id=pick_id(request.POST.get("warehouse"))).first()
         qty = _dec(request.POST.get("quantity") or "0") or ZERO
         number = (request.POST.get("batch_number") or "").strip()
         if not product or not number:
@@ -336,8 +337,8 @@ def serials(request):
         if request.role and not request.role.permissions.filter(permission__code=MANAGE).exists():
             messages.error(request, _("You don't have permission to do that."))
             return redirect("webapp:stock_serials")
-        product = Product.objects.for_company(company).filter(id=request.POST.get("product")).first()
-        warehouse = warehouses.filter(id=request.POST.get("warehouse")).first()
+        product = Product.objects.for_company(company).filter(id=pick_id(request.POST.get("product"))).first()
+        warehouse = warehouses.filter(id=pick_id(request.POST.get("warehouse"))).first()
         numbers = [n.strip() for n in (request.POST.get("serials") or "").replace(",", "\n").splitlines() if n.strip()]
         if not product or not warehouse or not numbers:
             messages.error(request, _("Choose an item, a location and enter at least one serial number."))

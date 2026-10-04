@@ -16,6 +16,7 @@ from apps.industry.models import MessCharge, MessLeave, MessMember, MessPlan
 
 from .industry_access import require_industry
 from .views import require_permission
+from apps.common.ids import pick_id
 
 DATE = forms.DateInput(attrs={"type": "date"})
 
@@ -111,7 +112,7 @@ class LeaveForm(forms.Form):
 def mess_home(request):
     company = request.company
     if request.method == "POST":
-        member = get_object_or_404(MessMember.objects.for_company(company), id=request.POST.get("member"))
+        member = get_object_or_404(MessMember.objects.for_company(company), id=pick_id(request.POST.get("member")))
         meal = request.POST.get("meal")
         try:
             if request.POST.get("action") == "undo":
@@ -211,7 +212,7 @@ def mess_member(request, member_id):
                 messages.success(request, _("Mess cut saved."))
                 return redirect(request.path)
             if action == "delete_leave":
-                MessLeave.objects.filter(member=member, id=request.POST.get("leave")).delete()
+                MessLeave.objects.filter(member=member, id=pick_id(request.POST.get("leave"))).delete()
                 return redirect(request.path)
             if action in ("active", "paused", "ended"):
                 svc.set_status(member, action)

@@ -16,6 +16,7 @@ from apps.industry.models import AttendanceSession, Course, Enrollment, FeeCharg
 from apps.modules.catalog import EDUCATION_TERMS
 
 from .industry_access import require_industry
+from apps.common.ids import pick_id
 
 education_view = require_industry("education")
 DATE = forms.DateInput(attrs={"type": "date"})
@@ -120,7 +121,7 @@ def course_detail(request, course_id):
                                 present_ids=request.POST.getlist("present"))
             messages.success(request, _("Attendance saved for %(day)s.") % {"day": day.strftime("%d %b %Y")})
         elif action in ("withdraw", "complete"):
-            enrollment = get_object_or_404(Enrollment.objects.for_company(company), pk=request.POST.get("enrollment"),
+            enrollment = get_object_or_404(Enrollment.objects.for_company(company), pk=pick_id(request.POST.get("enrollment")),
                                            course=course)
             try:
                 svc.withdraw(enrollment, end_date=timezone.localdate(),

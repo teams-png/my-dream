@@ -21,6 +21,7 @@ from apps.suppliers.models import Supplier
 
 from . import xlsx
 from .industry_access import require_industry
+from apps.common.ids import pick_id
 
 recruitment_view = require_industry("recruitment")
 DATE = forms.DateInput(attrs={"type": "date"})
@@ -244,7 +245,7 @@ def rec_job_detail(request, job_id):
                 if skipped:
                     messages.warning(request, _("Already added or not suitable: %(names)s") % {"names": ", ".join(skipped)})
             elif action == "move":
-                placement = get_object_or_404(Placement.objects.for_company(company), id=request.POST.get("placement"), job_order=job)
+                placement = get_object_or_404(Placement.objects.for_company(company), id=pick_id(request.POST.get("placement")), job_order=job)
                 svc.move(placement, request.POST.get("stage") or "")
             elif action in ("close", "reopen", "hold"):
                 job.status = {"close": "closed", "reopen": "open", "hold": "on_hold"}[action]
@@ -359,7 +360,7 @@ def rec_candidate_detail(request, candidate_id):
     company = request.company
     candidate = get_object_or_404(Candidate.objects.for_company(company).select_related("agent"), id=candidate_id)
     if request.method == "POST" and request.POST.get("action") == "submit":
-        job = get_object_or_404(JobOrder.objects.for_company(company), id=request.POST.get("job"))
+        job = get_object_or_404(JobOrder.objects.for_company(company), id=pick_id(request.POST.get("job")))
         try:
             added, skipped = svc.submit(company=company, job=job, candidates=[candidate])
             if added:

@@ -21,6 +21,7 @@ from apps.sales.models import PriceList, PriceListItem, Promotion
 from apps.sales.services import resolve_commercial_price
 
 from .views import require_permission
+from apps.common.ids import pick_id
 
 CRM = "customers.manage"
 PRICING = "sales.create_invoice"
@@ -68,7 +69,7 @@ def pipeline(request):
                     title = (request.POST.get("title") or "").strip()
                     if not title:
                         raise ValidationError(_("Enter what the deal is about."))
-                    customer = Customer.objects.for_company(company).filter(id=request.POST.get("customer")).first()
+                    customer = Customer.objects.for_company(company).filter(id=pick_id(request.POST.get("customer"))).first()
                     Opportunity.objects.create(
                         company=company, title=title[:255], customer=customer, stage=stages[0],
                         expected_value=Decimal(request.POST.get("value") or "0"),
@@ -76,11 +77,11 @@ def pipeline(request):
                         assigned_to=request.user, notes=(request.POST.get("notes") or "")[:2000])
                     messages.success(request, _("Deal added."))
                 elif action == "move":
-                    deal = Opportunity.objects.for_company(company).get(id=request.POST.get("id"))
-                    deal.stage = PipelineStage.objects.for_company(company).get(id=request.POST.get("stage"))
+                    deal = Opportunity.objects.for_company(company).get(id=pick_id(request.POST.get("id")))
+                    deal.stage = PipelineStage.objects.for_company(company).get(id=pick_id(request.POST.get("stage")))
                     deal.save(update_fields=["stage", "updated_at"])
                 elif action == "done":
-                    activity = Activity.objects.for_company(company).get(id=request.POST.get("id"))
+                    activity = Activity.objects.for_company(company).get(id=pick_id(request.POST.get("id")))
                     activity.completed_at = timezone.now()
                     activity.save(update_fields=["completed_at"])
         except (ValidationError, InvalidOperation, Opportunity.DoesNotExist, PipelineStage.DoesNotExist, Activity.DoesNotExist) as exc:
@@ -124,7 +125,7 @@ def lead_list(request):
                 company=company, name=name[:255], company_name=(request.POST.get("company_name") or "")[:255],
                 phone=(request.POST.get("phone") or "")[:30], email=(request.POST.get("email") or "")[:254],
                 source=(request.POST.get("source") or "")[:100], created_by=request.user,
-                assigned_to=_users(company).filter(id=request.POST.get("assigned_to")).first() or request.user)
+                assigned_to=_users(company).filter(id=pick_id(request.POST.get("assigned_to"))).first() or request.user)
             note = (request.POST.get("note") or "").strip()
             if note:
                 Activity.objects.create(company=company, lead=lead, activity_type="note", subject=note[:255],
@@ -166,7 +167,7 @@ def lead_detail(request, lead_id):
                         lead.status = "qualified"
                         lead.save(update_fields=["status", "updated_at"])
                 elif action == "done":
-                    Activity.objects.for_company(company).filter(id=request.POST.get("id"), lead=lead).update(completed_at=timezone.now())
+                    Activity.objects.for_company(company).filter(id=pick_id(request.POST.get("id")), lead=lead).update(completed_at=timezone.now())
                 elif action == "lost":
                     lead.status = "lost"
                     lead.save(update_fields=["status", "updated_at"])
@@ -174,7 +175,7 @@ def lead_detail(request, lead_id):
                     lead.status = "open"
                     lead.save(update_fields=["status", "updated_at"])
                 elif action == "convert":
-                    existing = Customer.objects.for_company(company).filter(id=request.POST.get("customer")).first()
+                    existing = Customer.objects.for_company(company).filter(id=pick_id(request.POST.get("customer"))).first()
                     customer, deal, quotation = crm.convert_lead(
                         company=company, lead=lead, user=request.user, existing_customer=existing,
                         resolve_duplicate=bool(request.POST.get("use_match")), create_quotation=False)
@@ -212,7 +213,7 @@ def pricing(request):
                         raise ValidationError(_("Enter a name for the price list."))
                     plist = PriceList.objects.create(
                         company=company, name=name[:120], priority=int(request.POST.get("priority") or 0),
-                        customer=Customer.objects.for_company(company).filter(id=request.POST.get("customer")).first(),
+                        customer=Customer.objects.for_company(company).filter(id=pick_id(request.POST.get("customer"))).first(),
                         start_date=parse_date(request.POST.get("start") or "") or None,
                         end_date=parse_date(request.POST.get("end") or "") or None)
                     return redirect("webapp:price_list_detail", plist.id)
@@ -224,12 +225,12 @@ def pricing(request):
                     if not name or not start or not end or end < start or value <= 0 or (kind == "percentage" and value > 100):
                         raise ValidationError(_("Enter a name, valid dates and a discount."))
                     Promotion.objects.create(company=company, name=name[:120], discount_type=kind, discount_value=value,
-                                             product=Product.objects.for_company(company).filter(id=request.POST.get("product")).first(),
+                                             product=Product.objects.for_company(company).filter(id=pick_id(request.POST.get("product"))).first(),
                                              start_date=start, end_date=end, priority=int(request.POST.get("priority") or 0))
                     messages.success(request, _("Offer saved. The POS and new quotes use it automatically."))
                 elif action in ("toggle_offer", "toggle_list"):
                     model = Promotion if action == "toggle_offer" else PriceList
-                    obj = model.objects.for_company(company).get(id=request.POST.get("id"))
+                    obj = model.objects.for_company(company).get(id=pick_id(request.POST.get("id")))
                     obj.is_active = not obj.is_active
                     obj.save(update_fields=["is_active"])
         except (ValidationError, InvalidOperation, ValueError, Promotion.DoesNotExist, PriceList.DoesNotExist) as exc:
@@ -255,14 +256,14 @@ def price_list_detail(request, list_id):
         action = request.POST.get("action")
         try:
             if action == "item":
-                product = Product.objects.for_company(company).get(id=request.POST.get("product"))
+                product = Product.objects.for_company(company).get(id=pick_id(request.POST.get("product")))
                 price = Decimal(request.POST.get("price") or "")
                 if price < 0:
                     raise ValidationError(_("The price can't be negative."))
                 PriceListItem.objects.update_or_create(price_list=plist, product=product, defaults={"unit_price": price})
                 messages.success(request, _("%(item)s: %(price)s") % {"item": product.name, "price": f"{price:.2f}"})
             elif action == "remove":
-                PriceListItem.objects.filter(price_list=plist, id=request.POST.get("id")).delete()
+                PriceListItem.objects.filter(price_list=plist, id=pick_id(request.POST.get("id"))).delete()
             elif action == "bulk":
                 percent = Decimal(request.POST.get("percent") or "0")
                 created = 0
@@ -286,9 +287,9 @@ def price_lookup(request):
     company = request.company
     if company is None:
         return JsonResponse({"error": "no company"}, status=400)
-    product = Product.objects.for_company(company).filter(id=request.GET.get("product")).first()
+    product = Product.objects.for_company(company).filter(id=pick_id(request.GET.get("product"))).first()
     if product is None:
         return JsonResponse({"error": "not found"}, status=404)
-    customer = Customer.objects.for_company(company).filter(id=request.GET.get("customer")).first()
+    customer = Customer.objects.for_company(company).filter(id=pick_id(request.GET.get("customer"))).first()
     price, source, offer = resolve_commercial_price(company=company, customer=customer, product=product, date=timezone.localdate())
     return JsonResponse({"price": f"{price:.2f}", "source": source, "offer": offer.name if offer else ""})

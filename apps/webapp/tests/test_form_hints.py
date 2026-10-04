@@ -98,3 +98,17 @@ def test_script_json_cannot_close_a_script_tag():
     from apps.common.safe_json import script_json
     value = script_json({"name": "</script><script>alert(1)</script>"})
     assert "</script>" not in value and json.loads(value)["name"].startswith("</script>")
+
+
+def test_empty_choices_are_refused_not_crashing(client):
+    """Found by the audit robot: posting a form with an empty dropdown used to raise filter(id='') -> 500."""
+    _company_obj, user = _company("supermarket")
+    client.force_login(user)
+    for url, data in (("/crm/", {"action": "add", "title": "Deal", "customer": ""}),
+                      ("/crm/", {"action": "move", "id": "", "stage": "x"}),
+                      ("/stock/adjust/", {"product": "", "warehouse": "", "quantity": "2"}),
+                      ("/stock/batches/", {"product": "", "warehouse": "abc", "quantity": "1"}),
+                      ("/stock/serials/", {"product": "", "warehouse": ""})):
+        assert client.post(url, data).status_code in (200, 302), url
+    from apps.common.ids import pick_id
+    assert [pick_id(v) for v in ("", None, "abc", "0", "-3", " 12 ")] == [None, None, None, None, None, 12]

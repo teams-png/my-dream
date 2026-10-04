@@ -25,6 +25,7 @@ from apps.sales.models import CustomerPayment, SalesInvoice, SalesReturn
 
 from . import xlsx
 from .views import require_permission
+from apps.common.ids import pick_id
 
 PERMISSION = "sales.view_invoice"
 RECEIVE = "sales.create_invoice"
@@ -224,7 +225,7 @@ def receive_payment(request, customer_id):
     try:
         with transaction.atomic():
             receipts, left = allocate_payment(company=company, user=request.user, customer=customer, amount=amount,
-                                              date=day, method=ledger_method, invoice_id=request.POST.get("invoice"))
+                                              date=day, method=ledger_method, invoice_id=pick_id(request.POST.get("invoice")))
     except (ValidationError, KeyError) as exc:
         messages.error(request, "; ".join(getattr(exc, "messages", [str(exc)])))
         return redirect("webapp:customer_account", customer.id)

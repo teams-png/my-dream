@@ -23,6 +23,7 @@ from apps.employees.models import (AdvanceRecovery, Attendance, Employee, Employ
 
 from . import xlsx
 from .views import require_permission
+from apps.common.ids import pick_id
 
 MANAGE = "employees.manage"
 PAYROLL = "employees.manage_payroll"
@@ -383,7 +384,7 @@ def leave(request):
                         "name": data["employee"].name, "days": f"{request_obj.days.normalize():f}"})
                     return redirect("webapp:hr_leave")
             elif action in ("approve", "reject"):
-                leave_request = get_object_or_404(LeaveRequest.objects.for_company(company), id=request.POST.get("id"))
+                leave_request = get_object_or_404(LeaveRequest.objects.for_company(company), id=pick_id(request.POST.get("id")))
                 hr.review_leave(company=company, request=leave_request, reviewer=request.user, approve=action == "approve")
                 messages.success(request, _("Leave approved.") if action == "approve" else _("Leave rejected."))
                 return redirect("webapp:hr_leave")
@@ -402,7 +403,7 @@ def leave(request):
                     messages.success(request, _("Holiday saved."))
                 return redirect("webapp:hr_leave")
             elif action == "delete_holiday":
-                Holiday.objects.for_company(company).filter(id=request.POST.get("id")).delete()
+                Holiday.objects.for_company(company).filter(id=pick_id(request.POST.get("id"))).delete()
                 return redirect("webapp:hr_leave")
         except (ValidationError, ArithmeticError, ValueError) as exc:
             messages.error(request, _error(exc))
@@ -439,7 +440,7 @@ def advances(request):
     if request.method == "POST":
         try:
             if request.POST.get("action") == "repay":
-                advance = get_object_or_404(SalaryAdvance.objects.for_company(company), id=request.POST.get("id"))
+                advance = get_object_or_404(SalaryAdvance.objects.for_company(company), id=pick_id(request.POST.get("id")))
                 hr.repay_advance(company=company, user=request.user, advance=advance, amount=request.POST.get("amount") or "0",
                                  date=parse_date(request.POST.get("date") or "") or timezone.localdate(),
                                  method=request.POST.get("method") or "cash")
@@ -569,7 +570,7 @@ def documents(request):
     form = DocumentForm(company=company, initial={"employee": request.GET.get("employee")})
     if request.method == "POST":
         if request.POST.get("action") == "delete":
-            EmployeeDocument.objects.for_company(company).filter(id=request.POST.get("id")).delete()
+            EmployeeDocument.objects.for_company(company).filter(id=pick_id(request.POST.get("id"))).delete()
             messages.success(request, _("Document removed."))
             return redirect("webapp:hr_documents")
         form = DocumentForm(request.POST, company=company)

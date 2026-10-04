@@ -101,6 +101,7 @@ from .forms import (
     DeliveryIntegrationForm,
 )
 from apps.subscriptions import services as subscription_services
+from apps.common.ids import pick_id
 
 
 def require_permission(code):
@@ -3044,7 +3045,7 @@ def restaurant_dashboard(request):
                                   .for_company(company).filter(status="attention").exclude(order__status__in=["paid", "cancelled"])
                                   .select_related("order")[:10]),
         "paid_order": RestaurantOrder.objects.for_company(company).filter(
-            id=request.GET.get("paid"), status="paid").select_related("invoice").first() if (request.GET.get("paid") or "").isdigit() else None,
+            id=pick_id(request.GET.get("paid")), status="paid").select_related("invoice").first() if (request.GET.get("paid") or "").isdigit() else None,
         "stats": {
             "sales_today": paid_today.aggregate(total=Sum("invoice__total"))["total"] or Decimal("0"),
             "paid_today": paid_today.count(),
@@ -3338,7 +3339,7 @@ def restaurant_order_detail(request, order_id):
                     messages.success(request, "Item added.")
                     return redirect("webapp:restaurant_order_detail", order_id=order.id)
             elif action == "quick_add":
-                product = get_object_or_404(Product.objects.for_company(company), id=request.POST.get("product_id"))
+                product = get_object_or_404(Product.objects.for_company(company), id=pick_id(request.POST.get("product_id")))
                 menu_item = get_object_or_404(RestaurantMenuItem.objects.for_company(company), product=product)
                 if not menu_item.is_available:
                     raise ValueError("This menu item is currently sold out.")
@@ -3351,7 +3352,7 @@ def restaurant_order_detail(request, order_id):
                 )
                 return redirect("webapp:restaurant_order_detail", order_id=order.id)
             elif action in {"increase_line", "decrease_line", "remove_line"}:
-                line = get_object_or_404(RestaurantOrderLine.objects.for_company(company), id=request.POST.get("line_id"), order=order)
+                line = get_object_or_404(RestaurantOrderLine.objects.for_company(company), id=pick_id(request.POST.get("line_id")), order=order)
                 if action == "remove_line":
                     restaurant_services.remove_order_line(company=company, line=line)
                 else:
@@ -3366,7 +3367,7 @@ def restaurant_order_detail(request, order_id):
                 messages.success(request, f"KOT sent to kitchen (round {ticket.kitchen_round}).")
                 return redirect(reverse("webapp:restaurant_order_detail", args=[order.id]) + f"?kot_round={ticket.kitchen_round}")
             elif action == "transfer":
-                table = get_object_or_404(DiningTable.objects.for_company(company), id=request.POST.get("table_id"))
+                table = get_object_or_404(DiningTable.objects.for_company(company), id=pick_id(request.POST.get("table_id")))
                 restaurant_services.transfer_table(company=company, order=order, table=table)
                 messages.success(request, f"Order moved to table {table.name}.")
                 return redirect("webapp:restaurant_order_detail", order_id=order.id)
@@ -3383,7 +3384,7 @@ def restaurant_order_detail(request, order_id):
                 messages.success(request, f"Split into {new_order.order_number}.")
                 return redirect("webapp:restaurant_order_detail", order_id=new_order.id)
             elif action == "merge":
-                source = get_object_or_404(RestaurantOrder.objects.for_company(company), id=request.POST.get("source_order_id"))
+                source = get_object_or_404(RestaurantOrder.objects.for_company(company), id=pick_id(request.POST.get("source_order_id")))
                 restaurant_services.merge_orders(company=company, target=order, source=source)
                 messages.success(request, "Orders merged.")
                 return redirect("webapp:restaurant_order_detail", order_id=order.id)
@@ -4018,7 +4019,7 @@ def pos_offline_sales(request):
         return render(request, "webapp/no_company.html")
     records = OfflineSaleSync.objects.for_company(company).filter(channel="offline").select_related("invoice", "synced_by")
     if request.method == "POST":
-        record = get_object_or_404(records, id=request.POST.get("record_id"))
+        record = get_object_or_404(records, id=pick_id(request.POST.get("record_id")))
         if request.POST.get("action") == "retry":
             record = pos_services.retry(record, user=request.user)
             if record.status == "synced":

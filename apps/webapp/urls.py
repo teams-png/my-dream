@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
+from . import mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -213,6 +213,14 @@ urlpatterns = [
     path("recruitment/candidates/<int:candidate_id>/edit/", recruitment_views.rec_candidate_edit, name="rec_candidate_edit"),
     path("recruitment/candidates/<int:candidate_id>/cv/", recruitment_views.rec_candidate_cv, name="rec_candidate_cv"),
     path("recruitment/placements/<int:placement_id>/", recruitment_views.rec_placement, name="rec_placement"),
+    path("mess/", mess_views.mess_home, name="mess_home"),
+    path("mess/plans/", mess_views.mess_plans, name="mess_plans"),
+    path("mess/plans/add/", mess_views.mess_plan_form, name="mess_plan_add"),
+    path("mess/plans/<int:plan_id>/edit/", mess_views.mess_plan_form, name="mess_plan_edit"),
+    path("mess/join/", mess_views.mess_join, name="mess_join"),
+    path("mess/members/<int:member_id>/", mess_views.mess_member, name="mess_member"),
+    path("mess/bills/", mess_views.mess_bills, name="mess_bills"),
+    path("mess/dues/", mess_views.mess_dues, name="mess_dues"),
     path("education/", education_views.education_home, name="education_home"),
     path("education/enrol/", education_views.enroll, name="education_enroll"),
     path("education/fees/", education_views.fees, name="education_fees"),

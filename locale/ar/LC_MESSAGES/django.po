@@ -586,6 +586,30 @@ msgid "Booking settings"
 msgstr "إعدادات الحجز"
 
 #: templates/webapp/_industry_nav.html
+msgid "Mess"
+msgstr "الاشتراك الشهري"
+
+#: templates/webapp/_industry_nav.html
+msgid "Today's meals"
+msgstr "وجبات اليوم"
+
+#: templates/webapp/_industry_nav.html
+msgid "New member"
+msgstr "عضو جديد"
+
+#: templates/webapp/_industry_nav.html
+msgid "Monthly bills"
+msgstr "الفواتير الشهرية"
+
+#: templates/webapp/_industry_nav.html
+msgid "Mess dues"
+msgstr "مستحقات الاشتراك"
+
+#: templates/webapp/_industry_nav.html
+msgid "Mess plans"
+msgstr "باقات الاشتراك"
+
+#: templates/webapp/_industry_nav.html
 msgid "My website"
 msgstr "موقعي الإلكتروني"
 
@@ -4560,6 +4584,188 @@ msgstr "جديد هنا؟"
 msgid "Start a free trial"
 msgstr "ابدأ تجربة مجانية"
 
+#: templates/webapp/mess/bills.html
+msgid "Mess bills"
+msgstr "فواتير الاشتراك"
+
+#: templates/webapp/mess/bills.html
+msgid "Not billed yet"
+msgstr "لم تصدر فاتورة بعد"
+
+#: templates/webapp/mess/bills.html
+msgid "Ready to bill"
+msgstr "جاهز للفوترة"
+
+#: templates/webapp/mess/bills.html
+msgid "mess cut"
+msgstr "إجازة الوجبات"
+
+#: templates/webapp/mess/bills.html
+msgid "Create all bills"
+msgstr "إنشاء كل الفواتير"
+
+#: templates/webapp/mess/bills.html
+msgid ""
+"Members who joined or left during the month pay only for their days. Last "
+"month's mess-cut days come off this bill when the plan allows."
+msgstr ""
+"من انضم أو غادر خلال الشهر يدفع عن أيامه فقط. تُخصم أيام إجازة الشهر الماضي "
+"من هذه الفاتورة إذا سمحت الباقة."
+
+#: templates/webapp/mess/bills.html
+msgid "No mess bills for this month."
+msgstr "لا توجد فواتير اشتراك لهذا الشهر."
+
+#: templates/webapp/mess/dues.html
+msgid "No mess dues. Everyone has paid."
+msgstr "لا مستحقات. الجميع دفعوا."
+
+#: templates/webapp/mess/form.html
+msgid "Please check the highlighted fields."
+msgstr "يرجى مراجعة الحقول المحددة."
+
+#: templates/webapp/mess/home.html
+msgid "Mess — today's meals"
+msgstr "الاشتراك — وجبات اليوم"
+
+#: templates/webapp/mess/home.html
+msgid "Breakfast"
+msgstr "الفطور"
+
+#: templates/webapp/mess/home.html
+msgid "Lunch"
+msgstr "الغداء"
+
+#: templates/webapp/mess/home.html
+msgid "Dinner"
+msgstr "العشاء"
+
+#: templates/webapp/mess/home.html
+msgid "still to eat"
+msgstr "لم يأكلوا بعد"
+
+#: templates/webapp/mess/home.html
+msgid "Start your mess"
+msgstr "ابدأ الاشتراك الشهري"
+
+#: templates/webapp/mess/home.html
+msgid "Create a monthly plan (e.g. Full mess – 3 meals) and add members."
+msgstr "أنشئ باقة شهرية (مثلاً اشتراك كامل – 3 وجبات) وأضف الأعضاء."
+
+#: templates/webapp/mess/home.html
+msgid "Create plan"
+msgstr "إنشاء باقة"
+
+#: templates/webapp/mess/home.html
+msgid "members are not billed for this month yet"
+msgstr "أعضاء لم تصدر فواتيرهم لهذا الشهر"
+
+#: templates/webapp/mess/home.html
+msgid "Create all the mess bills in one step."
+msgstr "أنشئ كل فواتير الاشتراك بخطوة واحدة."
+
+#: templates/webapp/mess/home.html
+msgid "Name, phone or member no."
+msgstr "الاسم أو الهاتف أو رقم العضو"
+
+#: templates/webapp/mess/home.html
+msgid "Plans"
+msgstr "الباقات"
+
+#: templates/webapp/mess/home.html
+msgid "members eating today"
+msgstr "أعضاء يأكلون اليوم"
+
+#: templates/webapp/mess/home.html
+msgid "on mess cut"
+msgstr "في إجازة"
+
+#: templates/webapp/mess/home.html
+msgid "paused"
+msgstr "موقوف"
+
+#: templates/webapp/mess/home.html
+msgid "Mess cut today"
+msgstr "إجازة اليوم"
+
+#: templates/webapp/mess/home.html
+msgid "Tap to undo"
+msgstr "اضغط للتراجع"
+
+#: templates/webapp/mess/home.html
+msgid "No member found."
+msgstr "لم يتم العثور على عضو."
+
+#: templates/webapp/mess/home.html
+msgid "No mess members yet."
+msgstr "لا يوجد أعضاء بعد."
+
+#: templates/webapp/mess/member.html
+msgid "Monthly fee"
+msgstr "الرسوم الشهرية"
+
+#: templates/webapp/mess/member.html
+msgid "Meals this month"
+msgstr "وجبات هذا الشهر"
+
+#: templates/webapp/mess/member.html
+msgid "Mess cut"
+msgstr "إجازة الوجبات"
+
+#: templates/webapp/mess/member.html
+msgid "Mess cut (leave)"
+msgstr "إجازة الوجبات"
+
+#: templates/webapp/mess/member.html
+msgid "Save mess cut"
+msgstr "حفظ الإجازة"
+
+#: templates/webapp/mess/member.html
+msgid "Bills"
+msgstr "الفواتير"
+
+#: templates/webapp/mess/member.html
+msgid "No bills yet."
+msgstr "لا توجد فواتير بعد."
+
+#: templates/webapp/mess/member.html
+msgid "Bill"
+msgstr "فاتورة"
+
+#: templates/webapp/mess/member.html
+msgid "Member"
+msgstr "العضو"
+
+#: templates/webapp/mess/member.html
+msgid "Ended"
+msgstr "منتهي"
+
+#: templates/webapp/mess/member.html
+msgid "End this mess membership?"
+msgstr "إنهاء هذا الاشتراك؟"
+
+#: templates/webapp/mess/member.html
+msgid "End membership"
+msgstr "إنهاء الاشتراك"
+
+#: templates/webapp/mess/plans.html
+msgid "New mess plan"
+msgstr "باقة جديدة"
+
+#: templates/webapp/mess/plans.html
+msgid "Mess cut / day"
+msgstr "خصم الإجازة / يوم"
+
+#: templates/webapp/mess/plans.html
+msgid "No mess plans yet."
+msgstr "لا توجد باقات بعد."
+
+#: templates/webapp/mess/plans.html
+msgid ""
+"Example: Full mess – breakfast, lunch & dinner – 450 a month; Lunch only – "
+"200."
+msgstr "مثال: اشتراك كامل – فطور وغداء وعشاء – 450 شهرياً؛ غداء فقط – 200."
+
 #: templates/webapp/mobile_shop/product_form.html
 msgid "Edit product"
 msgstr "تعديل المنتج"
@@ -4567,10 +4773,6 @@ msgstr "تعديل المنتج"
 #: templates/webapp/mobile_shop/product_form.html
 msgid "Add product"
 msgstr "إضافة منتج"
-
-#: templates/webapp/mobile_shop/product_form.html
-msgid "Please check the highlighted fields."
-msgstr "يرجى مراجعة الحقول المحددة."
 
 #: templates/webapp/mobile_shop/product_form.html
 msgid "Product details"
@@ -4956,10 +5158,6 @@ msgid "Unpaid bills"
 msgstr "فواتير غير مدفوعة"
 
 #: templates/webapp/pay/portal.html
-msgid "Bill"
-msgstr "فاتورة"
-
-#: templates/webapp/pay/portal.html
 msgid "Due date"
 msgstr "تاريخ الاستحقاق"
 
@@ -4970,10 +5168,6 @@ msgstr "كشف الحساب"
 #: templates/webapp/pay/portal.html
 msgid "Recent bills"
 msgstr "الفواتير الأخيرة"
-
-#: templates/webapp/pay/portal.html
-msgid "No bills yet."
-msgstr "لا توجد فواتير بعد."
 
 #: templates/webapp/pay/settings.html
 msgid "Let customers pay your bills online"
@@ -6016,10 +6210,6 @@ msgstr "أسعار الهند، تُحاسَب بالروبية."
 msgid "You can change the plan any time from Billing."
 msgstr "يمكنك تغيير الباقة في أي وقت من صفحة الفوترة."
 
-#: templates/webapp/purchase_docs/_tabs.html
-msgid "Bills"
-msgstr "الفواتير"
-
 #: templates/webapp/purchase_docs/grn.html
 msgid "Goods receipt"
 msgstr "استلام البضاعة"
@@ -6547,10 +6737,6 @@ msgstr "رسومنا للشخص"
 #: templates/webapp/recruitment/job_detail.html
 msgid "Needed by"
 msgstr "مطلوب بحلول"
-
-#: templates/webapp/recruitment/job_detail.html
-msgid "Not billed yet"
-msgstr "لم تصدر فاتورة بعد"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Move to"
@@ -9503,6 +9689,156 @@ msgstr "تم حفظ إعدادات الموارد البشرية."
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
 msgstr "هذه الوحدة ليست ضمن نوع نشاطك."
+
+#: apps/webapp/mess_views.py
+msgid "Plan name"
+msgstr "اسم الباقة"
+
+#: apps/webapp/mess_views.py
+msgid "Mess-cut refund per day"
+msgstr "خصم الإجازة لكل يوم"
+
+#: apps/webapp/mess_views.py
+msgid "Minimum mess-cut days"
+msgstr "أقل عدد أيام إجازة"
+
+#: apps/webapp/mess_views.py
+msgid "Open for new members"
+msgstr "متاحة لأعضاء جدد"
+
+#: apps/webapp/mess_views.py
+msgid "Taken off the next bill for each day away. 0 = no refund."
+msgstr "يُخصم من الفاتورة التالية عن كل يوم غياب. 0 = بلا خصم."
+
+#: apps/webapp/mess_views.py
+msgid "Shorter leaves are not refunded."
+msgstr "الإجازات الأقصر لا تُخصم."
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Full mess – 3 meals"
+msgstr "مثلاً اشتراك كامل – 3 وجبات"
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Kerala meals, chicken twice a week"
+msgstr "مثلاً وجبات كيرلا، دجاج مرتين أسبوعياً"
+
+#: apps/webapp/mess_views.py
+msgid "Tick at least one meal."
+msgstr "اختر وجبة واحدة على الأقل."
+
+#: apps/webapp/mess_views.py
+msgid "Existing customer"
+msgstr "عميل حالي"
+
+#: apps/webapp/mess_views.py
+msgid "…or new member name"
+msgstr "…أو اسم عضو جديد"
+
+#: apps/webapp/mess_views.py
+msgid "Starts on"
+msgstr "يبدأ في"
+
+#: apps/webapp/mess_views.py
+msgid "Special monthly fee"
+msgstr "رسوم شهرية خاصة"
+
+#: apps/webapp/mess_views.py
+msgid "Leave empty to use the plan's fee."
+msgstr "اتركه فارغاً لاستخدام رسوم الباقة."
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Room 12, Al Noor Trading staff, no beef"
+msgstr "مثلاً غرفة 12، موظف النور للتجارة، بدون لحم بقر"
+
+#: apps/webapp/mess_views.py
+msgid "Bill this month now"
+msgstr "إصدار فاتورة هذا الشهر الآن"
+
+#: apps/webapp/mess_views.py
+msgid "Choose a customer or type the new member's name."
+msgstr "اختر عميلاً أو اكتب اسم العضو الجديد."
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Going home on vacation"
+msgstr "مثلاً سفر في إجازة"
+
+#: apps/webapp/mess_views.py
+msgid "%(meal)s served to %(name)s."
+msgstr "تم تقديم %(meal)s إلى %(name)s."
+
+#: apps/webapp/mess_views.py
+msgid "Plan saved."
+msgstr "تم حفظ الباقة."
+
+#: apps/webapp/mess_views.py
+msgid "Edit plan"
+msgstr "تعديل الباقة"
+
+#: apps/webapp/mess_views.py
+msgid "Create a mess plan first."
+msgstr "أنشئ باقة أولاً."
+
+#: apps/webapp/mess_views.py
+msgid "%(name)s joined the mess as %(number)s."
+msgstr "انضم %(name)s برقم %(number)s."
+
+#: apps/webapp/mess_views.py
+msgid "New mess member"
+msgstr "عضو اشتراك جديد"
+
+#: apps/webapp/mess_views.py
+msgid "Mess cut saved."
+msgstr "تم حفظ الإجازة."
+
+#: apps/webapp/mess_views.py
+msgid "Status changed."
+msgstr "تم تغيير الحالة."
+
+#: apps/webapp/mess_views.py
+msgid "Bill created."
+msgstr "تم إنشاء الفاتورة."
+
+#: apps/webapp/mess_views.py
+msgid "This month is already billed."
+msgstr "تمت فوترة هذا الشهر بالفعل."
+
+#: apps/webapp/mess_views.py
+msgid "Mon"
+msgstr "الإثنين"
+
+#: apps/webapp/mess_views.py
+msgid "Tue"
+msgstr "الثلاثاء"
+
+#: apps/webapp/mess_views.py
+msgid "Wed"
+msgstr "الأربعاء"
+
+#: apps/webapp/mess_views.py
+msgid "Thu"
+msgstr "الخميس"
+
+#: apps/webapp/mess_views.py
+msgid "Fri"
+msgstr "الجمعة"
+
+#: apps/webapp/mess_views.py
+msgid "Sat"
+msgstr "السبت"
+
+#: apps/webapp/mess_views.py
+msgid "Sun"
+msgstr "الأحد"
+
+#: apps/webapp/mess_views.py
+msgid ""
+"Refund %(amount)s per day on the next bill for mess cuts of %(days)s+ days."
+msgstr ""
+"خصم %(amount)s لكل يوم من الفاتورة التالية للإجازات من %(days)s أيام فأكثر."
+
+#: apps/webapp/mess_views.py
+msgid "%(n)s mess bills created."
+msgstr "تم إنشاء %(n)s فاتورة اشتراك."
 
 #: apps/webapp/onboarding_views.py
 msgid "Check the price and stock for “%(name)s”."

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Mess dues" %}{% endblock %}
+{% block heading %}🍱 {% translate "Mess dues" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar"><a class="btn btn-secondary" href="{% url 'webapp:mess_home' %}">← {% translate "Mess" %}</a><span class="grow"></span><a class="btn btn-secondary" href="{% url 'webapp:mess_bills' %}">🧾 {% translate "Monthly bills" %}</a></div>
+  <p style="color:var(--ink-soft);margin-top:-4px">{% translate "Record a payment from the invoice, or send the invoice link by WhatsApp or email as a reminder." %}</p>
+  <div class="ix-list">
+  {% for r in rows %}
+    <div class="ix-card" style="margin:0">
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
+        <div><a href="{% url 'webapp:mess_member' r.member.id %}"><b style="font-size:16px">{{ r.member.number }} · {{ r.member.customer.name }}</b></a>{% if r.member.customer.phone %} · <a href="tel:{{ r.member.customer.phone }}">{{ r.member.customer.phone }}</a>{% endif %}</div>
+        <b style="font-size:20px;color:var(--ix-red)">{{ r.due|floatformat:2 }}</b>
+      </div>
+      <div class="ix-list" style="margin-top:10px">{% for inv in r.invoices %}<div class="ix-row"><span class="grow"><b>{{ inv.invoice_number }}</b><small>{{ inv.date|date:"j M Y" }} · {% translate "total" %} {{ inv.total }} · {% translate "paid" %} {{ inv.amount_paid }}</small></span><a class="btn btn-secondary" href="{% url 'webapp:invoice_pdf' inv.id %}" target="_blank">🧾</a><a class="btn btn-secondary" href="{% url 'webapp:invoice_share' inv.id %}">📤 {% translate "Remind" %}</a></div>{% endfor %}</div>
+    </div>
+  {% empty %}
+    <div class="ix-card ix-empty"><p style="font-size:36px;margin:0">🎉</p><strong>{% translate "No mess dues. Everyone has paid." %}</strong></div>
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}

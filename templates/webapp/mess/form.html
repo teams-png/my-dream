@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
+{% block heading %}🍱 {{ title }}{% endblock %}
+{% block content %}
+<form method="post" class="fx" style="max-width:820px" novalidate>{% csrf_token %}
+  {% if form.errors %}<div class="fx-errors">{% translate "Please check the highlighted fields." %}{{ form.non_field_errors }}</div>{% endif %}
+  <section class="fx-card">
+    <div class="fx-grid">
+      {% for field in form.visible_fields %}{% include "webapp/_field.html" with field=field %}{% endfor %}
+    </div>
+  </section>
+  <div class="fx-bar">
+    <button class="btn" type="submit">✓ {% translate "Save" %}</button>
+    <a class="btn btn-secondary" href="{% url back %}">{% translate "Cancel" %}</a>
+  </div>
+</form>
+{% endblock %}

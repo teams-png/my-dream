@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Monthly bills" %}{% endblock %}
+{% block heading %}🍱 {% translate "Mess bills" %} · {{ month }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar"><a class="btn btn-secondary" href="{% url 'webapp:mess_home' %}">← {% translate "Mess" %}</a>
+    <a class="btn btn-secondary" href="?month={{ prev }}">‹</a><b>{{ month }}</b><a class="btn btn-secondary" href="?month={{ next }}">›</a>
+    <span class="grow"></span><a class="btn btn-secondary" href="{% url 'webapp:mess_dues' %}">⏰ {% translate "Mess dues" %}</a></div>
+  <div class="ix-stats">
+    <div class="ix-stat"><small>{% translate "Billed" %}</small><b>{{ billed|floatformat:"-2" }}</b></div>
+    <div class="ix-stat good"><small>{% translate "Collected" %}</small><b>{{ collected|floatformat:"-2" }}</b></div>
+    <div class="ix-stat {% if due %}warn{% endif %}"><small>{% translate "Not billed yet" %}</small><b>{{ due|length }}</b></div>
+  </div>
+
+  {% if due %}
+  <div class="ix-card" style="border-left:4px solid var(--ix-amber)">
+    <h3>{% translate "Ready to bill" %} · {{ active_company.default_currency }} {{ due_total|floatformat:2 }}</h3>
+    <div class="ix-list">{% for d in due %}<div class="ix-row"><span class="grow"><b>{{ d.m.number }} · {{ d.m.customer.name }}</b><small>{{ d.m.plan.name }} · {{ d.fee }}{% if d.refund %} − {% translate "mess cut" %} {{ d.refund }} ({{ d.days }} {% translate "days" %}){% endif %}</small></span><b>{{ d.total|floatformat:2 }}</b></div>{% endfor %}</div>
+    <form method="post" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="month" value="{{ month }}"><button class="btn" type="submit">🧾 {% translate "Create all bills" %}</button></form>
+    <p style="color:var(--ink-soft);font-size:12.5px;margin:8px 0 0">{% translate "Members who joined or left during the month pay only for their days. Last month's mess-cut days come off this bill when the plan allows." %}</p>
+  </div>
+  {% endif %}
+
+  <div class="ix-list">{% for c in charges %}<div class="ix-row"><span class="grow"><b>{{ c.member.number }} · {{ c.member.customer.name }}</b><small>{{ c.amount }}{% if c.refund %} · {% translate "mess cut" %} −{{ c.refund }}{% endif %}{% if c.invoice %} · {{ c.invoice.invoice_number }}{% endif %}</small></span>
+    {% if c.invoice %}{% if c.invoice.amount_paid >= c.invoice.total %}<span class="ix-chip paid">{% translate "Paid" %}</span>{% else %}<span class="ix-chip due">{% translate "Due" %}</span>{% endif %}<a class="btn btn-secondary" href="{% url 'webapp:invoice_pdf' c.invoice.id %}" target="_blank">🧾</a><a class="btn btn-secondary" href="{% url 'webapp:invoice_share' c.invoice.id %}">📤</a>{% endif %}</div>
+  {% empty %}{% if not due %}<div class="ix-card ix-empty"><strong>{% translate "No mess bills for this month." %}</strong></div>{% endif %}{% endfor %}</div>
+</div>
+{% endblock %}

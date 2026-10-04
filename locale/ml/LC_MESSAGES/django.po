@@ -586,6 +586,30 @@ msgid "Booking settings"
 msgstr "ബുക്കിംഗ് ക്രമീകരണങ്ങൾ"
 
 #: templates/webapp/_industry_nav.html
+msgid "Mess"
+msgstr "മെസ്സ്"
+
+#: templates/webapp/_industry_nav.html
+msgid "Today's meals"
+msgstr "ഇന്നത്തെ ഭക്ഷണം"
+
+#: templates/webapp/_industry_nav.html
+msgid "New member"
+msgstr "പുതിയ അംഗം"
+
+#: templates/webapp/_industry_nav.html
+msgid "Monthly bills"
+msgstr "മാസ ബില്ലുകൾ"
+
+#: templates/webapp/_industry_nav.html
+msgid "Mess dues"
+msgstr "മെസ്സ് കുടിശ്ശിക"
+
+#: templates/webapp/_industry_nav.html
+msgid "Mess plans"
+msgstr "മെസ്സ് പ്ലാനുകൾ"
+
+#: templates/webapp/_industry_nav.html
 msgid "My website"
 msgstr "എന്റെ വെബ്സൈറ്റ്"
 
@@ -4604,6 +4628,190 @@ msgstr "പുതിയ ആളാണോ?"
 msgid "Start a free trial"
 msgstr "സൗജന്യ ട്രയൽ തുടങ്ങുക"
 
+#: templates/webapp/mess/bills.html
+msgid "Mess bills"
+msgstr "മെസ്സ് ബില്ലുകൾ"
+
+#: templates/webapp/mess/bills.html
+msgid "Not billed yet"
+msgstr "ഇതുവരെ ബിൽ ചെയ്തിട്ടില്ല"
+
+#: templates/webapp/mess/bills.html
+msgid "Ready to bill"
+msgstr "ബിൽ ചെയ്യാൻ തയ്യാർ"
+
+#: templates/webapp/mess/bills.html
+msgid "mess cut"
+msgstr "മെസ്സ് കട്ട്"
+
+#: templates/webapp/mess/bills.html
+msgid "Create all bills"
+msgstr "എല്ലാ ബില്ലുകളും ഉണ്ടാക്കുക"
+
+#: templates/webapp/mess/bills.html
+msgid ""
+"Members who joined or left during the month pay only for their days. Last "
+"month's mess-cut days come off this bill when the plan allows."
+msgstr ""
+"മാസത്തിനിടയിൽ ചേർന്നവരോ നിർത്തിയവരോ അവരുടെ ദിവസങ്ങൾക്ക് മാത്രം പണം നൽകും. "
+"പ്ലാൻ അനുവദിക്കുമെങ്കിൽ കഴിഞ്ഞ മാസത്തെ മെസ്സ് കട്ട് ദിവസങ്ങൾ ഈ ബില്ലിൽ "
+"കുറയ്ക്കും."
+
+#: templates/webapp/mess/bills.html
+msgid "No mess bills for this month."
+msgstr "ഈ മാസം മെസ്സ് ബില്ലുകളില്ല."
+
+#: templates/webapp/mess/dues.html
+msgid "No mess dues. Everyone has paid."
+msgstr "കുടിശ്ശികയില്ല. എല്ലാവരും പണം നൽകി."
+
+#: templates/webapp/mess/form.html
+msgid "Please check the highlighted fields."
+msgstr "അടയാളപ്പെടുത്തിയ ഫീൽഡുകൾ പരിശോധിക്കുക."
+
+#: templates/webapp/mess/home.html
+msgid "Mess — today's meals"
+msgstr "മെസ്സ് — ഇന്നത്തെ ഭക്ഷണം"
+
+#: templates/webapp/mess/home.html
+msgid "Breakfast"
+msgstr "പ്രാതൽ"
+
+#: templates/webapp/mess/home.html
+msgid "Lunch"
+msgstr "ഉച്ചഭക്ഷണം"
+
+#: templates/webapp/mess/home.html
+msgid "Dinner"
+msgstr "അത്താഴം"
+
+#: templates/webapp/mess/home.html
+msgid "still to eat"
+msgstr "ഇനി കഴിക്കാനുള്ളവർ"
+
+#: templates/webapp/mess/home.html
+msgid "Start your mess"
+msgstr "നിങ്ങളുടെ മെസ്സ് തുടങ്ങുക"
+
+#: templates/webapp/mess/home.html
+msgid "Create a monthly plan (e.g. Full mess – 3 meals) and add members."
+msgstr "ഒരു മാസ പ്ലാൻ ഉണ്ടാക്കി (ഉദാ. ഫുൾ മെസ്സ് – 3 നേരം) അംഗങ്ങളെ ചേർക്കുക."
+
+#: templates/webapp/mess/home.html
+msgid "Create plan"
+msgstr "പ്ലാൻ ഉണ്ടാക്കുക"
+
+#: templates/webapp/mess/home.html
+msgid "members are not billed for this month yet"
+msgstr "അംഗങ്ങൾക്ക് ഈ മാസത്തെ ബിൽ ഇതുവരെ ഇട്ടിട്ടില്ല"
+
+#: templates/webapp/mess/home.html
+msgid "Create all the mess bills in one step."
+msgstr "എല്ലാ മെസ്സ് ബില്ലുകളും ഒറ്റയടിക്ക് ഉണ്ടാക്കുക."
+
+#: templates/webapp/mess/home.html
+msgid "Name, phone or member no."
+msgstr "പേര്, ഫോൺ അല്ലെങ്കിൽ അംഗ നമ്പർ"
+
+#: templates/webapp/mess/home.html
+msgid "Plans"
+msgstr "പ്ലാനുകൾ"
+
+#: templates/webapp/mess/home.html
+msgid "members eating today"
+msgstr "പേർ ഇന്ന് കഴിക്കുന്നു"
+
+#: templates/webapp/mess/home.html
+msgid "on mess cut"
+msgstr "മെസ്സ് കട്ടിൽ"
+
+#: templates/webapp/mess/home.html
+msgid "paused"
+msgstr "താൽക്കാലികമായി നിർത്തി"
+
+#: templates/webapp/mess/home.html
+msgid "Mess cut today"
+msgstr "ഇന്ന് മെസ്സ് കട്ട്"
+
+#: templates/webapp/mess/home.html
+msgid "Tap to undo"
+msgstr "റദ്ദാക്കാൻ ടാപ്പ് ചെയ്യുക"
+
+#: templates/webapp/mess/home.html
+msgid "No member found."
+msgstr "അംഗത്തെ കണ്ടെത്തിയില്ല."
+
+#: templates/webapp/mess/home.html
+msgid "No mess members yet."
+msgstr "ഇതുവരെ മെസ്സ് അംഗങ്ങളില്ല."
+
+#: templates/webapp/mess/member.html
+msgid "Monthly fee"
+msgstr "മാസ ഫീസ്"
+
+#: templates/webapp/mess/member.html
+msgid "Meals this month"
+msgstr "ഈ മാസത്തെ ഭക്ഷണം"
+
+#: templates/webapp/mess/member.html
+msgid "Mess cut"
+msgstr "മെസ്സ് കട്ട്"
+
+#: templates/webapp/mess/member.html
+msgid "Mess cut (leave)"
+msgstr "മെസ്സ് കട്ട് (ലീവ്)"
+
+#: templates/webapp/mess/member.html
+msgid "Save mess cut"
+msgstr "മെസ്സ് കട്ട് സേവ് ചെയ്യുക"
+
+#: templates/webapp/mess/member.html
+msgid "Bills"
+msgstr "ബില്ലുകൾ"
+
+#: templates/webapp/mess/member.html
+msgid "No bills yet."
+msgstr "ഇതുവരെ ബില്ലുകളില്ല."
+
+#: templates/webapp/mess/member.html
+msgid "Bill"
+msgstr "ബിൽ"
+
+#: templates/webapp/mess/member.html
+msgid "Member"
+msgstr "അംഗം"
+
+#: templates/webapp/mess/member.html
+msgid "Ended"
+msgstr "അവസാനിച്ചു"
+
+#: templates/webapp/mess/member.html
+msgid "End this mess membership?"
+msgstr "ഈ മെസ്സ് അംഗത്വം അവസാനിപ്പിക്കണോ?"
+
+#: templates/webapp/mess/member.html
+msgid "End membership"
+msgstr "അംഗത്വം അവസാനിപ്പിക്കുക"
+
+#: templates/webapp/mess/plans.html
+msgid "New mess plan"
+msgstr "പുതിയ മെസ്സ് പ്ലാൻ"
+
+#: templates/webapp/mess/plans.html
+msgid "Mess cut / day"
+msgstr "മെസ്സ് കട്ട് / ദിവസം"
+
+#: templates/webapp/mess/plans.html
+msgid "No mess plans yet."
+msgstr "ഇതുവരെ മെസ്സ് പ്ലാനുകളില്ല."
+
+#: templates/webapp/mess/plans.html
+msgid ""
+"Example: Full mess – breakfast, lunch & dinner – 450 a month; Lunch only – "
+"200."
+msgstr ""
+"ഉദാഹരണം: ഫുൾ മെസ്സ് – പ്രാതൽ, ഊണ്, അത്താഴം – മാസം 450; ഊണ് മാത്രം – 200."
+
 #: templates/webapp/mobile_shop/product_form.html
 msgid "Edit product"
 msgstr "ഉൽപ്പന്നം എഡിറ്റ് ചെയ്യുക"
@@ -4611,10 +4819,6 @@ msgstr "ഉൽപ്പന്നം എഡിറ്റ് ചെയ്യുക"
 #: templates/webapp/mobile_shop/product_form.html
 msgid "Add product"
 msgstr "ഉൽപ്പന്നം ചേർക്കുക"
-
-#: templates/webapp/mobile_shop/product_form.html
-msgid "Please check the highlighted fields."
-msgstr "അടയാളപ്പെടുത്തിയ ഫീൽഡുകൾ പരിശോധിക്കുക."
 
 #: templates/webapp/mobile_shop/product_form.html
 msgid "Product details"
@@ -5009,10 +5213,6 @@ msgid "Unpaid bills"
 msgstr "അടയ്ക്കാത്ത ബില്ലുകൾ"
 
 #: templates/webapp/pay/portal.html
-msgid "Bill"
-msgstr "ബിൽ"
-
-#: templates/webapp/pay/portal.html
 msgid "Due date"
 msgstr "അടയ്ക്കേണ്ട തീയതി"
 
@@ -5023,10 +5223,6 @@ msgstr "സ്റ്റേറ്റ്മെന്റ്"
 #: templates/webapp/pay/portal.html
 msgid "Recent bills"
 msgstr "സമീപകാല ബില്ലുകൾ"
-
-#: templates/webapp/pay/portal.html
-msgid "No bills yet."
-msgstr "ഇതുവരെ ബില്ലുകളില്ല."
 
 #: templates/webapp/pay/settings.html
 msgid "Let customers pay your bills online"
@@ -6088,10 +6284,6 @@ msgstr "ഇന്ത്യ വില, INR-ൽ ബിൽ ചെയ്യും."
 msgid "You can change the plan any time from Billing."
 msgstr "Billing-ൽ നിന്ന് എപ്പോൾ വേണമെങ്കിലും പ്ലാൻ മാറ്റാം."
 
-#: templates/webapp/purchase_docs/_tabs.html
-msgid "Bills"
-msgstr "ബില്ലുകൾ"
-
 #: templates/webapp/purchase_docs/grn.html
 msgid "Goods receipt"
 msgstr "സാധനം ലഭിച്ചത്"
@@ -6619,10 +6811,6 @@ msgstr "ഒരാൾക്ക് ഞങ്ങളുടെ ഫീസ്"
 #: templates/webapp/recruitment/job_detail.html
 msgid "Needed by"
 msgstr "വേണ്ട തീയതി"
-
-#: templates/webapp/recruitment/job_detail.html
-msgid "Not billed yet"
-msgstr "ഇതുവരെ ബിൽ ചെയ്തിട്ടില്ല"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Move to"
@@ -9605,6 +9793,160 @@ msgstr "HR സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
 msgstr "ഈ മൊഡ്യൂൾ നിങ്ങളുടെ ബിസിനസ് തരത്തിൽ ഇല്ല."
+
+#: apps/webapp/mess_views.py
+msgid "Plan name"
+msgstr "പ്ലാനിന്റെ പേര്"
+
+#: apps/webapp/mess_views.py
+msgid "Mess-cut refund per day"
+msgstr "ദിവസം മെസ്സ് കട്ട് റീഫണ്ട്"
+
+#: apps/webapp/mess_views.py
+msgid "Minimum mess-cut days"
+msgstr "കുറഞ്ഞ മെസ്സ് കട്ട് ദിവസങ്ങൾ"
+
+#: apps/webapp/mess_views.py
+msgid "Open for new members"
+msgstr "പുതിയ അംഗങ്ങൾക്ക് തുറന്നിരിക്കുന്നു"
+
+#: apps/webapp/mess_views.py
+msgid "Taken off the next bill for each day away. 0 = no refund."
+msgstr ""
+"മാറിനിൽക്കുന്ന ഓരോ ദിവസത്തിനും അടുത്ത ബില്ലിൽ കുറയ്ക്കും. 0 = റീഫണ്ട് ഇല്ല."
+
+#: apps/webapp/mess_views.py
+msgid "Shorter leaves are not refunded."
+msgstr "ഇതിൽ കുറഞ്ഞ ലീവിന് റീഫണ്ട് ഇല്ല."
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Full mess – 3 meals"
+msgstr "ഉദാ. ഫുൾ മെസ്സ് – 3 നേരം"
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Kerala meals, chicken twice a week"
+msgstr "ഉദാ. കേരള ഊണ്, ആഴ്ചയിൽ രണ്ട് തവണ ചിക്കൻ"
+
+#: apps/webapp/mess_views.py
+msgid "Tick at least one meal."
+msgstr "ഒരു നേരമെങ്കിലും ടിക്ക് ചെയ്യുക."
+
+#: apps/webapp/mess_views.py
+msgid "Existing customer"
+msgstr "നിലവിലുള്ള കസ്റ്റമർ"
+
+#: apps/webapp/mess_views.py
+msgid "…or new member name"
+msgstr "…അല്ലെങ്കിൽ പുതിയ അംഗത്തിന്റെ പേര്"
+
+#: apps/webapp/mess_views.py
+msgid "Starts on"
+msgstr "തുടങ്ങുന്ന തീയതി"
+
+#: apps/webapp/mess_views.py
+msgid "Special monthly fee"
+msgstr "പ്രത്യേക മാസ ഫീസ്"
+
+#: apps/webapp/mess_views.py
+msgid "Leave empty to use the plan's fee."
+msgstr "പ്ലാനിന്റെ ഫീസ് ഉപയോഗിക്കാൻ ശൂന്യമായി വിടുക."
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Room 12, Al Noor Trading staff, no beef"
+msgstr "ഉദാ. റൂം 12, അൽ നൂർ ട്രേഡിംഗ് സ്റ്റാഫ്, ബീഫ് വേണ്ട"
+
+#: apps/webapp/mess_views.py
+msgid "Bill this month now"
+msgstr "ഈ മാസത്തെ ബിൽ ഇപ്പോൾ ഇടുക"
+
+#: apps/webapp/mess_views.py
+msgid "Choose a customer or type the new member's name."
+msgstr ""
+"ഒരു കസ്റ്റമറെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ അംഗത്തിന്റെ പേര് ടൈപ്പ് "
+"ചെയ്യുക."
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Going home on vacation"
+msgstr "ഉദാ. നാട്ടിൽ ലീവിന് പോകുന്നു"
+
+#: apps/webapp/mess_views.py
+msgid "%(meal)s served to %(name)s."
+msgstr "%(name)s-ന് %(meal)s നൽകി."
+
+#: apps/webapp/mess_views.py
+msgid "Plan saved."
+msgstr "പ്ലാൻ സേവ് ചെയ്തു."
+
+#: apps/webapp/mess_views.py
+msgid "Edit plan"
+msgstr "പ്ലാൻ എഡിറ്റ് ചെയ്യുക"
+
+#: apps/webapp/mess_views.py
+msgid "Create a mess plan first."
+msgstr "ആദ്യം ഒരു മെസ്സ് പ്ലാൻ ഉണ്ടാക്കുക."
+
+#: apps/webapp/mess_views.py
+msgid "%(name)s joined the mess as %(number)s."
+msgstr "%(name)s %(number)s ആയി മെസ്സിൽ ചേർന്നു."
+
+#: apps/webapp/mess_views.py
+msgid "New mess member"
+msgstr "പുതിയ മെസ്സ് അംഗം"
+
+#: apps/webapp/mess_views.py
+msgid "Mess cut saved."
+msgstr "മെസ്സ് കട്ട് സേവ് ചെയ്തു."
+
+#: apps/webapp/mess_views.py
+msgid "Status changed."
+msgstr "സ്റ്റാറ്റസ് മാറ്റി."
+
+#: apps/webapp/mess_views.py
+msgid "Bill created."
+msgstr "ബിൽ ഉണ്ടാക്കി."
+
+#: apps/webapp/mess_views.py
+msgid "This month is already billed."
+msgstr "ഈ മാസത്തെ ബിൽ ഇതിനകം ഇട്ടിട്ടുണ്ട്."
+
+#: apps/webapp/mess_views.py
+msgid "Mon"
+msgstr "തിങ്കൾ"
+
+#: apps/webapp/mess_views.py
+msgid "Tue"
+msgstr "ചൊവ്വ"
+
+#: apps/webapp/mess_views.py
+msgid "Wed"
+msgstr "ബുധൻ"
+
+#: apps/webapp/mess_views.py
+msgid "Thu"
+msgstr "വ്യാഴം"
+
+#: apps/webapp/mess_views.py
+msgid "Fri"
+msgstr "വെള്ളി"
+
+#: apps/webapp/mess_views.py
+msgid "Sat"
+msgstr "ശനി"
+
+#: apps/webapp/mess_views.py
+msgid "Sun"
+msgstr "ഞായർ"
+
+#: apps/webapp/mess_views.py
+msgid ""
+"Refund %(amount)s per day on the next bill for mess cuts of %(days)s+ days."
+msgstr ""
+"%(days)s+ ദിവസത്തെ മെസ്സ് കട്ടിന് അടുത്ത ബില്ലിൽ ദിവസം %(amount)s "
+"കുറയ്ക്കും."
+
+#: apps/webapp/mess_views.py
+msgid "%(n)s mess bills created."
+msgstr "%(n)s മെസ്സ് ബില്ലുകൾ ഉണ്ടാക്കി."
 
 #: apps/webapp/onboarding_views.py
 msgid "Check the price and stock for “%(name)s”."

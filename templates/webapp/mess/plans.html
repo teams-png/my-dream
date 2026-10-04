@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Mess plans" %}{% endblock %}
+{% block heading %}🍱 {% translate "Mess plans" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<div class="ix">
+  <div class="ix-toolbar"><a class="btn btn-secondary" href="{% url 'webapp:mess_home' %}">← {% translate "Mess" %}</a><span class="grow"></span><a class="btn" href="{% url 'webapp:mess_plan_add' %}">＋ {% translate "New mess plan" %}</a></div>
+  <div class="ix-grid2">
+  {% for p in plans %}
+    <a class="ix-card ix-row" href="{% url 'webapp:mess_plan_edit' p.id %}" style="display:block">
+      <div style="display:flex;justify-content:space-between;gap:10px"><b style="font-size:17px">{{ p.name }}</b>{% if not p.is_active %}<span class="ix-chip cancelled">{% translate "Closed" %}</span>{% endif %}</div>
+      <small style="display:block;color:var(--ink-soft);margin-top:2px">{% if p.breakfast %}☕ {% translate "Breakfast" %} {% endif %}{% if p.lunch %}🍛 {% translate "Lunch" %} {% endif %}{% if p.dinner %}🌙 {% translate "Dinner" %}{% endif %}{% if p.description %} · {{ p.description }}{% endif %}</small>
+      <div style="display:flex;gap:22px;margin-top:12px">
+        <div><small style="color:var(--ink-soft)">{% translate "Monthly fee" %}</small><b style="display:block;font-size:20px">{{ p.monthly_fee|floatformat:"-2" }}</b></div>
+        <div><small style="color:var(--ink-soft)">{% translate "Members" %}</small><b style="display:block;font-size:20px">{{ p.active }}</b></div>
+        {% if p.leave_refund_per_day %}<div><small style="color:var(--ink-soft)">{% translate "Mess cut / day" %}</small><b style="display:block;font-size:20px">−{{ p.leave_refund_per_day|floatformat:"-2" }}</b></div>{% endif %}
+      </div>
+    </a>
+  {% empty %}
+    <div class="ix-card ix-empty"><p style="font-size:36px;margin:0">🍱</p><strong>{% translate "No mess plans yet." %}</strong><p>{% translate "Example: Full mess – breakfast, lunch & dinner – 450 a month; Lunch only – 200." %}</p><a class="btn" href="{% url 'webapp:mess_plan_add' %}">＋ {% translate "New mess plan" %}</a></div>
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}

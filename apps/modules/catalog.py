@@ -129,6 +129,8 @@ INDUSTRY_FEATURES = {
     "gold": {"jewelry_shop"},
     # clients' job orders, candidates and the placement pipeline up to joining
     "recruitment": {"recruitment_agency"},
+    # monthly meal packages ("mess"): members, daily meal tick, mess cut and monthly bills
+    "mess": {"restaurant", "cafe_juice_shop", "catering_company"},
 }
 
 # (resource, resource plural, booking, default rate unit) for the bookings module

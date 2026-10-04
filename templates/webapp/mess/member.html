@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ member.customer.name }}{% endblock %}
+{% block heading %}🍱 {{ member.number }} · {{ member.customer.name }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.mc{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.mc .h{font-size:11.5px;font-weight:800;color:var(--ink-soft);text-align:center;text-transform:uppercase}
+.mc .d{min-height:62px;padding:6px;border:1px solid var(--line);border-radius:10px;background:var(--panel);font-size:12px}
+.mc .d b{display:block;font-size:13px}.mc .d.leave{background:#fef3c7;border-color:#fde68a}.mc .d.today{outline:2px solid var(--accent)}
+.mc .dots{display:flex;gap:3px;flex-wrap:wrap;margin-top:4px}.mc .dot{font-size:13px;line-height:1}
+.mm-actions{display:flex;flex-wrap:wrap;gap:8px}.mm-actions form{margin:0}
+</style>
+<div class="ix">
+  <div class="ix-toolbar"><a class="btn btn-secondary" href="{% url 'webapp:mess_home' %}">← {% translate "Mess" %}</a><span class="grow"></span>
+    <span class="ix-chip {{ member.status }}">{{ member.get_status_display }}</span></div>
+
+  <div class="ix-stats">
+    <div class="ix-stat"><small>{% translate "Plan" %}</small><b style="font-size:18px">{{ member.plan.name }}</b></div>
+    <div class="ix-stat"><small>{% translate "Monthly fee" %}</small><b>{{ member.fee|floatformat:"-2" }}</b></div>
+    <div class="ix-stat"><small>{% translate "Meals this month" %}</small><b>{{ eaten }}</b></div>
+    <div class="ix-stat {% if due %}warn{% else %}good{% endif %}"><small>{% translate "Due" %}</small><b>{{ due|floatformat:"-2" }}</b></div>
+  </div>
+
+  <div class="ix-grid2">
+    <div class="ix-card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <a class="btn btn-secondary" href="?month={{ prev }}">‹</a><b style="flex:1;text-align:center">{{ month_label|date:"F Y" }}</b><a class="btn btn-secondary" href="?month={{ next }}">›</a>
+      </div>
+      <div class="mc">
+        {% for w in weekdays %}<div class="h">{{ w }}</div>{% endfor %}
+        {% now "Y-m-d" as today %}
+        {% for d in grid %}{% if d %}<div class="d{% if d.leave %} leave{% endif %}{% if d.day|date:'Y-m-d' == today %} today{% endif %}"><b>{{ d.day.day }}</b>
+          <div class="dots">{% if "breakfast" in d.meals %}<span class="dot" title="{% translate 'Breakfast' %}">☕</span>{% endif %}{% if "lunch" in d.meals %}<span class="dot" title="{% translate 'Lunch' %}">🍛</span>{% endif %}{% if "dinner" in d.meals %}<span class="dot" title="{% translate 'Dinner' %}">🌙</span>{% endif %}{% if d.leave %}<span class="dot">✈️</span>{% endif %}</div></div>{% else %}<div></div>{% endif %}{% endfor %}
+      </div>
+      <p style="color:var(--ink-soft);font-size:12.5px;margin:10px 0 0">☕ {% translate "Breakfast" %} · 🍛 {% translate "Lunch" %} · 🌙 {% translate "Dinner" %} · ✈️ {% translate "Mess cut" %}{% if away_days %} ({{ away_days }} {% translate "days" %}){% endif %}</p>
+    </div>
+
+    <div>
+      <div class="ix-card">
+        <h3>✈️ {% translate "Mess cut (leave)" %}</h3>
+        <form method="post" class="fx-grid">{% csrf_token %}<input type="hidden" name="action" value="leave">
+          {% include "webapp/_field.html" with field=leave_form.from_date %}
+          {% include "webapp/_field.html" with field=leave_form.to_date %}
+          {% include "webapp/_field.html" with field=leave_form.reason wide=True %}
+          <p class="fx-wide" style="margin:0"><button class="btn" type="submit">{% translate "Save mess cut" %}</button></p>
+        </form>
+        {% if refund_note %}<p style="color:var(--ink-soft);font-size:12.5px">{{ refund_note }}</p>{% endif %}
+        <div class="ix-list">{% for l in leaves %}<div class="ix-row"><span class="grow"><b>{{ l.from_date|date:"j M" }} – {{ l.to_date|date:"j M Y" }}</b><small>{{ l.days }} {% translate "days" %}{% if l.reason %} · {{ l.reason }}{% endif %}</small></span>
+          <form method="post" style="margin:0">{% csrf_token %}<input type="hidden" name="action" value="delete_leave"><input type="hidden" name="leave" value="{{ l.id }}"><button class="btn btn-secondary" style="padding:5px 10px">✕</button></form></div>{% endfor %}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ix-grid2">
+    <div class="ix-card">
+      <h3>🧾 {% translate "Bills" %}</h3>
+      <div class="ix-list">{% for c in charges %}<div class="ix-row"><span class="grow"><b>{{ c.period }}</b><small>{{ c.amount }}{% if c.refund %} · {% translate "mess cut" %} −{{ c.refund }} ({{ c.leave_days }} {% translate "days" %}){% endif %}{% if c.invoice %} · {{ c.invoice.invoice_number }} · {% if c.invoice.amount_paid >= c.invoice.total %}{% translate "paid" %}{% else %}{% translate "due" %}{% endif %}{% endif %}</small></span>
+        {% if c.invoice %}<a class="btn btn-secondary" href="{% url 'webapp:invoice_pdf' c.invoice.id %}" target="_blank">🧾</a><a class="btn btn-secondary" href="{% url 'webapp:invoice_share' c.invoice.id %}">📤</a>{% endif %}</div>
+      {% empty %}<p style="color:var(--ink-soft)">{% translate "No bills yet." %}</p>{% endfor %}</div>
+      <form method="post" style="margin-top:10px">{% csrf_token %}<input type="hidden" name="action" value="bill"><input type="hidden" name="month" value="{{ month }}"><button class="btn btn-secondary" type="submit">＋ {% translate "Bill" %} {{ month }}</button></form>
+    </div>
+    <div class="ix-card">
+      <h3>⚙️ {% translate "Member" %}</h3>
+      <dl class="ix-kv"><dt>{% translate "Phone" %}</dt><dd>{{ member.customer.phone|default:"—" }}</dd><dt>{% translate "Since" %}</dt><dd>{{ member.start_date|date:"j M Y" }}</dd>{% if member.end_date %}<dt>{% translate "Ended" %}</dt><dd>{{ member.end_date|date:"j M Y" }}</dd>{% endif %}</dl>
+      <form method="post" class="fx-grid" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="edit">
+        {% include "webapp/_field.html" with field=form.plan %}{% include "webapp/_field.html" with field=form.monthly_fee %}{% include "webapp/_field.html" with field=form.notes wide=True %}
+        <p class="fx-wide" style="margin:0"><button class="btn" type="submit">{% translate "Save" %}</button></p>
+      </form>
+      <div class="mm-actions" style="margin-top:14px">
+        {% if member.status != "active" %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="active"><button class="btn btn-secondary">{% translate "Resume" %}</button></form>{% endif %}
+        {% if member.status == "active" %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="paused"><button class="btn btn-secondary">{% translate "Pause" %}</button></form>{% endif %}
+        {% if member.status != "ended" %}<form method="post" onsubmit="return confirm('{% translate "End this mess membership?" %}')">{% csrf_token %}<input type="hidden" name="action" value="ended"><button class="btn btn-secondary">{% translate "End membership" %}</button></form>{% endif %}
+        {% if member.customer.phone %}<a class="btn btn-secondary" href="https://wa.me/{{ member.customer.phone|cut:'+'|cut:' ' }}" target="_blank" rel="noopener">💬 WhatsApp</a>{% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

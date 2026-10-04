@@ -513,3 +513,95 @@ class SiteDesign(TenantScopedModel):
 
     def __str__(self):
         return f"Website · {self.company_id}"
+
+
+class MessPlan(TenantScopedModel):
+    """A restaurant's monthly meal package ("mess"), e.g. Full mess — breakfast, lunch and dinner for QAR 450."""
+    name = models.CharField(max_length=120)
+    breakfast = models.BooleanField(default=True)
+    lunch = models.BooleanField(default=True)
+    dinner = models.BooleanField(default=True)
+    monthly_fee = models.DecimalField(max_digits=12, decimal_places=2)
+    leave_refund_per_day = models.DecimalField(max_digits=10, decimal_places=2, default=0,
+                                               help_text="Taken off the next bill for each mess-cut day. 0 = no refund.")
+    min_leave_days = models.PositiveSmallIntegerField(default=3, help_text="Mess cut counts only when at least this many days in a row.")
+    description = models.CharField(max_length=255, blank=True)
+    is_active = models.BooleanField(default=True)
+    product = models.ForeignKey("inventory.Product", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
+    def meals(self):
+        return [m for m in ("breakfast", "lunch", "dinner") if getattr(self, m)]
+
+
+class MessMember(TenantScopedModel):
+    STATUS = [("active", "Active"), ("paused", "Paused"), ("ended", "Ended")]
+    number = models.CharField(max_length=20)
+    customer = models.ForeignKey("customers.Customer", on_delete=models.PROTECT, related_name="mess_memberships")
+    plan = models.ForeignKey(MessPlan, on_delete=models.PROTECT, related_name="members")
+    monthly_fee = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True,
+                                      help_text="Leave empty to use the plan's fee.")
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
+    status = models.CharField(max_length=8, choices=STATUS, default="active")
+    notes = models.CharField(max_length=255, blank=True, help_text="Room, company, food preference…")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["number"]
+        constraints = [models.UniqueConstraint(fields=["company", "number"], name="unique_mess_member_number")]
+
+    def __str__(self):
+        return f"{self.number} · {self.customer.name}"
+
+    @property
+    def fee(self):
+        return self.monthly_fee if self.monthly_fee is not None else self.plan.monthly_fee
+
+
+class MessLeave(TenantScopedModel):
+    """Mess cut: days the member won't eat (travel, vacation). Refunded on the next bill if the plan allows."""
+    member = models.ForeignKey(MessMember, on_delete=models.CASCADE, related_name="leaves")
+    from_date = models.DateField()
+    to_date = models.DateField()
+    reason = models.CharField(max_length=150, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-from_date"]
+
+    @property
+    def days(self):
+        return (self.to_date - self.from_date).days + 1
+
+
+class MessMeal(TenantScopedModel):
+    MEALS = [("breakfast", "Breakfast"), ("lunch", "Lunch"), ("dinner", "Dinner")]
+    member = models.ForeignKey(MessMember, on_delete=models.CASCADE, related_name="meals")
+    date = models.DateField()
+    meal = models.CharField(max_length=10, choices=MEALS)
+    served_at = models.DateTimeField(auto_now_add=True)
+    served_by = models.ForeignKey("accounts.User", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+
+    class Meta:
+        ordering = ["-date", "meal"]
+        constraints = [models.UniqueConstraint(fields=["member", "date", "meal"], name="one_mess_meal_per_slot")]
+
+
+class MessCharge(TenantScopedModel):
+    member = models.ForeignKey(MessMember, on_delete=models.PROTECT, related_name="charges")
+    period = models.CharField(max_length=7)
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    leave_days = models.PositiveSmallIntegerField(default=0)
+    refund = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-period"]
+        constraints = [models.UniqueConstraint(fields=["member", "period"], name="one_mess_bill_per_month")]

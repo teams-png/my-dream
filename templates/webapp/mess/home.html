@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Mess" %}{% endblock %}
+{% block heading %}🍱 {% translate "Mess — today's meals" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.ms-meals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.ms-meal{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.ms-meal small{display:block;color:var(--ink-soft);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em}
+.ms-meal b{font-size:28px;letter-spacing:-.02em}.ms-meal .of{color:var(--ink-soft);font-size:15px;font-weight:600}
+.ms-bar{height:6px;border-radius:99px;background:var(--paper);margin-top:8px;overflow:hidden}.ms-bar i{display:block;height:100%;background:var(--ix-green)}
+.ms-m{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.ms-m .who{flex:1 1 200px;min-width:0}.ms-m .who b{font-size:15.5px}.ms-m .who small{display:block;color:var(--ink-soft)}
+.ms-m .no{display:inline-block;min-width:54px;padding:2px 8px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:12.5px;text-align:center}
+.ms-btns{display:flex;gap:8px;flex-wrap:wrap}.ms-btns form{margin:0}
+.ms-b{min-width:104px;min-height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel);font:inherit;font-weight:700;font-size:14px;cursor:pointer;color:var(--ink)}
+.ms-b:hover{border-color:var(--accent)}.ms-b.done{background:#dcfce7;border-color:#86efac;color:#166534}
+.ms-away{padding:6px 12px;border-radius:10px;background:#fef3c7;color:#92400e;font-weight:700;font-size:13px}
+@media(max-width:600px){.ms-meals{grid-template-columns:1fr 1fr 1fr;gap:8px}.ms-meal{padding:10px}.ms-meal b{font-size:22px}.ms-b{min-width:0;flex:1}.ms-btns{width:100%}.ms-btns form{flex:1;display:flex}}
+</style>
+<div class="ix">
+  <div class="ms-meals">
+    {% for c in count.meals %}
+    <div class="ms-meal"><small>{% if c.meal == "breakfast" %}☕ {% translate "Breakfast" %}{% elif c.meal == "lunch" %}🍛 {% translate "Lunch" %}{% else %}🌙 {% translate "Dinner" %}{% endif %}</small>
+      <b>{{ c.served }}</b> <span class="of">/ {{ c.expected }}</span>
+      <div class="ms-bar"><i style="width:{% if c.expected %}{% widthratio c.served c.expected 100 %}{% else %}0{% endif %}%"></i></div>
+      <small style="text-transform:none;letter-spacing:0;margin-top:6px">{{ c.left }} {% translate "still to eat" %}</small>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% if not plans %}
+  <a class="ix-card ix-row" href="{% url 'webapp:mess_plan_add' %}" style="border-left:4px solid var(--ix-amber)"><span style="font-size:28px">🍱</span><span class="grow"><b>{% translate "Start your mess" %}</b><small>{% translate "Create a monthly plan (e.g. Full mess – 3 meals) and add members." %}</small></span><span class="btn">{% translate "Create plan" %} →</span></a>
+  {% endif %}
+  {% if not_billed %}
+  <a class="ix-card ix-row" href="{% url 'webapp:mess_bills' %}?month={{ month }}" style="border-left:4px solid var(--ix-amber)"><span style="font-size:28px">🧾</span><span class="grow"><b>{{ not_billed }} {% translate "members are not billed for this month yet" %}</b><small>{% translate "Create all the mess bills in one step." %}</small></span><span class="btn">{% translate "Monthly bills" %} →</span></a>
+  {% endif %}
+
+  <div class="ix-toolbar">
+    <form method="get"><input type="search" name="q" value="{{ q }}" placeholder="{% translate 'Name, phone or member no.' %}" autofocus><button class="btn btn-secondary" type="submit">🔍</button></form>
+    <span class="grow"></span>
+    <a class="btn" href="{% url 'webapp:mess_join' %}">＋ {% translate "New member" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:mess_bills' %}">🧾 {% translate "Monthly bills" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:mess_dues' %}">⏰ {% translate "Mess dues" %}{% if dues_count %} ({{ dues_count }}){% endif %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:mess_plans' %}">{% translate "Plans" %}</a>
+  </div>
+  <p style="color:var(--ink-soft);margin:-6px 0 12px;font-size:13.5px">{{ count.members }} {% translate "members eating today" %}{% if count.away %} · {{ count.away }} {% translate "on mess cut" %}{% endif %}{% if paused %} · {{ paused }} {% translate "paused" %}{% endif %}{% if dues_total %} · <a href="{% url 'webapp:mess_dues' %}">{% translate "Due" %}: {{ active_company.default_currency }} {{ dues_total|floatformat:2 }}</a>{% endif %}</p>
+
+  <div class="ix-list">
+  {% for r in rows %}
+    <div class="ms-m">
+      <div class="who"><span class="no">{{ r.m.number }}</span> <a href="{% url 'webapp:mess_member' r.m.id %}"><b>{{ r.m.customer.name }}</b></a>
+        <small>{{ r.m.plan.name }}{% if r.m.notes %} · {{ r.m.notes }}{% endif %}</small></div>
+      {% if r.away %}<span class="ms-away">✈️ {% translate "Mess cut today" %}</span>
+      {% else %}
+      <div class="ms-btns">
+        {% for meal in r.meals %}
+        <form method="post">{% csrf_token %}<input type="hidden" name="member" value="{{ r.m.id }}"><input type="hidden" name="meal" value="{{ meal }}"><input type="hidden" name="q" value="{{ q }}">
+          {% if meal in r.served %}<input type="hidden" name="action" value="undo"><button class="ms-b done" type="submit" title="{% translate 'Tap to undo' %}">✓ {% if meal == "breakfast" %}{% translate "Breakfast" %}{% elif meal == "lunch" %}{% translate "Lunch" %}{% else %}{% translate "Dinner" %}{% endif %}</button>
+          {% else %}<button class="ms-b" type="submit">{% if meal == "breakfast" %}☕ {% translate "Breakfast" %}{% elif meal == "lunch" %}🍛 {% translate "Lunch" %}{% else %}🌙 {% translate "Dinner" %}{% endif %}</button>{% endif %}
+        </form>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  {% empty %}
+    <div class="ix-card ix-empty"><p style="font-size:36px;margin:0">🍱</p><strong>{% if q %}{% translate "No member found." %}{% else %}{% translate "No mess members yet." %}{% endif %}</strong>
+      <p><a class="btn" href="{% url 'webapp:mess_join' %}">＋ {% translate "New member" %}</a></p></div>
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
+from . import backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -9,6 +9,10 @@ urlpatterns = [
     path("login/verify/", security_views.login_2fa, name="login_2fa"),
     path("account/security/", security_views.security_settings, name="security_settings"),
     path("account/export/", security_views.export_data, name="export_data"),
+    path("settings/backups/", backup_views.backups_page, name="backups"),
+    path("settings/backups/<int:backup_id>/download/", backup_views.backup_download, name="backup_download"),
+    path("settings/backups/google-drive/callback/", backup_views.backup_drive_callback, name="backup_drive_callback"),
+    path("platform/backups/", backup_views.platform_backups, name="platform_backups"),
     path("logout/", views.logout_view, name="logout"),
 
     path("password-reset/", auth_views.PasswordResetView.as_view(

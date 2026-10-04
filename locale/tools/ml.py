@@ -2033,3 +2033,38 @@ ML.update({
 })
 
 ML.update({"Bills today": "ഇന്നത്തെ ബില്ലുകൾ", "Menu items": "മെനു ഐറ്റങ്ങൾ", "Tables": "ടേബിളുകൾ"})
+
+ML.update({
+    "Page not found": "പേജ് കണ്ടെത്തിയില്ല",
+    "This page doesn't exist or you don't have access to it.": "ഈ പേജ് നിലവിലില്ല, അല്ലെങ്കിൽ നിങ്ങൾക്ക് ഇതിന് അനുമതിയില്ല.",
+    "Go to Overview": "ഓവർവ്യൂവിലേക്ക് പോകുക", "Backups": "ബാക്കപ്പുകൾ", "Your data is backed up": "നിങ്ങളുടെ ഡാറ്റ ബാക്കപ്പ് ചെയ്തിട്ടുണ്ട്",
+    "The last backup is more than a day old": "അവസാന ബാക്കപ്പ് ഒരു ദിവസത്തിലധികം പഴയതാണ്", "No backup yet": "ഇതുവരെ ബാക്കപ്പ് ഇല്ല",
+    "Last backup": "അവസാന ബാക്കപ്പ്", "records": "രേഖകൾ", "a new backup is made every night": "എല്ലാ രാത്രിയും പുതിയ ബാക്കപ്പ് എടുക്കും",
+    "Back up now": "ഇപ്പോൾ ബാക്കപ്പ് എടുക്കുക", "Backup files": "ബാക്കപ്പ് ഫയലുകൾ",
+    "Each file has every record of your business (sales, purchases, stock, customers, accounts, staff…). Keep a copy somewhere safe.": "ഓരോ ഫയലിലും നിങ്ങളുടെ ബിസിനസിന്റെ എല്ലാ രേഖകളും ഉണ്ട് (വിൽപ്പന, വാങ്ങൽ, സ്റ്റോക്ക്, കസ്റ്റമർമാർ, അക്കൗണ്ട്സ്, സ്റ്റാഫ്…). ഒരു കോപ്പി സുരക്ഷിതമായി സൂക്ഷിക്കുക.",
+    "Manual": "മാനുവൽ", "Automatic": "ഓട്ടോമാറ്റിക്", "with photos": "ഫോട്ടോകൾ സഹിതം", "OK": "ശരി", "Download": "ഡൗൺലോഡ്",
+    "Failed": "പരാജയപ്പെട്ടു",
+    "No backups yet. Press “Back up now” or wait for tonight's automatic backup.": "ഇതുവരെ ബാക്കപ്പ് ഇല്ല. “ഇപ്പോൾ ബാക്കപ്പ് എടുക്കുക” അമർത്തുക, അല്ലെങ്കിൽ ഇന്ന് രാത്രിയിലെ ഓട്ടോമാറ്റിക് ബാക്കപ്പിനായി കാത്തിരിക്കുക.",
+    "Stored": "സൂക്ഷിച്ചത്", "Automatic daily backup": "ദിവസേനയുള്ള ഓട്ടോമാറ്റിക് ബാക്കപ്പ്",
+    "Keep daily backups for": "ദിവസ ബാക്കപ്പുകൾ സൂക്ഷിക്കേണ്ട കാലം",
+    "The first backup of every month is kept for a year.": "ഓരോ മാസത്തെയും ആദ്യ ബാക്കപ്പ് ഒരു വർഷം സൂക്ഷിക്കും.",
+    "Every backup is also copied to the “BookPilot backups” folder in": "ഓരോ ബാക്കപ്പും ഇതിലെ “BookPilot backups” ഫോൾഡറിലേക്കും കോപ്പി ചെയ്യും:",
+    "Disconnect Google Drive": "Google Drive വിച്ഛേദിക്കുക",
+    "Keep a copy of every backup in your own Google Drive, outside BookPilot.": "ഓരോ ബാക്കപ്പിന്റെയും ഒരു കോപ്പി BookPilot-ന് പുറത്ത് നിങ്ങളുടെ സ്വന്തം Google Drive-ൽ സൂക്ഷിക്കുക.",
+    "Connect Google Drive": "Google Drive ബന്ധിപ്പിക്കുക",
+    "Copying backups to Google Drive is not switched on for this BookPilot server yet. Your BookPilot team can turn it on.": "Google Drive-ലേക്ക് ബാക്കപ്പ് കോപ്പി ചെയ്യൽ ഈ സെർവറിൽ ഇതുവരെ ഓണാക്കിയിട്ടില്ല. BookPilot ടീമിന് ഇത് ഓണാക്കാം.",
+    "Restoring": "തിരികെ കൊണ്ടുവരൽ", "Download the backup you need.": "ആവശ്യമുള്ള ബാക്കപ്പ് ഡൗൺലോഡ് ചെയ്യുക.",
+    "Send it to your BookPilot team — they restore it for you.": "അത് BookPilot ടീമിന് അയക്കുക — അവർ തിരികെ കൊണ്ടുവരും.",
+    "The file is a standard zip of JSON tables, so your data is never locked in.": "ഫയൽ സാധാരണ zip (JSON) ആണ്, അതിനാൽ നിങ്ങളുടെ ഡാറ്റ ഒരിക്കലും കുടുങ്ങില്ല.",
+    "Automatic daily backups and Google Drive →": "ദിവസേനയുള്ള ഓട്ടോമാറ്റിക് ബാക്കപ്പും Google Drive-ഉം →",
+    "Backup settings saved.": "ബാക്കപ്പ് ക്രമീകരണങ്ങൾ സേവ് ചെയ്തു.",
+    "You made many backups today. Try again tomorrow.": "ഇന്ന് ഒരുപാട് ബാക്കപ്പുകൾ എടുത്തു. നാളെ വീണ്ടും ശ്രമിക്കുക.",
+    "Backup made: %(rows)s records.": "ബാക്കപ്പ് എടുത്തു: %(rows)s രേഖകൾ.",
+    "The backup failed. Our team has been told; please try again later.": "ബാക്കപ്പ് പരാജയപ്പെട്ടു. ടീമിനെ അറിയിച്ചിട്ടുണ്ട്; പിന്നീട് വീണ്ടും ശ്രമിക്കുക.",
+    "Google Drive is not set up on this BookPilot server yet.": "ഈ സെർവറിൽ Google Drive ഇതുവരെ സജ്ജമാക്കിയിട്ടില്ല.",
+    "Google Drive disconnected.": "Google Drive വിച്ഛേദിച്ചു.", "This backup file is no longer available.": "ഈ ബാക്കപ്പ് ഫയൽ ഇപ്പോൾ ലഭ്യമല്ല.",
+    "The Google Drive link expired. Please try again.": "Google Drive ലിങ്കിന്റെ കാലാവധി കഴിഞ്ഞു. വീണ്ടും ശ്രമിക്കുക.",
+    "Google Drive was not connected.": "Google Drive ബന്ധിപ്പിച്ചില്ല.",
+    "Google Drive connected. Every backup is now copied to your Drive too.": "Google Drive ബന്ധിപ്പിച്ചു. ഇനി ഓരോ ബാക്കപ്പും നിങ്ങളുടെ Drive-ലേക്കും കോപ്പി ചെയ്യും.",
+    "Google Drive could not be connected: %(error)s": "Google Drive ബന്ധിപ്പിക്കാനായില്ല: %(error)s",
+})

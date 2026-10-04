@@ -5,6 +5,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: templates/404.html
+msgid "Page not found"
+msgstr "പേജ് കണ്ടെത്തിയില്ല"
+
+#: templates/404.html
+msgid "This page doesn't exist or you don't have access to it."
+msgstr "ഈ പേജ് നിലവിലില്ല, അല്ലെങ്കിൽ നിങ്ങൾക്ക് ഇതിന് അനുമതിയില്ല."
+
+#: templates/404.html
+msgid "Go to Overview"
+msgstr "ഓവർവ്യൂവിലേക്ക് പോകുക"
+
 #: templates/base.html
 msgid "Dashboard"
 msgstr "ഡാഷ്ബോർഡ്"
@@ -192,6 +204,10 @@ msgstr "ഉപകരണങ്ങളും പ്രിന്ററുകളു�
 #: templates/base.html
 msgid "Security & 2FA"
 msgstr "സുരക്ഷയും 2FA-യും"
+
+#: templates/base.html
+msgid "Backups"
+msgstr "ബാക്കപ്പുകൾ"
 
 #: templates/base.html
 msgid "API docs"
@@ -1294,6 +1310,148 @@ msgstr ""
 #: templates/webapp/automation/reminders.html
 msgid "Run checks now"
 msgstr "ഇപ്പോൾ പരിശോധിക്കുക"
+
+#: templates/webapp/backups/page.html
+msgid "Your data is backed up"
+msgstr "നിങ്ങളുടെ ഡാറ്റ ബാക്കപ്പ് ചെയ്തിട്ടുണ്ട്"
+
+#: templates/webapp/backups/page.html
+msgid "The last backup is more than a day old"
+msgstr "അവസാന ബാക്കപ്പ് ഒരു ദിവസത്തിലധികം പഴയതാണ്"
+
+#: templates/webapp/backups/page.html
+msgid "No backup yet"
+msgstr "ഇതുവരെ ബാക്കപ്പ് ഇല്ല"
+
+#: templates/webapp/backups/page.html
+msgid "Last backup"
+msgstr "അവസാന ബാക്കപ്പ്"
+
+#: templates/webapp/backups/page.html
+msgid "records"
+msgstr "രേഖകൾ"
+
+#: templates/webapp/backups/page.html
+msgid "a new backup is made every night"
+msgstr "എല്ലാ രാത്രിയും പുതിയ ബാക്കപ്പ് എടുക്കും"
+
+#: templates/webapp/backups/page.html
+msgid "Back up now"
+msgstr "ഇപ്പോൾ ബാക്കപ്പ് എടുക്കുക"
+
+#: templates/webapp/backups/page.html
+msgid "Backup files"
+msgstr "ബാക്കപ്പ് ഫയലുകൾ"
+
+#: templates/webapp/backups/page.html
+msgid ""
+"Each file has every record of your business (sales, purchases, stock, "
+"customers, accounts, staff…). Keep a copy somewhere safe."
+msgstr ""
+"ഓരോ ഫയലിലും നിങ്ങളുടെ ബിസിനസിന്റെ എല്ലാ രേഖകളും ഉണ്ട് (വിൽപ്പന, വാങ്ങൽ, "
+"സ്റ്റോക്ക്, കസ്റ്റമർമാർ, അക്കൗണ്ട്സ്, സ്റ്റാഫ്…). ഒരു കോപ്പി സുരക്ഷിതമായി "
+"സൂക്ഷിക്കുക."
+
+#: templates/webapp/backups/page.html
+msgid "Manual"
+msgstr "മാനുവൽ"
+
+#: templates/webapp/backups/page.html
+msgid "Automatic"
+msgstr "ഓട്ടോമാറ്റിക്"
+
+#: templates/webapp/backups/page.html
+msgid "with photos"
+msgstr "ഫോട്ടോകൾ സഹിതം"
+
+#: templates/webapp/backups/page.html
+msgid "OK"
+msgstr "ശരി"
+
+#: templates/webapp/backups/page.html
+msgid "Download"
+msgstr "ഡൗൺലോഡ്"
+
+#: templates/webapp/backups/page.html
+msgid "Failed"
+msgstr "പരാജയപ്പെട്ടു"
+
+#: templates/webapp/backups/page.html
+msgid ""
+"No backups yet. Press “Back up now” or wait for tonight's automatic backup."
+msgstr ""
+"ഇതുവരെ ബാക്കപ്പ് ഇല്ല. “ഇപ്പോൾ ബാക്കപ്പ് എടുക്കുക” അമർത്തുക, അല്ലെങ്കിൽ "
+"ഇന്ന് രാത്രിയിലെ ഓട്ടോമാറ്റിക് ബാക്കപ്പിനായി കാത്തിരിക്കുക."
+
+#: templates/webapp/backups/page.html
+msgid "Stored"
+msgstr "സൂക്ഷിച്ചത്"
+
+#: templates/webapp/backups/page.html
+msgid "Automatic daily backup"
+msgstr "ദിവസേനയുള്ള ഓട്ടോമാറ്റിക് ബാക്കപ്പ്"
+
+#: templates/webapp/backups/page.html
+msgid "Include photos and logos"
+msgstr "ഫോട്ടോകളും ലോഗോകളും ഉൾപ്പെടുത്തുക"
+
+#: templates/webapp/backups/page.html
+msgid "Keep daily backups for"
+msgstr "ദിവസ ബാക്കപ്പുകൾ സൂക്ഷിക്കേണ്ട കാലം"
+
+#: templates/webapp/backups/page.html
+msgid "days"
+msgstr "ദിവസം"
+
+#: templates/webapp/backups/page.html
+msgid "The first backup of every month is kept for a year."
+msgstr "ഓരോ മാസത്തെയും ആദ്യ ബാക്കപ്പ് ഒരു വർഷം സൂക്ഷിക്കും."
+
+#: templates/webapp/backups/page.html
+msgid "Every backup is also copied to the “BookPilot backups” folder in"
+msgstr ""
+"ഓരോ ബാക്കപ്പും ഇതിലെ “BookPilot backups” ഫോൾഡറിലേക്കും കോപ്പി ചെയ്യും:"
+
+#: templates/webapp/backups/page.html
+msgid "Disconnect Google Drive"
+msgstr "Google Drive വിച്ഛേദിക്കുക"
+
+#: templates/webapp/backups/page.html
+msgid ""
+"Keep a copy of every backup in your own Google Drive, outside BookPilot."
+msgstr ""
+"ഓരോ ബാക്കപ്പിന്റെയും ഒരു കോപ്പി BookPilot-ന് പുറത്ത് നിങ്ങളുടെ സ്വന്തം "
+"Google Drive-ൽ സൂക്ഷിക്കുക."
+
+#: templates/webapp/backups/page.html
+msgid "Connect Google Drive"
+msgstr "Google Drive ബന്ധിപ്പിക്കുക"
+
+#: templates/webapp/backups/page.html
+msgid ""
+"Copying backups to Google Drive is not switched on for this BookPilot server"
+" yet. Your BookPilot team can turn it on."
+msgstr ""
+"Google Drive-ലേക്ക് ബാക്കപ്പ് കോപ്പി ചെയ്യൽ ഈ സെർവറിൽ ഇതുവരെ "
+"ഓണാക്കിയിട്ടില്ല. BookPilot ടീമിന് ഇത് ഓണാക്കാം."
+
+#: templates/webapp/backups/page.html
+msgid "Restoring"
+msgstr "തിരികെ കൊണ്ടുവരൽ"
+
+#: templates/webapp/backups/page.html
+msgid "Download the backup you need."
+msgstr "ആവശ്യമുള്ള ബാക്കപ്പ് ഡൗൺലോഡ് ചെയ്യുക."
+
+#: templates/webapp/backups/page.html
+msgid "Send it to your BookPilot team — they restore it for you."
+msgstr "അത് BookPilot ടീമിന് അയക്കുക — അവർ തിരികെ കൊണ്ടുവരും."
+
+#: templates/webapp/backups/page.html
+msgid ""
+"The file is a standard zip of JSON tables, so your data is never locked in."
+msgstr ""
+"ഫയൽ സാധാരണ zip (JSON) ആണ്, അതിനാൽ നിങ്ങളുടെ ഡാറ്റ ഒരിക്കലും കുടുങ്ങില്ല."
 
 #: templates/webapp/banking/account.html
 msgid "Balance in the books"
@@ -3340,10 +3498,6 @@ msgstr "ലീവും അവധികളും"
 #: templates/webapp/hr/leave.html
 msgid "Waiting for approval"
 msgstr "അനുമതിക്കായി കാത്തിരിക്കുന്നു"
-
-#: templates/webapp/hr/leave.html
-msgid "days"
-msgstr "ദിവസം"
 
 #: templates/webapp/hr/leave.html
 msgid "Approve"
@@ -8483,12 +8637,12 @@ msgstr ""
 "സുരക്ഷിതമായി സൂക്ഷിക്കുക."
 
 #: templates/webapp/security.html
-msgid "Include photos and logos"
-msgstr "ഫോട്ടോകളും ലോഗോകളും ഉൾപ്പെടുത്തുക"
-
-#: templates/webapp/security.html
 msgid "Download all my data"
 msgstr "എന്റെ എല്ലാ ഡാറ്റയും ഡൗൺലോഡ്"
+
+#: templates/webapp/security.html
+msgid "Automatic daily backups and Google Drive →"
+msgstr "ദിവസേനയുള്ള ഓട്ടോമാറ്റിക് ബാക്കപ്പും Google Drive-ഉം →"
 
 #: templates/webapp/security.html
 msgid "Forgot it? Use “Forgot password” on the sign-in page."
@@ -9137,6 +9291,54 @@ msgstr "ബാക്കി"
 #: apps/webapp/automation_views.py
 msgid "% used"
 msgstr "% ഉപയോഗിച്ചു"
+
+#: apps/webapp/backup_views.py
+msgid "Backup settings saved."
+msgstr "ബാക്കപ്പ് ക്രമീകരണങ്ങൾ സേവ് ചെയ്തു."
+
+#: apps/webapp/backup_views.py
+msgid "You made many backups today. Try again tomorrow."
+msgstr "ഇന്ന് ഒരുപാട് ബാക്കപ്പുകൾ എടുത്തു. നാളെ വീണ്ടും ശ്രമിക്കുക."
+
+#: apps/webapp/backup_views.py
+msgid "Backup made: %(rows)s records."
+msgstr "ബാക്കപ്പ് എടുത്തു: %(rows)s രേഖകൾ."
+
+#: apps/webapp/backup_views.py
+msgid "The backup failed. Our team has been told; please try again later."
+msgstr ""
+"ബാക്കപ്പ് പരാജയപ്പെട്ടു. ടീമിനെ അറിയിച്ചിട്ടുണ്ട്; പിന്നീട് വീണ്ടും "
+"ശ്രമിക്കുക."
+
+#: apps/webapp/backup_views.py
+msgid "Google Drive is not set up on this BookPilot server yet."
+msgstr "ഈ സെർവറിൽ Google Drive ഇതുവരെ സജ്ജമാക്കിയിട്ടില്ല."
+
+#: apps/webapp/backup_views.py
+msgid "Google Drive disconnected."
+msgstr "Google Drive വിച്ഛേദിച്ചു."
+
+#: apps/webapp/backup_views.py
+msgid "This backup file is no longer available."
+msgstr "ഈ ബാക്കപ്പ് ഫയൽ ഇപ്പോൾ ലഭ്യമല്ല."
+
+#: apps/webapp/backup_views.py
+msgid "The Google Drive link expired. Please try again."
+msgstr "Google Drive ലിങ്കിന്റെ കാലാവധി കഴിഞ്ഞു. വീണ്ടും ശ്രമിക്കുക."
+
+#: apps/webapp/backup_views.py
+msgid "Google Drive was not connected."
+msgstr "Google Drive ബന്ധിപ്പിച്ചില്ല."
+
+#: apps/webapp/backup_views.py
+msgid "Google Drive connected. Every backup is now copied to your Drive too."
+msgstr ""
+"Google Drive ബന്ധിപ്പിച്ചു. ഇനി ഓരോ ബാക്കപ്പും നിങ്ങളുടെ Drive-ലേക്കും "
+"കോപ്പി ചെയ്യും."
+
+#: apps/webapp/backup_views.py
+msgid "Google Drive could not be connected: %(error)s"
+msgstr "Google Drive ബന്ധിപ്പിക്കാനായില്ല: %(error)s"
 
 #: apps/webapp/banking_views.py
 msgid "Enter a name for the account."

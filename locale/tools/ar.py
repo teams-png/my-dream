@@ -2052,3 +2052,34 @@ AR.update({
 })
 
 AR.update({"Bills today": "فواتير اليوم", "Menu items": "أصناف القائمة", "Tables": "الطاولات"})
+
+AR.update({
+    "Page not found": "الصفحة غير موجودة", "This page doesn't exist or you don't have access to it.": "هذه الصفحة غير موجودة أو ليس لديك صلاحية لها.",
+    "Go to Overview": "الذهاب إلى النظرة العامة", "Backups": "النسخ الاحتياطية", "Your data is backed up": "بياناتك محفوظة احتياطياً",
+    "The last backup is more than a day old": "آخر نسخة احتياطية أقدم من يوم", "No backup yet": "لا توجد نسخة احتياطية بعد",
+    "Last backup": "آخر نسخة", "records": "سجل", "a new backup is made every night": "تُنشأ نسخة جديدة كل ليلة",
+    "Back up now": "نسخ احتياطي الآن", "Backup files": "ملفات النسخ الاحتياطي",
+    "Each file has every record of your business (sales, purchases, stock, customers, accounts, staff…). Keep a copy somewhere safe.": "يحتوي كل ملف على جميع سجلات نشاطك (المبيعات، المشتريات، المخزون، العملاء، الحسابات، الموظفين…). احتفظ بنسخة في مكان آمن.",
+    "Manual": "يدوي", "Automatic": "تلقائي", "with photos": "مع الصور", "OK": "سليم", "Download": "تنزيل", "Failed": "فشل",
+    "No backups yet. Press “Back up now” or wait for tonight's automatic backup.": "لا توجد نسخ بعد. اضغط “نسخ احتياطي الآن” أو انتظر النسخة التلقائية الليلة.",
+    "Stored": "المخزن", "Automatic daily backup": "نسخ احتياطي يومي تلقائي", "Keep daily backups for": "الاحتفاظ بالنسخ اليومية لمدة",
+    "The first backup of every month is kept for a year.": "تُحفظ أول نسخة من كل شهر لمدة سنة.",
+    "Every backup is also copied to the “BookPilot backups” folder in": "تُنسخ كل نسخة أيضاً إلى مجلد “BookPilot backups” في",
+    "Disconnect Google Drive": "فصل Google Drive",
+    "Keep a copy of every backup in your own Google Drive, outside BookPilot.": "احتفظ بنسخة من كل نسخة احتياطية في Google Drive الخاص بك خارج BookPilot.",
+    "Connect Google Drive": "ربط Google Drive",
+    "Copying backups to Google Drive is not switched on for this BookPilot server yet. Your BookPilot team can turn it on.": "نسخ الملفات إلى Google Drive غير مفعل على هذا الخادم بعد. يمكن لفريق BookPilot تفعيله.",
+    "Restoring": "الاستعادة", "Download the backup you need.": "نزّل النسخة التي تحتاجها.",
+    "Send it to your BookPilot team — they restore it for you.": "أرسلها إلى فريق BookPilot — سيقومون باستعادتها لك.",
+    "The file is a standard zip of JSON tables, so your data is never locked in.": "الملف بصيغة zip قياسية لجداول JSON، لذلك بياناتك ليست مقيدة أبداً.",
+    "Automatic daily backups and Google Drive →": "النسخ الاحتياطي اليومي و Google Drive ←",
+    "Backup settings saved.": "تم حفظ إعدادات النسخ الاحتياطي.", "You made many backups today. Try again tomorrow.": "أنشأت نسخاً كثيرة اليوم. حاول غداً.",
+    "Backup made: %(rows)s records.": "تم إنشاء النسخة: %(rows)s سجل.",
+    "The backup failed. Our team has been told; please try again later.": "فشل النسخ الاحتياطي. تم إبلاغ فريقنا؛ حاول لاحقاً.",
+    "Google Drive is not set up on this BookPilot server yet.": "Google Drive غير مُعد على هذا الخادم بعد.",
+    "Google Drive disconnected.": "تم فصل Google Drive.", "This backup file is no longer available.": "ملف النسخة لم يعد متاحاً.",
+    "The Google Drive link expired. Please try again.": "انتهت صلاحية رابط Google Drive. حاول مرة أخرى.",
+    "Google Drive was not connected.": "لم يتم ربط Google Drive.",
+    "Google Drive connected. Every backup is now copied to your Drive too.": "تم ربط Google Drive. ستُنسخ كل نسخة إلى Drive الخاص بك أيضاً.",
+    "Google Drive could not be connected: %(error)s": "تعذر ربط Google Drive: %(error)s",
+})

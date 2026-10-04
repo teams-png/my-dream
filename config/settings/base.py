@@ -294,3 +294,11 @@ SPECTACULAR_SETTINGS = {
     "DISABLE_ERRORS_AND_WARNINGS": True,
     "ENABLE_DJANGO_DEPLOY_CHECK": False,
 }
+
+# Automatic daily backups (apps.tenants.backups). Without a "backups" storage the files go to this
+# private folder, which is never served to the web.
+BACKUP_ROOT = env("BACKUP_ROOT", default=str(BASE_DIR / "backups"))
+BACKUP_TOKEN_KEY = env("BACKUP_TOKEN_KEY", default="")
+# Optional: lets owners copy backups to their own Google Drive (Google Cloud OAuth client, Drive API on)
+GOOGLE_OAUTH_CLIENT_ID = env("GOOGLE_OAUTH_CLIENT_ID", default="")
+GOOGLE_OAUTH_CLIENT_SECRET = env("GOOGLE_OAUTH_CLIENT_SECRET", default="")

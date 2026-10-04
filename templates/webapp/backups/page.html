@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Backups" %}{% endblock %}
+{% block heading %}🛟 {% translate "Backups" %}{% endblock %}
+{% block content %}
+<style>
+.bk{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,1fr);gap:18px;align-items:start}
+@media(max-width:900px){.bk{grid-template-columns:1fr}}.bk>*{min-width:0}
+.bk-hero{display:flex;gap:14px;align-items:center}.bk-hero .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:26px;flex:0 0 auto}
+.bk-ok{background:#dcfce7}.bk-warn{background:#fef3c7}
+.bk-list{display:grid;gap:8px}.bk-row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.bk-row .grow{flex:1 1 220px;min-width:0}.bk-row small{display:block;color:var(--ink-soft)}
+.bk-pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--paper);color:var(--ink-soft)}
+.bk-pill.ok{background:#dcfce7;color:#166534}.bk-pill.bad{background:#fee2e2;color:#991b1b}.bk-pill.drive{background:#dbeafe;color:#1e40af}
+.bk-steps{margin:0;padding-inline-start:18px;color:var(--ink-soft);font-size:13.5px;line-height:1.7}
+</style>
+<div class="bk">
+  <div style="display:grid;gap:18px">
+    <section class="fx-card">
+      <div class="bk-hero">
+        {% if status.healthy %}<div class="ic bk-ok">✅</div>{% else %}<div class="ic bk-warn">⚠️</div>{% endif %}
+        <div style="flex:1;min-width:0">
+          <b style="font-size:17px">{% if status.healthy %}{% translate "Your data is backed up" %}{% elif status.last_ok %}{% translate "The last backup is more than a day old" %}{% else %}{% translate "No backup yet" %}{% endif %}</b>
+          <div style="color:var(--ink-soft);font-size:13.5px">{% if status.last_ok %}{% translate "Last backup" %}: {{ status.last_ok.created_at|date:"j M Y, H:i" }} · {{ status.last_ok.rows }} {% translate "records" %}{% endif %}{% if prefs.enabled %} · {% translate "a new backup is made every night" %}{% endif %}</div>
+        </div>
+        <form method="post" style="margin:0">{% csrf_token %}<input type="hidden" name="action" value="now"><button class="btn" type="submit">⬇ {% translate "Back up now" %}</button></form>
+      </div>
+    </section>
+
+    <section class="fx-card">
+      <h2>🗂 {% translate "Backup files" %}</h2>
+      <p class="sub">{% translate "Each file has every record of your business (sales, purchases, stock, customers, accounts, staff…). Keep a copy somewhere safe." %}</p>
+      <div class="bk-list">
+        {% for b in items %}
+        <div class="bk-row">
+          <span class="grow"><b>{{ b.created_at|date:"j M Y, H:i" }}</b>
+            <small>{% if b.kind == "manual" %}{% translate "Manual" %}{% if b.created_by %} · {{ b.created_by.email|default:b.created_by.username }}{% endif %}{% else %}{% translate "Automatic" %}{% endif %}{% if b.status == "ok" %} · {{ b.rows }} {% translate "records" %} · {{ b.size|filesizeformat }}{% if b.include_media %} · {% translate "with photos" %}{% endif %}{% endif %}</small></span>
+          {% if b.status == "ok" %}<span class="bk-pill ok">✓ {% translate "OK" %}</span>{% if b.drive_file_id %}<span class="bk-pill drive">Google Drive</span>{% endif %}
+            <a class="btn btn-secondary" href="{% url 'webapp:backup_download' b.id %}">⬇ {% translate "Download" %}</a>
+          {% else %}<span class="bk-pill bad" title="{{ b.error }}">{% translate "Failed" %}</span>{% endif %}
+        </div>
+        {% empty %}
+        <div class="fx-empty" style="padding:14px;border:1.5px dashed var(--line);border-radius:12px;color:var(--ink-soft)">{% translate "No backups yet. Press “Back up now” or wait for tonight's automatic backup." %}</div>
+        {% endfor %}
+      </div>
+      {% if total_size %}<p style="color:var(--ink-soft);font-size:12.5px;margin:10px 0 0">{% translate "Stored" %}: {{ total_size|filesizeformat }}</p>{% endif %}
+    </section>
+  </div>
+
+  <aside style="display:grid;gap:18px">
+    <section class="fx-card">
+      <h2>⚙️ {% translate "Settings" %}</h2>
+      <form method="post">{% csrf_token %}<input type="hidden" name="action" value="settings">
+        <p><label for="bkEnabled">{% translate "Automatic daily backup" %}</label><input type="checkbox" id="bkEnabled" name="enabled" {% if prefs.enabled %}checked{% endif %}></p>
+        <p><label for="bkMedia">{% translate "Include photos and logos" %}</label><input type="checkbox" id="bkMedia" name="include_media" {% if prefs.include_media %}checked{% endif %}></p>
+        <p><label for="bkKeep">{% translate "Keep daily backups for" %}</label><select id="bkKeep" name="keep_days">{% for value, label in keep_choices %}<option value="{{ value }}" {% if prefs.keep_days == value %}selected{% endif %}>{{ value }} {% translate "days" %}</option>{% endfor %}</select>
+          <span class="helptext">{% translate "The first backup of every month is kept for a year." %}</span></p>
+        <button class="btn" type="submit">{% translate "Save" %}</button>
+      </form>
+    </section>
+
+    <section class="fx-card">
+      <h2><svg width="20" height="20" viewBox="0 0 87 78" aria-hidden="true"><path fill="#0066da" d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8H0c0 1.55.4 3.1 1.2 4.5z"/><path fill="#00ac47" d="M43.65 25 29.9 1.2c-1.35.8-2.5 1.9-3.3 3.3L1.2 48.5A9 9 0 0 0 0 53h27.5z"/><path fill="#ea4335" d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.8l5.85 11.5z"/><path fill="#00832d" d="M43.65 25 57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z"/><path fill="#2684fc" d="M59.8 53H27.5L13.75 76.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z"/><path fill="#ffba00" d="M73.4 26.5 60.7 4.5c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59.8 53h27.45c0-1.55-.4-3.1-1.2-4.5z"/></svg> Google Drive</h2>
+      {% if prefs.drive_enabled %}
+        <p class="sub">{% translate "Every backup is also copied to the “BookPilot backups” folder in" %} <b>{{ prefs.drive_email|default:"your Google Drive" }}</b>.</p>
+        {% if prefs.drive_error %}<p style="color:#b91c1c;font-size:13px;margin:0 0 10px">⚠ {{ prefs.drive_error }}</p>{% endif %}
+        <form method="post">{% csrf_token %}<input type="hidden" name="action" value="drive_disconnect"><button class="btn btn-secondary" type="submit">{% translate "Disconnect Google Drive" %}</button></form>
+      {% elif drive_ready %}
+        <p class="sub">{% translate "Keep a copy of every backup in your own Google Drive, outside BookPilot." %}</p>
+        <form method="post">{% csrf_token %}<input type="hidden" name="action" value="drive_connect"><button class="btn" type="submit">{% translate "Connect Google Drive" %}</button></form>
+      {% else %}
+        <p class="sub">{% translate "Copying backups to Google Drive is not switched on for this BookPilot server yet. Your BookPilot team can turn it on." %}</p>
+      {% endif %}
+    </section>
+
+    <section class="fx-card">
+      <h2>❓ {% translate "Restoring" %}</h2>
+      <ol class="bk-steps">
+        <li>{% translate "Download the backup you need." %}</li>
+        <li>{% translate "Send it to your BookPilot team — they restore it for you." %}</li>
+        <li>{% translate "The file is a standard zip of JSON tables, so your data is never locked in." %}</li>
+      </ol>
+    </section>
+  </aside>
+</div>
+{% endblock %}

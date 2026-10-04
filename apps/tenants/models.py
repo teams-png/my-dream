@@ -174,3 +174,39 @@ class CompanyBusinessType(models.Model):
 
     def __str__(self):
         return f"{self.company.name} / {self.business_type.name}"
+
+
+class BackupSettings(models.Model):
+    """Per-business automatic backup choices (set by the owner)."""
+    KEEP_CHOICES = [(7, "7 days"), (14, "14 days"), (30, "30 days"), (90, "90 days")]
+    company = models.OneToOneField(Company, on_delete=models.CASCADE, related_name="backup_settings")
+    enabled = models.BooleanField(default=True)
+    keep_days = models.PositiveSmallIntegerField(choices=KEEP_CHOICES, default=14)
+    include_media = models.BooleanField(default=False)
+    drive_enabled = models.BooleanField(default=False)
+    drive_refresh_token = models.TextField(blank=True)  # encrypted
+    drive_email = models.CharField(max_length=254, blank=True)
+    drive_folder_id = models.CharField(max_length=128, blank=True)
+    drive_error = models.CharField(max_length=255, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class CompanyBackup(models.Model):
+    """One backup file of a business's data (zip of JSON tables, optional photos) in private storage."""
+    KINDS = [("auto", "Automatic"), ("manual", "Manual")]
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="backups")
+    kind = models.CharField(max_length=10, choices=KINDS, default="auto")
+    status = models.CharField(max_length=10, default="ok")  # ok / failed
+    file_name = models.CharField(max_length=255, blank=True)
+    size = models.PositiveBigIntegerField(default=0)
+    rows = models.PositiveIntegerField(default=0)
+    tables = models.PositiveIntegerField(default=0)
+    include_media = models.BooleanField(default=False)
+    drive_file_id = models.CharField(max_length=128, blank=True)
+    error = models.CharField(max_length=255, blank=True)
+    created_by = models.ForeignKey("accounts.User", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [models.Index(fields=("company", "-created_at"))]

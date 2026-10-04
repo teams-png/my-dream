@@ -63,7 +63,7 @@ details summary{cursor:pointer;font-weight:700;margin-top:16px}
   {% if request.role.name == "Owner" %}
   <section class="sec-card">
     <div class="sec-head"><div class="sec-ico">💾</div><div><h2>{% translate "Backup & export" %}</h2><p>{% translate "Download every record of this business as a zip file. Keep a copy somewhere safe." %}</p></div></div>
-    <form method="post" action="{% url 'webapp:export_data' %}" class="row">{% csrf_token %}<label style="display:flex;gap:8px;align-items:center;font-size:14px"><input type="checkbox" name="media" value="1"> {% translate "Include photos and logos" %}</label><button class="btn">{% translate "Download all my data" %}</button></form>
+    <form method="post" action="{% url 'webapp:export_data' %}" class="row">{% csrf_token %}<label style="display:flex;gap:8px;align-items:center;font-size:14px"><input type="checkbox" name="media" value="1"> {% translate "Include photos and logos" %}</label><button class="btn">{% translate "Download all my data" %}</button></form><p style="margin:10px 0 0"><a href="{% url 'webapp:backups' %}">🛟 {% translate "Automatic daily backups and Google Drive →" %}</a></p>
   </section>
   {% endif %}
   <section class="sec-card">

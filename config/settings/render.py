@@ -31,6 +31,9 @@ if env.bool("USE_S3", default=True):
     AWS_DEFAULT_ACL = "private"
     AWS_QUERYSTRING_AUTH = True
     AWS_S3_FILE_OVERWRITE = False
+    # backups live in the same bucket under a private prefix, never with public URLs
+    STORAGES["backups"] = {"BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+                           "OPTIONS": {"location": "private-backups", "default_acl": "private", "querystring_auth": True}}
 else:
     import warnings
     warnings.warn("USE_S3 is off: uploaded media is stored on Render's ephemeral disk and will be lost on redeploy.")

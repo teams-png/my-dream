@@ -1,0 +1,22 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Backups{% endblock %}
+{% block heading %}🛟 Backups{% endblock %}
+{% block content %}
+<div style="display:grid;gap:16px">
+  <div class="card" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+    <div style="flex:1 1 300px"><b>Storage:</b> {{ storage }} · <b>Google Drive for clients:</b> {% if drive_ready %}on{% else %}off (set GOOGLE_OAUTH_CLIENT_ID / GOOGLE_OAUTH_CLIENT_SECRET){% endif %}<br>
+      <span style="color:var(--ink-soft);font-size:13px">Daily backups run with the daily jobs. {% if stale_count %}<b style="color:#b45309">{{ stale_count }} businesses have no backup in the last 36 hours.</b>{% else %}All businesses are backed up.{% endif %}</span>
+      {% if drive_ready %}<br><span style="color:var(--ink-soft);font-size:12.5px">Google OAuth redirect URI: <code>{{ callback }}</code></span>{% endif %}</div>
+    <form method="post" style="margin:0">{% csrf_token %}<input type="hidden" name="action" value="run"><button class="btn" type="submit">Run backups now</button></form>
+  </div>
+  <form method="get" style="display:flex;gap:8px"><input name="q" value="{{ q }}" placeholder="Search business"><button class="btn btn-secondary">Search</button></form>
+  <table>
+    <tr><th>Business</th><th>Last good backup</th><th>Stored</th><th>Failed</th><th>Drive</th></tr>
+    {% for r in rows %}
+    <tr><td>{{ r.c.name }}</td>
+      <td>{% if r.c.last_ok %}{{ r.c.last_ok|date:"j M Y, H:i" }}{% else %}—{% endif %} {% if r.stale %}<span class="badge cancelled">late</span>{% endif %}</td>
+      <td>{{ r.c.stored|default:0|filesizeformat }}</td><td>{{ r.c.failed }}</td><td>{% if r.drive %}✓{% endif %}</td></tr>
+    {% empty %}<tr><td colspan="5">No businesses.</td></tr>{% endfor %}
+  </table>
+</div>
+{% endblock %}

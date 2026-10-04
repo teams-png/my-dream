@@ -55,7 +55,39 @@ class CategoryForm(forms.ModelForm):
         fields = ["name"]
 
 
-class ProductForm(forms.ModelForm):
+class QuickAddMixin:
+    """Adds an "…or add a new one" box next to category / brand dropdowns, so a new business
+    never gets stuck on an empty list."""
+    QUICK_ADD = {"category": ProductCategory, "brand": Brand}
+    QUICK_LABELS = {"category": _l("…or add a new category"), "brand": _l("…or add a new brand")}
+
+    def add_quick_fields(self, company):
+        from apps.common.form_hints import sample_for
+        self._quick_company = company
+        ordered = {}
+        for name, field in self.fields.items():
+            ordered[name] = field
+            if name in self.QUICK_ADD and company is not None:
+                extra = forms.CharField(max_length=100, required=False, label=self.QUICK_LABELS[name])
+                sample = sample_for(self, f"new_{name}")
+                if sample:
+                    extra.widget.attrs["placeholder"] = str(_l("e.g. %(sample)s")) % {"sample": sample}
+                ordered[f"new_{name}"] = extra
+        self.fields = ordered
+
+    def clean_quick_fields(self, cleaned_data):
+        company = getattr(self, "_quick_company", None)
+        if company is None or self._errors:
+            return cleaned_data
+        for name, model in self.QUICK_ADD.items():
+            text = (cleaned_data.get(f"new_{name}") or "").strip()[:100]
+            if text and name in self.fields:
+                obj = model.objects.for_company(company).filter(name__iexact=text).first()
+                cleaned_data[name] = obj or model.objects.create(company=company, name=text)
+        return cleaned_data
+
+
+class ProductForm(QuickAddMixin, forms.ModelForm):
     attributes_text = forms.CharField(
         widget=forms.Textarea(attrs={"rows": 4}), required=False,
         label="Extra details (optional)",
@@ -68,6 +100,8 @@ class ProductForm(forms.ModelForm):
             "sku", "name", "category", "brand", "unit", "cost_price", "selling_price",
             "reorder_level", "size", "colour", "material", "design",
         ]
+        labels = {"sku": _l("SKU / barcode"), "name": _l("Product name"), "cost_price": _l("Cost price"),
+                  "selling_price": _l("Selling price"), "reorder_level": _l("Reorder level")}
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
@@ -77,6 +111,7 @@ class ProductForm(forms.ModelForm):
             self.fields["unit"].queryset = Unit.objects.for_company(company)
         self.fields["category"].required = False
         self.fields["brand"].required = False
+        self.add_quick_fields(company)
         if self.instance and self.instance.pk and self.instance.attributes:
             lines = [f"{k}: {v}" for k, v in self.instance.attributes.items()]
             self.fields["attributes_text"].initial = "\n".join(lines)
@@ -94,6 +129,9 @@ class ProductForm(forms.ModelForm):
             else:
                 attrs[line] = ""
         return attrs
+
+    def clean(self):
+        return self.clean_quick_fields(super().clean())
 
     def save(self, commit=True):
         obj = super().save(commit=False)
@@ -1451,11 +1489,12 @@ class MenuModifierForm(forms.ModelForm):
         fields = ["name", "price_delta", "is_active"]
 
 
-class RestaurantMenuItemForm(forms.ModelForm):
-    sku = forms.CharField(max_length=50, label="Menu code / SKU")
-    name = forms.CharField(max_length=255, label="Dish name")
-    category = forms.ModelChoiceField(queryset=ProductCategory.objects.none(), required=False)
-    selling_price = forms.DecimalField(max_digits=12, decimal_places=2, min_value=0)
+class RestaurantMenuItemForm(QuickAddMixin, forms.ModelForm):
+    QUICK_ADD = {"category": ProductCategory}
+    sku = forms.CharField(max_length=50, label=_l("Menu code / SKU"))
+    name = forms.CharField(max_length=255, label=_l("Dish name"))
+    category = forms.ModelChoiceField(queryset=ProductCategory.objects.none(), required=False, label=_l("Category"))
+    selling_price = forms.DecimalField(max_digits=12, decimal_places=2, min_value=0, label=_l("Selling price"))
 
     class Meta:
         model = RestaurantMenuItem
@@ -1465,11 +1504,24 @@ class RestaurantMenuItemForm(forms.ModelForm):
             "is_available", "available_from", "available_until", "modifier_groups", "sort_order",
         ]
         widgets = {
-            "description": forms.Textarea(attrs={"rows": 3, "placeholder": "Short menu description"}),
-            "image": forms.ClearableFileInput(attrs={"accept": "image/jpeg,image/png,image/webp"}),
+            "description": forms.Textarea(attrs={"rows": 3}),
+            "image": forms.FileInput(attrs={"accept": "image/jpeg,image/png,image/webp"}),
             "available_from": forms.TimeInput(attrs={"type": "time"}),
             "available_until": forms.TimeInput(attrs={"type": "time"}),
             "modifier_groups": forms.CheckboxSelectMultiple,
+        }
+        labels = {
+            "description": _l("Description"), "image": _l("Food photo"),
+            "preparation_minutes": _l("Preparation time (minutes)"), "spice_level": _l("Spice level"),
+            "is_vegetarian": _l("Vegetarian"), "is_featured": _l("Featured — show first on the menu"),
+            "is_available": _l("Available for sale now"), "available_from": _l("Serve from"),
+            "available_until": _l("Serve until"), "modifier_groups": _l("Add-ons / extras"),
+            "sort_order": _l("Position in menu"),
+        }
+        help_texts = {
+            "available_from": _l("Leave empty to serve all day."),
+            "sort_order": _l("Smaller numbers show first."),
+            "image": _l("Square photo, JPG / PNG / WebP."),
         }
 
     def __init__(self, *args, company=None, **kwargs):
@@ -1477,6 +1529,7 @@ class RestaurantMenuItemForm(forms.ModelForm):
         self.company = company
         self.fields["category"].queryset = ProductCategory.objects.for_company(company).order_by("name")
         self.fields["modifier_groups"].queryset = MenuModifierGroup.objects.for_company(company).filter(is_active=True)
+        self.add_quick_fields(company)
         if self.instance and self.instance.pk:
             product = self.instance.product
             self.fields["sku"].initial = product.sku
@@ -1492,6 +1545,9 @@ class RestaurantMenuItemForm(forms.ModelForm):
         if qs.exists():
             raise forms.ValidationError("This menu code / SKU is already in use.")
         return sku
+
+    def clean(self):
+        return self.clean_quick_fields(super().clean())
 
     def save(self, commit=True):
         menu_item = super().save(commit=False)

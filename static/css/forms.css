@@ -1,0 +1,71 @@
+/* Shared form look for every page in the app shell (.main).
+   Everything sits inside :where() so it has zero specificity: any page's own classes still win. */
+:where(.main) :where(input:not([type]),input[type=text],input[type=email],input[type=number],input[type=password],
+  input[type=tel],input[type=url],input[type=search],input[type=date],input[type=time],input[type=datetime-local],
+  input[type=month],select,textarea):where(:not([class])){
+  box-sizing:border-box;min-height:44px;padding:10px 13px;border:1.5px solid var(--line,#e2e8f0);border-radius:11px;
+  background-color:var(--panel,#fff);color:var(--ink,#0f172a);font:inherit;font-size:14.5px;line-height:1.4;
+  transition:border-color .15s ease,box-shadow .15s ease}
+:where(.main) :where(textarea:not([class])){min-height:96px;resize:vertical}
+:where(.main) :where(select:not([multiple]):not([class]):not([style])){appearance:none;-webkit-appearance:none;padding-inline-end:38px;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2364748b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center}
+[dir=rtl] :where(.main) :where(select:not([multiple]):not([class]):not([style])){background-position:left 14px center}
+:where(.main) :where(input,select,textarea)::placeholder{color:#94a3b8;opacity:1}
+:where(.main) :where(input,select,textarea):where(:not([class])):hover{border-color:color-mix(in srgb,var(--accent,#14532d) 35%,var(--line,#e2e8f0))}
+:where(.main) :where(input,select,textarea):where(:not([class])):focus{outline:none;border-color:var(--accent,#14532d);
+  box-shadow:0 0 0 3.5px color-mix(in srgb,var(--accent,#14532d) 16%,transparent)}
+:where(.main) :where(input[type=checkbox],input[type=radio]){accent-color:var(--accent,#14532d);width:18px;height:18px}
+:where(.main) :where(input[type=file]:not([class])){box-sizing:border-box;width:100%;padding:12px;border:1.5px dashed var(--line,#cbd5e1);
+  border-radius:12px;background:var(--paper,#f8fafc);color:var(--ink-soft,#64748b);font:inherit;font-size:13.5px;cursor:pointer}
+:where(.main) :where(input[type=file])::file-selector-button{margin-inline-end:12px;padding:8px 14px;border:1px solid var(--line,#e2e8f0);
+  border-radius:9px;background:var(--panel,#fff);color:var(--ink,#0f172a);font:inherit;font-weight:700;font-size:13.5px;cursor:pointer}
+:where(.main) :where(input[type=file]):hover{border-color:var(--accent,#14532d)}
+
+/* {{ form.as_p }} — label above, full-width control, help and errors underneath */
+:where(.main form) :where(p:has(> label)){margin:0 0 14px}
+:where(.main form) :where(p > label){display:block;margin-bottom:7px;font-size:13.5px;font-weight:700;color:var(--ink,#0f172a)}
+:where(.main form) :where(p > :is(input:not([type=checkbox]):not([type=radio]),select,textarea)){width:100%}
+:where(.main form) :where(.helptext){display:block;margin-top:5px;font-size:12.5px;color:var(--ink-soft,#64748b)}
+:where(.main form) :where(.errorlist){list-style:none;margin:6px 0 0;padding:0;color:var(--danger,#b91c1c);font-size:12.5px;font-weight:600}
+:where(.main form) :where(.errorlist + p > :is(input,select,textarea)),
+:where(.main form) :where(p:has(.errorlist) :is(input,select,textarea)){border-color:var(--danger,#dc2626)}
+/* a yes / no field becomes a tap-friendly tile with a switch */
+:where(.main form) :where(p:has(> label + input[type=checkbox])){display:flex;align-items:center;justify-content:space-between;gap:12px;
+  min-height:48px;padding:10px 14px;border:1.5px solid var(--line,#e2e8f0);border-radius:12px;background:var(--panel,#fff);cursor:pointer}
+:where(.main form) :where(p:has(> label + input[type=checkbox]) > label){margin:0;cursor:pointer}
+:where(.main form) :where(p:has(> label + input[type=checkbox]:checked)){border-color:color-mix(in srgb,var(--accent,#14532d) 45%,var(--line,#e2e8f0));
+  background:color-mix(in srgb,var(--accent,#14532d) 6%,var(--panel,#fff))}
+:where(.main form) :where(p > label + input[type=checkbox]){appearance:none;-webkit-appearance:none;flex:0 0 auto;position:relative;
+  width:42px;height:24px;margin:0;border-radius:999px;background:#cbd5e1;cursor:pointer;transition:background .15s}
+:where(.main form) :where(p > label + input[type=checkbox])::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:18px;height:18px;
+  border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .15s}
+:where(.main form) :where(p > label + input[type=checkbox]:checked){background:var(--accent,#14532d)}
+:where(.main form) :where(p > label + input[type=checkbox]:checked)::after{transform:translateX(18px)}
+[dir=rtl] :where(.main form) :where(p > label + input[type=checkbox]:checked)::after{transform:translateX(-18px)}
+:where(.main form) :where(p > label + input[type=checkbox]:focus-visible){outline:2px solid var(--accent,#14532d);outline-offset:2px}
+/* multi-select checkboxes become chips */
+:where(.main form) :where(p > div[id]:has(input[type=checkbox])){display:flex;flex-wrap:wrap;gap:8px}
+:where(.main form) :where(p > div[id] > div > label){display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border:1.5px solid var(--line,#e2e8f0);
+  border-radius:999px;background:var(--panel,#fff);font-size:13.5px;font-weight:600;cursor:pointer}
+:where(.main form) :where(p > div[id] > div > label:has(:checked)){border-color:var(--accent,#14532d);
+  background:color-mix(in srgb,var(--accent,#14532d) 8%,var(--panel,#fff));color:var(--accent,#14532d)}
+:where(.main) :where(input,select,textarea):where(:not([class])){max-width:100%}
+:where(.main form.stacked) :where(textarea){width:100%}
+
+/* Shared form page layout: cards with numbered sections, a 2-column field grid and a sticky save bar */
+.fx{max-width:1040px;margin:0 auto}
+.fx-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(260px,1fr);gap:18px;align-items:start}
+@media(max-width:900px){.fx-layout{grid-template-columns:1fr}}
+.fx-card{background:var(--panel,#fff);border:1px solid var(--line,#e2e8f0);border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(15,23,42,.05)}
+.fx-card + .fx-card{margin-top:18px}
+.fx-card h2{display:flex;align-items:center;gap:10px;margin:0 0 4px;font-size:17px}
+.fx-card h2 .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;background:var(--accent-soft,#e6f2ea);color:var(--accent,#14532d);font-size:13px}
+.fx-card .sub{margin:0 0 16px;color:var(--ink-soft,#64748b);font-size:13.5px}
+.fx-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}.fx-grid .fx-wide,.fx-grid p:has(> textarea){grid-column:1/-1}
+@media(max-width:600px){.fx-grid{grid-template-columns:1fr}.fx-card{padding:16px}}
+.fx-req{color:var(--danger,#dc2626)}
+.fx-bar{position:sticky;bottom:0;z-index:5;display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px;padding:14px 18px;background:color-mix(in srgb,var(--panel,#fff) 94%,transparent);backdrop-filter:blur(6px);border:1px solid var(--line,#e2e8f0);border-radius:16px;box-shadow:0 -8px 24px rgba(15,23,42,.06)}
+.fx-bar .btn{min-height:44px}.fx-bar .hint{margin-inline-start:auto;color:var(--ink-soft,#64748b);font-size:13px}
+.fx-errors{margin-bottom:16px;padding:12px 14px;border-radius:12px;background:#fef2f2;color:#991b1b;font-weight:600}
+@media (max-width:700px){:where(.main) :where(input,select,textarea):where(:not([class])){font-size:16px}}

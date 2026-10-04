@@ -1,0 +1,1 @@
+{% if field %}<p class="fx-field{% if wide %} fx-wide{% endif %}"><label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <span class="fx-req">*</span>{% endif %}</label>{{ field }}{% if field.help_text %}<span class="helptext">{{ field.help_text }}</span>{% endif %}{{ field.errors }}</p>{% endif %}

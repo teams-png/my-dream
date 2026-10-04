@@ -4604,6 +4604,26 @@ msgstr "പുതിയ ആളാണോ?"
 msgid "Start a free trial"
 msgstr "സൗജന്യ ട്രയൽ തുടങ്ങുക"
 
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Edit product"
+msgstr "ഉൽപ്പന്നം എഡിറ്റ് ചെയ്യുക"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Add product"
+msgstr "ഉൽപ്പന്നം ചേർക്കുക"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Please check the highlighted fields."
+msgstr "അടയാളപ്പെടുത്തിയ ഫീൽഡുകൾ പരിശോധിക്കുക."
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Product details"
+msgstr "ഉൽപ്പന്ന വിവരങ്ങൾ"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Shown on the POS, invoices and your website."
+msgstr "POS, ഇൻവോയ്സുകൾ, നിങ്ങളുടെ വെബ്സൈറ്റ് എന്നിവയിൽ കാണിക്കും."
+
 #: templates/webapp/onboarding/wizard.html
 msgid "Set up your business"
 msgstr "നിങ്ങളുടെ ബിസിനസ് സെറ്റപ്പ് ചെയ്യുക"
@@ -7157,6 +7177,62 @@ msgstr "കുറിപ്പ്:"
 msgid "Print KOT"
 msgstr "KOT പ്രിന്റ്"
 
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Edit menu item"
+msgstr "മെനു ഐറ്റം എഡിറ്റ് ചെയ്യുക"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Add menu item"
+msgstr "മെനു ഐറ്റം ചേർക്കുക"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Dish details"
+msgstr "വിഭവ വിവരങ്ങൾ"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "What customers see on the menu, POS and your website."
+msgstr "മെനുവിലും POS-ലും വെബ്സൈറ്റിലും ഉപഭോക്താക്കൾ കാണുന്നത്."
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Kitchen & serving time"
+msgstr "അടുക്കളയും വിളമ്പുന്ന സമയവും"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Leave the times empty if the dish is served all day."
+msgstr "ദിവസം മുഴുവൻ ലഭ്യമാണെങ്കിൽ സമയം ശൂന്യമായി വിടുക."
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Add-ons / extras"
+msgstr "ആഡ്-ഓണുകൾ / എക്സ്ട്രാകൾ"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Extra cheese, sizes, spice choice… picked by the cashier at the POS."
+msgstr "എക്സ്ട്രാ ചീസ്, സൈസ്, എരിവ്… POS-ൽ കാഷ്യർ തിരഞ്ഞെടുക്കും."
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "No add-on groups yet."
+msgstr "ഇതുവരെ ആഡ്-ഓൺ ഗ്രൂപ്പുകളില്ല."
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Create them in Restaurant setup →"
+msgstr "റെസ്റ്റോറന്റ് സെറ്റപ്പിൽ ഉണ്ടാക്കുക →"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Food photo"
+msgstr "ഭക്ഷണ ഫോട്ടോ"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Add a photo — dishes with photos sell more"
+msgstr "ഫോട്ടോ ചേർക്കുക — ഫോട്ടോയുള്ള വിഭവങ്ങൾ കൂടുതൽ വിൽക്കും"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Save menu item"
+msgstr "മെനു ഐറ്റം സേവ് ചെയ്യുക"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Saved items appear on the POS and website straight away."
+msgstr "സേവ് ചെയ്തവ ഉടൻ POS-ലും വെബ്സൈറ്റിലും വരും."
+
 #: templates/webapp/restaurant/new_order.html
 msgid "New restaurant order"
 msgstr "പുതിയ റെസ്റ്റോറന്റ് ഓർഡർ"
@@ -8466,6 +8542,18 @@ msgstr "ഇതുവരെ മാറ്റങ്ങൾ ഇല്ല."
 msgid "Available"
 msgstr "ലഭ്യം"
 
+#: apps/common/form_hints.py
+msgid "Select %(label)s"
+msgstr "%(label)s തിരഞ്ഞെടുക്കുക"
+
+#: apps/common/form_hints.py
+msgid "Select…"
+msgstr "തിരഞ്ഞെടുക്കുക…"
+
+#: apps/common/form_hints.py
+msgid "e.g. %(sample)s"
+msgstr "ഉദാ. %(sample)s"
+
 #: apps/finance/models.py
 msgid "Received from customer"
 msgstr "കസ്റ്റമറിൽ നിന്ന് ലഭിച്ചത്"
@@ -9169,6 +9257,34 @@ msgid "Asset disposed and the gain or loss recorded."
 msgstr "ആസ്തി ഒഴിവാക്കി, ലാഭമോ നഷ്ടമോ രേഖപ്പെടുത്തി."
 
 #: apps/webapp/forms.py
+msgid "…or add a new category"
+msgstr "…അല്ലെങ്കിൽ പുതിയ കാറ്റഗറി ചേർക്കുക"
+
+#: apps/webapp/forms.py
+msgid "…or add a new brand"
+msgstr "…അല്ലെങ്കിൽ പുതിയ ബ്രാൻഡ് ചേർക്കുക"
+
+#: apps/webapp/forms.py
+msgid "SKU / barcode"
+msgstr "SKU / ബാർകോഡ്"
+
+#: apps/webapp/forms.py
+msgid "Product name"
+msgstr "ഉൽപ്പന്നത്തിന്റെ പേര്"
+
+#: apps/webapp/forms.py
+msgid "Cost price"
+msgstr "വാങ്ങിയ വില"
+
+#: apps/webapp/forms.py
+msgid "Selling price"
+msgstr "വിൽപ്പന വില"
+
+#: apps/webapp/forms.py
+msgid "Reorder level"
+msgstr "റീഓർഡർ നില"
+
+#: apps/webapp/forms.py
 msgid "…or new client name"
 msgstr "…അല്ലെങ്കിൽ പുതിയ ക്ലയന്റിന്റെ പേര്"
 
@@ -9182,6 +9298,62 @@ msgid ""
 msgstr ""
 "ഈ ആൾ ജോലി ചെയ്യുന്ന ബ്രാഞ്ചുകൾ ടിക്ക് ചെയ്യുക. എല്ലാ ബ്രാഞ്ചിനും ഒന്നും "
 "ടിക്ക് ചെയ്യേണ്ട."
+
+#: apps/webapp/forms.py
+msgid "Menu code / SKU"
+msgstr "മെനു കോഡ് / SKU"
+
+#: apps/webapp/forms.py
+msgid "Dish name"
+msgstr "വിഭവത്തിന്റെ പേര്"
+
+#: apps/webapp/forms.py
+msgid "Description"
+msgstr "വിവരണം"
+
+#: apps/webapp/forms.py
+msgid "Preparation time (minutes)"
+msgstr "തയ്യാറാക്കാനുള്ള സമയം (മിനിറ്റ്)"
+
+#: apps/webapp/forms.py
+msgid "Spice level"
+msgstr "എരിവ്"
+
+#: apps/webapp/forms.py
+msgid "Vegetarian"
+msgstr "വെജിറ്റേറിയൻ"
+
+#: apps/webapp/forms.py
+msgid "Featured — show first on the menu"
+msgstr "ഫീച്ചർഡ് — മെനുവിൽ ആദ്യം കാണിക്കുക"
+
+#: apps/webapp/forms.py
+msgid "Available for sale now"
+msgstr "ഇപ്പോൾ വിൽപ്പനയ്ക്ക് ലഭ്യം"
+
+#: apps/webapp/forms.py
+msgid "Serve from"
+msgstr "വിളമ്പുന്നത് മുതൽ"
+
+#: apps/webapp/forms.py
+msgid "Serve until"
+msgstr "വിളമ്പുന്നത് വരെ"
+
+#: apps/webapp/forms.py
+msgid "Position in menu"
+msgstr "മെനുവിലെ സ്ഥാനം"
+
+#: apps/webapp/forms.py
+msgid "Leave empty to serve all day."
+msgstr "ദിവസം മുഴുവൻ ആണെങ്കിൽ ശൂന്യമായി വിടുക."
+
+#: apps/webapp/forms.py
+msgid "Smaller numbers show first."
+msgstr "ചെറിയ നമ്പറുകൾ ആദ്യം കാണിക്കും."
+
+#: apps/webapp/forms.py
+msgid "Square photo, JPG / PNG / WebP."
+msgstr "ചതുര ഫോട്ടോ, JPG / PNG / WebP."
 
 #: apps/webapp/gold_views.py
 msgid "%(count)s rates saved; %(changed)s item prices updated."
@@ -10108,10 +10280,6 @@ msgstr "അധികം കണ്ടെത്തി"
 #: apps/webapp/stock_views.py
 msgid "Correction"
 msgstr "തിരുത്തൽ"
-
-#: apps/webapp/stock_views.py
-msgid "Reorder level"
-msgstr "റീഓർഡർ നില"
 
 #: apps/webapp/stock_views.py
 msgid "Stock value"

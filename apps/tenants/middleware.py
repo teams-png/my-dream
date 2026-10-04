@@ -70,12 +70,15 @@ class ActiveCompanyMiddleware:
                 request.role = membership.role
                 request.membership = membership
 
+        from apps.common import form_hints
         from apps.inventory import branch_access
         token = branch_access.activate(branch_access.ids_for(request.membership))
+        hints_token = form_hints.activate(request.company)
         request.branch_ids = branch_access.allowed()
         try:
             return self.get_response(request)
         finally:
+            form_hints.reset(hints_token)
             branch_access.reset(token)
 
     def _authenticate_via_jwt(self, request):

@@ -4560,6 +4560,26 @@ msgstr "جديد هنا؟"
 msgid "Start a free trial"
 msgstr "ابدأ تجربة مجانية"
 
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Edit product"
+msgstr "تعديل المنتج"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Add product"
+msgstr "إضافة منتج"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Please check the highlighted fields."
+msgstr "يرجى مراجعة الحقول المحددة."
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Product details"
+msgstr "تفاصيل المنتج"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Shown on the POS, invoices and your website."
+msgstr "يظهر في نقطة البيع والفواتير وموقعك."
+
 #: templates/webapp/onboarding/wizard.html
 msgid "Set up your business"
 msgstr "إعداد نشاطك التجاري"
@@ -7081,6 +7101,62 @@ msgstr "ملاحظة:"
 msgid "Print KOT"
 msgstr "طباعة تذكرة المطبخ"
 
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Edit menu item"
+msgstr "تعديل صنف القائمة"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Add menu item"
+msgstr "إضافة صنف للقائمة"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Dish details"
+msgstr "تفاصيل الطبق"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "What customers see on the menu, POS and your website."
+msgstr "ما يراه العملاء في القائمة ونقطة البيع وموقعك."
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Kitchen & serving time"
+msgstr "المطبخ ووقت التقديم"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Leave the times empty if the dish is served all day."
+msgstr "اترك الأوقات فارغة إذا كان الطبق متاحاً طوال اليوم."
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Add-ons / extras"
+msgstr "الإضافات"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Extra cheese, sizes, spice choice… picked by the cashier at the POS."
+msgstr "جبن إضافي، أحجام، درجة الحرارة… يختارها الكاشير في نقطة البيع."
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "No add-on groups yet."
+msgstr "لا توجد مجموعات إضافات بعد."
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Create them in Restaurant setup →"
+msgstr "أنشئها في إعداد المطعم ←"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Food photo"
+msgstr "صورة الطبق"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Add a photo — dishes with photos sell more"
+msgstr "أضف صورة — الأطباق ذات الصور تبيع أكثر"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Save menu item"
+msgstr "حفظ صنف القائمة"
+
+#: templates/webapp/restaurant/menu_item_form.html
+msgid "Saved items appear on the POS and website straight away."
+msgstr "تظهر الأصناف المحفوظة فوراً في نقطة البيع والموقع."
+
 #: templates/webapp/restaurant/new_order.html
 msgid "New restaurant order"
 msgstr "طلب مطعم جديد"
@@ -8376,6 +8452,18 @@ msgstr "لا تحويلات بعد."
 msgid "Available"
 msgstr "متاحة"
 
+#: apps/common/form_hints.py
+msgid "Select %(label)s"
+msgstr "اختر %(label)s"
+
+#: apps/common/form_hints.py
+msgid "Select…"
+msgstr "اختر…"
+
+#: apps/common/form_hints.py
+msgid "e.g. %(sample)s"
+msgstr "مثال: %(sample)s"
+
 #: apps/finance/models.py
 msgid "Received from customer"
 msgstr "مستلم من عميل"
@@ -9071,6 +9159,34 @@ msgid "Asset disposed and the gain or loss recorded."
 msgstr "تم استبعاد الأصل وتسجيل الربح أو الخسارة."
 
 #: apps/webapp/forms.py
+msgid "…or add a new category"
+msgstr "…أو أضف فئة جديدة"
+
+#: apps/webapp/forms.py
+msgid "…or add a new brand"
+msgstr "…أو أضف علامة تجارية جديدة"
+
+#: apps/webapp/forms.py
+msgid "SKU / barcode"
+msgstr "رمز المنتج / الباركود"
+
+#: apps/webapp/forms.py
+msgid "Product name"
+msgstr "اسم المنتج"
+
+#: apps/webapp/forms.py
+msgid "Cost price"
+msgstr "سعر التكلفة"
+
+#: apps/webapp/forms.py
+msgid "Selling price"
+msgstr "سعر البيع"
+
+#: apps/webapp/forms.py
+msgid "Reorder level"
+msgstr "حد إعادة الطلب"
+
+#: apps/webapp/forms.py
 msgid "…or new client name"
 msgstr "…أو اسم عميل جديد"
 
@@ -9082,6 +9198,62 @@ msgstr "هاتف العميل الجديد"
 msgid ""
 "Tick the branches this person works at. Leave all unticked for every branch."
 msgstr "حدد الفروع التي يعمل بها هذا الشخص. اترك الكل دون تحديد لجميع الفروع."
+
+#: apps/webapp/forms.py
+msgid "Menu code / SKU"
+msgstr "رمز الصنف"
+
+#: apps/webapp/forms.py
+msgid "Dish name"
+msgstr "اسم الطبق"
+
+#: apps/webapp/forms.py
+msgid "Description"
+msgstr "الوصف"
+
+#: apps/webapp/forms.py
+msgid "Preparation time (minutes)"
+msgstr "وقت التحضير (دقائق)"
+
+#: apps/webapp/forms.py
+msgid "Spice level"
+msgstr "درجة الحرارة"
+
+#: apps/webapp/forms.py
+msgid "Vegetarian"
+msgstr "نباتي"
+
+#: apps/webapp/forms.py
+msgid "Featured — show first on the menu"
+msgstr "مميز — يظهر أولاً في القائمة"
+
+#: apps/webapp/forms.py
+msgid "Available for sale now"
+msgstr "متاح للبيع الآن"
+
+#: apps/webapp/forms.py
+msgid "Serve from"
+msgstr "يقدم من"
+
+#: apps/webapp/forms.py
+msgid "Serve until"
+msgstr "يقدم حتى"
+
+#: apps/webapp/forms.py
+msgid "Position in menu"
+msgstr "الترتيب في القائمة"
+
+#: apps/webapp/forms.py
+msgid "Leave empty to serve all day."
+msgstr "اتركه فارغاً للتقديم طوال اليوم."
+
+#: apps/webapp/forms.py
+msgid "Smaller numbers show first."
+msgstr "الأرقام الأصغر تظهر أولاً."
+
+#: apps/webapp/forms.py
+msgid "Square photo, JPG / PNG / WebP."
+msgstr "صورة مربعة، JPG / PNG / WebP."
 
 #: apps/webapp/gold_views.py
 msgid "%(count)s rates saved; %(changed)s item prices updated."
@@ -9997,10 +10169,6 @@ msgstr "زيادة موجودة"
 #: apps/webapp/stock_views.py
 msgid "Correction"
 msgstr "تصحيح"
-
-#: apps/webapp/stock_views.py
-msgid "Reorder level"
-msgstr "حد إعادة الطلب"
 
 #: apps/webapp/stock_views.py
 msgid "Stock value"

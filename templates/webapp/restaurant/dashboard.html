@@ -39,14 +39,14 @@
 </section>
 
 <div class="r-stats">
-  <div class="r-card r-stat r-reveal" style="--d:1"><div class="ico">💰</div><div><b data-count="{{ stats.sales_today|floatformat:2 }}" data-prefix="{{ cur }} ">{{ cur }} {{ stats.sales_today|floatformat:2 }}</b><span>{% translate "Sales today ·" %} {{ stats.paid_today }} {% if stats.paid_today == 1 %}{% translate 'bill' %}{% else %}{% translate 'bills' %}{% endif %}</span></div></div>
-  <div class="r-card r-stat r-reveal" style="--d:2"><div class="ico">🧾</div><div><b data-count="{{ stats.active_orders }}">{{ stats.active_orders }}</b><span>{% translate "Open orders" %}</span></div></div>
-  <div class="r-card r-stat r-reveal" style="--d:3"><div class="ico">🔥</div><div><b data-count="{{ stats.in_kitchen }}">{{ stats.in_kitchen }}</b><span>{% translate "Tickets in kitchen" %}</span></div></div>
-  <div class="r-card r-stat r-reveal" style="--d:4"><div class="ico">🪑</div><div><b>{{ stats.tables_busy }}<small style="font-size:15px;color:var(--r-soft)"> / {{ stats.tables_total }}</small></b><span>{% translate "Tables occupied" %}</span></div></div>
+  <a class="r-card r-stat r-reveal" style="--d:1" href="{% url 'webapp:restaurant_order_list' %}?period=today&status=paid"><div class="ico">💰</div><div><b data-count="{{ stats.sales_today|floatformat:2 }}" data-prefix="{{ cur }} ">{{ cur }} {{ stats.sales_today|floatformat:2 }}</b><span>{% translate "Sales today ·" %} {{ stats.paid_today }} {% if stats.paid_today == 1 %}{% translate 'bill' %}{% else %}{% translate 'bills' %}{% endif %}</span></div></a>
+  <a class="r-card r-stat r-reveal" style="--d:2" href="{% url 'webapp:restaurant_order_list' %}?period=all&status=open"><div class="ico">🧾</div><div><b data-count="{{ stats.active_orders }}">{{ stats.active_orders }}</b><span>{% translate "Open orders" %}</span></div></a>
+  <a class="r-card r-stat r-reveal" style="--d:3" href="{% url 'webapp:restaurant_kitchen' %}"><div class="ico">🔥</div><div><b data-count="{{ stats.in_kitchen }}">{{ stats.in_kitchen }}</b><span>{% translate "Tickets in kitchen" %}</span></div></a>
+  <a class="r-card r-stat r-reveal" style="--d:4" href="#floor-plan"><div class="ico">🪑</div><div><b>{{ stats.tables_busy }}<small style="font-size:15px;color:var(--r-soft)"> / {{ stats.tables_total }}</small></b><span>{% translate "Tables occupied" %}</span></div></a>
 </div>
 
 <div class="r-grid">
-  <section class="r-card r-panel r-reveal" style="--d:2">
+  <section class="r-card r-panel r-reveal" style="--d:2" id="floor-plan">
     <div class="r-section-title">
       <h2>{% translate "Floor plan" %}</h2>
       <div class="r-legend"><span style="--c:var(--r-green)">{% translate "Free" %}</span><span style="--c:var(--r-brand)">{% translate "Occupied" %}</span><span style="--c:#d99a00">{% translate "Cleaning" %}</span><span style="--c:var(--r-blue)">{% translate "Reserved" %}</span></div>

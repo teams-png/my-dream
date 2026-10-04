@@ -2031,3 +2031,5 @@ ML.update({
     "Saved on this device": "ഈ ഉപകരണത്തിൽ സേവ് ചെയ്തു",
     "Offline bill — invoice number comes after sync": "ഓഫ്‌ലൈൻ ബിൽ — ഇൻവോയ്സ് നമ്പർ sync-ന് ശേഷം വരും",
 })
+
+ML.update({"Bills today": "ഇന്നത്തെ ബില്ലുകൾ", "Menu items": "മെനു ഐറ്റങ്ങൾ", "Tables": "ടേബിളുകൾ"})

@@ -36,195 +36,195 @@
 </a>
 {% endif %}
 <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:16px;">
-  <div class="card" style="border-top:3px solid var(--accent);">
+  <a class="card stat-link" href="{% url 'webapp:sales_invoice_list' %}?from={{ today_iso }}&to={{ today_iso }}" style="border-top:3px solid var(--accent);text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Today's sales" %}</div>
     <div style="font-size:26px; font-weight:700; margin-top:6px;">{{ today_sales|floatformat:2 }}</div>
-  </div>
-  <div class="card" style="border-top:3px solid var(--accent);">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:sales_invoice_list' %}?from={{ month_start_iso }}&to={{ today_iso }}" style="border-top:3px solid var(--accent);text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "This month's revenue" %}</div>
     <div style="font-size:26px; font-weight:700; margin-top:6px;">{{ month_revenue|floatformat:2 }}</div>
-  </div>
-  <div class="card" style="border-top:3px solid {% if outstanding_dues > 0 %}var(--warning){% else %}var(--accent){% endif %};">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:receivables' %}" style="border-top:3px solid {% if outstanding_dues > 0 %}var(--warning){% else %}var(--accent){% endif %};text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Outstanding dues" %}</div>
     <div style="font-size:26px; font-weight:700; margin-top:6px; {% if outstanding_dues > 0 %}color:var(--warning);{% endif %}">{{ outstanding_dues|floatformat:2 }}</div>
-  </div>
-  <div class="card" style="border-top:3px solid {% if low_stock_count > 0 %}var(--danger){% else %}var(--accent){% endif %};">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:stock_home' %}?show=low" style="border-top:3px solid {% if low_stock_count > 0 %}var(--danger){% else %}var(--accent){% endif %};text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Low stock items" %}</div>
     <div style="font-size:26px; font-weight:700; margin-top:6px; {% if low_stock_count > 0 %}color:var(--danger);{% endif %}">{{ low_stock_count }}</div>
-  </div>
+  </a>
 </div>
 
 <div style="font-size:15px; font-weight:700; margin:22px 0 12px;">{% translate "Business overview" %}</div>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
   {% if active_company.business_type.code == "gym" or active_company.business_type.code == "fitness_center" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:member_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Active members" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ active_member_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:member_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Total members" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ member_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:plan_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Membership plans" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ plan_count }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "spa" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:spa_service_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Services offered" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ service_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:appointment_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Appointments today" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ today_appt_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:appointment_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Completed (all time)" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "textile" or active_company.business_type.code == "tailoring_shop" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:fabric_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Fabrics" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ fabric_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:order_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Orders pending" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ pending_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:order_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Ready for pickup" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ ready_count }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "vehicle_wash" or active_company.business_type.code == "car_wash" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:vehicle_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Vehicles" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ vehicle_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:wash_order_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Washes today" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ today_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:wash_order_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Revenue (all time)" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue|floatformat:2 }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "sports_shop" or active_company.business_type.code == "fitness_sports_store" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:sports_product_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Products" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ product_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:category_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Categories" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ category_count }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "cycle_shop" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:cycle_unit_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "In stock" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ in_stock_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:cycle_unit_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Sold" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ sold_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:service_ticket_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Open tickets" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ open_tickets }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "saloon" or active_company.business_type.code == "barber_shop" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:saloon_service_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Services" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ service_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:saloon_appointment_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Appointments today" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ today_appt_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:saloon_appointment_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Completed (all time)" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "beauty_parlour" or active_company.business_type.code == "beauty_salon" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:beauty_service_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Services" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ service_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:beauty_appointment_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Appointments today" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ today_appt_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:beauty_appointment_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Completed (all time)" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "medical_shop" or active_company.business_type.code == "pharmacy" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:medicine_batch_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Batches in stock" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ batch_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:medicine_batch_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Expiring in 30 days" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ expiring_soon }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "protein_shop" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:protein_batch_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Batches in stock" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ batch_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:protein_batch_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Expiring in 30 days" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ expiring_soon }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "construction" or active_company.business_type.code == "contracting_company" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:project_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Active projects" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ active_projects }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:project_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Total projects" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ total_projects }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "watch_shop" or active_company.business_type.code == "perfume_shop" or active_company.business_type.code == "book_store" or active_company.business_type.code == "retail_shop" or active_company.business_type.code == "supermarket" or active_company.business_type.code == "grocery_store" or active_company.business_type.code == "clothing_store" or active_company.business_type.code == "electronics_store" or active_company.business_type.code == "computer_shop" or active_company.business_type.code == "furniture_store" or active_company.business_type.code == "hardware_store" or active_company.business_type.code == "cosmetics_store" or active_company.business_type.code == "jewelry_shop" or active_company.business_type.code == "auto_spare_parts" or active_company.business_type.code == "medical_equipment_store" or active_company.business_type.code == "flower_shop" or active_company.business_type.code == "pet_shop" or active_company.business_type.code == "bakery" or active_company.business_type.code == "trading_company" or active_company.business_type.code == "wholesale_business" or active_company.business_type.code == "import_export" or active_company.business_type.code == "car_showroom" or active_company.business_type.code == "printing_shop" or active_company.business_type.code == "manufacturing" or active_company.business_type.code == "industrial_services" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:product_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Products" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ product_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:category_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Categories" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ category_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:sales_invoice_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Sales" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ invoice_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:sales_invoice_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Revenue" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue|floatformat:2 }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "dental_clinic" or active_company.business_type.code == "medical_clinic" or active_company.business_type.code == "physiotherapy_center" or active_company.business_type.code == "veterinary_clinic" or active_company.business_type.code == "photography_studio" or active_company.business_type.code == "driving_school" or active_company.business_type.code == "tuition_center" or active_company.business_type.code == "consultancy" or active_company.business_type.code == "auto_garage" or active_company.business_type.code == "repair_services" or active_company.business_type.code == "home_services" or active_company.business_type.code == "laundry_dry_cleaning" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:service_case_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Services" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ service_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:service_case_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Appointments today" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ today_appt_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:service_case_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Completed (all time)" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
-  </div>
+  </a>
 
   {% elif active_company.business_type.code == "recruitment_agency" %}
   <a class="card" href="{% url 'webapp:rec_jobs' %}" style="text-decoration:none;color:inherit">
@@ -241,41 +241,77 @@
   </a>
 
   {% elif active_company.business_type.code == "advertising_agency" or active_company.business_type.code == "digital_marketing_agency" or active_company.business_type.code == "web_development" or active_company.business_type.code == "it_services" or active_company.business_type.code == "software_company" or active_company.business_type.code == "accounting_audit" or active_company.business_type.code == "security_services" or active_company.business_type.code == "event_management" or active_company.business_type.code == "cleaning_company" or active_company.business_type.code == "maintenance_company" or active_company.business_type.code == "landscaping_company" %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:project_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Active projects" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ active_projects }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:project_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Total projects" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ total_projects }}</div>
-  </div>
+  </a>
 
-  {% else %}
-  <div class="card">
+  {% elif overview_kind == "restaurant" %}
+  <a class="card stat-link" href="{% url 'webapp:restaurant_order_list' %}?period=today&status=paid" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Bills today" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ orders_today }}</div>
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:restaurant_order_list' %}?period=all&status=open" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Open orders" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ open_orders }}</div>
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:restaurant_setup' %}" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Menu items" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ menu_count }}</div>
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:restaurant_dashboard' %}#floor-plan" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Tables" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ table_count }}</div>
+  </a>
+
+  {% elif overview_kind == "sales" %}
+  <a class="card stat-link" href="{% url 'webapp:sales_invoice_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Revenue (all time)" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue|floatformat:2 }}</div>
-  </div>
-  <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Units in stock" %}</div>
-    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ unit_count }}</div>
-  </div>
-  <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Sales made" %}</div>
-    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ sales_count }}</div>
-  </div>
-  <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Categories" %}</div>
-    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ category_count }}</div>
-  </div>
-  <div class="card">
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:sales_invoice_list' %}" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Sales" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ invoice_count }}</div>
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:product_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Products" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ product_count }}</div>
-  </div>
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:category_list' %}" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Categories" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ category_count }}</div>
+  </a>
+
+  {% else %}
+  <a class="card stat-link" href="{% url 'webapp:sale_list' %}" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Revenue (all time)" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ revenue|floatformat:2 }}</div>
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:unit_list' %}" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Units in stock" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ unit_count }}</div>
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:sale_list' %}" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Sales made" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ sales_count }}</div>
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:category_list' %}" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Categories" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ category_count }}</div>
+  </a>
+  <a class="card stat-link" href="{% url 'webapp:product_list' %}" style="text-decoration:none;color:inherit">
+    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Products" %}</div>
+    <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ product_count }}</div>
+  </a>
   {% endif %}
-  <div class="card">
+  <a class="card stat-link" href="{% url 'webapp:customer_list' %}" style="text-decoration:none;color:inherit">
     <div style="color:var(--ink-soft); font-size:13px;">{% translate "Customers" %}</div>
     <div style="font-size:28px; font-weight:600; margin-top:6px;">{{ customer_count }}</div>
-  </div>
+  </a>
 </div>
 
 <div style="font-size:15px; font-weight:700; margin:26px 0 12px;">{% translate "Recent sales" %}</div>

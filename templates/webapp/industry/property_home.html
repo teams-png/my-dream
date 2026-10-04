@@ -14,11 +14,11 @@ html[data-theme=dark] .pu.occupied{background:#2a1d05}html[data-theme=dark] .pu.
 </style>
 <div class="ix">
   <div class="ix-stats">
-    <div class="ix-stat"><small>{% translate "Units" %}</small><b>{{ summary.units }}</b></div>
-    <div class="ix-stat good"><small>{% translate "Occupancy" %}</small><b>{{ summary.occupancy }}%</b></div>
-    <div class="ix-stat"><small>{% translate "Vacant" %}</small><b>{{ summary.vacant }}</b></div>
-    <div class="ix-stat"><small>{% translate "Monthly rent roll" %}</small><b>{{ summary.rent_roll|floatformat:"-2" }}</b></div>
-    <div class="ix-stat good"><small>{% translate "Collected this month" %}</small><b>{{ summary.collected|floatformat:"-2" }} <small style="display:inline;font-size:13px">/ {{ summary.billed|floatformat:"-2" }}</small></b></div>
+    <a href="#properties" class="ix-stat stat-link"><small>{% translate "Units" %}</small><b>{{ summary.units }}</b></a>
+    <a href="{% url 'webapp:lease_list' %}" class="ix-stat stat-link good"><small>{% translate "Occupancy" %}</small><b>{{ summary.occupancy }}%</b></a>
+    <a href="#properties" class="ix-stat stat-link"><small>{% translate "Vacant" %}</small><b>{{ summary.vacant }}</b></a>
+    <a href="{% url 'webapp:lease_list' %}" class="ix-stat stat-link"><small>{% translate "Monthly rent roll" %}</small><b>{{ summary.rent_roll|floatformat:"-2" }}</b></a>
+    <a href="{% url 'webapp:rent_run' %}" class="ix-stat stat-link good"><small>{% translate "Collected this month" %}</small><b>{{ summary.collected|floatformat:"-2" }} <small style="display:inline;font-size:13px">/ {{ summary.billed|floatformat:"-2" }}</small></b></a>
   </div>
 
   {% if summary.not_billed %}
@@ -42,6 +42,7 @@ html[data-theme=dark] .pu.occupied{background:#2a1d05}html[data-theme=dark] .pu.
       <div class="ix-list">{% for l in summary.expiring %}<a class="ix-row" href="{% url 'webapp:lease_detail' l.id %}"><span class="grow"><b>{{ l.tenant.name }}</b><small>{{ l.unit }}</small></span><span class="ix-chip checked_in">{{ l.end_date|date:"j M Y" }}</span></a>{% empty %}<div class="ix-empty">{% translate "None." %}</div>{% endfor %}</div></div>
   </div>
 
+  <div id="properties"></div>
   {% for row in properties %}{% with p=row.p %}
   <div class="ix-card">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">

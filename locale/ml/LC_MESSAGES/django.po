@@ -2497,6 +2497,22 @@ msgid "Joined this month"
 msgstr "ഈ മാസം ജോയിൻ ചെയ്തവർ"
 
 #: templates/webapp/dashboard.html
+msgid "Bills today"
+msgstr "ഇന്നത്തെ ബില്ലുകൾ"
+
+#: templates/webapp/dashboard.html
+msgid "Open orders"
+msgstr "തുറന്ന ഓർഡറുകൾ"
+
+#: templates/webapp/dashboard.html
+msgid "Menu items"
+msgstr "മെനു ഐറ്റങ്ങൾ"
+
+#: templates/webapp/dashboard.html
+msgid "Tables"
+msgstr "ടേബിളുകൾ"
+
+#: templates/webapp/dashboard.html
 msgid "Units in stock"
 msgstr "സ്റ്റോക്കിലുള്ള യൂണിറ്റുകൾ"
 
@@ -7125,10 +7141,6 @@ msgstr "ഇന്നത്തെ വിൽപ്പന ·"
 #: templates/webapp/restaurant/dashboard.html
 msgid "bill"
 msgstr "ബിൽ"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "Open orders"
-msgstr "തുറന്ന ഓർഡറുകൾ"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"

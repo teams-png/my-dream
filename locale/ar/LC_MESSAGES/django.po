@@ -2481,6 +2481,22 @@ msgid "Joined this month"
 msgstr "التحقوا هذا الشهر"
 
 #: templates/webapp/dashboard.html
+msgid "Bills today"
+msgstr "فواتير اليوم"
+
+#: templates/webapp/dashboard.html
+msgid "Open orders"
+msgstr "الطلبات المفتوحة"
+
+#: templates/webapp/dashboard.html
+msgid "Menu items"
+msgstr "أصناف القائمة"
+
+#: templates/webapp/dashboard.html
+msgid "Tables"
+msgstr "الطاولات"
+
+#: templates/webapp/dashboard.html
 msgid "Units in stock"
 msgstr "الوحدات في المخزون"
 
@@ -7049,10 +7065,6 @@ msgstr "مبيعات اليوم ·"
 #: templates/webapp/restaurant/dashboard.html
 msgid "bill"
 msgstr "فاتورة"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "Open orders"
-msgstr "الطلبات المفتوحة"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"

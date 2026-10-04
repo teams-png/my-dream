@@ -69,3 +69,13 @@
 .fx-bar .btn{min-height:44px}.fx-bar .hint{margin-inline-start:auto;color:var(--ink-soft,#64748b);font-size:13px}
 .fx-errors{margin-bottom:16px;padding:12px 14px;border-radius:12px;background:#fef2f2;color:#991b1b;font-weight:600}
 @media (max-width:700px){:where(.main) :where(input,select,textarea):where(:not([class])){font-size:16px}}
+
+/* Overview tiles that open their details */
+a.card.stat-link,a.ix-stat{display:block}
+a.stat-link,a.r-stat,a.ix-stat{position:relative;text-decoration:none;color:inherit;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+a.r-stat{display:flex}
+a.stat-link:hover,a.r-stat:hover,a.ix-stat:hover{transform:translateY(-2px);border-color:var(--accent,#14532d);box-shadow:0 10px 24px rgba(15,23,42,.08)}
+a.stat-link::after,a.r-stat::after,a.ix-stat::after{content:"→";position:absolute;top:12px;inset-inline-end:14px;color:var(--ink-soft,#94a3b8);font-weight:700;opacity:.55;transition:opacity .15s,transform .15s}
+a.stat-link:hover::after,a.r-stat:hover::after,a.ix-stat:hover::after{opacity:1;transform:translateX(2px);color:var(--accent,#14532d)}
+[dir=rtl] a.stat-link::after,[dir=rtl] a.r-stat::after,[dir=rtl] a.ix-stat::after{content:"←"}
+a.stat-link:focus-visible,a.r-stat:focus-visible,a.ix-stat:focus-visible{outline:2px solid var(--accent,#14532d);outline-offset:2px}

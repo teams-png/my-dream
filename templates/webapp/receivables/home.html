@@ -9,7 +9,7 @@
   <div class="hr-kpi"><small>{% translate "Customers owe you" %}</small><b>{{ active_company.default_currency }} {{ summary.total_outstanding|floatformat:2 }}</b></div>
   <a class="hr-kpi {% if overdue_total %}warn{% endif %}" href="?show=overdue"><small>{% translate "Overdue" %}</small><b>{{ overdue_total|floatformat:2 }}</b></a>
   <div class="hr-kpi"><small>{% translate "Not yet due" %}</small><b>{{ summary.not_due|add:summary.no_due_date|floatformat:2 }}</b></div>
-  <div class="hr-kpi"><small>{% translate "Received this month" %}</small><b style="color:var(--hr-ok)">{{ received_month|floatformat:2 }}</b></div>
+  <a href="{% url 'webapp:sales_invoice_list' %}?status=paid" class="hr-kpi stat-link"><small>{% translate "Received this month" %}</small><b style="color:var(--hr-ok)">{{ received_month|floatformat:2 }}</b></a>
 </div>
 <div class="hr-card"><h3>⏳ {% translate "Overdue by age" %}</h3>
   <div class="hr-kpis" style="margin:0">{% for b in summary.buckets %}<div class="hr-kpi" style="{% if b.total %}border-color:{% if forloop.last %}var(--hr-bad){% else %}#f59e0b{% endif %}{% endif %}"><small>{{ b.label }} {% translate "days" %} · {{ b.count }}</small><b>{{ b.total|floatformat:2 }}</b></div>{% endfor %}</div>

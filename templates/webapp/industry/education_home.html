@@ -6,10 +6,10 @@
 <link rel="stylesheet" href="{% static 'css/industry.css' %}">
 <div class="ix">
   <div class="ix-stats">
-    <div class="ix-stat"><small>{% translate "Active" %} {% translate terms.students|lower %}</small><b>{{ active_students }}</b></div>
-    <div class="ix-stat"><small>{% translate "Billed this month" %}</small><b>{{ summary.billed|floatformat:"-2" }}</b></div>
-    <div class="ix-stat good"><small>{% translate "Collected" %}</small><b>{{ summary.collected|floatformat:"-2" }}</b></div>
-    <div class="ix-stat {% if dues_total %}warn{% endif %}"><small>{% translate "Fees due (all months)" %}</small><b>{{ dues_total|floatformat:"-2" }}</b></div>
+    <a href="#courses" class="ix-stat stat-link"><small>{% translate "Active" %} {% translate terms.students|lower %}</small><b>{{ active_students }}</b></a>
+    <a href="{% url 'webapp:education_fees' %}" class="ix-stat stat-link"><small>{% translate "Billed this month" %}</small><b>{{ summary.billed|floatformat:"-2" }}</b></a>
+    <a href="{% url 'webapp:education_fees' %}" class="ix-stat stat-link good"><small>{% translate "Collected" %}</small><b>{{ summary.collected|floatformat:"-2" }}</b></a>
+    <a href="{% url 'webapp:education_dues' %}" class="ix-stat stat-link {% if dues_total %}warn{% endif %}"><small>{% translate "Fees due (all months)" %}</small><b>{{ dues_total|floatformat:"-2" }}</b></a>
   </div>
 
   {% if not_billed %}
@@ -25,7 +25,7 @@
     <a class="btn btn-secondary" href="{% url 'webapp:education_dues' %}">⏰ {% translate "Fees due" %}{% if dues_count %} ({{ dues_count }}){% endif %}</a>
   </div>
 
-  <div class="ix-grid2">
+  <div class="ix-grid2" id="courses">
     {% for c in courses %}
     <a class="ix-card ix-row" href="{% url 'webapp:education_course' c.id %}" style="display:block;animation-delay:{{ forloop.counter0 }}0ms">
       <div style="display:flex;justify-content:space-between;align-items:start;gap:10px">

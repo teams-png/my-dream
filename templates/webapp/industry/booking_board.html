@@ -6,11 +6,11 @@
 <link rel="stylesheet" href="{% static 'css/industry.css' %}">
 <div class="ix">
   <div class="ix-stats">
-    <div class="ix-stat"><small>{% translate "In use now" %}</small><b>{{ in_use }} / {{ resource_count }}</b></div>
-    <div class="ix-stat good"><small>{% translate "Occupancy" %}</small><b>{{ occupancy }}%</b></div>
-    <div class="ix-stat"><small>{% translate "Arrivals today" %}</small><b>{{ arrivals|length }}</b></div>
-    <div class="ix-stat"><small>{% translate "Due back / check-outs today" %}</small><b>{{ departures|length }}</b></div>
-    <div class="ix-stat {% if overdue %}warn{% endif %}"><small>{% translate "Overdue" %}</small><b>{{ overdue }}</b></div>
+    <a href="{% url 'webapp:booking_list' %}?status=checked_in" class="ix-stat stat-link"><small>{% translate "In use now" %}</small><b>{{ in_use }} / {{ resource_count }}</b></a>
+    <a href="{% url 'webapp:booking_resources' %}" class="ix-stat stat-link good"><small>{% translate "Occupancy" %}</small><b>{{ occupancy }}%</b></a>
+    <a href="#arrivals" class="ix-stat stat-link"><small>{% translate "Arrivals today" %}</small><b>{{ arrivals|length }}</b></a>
+    <a href="#departures" class="ix-stat stat-link"><small>{% translate "Due back / check-outs today" %}</small><b>{{ departures|length }}</b></a>
+    <a href="{% url 'webapp:booking_list' %}?status=checked_in" class="ix-stat stat-link {% if overdue %}warn{% endif %}"><small>{% translate "Overdue" %}</small><b>{{ overdue }}</b></a>
   </div>
 
   <div class="ix-toolbar">
@@ -51,9 +51,9 @@
   {% endif %}
 
   <div class="ix-grid2">
-    <div class="ix-card"><h3>🛬 {% translate "Arrivals / pick-ups due" %}</h3>
+    <div class="ix-card" id="arrivals"><h3>🛬 {% translate "Arrivals / pick-ups due" %}</h3>
       <div class="ix-list">{% for b in arrivals %}<a class="ix-row" href="{% url 'webapp:booking_detail' b.id %}"><span class="grow"><b>{{ b.customer.name }}</b><small>{{ b.resource.name }} · {{ b.start|date:"j M H:i" }}</small></span><span class="ix-chip {% if b.start < now %}late{% else %}reserved{% endif %}">{{ b.number }}</span></a>{% empty %}<div class="ix-empty">{% translate "None today." %}</div>{% endfor %}</div></div>
-    <div class="ix-card"><h3>🛫 {% translate "Check-outs / returns due" %}</h3>
+    <div class="ix-card" id="departures"><h3>🛫 {% translate "Check-outs / returns due" %}</h3>
       <div class="ix-list">{% for b in departures %}<a class="ix-row" href="{% url 'webapp:booking_detail' b.id %}"><span class="grow"><b>{{ b.customer.name }}</b><small>{{ b.resource.name }} · {{ b.end|date:"j M H:i" }}</small></span><span class="ix-chip checked_in">{{ b.number }}</span></a>{% empty %}<div class="ix-empty">{% translate "None today." %}</div>{% endfor %}</div></div>
   </div>
 </div>

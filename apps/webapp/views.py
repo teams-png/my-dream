@@ -339,6 +339,25 @@ def dashboard(request):
             "active_projects": projects.filter(status="active").count(),
             "total_projects": projects.count(),
         })
+    elif business_group(biz_code) == "restaurant":
+        from apps.verticals.restaurant.models import DiningTable, RestaurantMenuItem, RestaurantOrder
+        orders = RestaurantOrder.objects.for_company(company)
+        context.update({
+            "overview_kind": "restaurant",
+            "orders_today": orders.filter(status="paid", created_at__date=tz.localdate()).count(),
+            "open_orders": orders.exclude(status__in=["paid", "cancelled"]).count(),
+            "menu_count": RestaurantMenuItem.objects.for_company(company).filter(product__is_active=True).count(),
+            "table_count": DiningTable.objects.for_company(company).filter(is_active=True).count(),
+        })
+    elif biz_code != "mobile_shop":
+        invoices = SalesInvoice.objects.for_company(company)
+        context.update({
+            "overview_kind": "sales",
+            "product_count": Product.objects.for_company(company).count(),
+            "category_count": ProductCategory.objects.for_company(company).count(),
+            "invoice_count": invoices.count(),
+            "revenue": invoices.aggregate(total=Sum("total"))["total"] or 0,
+        })
     else:
         sold_units = MobileUnit.objects.for_company(company).filter(status="sold")
         context.update({
@@ -377,6 +396,7 @@ def dashboard(request):
         "outstanding_dues": outstanding_dues,
         "low_stock_count": low_stock_count,
         "recent_invoices": recent_invoices,
+        "today_iso": today.isoformat(), "month_start_iso": month_start.isoformat(),
     })
     role = getattr(request, "role", None)
     context["show_setup"] = company.onboarding_completed_at is None and (

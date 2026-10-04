@@ -13,12 +13,12 @@
   </div>
   <div class="ix-stats">
     <a class="ix-stat" href="{% url 'webapp:rec_jobs' %}" style="text-decoration:none;color:inherit"><small>{% translate "Open job orders" %}</small><b>{{ o.open_jobs }}</b></a>
-    <div class="ix-stat"><small>{% translate "People still needed" %}</small><b>{{ o.open_vacancies }}</b></div>
+    <a href="{% url 'webapp:rec_jobs' %}" class="ix-stat stat-link"><small>{% translate "People still needed" %}</small><b>{{ o.open_vacancies }}</b></a>
     <a class="ix-stat" href="{% url 'webapp:rec_candidates' %}?status=available" style="text-decoration:none;color:inherit"><small>{% translate "Candidates available" %}</small><b>{{ o.available }}</b></a>
-    <div class="ix-stat"><small>{% translate "In process" %}</small><b>{{ o.in_process }}</b></div>
-    <div class="ix-stat good"><small>{% translate "Joined this month" %}</small><b>{{ o.deployed_month }}</b></div>
-    <div class="ix-stat"><small>{% translate "Fees billed this month" %}</small><b>{{ o.fees_month|floatformat:0 }}</b></div>
-    {% if o.to_bill %}<div class="ix-stat warn"><small>{% translate "Joined but not billed" %}</small><b>{{ o.to_bill }}</b></div>{% endif %}
+    <a href="{% url 'webapp:rec_candidates' %}?status=in_process" class="ix-stat stat-link"><small>{% translate "In process" %}</small><b>{{ o.in_process }}</b></a>
+    <a href="{% url 'webapp:rec_candidates' %}?status=placed" class="ix-stat stat-link good"><small>{% translate "Joined this month" %}</small><b>{{ o.deployed_month }}</b></a>
+    <a href="{% url 'webapp:sales_invoice_list' %}" class="ix-stat stat-link"><small>{% translate "Fees billed this month" %}</small><b>{{ o.fees_month|floatformat:0 }}</b></a>
+    {% if o.to_bill %}<a href="{% url 'webapp:rec_candidates' %}?status=placed" class="ix-stat stat-link warn"><small>{% translate "Joined but not billed" %}</small><b>{{ o.to_bill }}</b></a>{% endif %}
   </div>
   <div class="ix-card"><h3>{% translate "Pipeline" %}</h3>
     <div class="rc-steps">{% for code, label, n in pipeline %}<span class="{% if n %}done{% endif %}">{% translate label %}: {{ n }}</span>{% endfor %}</div>

@@ -2050,3 +2050,5 @@ AR.update({
     "Saved on this device": "تم الحفظ على هذا الجهاز",
     "Offline bill — invoice number comes after sync": "فاتورة غير متصلة — رقم الفاتورة يصدر بعد المزامنة",
 })
+
+AR.update({"Bills today": "فواتير اليوم", "Menu items": "أصناف القائمة", "Tables": "الطاولات"})

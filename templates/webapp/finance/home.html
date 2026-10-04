@@ -5,10 +5,10 @@
 {% include "webapp/finance/_styles.html" %}
 {% with cur=active_company.default_currency %}
 <div class="fn-stats">
-  <div class="fn-stat"><div class="ic">📥</div><div><b>{{ cur }} {{ to_receive|floatformat:2 }}</b><span>{% translate "Cheques to receive" %}</span></div></div>
-  <div class="fn-stat" style="animation-delay:.05s"><div class="ic">📤</div><div><b>{{ cur }} {{ to_pay|floatformat:2 }}</b><span>{% translate "Cheques to pay" %}</span></div></div>
-  <div class="fn-stat" style="animation-delay:.1s"><div class="ic">🔁</div><div><b>{{ recurring_due }}</b><span>{% translate "Recurring invoices due" %}</span></div></div>
-  <div class="fn-stat" style="animation-delay:.15s"><div class="ic">🏗️</div><div><b>{{ cur }} {{ asset_book_value|floatformat:2 }}</b><span>{{ asset_count }} {% translate "assets · book value" %}</span></div></div>
+  <a href="{% url 'webapp:cheque_list' %}" class="fn-stat stat-link"><div class="ic">📥</div><div><b>{{ cur }} {{ to_receive|floatformat:2 }}</b><span>{% translate "Cheques to receive" %}</span></div></a>
+  <a href="{% url 'webapp:cheque_list' %}" class="fn-stat stat-link" style="animation-delay:.05s"><div class="ic">📤</div><div><b>{{ cur }} {{ to_pay|floatformat:2 }}</b><span>{% translate "Cheques to pay" %}</span></div></a>
+  <a href="{% url 'webapp:recurring_list' %}" class="fn-stat stat-link" style="animation-delay:.1s"><div class="ic">🔁</div><div><b>{{ recurring_due }}</b><span>{% translate "Recurring invoices due" %}</span></div></a>
+  <a href="{% url 'webapp:asset_list' %}" class="fn-stat stat-link" style="animation-delay:.15s"><div class="ic">🏗️</div><div><b>{{ cur }} {{ asset_book_value|floatformat:2 }}</b><span>{{ asset_count }} {% translate "assets · book value" %}</span></div></a>
 </div>
 <div class="fn-grid">
   <section class="fn-card">

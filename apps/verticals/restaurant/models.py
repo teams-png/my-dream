@@ -84,6 +84,7 @@ class RestaurantMenuItem(TenantScopedModel):
     is_vegetarian = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False)
     is_available = models.BooleanField(default=True)
+    is_quick = models.BooleanField(default=False, help_text="Shown as a big tile on the Quick sale counter.")
     sort_order = models.PositiveIntegerField(default=0)
     available_from = models.TimeField(null=True, blank=True)
     available_until = models.TimeField(null=True, blank=True)

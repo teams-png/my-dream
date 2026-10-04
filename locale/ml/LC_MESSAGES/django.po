@@ -382,6 +382,10 @@ msgid "New Order"
 msgstr "പുതിയ ഓർഡർ"
 
 #: templates/base.html
+msgid "Quick sale"
+msgstr "ക്വിക്ക് സെയിൽ"
+
+#: templates/base.html
 msgid "Orders (bills)"
 msgstr "ഓർഡറുകൾ (ബില്ലുകൾ)"
 
@@ -8111,6 +8115,30 @@ msgstr "പുതിയവ"
 msgid "Older"
 msgstr "പഴയവ"
 
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Search: chaya, porotta, juice…"
+msgstr "തിരയുക: ചായ, പൊറോട്ട, ജ്യൂസ്…"
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Edit quick tiles"
+msgstr "ക്വിക്ക് ടൈലുകൾ മാറ്റുക"
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Nothing found — type the name and price on the right to sell it."
+msgstr "ഒന്നും കണ്ടില്ല — വലതുവശത്ത് പേരും വിലയും ടൈപ്പ് ചെയ്ത് വിൽക്കാം."
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Tap items to add them."
+msgstr "ഐറ്റങ്ങൾ ടാപ്പ് ചെയ്ത് ചേർക്കുക."
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Other item, e.g. Cake"
+msgstr "മറ്റ് ഐറ്റം, ഉദാ. കേക്ക്"
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Quick sales today"
+msgstr "ഇന്നത്തെ ക്വിക്ക് സെയിൽ"
+
 #: templates/webapp/restaurant/receipt_print.html
 msgid "TOTAL"
 msgstr "ആകെ"
@@ -10173,6 +10201,30 @@ msgstr "തിരികെ നൽകുന്ന എണ്ണം നൽകുക
 #: apps/webapp/purchase_docs_views.py
 msgid "Return %(number)s saved. Stock reduced."
 msgstr "റിട്ടേൺ %(number)s സേവ് ചെയ്തു. സ്റ്റോക്ക് കുറച്ചു."
+
+#: apps/webapp/quick_sale_views.py
+msgid "Quick"
+msgstr "ക്വിക്ക്"
+
+#: apps/webapp/quick_sale_views.py
+msgid "Saved"
+msgstr "സേവ് ചെയ്തു"
+
+#: apps/webapp/quick_sale_views.py
+msgid "Short"
+msgstr "കുറവ്"
+
+#: apps/webapp/quick_sale_views.py
+msgid "Type the item name and price."
+msgstr "ഐറ്റത്തിന്റെ പേരും വിലയും ടൈപ്പ് ചെയ്യുക."
+
+#: apps/webapp/quick_sale_views.py
+msgid "Could not save the sale. Check the connection and try again."
+msgstr "സെയിൽ സേവ് ചെയ്യാനായില്ല. കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക."
+
+#: apps/webapp/quick_sale_views.py
+msgid "Could not read the sale. Try again."
+msgstr "സെയിൽ വായിക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക."
 
 #: apps/webapp/receivables_views.py
 msgid "On account"

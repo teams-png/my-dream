@@ -377,6 +377,8 @@ def settle_order(*, company, user, order, warehouse, date, payments):
         discount_reason="Restaurant order discount" if order.discount_amount else "",
         discount_approved_by=user if order.discount_amount else None,
     )
+    if isinstance(payments, str):  # one method for the whole bill (quick sale counter)
+        payments = [{"method": payments, "amount": invoice.transaction_total}]
     payment_total = sum((Decimal(str(p["amount"])) for p in payments), Decimal("0"))
     if payment_total != invoice.transaction_total:
         raise ValidationError("Split payment total must equal the order total.")

@@ -382,6 +382,10 @@ msgid "New Order"
 msgstr "طلب جديد"
 
 #: templates/base.html
+msgid "Quick sale"
+msgstr "بيع سريع"
+
+#: templates/base.html
 msgid "Orders (bills)"
 msgstr "الطلبات (الفواتير)"
 
@@ -8028,6 +8032,30 @@ msgstr "الأحدث"
 msgid "Older"
 msgstr "الأقدم"
 
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Search: chaya, porotta, juice…"
+msgstr "ابحث: شاي، براتا، عصير…"
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Edit quick tiles"
+msgstr "تعديل الأزرار السريعة"
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Nothing found — type the name and price on the right to sell it."
+msgstr "لا نتائج — اكتب الاسم والسعر على اليمين لبيعه."
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Tap items to add them."
+msgstr "اضغط على الأصناف لإضافتها."
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Other item, e.g. Cake"
+msgstr "صنف آخر، مثلاً كيك"
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Quick sales today"
+msgstr "المبيعات السريعة اليوم"
+
 #: templates/webapp/restaurant/receipt_print.html
 msgid "TOTAL"
 msgstr "الإجمالي"
@@ -10058,6 +10086,30 @@ msgstr "أدخل كمية الإرجاع."
 #: apps/webapp/purchase_docs_views.py
 msgid "Return %(number)s saved. Stock reduced."
 msgstr "تم حفظ الإرجاع %(number)s. انخفض المخزون."
+
+#: apps/webapp/quick_sale_views.py
+msgid "Quick"
+msgstr "سريع"
+
+#: apps/webapp/quick_sale_views.py
+msgid "Saved"
+msgstr "تم الحفظ"
+
+#: apps/webapp/quick_sale_views.py
+msgid "Short"
+msgstr "ناقص"
+
+#: apps/webapp/quick_sale_views.py
+msgid "Type the item name and price."
+msgstr "اكتب اسم الصنف والسعر."
+
+#: apps/webapp/quick_sale_views.py
+msgid "Could not save the sale. Check the connection and try again."
+msgstr "تعذر حفظ البيع. تحقق من الاتصال وحاول مرة أخرى."
+
+#: apps/webapp/quick_sale_views.py
+msgid "Could not read the sale. Try again."
+msgstr "تعذرت قراءة البيع. حاول مرة أخرى."
 
 #: apps/webapp/receivables_views.py
 msgid "On account"

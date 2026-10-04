@@ -2011,3 +2011,14 @@ ML.update({
     "Refund %(amount)s per day on the next bill for mess cuts of %(days)s+ days.": "%(days)s+ ദിവസത്തെ മെസ്സ് കട്ടിന് അടുത്ത ബില്ലിൽ ദിവസം %(amount)s കുറയ്ക്കും.",
     "%(n)s mess bills created.": "%(n)s മെസ്സ് ബില്ലുകൾ ഉണ്ടാക്കി.",
 })
+
+ML.update({
+    "Quick sale": "ക്വിക്ക് സെയിൽ", "Search: chaya, porotta, juice…": "തിരയുക: ചായ, പൊറോട്ട, ജ്യൂസ്…",
+    "Edit quick tiles": "ക്വിക്ക് ടൈലുകൾ മാറ്റുക",
+    "Nothing found — type the name and price on the right to sell it.": "ഒന്നും കണ്ടില്ല — വലതുവശത്ത് പേരും വിലയും ടൈപ്പ് ചെയ്ത് വിൽക്കാം.",
+    "Tap items to add them.": "ഐറ്റങ്ങൾ ടാപ്പ് ചെയ്ത് ചേർക്കുക.", "Other item, e.g. Cake": "മറ്റ് ഐറ്റം, ഉദാ. കേക്ക്",
+    "Quick sales today": "ഇന്നത്തെ ക്വിക്ക് സെയിൽ", "Quick": "ക്വിക്ക്", "Saved": "സേവ് ചെയ്തു", "Short": "കുറവ്",
+    "Type the item name and price.": "ഐറ്റത്തിന്റെ പേരും വിലയും ടൈപ്പ് ചെയ്യുക.",
+    "Could not save the sale. Check the connection and try again.": "സെയിൽ സേവ് ചെയ്യാനായില്ല. കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.",
+    "Could not read the sale. Try again.": "സെയിൽ വായിക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.",
+})

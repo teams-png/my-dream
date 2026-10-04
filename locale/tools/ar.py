@@ -2031,3 +2031,13 @@ AR.update({
     "Refund %(amount)s per day on the next bill for mess cuts of %(days)s+ days.": "خصم %(amount)s لكل يوم من الفاتورة التالية للإجازات من %(days)s أيام فأكثر.",
     "%(n)s mess bills created.": "تم إنشاء %(n)s فاتورة اشتراك.",
 })
+
+AR.update({
+    "Quick sale": "بيع سريع", "Search: chaya, porotta, juice…": "ابحث: شاي، براتا، عصير…", "Edit quick tiles": "تعديل الأزرار السريعة",
+    "Nothing found — type the name and price on the right to sell it.": "لا نتائج — اكتب الاسم والسعر على اليمين لبيعه.",
+    "Tap items to add them.": "اضغط على الأصناف لإضافتها.", "Other item, e.g. Cake": "صنف آخر، مثلاً كيك",
+    "Quick sales today": "المبيعات السريعة اليوم", "Quick": "سريع", "Saved": "تم الحفظ", "Short": "ناقص",
+    "Type the item name and price.": "اكتب اسم الصنف والسعر.",
+    "Could not save the sale. Check the connection and try again.": "تعذر حفظ البيع. تحقق من الاتصال وحاول مرة أخرى.",
+    "Could not read the sale. Try again.": "تعذرت قراءة البيع. حاول مرة أخرى.",
+})

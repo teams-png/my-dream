@@ -106,7 +106,8 @@ def install(company, user=None, *, staff=True, expenses=True):
                 is_stock_tracked=False, tracking_type="none", is_active=True)
             item = RestaurantMenuItem(company=company, product=product, description=f"{desc} · {ml}",
                                       preparation_minutes=prep, spice_level=spice, is_vegetarian=veg,
-                                      is_featured=featured, is_available=True, sort_order=position * 100 + order)
+                                      is_featured=featured, is_available=True, is_quick=dish in data.QUICK,
+                                      sort_order=position * 100 + order)
             item.image.name = _image_name(dish)
             item.save()
             _track(company, "dish", product)

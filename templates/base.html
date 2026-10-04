@@ -389,6 +389,7 @@
         <summary>{{ active_company.business_type.name }}</summary>
         <a class="nav-link" href="{% url 'webapp:restaurant_dashboard' %}"><span>{% translate "Restaurant Dashboard" %}</span></a>
         <a class="nav-link" href="{% url 'webapp:restaurant_order_add' %}"><span>{% translate "New Order" %}</span></a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'restaurant_quick_sale' %}active{% endif %}" href="{% url 'webapp:restaurant_quick_sale' %}"><span>⚡ {% translate "Quick sale" %}</span></a>
         <a class="nav-link {% if request.resolver_match.url_name == 'restaurant_order_list' %}active{% endif %}" href="{% url 'webapp:restaurant_order_list' %}"><span>{% translate "Orders (bills)" %}</span></a>
         <a class="nav-link" href="{% url 'webapp:restaurant_kitchen' %}"><span>{% translate "Kitchen / KOT" %}</span></a>
         <a class="nav-link" href="{% url 'webapp:product_list' %}"><span>{% translate "Menu & Ingredients" %}</span></a>
@@ -475,7 +476,7 @@
       <a class="restaurant-back" href="{% url 'webapp:restaurant_dashboard' %}" onclick="if (history.length > 1 && document.referrer && new URL(document.referrer).origin === location.origin) { event.preventDefault(); history.back(); }">{% translate "← Back" %}</a>
       <nav class="restaurant-shortcuts" aria-label="{% translate 'Restaurant shortcuts' %}">
         <a class="restaurant-shortcut {% if request.resolver_match.url_name == 'restaurant_dashboard' %}selected{% endif %}" href="{% url 'webapp:restaurant_dashboard' %}">{% translate "⌂ Overview" %}</a>
-        <a class="restaurant-shortcut main-action {% if request.resolver_match.url_name == 'restaurant_order_add' or request.resolver_match.url_name == 'restaurant_order_detail' %}selected{% endif %}" href="{% url 'webapp:restaurant_order_add' %}">{% translate "＋ New Order" %}</a>
+        <a class="restaurant-shortcut main-action {% if request.resolver_match.url_name == 'restaurant_order_add' or request.resolver_match.url_name == 'restaurant_order_detail' %}selected{% endif %}" href="{% url 'webapp:restaurant_order_add' %}">{% translate "＋ New Order" %}</a><a class="restaurant-shortcut {% if request.resolver_match.url_name == 'restaurant_quick_sale' %}selected{% endif %}" href="{% url 'webapp:restaurant_quick_sale' %}">⚡ {% translate "Quick sale" %}</a>
         <a class="restaurant-shortcut {% if request.resolver_match.url_name == 'restaurant_order_list' %}selected{% endif %}" href="{% url 'webapp:restaurant_order_list' %}">🧾 {% translate "Orders" %}</a>
         <a class="restaurant-shortcut {% if request.resolver_match.url_name == 'restaurant_kitchen' %}selected{% endif %}" href="{% url 'webapp:restaurant_kitchen' %}">{% translate "▣ Kitchen Display" %}</a>
         <a class="restaurant-shortcut {% if request.resolver_match.url_name == 'restaurant_offline_pos' %}selected{% endif %}" href="{% url 'webapp:restaurant_offline_pos' %}">📴 {% translate "Offline POS" %}</a>

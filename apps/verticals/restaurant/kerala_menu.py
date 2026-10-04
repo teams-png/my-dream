@@ -238,3 +238,8 @@ MODIFIERS = {
     "Sugar": {"required": False, "max": 1, "options": [("Less sugar", 0), ("No sugar", 0), ("Extra sugar", 0)],
               "categories": {"Tea & Coffee", "Juices & Shakes"}},
 }
+
+# Big tiles on the Quick sale counter (tea, porotta, snacks, juices people buy at the counter)
+QUICK = {"chaya", "sulaimani", "karak-chai", "kattan-kaapi", "ginger-tea", "kerala-porotta", "chapathi", "appam",
+         "pazham-pori", "parippu-vada", "uzhunnu-vada", "samosa", "egg-puffs", "chicken-puffs", "unniyappam", "beef-cutlet",
+         "lime-juice", "lime-mint", "avil-milk", "sharjah-shake", "falooda", "chicken-shawarma-roll", "omelette"}

@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Quick sale" %}{% endblock %}
+{% block heading %}⚡ {% translate "Quick sale" %}{% endblock %}
+{% block content %}
+<style>
+.qs{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px;align-items:start}
+@media(max-width:980px){.qs{grid-template-columns:1fr}}
+.qs>*{min-width:0}
+.qs-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.qs-search{flex:1 1 240px;min-height:48px;padding:10px 14px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:16px;background:var(--panel);color:var(--ink)}
+.qs-search:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 16%,transparent)}
+.qs-chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:8px;scrollbar-width:none}
+.qs-chip{flex:0 0 auto;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--ink)}
+.qs-chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.qs-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px}
+.qs-tile{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:96px;padding:12px;border:1.5px solid var(--line);border-radius:16px;background:var(--panel);text-align:start;font:inherit;cursor:pointer;color:var(--ink);transition:transform .08s,border-color .15s,box-shadow .15s;-webkit-tap-highlight-color:transparent}
+.qs-tile:hover{border-color:var(--accent);box-shadow:0 6px 18px rgba(15,23,42,.08)}.qs-tile:active{transform:scale(.97)}
+.qs-tile b{font-size:14.5px;line-height:1.25}.qs-tile .p{font-size:16px;font-weight:800;color:var(--accent)}.qs-tile small{color:var(--ink-soft);font-size:11.5px}
+.qs-tile .cnt{position:absolute;top:-8px;inset-inline-end:-8px;min-width:26px;height:26px;padding:0 6px;border-radius:999px;background:var(--accent);color:#fff;font-weight:800;font-size:13px;display:none;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.qs-tile.in .cnt{display:flex}.qs-tile.in{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 6%,var(--panel))}
+.qs-pin{position:absolute;top:6px;inset-inline-end:6px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--panel);font-size:15px;display:none;cursor:pointer}
+.qs.editing .qs-pin{display:block}.qs.editing .qs-tile{cursor:default}
+.qs-cart{position:sticky;top:12px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 10px 30px rgba(15,23,42,.06)}
+.qs-cart h3{display:flex;justify-content:space-between;align-items:center;margin:0 0 10px;font-size:16px}
+.qs-lines{display:grid;gap:8px;max-height:46vh;overflow:auto;margin-bottom:10px}
+.qs-line{display:grid;grid-template-columns:1fr auto;gap:6px 8px;padding:10px;border:1px solid var(--line);border-radius:12px}
+.qs-line .nm{font-weight:700;font-size:14px;min-width:0;overflow:hidden;text-overflow:ellipsis}.qs-line .lt{font-weight:800;text-align:end}
+.qs-line .ctl{grid-column:1/-1;display:flex;gap:6px;align-items:center}
+.qs-q{width:34px;height:34px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel);font-size:18px;font-weight:800;cursor:pointer;color:var(--ink)}
+.qs-line input{height:34px;padding:4px 8px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:15px;background:var(--panel);color:var(--ink);min-width:0}
+.qs-line .qty{width:58px;text-align:center}.qs-line .rate{width:86px;text-align:end}.qs-line .x{margin-inline-start:auto;border:0;background:none;font-size:18px;cursor:pointer;color:var(--ink-soft)}
+.qs-line.manual .rate{border-color:#f59e0b;background:#fffbeb}
+.qs-custom{display:grid;grid-template-columns:1fr 84px auto;gap:6px;margin:4px 0 12px}
+.qs-custom input{min-height:42px;padding:8px 10px;border:1.5px dashed var(--line);border-radius:10px;font:inherit;background:var(--panel);color:var(--ink);min-width:0}
+.qs-tot{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-top:1px dashed var(--line)}
+.qs-tot b{font-size:28px;letter-spacing:-.02em}
+.qs-recv{display:flex;gap:8px;align-items:center;margin-bottom:10px;font-size:14px}.qs-recv input{width:110px;min-height:40px;padding:6px 10px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:16px;text-align:end}
+.qs-change{margin-inline-start:auto;font-weight:800;color:#166534}
+.qs-pay{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.qs-pay button{min-height:56px;border-radius:14px;border:0;font:inherit;font-size:17px;font-weight:800;cursor:pointer;color:#fff}
+.qs-pay .cash{background:#16a34a}.qs-pay .card{background:#2563eb}.qs-pay button:disabled{opacity:.45;cursor:not-allowed}
+.qs-empty{padding:22px 10px;text-align:center;color:var(--ink-soft);font-size:14px}
+.qs-today{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft)}
+.qs-today a{display:flex;justify-content:space-between;padding:5px 0;color:var(--ink)}
+.qs-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(140%);z-index:60;display:flex;gap:12px;align-items:center;padding:14px 18px;border-radius:14px;background:#14532d;color:#fff;font-weight:700;box-shadow:0 12px 30px rgba(0,0,0,.25);transition:transform .25s}
+.qs-toast.show{transform:translateX(-50%) translateY(0)}.qs-toast.err{background:#991b1b}.qs-toast a{color:#fff;text-decoration:underline}
+.qs-mbar{display:none}
+@media(max-width:980px){.qs-cart{position:static;scroll-margin-top:12px}.qs-lines{max-height:none}.qs-pay{position:sticky;bottom:8px}
+  .qs-mbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 18px;border-radius:16px;background:#14532d;color:#fff;font-weight:800;text-decoration:none;box-shadow:0 10px 26px rgba(0,0,0,.25)}
+  .qs-mbar[hidden]{display:none}.qs{padding-bottom:76px}}
+</style>
+
+<div class="qs" id="qs">
+  <div>
+    <div class="qs-top">
+      <input class="qs-search" id="qsSearch" type="search" placeholder="{% translate 'Search: chaya, porotta, juice…' %}" autocomplete="off">
+      <button class="btn btn-secondary" type="button" id="qsEdit">☆ {% translate "Edit quick tiles" %}</button>
+      <a class="btn btn-secondary" href="{% url 'webapp:restaurant_order_list' %}">🧾 {% translate "Orders" %}</a>
+    </div>
+    <div class="qs-chips" id="qsChips"></div>
+    <div class="qs-tiles" id="qsTiles"></div>
+    <div class="qs-empty" id="qsNone" hidden>{% translate "Nothing found — type the name and price on the right to sell it." %}</div>
+  </div>
+
+  <aside class="qs-cart" id="qsBill">
+    <h3>{% translate "Bill" %} <button class="btn btn-secondary" type="button" id="qsClear" style="padding:5px 10px;font-size:12px">{% translate "Clear" %}</button></h3>
+    <div class="qs-lines" id="qsLines"></div>
+    <div class="qs-empty" id="qsCartEmpty">{% translate "Tap items to add them." %}</div>
+    <div class="qs-custom">
+      <input id="qsName" placeholder="{% translate 'Other item, e.g. Cake' %}" maxlength="120">
+      <input id="qsPrice" inputmode="decimal" placeholder="{% translate 'Price' %}">
+      <button class="btn" type="button" id="qsAdd">＋</button>
+    </div>
+    {% if tax_percent %}<div style="display:flex;justify-content:space-between;font-size:13.5px;color:var(--ink-soft)"><span>{% translate "Tax" %} {{ tax_percent|floatformat:"-2" }}%</span><span id="qsTax">0.00</span></div>{% endif %}
+    <div class="qs-tot"><span>{% translate "Total" %} <small style="color:var(--ink-soft)">{{ currency }}</small></span><b id="qsTotal">0.00</b></div>
+    <div class="qs-recv"><span>{% translate "Received" %}</span><input id="qsRecv" inputmode="decimal" placeholder="0.00"><span class="qs-change" id="qsChange"></span></div>
+    <div class="qs-pay">
+      <button class="cash" type="button" data-method="cash" disabled>💵 {% translate "Cash" %}</button>
+      <button class="card" type="button" data-method="card" disabled>💳 {% translate "Card" %}</button>
+    </div>
+    <div class="qs-today">
+      <div style="display:flex;justify-content:space-between;font-weight:700;color:var(--ink)"><span>{% translate "Quick sales today" %}</span><span><span id="qsCount">{{ today.count }}</span> · {{ currency }} <span id="qsDay">{{ today.total|floatformat:2 }}</span></span></div>
+      <div id="qsRecent">{% for o in today.recent %}<a href="{% url 'webapp:restaurant_receipt_print' o.id %}" target="_blank"><span>{{ o.order_number }}</span><span>{{ o.invoice.total|floatformat:2 }} 🖨</span></a>{% endfor %}</div>
+    </div>
+  </aside>
+</div>
+<a class="qs-mbar" id="qsMbar" href="#qsBill" hidden><span>🧾 <span id="qsMCount">0</span> · {{ currency }} <span id="qsMTotal">0.00</span></span><span>{% translate "Pay" %} →</span></a>
+<div class="qs-toast" id="qsToast" role="status" aria-live="polite"></div>
+{{ menu|json_script:"qs-menu" }}{{ cfg|json_script:"qs-cfg" }}
+<script>
+(function () {
+  var MENU = JSON.parse(document.getElementById("qs-menu").textContent);
+  var CFG = JSON.parse(document.getElementById("qs-cfg").textContent), T = CFG.t, TAX = CFG.tax / 100;
+  var URLS = {sell: "{% url 'webapp:restaurant_quick_sale_submit' %}", pin: "{% url 'webapp:restaurant_quick_sale_pin' %}"};
+  var csrf = (document.cookie.match(/csrftoken=([^;]+)/) || [])[1] || "{{ csrf_token }}";
+  var $ = function (id) { return document.getElementById(id); };
+  var cart = [], filter = MENU.some(function (m) { return m.quick; }) ? "quick" : "all", busy = false;
+
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]; }); }
+  function num(v) { var n = parseFloat(String(v).replace(",", ".")); return isFinite(n) ? n : 0; }
+  function money(n) { return (Math.round(n * 100) / 100).toFixed(2); }
+
+  function chips() {
+    var cats = [];
+    MENU.forEach(function (m) { if (m.category && cats.indexOf(m.category) < 0) cats.push(m.category); });
+    var list = [["quick", "⭐ " + T.quick], ["all", T.all]].concat(cats.map(function (c) { return ["c:" + c, c]; }));
+    $("qsChips").innerHTML = list.map(function (c) {
+      return '<button type="button" class="qs-chip' + (filter === c[0] ? " on" : "") + '" data-f="' + esc(c[0]) + '">' + esc(c[1]) + "</button>";
+    }).join("");
+  }
+
+  function tiles() {
+    var q = $("qsSearch").value.trim().toLowerCase();
+    var shown = MENU.filter(function (m) {
+      if (q) return m.name.toLowerCase().indexOf(q) >= 0 || m.category.toLowerCase().indexOf(q) >= 0;
+      if (filter === "quick") return m.quick;
+      if (filter === "all") return true;
+      return "c:" + m.category === filter;
+    }).slice(0, 120);
+    $("qsTiles").innerHTML = shown.map(function (m) {
+      var line = cart.find(function (l) { return l.product === m.id; });
+      return '<div class="qs-tile' + (line ? " in" : "") + '" role="button" tabindex="0" data-id="' + m.id + '">' +
+        '<span class="cnt">' + (line ? line.qty : "") + "</span>" +
+        '<button type="button" class="qs-pin" data-pin="' + m.id + '" title="' + esc(T.quick) + '">' + (m.quick ? "★" : "☆") + "</button>" +
+        "<b>" + esc(m.name) + "</b><span><span class=\"p\">" + esc(m.price) + "</span>" + (m.category ? "<small> · " + esc(m.category) + "</small>" : "") + "</span></div>";
+    }).join("");
+    $("qsNone").hidden = shown.length > 0;
+  }
+
+  function add(item, qty) {
+    var key = item.product ? "p" + item.product : "c" + item.name.toLowerCase();
+    var line = cart.find(function (l) { return l.key === key; });
+    if (line) line.qty += qty || 1;
+    else cart.push({key: key, product: item.product || null, name: item.name, qty: qty || 1, price: num(item.price), base: num(item.price)});
+    render();
+  }
+
+  function totals() {
+    var sub = cart.reduce(function (s, l) { return s + l.qty * l.price; }, 0);
+    var tax = sub * TAX;
+    return {sub: sub, tax: tax, total: sub + tax};
+  }
+
+  function render() {
+    $("qsLines").innerHTML = cart.map(function (l, i) {
+      return '<div class="qs-line' + (l.price !== l.base ? " manual" : "") + '" data-i="' + i + '"><span class="nm">' + esc(l.name) + '</span><span class="lt">' + money(l.qty * l.price) + "</span>" +
+        '<span class="ctl"><button type="button" class="qs-q" data-d="-1">−</button><input class="qty" inputmode="decimal" value="' + l.qty + '" aria-label="Qty">' +
+        '<button type="button" class="qs-q" data-d="1">+</button><span style="color:var(--ink-soft)">×</span><input class="rate" inputmode="decimal" value="' + money(l.price) + '" aria-label="Rate">' +
+        '<button type="button" class="x" title="Remove">✕</button></span></div>';
+    }).join("");
+    $("qsCartEmpty").hidden = cart.length > 0;
+    var t = totals();
+    $("qsTotal").textContent = money(t.total);
+    $("qsMbar").hidden = !cart.length;
+    $("qsMCount").textContent = cart.reduce(function (s, l) { return s + l.qty; }, 0);
+    $("qsMTotal").textContent = money(t.total);
+    if ($("qsTax")) $("qsTax").textContent = money(t.tax);
+    document.querySelectorAll(".qs-pay button").forEach(function (b) { b.disabled = !cart.length || busy; });
+    change();
+    tiles();
+  }
+
+  function change() {
+    var recv = num($("qsRecv").value), total = totals().total;
+    $("qsChange").textContent = recv ? (recv >= total ? T.change + " " + money(recv - total) : T.short + " " + money(total - recv)) : "";
+    $("qsChange").style.color = recv && recv < total ? "#b91c1c" : "";
+  }
+
+  function toast(html, error) {
+    var el = $("qsToast");
+    el.innerHTML = html; el.className = "qs-toast show" + (error ? " err" : "");
+    clearTimeout(toast.t); toast.t = setTimeout(function () { el.className = "qs-toast" + (error ? " err" : ""); }, error ? 5000 : 7000);
+  }
+
+  function addCustom() {
+    var name = $("qsName").value.trim(), price = $("qsPrice").value.trim();
+    if (!name || price === "") { toast(esc(T.needName), true); (name ? $("qsPrice") : $("qsName")).focus(); return; }
+    add({name: name, price: price});
+    $("qsName").value = ""; $("qsPrice").value = ""; $("qsName").focus();
+  }
+
+  function pay(method) {
+    if (!cart.length || busy) return;
+    busy = true; render();
+    fetch(URLS.sell, {method: "POST", credentials: "same-origin", headers: {"Content-Type": "application/json", "X-CSRFToken": csrf},
+      body: JSON.stringify({method: method, lines: cart.map(function (l) { return {product: l.product, name: l.name, qty: l.qty, price: l.price}; })})})
+      .then(function (r) { return r.json().then(function (d) { return {ok: r.ok, d: d}; }); })
+      .then(function (res) {
+        busy = false;
+        if (!res.ok || !res.d.ok) { toast(esc(res.d.error || T.failed), true); render(); return; }
+        var d = res.d;
+        toast("✓ " + esc(T.saved) + " " + esc(d.number) + " · " + esc(CFG.currency) + " " + esc(d.total) + ' <a href="' + d.receipt + '" target="_blank">🖨 ' + esc(T.print) + "</a>");
+        $("qsCount").textContent = d.today_count; $("qsDay").textContent = d.today_total;
+        $("qsRecent").insertAdjacentHTML("afterbegin", '<a href="' + d.receipt + '" target="_blank"><span>' + esc(d.number) + "</span><span>" + esc(d.total) + " 🖨</span></a>");
+        cart = []; $("qsRecv").value = ""; $("qsSearch").value = ""; render(); $("qsSearch").focus();
+      })
+      .catch(function () { busy = false; toast(esc(T.failed), true); render(); });
+  }
+
+  $("qsChips").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-f]"); if (!b) return;
+    filter = b.getAttribute("data-f"); $("qsSearch").value = ""; chips(); tiles();
+  });
+  $("qsTiles").addEventListener("click", function (e) {
+    var pin = e.target.closest("[data-pin]");
+    if (pin) {
+      var id = +pin.getAttribute("data-pin"), body = new FormData();
+      body.append("product", id);
+      fetch(URLS.pin, {method: "POST", credentials: "same-origin", headers: {"X-CSRFToken": csrf}, body: body})
+        .then(function (r) { return r.json(); }).then(function (d) { var m = MENU.find(function (x) { return x.id === id; }); if (m && d.ok) { m.quick = d.quick; tiles(); } });
+      return;
+    }
+    if ($("qs").classList.contains("editing")) return;
+    var tile = e.target.closest("[data-id]"); if (!tile) return;
+    var m = MENU.find(function (x) { return x.id === +tile.getAttribute("data-id"); });
+    if (m) add({product: m.id, name: m.name, price: m.price});
+  });
+  $("qsTiles").addEventListener("keydown", function (e) { if (e.key === "Enter" && e.target.matches("[data-id]")) e.target.click(); });
+  $("qsLines").addEventListener("click", function (e) {
+    var row = e.target.closest("[data-i]"); if (!row) return;
+    var l = cart[+row.getAttribute("data-i")];
+    if (e.target.matches("[data-d]")) { l.qty = Math.max(0, l.qty + +e.target.getAttribute("data-d")); if (!l.qty) cart.splice(cart.indexOf(l), 1); render(); }
+    if (e.target.matches(".x")) { cart.splice(cart.indexOf(l), 1); render(); }
+  });
+  $("qsLines").addEventListener("change", function (e) {
+    var row = e.target.closest("[data-i]"); if (!row) return;
+    var l = cart[+row.getAttribute("data-i")];
+    if (e.target.matches(".qty")) { l.qty = Math.max(0, num(e.target.value)); if (!l.qty) cart.splice(cart.indexOf(l), 1); }
+    if (e.target.matches(".rate")) l.price = Math.max(0, num(e.target.value));
+    render();
+  });
+  $("qsSearch").addEventListener("input", tiles);
+  $("qsSearch").addEventListener("keydown", function (e) {
+    if (e.key !== "Enter") return;
+    e.preventDefault();
+    var first = $("qsTiles").querySelector("[data-id]");
+    if (first) { first.click(); $("qsSearch").select(); }
+    else { $("qsName").value = $("qsSearch").value; $("qsPrice").focus(); }
+  });
+  $("qsAdd").addEventListener("click", addCustom);
+  $("qsPrice").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); addCustom(); } });
+  $("qsName").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); $("qsPrice").focus(); } });
+  $("qsRecv").addEventListener("input", change);
+  $("qsClear").addEventListener("click", function () { cart = []; render(); });
+  $("qsEdit").addEventListener("click", function () { $("qs").classList.toggle("editing"); });
+  document.querySelectorAll(".qs-pay button").forEach(function (b) { b.addEventListener("click", function () { pay(b.getAttribute("data-method")); }); });
+  document.addEventListener("keydown", function (e) { if (e.ctrlKey && e.key === "Enter") pay("cash"); });
+
+  chips(); render(); $("qsSearch").focus();
+})();
+</script>
+{% endblock %}

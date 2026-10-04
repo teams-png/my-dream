@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
+from . import quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -512,6 +512,9 @@ urlpatterns = [
     path("restaurant/setup/menu/add/", views.restaurant_menu_item_form, name="restaurant_menu_item_add"),
     path("restaurant/setup/demo-menu/", views.restaurant_demo_menu, name="restaurant_demo_menu"),
     path("restaurant/setup/kerala-kit/", views.restaurant_starter_kit, name="restaurant_starter_kit"),
+    path("restaurant/quick/", quick_sale_views.quick_sale, name="restaurant_quick_sale"),
+    path("restaurant/quick/sell/", quick_sale_views.quick_sale_submit, name="restaurant_quick_sale_submit"),
+    path("restaurant/quick/pin/", quick_sale_views.quick_sale_pin, name="restaurant_quick_sale_pin"),
     path("restaurant/setup/menu/<int:menu_item_id>/edit/", views.restaurant_menu_item_form, name="restaurant_menu_item_edit"),
     path("restaurant/setup/menu/<int:menu_item_id>/toggle/", views.restaurant_menu_item_toggle, name="restaurant_menu_item_toggle"),
     path("restaurant/setup/modifiers/add/", views.restaurant_modifier_add, name="restaurant_modifier_add"),

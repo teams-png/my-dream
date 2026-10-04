@@ -84,3 +84,42 @@ def test_pin_quick_tiles(counter):
     item.refresh_from_db()
     assert item.is_quick
     assert RestaurantMenuItem.objects.for_company(company).get(product__sku="KL-chaya").is_quick
+
+
+def test_card_approval_code_is_kept(counter):
+    company, client = counter
+    from apps.verticals.restaurant.models import RestaurantPaymentSplit
+    chaya = Product.objects.for_company(company).get(sku="KL-chaya")
+    data = client.post(reverse("webapp:restaurant_quick_sale_submit"),
+                       json.dumps({"method": "card", "reference": "AP123456",
+                                   "lines": [{"product": chaya.id, "qty": 2, "price": "1.50"}]}),
+                       content_type="application/json").json()
+    split = RestaurantPaymentSplit.objects.get(order__order_number=data["number"])
+    assert (split.method, split.reference, split.amount) == ("card", "AP123456", Decimal("3.00"))
+
+
+def test_offline_quick_bill_syncs_once_with_an_extra_item(counter):
+    import uuid
+    company, client = counter
+    porotta = Product.objects.for_company(company).get(sku="KL-kerala-porotta")
+    bill = {"client_id": str(uuid.uuid4()), "offline_number": "QABC-123456", "created_at": "2026-10-04T08:15:00Z",
+            "paid_at": "2026-10-04T08:15:00Z", "channel": "takeaway", "tax_percent": "0.00", "paid": True, "pay_in_full": True,
+            "payments": [{"method": "card", "amount": "6.99", "reference": "AP9"}],  # device total may differ by rounding
+            "lines": [{"id": str(uuid.uuid4()), "product_id": porotta.id, "name": "Kerala Porotta", "quantity": 2, "unit_price": "1.50"},
+                      {"id": str(uuid.uuid4()), "product_id": None, "name": "Plum cake", "quantity": 1, "unit_price": "4.00"}]}
+    url = reverse("webapp:restaurant_offline_sync")
+    first = client.post(url, json.dumps({"bills": [bill]}), content_type="application/json").json()["results"][0]
+    again = client.post(url, json.dumps({"bills": [bill]}), content_type="application/json").json()["results"][0]
+    assert first["status"] == "synced" and first["order_status"] == "paid" and again["order_id"] == first["order_id"]
+    order = RestaurantOrder.objects.for_company(company).get(id=first["order_id"])
+    assert order.invoice.total == Decimal("7.00") and order.invoice.amount_paid == Decimal("7.00")
+    assert order.lines.count() == 2 and order.payment_splits.get().reference == "Offline QABC-123456 · AP9"
+    assert Product.objects.for_company(company).filter(name="Plum cake", sku__startswith="QUICK-").exists()
+
+
+def test_quick_page_is_cached_for_offline_use(counter):
+    _company, client = counter
+    sw = client.get("/service-worker.js").content.decode()
+    assert "QUICK='/restaurant/quick/'" in sw
+    page = client.get(reverse("webapp:restaurant_quick_sale")).content.decode()
+    assert "qsCard" in page and "bp.quick.queue." in page and "/restaurant/offline/sync/" in page

@@ -123,6 +123,9 @@ def sync_offline_order(*, company, user, payload):
                     order.lines.filter(offline_line_id=line_id, sent_at__isnull=True).update(sent_at=timezone.now())
                 continue
             product = products.get(line.get("product_id"))
+            if product is None and not line.get("product_id") and line.get("name"):
+                from .quick_sale import custom_product  # an extra item typed at the quick sale counter
+                product = custom_product(company, str(line["name"]), _money(line.get("unit_price"), "price"))
             if product is None:
                 raise ValidationError(f"Menu item #{line.get('product_id')} no longer exists.")
             modifiers = list(MenuModifier.objects.for_company(company).filter(id__in=line.get("modifier_ids") or []))
@@ -148,8 +151,12 @@ def sync_offline_order(*, company, user, payload):
             order.discount_amount = _money(payload.get("discount_amount"), "discount")
             order.save(update_fields=["service_charge", "tip_amount", "discount_amount"])
             payments = [{"method": p.get("method") if p.get("method") in {"cash", "card", "bank"} else "cash",
-                         "amount": _money(p.get("amount"), "payment"), "reference": f"Offline {record.offline_number}"}
+                         "amount": _money(p.get("amount"), "payment"),
+                         "reference": f"Offline {record.offline_number}" + (f" · {str(p['reference'])[:60]}" if p.get("reference") else "")}
                         for p in payload.get("payments") or [] if _money(p.get("amount"), "payment") > 0]
+            if payload.get("pay_in_full") and len(payments) == 1:
+                # quick sale: one method for the whole bill, so rounding on the device can't block it
+                payments = {"method": payments[0]["method"], "reference": payments[0]["reference"]}
             warehouse = Warehouse.objects.for_company(company).filter(is_active=True).order_by("-is_default", "id").first()
             try:
                 services.settle_order(company=company, user=user, order=order, warehouse=warehouse,

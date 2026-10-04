@@ -30,7 +30,7 @@ def _decimal(value, label):
     return number
 
 
-def _custom_product(company, name, price):
+def custom_product(company, name, price):
     name = " ".join(name.split())[:120]
     if not name:
         raise ValidationError("Type a name for the extra item.")
@@ -47,7 +47,7 @@ def menu(company):
 
 
 @transaction.atomic
-def sell(*, company, user, lines, method="cash"):
+def sell(*, company, user, lines, method="cash", reference=""):
     """lines: [{"product": id, "qty": 2, "price": "1.50"}] or [{"name": "Cake", "qty": 1, "price": "5"}]."""
     if method not in METHODS:
         raise ValidationError("Choose cash, card or bank.")
@@ -67,13 +67,14 @@ def sell(*, company, user, lines, method="cash"):
             if product is None:
                 raise ValidationError("An item in this sale is no longer on the menu.")
         else:
-            product = _custom_product(company, str(row.get("name") or ""), price)
+            product = custom_product(company, str(row.get("name") or ""), price)
         services.add_order_line(company=company, order=order, product=product, quantity=qty, unit_price=price,
                                 notes="" if row.get("product") else "quick item", already_sold=True)
     if not order.lines.exists():
         raise ValidationError("Add at least one item.")
     invoice = services.settle_order(company=company, user=user, order=order, warehouse=default_warehouse(company),
-                                    date=timezone.localdate(), payments=method)
+                                    date=timezone.localdate(),
+                                    payments={"method": method, "reference": str(reference or "")[:100]})
     return order, invoice
 
 

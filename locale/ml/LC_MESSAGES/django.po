@@ -8139,6 +8139,23 @@ msgstr "മറ്റ് ഐറ്റം, ഉദാ. കേക്ക്"
 msgid "Quick sales today"
 msgstr "ഇന്നത്തെ ക്വിക്ക് സെയിൽ"
 
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Enter this amount on the card machine"
+msgstr "ഈ തുക കാർഡ് മെഷീനിൽ അടിക്കുക"
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Approval code (optional)"
+msgstr "അപ്രൂവൽ കോഡ് (ആവശ്യമെങ്കിൽ)"
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "e.g. 123456"
+msgstr "ഉദാ. 123456"
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid ""
+"If the machine declines the card, press Cancel and take another payment."
+msgstr "മെഷീൻ കാർഡ് നിരസിച്ചാൽ Cancel അമർത്തി മറ്റൊരു രീതിയിൽ പണം വാങ്ങുക."
+
 #: templates/webapp/restaurant/receipt_print.html
 msgid "TOTAL"
 msgstr "ആകെ"
@@ -10201,6 +10218,22 @@ msgstr "തിരികെ നൽകുന്ന എണ്ണം നൽകുക
 #: apps/webapp/purchase_docs_views.py
 msgid "Return %(number)s saved. Stock reduced."
 msgstr "റിട്ടേൺ %(number)s സേവ് ചെയ്തു. സ്റ്റോക്ക് കുറച്ചു."
+
+#: apps/webapp/quick_sale_views.py
+msgid "bills waiting to sync"
+msgstr "ബില്ലുകൾ sync ചെയ്യാൻ കാത്തിരിക്കുന്നു"
+
+#: apps/webapp/quick_sale_views.py
+msgid "offline bills synced"
+msgstr "ഓഫ്‌ലൈൻ ബില്ലുകൾ sync ചെയ്തു"
+
+#: apps/webapp/quick_sale_views.py
+msgid "Saved on this device"
+msgstr "ഈ ഉപകരണത്തിൽ സേവ് ചെയ്തു"
+
+#: apps/webapp/quick_sale_views.py
+msgid "Offline bill — invoice number comes after sync"
+msgstr "ഓഫ്‌ലൈൻ ബിൽ — ഇൻവോയ്സ് നമ്പർ sync-ന് ശേഷം വരും"
 
 #: apps/webapp/quick_sale_views.py
 msgid "Quick"

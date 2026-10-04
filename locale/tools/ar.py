@@ -2041,3 +2041,12 @@ AR.update({
     "Could not save the sale. Check the connection and try again.": "تعذر حفظ البيع. تحقق من الاتصال وحاول مرة أخرى.",
     "Could not read the sale. Try again.": "تعذرت قراءة البيع. حاول مرة أخرى.",
 })
+
+AR.update({
+    "Enter this amount on the card machine": "أدخل هذا المبلغ في جهاز البطاقة", "Approval code (optional)": "رمز الموافقة (اختياري)",
+    "e.g. 123456": "مثلاً 123456",
+    "If the machine declines the card, press Cancel and take another payment.": "إذا رفض الجهاز البطاقة، اضغط إلغاء واستلم الدفع بطريقة أخرى.",
+    "bills waiting to sync": "فواتير بانتظار المزامنة", "offline bills synced": "تمت مزامنة الفواتير غير المتصلة",
+    "Saved on this device": "تم الحفظ على هذا الجهاز",
+    "Offline bill — invoice number comes after sync": "فاتورة غير متصلة — رقم الفاتورة يصدر بعد المزامنة",
+})

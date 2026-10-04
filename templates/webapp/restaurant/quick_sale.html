@@ -46,6 +46,11 @@
 .qs-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(140%);z-index:60;display:flex;gap:12px;align-items:center;padding:14px 18px;border-radius:14px;background:#14532d;color:#fff;font-weight:700;box-shadow:0 12px 30px rgba(0,0,0,.25);transition:transform .25s}
 .qs-toast.show{transform:translateX(-50%) translateY(0)}.qs-toast.err{background:#991b1b}.qs-toast a{color:#fff;text-decoration:underline}
 .qs-mbar{display:none}
+.qs-pending{margin-top:12px;padding:10px 12px;border-radius:12px;background:#fef3c7;color:#92400e;font-size:13px;font-weight:700}
+.qs-modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:16px;background:rgba(15,23,42,.5)}.qs-modal[hidden]{display:none}
+.qs-sheet{width:min(420px,100%);padding:22px;border-radius:20px;background:var(--panel);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.qs-sheet .amt{margin:8px 0 16px;font-size:40px;font-weight:800;letter-spacing:-.02em}
+.qs-sheet input{width:100%;min-height:48px;margin-top:6px;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:18px;box-sizing:border-box;background:var(--panel);color:var(--ink)}
 @media(max-width:980px){.qs-cart{position:static;scroll-margin-top:12px}.qs-lines{max-height:none}.qs-pay{position:sticky;bottom:8px}
   .qs-mbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 18px;border-radius:16px;background:#14532d;color:#fff;font-weight:800;text-decoration:none;box-shadow:0 10px 26px rgba(0,0,0,.25)}
   .qs-mbar[hidden]{display:none}.qs{padding-bottom:76px}}
@@ -79,11 +84,22 @@
       <button class="cash" type="button" data-method="cash" disabled>💵 {% translate "Cash" %}</button>
       <button class="card" type="button" data-method="card" disabled>💳 {% translate "Card" %}</button>
     </div>
+    <div class="qs-pending" id="qsPending" hidden></div>
     <div class="qs-today">
       <div style="display:flex;justify-content:space-between;font-weight:700;color:var(--ink)"><span>{% translate "Quick sales today" %}</span><span><span id="qsCount">{{ today.count }}</span> · {{ currency }} <span id="qsDay">{{ today.total|floatformat:2 }}</span></span></div>
       <div id="qsRecent">{% for o in today.recent %}<a href="{% url 'webapp:restaurant_receipt_print' o.id %}" target="_blank"><span>{{ o.order_number }}</span><span>{{ o.invoice.total|floatformat:2 }} 🖨</span></a>{% endfor %}</div>
     </div>
   </aside>
+</div>
+<div class="qs-modal" id="qsCard" hidden>
+  <div class="qs-sheet" role="dialog" aria-modal="true" aria-labelledby="qsCardTitle">
+    <p id="qsCardTitle" style="margin:0;color:var(--ink-soft);font-weight:700">💳 {% translate "Enter this amount on the card machine" %}</p>
+    <div class="amt" id="qsCardAmt">0.00</div>
+    <label for="qsCardRef" style="font-weight:700;font-size:13.5px">{% translate "Approval code (optional)" %}</label>
+    <input id="qsCardRef" maxlength="40" autocomplete="off" placeholder="{% translate 'e.g. 123456' %}">
+    <div class="qs-pay" style="margin-top:12px"><button class="card" type="button" id="qsCardOk">✓ {% translate "Approved" %}</button><button type="button" id="qsCardNo" style="background:#64748b">{% translate "Cancel" %}</button></div>
+    <p style="margin:10px 0 0;color:var(--ink-soft);font-size:12.5px">{% translate "If the machine declines the card, press Cancel and take another payment." %}</p>
+  </div>
 </div>
 <a class="qs-mbar" id="qsMbar" href="#qsBill" hidden><span>🧾 <span id="qsMCount">0</span> · {{ currency }} <span id="qsMTotal">0.00</span></span><span>{% translate "Pay" %} →</span></a>
 <div class="qs-toast" id="qsToast" role="status" aria-live="polite"></div>
@@ -180,23 +196,107 @@
     $("qsName").value = ""; $("qsPrice").value = ""; $("qsName").focus();
   }
 
-  function pay(method) {
+  // ---------------------------------------------------------------- offline queue
+  var QKEY = "bp.quick.queue." + CFG.company, DKEY = "bp.quick.device";
+  function load() { try { return JSON.parse(localStorage.getItem(QKEY) || "[]"); } catch (e) { return []; } }
+  function store(q) { try { localStorage.setItem(QKEY, JSON.stringify(q)); } catch (e) {} pending(); }
+  function uuid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, function (c) { return (c ^ (Math.random() * 16) >> c / 4).toString(16); });
+  }
+  function device() {
+    var d; try { d = localStorage.getItem(DKEY); } catch (e) {}
+    if (!d) { d = Math.random().toString(36).slice(2, 5).toUpperCase(); try { localStorage.setItem(DKEY, d); } catch (e) {} }
+    return d;
+  }
+  function pending() {
+    var q = load(), el = $("qsPending");
+    el.hidden = !q.length;
+    var bad = q.filter(function (b) { return b._error; }).length;
+    el.innerHTML = "⏳ " + q.length + " " + esc(T.waiting) + (bad ? " · ⚠ " + esc(q.filter(function (b) { return b._error; })[0]._error) : "");
+  }
+  var syncing = false;
+  function sync() {
+    var q = load();
+    if (!q.length || syncing || !navigator.onLine) return;
+    syncing = true;
+    fetch(CFG.sync, {method: "POST", credentials: "same-origin", headers: {"Content-Type": "application/json", "X-CSRFToken": csrf},
+      body: JSON.stringify({bills: q.slice(0, 50).map(function (b) { var c = Object.assign({}, b); delete c._error; return c; })})})
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then(function (d) {
+        var done = {}, errs = {};
+        (d.results || []).forEach(function (x) { if (x.status === "synced" || x.status === "attention") done[x.client_id] = 1; else errs[x.client_id] = x.error; });
+        store(load().filter(function (b) { if (errs[b.client_id]) b._error = errs[b.client_id]; return !done[b.client_id]; }));
+        if (Object.keys(done).length) toast("✓ " + Object.keys(done).length + " " + esc(T.synced));
+      })
+      .catch(function () {})
+      .then(function () { syncing = false; });
+  }
+
+  function receipt(bill, total) {
+    var w = window.open("", "_blank", "width=380,height=600");
+    if (!w) return;
+    var rows = bill.lines.map(function (l) {
+      return "<tr><td>" + esc(l.name) + "<br><small>" + l.quantity + " × " + money(l.unit_price) + "</small></td><td style='text-align:right'>" + money(l.quantity * l.unit_price) + "</td></tr>";
+    }).join("");
+    w.document.write("<!doctype html><meta charset='utf-8'><title>" + esc(bill.offline_number) + "</title><body style='font:13px monospace;width:280px;margin:10px auto'>" +
+      "<h3 style='text-align:center;margin:0'>" + esc(CFG.name) + "</h3><p style='text-align:center;margin:2px 0 8px'>" + esc(CFG.address || "") + "<br>" + esc(CFG.phone || "") + "</p>" +
+      "<p>" + esc(bill.offline_number) + " · " + new Date(bill.created_at).toLocaleString() + "<br><b>" + esc(T.offlineBill) + "</b></p><table style='width:100%'>" + rows +
+      "</table><hr><p style='display:flex;justify-content:space-between;font-size:16px'><b>" + esc(T.total) + " " + esc(CFG.currency) + "</b><b>" + total + "</b></p><p>" + esc(bill.payments[0].method.toUpperCase()) +
+      "</p><p style='text-align:center'>" + esc(T.thanks) + "</p><script>print();<\/script></body>");
+    w.document.close();
+  }
+
+  function finish(text, receiptUrl) {
+    toast(text + (receiptUrl ? ' <a href="' + receiptUrl + '" target="_blank">🖨 ' + esc(T.print) + "</a>" : ""));
+    cart = []; $("qsRecv").value = ""; $("qsSearch").value = ""; busy = false; render(); $("qsSearch").focus();
+  }
+
+  function saveOffline(method, reference) {
+    var q = load(), total = money(totals().total), now = new Date().toISOString();
+    var bill = {client_id: uuid(), offline_number: "Q" + device() + "-" + String(Date.now()).slice(-6), created_at: now, paid_at: now,
+      channel: "takeaway", tax_percent: (TAX * 100).toFixed(2), paid: true, pay_in_full: true, quick: true,
+      payments: [{method: method, amount: total, reference: reference || ""}],
+      lines: cart.map(function (l) { return {id: uuid(), product_id: l.product, name: l.name, quantity: l.qty, unit_price: money(l.price)}; })};
+    q.push(bill); store(q);
+    var link = '<a href="#" id="qsOfflinePrint">🖨 ' + esc(T.print) + "</a>";
+    finish("📴 " + esc(T.savedOffline) + " " + esc(bill.offline_number) + " · " + esc(CFG.currency) + " " + total + " " + link);
+    var a = $("qsOfflinePrint"); if (a) a.addEventListener("click", function (e) { e.preventDefault(); receipt(bill, total); });
+  }
+
+  // ---------------------------------------------------------------- pay
+  function pay(method, reference) {
     if (!cart.length || busy) return;
     busy = true; render();
+    if (!navigator.onLine) { saveOffline(method, reference); return; }
     fetch(URLS.sell, {method: "POST", credentials: "same-origin", headers: {"Content-Type": "application/json", "X-CSRFToken": csrf},
-      body: JSON.stringify({method: method, lines: cart.map(function (l) { return {product: l.product, name: l.name, qty: l.qty, price: l.price}; })})})
-      .then(function (r) { return r.json().then(function (d) { return {ok: r.ok, d: d}; }); })
+      body: JSON.stringify({method: method, reference: reference || "", lines: cart.map(function (l) { return {product: l.product, name: l.name, qty: l.qty, price: l.price}; })})})
+      .then(function (r) {
+        if (r.status >= 500) throw new TypeError("server down");
+        return r.json().then(function (d) { return {ok: r.ok, d: d}; });
+      })
       .then(function (res) {
-        busy = false;
-        if (!res.ok || !res.d.ok) { toast(esc(res.d.error || T.failed), true); render(); return; }
+        if (!res.ok || !res.d.ok) { busy = false; toast(esc(res.d.error || T.failed), true); render(); return; }
         var d = res.d;
-        toast("✓ " + esc(T.saved) + " " + esc(d.number) + " · " + esc(CFG.currency) + " " + esc(d.total) + ' <a href="' + d.receipt + '" target="_blank">🖨 ' + esc(T.print) + "</a>");
         $("qsCount").textContent = d.today_count; $("qsDay").textContent = d.today_total;
         $("qsRecent").insertAdjacentHTML("afterbegin", '<a href="' + d.receipt + '" target="_blank"><span>' + esc(d.number) + "</span><span>" + esc(d.total) + " 🖨</span></a>");
-        cart = []; $("qsRecv").value = ""; $("qsSearch").value = ""; render(); $("qsSearch").focus();
+        finish("✓ " + esc(T.saved) + " " + esc(d.number) + " · " + esc(CFG.currency) + " " + esc(d.total), d.receipt);
       })
-      .catch(function () { busy = false; toast(esc(T.failed), true); render(); });
+      .catch(function () { saveOffline(method, reference); });  // no connection: keep the sale on this device
   }
+
+  // card machine: show the amount to key in, then confirm it was approved
+  function card() {
+    if (!cart.length || busy) return;
+    $("qsCardAmt").textContent = CFG.currency + " " + money(totals().total);
+    $("qsCardRef").value = "";
+    $("qsCard").hidden = false; $("qsCardRef").focus();
+  }
+  $("qsCardOk").addEventListener("click", function () { $("qsCard").hidden = true; pay("card", $("qsCardRef").value.trim()); });
+  $("qsCardNo").addEventListener("click", function () { $("qsCard").hidden = true; });
+  $("qsCardRef").addEventListener("keydown", function (e) { if (e.key === "Enter") $("qsCardOk").click(); if (e.key === "Escape") $("qsCardNo").click(); });
+  addEventListener("online", sync);
+  setInterval(sync, 30000);
 
   $("qsChips").addEventListener("click", function (e) {
     var b = e.target.closest("[data-f]"); if (!b) return;
@@ -244,10 +344,12 @@
   $("qsRecv").addEventListener("input", change);
   $("qsClear").addEventListener("click", function () { cart = []; render(); });
   $("qsEdit").addEventListener("click", function () { $("qs").classList.toggle("editing"); });
-  document.querySelectorAll(".qs-pay button").forEach(function (b) { b.addEventListener("click", function () { pay(b.getAttribute("data-method")); }); });
+  document.querySelectorAll(".qs-pay button").forEach(function (b) {
+    b.addEventListener("click", function () { if (b.getAttribute("data-method") === "card") card(); else pay("cash"); });
+  });
   document.addEventListener("keydown", function (e) { if (e.ctrlKey && e.key === "Enter") pay("cash"); });
 
-  chips(); render(); $("qsSearch").focus();
+  chips(); render(); pending(); sync(); $("qsSearch").focus();
 })();
 </script>
 {% endblock %}

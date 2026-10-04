@@ -2022,3 +2022,12 @@ ML.update({
     "Could not save the sale. Check the connection and try again.": "സെയിൽ സേവ് ചെയ്യാനായില്ല. കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.",
     "Could not read the sale. Try again.": "സെയിൽ വായിക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.",
 })
+
+ML.update({
+    "Enter this amount on the card machine": "ഈ തുക കാർഡ് മെഷീനിൽ അടിക്കുക", "Approval code (optional)": "അപ്രൂവൽ കോഡ് (ആവശ്യമെങ്കിൽ)",
+    "e.g. 123456": "ഉദാ. 123456",
+    "If the machine declines the card, press Cancel and take another payment.": "മെഷീൻ കാർഡ് നിരസിച്ചാൽ Cancel അമർത്തി മറ്റൊരു രീതിയിൽ പണം വാങ്ങുക.",
+    "bills waiting to sync": "ബില്ലുകൾ sync ചെയ്യാൻ കാത്തിരിക്കുന്നു", "offline bills synced": "ഓഫ്‌ലൈൻ ബില്ലുകൾ sync ചെയ്തു",
+    "Saved on this device": "ഈ ഉപകരണത്തിൽ സേവ് ചെയ്തു",
+    "Offline bill — invoice number comes after sync": "ഓഫ്‌ലൈൻ ബിൽ — ഇൻവോയ്സ് നമ്പർ sync-ന് ശേഷം വരും",
+})

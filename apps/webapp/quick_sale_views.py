@@ -25,7 +25,10 @@ def quick_sale(request):
     profile = RestaurantProfile.objects.for_company(company).first()
     from apps.verticals.restaurant.services import _restaurant_tax_percent
     tax = _restaurant_tax_percent(company)
-    cfg = {"tax": float(tax), "currency": company.default_currency, "t": {
+    cfg = {"tax": float(tax), "currency": company.default_currency, "company": company.id, "name": company.name,
+           "address": company.address, "phone": company.phone, "sync": reverse("webapp:restaurant_offline_sync"), "t": {
+        "waiting": _("bills waiting to sync"), "synced": _("offline bills synced"), "savedOffline": _("Saved on this device"),
+        "offlineBill": _("Offline bill — invoice number comes after sync"), "total": _("Total"), "thanks": _("Thank you!"),
         "quick": _("Quick"), "all": _("All"), "saved": _("Saved"), "print": _("Print receipt"), "change": _("Change"),
         "short": _("Short"), "needName": _("Type the item name and price."),
         "failed": _("Could not save the sale. Check the connection and try again.")}}
@@ -45,7 +48,7 @@ def quick_sale_submit(request):
         return JsonResponse({"ok": False, "error": _("Could not read the sale. Try again.")}, status=400)
     try:
         order, invoice = svc.sell(company=company, user=request.user, lines=data.get("lines") or [],
-                                  method=data.get("method") or "cash")
+                                  method=data.get("method") or "cash", reference=data.get("reference") or "")
     except ValidationError as exc:
         return JsonResponse({"ok": False, "error": " ".join(_(m) for m in exc.messages)}, status=400)
     today = svc.today(company)

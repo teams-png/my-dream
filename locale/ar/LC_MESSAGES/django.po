@@ -8056,6 +8056,23 @@ msgstr "صنف آخر، مثلاً كيك"
 msgid "Quick sales today"
 msgstr "المبيعات السريعة اليوم"
 
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Enter this amount on the card machine"
+msgstr "أدخل هذا المبلغ في جهاز البطاقة"
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "Approval code (optional)"
+msgstr "رمز الموافقة (اختياري)"
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid "e.g. 123456"
+msgstr "مثلاً 123456"
+
+#: templates/webapp/restaurant/quick_sale.html
+msgid ""
+"If the machine declines the card, press Cancel and take another payment."
+msgstr "إذا رفض الجهاز البطاقة، اضغط إلغاء واستلم الدفع بطريقة أخرى."
+
 #: templates/webapp/restaurant/receipt_print.html
 msgid "TOTAL"
 msgstr "الإجمالي"
@@ -10086,6 +10103,22 @@ msgstr "أدخل كمية الإرجاع."
 #: apps/webapp/purchase_docs_views.py
 msgid "Return %(number)s saved. Stock reduced."
 msgstr "تم حفظ الإرجاع %(number)s. انخفض المخزون."
+
+#: apps/webapp/quick_sale_views.py
+msgid "bills waiting to sync"
+msgstr "فواتير بانتظار المزامنة"
+
+#: apps/webapp/quick_sale_views.py
+msgid "offline bills synced"
+msgstr "تمت مزامنة الفواتير غير المتصلة"
+
+#: apps/webapp/quick_sale_views.py
+msgid "Saved on this device"
+msgstr "تم الحفظ على هذا الجهاز"
+
+#: apps/webapp/quick_sale_views.py
+msgid "Offline bill — invoice number comes after sync"
+msgstr "فاتورة غير متصلة — رقم الفاتورة يصدر بعد المزامنة"
 
 #: apps/webapp/quick_sale_views.py
 msgid "Quick"

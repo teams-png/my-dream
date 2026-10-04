@@ -502,5 +502,6 @@
 <script src="{% static 'js/install-app.js' %}" defer></script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}</script>
 <script>(function(){const set=t=>{document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('bp.theme',t)}catch(e){}document.querySelectorAll('[data-theme-toggle]').forEach(b=>b.textContent=t==='dark'?'☀️':'🌙')};set(document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light');document.addEventListener('click',e=>{if(e.target.closest('[data-theme-toggle]'))set(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')})})();</script>
+{% if bp_form_samples %}{{ bp_form_samples|json_script:"bp-form-samples" }}<script src="{% static 'js/form-hints.js' %}" defer></script>{% endif %}
 </body>
 </html>

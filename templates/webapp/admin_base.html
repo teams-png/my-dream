@@ -148,5 +148,6 @@
 </div>
 <script>(function(){const shell=document.getElementById('appShell');document.addEventListener('click',e=>{if(e.target.closest('[data-nav-toggle]'))shell.classList.toggle('nav-open');else if(e.target.closest('[data-nav-close]'))shell.classList.remove('nav-open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')shell.classList.remove('nav-open')})})();</script>
 <script>(function(){const set=t=>{document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('bp.theme',t)}catch(e){}document.querySelectorAll('[data-theme-toggle]').forEach(b=>b.textContent=t==='dark'?'☀️':'🌙')};set(document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light');document.addEventListener('click',e=>{if(e.target.closest('[data-theme-toggle]'))set(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')})})();</script>
+{% if bp_form_samples %}{{ bp_form_samples|json_script:"bp-form-samples" }}<script src="{% static 'js/form-hints.js' %}" defer></script>{% endif %}
 </body>
 </html>

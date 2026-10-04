@@ -73,7 +73,7 @@ class ActiveCompanyMiddleware:
         from apps.common import form_hints
         from apps.inventory import branch_access
         token = branch_access.activate(branch_access.ids_for(request.membership))
-        hints_token = form_hints.activate(request.company)
+        hints_token = form_hints.activate(request.company, request.path)
         request.branch_ids = branch_access.allowed()
         try:
             return self.get_response(request)

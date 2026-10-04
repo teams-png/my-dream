@@ -35,3 +35,11 @@ def active_business_profile(request):
         return {"active_business_profile": {}}
     from apps.modules.catalog import business_profile
     return {"active_business_profile": business_profile(company.business_type.code)}
+
+
+def form_samples(request):
+    """Examples for hand-written forms (static/js/form-hints.js); Django forms get them server-side."""
+    if not getattr(request, "user", None) or not request.user.is_authenticated:
+        return {}
+    from apps.common import form_hints
+    return {"bp_form_samples": form_hints.client_samples()}

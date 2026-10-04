@@ -60,3 +60,27 @@ def test_menu_item_page_and_inline_category(client):
         "preparation_minutes": "15", "spice_level": "none", "is_available": "on", "sort_order": "0"})
     assert response.status_code == 302
     assert Product.objects.for_company(company).get(sku="BIR-001").category.name == "Biryani"
+
+
+def test_dates_and_times_get_pickers_and_years_an_example():
+    from django import forms
+
+    class Sample(forms.Form):
+        joined = forms.DateField()
+        opens = forms.TimeField()
+        starts = forms.DateTimeField()
+        model_year = forms.IntegerField()
+
+    html = str(Sample().as_p())
+    assert 'type="date"' in html and 'type="time"' in html and 'type="datetime-local"' in html
+    assert 'name="model_year" placeholder="' in html
+    form = Sample({"joined": "2026-10-04", "opens": "09:30", "starts": "2026-10-04T09:30", "model_year": "2024"})
+    assert form.is_valid(), form.errors
+
+
+def test_page_ships_examples_for_hand_written_forms(client):
+    company, user = _company("jewelry_shop")
+    client.force_login(user)
+    page = client.get(reverse("webapp:branch_add")).content.decode()
+    assert 'id="bp-form-samples"' in page and "form-hints.js" in page
+    assert "Main branch" in page and "22K gold bangle" in page

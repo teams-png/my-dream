@@ -119,6 +119,8 @@ def create_company_with_owner(*, user, name, slug, business_type, plan=None, **e
         company=company, company_profile_complete=bool(company.name and company.country),
         accounting_setup_complete=True,
     )
+    from apps.verticals.restaurant.starter_kit import install_for_new_company
+    install_for_new_company(company, user)
 
     return company
 

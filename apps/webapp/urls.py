@@ -503,6 +503,7 @@ urlpatterns = [
     path("restaurant/setup/", views.restaurant_setup, name="restaurant_setup"),
     path("restaurant/setup/menu/add/", views.restaurant_menu_item_form, name="restaurant_menu_item_add"),
     path("restaurant/setup/demo-menu/", views.restaurant_demo_menu, name="restaurant_demo_menu"),
+    path("restaurant/setup/kerala-kit/", views.restaurant_starter_kit, name="restaurant_starter_kit"),
     path("restaurant/setup/menu/<int:menu_item_id>/edit/", views.restaurant_menu_item_form, name="restaurant_menu_item_edit"),
     path("restaurant/setup/menu/<int:menu_item_id>/toggle/", views.restaurant_menu_item_toggle, name="restaurant_menu_item_toggle"),
     path("restaurant/setup/modifiers/add/", views.restaurant_modifier_add, name="restaurant_modifier_add"),

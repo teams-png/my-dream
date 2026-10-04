@@ -105,7 +105,7 @@ def catalogue(company, absolute, limit=500):
             from apps.verticals.restaurant.models import RestaurantMenuItem
             menu = {m.product_id: m for m in RestaurantMenuItem.objects.for_company(company)}
             if menu:
-                qs = qs.filter(id__in=menu.keys())
+                qs = qs.filter(id__in=menu.keys()).order_by("restaurant_menu_item__sort_order", "name")
         for p in qs[:limit]:
             m = menu.get(p.id)
             items.append({"id": p.id, "name": p.name, "category": p.category.name if p.category else "",

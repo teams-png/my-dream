@@ -1980,3 +1980,17 @@ AR.update({
     "Position in menu": "الترتيب في القائمة", "Leave empty to serve all day.": "اتركه فارغاً للتقديم طوال اليوم.",
     "Smaller numbers show first.": "الأرقام الأصغر تظهر أولاً.", "Square photo, JPG / PNG / WebP.": "صورة مربعة، JPG / PNG / WebP.",
 })
+
+AR.update({
+    "Kerala starter menu is loaded": "تم تحميل قائمة كيرلا الجاهزة",
+    "Sample data to get you started — change names, prices and photos, or remove it before you start selling.": "بيانات تجريبية للبدء — غيّر الأسماء والأسعار والصور، أو احذفها قبل بدء البيع.",
+    "dishes": "أطباق", "tables": "طاولات", "sample staff": "موظفون تجريبيون", "sample expenses": "مصروفات تجريبية",
+    "Remove all sample dishes, staff and expenses?": "حذف جميع الأطباق والموظفين والمصروفات التجريبية؟",
+    "Remove sample data": "حذف البيانات التجريبية",
+    "Load a full Kerala restaurant menu": "تحميل قائمة مطعم كيرلا كاملة",
+    "120+ Kerala dishes with pictures — breakfast, meals, biryani, curries, seafood, snacks, tea and juices — plus kitchen stations, tables and add-ons.": "أكثر من 120 طبقاً من كيرلا مع الصور — فطور، وجبات، برياني، كاري، مأكولات بحرية، وجبات خفيفة، شاي وعصائر — مع محطات المطبخ والطاولات والإضافات.",
+    "Sample staff": "موظفون تجريبيون", "Sample expenses": "مصروفات تجريبية", "Load Kerala menu": "تحميل قائمة كيرلا",
+    "Sample data removed.": "تم حذف البيانات التجريبية.",
+    "%(n)s items already used in bills were switched off instead.": "تم إيقاف %(n)s عنصر مستخدم في الفواتير بدلاً من حذفه.",
+    "Kerala menu loaded: %(n)s dishes with pictures. Change names and prices any time.": "تم تحميل قائمة كيرلا: %(n)s طبقاً مع الصور. يمكنك تغيير الأسماء والأسعار في أي وقت.",
+})

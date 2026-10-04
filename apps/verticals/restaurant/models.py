@@ -363,3 +363,13 @@ class OfflineOrderSync(TenantScopedModel):
 
     def __str__(self):
         return self.offline_number
+
+
+class StarterSample(TenantScopedModel):
+    """Remembers what the starter kit created (dishes, staff, expenses…), so the owner can remove it in one click."""
+    kind = models.CharField(max_length=30)
+    object_id = models.PositiveIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        indexes = [models.Index(fields=("company", "kind"))]

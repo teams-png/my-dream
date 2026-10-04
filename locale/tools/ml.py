@@ -1960,3 +1960,17 @@ ML.update({
     "Position in menu": "മെനുവിലെ സ്ഥാനം", "Leave empty to serve all day.": "ദിവസം മുഴുവൻ ആണെങ്കിൽ ശൂന്യമായി വിടുക.",
     "Smaller numbers show first.": "ചെറിയ നമ്പറുകൾ ആദ്യം കാണിക്കും.", "Square photo, JPG / PNG / WebP.": "ചതുര ഫോട്ടോ, JPG / PNG / WebP.",
 })
+
+ML.update({
+    "Kerala starter menu is loaded": "കേരള സ്റ്റാർട്ടർ മെനു ചേർത്തിട്ടുണ്ട്",
+    "Sample data to get you started — change names, prices and photos, or remove it before you start selling.": "തുടങ്ങാനുള്ള സാമ്പിൾ ഡാറ്റ — പേരും വിലയും ഫോട്ടോയും മാറ്റാം, അല്ലെങ്കിൽ വിൽപ്പന തുടങ്ങും മുമ്പ് നീക്കം ചെയ്യാം.",
+    "dishes": "വിഭവങ്ങൾ", "tables": "ടേബിളുകൾ", "sample staff": "സാമ്പിൾ സ്റ്റാഫ്", "sample expenses": "സാമ്പിൾ ചെലവുകൾ",
+    "Remove all sample dishes, staff and expenses?": "എല്ലാ സാമ്പിൾ വിഭവങ്ങളും സ്റ്റാഫും ചെലവുകളും നീക്കം ചെയ്യണോ?",
+    "Remove sample data": "സാമ്പിൾ ഡാറ്റ നീക്കം ചെയ്യുക",
+    "Load a full Kerala restaurant menu": "മുഴുവൻ കേരള റെസ്റ്റോറന്റ് മെനു ചേർക്കുക",
+    "120+ Kerala dishes with pictures — breakfast, meals, biryani, curries, seafood, snacks, tea and juices — plus kitchen stations, tables and add-ons.": "ചിത്രങ്ങളോടു കൂടിയ 120+ കേരള വിഭവങ്ങൾ — പ്രാതൽ, ഊണ്, ബിരിയാണി, കറികൾ, കടൽ വിഭവങ്ങൾ, പലഹാരങ്ങൾ, ചായ, ജ്യൂസ് — കൂടെ കിച്ചൺ സ്റ്റേഷനുകളും ടേബിളുകളും ആഡ്-ഓണുകളും.",
+    "Sample staff": "സാമ്പിൾ സ്റ്റാഫ്", "Sample expenses": "സാമ്പിൾ ചെലവുകൾ", "Load Kerala menu": "കേരള മെനു ചേർക്കുക",
+    "Sample data removed.": "സാമ്പിൾ ഡാറ്റ നീക്കം ചെയ്തു.",
+    "%(n)s items already used in bills were switched off instead.": "ബില്ലിൽ ഉപയോഗിച്ച %(n)s ഐറ്റങ്ങൾ നീക്കം ചെയ്യാതെ ഓഫാക്കി.",
+    "Kerala menu loaded: %(n)s dishes with pictures. Change names and prices any time.": "കേരള മെനു ചേർത്തു: ചിത്രങ്ങളോടു കൂടിയ %(n)s വിഭവങ്ങൾ. പേരും വിലയും എപ്പോൾ വേണമെങ്കിലും മാറ്റാം.",
+})

@@ -1,0 +1,32 @@
+{% load i18n %}
+<style>
+.kk{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin:12px 0 18px;padding:18px 20px;border-radius:18px;border:1px solid #fed7aa;background:linear-gradient(135deg,#fff7ed,#fefce8)}
+.kk .t{flex:1 1 320px}.kk h3{margin:0 0 4px;font-size:17px}.kk p{margin:0;color:#7c2d12;font-size:14px}
+.kk .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.kk .chip{padding:3px 10px;border-radius:999px;background:#fff;border:1px solid #fde2c4;font-size:12.5px;font-weight:700;color:#9a3412}
+.kk form{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0}.kk label{display:inline-flex;gap:6px;align-items:center;font-size:13.5px;font-weight:600}
+</style>
+{% if starter.loaded %}
+<div class="kk">
+  <div class="t">
+    <h3>🌴 {% translate "Kerala starter menu is loaded" %}</h3>
+    <p>{% translate "Sample data to get you started — change names, prices and photos, or remove it before you start selling." %}</p>
+    <div class="chips"><span class="chip">🍛 {{ starter.dishes }} {% translate "dishes" %}</span><span class="chip">🪑 {{ starter.tables }} {% translate "tables" %}</span><span class="chip">👨‍🍳 {{ starter.staff }} {% translate "sample staff" %}</span><span class="chip">🧾 {{ starter.expenses }} {% translate "sample expenses" %}</span></div>
+  </div>
+  <form method="post" action="{% url 'webapp:restaurant_starter_kit' %}" onsubmit="return confirm('{% translate "Remove all sample dishes, staff and expenses?" %}')">{% csrf_token %}
+    <input type="hidden" name="action" value="remove"><button class="btn btn-secondary" type="submit">🗑 {% translate "Remove sample data" %}</button>
+  </form>
+</div>
+{% else %}
+<div class="kk">
+  <div class="t">
+    <h3>🌴 {% translate "Load a full Kerala restaurant menu" %}</h3>
+    <p>{% translate "120+ Kerala dishes with pictures — breakfast, meals, biryani, curries, seafood, snacks, tea and juices — plus kitchen stations, tables and add-ons." %}</p>
+  </div>
+  <form method="post" action="{% url 'webapp:restaurant_starter_kit' %}">{% csrf_token %}
+    <input type="hidden" name="action" value="install">
+    <label><input type="checkbox" name="staff" checked> {% translate "Sample staff" %}</label>
+    <label><input type="checkbox" name="expenses" checked> {% translate "Sample expenses" %}</label>
+    <button class="btn" type="submit">{% translate "Load Kerala menu" %}</button>
+  </form>
+</div>
+{% endif %}

@@ -632,8 +632,9 @@ def product_barcode(request, product_id):
         buf = io.BytesIO()
         code.write(buf, options={"write_text": True, "module_height": 12, "quiet_zone": 2})
         return HttpResponse(buf.getvalue(), content_type="image/png")
-    except Exception as exc:
-        return HttpResponse(f"Barcode unavailable: {exc}", content_type="text/plain", status=500)
+    except Exception:  # python-barcode missing or the SKU can't be encoded: draw it ourselves
+        from apps.inventory.barcode_svg import code128_svg
+        return HttpResponse(code128_svg(product.sku), content_type="image/svg+xml")
 
 
 @login_required
@@ -3095,7 +3096,15 @@ def restaurant_setup(request):
         "modifier_groups": MenuModifierGroup.objects.for_company(company).prefetch_related("options__modifier"),
         "stations": KitchenStation.objects.for_company(company).prefetch_related("categories"),
         "profile": profile,
+        "starter": _starter_summary(company),
     })
+
+
+def _starter_summary(company):
+    from apps.verticals.restaurant import starter_kit
+    found = starter_kit.counts(company)
+    return {"loaded": bool(found), "dishes": found.get("dish", 0), "staff": found.get("employee", 0),
+            "expenses": found.get("expense", 0), "tables": found.get("table", 0)}
 
 
 @login_required
@@ -3131,6 +3140,24 @@ def restaurant_demo_menu(request):
     order_id = request.POST.get("order_id")
     if order_id and RestaurantOrder.objects.for_company(request.company).filter(pk=order_id).exists():
         return redirect("webapp:restaurant_order_detail", order_id=order_id)
+    return redirect("webapp:restaurant_setup")
+
+
+@login_required
+@require_business_group("restaurant")
+@require_permission("restaurant.manage")
+def restaurant_starter_kit(request):
+    """Load or remove the Kerala starter kit (menu with pictures, stations, tables, sample staff & expenses)."""
+    from apps.verticals.restaurant import starter_kit
+    if request.method != "POST":
+        return redirect("webapp:restaurant_setup")
+    if request.POST.get("action") == "remove":
+        kept = starter_kit.remove(request.company)
+        messages.success(request, _("Sample data removed.") + (" " + _("%(n)s items already used in bills were switched off instead.") % {"n": kept} if kept else ""))
+    else:
+        made = starter_kit.install(request.company, request.user,
+                                   staff=request.POST.get("staff") == "on", expenses=request.POST.get("expenses") == "on")
+        messages.success(request, _("Kerala menu loaded: %(n)s dishes with pictures. Change names and prices any time.") % {"n": made})
     return redirect("webapp:restaurant_setup")
 
 
@@ -3354,9 +3381,10 @@ def restaurant_order_detail(request, order_id):
     menu_items = RestaurantMenuItem.objects.for_company(company).select_related(
         "product", "product__category"
     ).prefetch_related("modifier_groups__options__modifier").filter(product__is_active=True).order_by("sort_order", "product__name")
+    from django.db.models import Min
     categories = ProductCategory.objects.for_company(company).filter(
         product__restaurant_menu_item__isnull=False
-    ).distinct().order_by("name")
+    ).annotate(first=Min("product__restaurant_menu_item__sort_order")).order_by("first", "name")
     profile = RestaurantProfile.objects.for_company(company).first()
     service_pct = profile.service_charge_percent if profile else Decimal("0")
     suggested_service = order.service_charge
@@ -3514,7 +3542,8 @@ def restaurant_kot_print(request, ticket_id):
 def restaurant_public_menu(request, token):
     profile = get_object_or_404(RestaurantProfile.objects.select_related("company"), public_menu_token=token)
     items = [x for x in RestaurantMenuItem.objects.for_company(profile.company).filter(is_available=True, product__is_active=True).select_related("product", "product__category").prefetch_related("modifier_groups__options__modifier") if x.is_orderable_now()]
-    categories = ProductCategory.objects.for_company(profile.company).filter(product__restaurant_menu_item__is_available=True).distinct().order_by("name")
+    from django.db.models import Min
+    categories = ProductCategory.objects.for_company(profile.company).filter(product__restaurant_menu_item__is_available=True).annotate(first=Min("product__restaurant_menu_item__sort_order")).order_by("first", "name")
     tables = DiningTable.objects.for_company(profile.company).filter(is_active=True, status="available").select_related("area")
     return render(request, "webapp/restaurant/public_menu.html", {"profile": profile, "restaurant": profile.company, "menu_items": items, "categories": categories, "tables": tables})
 

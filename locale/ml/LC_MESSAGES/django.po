@@ -6792,6 +6792,67 @@ msgstr "ആർക്ക് നൽകി"
 msgid "Add cost"
 msgstr "ചെലവ് ചേർക്കുക"
 
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Kerala starter menu is loaded"
+msgstr "കേരള സ്റ്റാർട്ടർ മെനു ചേർത്തിട്ടുണ്ട്"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid ""
+"Sample data to get you started — change names, prices and photos, or remove "
+"it before you start selling."
+msgstr ""
+"തുടങ്ങാനുള്ള സാമ്പിൾ ഡാറ്റ — പേരും വിലയും ഫോട്ടോയും മാറ്റാം, അല്ലെങ്കിൽ "
+"വിൽപ്പന തുടങ്ങും മുമ്പ് നീക്കം ചെയ്യാം."
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "dishes"
+msgstr "വിഭവങ്ങൾ"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "tables"
+msgstr "ടേബിളുകൾ"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "sample staff"
+msgstr "സാമ്പിൾ സ്റ്റാഫ്"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "sample expenses"
+msgstr "സാമ്പിൾ ചെലവുകൾ"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Remove all sample dishes, staff and expenses?"
+msgstr "എല്ലാ സാമ്പിൾ വിഭവങ്ങളും സ്റ്റാഫും ചെലവുകളും നീക്കം ചെയ്യണോ?"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Remove sample data"
+msgstr "സാമ്പിൾ ഡാറ്റ നീക്കം ചെയ്യുക"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Load a full Kerala restaurant menu"
+msgstr "മുഴുവൻ കേരള റെസ്റ്റോറന്റ് മെനു ചേർക്കുക"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid ""
+"120+ Kerala dishes with pictures — breakfast, meals, biryani, curries, "
+"seafood, snacks, tea and juices — plus kitchen stations, tables and add-ons."
+msgstr ""
+"ചിത്രങ്ങളോടു കൂടിയ 120+ കേരള വിഭവങ്ങൾ — പ്രാതൽ, ഊണ്, ബിരിയാണി, കറികൾ, കടൽ "
+"വിഭവങ്ങൾ, പലഹാരങ്ങൾ, ചായ, ജ്യൂസ് — കൂടെ കിച്ചൺ സ്റ്റേഷനുകളും ടേബിളുകളും "
+"ആഡ്-ഓണുകളും."
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Sample staff"
+msgstr "സാമ്പിൾ സ്റ്റാഫ്"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Sample expenses"
+msgstr "സാമ്പിൾ ചെലവുകൾ"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Load Kerala menu"
+msgstr "കേരള മെനു ചേർക്കുക"
+
 #: templates/webapp/restaurant/dashboard.html
 msgid "Restaurant"
 msgstr "റെസ്റ്റോറന്റ്"
@@ -10341,6 +10402,22 @@ msgstr "%(count)s സീരിയൽ നമ്പറുകൾ സ്റ്റോ
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "നേരത്തെ ചേർത്തവ: %(list)s"
+
+#: apps/webapp/views.py
+msgid "Sample data removed."
+msgstr "സാമ്പിൾ ഡാറ്റ നീക്കം ചെയ്തു."
+
+#: apps/webapp/views.py
+msgid "%(n)s items already used in bills were switched off instead."
+msgstr "ബില്ലിൽ ഉപയോഗിച്ച %(n)s ഐറ്റങ്ങൾ നീക്കം ചെയ്യാതെ ഓഫാക്കി."
+
+#: apps/webapp/views.py
+msgid ""
+"Kerala menu loaded: %(n)s dishes with pictures. Change names and prices any "
+"time."
+msgstr ""
+"കേരള മെനു ചേർത്തു: ചിത്രങ്ങളോടു കൂടിയ %(n)s വിഭവങ്ങൾ. പേരും വിലയും എപ്പോൾ "
+"വേണമെങ്കിലും മാറ്റാം."
 
 #: apps/webapp/views.py
 msgid "Sale %(number)s booked as invoice %(invoice)s."

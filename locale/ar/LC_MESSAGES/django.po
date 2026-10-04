@@ -6720,6 +6720,66 @@ msgstr "مدفوع إلى"
 msgid "Add cost"
 msgstr "إضافة تكلفة"
 
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Kerala starter menu is loaded"
+msgstr "تم تحميل قائمة كيرلا الجاهزة"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid ""
+"Sample data to get you started — change names, prices and photos, or remove "
+"it before you start selling."
+msgstr ""
+"بيانات تجريبية للبدء — غيّر الأسماء والأسعار والصور، أو احذفها قبل بدء "
+"البيع."
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "dishes"
+msgstr "أطباق"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "tables"
+msgstr "طاولات"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "sample staff"
+msgstr "موظفون تجريبيون"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "sample expenses"
+msgstr "مصروفات تجريبية"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Remove all sample dishes, staff and expenses?"
+msgstr "حذف جميع الأطباق والموظفين والمصروفات التجريبية؟"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Remove sample data"
+msgstr "حذف البيانات التجريبية"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Load a full Kerala restaurant menu"
+msgstr "تحميل قائمة مطعم كيرلا كاملة"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid ""
+"120+ Kerala dishes with pictures — breakfast, meals, biryani, curries, "
+"seafood, snacks, tea and juices — plus kitchen stations, tables and add-ons."
+msgstr ""
+"أكثر من 120 طبقاً من كيرلا مع الصور — فطور، وجبات، برياني، كاري، مأكولات "
+"بحرية، وجبات خفيفة، شاي وعصائر — مع محطات المطبخ والطاولات والإضافات."
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Sample staff"
+msgstr "موظفون تجريبيون"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Sample expenses"
+msgstr "مصروفات تجريبية"
+
+#: templates/webapp/restaurant/_starter_kit.html
+msgid "Load Kerala menu"
+msgstr "تحميل قائمة كيرلا"
+
 #: templates/webapp/restaurant/dashboard.html
 msgid "Restaurant"
 msgstr "المطعم"
@@ -10229,6 +10289,22 @@ msgstr "تمت إضافة %(count)s أرقام تسلسلية إلى المخز�
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "مسجلة مسبقاً: %(list)s"
+
+#: apps/webapp/views.py
+msgid "Sample data removed."
+msgstr "تم حذف البيانات التجريبية."
+
+#: apps/webapp/views.py
+msgid "%(n)s items already used in bills were switched off instead."
+msgstr "تم إيقاف %(n)s عنصر مستخدم في الفواتير بدلاً من حذفه."
+
+#: apps/webapp/views.py
+msgid ""
+"Kerala menu loaded: %(n)s dishes with pictures. Change names and prices any "
+"time."
+msgstr ""
+"تم تحميل قائمة كيرلا: %(n)s طبقاً مع الصور. يمكنك تغيير الأسماء والأسعار في "
+"أي وقت."
 
 #: apps/webapp/views.py
 msgid "Sale %(number)s booked as invoice %(invoice)s."

@@ -98,7 +98,7 @@ def test_unpublished_site_is_private_and_staff_cannot_edit(admin_client):
     CompanyMembership.objects.create(company=salon, user=staff, role=Role.objects.get(company=salon, name="Staff"))
     c = Client()
     c.force_login(staff)
-    assert c.get(reverse("webapp:site_editor")).status_code == 302
+    assert c.get(reverse("webapp:site_editor")).status_code == 403
     # owners never see the admin-only fields
     assert 'name="a-custom_domain"' not in owner.get(reverse("webapp:site_editor")).content.decode()
 

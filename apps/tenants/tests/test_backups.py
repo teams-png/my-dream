@@ -48,7 +48,7 @@ def test_owner_backs_up_now_and_downloads(client):
     staff = get_user_model().objects.create_user(username="st", email="st@t.qa", password="Pass-12345!")
     CompanyMembership.objects.create(company=company, user=staff, role=Role.objects.get(company=company, name="Staff"))
     client.force_login(staff)
-    assert client.get(reverse("webapp:backup_download", args=[backup.id])).status_code == 302
+    assert client.get(reverse("webapp:backup_download", args=[backup.id])).status_code == 403
     _other, other_owner = _company("b2")
     client.force_login(other_owner)
     assert client.get(reverse("webapp:backup_download", args=[backup.id])).status_code == 404

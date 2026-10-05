@@ -91,4 +91,4 @@ def test_staff_role_cannot_open_accounts(owner, client):
     cashier = User.objects.create_user(username="cashier@test.qa", email="cashier@test.qa", password="Cashier-2026-x!")
     Membership.objects.create(user=cashier, company=owner["company"], role=staff_role)
     client.force_login(cashier)
-    assert client.get(reverse("webapp:acc_pl")).status_code == 302
+    assert client.get(reverse("webapp:acc_pl")).status_code == 403

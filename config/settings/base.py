@@ -97,6 +97,7 @@ MIDDLEWARE = [
     # --- custom, ordered deliberately ---
     "apps.tenants.middleware.ActiveCompanyMiddleware",       # resolves request.company / request.role
     "apps.subscriptions.middleware.SubscriptionGuardMiddleware",  # blocks routes once subscription expired
+    "apps.webapp.role_access.RoleAccessMiddleware",          # pages each role may open (needs request.role)
     # -------------------------------------
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",

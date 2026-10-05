@@ -5330,6 +5330,30 @@ msgstr "பொருள் விவரங்கள்"
 msgid "Shown on the POS, invoices and your website."
 msgstr "POS, இன்வாய்ஸ்கள் மற்றும் உங்கள் இணையதளத்தில் காட்டப்படும்."
 
+#: templates/webapp/no_access.html
+msgid "No access"
+msgstr "அணுகல் இல்லை"
+
+#: templates/webapp/no_access.html
+msgid "Your role can't open this page."
+msgstr "உங்கள் பங்கினால் இந்தப் பக்கத்தைத் திறக்க முடியாது."
+
+#: templates/webapp/no_access.html
+msgid ""
+"Ask the business owner to give your role access under Settings → Roles, if "
+"you need it."
+msgstr ""
+"தேவைப்பட்டால், அமைப்புகள் → பங்குகள் பகுதியில் உங்கள் பங்கிற்கு அணுகல் "
+"தருமாறு வணிக உரிமையாளரிடம் கேளுங்கள்."
+
+#: templates/webapp/no_access.html
+msgid "Your role"
+msgstr "உங்கள் பங்கு"
+
+#: templates/webapp/no_access.html
+msgid "Go to the overview"
+msgstr "மேலோட்டத்திற்குச் செல்"
+
 #: templates/webapp/onboarding/wizard.html
 msgid "Set up your business"
 msgstr "உங்கள் வணிகத்தை அமையுங்கள்"

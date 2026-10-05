@@ -5273,6 +5273,29 @@ msgstr "পণ্যের বিবরণ"
 msgid "Shown on the POS, invoices and your website."
 msgstr "POS, ইনভয়েস ও আপনার ওয়েবসাইটে দেখানো হয়।"
 
+#: templates/webapp/no_access.html
+msgid "No access"
+msgstr "অনুমতি নেই"
+
+#: templates/webapp/no_access.html
+msgid "Your role can't open this page."
+msgstr "আপনার রোল এই পেজ খুলতে পারে না।"
+
+#: templates/webapp/no_access.html
+msgid ""
+"Ask the business owner to give your role access under Settings → Roles, if "
+"you need it."
+msgstr ""
+"প্রয়োজন হলে ব্যবসার মালিককে সেটিংস → রোল থেকে আপনার রোলকে অনুমতি দিতে বলুন।"
+
+#: templates/webapp/no_access.html
+msgid "Your role"
+msgstr "আপনার রোল"
+
+#: templates/webapp/no_access.html
+msgid "Go to the overview"
+msgstr "ওভারভিউতে যান"
+
 #: templates/webapp/onboarding/wizard.html
 msgid "Set up your business"
 msgstr "আপনার ব্যবসা সেট আপ করুন"

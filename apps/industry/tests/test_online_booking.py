@@ -165,6 +165,6 @@ def test_website_form_and_plugin_are_owner_only():
         c = Client()
         c.force_login(staff)
         assert reverse(settings_url) not in c.get(reverse("webapp:dashboard")).content.decode()
-        assert c.get(reverse(settings_url)).status_code == 302 and c.get(reverse(plugin_url)).status_code == 302
+        assert c.get(reverse(settings_url)).status_code == 403 and c.get(reverse(plugin_url)).status_code == 403
     # staff still handle the booking requests
     assert c.get(reverse("webapp:rec_home")).status_code == 200

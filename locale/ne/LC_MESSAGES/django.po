@@ -5275,6 +5275,30 @@ msgstr "उत्पादन विवरण"
 msgid "Shown on the POS, invoices and your website."
 msgstr "POS, इनभ्वाइस र तपाईंको वेबसाइटमा देखिन्छ।"
 
+#: templates/webapp/no_access.html
+msgid "No access"
+msgstr "पहुँच छैन"
+
+#: templates/webapp/no_access.html
+msgid "Your role can't open this page."
+msgstr "तपाईंको भूमिकाले यो पेज खोल्न सक्दैन।"
+
+#: templates/webapp/no_access.html
+msgid ""
+"Ask the business owner to give your role access under Settings → Roles, if "
+"you need it."
+msgstr ""
+"आवश्यक भए, सेटिङ → भूमिकाहरूमा तपाईंको भूमिकालाई पहुँच दिन व्यवसाय मालिकलाई "
+"भन्नुहोस्।"
+
+#: templates/webapp/no_access.html
+msgid "Your role"
+msgstr "तपाईंको भूमिका"
+
+#: templates/webapp/no_access.html
+msgid "Go to the overview"
+msgstr "ओभरभ्यूमा जानुहोस्"
+
 #: templates/webapp/onboarding/wizard.html
 msgid "Set up your business"
 msgstr "आफ्नो व्यवसाय सेट गर्नुहोस्"

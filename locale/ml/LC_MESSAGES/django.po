@@ -5308,6 +5308,30 @@ msgstr "ഉൽപ്പന്ന വിവരങ്ങൾ"
 msgid "Shown on the POS, invoices and your website."
 msgstr "POS, ഇൻവോയ്സുകൾ, നിങ്ങളുടെ വെബ്സൈറ്റ് എന്നിവയിൽ കാണിക്കും."
 
+#: templates/webapp/no_access.html
+msgid "No access"
+msgstr "അനുമതി ഇല്ല"
+
+#: templates/webapp/no_access.html
+msgid "Your role can't open this page."
+msgstr "നിങ്ങളുടെ റോളിന് ഈ പേജ് തുറക്കാൻ അനുമതിയില്ല."
+
+#: templates/webapp/no_access.html
+msgid ""
+"Ask the business owner to give your role access under Settings → Roles, if "
+"you need it."
+msgstr ""
+"ആവശ്യമെങ്കിൽ, Settings → Roles-ൽ നിങ്ങളുടെ റോളിന് അനുമതി നൽകാൻ ബിസിനസ് "
+"ഉടമയോട് ആവശ്യപ്പെടുക."
+
+#: templates/webapp/no_access.html
+msgid "Your role"
+msgstr "നിങ്ങളുടെ റോൾ"
+
+#: templates/webapp/no_access.html
+msgid "Go to the overview"
+msgstr "ഓവർവ്യൂവിലേക്ക് പോകുക"
+
 #: templates/webapp/onboarding/wizard.html
 msgid "Set up your business"
 msgstr "നിങ്ങളുടെ ബിസിനസ് സെറ്റപ്പ് ചെയ്യുക"

@@ -5322,6 +5322,30 @@ msgstr "Detalye ng produkto"
 msgid "Shown on the POS, invoices and your website."
 msgstr "Ipinapakita sa POS, invoice at iyong website."
 
+#: templates/webapp/no_access.html
+msgid "No access"
+msgstr "Walang access"
+
+#: templates/webapp/no_access.html
+msgid "Your role can't open this page."
+msgstr "Hindi mabubuksan ng iyong role ang page na ito."
+
+#: templates/webapp/no_access.html
+msgid ""
+"Ask the business owner to give your role access under Settings → Roles, if "
+"you need it."
+msgstr ""
+"Kung kailangan mo, hilingin sa may-ari ng negosyo na bigyan ng access ang "
+"iyong role sa Settings → Roles."
+
+#: templates/webapp/no_access.html
+msgid "Your role"
+msgstr "Ang iyong role"
+
+#: templates/webapp/no_access.html
+msgid "Go to the overview"
+msgstr "Pumunta sa overview"
+
 #: templates/webapp/onboarding/wizard.html
 msgid "Set up your business"
 msgstr "I-set up ang iyong negosyo"

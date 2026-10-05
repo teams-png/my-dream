@@ -5252,6 +5252,30 @@ msgstr "تفاصيل المنتج"
 msgid "Shown on the POS, invoices and your website."
 msgstr "يظهر في نقطة البيع والفواتير وموقعك."
 
+#: templates/webapp/no_access.html
+msgid "No access"
+msgstr "لا صلاحية"
+
+#: templates/webapp/no_access.html
+msgid "Your role can't open this page."
+msgstr "لا يمكن لدورك فتح هذه الصفحة."
+
+#: templates/webapp/no_access.html
+msgid ""
+"Ask the business owner to give your role access under Settings → Roles, if "
+"you need it."
+msgstr ""
+"اطلب من مالك النشاط منح دورك صلاحية الوصول من الإعدادات ← الأدوار، إذا كنت "
+"بحاجة إليها."
+
+#: templates/webapp/no_access.html
+msgid "Your role"
+msgstr "دورك"
+
+#: templates/webapp/no_access.html
+msgid "Go to the overview"
+msgstr "الذهاب إلى النظرة العامة"
+
 #: templates/webapp/onboarding/wizard.html
 msgid "Set up your business"
 msgstr "إعداد نشاطك التجاري"

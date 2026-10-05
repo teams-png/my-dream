@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "No access" %}{% endblock %}
+{% block heading %}🔒 {% translate "No access" %}{% endblock %}
+{% block content %}
+<div class="card" style="max-width:520px">
+  <p style="margin:0 0 8px;font-size:16px;font-weight:600">{% translate "Your role can't open this page." %}</p>
+  <p style="margin:0 0 16px;color:var(--ink-soft);font-size:14px;line-height:1.6">{% translate "Ask the business owner to give your role access under Settings → Roles, if you need it." %}{% if request.role %} {% translate "Your role" %}: <b>{{ request.role.name }}</b>.{% endif %}</p>
+  <a class="btn" href="{% url 'webapp:dashboard' %}">{% translate "Go to the overview" %}</a>
+</div>
+{% endblock %}

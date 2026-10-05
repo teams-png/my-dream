@@ -5185,6 +5185,28 @@ msgstr "商品详情"
 msgid "Shown on the POS, invoices and your website."
 msgstr "显示在收银、发票和您的网站上。"
 
+#: templates/webapp/no_access.html
+msgid "No access"
+msgstr "无权访问"
+
+#: templates/webapp/no_access.html
+msgid "Your role can't open this page."
+msgstr "您的角色无法打开此页面。"
+
+#: templates/webapp/no_access.html
+msgid ""
+"Ask the business owner to give your role access under Settings → Roles, if "
+"you need it."
+msgstr "如有需要，请让企业所有者在 设置 → 角色 中为您的角色开通权限。"
+
+#: templates/webapp/no_access.html
+msgid "Your role"
+msgstr "您的角色"
+
+#: templates/webapp/no_access.html
+msgid "Go to the overview"
+msgstr "前往概览"
+
 #: templates/webapp/onboarding/wizard.html
 msgid "Set up your business"
 msgstr "设置您的企业"

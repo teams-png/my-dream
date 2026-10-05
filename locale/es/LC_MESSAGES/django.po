@@ -5311,6 +5311,30 @@ msgstr "Detalles del producto"
 msgid "Shown on the POS, invoices and your website."
 msgstr "Se muestra en el POS, las facturas y tu sitio web."
 
+#: templates/webapp/no_access.html
+msgid "No access"
+msgstr "Sin acceso"
+
+#: templates/webapp/no_access.html
+msgid "Your role can't open this page."
+msgstr "Tu rol no puede abrir esta página."
+
+#: templates/webapp/no_access.html
+msgid ""
+"Ask the business owner to give your role access under Settings → Roles, if "
+"you need it."
+msgstr ""
+"Si lo necesitas, pide al dueño del negocio que dé acceso a tu rol en Ajustes"
+" → Roles."
+
+#: templates/webapp/no_access.html
+msgid "Your role"
+msgstr "Tu rol"
+
+#: templates/webapp/no_access.html
+msgid "Go to the overview"
+msgstr "Ir al resumen"
+
 #: templates/webapp/onboarding/wizard.html
 msgid "Set up your business"
 msgstr "Configura tu negocio"

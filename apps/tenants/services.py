@@ -38,6 +38,8 @@ DEFAULT_PERMISSIONS = [
     ("sales.override_delivery_limits", "Deliver or invoice quantities beyond the ordered/delivered amount on a sales order", "sales"),
     ("sales.approve_discount", "Approve sales discounts above the configured threshold", "sales"),
     ("restaurant.manage", "Manage restaurant tables, orders, kitchen and shifts", "restaurant"),
+    ("business.manage_settings", "Business settings, branches, website, online orders/booking setup, backups and data export", "tenants"),
+    ("reports.view", "See sales reports, analytics, profit figures and exports", "reports"),
 ]
 
 # Owner gets everything; Accountant gets the accounting/sales/purchases set;
@@ -57,6 +59,7 @@ ROLE_PERMISSION_MAP = {
         "employees.self_service",
         "employees.manage_payroll",
         "restaurant.manage",
+        "reports.view",
     ],
     "Staff": [
         "sales.create_invoice", "sales.view_invoice",

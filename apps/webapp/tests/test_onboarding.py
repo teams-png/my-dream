@@ -106,4 +106,4 @@ def test_staff_cannot_open_wizard(client, member_factory):
     staff = member_factory(company, "Staff")
     client.force_login(staff)
     resp = client.get(_url("business"))
-    assert resp.status_code == 302 and resp.url == reverse("webapp:dashboard")
+    assert resp.status_code == 403  # role has no access to business setup

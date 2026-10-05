@@ -1,513 +1,513 @@
 #
 msgid ""
 msgstr ""
-"Language: ur\n"
+"Language: zh_Hans\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: templates/404.html
 msgid "Page not found"
-msgstr "صفحہ نہیں ملا"
+msgstr "页面未找到"
 
 #: templates/404.html
 msgid "This page doesn't exist or you don't have access to it."
-msgstr "یہ صفحہ موجود نہیں ہے یا آپ کو اس تک رسائی نہیں ہے۔"
+msgstr "此页面不存在或您无权访问。"
 
 #: templates/404.html
 msgid "Go to Overview"
-msgstr "جائزہ پر جائیں"
+msgstr "前往概览"
 
 #: templates/base.html
 msgid "Dashboard"
-msgstr "ڈیش بورڈ"
+msgstr "仪表板"
 
 #: templates/base.html
 msgid "Switch business"
-msgstr "کاروبار تبدیل کریں"
+msgstr "切换企业"
 
 #: templates/base.html
 msgid "Overview"
-msgstr "جائزہ"
+msgstr "概览"
 
 #: templates/base.html
 msgid "Sales"
-msgstr "فروخت"
+msgstr "销售"
 
 #: templates/base.html
 msgid "Leads & pipeline"
-msgstr "لیڈز اور پائپ لائن"
+msgstr "线索与销售漏斗"
 
 #: templates/base.html
 msgid "Price lists & offers"
-msgstr "قیمت فہرستیں اور آفرز"
+msgstr "价目表与优惠"
 
 #: templates/base.html
 msgid "Invoices"
-msgstr "انوائسز"
+msgstr "发票"
 
 #: templates/base.html
 msgid "Quotations"
-msgstr "کوٹیشنز"
+msgstr "报价单"
 
 #: templates/base.html
 msgid "Sales orders & delivery"
-msgstr "سیلز آرڈرز اور ڈیلیوری"
+msgstr "销售订单与发货"
 
 #: templates/base.html
 msgid "POS"
-msgstr "POS"
+msgstr "收银（POS）"
 
 #: templates/base.html
 msgid "Returns & Refunds"
-msgstr "واپسی اور رقم کی واپسی"
+msgstr "退货与退款"
 
 #: templates/base.html
 msgid "Coupons"
-msgstr "کوپن"
+msgstr "优惠券"
 
 #: templates/base.html
 msgid "Loyalty"
-msgstr "لائلٹی"
+msgstr "会员积分"
 
 #: templates/base.html
 msgid "Purchases"
-msgstr "خریداری"
+msgstr "采购"
 
 #: templates/base.html
 msgid "Purchase orders"
-msgstr "خریداری آرڈرز"
+msgstr "采购订单"
 
 #: templates/base.html
 msgid "Suppliers"
-msgstr "سپلائرز"
+msgstr "供应商"
 
 #: templates/base.html
 msgid "Purchase Reports"
-msgstr "خریداری رپورٹس"
+msgstr "采购报表"
 
 #: templates/base.html
 msgid "Finance"
-msgstr "مالیات"
+msgstr "财务"
 
 #: templates/base.html
 msgid "Bank & cash"
-msgstr "بینک اور نقد"
+msgstr "银行与现金"
 
 #: templates/base.html
 msgid "Daily report"
-msgstr "روزانہ رپورٹ"
+msgstr "每日报告"
 
 #: templates/base.html
 msgid "Accounts & reports"
-msgstr "اکاؤنٹس اور رپورٹس"
+msgstr "账目与报表"
 
 #: templates/base.html
 msgid "Finance overview"
-msgstr "مالیاتی جائزہ"
+msgstr "财务概览"
 
 #: templates/base.html
 msgid "Cheques (PDC)"
-msgstr "چیک (PDC)"
+msgstr "支票（PDC）"
 
 #: templates/base.html
 msgid "Recurring invoices"
-msgstr "بار بار کی انوائسز"
+msgstr "定期发票"
 
 #: templates/base.html
 msgid "Fixed assets"
-msgstr "مستقل اثاثے"
+msgstr "固定资产"
 
 #: templates/base.html
 msgid "Expenses"
-msgstr "اخراجات"
+msgstr "费用"
 
 #: templates/base.html
 msgid "Budgets"
-msgstr "بجٹ"
+msgstr "预算"
 
 #: templates/base.html
 msgid "Online payments"
-msgstr "آن لائن ادائیگیاں"
+msgstr "在线支付"
 
 #: templates/base.html
 msgid "Billing"
-msgstr "بلنگ"
+msgstr "账单"
 
 #: templates/base.html
 msgid "People"
-msgstr "لوگ"
+msgstr "人员"
 
 #: templates/base.html
 msgid "Customers"
-msgstr "گاہک"
+msgstr "客户"
 
 #: templates/base.html
 msgid "Money to collect"
-msgstr "وصول ہونے والی رقم"
+msgstr "待收款项"
 
 #: templates/base.html
 msgid "Team"
-msgstr "ٹیم"
+msgstr "团队"
 
 #: templates/base.html
 msgid "Staff & HR"
-msgstr "عملہ اور HR"
+msgstr "员工与人事"
 
 #: templates/base.html
 msgid "Attendance"
-msgstr "حاضری"
+msgstr "考勤"
 
 #: templates/base.html
 msgid "Payroll & advances"
-msgstr "تنخواہ اور ایڈوانس"
+msgstr "工资与预支"
 
 #: templates/base.html
 msgid "Business"
-msgstr "کاروبار"
+msgstr "业务"
 
 #: templates/base.html
 msgid "Stock & inventory"
-msgstr "اسٹاک اور انوینٹری"
+msgstr "库存"
 
 #: templates/base.html
 msgid "Analytics"
-msgstr "تجزیات"
+msgstr "数据分析"
 
 #: templates/base.html
 msgid "Branches"
-msgstr "شاخیں"
+msgstr "分店"
 
 #: templates/base.html
 msgid "Settings"
-msgstr "ترتیبات"
+msgstr "设置"
 
 #: templates/base.html
 msgid "Reminders & alerts"
-msgstr "یاد دہانیاں اور الرٹس"
+msgstr "提醒与警报"
 
 #: templates/base.html
 msgid "Tax & currency"
-msgstr "ٹیکس اور کرنسی"
+msgstr "税务与货币"
 
 #: templates/base.html
 msgid "Activity log"
-msgstr "سرگرمی لاگ"
+msgstr "操作日志"
 
 #: templates/base.html
 msgid "Notifications"
-msgstr "اطلاعات"
+msgstr "通知"
 
 #: templates/base.html
 msgid "Devices & Printers"
-msgstr "آلات اور پرنٹرز"
+msgstr "设备与打印机"
 
 #: templates/base.html
 msgid "Security & 2FA"
-msgstr "سیکیورٹی اور 2FA"
+msgstr "安全与双重验证"
 
 #: templates/base.html
 msgid "Backups"
-msgstr "بیک اپ"
+msgstr "备份"
 
 #: templates/base.html
 msgid "API docs"
-msgstr "API دستاویزات"
+msgstr "API 文档"
 
 #: templates/base.html
 msgid "⚙ Platform Admin"
-msgstr "⚙ پلیٹ فارم ایڈمن"
+msgstr "⚙ 平台管理"
 
 #: templates/base.html
 msgid "Gym"
-msgstr "جم"
+msgstr "健身房"
 
 #: templates/base.html
 msgid "Members"
-msgstr "ممبران"
+msgstr "会员"
 
 #: templates/base.html
 msgid "Membership Plans"
-msgstr "ممبرشپ پلانز"
+msgstr "会员套餐"
 
 #: templates/base.html
 msgid "Reports"
-msgstr "رپورٹس"
+msgstr "报表"
 
 #: templates/base.html
 msgid "Spa"
-msgstr "سپا"
+msgstr "水疗"
 
 #: templates/base.html
 msgid "Appointments"
-msgstr "اپائنٹمنٹس"
+msgstr "预约"
 
 #: templates/base.html
 msgid "Services"
-msgstr "خدمات"
+msgstr "服务"
 
 #: templates/base.html
 msgid "Mobile Shop"
-msgstr "موبائل شاپ"
+msgstr "手机店"
 
 #: templates/base.html
 msgid "Products & Accessories"
-msgstr "مصنوعات اور لوازمات"
+msgstr "产品与配件"
 
 #: templates/base.html
 msgid "IMEI Stock"
-msgstr "IMEI اسٹاک"
+msgstr "IMEI 库存"
 
 #: templates/base.html
 msgid "IMEI Purchase"
-msgstr "IMEI خریداری"
+msgstr "IMEI 采购"
 
 #: templates/base.html
 msgid "Brands"
-msgstr "برانڈز"
+msgstr "品牌"
 
 #: templates/base.html
 msgid "Categories"
-msgstr "زمرے"
+msgstr "类别"
 
 #: templates/base.html
 msgid "Repair Job Cards"
-msgstr "مرمت جاب کارڈز"
+msgstr "维修工单"
 
 #: templates/base.html
 msgid "Warranty Claims"
-msgstr "وارنٹی دعوے"
+msgstr "保修索赔"
 
 #: templates/base.html
 msgid "Trade-in / Exchange"
-msgstr "ٹریڈ اِن / تبادلہ"
+msgstr "以旧换新"
 
 #: templates/base.html
 msgid "Dues & Instalments"
-msgstr "واجبات اور اقساط"
+msgstr "欠款与分期"
 
 #: templates/base.html
 msgid "Mobile Reports"
-msgstr "موبائل رپورٹس"
+msgstr "手机报表"
 
 #: templates/base.html
 msgid "Textile"
-msgstr "ٹیکسٹائل"
+msgstr "纺织"
 
 #: templates/base.html
 msgid "Orders"
-msgstr "آرڈرز"
+msgstr "订单"
 
 #: templates/base.html
 msgid "Fabrics"
-msgstr "کپڑے"
+msgstr "面料"
 
 #: templates/base.html
 msgid "Products (other items)"
-msgstr "مصنوعات (دیگر اشیاء)"
+msgstr "产品（其他物品）"
 
 #: templates/base.html
 msgid "Units"
-msgstr "یونٹس"
+msgstr "单位"
 
 #: templates/base.html
 msgid "Print Barcodes"
-msgstr "بارکوڈ پرنٹ کریں"
+msgstr "打印条形码"
 
 #: templates/base.html
 msgid "Measurements"
-msgstr "ناپ"
+msgstr "尺寸"
 
 #: templates/base.html
 msgid "Vehicle Wash"
-msgstr "گاڑی دھلائی"
+msgstr "洗车"
 
 #: templates/base.html
 msgid "Vehicles"
-msgstr "گاڑیاں"
+msgstr "车辆"
 
 #: templates/base.html
 msgid "Packages"
-msgstr "پیکجز"
+msgstr "套餐"
 
 #: templates/base.html
 msgid "Sports Shop"
-msgstr "اسپورٹس شاپ"
+msgstr "体育用品店"
 
 #: templates/base.html
 msgid "Products"
-msgstr "مصنوعات"
+msgstr "产品"
 
 #: templates/base.html
 msgid "Cycle Shop"
-msgstr "سائیکل شاپ"
+msgstr "自行车店"
 
 #: templates/base.html
 msgid "Cycle Units"
-msgstr "سائیکل یونٹس"
+msgstr "自行车库存"
 
 #: templates/base.html
 msgid "Service Tickets"
-msgstr "سروس ٹکٹ"
+msgstr "服务单"
 
 #: templates/base.html
 msgid "Saloon"
-msgstr "سیلون"
+msgstr "理发店"
 
 #: templates/base.html
 msgid "Beauty Parlour"
-msgstr "بیوٹی پارلر"
+msgstr "美容院"
 
 #: templates/base.html
 msgid "Medical Shop"
-msgstr "میڈیکل شاپ"
+msgstr "药店"
 
 #: templates/base.html
 msgid "Batches"
-msgstr "بیچز"
+msgstr "批次"
 
 #: templates/base.html
 msgid "Dispense History"
-msgstr "دوا کی فراہمی کی تاریخ"
+msgstr "配药记录"
 
 #: templates/base.html
 msgid "Protein Shop"
-msgstr "پروٹین شاپ"
+msgstr "蛋白粉店"
 
 #: templates/base.html
 msgid "Sale History"
-msgstr "فروخت کی تاریخ"
+msgstr "销售记录"
 
 #: templates/base.html
 msgid "Construction"
-msgstr "تعمیرات"
+msgstr "建筑"
 
 #: templates/base.html
 msgid "Projects"
-msgstr "پروجیکٹس"
+msgstr "项目"
 
 #: templates/base.html
 msgid "Contractors"
-msgstr "ٹھیکیدار"
+msgstr "承包商"
 
 #: templates/base.html
 msgid "Restaurant Dashboard"
-msgstr "ریسٹورنٹ ڈیش بورڈ"
+msgstr "餐厅仪表板"
 
 #: templates/base.html
 msgid "New Order"
-msgstr "نیا آرڈر"
+msgstr "新订单"
 
 #: templates/base.html
 msgid "Quick sale"
-msgstr "فوری فروخت"
+msgstr "快速销售"
 
 #: templates/base.html
 msgid "Orders (bills)"
-msgstr "آرڈرز (بل)"
+msgstr "订单（账单）"
 
 #: templates/base.html
 msgid "Online orders"
-msgstr "آن لائن آرڈرز"
+msgstr "在线订单"
 
 #: templates/base.html
 msgid "Kitchen / KOT"
-msgstr "کچن / KOT"
+msgstr "厨房 / KOT"
 
 #: templates/base.html
 msgid "Menu & Ingredients"
-msgstr "مینو اور اجزاء"
+msgstr "菜单与原料"
 
 #: templates/base.html
 msgid "Packages / Sessions"
-msgstr "پیکجز / سیشنز"
+msgstr "套餐 / 课时"
 
 #: templates/base.html
 msgid "Service Reports"
-msgstr "سروس رپورٹس"
+msgstr "服务报表"
 
 #: templates/base.html
 msgid "Log out"
-msgstr "لاگ آؤٹ"
+msgstr "退出登录"
 
 #: templates/base.html
 msgid "Open menu"
-msgstr "مینو کھولیں"
+msgstr "打开菜单"
 
 #: templates/base.html
 msgid "Install as an app"
-msgstr "ایپ کے طور پر انسٹال کریں"
+msgstr "安装为应用"
 
 #: templates/base.html
 msgid "Install app"
-msgstr "ایپ انسٹال کریں"
+msgstr "安装应用"
 
 #: templates/base.html
 msgid "Account"
-msgstr "اکاؤنٹ"
+msgstr "账户"
 
 #: templates/base.html
 msgid "Restaurant navigation"
-msgstr "ریسٹورنٹ نیویگیشن"
+msgstr "餐厅导航"
 
 #: templates/base.html
 msgid "← Back"
-msgstr "← واپس"
+msgstr "← 返回"
 
 #: templates/base.html
 msgid "Restaurant shortcuts"
-msgstr "ریسٹورنٹ شارٹ کٹس"
+msgstr "餐厅快捷方式"
 
 #: templates/base.html
 msgid "⌂ Overview"
-msgstr "⌂ جائزہ"
+msgstr "⌂ 概览"
 
 #: templates/base.html
 msgid "＋ New Order"
-msgstr "＋ نیا آرڈر"
+msgstr "＋ 新订单"
 
 #: templates/base.html
 msgid "▣ Kitchen Display"
-msgstr "▣ کچن ڈسپلے"
+msgstr "▣ 厨房显示屏"
 
 #: templates/base.html
 msgid "Offline POS"
-msgstr "آف لائن POS"
+msgstr "离线收银"
 
 #: templates/base.html
 msgid "▤ Reservations"
-msgstr "▤ ریزرویشنز"
+msgstr "▤ 预订"
 
 #: templates/base.html
 msgid "▥ Reports"
-msgstr "▥ رپورٹس"
+msgstr "▥ 报表"
 
 #: templates/base.html
 msgid "♧ Food Waste"
-msgstr "♧ خوراک کا ضیاع"
+msgstr "♧ 食物浪费"
 
 #: templates/base.html
 msgid "⚙ Restaurant Setup"
-msgstr "⚙ ریسٹورنٹ سیٹ اپ"
+msgstr "⚙ 餐厅设置"
 
 #: templates/base.html
 msgid "＋ Add Area"
-msgstr "＋ ایریا شامل کریں"
+msgstr "＋ 添加区域"
 
 #: templates/base.html
 msgid "＋ Add Table"
-msgstr "＋ میز شامل کریں"
+msgstr "＋ 添加餐桌"
 
 #: templates/base.html
 msgid "◷ Shift Control"
-msgstr "◷ شفٹ کنٹرول"
+msgstr "◷ 班次管理"
 
 #: templates/base.html
 msgid "Install BookPilot"
-msgstr "BookPilot انسٹال کریں"
+msgstr "安装 BookPilot"
 
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
-msgstr "شیئر بٹن دبائیں، پھر “Add to Home Screen”۔"
+msgstr "点击分享按钮，然后选择“添加到主屏幕”。"
 
 #: templates/webapp/_excel_button.html
 msgid "Excel"
@@ -515,987 +515,972 @@ msgstr "Excel"
 
 #: templates/webapp/_industry_nav.html
 msgid "Bookings"
-msgstr "بکنگز"
+msgstr "预订"
 
 #: templates/webapp/_industry_nav.html
 msgid "Booking calendar"
-msgstr "بکنگ کیلنڈر"
+msgstr "预订日历"
 
 #: templates/webapp/_industry_nav.html
 msgid "New booking"
-msgstr "نئی بکنگ"
+msgstr "新预订"
 
 #: templates/webapp/_industry_nav.html
 msgid "All bookings"
-msgstr "تمام بکنگز"
+msgstr "全部预订"
 
 #: templates/webapp/_industry_nav.html
 msgid "Enrol"
-msgstr "داخلہ"
+msgstr "报名"
 
 #: templates/webapp/_industry_nav.html
 msgid "Monthly fees"
-msgstr "ماہانہ فیس"
+msgstr "月费"
 
 #: templates/webapp/_industry_nav.html
 msgid "Fees due"
-msgstr "واجب الادا فیس"
+msgstr "应缴费用"
 
 #: templates/webapp/_industry_nav.html
 msgid "Properties"
-msgstr "جائیدادیں"
+msgstr "物业"
 
 #: templates/webapp/_industry_nav.html
 msgid "Properties & units"
-msgstr "جائیدادیں اور یونٹس"
+msgstr "物业与单元"
 
 #: templates/webapp/_industry_nav.html
 msgid "Leases"
-msgstr "لیز"
+msgstr "租约"
 
 #: templates/webapp/_industry_nav.html
 msgid "Monthly rent"
-msgstr "ماہانہ کرایہ"
+msgstr "月租"
 
 #: templates/webapp/_industry_nav.html
 msgid "Recruitment"
-msgstr "بھرتی"
+msgstr "招聘"
 
 #: templates/webapp/_industry_nav.html
 msgid "Clients"
-msgstr "کلائنٹس"
+msgstr "客户公司"
 
 #: templates/webapp/_industry_nav.html
 msgid "Job orders"
-msgstr "جاب آرڈرز"
+msgstr "招聘需求"
 
 #: templates/webapp/_industry_nav.html
 msgid "Candidates"
-msgstr "امیدوار"
+msgstr "候选人"
 
 #: templates/webapp/_industry_nav.html
 msgid "Careers website"
-msgstr "کیریئر ویب سائٹ"
+msgstr "招聘网站"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
-msgstr "سونا"
+msgstr "黄金"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold rates & prices"
-msgstr "سونے کے نرخ اور قیمتیں"
+msgstr "金价与价格"
 
 #: templates/webapp/_industry_nav.html
 msgid "Sell by weight"
-msgstr "وزن سے فروخت"
+msgstr "按重量销售"
 
 #: templates/webapp/_industry_nav.html
 msgid "Weighing scale"
-msgstr "وزن کا کانٹا"
+msgstr "电子秤"
 
 #: templates/webapp/_industry_nav.html
 msgid "Online booking"
-msgstr "آن لائن بکنگ"
+msgstr "在线预订"
 
 #: templates/webapp/_industry_nav.html
 msgid "Booking requests"
-msgstr "بکنگ کی درخواستیں"
+msgstr "预订请求"
 
 #: templates/webapp/_industry_nav.html
 msgid "Website form & WordPress"
-msgstr "ویب سائٹ فارم اور WordPress"
+msgstr "网站表单与 WordPress"
 
 #: templates/webapp/_industry_nav.html
 msgid "Booking settings"
-msgstr "بکنگ کی ترتیبات"
+msgstr "预订设置"
 
 #: templates/webapp/_industry_nav.html
 msgid "Mess"
-msgstr "میس"
+msgstr "包餐食堂"
 
 #: templates/webapp/_industry_nav.html
 msgid "Today's meals"
-msgstr "آج کا کھانا"
+msgstr "今日餐食"
 
 #: templates/webapp/_industry_nav.html
 msgid "New member"
-msgstr "نیا ممبر"
+msgstr "新会员"
 
 #: templates/webapp/_industry_nav.html
 msgid "Monthly bills"
-msgstr "ماہانہ بل"
+msgstr "月度账单"
 
 #: templates/webapp/_industry_nav.html
 msgid "Mess dues"
-msgstr "میس واجبات"
+msgstr "包餐欠款"
 
 #: templates/webapp/_industry_nav.html
 msgid "Mess plans"
-msgstr "میس پلانز"
+msgstr "包餐套餐"
 
 #: templates/webapp/_industry_nav.html
 msgid "My website"
-msgstr "میری ویب سائٹ"
+msgstr "我的网站"
 
 #: templates/webapp/_language_switcher.html
 msgid "Language"
-msgstr "زبان"
+msgstr "语言"
 
 #: templates/webapp/_theme_toggle.html
 msgid "Dark / light mode"
-msgstr "ڈارک / لائٹ موڈ"
+msgstr "深色 / 浅色模式"
 
 #: templates/webapp/accounts/_asof.html
 msgid "As of"
-msgstr "بتاریخ"
+msgstr "截至"
 
 #: templates/webapp/accounts/_asof.html
 msgid "Print"
-msgstr "پرنٹ"
+msgstr "打印"
 
 #: templates/webapp/accounts/_period.html
 msgid "From"
-msgstr "سے"
+msgstr "从"
 
 #: templates/webapp/accounts/_period.html
 msgid "To"
-msgstr "تک"
+msgstr "至"
 
 #: templates/webapp/accounts/_period.html
 msgid "Apply"
-msgstr "لاگو کریں"
+msgstr "应用"
 
 #: templates/webapp/accounts/_tabs.html
 msgid "Accounts"
-msgstr "اکاؤنٹس"
+msgstr "会计"
 
 #: templates/webapp/accounts/_tabs.html
 msgid "Profit & Loss"
-msgstr "نفع و نقصان"
+msgstr "损益表"
 
 #: templates/webapp/accounts/_tabs.html
 msgid "Balance Sheet"
-msgstr "بیلنس شیٹ"
+msgstr "资产负债表"
 
 #: templates/webapp/accounts/_tabs.html
 msgid "Trial Balance"
-msgstr "ٹرائل بیلنس"
+msgstr "试算平衡表"
 
 #: templates/webapp/accounts/_tabs.html
 msgid "Cash Flow"
-msgstr "نقدی کا بہاؤ"
+msgstr "现金流量"
 
 #: templates/webapp/accounts/_tabs.html
 msgid "VAT / Tax"
-msgstr "VAT / ٹیکس"
+msgstr "增值税 / 税务"
 
 #: templates/webapp/accounts/_tabs.html
 msgid "Chart of accounts"
-msgstr "اکاؤنٹس کی فہرست"
+msgstr "会计科目表"
 
 #: templates/webapp/accounts/_tabs.html
 msgid "Journal"
-msgstr "جرنل"
+msgstr "日记账"
 
 #: templates/webapp/accounts/balance_sheet.html
 msgid "Assets and liabilities + equity differ by"
-msgstr "اثاثوں اور واجبات + سرمائے میں فرق"
+msgstr "资产与负债 + 权益相差"
 
 #: templates/webapp/accounts/balance_sheet.html
 msgid "Check opening balances or manual entries."
-msgstr "ابتدائی بیلنس یا دستی اندراجات چیک کریں۔"
+msgstr "请检查期初余额或手工分录。"
 
 #: templates/webapp/accounts/balance_sheet.html
 msgid "Assets"
-msgstr "اثاثے"
+msgstr "资产"
 
 #: templates/webapp/accounts/balance_sheet.html
 msgid "Total assets"
-msgstr "کل اثاثے"
+msgstr "资产合计"
 
 #: templates/webapp/accounts/balance_sheet.html
 msgid "Liabilities & equity"
-msgstr "واجبات اور سرمایہ"
+msgstr "负债与权益"
 
 #: templates/webapp/accounts/balance_sheet.html
 msgid "Liabilities"
-msgstr "واجبات"
+msgstr "负债"
 
 #: templates/webapp/accounts/balance_sheet.html
 msgid "Total liabilities"
-msgstr "کل واجبات"
+msgstr "负债合计"
 
 #: templates/webapp/accounts/balance_sheet.html
 msgid "Equity"
-msgstr "سرمایہ"
+msgstr "权益"
 
 #: templates/webapp/accounts/balance_sheet.html
 msgid "Profit for the current year"
-msgstr "رواں سال کا منافع"
+msgstr "本年利润"
 
 #: templates/webapp/accounts/balance_sheet.html
 msgid "Total liabilities & equity"
-msgstr "کل واجبات اور سرمایہ"
+msgstr "负债与权益合计"
 
 #: templates/webapp/accounts/balance_sheet.html
 msgid "Balanced"
-msgstr "متوازن"
+msgstr "已平衡"
 
 #: templates/webapp/accounts/cash_flow.html
 msgid "Opening cash & bank"
-msgstr "ابتدائی نقد اور بینک"
+msgstr "期初现金与银行"
 
 #: templates/webapp/accounts/cash_flow.html
 msgid "Money in"
-msgstr "آمدنی رقم"
+msgstr "收入资金"
 
 #: templates/webapp/accounts/cash_flow.html
 msgid "Money out"
-msgstr "خرچ رقم"
+msgstr "支出资金"
 
 #: templates/webapp/accounts/cash_flow.html
 msgid "Closing cash & bank"
-msgstr "اختتامی نقد اور بینک"
+msgstr "期末现金与银行"
 
 #: templates/webapp/accounts/cash_flow.html
 msgid "Net"
-msgstr "خالص"
+msgstr "净额"
 
 #: templates/webapp/accounts/cash_flow.html
 msgid "No cash or bank movement in this period."
-msgstr "اس مدت میں نقد یا بینک میں کوئی لین دین نہیں۔"
+msgstr "此期间没有现金或银行变动。"
 
 #: templates/webapp/accounts/cash_flow.html
 msgid "Net change"
-msgstr "خالص تبدیلی"
+msgstr "净变动"
 
 #: templates/webapp/accounts/chart.html
 msgid "System account"
-msgstr "سسٹم اکاؤنٹ"
+msgstr "系统科目"
 
 #: templates/webapp/accounts/chart.html
 msgid "Switched off"
-msgstr "بند"
+msgstr "已停用"
 
 #: templates/webapp/accounts/chart.html
 msgid "Switch off"
-msgstr "بند کریں"
+msgstr "停用"
 
 #: templates/webapp/accounts/chart.html
 msgid "Switch on"
-msgstr "آن کریں"
+msgstr "启用"
 
 #: templates/webapp/accounts/chart.html
 msgid "New account"
-msgstr "نیا اکاؤنٹ"
+msgstr "新科目"
 
 #: templates/webapp/accounts/chart.html
 msgid "Code"
-msgstr "کوڈ"
+msgstr "编码"
 
 #: templates/webapp/accounts/chart.html
 msgid "Name"
-msgstr "نام"
+msgstr "名称"
 
 #: templates/webapp/accounts/chart.html
 msgid "e.g. Rent expense"
-msgstr "مثلاً کرایہ خرچ"
+msgstr "例如：租金费用"
 
 #: templates/webapp/accounts/chart.html
 msgid "Type"
-msgstr "قسم"
+msgstr "类型"
 
 #: templates/webapp/accounts/chart.html
 msgid "Add account"
-msgstr "اکاؤنٹ شامل کریں"
+msgstr "添加科目"
 
 #: templates/webapp/accounts/chart.html
 msgid ""
 "Codes: 1xxx assets, 2xxx liabilities, 3xxx equity, 4xxx income, 5xxx "
 "expenses."
-msgstr "کوڈ: 1xxx اثاثے، 2xxx واجبات، 3xxx سرمایہ، 4xxx آمدنی، 5xxx اخراجات۔"
+msgstr "编码：1xxx 资产，2xxx 负债，3xxx 权益，4xxx 收入，5xxx 费用。"
 
 #: templates/webapp/accounts/home.html
 msgid "Profit this month"
-msgstr "اس مہینے کا منافع"
+msgstr "本月利润"
 
 #: templates/webapp/accounts/home.html
 msgid "Profit this year"
-msgstr "اس سال کا منافع"
+msgstr "本年利润"
 
 #: templates/webapp/accounts/home.html
 msgid "Cash in hand"
-msgstr "ہاتھ میں نقد"
+msgstr "库存现金"
 
 #: templates/webapp/accounts/home.html
 msgid "Bank"
-msgstr "بینک"
+msgstr "银行"
 
 #: templates/webapp/accounts/home.html
 msgid "Customers owe you"
-msgstr "گاہکوں کے ذمے"
+msgstr "客户欠款"
 
 #: templates/webapp/accounts/home.html
 msgid "You owe suppliers"
-msgstr "سپلائرز کو واجب الادا"
+msgstr "应付供应商"
 
 #: templates/webapp/accounts/home.html
 msgid "Tax payable"
-msgstr "قابل ادا ٹیکس"
+msgstr "应交税费"
 
 #: templates/webapp/accounts/home.html
 msgid "Last 6 months"
-msgstr "پچھلے 6 مہینے"
+msgstr "最近 6 个月"
 
 #: templates/webapp/accounts/home.html
 msgid "Income"
-msgstr "آمدنی"
+msgstr "收入"
 
 #: templates/webapp/accounts/home.html
 msgid "Income, costs and profit for any period"
-msgstr "کسی بھی مدت کی آمدنی، لاگت اور منافع"
+msgstr "任意期间的收入、成本和利润"
 
 #: templates/webapp/accounts/home.html
 msgid "What the business owns and owes"
-msgstr "کاروبار کی ملکیت اور واجبات"
+msgstr "企业拥有的与欠下的"
 
 #: templates/webapp/accounts/home.html
 msgid "Every account's debit and credit balance"
-msgstr "ہر اکاؤنٹ کا ڈیبٹ اور کریڈٹ بیلنس"
+msgstr "每个科目的借方和贷方余额"
 
 #: templates/webapp/accounts/home.html
 msgid "Money in and out of cash and bank"
-msgstr "نقد اور بینک میں آنے جانے والی رقم"
+msgstr "现金和银行的收支"
 
 #: templates/webapp/accounts/home.html
 msgid "Tax collected and paid"
-msgstr "وصول اور ادا شدہ ٹیکس"
+msgstr "已收和已付税款"
 
 #: templates/webapp/accounts/home.html
 msgid "Latest entries"
-msgstr "تازہ اندراجات"
+msgstr "最新分录"
 
 #: templates/webapp/accounts/home.html
 msgid "Journal entry"
-msgstr "جرنل اندراج"
+msgstr "日记账分录"
 
 #: templates/webapp/accounts/home.html
 msgid ""
 "No entries yet. Sales, purchases, expenses and salaries are recorded here "
 "automatically."
-msgstr ""
-"ابھی کوئی اندراج نہیں۔ فروخت، خریداری، اخراجات اور تنخواہیں یہاں خود بخود "
-"درج ہوتی ہیں۔"
+msgstr "暂无分录。销售、采购、费用和工资会自动记录在这里。"
 
 #: templates/webapp/accounts/journal_detail.html
 msgid "by"
-msgstr "بذریعہ"
+msgstr "由"
 
 #: templates/webapp/accounts/journal_detail.html
 msgid "Cancelled"
-msgstr "منسوخ"
+msgstr "已取消"
 
 #: templates/webapp/accounts/journal_detail.html
 msgid "Note"
-msgstr "نوٹ"
+msgstr "备注"
 
 #: templates/webapp/accounts/journal_detail.html
 msgid "Debit"
-msgstr "ڈیبٹ"
+msgstr "借方"
 
 #: templates/webapp/accounts/journal_detail.html
 msgid "Credit"
-msgstr "کریڈٹ"
+msgstr "贷方"
 
 #: templates/webapp/accounts/journal_detail.html
 msgid "Total"
-msgstr "کل"
+msgstr "合计"
 
 #: templates/webapp/accounts/journal_detail.html
 msgid "Cancel this journal entry? It will be removed from all reports."
-msgstr "یہ جرنل اندراج منسوخ کریں؟ یہ تمام رپورٹس سے ہٹ جائے گا۔"
+msgstr "取消此分录？它将从所有报表中移除。"
 
 #: templates/webapp/accounts/journal_detail.html
 msgid "Cancel entry"
-msgstr "اندراج منسوخ کریں"
+msgstr "取消分录"
 
 #: templates/webapp/accounts/journal_form.html
 msgid "New journal entry"
-msgstr "نیا جرنل اندراج"
+msgstr "新建分录"
 
 #: templates/webapp/accounts/journal_form.html
 msgid "Date"
-msgstr "تاریخ"
+msgstr "日期"
 
 #: templates/webapp/accounts/journal_form.html
 msgid "Reference"
-msgstr "حوالہ"
+msgstr "参考号"
 
 #: templates/webapp/accounts/journal_form.html
 msgid "e.g. Opening balance"
-msgstr "مثلاً ابتدائی بیلنس"
+msgstr "例如：期初余额"
 
 #: templates/webapp/accounts/journal_form.html
 msgid "Add line"
-msgstr "لائن شامل کریں"
+msgstr "添加行"
 
 #: templates/webapp/accounts/journal_form.html
 msgid "Save entry"
-msgstr "اندراج محفوظ کریں"
+msgstr "保存分录"
 
 #: templates/webapp/accounts/journal_form.html
 msgid "Difference"
-msgstr "فرق"
+msgstr "差额"
 
 #: templates/webapp/accounts/journal_list.html
 msgid "Journal entries"
-msgstr "جرنل اندراجات"
+msgstr "日记账分录"
 
 #: templates/webapp/accounts/journal_list.html
 msgid "Reference or note"
-msgstr "حوالہ یا نوٹ"
+msgstr "参考号或备注"
 
 #: templates/webapp/accounts/journal_list.html
 msgid "All types"
-msgstr "تمام اقسام"
+msgstr "全部类型"
 
 #: templates/webapp/accounts/journal_list.html
 msgid "Search"
-msgstr "تلاش"
+msgstr "搜索"
 
 #: templates/webapp/accounts/journal_list.html
 msgid "No entries in this period."
-msgstr "اس مدت میں کوئی اندراج نہیں۔"
+msgstr "此期间没有分录。"
 
 #: templates/webapp/accounts/ledger.html
 msgid "Ledger"
-msgstr "کھاتہ"
+msgstr "分类账"
 
 #: templates/webapp/accounts/ledger.html
 msgid "Opening balance"
-msgstr "ابتدائی بیلنس"
+msgstr "期初余额"
 
 #: templates/webapp/accounts/ledger.html
 msgid "Closing balance"
-msgstr "اختتامی بیلنس"
+msgstr "期末余额"
 
 #: templates/webapp/accounts/ledger.html
 msgid "Details"
-msgstr "تفصیلات"
+msgstr "详情"
 
 #: templates/webapp/accounts/ledger.html
 msgid "Balance"
-msgstr "بیلنس"
+msgstr "余额"
 
 #: templates/webapp/accounts/profit_loss.html
 msgid "Gross profit"
-msgstr "مجموعی منافع"
+msgstr "毛利"
 
 #: templates/webapp/accounts/profit_loss.html
 msgid "Net profit"
-msgstr "خالص منافع"
+msgstr "净利润"
 
 #: templates/webapp/accounts/profit_loss.html
 msgid "Total income"
-msgstr "کل آمدنی"
+msgstr "收入合计"
 
 #: templates/webapp/accounts/profit_loss.html
 msgid "Cost of goods sold"
-msgstr "فروخت شدہ مال کی لاگت"
+msgstr "销售成本"
 
 #: templates/webapp/accounts/profit_loss.html
 msgid "Total expenses"
-msgstr "کل اخراجات"
+msgstr "费用合计"
 
 #: templates/webapp/accounts/profit_loss.html
 msgid "Net loss"
-msgstr "خالص نقصان"
+msgstr "净亏损"
 
 #: templates/webapp/accounts/trial_balance.html
 msgid "No transactions yet."
-msgstr "ابھی کوئی لین دین نہیں۔"
+msgstr "暂无交易。"
 
 #: templates/webapp/accounts/trial_balance.html
 msgid "Not balanced"
-msgstr "متوازن نہیں"
+msgstr "未平衡"
 
 #: templates/webapp/accounts/vat.html
 msgid "VAT / Tax report"
-msgstr "VAT / ٹیکس رپورٹ"
+msgstr "增值税 / 税务报表"
 
 #: templates/webapp/accounts/vat.html
 msgid "Tax collected on sales"
-msgstr "فروخت پر وصول ٹیکس"
+msgstr "销售收取的税款"
 
 #: templates/webapp/accounts/vat.html
 msgid "Tax paid on purchases"
-msgstr "خریداری پر ادا ٹیکس"
+msgstr "采购支付的税款"
 
 #: templates/webapp/accounts/vat.html
 msgid "Tax to reclaim"
-msgstr "واپس لینے والا ٹیکس"
+msgstr "可退税款"
 
 #: templates/webapp/accounts/vat.html
 msgid "Tax to pay"
-msgstr "ادا کرنے والا ٹیکس"
+msgstr "应缴税款"
 
 #: templates/webapp/accounts/vat.html
 msgid "Sales by tax code"
-msgstr "ٹیکس کوڈ کے لحاظ سے فروخت"
+msgstr "按税码统计的销售"
 
 #: templates/webapp/accounts/vat.html
 msgid "Taxable"
-msgstr "قابل ٹیکس"
+msgstr "应税"
 
 #: templates/webapp/accounts/vat.html
 msgid "Tax"
-msgstr "ٹیکس"
+msgstr "税额"
 
 #: templates/webapp/accounts/vat.html
 msgid "No tax codes used."
-msgstr "کوئی ٹیکس کوڈ استعمال نہیں ہوا۔"
+msgstr "未使用税码。"
 
 #: templates/webapp/accounts/vat.html
 msgid "Purchases by tax code"
-msgstr "ٹیکس کوڈ کے لحاظ سے خریداری"
+msgstr "按税码统计的采购"
 
 #: templates/webapp/admin_base.html
 msgid "Platform Admin"
-msgstr "پلیٹ فارم ایڈمن"
+msgstr "平台管理"
 
 #: templates/webapp/admin_base.html
 msgid "Multi-Business Accounting SaaS"
-msgstr "ملٹی بزنس اکاؤنٹنگ SaaS"
+msgstr "多企业会计 SaaS"
 
 #: templates/webapp/admin_base.html
 msgid "Clients & Provisioning"
-msgstr "کلائنٹس اور پروویژننگ"
+msgstr "客户与开通"
 
 #: templates/webapp/admin_base.html
 msgid "Commercial Control"
-msgstr "تجارتی کنٹرول"
+msgstr "商务控制"
 
 #: templates/webapp/admin_base.html
 msgid "Permission Catalogue"
-msgstr "اجازتوں کی فہرست"
+msgstr "权限目录"
 
 #: templates/webapp/admin_base.html
 msgid "Pricing Plans"
-msgstr "قیمت پلانز"
+msgstr "价格方案"
 
 #: templates/webapp/admin_base.html
 msgid "Pending Payments"
-msgstr "زیر التوا ادائیگیاں"
+msgstr "待处理付款"
 
 #: templates/webapp/admin_base.html
 msgid "Users & Access"
-msgstr "صارفین اور رسائی"
+msgstr "用户与访问"
 
 #: templates/webapp/admin_base.html
 msgid "Support Tickets"
-msgstr "سپورٹ ٹکٹس"
+msgstr "支持工单"
 
 #: templates/webapp/admin_base.html
 msgid "Audit Log"
-msgstr "آڈٹ لاگ"
+msgstr "审计日志"
 
 #: templates/webapp/admin_base.html
 msgid "Product Catalogue"
-msgstr "پروڈکٹ کیٹلاگ"
+msgstr "产品目录"
 
 #: templates/webapp/admin_base.html
 msgid "+ Add new client"
-msgstr "+ نیا کلائنٹ شامل کریں"
+msgstr "+ 添加新客户"
 
 #: templates/webapp/admin_base.html
 msgid "🔐 Security & 2FA"
-msgstr "🔐 سیکیورٹی اور 2FA"
+msgstr "🔐 安全与双重验证"
 
 #: templates/webapp/auth/login_2fa.html
 msgid "Verify sign-in"
-msgstr "سائن ان کی تصدیق کریں"
+msgstr "验证登录"
 
 #: templates/webapp/auth/login_2fa.html
 msgid "Two-step verification"
-msgstr "دو مرحلہ تصدیق"
+msgstr "两步验证"
 
 #: templates/webapp/auth/login_2fa.html
 msgid "Enter the 6-digit code from your authenticator app for"
-msgstr "اپنی تصدیقی ایپ سے 6 ہندسوں کا کوڈ درج کریں، برائے"
+msgstr "请输入验证器应用中的 6 位验证码，账户："
 
 #: templates/webapp/auth/login_2fa.html
 msgid "Verify & sign in"
-msgstr "تصدیق کر کے سائن ان کریں"
+msgstr "验证并登录"
 
 #: templates/webapp/auth/login_2fa.html
 msgid "Lost your phone? Type one of your recovery codes instead."
-msgstr "فون کھو گیا؟ اس کی بجائے اپنا کوئی ریکوری کوڈ ٹائپ کریں۔"
+msgstr "手机丢了？请输入一个恢复码。"
 
 #: templates/webapp/auth/login_2fa.html
 msgid "← Back to sign in"
-msgstr "← سائن ان پر واپس"
+msgstr "← 返回登录"
 
 #: templates/webapp/automation/budgets.html
 msgid "Expense budgets"
-msgstr "اخراجات کا بجٹ"
+msgstr "费用预算"
 
 #: templates/webapp/automation/budgets.html
 msgid "Total budget"
-msgstr "کل بجٹ"
+msgstr "总预算"
 
 #: templates/webapp/automation/budgets.html
 msgid "Spent"
-msgstr "خرچ ہوا"
+msgstr "已花费"
 
 #: templates/webapp/automation/budgets.html
 msgid "Over budget"
-msgstr "بجٹ سے زیادہ"
+msgstr "超出预算"
 
 #: templates/webapp/automation/budgets.html
 msgid "of"
-msgstr "میں سے"
+msgstr "共"
 
 #: templates/webapp/automation/budgets.html
 msgid "over by"
-msgstr "اتنا زیادہ"
+msgstr "超出"
 
 #: templates/webapp/automation/budgets.html
 msgid "left"
-msgstr "باقی"
+msgstr "剩余"
 
 #: templates/webapp/automation/budgets.html
 msgid "Monthly budget"
-msgstr "ماہانہ بجٹ"
+msgstr "月度预算"
 
 #: templates/webapp/automation/budgets.html
 msgid "Warn at %"
-msgstr "% پر انتباہ"
+msgstr "达到 % 时提醒"
 
 #: templates/webapp/automation/budgets.html
 msgid "Add expense categories first."
-msgstr "پہلے اخراجات کے زمرے شامل کریں۔"
+msgstr "请先添加费用类别。"
 
 #: templates/webapp/automation/budgets.html
 msgid ""
 "You get a notification (and email) when a category reaches the warning level"
 " and again when it goes over. Leave empty for no budget."
-msgstr ""
-"جب کوئی زمرہ انتباہی حد تک پہنچے گا اور پھر بجٹ سے بڑھے گا تو آپ کو اطلاع "
-"(اور ای میل) ملے گی۔ بجٹ نہ ہو تو خالی چھوڑ دیں۔"
+msgstr "当某类别达到提醒线及超出预算时，您会收到通知（和邮件）。不设预算请留空。"
 
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
-msgstr "بجٹ محفوظ کریں"
+msgstr "保存预算"
 
 #: templates/webapp/automation/daily_report.html
 msgid "bills"
-msgstr "بل"
+msgstr "张账单"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
-msgstr "وصول شدہ رقم"
+msgstr "已收款"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Profit today"
-msgstr "آج کا منافع"
+msgstr "今日利润"
 
 #: templates/webapp/automation/daily_report.html
 msgid "This month: sales / profit"
-msgstr "اس مہینے: فروخت / منافع"
+msgstr "本月：销售 / 利润"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Cash / bank"
-msgstr "نقد / بینک"
+msgstr "现金 / 银行"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Customers owe (overdue)"
-msgstr "گاہکوں کے ذمے (تاخیر شدہ)"
+msgstr "客户欠款（逾期）"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Supplier bills due in 7 days"
-msgstr "7 دن میں واجب سپلائر بل"
+msgstr "7 天内到期的供应商账单"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Low stock items"
-msgstr "کم اسٹاک والی اشیاء"
+msgstr "低库存商品"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Top items"
-msgstr "سب سے زیادہ فروخت"
+msgstr "畅销商品"
 
 #: templates/webapp/automation/daily_report.html
 msgid "No sales on this day."
-msgstr "اس دن کوئی فروخت نہیں۔"
+msgstr "当天没有销售。"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Send on WhatsApp"
-msgstr "WhatsApp پر بھیجیں"
+msgstr "通过 WhatsApp 发送"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Email it now"
-msgstr "ابھی ای میل کریں"
+msgstr "立即发送邮件"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Every night"
-msgstr "ہر رات"
+msgstr "每晚"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Email me this report every night"
-msgstr "یہ رپورٹ مجھے ہر رات ای میل کریں"
+msgstr "每晚将此报告发到我的邮箱"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Also send to (emails, comma separated)"
-msgstr "انہیں بھی بھیجیں (ای میلز، کوما سے الگ)"
+msgstr "同时发送给（邮箱，用逗号分隔）"
 
 #: templates/webapp/automation/daily_report.html
 msgid "WhatsApp number for the share button"
-msgstr "شیئر بٹن کے لیے WhatsApp نمبر"
+msgstr "分享按钮使用的 WhatsApp 号码"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Owners always receive it:"
-msgstr "مالکان کو یہ ہمیشہ ملتی ہے:"
+msgstr "业主始终会收到："
 
 #: templates/webapp/automation/daily_report.html
 msgid ""
 "Automatic WhatsApp sending needs a WhatsApp Business API account; until then"
 " use the share button."
-msgstr ""
-"خودکار WhatsApp بھیجنے کے لیے WhatsApp Business API اکاؤنٹ درکار ہے؛ تب تک "
-"شیئر بٹن استعمال کریں۔"
+msgstr "自动发送 WhatsApp 需要 WhatsApp Business API 账户；在此之前请使用分享按钮。"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Save"
-msgstr "محفوظ کریں"
+msgstr "保存"
 
 #: templates/webapp/automation/reminders.html
 msgid "Reminders"
-msgstr "یاد دہانیاں"
+msgstr "提醒"
 
 #: templates/webapp/automation/reminders.html
 msgid ""
 "Choose how many days before each event you want to be reminded. Reminders "
 "appear in Notifications and are emailed to your team if email is on."
-msgstr ""
-"منتخب کریں کہ ہر واقعے سے کتنے دن پہلے یاد دہانی چاہیے۔ یاد دہانیاں اطلاعات "
-"میں آتی ہیں اور ای میل آن ہو تو آپ کی ٹیم کو ای میل ہوتی ہیں۔"
+msgstr "选择在每个事项前几天提醒。提醒会显示在通知中，如开启邮件也会发送给您的团队。"
 
 #: templates/webapp/automation/reminders.html
 msgid "Days before (e.g. 15, 7, 1)"
-msgstr "کتنے دن پہلے (مثلاً 15، 7، 1)"
+msgstr "提前天数（例如 15, 7, 1）"
 
 #: templates/webapp/automation/reminders.html
 msgid "Email"
-msgstr "ای میل"
+msgstr "邮件"
 
 #: templates/webapp/automation/reminders.html
 msgid "0 means on the day itself."
-msgstr "0 کا مطلب اسی دن۔"
+msgstr "0 表示当天。"
 
 #: templates/webapp/automation/reminders.html
 msgid "Daily checks"
-msgstr "روزانہ جانچ"
+msgstr "每日检查"
 
 #: templates/webapp/automation/reminders.html
 msgid "The checks run automatically every night."
-msgstr "جانچ ہر رات خود بخود چلتی ہے۔"
+msgstr "检查每晚自动运行。"
 
 #: templates/webapp/automation/reminders.html
 msgid "Last run"
-msgstr "آخری بار چلی"
+msgstr "上次运行"
 
 #: templates/webapp/automation/reminders.html
 msgid "Not run yet — ask your administrator to set up the nightly job."
-msgstr "ابھی نہیں چلی — اپنے ایڈمن سے رات کا کام سیٹ کرنے کو کہیں۔"
+msgstr "尚未运行 — 请让管理员设置夜间任务。"
 
 #: templates/webapp/automation/reminders.html
 msgid "Run checks now"
-msgstr "ابھی جانچ چلائیں"
+msgstr "立即运行检查"
 
 #: templates/webapp/backups/page.html
 msgid "Your data is backed up"
-msgstr "آپ کے ڈیٹا کا بیک اپ موجود ہے"
+msgstr "您的数据已备份"
 
 #: templates/webapp/backups/page.html
 msgid "The last backup is more than a day old"
-msgstr "آخری بیک اپ ایک دن سے پرانا ہے"
+msgstr "最近一次备份已超过一天"
 
 #: templates/webapp/backups/page.html
 msgid "No backup yet"
-msgstr "ابھی کوئی بیک اپ نہیں"
+msgstr "尚无备份"
 
 #: templates/webapp/backups/page.html
 msgid "Last backup"
-msgstr "آخری بیک اپ"
+msgstr "最近备份"
 
 #: templates/webapp/backups/page.html
 msgid "records"
-msgstr "ریکارڈز"
+msgstr "条记录"
 
 #: templates/webapp/backups/page.html
 msgid "a new backup is made every night"
-msgstr "ہر رات نیا بیک اپ بنتا ہے"
+msgstr "每晚生成新备份"
 
 #: templates/webapp/backups/page.html
 msgid "Back up now"
-msgstr "ابھی بیک اپ لیں"
+msgstr "立即备份"
 
 #: templates/webapp/backups/page.html
 msgid "Backup files"
-msgstr "بیک اپ فائلیں"
+msgstr "备份文件"
 
 #: templates/webapp/backups/page.html
 msgid ""
 "Each file has every record of your business (sales, purchases, stock, "
 "customers, accounts, staff…). Keep a copy somewhere safe."
-msgstr ""
-"ہر فائل میں آپ کے کاروبار کا ہر ریکارڈ ہے (فروخت، خریداری، اسٹاک، گاہک، "
-"اکاؤنٹس، عملہ…)۔ ایک کاپی محفوظ جگہ رکھیں۔"
+msgstr "每个文件包含您企业的全部记录（销售、采购、库存、客户、账目、员工…）。请在安全的地方保存一份副本。"
 
 #: templates/webapp/backups/page.html
 msgid "Manual"
-msgstr "دستی"
+msgstr "手动"
 
 #: templates/webapp/backups/page.html
 msgid "Automatic"
-msgstr "خودکار"
+msgstr "自动"
 
 #: templates/webapp/backups/page.html
 msgid "with photos"
-msgstr "تصاویر کے ساتھ"
+msgstr "含照片"
 
 #: templates/webapp/backups/page.html
 msgid "OK"
-msgstr "ٹھیک"
+msgstr "正常"
 
 #: templates/webapp/backups/page.html
 msgid "Download"
-msgstr "ڈاؤن لوڈ"
+msgstr "下载"
 
 #: templates/webapp/backups/page.html
 msgid "Failed"
-msgstr "ناکام"
+msgstr "失败"
 
 #: templates/webapp/backups/page.html
 msgid ""
 "No backups yet. Press “Back up now” or wait for tonight's automatic backup."
-msgstr ""
-"ابھی کوئی بیک اپ نہیں۔ “ابھی بیک اپ لیں” دبائیں یا آج رات کے خودکار بیک اپ "
-"کا انتظار کریں۔"
+msgstr "尚无备份。请点击“立即备份”或等待今晚的自动备份。"
 
 #: templates/webapp/backups/page.html
 msgid "Stored"
-msgstr "محفوظ شدہ"
+msgstr "已存储"
 
 #: templates/webapp/backups/page.html
 msgid "Automatic daily backup"
-msgstr "خودکار روزانہ بیک اپ"
+msgstr "每日自动备份"
 
 #: templates/webapp/backups/page.html
 msgid "Include photos and logos"
-msgstr "تصاویر اور لوگو شامل کریں"
+msgstr "包含照片和标志"
 
 #: templates/webapp/backups/page.html
 msgid "Keep daily backups for"
-msgstr "روزانہ بیک اپ رکھیں"
+msgstr "每日备份保留"
 
 #: templates/webapp/backups/page.html
 msgid "days"
-msgstr "دن"
+msgstr "天"
 
 #: templates/webapp/backups/page.html
 msgid "The first backup of every month is kept for a year."
-msgstr "ہر مہینے کا پہلا بیک اپ ایک سال تک رکھا جاتا ہے۔"
+msgstr "每月的第一个备份保留一年。"
 
 #: templates/webapp/backups/page.html
 msgid "Every backup is also copied to the “BookPilot backups” folder in"
-msgstr "ہر بیک اپ کی کاپی “BookPilot backups” فولڈر میں بھی جاتی ہے، یہاں:"
+msgstr "每个备份也会复制到“BookPilot backups”文件夹，位于"
 
 #: templates/webapp/backups/page.html
 msgid "Disconnect Google Drive"
-msgstr "Google Drive منقطع کریں"
+msgstr "断开 Google Drive"
 
 #: templates/webapp/backups/page.html
 msgid ""
 "Keep a copy of every backup in your own Google Drive, outside BookPilot."
-msgstr "ہر بیک اپ کی کاپی BookPilot سے باہر اپنی Google Drive میں رکھیں۔"
+msgstr "在 BookPilot 之外，于您自己的 Google Drive 中保留每个备份的副本。"
 
 #: templates/webapp/backups/page.html
 msgid "Connect Google Drive"
-msgstr "Google Drive جوڑیں"
+msgstr "连接 Google Drive"
 
 #: templates/webapp/backups/page.html
 msgid ""
 "Copying backups to Google Drive is not switched on for this BookPilot server"
 " yet. Your BookPilot team can turn it on."
-msgstr ""
-"اس BookPilot سرور پر Google Drive میں بیک اپ کاپی کرنا ابھی آن نہیں ہے۔ آپ "
-"کی BookPilot ٹیم اسے آن کر سکتی ہے۔"
+msgstr "此 BookPilot 服务器尚未开启备份复制到 Google Drive。您的 BookPilot 团队可以开启。"
 
 #: templates/webapp/backups/page.html
 msgid "Restoring"
-msgstr "بحالی"
+msgstr "恢复"
 
 #: templates/webapp/backups/page.html
 msgid "Download the backup you need."
-msgstr "جس بیک اپ کی ضرورت ہے اسے ڈاؤن لوڈ کریں۔"
+msgstr "下载您需要的备份。"
 
 #: templates/webapp/backups/page.html
 msgid "Send it to your BookPilot team — they restore it for you."
-msgstr "اسے اپنی BookPilot ٹیم کو بھیجیں — وہ آپ کے لیے بحال کر دیں گے۔"
+msgstr "把它发给您的 BookPilot 团队 — 他们会为您恢复。"
 
 #: templates/webapp/backups/page.html
 msgid ""
 "The file is a standard zip of JSON tables, so your data is never locked in."
-msgstr ""
-"فائل JSON جدولوں کی ایک عام zip ہے، اس لیے آپ کا ڈیٹا کبھی بند نہیں ہوتا۔"
+msgstr "该文件是 JSON 表格的标准 zip，您的数据永远不会被锁定。"
 
 #: templates/webapp/banking/account.html
 msgid "Balance in the books"
-msgstr "کھاتوں میں بیلنس"
+msgstr "账面余额"
 
 #: templates/webapp/banking/account.html
 msgid "Balance on bank statement"
-msgstr "بینک اسٹیٹمنٹ کا بیلنس"
+msgstr "银行对账单余额"
 
 #: templates/webapp/banking/account.html
 msgid "To reconcile"
-msgstr "ملان باقی"
+msgstr "待对账"
 
 #: templates/webapp/banking/account.html
 msgid "Full ledger"
-msgstr "مکمل کھاتہ"
+msgstr "完整分类账"
 
 #: templates/webapp/banking/account.html
 msgid "Reconcile statement lines"
-msgstr "اسٹیٹمنٹ کی لائنوں کا ملان کریں"
+msgstr "核对对账单明细"
 
 #: templates/webapp/banking/account.html
 msgid "Match"
-msgstr "ملائیں"
+msgstr "匹配"
 
 #: templates/webapp/banking/account.html
 msgid "Not in the books? Record it"
-msgstr "کھاتوں میں نہیں؟ درج کریں"
+msgstr "账上没有？记录下来"
 
 #: templates/webapp/banking/account.html
 msgid "Record & match"
-msgstr "درج کریں اور ملائیں"
+msgstr "记录并匹配"
 
 #: templates/webapp/banking/account.html
 msgid "Nothing to reconcile."
-msgstr "ملان کے لیے کچھ نہیں۔"
+msgstr "没有需要对账的内容。"
 
 #: templates/webapp/banking/account.html
 msgid "Recent entries"
-msgstr "حالیہ اندراجات"
+msgstr "近期分录"
 
 #: templates/webapp/banking/account.html
 msgid "No entries yet."
-msgstr "ابھی کوئی اندراج نہیں۔"
+msgstr "暂无分录。"
 
 #: templates/webapp/banking/account.html
 msgid "Import bank statement"
-msgstr "بینک اسٹیٹمنٹ درآمد کریں"
+msgstr "导入银行对账单"
 
 #: templates/webapp/banking/account.html
 msgid ""
@@ -1503,988 +1488,967 @@ msgid ""
 " money out) and optionally reference. The same file or lines are never "
 "imported twice."
 msgstr ""
-"کالموں والی CSV فائل: date (YYYY-MM-DD)، description، amount (+ آمدنی، − "
-"خرچ) اور اختیاری reference۔ ایک ہی فائل یا لائن دو بار درآمد نہیں ہوتی۔"
+"CSV 文件列：date（YYYY-MM-DD）、description、amount（+ 收入，− 支出），可选 "
+"reference。同一文件或行不会被导入两次。"
 
 #: templates/webapp/banking/account.html
 msgid "Import"
-msgstr "درآمد"
+msgstr "导入"
 
 #: templates/webapp/banking/account.html
 msgid "Recently matched"
-msgstr "حال ہی میں ملائے گئے"
+msgstr "最近匹配"
 
 #: templates/webapp/banking/account.html
 msgid "Undo"
-msgstr "واپس لیں"
+msgstr "撤销"
 
 #: templates/webapp/banking/audit.html
 msgid ""
 "Who changed what — important changes are recorded automatically and can't be"
 " edited."
-msgstr ""
-"کس نے کیا بدلا — اہم تبدیلیاں خود بخود درج ہوتی ہیں اور ان میں ترمیم نہیں ہو"
-" سکتی۔"
+msgstr "谁改了什么 — 重要更改会自动记录且无法编辑。"
 
 #: templates/webapp/banking/audit.html
 msgid "Action, record or person"
-msgstr "عمل، ریکارڈ یا شخص"
+msgstr "操作、记录或人员"
 
 #: templates/webapp/banking/audit.html
 msgid "No activity recorded yet."
-msgstr "ابھی کوئی سرگرمی درج نہیں۔"
+msgstr "尚无操作记录。"
 
 #: templates/webapp/banking/home.html
 msgid "Total cash & bank"
-msgstr "کل نقد اور بینک"
+msgstr "现金与银行合计"
 
 #: templates/webapp/banking/home.html
 msgid "to reconcile"
-msgstr "ملان باقی"
+msgstr "待对账"
 
 #: templates/webapp/banking/home.html
 msgid "Money in / out"
-msgstr "آمد / خرچ"
+msgstr "资金收入 / 支出"
 
 #: templates/webapp/banking/home.html
 msgid "Amount"
-msgstr "رقم"
+msgstr "金额"
 
 #: templates/webapp/banking/home.html
 msgid "For / from"
-msgstr "کس کے لیے / کس سے"
+msgstr "用于 / 来自"
 
 #: templates/webapp/banking/home.html
 msgid "e.g. Owner added capital, loan received, bank charges"
-msgstr "مثلاً مالک نے سرمایہ ڈالا، قرض ملا، بینک چارجز"
+msgstr "例如：业主投入资本、收到贷款、银行手续费"
 
 #: templates/webapp/banking/home.html
 msgid "Transfer between accounts"
-msgstr "اکاؤنٹس کے درمیان منتقلی"
+msgstr "账户间转账"
 
 #: templates/webapp/banking/home.html
 msgid "e.g. Cash deposited to bank"
-msgstr "مثلاً نقد بینک میں جمع"
+msgstr "例如：现金存入银行"
 
 #: templates/webapp/banking/home.html
 msgid "Transfer"
-msgstr "منتقلی"
+msgstr "转账"
 
 #: templates/webapp/banking/home.html
 msgid "New bank or cash account"
-msgstr "نیا بینک یا نقد اکاؤنٹ"
+msgstr "新银行或现金账户"
 
 #: templates/webapp/banking/home.html
 msgid "e.g. QNB current account"
-msgstr "مثلاً QNB کرنٹ اکاؤنٹ"
+msgstr "例如：QNB 活期账户"
 
 #: templates/webapp/banking/home.html
 msgid "Cash"
-msgstr "نقد"
+msgstr "现金"
 
 #: templates/webapp/banking/home.html
 msgid "Bank name"
-msgstr "بینک کا نام"
+msgstr "银行名称"
 
 #: templates/webapp/banking/home.html
 msgid "Last 4 digits"
-msgstr "آخری 4 ہندسے"
+msgstr "后 4 位"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "Tax registration"
-msgstr "ٹیکس رجسٹریشن"
+msgstr "税务登记"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "Tax name"
-msgstr "ٹیکس کا نام"
+msgstr "税种名称"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "Tax registration number"
-msgstr "ٹیکس رجسٹریشن نمبر"
+msgstr "税务登记号"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "Tax codes"
-msgstr "ٹیکس کوڈز"
+msgstr "税码"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "price includes tax"
-msgstr "قیمت میں ٹیکس شامل"
+msgstr "价格含税"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "from"
-msgstr "سے"
+msgstr "自"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "No tax codes yet."
-msgstr "ابھی کوئی ٹیکس کوڈ نہیں۔"
+msgstr "尚无税码。"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "Standard VAT"
-msgstr "معیاری VAT"
+msgstr "标准增值税"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "Rate %"
-msgstr "شرح %"
+msgstr "税率 %"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "Prices include tax"
-msgstr "قیمتوں میں ٹیکس شامل"
+msgstr "价格含税"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "Add tax code"
-msgstr "ٹیکس کوڈ شامل کریں"
+msgstr "添加税码"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "Exchange rates"
-msgstr "زر مبادلہ کی شرحیں"
+msgstr "汇率"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "unit"
-msgstr "اکائی"
+msgstr "单位"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "Currency"
-msgstr "کرنسی"
+msgstr "货币"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "Rate"
-msgstr "شرح"
+msgstr "汇率"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "Save rate"
-msgstr "شرح محفوظ کریں"
+msgstr "保存汇率"
 
 #: templates/webapp/banking/tax_currency.html
 msgid "No exchange rates yet."
-msgstr "ابھی کوئی زر مبادلہ کی شرح نہیں۔"
+msgstr "尚无汇率。"
 
 #: templates/webapp/billing.html
 msgid "up to"
-msgstr "زیادہ سے زیادہ"
+msgstr "最多"
 
 #: templates/webapp/billing.html
 msgid "users"
-msgstr "صارفین"
+msgstr "个用户"
 
 #: templates/webapp/billing.html
 msgid "using"
-msgstr "استعمال میں"
+msgstr "已使用"
 
 #: templates/webapp/billing.html
 msgid "branches"
-msgstr "شاخیں"
+msgstr "个分店"
 
 #: templates/webapp/billing.html
 msgid "Each extra user"
-msgstr "ہر اضافی صارف"
+msgstr "每个额外用户"
 
 #: templates/webapp/billing.html
 msgid "year"
-msgstr "سال"
+msgstr "年"
 
 #: templates/webapp/billing.html
 msgid "Each extra branch"
-msgstr "ہر اضافی شاخ"
+msgstr "每个额外分店"
 
 #: templates/webapp/billing.html
 msgid "Price"
-msgstr "قیمت"
+msgstr "价格"
 
 #: templates/webapp/billing.html
 msgid "Plan"
-msgstr "پلان"
+msgstr "套餐"
 
 #: templates/webapp/billing.html
 msgid "extra users"
-msgstr "اضافی صارفین"
+msgstr "额外用户"
 
 #: templates/webapp/billing.html
 msgid "extra branches"
-msgstr "اضافی شاخیں"
+msgstr "额外分店"
 
 #: templates/webapp/billing.html
 msgid "extra user"
-msgstr "اضافی صارف"
+msgstr "额外用户"
 
 #: templates/webapp/careers/_form.html
 msgid "Full name (as in passport)"
-msgstr "پورا نام (پاسپورٹ کے مطابق)"
+msgstr "全名（与护照一致）"
 
 #: templates/webapp/careers/_form.html
 msgid "Phone / WhatsApp"
-msgstr "فون / WhatsApp"
+msgstr "电话 / WhatsApp"
 
 #: templates/webapp/careers/_form.html
 msgid "Nationality"
-msgstr "قومیت"
+msgstr "国籍"
 
 #: templates/webapp/careers/_form.html
 msgid "Passport number"
-msgstr "پاسپورٹ نمبر"
+msgstr "护照号码"
 
 #: templates/webapp/careers/_form.html
 msgid "Position / skill"
-msgstr "عہدہ / مہارت"
+msgstr "职位 / 技能"
 
 #: templates/webapp/careers/_form.html
 msgid "Experience (years)"
-msgstr "تجربہ (سال)"
+msgstr "经验（年）"
 
 #: templates/webapp/careers/_form.html
 msgid "Where are you now?"
-msgstr "آپ اس وقت کہاں ہیں؟"
+msgstr "您现在在哪里？"
 
 #: templates/webapp/careers/_form.html
 msgid "City, country"
-msgstr "شہر، ملک"
+msgstr "城市，国家"
 
 #: templates/webapp/careers/_form.html
 msgid "CV (PDF, Word or photo, max 8 MB)"
-msgstr "CV (PDF، Word یا تصویر، زیادہ سے زیادہ 8 MB)"
+msgstr "简历（PDF、Word 或照片，最大 8 MB）"
 
 #: templates/webapp/careers/_form.html
 msgid "Message (optional)"
-msgstr "پیغام (اختیاری)"
+msgstr "留言（可选）"
 
 #: templates/webapp/careers/_form.html
 msgid "Apply for this job"
-msgstr "اس نوکری کے لیے درخواست دیں"
+msgstr "申请此职位"
 
 #: templates/webapp/careers/_form.html
 msgid "Send my CV"
-msgstr "میرا CV بھیجیں"
+msgstr "发送我的简历"
 
 #: templates/webapp/careers/_form.html
 msgid "Your details are shared only with"
-msgstr "آپ کی تفصیلات صرف ان کے ساتھ شیئر ہوتی ہیں:"
+msgstr "您的信息仅与以下机构共享："
 
 #: templates/webapp/careers/apply.html
 msgid "All jobs"
-msgstr "تمام نوکریاں"
+msgstr "全部职位"
 
 #: templates/webapp/careers/apply.html
 msgid "Location"
-msgstr "مقام"
+msgstr "地点"
 
 #: templates/webapp/careers/apply.html
 msgid "Vacancies"
-msgstr "آسامیاں"
+msgstr "空缺"
 
 #: templates/webapp/careers/apply.html
 msgid "Salary"
-msgstr "تنخواہ"
+msgstr "薪资"
 
 #: templates/webapp/careers/apply.html
 msgid "Contract"
-msgstr "معاہدہ"
+msgstr "合同"
 
 #: templates/webapp/careers/apply.html
 msgid "months"
-msgstr "مہینے"
+msgstr "个月"
 
 #: templates/webapp/careers/apply.html
 msgid "Apply by"
-msgstr "آخری تاریخ"
+msgstr "申请截止"
 
 #: templates/webapp/careers/apply.html
 msgid "Benefits"
-msgstr "مراعات"
+msgstr "福利"
 
 #: templates/webapp/careers/apply.html
 msgid "Requirements"
-msgstr "تقاضے"
+msgstr "要求"
 
 #: templates/webapp/careers/apply.html
 msgid "Share with a friend"
-msgstr "دوست کے ساتھ شیئر کریں"
+msgstr "分享给朋友"
 
 #: templates/webapp/careers/apply.html
 msgid "Send your CV"
-msgstr "اپنا CV بھیجیں"
+msgstr "发送您的简历"
 
 #: templates/webapp/careers/apply.html
 msgid "Send your CV and we will call you when a matching job opens."
-msgstr "اپنا CV بھیجیں، مناسب نوکری آنے پر ہم آپ کو کال کریں گے۔"
+msgstr "发送您的简历，有合适职位时我们会致电您。"
 
 #: templates/webapp/careers/base.html
 msgid "Careers"
-msgstr "کیریئر"
+msgstr "招聘"
 
 #: templates/webapp/careers/base.html
 msgid "Jobs"
-msgstr "نوکریاں"
+msgstr "职位"
 
 #: templates/webapp/careers/base.html
 msgid "About us"
-msgstr "ہمارے بارے میں"
+msgstr "关于我们"
 
 #: templates/webapp/careers/base.html
 msgid "Licence"
-msgstr "لائسنس"
+msgstr "执照"
 
 #: templates/webapp/careers/base.html
 msgid "We never ask job seekers for money to apply."
-msgstr "ہم نوکری کے متلاشیوں سے درخواست کے لیے کبھی پیسے نہیں مانگتے۔"
+msgstr "我们从不向求职者收取申请费用。"
 
 #: templates/webapp/careers/closed.html
 msgid "This job is no longer open"
-msgstr "یہ نوکری اب دستیاب نہیں"
+msgstr "此职位已关闭"
 
 #: templates/webapp/careers/closed.html
 msgid "See open jobs"
-msgstr "دستیاب نوکریاں دیکھیں"
+msgstr "查看在招职位"
 
 #: templates/webapp/careers/home.html
 msgid "We are hiring"
-msgstr "ہم بھرتی کر رہے ہیں"
+msgstr "我们正在招聘"
 
 #: templates/webapp/careers/home.html
 msgid "Jobs in"
-msgstr "نوکریاں بمقام"
+msgstr "职位地点："
 
 #: templates/webapp/careers/home.html
 msgid "Open jobs"
-msgstr "دستیاب نوکریاں"
+msgstr "在招职位"
 
 #: templates/webapp/careers/home.html
 msgid "Job title, e.g. Driver, Nurse, Electrician"
-msgstr "نوکری کا عنوان، مثلاً ڈرائیور، نرس، الیکٹریشن"
+msgstr "职位名称，例如：司机、护士、电工"
 
 #: templates/webapp/careers/home.html
 msgid "Search jobs"
-msgstr "نوکریاں تلاش کریں"
+msgstr "搜索职位"
 
 #: templates/webapp/careers/home.html
 msgid "All locations"
-msgstr "تمام مقامات"
+msgstr "所有地点"
 
 #: templates/webapp/careers/home.html
 msgid "vacancies"
-msgstr "آسامیاں"
+msgstr "个空缺"
 
 #: templates/webapp/careers/home.html
 msgid "View & apply"
-msgstr "دیکھیں اور درخواست دیں"
+msgstr "查看并申请"
 
 #: templates/webapp/careers/home.html
 msgid "No jobs match your search."
-msgstr "آپ کی تلاش سے کوئی نوکری نہیں ملی۔"
+msgstr "没有符合搜索条件的职位。"
 
 #: templates/webapp/careers/home.html
 msgid "No open jobs right now."
-msgstr "اس وقت کوئی نوکری دستیاب نہیں۔"
+msgstr "目前没有在招职位。"
 
 #: templates/webapp/careers/home.html
 msgid "Send your CV for future jobs"
-msgstr "آئندہ نوکریوں کے لیے اپنا CV بھیجیں"
+msgstr "为将来的职位投递简历"
 
 #: templates/webapp/careers/home.html
 msgid "What we do"
-msgstr "ہم کیا کرتے ہیں"
+msgstr "我们的业务"
 
 #: templates/webapp/careers/home.html
 msgid "Didn't find your job?"
-msgstr "اپنی نوکری نہیں ملی؟"
+msgstr "没找到合适的职位？"
 
 #: templates/webapp/careers/settings.html
 msgid "Live"
-msgstr "لائیو"
+msgstr "已上线"
 
 #: templates/webapp/careers/settings.html
 msgid "Not live yet"
-msgstr "ابھی لائیو نہیں"
+msgstr "尚未上线"
 
 #: templates/webapp/careers/settings.html
 msgid "Open website"
-msgstr "ویب سائٹ کھولیں"
+msgstr "打开网站"
 
 #: templates/webapp/careers/settings.html
 msgid "Share"
-msgstr "شیئر کریں"
+msgstr "分享"
 
 #: templates/webapp/careers/settings.html
 msgid "Link copied"
-msgstr "لنک کاپی ہو گیا"
+msgstr "链接已复制"
 
 #: templates/webapp/careers/settings.html
 msgid "Copy link"
-msgstr "لنک کاپی کریں"
+msgstr "复制链接"
 
 #: templates/webapp/careers/settings.html
 msgid "new applications"
-msgstr "نئی درخواستیں"
+msgstr "份新申请"
 
 #: templates/webapp/careers/settings.html
 msgid "Your website"
-msgstr "آپ کی ویب سائٹ"
+msgstr "您的网站"
 
 #: templates/webapp/careers/settings.html
 msgid "Connected"
-msgstr "منسلک"
+msgstr "已连接"
 
 #: templates/webapp/careers/settings.html
 msgid "Being set up"
-msgstr "سیٹ اپ ہو رہی ہے"
+msgstr "设置中"
 
 #: templates/webapp/careers/settings.html
 msgid "Not connected yet — your BookPilot team sets this up for you."
-msgstr "ابھی منسلک نہیں — آپ کی BookPilot ٹیم اسے سیٹ کرتی ہے۔"
+msgstr "尚未连接 — 您的 BookPilot 团队会为您设置。"
 
 #: templates/webapp/careers/settings.html
 msgid "Recruitment form for your website (WordPress or any site)"
-msgstr "آپ کی ویب سائٹ کے لیے بھرتی فارم (WordPress یا کوئی بھی سائٹ)"
+msgstr "用于您网站的招聘表单（WordPress 或任何网站）"
 
 #: templates/webapp/careers/settings.html
 msgid ""
 "A complete application form: job, experience, personal details, passport, "
 "contact, CV upload. Every application comes straight to Candidates, the "
 "dashboard and the job's pipeline — only for your agency."
-msgstr ""
-"مکمل درخواست فارم: نوکری، تجربہ، ذاتی تفصیلات، پاسپورٹ، رابطہ، CV اپ لوڈ۔ ہر"
-" درخواست سیدھی امیدواروں، ڈیش بورڈ اور نوکری کی پائپ لائن میں آتی ہے — صرف "
-"آپ کی ایجنسی کے لیے۔"
+msgstr "完整的申请表：职位、经验、个人信息、护照、联系方式、上传简历。每份申请都会直接进入候选人、仪表板和职位流程 — 仅限您的机构。"
 
 #: templates/webapp/careers/settings.html
 msgid "Option 1 — WordPress plugin (easiest)"
-msgstr "آپشن 1 — WordPress پلگ ان (سب سے آسان)"
+msgstr "方式 1 — WordPress 插件（最简单）"
 
 #: templates/webapp/careers/settings.html
 msgid "Download the plugin"
-msgstr "پلگ ان ڈاؤن لوڈ کریں"
+msgstr "下载插件"
 
 #: templates/webapp/careers/settings.html
 msgid "WordPress → Plugins → Add New → Upload Plugin → Activate."
-msgstr "WordPress → Plugins → Add New → Upload Plugin → Activate۔"
+msgstr "WordPress → 插件 → 安装插件 → 上传插件 → 启用。"
 
 #: templates/webapp/careers/settings.html
 msgid "On the Careers page add the shortcode"
-msgstr "کیریئر صفحے پر یہ شارٹ کوڈ شامل کریں"
+msgstr "在招聘页面添加短代码"
 
 #: templates/webapp/careers/settings.html
 msgid "Options:"
-msgstr "آپشنز:"
+msgstr "选项："
 
 #: templates/webapp/careers/settings.html
 msgid ""
 "Option 2 — paste this code (any website, WordPress “Custom HTML” block, "
 "Elementor “HTML”)"
-msgstr ""
-"آپشن 2 — یہ کوڈ پیسٹ کریں (کوئی بھی ویب سائٹ، WordPress “Custom HTML” بلاک، "
-"Elementor “HTML”)"
+msgstr "方式 2 — 粘贴此代码（任何网站、WordPress“自定义 HTML”区块、Elementor“HTML”）"
 
 #: templates/webapp/careers/settings.html
 msgid "Copy code"
-msgstr "کوڈ کاپی کریں"
+msgstr "复制代码"
 
 #: templates/webapp/careers/settings.html
 msgid ""
 "The job list in the form shows the jobs ticked under “Jobs shown on the "
 "website” below. Button colour = Brand colour."
-msgstr ""
-"فارم کی نوکری فہرست میں نیچے “ویب سائٹ پر دکھائی جانے والی نوکریاں” میں نشان"
-" زدہ نوکریاں آتی ہیں۔ بٹن کا رنگ = برانڈ کا رنگ۔"
+msgstr "表单中的职位列表显示下方“网站上显示的职位”中勾选的职位。按钮颜色 = 品牌颜色。"
 
 #: templates/webapp/careers/settings.html
 msgid "Connect your existing career page"
-msgstr "اپنا موجودہ کیریئر صفحہ جوڑیں"
+msgstr "连接您现有的招聘页面"
 
 #: templates/webapp/careers/settings.html
 msgid ""
 "People keep applying on your own website as they do now. A copy of every "
 "application also comes here: to Candidates, the dashboard and the job's "
 "pipeline."
-msgstr ""
-"لوگ پہلے کی طرح آپ کی اپنی ویب سائٹ پر درخواست دیتے رہیں گے۔ ہر درخواست کی "
-"ایک کاپی یہاں بھی آتی ہے: امیدواروں، ڈیش بورڈ اور نوکری کی پائپ لائن میں۔"
+msgstr "求职者仍像现在一样在您自己的网站申请。每份申请的副本也会到这里：候选人、仪表板和职位流程。"
 
 #: templates/webapp/careers/settings.html
 msgid "Your website address"
-msgstr "آپ کی ویب سائٹ کا پتہ"
+msgstr "您的网站地址"
 
 #: templates/webapp/careers/settings.html
 msgid "Connect"
-msgstr "جوڑیں"
+msgstr "连接"
 
 #: templates/webapp/careers/settings.html
 msgid "Last step:"
-msgstr "آخری قدم:"
+msgstr "最后一步："
 
 #: templates/webapp/careers/settings.html
 msgid ""
 "ask your web developer to paste this one line on the career page (before "
 "</body>):"
-msgstr ""
-"اپنے ویب ڈویلپر سے یہ ایک لائن کیریئر صفحے پر پیسٹ کروائیں (</body> سے "
-"پہلے):"
+msgstr "请您的网页开发者把这一行代码粘贴到招聘页面（放在 </body> 之前）："
 
 #: templates/webapp/careers/settings.html
 msgid ""
 "It reads the name, phone, email, passport, position and CV fields of the "
 "form automatically. If the position typed or chosen matches one of your open"
 " job orders, the person is added to that job's pipeline."
-msgstr ""
-"یہ فارم کے نام، فون، ای میل، پاسپورٹ، عہدہ اور CV کے خانے خود پڑھ لیتا ہے۔ "
-"اگر لکھا یا چنا گیا عہدہ آپ کے کسی کھلے جاب آرڈر سے ملتا ہے تو وہ شخص اس "
-"نوکری کی پائپ لائن میں شامل ہو جاتا ہے۔"
+msgstr "它会自动读取表单中的姓名、电话、邮箱、护照、职位和简历字段。如果填写或选择的职位与您的某个在招需求匹配，此人会被加入该职位流程。"
 
 #: templates/webapp/careers/settings.html
 msgid "optional — a ready-made careers page"
-msgstr "اختیاری — تیار کیریئر صفحہ"
+msgstr "可选 — 现成的招聘页面"
 
 #: templates/webapp/careers/settings.html
 msgid "The logo and business name come from Settings → Business settings."
-msgstr "لوگو اور کاروبار کا نام ترتیبات → کاروباری ترتیبات سے آتے ہیں۔"
+msgstr "标志和企业名称来自 设置 → 企业设置。"
 
 #: templates/webapp/careers/settings.html
 msgid "Save website"
-msgstr "ویب سائٹ محفوظ کریں"
+msgstr "保存网站"
 
 #: templates/webapp/careers/settings.html
 msgid "Jobs shown on the website"
-msgstr "ویب سائٹ پر دکھائی جانے والی نوکریاں"
+msgstr "网站上显示的职位"
 
 #: templates/webapp/careers/settings.html
 msgid ""
 "Only ticked open jobs are shown. The client's name is never shown to job "
 "seekers."
-msgstr ""
-"صرف نشان زدہ کھلی نوکریاں دکھائی جاتی ہیں۔ کلائنٹ کا نام نوکری کے متلاشیوں "
-"کو کبھی نہیں دکھایا جاتا۔"
+msgstr "仅显示勾选的在招职位。求职者永远看不到客户公司的名称。"
 
 #: templates/webapp/careers/settings.html
 msgid "No open job orders."
-msgstr "کوئی کھلا جاب آرڈر نہیں۔"
+msgstr "没有在招需求。"
 
 #: templates/webapp/careers/settings.html
 msgid "New job order"
-msgstr "نیا جاب آرڈر"
+msgstr "新招聘需求"
 
 #: templates/webapp/careers/settings.html
 msgid "Already have a website?"
-msgstr "پہلے سے ویب سائٹ ہے؟"
+msgstr "已经有网站了？"
 
 #: templates/webapp/careers/settings.html
 msgid ""
 "Use any of these on the agency's own website. Applications still come "
 "straight here."
-msgstr ""
-"ایجنسی کی اپنی ویب سائٹ پر ان میں سے کوئی بھی استعمال کریں۔ درخواستیں پھر "
-"بھی سیدھی یہیں آتی ہیں۔"
+msgstr "可在机构自己的网站上使用以下任一方式。申请仍会直接到这里。"
 
 #: templates/webapp/careers/settings.html
 msgid "Link a “Careers” button to"
-msgstr "“کیریئر” بٹن کو اس سے جوڑیں"
+msgstr "将“招聘”按钮链接到"
 
 #: templates/webapp/careers/settings.html
 msgid "Or show the jobs inside a page (paste this code)"
-msgstr "یا نوکریاں کسی صفحے کے اندر دکھائیں (یہ کوڈ پیسٹ کریں)"
+msgstr "或在页面内显示职位（粘贴此代码）"
 
 #: templates/webapp/careers/settings.html
 msgid "For the web developer: own form or job list"
-msgstr "ویب ڈویلپر کے لیے: اپنا فارم یا نوکری فہرست"
+msgstr "给网页开发者：自定义表单或职位列表"
 
 #: templates/webapp/careers/settings.html
 msgid "Job list (JSON):"
-msgstr "نوکری فہرست (JSON):"
+msgstr "职位列表（JSON）："
 
 #: templates/webapp/careers/settings.html
 msgid "Apply form posts to:"
-msgstr "درخواست فارم یہاں بھیجتا ہے:"
+msgstr "申请表提交到："
 
 #: templates/webapp/careers/settings.html
 msgid "add the website address above so it may send applications"
-msgstr "اوپر ویب سائٹ کا پتہ شامل کریں تاکہ وہ درخواستیں بھیج سکے"
+msgstr "请在上方添加网站地址以便其发送申请"
 
 #: templates/webapp/careers/settings.html
 msgid "Server-to-server API key (keep secret):"
-msgstr "سرور سے سرور API کلید (خفیہ رکھیں):"
+msgstr "服务器间 API 密钥（请保密）："
 
 #: templates/webapp/careers/settings.html
 msgid "New API key"
-msgstr "نئی API کلید"
+msgstr "新 API 密钥"
 
 #: templates/webapp/careers/thanks.html
 msgid "Application received"
-msgstr "درخواست موصول ہو گئی"
+msgstr "已收到申请"
 
 #: templates/webapp/careers/thanks.html
 msgid ""
 "Thank you. Our team will review your details and contact you on WhatsApp or "
 "phone."
-msgstr ""
-"شکریہ۔ ہماری ٹیم آپ کی تفصیلات دیکھ کر WhatsApp یا فون پر رابطہ کرے گی۔"
+msgstr "谢谢。我们的团队会查看您的信息并通过 WhatsApp 或电话联系您。"
 
 #: templates/webapp/careers/thanks.html
 msgid "Your reference"
-msgstr "آپ کا حوالہ"
+msgstr "您的参考号"
 
 #: templates/webapp/careers/thanks.html
 msgid "See more jobs"
-msgstr "مزید نوکریاں دیکھیں"
+msgstr "查看更多职位"
 
 #: templates/webapp/crm/_tabs.html
 msgid "Pipeline"
-msgstr "پائپ لائن"
+msgstr "流程"
 
 #: templates/webapp/crm/_tabs.html
 msgid "Leads"
-msgstr "لیڈز"
+msgstr "线索"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "Customer account"
-msgstr "گاہک اکاؤنٹ"
+msgstr "客户账户"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "Reopen"
-msgstr "دوبارہ کھولیں"
+msgstr "重新打开"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "Mark lost"
-msgstr "ہارا ہوا نشان زد کریں"
+msgstr "标记为丢失"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "Activity"
-msgstr "سرگرمی"
+msgstr "动态"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "Follow up on (optional)"
-msgstr "فالو اپ کی تاریخ (اختیاری)"
+msgstr "跟进日期（可选）"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "What happened / what to do"
-msgstr "کیا ہوا / کیا کرنا ہے"
+msgstr "发生了什么 / 要做什么"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "due"
-msgstr "مقررہ"
+msgstr "到期"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "Done"
-msgstr "مکمل"
+msgstr "完成"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
-msgstr "ابھی کوئی سرگرمی نہیں۔"
+msgstr "暂无动态。"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "Make them a customer"
-msgstr "انہیں گاہک بنائیں"
+msgstr "转为客户"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "Possible existing customers:"
-msgstr "ممکنہ موجودہ گاہک:"
+msgstr "可能已存在的客户："
 
 #: templates/webapp/crm/lead_detail.html
 msgid "Use the first match / create new"
-msgstr "پہلا میل استعمال کریں / نیا بنائیں"
+msgstr "使用第一个匹配 / 新建"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "Then write a quotation"
-msgstr "پھر کوٹیشن لکھیں"
+msgstr "然后编写报价单"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "Convert to customer"
-msgstr "گاہک میں تبدیل کریں"
+msgstr "转为客户"
 
 #: templates/webapp/crm/lead_detail.html
 msgid "Deals"
-msgstr "سودے"
+msgstr "商机"
 
 #: templates/webapp/crm/leads.html
 msgid "All"
-msgstr "تمام"
+msgstr "全部"
 
 #: templates/webapp/crm/leads.html
 msgid "Name, company, phone"
-msgstr "نام، کمپنی، فون"
+msgstr "姓名、公司、电话"
 
 #: templates/webapp/crm/leads.html
 msgid "to do"
-msgstr "کرنا ہے"
+msgstr "待办"
 
 #: templates/webapp/crm/leads.html
 msgid "No leads here."
-msgstr "یہاں کوئی لیڈ نہیں۔"
+msgstr "这里没有线索。"
 
 #: templates/webapp/crm/leads.html
 msgid "New lead"
-msgstr "نئی لیڈ"
+msgstr "新线索"
 
 #: templates/webapp/crm/leads.html
 msgid "Company"
-msgstr "کمپنی"
+msgstr "公司"
 
 #: templates/webapp/crm/leads.html
 msgid "Phone"
-msgstr "فون"
+msgstr "电话"
 
 #: templates/webapp/crm/leads.html
 msgid "Came from"
-msgstr "کہاں سے آئے"
+msgstr "来源"
 
 #: templates/webapp/crm/leads.html
 msgid "Assigned to"
-msgstr "تفویض کردہ"
+msgstr "负责人"
 
 #: templates/webapp/crm/leads.html
 msgid "What do they want?"
-msgstr "وہ کیا چاہتے ہیں؟"
+msgstr "他们需要什么？"
 
 #: templates/webapp/crm/leads.html
 msgid "Add lead"
-msgstr "لیڈ شامل کریں"
+msgstr "添加线索"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Sales pipeline"
-msgstr "سیلز پائپ لائن"
+msgstr "销售漏斗"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Open deals value"
-msgstr "کھلے سودوں کی مالیت"
+msgstr "进行中商机金额"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Expected (by chance of winning)"
-msgstr "متوقع (جیتنے کے امکان کے مطابق)"
+msgstr "预期（按成交概率）"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Won"
-msgstr "جیتا"
+msgstr "赢单"
 
 #: templates/webapp/crm/pipeline.html
 msgid "New leads"
-msgstr "نئی لیڈز"
+msgstr "新线索"
 
 #: templates/webapp/crm/pipeline.html
 msgid "To do"
-msgstr "کرنا ہے"
+msgstr "待办"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Everyone"
-msgstr "سب"
+msgstr "所有人"
 
 #: templates/webapp/crm/pipeline.html
 msgid "My deals"
-msgstr "میرے سودے"
+msgstr "我的商机"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Stage"
-msgstr "مرحلہ"
+msgstr "阶段"
 
 #: templates/webapp/crm/pipeline.html
 msgid "New deal"
-msgstr "نیا سودا"
+msgstr "新商机"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Deal"
-msgstr "سودا"
+msgstr "商机"
 
 #: templates/webapp/crm/pipeline.html
 msgid "e.g. Office fit-out, 20 laptops"
-msgstr "مثلاً دفتر کی تزئین، 20 لیپ ٹاپ"
+msgstr "例如：办公室装修、20 台笔记本电脑"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Customer"
-msgstr "گاہک"
+msgstr "客户"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Value"
-msgstr "مالیت"
+msgstr "金额"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Expected close"
-msgstr "متوقع اختتام"
+msgstr "预计成交"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Add deal"
-msgstr "سودا شامل کریں"
+msgstr "添加商机"
 
 #: templates/webapp/crm/price_list.html
 msgid "Price list"
-msgstr "قیمت فہرست"
+msgstr "价目表"
 
 #: templates/webapp/crm/price_list.html
 msgid "Only for"
-msgstr "صرف برائے"
+msgstr "仅适用于"
 
 #: templates/webapp/crm/price_list.html
 msgid "Item"
-msgstr "آئٹم"
+msgstr "商品"
 
 #: templates/webapp/crm/price_list.html
 msgid "Normal price"
-msgstr "عام قیمت"
+msgstr "原价"
 
 #: templates/webapp/crm/price_list.html
 msgid "List price"
-msgstr "فہرستی قیمت"
+msgstr "价目表价格"
 
 #: templates/webapp/crm/price_list.html
 msgid "Remove"
-msgstr "ہٹائیں"
+msgstr "移除"
 
 #: templates/webapp/crm/price_list.html
 msgid "No items yet."
-msgstr "ابھی کوئی آئٹم نہیں۔"
+msgstr "暂无商品。"
 
 #: templates/webapp/crm/price_list.html
 msgid "Set a price"
-msgstr "قیمت مقرر کریں"
+msgstr "设置价格"
 
 #: templates/webapp/crm/price_list.html
 msgid "All items at once"
-msgstr "تمام آئٹمز ایک ساتھ"
+msgstr "一次设置全部商品"
 
 #: templates/webapp/crm/price_list.html
 msgid "Change from normal price %"
-msgstr "عام قیمت سے تبدیلی %"
+msgstr "相对原价调整 %"
 
 #: templates/webapp/crm/price_list.html
 msgid "Set a price for every item?"
-msgstr "ہر آئٹم کی قیمت مقرر کریں؟"
+msgstr "为每个商品设置价格？"
 
 #: templates/webapp/crm/price_list.html
 msgid "e.g. -10 = 10% below the normal price (wholesale), 5 = 5% above."
-msgstr "مثلاً -10 = عام قیمت سے 10% کم (ہول سیل)، 5 = 5% زیادہ۔"
+msgstr "例如：-10 = 比原价低 10%（批发），5 = 高 5%。"
 
 #: templates/webapp/crm/pricing.html
 msgid "Offers"
-msgstr "آفرز"
+msgstr "优惠"
 
 #: templates/webapp/crm/pricing.html
 msgid "applied in the POS and on new quotes"
-msgstr "POS اور نئے کوٹیشنز پر لاگو"
+msgstr "适用于收银和新报价单"
 
 #: templates/webapp/crm/pricing.html
 msgid "off"
-msgstr "رعایت"
+msgstr "折扣"
 
 #: templates/webapp/crm/pricing.html
 msgid "all items"
-msgstr "تمام آئٹمز"
+msgstr "全部商品"
 
 #: templates/webapp/crm/pricing.html
 msgid "Stop"
-msgstr "روکیں"
+msgstr "停止"
 
 #: templates/webapp/crm/pricing.html
 msgid "Start"
-msgstr "شروع کریں"
+msgstr "开始"
 
 #: templates/webapp/crm/pricing.html
 msgid "No offers yet."
-msgstr "ابھی کوئی آفر نہیں۔"
+msgstr "暂无优惠。"
 
 #: templates/webapp/crm/pricing.html
 msgid "Offer name"
-msgstr "آفر کا نام"
+msgstr "优惠名称"
 
 #: templates/webapp/crm/pricing.html
 msgid "e.g. Ramadan 10% off"
-msgstr "مثلاً رمضان 10% رعایت"
+msgstr "例如：斋月九折"
 
 #: templates/webapp/crm/pricing.html
 msgid "Discount"
-msgstr "رعایت"
+msgstr "折扣"
 
 #: templates/webapp/crm/pricing.html
 msgid "Fixed amount"
-msgstr "مقررہ رقم"
+msgstr "固定金额"
 
 #: templates/webapp/crm/pricing.html
 msgid "All items"
-msgstr "تمام آئٹمز"
+msgstr "全部商品"
 
 #: templates/webapp/crm/pricing.html
 msgid "Save offer"
-msgstr "آفر محفوظ کریں"
+msgstr "保存优惠"
 
 #: templates/webapp/crm/pricing.html
 msgid "Price lists"
-msgstr "قیمت فہرستیں"
+msgstr "价目表"
 
 #: templates/webapp/crm/pricing.html
 msgid "e.g. wholesale prices, a special price for one customer"
-msgstr "مثلاً ہول سیل قیمتیں، کسی ایک گاہک کے لیے خاص قیمت"
+msgstr "例如：批发价、某位客户的特价"
 
 #: templates/webapp/crm/pricing.html
 msgid "items"
-msgstr "آئٹمز"
+msgstr "个商品"
 
 #: templates/webapp/crm/pricing.html
 msgid "until"
-msgstr "تک"
+msgstr "至"
 
 #: templates/webapp/crm/pricing.html
 msgid "No price lists yet."
-msgstr "ابھی کوئی قیمت فہرست نہیں۔"
+msgstr "暂无价目表。"
 
 #: templates/webapp/crm/pricing.html
 msgid "e.g. Wholesale"
-msgstr "مثلاً ہول سیل"
+msgstr "例如：批发"
 
 #: templates/webapp/crm/pricing.html
 msgid "For customer (optional)"
-msgstr "گاہک کے لیے (اختیاری)"
+msgstr "指定客户（可选）"
 
 #: templates/webapp/crm/pricing.html
 msgid "Priority"
-msgstr "ترجیح"
+msgstr "优先级"
 
 #: templates/webapp/crm/pricing.html
 msgid "Create price list"
-msgstr "قیمت فہرست بنائیں"
+msgstr "创建价目表"
 
 #: templates/webapp/customer_display.html
 msgid "Customer display ·"
-msgstr "گاہک ڈسپلے ·"
+msgstr "客显屏 ·"
 
 #: templates/webapp/customer_display.html
 msgid "Welcome to"
-msgstr "خوش آمدید"
+msgstr "欢迎光临"
 
 #: templates/webapp/customer_display.html
 msgid "Your order will appear here"
-msgstr "آپ کا آرڈر یہاں دکھائی دے گا"
+msgstr "您的订单将显示在这里"
 
 #: templates/webapp/customer_display.html
 msgid "Your order"
-msgstr "آپ کا آرڈر"
+msgstr "您的订单"
 
 #: templates/webapp/customer_display.html
 msgid "Total to pay"
-msgstr "کل ادائیگی"
+msgstr "应付总额"
 
 #: templates/webapp/customer_display.html
 msgid "Thank you for choosing us ♥"
-msgstr "ہمیں منتخب کرنے کا شکریہ ♥"
+msgstr "感谢您的光临 ♥"
 
 #: templates/webapp/customer_display.html
 msgid "Thank you!"
-msgstr "شکریہ!"
+msgstr "谢谢！"
 
 #: templates/webapp/customer_display.html
 msgid "Press F11 for full screen"
-msgstr "فل اسکرین کے لیے F11 دبائیں"
+msgstr "按 F11 全屏"
 
 #: templates/webapp/customer_display.html
 msgid "item"
-msgstr "آئٹم"
+msgstr "件"
 
 #: templates/webapp/customer_display.html
 msgid "Paid"
-msgstr "ادا شدہ"
+msgstr "已付"
 
 #: templates/webapp/customer_display.html
 msgid "Your change"
-msgstr "آپ کی واپسی رقم"
+msgstr "找零"
 
 #: templates/webapp/customer_list.html
 msgid "Add customer"
-msgstr "گاہک شامل کریں"
+msgstr "添加客户"
 
 #: templates/webapp/customer_list.html
 msgid "Export CSV"
-msgstr "CSV برآمد کریں"
+msgstr "导出 CSV"
 
 #: templates/webapp/customer_list.html
 msgid "Name, phone or email"

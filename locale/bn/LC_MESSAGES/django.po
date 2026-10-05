@@ -4184,7 +4184,7 @@ msgstr "বন্ধ"
 
 #: templates/webapp/industry/education_home.html
 msgid "nothing added yet."
-msgstr ""
+msgstr "এখনও কিছু যোগ করা হয়নি।"
 
 #: templates/webapp/industry/enroll_form.html
 msgid "or new"
@@ -11197,676 +11197,686 @@ msgstr "পছন্দের জাতীয়তা"
 
 #: apps/webapp/recruitment_views.py
 msgid "Salary (per month)"
-msgstr ""
+msgstr "বেতন (মাসিক)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Contract (months)"
-msgstr ""
+msgstr "চুক্তি (মাস)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Our fee per person (charged to client)"
-msgstr ""
+msgstr "প্রতি জনে আমাদের ফি (ক্লায়েন্টের কাছ থেকে)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Replacement guarantee (days)"
-msgstr ""
+msgstr "প্রতিস্থাপনের নিশ্চয়তা (দিন)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Show on our careers website"
-msgstr ""
+msgstr "আমাদের ক্যারিয়ার ওয়েবসাইটে দেখান"
 
 #: apps/webapp/recruitment_views.py
 msgid "Job description for the website"
-msgstr ""
+msgstr "ওয়েবসাইটের জন্য চাকরির বিবরণ"
 
 #: apps/webapp/recruitment_views.py
 msgid "Choose a client or type a new client's name."
-msgstr ""
+msgstr "একজন ক্লায়েন্ট বেছে নিন বা নতুন ক্লায়েন্টের নাম লিখুন।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Passport expiry"
-msgstr ""
+msgstr "পাসপোর্টের মেয়াদ"
 
 #: apps/webapp/recruitment_views.py
 msgid "Has Gulf experience"
-msgstr ""
+msgstr "উপসাগরীয় অভিজ্ঞতা আছে"
 
 #: apps/webapp/recruitment_views.py
 msgid "Sub-agent (if any)"
-msgstr ""
+msgstr "সাব-এজেন্ট (যদি থাকে)"
 
 #: apps/webapp/recruitment_views.py
 msgid "CV / documents (PDF, Word or photo)"
-msgstr ""
+msgstr "CV / নথি (PDF, Word বা ছবি)"
 
 #: apps/webapp/recruitment_views.py
 msgid "The file is too large (max 8 MB)."
-msgstr ""
+msgstr "ফাইলটি খুব বড় (সর্বোচ্চ 8 MB)।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Upload a PDF, Word file or photo."
-msgstr ""
+msgstr "PDF, Word ফাইল বা ছবি আপলোড করুন।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Client %(name)s added."
-msgstr ""
+msgstr "ক্লায়েন্ট %(name)s যোগ করা হয়েছে।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Job order %(number)s created."
-msgstr ""
+msgstr "জব অর্ডার %(number)s তৈরি হয়েছে।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Job order saved."
-msgstr ""
+msgstr "জব অর্ডার সংরক্ষিত হয়েছে।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Choose candidates or type a new candidate's name."
-msgstr ""
+msgstr "প্রার্থী বেছে নিন বা নতুন প্রার্থীর নাম লিখুন।"
 
 #: apps/webapp/recruitment_views.py
 msgid "%(count)s candidates added to this job."
-msgstr ""
+msgstr "এই চাকরিতে %(count)s জন প্রার্থী যোগ করা হয়েছে।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Already added or not suitable: %(names)s"
-msgstr ""
+msgstr "আগেই যোগ করা বা উপযুক্ত নয়: %(names)s"
 
 #: apps/webapp/recruitment_views.py
 msgid "Job opening"
-msgstr ""
+msgstr "চাকরির শূন্যপদ"
 
 #: apps/webapp/recruitment_views.py
 msgid "Candidate %(name)s added."
-msgstr ""
+msgstr "প্রার্থী %(name)s যোগ করা হয়েছে।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Another candidate has this passport number."
-msgstr ""
+msgstr "অন্য একজন প্রার্থীর এই পাসপোর্ট নম্বর আছে।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Candidate saved."
-msgstr ""
+msgstr "প্রার্থী সংরক্ষিত হয়েছে।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Added to %(job)s."
-msgstr ""
+msgstr "%(job)s-এ যোগ করা হয়েছে।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Passport expires in %(d)s days."
-msgstr ""
+msgstr "পাসপোর্টের মেয়াদ %(d)s দিনে শেষ হবে।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Hello %(name)s, this is %(company)s."
-msgstr ""
+msgstr "হ্যালো %(name)s, এটি %(company)s।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Invoice %(number)s created for the client."
-msgstr ""
+msgstr "ক্লায়েন্টের জন্য ইনভয়েস %(number)s তৈরি হয়েছে।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Invoice %(number)s created for the candidate."
-msgstr ""
+msgstr "প্রার্থীর জন্য ইনভয়েস %(number)s তৈরি হয়েছে।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Cost recorded in expenses."
-msgstr ""
+msgstr "খরচ ব্যয়ে লিপিবদ্ধ হয়েছে।"
 
 #: apps/webapp/recruitment_views.py
 msgid ""
 "Dear %(name)s, your interview for %(position)s (%(client)s) is on %(when)s. "
 "Please bring your passport and CV."
 msgstr ""
+"প্রিয় %(name)s, %(position)s (%(client)s)-এর জন্য আপনার ইন্টারভিউ %(when)s।"
+" অনুগ্রহ করে পাসপোর্ট ও CV সঙ্গে আনুন।"
 
 #: apps/webapp/recruitment_views.py
 msgid ""
 "Congratulations %(name)s! You are selected for %(position)s with %(client)s."
 msgstr ""
+"অভিনন্দন %(name)s! আপনি %(client)s-এ %(position)s পদে নির্বাচিত হয়েছেন।"
 
 #: apps/webapp/recruitment_views.py
 msgid ""
 "Dear %(name)s, your travel date is %(date)s. Please be ready with your "
 "passport."
 msgstr ""
+"প্রিয় %(name)s, আপনার যাত্রার তারিখ %(date)s। অনুগ্রহ করে পাসপোর্ট নিয়ে "
+"প্রস্তুত থাকুন।"
 
 #: apps/webapp/recruitment_views.py
 msgid "On hold"
-msgstr ""
+msgstr "স্থগিত"
 
 #: apps/webapp/recruitment_views.py
 msgid "Filled"
-msgstr ""
+msgstr "পূরণ হয়েছে"
 
 #: apps/webapp/recruitment_views.py
 msgid "Placed"
-msgstr ""
+msgstr "নিয়োগপ্রাপ্ত"
 
 #: apps/webapp/recruitment_views.py
 msgid "Not suitable"
-msgstr ""
+msgstr "উপযুক্ত নয়"
 
 #: apps/webapp/recruitment_views.py
 msgid "CV sent"
-msgstr ""
+msgstr "CV পাঠানো হয়েছে"
 
 #: apps/webapp/recruitment_views.py
 msgid "Shortlisted"
-msgstr ""
+msgstr "সংক্ষিপ্ত তালিকাভুক্ত"
 
 #: apps/webapp/recruitment_views.py
 msgid "Interview"
-msgstr ""
+msgstr "ইন্টারভিউ"
 
 #: apps/webapp/recruitment_views.py
 msgid "Selected"
-msgstr ""
+msgstr "নির্বাচিত"
 
 #: apps/webapp/recruitment_views.py
 msgid "Medical"
-msgstr ""
+msgstr "মেডিকেল"
 
 #: apps/webapp/recruitment_views.py
 msgid "Visa"
-msgstr ""
+msgstr "ভিসা"
 
 #: apps/webapp/recruitment_views.py
 msgid "Ticket"
-msgstr ""
+msgstr "টিকিট"
 
 #: apps/webapp/recruitment_views.py
 msgid "Joined / deployed"
-msgstr ""
+msgstr "যোগ দিয়েছেন / পাঠানো হয়েছে"
 
 #: apps/webapp/recruitment_views.py
 msgid "Withdrawn"
-msgstr ""
+msgstr "প্রত্যাহৃত"
 
 #: apps/webapp/recruitment_views.py
 msgid "Fit"
-msgstr ""
+msgstr "ফিট"
 
 #: apps/webapp/recruitment_views.py
 msgid "Unfit"
-msgstr ""
+msgstr "আনফিট"
 
 #: apps/webapp/recruitment_views.py
 msgid "Air ticket"
-msgstr ""
+msgstr "বিমান টিকিট"
 
 #: apps/webapp/recruitment_views.py
 msgid "Agent commission"
-msgstr ""
+msgstr "এজেন্ট কমিশন"
 
 #: apps/webapp/recruitment_views.py
 msgid "Documents / attestation"
-msgstr ""
+msgstr "নথি / সত্যায়ন"
 
 #: apps/webapp/recruitment_views.py
 msgid "Other"
-msgstr ""
+msgstr "অন্যান্য"
 
 #: apps/webapp/recruitment_views.py
 msgid "Any"
-msgstr ""
+msgstr "যেকোনো"
 
 #: apps/webapp/recruitment_views.py
 msgid "Bank transfer"
-msgstr ""
+msgstr "ব্যাংক ট্রান্সফার"
 
 #: apps/webapp/recruitment_views.py
 msgid "Free replacement period after joining."
-msgstr ""
+msgstr "যোগদানের পর বিনামূল্যে প্রতিস্থাপনের সময়কাল।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Preferred nationality, if any."
-msgstr ""
+msgstr "পছন্দের জাতীয়তা, যদি থাকে।"
 
 #: apps/webapp/recruitment_views.py
 msgid "Accommodation, food, transport…"
-msgstr ""
+msgstr "থাকা, খাওয়া, যাতায়াত…"
 
 #: apps/webapp/restaurant_order_views.py
 msgid "Yesterday"
-msgstr ""
+msgstr "গতকাল"
 
 #: apps/webapp/restaurant_order_views.py
 msgid "Last 7 days"
-msgstr ""
+msgstr "গত ৭ দিন"
 
 #: apps/webapp/restaurant_order_views.py
 msgid "Last 30 days"
-msgstr ""
+msgstr "গত ৩০ দিন"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Quantities and prices must be numbers."
-msgstr ""
+msgstr "পরিমাণ ও দাম সংখ্যা হতে হবে।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."
-msgstr ""
+msgstr "প্রতিটি লাইনে একটি আইটেম বেছে নিন।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Quantity must be more than zero."
-msgstr ""
+msgstr "পরিমাণ শূন্যের বেশি হতে হবে।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Add at least one item."
-msgstr ""
+msgstr "কমপক্ষে একটি আইটেম যোগ করুন।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Quotation %(number)s created."
-msgstr ""
+msgstr "কোটেশন %(number)s তৈরি হয়েছে।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Sales order %(number)s created."
-msgstr ""
+msgstr "বিক্রয় আদেশ %(number)s তৈরি হয়েছে।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Invoice %(number)s created from the quotation."
-msgstr ""
+msgstr "কোটেশন থেকে ইনভয়েস %(number)s তৈরি হয়েছে।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Order cancelled."
-msgstr ""
+msgstr "অর্ডার বাতিল হয়েছে।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Enter the quantity to deliver."
-msgstr ""
+msgstr "ডেলিভারির পরিমাণ লিখুন।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Delivery note %(number)s saved. Stock updated."
-msgstr ""
+msgstr "ডেলিভারি নোট %(number)s সংরক্ষিত। স্টক আপডেট হয়েছে।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Invoice %(number)s created."
-msgstr ""
+msgstr "ইনভয়েস %(number)s তৈরি হয়েছে।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Nothing delivered is waiting to be invoiced."
-msgstr ""
+msgstr "ইনভয়েসের অপেক্ষায় কোনো ডেলিভারি করা পণ্য নেই।"
 
 #: apps/webapp/scale_views.py
 msgid "Use 1–3 digit prefixes separated by commas, e.g. 20,21,22."
-msgstr ""
+msgstr "কমা দিয়ে আলাদা ১–৩ অঙ্কের প্রিফিক্স ব্যবহার করুন, যেমন 20,21,22।"
 
 #: apps/webapp/scale_views.py
 msgid "Prefix and item code must leave at least 3 digits for the value."
-msgstr ""
+msgstr "প্রিফিক্স ও আইটেম কোডের পর মানের জন্য কমপক্ষে ৩টি অঙ্ক থাকতে হবে।"
 
 #: apps/webapp/scale_views.py
 msgid "At most 3 decimals."
-msgstr ""
+msgstr "সর্বোচ্চ ৩ দশমিক।"
 
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
-msgstr ""
+msgstr "ওজন যন্ত্রের সেটিংস সংরক্ষিত হয়েছে।"
 
 #: apps/webapp/site_views.py
 msgid "Main colour"
-msgstr ""
+msgstr "প্রধান রং"
 
 #: apps/webapp/site_views.py
 msgid "Highlight colour"
-msgstr ""
+msgstr "হাইলাইট রং"
 
 #: apps/webapp/site_views.py
 msgid "Website language"
-msgstr ""
+msgstr "ওয়েবসাইটের ভাষা"
 
 #: apps/webapp/site_views.py
 msgid "Font"
-msgstr ""
+msgstr "ফন্ট"
 
 #: apps/webapp/site_views.py
 msgid "Logo"
-msgstr ""
+msgstr "লোগো"
 
 #: apps/webapp/site_views.py
 msgid "Cover photo"
-msgstr ""
+msgstr "কভার ছবি"
 
 #: apps/webapp/site_views.py
 msgid "Big title"
-msgstr ""
+msgstr "বড় শিরোনাম"
 
 #: apps/webapp/site_views.py
 msgid "Line under the title"
-msgstr ""
+msgstr "শিরোনামের নিচের লাইন"
 
 #: apps/webapp/site_views.py
 msgid "Google Maps link"
-msgstr ""
+msgstr "Google Maps লিংক"
 
 #: apps/webapp/site_views.py
 msgid "Show menu / services / products"
-msgstr ""
+msgstr "মেনু / সেবা / পণ্য দেখান"
 
 #: apps/webapp/site_views.py
 msgid "Show offers"
-msgstr ""
+msgstr "অফার দেখান"
 
 #: apps/webapp/site_views.py
 msgid "Show booking form"
-msgstr ""
+msgstr "বুকিং ফর্ম দেখান"
 
 #: apps/webapp/site_views.py
 msgid "Show jobs"
-msgstr ""
+msgstr "চাকরি দেখান"
 
 #: apps/webapp/site_views.py
 msgid "Show contact form"
-msgstr ""
+msgstr "যোগাযোগ ফর্ম দেখান"
 
 #: apps/webapp/site_views.py
 msgid "Leave empty to use the company logo."
-msgstr ""
+msgstr "কোম্পানির লোগো ব্যবহার করতে খালি রাখুন।"
 
 #: apps/webapp/site_views.py
 msgid "One line each, e.g. Sat–Thu 10am–11pm"
-msgstr ""
+msgstr "প্রতি লাইনে একটি, যেমন শনি–বৃহঃ সকাল ১০টা–রাত ১১টা"
 
 #: apps/webapp/site_views.py
 msgid "Visitors can also switch to"
-msgstr ""
+msgstr "দর্শকরা এগুলিতেও বদলাতে পারবেন"
 
 #: apps/webapp/site_views.py
 msgid "Menu"
-msgstr ""
+msgstr "মেনু"
 
 #: apps/webapp/site_views.py
 msgid "Phone, address & logo"
-msgstr ""
+msgstr "ফোন, ঠিকানা ও লোগো"
 
 #: apps/webapp/stock_views.py
 msgid "Damaged"
-msgstr ""
+msgstr "ক্ষতিগ্রস্ত"
 
 #: apps/webapp/stock_views.py
 msgid "Lost / stolen"
-msgstr ""
+msgstr "হারানো / চুরি"
 
 #: apps/webapp/stock_views.py
 msgid "Own use"
-msgstr ""
+msgstr "নিজস্ব ব্যবহার"
 
 #: apps/webapp/stock_views.py
 msgid "Found extra"
-msgstr ""
+msgstr "অতিরিক্ত পাওয়া গেছে"
 
 #: apps/webapp/stock_views.py
 msgid "Correction"
-msgstr ""
+msgstr "সংশোধন"
 
 #: apps/webapp/stock_views.py
 msgid "Stock value"
-msgstr ""
+msgstr "স্টকের মূল্য"
 
 #: apps/webapp/stock_views.py
 msgid "Choose an item, a location and a quantity."
-msgstr ""
+msgstr "একটি আইটেম, স্থান ও পরিমাণ বেছে নিন।"
 
 #: apps/webapp/stock_views.py
 msgid "Stock of %(item)s changed by %(qty)s."
-msgstr ""
+msgstr "%(item)s-এর স্টক %(qty)s পরিবর্তিত হয়েছে।"
 
 #: apps/webapp/stock_views.py
 msgid "Choose both locations, an item and a quantity on every line."
-msgstr ""
+msgstr "প্রতিটি লাইনে দুটি স্থান, একটি আইটেম ও পরিমাণ বেছে নিন।"
 
 #: apps/webapp/stock_views.py
 msgid "%(count)s items moved from %(from)s to %(to)s."
-msgstr ""
+msgstr "%(count)sটি আইটেম %(from)s থেকে %(to)s-এ সরানো হয়েছে।"
 
 #: apps/webapp/stock_views.py
 msgid "Choose a location that has items to count."
-msgstr ""
+msgstr "গোনার মতো আইটেম আছে এমন একটি স্থান বেছে নিন।"
 
 #: apps/webapp/stock_views.py
 msgid "Counted quantities must be zero or more."
-msgstr ""
+msgstr "গণনা করা পরিমাণ শূন্য বা বেশি হতে হবে।"
 
 #: apps/webapp/stock_views.py
 msgid "Stock count completed. Stock corrected where it was different."
-msgstr ""
+msgstr "স্টক গণনা সম্পন্ন। যেখানে পার্থক্য ছিল সেখানে স্টক সংশোধন হয়েছে।"
 
 #: apps/webapp/stock_views.py
 msgid "Progress saved."
-msgstr ""
+msgstr "অগ্রগতি সংরক্ষিত হয়েছে।"
 
 #: apps/webapp/stock_views.py
 msgid "Choose an item and enter the batch number."
-msgstr ""
+msgstr "একটি আইটেম বেছে নিয়ে ব্যাচ নম্বর লিখুন।"
 
 #: apps/webapp/stock_views.py
 msgid "Batch received"
-msgstr ""
+msgstr "ব্যাচ পাওয়া গেছে"
 
 #: apps/webapp/stock_views.py
 msgid "Batch %(number)s saved."
-msgstr ""
+msgstr "ব্যাচ %(number)s সংরক্ষিত হয়েছে।"
 
 #: apps/webapp/stock_views.py
 msgid "Choose an item, a location and enter at least one serial number."
-msgstr ""
+msgstr "একটি আইটেম ও স্থান বেছে নিয়ে কমপক্ষে একটি সিরিয়াল নম্বর লিখুন।"
 
 #: apps/webapp/stock_views.py
 msgid "%(count)s serial numbers added to stock."
-msgstr ""
+msgstr "স্টকে %(count)sটি সিরিয়াল নম্বর যোগ করা হয়েছে।"
 
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
-msgstr ""
+msgstr "আগেই নিবন্ধিত: %(list)s"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."
-msgstr ""
+msgstr "নমুনা ডেটা সরানো হয়েছে।"
 
 #: apps/webapp/views.py
 msgid "%(n)s items already used in bills were switched off instead."
-msgstr ""
+msgstr "বিলে ব্যবহৃত %(n)sটি আইটেম এর বদলে বন্ধ করা হয়েছে।"
 
 #: apps/webapp/views.py
 msgid ""
 "Kerala menu loaded: %(n)s dishes with pictures. Change names and prices any "
 "time."
 msgstr ""
+"কেরালা মেনু লোড হয়েছে: ছবিসহ %(n)sটি খাবার। নাম ও দাম যেকোনো সময় বদলান।"
 
 #: apps/webapp/views.py
 msgid "Sale %(number)s booked as invoice %(invoice)s."
-msgstr ""
+msgstr "বিক্রয় %(number)s ইনভয়েস %(invoice)s হিসেবে লিপিবদ্ধ হয়েছে।"
 
 #: apps/webapp/views.py
 msgid "Still cannot book %(number)s: %(error)s"
-msgstr ""
+msgstr "%(number)s এখনও লিপিবদ্ধ করা যাচ্ছে না: %(error)s"
 
 #: apps/webapp/views.py
 msgid "Marked as handled."
-msgstr ""
+msgstr "নিষ্পত্তি হিসেবে চিহ্নিত।"
 
 #: apps/webapp/views.py
 msgid "Role and branches updated."
-msgstr ""
+msgstr "ভূমিকা ও শাখা আপডেট হয়েছে।"
 
 #: apps/webapp/views.py
 msgid "That plan can't be selected."
-msgstr ""
+msgstr "এই প্ল্যানটি বেছে নেওয়া যাবে না।"
 
 #: apps/webapp/views.py
 msgid ""
 "You have %(users)s active users; this plan allows %(max)s. Remove users "
 "first."
 msgstr ""
+"আপনার %(users)s জন সক্রিয় ব্যবহারকারী আছেন; এই প্ল্যানে %(max)s জন "
+"অনুমোদিত। আগে ব্যবহারকারী সরান।"
 
 #: apps/webapp/views.py
 msgid "Plan changed to %(plan)s."
-msgstr ""
+msgstr "প্ল্যান %(plan)s-এ পরিবর্তিত হয়েছে।"
 
 #: apps/webapp/views.py
 msgid "Only the business owner can pay."
-msgstr ""
+msgstr "শুধু ব্যবসার মালিক পেমেন্ট করতে পারেন।"
 
 #: apps/webapp/views.py
 msgid "Online payment isn't available for this plan yet."
-msgstr ""
+msgstr "এই প্ল্যানের জন্য এখনও অনলাইন পেমেন্ট উপলব্ধ নয়।"
 
 #: apps/webapp/views.py
 msgid "Enter a valid mobile number for the payment receipt."
-msgstr ""
+msgstr "পেমেন্ট রসিদের জন্য একটি সঠিক মোবাইল নম্বর লিখুন।"
 
 #: apps/webapp/views.py
 msgid "Could not start the payment: %(error)s"
-msgstr ""
+msgstr "পেমেন্ট শুরু করা যায়নি: %(error)s"
 
 #: apps/webapp/views.py
 msgid ""
 "We could not check the payment yet (%(error)s). It will update "
 "automatically."
 msgstr ""
+"আমরা এখনও পেমেন্ট যাচাই করতে পারিনি (%(error)s)। এটি স্বয়ংক্রিয়ভাবে আপডেট "
+"হবে।"
 
 #: apps/webapp/views.py
 msgid "Payment not found."
-msgstr ""
+msgstr "পেমেন্ট পাওয়া যায়নি।"
 
 #: apps/webapp/views.py
 msgid "Payment received — thank you! Your subscription is active."
-msgstr ""
+msgstr "পেমেন্ট পাওয়া গেছে — ধন্যবাদ! আপনার সাবস্ক্রিপশন সক্রিয়।"
 
 #: apps/webapp/views.py
 msgid "The payment was cancelled or declined — no charge was made."
-msgstr ""
+msgstr "পেমেন্ট বাতিল বা প্রত্যাখ্যাত — কোনো টাকা কাটা হয়নি।"
 
 #: apps/webapp/views.py
 msgid ""
 "Your payment is being confirmed. This page will show it within a minute."
-msgstr ""
+msgstr "আপনার পেমেন্ট নিশ্চিত করা হচ্ছে। এই পেজটি এক মিনিটের মধ্যে দেখাবে।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Send us a message"
-msgstr ""
+msgstr "আমাদের একটি বার্তা পাঠান"
 
 #: apps/webapp/website_kit_views.py
 msgid "Subject"
-msgstr ""
+msgstr "বিষয়"
 
 #: apps/webapp/website_kit_views.py
 msgid "Message"
-msgstr ""
+msgstr "বার্তা"
 
 #: apps/webapp/website_kit_views.py
 msgid "Thank you! We will get back to you soon."
-msgstr ""
+msgstr "ধন্যবাদ! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Could not send. Please try again."
-msgstr ""
+msgstr "পাঠানো যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Please enter your name and a phone number or email."
-msgstr ""
+msgstr "অনুগ্রহ করে আপনার নাম ও ফোন নম্বর বা ইমেইল লিখুন।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Order sent"
-msgstr ""
+msgstr "অর্ডার পাঠানো হয়েছে"
 
 #: apps/webapp/website_kit_views.py
 msgid "Your order is in the kitchen."
-msgstr ""
+msgstr "আপনার অর্ডার রান্নাঘরে আছে।"
 
 #: apps/webapp/website_kit_views.py
 msgid "The restaurant will confirm your order shortly."
-msgstr ""
+msgstr "রেস্তোরাঁ শীঘ্রই আপনার অর্ডার নিশ্চিত করবে।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Usually ready in about %s minutes."
-msgstr ""
+msgstr "সাধারণত প্রায় %s মিনিটে প্রস্তুত।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Track my order"
-msgstr ""
+msgstr "আমার অর্ডার ট্র্যাক করুন"
 
 #: apps/webapp/website_kit_views.py
 msgid "Your cart is empty. Tap “+ Add” on the menu."
-msgstr ""
+msgstr "আপনার কার্ট খালি। মেনুতে “+ যোগ করুন” চাপুন।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Pickup from the restaurant"
-msgstr ""
+msgstr "রেস্তোরাঁ থেকে পিকআপ"
 
 #: apps/webapp/website_kit_views.py
 msgid "Sorry, we are not taking online orders right now."
-msgstr ""
+msgstr "দুঃখিত, আমরা এখন অনলাইন অর্ডার নিচ্ছি না।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Please call %s."
-msgstr ""
+msgstr "অনুগ্রহ করে %s নম্বরে কল করুন।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Minimum for delivery:"
-msgstr ""
+msgstr "ডেলিভারির ন্যূনতম:"
 
 #: apps/webapp/website_kit_views.py
 msgid "Phone / WhatsApp, e.g. +974 5555 1234"
-msgstr ""
+msgstr "ফোন / WhatsApp, যেমন +974 5555 1234"
 
 #: apps/webapp/website_kit_views.py
 msgid "Delivery address (zone, street, building, flat)"
-msgstr ""
+msgstr "ডেলিভারির ঠিকানা (জোন, রাস্তা, ভবন, ফ্ল্যাট)"
 
 #: apps/webapp/website_kit_views.py
 msgid "Note, e.g. less spicy, no onion"
-msgstr ""
+msgstr "নোট, যেমন কম ঝাল, পেঁয়াজ ছাড়া"
 
 #: apps/webapp/website_kit_views.py
 msgid "Place order"
-msgstr ""
+msgstr "অর্ডার করুন"
 
 #: apps/webapp/website_kit_views.py
 msgid "Please enter your name."
-msgstr ""
+msgstr "অনুগ্রহ করে আপনার নাম লিখুন।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Please enter your phone number."
-msgstr ""
+msgstr "অনুগ্রহ করে আপনার ফোন নম্বর লিখুন।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Please enter the delivery address."
-msgstr ""
+msgstr "অনুগ্রহ করে ডেলিভারির ঠিকানা লিখুন।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Could not send the order. Please try again."
-msgstr ""
+msgstr "অর্ডার পাঠানো যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।"
 
 #: apps/webapp/website_kit_views.py
 msgid "No connection. Please try again."
-msgstr ""
+msgstr "সংযোগ নেই। অনুগ্রহ করে আবার চেষ্টা করুন।"
 
 #: apps/webapp/website_kit_views.py
 msgid "Added:"
-msgstr ""
+msgstr "যোগ করা হয়েছে:"
 
 #: apps/modules/catalog.py
 msgid "Rooms"
-msgstr ""
+msgstr "রুম"
 
 #: apps/modules/catalog.py
 msgid "Reservation"
-msgstr ""
+msgstr "রিজার্ভেশন"
 
 #: apps/modules/catalog.py
 msgid "Rental"
-msgstr ""
+msgstr "ভাড়া"
 
 #: apps/modules/catalog.py
 msgid "Halls"
-msgstr ""
+msgstr "হল"
 
 #: apps/modules/catalog.py
 msgid "Event booking"
-msgstr ""
+msgstr "অনুষ্ঠান বুকিং"
 
 #: apps/modules/catalog.py
 msgid "event"
-msgstr ""
+msgstr "অনুষ্ঠান"
 
 #: apps/modules/catalog.py
 msgid "Spaces"
-msgstr ""
+msgstr "স্থান"

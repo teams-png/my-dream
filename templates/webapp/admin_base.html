@@ -85,7 +85,30 @@
     .sidebar{position:fixed;inset:0 auto 0 0;z-index:80;overflow-y:auto;transform:translateX(-105%);box-shadow:0 20px 60px rgba(0,0,0,.25);width:min(290px,86vw)}
     .nav-open .sidebar{transform:none}.nav-open .nav-scrim{opacity:1;pointer-events:auto}
     .main{padding:16px 16px 40px!important}
-    table{display:block;overflow-x:auto}
+    table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    th,td{white-space:nowrap}
+    td{white-space:normal;min-width:110px}
+  }
+  /* phones: header on two rows, inline page grids collapse, nothing wider than the screen */
+  @media(max-width:640px){
+    .topbar{flex-wrap:wrap;gap:10px;padding-bottom:12px;margin-bottom:16px}
+    .topbar-title{flex:1 1 100%}
+    .topbar h1{font-size:20px;line-height:1.25;overflow-wrap:anywhere}
+    .user-chip{flex:1 1 100%;justify-content:flex-end;flex-wrap:wrap;gap:8px}
+    .user-chip .who{display:none}
+    .main [style*="grid-template-columns"]{grid-template-columns:1fr!important}
+    .main [style*="grid-template-columns:repeat(4"],.main [style*="grid-template-columns:repeat(3"]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+    .main [style*="display:flex"],.main [style*="display: flex"]{flex-wrap:wrap}
+    .card{padding:16px}
+    .main{overflow-wrap:anywhere}
+    .main td{overflow-wrap:normal}
+    .main h2{font-size:18px}
+    .main code,.main pre{white-space:pre-wrap;word-break:break-all}
+    .main img,.main canvas,.main iframe{max-width:100%}
+    .main canvas{height:auto!important}
+    .main input,.main select,.main textarea{max-width:100%}
+    .btn{padding:10px 14px}
+    form.stacked ul[id$="_default_modules"]{grid-template-columns:1fr}
   }
 
   .lang-switch{margin:0;display:inline-flex}
@@ -134,7 +157,7 @@
     <div class="topbar">
       <div class="topbar-title"><button class="nav-toggle" type="button" data-nav-toggle aria-label="{% translate 'Open menu' %}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><h1>{% block heading %}{% endblock %}</h1></div>
       <div class="user-chip">{% include "webapp/_language_switcher.html" %}{% include "webapp/_theme_toggle.html" %}
-        <span>{{ request.user.email|default:request.user.username }} · <a href="{% url 'webapp:logout' %}">{% translate "Log out" %}</a></span>
+        <span><span class="who">{{ request.user.email|default:request.user.username }} · </span><a href="{% url 'webapp:logout' %}">{% translate "Log out" %}</a></span>
         <div class="avatar">{{ request.user.email|default:request.user.username|slice:":1"|upper }}</div>
       </div>
     </div>

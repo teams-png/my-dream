@@ -168,7 +168,7 @@
   [dir=rtl] .focus-mode.nav-open .sidebar{transform:none}
 </style>
 {% if request.path|slice:':12' == '/restaurant/' %}<link rel="stylesheet" href="{% static 'css/restaurant.css' %}">{% endif %}
-{% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}{% load static %}<link rel="stylesheet" href="{% static 'css/forms.css' %}"><link rel="stylesheet" href="{% static 'css/dark.css' %}"><script>(function(){try{if(localStorage.getItem('bp.theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}})();</script></head>
+{% include "webapp/_lang_font.html" %}{% load static %}<link rel="stylesheet" href="{% static 'css/forms.css' %}"><link rel="stylesheet" href="{% static 'css/dark.css' %}"><script>(function(){try{if(localStorage.getItem('bp.theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}})();</script></head>
 <body>
 <div class="shell {% block shell_class %}{% endblock %}" id="appShell">
   {% if request.user.is_authenticated %}

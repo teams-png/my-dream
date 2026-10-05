@@ -24,7 +24,7 @@ from .recruitment_views import recruitment_view
 from apps.common.safe_json import script_json
 
 RATE_LIMIT = 8  # applications per hour per IP and site
-LANGS = {"en", "ar", "ml"}
+LANGS = {code for code, _name in settings.LANGUAGES}
 
 
 # ------------------------------------------------------------------ helpers
@@ -200,6 +200,64 @@ def careers_apply(request, slug):
     return redirect(url)
 
 
+def _form_text(lang):
+    """Form text in any BookPilot language (the script's built-in text covers English and Arabic only)."""
+    from django.utils.translation import gettext as _
+    with translation.override(lang):
+        t = {"title": _("Job application"),
+             "personal": _("Personal details"),
+             "contact": _("Contact"),
+             "passport": _("Passport"),
+             "work": _("Job & experience"),
+             "docs": _("CV & documents"),
+             "name": _("Full name (as in passport)"),
+             "gender": _("Gender"),
+             "male": _("Male"),
+             "female": _("Female"),
+             "dob": _("Date of birth"),
+             "nationality": _("Nationality"),
+             "marital": _("Marital status"),
+             "single": _("Single"),
+             "married": _("Married"),
+             "phone": _("Mobile / WhatsApp number"),
+             "email": _("Email"),
+             "location": _("Current location (city, country)"),
+             "ppno": _("Passport number"),
+             "ppexp": _("Passport expiry date"),
+             "position": _("Position applying for"),
+             "any": _("Any suitable job"),
+             "other": _("Other (type below)"),
+             "trade": _("Your trade / skill"),
+             "exp": _("Total experience (years)"),
+             "gulf": _("Gulf experience?"),
+             "yes": _("Yes"),
+             "no": _("No"),
+             "edu": _("Highest qualification"),
+             "langs": _("Languages"),
+             "licence": _("Driving licence"),
+             "none": _("None"),
+             "indian": _("Home country"),
+             "gcc": _("GCC licence"),
+             "salary": _("Expected salary (per month)"),
+             "notice": _("When can you join?"),
+             "now": _("Immediately"),
+             "m1": _("Within 1 month"),
+             "m2": _("1–3 months"),
+             "cv": _("CV / resume (PDF, Word or photo, max 8 MB)"),
+             "msg": _("Anything else? (optional)"),
+             "consent": _("I confirm the details are correct and agree to be contacted about jobs."),
+             "send": _("Submit application"),
+             "sending": _("Sending…"),
+             "ok": _("Thank you! Your application has been received."),
+             "ref": _("Reference"),
+             "again": _("Send another application"),
+             "required": _("Please fill in the required fields."),
+             "fail": _("Could not send. Please try again or contact us on WhatsApp."),
+             "choose": _("Choose…"),
+             "freeNote": _("We never charge job seekers to apply.")}
+        return {"t": t, "lang": lang, "rtl": translation.get_language_bidi()}
+
+
 def careers_form_js(request, slug):
     """The detailed application form for any website: <div class="bookpilot-form"></div> + this script."""
     site = svc.receiving_site(slug, widget=True)
@@ -209,6 +267,8 @@ def careers_form_js(request, slug):
     cfg = {"endpoint": request.build_absolute_uri(reverse("webapp:careers_apply", args=[slug])) + "?format=json&widget=1",
            "jobs": request.build_absolute_uri(reverse("webapp:careers_jobs_json", args=[slug])),
            "company": site.company.name, "color": site.accent_color or "#0f766e", "ask_passport": site.ask_passport}
+    if request.GET.get("lang") in LANGS:
+        cfg.update(_form_text(request.GET["lang"]))
     body = render_to_string("webapp/careers/form.js", {"cfg": json.dumps(cfg).replace("</", "<\\/")})
     response = HttpResponse(body, content_type="application/javascript; charset=utf-8")
     response["Cache-Control"] = "public, max-age=300"

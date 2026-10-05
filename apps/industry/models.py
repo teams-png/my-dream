@@ -506,6 +506,9 @@ class SiteDesign(TenantScopedModel):
     show_booking = models.BooleanField(default=True)
     show_careers = models.BooleanField(default=True)
     show_contact = models.BooleanField(default=True)
+    language = models.CharField(max_length=10, default="en", help_text="Main language of the website.")
+    extra_languages = models.CharField(max_length=120, blank=True,
+                                       help_text="Other languages visitors can switch to, comma separated codes.")
     # platform admin only
     custom_domain = models.CharField(max_length=253, blank=True, null=True, unique=True)
     domain_status = models.CharField(max_length=10, choices=DOMAIN_STATUS, blank=True, default="")

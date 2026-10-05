@@ -1,7 +1,7 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+{% load i18n %}<!doctype html>
+<html lang="{{ lang }}" dir="{% if lang_bidi %}rtl{% else %}ltr{% endif %}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 {% if online.stage == "new" or online.stage == "preparing" %}<meta http-equiv="refresh" content="20">{% endif %}
-<meta name="robots" content="noindex">
+<meta name="robots" content="noindex">{% include "webapp/_lang_font.html" %}
 <title>{{ order.order_number }} · {{ company.name }}</title>
 <style>
 :root{--c:{{ color }}}
@@ -20,21 +20,21 @@ a{color:var(--c);font-weight:700}
 <h1>{{ order.order_number }}</h1>
 <p class="sub">{{ company.name }}</p>
 {% if s == "rejected" or s == "cancelled" %}
-  <div class="msg bad">Sorry, the restaurant could not take this order.{% if online.reject_reason %}<br>{{ online.reject_reason }}{% endif %}</div>
+  <div class="msg bad">{% translate "Sorry, the restaurant could not take this order." %}{% if online.reject_reason %}<br>{{ online.reject_reason }}{% endif %}</div>
 {% else %}
   <div class="steps">
-    {% for step, on in steps %}<div class="{% if on %}on{% endif %}"><i></i>{% if step == "new" %}Received{% elif step == "preparing" %}Preparing{% elif step == "ready" %}Ready{% else %}Done{% endif %}</div>{% endfor %}
+    {% for step, on in steps %}<div class="{% if on %}on{% endif %}"><i></i>{% if step == "new" %}{% translate "Received" %}{% elif step == "preparing" %}{% translate "Preparing" %}{% elif step == "ready" %}{% translate "Ready" %}{% else %}{% translate "Done" %}{% endif %}</div>{% endfor %}
   </div>
-  {% if s == "new" %}<div class="msg">The restaurant has your order and will confirm it shortly.</div>
-  {% elif s == "preparing" %}<div class="msg">Your order is being prepared{% if online.mode == "delivery" %} and will be delivered to you{% endif %}.</div>
-  {% elif s == "ready" %}<div class="msg good">{% if online.mode == "delivery" %}Your order is ready and on its way.{% else %}Your order is ready for pickup.{% endif %}</div>
-  {% else %}<div class="msg good">Thank you! Enjoy your meal.</div>{% endif %}
+  {% if s == "new" %}<div class="msg">{% translate "The restaurant has your order and will confirm it shortly." %}</div>
+  {% elif s == "preparing" %}<div class="msg">{% if online.mode == "delivery" %}{% translate "Your order is being prepared and will be delivered to you." %}{% else %}{% translate "Your order is being prepared." %}{% endif %}</div>
+  {% elif s == "ready" %}<div class="msg good">{% if online.mode == "delivery" %}{% translate "Your order is ready and on its way." %}{% else %}{% translate "Your order is ready for pickup." %}{% endif %}</div>
+  {% else %}<div class="msg good">{% translate "Thank you! Enjoy your meal." %}</div>{% endif %}
 {% endif %}
 <ul>{% for l in lines %}<li><span>{{ l.quantity|floatformat:"-3" }} × {{ l.product.name }}</span><span>{{ company.default_currency }} {{ l.total|floatformat:2 }}</span></li>{% endfor %}
-{% if fee %}<li><span>Delivery</span><span>{{ company.default_currency }} {{ fee|floatformat:2 }}</span></li>{% endif %}</ul>
-<div class="tot"><span>Total</span><span>{{ company.default_currency }} {{ online.total|floatformat:2 }}</span></div>
-<p class="muted">{% if online.mode == "delivery" %}🛵 Delivery to: {{ online.address }}{% else %}🛍 Pickup from {{ company.name }}{% if company.address %}, {{ company.address }}{% endif %}{% endif %}<br>Pay on {% if online.mode == "delivery" %}delivery{% else %}pickup{% endif %}.</p>
-{% if company.phone %}<p class="muted">Questions? Call <a href="tel:{{ company.phone }}">{{ company.phone }}</a></p>{% endif %}
-{% if s == "new" or s == "preparing" %}<p class="muted">This page updates by itself.</p>{% endif %}
+{% if fee %}<li><span>{% translate "Delivery" %}</span><span>{{ company.default_currency }} {{ fee|floatformat:2 }}</span></li>{% endif %}</ul>
+<div class="tot"><span>{% translate "Total" %}</span><span>{{ company.default_currency }} {{ online.total|floatformat:2 }}</span></div>
+<p class="muted">{% if online.mode == "delivery" %}🛵 {% translate "Delivery to:" %} {{ online.address }}{% else %}🛍 {% translate "Pickup from" %} {{ company.name }}{% if company.address %}, {{ company.address }}{% endif %}{% endif %}<br>{% if online.mode == "delivery" %}{% translate "Pay on delivery" %}{% else %}{% translate "Pay on pickup" %}{% endif %}</p>
+{% if company.phone %}<p class="muted">{% translate "Questions? Call" %} <a href="tel:{{ company.phone }}">{{ company.phone }}</a></p>{% endif %}
+{% if s == "new" or s == "preparing" %}<p class="muted">{% translate "This page updates by itself." %}</p>{% endif %}
 {% endwith %}
 </main></body></html>

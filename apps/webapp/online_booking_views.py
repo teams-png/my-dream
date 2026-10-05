@@ -65,6 +65,12 @@ def _site_or_404(slug):
     return site
 
 
+# field names the form shows; listed here so every language has them
+WIDGET_WORDS = (_l("Check-in"), _l("Check-out"), _l("Pick-up"), _l("Return"), _l("From"), _l("Until"),
+                _l("Event date"), _l("Ends"), _l("Date"), _l("Membership / trial"), _l("Wash package"),
+                _l("Service"), _l("Item"), _l("Room"), _l("Vehicle"), _l("Equipment"), _l("Hall"), _l("Space"))
+
+
 def _labels(company, kind):
     code = company.business_type.code
     resource, resources, booking, unit = BOOKING_TERMS.get(code, ("Item", "Items", "Booking", "day"))
@@ -108,11 +114,36 @@ def book_options(request, slug):
     return response
 
 
+def _widget_text(cfg, lang):
+    """Form text in any BookPilot language (the script's built-in text covers English and Arabic only)."""
+    from django.utils import translation
+    from django.utils.translation import gettext as _
+    with translation.override(lang):
+        per = {"hour": "/ " + _("hour"), "day": "/ " + _("day"), "night": "/ " + _("night"), "month": "/ " + _("month"), "event": ""}
+        t = {"appointment": _("Book an appointment"), "resource": _("Book now"), "table": _("Reserve a table"),
+             "event": _("Event enquiry"), "any": _("Not sure / other"), "date": _("Date"), "time": _("Time"),
+             "guests": _("Number of people"), "partySize": _("Number of guests"), "name": _("Your name"),
+             "phone": _("Mobile / WhatsApp number"), "email": _("Email (optional)"), "notes": _("Notes (optional)"),
+             "eventType": _("Type of event"), "eventPh": _("Wedding, birthday, corporate…"), "send": _("Send booking request"),
+             "sending": _("Sending…"), "ok": _("Thank you! We received your request."),
+             "okNote": _("We will confirm on WhatsApp or by phone shortly."), "ref": _("Reference"),
+             "again": _("Make another booking"), "fail": _("Could not send. Please try again or contact us on WhatsApp."),
+             "required": _("Please fill in the required fields."), "per": per, "mins": _("min"), "choose": _("Choose…"),
+             "endTime": _("Until (time)")}
+        labels = {k: _(v) for k, v in (cfg.get("labels") or {}).items()}
+        return {"t": t, "labels": labels, "lang": lang, "rtl": translation.get_language_bidi()}
+
+
 def book_form_js(request, slug):
     site = svc.public_site(slug)
     if site is None:
         return HttpResponse("/* BookPilot: online booking is not set up */", content_type="application/javascript")
-    cfg = json.dumps(_config(request, site)).replace("</", "<\\/")
+    cfg = _config(request, site)
+    lang = (request.GET.get("lang") or "").lower()
+    from django.conf import settings
+    if lang in dict(settings.LANGUAGES):
+        cfg.update(_widget_text(cfg, lang))
+    cfg = json.dumps(cfg).replace("</", "<\\/")
     response = HttpResponse(render_to_string("webapp/online_booking/form.js", {"cfg": cfg}),
                             content_type="application/javascript; charset=utf-8")
     response["Cache-Control"] = "public, max-age=120"

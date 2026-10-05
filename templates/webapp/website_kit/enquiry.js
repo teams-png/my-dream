@@ -1,5 +1,5 @@
 /* BookPilot contact / enquiry form — <div class="bookpilot-enquiry"></div> + this script.
-   Optional: data-lang="en|ar", data-title, data-thanks="https://…", data-color="#…" */
+   Optional: data-lang="en|ar|…" (or ?lang= on the script URL for any BookPilot language), data-title, data-thanks="https://…", data-color="#…" */
 (function () {
   "use strict";
   var CFG = {{ cfg|safe }};
@@ -20,8 +20,10 @@
     ".bpe .hp{position:absolute;left:-9999px}@media(max-width:520px){.bpe .g{grid-template-columns:1fr}}";
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]; }); }
   function render(box) {
-    var lang = (box.getAttribute("data-lang") || document.documentElement.lang || "en").slice(0, 2).toLowerCase(), t = T[lang] || T.en;
-    if (lang === "ar") box.setAttribute("dir", "rtl");
+    var asked = (box.getAttribute("data-lang") || "").toLowerCase(),
+        lang = (asked || CFG.lang || document.documentElement.lang || "en").toLowerCase(),
+        t = (CFG.t && (!asked || asked === CFG.lang)) ? CFG.t : (T[lang.slice(0, 2)] || CFG.t || T.en);
+    if (t === CFG.t ? CFG.rtl : lang.slice(0, 2) === "ar") box.setAttribute("dir", "rtl");
     box.classList.add("bpe"); box.style.setProperty("--c", box.getAttribute("data-color") || CFG.color);
     var f = function (n, l, i, w) { return '<div class="f' + (w ? " w" : "") + '"><label for="bpe-' + n + '">' + esc(l) + "</label>" + i + "</div>"; };
     box.innerHTML = "<h3>" + esc(box.getAttribute("data-title") || t.title) + '</h3><form novalidate><div class="msg bad" hidden></div>' +

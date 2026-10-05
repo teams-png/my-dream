@@ -4,6 +4,7 @@
 {% block heading %}🌐 {% translate "My website" %}{% if admin %} · {{ company.name }}{% endif %}{% endblock %}
 {% block content %}
 <style>
+.site-langs{margin:0 0 12px}.site-langs summary{cursor:pointer;font-weight:600}.lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px 12px;margin:8px 0}.lang-grid label{display:flex;gap:6px;align-items:center;font-weight:500}
 .se{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px;align-items:start}
 @media(max-width:1000px){.se{grid-template-columns:1fr}}
 .se>div,.se>div>*,.se .grid2>*{min-width:0}.se .card{overflow-wrap:anywhere}
@@ -65,6 +66,10 @@
       <form method="post" enctype="multipart/form-data">{% csrf_token %}<input type="hidden" name="action" value="design">
         {{ form.non_field_errors }}
         <p class="checks"><label>{{ form.published }} {{ form.published.label }}</label></p>
+        <p>{{ form.language.label_tag }}{{ form.language }}<span class="helptext">{% translate "Buttons, headings and the order cart use this language. Your menu names stay as you typed them." %}</span></p>
+        <details class="site-langs"><summary>{{ form.extra_languages.label }}{% if design.extra_languages %} ({{ design.extra_languages }}){% endif %}</summary>
+          <div class="lang-grid">{% for box in form.extra_languages %}<label>{{ box.tag }} {{ box.choice_label }}</label>{% endfor %}</div>
+          <span class="helptext">{% translate "A language button appears at the top of the website." %}</span></details>
         <div class="grid2">
           <p>{{ form.theme.label_tag }}{{ form.theme }}</p>
           <p>{{ form.font.label_tag }}{{ form.font }}</p>

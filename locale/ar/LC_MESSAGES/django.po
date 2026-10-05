@@ -7968,6 +7968,58 @@ msgstr "طلبات الموقع الأخيرة"
 msgid "Rejected"
 msgstr "مرفوض"
 
+#: templates/webapp/restaurant/online_status.html
+msgid "Sorry, the restaurant could not take this order."
+msgstr "عذراً، لم يتمكن المطعم من قبول هذا الطلب."
+
+#: templates/webapp/restaurant/online_status.html
+msgid "The restaurant has your order and will confirm it shortly."
+msgstr "وصل طلبك إلى المطعم وسيتم تأكيده قريباً."
+
+#: templates/webapp/restaurant/online_status.html
+msgid "Your order is being prepared and will be delivered to you."
+msgstr "يتم تحضير طلبك وسيتم توصيله إليك."
+
+#: templates/webapp/restaurant/online_status.html
+msgid "Your order is being prepared."
+msgstr "يتم تحضير طلبك."
+
+#: templates/webapp/restaurant/online_status.html
+msgid "Your order is ready and on its way."
+msgstr "طلبك جاهز وفي الطريق إليك."
+
+#: templates/webapp/restaurant/online_status.html
+msgid "Your order is ready for pickup."
+msgstr "طلبك جاهز للاستلام."
+
+#: templates/webapp/restaurant/online_status.html
+msgid "Thank you! Enjoy your meal."
+msgstr "شكراً لك! بالهناء والشفاء."
+
+#: templates/webapp/restaurant/online_status.html
+msgid "Delivery to:"
+msgstr "التوصيل إلى:"
+
+#: templates/webapp/restaurant/online_status.html
+msgid "Pickup from"
+msgstr "الاستلام من"
+
+#: templates/webapp/restaurant/online_status.html
+msgid "Pay on delivery"
+msgstr "الدفع عند التوصيل"
+
+#: templates/webapp/restaurant/online_status.html
+msgid "Pay on pickup"
+msgstr "الدفع عند الاستلام"
+
+#: templates/webapp/restaurant/online_status.html
+msgid "Questions? Call"
+msgstr "لديك سؤال؟ اتصل"
+
+#: templates/webapp/restaurant/online_status.html
+msgid "This page updates by itself."
+msgstr "تتحدث هذه الصفحة تلقائياً."
+
 #: templates/webapp/restaurant/order_detail.html
 msgid "Restaurant POS"
 msgstr "نقطة بيع المطعم"
@@ -8717,6 +8769,17 @@ msgid "Design"
 msgstr "التصميم"
 
 #: templates/webapp/site/editor.html
+msgid ""
+"Buttons, headings and the order cart use this language. Your menu names stay"
+" as you typed them."
+msgstr ""
+"الأزرار والعناوين وسلة الطلب تظهر بهذه اللغة. تبقى أسماء القائمة كما كتبتها."
+
+#: templates/webapp/site/editor.html
+msgid "A language button appears at the top of the website."
+msgstr "يظهر زر اللغة في أعلى الموقع."
+
+#: templates/webapp/site/editor.html
 msgid "Sections"
 msgstr "الأقسام"
 
@@ -8727,6 +8790,74 @@ msgstr "معاينة"
 #: templates/webapp/site/editor.html
 msgid "Open full page"
 msgstr "فتح الصفحة كاملة"
+
+#: templates/webapp/site/page.html
+msgid "not public yet"
+msgstr "غير منشور بعد"
+
+#: templates/webapp/site/page.html
+msgid "About"
+msgstr "من نحن"
+
+#: templates/webapp/site/page.html
+msgid "Contact"
+msgstr "تواصل"
+
+#: templates/webapp/site/page.html
+msgid "Book now"
+msgstr "احجز الآن"
+
+#: templates/webapp/site/page.html
+msgid "Call us"
+msgstr "اتصل بنا"
+
+#: templates/webapp/site/page.html
+msgid "Available now"
+msgstr "متوفر الآن"
+
+#: templates/webapp/site/page.html
+msgid "+ Add"
+msgstr "+ إضافة"
+
+#: templates/webapp/site/page.html
+msgid "Veg"
+msgstr "نباتي"
+
+#: templates/webapp/site/page.html
+msgid "Send your request — we confirm by phone or WhatsApp."
+msgstr "أرسل طلبك — نؤكد عبر الهاتف أو واتساب."
+
+#: templates/webapp/site/page.html
+msgid "Apply for a job"
+msgstr "قدّم على وظيفة"
+
+#: templates/webapp/site/page.html
+msgid "Send your details and CV — our team will contact you."
+msgstr "أرسل بياناتك وسيرتك الذاتية — سيتواصل معك فريقنا."
+
+#: templates/webapp/site/page.html
+msgid "Open in Google Maps"
+msgstr "افتح في خرائط Google"
+
+#: templates/webapp/site/page.html
+msgid "Opening hours"
+msgstr "ساعات العمل"
+
+#: templates/webapp/site/page.html
+msgid "Contact us"
+msgstr "اتصل بنا"
+
+#: templates/webapp/site/page.html
+msgid "We usually reply within the day."
+msgstr "نرد عادةً خلال اليوم."
+
+#: templates/webapp/site/page.html
+msgid "Follow us"
+msgstr "تابعنا"
+
+#: templates/webapp/site/page.html
+msgid "VAT"
+msgstr "ضريبة القيمة المضافة"
 
 #: templates/webapp/stock/_tabs.html
 msgid "Stock"
@@ -9067,6 +9198,54 @@ msgstr "آجل (مورد)"
 msgid "Already owned (no payment now)"
 msgstr "مملوك مسبقًا (بدون دفع الآن)"
 
+#: apps/industry/site_builder.py
+msgid "Our menu"
+msgstr "قائمتنا"
+
+#: apps/industry/site_builder.py
+msgid "Our services"
+msgstr "خدماتنا"
+
+#: apps/industry/site_builder.py
+msgid "Rooms & spaces"
+msgstr "الغرف والمساحات"
+
+#: apps/industry/site_builder.py
+msgid "Courses"
+msgstr "الدورات"
+
+#: apps/industry/site_builder.py
+msgid "hour"
+msgstr "ساعة"
+
+#: apps/industry/site_builder.py
+msgid "day"
+msgstr "يوم"
+
+#: apps/industry/site_builder.py
+msgid "night"
+msgstr "ليلة"
+
+#: apps/industry/site_builder.py
+msgid "week"
+msgstr "أسبوع"
+
+#: apps/industry/site_builder.py
+msgid "monthly"
+msgstr "شهرياً"
+
+#: apps/industry/site_builder.py
+msgid "session"
+msgstr "جلسة"
+
+#: apps/industry/site_builder.py
+msgid "term"
+msgstr "فصل دراسي"
+
+#: apps/industry/site_builder.py
+msgid "Our products"
+msgstr "منتجاتنا"
+
 #: apps/notifications/rules.py
 msgid "Customer bills due"
 msgstr "فواتير العملاء المستحقة"
@@ -9150,6 +9329,63 @@ msgstr "في الانتظار"
 #: apps/verticals/restaurant/models.py
 msgid "Accepted"
 msgstr "مقبول"
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "Enter a phone number we can call."
+msgstr "أدخل رقم هاتف يمكننا الاتصال به."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "Online ordering is switched off."
+msgstr "الطلب عبر الإنترنت متوقف."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "Sorry, we are not taking online orders right now. Please call us."
+msgstr "عذراً، لا نستقبل طلبات عبر الإنترنت الآن. يرجى الاتصال بنا."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "Enter your name."
+msgstr "أدخل اسمك."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "This order type is not available."
+msgstr "نوع الطلب هذا غير متاح."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "Enter the delivery address."
+msgstr "أدخل عنوان التوصيل."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "Your cart is empty."
+msgstr "سلتك فارغة."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "Too many items in one order. Please call us for big orders."
+msgstr "عدد الأصناف كبير في طلب واحد. يرجى الاتصال بنا للطلبات الكبيرة."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "Your cart is not valid. Please refresh the page."
+msgstr "سلتك غير صالحة. يرجى تحديث الصفحة."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "You can order 1 to %(n)s of each item."
+msgstr "يمكنك طلب 1 إلى %(n)s من كل صنف."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid ""
+"An item in your cart is no longer on the menu. Please refresh the page."
+msgstr "أحد الأصناف في سلتك لم يعد في القائمة. يرجى تحديث الصفحة."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "Sorry, %(item)s is not available online right now."
+msgstr "عذراً، %(item)s غير متاح عبر الإنترنت الآن."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "The minimum order for delivery is %(amount)s."
+msgstr "الحد الأدنى لطلب التوصيل هو %(amount)s."
+
+#: apps/verticals/restaurant/online_orders.py
+msgid "This order was already handled."
+msgstr "تمت معالجة هذا الطلب مسبقاً."
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -9450,6 +9686,167 @@ msgid ""
 msgstr "طلبات كثيرة من هذا الاتصال. حاول لاحقاً أو تواصل معنا عبر واتساب."
 
 #: apps/webapp/careers_views.py
+msgid "Job application"
+msgstr "طلب توظيف"
+
+#: apps/webapp/careers_views.py
+msgid "Personal details"
+msgstr "البيانات الشخصية"
+
+#: apps/webapp/careers_views.py
+msgid "Job & experience"
+msgstr "الوظيفة والخبرة"
+
+#: apps/webapp/careers_views.py
+msgid "CV & documents"
+msgstr "السيرة الذاتية والمستندات"
+
+#: apps/webapp/careers_views.py
+msgid "Gender"
+msgstr "الجنس"
+
+#: apps/webapp/careers_views.py
+msgid "Male"
+msgstr "ذكر"
+
+#: apps/webapp/careers_views.py
+msgid "Female"
+msgstr "أنثى"
+
+#: apps/webapp/careers_views.py
+msgid "Marital status"
+msgstr "الحالة الاجتماعية"
+
+#: apps/webapp/careers_views.py
+msgid "Single"
+msgstr "أعزب"
+
+#: apps/webapp/careers_views.py
+msgid "Married"
+msgstr "متزوج"
+
+#: apps/webapp/careers_views.py
+msgid "Mobile / WhatsApp number"
+msgstr "رقم الجوال / واتساب"
+
+#: apps/webapp/careers_views.py
+msgid "Current location (city, country)"
+msgstr "الموقع الحالي (المدينة، الدولة)"
+
+#: apps/webapp/careers_views.py
+msgid "Passport expiry date"
+msgstr "تاريخ انتهاء جواز السفر"
+
+#: apps/webapp/careers_views.py
+msgid "Position applying for"
+msgstr "الوظيفة المتقدم لها"
+
+#: apps/webapp/careers_views.py
+msgid "Any suitable job"
+msgstr "أي وظيفة مناسبة"
+
+#: apps/webapp/careers_views.py
+msgid "Other (type below)"
+msgstr "أخرى (اكتب أدناه)"
+
+#: apps/webapp/careers_views.py
+msgid "Your trade / skill"
+msgstr "مهنتك / مهارتك"
+
+#: apps/webapp/careers_views.py
+msgid "Total experience (years)"
+msgstr "إجمالي الخبرة (سنوات)"
+
+#: apps/webapp/careers_views.py
+msgid "Gulf experience?"
+msgstr "خبرة في الخليج؟"
+
+#: apps/webapp/careers_views.py
+msgid "Yes"
+msgstr "نعم"
+
+#: apps/webapp/careers_views.py
+msgid "Highest qualification"
+msgstr "أعلى مؤهل"
+
+#: apps/webapp/careers_views.py
+msgid "Driving licence"
+msgstr "رخصة القيادة"
+
+#: apps/webapp/careers_views.py
+msgid "Home country"
+msgstr "بلدك الأصلي"
+
+#: apps/webapp/careers_views.py
+msgid "GCC licence"
+msgstr "رخصة خليجية"
+
+#: apps/webapp/careers_views.py
+msgid "Expected salary (per month)"
+msgstr "الراتب المتوقع (شهرياً)"
+
+#: apps/webapp/careers_views.py
+msgid "When can you join?"
+msgstr "متى يمكنك الالتحاق؟"
+
+#: apps/webapp/careers_views.py
+msgid "Immediately"
+msgstr "فوراً"
+
+#: apps/webapp/careers_views.py
+msgid "Within 1 month"
+msgstr "خلال شهر"
+
+#: apps/webapp/careers_views.py
+msgid "1–3 months"
+msgstr "1–3 أشهر"
+
+#: apps/webapp/careers_views.py
+msgid "CV / resume (PDF, Word or photo, max 8 MB)"
+msgstr "السيرة الذاتية (PDF أو Word أو صورة، بحد أقصى 8 ميغابايت)"
+
+#: apps/webapp/careers_views.py
+msgid "Anything else? (optional)"
+msgstr "أي شيء آخر؟ (اختياري)"
+
+#: apps/webapp/careers_views.py
+msgid ""
+"I confirm the details are correct and agree to be contacted about jobs."
+msgstr "أؤكد صحة البيانات وأوافق على التواصل معي بشأن الوظائف."
+
+#: apps/webapp/careers_views.py
+msgid "Submit application"
+msgstr "إرسال الطلب"
+
+#: apps/webapp/careers_views.py
+msgid "Sending…"
+msgstr "جارٍ الإرسال…"
+
+#: apps/webapp/careers_views.py
+msgid "Thank you! Your application has been received."
+msgstr "شكراً لك! تم استلام طلبك."
+
+#: apps/webapp/careers_views.py
+msgid "Send another application"
+msgstr "إرسال طلب آخر"
+
+#: apps/webapp/careers_views.py
+msgid "Please fill in the required fields."
+msgstr "يرجى تعبئة الحقول المطلوبة."
+
+#: apps/webapp/careers_views.py
+msgid "Could not send. Please try again or contact us on WhatsApp."
+msgstr "تعذر الإرسال. حاول مرة أخرى أو تواصل معنا عبر واتساب."
+
+#: apps/webapp/careers_views.py
+msgid "Choose…"
+msgstr "اختر…"
+
+#: apps/webapp/careers_views.py
+msgid "We never charge job seekers to apply."
+msgstr "لا نتقاضى أي رسوم من الباحثين عن عمل."
+
+#: apps/webapp/careers_views.py
 msgid "Web address name"
 msgstr "اسم عنوان الموقع"
 
@@ -9632,10 +10029,6 @@ msgstr "%(item)s: %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "تم تحديد %(count)s أسعار."
-
-#: apps/webapp/education_views.py
-msgid "Courses"
-msgstr "الدورات"
 
 #: apps/webapp/education_views.py
 msgid "Class"
@@ -10222,6 +10615,126 @@ msgid "Added %(items)s items and %(tables)s tables."
 msgstr "تمت إضافة %(items)s صنفًا و%(tables)s طاولة."
 
 #: apps/webapp/online_booking_views.py
+msgid "Check-in"
+msgstr "الوصول"
+
+#: apps/webapp/online_booking_views.py
+msgid "Check-out"
+msgstr "المغادرة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Pick-up"
+msgstr "الاستلام"
+
+#: apps/webapp/online_booking_views.py
+msgid "Return"
+msgstr "الإرجاع"
+
+#: apps/webapp/online_booking_views.py
+msgid "Event date"
+msgstr "تاريخ المناسبة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Ends"
+msgstr "ينتهي"
+
+#: apps/webapp/online_booking_views.py
+msgid "Membership / trial"
+msgstr "الاشتراك / تجربة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Wash package"
+msgstr "باقة الغسيل"
+
+#: apps/webapp/online_booking_views.py
+msgid "Service"
+msgstr "الخدمة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Room"
+msgstr "الغرفة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Vehicle"
+msgstr "المركبة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Equipment"
+msgstr "المعدات"
+
+#: apps/webapp/online_booking_views.py
+msgid "Hall"
+msgstr "القاعة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Space"
+msgstr "المساحة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Book an appointment"
+msgstr "احجز موعداً"
+
+#: apps/webapp/online_booking_views.py
+msgid "Reserve a table"
+msgstr "احجز طاولة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Event enquiry"
+msgstr "استفسار عن مناسبة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Not sure / other"
+msgstr "غير متأكد / أخرى"
+
+#: apps/webapp/online_booking_views.py
+msgid "Time"
+msgstr "الوقت"
+
+#: apps/webapp/online_booking_views.py
+msgid "Number of people"
+msgstr "عدد الأشخاص"
+
+#: apps/webapp/online_booking_views.py
+msgid "Number of guests"
+msgstr "عدد الضيوف"
+
+#: apps/webapp/online_booking_views.py
+msgid "Email (optional)"
+msgstr "البريد الإلكتروني (اختياري)"
+
+#: apps/webapp/online_booking_views.py
+msgid "Notes (optional)"
+msgstr "ملاحظات (اختياري)"
+
+#: apps/webapp/online_booking_views.py
+msgid "Type of event"
+msgstr "نوع المناسبة"
+
+#: apps/webapp/online_booking_views.py
+msgid "Wedding, birthday, corporate…"
+msgstr "زفاف، عيد ميلاد، شركة…"
+
+#: apps/webapp/online_booking_views.py
+msgid "Send booking request"
+msgstr "إرسال طلب الحجز"
+
+#: apps/webapp/online_booking_views.py
+msgid "Thank you! We received your request."
+msgstr "شكراً لك! تم استلام طلبك."
+
+#: apps/webapp/online_booking_views.py
+msgid "We will confirm on WhatsApp or by phone shortly."
+msgstr "سنؤكد الحجز عبر واتساب أو الهاتف قريباً."
+
+#: apps/webapp/online_booking_views.py
+msgid "Make another booking"
+msgstr "حجز آخر"
+
+#: apps/webapp/online_booking_views.py
+msgid "Until (time)"
+msgstr "حتى (الوقت)"
+
+#: apps/webapp/online_booking_views.py
 msgid "Too many requests from this connection. Please call or WhatsApp us."
 msgstr "طلبات كثيرة من هذا الاتصال. يرجى الاتصال أو مراسلتنا عبر واتساب."
 
@@ -10280,10 +10793,6 @@ msgstr "الحجز"
 #: apps/webapp/online_booking_views.py
 msgid "Table reservation"
 msgstr "حجز طاولة"
-
-#: apps/webapp/online_booking_views.py
-msgid "Event enquiry"
-msgstr "استفسار عن مناسبة"
 
 #: apps/webapp/online_booking_views.py
 msgid "Confirmed"
@@ -10622,10 +11131,6 @@ msgid "Position / job title"
 msgstr "المسمى الوظيفي"
 
 #: apps/webapp/recruitment_views.py
-msgid "Number of people"
-msgstr "عدد الأشخاص"
-
-#: apps/webapp/recruitment_views.py
 msgid "Work location"
 msgstr "موقع العمل"
 
@@ -10648,10 +11153,6 @@ msgstr "رسومنا للشخص (على العميل)"
 #: apps/webapp/recruitment_views.py
 msgid "Replacement guarantee (days)"
 msgstr "ضمان الاستبدال (أيام)"
-
-#: apps/webapp/recruitment_views.py
-msgid "Gender"
-msgstr "الجنس"
 
 #: apps/webapp/recruitment_views.py
 msgid "Show on our careers website"
@@ -10853,14 +11354,6 @@ msgid "Any"
 msgstr "أي"
 
 #: apps/webapp/recruitment_views.py
-msgid "Male"
-msgstr "ذكر"
-
-#: apps/webapp/recruitment_views.py
-msgid "Female"
-msgstr "أنثى"
-
-#: apps/webapp/recruitment_views.py
 msgid "Bank transfer"
 msgstr "تحويل بنكي"
 
@@ -10961,6 +11454,10 @@ msgid "Highlight colour"
 msgstr "لون التمييز"
 
 #: apps/webapp/site_views.py
+msgid "Website language"
+msgstr "لغة الموقع"
+
+#: apps/webapp/site_views.py
 msgid "Font"
 msgstr "الخط"
 
@@ -10979,10 +11476,6 @@ msgstr "العنوان الكبير"
 #: apps/webapp/site_views.py
 msgid "Line under the title"
 msgstr "سطر تحت العنوان"
-
-#: apps/webapp/site_views.py
-msgid "Opening hours"
-msgstr "ساعات العمل"
 
 #: apps/webapp/site_views.py
 msgid "Google Maps link"
@@ -11015,6 +11508,10 @@ msgstr "اتركه فارغاً لاستخدام شعار الشركة."
 #: apps/webapp/site_views.py
 msgid "One line each, e.g. Sat–Thu 10am–11pm"
 msgstr "سطر لكل يوم، مثلاً السبت–الخميس 10ص–11م"
+
+#: apps/webapp/site_views.py
+msgid "Visitors can also switch to"
+msgstr "يمكن للزوار التبديل أيضاً إلى"
 
 #: apps/webapp/site_views.py
 msgid "Menu"
@@ -11191,9 +11688,109 @@ msgid ""
 "Your payment is being confirmed. This page will show it within a minute."
 msgstr "جارٍ تأكيد دفعتك. ستظهر في هذه الصفحة خلال دقيقة."
 
-#: apps/modules/catalog.py
-msgid "Room"
-msgstr "الغرفة"
+#: apps/webapp/website_kit_views.py
+msgid "Send us a message"
+msgstr "راسلنا"
+
+#: apps/webapp/website_kit_views.py
+msgid "Subject"
+msgstr "الموضوع"
+
+#: apps/webapp/website_kit_views.py
+msgid "Message"
+msgstr "الرسالة"
+
+#: apps/webapp/website_kit_views.py
+msgid "Thank you! We will get back to you soon."
+msgstr "شكراً لك! سنتواصل معك قريباً."
+
+#: apps/webapp/website_kit_views.py
+msgid "Could not send. Please try again."
+msgstr "تعذر الإرسال. حاول مرة أخرى."
+
+#: apps/webapp/website_kit_views.py
+msgid "Please enter your name and a phone number or email."
+msgstr "يرجى إدخال الاسم ورقم الهاتف أو البريد."
+
+#: apps/webapp/website_kit_views.py
+msgid "Order sent"
+msgstr "تم إرسال الطلب"
+
+#: apps/webapp/website_kit_views.py
+msgid "Your order is in the kitchen."
+msgstr "طلبك في المطبخ."
+
+#: apps/webapp/website_kit_views.py
+msgid "The restaurant will confirm your order shortly."
+msgstr "سيؤكد المطعم طلبك قريباً."
+
+#: apps/webapp/website_kit_views.py
+msgid "Usually ready in about %s minutes."
+msgstr "يكون جاهزاً عادةً خلال %s دقيقة تقريباً."
+
+#: apps/webapp/website_kit_views.py
+msgid "Track my order"
+msgstr "تتبع طلبي"
+
+#: apps/webapp/website_kit_views.py
+msgid "Your cart is empty. Tap “+ Add” on the menu."
+msgstr "سلتك فارغة. اضغط «+ إضافة» في القائمة."
+
+#: apps/webapp/website_kit_views.py
+msgid "Pickup from the restaurant"
+msgstr "الاستلام من المطعم"
+
+#: apps/webapp/website_kit_views.py
+msgid "Sorry, we are not taking online orders right now."
+msgstr "عذراً، لا نستقبل طلبات عبر الإنترنت الآن."
+
+#: apps/webapp/website_kit_views.py
+msgid "Please call %s."
+msgstr "يرجى الاتصال على %s."
+
+#: apps/webapp/website_kit_views.py
+msgid "Minimum for delivery:"
+msgstr "الحد الأدنى للتوصيل:"
+
+#: apps/webapp/website_kit_views.py
+msgid "Phone / WhatsApp, e.g. +974 5555 1234"
+msgstr "الهاتف / واتساب، مثال: ‎+974 5555 1234"
+
+#: apps/webapp/website_kit_views.py
+msgid "Delivery address (zone, street, building, flat)"
+msgstr "عنوان التوصيل (المنطقة، الشارع، المبنى، الشقة)"
+
+#: apps/webapp/website_kit_views.py
+msgid "Note, e.g. less spicy, no onion"
+msgstr "ملاحظة، مثل: حار قليلاً، بدون بصل"
+
+#: apps/webapp/website_kit_views.py
+msgid "Place order"
+msgstr "تأكيد الطلب"
+
+#: apps/webapp/website_kit_views.py
+msgid "Please enter your name."
+msgstr "يرجى إدخال اسمك."
+
+#: apps/webapp/website_kit_views.py
+msgid "Please enter your phone number."
+msgstr "يرجى إدخال رقم هاتفك."
+
+#: apps/webapp/website_kit_views.py
+msgid "Please enter the delivery address."
+msgstr "يرجى إدخال عنوان التوصيل."
+
+#: apps/webapp/website_kit_views.py
+msgid "Could not send the order. Please try again."
+msgstr "تعذر إرسال الطلب. حاول مرة أخرى."
+
+#: apps/webapp/website_kit_views.py
+msgid "No connection. Please try again."
+msgstr "لا يوجد اتصال. حاول مرة أخرى."
+
+#: apps/webapp/website_kit_views.py
+msgid "Added:"
+msgstr "تمت الإضافة:"
 
 #: apps/modules/catalog.py
 msgid "Rooms"
@@ -11204,28 +11801,8 @@ msgid "Reservation"
 msgstr "الحجز"
 
 #: apps/modules/catalog.py
-msgid "night"
-msgstr "ليلة"
-
-#: apps/modules/catalog.py
-msgid "Vehicle"
-msgstr "المركبة"
-
-#: apps/modules/catalog.py
 msgid "Rental"
 msgstr "التأجير"
-
-#: apps/modules/catalog.py
-msgid "day"
-msgstr "يوم"
-
-#: apps/modules/catalog.py
-msgid "Equipment"
-msgstr "المعدات"
-
-#: apps/modules/catalog.py
-msgid "Hall"
-msgstr "القاعة"
 
 #: apps/modules/catalog.py
 msgid "Halls"
@@ -11240,13 +11817,5 @@ msgid "event"
 msgstr "فعالية"
 
 #: apps/modules/catalog.py
-msgid "Space"
-msgstr "المساحة"
-
-#: apps/modules/catalog.py
 msgid "Spaces"
 msgstr "المساحات"
-
-#: apps/modules/catalog.py
-msgid "hour"
-msgstr "ساعة"

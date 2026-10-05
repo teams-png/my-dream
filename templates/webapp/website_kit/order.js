@@ -4,7 +4,7 @@
   var cfg = {{ cfg|safe }};
   if (window.__bpOrder || !cfg.enabled) return;
   window.__bpOrder = true;
-  var cur = cfg.currency || "", color = cfg.color || "#0f766e", cart = load();
+  var L = cfg.t || {}, cur = cfg.currency || "", color = cfg.color || "#0f766e", cart = load();
 
   function load() { try { var c = JSON.parse(localStorage.getItem(cfg.key) || "[]"); return Array.isArray(c) ? c : []; } catch (e) { return []; } }
   function save() { try { localStorage.setItem(cfg.key, JSON.stringify(cart)); } catch (e) {} }
@@ -43,7 +43,8 @@
 
   var bar = document.createElement("button"); bar.type = "button"; bar.className = "bpo-bar";
   var bg = document.createElement("div"); bg.className = "bpo-bg";
-  var box = document.createElement("div"); box.className = "bpo-box"; box.setAttribute("role", "dialog"); box.setAttribute("aria-label", "Your order");
+  var box = document.createElement("div"); box.className = "bpo-box"; box.setAttribute("role", "dialog"); box.setAttribute("aria-label", L.your_order);
+  if (cfg.rtl) box.setAttribute("dir", "rtl");
   var toast = document.createElement("div"); toast.className = "bpo-toast";
   document.body.appendChild(bar); document.body.appendChild(bg); document.body.appendChild(box); document.body.appendChild(toast);
   var mode = cfg.pickup ? "pickup" : "delivery", form = {name: "", phone: "", address: "", note: ""}, sending = false, done = null;
@@ -59,7 +60,7 @@
       b.classList.toggle("bpo-in", !!line);
     }
     var n = count();
-    bar.innerHTML = "🛒 <b>" + n + "</b> <span>" + esc(money(subtotal())) + "</span> <span>· View order</span>";
+    bar.innerHTML = "🛒 <b>" + n + "</b> <span>" + esc(money(subtotal())) + "</span> <span>· " + esc(L.view_order) + "</span>";
     bar.classList.toggle("on", n > 0 && !box.classList.contains("on"));
   }
 
@@ -67,41 +68,41 @@
 
   function render() {
     if (done) {
-      box.innerHTML = '<div class="bpo-head"><h3>Order sent</h3><button class="bpo-x" type="button" data-close>✕</button></div><div class="bpo-body"><div class="bpo-done">' +
-        '<div class="big">✅</div><h2 style="margin:6px 0">' + esc(done.reference) + "</h2><p>Thank you! " +
-        (done.accepted ? "Your order is in the kitchen." : "The restaurant will confirm your order shortly.") +
-        (cfg.ready_minutes ? " Usually ready in about " + esc(cfg.ready_minutes) + " minutes." : "") + "</p><p>Total " + esc(money(+done.total)) +
-        " — pay on " + (mode === "delivery" ? "delivery" : "pickup") + '.</p><p><a href="' + esc(done.track_url) + '" target="_blank" rel="noopener">Track my order →</a></p></div></div>';
+      box.innerHTML = '<div class="bpo-head"><h3>' + esc(L.order_sent) + '</h3><button class="bpo-x" type="button" data-close>✕</button></div><div class="bpo-body"><div class="bpo-done">' +
+        '<div class="big">✅</div><h2 style="margin:6px 0">' + esc(done.reference) + "</h2><p>" + esc(L.thanks) + " " +
+        esc(done.accepted ? L.in_kitchen : L.will_confirm) +
+        (cfg.ready_minutes ? " " + esc(L.ready_in.replace("%s", cfg.ready_minutes)) : "") + "</p><p>" + esc(L.total) + " " + esc(money(+done.total)) +
+        " — " + esc(mode === "delivery" ? L.pay_delivery : L.pay_pickup) + '</p><p><a href="' + esc(done.track_url) + '" target="_blank" rel="noopener">' + esc(L.track) + " →</a></p></div></div>";
       return;
     }
     var rows = cart.map(function (x) {
       return '<div class="bpo-line"><div class="n">' + esc(x.name) + "<small>" + esc(money(x.price)) + '</small></div><div class="bpo-q">' +
-        '<button type="button" data-dec="' + x.id + '" aria-label="Less">−</button><span>' + x.qty + '</span><button type="button" data-inc="' + x.id + '" aria-label="More">+</button></div>' +
-        '<div style="min-width:76px;text-align:right;font-weight:700">' + esc(money(x.qty * x.price)) + "</div></div>";
-    }).join("") || '<p style="color:#64748b">Your cart is empty. Tap “+ Add” on the menu.</p>';
+        '<button type="button" data-dec="' + x.id + '" aria-label="−">−</button><span>' + x.qty + '</span><button type="button" data-inc="' + x.id + '" aria-label="+">+</button></div>' +
+        '<div style="min-width:76px;text-align:end;font-weight:700">' + esc(money(x.qty * x.price)) + "</div></div>";
+    }).join("") || '<p style="color:#64748b">' + esc(L.empty) + "</p>";
     var modes = "";
     if (cfg.pickup && cfg.delivery) {
-      modes = '<div class="bpo-modes"><label class="' + (mode === "pickup" ? "on" : "") + '"><input type="radio" name="bpo-mode" value="pickup">🛍 Pickup</label>' +
-        '<label class="' + (mode === "delivery" ? "on" : "") + '"><input type="radio" name="bpo-mode" value="delivery">🛵 Delivery</label></div>';
+      modes = '<div class="bpo-modes"><label class="' + (mode === "pickup" ? "on" : "") + '"><input type="radio" name="bpo-mode" value="pickup">🛍 ' + esc(L.pickup) + "</label>"' +
+        '<label class="' + (mode === "delivery" ? "on" : "") + '"><input type="radio" name="bpo-mode" value="delivery">🛵 ' + esc(L.delivery) + "</label></div>";
     } else {
-      modes = '<p style="margin:6px 0 12px;font-weight:700">' + (mode === "pickup" ? "🛍 Pickup from the restaurant" : "🛵 Home delivery") + "</p>";
+      modes = '<p style="margin:6px 0 12px;font-weight:700">' + esc(mode === "pickup" ? "🛍 " + L.pickup_from : "🛵 " + L.home_delivery) + "</p>";
     }
     var sub = subtotal(), f = fee(), min = parseFloat(cfg.minimum || 0);
-    box.innerHTML = '<div class="bpo-head"><h3>Your order</h3><button class="bpo-x" type="button" data-close aria-label="Close">✕</button></div>' +
-      '<div class="bpo-body">' + (cfg.open ? "" : '<p class="bpo-note">Sorry, we are not taking online orders right now.' + (cfg.phone ? " Please call " + esc(cfg.phone) + "." : "") + "</p>") +
+    box.innerHTML = '<div class="bpo-head"><h3>' + esc(L.your_order) + '</h3><button class="bpo-x" type="button" data-close aria-label="' + esc(L.close) + '">✕</button></div>' +
+      '<div class="bpo-body">' + (cfg.open ? "" : '<p class="bpo-note">' + esc(L.closed) + (cfg.phone ? " " + esc(L.call.replace("%s", cfg.phone)) : "") + "</p>") +
       (cfg.note ? '<p class="bpo-note">' + esc(cfg.note) + "</p>" : "") + rows +
-      '<div class="bpo-sum"><div><span>Items</span><span>' + esc(money(sub)) + "</span></div>" +
-      (f ? "<div><span>Delivery</span><span>" + esc(money(f)) + "</span></div>" : "") +
-      '<div class="t"><span>Total</span><span>' + esc(money(sub + f)) + "</span></div>" +
-      (mode === "delivery" && min && sub < min ? '<div style="color:#b45309">Minimum for delivery: ' + esc(money(min)) + "</div>" : "") + "</div>" +
-      (cart.length && cfg.open ? modes + '<div class="bpo-f"><input name="name" placeholder="Your name" autocomplete="name" value="' + esc(form.name) + '">' +
-        '<input name="phone" type="tel" placeholder="Phone / WhatsApp, e.g. +974 5555 1234" autocomplete="tel" value="' + esc(form.phone) + '">' +
-        (mode === "delivery" ? '<textarea name="address" rows="2" placeholder="Delivery address (zone, street, building, flat)">' + esc(form.address) + "</textarea>" : "") +
-        '<input name="note" placeholder="Note, e.g. less spicy, no onion" value="' + esc(form.note) + '"><input class="bpo-hp" name="company_website" tabindex="-1" autocomplete="off"></div>' : "") +
+      '<div class="bpo-sum"><div><span>' + esc(L.items) + "</span>"<span>' + esc(money(sub)) + "</span></div>" +
+      (f ? "<div><span>" + esc(L.delivery) + "</span><span>" + esc(money(f)) + "</span></div>" : "") +
+      '<div class="t"><span>' + esc(L.total) + "</span><span>" + esc(money(sub + f)) + "</span></div>" +
+      (mode === "delivery" && min && sub < min ? '<div style="color:#b45309">' + esc(L.minimum) + " " + esc(money(min)) + "</div>" : "") + "</div>" +
+      (cart.length && cfg.open ? modes + '<div class="bpo-f"><input name="name" placeholder="' + esc(L.name) + '" autocomplete="name" value="' + esc(form.name) + '">' +
+        '<input name="phone" type="tel" placeholder="' + esc(L.phone) + '" autocomplete="tel" value="' + esc(form.phone) + '">' +
+        (mode === "delivery" ? '<textarea name="address" rows="2" placeholder="' + esc(L.address) + '">' + esc(form.address) + "</textarea>" : "") +
+        '<input name="note" placeholder="' + esc(L.note) + '" value="' + esc(form.note) + '"><input class="bpo-hp" name="company_website" tabindex="-1" autocomplete="off"></div>' : "") +
       '<p class="bpo-err" id="bpo-err"></p></div>' +
       (cart.length && cfg.open ? '<div class="bpo-foot"><button class="bpo-go" type="button" data-send' + (sending ? " disabled" : "") + ">" +
-        (sending ? "Sending…" : "Place order · " + esc(money(sub + f))) + '</button><p style="margin:8px 0 0;text-align:center;color:#64748b;font-size:13px">Pay on ' +
-        (mode === "delivery" ? "delivery" : "pickup") + "</p></div>" : "");
+        esc(sending ? L.sending : L.place + " · " + money(sub + f)) + '</button><p style="margin:8px 0 0;text-align:center;color:#64748b;font-size:13px">' +
+        esc(mode === "delivery" ? L.pay_delivery : L.pay_pickup) + "</p></div>" : "");
   }
 
   function open() { render(); box.classList.add("on"); bg.classList.add("on"); paintButtons(); }
@@ -111,32 +112,32 @@
   function send() {
     readForm();
     var err = box.querySelector("#bpo-err");
-    if (form.name.trim().length < 2) { err.textContent = "Please enter your name."; return; }
-    if (form.phone.replace(/\D/g, "").length < 7) { err.textContent = "Please enter your phone number."; return; }
-    if (mode === "delivery" && form.address.trim().length < 5) { err.textContent = "Please enter the delivery address."; return; }
+    if (form.name.trim().length < 2) { err.textContent = L.need_name; return; }
+    if (form.phone.replace(/\D/g, "").length < 7) { err.textContent = L.need_phone; return; }
+    if (mode === "delivery" && form.address.trim().length < 5) { err.textContent = L.need_address; return; }
     var hp = box.querySelector(".bpo-hp");
     sending = true; render(); err = box.querySelector("#bpo-err");
     fetch(cfg.endpoint, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({
-      name: form.name, phone: form.phone, mode: mode, address: mode === "delivery" ? form.address : "", note: form.note,
+      name: form.name, phone: form.phone, mode: mode, lang: cfg.lang, address: mode === "delivery" ? form.address : "", note: form.note,
       company_website: hp ? hp.value : "", items: cart.map(function (x) { return {id: x.id, qty: x.qty}; })})})
-      .then(function (r) { return r.json().catch(function () { return {ok: false, error: "Could not send the order. Please try again."}; }); })
+      .then(function (r) { return r.json().catch(function () { return {ok: false, error: L.failed}; }); })
       .then(function (d) {
         sending = false;
         if (d.ok) { done = d; cart = []; save(); render(); paintButtons(); }
-        else { render(); box.querySelector("#bpo-err").textContent = d.error || "Could not send the order."; }
+        else { render(); box.querySelector("#bpo-err").textContent = d.error || L.failed; }
       })
-      .catch(function () { sending = false; render(); box.querySelector("#bpo-err").textContent = "No connection. Please try again" + (cfg.phone ? " or call " + cfg.phone : "") + "."; });
+      .catch(function () { sending = false; render(); box.querySelector("#bpo-err").textContent = L.offline + (cfg.phone ? " " + L.call.replace("%s", cfg.phone) : ""); });
   }
 
   document.addEventListener("click", function (e) {
     var add = e.target.closest && e.target.closest("[data-bp-add]");
     if (add) {
       e.preventDefault();
-      if (!cfg.open) { say("Sorry, we are not taking online orders right now."); return; }
+      if (!cfg.open) { say(L.closed); return; }
       var id = +add.getAttribute("data-id"), line = find(id);
       if (line) { if (line.qty < 50) line.qty++; }
       else cart.push({id: id, name: add.getAttribute("data-name") || "Item", price: parseFloat(add.getAttribute("data-price") || 0), qty: 1});
-      save(); paintButtons(); say("Added: " + (add.getAttribute("data-name") || "item"));
+      save(); paintButtons(); say(L.added + " " + (add.getAttribute("data-name") || ""));
       return;
     }
     if (e.target === bar || bar.contains(e.target)) { open(); return; }

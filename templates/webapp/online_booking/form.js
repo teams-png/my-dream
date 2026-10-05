@@ -1,7 +1,7 @@
 /* BookPilot online booking form — works on any website (WordPress "Custom HTML" block, Elementor "HTML" widget).
    <div class="bookpilot-booking"></div>
    <script src="…/book/<name>/form.js" defer></script>
-   Optional attributes on the <div>: data-lang="en|ar", data-item="<service / room id or name>", data-color="#0f766e",
+   Optional attributes on the <div>: data-lang="en|ar|…" (?lang= on the script URL for any BookPilot language), data-item="<service / room id or name>", data-color="#0f766e",
    data-thanks="https://your-site/thank-you", data-title="Book now" */
 (function () {
   "use strict";
@@ -45,10 +45,11 @@
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]; }); }
 
   function render(box) {
-    var lang = (box.getAttribute("data-lang") || document.documentElement.lang || "en").slice(0, 2).toLowerCase();
-    var t = T[lang] || T.en, kind = CFG.kind, L = CFG.labels || {};
-    var lab = function (k) { var v = L[k] || k; return lang === "ar" && AR_LABELS[v] ? AR_LABELS[v] : v; };
-    if (lang === "ar") box.setAttribute("dir", "rtl");
+    var asked = (box.getAttribute("data-lang") || "").toLowerCase(), server = CFG.t && (!asked || asked === CFG.lang);
+    var lang = server ? CFG.lang : (asked || document.documentElement.lang || "en").slice(0, 2).toLowerCase();
+    var t = server ? CFG.t : (T[lang] || T.en), kind = CFG.kind, L = CFG.labels || {};
+    var lab = function (k) { var v = L[k] || k; return !server && lang === "ar" && AR_LABELS[v] ? AR_LABELS[v] : v; };
+    if (server ? CFG.rtl : lang === "ar") box.setAttribute("dir", "rtl");
     box.classList.add("bpb");
     box.style.setProperty("--c", box.getAttribute("data-color") || CFG.color);
     var f = function (name, label, input, cls, req) {

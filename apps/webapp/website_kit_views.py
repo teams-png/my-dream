@@ -72,14 +72,30 @@ def kit_info(request, public_id):
     return _public_json({**data, "capabilities": caps, "links": links})
 
 
+def _feed_labels(company, wanted):
+    """Words a website shows around the live data (WordPress plugin), in the visitor's language."""
+    from django.utils import translation
+    from django.utils.translation import gettext as _
+    with translation.override(site_lang(company, wanted)):
+        return {"add": _("+ Add"), "sold_out": _("Sold out"), "veg": _("Veg"), "off": _("off"), "until": _("Until"),
+                "unit_hour": _("hour"), "unit_day": _("day"), "unit_night": _("night"), "unit_month": _("month"),
+                "unit_monthly": _("month")}
+
+
 def kit_catalogue(request, public_id):
     kit = _kit_or_404(public_id)
-    return _public_json(svc.catalogue(kit.company, request.build_absolute_uri))
+    data = svc.catalogue(kit.company, request.build_absolute_uri)
+    if request.GET.get("lang"):
+        data["labels"] = _feed_labels(kit.company, request.GET["lang"])
+    return _public_json(data)
 
 
 def kit_offers(request, public_id):
     kit = _kit_or_404(public_id)
-    return _public_json(svc.offers(kit.company))
+    data = svc.offers(kit.company)
+    if request.GET.get("lang"):
+        data["labels"] = _feed_labels(kit.company, request.GET["lang"])
+    return _public_json(data)
 
 
 def _too_many(request, kit):
@@ -140,9 +156,18 @@ def _js(request, template, cfg):
 
 def kit_enquiry_js(request, public_id):
     kit = _kit_or_404(public_id)
+    from django.utils import translation
+    from django.utils.translation import gettext as _
+    lang = site_lang(kit.company, request.GET.get("lang"))
+    with translation.override(lang):
+        t = {"title": _("Send us a message"), "name": _("Your name"), "phone": _("Phone / WhatsApp"), "email": _("Email"),
+             "subject": _("Subject"), "message": _("Message"), "send": _("Send"), "sending": _("Sending…"),
+             "ok": _("Thank you! We will get back to you soon."), "fail": _("Could not send. Please try again."),
+             "req": _("Please enter your name and a phone number or email.")}
+        rtl = translation.get_language_bidi()
     return _js(request, "webapp/website_kit/enquiry.js", {
         "endpoint": request.build_absolute_uri(reverse("webapp:kit_enquiry", args=[public_id])),
-        "company": kit.company.name, "color": kit.accent_color or "#0f766e"})
+        "company": kit.company.name, "color": kit.accent_color or "#0f766e", "lang": lang, "t": t, "rtl": rtl})
 
 
 def kit_catalogue_js(request, public_id):
@@ -201,20 +226,57 @@ def kit_order(request, public_id):
     elif not trusted and _order_flood(request, kit):
         body, status = {"ok": False, "error": "Too many orders from this device. Please call us."}, 429
     else:
+        from django.utils import translation
+        lang = site_lang(kit.company, str(data.get("lang") or ""))
         try:
-            online = online_orders.place(kit.company, data, source=origin.split("://", 1)[-1] if origin else ("api" if trusted else ""))
-            track = request.build_absolute_uri(reverse("webapp:kit_order_status", args=[public_id, online.token]))
+            with translation.override(lang):
+                online = online_orders.place(kit.company, data, source=origin.split("://", 1)[-1] if origin else ("api" if trusted else ""))
+            track = request.build_absolute_uri(reverse("webapp:kit_order_status", args=[public_id, online.token])) + f"?lang={lang}"
             body, status = {"ok": True, "reference": online.order.order_number, "total": f"{online.total:.2f}",
                             "track_url": track, "accepted": online.status == "accepted"}, 201
         except ValidationError as exc:
-            body, status = {"ok": False, "error": " ".join(exc.messages)}, 400
+            with translation.override(lang):
+                body, status = {"ok": False, "error": " ".join(str(m) for m in exc.messages)}, 400
     return _cors(request, JsonResponse(body, status=status))
 
 
+def site_lang(company, wanted=None):
+    """The visitor's language for public widgets: ?lang= if BookPilot has it, else the website's main language."""
+    from django.conf import settings
+    codes = dict(settings.LANGUAGES)
+    if wanted and wanted.lower() in codes:
+        return wanted.lower()
+    design = SiteDesign.objects.filter(company=company).first()
+    return design.language if design and design.language in codes else "en"
+
+
+def cart_labels():
+    from django.utils.translation import gettext as _
+    return {"your_order": _("Your order"), "view_order": _("View order"), "order_sent": _("Order sent"),
+            "thanks": _("Thank you!"), "in_kitchen": _("Your order is in the kitchen."),
+            "will_confirm": _("The restaurant will confirm your order shortly."),
+            "ready_in": _("Usually ready in about %s minutes."), "total": _("Total"), "items": _("Items"),
+            "pay_delivery": _("Pay on delivery"), "pay_pickup": _("Pay on pickup"), "track": _("Track my order"),
+            "empty": _("Your cart is empty. Tap “+ Add” on the menu."), "pickup": _("Pickup"), "delivery": _("Delivery"),
+            "pickup_from": _("Pickup from the restaurant"), "home_delivery": _("Home delivery"), "close": _("Close"),
+            "closed": _("Sorry, we are not taking online orders right now."), "call": _("Please call %s."),
+            "minimum": _("Minimum for delivery:"), "name": _("Your name"),
+            "phone": _("Phone / WhatsApp, e.g. +974 5555 1234"),
+            "address": _("Delivery address (zone, street, building, flat)"), "note": _("Note, e.g. less spicy, no onion"),
+            "sending": _("Sending…"), "place": _("Place order"), "need_name": _("Please enter your name."),
+            "need_phone": _("Please enter your phone number."), "need_address": _("Please enter the delivery address."),
+            "failed": _("Could not send the order. Please try again."), "offline": _("No connection. Please try again."),
+            "added": _("Added:")}
+
+
 def kit_order_js(request, public_id):
+    from django.utils import translation
     from apps.verticals.restaurant import online_orders
     kit = _kit_or_404(public_id)
+    lang = site_lang(kit.company, request.GET.get("lang"))
     cfg = online_orders.config(kit.company) or {"enabled": False}
+    with translation.override(lang):
+        cfg.update(t=cart_labels(), lang=lang, rtl=translation.get_language_bidi())
     cfg.update(endpoint=request.build_absolute_uri(reverse("webapp:kit_order", args=[public_id])),
                color=kit.accent_color or "#0f766e", key=f"bp-cart-{public_id}", phone=kit.company.phone or "")
     response = _js(request, "webapp/website_kit/order.js", cfg)
@@ -230,7 +292,10 @@ def kit_order_status(request, public_id, token):
     fee = sum((line.total for line in online.order.lines.all() if line.product.sku == "DELIVERY-FEE"), 0)
     if request.GET.get("format") == "json":
         return _public_json({"reference": online.order.order_number, "stage": online.stage})
-    return render(request, "webapp/restaurant/online_status.html", {
+    from django.utils import translation
+    lang = site_lang(kit.company, request.GET.get("lang"))
+    with translation.override(lang):
+        return render(request, "webapp/restaurant/online_status.html", {"lang": lang, "lang_bidi": translation.get_language_bidi(),
         "online": online, "order": online.order, "company": kit.company, "lines": lines, "fee": fee,
         "color": kit.accent_color or "#0f766e", "steps": _steps(online.stage)})
 
@@ -468,7 +533,9 @@ def _plugin_context(request, company):
     ctx = {"company": company.name, "base": request.build_absolute_uri("/").rstrip("/"), "kit_id": kit.public_id,
            "booking_slug": booking_svc.site_for(company).slug if caps["booking"] else "",
            "careers_slug": careers_svc.site_for(company).slug if caps["careers"] else "", "api_key": kit.api_key,
-           "color": kit.accent_color or "#0f766e"}
+           "color": kit.accent_color or "#0f766e", "lang": site_lang(company)}
+    from django.conf import settings
+    ctx["languages"] = settings.LANGUAGES
     return ctx
 
 

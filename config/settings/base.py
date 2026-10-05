@@ -158,7 +158,20 @@ LANGUAGES = [
     ("en", "English"),
     ("ar", "العربية"),
     ("ml", "മലയാളം"),
+    ("hi", "हिन्दी"),
+    ("ur", "اردو"),
+    ("ta", "தமிழ்"),
+    ("bn", "বাংলা"),
+    ("ne", "नेपाली"),
+    ("fil", "Filipino"),
+    ("fr", "Français"),
+    ("es", "Español"),
+    ("tr", "Türkçe"),
+    ("zh-hans", "简体中文"),
 ]
+# Django has no built-in entry for Filipino; add it so language info lookups work.
+from django.conf.locale import LANG_INFO  # noqa: E402
+LANG_INFO.setdefault("fil", {"bidi": False, "code": "fil", "name": "Filipino", "name_local": "Filipino"})
 LOCALE_PATHS = [BASE_DIR / "locale"]
 # Keep "." as the decimal separator in every language: prices are also read
 # by JavaScript and printed on receipts.

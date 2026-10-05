@@ -59,6 +59,20 @@ def build(lang, table, plural):
     return missing
 
 
+# More languages: locale/tools/tr/<code>.json  {"English text": "translation"}
+TWO = "nplurals=2; plural=(n != 1);"
+MORE = {"hi": TWO, "ur": TWO, "ta": TWO, "bn": TWO, "ne": TWO, "fil": "nplurals=2; plural=(n > 1);",
+        "fr": "nplurals=2; plural=(n > 1);", "es": TWO, "tr": TWO, "zh_Hans": "nplurals=1; plural=0;"}
+
+
+def table(code):
+    import json
+    path = pathlib.Path(__file__).parent / "tr" / f"{code}.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+
+
 if __name__ == "__main__":
-    build("ar", AR, "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;")
-    build("ml", ML, "nplurals=2; plural=(n != 1);")
+    build("ar", {**AR, **table("ar")}, "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;")
+    build("ml", {**ML, **table("ml")}, "nplurals=2; plural=(n != 1);")
+    for code, plural in MORE.items():
+        build(code, table(code), plural)

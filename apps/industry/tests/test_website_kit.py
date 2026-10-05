@@ -159,4 +159,4 @@ def test_wordpress_menu_feed_has_sold_out_and_offers(admin_client):
     assert offers["items"][0]["name"] == "Biryani Friday" and offers["items"][0]["discount"] == "15%"
     plugin = admin_client.get(reverse("webapp:kit_wp_plugin", args=[company.id]))
     php = zipfile.ZipFile(io.BytesIO(plugin.content)).read("bookpilot-connect/bookpilot-connect.php").decode()
-    assert "add_shortcode('bookpilot_offers'" in php and "hide_sold_out" in php and "Version: 1.2.0" in php
+    assert "add_shortcode('bookpilot_offers'" in php and "hide_sold_out" in php and "Version: 1.3.0" in php

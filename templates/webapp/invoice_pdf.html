@@ -43,7 +43,7 @@
   html[lang=ml] body{font-family:'Inter','Noto Sans Malayalam','Nirmala UI',sans-serif}
 .zatca{float:left;width:150px;margin-top:18px;text-align:center;font-size:10px;color:#5F6579}.zatca-qr svg{width:130px;height:130px}[dir=rtl] .zatca{float:right}
 </style>
-{% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}</head>
+{% include "webapp/_lang_font.html" %}</head>
 <body>
   {% if public_url %}<div class="share-bar"><button class="primary" onclick="window.print()">{% translate "Print" %}</button><a href="?format=pdf">{% translate "Download PDF" %}</a>{% if pay.portal_url %}<a href="{{ pay.portal_url }}">{% translate "My account" %}</a>{% endif %}</div>{% endif %}
   {% if pay.message %}<div class="pay-box {{ pay.level }}"><span>{{ pay.message }}</span></div>{% endif %}

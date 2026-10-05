@@ -65,7 +65,7 @@
   [dir=rtl] body{font-family:'Inter','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
   html[lang=ml] body{font-family:'Inter','Noto Sans Malayalam','Nirmala UI',sans-serif}
 </style>
-{% if LANGUAGE_CODE == 'ar' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">{% elif LANGUAGE_CODE == 'ml' %}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">{% endif %}</head>
+{% include "webapp/_lang_font.html" %}</head>
 <body>
 <section class="screen" id="idle">
   <div class="logo">{% if company.logo %}<img src="{{ company.logo.url }}" alt="">{% else %}🍽️{% endif %}</div>

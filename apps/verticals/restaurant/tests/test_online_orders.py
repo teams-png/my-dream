@@ -159,7 +159,7 @@ def test_hosted_website_and_wordpress_plugin_show_the_cart():
     assert "Website ordering (cart)" in ac.get(reverse("webapp:kit_detail", args=[company.id])).content.decode()
     plugin = ac.get(reverse("webapp:kit_wp_plugin", args=[company.id]))
     php = zipfile.ZipFile(io.BytesIO(plugin.content)).read("bookpilot-connect/bookpilot-connect.php").decode()
-    assert "Version: 1.2.0" in php and "bookpilot-add" in php and "/order.js" in php
+    assert "Version: 1.3.0" in php and "bookpilot-add" in php and "/order.js" in php
     ac.post(reverse("webapp:kit_detail", args=[company.id]), {"action": "ordering"})
     assert RestaurantProfile.objects.get(company=company).web_orders_enabled is False
 

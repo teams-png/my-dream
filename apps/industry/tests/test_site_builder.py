@@ -1,6 +1,7 @@
 """Hosted business website: platform admin switches it on and sets the own domain; the owner designs it;
 menu / services and offers come live from BookPilot."""
 import datetime
+import json
 from decimal import Decimal
 
 import pytest
@@ -132,3 +133,25 @@ def test_owner_cannot_reach_admin_builder(admin_client):
     salon, owner = _signup("saloon", "s4@t.qa")
     assert owner.get(reverse("webapp:site_admin_editor", args=[salon.id])).status_code == 302
     assert admin_client.get(reverse("webapp:site_admin_editor", args=[salon.id])).status_code == 200
+
+
+def test_website_language_and_visitor_switch():
+    cache.clear()
+    company, _c = _signup("restaurant", "lang@t.qa")
+    design = site_builder.design_for(company)
+    design.enabled = design.published = True
+    design.language, design.extra_languages = "ar", "ml,en,xx"
+    design.save()
+    kit = website_kit.kit_for(company)
+    url = reverse("webapp:site_public", args=[kit.public_id])
+    page = Client().get(url).content.decode()
+    assert 'lang="ar" dir="rtl"' in page and "اتصل بنا" in page and "?lang=ml" in page and "?lang=xx" not in page
+    ml = Client().get(url + "?lang=ml").content.decode()
+    assert 'lang="ml" dir="ltr"' in ml and "ഞങ്ങളെ ബന്ധപ്പെടുക" in ml
+    assert 'lang="ar"' in Client().get(url + "?lang=fr").content.decode()  # not offered → main language
+    cart = Client().get(reverse("webapp:kit_order_js", args=[kit.public_id]) + "?lang=ml").content.decode()
+    assert json.dumps("ഓർഡർ ചെയ്യുക")[1:-1] in cart and '"rtl": false' in cart
+    enquiry = Client().get(reverse("webapp:kit_enquiry_js", args=[kit.public_id])).content.decode()
+    assert json.dumps("راسلنا")[1:-1] in enquiry and '"rtl": true' in enquiry  # main language when the page asks for none
+    feed = Client().get(reverse("webapp:kit_catalogue", args=[kit.public_id]) + "?lang=ar").json()
+    assert feed["labels"]["sold_out"] and feed["labels"]["add"] == "+ إضافة"

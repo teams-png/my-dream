@@ -25,9 +25,13 @@ COLOR = re.compile(r"#[0-9a-fA-F]{6}")
 # ------------------------------------------------------------------ public website
 
 def _render_site(request, design, preview=False):
-    ctx = svc.content(design, request.build_absolute_uri)
-    ctx["preview"] = preview
-    response = render(request, "webapp/site/page.html", ctx)
+    from django.utils import translation
+    lang = svc.pick_language(design, request.GET.get("lang"))
+    with translation.override(lang):
+        ctx = svc.content(design, request.build_absolute_uri)
+        ctx.update(preview=preview, lang=lang, lang_bidi=translation.get_language_bidi(),
+                   switch=svc.language_links(design, lang, preview))
+        response = render(request, "webapp/site/page.html", ctx)
     response["Cache-Control"] = "no-store" if preview else "public, max-age=60"
     response["X-Frame-Options"] = "SAMEORIGIN"  # the design area shows it in a preview frame
     return response
@@ -69,10 +73,10 @@ class DesignForm(forms.ModelForm):
 
     class Meta:
         model = SiteDesign
-        fields = ["published", "theme", "font", "primary_color", "accent_color", "logo", "hero_image", "hero_title",
-                  "hero_subtitle", "about", "opening_hours", "whatsapp", "instagram", "facebook", "tiktok", "map_url",
-                  "show_catalogue", "show_offers", "show_booking", "show_careers", "show_contact"]
-        labels = {"published": _l("Website is live"), "theme": _l("Design"), "font": _l("Font"), "logo": _l("Logo"),
+        fields = ["published", "language", "extra_languages", "theme", "font", "primary_color", "accent_color", "logo",
+                  "hero_image", "hero_title", "hero_subtitle", "about", "opening_hours", "whatsapp", "instagram", "facebook",
+                  "tiktok", "map_url", "show_catalogue", "show_offers", "show_booking", "show_careers", "show_contact"]
+        labels = {"language": _l("Website language"), "published": _l("Website is live"), "theme": _l("Design"), "font": _l("Font"), "logo": _l("Logo"),
                   "hero_image": _l("Cover photo"), "hero_title": _l("Big title"), "hero_subtitle": _l("Line under the title"),
                   "about": _l("About us"), "opening_hours": _l("Opening hours"), "whatsapp": _l("WhatsApp number"),
                   "map_url": _l("Google Maps link"), "show_catalogue": _l("Show menu / services / products"),
@@ -81,6 +85,23 @@ class DesignForm(forms.ModelForm):
         help_texts = {"logo": _l("Leave empty to use the company logo."),
                       "opening_hours": _l("One line each, e.g. Sat–Thu 10am–11pm")}
         widgets = {"about": forms.Textarea(attrs={"rows": 4}), "opening_hours": forms.Textarea(attrs={"rows": 3})}
+
+    extra_languages = forms.MultipleChoiceField(required=False, label=_l("Visitors can also switch to"),
+                                                widget=forms.CheckboxSelectMultiple)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        choices = list(svc.site_languages())
+        self.fields["language"] = forms.ChoiceField(choices=choices, label=_l("Website language"), required=False)
+        self.fields["extra_languages"].choices = choices
+        self.initial["extra_languages"] = svc.extra_languages(self.instance)
+
+    def clean_language(self):
+        return self.cleaned_data.get("language") or self.instance.language or "en"
+
+    def clean_extra_languages(self):
+        main = self.cleaned_data.get("language")
+        return ",".join(code for code in self.cleaned_data["extra_languages"] if code != main)
 
     def _color(self, name, default):
         value = (self.cleaned_data.get(name) or "").strip()

@@ -53,9 +53,10 @@
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]; }); }
 
   function render(box) {
-    var lang = (box.getAttribute("data-lang") || document.documentElement.lang || "en").slice(0, 2).toLowerCase();
-    var t = T[lang] || T.en;
-    if (lang === "ar") box.setAttribute("dir", "rtl");
+    var asked = (box.getAttribute("data-lang") || "").toLowerCase(), server = CFG.t && (!asked || asked === CFG.lang);
+    var lang = server ? CFG.lang : (asked || document.documentElement.lang || "en").slice(0, 2).toLowerCase();
+    var t = server ? CFG.t : (T[lang] || T.en);
+    if (server ? CFG.rtl : lang === "ar") box.setAttribute("dir", "rtl");
     box.classList.add("bpf");
     box.style.setProperty("--c", box.getAttribute("data-color") || CFG.color);
     var opt = function (v, l) { return '<option value="' + esc(v) + '">' + esc(l) + "</option>"; };

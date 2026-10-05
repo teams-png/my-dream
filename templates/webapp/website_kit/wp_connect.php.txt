@@ -2,7 +2,7 @@
 /**
  * Plugin Name: BookPilot Connect — {{ company|cut:'*/' }}
  * Description: Connects this website to {{ company|cut:'*/' }}'s BookPilot account: contact form, live catalogue, business details{% if booking_slug %}, online booking{% endif %}{% if careers_slug %}, jobs and job applications{% endif %}. Everything submitted here goes straight to BookPilot.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: BookPilot
  * License: GPLv2 or later
  * Requires at least: 5.0
@@ -20,6 +20,7 @@ function bookpilot_connect_defaults() {
         'booking_slug' => '{{ booking_slug }}',
         'careers_slug' => '{{ careers_slug }}',
         'color' => '{{ color }}',
+        'lang' => '{{ lang }}',
     );
 }
 
@@ -43,8 +44,19 @@ function bookpilot_connect_attrs($atts) {
     return $out;
 }
 
+/* Language for visitors: lang="hi" on a shortcode, else the one chosen in Settings → BookPilot Connect. */
+function bookpilot_connect_lang($atts = array()) {
+    $lang = !empty($atts['lang']) ? $atts['lang'] : bookpilot_connect_opt('lang');
+    return preg_replace('/[^a-z\-]/', '', strtolower((string) $lang)) ?: 'en';
+}
+
+function bookpilot_connect_cache_key($name, $lang) {
+    return 'bookpilot_' . $name . '_' . md5(bookpilot_connect_opt('kit_id') . '|' . $lang . '|' . get_option('bookpilot_connect_v', '1'));
+}
+
 function bookpilot_connect_widget($class, $script_handle, $path, $atts) {
-    wp_enqueue_script($script_handle, esc_url(bookpilot_connect_url($path)), array(), '1.0.0', true);
+    $atts['lang'] = bookpilot_connect_lang($atts);
+    wp_enqueue_script($script_handle, esc_url(bookpilot_connect_url($path . '?lang=' . rawurlencode($atts['lang']))), array(), '1.3.0', true);
     return '<div class="' . esc_attr($class) . '"' . bookpilot_connect_attrs($atts) . '></div>';
 }
 
@@ -117,6 +129,10 @@ function bookpilot_connect_styles() {
         . '.bookpilot-offer{border-radius:14px;padding:16px;background:#fff7ed;border:1px solid #fed7aa}.bookpilot-offer .bp-big{font-size:1.8em;font-weight:800;line-height:1}</style>';
 }
 
+function bookpilot_connect_label($data, $key, $default) {
+    return isset($data['labels'][$key]) && $data['labels'][$key] !== '' ? $data['labels'][$key] : $default;
+}
+
 function bookpilot_connect_item_html($item, $data, $units, $ordering = false) {
     $out = !isset($item['available']) || $item['available'];
     $html = '<div class="bookpilot-item' . ($out ? '' : ' sold-out') . '">';
@@ -124,33 +140,34 @@ function bookpilot_connect_item_html($item, $data, $units, $ordering = false) {
         $html .= '<img src="' . esc_url($item['image']) . '" alt="' . esc_attr($item['name']) . '" loading="lazy">';
     }
     $html .= '<div class="bp-body"><strong>' . esc_html($item['name']) . '</strong>';
-    if (!empty($item['vegetarian'])) { $html .= '<span class="bookpilot-tag veg">Veg</span>'; }
+    if (!empty($item['vegetarian'])) { $html .= '<span class="bookpilot-tag veg">' . esc_html(bookpilot_connect_label($data, 'veg', 'Veg')) . '</span>'; }
     if (!empty($item['featured'])) { $html .= '<span class="bookpilot-tag hot">★</span>'; }
-    if (!$out) { $html .= '<span class="bookpilot-tag out">Sold out</span>'; }
+    if (!$out) { $html .= '<span class="bookpilot-tag out">' . esc_html(bookpilot_connect_label($data, 'sold_out', 'Sold out')) . '</span>'; }
     if (!empty($item['location'])) { $html .= '<div class="bp-desc">' . esc_html($item['location']) . '</div>'; }
     if (!empty($item['description'])) { $html .= '<div class="bp-desc">' . esc_html($item['description']) . '</div>'; }
     if (!empty($item['price'])) {
-        $unit = isset($item['unit'], $units[$item['unit']]) ? ' ' . $units[$item['unit']] : '';
+        $unit = isset($item['unit'], $units[$item['unit']]) ? ' / ' . bookpilot_connect_label($data, 'unit_' . $item['unit'], $units[$item['unit']]) : '';
         $html .= '<div class="bp-price">' . esc_html($data['currency'] . ' ' . $item['price'] . $unit) . '</div>';
     }
     if ($ordering && !empty($item['orderable'])) {
         $html .= '<button type="button" class="bookpilot-add" data-bp-add data-id="' . esc_attr($item['id']) . '" data-name="' . esc_attr($item['name'])
-            . '" data-price="' . esc_attr($item['price']) . '">+ Add</button>';
+            . '" data-price="' . esc_attr($item['price']) . '">' . esc_html(bookpilot_connect_label($data, 'add', '+ Add')) . '</button>';
     }
     return $html . '</div></div>';
 }
 
 function bookpilot_connect_catalogue($atts) {
-    $a = shortcode_atts(array('category' => '', 'limit' => 0, 'group' => 'yes', 'hide_sold_out' => 'no', 'order' => 'auto'), $atts, 'bookpilot_catalogue');
-    $data = bookpilot_connect_fetch('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/catalogue.json', 'bookpilot_catalogue_' . md5(bookpilot_connect_opt('kit_id')));
+    $a = shortcode_atts(array('category' => '', 'limit' => 0, 'group' => 'yes', 'hide_sold_out' => 'no', 'order' => 'auto', 'lang' => ''), $atts, 'bookpilot_catalogue');
+    $lang = bookpilot_connect_lang($a);
+    $data = bookpilot_connect_fetch('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/catalogue.json?lang=' . rawurlencode($lang), bookpilot_connect_cache_key('catalogue', $lang));
     if (!$data || empty($data['items'])) {
         return '';
     }
     $ordering = $a['order'] !== 'no' && !empty($data['ordering']['enabled']);
     if ($ordering) {
-        wp_enqueue_script('bookpilot-order', esc_url(bookpilot_connect_url('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/order.js')), array(), '1.2.0', true);
+        wp_enqueue_script('bookpilot-order', esc_url(bookpilot_connect_url('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/order.js?lang=' . rawurlencode($lang))), array(), '1.3.0', true);
     }
-    $units = array('hour' => '/ hour', 'day' => '/ day', 'night' => '/ night', 'month' => '/ month', 'monthly' => '/ month');
+    $units = array('hour' => 'hour', 'day' => 'day', 'night' => 'night', 'month' => 'month', 'monthly' => 'month');
     $groups = array();
     $count = 0;
     foreach ($data['items'] as $item) {
@@ -189,15 +206,16 @@ add_shortcode('bookpilot_catalogue', 'bookpilot_connect_catalogue');
 
 /* [bookpilot_offers] offers running today from the BookPilot POS (Pricing → Offers) */
 function bookpilot_connect_offers($atts) {
-    $data = bookpilot_connect_fetch('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/offers.json', 'bookpilot_offers_' . md5(bookpilot_connect_opt('kit_id')));
+    $lang = bookpilot_connect_lang(shortcode_atts(array('lang' => ''), $atts, 'bookpilot_offers'));
+    $data = bookpilot_connect_fetch('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/offers.json?lang=' . rawurlencode($lang), bookpilot_connect_cache_key('offers', $lang));
     if (!$data || empty($data['items'])) {
         return '';
     }
     $html = bookpilot_connect_styles() . '<div class="bookpilot-offers">';
     foreach ($data['items'] as $offer) {
-        $html .= '<div class="bookpilot-offer"><div class="bp-big">' . esc_html($offer['discount']) . ' off</div><strong>' . esc_html($offer['name']) . '</strong>';
+        $html .= '<div class="bookpilot-offer"><div class="bp-big">' . esc_html($offer['discount'] . ' ' . bookpilot_connect_label($data, 'off', 'off')) . '</div><strong>' . esc_html($offer['name']) . '</strong>';
         if (!empty($offer['product'])) { $html .= '<div>' . esc_html($offer['product']) . '</div>'; }
-        $html .= '<div style="opacity:.7;font-size:13px">Until ' . esc_html(date_i18n(get_option('date_format'), strtotime($offer['until']))) . '</div></div>';
+        $html .= '<div style="opacity:.7;font-size:13px">' . esc_html(bookpilot_connect_label($data, 'until', 'Until')) . ' ' . esc_html(date_i18n(get_option('date_format'), strtotime($offer['until']))) . '</div></div>';
     }
     return $html . '</div>';
 }
@@ -206,7 +224,7 @@ add_shortcode('bookpilot_offers', 'bookpilot_connect_offers');
 /* [bookpilot_info field="phone"] — name, phone, email, address, country, currency, vat_number */
 function bookpilot_connect_info($atts) {
     $a = shortcode_atts(array('field' => 'name'), $atts, 'bookpilot_info');
-    $data = bookpilot_connect_fetch('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/info.json', 'bookpilot_info_' . md5(bookpilot_connect_opt('kit_id')));
+    $data = bookpilot_connect_fetch('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/info.json', bookpilot_connect_cache_key('info', 'en'));
     $field = sanitize_key($a['field']);
     return ($data && isset($data[$field]) && is_scalar($data[$field])) ? esc_html($data[$field]) : '';
 }
@@ -228,9 +246,8 @@ function bookpilot_connect_sanitize($input) {
     foreach (array('kit_id', 'booking_slug', 'careers_slug') as $key) {
         $clean[$key] = isset($input[$key]) ? sanitize_title($input[$key]) : '';
     }
-    delete_transient('bookpilot_catalogue_' . md5(bookpilot_connect_opt('kit_id')));
-    delete_transient('bookpilot_info_' . md5(bookpilot_connect_opt('kit_id')));
-    delete_transient('bookpilot_offers_' . md5(bookpilot_connect_opt('kit_id')));
+    $clean['lang'] = isset($input['lang']) ? bookpilot_connect_lang(array('lang' => $input['lang'])) : '';
+    update_option('bookpilot_connect_v', (string) time());  // saving refreshes the menu straight away
     return $clean;
 }
 
@@ -239,6 +256,7 @@ function bookpilot_connect_page() {
         return;
     }
     $labels = array('base' => 'BookPilot address', 'kit_id' => 'Kit ID', 'booking_slug' => 'Booking form name', 'careers_slug' => 'Careers form name');
+    $languages = array({% for code, name in languages %}'{{ code }}' => '{{ name|cut:"'" }}'{% if not forloop.last %}, {% endif %}{% endfor %});
     ?>
     <div class="wrap">
         <h1>BookPilot Connect</h1>
@@ -252,6 +270,15 @@ function bookpilot_connect_page() {
                     <td><input class="regular-text" id="bp-<?php echo esc_attr($key); ?>" name="bookpilot_connect[<?php echo esc_attr($key); ?>]" value="<?php echo esc_attr(bookpilot_connect_opt($key)); ?>"></td>
                 </tr>
                 <?php endforeach; ?>
+                <tr>
+                    <th scope="row"><label for="bp-lang">Website language</label></th>
+                    <td><select id="bp-lang" name="bookpilot_connect[lang]">
+                        <?php foreach ($languages as $code => $name) : ?>
+                        <option value="<?php echo esc_attr($code); ?>"<?php selected(bookpilot_connect_lang(), $code); ?>><?php echo esc_html($name); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <p class="description">Menu buttons, the order cart and the forms use this language. Any shortcode can also take lang="hi", lang="ar"…</p></td>
+                </tr>
             </table>
             <?php submit_button(); ?>
         </form>

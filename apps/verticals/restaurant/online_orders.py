@@ -10,6 +10,7 @@ from decimal import Decimal
 from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from .models import OnlineOrder, RestaurantMenuItem, RestaurantProfile, RestaurantShift
 from . import services
@@ -20,7 +21,7 @@ FEE_SKU = "DELIVERY-FEE"
 
 
 def profile_for(company):
-    profile, _ = RestaurantProfile.objects.get_or_create(company=company)
+    profile, _created = RestaurantProfile.objects.get_or_create(company=company)
     return profile
 
 
@@ -50,7 +51,7 @@ def config(company):
 def _clean_phone(value):
     phone = re.sub(r"[^\d+ ]", "", str(value or "")).strip()[:30]
     if len(re.sub(r"\D", "", phone)) < 7:
-        raise ValidationError("Enter a phone number we can call.")
+        raise ValidationError(_("Enter a phone number we can call."))
     return phone
 
 
@@ -60,51 +61,51 @@ def place(company, data, source=""):
     from apps.customers.models import Customer
     cfg = config(company)
     if not cfg:
-        raise ValidationError("Online ordering is switched off.")
+        raise ValidationError(_("Online ordering is switched off."))
     if not cfg["open"]:
-        raise ValidationError("Sorry, we are not taking online orders right now. Please call us.")
+        raise ValidationError(_("Sorry, we are not taking online orders right now. Please call us."))
     profile = profile_for(company)
     name = str(data.get("name") or "").strip()[:150]
     if len(name) < 2:
-        raise ValidationError("Enter your name.")
+        raise ValidationError(_("Enter your name."))
     phone = _clean_phone(data.get("phone"))
     mode = data.get("mode") if data.get("mode") in ("pickup", "delivery") else ("pickup" if profile.web_pickup else "delivery")
     if (mode == "pickup" and not profile.web_pickup) or (mode == "delivery" and not profile.web_delivery):
-        raise ValidationError("This order type is not available.")
+        raise ValidationError(_("This order type is not available."))
     address = str(data.get("address") or "").strip()[:500]
     if mode == "delivery" and len(address) < 5:
-        raise ValidationError("Enter the delivery address.")
+        raise ValidationError(_("Enter the delivery address."))
     note = str(data.get("note") or "").strip()[:255]
 
     rows = data.get("items") or []
     if not isinstance(rows, list) or not rows:
-        raise ValidationError("Your cart is empty.")
+        raise ValidationError(_("Your cart is empty."))
     if len(rows) > MAX_LINES:
-        raise ValidationError("Too many items in one order. Please call us for big orders.")
+        raise ValidationError(_("Too many items in one order. Please call us for big orders."))
     wanted = []
     for row in rows:
         if not isinstance(row, dict):
-            raise ValidationError("Your cart is not valid. Please refresh the page.")
+            raise ValidationError(_("Your cart is not valid. Please refresh the page."))
         try:
             pid, qty = int(row.get("id")), int(row.get("qty", 1))
         except (TypeError, ValueError):
-            raise ValidationError("Your cart is not valid. Please refresh the page.")
+            raise ValidationError(_("Your cart is not valid. Please refresh the page."))
         if qty < 1 or qty > MAX_QTY:
-            raise ValidationError(f"You can order 1 to {MAX_QTY} of each item.")
+            raise ValidationError(_("You can order 1 to %(n)s of each item.") % {"n": MAX_QTY})
         wanted.append((pid, qty, str(row.get("note") or "").strip()[:120]))
     menu = {m.product_id: m for m in RestaurantMenuItem.objects.for_company(company).filter(
         product_id__in=[w[0] for w in wanted]).select_related("product").prefetch_related("modifier_groups")}
     subtotal = Decimal("0")
-    for pid, qty, _ in wanted:
+    for pid, qty, _note in wanted:
         item = menu.get(pid)
         if item is None:
-            raise ValidationError("An item in your cart is no longer on the menu. Please refresh the page.")
+            raise ValidationError(_("An item in your cart is no longer on the menu. Please refresh the page."))
         if not item.is_orderable_now() or needs_choice(item):
-            raise ValidationError(f"Sorry, {item.product.name} is not available online right now.")
+            raise ValidationError(_("Sorry, %(item)s is not available online right now.") % {"item": item.product.name})
         subtotal += item.product.selling_price * qty
     fee = profile.delivery_charge if mode == "delivery" else Decimal("0")
     if mode == "delivery" and profile.delivery_minimum and subtotal < profile.delivery_minimum:
-        raise ValidationError(f"The minimum order for delivery is {company.default_currency} {profile.delivery_minimum:.2f}.")
+        raise ValidationError(_("The minimum order for delivery is %(amount)s.") % {"amount": f"{company.default_currency} {profile.delivery_minimum:.2f}"})
 
     customer = Customer.objects.for_company(company).filter(phone=phone).first()
     if not customer:
@@ -148,7 +149,7 @@ def _tell_staff(online):
 def accept(online, user):
     online = OnlineOrder.objects.select_for_update().select_related("order").get(pk=online.pk)  # double taps
     if online.status != "new":
-        raise ValidationError("This order was already handled.")
+        raise ValidationError(_("This order was already handled."))
     order = online.order
     order.status = "draft"
     order.save(update_fields=["status"])
@@ -162,7 +163,7 @@ def accept(online, user):
 def reject(online, user, reason):
     online = OnlineOrder.objects.select_for_update().select_related("order").get(pk=online.pk)  # double taps
     if online.status != "new":
-        raise ValidationError("This order was already handled.")
+        raise ValidationError(_("This order was already handled."))
     reason = (reason or "").strip()[:255] or "The restaurant could not take this order."
     services.cancel_order(company=online.company, user=user, order=online.order, reason=f"Website order rejected: {reason}")
     online.status, online.reject_reason = "rejected", reason

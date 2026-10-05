@@ -100,10 +100,12 @@ def catalogue(company, absolute, limit=500):
     else:
         from apps.inventory.models import Product
         qs = Product.objects.for_company(company).filter(is_active=True).select_related("category").order_by("category__name", "name")
+        from apps.verticals.restaurant.online_orders import config as ordering_config, needs_choice
+        ordering = ordering_config(company)
         menu = {}
         if company.business_type.code in ("restaurant", "cafe_juice_shop", "catering_company"):
             from apps.verticals.restaurant.models import RestaurantMenuItem
-            menu = {m.product_id: m for m in RestaurantMenuItem.objects.for_company(company)}
+            menu = {m.product_id: m for m in RestaurantMenuItem.objects.for_company(company).prefetch_related("modifier_groups")}
             if menu:
                 qs = qs.filter(id__in=menu.keys()).order_by("restaurant_menu_item__sort_order", "name")
         for p in qs[:limit]:
@@ -113,8 +115,12 @@ def catalogue(company, absolute, limit=500):
                           "image": absolute(m.image.url) if m and m.image else None,
                           "vegetarian": getattr(m, "is_vegetarian", None) if m else None,
                           "available": bool(m.is_available) if m else True,
-                          "featured": bool(m.is_featured) if m else False})
-    return {"kind": kind, "currency": cur, "items": items}
+                          "featured": bool(m.is_featured) if m else False,
+                          "orderable": bool(ordering and m and m.is_orderable_now() and not needs_choice(m))})
+    out = {"kind": kind, "currency": cur, "items": items}
+    if kind == "products":
+        out["ordering"] = ordering or {"enabled": False}
+    return out
 
 
 def offers(company):

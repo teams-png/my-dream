@@ -2,7 +2,7 @@
 /**
  * Plugin Name: BookPilot Connect — {{ company|cut:'*/' }}
  * Description: Connects this website to {{ company|cut:'*/' }}'s BookPilot account: contact form, live catalogue, business details{% if booking_slug %}, online booking{% endif %}{% if careers_slug %}, jobs and job applications{% endif %}. Everything submitted here goes straight to BookPilot.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: BookPilot
  * License: GPLv2 or later
  * Requires at least: 5.0
@@ -96,6 +96,7 @@ function bookpilot_connect_fetch($path, $cache_key) {
 
 /* [bookpilot_catalogue] full menu grouped by category · [bookpilot_catalogue category="Biryani & Rice" limit="12"]
    group="no" for one flat grid · hide_sold_out="yes" to hide items marked sold out in the POS.
+   When the restaurant switches on Online orders in BookPilot, every item gets "+ Add" and a cart (order="no" hides it).
    Menu / services / products / rooms / courses / jobs; server-rendered (good for SEO), refreshed every 5 minutes. */
 function bookpilot_connect_styles() {
     static $done = false;
@@ -111,10 +112,12 @@ function bookpilot_connect_styles() {
         . '.bookpilot-item.sold-out{opacity:.55}.bookpilot-tag.out{background:#fee2e2;color:#991b1b}'
         . '.bookpilot-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}.bookpilot-tabs a{padding:6px 12px;border:1px solid #e2e8f0;border-radius:99px;text-decoration:none;font-size:14px}'
         . '.bookpilot-offers{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}'
+        . '.bookpilot-add{margin-top:10px;padding:7px 16px;border:1.5px solid var(--bp-accent);border-radius:99px;background:#fff;color:var(--bp-accent);font-weight:700;font-size:14px;cursor:pointer}'
+        . '.bookpilot-add:hover{background:var(--bp-accent);color:#fff}'
         . '.bookpilot-offer{border-radius:14px;padding:16px;background:#fff7ed;border:1px solid #fed7aa}.bookpilot-offer .bp-big{font-size:1.8em;font-weight:800;line-height:1}</style>';
 }
 
-function bookpilot_connect_item_html($item, $data, $units) {
+function bookpilot_connect_item_html($item, $data, $units, $ordering = false) {
     $out = !isset($item['available']) || $item['available'];
     $html = '<div class="bookpilot-item' . ($out ? '' : ' sold-out') . '">';
     if (!empty($item['image'])) {
@@ -130,14 +133,22 @@ function bookpilot_connect_item_html($item, $data, $units) {
         $unit = isset($item['unit'], $units[$item['unit']]) ? ' ' . $units[$item['unit']] : '';
         $html .= '<div class="bp-price">' . esc_html($data['currency'] . ' ' . $item['price'] . $unit) . '</div>';
     }
+    if ($ordering && !empty($item['orderable'])) {
+        $html .= '<button type="button" class="bookpilot-add" data-bp-add data-id="' . esc_attr($item['id']) . '" data-name="' . esc_attr($item['name'])
+            . '" data-price="' . esc_attr($item['price']) . '">+ Add</button>';
+    }
     return $html . '</div></div>';
 }
 
 function bookpilot_connect_catalogue($atts) {
-    $a = shortcode_atts(array('category' => '', 'limit' => 0, 'group' => 'yes', 'hide_sold_out' => 'no'), $atts, 'bookpilot_catalogue');
+    $a = shortcode_atts(array('category' => '', 'limit' => 0, 'group' => 'yes', 'hide_sold_out' => 'no', 'order' => 'auto'), $atts, 'bookpilot_catalogue');
     $data = bookpilot_connect_fetch('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/catalogue.json', 'bookpilot_catalogue_' . md5(bookpilot_connect_opt('kit_id')));
     if (!$data || empty($data['items'])) {
         return '';
+    }
+    $ordering = $a['order'] !== 'no' && !empty($data['ordering']['enabled']);
+    if ($ordering) {
+        wp_enqueue_script('bookpilot-order', esc_url(bookpilot_connect_url('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/order.js')), array(), '1.2.0', true);
     }
     $units = array('hour' => '/ hour', 'day' => '/ day', 'night' => '/ night', 'month' => '/ month', 'monthly' => '/ month');
     $groups = array();
@@ -168,7 +179,7 @@ function bookpilot_connect_catalogue($atts) {
     foreach ($groups as $name => $items) {
         if ($name !== '') { $html .= '<h3 class="bookpilot-cat" id="bp-cat-' . $i . '">' . esc_html($name) . '</h3>'; }
         $html .= '<div class="bookpilot-grid">';
-        foreach ($items as $item) { $html .= bookpilot_connect_item_html($item, $data, $units); }
+        foreach ($items as $item) { $html .= bookpilot_connect_item_html($item, $data, $units, $ordering); }
         $html .= '</div>';
         $i++;
     }

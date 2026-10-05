@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
+from . import online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -57,6 +57,9 @@ urlpatterns = [
     path("kit/<slug:public_id>/info.json", website_kit_views.kit_info, name="kit_info"),
     path("kit/<slug:public_id>/catalogue.json", website_kit_views.kit_catalogue, name="kit_catalogue"),
     path("kit/<slug:public_id>/offers.json", website_kit_views.kit_offers, name="kit_offers"),
+    path("kit/<slug:public_id>/order/", website_kit_views.kit_order, name="kit_order"),
+    path("kit/<slug:public_id>/order.js", website_kit_views.kit_order_js, name="kit_order_js"),
+    path("kit/<slug:public_id>/order/<uuid:token>/", website_kit_views.kit_order_status, name="kit_order_status"),
     path("kit/<slug:public_id>/enquiry/", website_kit_views.kit_enquiry, name="kit_enquiry"),
     path("kit/<slug:public_id>/enquiry.js", website_kit_views.kit_enquiry_js, name="kit_enquiry_js"),
     path("kit/<slug:public_id>/catalogue.js", website_kit_views.kit_catalogue_js, name="kit_catalogue_js"),
@@ -518,6 +521,10 @@ urlpatterns = [
     path("restaurant/setup/demo-menu/", views.restaurant_demo_menu, name="restaurant_demo_menu"),
     path("restaurant/setup/kerala-kit/", views.restaurant_starter_kit, name="restaurant_starter_kit"),
     path("restaurant/quick/", quick_sale_views.quick_sale, name="restaurant_quick_sale"),
+    path("restaurant/online-orders/", online_order_views.inbox, name="restaurant_online_orders"),
+    path("restaurant/online-orders/settings/", online_order_views.settings_save, name="restaurant_online_settings"),
+    path("restaurant/online-orders/<int:online_id>/action/", online_order_views.action, name="restaurant_online_action"),
+    path("restaurant/online-orders/waiting.json", online_order_views.waiting, name="restaurant_online_waiting"),
     path("restaurant/quick/sell/", quick_sale_views.quick_sale_submit, name="restaurant_quick_sale_submit"),
     path("restaurant/quick/pin/", quick_sale_views.quick_sale_pin, name="restaurant_quick_sale_pin"),
     path("restaurant/setup/menu/<int:menu_item_id>/edit/", views.restaurant_menu_item_form, name="restaurant_menu_item_edit"),

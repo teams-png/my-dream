@@ -406,6 +406,10 @@ msgid "Orders (bills)"
 msgstr "الطلبات (الفواتير)"
 
 #: templates/base.html
+msgid "Online orders"
+msgstr "الطلبات الإلكترونية"
+
+#: templates/base.html
 msgid "Kitchen / KOT"
 msgstr "المطبخ / تذاكر الطلبات"
 
@@ -7849,6 +7853,121 @@ msgstr "لا توجد فواتير على هذا الجهاز بعد."
 msgid "Offline bill"
 msgstr "فاتورة دون اتصال"
 
+#: templates/webapp/restaurant/online_orders.html
+msgid "Online orders (website)"
+msgstr "الطلبات الإلكترونية (الموقع)"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Website ordering is off"
+msgstr "الطلب من الموقع متوقف"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Switch it on below to show “+ Add” and a cart on your website menu."
+msgstr "فعّله أدناه لإظهار «+ إضافة» وسلة في قائمة موقعك."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Paused — not taking orders now"
+msgstr "متوقف مؤقتاً — لا نستقبل طلبات الآن"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Customers can see the menu, but cannot order."
+msgstr "يرى العملاء القائمة لكن لا يمكنهم الطلب."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Taking orders from your website"
+msgstr "نستقبل الطلبات من موقعك"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Orders go straight to the kitchen."
+msgstr "تذهب الطلبات مباشرة إلى المطبخ."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Accept each new order below. This page beeps when a new order comes."
+msgstr "اقبل كل طلب جديد أدناه. تصدر هذه الصفحة صوتاً عند وصول طلب جديد."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Pause orders"
+msgstr "إيقاف الطلبات"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Start taking orders"
+msgstr "بدء استقبال الطلبات"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Open my website"
+msgstr "افتح موقعي"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "New orders"
+msgstr "طلبات جديدة"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "ago"
+msgstr "مضت"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Pickup"
+msgstr "استلام"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "pay on pickup / delivery"
+msgstr "الدفع عند الاستلام / التوصيل"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Accept & send to kitchen"
+msgstr "قبول وإرسال إلى المطبخ"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Reason, e.g. Item finished / Too far"
+msgstr "السبب، مثل: نفد الصنف / المسافة بعيدة"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "No new website orders."
+msgstr "لا توجد طلبات جديدة من الموقع."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Keep this page open — it checks for new orders every 20 seconds."
+msgstr "أبقِ هذه الصفحة مفتوحة — تتحقق من الطلبات الجديدة كل 20 ثانية."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "In the kitchen / ready"
+msgstr "في المطبخ / جاهز"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Ready"
+msgstr "جاهز"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Preparing"
+msgstr "قيد التحضير"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Open bill"
+msgstr "افتح الفاتورة"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Website ordering settings"
+msgstr "إعدادات الطلب من الموقع"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid ""
+"Works on your BookPilot website and on a WordPress website with the "
+"BookPilot Connect plugin (version 1.2 or newer). Prices always come from "
+"BookPilot. Items marked “not available” or with required add-ons cannot be "
+"ordered online."
+msgstr ""
+"يعمل على موقع BookPilot وعلى موقع WordPress مع إضافة BookPilot Connect "
+"(الإصدار 1.2 أو أحدث). الأسعار دائماً من BookPilot. الأصناف «غير المتوفرة» "
+"أو التي تتطلب إضافات لا يمكن طلبها عبر الإنترنت."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Recent website orders"
+msgstr "طلبات الموقع الأخيرة"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Rejected"
+msgstr "مرفوض"
+
 #: templates/webapp/restaurant/order_detail.html
 msgid "Restaurant POS"
 msgstr "نقطة بيع المطعم"
@@ -9021,10 +9140,6 @@ msgid "Draft"
 msgstr "مسودة"
 
 #: apps/verticals/restaurant/models.py
-msgid "Ready"
-msgstr "جاهز"
-
-#: apps/verticals/restaurant/models.py
 msgid "Served"
 msgstr "تم التقديم"
 
@@ -9033,8 +9148,8 @@ msgid "Queued"
 msgstr "في الانتظار"
 
 #: apps/verticals/restaurant/models.py
-msgid "Preparing"
-msgstr "قيد التحضير"
+msgid "Accepted"
+msgstr "مقبول"
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -10214,6 +10329,83 @@ msgstr "الحجز الإلكتروني غير متاح."
 msgid "Shown above the form, e.g. opening hours."
 msgstr "يظهر أعلى النموذج، مثل ساعات العمل."
 
+#: apps/webapp/online_order_views.py
+msgid "Take orders from my website (cart)"
+msgstr "استقبال الطلبات من موقعي (سلة)"
+
+#: apps/webapp/online_order_views.py
+msgid "Pause — not taking orders now"
+msgstr "إيقاف — لا نستقبل طلبات الآن"
+
+#: apps/webapp/online_order_views.py
+msgid "Home delivery"
+msgstr "توصيل للمنزل"
+
+#: apps/webapp/online_order_views.py
+msgid "Delivery charge"
+msgstr "رسوم التوصيل"
+
+#: apps/webapp/online_order_views.py
+msgid "Minimum order for delivery"
+msgstr "الحد الأدنى لطلب التوصيل"
+
+#: apps/webapp/online_order_views.py
+msgid "Send to kitchen without asking"
+msgstr "إرسال إلى المطبخ دون سؤال"
+
+#: apps/webapp/online_order_views.py
+msgid "Ready in (minutes)"
+msgstr "جاهز خلال (دقائق)"
+
+#: apps/webapp/online_order_views.py
+msgid "Note in the cart"
+msgstr "ملاحظة في السلة"
+
+#: apps/webapp/online_order_views.py
+msgid "Shows “+ Add” on every menu item of your website and a cart."
+msgstr "يُظهر «+ إضافة» على كل صنف في قائمة موقعك مع سلة."
+
+#: apps/webapp/online_order_views.py
+msgid ""
+"Use when the kitchen is busy or closed. The menu stays; the cart says “not "
+"taking orders now”."
+msgstr ""
+"استخدمه عندما يكون المطبخ مشغولاً أو مغلقاً. تبقى القائمة وتظهر السلة «لا "
+"نستقبل طلبات الآن»."
+
+#: apps/webapp/online_order_views.py
+msgid ""
+"Off: you accept each order first. On: orders go straight to the kitchen."
+msgstr "متوقف: تقبل كل طلب أولاً. مفعّل: تذهب الطلبات مباشرة إلى المطبخ."
+
+#: apps/webapp/online_order_views.py
+msgid "0 = no minimum."
+msgstr "0 = بدون حد أدنى."
+
+#: apps/webapp/online_order_views.py
+msgid "e.g. Delivery only inside Doha · Cash on delivery"
+msgstr "مثال: التوصيل داخل الدوحة فقط · الدفع عند الاستلام"
+
+#: apps/webapp/online_order_views.py
+msgid "Delivery only inside Doha · Cash on delivery"
+msgstr "التوصيل داخل الدوحة فقط · الدفع عند الاستلام"
+
+#: apps/webapp/online_order_views.py
+msgid "Choose pickup, delivery or both."
+msgstr "اختر الاستلام أو التوصيل أو كليهما."
+
+#: apps/webapp/online_order_views.py
+msgid "Website ordering settings saved."
+msgstr "تم حفظ إعدادات الطلب من الموقع."
+
+#: apps/webapp/online_order_views.py
+msgid "Order %(no)s accepted and sent to the kitchen."
+msgstr "تم قبول الطلب %(no)s وإرساله إلى المطبخ."
+
+#: apps/webapp/online_order_views.py
+msgid "Order %(no)s rejected."
+msgstr "تم رفض الطلب %(no)s."
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "تم استلام الدفعة — شكراً لك!"
@@ -10627,10 +10819,6 @@ msgstr "التذكرة"
 #: apps/webapp/recruitment_views.py
 msgid "Joined / deployed"
 msgstr "التحق بالعمل"
-
-#: apps/webapp/recruitment_views.py
-msgid "Rejected"
-msgstr "مرفوض"
 
 #: apps/webapp/recruitment_views.py
 msgid "Withdrawn"

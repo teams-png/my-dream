@@ -121,6 +121,7 @@ def content(design, absolute):
            "logo": absolute(design.logo.url) if design.logo else data["logo"],
            "hero": absolute(design.hero_image.url) if design.hero_image else None,
            "catalogue_title": title, "catalogue_kind": kind, "groups": grouped(catalogue["items"]),
+           "ordering": catalogue.get("ordering", {}).get("enabled", False),
            "currency": company.default_currency, "offers": offers(company) if design.show_offers else [],
            "hours": [line.strip() for line in design.opening_hours.splitlines() if line.strip()],
            "socials": socials(design), "whatsapp": _digits(design.whatsapp or company.phone),

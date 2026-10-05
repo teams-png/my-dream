@@ -406,6 +406,10 @@ msgid "Orders (bills)"
 msgstr "ഓർഡറുകൾ (ബില്ലുകൾ)"
 
 #: templates/base.html
+msgid "Online orders"
+msgstr "ഓൺലൈൻ ഓർഡറുകൾ"
+
+#: templates/base.html
 msgid "Kitchen / KOT"
 msgstr "കിച്ചൺ / KOT"
 
@@ -7934,6 +7938,124 @@ msgstr "ഈ ഉപകരണത്തിൽ ബില്ലുകൾ ഇല്ല
 msgid "Offline bill"
 msgstr "ഓഫ്‌ലൈൻ ബിൽ"
 
+#: templates/webapp/restaurant/online_orders.html
+msgid "Online orders (website)"
+msgstr "ഓൺലൈൻ ഓർഡറുകൾ (വെബ്സൈറ്റ്)"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Website ordering is off"
+msgstr "വെബ്സൈറ്റ് ഓർഡർ ഓഫ് ആണ്"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Switch it on below to show “+ Add” and a cart on your website menu."
+msgstr "വെബ്സൈറ്റ് മെനുവിൽ “+ Add”-ഉം കാർട്ടും കാണിക്കാൻ താഴെ ഓൺ ചെയ്യുക."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Paused — not taking orders now"
+msgstr "താൽക്കാലികമായി നിർത്തി — ഇപ്പോൾ ഓർഡർ എടുക്കുന്നില്ല"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Customers can see the menu, but cannot order."
+msgstr "കസ്റ്റമേഴ്സിന് മെനു കാണാം, പക്ഷേ ഓർഡർ ചെയ്യാനാവില്ല."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Taking orders from your website"
+msgstr "വെബ്സൈറ്റിൽ നിന്ന് ഓർഡറുകൾ എടുക്കുന്നു"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Orders go straight to the kitchen."
+msgstr "ഓർഡറുകൾ നേരെ കിച്ചണിലേക്ക് പോകും."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Accept each new order below. This page beeps when a new order comes."
+msgstr ""
+"ഓരോ പുതിയ ഓർഡറും താഴെ Accept ചെയ്യുക. പുതിയ ഓർഡർ വരുമ്പോൾ ഈ പേജ് "
+"ശബ്ദമുണ്ടാക്കും."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Pause orders"
+msgstr "ഓർഡർ നിർത്തുക"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Start taking orders"
+msgstr "ഓർഡർ എടുക്കാൻ തുടങ്ങുക"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Open my website"
+msgstr "എന്റെ വെബ്സൈറ്റ് തുറക്കുക"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "New orders"
+msgstr "പുതിയ ഓർഡറുകൾ"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "ago"
+msgstr "മുമ്പ്"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Pickup"
+msgstr "പിക്കപ്പ്"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "pay on pickup / delivery"
+msgstr "പിക്കപ്പ് / ഡെലിവറി സമയത്ത് പണം"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Accept & send to kitchen"
+msgstr "സ്വീകരിച്ച് കിച്ചണിലേക്ക് അയക്കുക"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Reason, e.g. Item finished / Too far"
+msgstr "കാരണം, ഉദാ: ഐറ്റം തീർന്നു / ദൂരം കൂടുതൽ"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "No new website orders."
+msgstr "പുതിയ വെബ്സൈറ്റ് ഓർഡറുകൾ ഇല്ല."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Keep this page open — it checks for new orders every 20 seconds."
+msgstr "ഈ പേജ് തുറന്നുവെക്കുക — ഓരോ 20 സെക്കൻഡിലും പുതിയ ഓർഡർ നോക്കും."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "In the kitchen / ready"
+msgstr "കിച്ചണിൽ / റെഡി"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Ready"
+msgstr "റെഡി"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Preparing"
+msgstr "തയ്യാറാക്കുന്നു"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Open bill"
+msgstr "ബിൽ തുറക്കുക"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Website ordering settings"
+msgstr "വെബ്സൈറ്റ് ഓർഡർ സെറ്റിംഗ്സ്"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid ""
+"Works on your BookPilot website and on a WordPress website with the "
+"BookPilot Connect plugin (version 1.2 or newer). Prices always come from "
+"BookPilot. Items marked “not available” or with required add-ons cannot be "
+"ordered online."
+msgstr ""
+"BookPilot വെബ്സൈറ്റിലും BookPilot Connect പ്ലഗിൻ (1.2 അല്ലെങ്കിൽ പുതിയത്) "
+"ഉള്ള WordPress വെബ്സൈറ്റിലും പ്രവർത്തിക്കും. വില എപ്പോഴും BookPilot-ൽ "
+"നിന്നാണ്. “ലഭ്യമല്ല” എന്ന് മാർക്ക് ചെയ്ത ഐറ്റങ്ങളും നിർബന്ധ ആഡ്-ഓൺ ഉള്ളവയും "
+"ഓൺലൈനായി ഓർഡർ ചെയ്യാനാവില്ല."
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Recent website orders"
+msgstr "സമീപകാല വെബ്സൈറ്റ് ഓർഡറുകൾ"
+
+#: templates/webapp/restaurant/online_orders.html
+msgid "Rejected"
+msgstr "നിരസിച്ചു"
+
 #: templates/webapp/restaurant/order_detail.html
 msgid "Restaurant POS"
 msgstr "റെസ്റ്റോറന്റ് POS"
@@ -9119,10 +9241,6 @@ msgid "Draft"
 msgstr "ഡ്രാഫ്റ്റ്"
 
 #: apps/verticals/restaurant/models.py
-msgid "Ready"
-msgstr "റെഡി"
-
-#: apps/verticals/restaurant/models.py
 msgid "Served"
 msgstr "സർവ് ചെയ്തു"
 
@@ -9131,8 +9249,8 @@ msgid "Queued"
 msgstr "ക്യൂവിൽ"
 
 #: apps/verticals/restaurant/models.py
-msgid "Preparing"
-msgstr "തയ്യാറാക്കുന്നു"
+msgid "Accepted"
+msgstr "സ്വീകരിച്ചു"
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -10335,6 +10453,84 @@ msgstr "ഓൺലൈൻ ബുക്കിംഗ് ലഭ്യമല്ല."
 msgid "Shown above the form, e.g. opening hours."
 msgstr "ഫോമിന് മുകളിൽ കാണിക്കും, ഉദാ: പ്രവർത്തന സമയം."
 
+#: apps/webapp/online_order_views.py
+msgid "Take orders from my website (cart)"
+msgstr "എന്റെ വെബ്സൈറ്റിൽ നിന്ന് ഓർഡർ എടുക്കുക (കാർട്ട്)"
+
+#: apps/webapp/online_order_views.py
+msgid "Pause — not taking orders now"
+msgstr "നിർത്തുക — ഇപ്പോൾ ഓർഡർ എടുക്കുന്നില്ല"
+
+#: apps/webapp/online_order_views.py
+msgid "Home delivery"
+msgstr "ഹോം ഡെലിവറി"
+
+#: apps/webapp/online_order_views.py
+msgid "Delivery charge"
+msgstr "ഡെലിവറി ചാർജ്"
+
+#: apps/webapp/online_order_views.py
+msgid "Minimum order for delivery"
+msgstr "ഡെലിവറിക്കുള്ള മിനിമം ഓർഡർ"
+
+#: apps/webapp/online_order_views.py
+msgid "Send to kitchen without asking"
+msgstr "ചോദിക്കാതെ കിച്ചണിലേക്ക് അയക്കുക"
+
+#: apps/webapp/online_order_views.py
+msgid "Ready in (minutes)"
+msgstr "റെഡിയാകാൻ (മിനിറ്റ്)"
+
+#: apps/webapp/online_order_views.py
+msgid "Note in the cart"
+msgstr "കാർട്ടിലെ കുറിപ്പ്"
+
+#: apps/webapp/online_order_views.py
+msgid "Shows “+ Add” on every menu item of your website and a cart."
+msgstr "വെബ്സൈറ്റിലെ ഓരോ മെനു ഐറ്റത്തിലും “+ Add”-ഉം ഒരു കാർട്ടും കാണിക്കും."
+
+#: apps/webapp/online_order_views.py
+msgid ""
+"Use when the kitchen is busy or closed. The menu stays; the cart says “not "
+"taking orders now”."
+msgstr ""
+"കിച്ചൺ തിരക്കിലോ അടച്ചോ ആണെങ്കിൽ ഉപയോഗിക്കുക. മെനു കാണും; കാർട്ടിൽ “ഇപ്പോൾ "
+"ഓർഡർ എടുക്കുന്നില്ല” എന്ന് കാണിക്കും."
+
+#: apps/webapp/online_order_views.py
+msgid ""
+"Off: you accept each order first. On: orders go straight to the kitchen."
+msgstr ""
+"ഓഫ്: ഓരോ ഓർഡറും നിങ്ങൾ ആദ്യം സ്വീകരിക്കണം. ഓൺ: ഓർഡറുകൾ നേരെ കിച്ചണിലേക്ക്."
+
+#: apps/webapp/online_order_views.py
+msgid "0 = no minimum."
+msgstr "0 = മിനിമം ഇല്ല."
+
+#: apps/webapp/online_order_views.py
+msgid "e.g. Delivery only inside Doha · Cash on delivery"
+msgstr "ഉദാ: ദോഹയ്ക്കുള്ളിൽ മാത്രം ഡെലിവറി · ക്യാഷ് ഓൺ ഡെലിവറി"
+
+#: apps/webapp/online_order_views.py
+msgid "Delivery only inside Doha · Cash on delivery"
+msgstr "ദോഹയ്ക്കുള്ളിൽ മാത്രം ഡെലിവറി · ക്യാഷ് ഓൺ ഡെലിവറി"
+
+#: apps/webapp/online_order_views.py
+msgid "Choose pickup, delivery or both."
+msgstr "പിക്കപ്പ്, ഡെലിവറി അല്ലെങ്കിൽ രണ്ടും തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/online_order_views.py
+msgid "Website ordering settings saved."
+msgstr "വെബ്സൈറ്റ് ഓർഡർ സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
+
+#: apps/webapp/online_order_views.py
+msgid "Order %(no)s accepted and sent to the kitchen."
+msgstr "ഓർഡർ %(no)s സ്വീകരിച്ച് കിച്ചണിലേക്ക് അയച്ചു."
+
+#: apps/webapp/online_order_views.py
+msgid "Order %(no)s rejected."
+msgstr "ഓർഡർ %(no)s നിരസിച്ചു."
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "പണം ലഭിച്ചു — നന്ദി!"
@@ -10754,10 +10950,6 @@ msgstr "ടിക്കറ്റ്"
 #: apps/webapp/recruitment_views.py
 msgid "Joined / deployed"
 msgstr "ജോയിൻ ചെയ്തു"
-
-#: apps/webapp/recruitment_views.py
-msgid "Rejected"
-msgstr "നിരസിച്ചു"
 
 #: apps/webapp/recruitment_views.py
 msgid "Withdrawn"

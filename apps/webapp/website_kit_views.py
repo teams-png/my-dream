@@ -152,6 +152,95 @@ def kit_catalogue_js(request, public_id):
         "color": kit.accent_color or "#0f766e"})
 
 
+# ------------------------------------------------------------------ website ordering (restaurant cart)
+
+ORDER_LIMIT = 6  # orders per hour from one visitor
+
+
+def _order_flood(request, kit):
+    fwd = request.META.get("HTTP_X_FORWARDED_FOR", "")
+    ip = (fwd.split(",")[0].strip() if fwd else request.META.get("REMOTE_ADDR", "")) or "?"
+    key = f"kit-order:{kit.pk}:{ip}"
+    if cache.add(key, 1, 3600):
+        return False
+    try:
+        return cache.incr(key) > ORDER_LIMIT
+    except ValueError:
+        cache.set(key, 1, 3600)
+        return False
+
+
+def _cors(request, response, methods="POST, OPTIONS"):
+    origin = _origin(request)
+    if origin:
+        response["Access-Control-Allow-Origin"] = origin
+        response["Vary"] = "Origin"
+        response["Access-Control-Allow-Headers"] = "Content-Type, X-Api-Key"
+        response["Access-Control-Allow-Methods"] = methods
+    return response
+
+
+@csrf_exempt  # posted from client websites; prices come from BookPilot, honeypot + rate limit
+def kit_order(request, public_id):
+    from apps.verticals.restaurant import online_orders
+    kit = _kit_or_404(public_id)
+    if request.method == "OPTIONS":
+        return _cors(request, HttpResponse())
+    if request.method != "POST":
+        raise Http404
+    try:
+        data = json.loads(request.body or b"{}")
+        if not isinstance(data, dict):
+            data = {}
+    except ValueError:
+        data = {}
+    trusted = svc.key_ok(kit.company, request.headers.get("X-Api-Key", ""))
+    origin = _origin(request)
+    if data.get("company_website"):
+        body, status = {"ok": True, "reference": "ORD-000000"}, 201
+    elif not trusted and _order_flood(request, kit):
+        body, status = {"ok": False, "error": "Too many orders from this device. Please call us."}, 429
+    else:
+        try:
+            online = online_orders.place(kit.company, data, source=origin.split("://", 1)[-1] if origin else ("api" if trusted else ""))
+            track = request.build_absolute_uri(reverse("webapp:kit_order_status", args=[public_id, online.token]))
+            body, status = {"ok": True, "reference": online.order.order_number, "total": f"{online.total:.2f}",
+                            "track_url": track, "accepted": online.status == "accepted"}, 201
+        except ValidationError as exc:
+            body, status = {"ok": False, "error": " ".join(exc.messages)}, 400
+    return _cors(request, JsonResponse(body, status=status))
+
+
+def kit_order_js(request, public_id):
+    from apps.verticals.restaurant import online_orders
+    kit = _kit_or_404(public_id)
+    cfg = online_orders.config(kit.company) or {"enabled": False}
+    cfg.update(endpoint=request.build_absolute_uri(reverse("webapp:kit_order", args=[public_id])),
+               color=kit.accent_color or "#0f766e", key=f"bp-cart-{public_id}", phone=kit.company.phone or "")
+    response = _js(request, "webapp/website_kit/order.js", cfg)
+    response["Cache-Control"] = "public, max-age=60"
+    return response
+
+
+def kit_order_status(request, public_id, token):
+    from apps.verticals.restaurant.models import OnlineOrder
+    kit = _kit_or_404(public_id)
+    online = get_object_or_404(OnlineOrder._base_manager.select_related("order", "company"), token=token, company=kit.company)
+    lines = [line for line in online.order.lines.select_related("product") if line.product.sku != "DELIVERY-FEE"]
+    fee = sum((line.total for line in online.order.lines.all() if line.product.sku == "DELIVERY-FEE"), 0)
+    if request.GET.get("format") == "json":
+        return _public_json({"reference": online.order.order_number, "stage": online.stage})
+    return render(request, "webapp/restaurant/online_status.html", {
+        "online": online, "order": online.order, "company": kit.company, "lines": lines, "fee": fee,
+        "color": kit.accent_color or "#0f766e", "steps": _steps(online.stage)})
+
+
+def _steps(stage):
+    names = ["new", "preparing", "ready", "done"]
+    reached = names.index(stage) if stage in names else -1
+    return [(name, i <= reached) for i, name in enumerate(names)]
+
+
 # ------------------------------------------------------------------ platform admin
 
 class KitForm(forms.ModelForm):
@@ -243,6 +332,16 @@ def kit_detail(request, company_id):
             elif action == "disconnect":
                 messages.success(request, "Website disconnected.")
             return redirect("webapp:kit_detail", company.id)
+        if action == "ordering":
+            from apps.verticals.restaurant import online_orders
+            if online_orders.is_restaurant(company):
+                profile = online_orders.profile_for(company)
+                profile.web_orders_enabled = not profile.web_orders_enabled
+                if profile.web_orders_enabled and not (profile.web_pickup or profile.web_delivery):
+                    profile.web_pickup = True
+                profile.save(update_fields=["web_orders_enabled", "web_pickup"])
+                messages.success(request, "Website ordering is now " + ("ON." if profile.web_orders_enabled else "OFF."))
+            return redirect("webapp:kit_detail", company.id)
         target = {"kit": form, "booking": bform, "careers": cform}.get(action)
         if action == "new_key":
             import secrets
@@ -276,9 +375,14 @@ def kit_detail(request, company_id):
     ctx = {"company": company, "kit": kit, "caps": caps, "form": form, "bform": bform, "cform": cform, "urls": urls,
            "booking_site": booking_site, "careers_site": careers_site, "stats": stats,
            "base": request.build_absolute_uri("/").rstrip("/"),
-           "site_design": SiteDesign.objects.filter(company=company).first()}
+           "site_design": SiteDesign.objects.filter(company=company).first(), "ordering": _ordering_profile(company)}
     ctx["snippets"] = _snippets(ctx)
     return render(request, "webapp/website_kit/detail.html", ctx)
+
+
+def _ordering_profile(company):
+    from apps.verticals.restaurant import online_orders
+    return online_orders.profile_for(company) if online_orders.is_restaurant(company) else None
 
 
 def _normalise_origins(text):

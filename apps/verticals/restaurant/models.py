@@ -32,6 +32,14 @@ class RestaurantProfile(TenantScopedModel):
                                                  help_text="Suggested service charge for dine-in bills (%).")
     tax_percent = models.DecimalField(max_digits=5, decimal_places=2, default=0,
                                       help_text="VAT/GST charged on restaurant bills (%). 0 = no tax.")
+    # Online ordering from the restaurant's website (BookPilot website or WordPress plugin)
+    web_orders_enabled = models.BooleanField(default=False, help_text="Show “+ Add” and a cart on the website menu.")
+    web_pickup = models.BooleanField(default=True, help_text="Customers can order and collect from the restaurant.")
+    web_delivery = models.BooleanField(default=False, help_text="Customers can ask for home delivery.")
+    web_auto_accept = models.BooleanField(default=False, help_text="Send website orders straight to the kitchen.")
+    web_paused = models.BooleanField(default=False, help_text="Busy or closed: the cart shows “not taking orders now”.")
+    web_ready_minutes = models.PositiveSmallIntegerField(default=30, help_text="Usual time until an order is ready.")
+    web_note = models.CharField(max_length=200, blank=True, help_text="Shown in the cart, e.g. Delivery only in Doha.")
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=["company"], name="one_restaurant_profile_per_company")]
@@ -339,6 +347,43 @@ class DeliveryOrderImport(TenantScopedModel):
     class Meta:
         unique_together = ("integration", "external_order_id")
         ordering = ["-received_at"]
+
+
+class OnlineOrder(TenantScopedModel):
+    """An order a customer placed from the restaurant's website cart. Staff accept it (then it goes to the
+    kitchen as a normal restaurant order) or reject it with a reason."""
+    MODES = [("pickup", _("Pickup")), ("delivery", _("Delivery"))]
+    STATUS = [("new", _("New")), ("accepted", _("Accepted")), ("rejected", _("Rejected"))]
+    order = models.OneToOneField(RestaurantOrder, on_delete=models.CASCADE, related_name="online")
+    token = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    status = models.CharField(max_length=10, choices=STATUS, default="new")
+    mode = models.CharField(max_length=10, choices=MODES, default="pickup")
+    customer_name = models.CharField(max_length=150)
+    phone = models.CharField(max_length=30)
+    address = models.TextField(blank=True)
+    note = models.CharField(max_length=255, blank=True)
+    source = models.CharField(max_length=120, blank=True, help_text="Website the order came from.")
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    reject_reason = models.CharField(max_length=255, blank=True)
+    handled_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    handled_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [models.Index(fields=["company", "status"])]
+
+    def __str__(self):
+        return f"{self.order.order_number} · {self.customer_name}"
+
+    @property
+    def stage(self):
+        """What the customer sees: new → preparing → ready → done (or rejected/cancelled)."""
+        if self.status == "new":
+            return "new"
+        if self.status == "rejected":
+            return "rejected"
+        return {"cancelled": "cancelled", "ready": "ready", "served": "done", "paid": "done"}.get(self.order.status, "preparing")
 
 
 class OfflineOrderSync(TenantScopedModel):

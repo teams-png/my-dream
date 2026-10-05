@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Online orders" %}{% endblock %}
+{% block heading %}🛒 {% translate "Online orders (website)" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.oo-state{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:var(--panel);margin-bottom:14px}
+.oo-state .dot{width:12px;height:12px;border-radius:50%;background:#94a3b8;flex:none}.oo-state.on .dot{background:#16a34a;box-shadow:0 0 0 4px #16a34a22}.oo-state.paused .dot{background:#f59e0b}
+.oo-state b{font-size:16px}.oo-state small{display:block;color:var(--ink-soft)}
+.oo-h{margin:20px 0 10px;font-size:17px;display:flex;align-items:center;gap:8px}
+.oo-n{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 7px;border-radius:99px;background:#dc2626;color:#fff;font-size:13px;font-weight:800}
+.oo-card{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px 16px;margin-bottom:12px}
+.oo-card.new{border:2px solid #f59e0b;box-shadow:0 6px 22px #f59e0b22}
+.oo-top{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}.oo-top .grow{flex:1 1 160px;min-width:0}
+.oo-top b{font-size:16px}.oo-top small{color:var(--ink-soft)}
+.oo-mode{padding:3px 10px;border-radius:99px;font-weight:800;font-size:12.5px;background:#e0f2fe;color:#075985}.oo-mode.delivery{background:#fef3c7;color:#92400e}
+.oo-lines{margin:10px 0;padding:0;list-style:none;display:grid;gap:4px}.oo-lines li{display:flex;gap:8px}.oo-lines li span:first-child{flex:1;min-width:0}
+.oo-total{font-weight:800;font-size:17px}
+.oo-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.oo-acts form{margin:0;display:flex;gap:8px;flex-wrap:wrap}
+.oo-acts .accept{min-height:46px;padding:0 22px;font-size:15.5px;background:#16a34a;border-color:#16a34a}
+.oo-acts input[name=reason]{min-width:0;flex:1 1 180px}
+.oo-chip{padding:3px 10px;border-radius:99px;font-size:12.5px;font-weight:800;background:var(--paper)}
+.oo-chip.ready{background:#dcfce7;color:#166534}.oo-chip.preparing{background:#e0f2fe;color:#075985}.oo-chip.rejected,.oo-chip.cancelled{background:#fee2e2;color:#991b1b}
+.oo-set{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 18px}
+.oo-set .wide{grid-column:1/-1}.oo-set label:not(.chk){display:grid;gap:6px;align-content:start}.oo-set label.chk{display:flex;gap:10px;align-items:flex-start;font-weight:700}.oo-set label.chk input{margin-top:3px;width:18px;height:18px;flex:none}
+.oo-set .help{display:block;font-weight:400;color:var(--ink-soft);font-size:13px}
+.oo-table{width:100%;border-collapse:collapse}.oo-table td{padding:8px 6px;border-top:1px solid var(--line);vertical-align:top}
+@media(max-width:600px){.oo-table .hide-sm{display:none}}
+</style>
+<div class="ix">
+  <div class="oo-state {% if profile.web_orders_enabled %}{% if profile.web_paused %}paused{% else %}on{% endif %}{% endif %}">
+    <span class="dot"></span>
+    <span style="flex:1 1 220px;min-width:0">
+      {% if not profile.web_orders_enabled %}<b>{% translate "Website ordering is off" %}</b><small>{% translate "Switch it on below to show “+ Add” and a cart on your website menu." %}</small>
+      {% elif profile.web_paused %}<b>{% translate "Paused — not taking orders now" %}</b><small>{% translate "Customers can see the menu, but cannot order." %}</small>
+      {% else %}<b>{% translate "Taking orders from your website" %}</b><small>{% if profile.web_auto_accept %}{% translate "Orders go straight to the kitchen." %}{% else %}{% translate "Accept each new order below. This page beeps when a new order comes." %}{% endif %}</small>{% endif %}
+    </span>
+    {% if profile.web_orders_enabled %}
+    <form method="post" action="{% url 'webapp:restaurant_online_settings' %}" style="margin:0">{% csrf_token %}
+      {% for f in form %}{% if f.name != "web_paused" %}{% if f.field.widget.input_type == "checkbox" %}{% if f.value %}<input type="hidden" name="{{ f.name }}" value="on">{% endif %}{% else %}<input type="hidden" name="{{ f.name }}" value="{{ f.value|default_if_none:'' }}">{% endif %}{% endif %}{% endfor %}
+      {% if not profile.web_paused %}<input type="hidden" name="web_paused" value="on"><button class="btn btn-secondary" type="submit">⏸ {% translate "Pause orders" %}</button>
+      {% else %}<button class="btn" type="submit">▶ {% translate "Start taking orders" %}</button>{% endif %}
+    </form>
+    {% endif %}
+    {% if site_live %}<a class="btn btn-secondary" href="{% url 'webapp:site_public' kit.public_id %}#catalogue" target="_blank" rel="noopener">🌐 {% translate "Open my website" %}</a>{% endif %}
+  </div>
+
+  <h2 class="oo-h">🔔 {% translate "New orders" %} {% if new %}<span class="oo-n" id="ooCount">{{ new|length }}</span>{% endif %}</h2>
+  {% for o in new %}
+  <div class="oo-card new">
+    <div class="oo-top"><span class="grow"><b>{{ o.order.order_number }} · {{ o.customer_name }}</b><br><small>📞 <a href="tel:{{ o.phone }}">{{ o.phone }}</a> · {{ o.created_at|timesince }} {% translate "ago" %}{% if o.source %} · {{ o.source }}{% endif %}</small></span>
+      <span class="oo-mode {{ o.mode }}">{% if o.mode == "delivery" %}🛵 {% translate "Delivery" %}{% else %}🛍 {% translate "Pickup" %}{% endif %}</span></div>
+    {% if o.address %}<p style="margin:8px 0 0">📍 {{ o.address }}</p>{% endif %}
+    <ul class="oo-lines">{% for l in o.order.lines.all %}<li><span>{{ l.quantity|floatformat:"-3" }} × {{ l.product.name }}{% if l.notes and l.notes != "Website order" %} <small style="color:var(--ink-soft)">({{ l.notes }})</small>{% endif %}</span><span>{{ currency }} {{ l.total|floatformat:2 }}</span></li>{% endfor %}</ul>
+    {% if o.note %}<p style="margin:0 0 6px">📝 {{ o.note }}</p>{% endif %}
+    <div class="oo-total">{% translate "Total" %}: {{ currency }} {{ o.total|floatformat:2 }} <small style="font-weight:600;color:var(--ink-soft)">· {% translate "pay on pickup / delivery" %}</small></div>
+    <div class="oo-acts">
+      <form method="post" action="{% url 'webapp:restaurant_online_action' o.id %}">{% csrf_token %}<input type="hidden" name="do" value="accept"><button class="btn accept" type="submit">✓ {% translate "Accept & send to kitchen" %}</button></form>
+      <form method="post" action="{% url 'webapp:restaurant_online_action' o.id %}" style="flex:1 1 280px">{% csrf_token %}<input type="hidden" name="do" value="reject"><input name="reason" placeholder="{% translate 'Reason, e.g. Item finished / Too far' %}"><button class="btn btn-secondary" type="submit">✕ {% translate "Reject" %}</button></form>
+    </div>
+  </div>
+  {% empty %}
+  <div class="ix-card ix-empty"><p style="font-size:32px;margin:0">🛒</p><strong>{% translate "No new website orders." %}</strong>{% if profile.web_orders_enabled and not profile.web_auto_accept %}<p style="color:var(--ink-soft)">{% translate "Keep this page open — it checks for new orders every 20 seconds." %}</p>{% endif %}</div>
+  {% endfor %}
+
+  {% if active %}
+  <h2 class="oo-h">👨‍🍳 {% translate "In the kitchen / ready" %}</h2>
+  {% for o in active %}
+  <a class="ix-card ix-row" href="{% url 'webapp:restaurant_order_detail' o.order.id %}"><span class="grow"><b>{{ o.order.order_number }} · {{ o.customer_name }}</b><small>{{ o.phone }}{% if o.address %} · {{ o.address|truncatechars:60 }}{% endif %}</small></span>
+    <span class="oo-chip {{ o.stage }}">{% if o.stage == "ready" %}{% translate "Ready" %}{% else %}{% translate "Preparing" %}{% endif %}</span><span class="btn btn-secondary">{% translate "Open bill" %} →</span></a>
+  {% endfor %}
+  {% endif %}
+
+  <h2 class="oo-h">⚙️ {% translate "Website ordering settings" %}</h2>
+  <form class="ix-card" method="post" action="{% url 'webapp:restaurant_online_settings' %}">{% csrf_token %}
+    <div class="oo-set">
+      {% for f in form %}
+      {% if f.field.widget.input_type == "checkbox" %}
+      <label class="chk {% if f.name == 'web_orders_enabled' %}wide{% endif %}">{{ f }}<span>{{ f.label }}{% if f.help_text %}<span class="help">{{ f.help_text }}</span>{% endif %}</span></label>
+      {% else %}
+      <label class="{% if f.name == 'web_note' %}wide{% endif %}"><b>{{ f.label }}</b>{{ f }}{% if f.help_text %}<span class="help">{{ f.help_text }}</span>{% endif %}</label>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <p style="margin:14px 0 0"><button class="btn" type="submit">{% translate "Save" %}</button></p>
+    <p style="color:var(--ink-soft);font-size:13.5px;margin:12px 0 0">{% translate "Works on your BookPilot website and on a WordPress website with the BookPilot Connect plugin (version 1.2 or newer). Prices always come from BookPilot. Items marked “not available” or with required add-ons cannot be ordered online." %}</p>
+  </form>
+
+  {% if recent %}
+  <h2 class="oo-h">🕘 {% translate "Recent website orders" %}</h2>
+  <div class="ix-card" style="padding:6px 12px"><table class="oo-table">
+    {% for o in recent %}<tr><td><a href="{% url 'webapp:restaurant_order_detail' o.order.id %}">{{ o.order.order_number }}</a><br><small>{{ o.created_at|date:"j M, H:i" }}</small></td>
+      <td>{{ o.customer_name }}<br><small>{{ o.phone }}</small></td><td class="hide-sm">{{ o.get_mode_display }}</td>
+      <td>{{ currency }} {{ o.total|floatformat:2 }}</td><td><span class="oo-chip {{ o.stage }}">{% if o.stage == "rejected" %}{% translate "Rejected" %}{% elif o.stage == "cancelled" %}{% translate "Cancelled" %}{% elif o.stage == "done" %}{% translate "Done" %}{% elif o.stage == "ready" %}{% translate "Ready" %}{% else %}{% translate "Preparing" %}{% endif %}</span>{% if o.reject_reason %}<br><small>{{ o.reject_reason }}</small>{% endif %}</td></tr>{% endfor %}
+  </table></div>
+  {% endif %}
+</div>
+{% if profile.web_orders_enabled %}
+<script>
+(function(){
+  var seen = {{ new|length }}, url = "{% url 'webapp:restaurant_online_waiting' %}";
+  function beep(){try{var a=new (window.AudioContext||window.webkitAudioContext)();[0,.25,.5].forEach(function(t){var o=a.createOscillator(),g=a.createGain();o.frequency.value=880;o.connect(g);g.connect(a.destination);g.gain.setValueAtTime(.25,a.currentTime+t);o.start(a.currentTime+t);o.stop(a.currentTime+t+.18);});}catch(e){}}
+  setInterval(function(){
+    if (document.querySelector("input:focus, textarea:focus")) return;
+    fetch(url, {credentials: "same-origin"}).then(function(r){return r.json();}).then(function(d){
+      if (d.new > seen) { beep(); setTimeout(function(){ location.reload(); }, 900); }
+      else if (d.new !== seen) { location.reload(); }
+    }).catch(function(){});
+  }, 20000);
+})();
+</script>
+{% endif %}
+{% endblock %}

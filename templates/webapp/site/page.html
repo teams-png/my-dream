@@ -37,6 +37,7 @@ nav.links{display:flex;gap:18px;margin-inline-start:auto;font-weight:600;font-si
 .card h3{margin:0;font-size:17px}.card .desc{color:var(--soft);font-size:14px;margin:0}.card .row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:6px}
 .price{font-weight:800;color:var(--p)}.tag{font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--p) 12%,#fff);color:var(--p)}
 .veg{background:#dcfce7;color:#166534}
+.add{border:1.5px solid var(--p);background:#fff;color:var(--p);border-radius:999px;padding:7px 14px;font-weight:700;font-size:14px;font-family:inherit;line-height:1;cursor:pointer;white-space:nowrap}.add:hover{background:var(--p);color:#fff}.tag.out{background:#fee2e2;color:#991b1b}
 .cat{margin:30px 0 14px;font-size:20px;display:flex;align-items:center;gap:10px}.cat::after{content:"";flex:1;height:1px;background:var(--line)}
 .tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:6px;scrollbar-width:none}.tabs a{white-space:nowrap;padding:7px 14px;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:14px;font-weight:600}
 .offer{background:linear-gradient(135deg,var(--a),color-mix(in srgb,var(--a) 60%,#fff));color:#111;border:0}
@@ -112,6 +113,7 @@ body.t-minimal .hero.has-img{color:#fff}body.t-minimal .card{border-width:0 0 1p
         {% if item.teacher %}<p class="desc">👤 {{ item.teacher }}</p>{% endif %}
         <div class="row">
           {% if item.price %}<span class="price">{{ currency }} {{ item.price }}{% if item.unit %} <small style="font-weight:600;color:var(--soft)">/ {{ item.unit }}</small>{% endif %}</span>{% else %}<span></span>{% endif %}
+          {% if ordering %}{% if item.orderable %}<button type="button" class="add" data-bp-add data-id="{{ item.id }}" data-name="{{ item.name }}" data-price="{{ item.price }}">+ Add</button>{% elif item.available is False %}<span class="tag out">Sold out</span>{% endif %}{% endif %}
           {% if item.vegetarian %}<span class="tag veg">Veg</span>{% elif item.minutes %}<span class="tag">{{ item.minutes }} min</span>{% elif item.capacity %}<span class="tag">👥 {{ item.capacity }}</span>{% endif %}
         </div>
       </div>
@@ -119,6 +121,8 @@ body.t-minimal .hero.has-img{color:#fff}body.t-minimal .card{border-width:0 0 1p
   {% endfor %}
 </div></section>
 {% endif %}
+
+{% if ordering %}<script src="{% url 'webapp:kit_order_js' kit.public_id %}" defer></script>{% endif %}
 
 {% if booking_slug %}
 <section id="book" class="section tint"><div class="wrap" style="max-width:760px">

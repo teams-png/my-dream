@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+{% if online.stage == "new" or online.stage == "preparing" %}<meta http-equiv="refresh" content="20">{% endif %}
+<meta name="robots" content="noindex">
+<title>{{ order.order_number }} · {{ company.name }}</title>
+<style>
+:root{--c:{{ color }}}
+*{box-sizing:border-box}body{margin:0;background:#f8fafc;color:#172033;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;display:grid;place-items:start center;min-height:100vh;padding:24px 16px}
+.box{background:#fff;border-radius:22px;box-shadow:0 18px 50px #0f172a14;padding:26px 22px;width:min(480px,100%)}
+.big{font-size:52px;text-align:center;line-height:1}h1{margin:8px 0 2px;text-align:center;font-size:24px}.sub{text-align:center;color:#64748b;margin:0 0 18px}
+.steps{display:flex;gap:6px;margin:18px 0}.steps div{flex:1;text-align:center;font-size:13px;font-weight:700;color:#94a3b8}
+.steps div i{display:block;height:6px;border-radius:9px;background:#e2e8f0;margin-bottom:6px}.steps div.on{color:var(--c)}.steps div.on i{background:var(--c)}
+.msg{padding:12px 14px;border-radius:14px;background:#f1f5f9;margin:12px 0;font-weight:600}.msg.bad{background:#fee2e2;color:#991b1b}.msg.good{background:#dcfce7;color:#166534}
+ul{list-style:none;margin:12px 0;padding:0}li{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #f1f5f9}li span:first-child{flex:1;min-width:0}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:18px;margin-top:8px}.muted{color:#64748b;font-size:14px}
+a{color:var(--c);font-weight:700}
+</style></head><body><main class="box">
+{% with s=online.stage %}
+<div class="big">{% if s == "new" %}⏳{% elif s == "preparing" %}👨‍🍳{% elif s == "ready" %}✅{% elif s == "done" %}🎉{% else %}❌{% endif %}</div>
+<h1>{{ order.order_number }}</h1>
+<p class="sub">{{ company.name }}</p>
+{% if s == "rejected" or s == "cancelled" %}
+  <div class="msg bad">Sorry, the restaurant could not take this order.{% if online.reject_reason %}<br>{{ online.reject_reason }}{% endif %}</div>
+{% else %}
+  <div class="steps">
+    {% for step, on in steps %}<div class="{% if on %}on{% endif %}"><i></i>{% if step == "new" %}Received{% elif step == "preparing" %}Preparing{% elif step == "ready" %}Ready{% else %}Done{% endif %}</div>{% endfor %}
+  </div>
+  {% if s == "new" %}<div class="msg">The restaurant has your order and will confirm it shortly.</div>
+  {% elif s == "preparing" %}<div class="msg">Your order is being prepared{% if online.mode == "delivery" %} and will be delivered to you{% endif %}.</div>
+  {% elif s == "ready" %}<div class="msg good">{% if online.mode == "delivery" %}Your order is ready and on its way.{% else %}Your order is ready for pickup.{% endif %}</div>
+  {% else %}<div class="msg good">Thank you! Enjoy your meal.</div>{% endif %}
+{% endif %}
+<ul>{% for l in lines %}<li><span>{{ l.quantity|floatformat:"-3" }} × {{ l.product.name }}</span><span>{{ company.default_currency }} {{ l.total|floatformat:2 }}</span></li>{% endfor %}
+{% if fee %}<li><span>Delivery</span><span>{{ company.default_currency }} {{ fee|floatformat:2 }}</span></li>{% endif %}</ul>
+<div class="tot"><span>Total</span><span>{{ company.default_currency }} {{ online.total|floatformat:2 }}</span></div>
+<p class="muted">{% if online.mode == "delivery" %}🛵 Delivery to: {{ online.address }}{% else %}🛍 Pickup from {{ company.name }}{% if company.address %}, {{ company.address }}{% endif %}{% endif %}<br>Pay on {% if online.mode == "delivery" %}delivery{% else %}pickup{% endif %}.</p>
+{% if company.phone %}<p class="muted">Questions? Call <a href="tel:{{ company.phone }}">{{ company.phone }}</a></p>{% endif %}
+{% if s == "new" or s == "preparing" %}<p class="muted">This page updates by itself.</p>{% endif %}
+{% endwith %}
+</main></body></html>

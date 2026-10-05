@@ -48,11 +48,19 @@
       <table style="font-size:13px">
         <tr><td><code>[bookpilot_enquiry]</code></td><td>Contact form → CRM leads</td></tr>
         <tr><td><code>[bookpilot_catalogue]</code></td><td>Live {{ caps.catalogue }} (server-rendered, SEO friendly)</td></tr>
+        <tr><td><code>[bookpilot_offers]</code></td><td>Offers running today</td></tr>
         <tr><td><code>[bookpilot_info field="phone"]</code></td><td>name / phone / email / address</td></tr>
         {% if caps.booking %}<tr><td><code>[bookpilot_booking]</code></td><td>Booking form → Booking requests</td></tr>{% endif %}
         {% if caps.careers %}<tr><td><code>[bookpilot_form]</code></td><td>Job application form → Candidates</td></tr>{% endif %}
       </table>
       <p class="muted">Options on forms: <code>lang="ar"</code> <code>thanks="https://…"</code> <code>color="#…"</code></p>
+      {% if ordering is not None %}
+      <form method="post" style="margin-top:12px;padding:12px;border-radius:12px;background:var(--paper)">{% csrf_token %}<input type="hidden" name="action" value="ordering">
+        <b>🛒 Website ordering (cart): {% if ordering.web_orders_enabled %}<span style="color:#16a34a">ON</span>{% else %}OFF{% endif %}</b>
+        <p class="muted" style="margin:4px 0 8px">Adds “+ Add” and a cart to <code>[bookpilot_catalogue]</code> and the hosted website. Orders arrive in the client's Online orders inbox. The client can also switch this in Restaurant → Online orders.</p>
+        <button class="btn {% if ordering.web_orders_enabled %}btn-secondary{% endif %}" type="submit">{% if ordering.web_orders_enabled %}Switch off{% else %}Switch on{% endif %}</button>
+      </form>
+      {% endif %}
     </div>
     <div class="card">
       <h3>3. Python (Django / Flask / FastAPI)</h3>

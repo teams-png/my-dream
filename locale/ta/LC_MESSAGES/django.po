@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "காப்புப்பிரதிகள்"
 
 #: templates/base.html
+msgid "User guide"
+msgstr "பயனர் வழிகாட்டி"
+
+#: templates/base.html
 msgid "API docs"
 msgstr "API ஆவணங்கள்"
 
@@ -1675,6 +1679,14 @@ msgid "No exchange rates yet."
 msgstr "இன்னும் மாற்று விகிதங்கள் இல்லை."
 
 #: templates/webapp/billing.html
+msgid "Free trial —"
+msgstr "இலவச சோதனை —"
+
+#: templates/webapp/billing.html
+msgid "days left"
+msgstr "நாட்கள் மீதம்"
+
+#: templates/webapp/billing.html
 msgid "up to"
 msgstr "அதிகபட்சம்"
 
@@ -2553,10 +2565,6 @@ msgstr "உங்கள் சந்தா காலாவதியானது.
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "இப்போதே புதுப்பி →"
-
-#: templates/webapp/dashboard.html
-msgid "Free trial —"
-msgstr "இலவச சோதனை —"
 
 #: templates/webapp/dashboard.html
 msgid "View billing →"
@@ -3490,10 +3498,6 @@ msgstr "காலாவதியானது"
 #: templates/webapp/hr/documents.html
 msgid "Expires today"
 msgstr "இன்று காலாவதி"
-
-#: templates/webapp/hr/documents.html
-msgid "days left"
-msgstr "நாட்கள் மீதம்"
 
 #: templates/webapp/hr/documents.html
 msgid "Remove this document?"
@@ -6322,6 +6326,18 @@ msgid "Start your free trial →"
 msgstr "உங்கள் இலவச சோதனையைத் தொடங்குங்கள் →"
 
 #: templates/webapp/public/landing.html
+msgid "Terms"
+msgstr "விதிமுறைகள்"
+
+#: templates/webapp/public/landing.html
+msgid "Privacy"
+msgstr "தனியுரிமை"
+
+#: templates/webapp/public/landing.html
+msgid "Refunds"
+msgstr "பணத்திரும்பல்"
+
+#: templates/webapp/public/landing.html
 msgid "Create account"
 msgstr "கணக்கை உருவாக்கு"
 
@@ -6392,6 +6408,10 @@ msgstr "விலைகள் ஆண்டுக்கு, INR இல் பி�
 #: templates/webapp/public/landing.html
 msgid "approx."
 msgstr "தோராயமாக"
+
+#: templates/webapp/public/legal_base.html
+msgid "BookPilot website"
+msgstr "BookPilot இணையதளம்"
 
 #: templates/webapp/public/signup.html
 msgid "Start your free trial · BookPilot"

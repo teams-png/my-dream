@@ -182,12 +182,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <body>
 <header class="nav" id="nav"><div class="wrap">
   <a class="logo" href="{% url 'webapp:landing' %}"><i>✦</i>{% translate "BookPilot" %}</a>
-  <nav class="nav-links"><a href="#features">{% translate "Features" %}</a><a href="#business">{% translate "Businesses" %}</a><a href="#pricing">{% translate "Pricing" %}</a><a href="#faq">{% translate "FAQ" %}</a></nav>
+  <nav class="nav-links"><a href="#features">{% translate "Features" %}</a><a href="#business">{% translate "Businesses" %}</a><a href="#pricing">{% translate "Pricing" %}</a><a href="{% url 'webapp:guide' %}">{% translate "User guide" %}</a><a href="#faq">{% translate "FAQ" %}</a></nav>
   <div class="nav-cta"><button class="btn ghost" type="button" data-install-app hidden>⬇ {% translate "Install app" %}</button>{% include "webapp/_language_switcher.html" %}<a class="btn ghost" href="{% url 'webapp:login' %}">{% translate "Sign in" %}</a>{% if signup_enabled %}<a class="btn primary" href="{% url 'webapp:signup' %}">{% translate "Start free trial" %}</a>{% endif %}</div>
   <button class="menu-btn" type="button" data-menu aria-controls="mnav" aria-expanded="false" aria-label="{% translate 'Open menu' %}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 </div>
 <div class="mnav" id="mnav">
-  <a href="#features">{% translate "Features" %}</a><a href="#business">{% translate "Businesses" %}</a><a href="#pricing">{% translate "Pricing" %}</a><a href="#faq">{% translate "FAQ" %}</a>
+  <a href="#features">{% translate "Features" %}</a><a href="#business">{% translate "Businesses" %}</a><a href="#pricing">{% translate "Pricing" %}</a><a href="{% url 'webapp:guide' %}">{% translate "User guide" %}</a><a href="#faq">{% translate "FAQ" %}</a>
   <div class="mnav-row">{% include "webapp/_language_switcher.html" %}<button class="btn ghost" type="button" data-install-app hidden>⬇ {% translate "Install app" %}</button></div>
   <a class="btn ghost" href="{% url 'webapp:login' %}">{% translate "Sign in" %}</a>
   {% if signup_enabled %}<a class="btn primary" href="{% url 'webapp:signup' %}">{% translate "Start free trial" %} →</a>{% endif %}
@@ -278,7 +278,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="cta reveal"><h2>{% translate "Ready to make work easier?" %}</h2><p>{% translate "Join businesses running their counter, kitchen and accounts on BookPilot." %}</p>{% if signup_enabled %}<a class="btn lime" href="{% url 'webapp:signup' %}" style="padding:16px 28px;font-size:17px">{% translate "Start your free trial →" %}</a>{% else %}<a class="btn lime" href="{% url 'webapp:login' %}">{% translate "Sign in" %}</a>{% endif %}</div>
 </div></section>
 
-<footer><div class="wrap"><span>© {% now "Y" %} {% translate "BookPilot" %}</span><span><a href="{% url 'webapp:login' %}">{% translate "Sign in" %}</a>{% if signup_enabled %} · <a href="{% url 'webapp:signup' %}">{% translate "Create account" %}</a>{% endif %}</span></div></footer>
+<footer><div class="wrap"><span>© {% now "Y" %} {% translate "BookPilot" %}</span><span class="foot-links"><a href="{% url 'webapp:guide' %}">{% translate "User guide" %}</a> · <a href="{% url 'webapp:terms' %}">{% translate "Terms" %}</a> · <a href="{% url 'webapp:privacy' %}">{% translate "Privacy" %}</a> · <a href="{% url 'webapp:refund_policy' %}">{% translate "Refunds" %}</a> · <a href="{% url 'webapp:login' %}">{% translate "Sign in" %}</a>{% if signup_enabled %} · <a href="{% url 'webapp:signup' %}">{% translate "Create account" %}</a>{% endif %}</span></div></footer>
 
 {{ pricing|json_script:"pricingData" }}
 <script>

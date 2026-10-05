@@ -251,6 +251,7 @@
         <a class="nav-link {% if request.resolver_match.url_name == 'devices' %}active{% endif %}" href="{% url 'webapp:devices' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M6 9V3h12v6"></path><rect x="3" y="9" width="18" height="8" rx="2"></rect><path d="M7 14h10v7H7z"></path></svg><span>{% translate "Devices & Printers" %}</span></a>
         <a class="nav-link {% if request.resolver_match.url_name == 'security_settings' %}active{% endif %}" href="{% url 'webapp:security_settings' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span>{% translate "Security & 2FA" %}</span></a>
         {% if request.role.name == "Owner" %}<a class="nav-link {% if request.resolver_match.url_name == 'backups' %}active{% endif %}" href="{% url 'webapp:backups' %}"><span>🛟 {% translate "Backups" %}</span></a>{% endif %}
+        <a class="nav-link" href="{% url 'webapp:guide' %}" target="_blank" rel="noopener"><span>📘 {% translate "User guide" %}</span></a>
         <a class="nav-link" href="/api/docs/" target="_blank"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"></path></svg><span>{% translate "API docs" %}</span></a>
       </details>
       {% if request.user.is_superuser %}

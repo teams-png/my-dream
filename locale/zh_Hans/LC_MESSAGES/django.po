@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "备份"
 
 #: templates/base.html
+msgid "User guide"
+msgstr "用户指南"
+
+#: templates/base.html
 msgid "API docs"
 msgstr "API 文档"
 
@@ -1642,6 +1646,14 @@ msgid "No exchange rates yet."
 msgstr "尚无汇率。"
 
 #: templates/webapp/billing.html
+msgid "Free trial —"
+msgstr "免费试用 —"
+
+#: templates/webapp/billing.html
+msgid "days left"
+msgstr "天后到期"
+
+#: templates/webapp/billing.html
 msgid "up to"
 msgstr "最多"
 
@@ -2493,10 +2505,6 @@ msgstr "您的订阅已过期。"
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "立即续订 →"
-
-#: templates/webapp/dashboard.html
-msgid "Free trial —"
-msgstr "免费试用 —"
 
 #: templates/webapp/dashboard.html
 msgid "View billing →"
@@ -3403,10 +3411,6 @@ msgstr "已过期"
 #: templates/webapp/hr/documents.html
 msgid "Expires today"
 msgstr "今天到期"
-
-#: templates/webapp/hr/documents.html
-msgid "days left"
-msgstr "天后到期"
 
 #: templates/webapp/hr/documents.html
 msgid "Remove this document?"
@@ -6117,6 +6121,18 @@ msgid "Start your free trial →"
 msgstr "开始免费试用 →"
 
 #: templates/webapp/public/landing.html
+msgid "Terms"
+msgstr "条款"
+
+#: templates/webapp/public/landing.html
+msgid "Privacy"
+msgstr "隐私"
+
+#: templates/webapp/public/landing.html
+msgid "Refunds"
+msgstr "退款"
+
+#: templates/webapp/public/landing.html
 msgid "Create account"
 msgstr "创建账户"
 
@@ -6185,6 +6201,10 @@ msgstr "价格按年计，以 INR 计费。"
 #: templates/webapp/public/landing.html
 msgid "approx."
 msgstr "约"
+
+#: templates/webapp/public/legal_base.html
+msgid "BookPilot website"
+msgstr "BookPilot 网站"
 
 #: templates/webapp/public/signup.html
 msgid "Start your free trial · BookPilot"

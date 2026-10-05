@@ -51,6 +51,7 @@ input:focus,select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0
 .errors ul{margin:0;padding-left:16px}
 .alert{padding:12px 14px;border-radius:12px;background:#fdeceb;color:#c0392b;font-size:14px;margin-bottom:14px}
 .terms{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--soft);margin:18px 0}
+.terms a{color:var(--brand);font-weight:600}
 .terms input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--brand);flex-shrink:0}
 button[type=submit]{width:100%;padding:15px;border:0;border-radius:14px;background:var(--brand);color:#fff;font:inherit;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 12px 26px rgba(20,83,45,.28);transition:transform .2s var(--ease),background .2s}
 button[type=submit]:hover{background:#0e3b22;transform:translateY(-2px)}
@@ -111,7 +112,7 @@ button[type=submit].busy{opacity:.7;pointer-events:none}
       <label class="full">{% translate "Password" %}<input type="password" name="password" id="pw" autocomplete="new-password" minlength="8" required><div class="pw"><i id="pwbar"></i></div><div class="errors">{{ form.password.errors }}</div></label>
     </div>
     <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <label class="terms"><input type="checkbox" name="accept_terms" {% if form.accept_terms.value %}checked{% endif %} required>{% translate "I agree to the terms of service and privacy policy." %}</label>
+    <label class="terms"><input type="checkbox" name="accept_terms" {% if form.accept_terms.value %}checked{% endif %} required><span>{% translate "I agree to the terms of service and privacy policy." %} <a href="{% url 'webapp:terms' %}" target="_blank" rel="noopener">{% translate "Terms" %}</a> · <a href="{% url 'webapp:privacy' %}" target="_blank" rel="noopener">{% translate "Privacy" %}</a> · <a href="{% url 'webapp:refund_policy' %}" target="_blank" rel="noopener">{% translate "Refunds" %}</a></span></label>
     <div class="errors">{{ form.accept_terms.errors }}</div>
     <button type="submit" id="go">{% translate "Create my account →" %}</button>
     <p class="foot">{% translate "Free for" %} {{ trial_days }} {% translate "days · cancel anytime" %}</p>

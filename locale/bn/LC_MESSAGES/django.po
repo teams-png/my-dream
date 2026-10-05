@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "ব্যাকআপ"
 
 #: templates/base.html
+msgid "User guide"
+msgstr "ব্যবহারকারী গাইড"
+
+#: templates/base.html
 msgid "API docs"
 msgstr "API ডকস"
 
@@ -1661,6 +1665,14 @@ msgid "No exchange rates yet."
 msgstr "এখনো কোনো বিনিময় হার নেই।"
 
 #: templates/webapp/billing.html
+msgid "Free trial —"
+msgstr "ফ্রি ট্রায়াল —"
+
+#: templates/webapp/billing.html
+msgid "days left"
+msgstr "দিন বাকি"
+
+#: templates/webapp/billing.html
 msgid "up to"
 msgstr "সর্বোচ্চ"
 
@@ -2530,10 +2542,6 @@ msgstr "আপনার সাবস্ক্রিপশনের মেয়�
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "এখনই নবায়ন করুন →"
-
-#: templates/webapp/dashboard.html
-msgid "Free trial —"
-msgstr "ফ্রি ট্রায়াল —"
 
 #: templates/webapp/dashboard.html
 msgid "View billing →"
@@ -3455,10 +3463,6 @@ msgstr "মেয়াদোত্তীর্ণ"
 #: templates/webapp/hr/documents.html
 msgid "Expires today"
 msgstr "আজ মেয়াদ শেষ"
-
-#: templates/webapp/hr/documents.html
-msgid "days left"
-msgstr "দিন বাকি"
 
 #: templates/webapp/hr/documents.html
 msgid "Remove this document?"
@@ -6245,6 +6249,18 @@ msgid "Start your free trial →"
 msgstr "আপনার ফ্রি ট্রায়াল শুরু করুন →"
 
 #: templates/webapp/public/landing.html
+msgid "Terms"
+msgstr "শর্তাবলি"
+
+#: templates/webapp/public/landing.html
+msgid "Privacy"
+msgstr "গোপনীয়তা"
+
+#: templates/webapp/public/landing.html
+msgid "Refunds"
+msgstr "রিফান্ড"
+
+#: templates/webapp/public/landing.html
 msgid "Create account"
 msgstr "অ্যাকাউন্ট তৈরি করুন"
 
@@ -6315,6 +6331,10 @@ msgstr "দাম বছরে, INR-এ বিল করা হয়।"
 #: templates/webapp/public/landing.html
 msgid "approx."
 msgstr "প্রায়"
+
+#: templates/webapp/public/legal_base.html
+msgid "BookPilot website"
+msgstr "BookPilot ওয়েবসাইট"
 
 #: templates/webapp/public/signup.html
 msgid "Start your free trial · BookPilot"

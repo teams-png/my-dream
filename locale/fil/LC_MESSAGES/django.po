@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "Mga backup"
 
 #: templates/base.html
+msgid "User guide"
+msgstr "Gabay sa paggamit"
+
+#: templates/base.html
 msgid "API docs"
 msgstr "API docs"
 
@@ -1668,6 +1672,14 @@ msgid "No exchange rates yet."
 msgstr "Wala pang exchange rate."
 
 #: templates/webapp/billing.html
+msgid "Free trial —"
+msgstr "Libreng trial —"
+
+#: templates/webapp/billing.html
+msgid "days left"
+msgstr "araw na natitira"
+
+#: templates/webapp/billing.html
 msgid "up to"
 msgstr "hanggang"
 
@@ -2549,10 +2561,6 @@ msgstr "Nag-expire na ang iyong subscription."
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "Mag-renew ngayon →"
-
-#: templates/webapp/dashboard.html
-msgid "Free trial —"
-msgstr "Libreng trial —"
 
 #: templates/webapp/dashboard.html
 msgid "View billing →"
@@ -3482,10 +3490,6 @@ msgstr "Expired"
 #: templates/webapp/hr/documents.html
 msgid "Expires today"
 msgstr "Mag-e-expire ngayon"
-
-#: templates/webapp/hr/documents.html
-msgid "days left"
-msgstr "araw na natitira"
 
 #: templates/webapp/hr/documents.html
 msgid "Remove this document?"
@@ -6295,6 +6299,18 @@ msgid "Start your free trial →"
 msgstr "Simulan ang libreng trial →"
 
 #: templates/webapp/public/landing.html
+msgid "Terms"
+msgstr "Mga tuntunin"
+
+#: templates/webapp/public/landing.html
+msgid "Privacy"
+msgstr "Privacy"
+
+#: templates/webapp/public/landing.html
+msgid "Refunds"
+msgstr "Refund"
+
+#: templates/webapp/public/landing.html
 msgid "Create account"
 msgstr "Gumawa ng account"
 
@@ -6365,6 +6381,10 @@ msgstr "Kada taon ang presyo, sinisingil sa INR."
 #: templates/webapp/public/landing.html
 msgid "approx."
 msgstr "humigit-kumulang"
+
+#: templates/webapp/public/legal_base.html
+msgid "BookPilot website"
+msgstr "Website ng BookPilot"
 
 #: templates/webapp/public/signup.html
 msgid "Start your free trial · BookPilot"

@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
+from . import guide_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -88,6 +88,12 @@ urlpatterns = [
     path("platform/audit-log/", views.platform_audit_list, name="platform_audit_list"),
     path("", public_views.home, name="dashboard"),
     path("welcome/", public_views.landing, name="landing"),
+    path("guide/", guide_views.guide_home, name="guide"),
+    path("guide/<str:lang>/", guide_views.guide_lang_home, name="guide_lang"),
+    path("guide/<path:path>", guide_views.guide_page, name="guide_page"),
+    path("terms/", guide_views.legal_page, {"page": "terms"}, name="terms"),
+    path("privacy/", guide_views.legal_page, {"page": "privacy"}, name="privacy"),
+    path("refund-policy/", guide_views.legal_page, {"page": "refund"}, name="refund_policy"),
     path("signup/", public_views.signup, name="signup"),
 
     path("sales/invoices/", sales_docs_views.sales_invoice_list, name="sales_invoice_list"),

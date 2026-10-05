@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "Yedekler"
 
 #: templates/base.html
+msgid "User guide"
+msgstr "Kullanım kılavuzu"
+
+#: templates/base.html
 msgid "API docs"
 msgstr "API belgeleri"
 
@@ -1667,6 +1671,14 @@ msgid "No exchange rates yet."
 msgstr "Henüz döviz kuru yok."
 
 #: templates/webapp/billing.html
+msgid "Free trial —"
+msgstr "Ücretsiz deneme —"
+
+#: templates/webapp/billing.html
+msgid "days left"
+msgstr "gün kaldı"
+
+#: templates/webapp/billing.html
 msgid "up to"
 msgstr "en fazla"
 
@@ -2538,10 +2550,6 @@ msgstr "Aboneliğinizin süresi doldu."
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "Şimdi yenile →"
-
-#: templates/webapp/dashboard.html
-msgid "Free trial —"
-msgstr "Ücretsiz deneme —"
 
 #: templates/webapp/dashboard.html
 msgid "View billing →"
@@ -3463,10 +3471,6 @@ msgstr "Süresi doldu"
 #: templates/webapp/hr/documents.html
 msgid "Expires today"
 msgstr "Bugün doluyor"
-
-#: templates/webapp/hr/documents.html
-msgid "days left"
-msgstr "gün kaldı"
 
 #: templates/webapp/hr/documents.html
 msgid "Remove this document?"
@@ -6265,6 +6269,18 @@ msgid "Start your free trial →"
 msgstr "Ücretsiz denemenizi başlatın →"
 
 #: templates/webapp/public/landing.html
+msgid "Terms"
+msgstr "Şartlar"
+
+#: templates/webapp/public/landing.html
+msgid "Privacy"
+msgstr "Gizlilik"
+
+#: templates/webapp/public/landing.html
+msgid "Refunds"
+msgstr "İadeler"
+
+#: templates/webapp/public/landing.html
 msgid "Create account"
 msgstr "Hesap oluştur"
 
@@ -6335,6 +6351,10 @@ msgstr "Fiyatlar yıllıktır, INR ile faturalanır."
 #: templates/webapp/public/landing.html
 msgid "approx."
 msgstr "yakl."
+
+#: templates/webapp/public/legal_base.html
+msgid "BookPilot website"
+msgstr "BookPilot web sitesi"
 
 #: templates/webapp/public/signup.html
 msgid "Start your free trial · BookPilot"

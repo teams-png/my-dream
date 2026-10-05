@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "النسخ الاحتياطية"
 
 #: templates/base.html
+msgid "User guide"
+msgstr "دليل المستخدم"
+
+#: templates/base.html
 msgid "API docs"
 msgstr "توثيق واجهة API"
 
@@ -1656,6 +1660,14 @@ msgid "No exchange rates yet."
 msgstr "لا أسعار صرف بعد."
 
 #: templates/webapp/billing.html
+msgid "Free trial —"
+msgstr "تجربة مجانية —"
+
+#: templates/webapp/billing.html
+msgid "days left"
+msgstr "يوم متبقٍ"
+
+#: templates/webapp/billing.html
 msgid "up to"
 msgstr "حتى"
 
@@ -2520,10 +2532,6 @@ msgstr "انتهى اشتراكك."
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "جدّد الآن ←"
-
-#: templates/webapp/dashboard.html
-msgid "Free trial —"
-msgstr "تجربة مجانية —"
 
 #: templates/webapp/dashboard.html
 msgid "View billing →"
@@ -3442,10 +3450,6 @@ msgstr "منتهي"
 #: templates/webapp/hr/documents.html
 msgid "Expires today"
 msgstr "ينتهي اليوم"
-
-#: templates/webapp/hr/documents.html
-msgid "days left"
-msgstr "يوم متبقٍ"
 
 #: templates/webapp/hr/documents.html
 msgid "Remove this document?"
@@ -6216,6 +6220,18 @@ msgid "Start your free trial →"
 msgstr "ابدأ تجربتك المجانية ←"
 
 #: templates/webapp/public/landing.html
+msgid "Terms"
+msgstr "الشروط"
+
+#: templates/webapp/public/landing.html
+msgid "Privacy"
+msgstr "الخصوصية"
+
+#: templates/webapp/public/landing.html
+msgid "Refunds"
+msgstr "الاسترداد"
+
+#: templates/webapp/public/landing.html
 msgid "Create account"
 msgstr "إنشاء حساب"
 
@@ -6286,6 +6302,10 @@ msgstr "الأسعار سنوية، وتُحاسَب بالروبية الهند
 #: templates/webapp/public/landing.html
 msgid "approx."
 msgstr "تقريبًا"
+
+#: templates/webapp/public/legal_base.html
+msgid "BookPilot website"
+msgstr "موقع BookPilot"
 
 #: templates/webapp/public/signup.html
 msgid "Start your free trial · BookPilot"

@@ -1,0 +1,61 @@
+{% extends "webapp/public/legal_base.html" %}
+{% block title %}Privacy Policy{% endblock %}
+{% block heading %}Privacy Policy{% endblock %}
+{% block body %}
+<p class="box">This policy explains what personal data {{ legal.company }} collects when you use BookPilot, why, and the choices you have. We handle personal data in line with applicable law, including the State of Qatar's Law No. (13) of 2016 on Personal Data Privacy Protection.</p>
+
+<h2>1. Two kinds of data</h2>
+<ul>
+  <li><b>Your account data</b> — the details of the business and the people who sign in (name, email, phone, username, business name and address). For this data we decide how it is used.</li>
+  <li><b>Business data you enter</b> — your customers, staff, suppliers, invoices, bookings, candidates and so on. You decide what to enter and why; we store and process it only on your instructions, to run the service for you.</li>
+</ul>
+
+<h2>2. What we collect</h2>
+<ul>
+  <li>Sign-up and account details, and your plan and payment history.</li>
+  <li>Information you type into BookPilot or upload (for example logos, product photos and CVs).</li>
+  <li>Technical data needed to run and protect the service: IP address, browser and device type, sign-in times, and an activity log of important changes.</li>
+  <li>Messages you send us for support.</li>
+</ul>
+
+<h2>3. Payments</h2>
+<p>Card payments are handled by our payment provider (for example SkipCash) on its own secure page. We receive the result of the payment, the amount and a reference — never your full card number.</p>
+
+<h2>4. Why we use it</h2>
+<ul>
+  <li>To provide BookPilot: sign-in, your data, invoices, reports, backups and support.</li>
+  <li>To keep accounts secure, detect abuse and fix problems.</li>
+  <li>To send messages you ask for (such as password resets, daily reports and reminders) and important notices about your account.</li>
+  <li>To meet legal, tax and accounting duties.</li>
+</ul>
+<p>We do not sell personal data, and we do not use your business data for advertising.</p>
+
+<h2>5. Who else handles data</h2>
+<p>We use carefully chosen providers to run BookPilot: cloud hosting and database providers, email delivery, and payment providers. If you connect Google Drive, a copy of your backups is stored in your own Google Drive. Some of these providers may store data outside {{ legal.country }}; we use providers with strong security and only share what each needs. We may also share data when the law requires it.</p>
+
+<h2>6. Your customers' data</h2>
+<p>Your public website, booking forms, online orders and careers forms collect the details your customers or applicants type in (such as name, phone and address). That data goes to your BookPilot account for you to use. You are responsible for using it properly and answering their requests.</p>
+
+<h2>7. Cookies</h2>
+<p>We use only the cookies needed for the service to work: keeping you signed in, protecting forms, remembering your language and theme. We do not use advertising cookies.</p>
+
+<h2>8. Security and backups</h2>
+<p>Data is sent over encrypted connections (HTTPS). Each business's data is kept separate from every other business. Payment and connection keys are stored encrypted. Automatic daily backups are kept for a limited number of days. Two-step login is available for every user.</p>
+
+<h2>9. How long we keep data</h2>
+<p>We keep your data while your account exists. After a subscription ends we keep it so you can return or export it; see the <a href="{% url 'webapp:terms' %}">Terms</a> for when inactive accounts may be deleted. If you ask us to delete your account, we delete your data, except what the law requires us to keep (for example payment records). Copies in backups are removed as those backups expire.</p>
+
+<h2>10. Your choices and rights</h2>
+<ul>
+  <li>See and correct your details in the app at any time.</li>
+  <li>Download all your business data from Settings → Backup &amp; export.</li>
+  <li>Ask us for a copy of your personal data, to correct it, or to delete it.</li>
+  <li>Your customers or staff can ask you about their data; we will help you answer.</li>
+</ul>
+
+<h2>11. Children</h2>
+<p>BookPilot is a business service and is not meant for children. Schools and nurseries that record children's details do so as the business responsible for that data.</p>
+
+<h2>12. Changes</h2>
+<p>We may update this policy. The date at the top shows the latest version; we will tell you about important changes.</p>
+{% endblock %}

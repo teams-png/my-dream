@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "Copias de seguridad"
 
 #: templates/base.html
+msgid "User guide"
+msgstr "Guía de uso"
+
+#: templates/base.html
 msgid "API docs"
 msgstr "Documentación API"
 
@@ -1669,6 +1673,14 @@ msgid "No exchange rates yet."
 msgstr "Aún no hay tipos de cambio."
 
 #: templates/webapp/billing.html
+msgid "Free trial —"
+msgstr "Prueba gratuita —"
+
+#: templates/webapp/billing.html
+msgid "days left"
+msgstr "días restantes"
+
+#: templates/webapp/billing.html
 msgid "up to"
 msgstr "hasta"
 
@@ -2547,10 +2559,6 @@ msgstr "Tu suscripción ha vencido."
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "Renovar ahora →"
-
-#: templates/webapp/dashboard.html
-msgid "Free trial —"
-msgstr "Prueba gratuita —"
 
 #: templates/webapp/dashboard.html
 msgid "View billing →"
@@ -3478,10 +3486,6 @@ msgstr "Vencido"
 #: templates/webapp/hr/documents.html
 msgid "Expires today"
 msgstr "Vence hoy"
-
-#: templates/webapp/hr/documents.html
-msgid "days left"
-msgstr "días restantes"
 
 #: templates/webapp/hr/documents.html
 msgid "Remove this document?"
@@ -6300,6 +6304,18 @@ msgid "Start your free trial →"
 msgstr "Empieza tu prueba gratuita →"
 
 #: templates/webapp/public/landing.html
+msgid "Terms"
+msgstr "Términos"
+
+#: templates/webapp/public/landing.html
+msgid "Privacy"
+msgstr "Privacidad"
+
+#: templates/webapp/public/landing.html
+msgid "Refunds"
+msgstr "Reembolsos"
+
+#: templates/webapp/public/landing.html
 msgid "Create account"
 msgstr "Crear cuenta"
 
@@ -6370,6 +6386,10 @@ msgstr "Los precios son anuales, facturados en INR."
 #: templates/webapp/public/landing.html
 msgid "approx."
 msgstr "aprox."
+
+#: templates/webapp/public/legal_base.html
+msgid "BookPilot website"
+msgstr "Sitio web de BookPilot"
 
 #: templates/webapp/public/signup.html
 msgid "Start your free trial · BookPilot"

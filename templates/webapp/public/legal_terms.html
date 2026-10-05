@@ -1,0 +1,62 @@
+{% extends "webapp/public/legal_base.html" %}
+{% block title %}Terms of Service{% endblock %}
+{% block heading %}Terms of Service{% endblock %}
+{% block body %}
+<p class="box">These terms are an agreement between you (the business that signs up, and every person who uses the account) and {{ legal.company }}, the provider of BookPilot. By creating an account or using BookPilot you accept them.</p>
+
+<h2>1. The service</h2>
+<p>BookPilot is online business software: point of sale, invoicing, stock, accounts, staff, bookings, websites and related tools. It runs in a web browser and in our desktop and mobile apps. Features depend on your business type and plan, and we improve and change features from time to time.</p>
+
+<h2>2. Your account</h2>
+<ul>
+  <li>You must give correct business and contact details and keep them up to date.</li>
+  <li>The owner of the account is responsible for everyone they add as a user, and for what those users do.</li>
+  <li>Keep passwords secret. Give every person their own login. We recommend two-step login for owners and admins.</li>
+  <li>Tell us straight away if you think someone else has used your account.</li>
+</ul>
+
+<h2>3. Free trial</h2>
+<p>New accounts can start with a free trial. No payment is taken during the trial. When the trial ends you need to choose a plan and pay to keep using the account.</p>
+
+<h2>4. Plans, prices and payment</h2>
+<ul>
+  <li>Prices are shown on our website and on the Billing page, in the currency shown there, and are charged in advance for the period you choose (for example monthly or yearly).</li>
+  <li>Card payments are processed by our payment provider on its secure page. We do not see or store your full card number.</li>
+  <li>Each plan has limits, such as the number of users or branches. If you need more, you can upgrade.</li>
+  <li>If a payment is not made, the account is limited to the Billing page until it is paid. Your data is kept (see section 9).</li>
+  <li>We may change prices for future periods. We will tell you before a change applies to you. The period you already paid for is not affected.</li>
+  <li>Refunds follow our <a href="{% url 'webapp:refund_policy' %}">Refund Policy</a>.</li>
+</ul>
+
+<h2>5. Your data</h2>
+<ul>
+  <li>The data you enter (products, customers, invoices, staff and so on) belongs to you. You can export it at any time from Settings → Backup &amp; export.</li>
+  <li>You give us permission to store and process that data only to provide, secure, back up and support the service.</li>
+  <li>When you enter information about your own customers or staff, you are responsible for having the right to do so. How we handle personal data is explained in our <a href="{% url 'webapp:privacy' %}">Privacy Policy</a>.</li>
+</ul>
+
+<h2>6. Acceptable use</h2>
+<p>You must not use BookPilot to break the law, to send spam, to sell illegal goods, to try to access other businesses' data, to attack or overload the service, or to copy or resell the software. We may suspend an account that does this.</p>
+
+<h2>7. Your website, messages and online payments</h2>
+<p>If you publish a website, take online orders or bookings, or send messages to your customers through BookPilot, you are responsible for the content, prices, delivery and service you offer to your customers. Payments your customers make to you through a payment provider are between you, your customer and that provider.</p>
+
+<h2>8. Availability and backups</h2>
+<p>We work to keep BookPilot available and make automatic daily backups, but we cannot promise the service will never be interrupted. Some tools, such as the offline POS, keep working without internet and sync later. Please keep your own exports of important data as well.</p>
+
+<h2>9. Ending your account</h2>
+<ul>
+  <li>You can stop using BookPilot at any time by not renewing. You can ask us to close the account and delete your data.</li>
+  <li>After a subscription ends we keep your data so you can come back or export it. We may delete accounts that have been unpaid for more than 12 months, after telling you first by email.</li>
+  <li>We may suspend or close an account that seriously or repeatedly breaks these terms.</li>
+</ul>
+
+<h2>10. Responsibility</h2>
+<p>BookPilot is a tool; you remain responsible for your business decisions, prices, tax filings and accounts. To the extent the law allows, we are not responsible for indirect losses such as lost profit or lost business, and our total responsibility for any claim is limited to the fees you paid us in the three months before the claim. Nothing in these terms limits responsibility that cannot be limited by law.</p>
+
+<h2>11. Changes to these terms</h2>
+<p>We may update these terms. The date at the top shows the latest version. For important changes we will tell you in the app or by email before they apply.</p>
+
+<h2>12. Law</h2>
+<p>These terms are governed by the laws of the State of {{ legal.country }}, and its courts have jurisdiction over any dispute. Before going to court, please contact us — most problems can be solved quickly.</p>
+{% endblock %}

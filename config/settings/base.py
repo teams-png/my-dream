@@ -294,6 +294,15 @@ PAYMENT_CREDENTIALS_ENCRYPTION_KEY = env(
 PUBLIC_SIGNUP_ENABLED = env.bool("PUBLIC_SIGNUP_ENABLED", default=True)
 SIGNUP_LIMIT_PER_IP_PER_HOUR = env.int("SIGNUP_LIMIT_PER_IP_PER_HOUR", default=5)
 
+# Shown on the user guide (/guide/) and the Terms, Privacy and Refund pages.
+SUPPORT_EMAIL = env("SUPPORT_EMAIL", default="")
+SUPPORT_WHATSAPP = env("SUPPORT_WHATSAPP", default="")
+LEGAL_COMPANY_NAME = env("LEGAL_COMPANY_NAME", default="Ajwaaz")
+LEGAL_COMPANY_ADDRESS = env("LEGAL_COMPANY_ADDRESS", default="")
+LEGAL_CR_NUMBER = env("LEGAL_CR_NUMBER", default="")
+LEGAL_COUNTRY = env("LEGAL_COUNTRY", default="Qatar")
+LEGAL_UPDATED = env("LEGAL_UPDATED", default="5 October 2026")
+
 SPECTACULAR_SETTINGS = {
     "TITLE": "BookPilot API",
     "DESCRIPTION": "REST API for BookPilot. Sign in at /api/accounts/login/ to get a JWT access token "

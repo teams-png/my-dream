@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "بیک اپ"
 
 #: templates/base.html
+msgid "User guide"
+msgstr "صارف گائیڈ"
+
+#: templates/base.html
 msgid "API docs"
 msgstr "API دستاویزات"
 
@@ -1659,6 +1663,14 @@ msgid "No exchange rates yet."
 msgstr "ابھی کوئی زر مبادلہ کی شرح نہیں۔"
 
 #: templates/webapp/billing.html
+msgid "Free trial —"
+msgstr "مفت ٹرائل —"
+
+#: templates/webapp/billing.html
+msgid "days left"
+msgstr "دن باقی"
+
+#: templates/webapp/billing.html
 msgid "up to"
 msgstr "زیادہ سے زیادہ"
 
@@ -2529,10 +2541,6 @@ msgstr "آپ کی سبسکرپشن ختم ہو گئی ہے۔"
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "ابھی تجدید کریں →"
-
-#: templates/webapp/dashboard.html
-msgid "Free trial —"
-msgstr "مفت ٹرائل —"
 
 #: templates/webapp/dashboard.html
 msgid "View billing →"
@@ -3453,10 +3461,6 @@ msgstr "ختم شدہ"
 #: templates/webapp/hr/documents.html
 msgid "Expires today"
 msgstr "آج ختم"
-
-#: templates/webapp/hr/documents.html
-msgid "days left"
-msgstr "دن باقی"
 
 #: templates/webapp/hr/documents.html
 msgid "Remove this document?"
@@ -6251,6 +6255,18 @@ msgid "Start your free trial →"
 msgstr "اپنا مفت ٹرائل شروع کریں →"
 
 #: templates/webapp/public/landing.html
+msgid "Terms"
+msgstr "شرائط"
+
+#: templates/webapp/public/landing.html
+msgid "Privacy"
+msgstr "رازداری"
+
+#: templates/webapp/public/landing.html
+msgid "Refunds"
+msgstr "رقم کی واپسی"
+
+#: templates/webapp/public/landing.html
 msgid "Create account"
 msgstr "اکاؤنٹ بنائیں"
 
@@ -6321,6 +6337,10 @@ msgstr "قیمتیں سالانہ ہیں، INR میں بل۔"
 #: templates/webapp/public/landing.html
 msgid "approx."
 msgstr "تقریباً"
+
+#: templates/webapp/public/legal_base.html
+msgid "BookPilot website"
+msgstr "BookPilot ویب سائٹ"
 
 #: templates/webapp/public/signup.html
 msgid "Start your free trial · BookPilot"

@@ -1,0 +1,63 @@
+{% load i18n %}{% load static %}<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0e3b22">
+<title>{% block title %}{% endblock %} · BookPilot</title>
+<style>
+@font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Regular.ttf" %}');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url('{% static "fonts/Inter-SemiBold.ttf" %}');font-weight:600;font-display:swap}
+@font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Bold.ttf" %}');font-weight:700;font-display:swap}
+:root{--ink:#0f1a14;--soft:#5b6b62;--line:#e4ebe6;--bg:#f6f8f5;--brand:#14532d;--brand-2:#1f7a45;--lime:#c6f432;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65}
+a{color:var(--brand-2)}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+.nav{background:rgba(246,248,245,.95);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.nav .wrap{display:flex;align-items:center;gap:14px;height:64px;max-width:1160px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
+.logo i{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:flex;align-items:center;justify-content:center;color:var(--lime);font-style:normal}
+.nav nav{margin-left:auto;display:flex;gap:16px;font-size:14px;font-weight:600;flex-wrap:wrap}
+.nav nav a{color:var(--soft);text-decoration:none}
+.nav nav a:hover,.nav nav a.on{color:var(--ink)}
+.doc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 34px 26px;margin:30px 0}
+h1{font-size:30px;line-height:1.2;margin:0 0 6px;letter-spacing:-.02em}
+.meta{color:var(--soft);font-size:14px;margin:0 0 22px}
+h2{font-size:19px;margin:28px 0 8px}
+p,li{font-size:15.5px}
+ul{padding-inline-start:22px}
+.box{background:#f0f7f2;border:1px solid #d4e8db;border-radius:12px;padding:14px 16px;font-size:15px}
+footer{color:var(--soft);font-size:14px;padding:6px 0 40px;display:flex;gap:14px;flex-wrap:wrap}
+footer a{color:var(--soft)}
+@media (max-width:640px){.doc{padding:22px 18px}.nav nav{gap:10px;font-size:13px}h1{font-size:25px}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e8efe9;--soft:#a3b3a9;--line:#26332b;--bg:#0f1512;--card:#151d18}
+:root:not([data-theme="light"]) .nav{background:rgba(15,21,18,.95)} :root:not([data-theme="light"]) .box{background:#14251a;border-color:#24402d} :root:not([data-theme="light"]) a{color:#7fd39b}}
+@media print{.nav,footer{display:none}.doc{border:0;margin:0;padding:0}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="{% url 'webapp:landing' %}"><i>✦</i>BookPilot</a>
+  <nav>
+    <a href="/guide/">{% translate "User guide" %}</a>
+    <a href="{% url 'webapp:terms' %}" {% if page == "terms" %}class="on"{% endif %}>{% translate "Terms" %}</a>
+    <a href="{% url 'webapp:privacy' %}" {% if page == "privacy" %}class="on"{% endif %}>{% translate "Privacy" %}</a>
+    <a href="{% url 'webapp:refund_policy' %}" {% if page == "refund" %}class="on"{% endif %}>{% translate "Refunds" %}</a>
+    <a href="{% url 'webapp:login' %}">{% translate "Sign in" %}</a>
+  </nav>
+</div></header>
+<main class="wrap">
+  <article class="doc">
+    <h1>{% block heading %}{% endblock %}</h1>
+    <p class="meta">Last updated: {{ legal.updated }} · This page is in English. If a translation is ever provided, the English version applies.</p>
+    {% block body %}{% endblock %}
+    <h2>Contact us</h2>
+    <p>{{ legal.company }}{% if legal.cr_number %} · Commercial Registration No. {{ legal.cr_number }}{% endif %}{% if legal.address %}<br>{{ legal.address }}{% endif %}{% if legal.country and not legal.address %}<br>{{ legal.country }}{% endif %}
+    {% if legal.email %}<br>Email: <a href="mailto:{{ legal.email }}">{{ legal.email }}</a>{% endif %}
+    {% if legal.whatsapp %}<br>WhatsApp / phone: <span dir="ltr">{{ legal.whatsapp }}</span>{% endif %}</p>
+  </article>
+  <footer><span>© {% now "Y" %} {{ legal.company }}</span><a href="{% url 'webapp:landing' %}">{% translate "BookPilot website" %}</a><a href="/guide/">{% translate "User guide" %}</a><a href="{% url 'webapp:terms' %}">{% translate "Terms" %}</a><a href="{% url 'webapp:privacy' %}">{% translate "Privacy" %}</a><a href="{% url 'webapp:refund_policy' %}">{% translate "Refunds" %}</a></footer>
+</main>
+</body>
+</html>

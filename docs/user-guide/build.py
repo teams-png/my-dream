@@ -181,7 +181,7 @@ def chooser():
     return f'''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>User Guide · {CONFIG["BRAND"]}</title><link rel="stylesheet" href="style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@600;700&family=Noto+Sans+Arabic:wght@600;700&display=swap" rel="stylesheet"></head>
-<body><section class="hero"><div class="in" style="text-align:center;padding:64px 20px 70px"><div class="ico" style="margin:0 auto 16px">📘</div>
+<body><header class="site-header"><div class="in"><a class="brand" href="/"><span class="mark">✦</span><span>{CONFIG["BRAND"]}</span></a><nav class="site-nav"><a class="home-site" href="/">← BookPilot website</a></nav></div></header><section class="hero"><div class="in" style="text-align:center;padding:64px 20px 70px"><div class="ico" style="margin:0 auto 16px">📘</div>
 <h1 style="max-width:900px;margin-inline:auto">{CONFIG["BRAND"]} – Complete User Guide</h1><p class="lead" style="margin-inline:auto">{CONFIG["BRAND"]} · English · മലയാളം · العربية</p></div></section>
 <div class="wrap" style="padding-top:36px;padding-bottom:60px"><div class="sect-title"><h2>Choose your language · ഭാഷ തിരഞ്ഞെടുക്കൂ · اختر لغتك</h2></div>
 <div class="langpick">{cards}</div></div></body></html>'''

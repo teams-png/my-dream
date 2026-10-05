@@ -85,7 +85,7 @@ def mock(biz_title, items, icon=""):
 # ------------------------------------------------------------------ page shell
 def header(cur):
     nav = [("index.html", T("nav_home")), ("getting-started.html", T("nav_gs")), ("index.html#guides", T("nav_guides")), ("help.html", T("nav_help"))]
-    links = ""
+    links = f'<a class="home-site" href="/">{T("back_site")}</a>'
     for href, label in nav:
         c = ' class="cur"' if href == cur else ""
         links += f'<a href="{href}"{c}>{label}</a>'
@@ -94,7 +94,7 @@ def header(cur):
         on = ' class="on"' if code == CUR["lang"] else ""
         sw += f'<a href="{CUR["switch"].get(code, "../"+code+"/index.html")}"{on} lang="{code}" hreflang="{code}">{LANG_META[code]["name"]}</a>'
     return f'''<header class="site-header"><div class="in">
-<a class="brand" href="index.html"><span class="mark">{html.escape(CONFIG["BRAND"][:1].upper())}</span><span>{CONFIG["BRAND"]}<small>{T("sub_brand")}</small></span></a>
+<a class="brand" href="/" title="{T("q_site")}"><span class="mark">✦</span><span>{CONFIG["BRAND"]}<small>{T("sub_brand")}</small></span></a>
 <nav class="site-nav">{links}<a class="btn" href="{CONFIG["APP_URL"]}/login/" target="_blank" rel="noopener">{T("open_app")}</a><span class="lang">{sw}</span></nav>
 </div></header>'''
 

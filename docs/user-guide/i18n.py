@@ -7,10 +7,10 @@ LANG_META = {
 
 UI = {
 "en": dict(
- nav_home="Home", nav_gs="Getting started", nav_guides="Business guides", nav_help="Help", open_app="Open my app ↗",
+ nav_home="Guide home", nav_gs="Getting started", nav_guides="Business guides", nav_help="Help", open_app="Open my app ↗",
  powered="A product of {c}", sub_brand="Customer Guide", tip="Tip:", note="Good to know:", warn="Careful:",
  footer_tag="Accounting, stock, billing and business tools in one place.", footer_help="Need help?", footer_call="WhatsApp / Call", footer_email="Email",
- footer_quick="Quick links", q_gs="Getting started", q_help="Help &amp; troubleshooting", q_all="All guides", q_site="BookPilot website", q_terms="Terms", q_privacy="Privacy", q_refund="Refunds",
+ footer_quick="Quick links", q_gs="Getting started", q_help="Help &amp; troubleshooting", q_all="All guides", q_site="BookPilot website", back_site="← Website", q_terms="Terms", q_privacy="Privacy", q_refund="Refunds",
  help_h="Stuck? We are one message away.", help_p="Send us a screenshot on WhatsApp <b>{wa}</b> and tell us what you were trying to do.", help_btn="Help &amp; troubleshooting",
  new_here="New here? Start here", on_page="On this page", crumb_sep="›", crumb_home="Home", crumb_guides="Business guides",
  prev="← Previous guide", next="Next guide →", en_only="EN",
@@ -44,10 +44,10 @@ UI = {
  pick_lang="Choose your language", pick_sub="Select the language you want to read this guide in",
 ),
 "ml": dict(
- nav_home="ഹോം", nav_gs="തുടങ്ങാം", nav_guides="ബിസിനസ് ഗൈഡുകൾ", nav_help="സഹായം", open_app="എന്റെ ആപ്പ് തുറക്കുക ↗",
+ nav_home="ഗൈഡ് ഹോം", nav_gs="തുടങ്ങാം", nav_guides="ബിസിനസ് ഗൈഡുകൾ", nav_help="സഹായം", open_app="എന്റെ ആപ്പ് തുറക്കുക ↗",
  powered="{c}-ന്റെ ഒരു ഉൽപ്പന്നം", sub_brand="കസ്റ്റമർ ഗൈഡ്", tip="ടിപ്പ്:", note="അറിഞ്ഞിരിക്കാൻ:", warn="ശ്രദ്ധിക്കുക:",
  footer_tag="അക്കൗണ്ടിംഗ്, സ്റ്റോക്ക്, ബില്ലിംഗ്, ബിസിനസ് ടൂളുകൾ — എല്ലാം ഒരിടത്ത്.", footer_help="സഹായം വേണോ?", footer_call="വാട്സ്ആപ്പ് / കോൾ", footer_email="ഇമെയിൽ",
- footer_quick="ലിങ്കുകൾ", q_gs="തുടങ്ങാം", q_help="സഹായവും പ്രശ്നപരിഹാരവും", q_all="എല്ലാ ഗൈഡുകളും", q_site="BookPilot വെബ്സൈറ്റ്", q_terms="നിബന്ധനകൾ", q_privacy="സ്വകാര്യത", q_refund="റീഫണ്ട്",
+ footer_quick="ലിങ്കുകൾ", q_gs="തുടങ്ങാം", q_help="സഹായവും പ്രശ്നപരിഹാരവും", q_all="എല്ലാ ഗൈഡുകളും", q_site="BookPilot വെബ്സൈറ്റ്", back_site="← വെബ്സൈറ്റ്", q_terms="നിബന്ധനകൾ", q_privacy="സ്വകാര്യത", q_refund="റീഫണ്ട്",
  help_h="എവിടെയെങ്കിലും കുടുങ്ങിയോ? ഒരു മെസ്സേജ് മതി.", help_p="വാട്സ്ആപ്പിൽ <b>{wa}</b> എന്ന നമ്പറിലേക്ക് സ്ക്രീൻഷോട്ട് അയക്കൂ, എന്താണ് ചെയ്യാൻ ശ്രമിച്ചതെന്നും പറയൂ.", help_btn="സഹായവും പ്രശ്നപരിഹാരവും",
  new_here="പുതിയതാണോ? ഇവിടെ തുടങ്ങൂ", on_page="ഈ പേജിൽ", crumb_sep="›", crumb_home="ഹോം", crumb_guides="ബിസിനസ് ഗൈഡുകൾ",
  prev="← മുമ്പത്തെ ഗൈഡ്", next="അടുത്ത ഗൈഡ് →", en_only="EN",
@@ -80,10 +80,10 @@ UI = {
  pick_lang="ഭാഷ തിരഞ്ഞെടുക്കൂ", pick_sub="ഗൈഡ് വായിക്കാൻ ആഗ്രഹിക്കുന്ന ഭാഷ തിരഞ്ഞെടുക്കൂ",
 ),
 "ar": dict(
- nav_home="الرئيسية", nav_gs="البدء", nav_guides="أدلة الأعمال", nav_help="المساعدة", open_app="افتح تطبيقي ↗",
+ nav_home="بداية الدليل", nav_gs="البدء", nav_guides="أدلة الأعمال", nav_help="المساعدة", open_app="افتح تطبيقي ↗",
  powered="منتج من {c}", sub_brand="دليل العميل", tip="نصيحة:", note="جدير بالمعرفة:", warn="انتبه:",
  footer_tag="المحاسبة والمخزون والفواتير وأدوات الأعمال في مكان واحد.", footer_help="تحتاج مساعدة؟", footer_call="واتساب / اتصال", footer_email="البريد الإلكتروني",
- footer_quick="روابط سريعة", q_gs="البدء", q_help="المساعدة وحل المشكلات", q_all="جميع الأدلة", q_site="موقع BookPilot", q_terms="الشروط", q_privacy="الخصوصية", q_refund="الاسترداد",
+ footer_quick="روابط سريعة", q_gs="البدء", q_help="المساعدة وحل المشكلات", q_all="جميع الأدلة", q_site="موقع BookPilot", back_site="→ الموقع", q_terms="الشروط", q_privacy="الخصوصية", q_refund="الاسترداد",
  help_h="هل علقت؟ رسالة واحدة تكفي.", help_p="أرسل لنا لقطة شاشة على واتساب <b dir='ltr'>{wa}</b> وأخبرنا بما كنت تحاول فعله.", help_btn="المساعدة وحل المشكلات",
  new_here="جديد هنا؟ ابدأ من هنا", on_page="في هذه الصفحة", crumb_sep="‹", crumb_home="الرئيسية", crumb_guides="أدلة الأعمال",
  prev="→ الدليل السابق", next="الدليل التالي ←", en_only="EN",

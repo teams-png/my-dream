@@ -446,18 +446,6 @@ msgid "Help"
 msgstr "सहायता"
 
 #: templates/base.html
-msgid "Install as an app"
-msgstr "ऐप के रूप में इंस्टॉल करें"
-
-#: templates/base.html
-msgid "Install app"
-msgstr "ऐप इंस्टॉल करें"
-
-#: templates/base.html
-msgid "Account"
-msgstr "खाता"
-
-#: templates/base.html
 msgid "Restaurant navigation"
 msgstr "रेस्टोरेंट नेविगेशन"
 
@@ -520,6 +508,18 @@ msgstr "BookPilot इंस्टॉल करें"
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "शेयर बटन दबाएँ, फिर “Add to Home Screen”।"
+
+#: templates/webapp/_account_menu.html
+msgid "Account"
+msgstr "खाता"
+
+#: templates/webapp/_account_menu.html
+msgid "Change password"
+msgstr "पासवर्ड बदलें"
+
+#: templates/webapp/_account_menu.html
+msgid "Install app"
+msgstr "ऐप इंस्टॉल करें"
 
 #: templates/webapp/_excel_button.html
 msgid "Excel"
@@ -1149,6 +1149,38 @@ msgstr "फ़ोन खो गया? इसके बजाय अपना �
 #: templates/webapp/auth/login_2fa.html
 msgid "← Back to sign in"
 msgstr "← साइन इन पर वापस"
+
+#: templates/webapp/auth/password_change.html
+msgid ""
+"Enter your current password, then the new one twice. You stay signed in on "
+"this device."
+msgstr ""
+"अपना मौजूदा पासवर्ड डालें, फिर नया पासवर्ड दो बार। आप इस डिवाइस पर साइन इन "
+"रहेंगे।"
+
+#: templates/webapp/auth/password_change.html
+msgid "Current password"
+msgstr "मौजूदा पासवर्ड"
+
+#: templates/webapp/auth/password_change.html
+msgid "New password"
+msgstr "नया पासवर्ड"
+
+#: templates/webapp/auth/password_change.html
+msgid "At least 8 characters. Don't use only numbers or a common password."
+msgstr "कम से कम 8 अक्षर। सिर्फ़ अंक या आम पासवर्ड का उपयोग न करें।"
+
+#: templates/webapp/auth/password_change.html
+msgid "Confirm new password"
+msgstr "नए पासवर्ड की पुष्टि करें"
+
+#: templates/webapp/auth/password_change.html
+msgid "Forgot your current password?"
+msgstr "मौजूदा पासवर्ड भूल गए?"
+
+#: templates/webapp/auth/password_change.html
+msgid "Reset it by email"
+msgstr "ईमेल से रीसेट करें"
 
 #: templates/webapp/automation/budgets.html
 msgid "Expense budgets"
@@ -6353,6 +6385,10 @@ msgstr "बैंक-स्तरीय सुरक्षा"
 #: templates/webapp/public/landing.html
 msgid "Two-step login, audit log and fully separated data for every business."
 msgstr "दो-चरणीय लॉगिन, ऑडिट लॉग और हर व्यवसाय का पूरी तरह अलग डेटा।"
+
+#: templates/webapp/public/landing.html
+msgid "Install as an app"
+msgstr "ऐप के रूप में इंस्टॉल करें"
 
 #: templates/webapp/public/landing.html
 msgid ""
@@ -11841,6 +11877,10 @@ msgstr "अधिकतम 3 दशमलव।"
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "तराज़ू सेटिंग्स सहेजी गईं।"
+
+#: apps/webapp/security_views.py
+msgid "Your password has been changed."
+msgstr "आपका पासवर्ड बदल दिया गया है।"
 
 #: apps/webapp/site_views.py
 msgid "Main colour"

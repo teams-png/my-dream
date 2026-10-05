@@ -64,15 +64,10 @@
   .topbar h1{font-size:25px; font-weight:700; margin:0; letter-spacing:-0.01em;}
   .user-chip{font-size:13.5px; color:var(--ink-soft); display:flex; align-items:center; gap:10px;}
   .user-chip a{color:var(--accent); font-weight:600;}
-  .account-menu{display:flex;align-items:center;gap:10px}
-  .acct-head{display:none}
   .help-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--line);border-radius:11px;background:var(--panel,#fff);font-weight:600;font-size:14px;color:var(--ink);margin-inline-end:8px;white-space:nowrap}
   .help-chip:hover,.help-chip.on{border-color:var(--accent);color:var(--accent)}
   .help-chip b{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:var(--danger,#c0392b);color:#fff;font-size:12px;display:inline-grid;place-items:center}
   @media(max-width:600px){.help-chip span{display:none}.help-chip{padding:8px 10px}}
-  .acct-logout{display:inline-flex;align-items:center;gap:6px}
-  .acct-logout svg{display:none}
-  @media(max-width:900px){.acct-logout svg{display:inline}}
   button.avatar{border:0;cursor:pointer;font-family:inherit;padding:0}
   button.avatar:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .nav-logout{margin-top:14px;border-top:1px solid var(--line);padding-top:14px!important;color:var(--danger,#c0392b)!important}
@@ -128,18 +123,6 @@
     .topbar{margin-bottom:16px;padding-bottom:12px}
     .topbar h1{font-size:20px}
     .user-chip{position:relative}
-    .account-menu{display:none;position:absolute;top:calc(100% + 10px);right:0;z-index:90;flex-direction:column;align-items:stretch;gap:10px;min-width:250px;max-width:calc(100vw - 32px);padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px rgba(15,18,30,.18)}
-    .account-menu.open{display:flex;animation:acctIn .18s ease both}
-    .acct-head{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--line);min-width:0}
-    .acct-head strong{display:block;color:var(--ink);font-size:14px}
-    .acct-head small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:190px}
-    .acct-who{display:none}
-    .account-menu .lang-switch label{width:100%;padding:4px 10px;box-sizing:border-box}
-    .account-menu .lang-switch select{flex:1}
-    .account-menu .theme-toggle{width:100%}
-    .account-menu .install-app span{display:inline}
-    .acct-logout{justify-content:center;padding:11px;border:1px solid var(--danger-bg,#fde2e2);background:var(--danger-bg,#fdecec);color:var(--danger,#c0392b)!important;border-radius:12px;font-size:14.5px}
-    [dir=rtl] .account-menu{right:auto;left:0}
     /* inline grids from page templates: fewer columns on phones */
     .main [style*="grid-template-columns:repeat(4"],.main [style*="grid-template-columns:repeat(5"],.main [style*="grid-template-columns:repeat(6"],.main [style*="grid-template-columns:repeat(3"],.main [style*="grid-template-columns:repeat(3, 1fr)"]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
     .main [style*="grid-template-columns:1fr 1fr"],.main [style*="grid-template-columns:2fr 1fr"],.main [style*="grid-template-columns:340px 1fr"],.main [style*="grid-template-columns:220px 1fr"],.main [style*="grid-template-columns:minmax(280px"],.main [style*="grid-template-columns:minmax(0,1"],.main [style*="minmax(300px,1fr))"],.main [style*="minmax(310px,1fr))"],.main [style*="minmax(340px,1fr))"]{grid-template-columns:minmax(0,1fr)!important}
@@ -465,14 +448,7 @@
       {% if request.user.is_authenticated %}
       <div class="user-chip">
         {% if active_company %}{% with n=support_client_unread %}<a class="help-chip{% if request.resolver_match.url_name == 'help' %} on{% endif %}" href="{% url 'webapp:help' %}" title="{% translate 'Help & support' %}">💬 <span>{% translate "Help" %}</span>{% if n %}<b>{{ n }}</b>{% endif %}</a>{% endwith %}{% endif %}
-        <div class="account-menu" id="accountMenu">
-          <div class="acct-head"><div class="avatar">{{ request.user.email|default:request.user.username|slice:":1"|upper }}</div><div><strong>{{ active_company.name|default:"" }}</strong><small>{{ request.user.email|default:request.user.username }}</small></div></div>
-          <button class="install-app" type="button" data-install-app hidden title="{% translate 'Install as an app' %}">⬇ <span>{% translate "Install app" %}</span></button>
-          {% include "webapp/_language_switcher.html" %}{% include "webapp/_theme_toggle.html" %}
-          <span class="acct-who">{{ request.user.email|default:request.user.username }} ·</span>
-          <a class="acct-logout" href="{% url 'webapp:logout' %}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg><span>{% translate "Log out" %}</span></a>
-        </div>
-        <button class="avatar" type="button" data-account-toggle aria-controls="accountMenu" aria-expanded="false" aria-label="{% translate 'Account' %}">{{ request.user.email|default:request.user.username|slice:":1"|upper }}</button>
+        {% include "webapp/_account_menu.html" with show_install=True %}
       </div>
       {% endif %}
     </div>
@@ -508,7 +484,7 @@
   </main>
 </div>
 <script>(function(){const shell=document.getElementById('appShell');if(!shell)return;const close=()=>shell.classList.remove('nav-open');document.addEventListener('click',e=>{if(e.target.closest('[data-nav-toggle]')){shell.classList.toggle('nav-open');}else if(e.target.closest('[data-nav-close]')){close();}});document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});})();
-(function(){const menu=document.getElementById('accountMenu'),btn=document.querySelector('[data-account-toggle]');if(!menu||!btn)return;const set=o=>{menu.classList.toggle('open',o);btn.setAttribute('aria-expanded',o)};btn.addEventListener('click',e=>{e.stopPropagation();set(!menu.classList.contains('open'))});document.addEventListener('click',e=>{if(!e.target.closest('#accountMenu'))set(false)});document.addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});})();</script>
+</script>
 <script>document.documentElement.dataset.installTitle="{% translate 'Install BookPilot' %}";document.documentElement.dataset.installIos="{% translate 'Tap the Share button, then “Add to Home Screen”.' %}";</script>
 <script src="{% static 'js/install-app.js' %}" defer></script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}</script>

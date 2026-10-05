@@ -446,18 +446,6 @@ msgid "Help"
 msgstr "مدد"
 
 #: templates/base.html
-msgid "Install as an app"
-msgstr "ایپ کے طور پر انسٹال کریں"
-
-#: templates/base.html
-msgid "Install app"
-msgstr "ایپ انسٹال کریں"
-
-#: templates/base.html
-msgid "Account"
-msgstr "اکاؤنٹ"
-
-#: templates/base.html
 msgid "Restaurant navigation"
 msgstr "ریسٹورنٹ نیویگیشن"
 
@@ -520,6 +508,18 @@ msgstr "BookPilot انسٹال کریں"
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "شیئر بٹن دبائیں، پھر “Add to Home Screen”۔"
+
+#: templates/webapp/_account_menu.html
+msgid "Account"
+msgstr "اکاؤنٹ"
+
+#: templates/webapp/_account_menu.html
+msgid "Change password"
+msgstr "پاس ورڈ تبدیل کریں"
+
+#: templates/webapp/_account_menu.html
+msgid "Install app"
+msgstr "ایپ انسٹال کریں"
 
 #: templates/webapp/_excel_button.html
 msgid "Excel"
@@ -1150,6 +1150,38 @@ msgstr "فون کھو گیا؟ اس کی بجائے اپنا کوئی ریکور
 #: templates/webapp/auth/login_2fa.html
 msgid "← Back to sign in"
 msgstr "← سائن ان پر واپس"
+
+#: templates/webapp/auth/password_change.html
+msgid ""
+"Enter your current password, then the new one twice. You stay signed in on "
+"this device."
+msgstr ""
+"اپنا موجودہ پاس ورڈ درج کریں، پھر نیا پاس ورڈ دو بار۔ آپ اس ڈیوائس پر سائن "
+"اِن رہیں گے۔"
+
+#: templates/webapp/auth/password_change.html
+msgid "Current password"
+msgstr "موجودہ پاس ورڈ"
+
+#: templates/webapp/auth/password_change.html
+msgid "New password"
+msgstr "نیا پاس ورڈ"
+
+#: templates/webapp/auth/password_change.html
+msgid "At least 8 characters. Don't use only numbers or a common password."
+msgstr "کم از کم 8 حروف۔ صرف اعداد یا عام پاس ورڈ استعمال نہ کریں۔"
+
+#: templates/webapp/auth/password_change.html
+msgid "Confirm new password"
+msgstr "نئے پاس ورڈ کی تصدیق کریں"
+
+#: templates/webapp/auth/password_change.html
+msgid "Forgot your current password?"
+msgstr "موجودہ پاس ورڈ بھول گئے؟"
+
+#: templates/webapp/auth/password_change.html
+msgid "Reset it by email"
+msgstr "ای میل سے ری سیٹ کریں"
 
 #: templates/webapp/automation/budgets.html
 msgid "Expense budgets"
@@ -6361,6 +6393,10 @@ msgstr "بینک جیسی سیکیورٹی"
 #: templates/webapp/public/landing.html
 msgid "Two-step login, audit log and fully separated data for every business."
 msgstr "دو مرحلہ لاگ ان، آڈٹ لاگ اور ہر کاروبار کا مکمل الگ ڈیٹا۔"
+
+#: templates/webapp/public/landing.html
+msgid "Install as an app"
+msgstr "ایپ کے طور پر انسٹال کریں"
 
 #: templates/webapp/public/landing.html
 msgid ""
@@ -11858,6 +11894,10 @@ msgstr "زیادہ سے زیادہ 3 اعشاریہ۔"
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "ترازو کی ترتیبات محفوظ ہو گئیں۔"
+
+#: apps/webapp/security_views.py
+msgid "Your password has been changed."
+msgstr "آپ کا پاس ورڈ تبدیل کر دیا گیا ہے۔"
 
 #: apps/webapp/site_views.py
 msgid "Main colour"

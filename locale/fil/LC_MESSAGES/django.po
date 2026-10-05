@@ -446,18 +446,6 @@ msgid "Help"
 msgstr "Tulong"
 
 #: templates/base.html
-msgid "Install as an app"
-msgstr "I-install bilang app"
-
-#: templates/base.html
-msgid "Install app"
-msgstr "I-install ang app"
-
-#: templates/base.html
-msgid "Account"
-msgstr "Account"
-
-#: templates/base.html
 msgid "Restaurant navigation"
 msgstr "Nabigasyon ng restawran"
 
@@ -520,6 +508,18 @@ msgstr "I-install ang BookPilot"
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "Pindutin ang Share, pagkatapos “Add to Home Screen”."
+
+#: templates/webapp/_account_menu.html
+msgid "Account"
+msgstr "Account"
+
+#: templates/webapp/_account_menu.html
+msgid "Change password"
+msgstr "Palitan ang password"
+
+#: templates/webapp/_account_menu.html
+msgid "Install app"
+msgstr "I-install ang app"
 
 #: templates/webapp/_excel_button.html
 msgid "Excel"
@@ -1152,6 +1152,40 @@ msgstr "Nawala ang telepono? Mag-type ng isa sa iyong recovery code."
 #: templates/webapp/auth/login_2fa.html
 msgid "← Back to sign in"
 msgstr "← Bumalik sa sign in"
+
+#: templates/webapp/auth/password_change.html
+msgid ""
+"Enter your current password, then the new one twice. You stay signed in on "
+"this device."
+msgstr ""
+"Ilagay ang kasalukuyang password, pagkatapos ang bago nang dalawang beses. "
+"Mananatili kang naka-sign in sa device na ito."
+
+#: templates/webapp/auth/password_change.html
+msgid "Current password"
+msgstr "Kasalukuyang password"
+
+#: templates/webapp/auth/password_change.html
+msgid "New password"
+msgstr "Bagong password"
+
+#: templates/webapp/auth/password_change.html
+msgid "At least 8 characters. Don't use only numbers or a common password."
+msgstr ""
+"Hindi bababa sa 8 character. Huwag gumamit ng puro numero o karaniwang "
+"password."
+
+#: templates/webapp/auth/password_change.html
+msgid "Confirm new password"
+msgstr "Kumpirmahin ang bagong password"
+
+#: templates/webapp/auth/password_change.html
+msgid "Forgot your current password?"
+msgstr "Nakalimutan ang kasalukuyang password?"
+
+#: templates/webapp/auth/password_change.html
+msgid "Reset it by email"
+msgstr "I-reset sa email"
 
 #: templates/webapp/automation/budgets.html
 msgid "Expense budgets"
@@ -6408,6 +6442,10 @@ msgstr "Seguridad na pang-bangko"
 #: templates/webapp/public/landing.html
 msgid "Two-step login, audit log and fully separated data for every business."
 msgstr "Two-step login, audit log at hiwalay na data para sa bawat negosyo."
+
+#: templates/webapp/public/landing.html
+msgid "Install as an app"
+msgstr "I-install bilang app"
 
 #: templates/webapp/public/landing.html
 msgid ""
@@ -11945,6 +11983,10 @@ msgstr "Hanggang 3 decimal."
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "Na-save ang setting ng timbangan."
+
+#: apps/webapp/security_views.py
+msgid "Your password has been changed."
+msgstr "Napalitan na ang iyong password."
 
 #: apps/webapp/site_views.py
 msgid "Main colour"

@@ -9,7 +9,7 @@ ALLOWED_PATH_PREFIXES = (
 # Webapp (HTML) paths an expired company must still reach: billing itself, auth, and the platform admin portal.
 WEBAPP_ALLOWED_PREFIXES = (
     "/billing", "/login", "/logout", "/password-reset", "/reset/", "/platform", "/admin-console",
-    "/guide", "/terms", "/privacy", "/refund-policy", "/help", "/account/export",
+    "/guide", "/terms", "/privacy", "/refund-policy", "/help", "/account/export", "/account/password",
 )
 
 

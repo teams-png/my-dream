@@ -446,18 +446,6 @@ msgid "Help"
 msgstr "Ayuda"
 
 #: templates/base.html
-msgid "Install as an app"
-msgstr "Instalar como app"
-
-#: templates/base.html
-msgid "Install app"
-msgstr "Instalar app"
-
-#: templates/base.html
-msgid "Account"
-msgstr "Cuenta"
-
-#: templates/base.html
 msgid "Restaurant navigation"
 msgstr "Navegación del restaurante"
 
@@ -520,6 +508,18 @@ msgstr "Instalar BookPilot"
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "Toca el botón Compartir y luego “Añadir a pantalla de inicio”."
+
+#: templates/webapp/_account_menu.html
+msgid "Account"
+msgstr "Cuenta"
+
+#: templates/webapp/_account_menu.html
+msgid "Change password"
+msgstr "Cambiar contraseña"
+
+#: templates/webapp/_account_menu.html
+msgid "Install app"
+msgstr "Instalar app"
 
 #: templates/webapp/_excel_button.html
 msgid "Excel"
@@ -1152,6 +1152,38 @@ msgstr "¿Perdiste el teléfono? Escribe uno de tus códigos de recuperación."
 #: templates/webapp/auth/login_2fa.html
 msgid "← Back to sign in"
 msgstr "← Volver a iniciar sesión"
+
+#: templates/webapp/auth/password_change.html
+msgid ""
+"Enter your current password, then the new one twice. You stay signed in on "
+"this device."
+msgstr ""
+"Escribe tu contraseña actual y luego la nueva dos veces. Seguirás con la "
+"sesión iniciada en este dispositivo."
+
+#: templates/webapp/auth/password_change.html
+msgid "Current password"
+msgstr "Contraseña actual"
+
+#: templates/webapp/auth/password_change.html
+msgid "New password"
+msgstr "Nueva contraseña"
+
+#: templates/webapp/auth/password_change.html
+msgid "At least 8 characters. Don't use only numbers or a common password."
+msgstr "Al menos 8 caracteres. No uses solo números ni una contraseña común."
+
+#: templates/webapp/auth/password_change.html
+msgid "Confirm new password"
+msgstr "Confirmar nueva contraseña"
+
+#: templates/webapp/auth/password_change.html
+msgid "Forgot your current password?"
+msgstr "¿Olvidaste tu contraseña actual?"
+
+#: templates/webapp/auth/password_change.html
+msgid "Reset it by email"
+msgstr "Restablecerla por correo"
 
 #: templates/webapp/automation/budgets.html
 msgid "Expense budgets"
@@ -6408,6 +6440,10 @@ msgid "Two-step login, audit log and fully separated data for every business."
 msgstr ""
 "Inicio de sesión en dos pasos, registro de auditoría y datos totalmente "
 "separados por negocio."
+
+#: templates/webapp/public/landing.html
+msgid "Install as an app"
+msgstr "Instalar como app"
 
 #: templates/webapp/public/landing.html
 msgid ""
@@ -11938,6 +11974,10 @@ msgstr "Como máximo 3 decimales."
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "Ajustes de la balanza guardados."
+
+#: apps/webapp/security_views.py
+msgid "Your password has been changed."
+msgstr "Tu contraseña se ha cambiado."
 
 #: apps/webapp/site_views.py
 msgid "Main colour"

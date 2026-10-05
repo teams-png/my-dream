@@ -9,6 +9,7 @@ urlpatterns = [
     path("login/verify/", security_views.login_2fa, name="login_2fa"),
     path("account/security/", security_views.security_settings, name="security_settings"),
     path("account/export/", security_views.export_data, name="export_data"),
+    path("account/password/", security_views.PasswordChange.as_view(), name="password_change"),
     path("settings/backups/", backup_views.backups_page, name="backups"),
     path("settings/backups/<int:backup_id>/download/", backup_views.backup_download, name="backup_download"),
     path("settings/backups/google-drive/callback/", backup_views.backup_drive_callback, name="backup_drive_callback"),

@@ -1,8 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from apps.accounts import services as account_services
 from apps.accounts import twofactor
@@ -92,3 +95,21 @@ def export_data(request):
     response = HttpResponse(data, content_type="application/zip")
     response["Content-Disposition"] = f'attachment; filename="{company.slug}-{timezone.localdate():%Y%m%d}.zip"'
     return response
+
+
+class PasswordChange(auth_views.PasswordChangeView):
+    """Signed-in users change their own password (old password + new one twice); stays signed in."""
+    template_name = "webapp/auth/password_change.html"
+
+    def get_success_url(self):
+        return reverse("webapp:password_change")
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        from apps.audit.services import log_action
+        company = getattr(self.request, "company", None)
+        if company is not None:
+            log_action(company=company, user=self.request.user, action="update", model_name="User",
+                       object_id=self.request.user.pk, changes={"password": "changed"})
+        messages.success(self.request, _("Your password has been changed."))
+        return response

@@ -446,18 +446,6 @@ msgid "Help"
 msgstr "உதவி"
 
 #: templates/base.html
-msgid "Install as an app"
-msgstr "ஆப்பாக நிறுவு"
-
-#: templates/base.html
-msgid "Install app"
-msgstr "ஆப்பை நிறுவு"
-
-#: templates/base.html
-msgid "Account"
-msgstr "கணக்கு"
-
-#: templates/base.html
 msgid "Restaurant navigation"
 msgstr "உணவக வழிசெலுத்தல்"
 
@@ -520,6 +508,18 @@ msgstr "BookPilot ஐ நிறுவு"
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "பகிர் பொத்தானை அழுத்தி, “Add to Home Screen” தேர்வு செய்யவும்."
+
+#: templates/webapp/_account_menu.html
+msgid "Account"
+msgstr "கணக்கு"
+
+#: templates/webapp/_account_menu.html
+msgid "Change password"
+msgstr "கடவுச்சொல்லை மாற்று"
+
+#: templates/webapp/_account_menu.html
+msgid "Install app"
+msgstr "ஆப்பை நிறுவு"
 
 #: templates/webapp/_excel_button.html
 msgid "Excel"
@@ -1154,6 +1154,40 @@ msgstr ""
 #: templates/webapp/auth/login_2fa.html
 msgid "← Back to sign in"
 msgstr "← உள்நுழைவுக்குத் திரும்பு"
+
+#: templates/webapp/auth/password_change.html
+msgid ""
+"Enter your current password, then the new one twice. You stay signed in on "
+"this device."
+msgstr ""
+"தற்போதைய கடவுச்சொல்லை உள்ளிட்டு, பின் புதியதை இருமுறை உள்ளிடவும். இந்தச் "
+"சாதனத்தில் நீங்கள் உள்நுழைந்தபடியே இருப்பீர்கள்."
+
+#: templates/webapp/auth/password_change.html
+msgid "Current password"
+msgstr "தற்போதைய கடவுச்சொல்"
+
+#: templates/webapp/auth/password_change.html
+msgid "New password"
+msgstr "புதிய கடவுச்சொல்"
+
+#: templates/webapp/auth/password_change.html
+msgid "At least 8 characters. Don't use only numbers or a common password."
+msgstr ""
+"குறைந்தது 8 எழுத்துகள். எண்கள் மட்டும் அல்லது பொதுவான கடவுச்சொல்லைப் "
+"பயன்படுத்த வேண்டாம்."
+
+#: templates/webapp/auth/password_change.html
+msgid "Confirm new password"
+msgstr "புதிய கடவுச்சொல்லை உறுதிப்படுத்தவும்"
+
+#: templates/webapp/auth/password_change.html
+msgid "Forgot your current password?"
+msgstr "தற்போதைய கடவுச்சொல் மறந்துவிட்டதா?"
+
+#: templates/webapp/auth/password_change.html
+msgid "Reset it by email"
+msgstr "மின்னஞ்சல் மூலம் மீட்டமைக்கவும்"
 
 #: templates/webapp/automation/budgets.html
 msgid "Expense budgets"
@@ -6432,6 +6466,10 @@ msgid "Two-step login, audit log and fully separated data for every business."
 msgstr ""
 "இரு-படி உள்நுழைவு, தணிக்கைப் பதிவு மற்றும் ஒவ்வொரு வணிகத்திற்கும் "
 "முழுமையாகப் பிரிக்கப்பட்ட தரவு."
+
+#: templates/webapp/public/landing.html
+msgid "Install as an app"
+msgstr "ஆப்பாக நிறுவு"
 
 #: templates/webapp/public/landing.html
 msgid ""
@@ -12012,6 +12050,10 @@ msgstr "அதிகபட்சம் 3 தசம இடங்கள்."
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "தராசு அமைப்புகள் சேமிக்கப்பட்டன."
+
+#: apps/webapp/security_views.py
+msgid "Your password has been changed."
+msgstr "உங்கள் கடவுச்சொல் மாற்றப்பட்டது."
 
 #: apps/webapp/site_views.py
 msgid "Main colour"

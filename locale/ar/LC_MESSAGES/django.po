@@ -446,18 +446,6 @@ msgid "Help"
 msgstr "مساعدة"
 
 #: templates/base.html
-msgid "Install as an app"
-msgstr "ثبّته كتطبيق"
-
-#: templates/base.html
-msgid "Install app"
-msgstr "تثبيت التطبيق"
-
-#: templates/base.html
-msgid "Account"
-msgstr "الحساب"
-
-#: templates/base.html
 msgid "Restaurant navigation"
 msgstr "تنقل المطعم"
 
@@ -520,6 +508,18 @@ msgstr "تثبيت BookPilot"
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية»."
+
+#: templates/webapp/_account_menu.html
+msgid "Account"
+msgstr "الحساب"
+
+#: templates/webapp/_account_menu.html
+msgid "Change password"
+msgstr "تغيير كلمة المرور"
+
+#: templates/webapp/_account_menu.html
+msgid "Install app"
+msgstr "تثبيت التطبيق"
 
 #: templates/webapp/_excel_button.html
 msgid "Excel"
@@ -1150,6 +1150,38 @@ msgstr "فقدت هاتفك؟ اكتب أحد رموز الاسترداد بدل
 #: templates/webapp/auth/login_2fa.html
 msgid "← Back to sign in"
 msgstr "→ العودة لتسجيل الدخول"
+
+#: templates/webapp/auth/password_change.html
+msgid ""
+"Enter your current password, then the new one twice. You stay signed in on "
+"this device."
+msgstr ""
+"أدخل كلمة المرور الحالية، ثم الجديدة مرتين. ستبقى مسجلاً الدخول على هذا "
+"الجهاز."
+
+#: templates/webapp/auth/password_change.html
+msgid "Current password"
+msgstr "كلمة المرور الحالية"
+
+#: templates/webapp/auth/password_change.html
+msgid "New password"
+msgstr "كلمة المرور الجديدة"
+
+#: templates/webapp/auth/password_change.html
+msgid "At least 8 characters. Don't use only numbers or a common password."
+msgstr "8 أحرف على الأقل. لا تستخدم أرقامًا فقط أو كلمة مرور شائعة."
+
+#: templates/webapp/auth/password_change.html
+msgid "Confirm new password"
+msgstr "تأكيد كلمة المرور الجديدة"
+
+#: templates/webapp/auth/password_change.html
+msgid "Forgot your current password?"
+msgstr "نسيت كلمة المرور الحالية؟"
+
+#: templates/webapp/auth/password_change.html
+msgid "Reset it by email"
+msgstr "أعد تعيينها عبر البريد الإلكتروني"
 
 #: templates/webapp/automation/budgets.html
 msgid "Expense budgets"
@@ -6326,6 +6358,10 @@ msgstr "أمان بمستوى البنوك"
 #: templates/webapp/public/landing.html
 msgid "Two-step login, audit log and fully separated data for every business."
 msgstr "تحقق بخطوتين وسجل تدقيق وبيانات منفصلة تمامًا لكل نشاط."
+
+#: templates/webapp/public/landing.html
+msgid "Install as an app"
+msgstr "ثبّته كتطبيق"
 
 #: templates/webapp/public/landing.html
 msgid ""
@@ -11786,6 +11822,10 @@ msgstr "3 منازل عشرية كحد أقصى."
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "تم حفظ إعدادات الميزان."
+
+#: apps/webapp/security_views.py
+msgid "Your password has been changed."
+msgstr "تم تغيير كلمة المرور."
 
 #: apps/webapp/site_views.py
 msgid "Main colour"

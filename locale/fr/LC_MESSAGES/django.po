@@ -446,18 +446,6 @@ msgid "Help"
 msgstr "Aide"
 
 #: templates/base.html
-msgid "Install as an app"
-msgstr "Installer comme application"
-
-#: templates/base.html
-msgid "Install app"
-msgstr "Installer l’app"
-
-#: templates/base.html
-msgid "Account"
-msgstr "Compte"
-
-#: templates/base.html
 msgid "Restaurant navigation"
 msgstr "Navigation du restaurant"
 
@@ -520,6 +508,18 @@ msgstr "Installer BookPilot"
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "Appuyez sur le bouton Partager, puis « Sur l’écran d’accueil »."
+
+#: templates/webapp/_account_menu.html
+msgid "Account"
+msgstr "Compte"
+
+#: templates/webapp/_account_menu.html
+msgid "Change password"
+msgstr "Changer le mot de passe"
+
+#: templates/webapp/_account_menu.html
+msgid "Install app"
+msgstr "Installer l’app"
 
 #: templates/webapp/_excel_button.html
 msgid "Excel"
@@ -1153,6 +1153,40 @@ msgstr "Téléphone perdu ? Saisissez plutôt un de vos codes de récupération.
 #: templates/webapp/auth/login_2fa.html
 msgid "← Back to sign in"
 msgstr "← Retour à la connexion"
+
+#: templates/webapp/auth/password_change.html
+msgid ""
+"Enter your current password, then the new one twice. You stay signed in on "
+"this device."
+msgstr ""
+"Saisissez votre mot de passe actuel, puis le nouveau deux fois. Vous restez "
+"connecté sur cet appareil."
+
+#: templates/webapp/auth/password_change.html
+msgid "Current password"
+msgstr "Mot de passe actuel"
+
+#: templates/webapp/auth/password_change.html
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+#: templates/webapp/auth/password_change.html
+msgid "At least 8 characters. Don't use only numbers or a common password."
+msgstr ""
+"Au moins 8 caractères. N’utilisez pas uniquement des chiffres ni un mot de "
+"passe courant."
+
+#: templates/webapp/auth/password_change.html
+msgid "Confirm new password"
+msgstr "Confirmer le nouveau mot de passe"
+
+#: templates/webapp/auth/password_change.html
+msgid "Forgot your current password?"
+msgstr "Mot de passe actuel oublié ?"
+
+#: templates/webapp/auth/password_change.html
+msgid "Reset it by email"
+msgstr "Le réinitialiser par e-mail"
 
 #: templates/webapp/automation/budgets.html
 msgid "Expense budgets"
@@ -6432,6 +6466,10 @@ msgid "Two-step login, audit log and fully separated data for every business."
 msgstr ""
 "Connexion en deux étapes, journal d’audit et données totalement séparées "
 "pour chaque entreprise."
+
+#: templates/webapp/public/landing.html
+msgid "Install as an app"
+msgstr "Installer comme application"
 
 #: templates/webapp/public/landing.html
 msgid ""
@@ -11992,6 +12030,10 @@ msgstr "3 décimales au maximum."
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "Paramètres de la balance enregistrés."
+
+#: apps/webapp/security_views.py
+msgid "Your password has been changed."
+msgstr "Votre mot de passe a été modifié."
 
 #: apps/webapp/site_views.py
 msgid "Main colour"

@@ -446,18 +446,6 @@ msgid "Help"
 msgstr "帮助"
 
 #: templates/base.html
-msgid "Install as an app"
-msgstr "安装为应用"
-
-#: templates/base.html
-msgid "Install app"
-msgstr "安装应用"
-
-#: templates/base.html
-msgid "Account"
-msgstr "账户"
-
-#: templates/base.html
 msgid "Restaurant navigation"
 msgstr "餐厅导航"
 
@@ -520,6 +508,18 @@ msgstr "安装 BookPilot"
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "点击分享按钮，然后选择“添加到主屏幕”。"
+
+#: templates/webapp/_account_menu.html
+msgid "Account"
+msgstr "账户"
+
+#: templates/webapp/_account_menu.html
+msgid "Change password"
+msgstr "修改密码"
+
+#: templates/webapp/_account_menu.html
+msgid "Install app"
+msgstr "安装应用"
 
 #: templates/webapp/_excel_button.html
 msgid "Excel"
@@ -1148,6 +1148,36 @@ msgstr "手机丢了？请输入一个恢复码。"
 #: templates/webapp/auth/login_2fa.html
 msgid "← Back to sign in"
 msgstr "← 返回登录"
+
+#: templates/webapp/auth/password_change.html
+msgid ""
+"Enter your current password, then the new one twice. You stay signed in on "
+"this device."
+msgstr "请输入当前密码，然后输入两次新密码。您在此设备上将保持登录状态。"
+
+#: templates/webapp/auth/password_change.html
+msgid "Current password"
+msgstr "当前密码"
+
+#: templates/webapp/auth/password_change.html
+msgid "New password"
+msgstr "新密码"
+
+#: templates/webapp/auth/password_change.html
+msgid "At least 8 characters. Don't use only numbers or a common password."
+msgstr "至少 8 个字符。不要只使用数字或常见密码。"
+
+#: templates/webapp/auth/password_change.html
+msgid "Confirm new password"
+msgstr "确认新密码"
+
+#: templates/webapp/auth/password_change.html
+msgid "Forgot your current password?"
+msgstr "忘记当前密码？"
+
+#: templates/webapp/auth/password_change.html
+msgid "Reset it by email"
+msgstr "通过电子邮件重置"
 
 #: templates/webapp/automation/budgets.html
 msgid "Expense budgets"
@@ -6231,6 +6261,10 @@ msgstr "银行级安全"
 #: templates/webapp/public/landing.html
 msgid "Two-step login, audit log and fully separated data for every business."
 msgstr "两步登录、审计日志，每个企业的数据完全隔离。"
+
+#: templates/webapp/public/landing.html
+msgid "Install as an app"
+msgstr "安装为应用"
 
 #: templates/webapp/public/landing.html
 msgid ""
@@ -11648,6 +11682,10 @@ msgstr "最多 3 位小数。"
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "秤设置已保存。"
+
+#: apps/webapp/security_views.py
+msgid "Your password has been changed."
+msgstr "您的密码已修改。"
 
 #: apps/webapp/site_views.py
 msgid "Main colour"

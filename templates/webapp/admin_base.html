@@ -93,10 +93,10 @@
   }
   /* phones: header on two rows, inline page grids collapse, nothing wider than the screen */
   @media(max-width:640px){
-    .topbar{flex-wrap:wrap;gap:10px;padding-bottom:12px;margin-bottom:16px}
-    .topbar-title{flex:1 1 100%}
+    .topbar{flex-wrap:nowrap;gap:10px;padding-bottom:12px;margin-bottom:16px}
+    .topbar-title{flex:1 1 auto}
     .topbar h1{font-size:20px;line-height:1.25;overflow-wrap:anywhere}
-    .user-chip{flex:1 1 100%;justify-content:flex-end;flex-wrap:wrap;gap:8px}
+    .user-chip{flex:0 0 auto;gap:8px}
     .user-chip .who{display:none}
     .main [style*="grid-template-columns"]{grid-template-columns:1fr!important}
     .main [style*="grid-template-columns:repeat(4"],.main [style*="grid-template-columns:repeat(3"]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
@@ -159,10 +159,7 @@
   <main class="main">
     <div class="topbar">
       <div class="topbar-title"><button class="nav-toggle" type="button" data-nav-toggle aria-label="{% translate 'Open menu' %}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><h1>{% block heading %}{% endblock %}</h1></div>
-      <div class="user-chip">{% include "webapp/_language_switcher.html" %}{% include "webapp/_theme_toggle.html" %}
-        <span><span class="who">{{ request.user.email|default:request.user.username }} · </span><a href="{% url 'webapp:logout' %}">{% translate "Log out" %}</a></span>
-        <div class="avatar">{{ request.user.email|default:request.user.username|slice:":1"|upper }}</div>
-      </div>
+      <div class="user-chip">{% include "webapp/_account_menu.html" %}</div>
     </div>
     {% if messages %}
     <ul class="messages">

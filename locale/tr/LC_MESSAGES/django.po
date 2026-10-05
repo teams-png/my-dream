@@ -446,18 +446,6 @@ msgid "Help"
 msgstr "Yardım"
 
 #: templates/base.html
-msgid "Install as an app"
-msgstr "Uygulama olarak yükle"
-
-#: templates/base.html
-msgid "Install app"
-msgstr "Uygulamayı yükle"
-
-#: templates/base.html
-msgid "Account"
-msgstr "Hesap"
-
-#: templates/base.html
 msgid "Restaurant navigation"
 msgstr "Restoran gezinmesi"
 
@@ -520,6 +508,18 @@ msgstr "BookPilot’u yükle"
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "Paylaş düğmesine, ardından “Ana Ekrana Ekle”ye dokunun."
+
+#: templates/webapp/_account_menu.html
+msgid "Account"
+msgstr "Hesap"
+
+#: templates/webapp/_account_menu.html
+msgid "Change password"
+msgstr "Şifreyi değiştir"
+
+#: templates/webapp/_account_menu.html
+msgid "Install app"
+msgstr "Uygulamayı yükle"
 
 #: templates/webapp/_excel_button.html
 msgid "Excel"
@@ -1154,6 +1154,38 @@ msgstr ""
 #: templates/webapp/auth/login_2fa.html
 msgid "← Back to sign in"
 msgstr "← Girişe dön"
+
+#: templates/webapp/auth/password_change.html
+msgid ""
+"Enter your current password, then the new one twice. You stay signed in on "
+"this device."
+msgstr ""
+"Mevcut şifrenizi, ardından yeni şifreyi iki kez girin. Bu cihazda oturumunuz"
+" açık kalır."
+
+#: templates/webapp/auth/password_change.html
+msgid "Current password"
+msgstr "Mevcut şifre"
+
+#: templates/webapp/auth/password_change.html
+msgid "New password"
+msgstr "Yeni şifre"
+
+#: templates/webapp/auth/password_change.html
+msgid "At least 8 characters. Don't use only numbers or a common password."
+msgstr "En az 8 karakter. Yalnızca rakam veya yaygın bir şifre kullanmayın."
+
+#: templates/webapp/auth/password_change.html
+msgid "Confirm new password"
+msgstr "Yeni şifreyi onaylayın"
+
+#: templates/webapp/auth/password_change.html
+msgid "Forgot your current password?"
+msgstr "Mevcut şifrenizi mi unuttunuz?"
+
+#: templates/webapp/auth/password_change.html
+msgid "Reset it by email"
+msgstr "E-postayla sıfırlayın"
 
 #: templates/webapp/automation/budgets.html
 msgid "Expense budgets"
@@ -6375,6 +6407,10 @@ msgstr "Banka düzeyinde güvenlik"
 msgid "Two-step login, audit log and fully separated data for every business."
 msgstr ""
 "İki adımlı giriş, denetim günlüğü ve her işletme için tamamen ayrı veriler."
+
+#: templates/webapp/public/landing.html
+msgid "Install as an app"
+msgstr "Uygulama olarak yükle"
 
 #: templates/webapp/public/landing.html
 msgid ""
@@ -11878,6 +11914,10 @@ msgstr "En fazla 3 ondalık."
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "Terazi ayarları kaydedildi."
+
+#: apps/webapp/security_views.py
+msgid "Your password has been changed."
+msgstr "Şifreniz değiştirildi."
 
 #: apps/webapp/site_views.py
 msgid "Main colour"

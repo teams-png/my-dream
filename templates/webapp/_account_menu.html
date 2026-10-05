@@ -1,0 +1,49 @@
+{% load i18n %}{% with who=request.user.email|default:request.user.username %}
+<div class="am" data-am>
+  <button class="am-btn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="amPop" aria-label="{% translate 'Account' %}">
+    <span class="am-avatar">{{ who|slice:":1"|upper }}</span><svg class="am-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+  <div class="am-pop" id="amPop" role="menu" hidden>
+    <div class="am-head"><span class="am-avatar">{{ who|slice:":1"|upper }}</span><div><strong>{% if request.user.get_full_name %}{{ request.user.get_full_name }}{% elif active_company %}{{ active_company.name }}{% else %}{{ who }}{% endif %}</strong>{% if request.user.get_full_name or active_company %}<small>{{ who }}</small>{% endif %}{% if active_company and request.user.get_full_name %}<small>{{ active_company.name }}</small>{% endif %}</div></div>
+    <a class="am-item" role="menuitem" href="{% url 'webapp:password_change' %}"><span aria-hidden="true">🔑</span>{% translate "Change password" %}</a>
+    <a class="am-item" role="menuitem" href="{% url 'webapp:security_settings' %}"><span aria-hidden="true">🔐</span>{% translate "Security & 2FA" %}</a>
+    {% if active_company %}<a class="am-item" role="menuitem" href="{% url 'webapp:help' %}"><span aria-hidden="true">💬</span>{% translate "Help & support" %}</a>{% endif %}
+    {% if show_install %}<button class="am-item am-install" type="button" data-install-app hidden><span aria-hidden="true">⬇</span><span>{% translate "Install app" %}</span></button>{% endif %}
+    <div class="am-row">{% include "webapp/_language_switcher.html" %}{% include "webapp/_theme_toggle.html" %}</div>
+    <a class="am-item am-logout" role="menuitem" href="{% url 'webapp:logout' %}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>{% translate "Log out" %}</a>
+  </div>
+</div>
+{% endwith %}
+<style>
+.am{position:relative}
+.am-btn{display:inline-flex;align-items:center;gap:4px;padding:3px 6px 3px 3px;border:1px solid var(--line);border-radius:22px;background:var(--panel,#fff);cursor:pointer;color:var(--ink-soft);font:inherit}
+.am-btn:hover,.am-btn[aria-expanded=true]{border-color:var(--accent);color:var(--accent)}
+.am-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.am-avatar{width:34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:14px;flex-shrink:0}
+.am-btn[aria-expanded=true] .am-caret{transform:rotate(180deg)}
+.am-caret{transition:transform .15s}
+.am-pop{position:absolute;top:calc(100% + 10px);inset-inline-end:0;z-index:95;display:flex;flex-direction:column;gap:4px;width:270px;max-width:calc(100vw - 32px);padding:10px;background:var(--panel,#fff);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px rgba(15,18,30,.18);animation:amIn .16s ease both}
+.am-pop[hidden]{display:none}
+@keyframes amIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.am-head{display:flex;align-items:center;gap:10px;padding:6px 6px 12px;margin-bottom:4px;border-bottom:1px solid var(--line);min-width:0}
+.am-head>div{min-width:0}
+.am-head strong{display:block;color:var(--ink);font-size:14.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.am-head small{display:block;color:var(--ink-soft);font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.am .am-item{display:flex;align-items:center;gap:10px;width:100%;padding:10px;border:0;border-radius:10px;background:none;color:var(--ink);font:inherit;font-size:14.5px;font-weight:500;text-align:start;cursor:pointer;box-sizing:border-box}
+.am .am-item[hidden]{display:none}
+.am .am-item:hover,.am .am-item:focus-visible{background:var(--accent-soft);color:var(--accent);outline:none}
+.am-row{display:flex;gap:8px;align-items:center;padding:6px 4px;border-top:1px solid var(--line);margin-top:4px}
+.am-row .lang-switch{flex:1;margin:0}.am-row .lang-switch label{width:100%;box-sizing:border-box}.am-row .lang-switch select{flex:1;min-width:0}
+.am .am-logout{color:var(--danger,#c0392b);border-top:1px solid var(--line);border-radius:0 0 10px 10px;margin-top:2px}
+.am .am-logout:hover{background:var(--danger-bg,#fdecec);color:var(--danger,#c0392b)}
+</style>
+<script>
+(function(){
+  const root=document.currentScript.previousElementSibling.previousElementSibling;
+  const btn=root.querySelector('.am-btn'),pop=root.querySelector('.am-pop');
+  const set=o=>{pop.hidden=!o;btn.setAttribute('aria-expanded',o);if(o){const f=pop.querySelector('.am-item');f&&f.focus({preventScroll:true})}};
+  btn.addEventListener('click',e=>{e.stopPropagation();set(pop.hidden)});
+  document.addEventListener('click',e=>{if(!root.contains(e.target))set(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!pop.hidden){set(false);btn.focus()}});
+})();
+</script>

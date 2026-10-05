@@ -446,18 +446,6 @@ msgid "Help"
 msgstr "സഹായം"
 
 #: templates/base.html
-msgid "Install as an app"
-msgstr "ആപ്പായി ഇൻസ്റ്റാൾ ചെയ്യാം"
-
-#: templates/base.html
-msgid "Install app"
-msgstr "ആപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക"
-
-#: templates/base.html
-msgid "Account"
-msgstr "അക്കൗണ്ട്"
-
-#: templates/base.html
 msgid "Restaurant navigation"
 msgstr "റെസ്റ്റോറന്റ് നാവിഗേഷൻ"
 
@@ -520,6 +508,18 @@ msgstr "BookPilot ഇൻസ്റ്റാൾ ചെയ്യുക"
 #: templates/base.html
 msgid "Tap the Share button, then “Add to Home Screen”."
 msgstr "Share ബട്ടൺ അമർത്തി “Add to Home Screen” തിരഞ്ഞെടുക്കുക."
+
+#: templates/webapp/_account_menu.html
+msgid "Account"
+msgstr "അക്കൗണ്ട്"
+
+#: templates/webapp/_account_menu.html
+msgid "Change password"
+msgstr "പാസ്‌വേഡ് മാറ്റുക"
+
+#: templates/webapp/_account_menu.html
+msgid "Install app"
+msgstr "ആപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക"
 
 #: templates/webapp/_excel_button.html
 msgid "Excel"
@@ -1152,6 +1152,39 @@ msgstr "ഫോൺ നഷ്ടപ്പെട്ടോ? പകരം ഒരു �
 #: templates/webapp/auth/login_2fa.html
 msgid "← Back to sign in"
 msgstr "← ലോഗിനിലേക്ക് തിരികെ"
+
+#: templates/webapp/auth/password_change.html
+msgid ""
+"Enter your current password, then the new one twice. You stay signed in on "
+"this device."
+msgstr ""
+"നിലവിലെ പാസ്‌വേഡ് നൽകുക, തുടർന്ന് പുതിയത് രണ്ടു തവണ. ഈ ഉപകരണത്തിൽ നിങ്ങൾ സൈൻ"
+" ഇൻ ആയിത്തന്നെ തുടരും."
+
+#: templates/webapp/auth/password_change.html
+msgid "Current password"
+msgstr "നിലവിലെ പാസ്‌വേഡ്"
+
+#: templates/webapp/auth/password_change.html
+msgid "New password"
+msgstr "പുതിയ പാസ്‌വേഡ്"
+
+#: templates/webapp/auth/password_change.html
+msgid "At least 8 characters. Don't use only numbers or a common password."
+msgstr ""
+"കുറഞ്ഞത് 8 അക്ഷരങ്ങൾ. അക്കങ്ങൾ മാത്രമോ സാധാരണ പാസ്‌വേഡോ ഉപയോഗിക്കരുത്."
+
+#: templates/webapp/auth/password_change.html
+msgid "Confirm new password"
+msgstr "പുതിയ പാസ്‌വേഡ് ഉറപ്പിക്കുക"
+
+#: templates/webapp/auth/password_change.html
+msgid "Forgot your current password?"
+msgstr "നിലവിലെ പാസ്‌വേഡ് മറന്നോ?"
+
+#: templates/webapp/auth/password_change.html
+msgid "Reset it by email"
+msgstr "ഇമെയിൽ വഴി റീസെറ്റ് ചെയ്യുക"
 
 #: templates/webapp/automation/budgets.html
 msgid "Expense budgets"
@@ -6403,6 +6436,10 @@ msgstr "ബാങ്ക് നിലവാരത്തിലുള്ള സു�
 msgid "Two-step login, audit log and fully separated data for every business."
 msgstr ""
 "ടു-സ്റ്റെപ്പ് ലോഗിൻ, ഓഡിറ്റ് ലോഗ്, ഓരോ ബിസിനസിനും പൂർണ്ണമായി വേറിട്ട ഡാറ്റ."
+
+#: templates/webapp/public/landing.html
+msgid "Install as an app"
+msgstr "ആപ്പായി ഇൻസ്റ്റാൾ ചെയ്യാം"
 
 #: templates/webapp/public/landing.html
 msgid ""
@@ -11926,6 +11963,10 @@ msgstr "പരമാവധി 3 ദശാംശം."
 #: apps/webapp/scale_views.py
 msgid "Scale settings saved."
 msgstr "സ്കെയിൽ സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
+
+#: apps/webapp/security_views.py
+msgid "Your password has been changed."
+msgstr "നിങ്ങളുടെ പാസ്‌വേഡ് മാറ്റി."
 
 #: apps/webapp/site_views.py
 msgid "Main colour"

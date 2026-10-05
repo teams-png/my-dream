@@ -111,8 +111,17 @@ def catalogue(company, absolute, limit=500):
             items.append({"id": p.id, "name": p.name, "category": p.category.name if p.category else "",
                           "price": f"{p.selling_price:.2f}", "description": getattr(m, "description", "") if m else "",
                           "image": absolute(m.image.url) if m and m.image else None,
-                          "vegetarian": getattr(m, "is_vegetarian", None) if m else None})
+                          "vegetarian": getattr(m, "is_vegetarian", None) if m else None,
+                          "available": bool(m.is_available) if m else True,
+                          "featured": bool(m.is_featured) if m else False})
     return {"kind": kind, "currency": cur, "items": items}
+
+
+def offers(company):
+    """Offers running today (POS promotions), for the website."""
+    from .site_builder import offers as live_offers
+    return {"currency": company.default_currency,
+            "items": [{**o, "until": o["until"].isoformat()} for o in live_offers(company)]}
 
 
 # ------------------------------------------------------------------ enquiries → CRM leads

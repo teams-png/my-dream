@@ -56,6 +56,7 @@ urlpatterns = [
     path("site/<slug:public_id>/", site_views.site_public, name="site_public"),
     path("kit/<slug:public_id>/info.json", website_kit_views.kit_info, name="kit_info"),
     path("kit/<slug:public_id>/catalogue.json", website_kit_views.kit_catalogue, name="kit_catalogue"),
+    path("kit/<slug:public_id>/offers.json", website_kit_views.kit_offers, name="kit_offers"),
     path("kit/<slug:public_id>/enquiry/", website_kit_views.kit_enquiry, name="kit_enquiry"),
     path("kit/<slug:public_id>/enquiry.js", website_kit_views.kit_enquiry_js, name="kit_enquiry_js"),
     path("kit/<slug:public_id>/catalogue.js", website_kit_views.kit_catalogue_js, name="kit_catalogue_js"),

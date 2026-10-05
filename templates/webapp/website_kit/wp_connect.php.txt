@@ -2,7 +2,7 @@
 /**
  * Plugin Name: BookPilot Connect — {{ company|cut:'*/' }}
  * Description: Connects this website to {{ company|cut:'*/' }}'s BookPilot account: contact form, live catalogue, business details{% if booking_slug %}, online booking{% endif %}{% if careers_slug %}, jobs and job applications{% endif %}. Everything submitted here goes straight to BookPilot.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: BookPilot
  * License: GPLv2 or later
  * Requires at least: 5.0
@@ -19,13 +19,14 @@ function bookpilot_connect_defaults() {
         'kit_id' => '{{ kit_id }}',
         'booking_slug' => '{{ booking_slug }}',
         'careers_slug' => '{{ careers_slug }}',
+        'color' => '{{ color }}',
     );
 }
 
 function bookpilot_connect_opt($key) {
     $saved = get_option('bookpilot_connect', array());
     $defaults = bookpilot_connect_defaults();
-    return isset($saved[$key]) && $saved[$key] !== '' ? $saved[$key] : $defaults[$key];
+    return isset($saved[$key]) && $saved[$key] !== '' ? $saved[$key] : (isset($defaults[$key]) ? $defaults[$key] : '');
 }
 
 function bookpilot_connect_url($path) {
@@ -93,44 +94,103 @@ function bookpilot_connect_fetch($path, $cache_key) {
     return $data;
 }
 
-/* [bookpilot_catalogue category="Drinks" limit="12"] — menu / services / products / rooms / courses / jobs (server-rendered, good for SEO) */
+/* [bookpilot_catalogue] full menu grouped by category · [bookpilot_catalogue category="Biryani & Rice" limit="12"]
+   group="no" for one flat grid · hide_sold_out="yes" to hide items marked sold out in the POS.
+   Menu / services / products / rooms / courses / jobs; server-rendered (good for SEO), refreshed every 5 minutes. */
+function bookpilot_connect_styles() {
+    static $done = false;
+    if ($done) { return ''; }
+    $done = true;
+    return '<style>.bookpilot-menu{--bp-accent:' . esc_attr(bookpilot_connect_opt('color') ?: '#0f766e') . '}'
+        . '.bookpilot-cat{margin:28px 0 12px;font-size:1.3em}.bookpilot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}'
+        . '.bookpilot-item{position:relative;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;background:#fff;color:#0f172a}'
+        . '.bookpilot-item img{width:100%;height:160px;object-fit:cover;display:block}.bookpilot-item .bp-body{padding:12px 14px}'
+        . '.bookpilot-item .bp-desc{color:#64748b;font-size:13.5px;margin-top:4px}.bookpilot-item .bp-price{font-weight:700;margin-top:8px;color:var(--bp-accent)}'
+        . '.bookpilot-tag{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:99px;font-size:11px;font-weight:700;vertical-align:middle}'
+        . '.bookpilot-tag.veg{background:#dcfce7;color:#166534}.bookpilot-tag.hot{background:#fef3c7;color:#92400e}'
+        . '.bookpilot-item.sold-out{opacity:.55}.bookpilot-tag.out{background:#fee2e2;color:#991b1b}'
+        . '.bookpilot-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}.bookpilot-tabs a{padding:6px 12px;border:1px solid #e2e8f0;border-radius:99px;text-decoration:none;font-size:14px}'
+        . '.bookpilot-offers{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}'
+        . '.bookpilot-offer{border-radius:14px;padding:16px;background:#fff7ed;border:1px solid #fed7aa}.bookpilot-offer .bp-big{font-size:1.8em;font-weight:800;line-height:1}</style>';
+}
+
+function bookpilot_connect_item_html($item, $data, $units) {
+    $out = !isset($item['available']) || $item['available'];
+    $html = '<div class="bookpilot-item' . ($out ? '' : ' sold-out') . '">';
+    if (!empty($item['image'])) {
+        $html .= '<img src="' . esc_url($item['image']) . '" alt="' . esc_attr($item['name']) . '" loading="lazy">';
+    }
+    $html .= '<div class="bp-body"><strong>' . esc_html($item['name']) . '</strong>';
+    if (!empty($item['vegetarian'])) { $html .= '<span class="bookpilot-tag veg">Veg</span>'; }
+    if (!empty($item['featured'])) { $html .= '<span class="bookpilot-tag hot">★</span>'; }
+    if (!$out) { $html .= '<span class="bookpilot-tag out">Sold out</span>'; }
+    if (!empty($item['location'])) { $html .= '<div class="bp-desc">' . esc_html($item['location']) . '</div>'; }
+    if (!empty($item['description'])) { $html .= '<div class="bp-desc">' . esc_html($item['description']) . '</div>'; }
+    if (!empty($item['price'])) {
+        $unit = isset($item['unit'], $units[$item['unit']]) ? ' ' . $units[$item['unit']] : '';
+        $html .= '<div class="bp-price">' . esc_html($data['currency'] . ' ' . $item['price'] . $unit) . '</div>';
+    }
+    return $html . '</div></div>';
+}
+
 function bookpilot_connect_catalogue($atts) {
-    $a = shortcode_atts(array('category' => '', 'limit' => 0), $atts, 'bookpilot_catalogue');
+    $a = shortcode_atts(array('category' => '', 'limit' => 0, 'group' => 'yes', 'hide_sold_out' => 'no'), $atts, 'bookpilot_catalogue');
     $data = bookpilot_connect_fetch('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/catalogue.json', 'bookpilot_catalogue_' . md5(bookpilot_connect_opt('kit_id')));
     if (!$data || empty($data['items'])) {
         return '';
     }
     $units = array('hour' => '/ hour', 'day' => '/ day', 'night' => '/ night', 'month' => '/ month', 'monthly' => '/ month');
+    $groups = array();
     $count = 0;
-    $html = '<div class="bookpilot-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px">';
     foreach ($data['items'] as $item) {
         if ($a['category'] !== '' && (!isset($item['category']) || strcasecmp($item['category'], $a['category']) !== 0)) {
+            continue;
+        }
+        if ($a['hide_sold_out'] === 'yes' && isset($item['available']) && !$item['available']) {
             continue;
         }
         if ((int) $a['limit'] > 0 && $count >= (int) $a['limit']) {
             break;
         }
         $count++;
-        $html .= '<div style="border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;background:#fff">';
-        if (!empty($item['image'])) {
-            $html .= '<img src="' . esc_url($item['image']) . '" alt="" loading="lazy" style="width:100%;height:150px;object-fit:cover">';
+        $key = ($a['group'] === 'yes' && $a['category'] === '' && !empty($item['category'])) ? $item['category'] : '';
+        $groups[$key][] = $item;
+    }
+    $html = bookpilot_connect_styles() . '<div class="bookpilot-menu">';
+    if (count($groups) > 1) {
+        $html .= '<nav class="bookpilot-tabs">';
+        foreach (array_keys($groups) as $i => $name) {
+            if ($name !== '') { $html .= '<a href="#bp-cat-' . $i . '">' . esc_html($name) . '</a>'; }
         }
-        $html .= '<div style="padding:12px 14px"><strong>' . esc_html($item['name']) . '</strong>';
-        if (!empty($item['location'])) {
-            $html .= '<div style="color:#64748b;font-size:13px">' . esc_html($item['location']) . '</div>';
-        }
-        if (!empty($item['description'])) {
-            $html .= '<div style="color:#64748b;font-size:13.5px">' . esc_html($item['description']) . '</div>';
-        }
-        if (!empty($item['price'])) {
-            $unit = isset($item['unit'], $units[$item['unit']]) ? ' ' . $units[$item['unit']] : '';
-            $html .= '<div style="font-weight:700;margin-top:6px">' . esc_html($data['currency'] . ' ' . $item['price'] . $unit) . '</div>';
-        }
-        $html .= '</div></div>';
+        $html .= '</nav>';
+    }
+    $i = 0;
+    foreach ($groups as $name => $items) {
+        if ($name !== '') { $html .= '<h3 class="bookpilot-cat" id="bp-cat-' . $i . '">' . esc_html($name) . '</h3>'; }
+        $html .= '<div class="bookpilot-grid">';
+        foreach ($items as $item) { $html .= bookpilot_connect_item_html($item, $data, $units); }
+        $html .= '</div>';
+        $i++;
     }
     return $html . '</div>';
 }
 add_shortcode('bookpilot_catalogue', 'bookpilot_connect_catalogue');
+
+/* [bookpilot_offers] offers running today from the BookPilot POS (Pricing → Offers) */
+function bookpilot_connect_offers($atts) {
+    $data = bookpilot_connect_fetch('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/offers.json', 'bookpilot_offers_' . md5(bookpilot_connect_opt('kit_id')));
+    if (!$data || empty($data['items'])) {
+        return '';
+    }
+    $html = bookpilot_connect_styles() . '<div class="bookpilot-offers">';
+    foreach ($data['items'] as $offer) {
+        $html .= '<div class="bookpilot-offer"><div class="bp-big">' . esc_html($offer['discount']) . ' off</div><strong>' . esc_html($offer['name']) . '</strong>';
+        if (!empty($offer['product'])) { $html .= '<div>' . esc_html($offer['product']) . '</div>'; }
+        $html .= '<div style="opacity:.7;font-size:13px">Until ' . esc_html(date_i18n(get_option('date_format'), strtotime($offer['until']))) . '</div></div>';
+    }
+    return $html . '</div>';
+}
+add_shortcode('bookpilot_offers', 'bookpilot_connect_offers');
 
 /* [bookpilot_info field="phone"] — name, phone, email, address, country, currency, vat_number */
 function bookpilot_connect_info($atts) {
@@ -159,6 +219,7 @@ function bookpilot_connect_sanitize($input) {
     }
     delete_transient('bookpilot_catalogue_' . md5(bookpilot_connect_opt('kit_id')));
     delete_transient('bookpilot_info_' . md5(bookpilot_connect_opt('kit_id')));
+    delete_transient('bookpilot_offers_' . md5(bookpilot_connect_opt('kit_id')));
     return $clean;
 }
 
@@ -170,7 +231,7 @@ function bookpilot_connect_page() {
     ?>
     <div class="wrap">
         <h1>BookPilot Connect</h1>
-        <p>Already filled in for {{ company|force_escape }}. Shortcodes: <code>[bookpilot_enquiry]</code> <code>[bookpilot_catalogue]</code> <code>[bookpilot_info field="phone"]</code>{% if booking_slug %} <code>[bookpilot_booking]</code>{% endif %}{% if careers_slug %} <code>[bookpilot_form]</code>{% endif %}</p>
+        <p>Already filled in for {{ company|force_escape }}. Shortcodes: <code>[bookpilot_enquiry]</code> <code>[bookpilot_catalogue]</code> <code>[bookpilot_offers]</code> <code>[bookpilot_info field="phone"]</code>{% if booking_slug %} <code>[bookpilot_booking]</code>{% endif %}{% if careers_slug %} <code>[bookpilot_form]</code>{% endif %}</p>
         <form method="post" action="options.php">
             <?php settings_fields('bookpilot_connect'); ?>
             <table class="form-table" role="presentation">

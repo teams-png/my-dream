@@ -77,6 +77,11 @@ def kit_catalogue(request, public_id):
     return _public_json(svc.catalogue(kit.company, request.build_absolute_uri))
 
 
+def kit_offers(request, public_id):
+    kit = _kit_or_404(public_id)
+    return _public_json(svc.offers(kit.company))
+
+
 def _too_many(request, kit):
     fwd = request.META.get("HTTP_X_FORWARDED_FOR", "")
     ip = (fwd.split(",")[0].strip() if fwd else request.META.get("REMOTE_ADDR", "")) or "?"
@@ -358,7 +363,8 @@ def _plugin_context(request, company):
     caps = svc.capabilities(company)
     ctx = {"company": company.name, "base": request.build_absolute_uri("/").rstrip("/"), "kit_id": kit.public_id,
            "booking_slug": booking_svc.site_for(company).slug if caps["booking"] else "",
-           "careers_slug": careers_svc.site_for(company).slug if caps["careers"] else "", "api_key": kit.api_key}
+           "careers_slug": careers_svc.site_for(company).slug if caps["careers"] else "", "api_key": kit.api_key,
+           "color": kit.accent_color or "#0f766e"}
     return ctx
 
 

@@ -8,7 +8,7 @@ import pytest
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.core.management import call_command
-from django.test import Client
+from django.test import Client, override_settings
 from django.urls import reverse
 
 from apps.crm.models import Activity, Lead
@@ -138,3 +138,25 @@ def test_booking_api_key_skips_rate_limit(admin_client):
                           {"date": day, "time": "20:00", "guests": 2, "name": f"G{i}", "phone": "+97455551111"},
                           HTTP_X_API_KEY=kit.api_key)
     assert r.status_code == 201 and OnlineBooking.objects.for_company(resto).count() == 14
+
+
+@override_settings(RESTAURANT_STARTER_KIT=True)
+def test_wordpress_menu_feed_has_sold_out_and_offers(admin_client):
+    import datetime
+    from django.utils import timezone
+    from apps.sales.models import Promotion
+    from apps.verticals.restaurant.models import RestaurantMenuItem
+    company, _c = _signup("restaurant", "wp1@t.qa")
+    RestaurantMenuItem.objects.for_company(company).filter(product__sku="KL-masala-dosa").update(is_available=False)
+    today = timezone.localdate()
+    Promotion.objects.create(company=company, name="Biryani Friday", discount_type="percentage", discount_value=15,
+                             start_date=today, end_date=today + datetime.timedelta(days=3))
+    kit = svc.kit_for(company)
+    items = Client().get(reverse("webapp:kit_catalogue", args=[kit.public_id])).json()["items"]
+    dosa = next(i for i in items if i["name"] == "Masala Dosa")
+    assert dosa["available"] is False and dosa["vegetarian"] is True and dosa["category"] == "Breakfast"
+    offers = Client().get(reverse("webapp:kit_offers", args=[kit.public_id])).json()
+    assert offers["items"][0]["name"] == "Biryani Friday" and offers["items"][0]["discount"] == "15%"
+    plugin = admin_client.get(reverse("webapp:kit_wp_plugin", args=[company.id]))
+    php = zipfile.ZipFile(io.BytesIO(plugin.content)).read("bookpilot-connect/bookpilot-connect.php").decode()
+    assert "add_shortcode('bookpilot_offers'" in php and "hide_sold_out" in php and "Version: 1.1.0" in php

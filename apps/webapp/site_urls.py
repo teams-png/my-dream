@@ -6,7 +6,7 @@ from django.urls import include, path
 from . import site_views
 from .urls import urlpatterns as app_urlpatterns
 
-PUBLIC = {"kit_info", "kit_catalogue", "kit_enquiry", "kit_enquiry_js", "kit_catalogue_js",
+PUBLIC = {"kit_info", "kit_catalogue", "kit_offers", "kit_enquiry", "kit_enquiry_js", "kit_catalogue_js",
           "book_page", "book_options", "book_form_js", "book_submit",
           "careers_home", "careers_job", "careers_apply", "careers_thanks", "careers_jobs_json", "careers_form_js",
           "site_public"}

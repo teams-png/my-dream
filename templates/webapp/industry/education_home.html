@@ -38,7 +38,7 @@
       </div>
     </a>
     {% empty %}
-    <div class="ix-card ix-empty" style="grid-column:1/-1"><p style="font-size:40px;margin:0">🎓</p><strong>{% translate "No" %} {% translate terms.courses|lower %} {% translate "yet." %}</strong><p><a class="btn" href="{% url 'webapp:education_course_add' %}">＋ {% translate "New" %} {% translate terms.course|lower %}</a></p></div>
+    <div class="ix-card ix-empty" style="grid-column:1/-1"><p style="font-size:40px;margin:0">🎓</p><strong>{% translate terms.courses %} — {% translate "nothing added yet." %}</strong><p><a class="btn" href="{% url 'webapp:education_course_add' %}">＋ {% translate "New" %} {% translate terms.course|lower %}</a></p></div>
     {% endfor %}
   </div>
 </div>

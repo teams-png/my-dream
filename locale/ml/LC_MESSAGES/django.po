@@ -4208,12 +4208,8 @@ msgid "Closed"
 msgstr "അടച്ചു"
 
 #: templates/webapp/industry/education_home.html
-msgid "No"
-msgstr "ഇല്ല"
-
-#: templates/webapp/industry/education_home.html
-msgid "yet."
-msgstr "ഇതുവരെ ഇല്ല."
+msgid "nothing added yet."
+msgstr ""
 
 #: templates/webapp/industry/enroll_form.html
 msgid "or new"
@@ -9876,6 +9872,10 @@ msgstr "ഗൾഫ് പരിചയമുണ്ടോ?"
 #: apps/webapp/careers_views.py
 msgid "Yes"
 msgstr "ഉണ്ട്"
+
+#: apps/webapp/careers_views.py
+msgid "No"
+msgstr "ഇല്ല"
 
 #: apps/webapp/careers_views.py
 msgid "Highest qualification"

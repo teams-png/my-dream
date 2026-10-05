@@ -14,7 +14,7 @@
 </div>
 {% elif subscription.status == "trial" %}
 <div class="card" style="border-left:4px solid var(--accent); margin-bottom:20px;">
-  <strong>Free trial — {{ days_left }} day{{ days_left|pluralize }} left</strong>
+  <strong>{% translate "Free trial —" %} {{ days_left }} {% translate "days left" %}</strong>
   <p style="margin:6px 0 0; font-size:13.5px; color:var(--ink-soft);">Your trial ends {{ subscription.end_date }}. Subscribe anytime to continue without interruption.</p>
 </div>
 {% else %}

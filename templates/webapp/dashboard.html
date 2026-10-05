@@ -18,7 +18,7 @@
   </div>
   {% elif subscription.status == "trial" %}
   <div class="card" style="border-left:4px solid var(--accent); margin-bottom:18px;">
-    <strong>{% translate "Free trial —" %} {{ subscription_days_left }} day{{ subscription_days_left|pluralize }} {% translate "left" %}</strong>
+    <strong>{% translate "Free trial —" %} {{ subscription_days_left }} {% translate "days left" %}</strong>
     <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">{% translate "View billing →" %}</a>
   </div>
   {% elif subscription_days_left <= 7 %}

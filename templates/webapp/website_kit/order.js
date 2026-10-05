@@ -82,7 +82,7 @@
     }).join("") || '<p style="color:#64748b">' + esc(L.empty) + "</p>";
     var modes = "";
     if (cfg.pickup && cfg.delivery) {
-      modes = '<div class="bpo-modes"><label class="' + (mode === "pickup" ? "on" : "") + '"><input type="radio" name="bpo-mode" value="pickup">🛍 ' + esc(L.pickup) + "</label>"' +
+      modes = '<div class="bpo-modes"><label class="' + (mode === "pickup" ? "on" : "") + '"><input type="radio" name="bpo-mode" value="pickup">🛍 ' + esc(L.pickup) + "</label>" +
         '<label class="' + (mode === "delivery" ? "on" : "") + '"><input type="radio" name="bpo-mode" value="delivery">🛵 ' + esc(L.delivery) + "</label></div>";
     } else {
       modes = '<p style="margin:6px 0 12px;font-weight:700">' + esc(mode === "pickup" ? "🛍 " + L.pickup_from : "🛵 " + L.home_delivery) + "</p>";
@@ -91,7 +91,7 @@
     box.innerHTML = '<div class="bpo-head"><h3>' + esc(L.your_order) + '</h3><button class="bpo-x" type="button" data-close aria-label="' + esc(L.close) + '">✕</button></div>' +
       '<div class="bpo-body">' + (cfg.open ? "" : '<p class="bpo-note">' + esc(L.closed) + (cfg.phone ? " " + esc(L.call.replace("%s", cfg.phone)) : "") + "</p>") +
       (cfg.note ? '<p class="bpo-note">' + esc(cfg.note) + "</p>" : "") + rows +
-      '<div class="bpo-sum"><div><span>' + esc(L.items) + "</span>"<span>' + esc(money(sub)) + "</span></div>" +
+      '<div class="bpo-sum"><div><span>' + esc(L.items) + "</span><span>" + esc(money(sub)) + "</span></div>" +
       (f ? "<div><span>" + esc(L.delivery) + "</span><span>" + esc(money(f)) + "</span></div>" : "") +
       '<div class="t"><span>' + esc(L.total) + "</span><span>" + esc(money(sub + f)) + "</span></div>" +
       (mode === "delivery" && min && sub < min ? '<div style="color:#b45309">' + esc(L.minimum) + " " + esc(money(min)) + "</div>" : "") + "</div>" +

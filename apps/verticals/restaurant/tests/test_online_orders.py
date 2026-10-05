@@ -1,6 +1,10 @@
 """Website ordering: the owner switches the cart on, customers order from the website, staff accept or reject."""
 import io
 import json
+import os
+import shutil
+import subprocess
+import tempfile
 import zipfile
 from decimal import Decimal
 
@@ -65,6 +69,22 @@ def test_cart_is_off_until_the_owner_switches_it_on():
     assert next(i for i in feed["items"] if i["id"] == biryani.product_id)["orderable"] is True
     js = Client().get(reverse("webapp:kit_order_js", args=[kit.public_id])).content.decode()
     assert reverse("webapp:kit_order", args=[kit.public_id]) in js and "Delivery only in Doha" in js
+    _assert_valid_js(js)
+    _assert_valid_js(Client().get(reverse("webapp:kit_order_js", args=[kit.public_id]) + "?lang=ar").content.decode())
+
+
+def _assert_valid_js(js):
+    """The widget runs on other people's websites; a syntax slip silently kills the cart."""
+    node = shutil.which("node")
+    if not node:
+        pytest.skip("node is not installed")
+    with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False, encoding="utf-8") as f:
+        f.write(js)
+    try:
+        r = subprocess.run([node, "--check", f.name], capture_output=True, text=True)
+    finally:
+        os.unlink(f.name)
+    assert r.returncode == 0, r.stderr
 
 
 def test_pickup_order_uses_bookpilot_prices_and_staff_accept_it():

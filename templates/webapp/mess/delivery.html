@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Mess delivery" %}{% endblock %}
+{% block heading %}🛵 {% translate "Mess delivery" %} · {% now "j M" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.dl-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.dl-tabs a{padding:9px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel);font-weight:700;color:var(--ink)}
+.dl-tabs a.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.dl-row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.dl-row.done{opacity:.6}.dl-row .who{flex:1 1 220px;min-width:0}.dl-row .who small{display:block;color:var(--ink-soft)}
+.dl-row form{margin:0}
+@media print{.dl-tabs,.ix-toolbar,.dl-row form,.no-print{display:none!important}.dl-row{break-inside:avoid;border-color:#999}}
+</style>
+<div class="ix">
+  <div class="ix-toolbar no-print"><a class="btn btn-secondary" href="{% url 'webapp:mess_home' %}">← {% translate "Mess" %}</a><span class="grow"></span>
+    {% if rows %}<a class="btn btn-secondary" href="{{ share }}" target="_blank" rel="noopener">💬 {% translate "Send list to delivery boy" %}</a><button class="btn btn-secondary" type="button" onclick="print()">🖨 {% translate "Print" %}</button>{% endif %}</div>
+  <div class="dl-tabs">
+    <a href="?meal=breakfast"{% if meal == "breakfast" %} class="on"{% endif %}>☕ {% translate "Breakfast" %} ({{ counts.breakfast|default:0 }})</a>
+    <a href="?meal=lunch"{% if meal == "lunch" %} class="on"{% endif %}>🍛 {% translate "Lunch" %} ({{ counts.lunch|default:0 }})</a>
+    <a href="?meal=dinner"{% if meal == "dinner" %} class="on"{% endif %}>🌙 {% translate "Dinner" %} ({{ counts.dinner|default:0 }})</a>
+  </div>
+  {% if rows %}<p style="color:var(--ink-soft);margin-top:-2px">{{ left }} {% translate "still to deliver" %} · {{ rows|length }} {% translate "total" %}</p>{% endif %}
+  <div class="ix-list">
+  {% for r in rows %}
+    <div class="dl-row{% if r.done %} done{% endif %}">
+      <div class="who"><b>{{ forloop.counter }}. {{ r.m.customer.name }}</b> <small style="display:inline">{{ r.m.number }}</small>
+        <small>📍 {% if r.address %}{{ r.address }}{% else %}<a href="{% url 'webapp:mess_member' r.m.id %}">{% translate "No address — add it on the member page" %}</a>{% endif %}</small>
+        {% if r.m.customer.phone %}<small>📞 <a href="tel:{{ r.m.customer.phone }}">{{ r.m.customer.phone }}</a>{% if r.m.notes %} · {{ r.m.notes }}{% endif %}</small>{% endif %}</div>
+      <form method="post">{% csrf_token %}<input type="hidden" name="meal" value="{{ meal }}"><input type="hidden" name="member" value="{{ r.m.id }}">
+        {% if r.done %}<input type="hidden" name="action" value="undo"><button class="btn btn-secondary" type="submit">✓ {% translate "Delivered" %}</button>
+        {% else %}<button class="btn" type="submit">🛵 {% translate "Mark delivered" %}</button>{% endif %}</form>
+    </div>
+  {% empty %}
+    <div class="ix-card ix-empty"><p style="font-size:36px;margin:0">🛵</p><strong>{% translate "No deliveries for this meal today." %}</strong>
+      <p>{% translate "To deliver a member's meals, open the member and tick the delivered meals." %}</p></div>
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}

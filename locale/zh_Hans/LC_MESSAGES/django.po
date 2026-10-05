@@ -634,8 +634,16 @@ msgid "Mess dues"
 msgstr "包餐欠款"
 
 #: templates/webapp/_industry_nav.html
-msgid "Mess plans"
-msgstr "包餐套餐"
+msgid "Delivery"
+msgstr "外送"
+
+#: templates/webapp/_industry_nav.html
+msgid "Extras"
+msgstr "加餐"
+
+#: templates/webapp/_industry_nav.html
+msgid "Plans & menu"
+msgstr "套餐与菜单"
 
 #: templates/webapp/_industry_nav.html
 msgid "My website"
@@ -4720,6 +4728,10 @@ msgid "mess cut"
 msgstr "停餐"
 
 #: templates/webapp/mess/bills.html
+msgid "extras"
+msgstr "加餐"
+
+#: templates/webapp/mess/bills.html
 msgid "Create all bills"
 msgstr "生成全部账单"
 
@@ -4730,12 +4742,99 @@ msgid ""
 msgstr "月中加入或退出的会员只按实际天数付费。若套餐允许，上月停餐天数会从本账单中扣除。"
 
 #: templates/webapp/mess/bills.html
+msgid "Extras given so far are added to each bill."
+msgstr "目前提供的加餐会加入每张账单。"
+
+#: templates/webapp/mess/bills.html
 msgid "No mess bills for this month."
 msgstr "本月没有包餐账单。"
+
+#: templates/webapp/mess/delivery.html
+msgid "Mess delivery"
+msgstr "膳食外送"
+
+#: templates/webapp/mess/delivery.html
+msgid "Send list to delivery boy"
+msgstr "把清单发给送餐员"
+
+#: templates/webapp/mess/delivery.html
+msgid "Breakfast"
+msgstr "早餐"
+
+#: templates/webapp/mess/delivery.html
+msgid "Lunch"
+msgstr "午餐"
+
+#: templates/webapp/mess/delivery.html
+msgid "Dinner"
+msgstr "晚餐"
+
+#: templates/webapp/mess/delivery.html
+msgid "still to deliver"
+msgstr "待送"
+
+#: templates/webapp/mess/delivery.html
+msgid "No address — add it on the member page"
+msgstr "没有地址 — 请在成员页面添加"
+
+#: templates/webapp/mess/delivery.html
+msgid "Delivered"
+msgstr "已送货"
+
+#: templates/webapp/mess/delivery.html
+msgid "Mark delivered"
+msgstr "已送达"
+
+#: templates/webapp/mess/delivery.html
+msgid "No deliveries for this meal today."
+msgstr "今天这一餐没有外送。"
+
+#: templates/webapp/mess/delivery.html
+msgid ""
+"To deliver a member's meals, open the member and tick the delivered meals."
+msgstr "要为成员送餐，请打开成员页面并勾选需要外送的餐次。"
 
 #: templates/webapp/mess/dues.html
 msgid "No mess dues. Everyone has paid."
 msgstr "没有包餐欠款，全部已付。"
+
+#: templates/webapp/mess/extras.html
+msgid "Mess extras"
+msgstr "膳食加餐"
+
+#: templates/webapp/mess/extras.html
+msgid ""
+"Things members can take on top of their plan — chicken, egg, fish fry, "
+"juice. Tap one on Today's meals and it goes on the member's next mess bill."
+msgstr "成员在套餐之外加点的 — 鸡肉、鸡蛋、炸鱼、果汁。在“今日用餐”页面点一下，就会加到该成员的下一张膳食账单。"
+
+#: templates/webapp/mess/extras.html
+msgid "New extra"
+msgstr "新加餐"
+
+#: templates/webapp/mess/extras.html
+msgid "Extra items"
+msgstr "加餐项目"
+
+#: templates/webapp/mess/extras.html
+msgid "Extra item"
+msgstr "加餐项目"
+
+#: templates/webapp/mess/extras.html
+msgid "Hide"
+msgstr "隐藏"
+
+#: templates/webapp/mess/extras.html
+msgid "Show"
+msgstr "显示"
+
+#: templates/webapp/mess/extras.html
+msgid "No extras yet."
+msgstr "暂无加餐。"
+
+#: templates/webapp/mess/extras.html
+msgid "Example: Chicken curry 5, Egg 1.5, Fish fry 6."
+msgstr "例如：咖喱鸡 5，鸡蛋 1.5，炸鱼 6。"
 
 #: templates/webapp/mess/form.html
 msgid "Please check the highlighted fields."
@@ -4746,20 +4845,24 @@ msgid "Mess — today's meals"
 msgstr "包餐 — 今日餐食"
 
 #: templates/webapp/mess/home.html
-msgid "Breakfast"
-msgstr "早餐"
-
-#: templates/webapp/mess/home.html
-msgid "Lunch"
-msgstr "午餐"
-
-#: templates/webapp/mess/home.html
-msgid "Dinner"
-msgstr "晚餐"
-
-#: templates/webapp/mess/home.html
 msgid "still to eat"
 msgstr "尚未用餐"
+
+#: templates/webapp/mess/home.html
+msgid "at the shop"
+msgstr "店内"
+
+#: templates/webapp/mess/home.html
+msgid "delivery"
+msgstr "外送"
+
+#: templates/webapp/mess/home.html
+msgid "Today's menu"
+msgstr "今日菜单"
+
+#: templates/webapp/mess/home.html
+msgid "Weekly menu"
+msgstr "每周菜单"
 
 #: templates/webapp/mess/home.html
 msgid "Start your mess"
@@ -4786,10 +4889,6 @@ msgid "Name, phone or member no."
 msgstr "姓名、电话或会员号"
 
 #: templates/webapp/mess/home.html
-msgid "Plans"
-msgstr "套餐"
-
-#: templates/webapp/mess/home.html
 msgid "members eating today"
 msgstr "位会员今天用餐"
 
@@ -4808,6 +4907,14 @@ msgstr "今日停餐"
 #: templates/webapp/mess/home.html
 msgid "Tap to undo"
 msgstr "点击撤销"
+
+#: templates/webapp/mess/home.html
+msgid "Extra (chicken, egg…)"
+msgstr "加餐（鸡肉、鸡蛋…）"
+
+#: templates/webapp/mess/home.html
+msgid "Other item"
+msgstr "其他项目"
 
 #: templates/webapp/mess/home.html
 msgid "No member found."
@@ -4838,6 +4945,27 @@ msgid "Save mess cut"
 msgstr "保存停餐"
 
 #: templates/webapp/mess/member.html
+msgid "Things given on top of the plan. They are added to the next mess bill."
+msgstr "套餐之外提供的。会加到下一张膳食账单。"
+
+#: templates/webapp/mess/member.html
+msgid "Edit extra items"
+msgstr "编辑加餐项目"
+
+#: templates/webapp/mess/member.html
+msgid "not billed yet"
+msgstr "尚未开账单"
+
+#: templates/webapp/mess/member.html
+msgid "Bill extras now"
+msgstr "立即为加餐开账单"
+
+#: templates/webapp/mess/member.html
+msgid ""
+"Only if the member is leaving — otherwise they go on the next monthly bill."
+msgstr "仅在成员要离开时使用 — 否则会加到下个月的账单。"
+
+#: templates/webapp/mess/member.html
 msgid "Bills"
 msgstr "账单"
 
@@ -4854,6 +4982,14 @@ msgid "Member"
 msgstr "会员"
 
 #: templates/webapp/mess/member.html
+msgid "Eats"
+msgstr "用餐方式"
+
+#: templates/webapp/mess/member.html
+msgid "Delivery address"
+msgstr "外送地址"
+
+#: templates/webapp/mess/member.html
 msgid "Ended"
 msgstr "已结束"
 
@@ -4865,6 +5001,70 @@ msgstr "结束此包餐会员资格？"
 msgid "End membership"
 msgstr "结束会员资格"
 
+#: templates/webapp/mess/menu.html
+msgid "Mess plans"
+msgstr "包餐套餐"
+
+#: templates/webapp/mess/menu.html
+msgid ""
+"Type the dishes for each day. Leave a box empty if nothing is fixed. Today's"
+" menu shows on the Mess page."
+msgstr "填写每天的菜品。没有固定菜品的格子留空即可。今日菜单会显示在膳食页面。"
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Puttu, kadala curry, tea"
+msgstr "例如：椰丝米糕、鹰嘴豆咖喱、茶"
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Rice, sambar, fish curry, thoran"
+msgstr "例如：米饭、桑巴汤、咖喱鱼、炒蔬菜"
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Chapati, chicken curry"
+msgstr "例如：薄饼、咖喱鸡"
+
+#: templates/webapp/mess/menu.html
+msgid "Save menu"
+msgstr "保存菜单"
+
+#: templates/webapp/mess/menu.html
+msgid "Send the menu"
+msgstr "发送菜单"
+
+#: templates/webapp/mess/menu.html
+msgid "Share weekly menu on WhatsApp"
+msgstr "在 WhatsApp 分享每周菜单"
+
+#: templates/webapp/mess/menu.html
+msgid "Share today's menu"
+msgstr "分享今日菜单"
+
+#: templates/webapp/mess/menu.html
+msgid "Print for the notice board"
+msgstr "打印贴到公告栏"
+
+#: templates/webapp/mess/menu.html
+msgid ""
+"Tip: share it once to your members' WhatsApp group or broadcast list — "
+"everyone gets it in one go."
+msgstr "提示：在成员的 WhatsApp 群或广播列表里分享一次 — 所有人一次收到。"
+
+#: templates/webapp/mess/menu.html
+msgid "Or send one by one"
+msgstr "或逐个发送"
+
+#: templates/webapp/mess/menu.html
+msgid "members with a phone"
+msgstr "位有电话的成员"
+
+#: templates/webapp/mess/menu.html
+msgid "Week"
+msgstr "每周"
+
+#: templates/webapp/mess/menu.html
+msgid "Add phone numbers to members to send them the menu one by one."
+msgstr "为成员添加电话号码，即可逐个发送菜单。"
+
 #: templates/webapp/mess/plans.html
 msgid "New mess plan"
 msgstr "新包餐套餐"
@@ -4872,6 +5072,10 @@ msgstr "新包餐套餐"
 #: templates/webapp/mess/plans.html
 msgid "Mess cut / day"
 msgstr "停餐 / 天"
+
+#: templates/webapp/mess/plans.html
+msgid "Add weekly menu"
+msgstr "添加每周菜单"
 
 #: templates/webapp/mess/plans.html
 msgid "No mess plans yet."
@@ -7510,10 +7714,6 @@ msgid "Ready to collect"
 msgstr "可取餐"
 
 #: templates/webapp/restaurant/new_order.html
-msgid "Delivery"
-msgstr "外送"
-
-#: templates/webapp/restaurant/new_order.html
 msgid "Send to customer"
 msgstr "送给顾客"
 
@@ -7552,10 +7752,6 @@ msgstr "人数"
 #: templates/webapp/restaurant/new_order.html
 msgid "Delivery phone"
 msgstr "外送电话"
-
-#: templates/webapp/restaurant/new_order.html
-msgid "Delivery address"
-msgstr "外送地址"
 
 #: templates/webapp/restaurant/new_order.html
 msgid "Takeaway order"
@@ -8425,10 +8621,6 @@ msgstr "销售订单"
 #: templates/webapp/sales_docs/order_detail.html
 msgid "SALES ORDER"
 msgstr "销售订单"
-
-#: templates/webapp/sales_docs/order_detail.html
-msgid "Delivered"
-msgstr "已送货"
 
 #: templates/webapp/sales_docs/order_detail.html
 msgid "Invoiced"
@@ -10346,6 +10538,19 @@ msgid "This module isn't part of your business type."
 msgstr "此模块不属于您的业务类型。"
 
 #: apps/webapp/mess_views.py
+msgid "Delivered meals"
+msgstr "外送的餐次"
+
+#: apps/webapp/mess_views.py
+msgid ""
+"Tick the meals you carry to this member. The rest are eaten at the shop."
+msgstr "勾选需要送给该成员的餐次。其余在店内用餐。"
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Al Noor Trading, Building 12, 3rd floor"
+msgstr "例如：Al Noor Trading，12 号楼，3 层"
+
+#: apps/webapp/mess_views.py
 msgid "Plan name"
 msgstr "套餐名称"
 
@@ -10414,12 +10619,28 @@ msgid "Choose a customer or type the new member's name."
 msgstr "请选择客户或输入新成员姓名。"
 
 #: apps/webapp/mess_views.py
+msgid "e.g. Chicken curry, Egg, Fish fry"
+msgstr "例如：咖喱鸡、鸡蛋、炸鱼"
+
+#: apps/webapp/mess_views.py
+msgid "An extra with this name already exists."
+msgstr "已有同名加餐。"
+
+#: apps/webapp/mess_views.py
 msgid "e.g. Going home on vacation"
 msgstr "例如：回家休假"
 
 #: apps/webapp/mess_views.py
+msgid "%(item)s added to %(name)s's bill."
+msgstr "已将 %(item)s 加到 %(name)s 的账单。"
+
+#: apps/webapp/mess_views.py
 msgid "%(meal)s served to %(name)s."
 msgstr "已为 %(name)s 提供 %(meal)s。"
+
+#: apps/webapp/mess_views.py
+msgid "Unknown extra."
+msgstr "未知的加餐。"
 
 #: apps/webapp/mess_views.py
 msgid "Plan saved."
@@ -10458,6 +10679,18 @@ msgid "This month is already billed."
 msgstr "本月已开账单。"
 
 #: apps/webapp/mess_views.py
+msgid "Extra removed."
+msgstr "已删除加餐。"
+
+#: apps/webapp/mess_views.py
+msgid "Bill %(number)s created for the extras."
+msgstr "已为加餐创建账单 %(number)s。"
+
+#: apps/webapp/mess_views.py
+msgid "No extras waiting to be billed."
+msgstr "没有等待开账单的加餐。"
+
+#: apps/webapp/mess_views.py
 msgid "Mon"
 msgstr "周一"
 
@@ -10493,6 +10726,10 @@ msgstr "停餐 %(days)s 天及以上，下一张账单按每天 %(amount)s 退�
 #: apps/webapp/mess_views.py
 msgid "%(n)s mess bills created."
 msgstr "已创建 %(n)s 张膳食账单。"
+
+#: apps/webapp/mess_views.py
+msgid "Menu saved."
+msgstr "菜单已保存。"
 
 #: apps/webapp/onboarding_views.py
 msgid "Check the price and stock for “%(name)s”."

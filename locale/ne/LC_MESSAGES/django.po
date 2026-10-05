@@ -634,8 +634,16 @@ msgid "Mess dues"
 msgstr "मेस बाँकी"
 
 #: templates/webapp/_industry_nav.html
-msgid "Mess plans"
-msgstr "मेस योजना"
+msgid "Delivery"
+msgstr "डेलिभरी"
+
+#: templates/webapp/_industry_nav.html
+msgid "Extras"
+msgstr "थप परिकार"
+
+#: templates/webapp/_industry_nav.html
+msgid "Plans & menu"
+msgstr "योजना र मेनु"
 
 #: templates/webapp/_industry_nav.html
 msgid "My website"
@@ -4794,6 +4802,10 @@ msgid "mess cut"
 msgstr "मेस कट"
 
 #: templates/webapp/mess/bills.html
+msgid "extras"
+msgstr "थप"
+
+#: templates/webapp/mess/bills.html
 msgid "Create all bills"
 msgstr "सबै बिल बनाउनुहोस्"
 
@@ -4806,12 +4818,102 @@ msgstr ""
 "अनुमति दिए गत महिनाका मेस-कट दिन यो बिलबाट घट्छन्।"
 
 #: templates/webapp/mess/bills.html
+msgid "Extras given so far are added to each bill."
+msgstr "अहिलेसम्म दिइएका थप परिकार हरेक बिलमा थपिन्छन्।"
+
+#: templates/webapp/mess/bills.html
 msgid "No mess bills for this month."
 msgstr "यो महिना कुनै मेस बिल छैन।"
+
+#: templates/webapp/mess/delivery.html
+msgid "Mess delivery"
+msgstr "मेस डेलिभरी"
+
+#: templates/webapp/mess/delivery.html
+msgid "Send list to delivery boy"
+msgstr "सूची डेलिभरी केटालाई पठाउनुहोस्"
+
+#: templates/webapp/mess/delivery.html
+msgid "Breakfast"
+msgstr "बिहानको खाजा"
+
+#: templates/webapp/mess/delivery.html
+msgid "Lunch"
+msgstr "दिउँसोको खाना"
+
+#: templates/webapp/mess/delivery.html
+msgid "Dinner"
+msgstr "बेलुकाको खाना"
+
+#: templates/webapp/mess/delivery.html
+msgid "still to deliver"
+msgstr "डेलिभर गर्न बाँकी"
+
+#: templates/webapp/mess/delivery.html
+msgid "No address — add it on the member page"
+msgstr "ठेगाना छैन — सदस्य पृष्ठमा थप्नुहोस्"
+
+#: templates/webapp/mess/delivery.html
+msgid "Delivered"
+msgstr "डेलिभर भयो"
+
+#: templates/webapp/mess/delivery.html
+msgid "Mark delivered"
+msgstr "डेलिभर भयो"
+
+#: templates/webapp/mess/delivery.html
+msgid "No deliveries for this meal today."
+msgstr "आज यो छाकको डेलिभरी छैन।"
+
+#: templates/webapp/mess/delivery.html
+msgid ""
+"To deliver a member's meals, open the member and tick the delivered meals."
+msgstr ""
+"सदस्यको खाना पुर्‍याउन, सदस्य पृष्ठ खोलेर डेलिभर हुने छाक टिक गर्नुहोस्।"
 
 #: templates/webapp/mess/dues.html
 msgid "No mess dues. Everyone has paid."
 msgstr "कुनै मेस बाँकी छैन। सबैले तिरे।"
+
+#: templates/webapp/mess/extras.html
+msgid "Mess extras"
+msgstr "मेस थप परिकार"
+
+#: templates/webapp/mess/extras.html
+msgid ""
+"Things members can take on top of their plan — chicken, egg, fish fry, "
+"juice. Tap one on Today's meals and it goes on the member's next mess bill."
+msgstr ""
+"योजनाबाहेक सदस्यले लिने — कुखुरा, अण्डा, माछा फ्राइ, जुस। आजको खाना पृष्ठमा "
+"एउटामा ट्याप गर्दा सदस्यको अर्को मेस बिलमा थपिन्छ।"
+
+#: templates/webapp/mess/extras.html
+msgid "New extra"
+msgstr "नयाँ थप परिकार"
+
+#: templates/webapp/mess/extras.html
+msgid "Extra items"
+msgstr "थप सामानहरू"
+
+#: templates/webapp/mess/extras.html
+msgid "Extra item"
+msgstr "थप सामान"
+
+#: templates/webapp/mess/extras.html
+msgid "Hide"
+msgstr "लुकाउनुहोस्"
+
+#: templates/webapp/mess/extras.html
+msgid "Show"
+msgstr "देखाउनुहोस्"
+
+#: templates/webapp/mess/extras.html
+msgid "No extras yet."
+msgstr "अझै थप परिकार छैन।"
+
+#: templates/webapp/mess/extras.html
+msgid "Example: Chicken curry 5, Egg 1.5, Fish fry 6."
+msgstr "उदाहरण: चिकेन करी 5, अण्डा 1.5, माछा फ्राइ 6।"
 
 #: templates/webapp/mess/form.html
 msgid "Please check the highlighted fields."
@@ -4822,20 +4924,24 @@ msgid "Mess — today's meals"
 msgstr "मेस — आजको खाना"
 
 #: templates/webapp/mess/home.html
-msgid "Breakfast"
-msgstr "बिहानको खाजा"
-
-#: templates/webapp/mess/home.html
-msgid "Lunch"
-msgstr "दिउँसोको खाना"
-
-#: templates/webapp/mess/home.html
-msgid "Dinner"
-msgstr "बेलुकाको खाना"
-
-#: templates/webapp/mess/home.html
 msgid "still to eat"
 msgstr "अझै खान बाँकी"
+
+#: templates/webapp/mess/home.html
+msgid "at the shop"
+msgstr "पसलमा"
+
+#: templates/webapp/mess/home.html
+msgid "delivery"
+msgstr "डेलिभरी"
+
+#: templates/webapp/mess/home.html
+msgid "Today's menu"
+msgstr "आजको मेनु"
+
+#: templates/webapp/mess/home.html
+msgid "Weekly menu"
+msgstr "साप्ताहिक मेनु"
 
 #: templates/webapp/mess/home.html
 msgid "Start your mess"
@@ -4862,10 +4968,6 @@ msgid "Name, phone or member no."
 msgstr "नाम, फोन वा सदस्य नं."
 
 #: templates/webapp/mess/home.html
-msgid "Plans"
-msgstr "योजनाहरू"
-
-#: templates/webapp/mess/home.html
 msgid "members eating today"
 msgstr "सदस्य आज खाँदैछन्"
 
@@ -4884,6 +4986,14 @@ msgstr "आज मेस कट"
 #: templates/webapp/mess/home.html
 msgid "Tap to undo"
 msgstr "पूर्ववत् गर्न ट्याप गर्नुहोस्"
+
+#: templates/webapp/mess/home.html
+msgid "Extra (chicken, egg…)"
+msgstr "थप (कुखुरा, अण्डा…)"
+
+#: templates/webapp/mess/home.html
+msgid "Other item"
+msgstr "अर्को सामान"
 
 #: templates/webapp/mess/home.html
 msgid "No member found."
@@ -4914,6 +5024,27 @@ msgid "Save mess cut"
 msgstr "मेस कट सेभ गर्नुहोस्"
 
 #: templates/webapp/mess/member.html
+msgid "Things given on top of the plan. They are added to the next mess bill."
+msgstr "योजनाबाहेक दिइएका कुरा। यी अर्को मेस बिलमा थपिन्छन्।"
+
+#: templates/webapp/mess/member.html
+msgid "Edit extra items"
+msgstr "थप सामान सम्पादन गर्नुहोस्"
+
+#: templates/webapp/mess/member.html
+msgid "not billed yet"
+msgstr "अझै बिल भएको छैन"
+
+#: templates/webapp/mess/member.html
+msgid "Bill extras now"
+msgstr "थप परिकारको बिल अहिले बनाउनुहोस्"
+
+#: templates/webapp/mess/member.html
+msgid ""
+"Only if the member is leaving — otherwise they go on the next monthly bill."
+msgstr "सदस्य छोड्दै भए मात्र — नत्र अर्को मासिक बिलमा थपिन्छ।"
+
+#: templates/webapp/mess/member.html
 msgid "Bills"
 msgstr "बिलहरू"
 
@@ -4930,6 +5061,14 @@ msgid "Member"
 msgstr "सदस्य"
 
 #: templates/webapp/mess/member.html
+msgid "Eats"
+msgstr "खाने"
+
+#: templates/webapp/mess/member.html
+msgid "Delivery address"
+msgstr "डेलिभरी ठेगाना"
+
+#: templates/webapp/mess/member.html
 msgid "Ended"
 msgstr "सकियो"
 
@@ -4941,6 +5080,74 @@ msgstr "यो मेस सदस्यता अन्त्य गर्न�
 msgid "End membership"
 msgstr "सदस्यता अन्त्य गर्नुहोस्"
 
+#: templates/webapp/mess/menu.html
+msgid "Mess plans"
+msgstr "मेस योजना"
+
+#: templates/webapp/mess/menu.html
+msgid ""
+"Type the dishes for each day. Leave a box empty if nothing is fixed. Today's"
+" menu shows on the Mess page."
+msgstr ""
+"हरेक दिनका परिकार लेख्नुहोस्। केही तय नभए बाकस खाली छोड्नुहोस्। आजको मेनु "
+"मेस पृष्ठमा देखिन्छ।"
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Puttu, kadala curry, tea"
+msgstr "जस्तै पुट्टु, चना करी, चिया"
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Rice, sambar, fish curry, thoran"
+msgstr "जस्तै भात, साम्बर, माछा करी, तोरन"
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Chapati, chicken curry"
+msgstr "जस्तै चपाती, चिकेन करी"
+
+#: templates/webapp/mess/menu.html
+msgid "Save menu"
+msgstr "मेनु सुरक्षित गर्नुहोस्"
+
+#: templates/webapp/mess/menu.html
+msgid "Send the menu"
+msgstr "मेनु पठाउनुहोस्"
+
+#: templates/webapp/mess/menu.html
+msgid "Share weekly menu on WhatsApp"
+msgstr "साप्ताहिक मेनु WhatsApp मा सेयर गर्नुहोस्"
+
+#: templates/webapp/mess/menu.html
+msgid "Share today's menu"
+msgstr "आजको मेनु सेयर गर्नुहोस्"
+
+#: templates/webapp/mess/menu.html
+msgid "Print for the notice board"
+msgstr "सूचना पाटीका लागि प्रिन्ट गर्नुहोस्"
+
+#: templates/webapp/mess/menu.html
+msgid ""
+"Tip: share it once to your members' WhatsApp group or broadcast list — "
+"everyone gets it in one go."
+msgstr ""
+"सुझाव: सदस्यहरूको WhatsApp समूह वा ब्रोडकास्ट सूचीमा एक पटक सेयर गर्नुहोस् —"
+" सबैले एकैचोटि पाउँछन्।"
+
+#: templates/webapp/mess/menu.html
+msgid "Or send one by one"
+msgstr "वा एक-एक गरी पठाउनुहोस्"
+
+#: templates/webapp/mess/menu.html
+msgid "members with a phone"
+msgstr "फोन भएका सदस्य"
+
+#: templates/webapp/mess/menu.html
+msgid "Week"
+msgstr "हप्ता"
+
+#: templates/webapp/mess/menu.html
+msgid "Add phone numbers to members to send them the menu one by one."
+msgstr "एक-एक गरी मेनु पठाउन सदस्यहरूको फोन नम्बर थप्नुहोस्।"
+
 #: templates/webapp/mess/plans.html
 msgid "New mess plan"
 msgstr "नयाँ मेस योजना"
@@ -4948,6 +5155,10 @@ msgstr "नयाँ मेस योजना"
 #: templates/webapp/mess/plans.html
 msgid "Mess cut / day"
 msgstr "मेस कट / दिन"
+
+#: templates/webapp/mess/plans.html
+msgid "Add weekly menu"
+msgstr "साप्ताहिक मेनु थप्नुहोस्"
 
 #: templates/webapp/mess/plans.html
 msgid "No mess plans yet."
@@ -7650,10 +7861,6 @@ msgid "Ready to collect"
 msgstr "लैजान तयार"
 
 #: templates/webapp/restaurant/new_order.html
-msgid "Delivery"
-msgstr "डेलिभरी"
-
-#: templates/webapp/restaurant/new_order.html
 msgid "Send to customer"
 msgstr "ग्राहकलाई पठाउनुहोस्"
 
@@ -7692,10 +7899,6 @@ msgstr "पाहुना"
 #: templates/webapp/restaurant/new_order.html
 msgid "Delivery phone"
 msgstr "डेलिभरी फोन"
-
-#: templates/webapp/restaurant/new_order.html
-msgid "Delivery address"
-msgstr "डेलिभरी ठेगाना"
 
 #: templates/webapp/restaurant/new_order.html
 msgid "Takeaway order"
@@ -8576,10 +8779,6 @@ msgstr "बिक्री अर्डर"
 #: templates/webapp/sales_docs/order_detail.html
 msgid "SALES ORDER"
 msgstr "बिक्री अर्डर"
-
-#: templates/webapp/sales_docs/order_detail.html
-msgid "Delivered"
-msgstr "डेलिभर भयो"
 
 #: templates/webapp/sales_docs/order_detail.html
 msgid "Invoiced"
@@ -10521,6 +10720,19 @@ msgid "This module isn't part of your business type."
 msgstr "यो मोड्युल तपाईंको व्यवसाय प्रकारको भाग होइन।"
 
 #: apps/webapp/mess_views.py
+msgid "Delivered meals"
+msgstr "डेलिभर हुने छाक"
+
+#: apps/webapp/mess_views.py
+msgid ""
+"Tick the meals you carry to this member. The rest are eaten at the shop."
+msgstr "यो सदस्यलाई पुर्‍याउने छाक टिक गर्नुहोस्। बाँकी पसलमा खाइन्छ।"
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Al Noor Trading, Building 12, 3rd floor"
+msgstr "जस्तै अल नूर ट्रेडिङ, भवन 12, तेस्रो तला"
+
+#: apps/webapp/mess_views.py
 msgid "Plan name"
 msgstr "योजनाको नाम"
 
@@ -10589,12 +10801,28 @@ msgid "Choose a customer or type the new member's name."
 msgstr "ग्राहक छान्नुहोस् वा नयाँ सदस्यको नाम लेख्नुहोस्।"
 
 #: apps/webapp/mess_views.py
+msgid "e.g. Chicken curry, Egg, Fish fry"
+msgstr "जस्तै चिकेन करी, अण्डा, माछा फ्राइ"
+
+#: apps/webapp/mess_views.py
+msgid "An extra with this name already exists."
+msgstr "यो नामको थप परिकार पहिल्यै छ।"
+
+#: apps/webapp/mess_views.py
 msgid "e.g. Going home on vacation"
 msgstr "जस्तै बिदामा घर जाँदै"
 
 #: apps/webapp/mess_views.py
+msgid "%(item)s added to %(name)s's bill."
+msgstr "%(item)s %(name)s को बिलमा थपियो।"
+
+#: apps/webapp/mess_views.py
 msgid "%(meal)s served to %(name)s."
 msgstr "%(name)s लाई %(meal)s पस्कियो।"
+
+#: apps/webapp/mess_views.py
+msgid "Unknown extra."
+msgstr "अज्ञात थप परिकार।"
 
 #: apps/webapp/mess_views.py
 msgid "Plan saved."
@@ -10633,6 +10861,18 @@ msgid "This month is already billed."
 msgstr "यो महिनाको बिल पहिल्यै बनिसकेको छ।"
 
 #: apps/webapp/mess_views.py
+msgid "Extra removed."
+msgstr "थप परिकार हटाइयो।"
+
+#: apps/webapp/mess_views.py
+msgid "Bill %(number)s created for the extras."
+msgstr "थप परिकारका लागि बिल %(number)s बनाइयो।"
+
+#: apps/webapp/mess_views.py
+msgid "No extras waiting to be billed."
+msgstr "बिल गर्न कुनै थप परिकार बाँकी छैन।"
+
+#: apps/webapp/mess_views.py
 msgid "Mon"
 msgstr "सोम"
 
@@ -10668,6 +10908,10 @@ msgstr "%(days)s+ दिनको मेस कटमा अर्को बि�
 #: apps/webapp/mess_views.py
 msgid "%(n)s mess bills created."
 msgstr "%(n)s मेस बिल बनाइयो।"
+
+#: apps/webapp/mess_views.py
+msgid "Menu saved."
+msgstr "मेनु सुरक्षित गरियो।"
 
 #: apps/webapp/onboarding_views.py
 msgid "Check the price and stock for “%(name)s”."

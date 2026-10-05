@@ -634,8 +634,16 @@ msgid "Mess dues"
 msgstr "மெஸ் நிலுவைகள்"
 
 #: templates/webapp/_industry_nav.html
-msgid "Mess plans"
-msgstr "மெஸ் திட்டங்கள்"
+msgid "Delivery"
+msgstr "டெலிவரி"
+
+#: templates/webapp/_industry_nav.html
+msgid "Extras"
+msgstr "கூடுதல் உணவுகள்"
+
+#: templates/webapp/_industry_nav.html
+msgid "Plans & menu"
+msgstr "திட்டங்கள் & மெனு"
 
 #: templates/webapp/_industry_nav.html
 msgid "My website"
@@ -4839,6 +4847,10 @@ msgid "mess cut"
 msgstr "மெஸ் கட்"
 
 #: templates/webapp/mess/bills.html
+msgid "extras"
+msgstr "கூடுதல்"
+
+#: templates/webapp/mess/bills.html
 msgid "Create all bills"
 msgstr "அனைத்து பில்களையும் உருவாக்கு"
 
@@ -4852,12 +4864,104 @@ msgstr ""
 "பில்லில் கழிக்கப்படும்."
 
 #: templates/webapp/mess/bills.html
+msgid "Extras given so far are added to each bill."
+msgstr "இதுவரை கொடுத்த கூடுதல் உணவுகள் ஒவ்வொரு பில்லிலும் சேர்க்கப்படும்."
+
+#: templates/webapp/mess/bills.html
 msgid "No mess bills for this month."
 msgstr "இந்த மாதம் மெஸ் பில்கள் இல்லை."
+
+#: templates/webapp/mess/delivery.html
+msgid "Mess delivery"
+msgstr "மெஸ் டெலிவரி"
+
+#: templates/webapp/mess/delivery.html
+msgid "Send list to delivery boy"
+msgstr "பட்டியலை டெலிவரி பையனுக்கு அனுப்பு"
+
+#: templates/webapp/mess/delivery.html
+msgid "Breakfast"
+msgstr "காலை உணவு"
+
+#: templates/webapp/mess/delivery.html
+msgid "Lunch"
+msgstr "மதிய உணவு"
+
+#: templates/webapp/mess/delivery.html
+msgid "Dinner"
+msgstr "இரவு உணவு"
+
+#: templates/webapp/mess/delivery.html
+msgid "still to deliver"
+msgstr "டெலிவரி செய்ய மீதம்"
+
+#: templates/webapp/mess/delivery.html
+msgid "No address — add it on the member page"
+msgstr "முகவரி இல்லை — உறுப்பினர் பக்கத்தில் சேர்க்கவும்"
+
+#: templates/webapp/mess/delivery.html
+msgid "Delivered"
+msgstr "டெலிவரி செய்யப்பட்டது"
+
+#: templates/webapp/mess/delivery.html
+msgid "Mark delivered"
+msgstr "டெலிவரி செய்தாயிற்று"
+
+#: templates/webapp/mess/delivery.html
+msgid "No deliveries for this meal today."
+msgstr "இன்று இந்த வேளைக்கு டெலிவரி இல்லை."
+
+#: templates/webapp/mess/delivery.html
+msgid ""
+"To deliver a member's meals, open the member and tick the delivered meals."
+msgstr ""
+"ஒரு உறுப்பினருக்கு உணவு கொண்டு செல்ல, உறுப்பினர் பக்கத்தைத் திறந்து டெலிவரி "
+"வேளைகளைத் தேர்வுசெய்யவும்."
 
 #: templates/webapp/mess/dues.html
 msgid "No mess dues. Everyone has paid."
 msgstr "மெஸ் நிலுவை இல்லை. அனைவரும் செலுத்திவிட்டனர்."
+
+#: templates/webapp/mess/extras.html
+msgid "Mess extras"
+msgstr "மெஸ் கூடுதல் உணவுகள்"
+
+#: templates/webapp/mess/extras.html
+msgid ""
+"Things members can take on top of their plan — chicken, egg, fish fry, "
+"juice. Tap one on Today's meals and it goes on the member's next mess bill."
+msgstr ""
+"திட்டத்திற்கு மேல் உறுப்பினர்கள் எடுப்பவை — சிக்கன், முட்டை, மீன் வறுவல், "
+"ஜூஸ். இன்றைய உணவு பக்கத்தில் ஒன்றைத் தட்டினால் உறுப்பினரின் அடுத்த மெஸ் "
+"பில்லில் சேரும்."
+
+#: templates/webapp/mess/extras.html
+msgid "New extra"
+msgstr "புதிய கூடுதல் உணவு"
+
+#: templates/webapp/mess/extras.html
+msgid "Extra items"
+msgstr "கூடுதல் பொருட்கள்"
+
+#: templates/webapp/mess/extras.html
+msgid "Extra item"
+msgstr "கூடுதல் பொருள்"
+
+#: templates/webapp/mess/extras.html
+msgid "Hide"
+msgstr "மறை"
+
+#: templates/webapp/mess/extras.html
+msgid "Show"
+msgstr "காட்டு"
+
+#: templates/webapp/mess/extras.html
+msgid "No extras yet."
+msgstr "இன்னும் கூடுதல் உணவுகள் இல்லை."
+
+#: templates/webapp/mess/extras.html
+msgid "Example: Chicken curry 5, Egg 1.5, Fish fry 6."
+msgstr "உதாரணம்: சிக்கன் கறி 5, முட்டை 1.5, மீன் வறுவல் 6."
 
 #: templates/webapp/mess/form.html
 msgid "Please check the highlighted fields."
@@ -4868,20 +4972,24 @@ msgid "Mess — today's meals"
 msgstr "மெஸ் — இன்றைய உணவுகள்"
 
 #: templates/webapp/mess/home.html
-msgid "Breakfast"
-msgstr "காலை உணவு"
-
-#: templates/webapp/mess/home.html
-msgid "Lunch"
-msgstr "மதிய உணவு"
-
-#: templates/webapp/mess/home.html
-msgid "Dinner"
-msgstr "இரவு உணவு"
-
-#: templates/webapp/mess/home.html
 msgid "still to eat"
 msgstr "இன்னும் சாப்பிட வேண்டியவர்கள்"
+
+#: templates/webapp/mess/home.html
+msgid "at the shop"
+msgstr "கடையில்"
+
+#: templates/webapp/mess/home.html
+msgid "delivery"
+msgstr "டெலிவரி"
+
+#: templates/webapp/mess/home.html
+msgid "Today's menu"
+msgstr "இன்றைய மெனு"
+
+#: templates/webapp/mess/home.html
+msgid "Weekly menu"
+msgstr "வார மெனு"
 
 #: templates/webapp/mess/home.html
 msgid "Start your mess"
@@ -4910,10 +5018,6 @@ msgid "Name, phone or member no."
 msgstr "பெயர், ஃபோன் அல்லது உறுப்பினர் எண்"
 
 #: templates/webapp/mess/home.html
-msgid "Plans"
-msgstr "திட்டங்கள்"
-
-#: templates/webapp/mess/home.html
 msgid "members eating today"
 msgstr "இன்று சாப்பிடும் உறுப்பினர்கள்"
 
@@ -4932,6 +5036,14 @@ msgstr "இன்று மெஸ் கட்"
 #: templates/webapp/mess/home.html
 msgid "Tap to undo"
 msgstr "செயல்தவிர்க்கத் தட்டவும்"
+
+#: templates/webapp/mess/home.html
+msgid "Extra (chicken, egg…)"
+msgstr "கூடுதல் (சிக்கன், முட்டை…)"
+
+#: templates/webapp/mess/home.html
+msgid "Other item"
+msgstr "வேறு பொருள்"
 
 #: templates/webapp/mess/home.html
 msgid "No member found."
@@ -4962,6 +5074,28 @@ msgid "Save mess cut"
 msgstr "மெஸ் கட்டைச் சேமி"
 
 #: templates/webapp/mess/member.html
+msgid "Things given on top of the plan. They are added to the next mess bill."
+msgstr "திட்டத்திற்கு மேல் கொடுத்தவை. அடுத்த மெஸ் பில்லில் சேர்க்கப்படும்."
+
+#: templates/webapp/mess/member.html
+msgid "Edit extra items"
+msgstr "கூடுதல் பொருட்களைத் திருத்து"
+
+#: templates/webapp/mess/member.html
+msgid "not billed yet"
+msgstr "இன்னும் பில் போடவில்லை"
+
+#: templates/webapp/mess/member.html
+msgid "Bill extras now"
+msgstr "கூடுதல் உணவுகளுக்கு இப்போது பில் போடு"
+
+#: templates/webapp/mess/member.html
+msgid ""
+"Only if the member is leaving — otherwise they go on the next monthly bill."
+msgstr ""
+"உறுப்பினர் விலகினால் மட்டும் — இல்லையெனில் அடுத்த மாத பில்லில் சேரும்."
+
+#: templates/webapp/mess/member.html
 msgid "Bills"
 msgstr "பில்கள்"
 
@@ -4978,6 +5112,14 @@ msgid "Member"
 msgstr "உறுப்பினர்"
 
 #: templates/webapp/mess/member.html
+msgid "Eats"
+msgstr "சாப்பிடுவது"
+
+#: templates/webapp/mess/member.html
+msgid "Delivery address"
+msgstr "டெலிவரி முகவரி"
+
+#: templates/webapp/mess/member.html
 msgid "Ended"
 msgstr "முடிந்தது"
 
@@ -4989,6 +5131,75 @@ msgstr "இந்த மெஸ் உறுப்பினர் நிலைய
 msgid "End membership"
 msgstr "உறுப்பினர் நிலையை முடி"
 
+#: templates/webapp/mess/menu.html
+msgid "Mess plans"
+msgstr "மெஸ் திட்டங்கள்"
+
+#: templates/webapp/mess/menu.html
+msgid ""
+"Type the dishes for each day. Leave a box empty if nothing is fixed. Today's"
+" menu shows on the Mess page."
+msgstr ""
+"ஒவ்வொரு நாளுக்குமான உணவுகளை உள்ளிடவும். எதுவும் நிச்சயமில்லையெனில் "
+"பெட்டியைக் காலியாக விடவும். இன்றைய மெனு மெஸ் பக்கத்தில் காட்டப்படும்."
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Puttu, kadala curry, tea"
+msgstr "எ.கா. புட்டு, கடலைக் கறி, டீ"
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Rice, sambar, fish curry, thoran"
+msgstr "எ.கா. சாதம், சாம்பார், மீன் கறி, பொரியல்"
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Chapati, chicken curry"
+msgstr "எ.கா. சப்பாத்தி, சிக்கன் கறி"
+
+#: templates/webapp/mess/menu.html
+msgid "Save menu"
+msgstr "மெனுவைச் சேமி"
+
+#: templates/webapp/mess/menu.html
+msgid "Send the menu"
+msgstr "மெனுவை அனுப்பு"
+
+#: templates/webapp/mess/menu.html
+msgid "Share weekly menu on WhatsApp"
+msgstr "வார மெனுவை WhatsApp-இல் பகிர்"
+
+#: templates/webapp/mess/menu.html
+msgid "Share today's menu"
+msgstr "இன்றைய மெனுவைப் பகிர்"
+
+#: templates/webapp/mess/menu.html
+msgid "Print for the notice board"
+msgstr "அறிவிப்புப் பலகைக்கு அச்சிடு"
+
+#: templates/webapp/mess/menu.html
+msgid ""
+"Tip: share it once to your members' WhatsApp group or broadcast list — "
+"everyone gets it in one go."
+msgstr ""
+"குறிப்பு: உறுப்பினர்களின் WhatsApp குழு அல்லது ஒளிபரப்புப் பட்டியலில் "
+"ஒருமுறை பகிருங்கள் — அனைவருக்கும் ஒரே நேரத்தில் கிடைக்கும்."
+
+#: templates/webapp/mess/menu.html
+msgid "Or send one by one"
+msgstr "அல்லது ஒவ்வொருவருக்கும் அனுப்பு"
+
+#: templates/webapp/mess/menu.html
+msgid "members with a phone"
+msgstr "தொலைபேசி எண் உள்ள உறுப்பினர்கள்"
+
+#: templates/webapp/mess/menu.html
+msgid "Week"
+msgstr "வாரம்"
+
+#: templates/webapp/mess/menu.html
+msgid "Add phone numbers to members to send them the menu one by one."
+msgstr ""
+"ஒவ்வொருவருக்கும் மெனு அனுப்ப உறுப்பினர்களின் தொலைபேசி எண்களைச் சேர்க்கவும்."
+
 #: templates/webapp/mess/plans.html
 msgid "New mess plan"
 msgstr "புதிய மெஸ் திட்டம்"
@@ -4996,6 +5207,10 @@ msgstr "புதிய மெஸ் திட்டம்"
 #: templates/webapp/mess/plans.html
 msgid "Mess cut / day"
 msgstr "மெஸ் கட் / நாள்"
+
+#: templates/webapp/mess/plans.html
+msgid "Add weekly menu"
+msgstr "வார மெனுவைச் சேர்"
 
 #: templates/webapp/mess/plans.html
 msgid "No mess plans yet."
@@ -7733,10 +7948,6 @@ msgid "Ready to collect"
 msgstr "எடுத்துச் செல்லத் தயார்"
 
 #: templates/webapp/restaurant/new_order.html
-msgid "Delivery"
-msgstr "டெலிவரி"
-
-#: templates/webapp/restaurant/new_order.html
 msgid "Send to customer"
 msgstr "வாடிக்கையாளருக்கு அனுப்பு"
 
@@ -7775,10 +7986,6 @@ msgstr "விருந்தினர்கள்"
 #: templates/webapp/restaurant/new_order.html
 msgid "Delivery phone"
 msgstr "டெலிவரி ஃபோன்"
-
-#: templates/webapp/restaurant/new_order.html
-msgid "Delivery address"
-msgstr "டெலிவரி முகவரி"
 
 #: templates/webapp/restaurant/new_order.html
 msgid "Takeaway order"
@@ -8668,10 +8875,6 @@ msgstr "விற்பனை ஆர்டர்"
 #: templates/webapp/sales_docs/order_detail.html
 msgid "SALES ORDER"
 msgstr "விற்பனை ஆர்டர்"
-
-#: templates/webapp/sales_docs/order_detail.html
-msgid "Delivered"
-msgstr "டெலிவரி செய்யப்பட்டது"
 
 #: templates/webapp/sales_docs/order_detail.html
 msgid "Invoiced"
@@ -10655,6 +10858,21 @@ msgid "This module isn't part of your business type."
 msgstr "இந்தத் தொகுதி உங்கள் வணிக வகையின் பகுதி அல்ல."
 
 #: apps/webapp/mess_views.py
+msgid "Delivered meals"
+msgstr "டெலிவரி செய்யும் வேளைகள்"
+
+#: apps/webapp/mess_views.py
+msgid ""
+"Tick the meals you carry to this member. The rest are eaten at the shop."
+msgstr ""
+"இந்த உறுப்பினருக்குக் கொண்டு செல்லும் வேளைகளைத் தேர்வுசெய்யவும். மற்றவை "
+"கடையில் சாப்பிடப்படும்."
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Al Noor Trading, Building 12, 3rd floor"
+msgstr "எ.கா. அல் நூர் டிரேடிங், கட்டடம் 12, 3வது மாடி"
+
+#: apps/webapp/mess_views.py
 msgid "Plan name"
 msgstr "திட்டப் பெயர்"
 
@@ -10726,12 +10944,28 @@ msgstr ""
 "வாடிக்கையாளரைத் தேர்ந்தெடுக்கவும் அல்லது புதிய உறுப்பினர் பெயரை உள்ளிடவும்."
 
 #: apps/webapp/mess_views.py
+msgid "e.g. Chicken curry, Egg, Fish fry"
+msgstr "எ.கா. சிக்கன் கறி, முட்டை, மீன் வறுவல்"
+
+#: apps/webapp/mess_views.py
+msgid "An extra with this name already exists."
+msgstr "இந்தப் பெயரில் ஒரு கூடுதல் உணவு ஏற்கனவே உள்ளது."
+
+#: apps/webapp/mess_views.py
 msgid "e.g. Going home on vacation"
 msgstr "எ.கா. விடுமுறைக்கு ஊருக்குச் செல்கிறார்"
 
 #: apps/webapp/mess_views.py
+msgid "%(item)s added to %(name)s's bill."
+msgstr "%(item)s, %(name)s இன் பில்லில் சேர்க்கப்பட்டது."
+
+#: apps/webapp/mess_views.py
 msgid "%(meal)s served to %(name)s."
 msgstr "%(name)s-க்கு %(meal)s பரிமாறப்பட்டது."
+
+#: apps/webapp/mess_views.py
+msgid "Unknown extra."
+msgstr "தெரியாத கூடுதல் உணவு."
 
 #: apps/webapp/mess_views.py
 msgid "Plan saved."
@@ -10768,6 +11002,18 @@ msgstr "பில் உருவாக்கப்பட்டது."
 #: apps/webapp/mess_views.py
 msgid "This month is already billed."
 msgstr "இந்த மாதத்திற்கு ஏற்கனவே பில் போடப்பட்டது."
+
+#: apps/webapp/mess_views.py
+msgid "Extra removed."
+msgstr "கூடுதல் உணவு நீக்கப்பட்டது."
+
+#: apps/webapp/mess_views.py
+msgid "Bill %(number)s created for the extras."
+msgstr "கூடுதல் உணவுகளுக்கு பில் %(number)s உருவாக்கப்பட்டது."
+
+#: apps/webapp/mess_views.py
+msgid "No extras waiting to be billed."
+msgstr "பில் போட கூடுதல் உணவுகள் எதுவும் இல்லை."
 
 #: apps/webapp/mess_views.py
 msgid "Mon"
@@ -10807,6 +11053,10 @@ msgstr ""
 #: apps/webapp/mess_views.py
 msgid "%(n)s mess bills created."
 msgstr "%(n)s மெஸ் பில்கள் உருவாக்கப்பட்டன."
+
+#: apps/webapp/mess_views.py
+msgid "Menu saved."
+msgstr "மெனு சேமிக்கப்பட்டது."
 
 #: apps/webapp/onboarding_views.py
 msgid "Check the price and stock for “%(name)s”."

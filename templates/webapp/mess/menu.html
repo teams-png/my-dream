@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Weekly menu" %} · {{ plan.name }}{% endblock %}
+{% block heading %}📋 {% translate "Weekly menu" %} · {{ plan.name }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.wm{width:100%;border-collapse:separate;border-spacing:0 8px}
+.wm th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);text-align:start;padding:0 6px}
+.wm td{padding:0 6px;vertical-align:top}.wm td.day{font-weight:800;white-space:nowrap;padding-top:10px;width:110px}
+.wm tr.today td.day{color:var(--accent)}.wm textarea{width:100%;min-height:46px;resize:vertical;font:inherit;font-size:14px;padding:8px 10px;border:1.5px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink)}
+.wm tr.today textarea{border-color:var(--accent)}
+.wm-share{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+@media(max-width:720px){.wm thead{display:none}.wm,.wm tbody,.wm tr,.wm td{display:block;width:100%}.wm tr{border:1px solid var(--line);border-radius:14px;padding:8px;margin-bottom:10px;background:var(--panel)}.wm td.day{width:auto;padding:2px 6px 6px}.wm td[data-meal]::before{content:attr(data-meal);display:block;font-size:12px;font-weight:700;color:var(--ink-soft);margin:4px 0 2px}}
+</style>
+<div class="ix">
+  <div class="ix-toolbar"><a class="btn btn-secondary" href="{% url 'webapp:mess_plans' %}">← {% translate "Mess plans" %}</a><span class="grow"></span>
+    {% if filled %}<a class="btn btn-secondary" href="?print=1" target="_blank">🖨 {% translate "Print" %}</a>{% endif %}</div>
+  <p style="color:var(--ink-soft);margin-top:-4px">{% translate "Type the dishes for each day. Leave a box empty if nothing is fixed. Today's menu shows on the Mess page." %}</p>
+
+  <form method="post" class="ix-card">{% csrf_token %}
+    <table class="wm">
+      <thead><tr><th></th>{% for meal in meals %}<th>{% if meal == "breakfast" %}☕ {% translate "Breakfast" %}{% elif meal == "lunch" %}🍛 {% translate "Lunch" %}{% else %}🌙 {% translate "Dinner" %}{% endif %}</th>{% endfor %}</tr></thead>
+      <tbody>{% for r in rows %}<tr{% if r.today %} class="today"{% endif %}><td class="day">{{ r.day }}{% if r.today %} ·{% endif %}</td>
+        {% for c in r.cells %}<td data-meal="{% if c.meal == 'breakfast' %}☕ {% translate 'Breakfast' %}{% elif c.meal == 'lunch' %}🍛 {% translate 'Lunch' %}{% else %}🌙 {% translate 'Dinner' %}{% endif %}"><textarea name="{{ c.name }}" maxlength="255" rows="2" placeholder="{% if c.meal == 'breakfast' %}{% translate 'e.g. Puttu, kadala curry, tea' %}{% elif c.meal == 'lunch' %}{% translate 'e.g. Rice, sambar, fish curry, thoran' %}{% else %}{% translate 'e.g. Chapati, chicken curry' %}{% endif %}">{{ c.value }}</textarea></td>{% endfor %}</tr>{% endfor %}</tbody>
+    </table>
+    <button class="btn" type="submit">✓ {% translate "Save menu" %}</button>
+  </form>
+
+  {% if filled %}
+  <div class="ix-card">
+    <h3>📤 {% translate "Send the menu" %}</h3>
+    <div class="wm-share">
+      <a class="btn" href="{{ share_week }}" target="_blank" rel="noopener">💬 {% translate "Share weekly menu on WhatsApp" %}</a>
+      {% if share_today %}<a class="btn btn-secondary" href="{{ share_today }}" target="_blank" rel="noopener">💬 {% translate "Share today's menu" %}</a>{% endif %}
+      <a class="btn btn-secondary" href="?print=1" target="_blank">🖨 {% translate "Print for the notice board" %}</a>
+    </div>
+    <p style="color:var(--ink-soft);font-size:13px">{% translate "Tip: share it once to your members' WhatsApp group or broadcast list — everyone gets it in one go." %}</p>
+    {% if links %}
+    <details><summary style="cursor:pointer;font-weight:700">{% translate "Or send one by one" %} ({{ links|length }} {% translate "members with a phone" %})</summary>
+      <div class="ix-list" style="margin-top:8px">{% for l in links %}<div class="ix-row"><span class="grow"><b>{{ l.m.number }} · {{ l.m.customer.name }}</b><small>{{ l.m.customer.phone }}</small></span>
+        <a class="btn btn-secondary" href="{{ l.week }}" target="_blank" rel="noopener">💬 {% translate "Week" %}</a>{% if l.today %}<a class="btn btn-secondary" href="{{ l.today }}" target="_blank" rel="noopener">💬 {% translate "Today" %}</a>{% endif %}</div>{% endfor %}</div>
+    </details>
+    {% elif members %}<p style="color:var(--ink-soft);font-size:13px">{% translate "Add phone numbers to members to send them the menu one by one." %}</p>{% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

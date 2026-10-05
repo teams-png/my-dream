@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.conf import settings
 from django.db import models
 
@@ -556,11 +558,20 @@ class MessMember(TenantScopedModel):
     end_date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=8, choices=STATUS, default="active")
     notes = models.CharField(max_length=255, blank=True, help_text="Room, company, food preference…")
+    # meals carried to the member instead of eaten at the shop, e.g. "lunch" or "lunch,dinner"
+    delivery_meals = models.CharField(max_length=40, blank=True)
+    delivery_address = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["number"]
         constraints = [models.UniqueConstraint(fields=["company", "number"], name="unique_mess_member_number")]
+
+    def delivered(self):
+        return [m for m in (self.delivery_meals or "").split(",") if m]
+
+    def delivers(self, meal):
+        return meal in self.delivered()
 
     def __str__(self):
         return f"{self.number} · {self.customer.name}"
@@ -588,9 +599,11 @@ class MessLeave(TenantScopedModel):
 
 class MessMeal(TenantScopedModel):
     MEALS = [("breakfast", "Breakfast"), ("lunch", "Lunch"), ("dinner", "Dinner")]
+    MODES = [("dine_in", "Ate at the shop"), ("delivery", "Delivered")]
     member = models.ForeignKey(MessMember, on_delete=models.CASCADE, related_name="meals")
     date = models.DateField()
     meal = models.CharField(max_length=10, choices=MEALS)
+    mode = models.CharField(max_length=8, choices=MODES, default="dine_in")
     served_at = models.DateTimeField(auto_now_add=True)
     served_by = models.ForeignKey("accounts.User", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
 
@@ -605,9 +618,57 @@ class MessCharge(TenantScopedModel):
     amount = models.DecimalField(max_digits=12, decimal_places=2)
     leave_days = models.PositiveSmallIntegerField(default=0)
     refund = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    extras = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["-period"]
         constraints = [models.UniqueConstraint(fields=["member", "period"], name="one_mess_bill_per_month")]
+
+
+class MessMenu(TenantScopedModel):
+    """What a plan serves on each weekday and meal, e.g. Friday lunch: "Chicken biryani, raita"."""
+    plan = models.ForeignKey(MessPlan, on_delete=models.CASCADE, related_name="menu")
+    weekday = models.PositiveSmallIntegerField()  # 0 = Monday
+    meal = models.CharField(max_length=10, choices=MessMeal.MEALS)
+    items = models.CharField(max_length=255)
+
+    class Meta:
+        ordering = ["weekday", "meal"]
+        constraints = [models.UniqueConstraint(fields=["plan", "weekday", "meal"], name="one_mess_menu_per_slot")]
+
+
+class MessExtraItem(TenantScopedModel):
+    """Something a member can take on top of the plan (chicken, egg, juice) and pay for on the monthly bill."""
+    name = models.CharField(max_length=120)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["name"]
+        constraints = [models.UniqueConstraint(fields=["company", "name"], name="unique_mess_extra_item")]
+
+    def __str__(self):
+        return self.name
+
+
+class MessExtra(TenantScopedModel):
+    """An extra given to a member; billed on the member's next mess bill (or on its own with "bill extras now")."""
+    member = models.ForeignKey(MessMember, on_delete=models.PROTECT, related_name="extras")
+    item = models.ForeignKey(MessExtraItem, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    date = models.DateField()
+    meal = models.CharField(max_length=10, choices=MessMeal.MEALS, blank=True)
+    name = models.CharField(max_length=120)
+    quantity = models.DecimalField(max_digits=8, decimal_places=2, default=1)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+    invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    added_by = models.ForeignKey("accounts.User", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-date", "-id"]
+
+    @property
+    def total(self):
+        return (self.quantity * self.unit_price).quantize(Decimal("0.01"))

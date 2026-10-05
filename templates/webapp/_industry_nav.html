@@ -61,7 +61,9 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'mess_join' %}active{% endif %}" href="{% url 'webapp:mess_join' %}"><span>＋ {% translate "New member" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'mess_bills' %}active{% endif %}" href="{% url 'webapp:mess_bills' %}"><span>{% translate "Monthly bills" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'mess_dues' %}active{% endif %}" href="{% url 'webapp:mess_dues' %}"><span>{% translate "Mess dues" %}</span></a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'mess_plans' or request.resolver_match.url_name == 'mess_plan_add' %}active{% endif %}" href="{% url 'webapp:mess_plans' %}"><span>{% translate "Mess plans" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'mess_delivery' %}active{% endif %}" href="{% url 'webapp:mess_delivery' %}"><span>🛵 {% translate "Delivery" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'mess_extras' %}active{% endif %}" href="{% url 'webapp:mess_extras' %}"><span>🍗 {% translate "Extras" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'mess_plans' or request.resolver_match.url_name == 'mess_plan_add' or request.resolver_match.url_name == 'mess_menu' %}active{% endif %}" href="{% url 'webapp:mess_plans' %}"><span>{% translate "Plans & menu" %}</span></a>
       </details>
 {% endif %}
 {% if request.role.name == "Owner" %}

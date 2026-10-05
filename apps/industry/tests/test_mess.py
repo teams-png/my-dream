@@ -70,7 +70,8 @@ def test_meals_are_ticked_once_and_only_when_allowed():
         svc.add_leave(company=company, member=member, from_date=date(2026, 10, 13), to_date=date(2026, 10, 15))
     count = svc.today(company, date(2026, 10, 12))
     assert {c["meal"]: c["expected"] for c in count["meals"]} == {"breakfast": 0, "lunch": 0, "dinner": 0}
-    assert svc.today(company, day)["meals"][1] == {"meal": "lunch", "expected": 1, "served": 1, "left": 0}
+    assert svc.today(company, day)["meals"][1] == {"meal": "lunch", "expected": 1, "served": 1, "left": 0,
+                                                    "delivery": 0, "dine_in": 1}
 
 
 def test_last_months_mess_cut_comes_off_the_bill_and_runs_once():
@@ -118,3 +119,143 @@ def test_pages_and_serving_from_the_screen():
 def test_mess_is_only_for_food_businesses():
     _company, client, _owner = _signup("mobile_shop", "m5@t.qa")
     assert client.get(reverse("webapp:mess_home")).status_code == 302
+
+
+# ------------------------------------------------------------------ extras, weekly menu, delivery
+
+def _member(company, owner, name="Shafeek", plan=None, **kw):
+    plan = plan or _plan(company, leave_refund_per_day=Decimal("0"))
+    return svc.join(company=company, user=owner, plan=plan, bill_now=False, start_date=date(2026, 9, 1),
+                    customer=Customer.objects.create(company=company, name=name, phone="55511122"), **kw)
+
+
+def test_extras_go_on_the_next_monthly_bill_once():
+    from apps.industry.models import MessExtra, MessExtraItem
+    company, _c, owner = _signup("restaurant", "m6@t.qa")
+    member = _member(company, owner)
+    chicken = MessExtraItem.objects.create(company=company, name="Chicken curry", price=Decimal("5"))
+    for day in (3, 10, 17):
+        svc.add_extra(company=company, user=owner, member=member, item=chicken, day=date(2026, 9, day), meal="lunch")
+    svc.add_extra(company=company, user=owner, member=member, name="Fresh juice", unit_price="4", quantity=2,
+                  day=date(2026, 9, 20))
+    later = svc.add_extra(company=company, user=owner, member=member, item=chicken, day=date(2026, 10, 3))
+    with pytest.raises(ValidationError):
+        svc.add_extra(company=company, user=owner, member=member, name="Egg", unit_price="1", quantity=0)
+    with pytest.raises(ValidationError):
+        svc.add_extra(company=company, user=owner, member=member, name="", unit_price="1")
+    with pytest.raises(ValidationError):
+        svc.add_extra(company=company, user=owner, member=member, name="Egg", unit_price="-1")
+    assert svc.pending_total(member, date(2026, 10, 1)) == Decimal("23.00")
+
+    [inv] = svc.generate_month(company=company, user=owner, key="2026-10", on=date(2026, 10, 1))
+    charge = MessCharge.objects.get(member=member, period="2026-10")
+    assert charge.extras == Decimal("23.00") and charge.amount == Decimal("473.00")
+    lines = {l.product.name: (l.quantity, l.unit_price) for l in inv.lines.select_related("product")}
+    assert lines["Mess extra – Chicken curry"] == (Decimal("3"), Decimal("5.00"))
+    assert lines["Mess extra – Fresh juice"] == (Decimal("2"), Decimal("4.00"))
+    assert inv.total >= Decimal("473.00")
+    assert MessExtra.objects.filter(member=member, invoice=inv).count() == 4
+    later.refresh_from_db()
+    assert later.invoice_id is None  # given after the bill date: waits for November
+    billed = MessExtra.objects.filter(invoice=inv).first()
+    with pytest.raises(ValidationError):
+        svc.remove_extra(billed)
+    svc.remove_extra(later)
+    assert not MessExtra.objects.filter(pk=later.pk).exists()
+
+
+def test_members_who_left_get_a_bill_for_just_their_extras():
+    company, _c, owner = _signup("restaurant", "m7@t.qa")
+    member = _member(company, owner)
+    svc.add_extra(company=company, user=owner, member=member, name="Fish fry", unit_price="6", day=date(2026, 9, 28))
+    svc.set_status(member, "ended", on=date(2026, 9, 30))
+    with pytest.raises(ValidationError):
+        svc.add_extra(company=company, user=owner, member=member, name="Egg", unit_price="1")
+    invoices = svc.generate_month(company=company, user=owner, key="2026-10", on=date(2026, 10, 1))
+    assert len(invoices) == 1 and invoices[0].total >= Decimal("6.00")
+    assert not MessCharge.objects.filter(member=member, period="2026-10").exists()
+    assert [r["member"] for r in svc.dues(company)] == [member]
+    assert svc.generate_month(company=company, user=owner, key="2026-10", on=date(2026, 10, 1)) == []
+    assert svc.bill_extras(company=company, user=owner, member=member) is None
+
+
+def test_weekly_menu_per_plan():
+    company, _c, owner = _signup("restaurant", "m8@t.qa")
+    full = _plan(company)
+    lunch_only = _plan(company, name="Lunch only", breakfast=False, dinner=False, monthly_fee=Decimal("200"))
+    svc.save_menu(full, {(0, "breakfast"): "Puttu,  kadala", (0, "lunch"): "Rice, sambar", (4, "lunch"): "Biryani"})
+    svc.save_menu(lunch_only, {(0, "lunch"): "Rice, fish curry", (0, "dinner"): "Not in this plan"})
+    assert svc.menu_grid(full) == {(0, "breakfast"): "Puttu, kadala", (0, "lunch"): "Rice, sambar", (4, "lunch"): "Biryani"}
+    assert svc.menu_grid(lunch_only) == {(0, "lunch"): "Rice, fish curry"}
+    svc.save_menu(full, {(4, "lunch"): "  "})
+    assert (4, "lunch") not in svc.menu_grid(full)
+    monday = date(2026, 10, 5)
+    today = svc.menu_for_day(company, monday)
+    assert [(r["plan"].name, r["meals"]) for r in today] == [
+        ("Full mess", [("breakfast", "Puttu, kadala"), ("lunch", "Rice, sambar")]),
+        ("Lunch only", [("lunch", "Rice, fish curry")])]
+    text = svc.menu_text(full, company_name="Malabar")
+    assert "*Monday*" in text and "Lunch: Rice, sambar" in text
+    assert svc.menu_text(full, day=monday).count("\n") >= 2
+
+
+def test_delivery_or_eat_at_the_shop():
+    company, _c, owner = _signup("restaurant", "m9@t.qa")
+    plan = _plan(company)
+    office = _member(company, owner, name="Office boy", plan=plan, delivery_meals=["lunch", "bogus"],
+                     delivery_address="Al Noor Trading, 3rd floor")
+    walkin = _member(company, owner, name="Walk in", plan=plan)
+    assert office.delivery_meals == "lunch" and office.delivers("lunch") and not walkin.delivers("lunch")
+    day = date(2026, 10, 6)
+    assert svc.serve(company=company, user=owner, member=office, meal="lunch", day=day).mode == "delivery"
+    assert svc.serve(company=company, user=owner, member=office, meal="dinner", day=day).mode == "dine_in"
+    assert svc.serve(company=company, user=owner, member=walkin, meal="lunch", day=day).mode == "dine_in"
+    lunch = svc.today(company, day)["meals"][1]
+    assert (lunch["delivery"], lunch["dine_in"]) == (1, 1)
+    rows = svc.delivery_list(company, "lunch", day)
+    assert [(r["m"], r["address"], r["done"]) for r in rows] == [(office, "Al Noor Trading, 3rd floor", True)]
+    assert svc.delivery_list(company, "nonsense", day) == []
+
+
+def test_mess_extras_menu_and_delivery_pages():
+    from apps.industry.models import MessExtra, MessExtraItem, MessMenu
+    from django.utils import timezone
+    company, client, owner = _signup("restaurant", "m10@t.qa")
+    other, _c2, _o2 = _signup("restaurant", "m11@t.qa")
+    foreign = MessExtraItem.objects.create(company=other, name="Theirs", price=Decimal("1"))
+    plan = _plan(company)
+    member = svc.join(company=company, user=owner, plan=plan, bill_now=False, start_date=timezone.localdate(),
+                      customer=Customer.objects.create(company=company, name="Nizar", phone="+97455512345"))
+
+    client.post(reverse("webapp:mess_extras"), {"name": "Egg", "price": "1.50"})
+    assert client.post(reverse("webapp:mess_extras"), {"name": "egg", "price": "2"}).status_code == 200  # duplicate
+    egg = MessExtraItem.objects.get(company=company)
+    client.post(reverse("webapp:mess_home"), {"action": "extra", "member": member.id, "item": egg.id})
+    client.post(reverse("webapp:mess_home"), {"action": "extra", "member": member.id, "item": foreign.id})
+    client.post(reverse("webapp:mess_member", args=[member.id]), {"action": "extra", "name": "Mutton", "price": "9", "quantity": "2"})
+    assert sorted(MessExtra.objects.filter(member=member).values_list("name", "unit_price")) == [
+        ("Egg", Decimal("1.50")), ("Mutton", Decimal("9.00"))]
+    home = client.get(reverse("webapp:mess_home")).content.decode()
+    assert "Egg" in home and "Theirs" not in home
+    client.post(reverse("webapp:mess_member", args=[member.id]), {"action": "bill_extras"})
+    assert not MessExtra.objects.filter(member=member, invoice__isnull=True).exists()
+
+    weekday = timezone.localdate().weekday()
+    client.post(reverse("webapp:mess_menu", args=[plan.id]), {f"m_{weekday}_lunch": "Ghee rice, chicken", "m_0_dinner": "Chapati"})
+    assert MessMenu.objects.filter(plan=plan).count() >= 1
+    page = client.get(reverse("webapp:mess_menu", args=[plan.id])).content.decode()
+    assert "Ghee rice, chicken" in page and "wa.me/?text=" in page and "wa.me/97455512345" in page
+    assert "Ghee rice, chicken" in client.get(reverse("webapp:mess_home")).content.decode()
+    assert "Ghee rice, chicken" in client.get(reverse("webapp:mess_menu", args=[plan.id]) + "?print=1").content.decode()
+    other_plan = _plan(other)
+    assert client.get(reverse("webapp:mess_menu", args=[other_plan.id])).status_code == 404
+
+    client.post(reverse("webapp:mess_member", args=[member.id]), {
+        "action": "edit", "plan": plan.id, "monthly_fee": "", "notes": "", "delivery_meals": ["lunch", "dinner"],
+        "delivery_address": "Villa 4, Al Waab"})
+    member.refresh_from_db()
+    assert member.delivery_meals == "lunch,dinner" and member.delivery_address == "Villa 4, Al Waab"
+    page = client.get(reverse("webapp:mess_delivery") + "?meal=lunch").content.decode()
+    assert "Villa 4, Al Waab" in page and "wa.me/?text=" in page
+    client.post(reverse("webapp:mess_delivery"), {"meal": "lunch", "member": member.id})
+    assert MessMeal.objects.get(member=member, meal="lunch").mode == "delivery"

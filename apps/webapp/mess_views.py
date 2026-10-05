@@ -1,5 +1,6 @@
 """Restaurant mess: monthly meal plans, members, daily meal tick, mess cut, monthly bills and dues."""
 from datetime import timedelta
+from urllib.parse import quote
 
 from django import forms
 from django.contrib import messages
@@ -12,13 +13,27 @@ from django.utils.translation import gettext_lazy as _l
 
 from apps.customers.models import Customer
 from apps.industry import mess as svc
-from apps.industry.models import MessCharge, MessLeave, MessMember, MessPlan
+from apps.industry.models import MessCharge, MessExtra, MessExtraItem, MessLeave, MessMember, MessPlan
+from apps.sales.sharing import normalise_phone
 
 from .industry_access import require_industry
 from .views import require_permission
 from apps.common.ids import pick_id
 
 DATE = forms.DateInput(attrs={"type": "date"})
+MEAL_CHOICES = [("breakfast", _l("Breakfast")), ("lunch", _l("Lunch")), ("dinner", _l("Dinner"))]
+WEEKDAY_LABELS = [_l("Monday"), _l("Tuesday"), _l("Wednesday"), _l("Thursday"), _l("Friday"), _l("Saturday"), _l("Sunday")]
+
+
+def _delivery_fields(form, instance=None):
+    form.fields["delivery_meals"] = forms.MultipleChoiceField(
+        choices=MEAL_CHOICES, required=False, widget=forms.CheckboxSelectMultiple, label=_l("Delivered meals"),
+        help_text=_l("Tick the meals you carry to this member. The rest are eaten at the shop."),
+        initial=instance.delivered() if instance else [])
+    form.fields["delivery_address"] = forms.CharField(
+        max_length=255, required=False, label=_l("Delivery address"),
+        initial=instance.delivery_address if instance else "",
+        widget=forms.TextInput(attrs={"placeholder": _l("e.g. Al Noor Trading, Building 12, 3rd floor")}))
 
 
 def mess_view(view):
@@ -78,6 +93,7 @@ class JoinForm(forms.Form):
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
+        _delivery_fields(self)
         self.fields["plan"].queryset = MessPlan.objects.for_company(company).filter(is_active=True)
         self.fields["customer"].queryset = Customer.objects.for_company(company).filter(is_active=True).order_by("name")
 
@@ -97,6 +113,39 @@ class MemberForm(forms.ModelForm):
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["plan"].queryset = MessPlan.objects.for_company(company)
+        _delivery_fields(self, self.instance)
+
+    def save(self, commit=True):
+        member = super().save(commit=False)
+        member.delivery_meals = svc.delivery_value(self.cleaned_data.get("delivery_meals"))
+        member.delivery_address = (self.cleaned_data.get("delivery_address") or "").strip()
+        if commit:
+            member.save()
+        return member
+
+
+class ExtraItemForm(forms.ModelForm):
+    class Meta:
+        model = MessExtraItem
+        fields = ["name", "price"]
+        labels = {"name": _l("Extra item"), "price": _l("Price")}
+        widgets = {"name": forms.TextInput(attrs={"placeholder": _l("e.g. Chicken curry, Egg, Fish fry")})}
+
+    def __init__(self, *args, company=None, **kwargs):
+        self.company = company
+        super().__init__(*args, **kwargs)
+
+    def clean_name(self):
+        name = " ".join(self.cleaned_data["name"].split())
+        if MessExtraItem.objects.for_company(self.company).filter(name__iexact=name).exclude(pk=self.instance.pk).exists():
+            raise ValidationError(_("An extra with this name already exists."))
+        return name
+
+    def clean_price(self):
+        price = self.cleaned_data["price"]
+        if price < 0:
+            raise ValidationError(_("The price can't be negative."))
+        return price
 
 
 class LeaveForm(forms.Form):
@@ -117,6 +166,9 @@ def mess_home(request):
         try:
             if request.POST.get("action") == "undo":
                 svc.undo(member=member, meal=meal)
+            elif request.POST.get("action") == "extra":
+                extra = _add_extra(request, member)
+                messages.success(request, _("%(item)s added to %(name)s's bill.") % {"item": extra.name, "name": member.customer.name})
             else:
                 svc.serve(company=company, user=request.user, member=member, meal=meal)
                 messages.success(request, _("%(meal)s served to %(name)s.") % {"meal": _(meal.capitalize()), "name": member.customer.name})
@@ -133,7 +185,8 @@ def mess_home(request):
     served = svc.served_today(company, [m.pk for m in members])
     away = set(MessLeave.objects.for_company(company).filter(from_date__lte=today, to_date__gte=today)
                .values_list("member_id", flat=True))
-    rows = [{"m": m, "served": served.get(m.pk, set()), "away": m.pk in away, "meals": m.plan.meals()} for m in members]
+    rows = [{"m": m, "served": served.get(m.pk, set()), "away": m.pk in away, "meals": m.plan.meals(),
+             "delivered": m.delivered()} for m in members]
     key = svc.month_key(today)
     dues = svc.dues(company)
     return render(request, "webapp/mess/home.html", {
@@ -141,14 +194,34 @@ def mess_home(request):
         "not_billed": len(svc.due_for_month(company, key)), "month": key,
         "dues_total": sum((r["due"] for r in dues), 0), "dues_count": len(dues),
         "paused": MessMember.objects.for_company(company).filter(status="paused").count(),
+        "menu_today": svc.menu_for_day(company, today), "extra_items": _extra_items(company),
     })
+
+
+def _extra_items(company):
+    return list(MessExtraItem.objects.for_company(company).filter(is_active=True))
+
+
+def _add_extra(request, member):
+    """Add an extra from a POST: a saved extra item (one tap) or a typed name and price."""
+    company = request.company
+    item = None
+    if request.POST.get("item"):
+        item = MessExtraItem.objects.for_company(company).filter(id=pick_id(request.POST.get("item")), is_active=True).first()
+        if item is None:
+            raise ValidationError(_("Unknown extra."))
+    price = request.POST.get("price") or None
+    return svc.add_extra(company=company, user=request.user, member=member, item=item,
+                         name=request.POST.get("name", ""), quantity=request.POST.get("quantity") or 1,
+                         unit_price=price, meal=request.POST.get("meal", ""))
 
 
 @mess_view
 def mess_plans(request):
     company = request.company
     plans = MessPlan.objects.for_company(company).annotate(
-        active=Count("members", filter=Q(members__status="active"))).order_by("-is_active", "name")
+        active=Count("members", filter=Q(members__status="active"), distinct=True),
+        menu_slots=Count("menu", distinct=True)).order_by("-is_active", "name")
     return render(request, "webapp/mess/plans.html", {"plans": plans})
 
 
@@ -184,7 +257,8 @@ def mess_join(request):
                                                    phone=(data.get("new_customer_phone") or "").strip()[:20])
             member = svc.join(company=company, user=request.user, plan=data["plan"], customer=customer,
                               start_date=data["start_date"], monthly_fee=data.get("monthly_fee"), notes=data.get("notes") or "",
-                              bill_now=data.get("bill_now"))
+                              bill_now=data.get("bill_now"), delivery_meals=data.get("delivery_meals") or (),
+                              delivery_address=data.get("delivery_address") or "")
             messages.success(request, _("%(name)s joined the mess as %(number)s.") % {"name": customer.name, "number": member.number})
             return redirect("webapp:mess_member", member.id)
         except ValidationError as exc:
@@ -222,6 +296,19 @@ def mess_member(request, member_id):
                 invoices = svc.bill(company=company, user=request.user, members=[member], key=_month(request))
                 messages.success(request, _("Bill created.") if invoices else _("This month is already billed."))
                 return redirect(request.path)
+            if action == "extra":
+                extra = _add_extra(request, member)
+                messages.success(request, _("%(item)s added to %(name)s's bill.") % {"item": extra.name, "name": member.customer.name})
+                return redirect(request.path)
+            if action == "remove_extra":
+                svc.remove_extra(get_object_or_404(MessExtra, member=member, id=pick_id(request.POST.get("extra"))))
+                messages.success(request, _("Extra removed."))
+                return redirect(request.path)
+            if action == "bill_extras":
+                inv = svc.bill_extras(company=company, user=request.user, member=member)
+                messages.success(request, _("Bill %(number)s created for the extras.") % {"number": inv.invoice_number}
+                                 if inv else _("No extras waiting to be billed."))
+                return redirect(request.path)
         except ValidationError as exc:
             messages.error(request, " ".join(exc.messages))
     key = _month(request)
@@ -236,6 +323,8 @@ def mess_member(request, member_id):
         "prev": _shift(key, -1), "next": _shift(key, 1), "eaten": eaten, "leaves": member.leaves.all()[:20],
         "charges": charges, "due": due, "away_days": sum(1 for d in grid if d["leave"]),
         "weekdays": [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")], "month_label": first,
+        "extras": member.extras.select_related("invoice")[:40], "pending_extras": svc.pending_total(member),
+        "extra_items": _extra_items(company),
         "refund_note": (_("Refund %(amount)s per day on the next bill for mess cuts of %(days)s+ days.") % {
             "amount": member.plan.leave_refund_per_day, "days": member.plan.min_leave_days})
         if member.plan.leave_refund_per_day else "",
@@ -257,7 +346,9 @@ def mess_bills(request):
     for member in svc.due_for_month(company, key):
         fee, refund, days = svc.amount_for(member, key)
         if fee > 0:
-            due.append({"m": member, "fee": fee, "refund": refund, "days": days, "total": fee - refund})
+            extras = svc.pending_total(member, max(timezone.localdate(), svc.month_bounds(key)[0]))
+            due.append({"m": member, "fee": fee, "refund": refund, "days": days, "extras": extras,
+                        "total": fee - refund + extras})
     charges = MessCharge.objects.for_company(company).filter(period=key).select_related("member__customer", "invoice")
     totals = charges.aggregate(billed=Sum("amount"))
     collected = sum((c.invoice.amount_paid for c in charges if c.invoice), 0)
@@ -271,3 +362,96 @@ def mess_bills(request):
 @mess_view
 def mess_dues(request):
     return render(request, "webapp/mess/dues.html", {"rows": svc.dues(request.company)})
+
+
+# ------------------------------------------------------------------ extras list
+
+@mess_view
+def mess_extras(request):
+    company = request.company
+    editing = None
+    if request.POST.get("item"):
+        editing = get_object_or_404(MessExtraItem.objects.for_company(company), id=pick_id(request.POST.get("item")))
+    if request.method == "POST" and request.POST.get("action") == "toggle" and editing:
+        editing.is_active = not editing.is_active
+        editing.save(update_fields=["is_active"])
+        return redirect(request.path)
+    form = ExtraItemForm(request.POST or None, instance=editing, company=company)
+    if request.method == "POST" and form.is_valid():
+        obj = form.save(commit=False)
+        obj.company = company
+        obj.save()
+        messages.success(request, _("Saved."))
+        return redirect(request.path)
+    items = MessExtraItem.objects.for_company(company).order_by("-is_active", "name")
+    return render(request, "webapp/mess/extras.html", {"form": form, "items": items})
+
+
+# ------------------------------------------------------------------ weekly menu
+
+def _menu_share(request, plan, members):
+    company = request.company
+    week = svc.menu_text(plan, company_name=company.name)
+    today = svc.menu_text(plan, company_name=company.name, day=timezone.localdate())
+    has_today = any(slot[0] == timezone.localdate().weekday() for slot in svc.menu_grid(plan))
+    links = []
+    for m in members:
+        number = normalise_phone(m.customer.phone, company.country)
+        if number:
+            links.append({"m": m, "week": f"https://wa.me/{number}?text={quote(week)}",
+                          "today": f"https://wa.me/{number}?text={quote(today)}" if has_today else ""})
+    return {"share_week": f"https://wa.me/?text={quote(week)}",
+            "share_today": f"https://wa.me/?text={quote(today)}" if has_today else "", "links": links}
+
+
+@mess_view
+def mess_menu(request, plan_id):
+    company = request.company
+    plan = get_object_or_404(MessPlan.objects.for_company(company), id=plan_id)
+    if request.method == "POST":
+        entries = {}
+        for wd in range(7):
+            for meal in plan.meals():
+                entries[(wd, meal)] = request.POST.get(f"m_{wd}_{meal}", "")
+        svc.save_menu(plan, entries)
+        messages.success(request, _("Menu saved."))
+        return redirect("webapp:mess_menu", plan.id)
+    grid = svc.menu_grid(plan)
+    rows = [{"day": WEEKDAY_LABELS[wd], "wd": wd, "today": wd == timezone.localdate().weekday(),
+             "cells": [{"meal": meal, "name": f"m_{wd}_{meal}", "value": grid.get((wd, meal), "")} for meal in plan.meals()]}
+            for wd in range(7)]
+    members = list(svc.running_on(company, timezone.localdate()).filter(plan=plan).select_related("customer"))
+    ctx = {"plan": plan, "rows": rows, "meals": plan.meals(), "filled": bool(grid), "members": len(members),
+           "print": request.GET.get("print") == "1"}
+    if grid:
+        ctx.update(_menu_share(request, plan, members))
+    return render(request, "webapp/mess/menu_print.html" if ctx["print"] else "webapp/mess/menu.html", ctx)
+
+
+# ------------------------------------------------------------------ delivery
+
+@mess_view
+def mess_delivery(request):
+    company = request.company
+    meal = request.GET.get("meal") or request.POST.get("meal") or ""
+    if meal not in svc.MEALS:
+        meal = next((c["meal"] for c in svc.today(company)["meals"] if c["delivery"]), "lunch")
+    if request.method == "POST":
+        member = get_object_or_404(MessMember.objects.for_company(company), id=pick_id(request.POST.get("member")))
+        try:
+            if request.POST.get("action") == "undo":
+                svc.undo(member=member, meal=meal)
+            else:
+                svc.serve(company=company, user=request.user, member=member, meal=meal, mode="delivery")
+        except ValidationError as exc:
+            messages.error(request, " ".join(exc.messages))
+        return redirect(f"{request.path}?meal={meal}")
+    rows = svc.delivery_list(company, meal)
+    text = "\n".join([f"🛵 {company.name} – {_(meal.capitalize())} · {timezone.localdate():%d %b}", ""] + [
+        f"{i}. {r['m'].customer.name} ({r['m'].number}) – {r['m'].customer.phone or '-'}\n   {r['address'] or '-'}"
+        for i, r in enumerate(rows, 1)])
+    return render(request, "webapp/mess/delivery.html", {
+        "meal": meal, "rows": rows, "left": sum(1 for r in rows if not r["done"]), "share": f"https://wa.me/?text={quote(text)}",
+        "counts": {c["meal"]: c["delivery"] for c in svc.today(company)["meals"]},
+        "print": request.GET.get("print") == "1",
+    })

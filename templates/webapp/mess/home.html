@@ -17,6 +17,17 @@
 .ms-b{min-width:104px;min-height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--panel);font:inherit;font-weight:700;font-size:14px;cursor:pointer;color:var(--ink)}
 .ms-b:hover{border-color:var(--accent)}.ms-b.done{background:#dcfce7;border-color:#86efac;color:#166534}
 .ms-away{padding:6px 12px;border-radius:10px;background:#fef3c7;color:#92400e;font-weight:700;font-size:13px}
+.ms-split{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;font-size:12.5px;font-weight:700;color:var(--ink-soft)}.ms-split a{color:var(--accent)}
+.ms-menu{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px;margin-bottom:14px}
+.ms-menu h3{margin:0 0 6px;font-size:15px;display:flex;gap:8px;align-items:center}.ms-menu h3 a{margin-left:auto;font-size:13px;font-weight:700}
+.ms-menu .pl{padding:6px 0;border-top:1px dashed var(--line)}.ms-menu .pl:first-of-type{border-top:0}
+.ms-menu .pl b{font-size:13.5px}.ms-menu .pl span{display:inline-block;margin:2px 14px 0 0;font-size:14px}
+.ms-dlv{font-size:11px;font-weight:800;color:#1d4ed8;background:#dbeafe;border-radius:6px;padding:1px 5px;margin-left:4px}
+.ms-x{flex-basis:100%;margin:0}.ms-x summary{display:inline-flex;cursor:pointer;font-weight:700;font-size:13px;color:var(--accent);list-style:none;padding:4px 0}.ms-x summary::-webkit-details-marker{display:none}
+.ms-x .tiles{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.ms-x .tiles form{margin:0}
+.ms-x .tile{border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:7px 11px;font:inherit;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink)}
+.ms-x .tile small{font-weight:600;color:var(--ink-soft);margin-left:4px}.ms-x .tile:hover{border-color:var(--accent)}
+.ms-x .own{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.ms-x .own input{width:auto;min-width:0;flex:1 1 120px;padding:7px 9px}.ms-x .own input[name=price],.ms-x .own input[name=quantity]{flex:0 0 76px}
 @media(max-width:600px){.ms-meals{grid-template-columns:1fr 1fr 1fr;gap:8px}.ms-meal{padding:10px}.ms-meal b{font-size:22px}.ms-b{min-width:0;flex:1}.ms-btns{width:100%}.ms-btns form{flex:1;display:flex}}
 </style>
 <div class="ix">
@@ -26,10 +37,18 @@
       <b>{{ c.served }}</b> <span class="of">/ {{ c.expected }}</span>
       <div class="ms-bar"><i style="width:{% if c.expected %}{% widthratio c.served c.expected 100 %}{% else %}0{% endif %}%"></i></div>
       <small style="text-transform:none;letter-spacing:0;margin-top:6px">{{ c.left }} {% translate "still to eat" %}</small>
+      {% if c.delivery %}<div class="ms-split"><span>🍽 {{ c.dine_in }} {% translate "at the shop" %}</span><a href="{% url 'webapp:mess_delivery' %}?meal={{ c.meal }}">🛵 {{ c.delivery }} {% translate "delivery" %} →</a></div>{% endif %}
     </div>
     {% endfor %}
   </div>
 
+  {% if menu_today %}
+  <div class="ms-menu">
+    <h3>📋 {% translate "Today's menu" %} <small style="color:var(--ink-soft);font-weight:600">{% now "l" %}</small></h3>
+    {% for p in menu_today %}<div class="pl"><b>{{ p.plan.name }}</b> · <a href="{% url 'webapp:mess_menu' p.plan.id %}" style="font-size:12.5px">{% translate "Weekly menu" %}</a><br>
+      {% for meal, items in p.meals %}<span>{% if meal == "breakfast" %}☕{% elif meal == "lunch" %}🍛{% else %}🌙{% endif %} {{ items }}</span>{% endfor %}</div>{% endfor %}
+  </div>
+  {% endif %}
   {% if not plans %}
   <a class="ix-card ix-row" href="{% url 'webapp:mess_plan_add' %}" style="border-left:4px solid var(--ix-amber)"><span style="font-size:28px">🍱</span><span class="grow"><b>{% translate "Start your mess" %}</b><small>{% translate "Create a monthly plan (e.g. Full mess – 3 meals) and add members." %}</small></span><span class="btn">{% translate "Create plan" %} →</span></a>
   {% endif %}
@@ -43,7 +62,9 @@
     <a class="btn" href="{% url 'webapp:mess_join' %}">＋ {% translate "New member" %}</a>
     <a class="btn btn-secondary" href="{% url 'webapp:mess_bills' %}">🧾 {% translate "Monthly bills" %}</a>
     <a class="btn btn-secondary" href="{% url 'webapp:mess_dues' %}">⏰ {% translate "Mess dues" %}{% if dues_count %} ({{ dues_count }}){% endif %}</a>
-    <a class="btn btn-secondary" href="{% url 'webapp:mess_plans' %}">{% translate "Plans" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:mess_delivery' %}">🛵 {% translate "Delivery" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:mess_extras' %}">🍗 {% translate "Extras" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:mess_plans' %}">{% translate "Plans & menu" %}</a>
   </div>
   <p style="color:var(--ink-soft);margin:-6px 0 12px;font-size:13.5px">{{ count.members }} {% translate "members eating today" %}{% if count.away %} · {{ count.away }} {% translate "on mess cut" %}{% endif %}{% if paused %} · {{ paused }} {% translate "paused" %}{% endif %}{% if dues_total %} · <a href="{% url 'webapp:mess_dues' %}">{% translate "Due" %}: {{ active_company.default_currency }} {{ dues_total|floatformat:2 }}</a>{% endif %}</p>
 
@@ -57,12 +78,17 @@
       <div class="ms-btns">
         {% for meal in r.meals %}
         <form method="post">{% csrf_token %}<input type="hidden" name="member" value="{{ r.m.id }}"><input type="hidden" name="meal" value="{{ meal }}"><input type="hidden" name="q" value="{{ q }}">
-          {% if meal in r.served %}<input type="hidden" name="action" value="undo"><button class="ms-b done" type="submit" title="{% translate 'Tap to undo' %}">✓ {% if meal == "breakfast" %}{% translate "Breakfast" %}{% elif meal == "lunch" %}{% translate "Lunch" %}{% else %}{% translate "Dinner" %}{% endif %}</button>
-          {% else %}<button class="ms-b" type="submit">{% if meal == "breakfast" %}☕ {% translate "Breakfast" %}{% elif meal == "lunch" %}🍛 {% translate "Lunch" %}{% else %}🌙 {% translate "Dinner" %}{% endif %}</button>{% endif %}
+          {% if meal in r.served %}<input type="hidden" name="action" value="undo"><button class="ms-b done" type="submit" title="{% translate 'Tap to undo' %}">✓ {% if meal == "breakfast" %}{% translate "Breakfast" %}{% elif meal == "lunch" %}{% translate "Lunch" %}{% else %}{% translate "Dinner" %}{% endif %}{% if meal in r.delivered %}<span class="ms-dlv">🛵</span>{% endif %}</button>
+          {% else %}<button class="ms-b" type="submit">{% if meal == "breakfast" %}☕ {% translate "Breakfast" %}{% elif meal == "lunch" %}🍛 {% translate "Lunch" %}{% else %}🌙 {% translate "Dinner" %}{% endif %}{% if meal in r.delivered %}<span class="ms-dlv">🛵</span>{% endif %}</button>{% endif %}
         </form>
         {% endfor %}
       </div>
       {% endif %}
+      <details class="ms-x"><summary>＋ {% translate "Extra (chicken, egg…)" %}</summary>
+        {% if extra_items %}<div class="tiles">{% for x in extra_items %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="extra"><input type="hidden" name="member" value="{{ r.m.id }}"><input type="hidden" name="item" value="{{ x.id }}"><input type="hidden" name="q" value="{{ q }}"><button class="tile" type="submit">{{ x.name }}<small>{{ x.price|floatformat:"-2" }}</small></button></form>{% endfor %}</div>{% endif %}
+        <form method="post" class="own">{% csrf_token %}<input type="hidden" name="action" value="extra"><input type="hidden" name="member" value="{{ r.m.id }}"><input type="hidden" name="q" value="{{ q }}">
+          <input name="name" placeholder="{% translate 'Other item' %}" maxlength="120" required><input name="price" type="number" step="0.01" min="0" placeholder="{% translate 'Price' %}" required><input name="quantity" type="number" step="1" min="1" max="50" value="1" aria-label="{% translate 'Qty' %}"><button class="btn btn-secondary" type="submit">{% translate "Add" %}</button></form>
+      </details>
     </div>
   {% empty %}
     <div class="ix-card ix-empty"><p style="font-size:36px;margin:0">🍱</p><strong>{% if q %}{% translate "No member found." %}{% else %}{% translate "No mess members yet." %}{% endif %}</strong>

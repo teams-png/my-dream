@@ -8,10 +8,15 @@ Restaurant mess: people who pay a monthly package and eat breakfast / lunch / di
   month's bill (only for leaves of at least plan.min_leave_days days).
 - Monthly bills: one invoice per member and month (MessCharge makes the run safe to repeat); unpaid
   invoices show as dues and can be shared like any other invoice.
+- Extras (chicken, egg, juice…) given on top of the plan wait until the member's next mess bill and are
+  added to it as their own lines; members who are paused or have left get a bill for just their extras.
+- Each plan has a weekly menu (weekday x meal), shown on today's page and shared on WhatsApp or printed.
+- A member can have some meals delivered; served meals record whether they were eaten here or delivered.
 """
 import calendar
+import hashlib
 from datetime import date, timedelta
-from decimal import ROUND_HALF_UP, Decimal
+from decimal import ROUND_HALF_UP, Decimal, InvalidOperation
 
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
@@ -19,9 +24,12 @@ from django.db.models import Count, F, Q
 from django.utils import timezone
 
 from .common import invoice as make_invoice, service_product
-from .models import MessCharge, MessLeave, MessMeal, MessMember, MessPlan
+from .models import MessCharge, MessExtra, MessExtraItem, MessLeave, MessMeal, MessMember, MessMenu, MessPlan
 
 MEALS = ("breakfast", "lunch", "dinner")
+MEAL_ICON = {"breakfast": "☕", "lunch": "🍛", "dinner": "🌙"}
+WEEKDAYS = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+MAX_EXTRA_QTY = Decimal("50")
 CENT = Decimal("0.01")
 
 
@@ -57,16 +65,23 @@ def next_number(company):
 # ------------------------------------------------------------------ members
 
 @transaction.atomic
-def join(*, company, user, plan, customer, start_date, monthly_fee=None, notes="", bill_now=True):
+def join(*, company, user, plan, customer, start_date, monthly_fee=None, notes="", bill_now=True,
+         delivery_meals=(), delivery_address=""):
     if not plan.is_active:
         raise ValidationError(f"{plan.name} is closed.")
     if MessMember.objects.for_company(company).filter(customer=customer, status__in=["active", "paused"]).exists():
         raise ValidationError(f"{customer.name} is already a mess member.")
     member = MessMember.objects.create(company=company, number=next_number(company), customer=customer, plan=plan,
-                                       monthly_fee=monthly_fee, start_date=start_date, notes=notes)
+                                       monthly_fee=monthly_fee, start_date=start_date, notes=notes,
+                                       delivery_meals=delivery_value(delivery_meals),
+                                       delivery_address=(delivery_address or "")[:255])
     if bill_now:
         bill(company=company, user=user, members=[member], key=month_key(start_date), on=start_date)
     return member
+
+
+def delivery_value(meals):
+    return ",".join(m for m in MEALS if m in set(meals or ()))
 
 
 def set_status(member, status, *, on=None):
@@ -94,7 +109,7 @@ def on_leave(member, day):
 
 # ------------------------------------------------------------------ meals
 
-def serve(*, company, user, member, meal, day=None):
+def serve(*, company, user, member, meal, day=None, mode=None):
     day = day or timezone.localdate()
     if meal not in MEALS:
         raise ValidationError("Unknown meal.")
@@ -108,7 +123,9 @@ def serve(*, company, user, member, meal, day=None):
         raise ValidationError(f"{member.customer.name} is on mess cut today.")
     try:
         with transaction.atomic():
-            return MessMeal.objects.create(company=company, member=member, date=day, meal=meal, served_by=user)
+            if mode not in dict(MessMeal.MODES):
+                mode = "delivery" if member.delivers(meal) else "dine_in"
+            return MessMeal.objects.create(company=company, member=member, date=day, meal=meal, served_by=user, mode=mode)
     except IntegrityError:
         raise ValidationError(f"{meal.capitalize()} was already given to {member.customer.name} today.")
 
@@ -133,9 +150,12 @@ def today(company, day=None):
         served[row["meal"]] = row["n"]
     out = []
     for meal in MEALS:
-        expected = sum(1 for m in members if getattr(m.plan, meal) and m.pk not in away)
+        eating = [m for m in members if getattr(m.plan, meal) and m.pk not in away]
+        expected = len(eating)
         out.append({"meal": meal, "expected": expected, "served": served.get(meal, 0),
-                    "left": max(expected - served.get(meal, 0), 0)})
+                    "left": max(expected - served.get(meal, 0), 0),
+                    "delivery": sum(1 for m in eating if m.delivers(meal)),
+                    "dine_in": sum(1 for m in eating if not m.delivers(meal))})
     return {"day": day, "meals": out, "away": len(away & {m.pk for m in members}), "members": len(members)}
 
 
@@ -190,10 +210,12 @@ def due_for_month(company, key):
 
 @transaction.atomic
 def bill(*, company, user, members, key, on=None):
-    """One invoice per member for the month. Already-billed members are skipped. Returns the invoices."""
+    """One invoice per member for the month, with the extras given so far. Already-billed members are
+    skipped. Returns the invoices."""
     billed = set(MessCharge.objects.filter(member__in=members, period=key).values_list("member_id", flat=True))
     invoices = []
     first, _ = month_bounds(key)
+    upto = max(on or timezone.localdate(), first)
     for member in members:
         if member.pk in billed:
             continue
@@ -201,35 +223,194 @@ def bill(*, company, user, members, key, on=None):
         price = fee - refund
         if fee <= 0:
             continue
-        inv = None
-        if price > 0:
-            inv = make_invoice(company, user, member.customer, [(plan_product(member.plan), Decimal("1"), price)],
-                               date=on or first)
+        extras = list(pending_extras(member, upto).select_for_update())
+        extra_total = sum((e.total for e in extras), Decimal("0"))
+        lines = [(plan_product(member.plan), Decimal("1"), price)] if price > 0 else []
+        lines += extra_lines(company, extras)
+        inv = make_invoice(company, user, member.customer, lines, date=on or first) if lines else None
         try:
             with transaction.atomic():
-                MessCharge.objects.create(company=company, member=member, period=key, amount=price, leave_days=days,
-                                          refund=refund, invoice=inv)
+                MessCharge.objects.create(company=company, member=member, period=key, amount=price + extra_total,
+                                          leave_days=days, refund=refund, extras=extra_total, invoice=inv)
         except IntegrityError:
             raise ValidationError("This month was just billed by someone else. Refresh and try again.")
+        if extras:
+            MessExtra.objects.filter(pk__in=[e.pk for e in extras]).update(invoice=inv)
         if inv:
             invoices.append(inv)
     return invoices
 
 
 def generate_month(*, company, user, key, on=None):
-    return bill(company=company, user=user, members=due_for_month(company, key), key=key, on=on)
+    invoices = bill(company=company, user=user, members=due_for_month(company, key), key=key, on=on)
+    # paused or finished members don't get a monthly bill, so their extras are billed on their own
+    upto = on or timezone.localdate()
+    waiting = (MessMember.objects.for_company(company).exclude(status="active")
+               .filter(extras__invoice__isnull=True, extras__date__lte=upto).distinct())
+    for member in waiting:
+        inv = bill_extras(company=company, user=user, member=member, upto=upto)
+        if inv:
+            invoices.append(inv)
+    return invoices
+
+
+# ------------------------------------------------------------------ extras
+
+def extra_product(company, name, price, item=None):
+    if item is not None:
+        return service_product(company, f"MESS-EXTRA-{item.pk}", f"Mess extra – {item.name}", item.price)
+    digest = hashlib.sha1(name.strip().lower().encode()).hexdigest()[:10]
+    return service_product(company, f"MESS-X-{digest}", f"Mess extra – {name.strip()}", price)
+
+
+def add_extra(*, company, user, member, item=None, name="", quantity=1, unit_price=None, day=None, meal=""):
+    """Give a member something on top of the plan; it goes on their next mess bill."""
+    if member.status == "ended":
+        raise ValidationError(f"{member.customer.name}'s mess has ended.")
+    if item is not None:
+        if item.company_id != company.pk:
+            raise ValidationError("Unknown extra.")
+        name = item.name
+        unit_price = item.price if unit_price is None else unit_price
+    name = (name or "").strip()
+    if not name:
+        raise ValidationError("Choose an extra or type its name.")
+    try:
+        quantity = Decimal(str(quantity))
+        unit_price = Decimal(str(unit_price))
+    except (InvalidOperation, TypeError, ValueError):
+        raise ValidationError("Quantity and price must be numbers.")
+    if quantity <= 0 or quantity > MAX_EXTRA_QTY:
+        raise ValidationError(f"Quantity must be between 1 and {MAX_EXTRA_QTY:.0f}.")
+    if unit_price < 0:
+        raise ValidationError("The price can't be negative.")
+    if meal and meal not in MEALS:
+        meal = ""
+    return MessExtra.objects.create(company=company, member=member, item=item, date=day or timezone.localdate(),
+                                    meal=meal, name=name[:120], quantity=quantity, unit_price=unit_price.quantize(CENT),
+                                    added_by=user)
+
+
+def remove_extra(extra):
+    if extra.invoice_id:
+        raise ValidationError("This extra is already on a bill.")
+    extra.delete()
+
+
+def pending_extras(member, upto=None):
+    qs = member.extras.filter(invoice__isnull=True)
+    return qs.filter(date__lte=upto) if upto else qs
+
+
+def pending_total(member, upto=None):
+    return sum((e.total for e in pending_extras(member, upto)), Decimal("0"))
+
+
+def extra_lines(company, extras):
+    """Invoice lines: the same extra at the same price becomes one line with the total quantity."""
+    grouped = {}
+    for e in extras:
+        key = (e.item_id or e.name.strip().lower(), e.unit_price)
+        row = grouped.setdefault(key, {"extra": e, "qty": Decimal("0")})
+        row["qty"] += e.quantity
+    return [(extra_product(company, r["extra"].name, r["extra"].unit_price, r["extra"].item), r["qty"], price)
+            for (_, price), r in grouped.items()]
+
+
+@transaction.atomic
+def bill_extras(*, company, user, member, upto=None):
+    """A bill for just the extras not billed yet (e.g. when a member leaves mid-month)."""
+    extras = list(pending_extras(member, upto).select_for_update())
+    if not extras:
+        return None
+    inv = make_invoice(company, user, member.customer, extra_lines(company, extras), date=upto or timezone.localdate())
+    MessExtra.objects.filter(pk__in=[e.pk for e in extras]).update(invoice=inv)
+    return inv
+
+
+# ------------------------------------------------------------------ weekly menu
+
+def menu_grid(plan):
+    """{(weekday, meal): items} for a plan."""
+    return {(m.weekday, m.meal): m.items for m in plan.menu.all()}
+
+
+@transaction.atomic
+def save_menu(plan, entries):
+    """entries: {(weekday, meal): text}; empty text clears that slot. Meals outside the plan are ignored."""
+    for (weekday, meal), text in entries.items():
+        if meal not in plan.meals() or not 0 <= weekday <= 6:
+            continue
+        text = " ".join((text or "").split())[:255]
+        if text:
+            MessMenu.objects.update_or_create(company=plan.company, plan=plan, weekday=weekday, meal=meal,
+                                              defaults={"items": text})
+        else:
+            MessMenu.objects.filter(plan=plan, weekday=weekday, meal=meal).delete()
+
+
+def menu_for_day(company, day=None):
+    """Today's menu per active plan: [{"plan": plan, "meals": [(meal, items)]}] (plans without a menu are left out)."""
+    day = day or timezone.localdate()
+    rows = {}
+    for m in MessMenu.objects.for_company(company).filter(weekday=day.weekday(), plan__is_active=True).select_related("plan"):
+        rows.setdefault(m.plan_id, {"plan": m.plan, "items": {}})["items"][m.meal] = m.items
+    out = []
+    for row in sorted(rows.values(), key=lambda r: r["plan"].name):
+        out.append({"plan": row["plan"], "meals": [(meal, row["items"][meal]) for meal in MEALS if meal in row["items"]]})
+    return out
+
+
+def menu_text(plan, *, company_name="", day=None):
+    """The menu as a WhatsApp message: the whole week, or one day when `day` is given."""
+    grid = menu_grid(plan)
+    days = [day.weekday()] if day else range(7)
+    lines = [f"🍱 {company_name} – {plan.name}".strip(" –"), ""]
+    if day:
+        lines[0] += f" · {day:%A %d %b}"
+    for wd in days:
+        meals = [(meal, grid[(wd, meal)]) for meal in MEALS if (wd, meal) in grid]
+        if not meals:
+            continue
+        if not day:
+            lines.append(f"*{WEEKDAYS[wd]}*")
+        lines += [f"{MEAL_ICON[meal]} {meal.capitalize()}: {items}" for meal, items in meals]
+        if not day:
+            lines.append("")
+    return "\n".join(lines).strip()
+
+
+# ------------------------------------------------------------------ delivery
+
+def delivery_list(company, meal, day=None):
+    """Members to deliver this meal to today, with address and whether it has gone out."""
+    day = day or timezone.localdate()
+    if meal not in MEALS:
+        return []
+    away = set(MessLeave.objects.for_company(company).filter(from_date__lte=day, to_date__gte=day)
+               .values_list("member_id", flat=True))
+    done = set(MessMeal.objects.for_company(company).filter(date=day, meal=meal).values_list("member_id", flat=True))
+    out = []
+    for m in running_on(company, day).select_related("customer", "plan").order_by("number"):
+        if getattr(m.plan, meal) and m.delivers(meal) and m.pk not in away:
+            out.append({"m": m, "address": m.delivery_address or m.customer.address or "", "done": m.pk in done})
+    return out
 
 
 def dues(company):
-    """Unpaid mess invoices per member, biggest first."""
+    """Unpaid mess invoices (monthly bills and extras-only bills) per member, biggest first."""
+    owner = dict(MessCharge.objects.for_company(company).exclude(invoice=None).values_list("invoice_id", "member_id"))
+    owner.update(MessExtra.objects.for_company(company).exclude(invoice=None).values_list("invoice_id", "member_id"))
     from apps.sales.models import SalesInvoice
-    charges = (MessCharge.objects.for_company(company).exclude(invoice=None)
-               .filter(invoice__amount_paid__lt=F("invoice__total")).select_related("member__customer", "invoice"))
+    unpaid = SalesInvoice.objects.filter(company=company, pk__in=owner, amount_paid__lt=F("total")).order_by("date")
+    members = {m.pk: m for m in MessMember.objects.for_company(company).filter(pk__in=set(owner.values()))
+               .select_related("customer")}
     rows = {}
-    for charge in charges:
-        row = rows.setdefault(charge.member_id, {"member": charge.member, "invoices": [], "due": Decimal("0")})
-        row["invoices"].append(charge.invoice)
-        row["due"] += charge.invoice.total - charge.invoice.amount_paid
+    for inv in unpaid:
+        member_id = owner[inv.pk]
+        row = rows.setdefault(member_id, {"member": members[member_id], "invoices": [], "due": Decimal("0")})
+        row["invoices"].append(inv)
+        row["due"] += inv.total - inv.amount_paid
     return sorted(rows.values(), key=lambda r: -r["due"])
 
 

@@ -1,0 +1,25 @@
+{% load i18n %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% translate "Weekly menu" %} · {{ plan.name }}</title>
+{% include "webapp/_lang_font.html" %}
+<style>
+body{margin:0;padding:28px;font-family:system-ui,"Noto Sans Malayalam","Noto Sans Arabic",sans-serif;color:#111;background:#fff}
+h1{margin:0;font-size:30px}.sub{margin:4px 0 20px;color:#555;font-size:16px}
+table{width:100%;border-collapse:collapse;font-size:17px}
+th,td{border:1.5px solid #222;padding:10px 12px;text-align:start;vertical-align:top}
+th{background:#f1f1f1;font-size:15px;text-transform:uppercase;letter-spacing:.03em}
+td.day{font-weight:800;white-space:nowrap;width:120px}
+@media(max-width:600px){body{padding:14px}table{font-size:14px;table-layout:fixed}th,td{padding:6px;overflow-wrap:anywhere}td.day{width:70px;white-space:normal}h1{font-size:22px}}
+.bar{margin-bottom:18px}.bar button{font:inherit;font-weight:700;padding:10px 18px;border-radius:10px;border:0;background:#14532d;color:#fff;cursor:pointer}
+@media print{.bar{display:none}body{padding:0}@page{size:A4 landscape;margin:12mm}}
+</style></head>
+<body>
+<div class="bar"><button type="button" onclick="print()">🖨 {% translate "Print" %}</button></div>
+<h1>🍱 {{ active_company.name }} – {{ plan.name }}</h1>
+<p class="sub">{% translate "Weekly menu" %}</p>
+<table>
+  <thead><tr><th></th>{% for meal in meals %}<th>{% if meal == "breakfast" %}☕ {% translate "Breakfast" %}{% elif meal == "lunch" %}🍛 {% translate "Lunch" %}{% else %}🌙 {% translate "Dinner" %}{% endif %}</th>{% endfor %}</tr></thead>
+  <tbody>{% for r in rows %}<tr><td class="day">{{ r.day }}</td>{% for c in r.cells %}<td>{{ c.value|default:"—" }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+</table>
+</body></html>

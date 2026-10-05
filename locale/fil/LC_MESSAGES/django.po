@@ -634,8 +634,16 @@ msgid "Mess dues"
 msgstr "Utang sa mess"
 
 #: templates/webapp/_industry_nav.html
-msgid "Mess plans"
-msgstr "Mga mess plan"
+msgid "Delivery"
+msgstr "Delivery"
+
+#: templates/webapp/_industry_nav.html
+msgid "Extras"
+msgstr "Mga extra"
+
+#: templates/webapp/_industry_nav.html
+msgid "Plans & menu"
+msgstr "Mga plano at menu"
 
 #: templates/webapp/_industry_nav.html
 msgid "My website"
@@ -4830,6 +4838,10 @@ msgid "mess cut"
 msgstr "mess cut"
 
 #: templates/webapp/mess/bills.html
+msgid "extras"
+msgstr "extra"
+
+#: templates/webapp/mess/bills.html
 msgid "Create all bills"
 msgstr "Gawin ang lahat ng bill"
 
@@ -4843,12 +4855,104 @@ msgstr ""
 "nakaraang buwan kung pinapayagan ng plan."
 
 #: templates/webapp/mess/bills.html
+msgid "Extras given so far are added to each bill."
+msgstr "Idinadagdag sa bawat bill ang mga extra na naibigay hanggang ngayon."
+
+#: templates/webapp/mess/bills.html
 msgid "No mess bills for this month."
 msgstr "Walang mess bill ngayong buwan."
+
+#: templates/webapp/mess/delivery.html
+msgid "Mess delivery"
+msgstr "Mess delivery"
+
+#: templates/webapp/mess/delivery.html
+msgid "Send list to delivery boy"
+msgstr "Ipadala ang listahan sa delivery boy"
+
+#: templates/webapp/mess/delivery.html
+msgid "Breakfast"
+msgstr "Almusal"
+
+#: templates/webapp/mess/delivery.html
+msgid "Lunch"
+msgstr "Tanghalian"
+
+#: templates/webapp/mess/delivery.html
+msgid "Dinner"
+msgstr "Hapunan"
+
+#: templates/webapp/mess/delivery.html
+msgid "still to deliver"
+msgstr "natitirang ihahatid"
+
+#: templates/webapp/mess/delivery.html
+msgid "No address — add it on the member page"
+msgstr "Walang address — idagdag sa pahina ng miyembro"
+
+#: templates/webapp/mess/delivery.html
+msgid "Delivered"
+msgstr "Naihatid"
+
+#: templates/webapp/mess/delivery.html
+msgid "Mark delivered"
+msgstr "Naihatid"
+
+#: templates/webapp/mess/delivery.html
+msgid "No deliveries for this meal today."
+msgstr "Walang delivery para sa kainang ito ngayon."
+
+#: templates/webapp/mess/delivery.html
+msgid ""
+"To deliver a member's meals, open the member and tick the delivered meals."
+msgstr ""
+"Para ihatid ang pagkain ng miyembro, buksan ang miyembro at lagyan ng tsek "
+"ang mga kainang ihahatid."
 
 #: templates/webapp/mess/dues.html
 msgid "No mess dues. Everyone has paid."
 msgstr "Walang utang sa mess. Bayad na ang lahat."
+
+#: templates/webapp/mess/extras.html
+msgid "Mess extras"
+msgstr "Mga extra sa mess"
+
+#: templates/webapp/mess/extras.html
+msgid ""
+"Things members can take on top of their plan — chicken, egg, fish fry, "
+"juice. Tap one on Today's meals and it goes on the member's next mess bill."
+msgstr ""
+"Mga kinukuha ng miyembro bukod sa plano — manok, itlog, pritong isda, juice."
+" Pindutin ang isa sa Today's meals at mapupunta ito sa susunod na mess bill "
+"ng miyembro."
+
+#: templates/webapp/mess/extras.html
+msgid "New extra"
+msgstr "Bagong extra"
+
+#: templates/webapp/mess/extras.html
+msgid "Extra items"
+msgstr "Mga extra item"
+
+#: templates/webapp/mess/extras.html
+msgid "Extra item"
+msgstr "Extra item"
+
+#: templates/webapp/mess/extras.html
+msgid "Hide"
+msgstr "Itago"
+
+#: templates/webapp/mess/extras.html
+msgid "Show"
+msgstr "Ipakita"
+
+#: templates/webapp/mess/extras.html
+msgid "No extras yet."
+msgstr "Wala pang extra."
+
+#: templates/webapp/mess/extras.html
+msgid "Example: Chicken curry 5, Egg 1.5, Fish fry 6."
+msgstr "Halimbawa: Chicken curry 5, Itlog 1.5, Pritong isda 6."
 
 #: templates/webapp/mess/form.html
 msgid "Please check the highlighted fields."
@@ -4859,20 +4963,24 @@ msgid "Mess — today's meals"
 msgstr "Mess — pagkain ngayon"
 
 #: templates/webapp/mess/home.html
-msgid "Breakfast"
-msgstr "Almusal"
-
-#: templates/webapp/mess/home.html
-msgid "Lunch"
-msgstr "Tanghalian"
-
-#: templates/webapp/mess/home.html
-msgid "Dinner"
-msgstr "Hapunan"
-
-#: templates/webapp/mess/home.html
 msgid "still to eat"
 msgstr "hindi pa kumakain"
+
+#: templates/webapp/mess/home.html
+msgid "at the shop"
+msgstr "sa tindahan"
+
+#: templates/webapp/mess/home.html
+msgid "delivery"
+msgstr "delivery"
+
+#: templates/webapp/mess/home.html
+msgid "Today's menu"
+msgstr "Menu ngayon"
+
+#: templates/webapp/mess/home.html
+msgid "Weekly menu"
+msgstr "Lingguhang menu"
 
 #: templates/webapp/mess/home.html
 msgid "Start your mess"
@@ -4900,10 +5008,6 @@ msgid "Name, phone or member no."
 msgstr "Pangalan, telepono o member no."
 
 #: templates/webapp/mess/home.html
-msgid "Plans"
-msgstr "Mga plan"
-
-#: templates/webapp/mess/home.html
 msgid "members eating today"
 msgstr "miyembrong kakain ngayon"
 
@@ -4922,6 +5026,14 @@ msgstr "Mess cut ngayon"
 #: templates/webapp/mess/home.html
 msgid "Tap to undo"
 msgstr "Pindutin para i-undo"
+
+#: templates/webapp/mess/home.html
+msgid "Extra (chicken, egg…)"
+msgstr "Extra (manok, itlog…)"
+
+#: templates/webapp/mess/home.html
+msgid "Other item"
+msgstr "Ibang item"
 
 #: templates/webapp/mess/home.html
 msgid "No member found."
@@ -4952,6 +5064,29 @@ msgid "Save mess cut"
 msgstr "I-save ang mess cut"
 
 #: templates/webapp/mess/member.html
+msgid "Things given on top of the plan. They are added to the next mess bill."
+msgstr "Mga naibigay bukod sa plano. Idadagdag ito sa susunod na mess bill."
+
+#: templates/webapp/mess/member.html
+msgid "Edit extra items"
+msgstr "I-edit ang mga extra item"
+
+#: templates/webapp/mess/member.html
+msgid "not billed yet"
+msgstr "hindi pa naka-bill"
+
+#: templates/webapp/mess/member.html
+msgid "Bill extras now"
+msgstr "I-bill na ang mga extra"
+
+#: templates/webapp/mess/member.html
+msgid ""
+"Only if the member is leaving — otherwise they go on the next monthly bill."
+msgstr ""
+"Kung aalis lang ang miyembro — kung hindi, mapupunta ito sa susunod na "
+"buwanang bill."
+
+#: templates/webapp/mess/member.html
 msgid "Bills"
 msgstr "Mga bill"
 
@@ -4968,6 +5103,14 @@ msgid "Member"
 msgstr "Miyembro"
 
 #: templates/webapp/mess/member.html
+msgid "Eats"
+msgstr "Kumakain"
+
+#: templates/webapp/mess/member.html
+msgid "Delivery address"
+msgstr "Address para sa delivery"
+
+#: templates/webapp/mess/member.html
 msgid "Ended"
 msgstr "Natapos"
 
@@ -4979,6 +5122,76 @@ msgstr "Tapusin ang mess membership na ito?"
 msgid "End membership"
 msgstr "Tapusin ang membership"
 
+#: templates/webapp/mess/menu.html
+msgid "Mess plans"
+msgstr "Mga mess plan"
+
+#: templates/webapp/mess/menu.html
+msgid ""
+"Type the dishes for each day. Leave a box empty if nothing is fixed. Today's"
+" menu shows on the Mess page."
+msgstr ""
+"I-type ang mga ulam sa bawat araw. Iwanang blangko kung wala pang tiyak. "
+"Makikita ang menu ngayon sa pahina ng Mess."
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Puttu, kadala curry, tea"
+msgstr "hal. Puttu, kadala curry, tsaa"
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Rice, sambar, fish curry, thoran"
+msgstr "hal. Kanin, sambar, fish curry, thoran"
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Chapati, chicken curry"
+msgstr "hal. Chapati, chicken curry"
+
+#: templates/webapp/mess/menu.html
+msgid "Save menu"
+msgstr "I-save ang menu"
+
+#: templates/webapp/mess/menu.html
+msgid "Send the menu"
+msgstr "Ipadala ang menu"
+
+#: templates/webapp/mess/menu.html
+msgid "Share weekly menu on WhatsApp"
+msgstr "I-share ang lingguhang menu sa WhatsApp"
+
+#: templates/webapp/mess/menu.html
+msgid "Share today's menu"
+msgstr "I-share ang menu ngayon"
+
+#: templates/webapp/mess/menu.html
+msgid "Print for the notice board"
+msgstr "I-print para sa notice board"
+
+#: templates/webapp/mess/menu.html
+msgid ""
+"Tip: share it once to your members' WhatsApp group or broadcast list — "
+"everyone gets it in one go."
+msgstr ""
+"Tip: i-share ito minsan sa WhatsApp group o broadcast list ng mga miyembro —"
+" sabay-sabay nilang matatanggap."
+
+#: templates/webapp/mess/menu.html
+msgid "Or send one by one"
+msgstr "O ipadala isa-isa"
+
+#: templates/webapp/mess/menu.html
+msgid "members with a phone"
+msgstr "miyembrong may telepono"
+
+#: templates/webapp/mess/menu.html
+msgid "Week"
+msgstr "Linggo"
+
+#: templates/webapp/mess/menu.html
+msgid "Add phone numbers to members to send them the menu one by one."
+msgstr ""
+"Magdagdag ng numero ng telepono sa mga miyembro para maipadala ang menu isa-"
+"isa."
+
 #: templates/webapp/mess/plans.html
 msgid "New mess plan"
 msgstr "Bagong mess plan"
@@ -4986,6 +5199,10 @@ msgstr "Bagong mess plan"
 #: templates/webapp/mess/plans.html
 msgid "Mess cut / day"
 msgstr "Mess cut / araw"
+
+#: templates/webapp/mess/plans.html
+msgid "Add weekly menu"
+msgstr "Magdagdag ng lingguhang menu"
 
 #: templates/webapp/mess/plans.html
 msgid "No mess plans yet."
@@ -7702,10 +7919,6 @@ msgid "Ready to collect"
 msgstr "Handang kunin"
 
 #: templates/webapp/restaurant/new_order.html
-msgid "Delivery"
-msgstr "Delivery"
-
-#: templates/webapp/restaurant/new_order.html
 msgid "Send to customer"
 msgstr "Ipadala sa customer"
 
@@ -7744,10 +7957,6 @@ msgstr "Bisita"
 #: templates/webapp/restaurant/new_order.html
 msgid "Delivery phone"
 msgstr "Telepono para sa delivery"
-
-#: templates/webapp/restaurant/new_order.html
-msgid "Delivery address"
-msgstr "Address para sa delivery"
 
 #: templates/webapp/restaurant/new_order.html
 msgid "Takeaway order"
@@ -8639,10 +8848,6 @@ msgstr "Sales order"
 #: templates/webapp/sales_docs/order_detail.html
 msgid "SALES ORDER"
 msgstr "SALES ORDER"
-
-#: templates/webapp/sales_docs/order_detail.html
-msgid "Delivered"
-msgstr "Naihatid"
 
 #: templates/webapp/sales_docs/order_detail.html
 msgid "Invoiced"
@@ -10600,6 +10805,21 @@ msgid "This module isn't part of your business type."
 msgstr "Hindi bahagi ng uri ng negosyo mo ang module na ito."
 
 #: apps/webapp/mess_views.py
+msgid "Delivered meals"
+msgstr "Mga kainang inihahatid"
+
+#: apps/webapp/mess_views.py
+msgid ""
+"Tick the meals you carry to this member. The rest are eaten at the shop."
+msgstr ""
+"Lagyan ng tsek ang mga kainang inihahatid mo sa miyembrong ito. Ang iba ay "
+"kinakain sa tindahan."
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Al Noor Trading, Building 12, 3rd floor"
+msgstr "hal. Al Noor Trading, Building 12, 3rd floor"
+
+#: apps/webapp/mess_views.py
 msgid "Plan name"
 msgstr "Pangalan ng plano"
 
@@ -10669,12 +10889,28 @@ msgid "Choose a customer or type the new member's name."
 msgstr "Pumili ng customer o i-type ang pangalan ng bagong miyembro."
 
 #: apps/webapp/mess_views.py
+msgid "e.g. Chicken curry, Egg, Fish fry"
+msgstr "hal. Chicken curry, Itlog, Pritong isda"
+
+#: apps/webapp/mess_views.py
+msgid "An extra with this name already exists."
+msgstr "May extra na may ganitong pangalan."
+
+#: apps/webapp/mess_views.py
 msgid "e.g. Going home on vacation"
 msgstr "hal. Uuwi para magbakasyon"
 
 #: apps/webapp/mess_views.py
+msgid "%(item)s added to %(name)s's bill."
+msgstr "Naidagdag ang %(item)s sa bill ni %(name)s."
+
+#: apps/webapp/mess_views.py
 msgid "%(meal)s served to %(name)s."
 msgstr "Naihain ang %(meal)s kay %(name)s."
+
+#: apps/webapp/mess_views.py
+msgid "Unknown extra."
+msgstr "Hindi kilalang extra."
 
 #: apps/webapp/mess_views.py
 msgid "Plan saved."
@@ -10711,6 +10947,18 @@ msgstr "Nagawa ang bill."
 #: apps/webapp/mess_views.py
 msgid "This month is already billed."
 msgstr "Naka-bill na ang buwang ito."
+
+#: apps/webapp/mess_views.py
+msgid "Extra removed."
+msgstr "Inalis ang extra."
+
+#: apps/webapp/mess_views.py
+msgid "Bill %(number)s created for the extras."
+msgstr "Nagawa ang bill %(number)s para sa mga extra."
+
+#: apps/webapp/mess_views.py
+msgid "No extras waiting to be billed."
+msgstr "Walang extra na naghihintay ng bill."
 
 #: apps/webapp/mess_views.py
 msgid "Mon"
@@ -10750,6 +10998,10 @@ msgstr ""
 #: apps/webapp/mess_views.py
 msgid "%(n)s mess bills created."
 msgstr "Nagawa ang %(n)s mess bill."
+
+#: apps/webapp/mess_views.py
+msgid "Menu saved."
+msgstr "Na-save ang menu."
 
 #: apps/webapp/onboarding_views.py
 msgid "Check the price and stock for “%(name)s”."

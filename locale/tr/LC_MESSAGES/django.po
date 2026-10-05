@@ -634,8 +634,16 @@ msgid "Mess dues"
 msgstr "Yemekhane borçları"
 
 #: templates/webapp/_industry_nav.html
-msgid "Mess plans"
-msgstr "Yemekhane planları"
+msgid "Delivery"
+msgstr "Teslimat"
+
+#: templates/webapp/_industry_nav.html
+msgid "Extras"
+msgstr "Ekstralar"
+
+#: templates/webapp/_industry_nav.html
+msgid "Plans & menu"
+msgstr "Planlar ve menü"
 
 #: templates/webapp/_industry_nav.html
 msgid "My website"
@@ -4806,6 +4814,10 @@ msgid "mess cut"
 msgstr "yemek iptali"
 
 #: templates/webapp/mess/bills.html
+msgid "extras"
+msgstr "ekstralar"
+
+#: templates/webapp/mess/bills.html
 msgid "Create all bills"
 msgstr "Tüm faturaları oluştur"
 
@@ -4818,12 +4830,104 @@ msgstr ""
 "izin veriyorsa geçen ayın iptal günleri bu faturadan düşülür."
 
 #: templates/webapp/mess/bills.html
+msgid "Extras given so far are added to each bill."
+msgstr "Şimdiye kadar verilen ekstralar her faturaya eklenir."
+
+#: templates/webapp/mess/bills.html
 msgid "No mess bills for this month."
 msgstr "Bu ay yemekhane faturası yok."
+
+#: templates/webapp/mess/delivery.html
+msgid "Mess delivery"
+msgstr "Yemekhane teslimatı"
+
+#: templates/webapp/mess/delivery.html
+msgid "Send list to delivery boy"
+msgstr "Listeyi kuryeye gönder"
+
+#: templates/webapp/mess/delivery.html
+msgid "Breakfast"
+msgstr "Kahvaltı"
+
+#: templates/webapp/mess/delivery.html
+msgid "Lunch"
+msgstr "Öğle yemeği"
+
+#: templates/webapp/mess/delivery.html
+msgid "Dinner"
+msgstr "Akşam yemeği"
+
+#: templates/webapp/mess/delivery.html
+msgid "still to deliver"
+msgstr "teslim edilecek"
+
+#: templates/webapp/mess/delivery.html
+msgid "No address — add it on the member page"
+msgstr "Adres yok — üye sayfasından ekleyin"
+
+#: templates/webapp/mess/delivery.html
+msgid "Delivered"
+msgstr "Teslim edildi"
+
+#: templates/webapp/mess/delivery.html
+msgid "Mark delivered"
+msgstr "Teslim edildi"
+
+#: templates/webapp/mess/delivery.html
+msgid "No deliveries for this meal today."
+msgstr "Bugün bu öğün için teslimat yok."
+
+#: templates/webapp/mess/delivery.html
+msgid ""
+"To deliver a member's meals, open the member and tick the delivered meals."
+msgstr ""
+"Bir üyenin yemeğini götürmek için üye sayfasını açın ve teslim edilen "
+"öğünleri işaretleyin."
 
 #: templates/webapp/mess/dues.html
 msgid "No mess dues. Everyone has paid."
 msgstr "Yemekhane borcu yok. Herkes ödedi."
+
+#: templates/webapp/mess/extras.html
+msgid "Mess extras"
+msgstr "Yemekhane ekstraları"
+
+#: templates/webapp/mess/extras.html
+msgid ""
+"Things members can take on top of their plan — chicken, egg, fish fry, "
+"juice. Tap one on Today's meals and it goes on the member's next mess bill."
+msgstr ""
+"Üyelerin planlarına ek olarak aldıkları — tavuk, yumurta, balık kızartması, "
+"meyve suyu. Bugünün yemekleri sayfasında birine dokunun, üyenin bir sonraki "
+"faturasına eklenir."
+
+#: templates/webapp/mess/extras.html
+msgid "New extra"
+msgstr "Yeni ekstra"
+
+#: templates/webapp/mess/extras.html
+msgid "Extra items"
+msgstr "Ekstra ürünler"
+
+#: templates/webapp/mess/extras.html
+msgid "Extra item"
+msgstr "Ekstra ürün"
+
+#: templates/webapp/mess/extras.html
+msgid "Hide"
+msgstr "Gizle"
+
+#: templates/webapp/mess/extras.html
+msgid "Show"
+msgstr "Göster"
+
+#: templates/webapp/mess/extras.html
+msgid "No extras yet."
+msgstr "Henüz ekstra yok."
+
+#: templates/webapp/mess/extras.html
+msgid "Example: Chicken curry 5, Egg 1.5, Fish fry 6."
+msgstr "Örnek: Tavuk köri 5, Yumurta 1,5, Balık kızartması 6."
 
 #: templates/webapp/mess/form.html
 msgid "Please check the highlighted fields."
@@ -4834,20 +4938,24 @@ msgid "Mess — today's meals"
 msgstr "Yemekhane — bugünün yemekleri"
 
 #: templates/webapp/mess/home.html
-msgid "Breakfast"
-msgstr "Kahvaltı"
-
-#: templates/webapp/mess/home.html
-msgid "Lunch"
-msgstr "Öğle yemeği"
-
-#: templates/webapp/mess/home.html
-msgid "Dinner"
-msgstr "Akşam yemeği"
-
-#: templates/webapp/mess/home.html
 msgid "still to eat"
 msgstr "henüz yemedi"
+
+#: templates/webapp/mess/home.html
+msgid "at the shop"
+msgstr "dükkanda"
+
+#: templates/webapp/mess/home.html
+msgid "delivery"
+msgstr "teslimat"
+
+#: templates/webapp/mess/home.html
+msgid "Today's menu"
+msgstr "Bugünün menüsü"
+
+#: templates/webapp/mess/home.html
+msgid "Weekly menu"
+msgstr "Haftalık menü"
 
 #: templates/webapp/mess/home.html
 msgid "Start your mess"
@@ -4874,10 +4982,6 @@ msgid "Name, phone or member no."
 msgstr "Ad, telefon veya üye no."
 
 #: templates/webapp/mess/home.html
-msgid "Plans"
-msgstr "Planlar"
-
-#: templates/webapp/mess/home.html
 msgid "members eating today"
 msgstr "üye bugün yemek yiyor"
 
@@ -4896,6 +5000,14 @@ msgstr "Bugün yemek iptali"
 #: templates/webapp/mess/home.html
 msgid "Tap to undo"
 msgstr "Geri almak için dokunun"
+
+#: templates/webapp/mess/home.html
+msgid "Extra (chicken, egg…)"
+msgstr "Ekstra (tavuk, yumurta…)"
+
+#: templates/webapp/mess/home.html
+msgid "Other item"
+msgstr "Başka ürün"
 
 #: templates/webapp/mess/home.html
 msgid "No member found."
@@ -4926,6 +5038,27 @@ msgid "Save mess cut"
 msgstr "İptali kaydet"
 
 #: templates/webapp/mess/member.html
+msgid "Things given on top of the plan. They are added to the next mess bill."
+msgstr "Plana ek olarak verilenler. Bir sonraki yemekhane faturasına eklenir."
+
+#: templates/webapp/mess/member.html
+msgid "Edit extra items"
+msgstr "Ekstra ürünleri düzenle"
+
+#: templates/webapp/mess/member.html
+msgid "not billed yet"
+msgstr "henüz faturalanmadı"
+
+#: templates/webapp/mess/member.html
+msgid "Bill extras now"
+msgstr "Ekstraları şimdi faturala"
+
+#: templates/webapp/mess/member.html
+msgid ""
+"Only if the member is leaving — otherwise they go on the next monthly bill."
+msgstr "Yalnızca üye ayrılıyorsa — yoksa bir sonraki aylık faturaya eklenir."
+
+#: templates/webapp/mess/member.html
 msgid "Bills"
 msgstr "Faturalar"
 
@@ -4942,6 +5075,14 @@ msgid "Member"
 msgstr "Üye"
 
 #: templates/webapp/mess/member.html
+msgid "Eats"
+msgstr "Yiyor"
+
+#: templates/webapp/mess/member.html
+msgid "Delivery address"
+msgstr "Teslimat adresi"
+
+#: templates/webapp/mess/member.html
 msgid "Ended"
 msgstr "Sona erdi"
 
@@ -4953,6 +5094,74 @@ msgstr "Bu yemekhane üyeliği sonlandırılsın mı?"
 msgid "End membership"
 msgstr "Üyeliği sonlandır"
 
+#: templates/webapp/mess/menu.html
+msgid "Mess plans"
+msgstr "Yemekhane planları"
+
+#: templates/webapp/mess/menu.html
+msgid ""
+"Type the dishes for each day. Leave a box empty if nothing is fixed. Today's"
+" menu shows on the Mess page."
+msgstr ""
+"Her günün yemeklerini yazın. Belli bir şey yoksa kutuyu boş bırakın. Bugünün"
+" menüsü yemekhane sayfasında görünür."
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Puttu, kadala curry, tea"
+msgstr "örn. Puttu, nohut köri, çay"
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Rice, sambar, fish curry, thoran"
+msgstr "örn. Pilav, sambar, balık köri, thoran"
+
+#: templates/webapp/mess/menu.html
+msgid "e.g. Chapati, chicken curry"
+msgstr "örn. Çapati, tavuk köri"
+
+#: templates/webapp/mess/menu.html
+msgid "Save menu"
+msgstr "Menüyü kaydet"
+
+#: templates/webapp/mess/menu.html
+msgid "Send the menu"
+msgstr "Menüyü gönder"
+
+#: templates/webapp/mess/menu.html
+msgid "Share weekly menu on WhatsApp"
+msgstr "Haftalık menüyü WhatsApp’ta paylaş"
+
+#: templates/webapp/mess/menu.html
+msgid "Share today's menu"
+msgstr "Bugünün menüsünü paylaş"
+
+#: templates/webapp/mess/menu.html
+msgid "Print for the notice board"
+msgstr "İlan panosu için yazdır"
+
+#: templates/webapp/mess/menu.html
+msgid ""
+"Tip: share it once to your members' WhatsApp group or broadcast list — "
+"everyone gets it in one go."
+msgstr ""
+"İpucu: üyelerin WhatsApp grubunda veya yayın listesinde bir kez paylaşın — "
+"herkese aynı anda ulaşır."
+
+#: templates/webapp/mess/menu.html
+msgid "Or send one by one"
+msgstr "Veya tek tek gönderin"
+
+#: templates/webapp/mess/menu.html
+msgid "members with a phone"
+msgstr "telefonu olan üye"
+
+#: templates/webapp/mess/menu.html
+msgid "Week"
+msgstr "Hafta"
+
+#: templates/webapp/mess/menu.html
+msgid "Add phone numbers to members to send them the menu one by one."
+msgstr "Menüyü tek tek göndermek için üyelere telefon numarası ekleyin."
+
 #: templates/webapp/mess/plans.html
 msgid "New mess plan"
 msgstr "Yeni yemekhane planı"
@@ -4960,6 +5169,10 @@ msgstr "Yeni yemekhane planı"
 #: templates/webapp/mess/plans.html
 msgid "Mess cut / day"
 msgstr "Yemek iptali / gün"
+
+#: templates/webapp/mess/plans.html
+msgid "Add weekly menu"
+msgstr "Haftalık menü ekle"
 
 #: templates/webapp/mess/plans.html
 msgid "No mess plans yet."
@@ -7669,10 +7882,6 @@ msgid "Ready to collect"
 msgstr "Teslim almaya hazır"
 
 #: templates/webapp/restaurant/new_order.html
-msgid "Delivery"
-msgstr "Teslimat"
-
-#: templates/webapp/restaurant/new_order.html
 msgid "Send to customer"
 msgstr "Müşteriye gönder"
 
@@ -7711,10 +7920,6 @@ msgstr "Kişi sayısı"
 #: templates/webapp/restaurant/new_order.html
 msgid "Delivery phone"
 msgstr "Teslimat telefonu"
-
-#: templates/webapp/restaurant/new_order.html
-msgid "Delivery address"
-msgstr "Teslimat adresi"
 
 #: templates/webapp/restaurant/new_order.html
 msgid "Takeaway order"
@@ -8601,10 +8806,6 @@ msgstr "Satış siparişi"
 #: templates/webapp/sales_docs/order_detail.html
 msgid "SALES ORDER"
 msgstr "SATIŞ SİPARİŞİ"
-
-#: templates/webapp/sales_docs/order_detail.html
-msgid "Delivered"
-msgstr "Teslim edildi"
 
 #: templates/webapp/sales_docs/order_detail.html
 msgid "Invoiced"
@@ -10548,6 +10749,19 @@ msgid "This module isn't part of your business type."
 msgstr "Bu modül işletme türünüzün parçası değil."
 
 #: apps/webapp/mess_views.py
+msgid "Delivered meals"
+msgstr "Teslim edilen öğünler"
+
+#: apps/webapp/mess_views.py
+msgid ""
+"Tick the meals you carry to this member. The rest are eaten at the shop."
+msgstr "Bu üyeye götürdüğünüz öğünleri işaretleyin. Diğerleri dükkanda yenir."
+
+#: apps/webapp/mess_views.py
+msgid "e.g. Al Noor Trading, Building 12, 3rd floor"
+msgstr "örn. Al Noor Trading, Bina 12, 3. kat"
+
+#: apps/webapp/mess_views.py
 msgid "Plan name"
 msgstr "Plan adı"
 
@@ -10616,12 +10830,28 @@ msgid "Choose a customer or type the new member's name."
 msgstr "Bir müşteri seçin veya yeni üyenin adını yazın."
 
 #: apps/webapp/mess_views.py
+msgid "e.g. Chicken curry, Egg, Fish fry"
+msgstr "örn. Tavuk köri, Yumurta, Balık kızartması"
+
+#: apps/webapp/mess_views.py
+msgid "An extra with this name already exists."
+msgstr "Bu adla bir ekstra zaten var."
+
+#: apps/webapp/mess_views.py
 msgid "e.g. Going home on vacation"
 msgstr "örn. Tatil için memlekete gidiyor"
 
 #: apps/webapp/mess_views.py
+msgid "%(item)s added to %(name)s's bill."
+msgstr "%(item)s, %(name)s faturasına eklendi."
+
+#: apps/webapp/mess_views.py
 msgid "%(meal)s served to %(name)s."
 msgstr "%(name)s kişisine %(meal)s servis edildi."
+
+#: apps/webapp/mess_views.py
+msgid "Unknown extra."
+msgstr "Bilinmeyen ekstra."
 
 #: apps/webapp/mess_views.py
 msgid "Plan saved."
@@ -10658,6 +10888,18 @@ msgstr "Fatura oluşturuldu."
 #: apps/webapp/mess_views.py
 msgid "This month is already billed."
 msgstr "Bu ay zaten faturalandı."
+
+#: apps/webapp/mess_views.py
+msgid "Extra removed."
+msgstr "Ekstra kaldırıldı."
+
+#: apps/webapp/mess_views.py
+msgid "Bill %(number)s created for the extras."
+msgstr "Ekstralar için %(number)s faturası oluşturuldu."
+
+#: apps/webapp/mess_views.py
+msgid "No extras waiting to be billed."
+msgstr "Faturalanmayı bekleyen ekstra yok."
 
 #: apps/webapp/mess_views.py
 msgid "Mon"
@@ -10697,6 +10939,10 @@ msgstr ""
 #: apps/webapp/mess_views.py
 msgid "%(n)s mess bills created."
 msgstr "%(n)s yemekhane faturası oluşturuldu."
+
+#: apps/webapp/mess_views.py
+msgid "Menu saved."
+msgstr "Menü kaydedildi."
 
 #: apps/webapp/onboarding_views.py
 msgid "Check the price and stock for “%(name)s”."

@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import guide_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
+from . import billing_admin_views, guide_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -72,6 +72,10 @@ urlpatterns = [
     path("platform/permissions/", views.platform_permission_catalogue, name="platform_permission_catalogue"),
     path("platform/clients/<int:company_id>/commercial/", views.platform_client_commercial_profile, name="platform_client_commercial_profile"),
 
+    path("platform/billing/", billing_admin_views.platform_billing, name="platform_billing"),
+    path("platform/billing/<int:company_id>/", billing_admin_views.platform_billing_client, name="platform_billing_client"),
+    path("platform/billing/invoice/<int:invoice_id>/", billing_admin_views.platform_billing_invoice, name="platform_billing_invoice"),
+    path("billing/invoices/<int:invoice_id>/", billing_admin_views.client_billing_invoice, name="client_billing_invoice"),
     path("platform/pending-payments/", views.platform_pending_payments, name="platform_pending_payments"),
     path("platform/pending-payments/<int:payment_id>/approve/", views.platform_approve_payment, name="platform_approve_payment"),
     path("platform/setup/", views.platform_setup, name="platform_setup"),

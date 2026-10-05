@@ -1,0 +1,48 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Client billing{% endblock %}
+{% block heading %}💳 Client billing{% endblock %}
+{% block content %}
+<style>
+.cb-stat{color:var(--ink-soft);font-size:13px}.cb-num{font-size:22px;font-weight:700;margin-top:6px}
+.cb-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+.cb-tabs a{padding:8px 13px;border-radius:10px;border:1px solid var(--line);background:var(--panel);font-weight:600;font-size:14px;color:var(--ink-soft)}
+.cb-tabs a.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.cb-chip{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}
+.cb-chip.ok{background:var(--success-bg);color:var(--success)}.cb-chip.expiring,.cb-chip.trial{background:var(--warning-bg);color:var(--warning)}
+.cb-chip.expired{background:var(--danger-bg);color:var(--danger)}
+.cb-due{color:var(--danger);font-weight:700}
+</style>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px">
+  <div class="card"><div class="cb-stat">Collected this month</div><div class="cb-num">{{ totals.month|floatformat:2 }}</div></div>
+  <div class="card"><div class="cb-stat">Collected this year</div><div class="cb-num">{{ totals.year|floatformat:2 }}</div></div>
+  <div class="card"><div class="cb-stat">Unpaid invoices</div><div class="cb-num{% if totals.unpaid %} cb-due{% endif %}">{{ totals.unpaid|floatformat:2 }}</div></div>
+  <div class="card"><div class="cb-stat">Expiring ({{ expiring_days }} days) · Expired</div><div class="cb-num">{{ totals.expiring }} · <span{% if totals.expired %} class="cb-due"{% endif %}>{{ totals.expired }}</span></div></div>
+</div>
+{% if totals.waiting %}<p class="card" style="border-left:4px solid var(--warning);padding:12px 16px"><b>{{ totals.waiting }}</b> bank-transfer payment{{ totals.waiting|pluralize }} from clients waiting for your approval — <a href="{% url 'webapp:platform_pending_payments' %}" style="color:var(--accent);font-weight:700">Pending payments →</a></p>{% endif %}
+
+<form method="get" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+  <input type="hidden" name="show" value="{{ show }}">
+  <input type="search" name="q" value="{{ q }}" placeholder="Client name, email or phone" style="flex:1 1 220px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font:inherit">
+  <button class="btn btn-secondary" type="submit">Search</button>
+</form>
+<div class="cb-tabs">{% for key, label in tabs %}<a href="?show={{ key }}{% if q %}&q={{ q|urlencode }}{% endif %}"{% if key == show %} class="on"{% endif %}>{{ label }}</a>{% endfor %}</div>
+
+<table>
+  <thead><tr><th>Client</th><th>Plan</th><th>Expiry date</th><th>Last payment</th><th>Total paid</th><th>Unpaid</th><th></th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+    <tr>
+      <td><a href="{% url 'webapp:platform_billing_client' r.s.company.id %}"><b>{{ r.s.company.name }}</b></a><br><small style="color:var(--ink-soft)">{{ r.s.company.business_type.name }}{% if r.s.company.phone %} · {{ r.s.company.phone }}{% endif %}</small></td>
+      <td>{{ r.s.plan.name }}<br><small style="color:var(--ink-soft)">{{ r.s.plan.currency }} {{ r.s.plan.price|floatformat:"-2" }} / {% if r.s.plan.billing_period == "yearly" %}year{% else %}month{% endif %}</small></td>
+      <td><b>{{ r.s.end_date|date:"d M Y" }}</b><br><span class="cb-chip {{ r.state }}">{% if r.state == "expired" %}Expired {{ r.days|stringformat:"d"|slice:"1:" }} days ago{% elif r.state == "trial" %}Trial · {{ r.days }} days left{% else %}{{ r.days }} days left{% endif %}</span></td>
+      <td>{% if r.last_paid %}{{ r.last_paid|date:"d M Y" }}{% else %}<span style="color:var(--ink-soft)">Never</span>{% endif %}</td>
+      <td>{{ r.paid|floatformat:2 }}</td>
+      <td>{% if r.unpaid %}<span class="cb-due">{{ r.unpaid|floatformat:2 }}</span>{% else %}—{% endif %}</td>
+      <td><a class="btn btn-secondary" href="{% url 'webapp:platform_billing_client' r.s.company.id %}">Open</a></td>
+    </tr>
+  {% empty %}
+    <tr><td colspan="7" class="empty">No clients here.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -117,3 +117,33 @@ class GatewayCheckout(models.Model):
 
     def __str__(self):
         return f"{self.gateway} {self.transaction_id} ({self.status})"
+
+
+class SubscriptionInvoice(models.Model):
+    """BookPilot's invoice to a client for one subscription period.
+
+    Issued ahead of a renewal (unpaid) or created when a payment renews the subscription (paid).
+    apps.subscriptions.billing keeps invoices, payments and renewals in step."""
+    STATUS = [("unpaid", "Unpaid"), ("paid", "Paid"), ("void", "Cancelled")]
+
+    subscription = models.ForeignKey(Subscription, on_delete=models.PROTECT, related_name="invoices")
+    number = models.CharField(max_length=30, blank=True, db_index=True)
+    issued_on = models.DateField()
+    due_on = models.DateField()
+    period_start = models.DateField()
+    period_end = models.DateField()
+    plan_name = models.CharField(max_length=120)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    currency = models.CharField(max_length=3)
+    status = models.CharField(max_length=8, choices=STATUS, default="unpaid")
+    payment = models.OneToOneField(SubscriptionPayment, null=True, blank=True, on_delete=models.SET_NULL,
+                                   related_name="invoice")
+    notes = models.CharField(max_length=255, blank=True)
+    created_by = models.ForeignKey("accounts.User", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-issued_on", "-id"]
+
+    def __str__(self):
+        return self.number or f"Invoice {self.pk}"

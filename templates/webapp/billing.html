@@ -186,6 +186,17 @@ document.getElementById('razorpay-pay-btn').addEventListener('click', async () =
 {% endif %}
 {% endif %}
 
+{% if invoices %}
+<h2 style="font-size:16px; margin-bottom:10px;">{% translate "Invoices" %}</h2>
+<table style="margin-bottom:22px">
+  <tr><th>{% translate "Invoice" %}</th><th>{% translate "Period" %}</th><th>{% translate "Amount" %}</th><th>{% translate "Status" %}</th><th></th></tr>
+  {% for i in invoices %}
+  <tr><td>{{ i.number }}</td><td>{{ i.period_start|date:"d M Y" }} – {{ i.period_end|date:"d M Y" }}</td><td>{{ i.currency }} {{ i.amount }}</td>
+    <td>{% if i.status == "paid" %}{% translate "Paid" %}{% else %}{% translate "Due" %} {{ i.due_on|date:"d M Y" }}{% endif %}</td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:client_billing_invoice' i.id %}" target="_blank">🧾</a></td></tr>
+  {% endfor %}
+</table>
+{% endif %}
 <h2 style="font-size:16px; margin-bottom:10px;">Payment history</h2>
 {% if payments %}
 <table>

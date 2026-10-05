@@ -10,7 +10,7 @@
   <a class="btn btn-secondary" href="{% url 'webapp:platform_admin_manage_modules' company.id %}">Modules</a>
   <a class="btn btn-secondary" href="{% url 'webapp:platform_admin_roles' company.id %}">Roles & permissions</a>
   <a class="btn btn-secondary" href="{% url 'webapp:platform_client_commercial_profile' company.id %}">Commercial / White-label</a>
-  {% if subscription %}<a class="btn btn-secondary" href="{% url 'webapp:platform_admin_record_payment' company.id %}">Record payment</a>{% endif %}
+  {% if subscription %}<a class="btn" href="{% url 'webapp:platform_billing_client' company.id %}">💳 Billing &amp; invoices</a>{% endif %}
   {% if company.is_active %}<a class="btn btn-secondary" href="{% url 'webapp:platform_admin_company_delete' company.id %}" style="color:var(--danger); border-color:var(--danger);">Archive client</a>{% else %}<form method="post" action="{% url 'webapp:platform_admin_company_restore' company.id %}" style="display:inline">{% csrf_token %}<button class="btn" type="submit">Restore client</button></form>{% endif %}
 </div>
 

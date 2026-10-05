@@ -5053,9 +5053,8 @@ def platform_admin_record_payment(request, company_id):
         method = request.POST.get("method", "manual")
         reference = request.POST.get("reference", "")
         try:
-            from apps.subscriptions.services import renew_subscription
-            new_end = tz.now().date() + timedelta(days=365 if subscription.plan.billing_period == "yearly" else 30)
-            renew_subscription(subscription, new_end_date=new_end, amount=Decimal(amount), method=method, reference=reference)
+            from apps.subscriptions.billing import record_payment
+            record_payment(subscription, amount=amount, method=method, reference=reference, user=request.user)
             messages.success(request, "Payment recorded and subscription renewed.")
         except Exception as exc:
             messages.error(request, f"Couldn't record payment: {exc}")
@@ -5163,6 +5162,7 @@ def billing_view(request):
 
     gateway = get_payment_gateway_config()
     return render(request, "webapp/billing.html", {
+        "invoices": subscription.invoices.exclude(status="void")[:24] if subscription and is_owner else [],
         "subscription": subscription, "is_owner": is_owner, "days_left": days_left,
         "is_expired": is_expired, "payments": payments, "form": form,
         "is_gcc": _is_gcc_country(company.country),

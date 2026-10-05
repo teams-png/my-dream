@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "ব্যাকআপ"
 
 #: templates/base.html
+msgid "Help & support"
+msgstr "সাহায্য ও সহায়তা"
+
+#: templates/base.html
 msgid "User guide"
 msgstr "ব্যবহারকারী গাইড"
 
@@ -436,6 +440,10 @@ msgstr "লগ আউট"
 #: templates/base.html
 msgid "Open menu"
 msgstr "মেনু খুলুন"
+
+#: templates/base.html
+msgid "Help"
+msgstr "সাহায্য"
 
 #: templates/base.html
 msgid "Install as an app"
@@ -1104,10 +1112,6 @@ msgid "Users & Access"
 msgstr "ব্যবহারকারী ও অ্যাক্সেস"
 
 #: templates/webapp/admin_base.html
-msgid "Support Tickets"
-msgstr "সাপোর্ট টিকিট"
-
-#: templates/webapp/admin_base.html
 msgid "Audit Log"
 msgstr "অডিট লগ"
 
@@ -1727,6 +1731,26 @@ msgstr "অতিরিক্ত শাখা"
 #: templates/webapp/billing.html
 msgid "extra user"
 msgstr "অতিরিক্ত ব্যবহারকারী"
+
+#: templates/webapp/billing.html
+msgid "Invoice"
+msgstr "ইনভয়েস"
+
+#: templates/webapp/billing.html
+msgid "Period"
+msgstr "মেয়াদ"
+
+#: templates/webapp/billing.html
+msgid "Status"
+msgstr "অবস্থা"
+
+#: templates/webapp/billing.html
+msgid "Paid"
+msgstr "পরিশোধিত"
+
+#: templates/webapp/billing.html
+msgid "Due"
+msgstr "দেয়"
 
 #: templates/webapp/careers/_form.html
 msgid "Full name (as in passport)"
@@ -2492,10 +2516,6 @@ msgid "item"
 msgstr "আইটেম"
 
 #: templates/webapp/customer_display.html
-msgid "Paid"
-msgstr "পরিশোধিত"
-
-#: templates/webapp/customer_display.html
 msgid "Your change"
 msgstr "আপনার ফেরত"
 
@@ -2690,14 +2710,6 @@ msgstr "সম্পন্ন বিক্রয়"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "সাম্প্রতিক বিক্রয়"
-
-#: templates/webapp/dashboard.html
-msgid "Invoice"
-msgstr "ইনভয়েস"
-
-#: templates/webapp/dashboard.html
-msgid "Status"
-msgstr "অবস্থা"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -3122,10 +3134,6 @@ msgid "Cheque"
 msgstr "চেক"
 
 #: templates/webapp/finance/cheques.html
-msgid "Due"
-msgstr "দেয়"
-
-#: templates/webapp/finance/cheques.html
 msgid "Deposited"
 msgstr "জমা দেওয়া হয়েছে"
 
@@ -3291,6 +3299,50 @@ msgstr "গ্রাহককে ইমেইল"
 #: templates/webapp/finance/recurring.html
 msgid "Create schedule"
 msgstr "সময়সূচি তৈরি করুন"
+
+#: templates/webapp/help.html
+msgid ""
+"Write your question here. The BookPilot team will reply in this chat, and "
+"you will also get a notification."
+msgstr ""
+"আপনার প্রশ্ন এখানে লিখুন। BookPilot টিম এই চ্যাটেই উত্তর দেবে, এবং আপনি একটি"
+" নোটিফিকেশনও পাবেন।"
+
+#: templates/webapp/help.html
+msgid "BookPilot support"
+msgstr "BookPilot সহায়তা"
+
+#: templates/webapp/help.html
+msgid ""
+"Hello! How can we help? Ask anything about BookPilot: setup, billing, a "
+"problem, or a new feature you need."
+msgstr ""
+"নমস্কার! আমরা কীভাবে সাহায্য করতে পারি? BookPilot সম্পর্কে যেকোনো কিছু "
+"জিজ্ঞাসা করুন: সেটআপ, বিলিং, কোনো সমস্যা, বা আপনার দরকারি নতুন ফিচার।"
+
+#: templates/webapp/help.html
+msgid "Type your message…"
+msgstr "আপনার বার্তা লিখুন…"
+
+#: templates/webapp/help.html
+msgid "Message"
+msgstr "বার্তা"
+
+#: templates/webapp/help.html
+msgid "Send"
+msgstr "পাঠান"
+
+#: templates/webapp/help.html
+msgid "Step-by-step help for every screen."
+msgstr "প্রতিটি স্ক্রিনের জন্য ধাপে ধাপে সাহায্য।"
+
+#: templates/webapp/help.html
+msgid "Open the user guide"
+msgstr "ইউজার গাইড খুলুন"
+
+#: templates/webapp/help.html
+msgid "Other ways to reach us"
+msgstr "আমাদের সাথে যোগাযোগের অন্যান্য উপায়"
 
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
@@ -4259,10 +4311,6 @@ msgid "Course"
 msgstr "কোর্স"
 
 #: templates/webapp/industry/fees.html
-msgid "Send"
-msgstr "পাঠান"
-
-#: templates/webapp/industry/fees.html
 msgid "No fees billed for this month."
 msgstr "এই মাসে কোনো ফি বিল হয়নি।"
 
@@ -4371,10 +4419,6 @@ msgstr "ইউনিট"
 #: templates/webapp/industry/lease_detail.html
 msgid "Tenant"
 msgstr "ভাড়াটে"
-
-#: templates/webapp/industry/lease_detail.html
-msgid "Period"
-msgstr "মেয়াদ"
 
 #: templates/webapp/industry/lease_detail.html
 msgid "due on day"
@@ -12049,10 +12093,6 @@ msgstr "আমাদের একটি বার্তা পাঠান"
 #: apps/webapp/website_kit_views.py
 msgid "Subject"
 msgstr "বিষয়"
-
-#: apps/webapp/website_kit_views.py
-msgid "Message"
-msgstr "বার্তা"
 
 #: apps/webapp/website_kit_views.py
 msgid "Thank you! We will get back to you soon."

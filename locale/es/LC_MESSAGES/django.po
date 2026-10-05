@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "Copias de seguridad"
 
 #: templates/base.html
+msgid "Help & support"
+msgstr "Ayuda y soporte"
+
+#: templates/base.html
 msgid "User guide"
 msgstr "Guía de uso"
 
@@ -436,6 +440,10 @@ msgstr "Cerrar sesión"
 #: templates/base.html
 msgid "Open menu"
 msgstr "Abrir menú"
+
+#: templates/base.html
+msgid "Help"
+msgstr "Ayuda"
 
 #: templates/base.html
 msgid "Install as an app"
@@ -1106,10 +1114,6 @@ msgid "Users & Access"
 msgstr "Usuarios y acceso"
 
 #: templates/webapp/admin_base.html
-msgid "Support Tickets"
-msgstr "Tickets de soporte"
-
-#: templates/webapp/admin_base.html
 msgid "Audit Log"
 msgstr "Registro de auditoría"
 
@@ -1735,6 +1739,26 @@ msgstr "sucursales extra"
 #: templates/webapp/billing.html
 msgid "extra user"
 msgstr "usuario extra"
+
+#: templates/webapp/billing.html
+msgid "Invoice"
+msgstr "Factura"
+
+#: templates/webapp/billing.html
+msgid "Period"
+msgstr "Período"
+
+#: templates/webapp/billing.html
+msgid "Status"
+msgstr "Estado"
+
+#: templates/webapp/billing.html
+msgid "Paid"
+msgstr "Pagado"
+
+#: templates/webapp/billing.html
+msgid "Due"
+msgstr "Vence"
 
 #: templates/webapp/careers/_form.html
 msgid "Full name (as in passport)"
@@ -2508,10 +2532,6 @@ msgid "item"
 msgstr "artículo"
 
 #: templates/webapp/customer_display.html
-msgid "Paid"
-msgstr "Pagado"
-
-#: templates/webapp/customer_display.html
 msgid "Your change"
 msgstr "Tu cambio"
 
@@ -2707,14 +2727,6 @@ msgstr "Ventas realizadas"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "Ventas recientes"
-
-#: templates/webapp/dashboard.html
-msgid "Invoice"
-msgstr "Factura"
-
-#: templates/webapp/dashboard.html
-msgid "Status"
-msgstr "Estado"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -3142,10 +3154,6 @@ msgid "Cheque"
 msgstr "Cheque"
 
 #: templates/webapp/finance/cheques.html
-msgid "Due"
-msgstr "Vence"
-
-#: templates/webapp/finance/cheques.html
 msgid "Deposited"
 msgstr "Depositado"
 
@@ -3312,6 +3320,50 @@ msgstr "Enviar al cliente por correo"
 #: templates/webapp/finance/recurring.html
 msgid "Create schedule"
 msgstr "Crear programación"
+
+#: templates/webapp/help.html
+msgid ""
+"Write your question here. The BookPilot team will reply in this chat, and "
+"you will also get a notification."
+msgstr ""
+"Escribe tu pregunta aquí. El equipo de BookPilot responderá en este chat y "
+"también recibirás una notificación."
+
+#: templates/webapp/help.html
+msgid "BookPilot support"
+msgstr "Soporte de BookPilot"
+
+#: templates/webapp/help.html
+msgid ""
+"Hello! How can we help? Ask anything about BookPilot: setup, billing, a "
+"problem, or a new feature you need."
+msgstr ""
+"¡Hola! ¿Cómo podemos ayudarte? Pregunta lo que quieras sobre BookPilot: "
+"configuración, facturación, un problema o una nueva función que necesites."
+
+#: templates/webapp/help.html
+msgid "Type your message…"
+msgstr "Escribe tu mensaje…"
+
+#: templates/webapp/help.html
+msgid "Message"
+msgstr "Mensaje"
+
+#: templates/webapp/help.html
+msgid "Send"
+msgstr "Enviar"
+
+#: templates/webapp/help.html
+msgid "Step-by-step help for every screen."
+msgstr "Ayuda paso a paso para cada pantalla."
+
+#: templates/webapp/help.html
+msgid "Open the user guide"
+msgstr "Abrir la guía de usuario"
+
+#: templates/webapp/help.html
+msgid "Other ways to reach us"
+msgstr "Otras formas de contactarnos"
 
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
@@ -4286,10 +4338,6 @@ msgid "Course"
 msgstr "Curso"
 
 #: templates/webapp/industry/fees.html
-msgid "Send"
-msgstr "Enviar"
-
-#: templates/webapp/industry/fees.html
 msgid "No fees billed for this month."
 msgstr "No se facturaron cuotas este mes."
 
@@ -4400,10 +4448,6 @@ msgstr "Unidad"
 #: templates/webapp/industry/lease_detail.html
 msgid "Tenant"
 msgstr "Inquilino"
-
-#: templates/webapp/industry/lease_detail.html
-msgid "Period"
-msgstr "Período"
 
 #: templates/webapp/industry/lease_detail.html
 msgid "due on day"
@@ -12140,10 +12184,6 @@ msgstr "Envíanos un mensaje"
 #: apps/webapp/website_kit_views.py
 msgid "Subject"
 msgstr "Asunto"
-
-#: apps/webapp/website_kit_views.py
-msgid "Message"
-msgstr "Mensaje"
 
 #: apps/webapp/website_kit_views.py
 msgid "Thank you! We will get back to you soon."

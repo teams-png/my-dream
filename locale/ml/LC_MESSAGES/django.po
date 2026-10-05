@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "ബാക്കപ്പുകൾ"
 
 #: templates/base.html
+msgid "Help & support"
+msgstr "സഹായവും സപ്പോർട്ടും"
+
+#: templates/base.html
 msgid "User guide"
 msgstr "യൂസർ ഗൈഡ്"
 
@@ -436,6 +440,10 @@ msgstr "ലോഗ് ഔട്ട്"
 #: templates/base.html
 msgid "Open menu"
 msgstr "മെനു തുറക്കുക"
+
+#: templates/base.html
+msgid "Help"
+msgstr "സഹായം"
 
 #: templates/base.html
 msgid "Install as an app"
@@ -1106,10 +1114,6 @@ msgid "Users & Access"
 msgstr "യൂസർമാരും ആക്സസും"
 
 #: templates/webapp/admin_base.html
-msgid "Support Tickets"
-msgstr "സപ്പോർട്ട് ടിക്കറ്റുകൾ"
-
-#: templates/webapp/admin_base.html
 msgid "Audit Log"
 msgstr "ഓഡിറ്റ് ലോഗ്"
 
@@ -1732,6 +1736,26 @@ msgstr "അധിക ബ്രാഞ്ചുകൾ"
 #: templates/webapp/billing.html
 msgid "extra user"
 msgstr "അധിക യൂസർ"
+
+#: templates/webapp/billing.html
+msgid "Invoice"
+msgstr "ഇൻവോയ്സ്"
+
+#: templates/webapp/billing.html
+msgid "Period"
+msgstr "കാലയളവ്"
+
+#: templates/webapp/billing.html
+msgid "Status"
+msgstr "സ്റ്റാറ്റസ്"
+
+#: templates/webapp/billing.html
+msgid "Paid"
+msgstr "അടച്ചു"
+
+#: templates/webapp/billing.html
+msgid "Due"
+msgstr "അടയ്ക്കേണ്ടത്"
 
 #: templates/webapp/careers/_form.html
 msgid "Full name (as in passport)"
@@ -2503,10 +2527,6 @@ msgid "item"
 msgstr "ഐറ്റം"
 
 #: templates/webapp/customer_display.html
-msgid "Paid"
-msgstr "അടച്ചു"
-
-#: templates/webapp/customer_display.html
 msgid "Your change"
 msgstr "നിങ്ങളുടെ ബാക്കി"
 
@@ -2701,14 +2721,6 @@ msgstr "നടന്ന വിൽപ്പനകൾ"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "സമീപകാല വിൽപ്പന"
-
-#: templates/webapp/dashboard.html
-msgid "Invoice"
-msgstr "ഇൻവോയ്സ്"
-
-#: templates/webapp/dashboard.html
-msgid "Status"
-msgstr "സ്റ്റാറ്റസ്"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -3140,10 +3152,6 @@ msgid "Cheque"
 msgstr "ചെക്ക്"
 
 #: templates/webapp/finance/cheques.html
-msgid "Due"
-msgstr "അടയ്ക്കേണ്ടത്"
-
-#: templates/webapp/finance/cheques.html
 msgid "Deposited"
 msgstr "ഡെപ്പോസിറ്റ് ചെയ്തു"
 
@@ -3309,6 +3317,50 @@ msgstr "കസ്റ്റമർക്ക് ഇമെയിൽ"
 #: templates/webapp/finance/recurring.html
 msgid "Create schedule"
 msgstr "ഷെഡ്യൂൾ ഉണ്ടാക്കുക"
+
+#: templates/webapp/help.html
+msgid ""
+"Write your question here. The BookPilot team will reply in this chat, and "
+"you will also get a notification."
+msgstr ""
+"നിങ്ങളുടെ ചോദ്യം ഇവിടെ എഴുതുക. BookPilot ടീം ഈ ചാറ്റിൽ മറുപടി തരും, "
+"നിങ്ങൾക്ക് ഒരു അറിയിപ്പും ലഭിക്കും."
+
+#: templates/webapp/help.html
+msgid "BookPilot support"
+msgstr "BookPilot സപ്പോർട്ട്"
+
+#: templates/webapp/help.html
+msgid ""
+"Hello! How can we help? Ask anything about BookPilot: setup, billing, a "
+"problem, or a new feature you need."
+msgstr ""
+"നമസ്കാരം! എങ്ങനെ സഹായിക്കാം? BookPilot-നെക്കുറിച്ച് എന്തും ചോദിക്കാം: "
+"സെറ്റപ്പ്, ബില്ലിംഗ്, ഒരു പ്രശ്നം, അല്ലെങ്കിൽ നിങ്ങൾക്ക് വേണ്ട പുതിയ ഫീച്ചർ."
+
+#: templates/webapp/help.html
+msgid "Type your message…"
+msgstr "സന്ദേശം ടൈപ്പ് ചെയ്യുക…"
+
+#: templates/webapp/help.html
+msgid "Message"
+msgstr "സന്ദേശം"
+
+#: templates/webapp/help.html
+msgid "Send"
+msgstr "അയയ്ക്കുക"
+
+#: templates/webapp/help.html
+msgid "Step-by-step help for every screen."
+msgstr "ഓരോ സ്ക്രീനിനും ഘട്ടം ഘട്ടമായുള്ള സഹായം."
+
+#: templates/webapp/help.html
+msgid "Open the user guide"
+msgstr "യൂസർ ഗൈഡ് തുറക്കുക"
+
+#: templates/webapp/help.html
+msgid "Other ways to reach us"
+msgstr "ഞങ്ങളെ ബന്ധപ്പെടാൻ മറ്റ് വഴികൾ"
 
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
@@ -4284,10 +4336,6 @@ msgid "Course"
 msgstr "കോഴ്സ്"
 
 #: templates/webapp/industry/fees.html
-msgid "Send"
-msgstr "അയയ്ക്കുക"
-
-#: templates/webapp/industry/fees.html
 msgid "No fees billed for this month."
 msgstr "ഈ മാസം ഫീസ് ബിൽ ചെയ്തിട്ടില്ല."
 
@@ -4399,10 +4447,6 @@ msgstr "യൂണിറ്റ്"
 #: templates/webapp/industry/lease_detail.html
 msgid "Tenant"
 msgstr "വാടകക്കാരൻ"
-
-#: templates/webapp/industry/lease_detail.html
-msgid "Period"
-msgstr "കാലയളവ്"
 
 #: templates/webapp/industry/lease_detail.html
 msgid "due on day"
@@ -12128,10 +12172,6 @@ msgstr "ഞങ്ങൾക്ക് ഒരു സന്ദേശം അയക്
 #: apps/webapp/website_kit_views.py
 msgid "Subject"
 msgstr "വിഷയം"
-
-#: apps/webapp/website_kit_views.py
-msgid "Message"
-msgstr "സന്ദേശം"
 
 #: apps/webapp/website_kit_views.py
 msgid "Thank you! We will get back to you soon."

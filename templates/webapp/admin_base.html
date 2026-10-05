@@ -35,6 +35,8 @@
   .nav-link svg{flex-shrink:0; opacity:0.85;}
   .nav-link:hover svg, .nav-link.active svg{opacity:1;}
   .nav-link:hover{background:var(--accent-soft); color:var(--accent);}
+  .nav-count{margin-inline-start:auto;min-width:22px;height:22px;padding:0 7px;border-radius:11px;background:var(--danger,#c0392b);color:#fff;font-size:12px;font-weight:700;display:inline-grid;place-items:center}
+  .nav-count[hidden]{display:none}
   .nav-link.active{background:var(--accent-soft); color:var(--accent); font-weight:600;}
   .main{flex:1; padding:26px 34px 48px; min-width:0;}
   .topbar{display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; padding-bottom:18px; border-bottom:1px solid var(--line);}
@@ -145,7 +147,7 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'platform_plan_list' %}active{% endif %}" href="{% url 'webapp:platform_plan_list' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="14" rx="2" width="20" x="2" y="5"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg><span>{% translate "Pricing Plans" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'platform_pending_payments' %}active{% endif %}" href="{% url 'webapp:platform_pending_payments' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="13" rx="2" width="18" x="3" y="6"></rect><path d="M3 10h18"></path><circle cx="17" cy="14.5" r="1.3"></circle></svg><span>{% translate "Pending Payments" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'platform_user_list' %}active{% endif %}" href="{% url 'webapp:platform_user_list' %}"><span>{% translate "Users & Access" %}</span></a>
-      <a class="nav-link {% if request.resolver_match.url_name == 'platform_support_list' %}active{% endif %}" href="{% url 'webapp:platform_support_list' %}"><span>{% translate "Support Tickets" %}</span></a>
+      {% with n=support_admin_unread %}<a class="nav-link {% if 'platform_support' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'webapp:platform_support_list' %}"><span>💬 Help inbox</span><b class="nav-count" data-help-count{% if not n %} hidden{% endif %}>{{ n }}</b></a>{% endwith %}
       <a class="nav-link {% if request.resolver_match.url_name == 'platform_audit_list' %}active{% endif %}" href="{% url 'webapp:platform_audit_list' %}"><span>{% translate "Audit Log" %}</span></a>
       <a class="nav-link {% if 'platform_setup' in request.resolver_match.url_name or request.resolver_match.url_name == 'platform_module_list' or request.resolver_match.url_name == 'platform_business_type_list' %}active{% endif %}" href="{% url 'webapp:platform_setup' %}"><span>{% translate "Product Catalogue" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'register_client' %}active{% endif %}" href="{% url 'webapp:register_client' %}">{% translate "+ Add new client" %}</a>
@@ -171,6 +173,33 @@
     {% block content %}{% endblock %}
   </main>
 </div>
+<script>
+// Help inbox alerts: badge, tab title, sound and a desktop notification when a client writes.
+(function(){
+  const url="{% url 'webapp:platform_support_unread' %}", badges=document.querySelectorAll('[data-help-count]'), title=document.title;
+  let known=null;
+  function beep(){try{const c=new (window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.frequency.value=880;g.gain.value=.08;o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.18)}catch(e){}}
+  async function check(){
+    try{
+      const r=await fetch(url,{headers:{'x-requested-with':'fetch'}});if(!r.ok)return;
+      const d=await r.json();
+      badges.forEach(b=>{b.textContent=d.unread;b.hidden=!d.unread});
+      document.title=(d.unread?'('+d.unread+') ':'')+title;
+      if(known!==null&&d.unread>known&&d.latest){
+        beep();
+        if(window.Notification&&Notification.permission==='granted'){
+          const n=new Notification('💬 '+d.latest.company,{body:d.latest.subject,tag:'bp-help'});
+          n.onclick=()=>{window.focus();location.href=d.latest.url};
+        }
+      }
+      known=d.unread;
+    }catch(e){}
+  }
+  const btn=document.querySelector('[data-enable-alerts]');
+  if(btn&&window.Notification&&Notification.permission==='default'){btn.hidden=false;btn.onclick=()=>Notification.requestPermission().then(()=>{btn.hidden=true})}
+  check();setInterval(check,30000);
+})();
+</script>
 <script>(function(){const shell=document.getElementById('appShell');document.addEventListener('click',e=>{if(e.target.closest('[data-nav-toggle]'))shell.classList.toggle('nav-open');else if(e.target.closest('[data-nav-close]'))shell.classList.remove('nav-open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')shell.classList.remove('nav-open')})})();</script>
 <script>(function(){const set=t=>{document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('bp.theme',t)}catch(e){}document.querySelectorAll('[data-theme-toggle]').forEach(b=>b.textContent=t==='dark'?'☀️':'🌙')};set(document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light');document.addEventListener('click',e=>{if(e.target.closest('[data-theme-toggle]'))set(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')})})();</script>
 {% if bp_form_samples %}{{ bp_form_samples|json_script:"bp-form-samples" }}<script src="{% static 'js/form-hints.js' %}" defer></script>{% endif %}

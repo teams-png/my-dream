@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import billing_admin_views, guide_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
+from . import billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -87,8 +87,14 @@ urlpatterns = [
     path("platform/setup/business-types/add/", views.platform_business_type_form, name="platform_business_type_add"),
     path("platform/setup/business-types/<int:business_type_id>/edit/", views.platform_business_type_form, name="platform_business_type_edit"),
     path("platform/users/", views.platform_user_list, name="platform_user_list"),
-    path("platform/support/", views.platform_support_list, name="platform_support_list"),
-    path("platform/support/<int:ticket_id>/edit/", views.platform_support_edit, name="platform_support_edit"),
+    path("platform/support/", help_views.platform_support_list, name="platform_support_list"),
+    path("platform/support/unread.json", help_views.platform_support_unread, name="platform_support_unread"),
+    path("platform/support/<int:ticket_id>/", help_views.platform_support_chat, name="platform_support_chat"),
+    path("platform/support/<int:ticket_id>/messages.json", help_views.platform_support_messages, name="platform_support_messages"),
+    path("platform/support/<int:ticket_id>/edit/", help_views.platform_support_edit, name="platform_support_edit"),
+    path("platform/support/new/<int:company_id>/", help_views.platform_support_start, name="platform_support_start"),
+    path("help/", help_views.help_chat, name="help"),
+    path("help/messages.json", help_views.help_messages, name="help_messages"),
     path("platform/audit-log/", views.platform_audit_list, name="platform_audit_list"),
     path("", public_views.home, name="dashboard"),
     path("welcome/", public_views.landing, name="landing"),

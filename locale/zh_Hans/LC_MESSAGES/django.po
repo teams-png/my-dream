@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "备份"
 
 #: templates/base.html
+msgid "Help & support"
+msgstr "帮助与支持"
+
+#: templates/base.html
 msgid "User guide"
 msgstr "用户指南"
 
@@ -436,6 +440,10 @@ msgstr "退出登录"
 #: templates/base.html
 msgid "Open menu"
 msgstr "打开菜单"
+
+#: templates/base.html
+msgid "Help"
+msgstr "帮助"
 
 #: templates/base.html
 msgid "Install as an app"
@@ -1102,10 +1110,6 @@ msgid "Users & Access"
 msgstr "用户与访问"
 
 #: templates/webapp/admin_base.html
-msgid "Support Tickets"
-msgstr "支持工单"
-
-#: templates/webapp/admin_base.html
 msgid "Audit Log"
 msgstr "审计日志"
 
@@ -1708,6 +1712,26 @@ msgstr "额外分店"
 #: templates/webapp/billing.html
 msgid "extra user"
 msgstr "额外用户"
+
+#: templates/webapp/billing.html
+msgid "Invoice"
+msgstr "发票"
+
+#: templates/webapp/billing.html
+msgid "Period"
+msgstr "期间"
+
+#: templates/webapp/billing.html
+msgid "Status"
+msgstr "状态"
+
+#: templates/webapp/billing.html
+msgid "Paid"
+msgstr "已付"
+
+#: templates/webapp/billing.html
+msgid "Due"
+msgstr "到期"
 
 #: templates/webapp/careers/_form.html
 msgid "Full name (as in passport)"
@@ -2455,10 +2479,6 @@ msgid "item"
 msgstr "件"
 
 #: templates/webapp/customer_display.html
-msgid "Paid"
-msgstr "已付"
-
-#: templates/webapp/customer_display.html
 msgid "Your change"
 msgstr "找零"
 
@@ -2653,14 +2673,6 @@ msgstr "已完成销售"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "近期销售"
-
-#: templates/webapp/dashboard.html
-msgid "Invoice"
-msgstr "发票"
-
-#: templates/webapp/dashboard.html
-msgid "Status"
-msgstr "状态"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -3077,10 +3089,6 @@ msgid "Cheque"
 msgstr "支票"
 
 #: templates/webapp/finance/cheques.html
-msgid "Due"
-msgstr "到期"
-
-#: templates/webapp/finance/cheques.html
 msgid "Deposited"
 msgstr "已存入"
 
@@ -3243,6 +3251,46 @@ msgstr "邮件发送给客户"
 #: templates/webapp/finance/recurring.html
 msgid "Create schedule"
 msgstr "创建计划"
+
+#: templates/webapp/help.html
+msgid ""
+"Write your question here. The BookPilot team will reply in this chat, and "
+"you will also get a notification."
+msgstr "在这里写下您的问题。BookPilot 团队会在此聊天中回复，您也会收到通知。"
+
+#: templates/webapp/help.html
+msgid "BookPilot support"
+msgstr "BookPilot 支持"
+
+#: templates/webapp/help.html
+msgid ""
+"Hello! How can we help? Ask anything about BookPilot: setup, billing, a "
+"problem, or a new feature you need."
+msgstr "您好！有什么可以帮您？关于 BookPilot 的任何问题都可以问：设置、账单、遇到的问题，或您需要的新功能。"
+
+#: templates/webapp/help.html
+msgid "Type your message…"
+msgstr "输入您的消息…"
+
+#: templates/webapp/help.html
+msgid "Message"
+msgstr "留言"
+
+#: templates/webapp/help.html
+msgid "Send"
+msgstr "发送"
+
+#: templates/webapp/help.html
+msgid "Step-by-step help for every screen."
+msgstr "每个页面的分步帮助。"
+
+#: templates/webapp/help.html
+msgid "Open the user guide"
+msgstr "打开用户指南"
+
+#: templates/webapp/help.html
+msgid "Other ways to reach us"
+msgstr "其他联系方式"
 
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
@@ -4197,10 +4245,6 @@ msgid "Course"
 msgstr "课程"
 
 #: templates/webapp/industry/fees.html
-msgid "Send"
-msgstr "发送"
-
-#: templates/webapp/industry/fees.html
 msgid "No fees billed for this month."
 msgstr "本月没有开票的费用。"
 
@@ -4307,10 +4351,6 @@ msgstr "单元"
 #: templates/webapp/industry/lease_detail.html
 msgid "Tenant"
 msgstr "租户"
-
-#: templates/webapp/industry/lease_detail.html
-msgid "Period"
-msgstr "期间"
 
 #: templates/webapp/industry/lease_detail.html
 msgid "due on day"
@@ -11847,10 +11887,6 @@ msgstr "给我们留言"
 #: apps/webapp/website_kit_views.py
 msgid "Subject"
 msgstr "主题"
-
-#: apps/webapp/website_kit_views.py
-msgid "Message"
-msgstr "留言"
 
 #: apps/webapp/website_kit_views.py
 msgid "Thank you! We will get back to you soon."

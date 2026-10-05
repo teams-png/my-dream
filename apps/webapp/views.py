@@ -93,7 +93,7 @@ from .forms import (
     InviteStaffForm, ChangeMemberRoleForm, CustomRoleForm, CouponForm, RedeemPointsForm,
     CompanySettingsForm, BranchForm, ProductImportForm, EditUserCredentialsForm,
     SubscriptionPlanForm, BillingPaymentForm,
-    PlatformModuleForm, PlatformBusinessTypeForm, PlatformSupportTicketForm, PaymentGatewaySettingsForm,
+    PlatformModuleForm, PlatformBusinessTypeForm, PaymentGatewaySettingsForm,
     DiningAreaForm, DiningTableForm, RestaurantOrderForm, RestaurantOrderLineForm,
     RestaurantSettleForm, RestaurantShiftOpenForm, RestaurantShiftCloseForm,
     MenuModifierForm, MenuModifierGroupForm, MenuModifierOptionForm, RestaurantMenuItemForm, RestaurantProfileForm, RecipeIngredientForm, RestaurantComboForm, RestaurantComboItemForm,
@@ -5692,25 +5692,6 @@ def platform_user_list(request):
     User = get_user_model()
     users = User.objects.prefetch_related("memberships__company").order_by("email", "username")
     return render(request, "webapp/platform_admin/user_list.html", {"users": users})
-
-
-@login_required
-@superuser_required
-def platform_support_list(request):
-    tickets = SupportTicket.objects.select_related("company", "raised_by", "assigned_to").order_by("status", "-created_at")
-    return render(request, "webapp/platform_admin/support_list.html", {"tickets": tickets})
-
-
-@login_required
-@superuser_required
-def platform_support_edit(request, ticket_id):
-    ticket = get_object_or_404(SupportTicket, id=ticket_id)
-    form = PlatformSupportTicketForm(request.POST or None, instance=ticket)
-    if request.method == "POST" and form.is_valid():
-        form.save()
-        messages.success(request, "Support ticket updated.")
-        return redirect("webapp:platform_support_list")
-    return render(request, "webapp/platform_admin/support_form.html", {"form": form, "ticket": ticket})
 
 
 @login_required

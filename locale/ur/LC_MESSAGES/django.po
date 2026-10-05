@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "بیک اپ"
 
 #: templates/base.html
+msgid "Help & support"
+msgstr "مدد اور سپورٹ"
+
+#: templates/base.html
 msgid "User guide"
 msgstr "صارف گائیڈ"
 
@@ -436,6 +440,10 @@ msgstr "لاگ آؤٹ"
 #: templates/base.html
 msgid "Open menu"
 msgstr "مینو کھولیں"
+
+#: templates/base.html
+msgid "Help"
+msgstr "مدد"
 
 #: templates/base.html
 msgid "Install as an app"
@@ -1104,10 +1112,6 @@ msgid "Users & Access"
 msgstr "صارفین اور رسائی"
 
 #: templates/webapp/admin_base.html
-msgid "Support Tickets"
-msgstr "سپورٹ ٹکٹس"
-
-#: templates/webapp/admin_base.html
 msgid "Audit Log"
 msgstr "آڈٹ لاگ"
 
@@ -1725,6 +1729,26 @@ msgstr "اضافی شاخیں"
 #: templates/webapp/billing.html
 msgid "extra user"
 msgstr "اضافی صارف"
+
+#: templates/webapp/billing.html
+msgid "Invoice"
+msgstr "انوائس"
+
+#: templates/webapp/billing.html
+msgid "Period"
+msgstr "مدت"
+
+#: templates/webapp/billing.html
+msgid "Status"
+msgstr "حیثیت"
+
+#: templates/webapp/billing.html
+msgid "Paid"
+msgstr "ادا شدہ"
+
+#: templates/webapp/billing.html
+msgid "Due"
+msgstr "واجب"
 
 #: templates/webapp/careers/_form.html
 msgid "Full name (as in passport)"
@@ -2491,10 +2515,6 @@ msgid "item"
 msgstr "آئٹم"
 
 #: templates/webapp/customer_display.html
-msgid "Paid"
-msgstr "ادا شدہ"
-
-#: templates/webapp/customer_display.html
 msgid "Your change"
 msgstr "آپ کی واپسی رقم"
 
@@ -2689,14 +2709,6 @@ msgstr "کی گئی فروخت"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "حالیہ فروخت"
-
-#: templates/webapp/dashboard.html
-msgid "Invoice"
-msgstr "انوائس"
-
-#: templates/webapp/dashboard.html
-msgid "Status"
-msgstr "حیثیت"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -3120,10 +3132,6 @@ msgid "Cheque"
 msgstr "چیک"
 
 #: templates/webapp/finance/cheques.html
-msgid "Due"
-msgstr "واجب"
-
-#: templates/webapp/finance/cheques.html
 msgid "Deposited"
 msgstr "جمع کرایا"
 
@@ -3289,6 +3297,50 @@ msgstr "گاہک کو ای میل"
 #: templates/webapp/finance/recurring.html
 msgid "Create schedule"
 msgstr "شیڈول بنائیں"
+
+#: templates/webapp/help.html
+msgid ""
+"Write your question here. The BookPilot team will reply in this chat, and "
+"you will also get a notification."
+msgstr ""
+"اپنا سوال یہاں لکھیں۔ BookPilot ٹیم اسی چیٹ میں جواب دے گی، اور آپ کو ایک "
+"اطلاع بھی ملے گی۔"
+
+#: templates/webapp/help.html
+msgid "BookPilot support"
+msgstr "BookPilot سپورٹ"
+
+#: templates/webapp/help.html
+msgid ""
+"Hello! How can we help? Ask anything about BookPilot: setup, billing, a "
+"problem, or a new feature you need."
+msgstr ""
+"السلام علیکم! ہم کیسے مدد کریں؟ BookPilot کے بارے میں کچھ بھی پوچھیں: سیٹ "
+"اپ، بلنگ، کوئی مسئلہ، یا کوئی نیا فیچر جو آپ کو چاہیے۔"
+
+#: templates/webapp/help.html
+msgid "Type your message…"
+msgstr "اپنا پیغام لکھیں…"
+
+#: templates/webapp/help.html
+msgid "Message"
+msgstr "پیغام"
+
+#: templates/webapp/help.html
+msgid "Send"
+msgstr "بھیجیں"
+
+#: templates/webapp/help.html
+msgid "Step-by-step help for every screen."
+msgstr "ہر اسکرین کے لیے مرحلہ وار مدد۔"
+
+#: templates/webapp/help.html
+msgid "Open the user guide"
+msgstr "یوزر گائیڈ کھولیں"
+
+#: templates/webapp/help.html
+msgid "Other ways to reach us"
+msgstr "ہم سے رابطے کے دیگر طریقے"
 
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
@@ -4259,10 +4311,6 @@ msgid "Course"
 msgstr "کورس"
 
 #: templates/webapp/industry/fees.html
-msgid "Send"
-msgstr "بھیجیں"
-
-#: templates/webapp/industry/fees.html
 msgid "No fees billed for this month."
 msgstr "اس مہینے کوئی فیس بل نہیں ہوئی۔"
 
@@ -4373,10 +4421,6 @@ msgstr "یونٹ"
 #: templates/webapp/industry/lease_detail.html
 msgid "Tenant"
 msgstr "کرایہ دار"
-
-#: templates/webapp/industry/lease_detail.html
-msgid "Period"
-msgstr "مدت"
 
 #: templates/webapp/industry/lease_detail.html
 msgid "due on day"
@@ -12058,10 +12102,6 @@ msgstr "ہمیں پیغام بھیجیں"
 #: apps/webapp/website_kit_views.py
 msgid "Subject"
 msgstr "موضوع"
-
-#: apps/webapp/website_kit_views.py
-msgid "Message"
-msgstr "پیغام"
 
 #: apps/webapp/website_kit_views.py
 msgid "Thank you! We will get back to you soon."

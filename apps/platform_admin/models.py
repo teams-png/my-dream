@@ -68,9 +68,25 @@ class SupportTicket(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    # Help chat (apps.platform_admin.support)
+    last_message_at = models.DateTimeField(null=True, blank=True, db_index=True)
+    admin_unread = models.PositiveIntegerField(default=0)   # client messages the platform admin hasn't read
+    client_unread = models.PositiveIntegerField(default=0)  # admin replies the client hasn't read
 
     class Meta:
         ordering = ["-created_at"]
 
     def __str__(self):
         return f"[{self.status}] {self.subject} ({self.company.name})"
+
+
+class SupportMessage(models.Model):
+    """One chat message in a support ticket, from the client or from BookPilot support."""
+    ticket = models.ForeignKey(SupportTicket, on_delete=models.CASCADE, related_name="messages")
+    sender = models.ForeignKey("accounts.User", on_delete=models.SET_NULL, null=True, blank=True, related_name="+")
+    from_admin = models.BooleanField(default=False)
+    body = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["created_at", "id"]

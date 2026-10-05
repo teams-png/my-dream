@@ -39,6 +39,7 @@
 <div class="card" style="margin-bottom:16px">
   <p class="cb-h">🧾 Invoices</p>
   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+    <a class="btn btn-secondary" href="{% url 'webapp:platform_support_start' company.id %}">✉️ Message in app</a>
     {% if reminder %}<a class="btn btn-secondary" href="{{ reminder }}" target="_blank" rel="noopener">💬 Remind on WhatsApp</a>{% elif not company.phone %}<small style="color:var(--ink-soft);align-self:center">Add the client's phone on the client page to send WhatsApp reminders.</small>{% endif %}
   </div>
   <form method="post" class="cb-form" style="margin-bottom:14px">{% csrf_token %}<input type="hidden" name="action" value="issue">

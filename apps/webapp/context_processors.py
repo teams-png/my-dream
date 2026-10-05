@@ -43,3 +43,18 @@ def form_samples(request):
         return {}
     from apps.common import form_hints
     return {"bp_form_samples": form_hints.client_samples()}
+
+
+def support_badges(request):
+    """Unread help-chat counts for the sidebars (evaluated only when a template uses them)."""
+    user = getattr(request, "user", None)
+    if not user or not user.is_authenticated:
+        return {}
+    from apps.platform_admin import support
+    out = {}
+    if getattr(user, "is_platform_admin", False):
+        out["support_admin_unread"] = support.admin_unread_total
+    company = getattr(request, "company", None)
+    if company is not None:
+        out["support_client_unread"] = lambda: support.client_unread_total(company)
+    return out

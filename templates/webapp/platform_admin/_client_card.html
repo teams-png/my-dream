@@ -1,0 +1,46 @@
+<div class="card sc-client">
+  <p class="sc-h">🏢 Client details</p>
+  <dl>
+    <dt>Business</dt><dd><b>{{ d.company.name }}</b></dd>
+    <dt>Business type</dt><dd>{{ d.company.business_type.name|default:"—" }}</dd>
+    <dt>Country</dt><dd>{{ d.company.country|default:"—" }}</dd>
+    <dt>Phone</dt><dd>{% if d.company.phone %}<a href="tel:{{ d.company.phone }}" dir="ltr">{{ d.company.phone }}</a>{% else %}—{% endif %}</dd>
+    <dt>Email</dt><dd>{% if d.company.email %}<a href="mailto:{{ d.company.email }}">{{ d.company.email }}</a>{% else %}—{% endif %}</dd>
+    {% if d.company.address %}<dt>Address</dt><dd>{{ d.company.address|linebreaksbr }}</dd>{% endif %}
+    {% if d.company.registration_number %}<dt>Reg. no.</dt><dd>{{ d.company.registration_number }}</dd>{% endif %}
+    {% if d.company.vat_number %}<dt>Tax no.</dt><dd>{{ d.company.vat_number }}</dd>{% endif %}
+    <dt>Currency</dt><dd>{{ d.company.default_currency }}</dd>
+    <dt>Signed up</dt><dd>{{ d.company.created_at|date:"d M Y" }}</dd>
+    <dt>Users</dt><dd>{{ d.users }}</dd>
+  </dl>
+  {% if d.owner %}
+  <p class="sc-h" style="margin-top:14px">👤 Owner</p>
+  <dl>
+    <dt>Name</dt><dd>{{ d.owner.get_full_name|default:"—" }}</dd>
+    <dt>Email</dt><dd><a href="mailto:{{ d.owner.email }}">{{ d.owner.email }}</a></dd>
+    <dt>Phone</dt><dd>{% if d.owner.phone %}<a href="tel:{{ d.owner.phone }}" dir="ltr">{{ d.owner.phone }}</a>{% else %}—{% endif %}</dd>
+  </dl>
+  {% endif %}
+  {% if writer and writer != d.owner %}
+  <p class="sc-h" style="margin-top:14px">✍️ Wrote this</p>
+  <dl>
+    <dt>Name</dt><dd>{{ writer.get_full_name|default:"—" }}</dd>
+    <dt>Email</dt><dd><a href="mailto:{{ writer.email }}">{{ writer.email }}</a></dd>
+    <dt>Phone</dt><dd>{{ writer.phone|default:"—" }}</dd>
+  </dl>
+  {% endif %}
+  {% if d.sub %}
+  <p class="sc-h" style="margin-top:14px">💳 Subscription</p>
+  <dl>
+    <dt>Plan</dt><dd>{{ d.sub.plan.name }}</dd>
+    <dt>Status</dt><dd>{{ d.sub.get_status_display }}</dd>
+    <dt>Expiry</dt><dd>{{ d.sub.end_date|date:"d M Y" }} {% if d.days_left < 0 %}<span style="color:var(--danger);font-weight:700">(expired)</span>{% else %}<span style="color:var(--ink-soft)">({{ d.days_left }} days left)</span>{% endif %}</dd>
+    <dt>Total paid</dt><dd>{{ d.sub.plan.currency }} {{ d.paid|floatformat:2 }}</dd>
+  </dl>
+  {% endif %}
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+    {% if d.whatsapp %}<a class="btn btn-secondary" href="https://wa.me/{{ d.whatsapp }}" target="_blank" rel="noopener">WhatsApp</a>{% endif %}
+    <a class="btn btn-secondary" href="{% url 'webapp:platform_admin_company_detail' d.company.id %}">Client page</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:platform_billing_client' d.company.id %}">Billing</a>
+  </div>
+</div>

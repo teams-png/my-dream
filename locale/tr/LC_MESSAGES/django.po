@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "Yedekler"
 
 #: templates/base.html
+msgid "Help & support"
+msgstr "Yardım ve destek"
+
+#: templates/base.html
 msgid "User guide"
 msgstr "Kullanım kılavuzu"
 
@@ -436,6 +440,10 @@ msgstr "Çıkış yap"
 #: templates/base.html
 msgid "Open menu"
 msgstr "Menüyü aç"
+
+#: templates/base.html
+msgid "Help"
+msgstr "Yardım"
 
 #: templates/base.html
 msgid "Install as an app"
@@ -1106,10 +1114,6 @@ msgid "Users & Access"
 msgstr "Kullanıcılar ve erişim"
 
 #: templates/webapp/admin_base.html
-msgid "Support Tickets"
-msgstr "Destek talepleri"
-
-#: templates/webapp/admin_base.html
 msgid "Audit Log"
 msgstr "Denetim günlüğü"
 
@@ -1733,6 +1737,26 @@ msgstr "ek şube"
 #: templates/webapp/billing.html
 msgid "extra user"
 msgstr "ek kullanıcı"
+
+#: templates/webapp/billing.html
+msgid "Invoice"
+msgstr "Fatura"
+
+#: templates/webapp/billing.html
+msgid "Period"
+msgstr "Dönem"
+
+#: templates/webapp/billing.html
+msgid "Status"
+msgstr "Durum"
+
+#: templates/webapp/billing.html
+msgid "Paid"
+msgstr "Ödendi"
+
+#: templates/webapp/billing.html
+msgid "Due"
+msgstr "Vadesi"
 
 #: templates/webapp/careers/_form.html
 msgid "Full name (as in passport)"
@@ -2500,10 +2524,6 @@ msgid "item"
 msgstr "ürün"
 
 #: templates/webapp/customer_display.html
-msgid "Paid"
-msgstr "Ödendi"
-
-#: templates/webapp/customer_display.html
 msgid "Your change"
 msgstr "Para üstünüz"
 
@@ -2698,14 +2718,6 @@ msgstr "Yapılan satışlar"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "Son satışlar"
-
-#: templates/webapp/dashboard.html
-msgid "Invoice"
-msgstr "Fatura"
-
-#: templates/webapp/dashboard.html
-msgid "Status"
-msgstr "Durum"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -3129,10 +3141,6 @@ msgid "Cheque"
 msgstr "Çek"
 
 #: templates/webapp/finance/cheques.html
-msgid "Due"
-msgstr "Vadesi"
-
-#: templates/webapp/finance/cheques.html
 msgid "Deposited"
 msgstr "Yatırıldı"
 
@@ -3299,6 +3307,50 @@ msgstr "Müşteriye e-posta gönder"
 #: templates/webapp/finance/recurring.html
 msgid "Create schedule"
 msgstr "Zamanlama oluştur"
+
+#: templates/webapp/help.html
+msgid ""
+"Write your question here. The BookPilot team will reply in this chat, and "
+"you will also get a notification."
+msgstr ""
+"Sorunuzu buraya yazın. BookPilot ekibi bu sohbette yanıt verecek ve size bir"
+" bildirim de gelecek."
+
+#: templates/webapp/help.html
+msgid "BookPilot support"
+msgstr "BookPilot destek"
+
+#: templates/webapp/help.html
+msgid ""
+"Hello! How can we help? Ask anything about BookPilot: setup, billing, a "
+"problem, or a new feature you need."
+msgstr ""
+"Merhaba! Nasıl yardımcı olabiliriz? BookPilot hakkında her şeyi sorun: "
+"kurulum, faturalama, bir sorun veya ihtiyacınız olan yeni bir özellik."
+
+#: templates/webapp/help.html
+msgid "Type your message…"
+msgstr "Mesajınızı yazın…"
+
+#: templates/webapp/help.html
+msgid "Message"
+msgstr "Mesaj"
+
+#: templates/webapp/help.html
+msgid "Send"
+msgstr "Gönder"
+
+#: templates/webapp/help.html
+msgid "Step-by-step help for every screen."
+msgstr "Her ekran için adım adım yardım."
+
+#: templates/webapp/help.html
+msgid "Open the user guide"
+msgstr "Kullanım kılavuzunu aç"
+
+#: templates/webapp/help.html
+msgid "Other ways to reach us"
+msgstr "Bize ulaşmanın diğer yolları"
 
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
@@ -4270,10 +4322,6 @@ msgid "Course"
 msgstr "Kurs"
 
 #: templates/webapp/industry/fees.html
-msgid "Send"
-msgstr "Gönder"
-
-#: templates/webapp/industry/fees.html
 msgid "No fees billed for this month."
 msgstr "Bu ay faturalanan ücret yok."
 
@@ -4383,10 +4431,6 @@ msgstr "Birim"
 #: templates/webapp/industry/lease_detail.html
 msgid "Tenant"
 msgstr "Kiracı"
-
-#: templates/webapp/industry/lease_detail.html
-msgid "Period"
-msgstr "Dönem"
 
 #: templates/webapp/industry/lease_detail.html
 msgid "due on day"
@@ -12078,10 +12122,6 @@ msgstr "Bize mesaj gönderin"
 #: apps/webapp/website_kit_views.py
 msgid "Subject"
 msgstr "Konu"
-
-#: apps/webapp/website_kit_views.py
-msgid "Message"
-msgstr "Mesaj"
 
 #: apps/webapp/website_kit_views.py
 msgid "Thank you! We will get back to you soon."

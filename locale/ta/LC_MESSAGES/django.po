@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "காப்புப்பிரதிகள்"
 
 #: templates/base.html
+msgid "Help & support"
+msgstr "உதவி & ஆதரவு"
+
+#: templates/base.html
 msgid "User guide"
 msgstr "பயனர் வழிகாட்டி"
 
@@ -436,6 +440,10 @@ msgstr "வெளியேறு"
 #: templates/base.html
 msgid "Open menu"
 msgstr "மெனுவைத் திற"
+
+#: templates/base.html
+msgid "Help"
+msgstr "உதவி"
 
 #: templates/base.html
 msgid "Install as an app"
@@ -1107,10 +1115,6 @@ msgid "Users & Access"
 msgstr "பயனர்கள் & அணுகல்"
 
 #: templates/webapp/admin_base.html
-msgid "Support Tickets"
-msgstr "ஆதரவு டிக்கெட்டுகள்"
-
-#: templates/webapp/admin_base.html
 msgid "Audit Log"
 msgstr "தணிக்கைப் பதிவு"
 
@@ -1741,6 +1745,26 @@ msgstr "கூடுதல் கிளைகள்"
 #: templates/webapp/billing.html
 msgid "extra user"
 msgstr "கூடுதல் பயனர்"
+
+#: templates/webapp/billing.html
+msgid "Invoice"
+msgstr "இன்வாய்ஸ்"
+
+#: templates/webapp/billing.html
+msgid "Period"
+msgstr "காலம்"
+
+#: templates/webapp/billing.html
+msgid "Status"
+msgstr "நிலை"
+
+#: templates/webapp/billing.html
+msgid "Paid"
+msgstr "செலுத்தப்பட்டது"
+
+#: templates/webapp/billing.html
+msgid "Due"
+msgstr "செலுத்த வேண்டியது"
 
 #: templates/webapp/careers/_form.html
 msgid "Full name (as in passport)"
@@ -2513,10 +2537,6 @@ msgid "item"
 msgstr "பொருள்"
 
 #: templates/webapp/customer_display.html
-msgid "Paid"
-msgstr "செலுத்தப்பட்டது"
-
-#: templates/webapp/customer_display.html
 msgid "Your change"
 msgstr "உங்கள் மீதி"
 
@@ -2713,14 +2733,6 @@ msgstr "செய்த விற்பனைகள்"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "சமீபத்திய விற்பனைகள்"
-
-#: templates/webapp/dashboard.html
-msgid "Invoice"
-msgstr "இன்வாய்ஸ்"
-
-#: templates/webapp/dashboard.html
-msgid "Status"
-msgstr "நிலை"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -3153,10 +3165,6 @@ msgid "Cheque"
 msgstr "காசோலை"
 
 #: templates/webapp/finance/cheques.html
-msgid "Due"
-msgstr "செலுத்த வேண்டியது"
-
-#: templates/webapp/finance/cheques.html
 msgid "Deposited"
 msgstr "வைப்பு செய்யப்பட்டது"
 
@@ -3325,6 +3333,50 @@ msgstr "வாடிக்கையாளருக்கு மின்னஞ�
 #: templates/webapp/finance/recurring.html
 msgid "Create schedule"
 msgstr "அட்டவணையை உருவாக்கு"
+
+#: templates/webapp/help.html
+msgid ""
+"Write your question here. The BookPilot team will reply in this chat, and "
+"you will also get a notification."
+msgstr ""
+"உங்கள் கேள்வியை இங்கே எழுதுங்கள். BookPilot குழு இந்த அரட்டையில் "
+"பதிலளிக்கும், உங்களுக்கு ஒரு அறிவிப்பும் வரும்."
+
+#: templates/webapp/help.html
+msgid "BookPilot support"
+msgstr "BookPilot ஆதரவு"
+
+#: templates/webapp/help.html
+msgid ""
+"Hello! How can we help? Ask anything about BookPilot: setup, billing, a "
+"problem, or a new feature you need."
+msgstr ""
+"வணக்கம்! நாங்கள் எப்படி உதவலாம்? BookPilot பற்றி எதையும் கேளுங்கள்: அமைப்பு,"
+" கட்டணம், ஒரு பிரச்சனை, அல்லது உங்களுக்குத் தேவையான புதிய வசதி."
+
+#: templates/webapp/help.html
+msgid "Type your message…"
+msgstr "உங்கள் செய்தியை தட்டச்சு செய்யவும்…"
+
+#: templates/webapp/help.html
+msgid "Message"
+msgstr "செய்தி"
+
+#: templates/webapp/help.html
+msgid "Send"
+msgstr "அனுப்பு"
+
+#: templates/webapp/help.html
+msgid "Step-by-step help for every screen."
+msgstr "ஒவ்வொரு திரைக்கும் படிப்படியான உதவி."
+
+#: templates/webapp/help.html
+msgid "Open the user guide"
+msgstr "பயனர் வழிகாட்டியைத் திறக்கவும்"
+
+#: templates/webapp/help.html
+msgid "Other ways to reach us"
+msgstr "எங்களைத் தொடர்புகொள்ள மற்ற வழிகள்"
 
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
@@ -4301,10 +4353,6 @@ msgid "Course"
 msgstr "பாடநெறி"
 
 #: templates/webapp/industry/fees.html
-msgid "Send"
-msgstr "அனுப்பு"
-
-#: templates/webapp/industry/fees.html
 msgid "No fees billed for this month."
 msgstr "இந்த மாதம் கட்டணம் பில் செய்யப்படவில்லை."
 
@@ -4415,10 +4463,6 @@ msgstr "அலகு"
 #: templates/webapp/industry/lease_detail.html
 msgid "Tenant"
 msgstr "குடியிருப்பவர்"
-
-#: templates/webapp/industry/lease_detail.html
-msgid "Period"
-msgstr "காலம்"
 
 #: templates/webapp/industry/lease_detail.html
 msgid "due on day"
@@ -12221,10 +12265,6 @@ msgstr "எங்களுக்கு செய்தி அனுப்பு�
 #: apps/webapp/website_kit_views.py
 msgid "Subject"
 msgstr "பொருள்"
-
-#: apps/webapp/website_kit_views.py
-msgid "Message"
-msgstr "செய்தி"
 
 #: apps/webapp/website_kit_views.py
 msgid "Thank you! We will get back to you soon."

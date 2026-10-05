@@ -121,6 +121,7 @@ TEMPLATES = [
                 "apps.webapp.context_processors.enabled_features",
                 "apps.webapp.context_processors.active_business_profile",
                 "apps.webapp.context_processors.form_samples",
+                "apps.webapp.context_processors.support_badges",
             ],
         },
     },

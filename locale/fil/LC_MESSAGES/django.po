@@ -210,6 +210,10 @@ msgid "Backups"
 msgstr "Mga backup"
 
 #: templates/base.html
+msgid "Help & support"
+msgstr "Tulong at suporta"
+
+#: templates/base.html
 msgid "User guide"
 msgstr "Gabay sa paggamit"
 
@@ -436,6 +440,10 @@ msgstr "Mag-log out"
 #: templates/base.html
 msgid "Open menu"
 msgstr "Buksan ang menu"
+
+#: templates/base.html
+msgid "Help"
+msgstr "Tulong"
 
 #: templates/base.html
 msgid "Install as an app"
@@ -1106,10 +1114,6 @@ msgid "Users & Access"
 msgstr "Mga user at access"
 
 #: templates/webapp/admin_base.html
-msgid "Support Tickets"
-msgstr "Mga support ticket"
-
-#: templates/webapp/admin_base.html
 msgid "Audit Log"
 msgstr "Audit log"
 
@@ -1734,6 +1738,26 @@ msgstr "dagdag na sangay"
 #: templates/webapp/billing.html
 msgid "extra user"
 msgstr "dagdag na user"
+
+#: templates/webapp/billing.html
+msgid "Invoice"
+msgstr "Invoice"
+
+#: templates/webapp/billing.html
+msgid "Period"
+msgstr "Panahon"
+
+#: templates/webapp/billing.html
+msgid "Status"
+msgstr "Status"
+
+#: templates/webapp/billing.html
+msgid "Paid"
+msgstr "Bayad na"
+
+#: templates/webapp/billing.html
+msgid "Due"
+msgstr "Due"
 
 #: templates/webapp/careers/_form.html
 msgid "Full name (as in passport)"
@@ -2510,10 +2534,6 @@ msgid "item"
 msgstr "item"
 
 #: templates/webapp/customer_display.html
-msgid "Paid"
-msgstr "Bayad na"
-
-#: templates/webapp/customer_display.html
 msgid "Your change"
 msgstr "Ang iyong sukli"
 
@@ -2709,14 +2729,6 @@ msgstr "Mga benta"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "Mga bagong benta"
-
-#: templates/webapp/dashboard.html
-msgid "Invoice"
-msgstr "Invoice"
-
-#: templates/webapp/dashboard.html
-msgid "Status"
-msgstr "Status"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -3147,10 +3159,6 @@ msgid "Cheque"
 msgstr "Tseke"
 
 #: templates/webapp/finance/cheques.html
-msgid "Due"
-msgstr "Due"
-
-#: templates/webapp/finance/cheques.html
 msgid "Deposited"
 msgstr "Naideposito"
 
@@ -3316,6 +3324,50 @@ msgstr "I-email sa customer"
 #: templates/webapp/finance/recurring.html
 msgid "Create schedule"
 msgstr "Gumawa ng iskedyul"
+
+#: templates/webapp/help.html
+msgid ""
+"Write your question here. The BookPilot team will reply in this chat, and "
+"you will also get a notification."
+msgstr ""
+"Isulat dito ang iyong tanong. Sasagot ang BookPilot team sa chat na ito, at "
+"makakatanggap ka rin ng notification."
+
+#: templates/webapp/help.html
+msgid "BookPilot support"
+msgstr "Suporta ng BookPilot"
+
+#: templates/webapp/help.html
+msgid ""
+"Hello! How can we help? Ask anything about BookPilot: setup, billing, a "
+"problem, or a new feature you need."
+msgstr ""
+"Kumusta! Paano kami makakatulong? Magtanong ng kahit ano tungkol sa "
+"BookPilot: setup, billing, problema, o bagong feature na kailangan mo."
+
+#: templates/webapp/help.html
+msgid "Type your message…"
+msgstr "I-type ang iyong mensahe…"
+
+#: templates/webapp/help.html
+msgid "Message"
+msgstr "Mensahe"
+
+#: templates/webapp/help.html
+msgid "Send"
+msgstr "Ipadala"
+
+#: templates/webapp/help.html
+msgid "Step-by-step help for every screen."
+msgstr "Sunud-sunod na tulong para sa bawat screen."
+
+#: templates/webapp/help.html
+msgid "Open the user guide"
+msgstr "Buksan ang user guide"
+
+#: templates/webapp/help.html
+msgid "Other ways to reach us"
+msgstr "Iba pang paraan para makipag-ugnayan sa amin"
 
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
@@ -4290,10 +4342,6 @@ msgid "Course"
 msgstr "Kurso"
 
 #: templates/webapp/industry/fees.html
-msgid "Send"
-msgstr "Ipadala"
-
-#: templates/webapp/industry/fees.html
 msgid "No fees billed for this month."
 msgstr "Walang nasingil na bayarin ngayong buwan."
 
@@ -4404,10 +4452,6 @@ msgstr "Unit"
 #: templates/webapp/industry/lease_detail.html
 msgid "Tenant"
 msgstr "Nangungupahan"
-
-#: templates/webapp/industry/lease_detail.html
-msgid "Period"
-msgstr "Panahon"
 
 #: templates/webapp/industry/lease_detail.html
 msgid "due on day"
@@ -12148,10 +12192,6 @@ msgstr "Magpadala sa amin ng mensahe"
 #: apps/webapp/website_kit_views.py
 msgid "Subject"
 msgstr "Paksa"
-
-#: apps/webapp/website_kit_views.py
-msgid "Message"
-msgstr "Mensahe"
 
 #: apps/webapp/website_kit_views.py
 msgid "Thank you! We will get back to you soon."

@@ -1,0 +1,14 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Message · {{ company.name }}{% endblock %}
+{% block heading %}💬 Message {{ company.name }}{% endblock %}
+{% block content %}
+<style>.sc-h{font-size:15px;font-weight:700;margin:0 0 8px}.sc-client dl{display:grid;grid-template-columns:96px minmax(0,1fr);gap:6px 10px;margin:0;font-size:13.5px}.sc-client dt{color:var(--ink-soft)}.sc-client dd{margin:0;overflow-wrap:anywhere}.sc-client a{color:var(--accent)}.sc-grid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px;align-items:start}@media(max-width:1000px){.sc-grid{grid-template-columns:1fr}}</style>
+<div class="sc-grid">
+  <form method="post" class="card">{% csrf_token %}
+    <p style="margin:0 0 10px;color:var(--ink-soft);font-size:14px">The client sees this in <b>Help &amp; support</b> in their app and gets a notification.</p>
+    <textarea name="body" maxlength="4000" required rows="6" style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font:inherit" placeholder="Write a message…"></textarea>
+    <button class="btn" type="submit" style="margin-top:10px">Send</button>
+  </form>
+  {% include "webapp/platform_admin/_client_card.html" %}
+</div>
+{% endblock %}

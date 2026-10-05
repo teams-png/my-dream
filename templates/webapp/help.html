@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Help & support" %}{% endblock %}
+{% block heading %}💬 {% translate "Help & support" %}{% endblock %}
+{% block content %}
+{% include "webapp/_chat_style.html" %}
+<style>
+.help-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;align-items:start}
+.help-side .card{margin-bottom:14px}.help-side h3{margin:0 0 8px;font-size:15px}
+.help-side p{margin:0 0 10px;font-size:13.5px;color:var(--ink-soft);line-height:1.6}
+.help-side a.btn{display:flex;justify-content:center;margin-top:8px}
+@media(max-width:900px){.help-grid{grid-template-columns:1fr}}
+</style>
+<div class="help-grid">
+  <div class="card chat" data-chat data-poll="{% url 'webapp:help_messages' %}" data-post="{% url 'webapp:help' %}">
+    <p style="margin:0 0 12px;color:var(--ink-soft);font-size:14px">{% translate "Write your question here. The BookPilot team will reply in this chat, and you will also get a notification." %}</p>
+    <div class="chat-log" data-last="{% if chat %}{{ chat.last.id }}{% else %}0{% endif %}">
+      {% for m in chat %}
+        <div class="chat-msg {% if m.from_admin %}theirs{% else %}mine{% endif %}">
+          <div class="chat-bubble">{{ m.body }}</div>
+          <div class="chat-meta">{% if m.from_admin %}{% translate "BookPilot support" %}{% else %}{{ m.sender.get_full_name|default:m.sender.email|default:"" }}{% endif %} · {{ m.created_at|date:"d M Y, H:i" }}</div>
+        </div>
+      {% empty %}
+        <div class="chat-empty">👋 {% translate "Hello! How can we help? Ask anything about BookPilot: setup, billing, a problem, or a new feature you need." %}</div>
+      {% endfor %}
+    </div>
+    <form method="post" class="chat-form" data-chat-form>{% csrf_token %}
+      <textarea name="body" maxlength="4000" required placeholder="{% translate 'Type your message…' %}" aria-label="{% translate 'Message' %}"></textarea>
+      <button class="btn" type="submit">{% translate "Send" %}</button>
+    </form>
+    <div class="chat-error" role="alert"></div>
+  </div>
+  <div class="help-side">
+    <div class="card">
+      <h3>📘 {% translate "User guide" %}</h3>
+      <p>{% translate "Step-by-step help for every screen." %}</p>
+      <a class="btn btn-secondary" href="{% url 'webapp:guide' %}" target="_blank" rel="noopener">{% translate "Open the user guide" %}</a>
+    </div>
+    {% if support.whatsapp or support.email %}
+    <div class="card">
+      <h3>📞 {% translate "Other ways to reach us" %}</h3>
+      {% if support.whatsapp %}<p>WhatsApp: <b dir="ltr">{{ support.whatsapp }}</b></p>{% endif %}
+      {% if support.email %}<p>{% translate "Email" %}: <a href="mailto:{{ support.email }}" style="color:var(--accent)">{{ support.email }}</a></p>{% endif %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+<script src="{% static 'js/help-chat.js' %}" defer></script>
+{% endblock %}

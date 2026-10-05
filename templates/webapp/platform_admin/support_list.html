@@ -1,3 +1,42 @@
 {% extends "webapp/admin_base.html" %}
-{% block title %}Support Tickets{% endblock %}{% block heading %}Support Tickets{% endblock %}
-{% block content %}<table><tr><th>Company</th><th>Subject</th><th>Priority</th><th>Status</th><th>Assigned</th><th></th></tr>{% for ticket in tickets %}<tr><td>{{ ticket.company.name }}</td><td>{{ ticket.subject }}</td><td>{{ ticket.get_priority_display }}</td><td><span class="badge {% if ticket.status == 'resolved' or ticket.status == 'closed' %}active{% else %}trial{% endif %}">{{ ticket.get_status_display }}</span></td><td>{{ ticket.assigned_to|default:"—" }}</td><td><a href="{% url 'webapp:platform_support_edit' ticket.id %}">Open</a></td></tr>{% empty %}<tr><td colspan="6" class="empty">No support tickets.</td></tr>{% endfor %}</table>{% endblock %}
+{% block title %}Help inbox{% endblock %}
+{% block heading %}💬 Help inbox{% endblock %}
+{% block content %}
+<style>
+.hi-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 14px}
+.hi-tabs a{padding:8px 13px;border-radius:10px;border:1px solid var(--line);background:var(--panel);font-weight:600;font-size:14px;color:var(--ink-soft)}
+.hi-tabs a.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.hi-list{display:flex;flex-direction:column;gap:10px}
+.hi-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:14px;color:var(--ink)}
+.hi-row:hover{border-color:var(--accent)}
+.hi-row.unread{border-inline-start:4px solid var(--accent)}
+.hi-name{font-weight:700;font-size:15.5px}.hi-sub{color:var(--ink-soft);font-size:13px;margin-top:3px}
+.hi-last{margin-top:6px;font-size:14px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hi-side{text-align:end;font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
+.hi-count{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 7px;border-radius:12px;background:var(--danger);color:#fff;font-weight:700;font-size:12.5px;margin-bottom:6px}
+.hi-chip{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11.5px;font-weight:700;background:var(--accent-soft);color:var(--accent)}
+.hi-chip.resolved,.hi-chip.closed{background:var(--success-bg);color:var(--success)}
+</style>
+<p style="color:var(--ink-soft);font-size:13.5px;margin-top:-6px">Messages clients send from <b>Help &amp; support</b> in their app. {% if unread %}<b style="color:var(--danger)">{{ unread }} unread.</b>{% endif %}
+  <button type="button" class="btn btn-secondary" data-enable-alerts style="margin-inline-start:8px;padding:6px 12px;font-size:13px" hidden>🔔 Turn on desktop alerts</button></p>
+<form method="get" style="display:flex;gap:8px;flex-wrap:wrap">
+  <input type="hidden" name="show" value="{{ show }}">
+  <input type="search" name="q" value="{{ q }}" placeholder="Client, phone, email, country or subject" style="flex:1 1 220px;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font:inherit">
+  <button class="btn btn-secondary" type="submit">Search</button>
+</form>
+<div class="hi-tabs">{% for key, label in tabs %}<a href="?show={{ key }}{% if q %}&q={{ q|urlencode }}{% endif %}"{% if key == show %} class="on"{% endif %}>{{ label }}</a>{% endfor %}</div>
+<div class="hi-list">
+{% for r in rows %}
+  <a class="hi-row{% if r.t.admin_unread %} unread{% endif %}" href="{% url 'webapp:platform_support_chat' r.t.id %}">
+    <div style="min-width:0">
+      <div class="hi-name">{{ r.t.company.name }} <span class="hi-chip {{ r.t.status }}">{{ r.t.get_status_display }}</span></div>
+      <div class="hi-sub">{{ r.t.company.business_type.name }}{% if r.t.company.country %} · {{ r.t.company.country }}{% endif %}{% if r.t.company.phone %} · {{ r.t.company.phone }}{% endif %}{% if r.t.raised_by %} · {{ r.t.raised_by.get_full_name|default:r.t.raised_by.email }}{% endif %}</div>
+      <div class="hi-last">{% if r.last %}{% if r.last.from_admin %}<span style="color:var(--ink-soft)">You: </span>{% endif %}{{ r.last.body|truncatechars:140 }}{% else %}{{ r.t.subject }}{% endif %}</div>
+    </div>
+    <div class="hi-side">{% if r.t.admin_unread %}<span class="hi-count">{{ r.t.admin_unread }}</span><br>{% endif %}{{ r.t.last_message_at|default:r.t.created_at|date:"d M, H:i" }}</div>
+  </a>
+{% empty %}
+  <div class="card empty">No conversations here.</div>
+{% endfor %}
+</div>
+{% endblock %}

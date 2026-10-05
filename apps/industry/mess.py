@@ -66,7 +66,7 @@ def next_number(company):
 
 @transaction.atomic
 def join(*, company, user, plan, customer, start_date, monthly_fee=None, notes="", bill_now=True,
-         delivery_meals=(), delivery_address=""):
+         delivery_meals=(), delivery_address="", alt_phone=""):
     if not plan.is_active:
         raise ValidationError(f"{plan.name} is closed.")
     if MessMember.objects.for_company(company).filter(customer=customer, status__in=["active", "paused"]).exists():
@@ -74,7 +74,7 @@ def join(*, company, user, plan, customer, start_date, monthly_fee=None, notes="
     member = MessMember.objects.create(company=company, number=next_number(company), customer=customer, plan=plan,
                                        monthly_fee=monthly_fee, start_date=start_date, notes=notes,
                                        delivery_meals=delivery_value(delivery_meals),
-                                       delivery_address=(delivery_address or "")[:255])
+                                       delivery_address=(delivery_address or "")[:255], alt_phone=(alt_phone or "")[:20])
     if bill_now:
         bill(company=company, user=user, members=[member], key=month_key(start_date), on=start_date)
     return member

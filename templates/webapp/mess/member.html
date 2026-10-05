@@ -76,8 +76,13 @@
     </div>
     <div class="ix-card">
       <h3>⚙️ {% translate "Member" %}</h3>
-      <dl class="ix-kv"><dt>{% translate "Phone" %}</dt><dd>{{ member.customer.phone|default:"—" }}</dd><dt>{% translate "Since" %}</dt><dd>{{ member.start_date|date:"j M Y" }}</dd><dt>{% translate "Eats" %}</dt><dd>{% for meal in member.plan.meals %}{% if meal == "breakfast" %}☕{% elif meal == "lunch" %}🍛{% else %}🌙{% endif %} {% if meal in member.delivered %}🛵 {% translate "delivery" %}{% else %}🍽 {% translate "at the shop" %}{% endif %}{% if not forloop.last %} · {% endif %}{% endfor %}</dd>{% if member.delivery_address %}<dt>{% translate "Delivery address" %}</dt><dd>{{ member.delivery_address }}</dd>{% endif %}{% if member.end_date %}<dt>{% translate "Ended" %}</dt><dd>{{ member.end_date|date:"j M Y" }}</dd>{% endif %}</dl>
+      <dl class="ix-kv"><dt>{% translate "Phone" %}</dt><dd>{% if member.customer.phone %}<a href="tel:{{ member.customer.phone }}">{{ member.customer.phone }}</a>{% else %}—{% endif %}</dd>{% if member.alt_phone %}<dt>{% translate "Other contact number" %}</dt><dd><a href="tel:{{ member.alt_phone }}">{{ member.alt_phone }}</a></dd>{% endif %}{% if member.customer.email %}<dt>{% translate "Email" %}</dt><dd><a href="mailto:{{ member.customer.email }}">{{ member.customer.email }}</a></dd>{% endif %}<dt>{% translate "Since" %}</dt><dd>{{ member.start_date|date:"j M Y" }}</dd><dt>{% translate "Eats" %}</dt><dd>{% for meal in member.plan.meals %}{% if meal == "breakfast" %}☕{% elif meal == "lunch" %}🍛{% else %}🌙{% endif %} {% if meal in member.delivered %}🛵 {% translate "delivery" %}{% else %}🍽 {% translate "at the shop" %}{% endif %}{% if not forloop.last %} · {% endif %}{% endfor %}</dd>{% if member.delivery_address %}<dt>{% translate "Delivery address" %}</dt><dd>{{ member.delivery_address }}</dd>{% endif %}{% if member.end_date %}<dt>{% translate "Ended" %}</dt><dd>{{ member.end_date|date:"j M Y" }}</dd>{% endif %}</dl>
       <form method="post" class="fx-grid" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="edit">
+        {% if form.errors %}<div class="fx-errors fx-wide">{% translate "Please check the highlighted fields." %}{{ form.non_field_errors }}</div>{% endif %}
+        <p class="fx-wide" style="margin:0;font-weight:800">📇 {% translate "Contact" %}</p>
+        {% include "webapp/_field.html" with field=form.name %}{% include "webapp/_field.html" with field=form.phone %}
+        {% include "webapp/_field.html" with field=form.alt_phone %}{% include "webapp/_field.html" with field=form.email %}
+        <p class="fx-wide" style="margin:6px 0 0;font-weight:800">🍱 {% translate "Mess" %}</p>
         {% include "webapp/_field.html" with field=form.plan %}{% include "webapp/_field.html" with field=form.monthly_fee %}{% include "webapp/_field.html" with field=form.notes wide=True %}
         {% include "webapp/_field.html" with field=form.delivery_meals %}{% include "webapp/_field.html" with field=form.delivery_address %}
         <p class="fx-wide" style="margin:0"><button class="btn" type="submit">{% translate "Save" %}</button></p>
@@ -86,7 +91,7 @@
         {% if member.status != "active" %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="active"><button class="btn btn-secondary">{% translate "Resume" %}</button></form>{% endif %}
         {% if member.status == "active" %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="paused"><button class="btn btn-secondary">{% translate "Pause" %}</button></form>{% endif %}
         {% if member.status != "ended" %}<form method="post" onsubmit="return confirm('{% translate "End this mess membership?" %}')">{% csrf_token %}<input type="hidden" name="action" value="ended"><button class="btn btn-secondary">{% translate "End membership" %}</button></form>{% endif %}
-        {% if member.customer.phone %}<a class="btn btn-secondary" href="https://wa.me/{{ member.customer.phone|cut:'+'|cut:' ' }}" target="_blank" rel="noopener">💬 WhatsApp</a>{% endif %}
+        {% if whatsapp %}<a class="btn btn-secondary" href="{{ whatsapp }}" target="_blank" rel="noopener">💬 WhatsApp</a>{% endif %}{% if member.customer.phone %}<a class="btn btn-secondary" href="tel:{{ member.customer.phone }}">📞 {% translate "Call" %}</a>{% endif %}
       </div>
     </div>
   </div>

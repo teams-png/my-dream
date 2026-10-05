@@ -25,6 +25,16 @@ MEAL_CHOICES = [("breakfast", _l("Breakfast")), ("lunch", _l("Lunch")), ("dinner
 WEEKDAY_LABELS = [_l("Monday"), _l("Tuesday"), _l("Wednesday"), _l("Thursday"), _l("Friday"), _l("Saturday"), _l("Sunday")]
 
 
+PHONE_HELP = _l("Numbers, spaces, + and - only.")
+
+
+def _clean_phone(value):
+    value = " ".join((value or "").split())
+    if value and (len(value) < 6 or any(ch not in "0123456789+- ()" for ch in value)):
+        raise ValidationError(_("Enter a valid phone number."))
+    return value
+
+
 def _delivery_fields(form, instance=None):
     form.fields["delivery_meals"] = forms.MultipleChoiceField(
         choices=MEAL_CHOICES, required=False, widget=forms.CheckboxSelectMultiple, label=_l("Delivered meals"),
@@ -83,7 +93,11 @@ class JoinForm(forms.Form):
     plan = forms.ModelChoiceField(queryset=MessPlan.objects.none(), label=_l("Plan"))
     customer = forms.ModelChoiceField(queryset=Customer.objects.none(), required=False, label=_l("Existing customer"))
     new_customer_name = forms.CharField(max_length=255, required=False, label=_l("…or new member name"))
-    new_customer_phone = forms.CharField(max_length=20, required=False, label=_l("Phone / WhatsApp"))
+    new_customer_phone = forms.CharField(max_length=20, required=False, label=_l("Phone / WhatsApp"),
+                                         help_text=_l("For an existing customer, fills in their number if it is empty."))
+    alt_phone = forms.CharField(max_length=20, required=False, label=_l("Other contact number"),
+                                help_text=_l("Office, room-mate or family — optional."))
+    email = forms.EmailField(required=False, label=_l("Email"))
     start_date = forms.DateField(widget=DATE, label=_l("Starts on"))
     monthly_fee = forms.DecimalField(min_value=0, decimal_places=2, required=False, label=_l("Special monthly fee"),
                                      help_text=_l("Leave empty to use the plan's fee."))
@@ -96,6 +110,12 @@ class JoinForm(forms.Form):
         _delivery_fields(self)
         self.fields["plan"].queryset = MessPlan.objects.for_company(company).filter(is_active=True)
         self.fields["customer"].queryset = Customer.objects.for_company(company).filter(is_active=True).order_by("name")
+
+    def clean_new_customer_phone(self):
+        return _clean_phone(self.cleaned_data.get("new_customer_phone"))
+
+    def clean_alt_phone(self):
+        return _clean_phone(self.cleaned_data.get("alt_phone"))
 
     def clean(self):
         data = super().clean()
@@ -113,13 +133,40 @@ class MemberForm(forms.ModelForm):
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["plan"].queryset = MessPlan.objects.for_company(company)
+        customer = self.instance.customer
+        self.fields["name"] = forms.CharField(max_length=255, label=_l("Name"), initial=customer.name)
+        self.fields["phone"] = forms.CharField(max_length=20, required=False, label=_l("Phone / WhatsApp"),
+                                               initial=customer.phone, help_text=PHONE_HELP)
+        self.fields["alt_phone"] = forms.CharField(max_length=20, required=False, label=_l("Other contact number"),
+                                                   initial=self.instance.alt_phone,
+                                                   help_text=_l("Office, room-mate or family — optional."))
+        self.fields["email"] = forms.EmailField(required=False, label=_l("Email"), initial=customer.email)
         _delivery_fields(self, self.instance)
+        self.order_fields(["name", "phone", "alt_phone", "email", "plan", "monthly_fee", "notes",
+                           "delivery_meals", "delivery_address"])
+
+    def clean_name(self):
+        name = " ".join(self.cleaned_data["name"].split())
+        if not name:
+            raise ValidationError(_("Enter the name."))
+        return name
+
+    def clean_phone(self):
+        return _clean_phone(self.cleaned_data.get("phone"))
+
+    def clean_alt_phone(self):
+        return _clean_phone(self.cleaned_data.get("alt_phone"))
 
     def save(self, commit=True):
         member = super().save(commit=False)
-        member.delivery_meals = svc.delivery_value(self.cleaned_data.get("delivery_meals"))
-        member.delivery_address = (self.cleaned_data.get("delivery_address") or "").strip()
+        data = self.cleaned_data
+        member.delivery_meals = svc.delivery_value(data.get("delivery_meals"))
+        member.delivery_address = (data.get("delivery_address") or "").strip()
+        member.alt_phone = data.get("alt_phone") or ""
+        customer = member.customer
+        customer.name, customer.phone, customer.email = data["name"], data.get("phone") or "", data.get("email") or ""
         if commit:
+            customer.save(update_fields=["name", "phone", "email"])
             member.save()
         return member
 
@@ -180,7 +227,8 @@ def mess_home(request):
     today = timezone.localdate()
     members = svc.running_on(company, today).select_related("customer", "plan")
     if q:
-        members = members.filter(Q(customer__name__icontains=q) | Q(customer__phone__icontains=q) | Q(number__icontains=q))
+        members = members.filter(Q(customer__name__icontains=q) | Q(customer__phone__icontains=q) | Q(alt_phone__icontains=q)
+                                 | Q(number__icontains=q))
     members = list(members.order_by("number")[:200])
     served = svc.served_today(company, [m.pk for m in members])
     away = set(MessLeave.objects.for_company(company).filter(from_date__lte=today, to_date__gte=today)
@@ -254,11 +302,22 @@ def mess_join(request):
         try:
             if customer is None:
                 customer = Customer.objects.create(company=company, name=data["new_customer_name"].strip()[:255],
-                                                   phone=(data.get("new_customer_phone") or "").strip()[:20])
+                                                   phone=(data.get("new_customer_phone") or "")[:20],
+                                                   email=data.get("email") or "")
+            else:
+                changed = []
+                if data.get("new_customer_phone") and not customer.phone:
+                    customer.phone = data["new_customer_phone"][:20]
+                    changed.append("phone")
+                if data.get("email") and not customer.email:
+                    customer.email = data["email"]
+                    changed.append("email")
+                if changed:
+                    customer.save(update_fields=changed)
             member = svc.join(company=company, user=request.user, plan=data["plan"], customer=customer,
                               start_date=data["start_date"], monthly_fee=data.get("monthly_fee"), notes=data.get("notes") or "",
                               bill_now=data.get("bill_now"), delivery_meals=data.get("delivery_meals") or (),
-                              delivery_address=data.get("delivery_address") or "")
+                              delivery_address=data.get("delivery_address") or "", alt_phone=data.get("alt_phone") or "")
             messages.success(request, _("%(name)s joined the mess as %(number)s.") % {"name": customer.name, "number": member.number})
             return redirect("webapp:mess_member", member.id)
         except ValidationError as exc:
@@ -324,6 +383,7 @@ def mess_member(request, member_id):
         "charges": charges, "due": due, "away_days": sum(1 for d in grid if d["leave"]),
         "weekdays": [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")], "month_label": first,
         "extras": member.extras.select_related("invoice")[:40], "pending_extras": svc.pending_total(member),
+        "whatsapp": (f"https://wa.me/{number}" if (number := normalise_phone(member.customer.phone, company.country)) else ""),
         "extra_items": _extra_items(company),
         "refund_note": (_("Refund %(amount)s per day on the next bill for mess cuts of %(days)s+ days.") % {
             "amount": member.plan.leave_refund_per_day, "days": member.plan.min_leave_days})
@@ -448,7 +508,8 @@ def mess_delivery(request):
         return redirect(f"{request.path}?meal={meal}")
     rows = svc.delivery_list(company, meal)
     text = "\n".join([f"🛵 {company.name} – {_(meal.capitalize())} · {timezone.localdate():%d %b}", ""] + [
-        f"{i}. {r['m'].customer.name} ({r['m'].number}) – {r['m'].customer.phone or '-'}\n   {r['address'] or '-'}"
+        f"{i}. {r['m'].customer.name} ({r['m'].number}) – {r['m'].customer.phone or '-'}"
+        f"{(' / ' + r['m'].alt_phone) if r['m'].alt_phone else ''}\n   {r['address'] or '-'}"
         for i, r in enumerate(rows, 1)])
     return render(request, "webapp/mess/delivery.html", {
         "meal": meal, "rows": rows, "left": sum(1 for r in rows if not r["done"]), "share": f"https://wa.me/?text={quote(text)}",

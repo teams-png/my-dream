@@ -4982,6 +4982,10 @@ msgid "Member"
 msgstr "会员"
 
 #: templates/webapp/mess/member.html
+msgid "Other contact number"
+msgstr "其他联系电话"
+
+#: templates/webapp/mess/member.html
 msgid "Eats"
 msgstr "用餐方式"
 
@@ -4994,12 +4998,20 @@ msgid "Ended"
 msgstr "已结束"
 
 #: templates/webapp/mess/member.html
+msgid "Contact"
+msgstr "联系"
+
+#: templates/webapp/mess/member.html
 msgid "End this mess membership?"
 msgstr "结束此包餐会员资格？"
 
 #: templates/webapp/mess/member.html
 msgid "End membership"
 msgstr "结束会员资格"
+
+#: templates/webapp/mess/member.html
+msgid "Call"
+msgstr "拨打"
 
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
@@ -8887,10 +8899,6 @@ msgid "About"
 msgstr "关于我们"
 
 #: templates/webapp/site/page.html
-msgid "Contact"
-msgstr "联系"
-
-#: templates/webapp/site/page.html
 msgid "Book now"
 msgstr "立即预订"
 
@@ -10538,6 +10546,14 @@ msgid "This module isn't part of your business type."
 msgstr "此模块不属于您的业务类型。"
 
 #: apps/webapp/mess_views.py
+msgid "Numbers, spaces, + and - only."
+msgstr "仅限数字、空格、+ 和 -。"
+
+#: apps/webapp/mess_views.py
+msgid "Enter a valid phone number."
+msgstr "请输入有效的电话号码。"
+
+#: apps/webapp/mess_views.py
 msgid "Delivered meals"
 msgstr "外送的餐次"
 
@@ -10595,6 +10611,14 @@ msgid "…or new member name"
 msgstr "…或新成员姓名"
 
 #: apps/webapp/mess_views.py
+msgid "For an existing customer, fills in their number if it is empty."
+msgstr "对于现有客户，若其号码为空则填入此号码。"
+
+#: apps/webapp/mess_views.py
+msgid "Office, room-mate or family — optional."
+msgstr "办公室、室友或家人 — 可选。"
+
+#: apps/webapp/mess_views.py
 msgid "Starts on"
 msgstr "开始日期"
 
@@ -10617,6 +10641,10 @@ msgstr "立即为本月开账单"
 #: apps/webapp/mess_views.py
 msgid "Choose a customer or type the new member's name."
 msgstr "请选择客户或输入新成员姓名。"
+
+#: apps/webapp/mess_views.py
+msgid "Enter the name."
+msgstr "请输入姓名。"
 
 #: apps/webapp/mess_views.py
 msgid "e.g. Chicken curry, Egg, Fish fry"

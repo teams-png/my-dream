@@ -561,6 +561,8 @@ class MessMember(TenantScopedModel):
     # meals carried to the member instead of eaten at the shop, e.g. "lunch" or "lunch,dinner"
     delivery_meals = models.CharField(max_length=40, blank=True)
     delivery_address = models.CharField(max_length=255, blank=True)
+    # a second number to reach the member (office, room-mate, family); the main one is customer.phone
+    alt_phone = models.CharField(max_length=20, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

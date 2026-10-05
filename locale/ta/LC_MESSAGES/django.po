@@ -5112,6 +5112,10 @@ msgid "Member"
 msgstr "உறுப்பினர்"
 
 #: templates/webapp/mess/member.html
+msgid "Other contact number"
+msgstr "மற்றொரு தொடர்பு எண்"
+
+#: templates/webapp/mess/member.html
 msgid "Eats"
 msgstr "சாப்பிடுவது"
 
@@ -5124,12 +5128,20 @@ msgid "Ended"
 msgstr "முடிந்தது"
 
 #: templates/webapp/mess/member.html
+msgid "Contact"
+msgstr "தொடர்பு"
+
+#: templates/webapp/mess/member.html
 msgid "End this mess membership?"
 msgstr "இந்த மெஸ் உறுப்பினர் நிலையை முடிக்கவா?"
 
 #: templates/webapp/mess/member.html
 msgid "End membership"
 msgstr "உறுப்பினர் நிலையை முடி"
+
+#: templates/webapp/mess/member.html
+msgid "Call"
+msgstr "அழை"
 
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
@@ -9158,10 +9170,6 @@ msgid "About"
 msgstr "எங்களைப் பற்றி"
 
 #: templates/webapp/site/page.html
-msgid "Contact"
-msgstr "தொடர்பு"
-
-#: templates/webapp/site/page.html
 msgid "Book now"
 msgstr "இப்போது முன்பதிவு செய்"
 
@@ -10858,6 +10866,14 @@ msgid "This module isn't part of your business type."
 msgstr "இந்தத் தொகுதி உங்கள் வணிக வகையின் பகுதி அல்ல."
 
 #: apps/webapp/mess_views.py
+msgid "Numbers, spaces, + and - only."
+msgstr "எண்கள், இடைவெளி, + மற்றும் - மட்டும்."
+
+#: apps/webapp/mess_views.py
+msgid "Enter a valid phone number."
+msgstr "சரியான தொலைபேசி எண்ணை உள்ளிடவும்."
+
+#: apps/webapp/mess_views.py
 msgid "Delivered meals"
 msgstr "டெலிவரி செய்யும் வேளைகள்"
 
@@ -10919,6 +10935,14 @@ msgid "…or new member name"
 msgstr "…அல்லது புதிய உறுப்பினர் பெயர்"
 
 #: apps/webapp/mess_views.py
+msgid "For an existing customer, fills in their number if it is empty."
+msgstr "ஏற்கனவே உள்ள வாடிக்கையாளரின் எண் காலியாக இருந்தால் இது நிரப்பப்படும்."
+
+#: apps/webapp/mess_views.py
+msgid "Office, room-mate or family — optional."
+msgstr "அலுவலகம், அறைத்தோழர் அல்லது குடும்பம் — விருப்பம்."
+
+#: apps/webapp/mess_views.py
 msgid "Starts on"
 msgstr "தொடங்கும் தேதி"
 
@@ -10942,6 +10966,10 @@ msgstr "இந்த மாத பில்லை இப்போது போ�
 msgid "Choose a customer or type the new member's name."
 msgstr ""
 "வாடிக்கையாளரைத் தேர்ந்தெடுக்கவும் அல்லது புதிய உறுப்பினர் பெயரை உள்ளிடவும்."
+
+#: apps/webapp/mess_views.py
+msgid "Enter the name."
+msgstr "பெயரை உள்ளிடவும்."
 
 #: apps/webapp/mess_views.py
 msgid "e.g. Chicken curry, Egg, Fish fry"

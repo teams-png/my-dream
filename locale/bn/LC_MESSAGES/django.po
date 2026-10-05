@@ -5061,6 +5061,10 @@ msgid "Member"
 msgstr "সদস্য"
 
 #: templates/webapp/mess/member.html
+msgid "Other contact number"
+msgstr "অন্য যোগাযোগ নম্বর"
+
+#: templates/webapp/mess/member.html
 msgid "Eats"
 msgstr "খান"
 
@@ -5073,12 +5077,20 @@ msgid "Ended"
 msgstr "শেষ হয়েছে"
 
 #: templates/webapp/mess/member.html
+msgid "Contact"
+msgstr "যোগাযোগ"
+
+#: templates/webapp/mess/member.html
 msgid "End this mess membership?"
 msgstr "এই মেস সদস্যপদ শেষ করবেন?"
 
 #: templates/webapp/mess/member.html
 msgid "End membership"
 msgstr "সদস্যপদ শেষ করুন"
+
+#: templates/webapp/mess/member.html
+msgid "Call"
+msgstr "কল করুন"
 
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
@@ -9053,10 +9065,6 @@ msgid "About"
 msgstr "আমাদের সম্পর্কে"
 
 #: templates/webapp/site/page.html
-msgid "Contact"
-msgstr "যোগাযোগ"
-
-#: templates/webapp/site/page.html
 msgid "Book now"
 msgstr "এখনই বুক করুন"
 
@@ -10721,6 +10729,14 @@ msgid "This module isn't part of your business type."
 msgstr "এই মডিউলটি আপনার ব্যবসার ধরনের অংশ নয়।"
 
 #: apps/webapp/mess_views.py
+msgid "Numbers, spaces, + and - only."
+msgstr "শুধু সংখ্যা, স্পেস, + ও -।"
+
+#: apps/webapp/mess_views.py
+msgid "Enter a valid phone number."
+msgstr "একটি সঠিক ফোন নম্বর লিখুন।"
+
+#: apps/webapp/mess_views.py
 msgid "Delivered meals"
 msgstr "ডেলিভারির বেলা"
 
@@ -10780,6 +10796,14 @@ msgid "…or new member name"
 msgstr "…অথবা নতুন সদস্যের নাম"
 
 #: apps/webapp/mess_views.py
+msgid "For an existing customer, fills in their number if it is empty."
+msgstr "বিদ্যমান গ্রাহকের নম্বর খালি থাকলে এটি বসবে।"
+
+#: apps/webapp/mess_views.py
+msgid "Office, room-mate or family — optional."
+msgstr "অফিস, রুমমেট বা পরিবার — ঐচ্ছিক।"
+
+#: apps/webapp/mess_views.py
 msgid "Starts on"
 msgstr "শুরুর তারিখ"
 
@@ -10802,6 +10826,10 @@ msgstr "এই মাসের বিল এখনই করুন"
 #: apps/webapp/mess_views.py
 msgid "Choose a customer or type the new member's name."
 msgstr "একজন গ্রাহক বেছে নিন বা নতুন সদস্যের নাম লিখুন।"
+
+#: apps/webapp/mess_views.py
+msgid "Enter the name."
+msgstr "নাম লিখুন।"
 
 #: apps/webapp/mess_views.py
 msgid "e.g. Chicken curry, Egg, Fish fry"

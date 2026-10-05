@@ -72,7 +72,7 @@
   {% for r in rows %}
     <div class="ms-m">
       <div class="who"><span class="no">{{ r.m.number }}</span> <a href="{% url 'webapp:mess_member' r.m.id %}"><b>{{ r.m.customer.name }}</b></a>
-        <small>{{ r.m.plan.name }}{% if r.m.notes %} · {{ r.m.notes }}{% endif %}</small></div>
+        <small>{{ r.m.plan.name }}{% if r.m.customer.phone %} · <a href="tel:{{ r.m.customer.phone }}">📞 {{ r.m.customer.phone }}</a>{% endif %}{% if r.m.notes %} · {{ r.m.notes }}{% endif %}</small></div>
       {% if r.away %}<span class="ms-away">✈️ {% translate "Mess cut today" %}</span>
       {% else %}
       <div class="ms-btns">

@@ -27,7 +27,7 @@
     <div class="dl-row{% if r.done %} done{% endif %}">
       <div class="who"><b>{{ forloop.counter }}. {{ r.m.customer.name }}</b> <small style="display:inline">{{ r.m.number }}</small>
         <small>📍 {% if r.address %}{{ r.address }}{% else %}<a href="{% url 'webapp:mess_member' r.m.id %}">{% translate "No address — add it on the member page" %}</a>{% endif %}</small>
-        {% if r.m.customer.phone %}<small>📞 <a href="tel:{{ r.m.customer.phone }}">{{ r.m.customer.phone }}</a>{% if r.m.notes %} · {{ r.m.notes }}{% endif %}</small>{% endif %}</div>
+        {% if r.m.customer.phone or r.m.alt_phone %}<small>📞 {% if r.m.customer.phone %}<a href="tel:{{ r.m.customer.phone }}">{{ r.m.customer.phone }}</a>{% endif %}{% if r.m.alt_phone %} · <a href="tel:{{ r.m.alt_phone }}">{{ r.m.alt_phone }}</a>{% endif %}{% if r.m.notes %} · {{ r.m.notes }}{% endif %}</small>{% endif %}</div>
       <form method="post">{% csrf_token %}<input type="hidden" name="meal" value="{{ meal }}"><input type="hidden" name="member" value="{{ r.m.id }}">
         {% if r.done %}<input type="hidden" name="action" value="undo"><button class="btn btn-secondary" type="submit">✓ {% translate "Delivered" %}</button>
         {% else %}<button class="btn" type="submit">🛵 {% translate "Mark delivered" %}</button>{% endif %}</form>

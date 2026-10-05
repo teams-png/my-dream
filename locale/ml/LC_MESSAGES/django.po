@@ -5093,6 +5093,10 @@ msgid "Member"
 msgstr "അംഗം"
 
 #: templates/webapp/mess/member.html
+msgid "Other contact number"
+msgstr "മറ്റൊരു ഫോൺ നമ്പർ"
+
+#: templates/webapp/mess/member.html
 msgid "Eats"
 msgstr "കഴിക്കുന്നത്"
 
@@ -5105,12 +5109,20 @@ msgid "Ended"
 msgstr "അവസാനിച്ചു"
 
 #: templates/webapp/mess/member.html
+msgid "Contact"
+msgstr "ബന്ധപ്പെടുക"
+
+#: templates/webapp/mess/member.html
 msgid "End this mess membership?"
 msgstr "ഈ മെസ്സ് അംഗത്വം അവസാനിപ്പിക്കണോ?"
 
 #: templates/webapp/mess/member.html
 msgid "End membership"
 msgstr "അംഗത്വം അവസാനിപ്പിക്കുക"
+
+#: templates/webapp/mess/member.html
+msgid "Call"
+msgstr "വിളിക്കൂ"
 
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
@@ -9114,10 +9126,6 @@ msgid "About"
 msgstr "ഞങ്ങളെക്കുറിച്ച്"
 
 #: templates/webapp/site/page.html
-msgid "Contact"
-msgstr "ബന്ധപ്പെടുക"
-
-#: templates/webapp/site/page.html
 msgid "Book now"
 msgstr "ഇപ്പോൾ ബുക്ക് ചെയ്യുക"
 
@@ -10789,6 +10797,14 @@ msgid "This module isn't part of your business type."
 msgstr "ഈ മൊഡ്യൂൾ നിങ്ങളുടെ ബിസിനസ് തരത്തിൽ ഇല്ല."
 
 #: apps/webapp/mess_views.py
+msgid "Numbers, spaces, + and - only."
+msgstr "അക്കങ്ങൾ, സ്പേസ്, +, - എന്നിവ മാത്രം."
+
+#: apps/webapp/mess_views.py
+msgid "Enter a valid phone number."
+msgstr "ശരിയായ ഫോൺ നമ്പർ നൽകൂ."
+
+#: apps/webapp/mess_views.py
 msgid "Delivered meals"
 msgstr "ഡെലിവർ ചെയ്യുന്ന നേരങ്ങൾ"
 
@@ -10849,6 +10865,14 @@ msgid "…or new member name"
 msgstr "…അല്ലെങ്കിൽ പുതിയ അംഗത്തിന്റെ പേര്"
 
 #: apps/webapp/mess_views.py
+msgid "For an existing customer, fills in their number if it is empty."
+msgstr "നിലവിലുള്ള കസ്റ്റമറുടെ നമ്പർ ശൂന്യമാണെങ്കിൽ ഇത് ചേർക്കും."
+
+#: apps/webapp/mess_views.py
+msgid "Office, room-mate or family — optional."
+msgstr "ഓഫീസ്, റൂംമേറ്റ് അല്ലെങ്കിൽ വീട്ടുകാർ — ഓപ്ഷണൽ."
+
+#: apps/webapp/mess_views.py
 msgid "Starts on"
 msgstr "തുടങ്ങുന്ന തീയതി"
 
@@ -10873,6 +10897,10 @@ msgid "Choose a customer or type the new member's name."
 msgstr ""
 "ഒരു കസ്റ്റമറെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ അംഗത്തിന്റെ പേര് ടൈപ്പ് "
 "ചെയ്യുക."
+
+#: apps/webapp/mess_views.py
+msgid "Enter the name."
+msgstr "പേര് നൽകൂ."
 
 #: apps/webapp/mess_views.py
 msgid "e.g. Chicken curry, Egg, Fish fry"

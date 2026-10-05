@@ -5040,6 +5040,10 @@ msgid "Member"
 msgstr "العضو"
 
 #: templates/webapp/mess/member.html
+msgid "Other contact number"
+msgstr "رقم تواصل آخر"
+
+#: templates/webapp/mess/member.html
 msgid "Eats"
 msgstr "يأكل"
 
@@ -5052,12 +5056,20 @@ msgid "Ended"
 msgstr "منتهي"
 
 #: templates/webapp/mess/member.html
+msgid "Contact"
+msgstr "تواصل"
+
+#: templates/webapp/mess/member.html
 msgid "End this mess membership?"
 msgstr "إنهاء هذا الاشتراك؟"
 
 #: templates/webapp/mess/member.html
 msgid "End membership"
 msgstr "إنهاء الاشتراك"
+
+#: templates/webapp/mess/member.html
+msgid "Call"
+msgstr "اتصال"
 
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
@@ -9014,10 +9026,6 @@ msgid "About"
 msgstr "من نحن"
 
 #: templates/webapp/site/page.html
-msgid "Contact"
-msgstr "تواصل"
-
-#: templates/webapp/site/page.html
 msgid "Book now"
 msgstr "احجز الآن"
 
@@ -10667,6 +10675,14 @@ msgid "This module isn't part of your business type."
 msgstr "هذه الوحدة ليست ضمن نوع نشاطك."
 
 #: apps/webapp/mess_views.py
+msgid "Numbers, spaces, + and - only."
+msgstr "أرقام ومسافات و+ و- فقط."
+
+#: apps/webapp/mess_views.py
+msgid "Enter a valid phone number."
+msgstr "أدخل رقم هاتف صحيحاً."
+
+#: apps/webapp/mess_views.py
 msgid "Delivered meals"
 msgstr "الوجبات التي تُوصَّل"
 
@@ -10724,6 +10740,14 @@ msgid "…or new member name"
 msgstr "…أو اسم عضو جديد"
 
 #: apps/webapp/mess_views.py
+msgid "For an existing customer, fills in their number if it is empty."
+msgstr "للعميل الحالي: يُضاف رقمه إن كان فارغاً."
+
+#: apps/webapp/mess_views.py
+msgid "Office, room-mate or family — optional."
+msgstr "العمل أو زميل السكن أو العائلة — اختياري."
+
+#: apps/webapp/mess_views.py
 msgid "Starts on"
 msgstr "يبدأ في"
 
@@ -10746,6 +10770,10 @@ msgstr "إصدار فاتورة هذا الشهر الآن"
 #: apps/webapp/mess_views.py
 msgid "Choose a customer or type the new member's name."
 msgstr "اختر عميلاً أو اكتب اسم العضو الجديد."
+
+#: apps/webapp/mess_views.py
+msgid "Enter the name."
+msgstr "أدخل الاسم."
 
 #: apps/webapp/mess_views.py
 msgid "e.g. Chicken curry, Egg, Fish fry"

@@ -5061,6 +5061,10 @@ msgid "Member"
 msgstr "सदस्य"
 
 #: templates/webapp/mess/member.html
+msgid "Other contact number"
+msgstr "अर्को सम्पर्क नम्बर"
+
+#: templates/webapp/mess/member.html
 msgid "Eats"
 msgstr "खाने"
 
@@ -5073,12 +5077,20 @@ msgid "Ended"
 msgstr "सकियो"
 
 #: templates/webapp/mess/member.html
+msgid "Contact"
+msgstr "सम्पर्क"
+
+#: templates/webapp/mess/member.html
 msgid "End this mess membership?"
 msgstr "यो मेस सदस्यता अन्त्य गर्ने?"
 
 #: templates/webapp/mess/member.html
 msgid "End membership"
 msgstr "सदस्यता अन्त्य गर्नुहोस्"
+
+#: templates/webapp/mess/member.html
+msgid "Call"
+msgstr "फोन गर्नुहोस्"
 
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
@@ -9055,10 +9067,6 @@ msgid "About"
 msgstr "हाम्रो बारेमा"
 
 #: templates/webapp/site/page.html
-msgid "Contact"
-msgstr "सम्पर्क"
-
-#: templates/webapp/site/page.html
 msgid "Book now"
 msgstr "अहिले बुक गर्नुहोस्"
 
@@ -10720,6 +10728,14 @@ msgid "This module isn't part of your business type."
 msgstr "यो मोड्युल तपाईंको व्यवसाय प्रकारको भाग होइन।"
 
 #: apps/webapp/mess_views.py
+msgid "Numbers, spaces, + and - only."
+msgstr "अंक, स्पेस, + र - मात्र।"
+
+#: apps/webapp/mess_views.py
+msgid "Enter a valid phone number."
+msgstr "मान्य फोन नम्बर लेख्नुहोस्।"
+
+#: apps/webapp/mess_views.py
 msgid "Delivered meals"
 msgstr "डेलिभर हुने छाक"
 
@@ -10777,6 +10793,14 @@ msgid "…or new member name"
 msgstr "…वा नयाँ सदस्यको नाम"
 
 #: apps/webapp/mess_views.py
+msgid "For an existing customer, fills in their number if it is empty."
+msgstr "विद्यमान ग्राहकको नम्बर खाली भए यो भरिन्छ।"
+
+#: apps/webapp/mess_views.py
+msgid "Office, room-mate or family — optional."
+msgstr "कार्यालय, कोठा-साथी वा परिवार — ऐच्छिक।"
+
+#: apps/webapp/mess_views.py
 msgid "Starts on"
 msgstr "सुरु मिति"
 
@@ -10799,6 +10823,10 @@ msgstr "यो महिनाको बिल अहिले बनाउन�
 #: apps/webapp/mess_views.py
 msgid "Choose a customer or type the new member's name."
 msgstr "ग्राहक छान्नुहोस् वा नयाँ सदस्यको नाम लेख्नुहोस्।"
+
+#: apps/webapp/mess_views.py
+msgid "Enter the name."
+msgstr "नाम लेख्नुहोस्।"
 
 #: apps/webapp/mess_views.py
 msgid "e.g. Chicken curry, Egg, Fish fry"

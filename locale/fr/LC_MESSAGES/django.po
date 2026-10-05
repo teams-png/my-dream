@@ -5114,6 +5114,10 @@ msgid "Member"
 msgstr "Membre"
 
 #: templates/webapp/mess/member.html
+msgid "Other contact number"
+msgstr "Autre numéro de contact"
+
+#: templates/webapp/mess/member.html
 msgid "Eats"
 msgstr "Mange"
 
@@ -5126,12 +5130,20 @@ msgid "Ended"
 msgstr "Terminé"
 
 #: templates/webapp/mess/member.html
+msgid "Contact"
+msgstr "Contact"
+
+#: templates/webapp/mess/member.html
 msgid "End this mess membership?"
 msgstr "Mettre fin à cette adhésion à la cantine ?"
 
 #: templates/webapp/mess/member.html
 msgid "End membership"
 msgstr "Mettre fin à l’adhésion"
+
+#: templates/webapp/mess/member.html
+msgid "Call"
+msgstr "Appeler"
 
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
@@ -9161,10 +9173,6 @@ msgid "About"
 msgstr "À propos"
 
 #: templates/webapp/site/page.html
-msgid "Contact"
-msgstr "Contact"
-
-#: templates/webapp/site/page.html
 msgid "Book now"
 msgstr "Réserver"
 
@@ -10845,6 +10853,14 @@ msgid "This module isn't part of your business type."
 msgstr "Ce module ne fait pas partie de votre type d’activité."
 
 #: apps/webapp/mess_views.py
+msgid "Numbers, spaces, + and - only."
+msgstr "Chiffres, espaces, + et - uniquement."
+
+#: apps/webapp/mess_views.py
+msgid "Enter a valid phone number."
+msgstr "Saisissez un numéro de téléphone valide."
+
+#: apps/webapp/mess_views.py
 msgid "Delivered meals"
 msgstr "Repas livrés"
 
@@ -10906,6 +10922,14 @@ msgid "…or new member name"
 msgstr "…ou nom du nouveau membre"
 
 #: apps/webapp/mess_views.py
+msgid "For an existing customer, fills in their number if it is empty."
+msgstr "Pour un client existant, complète son numéro s’il est vide."
+
+#: apps/webapp/mess_views.py
+msgid "Office, room-mate or family — optional."
+msgstr "Bureau, colocataire ou famille — facultatif."
+
+#: apps/webapp/mess_views.py
 msgid "Starts on"
 msgstr "Début le"
 
@@ -10928,6 +10952,10 @@ msgstr "Facturer ce mois maintenant"
 #: apps/webapp/mess_views.py
 msgid "Choose a customer or type the new member's name."
 msgstr "Choisissez un client ou tapez le nom du nouveau membre."
+
+#: apps/webapp/mess_views.py
+msgid "Enter the name."
+msgstr "Saisissez le nom."
 
 #: apps/webapp/mess_views.py
 msgid "e.g. Chicken curry, Egg, Fish fry"

@@ -5103,6 +5103,10 @@ msgid "Member"
 msgstr "Miyembro"
 
 #: templates/webapp/mess/member.html
+msgid "Other contact number"
+msgstr "Ibang contact number"
+
+#: templates/webapp/mess/member.html
 msgid "Eats"
 msgstr "Kumakain"
 
@@ -5115,12 +5119,20 @@ msgid "Ended"
 msgstr "Natapos"
 
 #: templates/webapp/mess/member.html
+msgid "Contact"
+msgstr "Kontak"
+
+#: templates/webapp/mess/member.html
 msgid "End this mess membership?"
 msgstr "Tapusin ang mess membership na ito?"
 
 #: templates/webapp/mess/member.html
 msgid "End membership"
 msgstr "Tapusin ang membership"
+
+#: templates/webapp/mess/member.html
+msgid "Call"
+msgstr "Tawagan"
 
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
@@ -9126,10 +9138,6 @@ msgid "About"
 msgstr "Tungkol sa amin"
 
 #: templates/webapp/site/page.html
-msgid "Contact"
-msgstr "Kontak"
-
-#: templates/webapp/site/page.html
 msgid "Book now"
 msgstr "Mag-book ngayon"
 
@@ -10805,6 +10813,14 @@ msgid "This module isn't part of your business type."
 msgstr "Hindi bahagi ng uri ng negosyo mo ang module na ito."
 
 #: apps/webapp/mess_views.py
+msgid "Numbers, spaces, + and - only."
+msgstr "Numero, espasyo, + at - lang."
+
+#: apps/webapp/mess_views.py
+msgid "Enter a valid phone number."
+msgstr "Maglagay ng valid na numero ng telepono."
+
+#: apps/webapp/mess_views.py
 msgid "Delivered meals"
 msgstr "Mga kainang inihahatid"
 
@@ -10865,6 +10881,14 @@ msgid "…or new member name"
 msgstr "…o pangalan ng bagong miyembro"
 
 #: apps/webapp/mess_views.py
+msgid "For an existing customer, fills in their number if it is empty."
+msgstr "Sa dati nang customer, ilalagay ito kung wala pa silang numero."
+
+#: apps/webapp/mess_views.py
+msgid "Office, room-mate or family — optional."
+msgstr "Opisina, kasama sa kuwarto o pamilya — opsyonal."
+
+#: apps/webapp/mess_views.py
 msgid "Starts on"
 msgstr "Magsisimula sa"
 
@@ -10887,6 +10911,10 @@ msgstr "I-bill ngayon ang buwang ito"
 #: apps/webapp/mess_views.py
 msgid "Choose a customer or type the new member's name."
 msgstr "Pumili ng customer o i-type ang pangalan ng bagong miyembro."
+
+#: apps/webapp/mess_views.py
+msgid "Enter the name."
+msgstr "Ilagay ang pangalan."
 
 #: apps/webapp/mess_views.py
 msgid "e.g. Chicken curry, Egg, Fish fry"

@@ -251,11 +251,38 @@ def test_mess_extras_menu_and_delivery_pages():
     assert client.get(reverse("webapp:mess_menu", args=[other_plan.id])).status_code == 404
 
     client.post(reverse("webapp:mess_member", args=[member.id]), {
-        "action": "edit", "plan": plan.id, "monthly_fee": "", "notes": "", "delivery_meals": ["lunch", "dinner"],
-        "delivery_address": "Villa 4, Al Waab"})
+        "action": "edit", "name": "Nizar", "phone": "+97455512345", "plan": plan.id, "monthly_fee": "", "notes": "",
+        "delivery_meals": ["lunch", "dinner"], "delivery_address": "Villa 4, Al Waab"})
     member.refresh_from_db()
     assert member.delivery_meals == "lunch,dinner" and member.delivery_address == "Villa 4, Al Waab"
     page = client.get(reverse("webapp:mess_delivery") + "?meal=lunch").content.decode()
     assert "Villa 4, Al Waab" in page and "wa.me/?text=" in page
     client.post(reverse("webapp:mess_delivery"), {"meal": "lunch", "member": member.id})
     assert MessMeal.objects.get(member=member, meal="lunch").mode == "delivery"
+
+
+def test_member_contact_numbers():
+    from django.utils import timezone
+    company, client, owner = _signup("restaurant", "m12@t.qa")
+    plan = _plan(company)
+    old = Customer.objects.create(company=company, name="Old customer")
+    client.post(reverse("webapp:mess_join"), {"plan": plan.id, "customer": old.id, "new_customer_phone": "+974 5551 2233",
+                                              "alt_phone": "4444 1111", "email": "old@example.qa",
+                                              "start_date": timezone.localdate().isoformat()})
+    member = MessMember.objects.get(customer=old)
+    old.refresh_from_db()
+    assert (old.phone, old.email, member.alt_phone) == ("+974 5551 2233", "old@example.qa", "4444 1111")
+
+    page = client.post(reverse("webapp:mess_member", args=[member.id]), {
+        "action": "edit", "name": "Old customer", "phone": "call me", "plan": plan.id})
+    assert page.status_code == 200 and "Enter a valid phone number." in page.content.decode()
+    client.post(reverse("webapp:mess_member", args=[member.id]), {
+        "action": "edit", "name": "  Anwar   K ", "phone": "+974 6600 1122", "alt_phone": "", "email": "anwar@example.qa",
+        "plan": plan.id, "monthly_fee": "", "notes": "Room 3"})
+    member.refresh_from_db()
+    member.customer.refresh_from_db()
+    assert (member.customer.name, member.customer.phone, member.customer.email, member.alt_phone, member.notes) == (
+        "Anwar K", "+974 6600 1122", "anwar@example.qa", "", "Room 3")
+    page = client.get(reverse("webapp:mess_member", args=[member.id])).content.decode()
+    assert "wa.me/97466001122" in page and 'href="tel:+974 6600 1122"' in page
+    assert "+974 6600 1122" in client.get(reverse("webapp:mess_home") + "?q=6600").content.decode()

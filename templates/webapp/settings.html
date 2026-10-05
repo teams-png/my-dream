@@ -4,6 +4,18 @@
 {% block heading %}Business settings{% endblock %}
 {% block content %}
 <p style="margin:0 0 14px"><a href="{% url 'webapp:setup' step='business' %}">🚀 {% translate "Open the setup wizard" %}</a></p>
+{% if subscription %}
+<div class="card plan-card" style="max-width:460px;margin-bottom:16px;border-inline-start:4px solid {% if days_left < 0 %}var(--danger){% else %}var(--accent){% endif %}">
+  <div style="font-size:13px;color:var(--ink-soft)">{% translate "Plan & billing" %}</div>
+  <div style="font-size:17px;font-weight:700;margin-top:4px">{{ subscription.plan.name }}</div>
+  <div style="margin-top:6px;font-size:14px">
+    {% if days_left < 0 %}<b style="color:var(--danger)">{% translate "Your subscription has expired." %}</b>
+    {% elif subscription.status == "trial" %}<b>{% translate "Free trial —" %} {{ days_left }} {% translate "days left" %}</b> <span style="color:var(--ink-soft)">({{ subscription.end_date|date:"d M Y" }})</span>
+    {% else %}<b>{% translate "Active until" %} {{ subscription.end_date|date:"d M Y" }}</b> <span style="color:var(--ink-soft)">· {{ days_left }} {% translate "days left" %}</span>{% endif %}
+  </div>
+  <a class="btn btn-secondary" href="{% url 'webapp:billing' %}" style="margin-top:12px">{% if days_left < 0 %}{% translate "Renew now →" %}{% else %}{% translate "View billing →" %}{% endif %}</a>
+</div>
+{% endif %}
 <div class="card" style="max-width:460px;">
   <form class="stacked" method="post" enctype="multipart/form-data">
     {% csrf_token %}

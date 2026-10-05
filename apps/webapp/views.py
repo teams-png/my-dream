@@ -4575,7 +4575,11 @@ def company_settings(request):
             return redirect("webapp:company_settings")
     else:
         form = CompanySettingsForm(instance=company)
-    return render(request, "webapp/settings.html", {"form": form})
+    subscription = Subscription.objects.filter(company=company).select_related("plan").first()
+    return render(request, "webapp/settings.html", {
+        "form": form, "subscription": subscription,
+        "days_left": subscription.days_remaining() if subscription else None,
+    })
 
 
 # ================= NOTIFICATIONS =================

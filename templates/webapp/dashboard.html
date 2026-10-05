@@ -16,12 +16,13 @@
     <strong style="color:var(--danger);">{% translate "Your subscription has expired." %}</strong>
     <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">{% translate "Renew now →" %}</a>
   </div>
-  {% elif subscription.status == "trial" %}
+  {% elif subscription.status == "trial" and subscription_days_left <= 7 %}
+  {# Only near the end: the trial is always shown under Settings → Plan & billing. #}
   <div class="card" style="border-left:4px solid var(--accent); margin-bottom:18px;">
     <strong>{% translate "Free trial —" %} {{ subscription_days_left }} {% translate "days left" %}</strong>
     <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">{% translate "View billing →" %}</a>
   </div>
-  {% elif subscription_days_left <= 7 %}
+  {% elif subscription.status != "trial" and subscription_days_left <= 7 %}
   <div class="card" style="border-left:4px solid var(--accent); margin-bottom:18px;">
     <strong>{% translate "Subscription renews in" %} {{ subscription_days_left }} day{{ subscription_days_left|pluralize }}</strong>
     <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">{% translate "View billing →" %}</a>

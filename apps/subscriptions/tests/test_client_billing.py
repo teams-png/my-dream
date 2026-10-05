@@ -133,3 +133,24 @@ def test_billing_pages(sub, tenant_a_owner, tenant_b_owner):
     stranger = Client()
     stranger.force_login(tenant_b_owner)
     assert stranger.get(reverse("webapp:client_billing_invoice", args=[inv.id])).status_code == 404
+
+
+def test_trial_banner_moves_to_settings(sub, tenant_a_owner):
+    """Dashboard nags only in the last 7 days; Settings always shows the plan, on trial and once paid."""
+    today = timezone.localdate()
+    owner = Client()
+    owner.force_login(tenant_a_owner)
+    sub.status, sub.end_date = "trial", today + timedelta(days=12)
+    sub.save(update_fields=["status", "end_date"])
+    assert "Free trial" not in owner.get(reverse("webapp:dashboard")).content.decode()
+    settings_page = owner.get(reverse("webapp:company_settings")).content.decode()
+    assert "Free trial" in settings_page and "12" in settings_page and reverse("webapp:billing") in settings_page
+    sub.end_date = today + timedelta(days=3)
+    sub.save(update_fields=["end_date"])
+    assert "Free trial" in owner.get(reverse("webapp:dashboard")).content.decode()
+
+    billing.record_payment(sub, amount="199")
+    sub.refresh_from_db()
+    assert "Free trial" not in owner.get(reverse("webapp:dashboard")).content.decode()
+    settings_page = owner.get(reverse("webapp:company_settings")).content.decode()
+    assert "Free trial" not in settings_page and f"{sub.end_date:%d %b %Y}" in settings_page

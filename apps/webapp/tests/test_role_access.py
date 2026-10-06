@@ -78,3 +78,24 @@ def test_every_mapped_page_exists_and_reports_are_guarded():
     assert set(PAGE_PERMISSIONS) <= names, set(PAGE_PERMISSIONS) - names
     assert required_permission("gym_reports") == "reports.view"
     assert required_permission("pos") is None
+
+
+def test_one_user_plan_is_owner_plus_one_chosen_role(tenant_a, tenant_a_owner):
+    """A 1-user plan: the owner (free) adds one person, as Accountant or Staff, and no more."""
+    from apps.subscriptions.models import SubscriptionPlan
+    sub = tenant_a.subscription
+    sub.plan = SubscriptionPlan.objects.create(name="Solo", price=399, currency="QAR", max_users=1, extra_user_price=0)
+    sub.save(update_fields=["plan"])
+    owner = Client()
+    owner.force_login(tenant_a_owner)
+    page = owner.get(reverse("webapp:staff_invite")).content.decode()
+    assert "owner + 1" in page and "Accountant" in page and ">Owner<" not in page
+    acc = Role.objects.get(company=tenant_a, name="Accountant")
+    data = {"username": "books", "email": "books@abc.qa", "password": "Books-Pass-2026", "role": acc.id}
+    owner.post(reverse("webapp:staff_invite"), data)
+    assert CompanyMembership.objects.filter(company=tenant_a, role=acc, user__email="books@abc.qa").exists()
+    team = owner.get(reverse("webapp:staff_members_list")).content.decode()
+    assert "1 / 1" in team and "No free user left" in team
+    owner.post(reverse("webapp:staff_invite"), {**data, "username": "w2", "email": "w2@abc.qa",
+                                                 "role": Role.objects.get(company=tenant_a, name="Staff").id})
+    assert not User.objects.filter(email="w2@abc.qa").exists()  # refused, and no stray login left behind

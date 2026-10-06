@@ -94,13 +94,30 @@ def ensure_default_plans(modules=()):
     return created
 
 
-def usage(company):
-    """(active users, active branches) of a company."""
-    from apps.inventory.models import Warehouse
+def seats_used(company):
+    """Logins that count against the plan's users: everyone except the business owner, whose login is free.
+    So a 1-user plan is the owner plus one Accountant or Staff login."""
     from apps.tenants.models import CompanyMembership
-    users = CompanyMembership.objects.filter(company=company, is_active=True).count()
+    return (CompanyMembership.objects.filter(company=company, is_active=True)
+            .exclude(role__name="Owner", role__is_system_role=True).count())
+
+
+def seats(company):
+    """For the team pages: users the plan includes (besides the owner), used, left, and the add-on price."""
+    sub = getattr(company, "subscription", None)
+    if sub is None:
+        return None
+    used = seats_used(company)
+    limit = sub.plan.max_users
+    return {"limit": limit, "used": used, "left": max(limit - used, 0), "extra_price": sub.plan.extra_user_price,
+            "currency": sub.plan.currency, "full": used >= limit and not sub.plan.extra_user_price}
+
+
+def usage(company):
+    """(users counted against the plan, active branches) of a company."""
+    from apps.inventory.models import Warehouse
     branches = Warehouse.objects.for_company(company).filter(is_active=True).count()
-    return users, max(branches, 1)
+    return seats_used(company), max(branches, 1)
 
 
 def addons(subscription, company=None):

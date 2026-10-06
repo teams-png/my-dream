@@ -43,12 +43,12 @@ def test_extra_users_and_branches_are_charged(tenant_a, plans):
     sub = tenant_a.subscription
     sub.plan = plans[5]
     sub.save()
-    _users(tenant_a, 6)  # owner + 6 = 7 users -> 2 extra
+    _users(tenant_a, 7)  # owner (free) + 7 users -> 2 extra
     for name in ("Mall", "Airport"):
         Warehouse.objects.create(company=tenant_a, name=name, is_active=True)
     branches = Warehouse.objects.for_company(tenant_a).filter(is_active=True).count()
     a = addons(sub)
-    assert a["users"] == 7 and a["extra_users"] == 2 and a["users_amount"] == Decimal("200")
+    assert a["users"] == 7 and a["extra_users"] == 2  # the owner isn't counted and a["users_amount"] == Decimal("200")
     assert a["extra_branches"] == branches - 1 and a["branches_amount"] == Decimal(100 * (branches - 1))
     assert amount_due(sub) == Decimal("899") + Decimal("200") + Decimal(100 * (branches - 1))
 
@@ -57,7 +57,7 @@ def test_three_user_plan_still_needs_an_upgrade(tenant_a, plans):
     sub = tenant_a.subscription
     sub.plan = plans[3]
     sub.save()
-    _users(tenant_a, 2)
+    _users(tenant_a, 3)  # owner + 3
     with pytest.raises(ValueError):
         _users(tenant_a, 1, start=10)
 

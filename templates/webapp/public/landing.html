@@ -286,7 +286,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   const P=JSON.parse(document.getElementById('pricingData').textContent);
   const box=document.getElementById('planCards'),note=document.getElementById('priceNote'),cur=document.getElementById('curPick');
   const signup="{% if signup_enabled %}{% url 'webapp:signup' %}{% endif %}";
-  const T={user:"{% translate 'user' %}",users:"{% translate 'users' %}",year:"{% translate 'year' %}",upTo:"{% translate 'Up to' %}",
+  const T={user:"{% translate 'user' %}",users:"{% translate 'users' %}",plusOwner:"{% translate '+ owner login free' %}",year:"{% translate 'year' %}",upTo:"{% translate 'Up to' %}",
     start:"{% translate 'Start free trial' %}",all:"{% translate 'All features for your business type' %}",
     feats:["{% translate 'POS, stock, accounts & reports' %}","{% translate 'WhatsApp bills & device support' %}","{% translate 'Unlimited invoices' %}"],
     billed:"{% translate 'Prices are per year. Customers outside India are billed in QAR; other currencies are an estimate.' %}",
@@ -308,7 +308,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       <h3>${p.users} ${p.users>1?T.users:T.user}</h3>
       <div class="price">${p.currency} ${fmt(p.price)} <small>/ ${T.year}</small></div>
       ${c&&fx?`<div class="approx">≈ ${c} ${fmt(p.price*fx.rate)}${fx.exact?'':' ('+T.approx+')'}</div>`:''}
-      <ul><li>${T.upTo} ${p.users} ${p.users>1?T.users:T.user}${p.extra_user?` · +${p.currency} ${fmt(p.extra_user)} ${T.perUser}`:''}</li><li>${T.branch1}${p.extra_branch?` · +${p.currency} ${fmt(p.extra_branch)} ${T.perBranch}`:''}</li>${T.feats.map(f=>`<li>${f}</li>`).join('')}<li>${T.all}</li></ul>
+      <ul><li>${T.upTo} ${p.users} ${p.users>1?T.users:T.user} ${T.plusOwner}${p.extra_user?` · +${p.currency} ${fmt(p.extra_user)} ${T.perUser}`:''}</li><li>${T.branch1}${p.extra_branch?` · +${p.currency} ${fmt(p.extra_branch)} ${T.perBranch}`:''}</li>${T.feats.map(f=>`<li>${f}</li>`).join('')}<li>${T.all}</li></ul>
       ${signup?`<a class="btn ${i===1?'primary':'ghost'}" href="${signup}?plan=${p.id}">${T.start}</a>`:''}</div>`).join('');
     note.textContent=region==='India'?T.india:T.billed;
     const top=list[list.length-1],ab=document.getElementById('addonBox');

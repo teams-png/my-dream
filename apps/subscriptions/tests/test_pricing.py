@@ -100,11 +100,13 @@ def test_owner_changes_plan_but_not_below_user_count(client):
 
     from django.contrib.auth import get_user_model
     from apps.tenants.models import Role
-    helper = get_user_model().objects.create_user(username="h@shop.test", email="h@shop.test", password="x-Strong-123")
-    CompanyMembership.objects.create(company=company, user=helper, role=Role.objects.get(company=company, name="Staff"))
+    staff = Role.objects.get(company=company, name="Staff")
+    for n in (1, 2):
+        helper = get_user_model().objects.create_user(username=f"h{n}@shop.test", email=f"h{n}@shop.test", password="x-Strong-123")
+        CompanyMembership.objects.create(company=company, user=helper, role=staff)
     client.post(reverse("webapp:billing"), {"change_plan": one.id})
     company.subscription.refresh_from_db()
-    assert company.subscription.plan == five  # 2 users can't fit a 1-user plan
+    assert company.subscription.plan == five  # owner + 2 staff can't fit a 1-user plan
 
     india = pricing.plans_for("India", "restaurant").first()
     client.post(reverse("webapp:billing"), {"change_plan": india.id})

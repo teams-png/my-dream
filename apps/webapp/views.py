@@ -4271,8 +4271,9 @@ def staff_members_list(request):
         CompanyMembership.objects.filter(company=company, is_active=True)
         .select_related("user", "role").prefetch_related("warehouses").order_by("user__username")
     )
+    from apps.subscriptions.pricing import seats
     return render(request, "webapp/rbac/members_list.html", {
-        "memberships": memberships,
+        "memberships": memberships, "seats": seats(company),
         "multi_branch": Warehouse.objects.for_company(company).filter(is_active=True).count() > 1})
 
 
@@ -4287,19 +4288,22 @@ def staff_invite(request):
             from django.contrib.auth import get_user_model
             User = get_user_model()
             try:
-                user = User.objects.create_user(
-                    username=form.cleaned_data["username"], email=form.cleaned_data["email"],
-                    password=form.cleaned_data["password"],
-                )
-                membership = tenant_services.invite_member(company=company, user=user, role=form.cleaned_data["role"])
-                membership.warehouses.set(form.cleaned_data.get("branches") or [])
+                from django.db import transaction as db_transaction
+                with db_transaction.atomic():  # no stray login if the plan is full
+                    user = User.objects.create_user(
+                        username=form.cleaned_data["username"], email=form.cleaned_data["email"],
+                        password=form.cleaned_data["password"],
+                    )
+                    membership = tenant_services.invite_member(company=company, user=user, role=form.cleaned_data["role"])
+                    membership.warehouses.set(form.cleaned_data.get("branches") or [])
                 messages.success(request, f"{user.username} added as {form.cleaned_data['role'].name}.")
                 return redirect("webapp:staff_members_list")
             except Exception as exc:
                 messages.error(request, f"Couldn't add staff member: {exc}")
     else:
         form = InviteStaffForm(company=company)
-    return render(request, "webapp/rbac/invite_staff.html", {"form": form})
+    from apps.subscriptions.pricing import seats
+    return render(request, "webapp/rbac/invite_staff.html", {"form": form, "seats": seats(company)})
 
 
 @login_required
@@ -4309,8 +4313,17 @@ def staff_role_change(request, membership_id):
     membership = get_object_or_404(CompanyMembership.objects.filter(company=company), id=membership_id)
     if request.method == "POST":
         form = ChangeMemberRoleForm(request.POST, company=company)
-        if form.is_valid():
-            membership.role = form.cleaned_data["role"]
+        new_role = form.cleaned_data["role"] if form.is_valid() else None
+        was_owner = membership.role.is_system_role and membership.role.name == "Owner"
+        to_owner = new_role is not None and new_role.is_system_role and new_role.name == "Owner"
+        if new_role is not None and was_owner and not to_owner and membership.is_active:
+            from apps.subscriptions.pricing import seats_used
+            sub = getattr(company, "subscription", None)
+            if sub and not sub.plan.extra_user_price and seats_used(company) >= sub.plan.max_users:
+                messages.error(request, _("Your plan has no free user left. Upgrade the plan under Billing first."))
+                return redirect("webapp:staff_members_list")
+        if new_role is not None:
+            membership.role = new_role
             membership.save(update_fields=["role"])
             membership.warehouses.set(form.cleaned_data.get("branches") or [])
             messages.success(request, _("Role and branches updated."))
@@ -5135,9 +5148,9 @@ def billing_view(request):
     available_plans = list(plans_for(company.country, company.business_type.code)) if subscription else []
 
     if request.method == "POST" and request.POST.get("change_plan"):
-        from apps.tenants.models import CompanyMembership
+        from apps.subscriptions.pricing import seats_used
         plan = next((p for p in available_plans if str(p.id) == request.POST.get("change_plan")), None)
-        users = CompanyMembership.objects.filter(company=company, is_active=True).count()
+        users = seats_used(company)
         if not is_owner or plan is None or subscription is None:
             messages.error(request, _("That plan can't be selected."))
         elif users > plan.max_users and not plan.extra_user_price:

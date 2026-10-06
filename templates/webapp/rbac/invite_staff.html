@@ -2,7 +2,13 @@
 {% block title %}Add team member{% endblock %}
 {% block heading %}Add team member{% endblock %}
 {% block content %}
+{% load i18n %}
 <p style="color:var(--ink-soft); font-size:13.5px; margin-top:0;">Creates a login for this business under the chosen role. Give the username/password to your staff member.</p>
+{% include "webapp/rbac/_seats.html" %}
+<div class="card" style="max-width:420px;margin-bottom:14px;padding:14px 16px;font-size:13.5px;line-height:1.6">
+  <div><b>{% translate "Staff" %}</b> — {% translate "sells, takes orders and payments, adds customers. No reports, purchases, expenses or settings." %}</div>
+  <div style="margin-top:6px"><b>{% translate "Accountant" %}</b> — {% translate "accounts, reports, purchases, expenses, banking and payroll. No business settings or team." %}</div>
+</div>
 <div class="card" style="max-width:420px;">
   <form class="stacked" method="post">
     {% csrf_token %}

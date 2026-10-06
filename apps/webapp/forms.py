@@ -1153,7 +1153,13 @@ class InviteStaffForm(forms.Form):
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
         if company is not None:
-            self.fields["role"].queryset = Role.objects.filter(company=company).order_by("name")
+            # the owner's login is free, so new people join as Accountant, Staff or a custom role
+            self.fields["role"].queryset = (Role.objects.filter(company=company)
+                                            .exclude(name="Owner", is_system_role=True).order_by("name"))
+            self.fields["role"].label_from_instance = lambda role: role.name
+            staff = self.fields["role"].queryset.filter(name="Staff", is_system_role=True).first()
+            if staff and not self.is_bound:
+                self.initial.setdefault("role", staff.pk)
             self.fields["branches"].queryset = Warehouse.objects.for_company(company).filter(is_active=True).order_by("name")
 
     def clean_username(self):

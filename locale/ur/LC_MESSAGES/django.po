@@ -1715,8 +1715,8 @@ msgid "days left"
 msgstr "دن باقی"
 
 #: templates/webapp/billing.html
-msgid "up to"
-msgstr "زیادہ سے زیادہ"
+msgid "owner"
+msgstr "مالک"
 
 #: templates/webapp/billing.html
 msgid "users"
@@ -1757,6 +1757,10 @@ msgstr "اضافی صارفین"
 #: templates/webapp/billing.html
 msgid "extra branches"
 msgstr "اضافی شاخیں"
+
+#: templates/webapp/billing.html
+msgid "user"
+msgstr "صارف"
 
 #: templates/webapp/billing.html
 msgid "extra user"
@@ -6599,8 +6603,8 @@ msgid "Create account"
 msgstr "اکاؤنٹ بنائیں"
 
 #: templates/webapp/public/landing.html
-msgid "user"
-msgstr "صارف"
+msgid "+ owner login free"
+msgstr "+ مالک کا لاگ اِن مفت"
 
 #: templates/webapp/public/landing.html
 msgid "Up to"
@@ -6926,9 +6930,53 @@ msgstr "ابھی کوئی خریداری نہیں۔"
 msgid "Owners always see every branch."
 msgstr "مالکان ہمیشہ ہر شاخ دیکھتے ہیں۔"
 
+#: templates/webapp/rbac/_seats.html
+msgid "Your plan"
+msgstr "آپ کا پلان"
+
+#: templates/webapp/rbac/_seats.html
+msgid "The owner's login is free."
+msgstr "مالک کا لاگ اِن مفت ہے۔"
+
+#: templates/webapp/rbac/_seats.html
+msgid "Used"
+msgstr "استعمال شدہ"
+
+#: templates/webapp/rbac/_seats.html
+msgid "No free user left."
+msgstr "کوئی خالی یوزر نہیں بچا۔"
+
+#: templates/webapp/rbac/_seats.html
+msgid "Upgrade the plan →"
+msgstr "پلان اپ گریڈ کریں ←"
+
+#: templates/webapp/rbac/_seats.html
+msgid "You can still add"
+msgstr "آپ ابھی بھی شامل کر سکتے ہیں"
+
 #: templates/webapp/rbac/change_role.html
 msgid "Role & branches"
 msgstr "کردار اور شاخیں"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid ""
+"sells, takes orders and payments, adds customers. No reports, purchases, "
+"expenses or settings."
+msgstr ""
+"بیچتا ہے، آرڈر اور ادائیگیاں لیتا ہے، گاہک شامل کرتا ہے۔ رپورٹس، خریداری، "
+"اخراجات یا سیٹنگز نہیں۔"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid "Accountant"
+msgstr "اکاؤنٹنٹ"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid ""
+"accounts, reports, purchases, expenses, banking and payroll. No business "
+"settings or team."
+msgstr ""
+"اکاؤنٹس، رپورٹس، خریداری، اخراجات، بینکنگ اور تنخواہ۔ کاروباری سیٹنگز یا ٹیم"
+" نہیں۔"
 
 #: templates/webapp/rbac/members_list.html
 msgid "All branches"
@@ -12106,6 +12154,10 @@ msgstr "%(number)s ابھی بھی درج نہیں ہو سکی: %(error)s"
 #: apps/webapp/views.py
 msgid "Marked as handled."
 msgstr "نمٹا ہوا نشان زد کیا۔"
+
+#: apps/webapp/views.py
+msgid "Your plan has no free user left. Upgrade the plan under Billing first."
+msgstr "آپ کے پلان میں کوئی خالی یوزر نہیں۔ پہلے بلنگ میں پلان اپ گریڈ کریں۔"
 
 #: apps/webapp/views.py
 msgid "Role and branches updated."

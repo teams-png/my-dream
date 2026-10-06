@@ -1730,8 +1730,8 @@ msgid "days left"
 msgstr "jours restants"
 
 #: templates/webapp/billing.html
-msgid "up to"
-msgstr "jusqu’à"
+msgid "owner"
+msgstr "propriétaire"
 
 #: templates/webapp/billing.html
 msgid "users"
@@ -1772,6 +1772,10 @@ msgstr "utilisateurs supplémentaires"
 #: templates/webapp/billing.html
 msgid "extra branches"
 msgstr "succursales supplémentaires"
+
+#: templates/webapp/billing.html
+msgid "user"
+msgstr "utilisateur"
 
 #: templates/webapp/billing.html
 msgid "extra user"
@@ -6676,8 +6680,8 @@ msgid "Create account"
 msgstr "Créer un compte"
 
 #: templates/webapp/public/landing.html
-msgid "user"
-msgstr "utilisateur"
+msgid "+ owner login free"
+msgstr "+ connexion du propriétaire offerte"
 
 #: templates/webapp/public/landing.html
 msgid "Up to"
@@ -7004,9 +7008,53 @@ msgstr "Aucun achat pour l’instant."
 msgid "Owners always see every branch."
 msgstr "Les propriétaires voient toujours toutes les succursales."
 
+#: templates/webapp/rbac/_seats.html
+msgid "Your plan"
+msgstr "Votre forfait"
+
+#: templates/webapp/rbac/_seats.html
+msgid "The owner's login is free."
+msgstr "La connexion du propriétaire est offerte."
+
+#: templates/webapp/rbac/_seats.html
+msgid "Used"
+msgstr "Utilisés"
+
+#: templates/webapp/rbac/_seats.html
+msgid "No free user left."
+msgstr "Plus aucun utilisateur disponible."
+
+#: templates/webapp/rbac/_seats.html
+msgid "Upgrade the plan →"
+msgstr "Changer de forfait →"
+
+#: templates/webapp/rbac/_seats.html
+msgid "You can still add"
+msgstr "Vous pouvez encore ajouter"
+
 #: templates/webapp/rbac/change_role.html
 msgid "Role & branches"
 msgstr "Rôle et succursales"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid ""
+"sells, takes orders and payments, adds customers. No reports, purchases, "
+"expenses or settings."
+msgstr ""
+"vend, prend les commandes et les paiements, ajoute des clients. Pas de "
+"rapports, achats, dépenses ni paramètres."
+
+#: templates/webapp/rbac/invite_staff.html
+msgid "Accountant"
+msgstr "Comptable"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid ""
+"accounts, reports, purchases, expenses, banking and payroll. No business "
+"settings or team."
+msgstr ""
+"comptabilité, rapports, achats, dépenses, banque et paie. Pas de paramètres "
+"de l’entreprise ni d’équipe."
 
 #: templates/webapp/rbac/members_list.html
 msgid "All branches"
@@ -12247,6 +12295,12 @@ msgstr "Impossible d’enregistrer %(number)s : %(error)s"
 #: apps/webapp/views.py
 msgid "Marked as handled."
 msgstr "Marqué comme traité."
+
+#: apps/webapp/views.py
+msgid "Your plan has no free user left. Upgrade the plan under Billing first."
+msgstr ""
+"Votre forfait n’a plus d’utilisateur disponible. Passez d’abord à un forfait"
+" supérieur dans Facturation."
 
 #: apps/webapp/views.py
 msgid "Role and branches updated."

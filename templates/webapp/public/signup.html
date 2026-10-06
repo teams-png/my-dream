@@ -124,7 +124,7 @@ button[type=submit].busy{opacity:.7;pointer-events:none}
   const P=JSON.parse(document.getElementById('pricingData').textContent);
   const pick=document.getElementById('planPick'),note=document.getElementById('planNote');
   const country=document.querySelector('[name=country]');
-  const L={user:"{% translate 'user' %}",users:"{% translate 'users' %}",year:"{% translate 'year' %}",approx:"{% translate 'approx.' %}",
+  const L={user:"{% translate 'user' %}",users:"{% translate 'users' %}",plusOwner:"{% translate '+ owner login free' %}",year:"{% translate 'year' %}",approx:"{% translate 'approx.' %}",
     charged:"{% translate 'Billed in' %}",india:"{% translate 'India pricing, billed in INR.' %}",later:"{% translate 'You can change the plan any time from Billing.' %}"};
   const fmt=n=>Number(n).toLocaleString(undefined,{maximumFractionDigits:0});
   function renderPlans(){
@@ -137,7 +137,7 @@ button[type=submit].busy{opacity:.7;pointer-events:none}
     pick.innerHTML=list.map((p,i)=>{
       const on=keepUsers?p.users===keepUsers:i===0;
       const est=(p.currency==='QAR'&&local&&local!=='QAR'&&fx)?`<small>≈ ${local} ${fmt(p.price*fx.rate)}</small>`:'';
-      return `<label><input type="radio" name="plan" value="${p.id}" ${on?'checked':''}>${p.users} ${p.users>1?L.users:L.user}<b>${p.currency} ${fmt(p.price)}</b><small>/ ${L.year}</small>${est}</label>`;
+      return `<label><input type="radio" name="plan" value="${p.id}" ${on?'checked':''}>${p.users} ${p.users>1?L.users:L.user} <small>${L.plusOwner}</small><b>${p.currency} ${fmt(p.price)}</b><small>/ ${L.year}</small>${est}</label>`;
     }).join('');
     note.textContent=(region==='India'?L.india:(local&&local!=='QAR'?`${L.charged} QAR · ${local} ${L.approx}`:''))+' '+L.later;
   }

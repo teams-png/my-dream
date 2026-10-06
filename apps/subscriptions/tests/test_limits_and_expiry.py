@@ -13,19 +13,23 @@ pytestmark = pytest.mark.django_db
 
 class TestUserLimit:
     def test_invite_member_enforces_plan_max_users(self, tenant_a, user_factory):
-        """starter_plan fixture sets max_users=2. Owner counts as user #1,
-        so exactly one more invite should succeed and the next must fail
-        with a clear error, not a silent no-op (Section 7)."""
+        """starter_plan fixture sets max_users=2. The owner's login is free,
+        so two invites succeed and the next must fail with a clear error,
+        not a silent no-op (Section 7)."""
         from apps.tenants.models import Role
         from apps.tenants.services import invite_member
 
         staff_role = Role.objects.get(company=tenant_a, name="Staff")
 
-        second_user = user_factory()
-        invite_member(company=tenant_a, user=second_user, role=staff_role)  # user #2 — OK, at the limit
+        invite_member(company=tenant_a, user=user_factory(), role=staff_role)
+        invite_member(company=tenant_a, user=user_factory(), role=staff_role)  # owner + 2 — at the limit
+        # re-inviting someone already in doesn't take another place
+        accountant = Role.objects.get(company=tenant_a, name="Accountant")
+        member = tenant_a.memberships.exclude(role__name="Owner").first().user
+        invite_member(company=tenant_a, user=member, role=accountant)
 
         third_user = user_factory()
-        with pytest.raises(ValueError, match="maximum of 2 users"):
+        with pytest.raises(ValueError, match="owner plus 2 more users"):
             invite_member(company=tenant_a, user=third_user, role=staff_role)
 
     def test_invite_endpoint_returns_402_once_limit_reached(
@@ -38,7 +42,8 @@ class TestUserLimit:
         second = user_factory(email="already-second@example.com")
 
         from apps.tenants.services import invite_member
-        invite_member(company=tenant_a, user=second, role=staff_role)  # fills the 2-user plan
+        invite_member(company=tenant_a, user=second, role=staff_role)
+        invite_member(company=tenant_a, user=user_factory(), role=staff_role)  # owner + 2 fills the 2-user plan
 
         third = user_factory(email="third@example.com")
         resp = as_tenant_a_owner.post(

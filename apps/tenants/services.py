@@ -170,11 +170,16 @@ def invite_member(*, company, user, role):
     the point of creation with a clear error, not a silent failure
     (Phase 0 Section 7).
     """
-    current_count = CompanyMembership.objects.filter(company=company, is_active=True).count()
+    from apps.subscriptions.pricing import seats_used
     subscription = getattr(company, "subscription", None)
-    if subscription and current_count >= subscription.plan.max_users and not subscription.plan.extra_user_price:
+    already = CompanyMembership.objects.filter(company=company, user=user, is_active=True).exists()
+    is_owner = role.is_system_role and role.name == "Owner"
+    if (subscription and not already and not is_owner and seats_used(company) >= subscription.plan.max_users
+            and not subscription.plan.extra_user_price):
+        limit = subscription.plan.max_users
         raise ValueError(
-            f"This company's plan allows a maximum of {subscription.plan.max_users} users."
+            f"Your plan allows the owner plus {limit} more user{'s' if limit != 1 else ''}. "
+            "Upgrade the plan under Billing to add more."
         )
     membership, created = CompanyMembership.objects.get_or_create(
         user=user, company=company, defaults={"role": role, "is_active": True}

@@ -1725,8 +1725,8 @@ msgid "days left"
 msgstr "días restantes"
 
 #: templates/webapp/billing.html
-msgid "up to"
-msgstr "hasta"
+msgid "owner"
+msgstr "dueño"
 
 #: templates/webapp/billing.html
 msgid "users"
@@ -1767,6 +1767,10 @@ msgstr "usuarios extra"
 #: templates/webapp/billing.html
 msgid "extra branches"
 msgstr "sucursales extra"
+
+#: templates/webapp/billing.html
+msgid "user"
+msgstr "usuario"
 
 #: templates/webapp/billing.html
 msgid "extra user"
@@ -6650,8 +6654,8 @@ msgid "Create account"
 msgstr "Crear cuenta"
 
 #: templates/webapp/public/landing.html
-msgid "user"
-msgstr "usuario"
+msgid "+ owner login free"
+msgstr "+ acceso del dueño gratis"
 
 #: templates/webapp/public/landing.html
 msgid "Up to"
@@ -6977,9 +6981,53 @@ msgstr "Aún no hay compras."
 msgid "Owners always see every branch."
 msgstr "Los dueños siempre ven todas las sucursales."
 
+#: templates/webapp/rbac/_seats.html
+msgid "Your plan"
+msgstr "Tu plan"
+
+#: templates/webapp/rbac/_seats.html
+msgid "The owner's login is free."
+msgstr "El acceso del dueño es gratis."
+
+#: templates/webapp/rbac/_seats.html
+msgid "Used"
+msgstr "Usados"
+
+#: templates/webapp/rbac/_seats.html
+msgid "No free user left."
+msgstr "No queda ningún usuario libre."
+
+#: templates/webapp/rbac/_seats.html
+msgid "Upgrade the plan →"
+msgstr "Mejorar el plan →"
+
+#: templates/webapp/rbac/_seats.html
+msgid "You can still add"
+msgstr "Aún puedes añadir"
+
 #: templates/webapp/rbac/change_role.html
 msgid "Role & branches"
 msgstr "Rol y sucursales"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid ""
+"sells, takes orders and payments, adds customers. No reports, purchases, "
+"expenses or settings."
+msgstr ""
+"vende, toma pedidos y pagos, añade clientes. Sin informes, compras, gastos "
+"ni ajustes."
+
+#: templates/webapp/rbac/invite_staff.html
+msgid "Accountant"
+msgstr "Contable"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid ""
+"accounts, reports, purchases, expenses, banking and payroll. No business "
+"settings or team."
+msgstr ""
+"cuentas, informes, compras, gastos, banca y nómina. Sin ajustes del negocio "
+"ni equipo."
 
 #: templates/webapp/rbac/members_list.html
 msgid "All branches"
@@ -12187,6 +12235,11 @@ msgstr "Aún no se puede registrar %(number)s: %(error)s"
 #: apps/webapp/views.py
 msgid "Marked as handled."
 msgstr "Marcado como gestionado."
+
+#: apps/webapp/views.py
+msgid "Your plan has no free user left. Upgrade the plan under Billing first."
+msgstr ""
+"Tu plan no tiene usuarios libres. Mejora primero el plan en Facturación."
 
 #: apps/webapp/views.py
 msgid "Role and branches updated."

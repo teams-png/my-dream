@@ -1733,8 +1733,8 @@ msgid "days left"
 msgstr "நாட்கள் மீதம்"
 
 #: templates/webapp/billing.html
-msgid "up to"
-msgstr "அதிகபட்சம்"
+msgid "owner"
+msgstr "உரிமையாளர்"
 
 #: templates/webapp/billing.html
 msgid "users"
@@ -1775,6 +1775,10 @@ msgstr "கூடுதல் பயனர்கள்"
 #: templates/webapp/billing.html
 msgid "extra branches"
 msgstr "கூடுதல் கிளைகள்"
+
+#: templates/webapp/billing.html
+msgid "user"
+msgstr "பயனர்"
 
 #: templates/webapp/billing.html
 msgid "extra user"
@@ -6675,8 +6679,8 @@ msgid "Create account"
 msgstr "கணக்கை உருவாக்கு"
 
 #: templates/webapp/public/landing.html
-msgid "user"
-msgstr "பயனர்"
+msgid "+ owner login free"
+msgstr "+ உரிமையாளர் உள்நுழைவு இலவசம்"
 
 #: templates/webapp/public/landing.html
 msgid "Up to"
@@ -7002,9 +7006,53 @@ msgstr "இன்னும் கொள்முதல்கள் இல்ல�
 msgid "Owners always see every branch."
 msgstr "உரிமையாளர்கள் எப்போதும் எல்லாக் கிளைகளையும் பார்ப்பர்."
 
+#: templates/webapp/rbac/_seats.html
+msgid "Your plan"
+msgstr "உங்கள் திட்டம்"
+
+#: templates/webapp/rbac/_seats.html
+msgid "The owner's login is free."
+msgstr "உரிமையாளரின் உள்நுழைவு இலவசம்."
+
+#: templates/webapp/rbac/_seats.html
+msgid "Used"
+msgstr "பயன்படுத்தியது"
+
+#: templates/webapp/rbac/_seats.html
+msgid "No free user left."
+msgstr "காலியான பயனர் இல்லை."
+
+#: templates/webapp/rbac/_seats.html
+msgid "Upgrade the plan →"
+msgstr "திட்டத்தை மேம்படுத்து →"
+
+#: templates/webapp/rbac/_seats.html
+msgid "You can still add"
+msgstr "இன்னும் சேர்க்கலாம்"
+
 #: templates/webapp/rbac/change_role.html
 msgid "Role & branches"
 msgstr "பங்கு & கிளைகள்"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid ""
+"sells, takes orders and payments, adds customers. No reports, purchases, "
+"expenses or settings."
+msgstr ""
+"விற்பனை, ஆர்டர்கள் மற்றும் கட்டணங்களைப் பெறுதல், வாடிக்கையாளர்களைச் "
+"சேர்த்தல். அறிக்கைகள், கொள்முதல், செலவுகள், அமைப்புகள் இல்லை."
+
+#: templates/webapp/rbac/invite_staff.html
+msgid "Accountant"
+msgstr "கணக்காளர்"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid ""
+"accounts, reports, purchases, expenses, banking and payroll. No business "
+"settings or team."
+msgstr ""
+"கணக்குகள், அறிக்கைகள், கொள்முதல், செலவுகள், வங்கி மற்றும் சம்பளம். வணிக "
+"அமைப்புகள் அல்லது குழு இல்லை."
 
 #: templates/webapp/rbac/members_list.html
 msgid "All branches"
@@ -12268,6 +12316,12 @@ msgstr "%(number)s ஐ இன்னும் பதிவு செய்ய ம
 #: apps/webapp/views.py
 msgid "Marked as handled."
 msgstr "கையாளப்பட்டதாகக் குறிக்கப்பட்டது."
+
+#: apps/webapp/views.py
+msgid "Your plan has no free user left. Upgrade the plan under Billing first."
+msgstr ""
+"உங்கள் திட்டத்தில் காலியான பயனர் இல்லை. முதலில் பில்லிங்கில் திட்டத்தை "
+"மேம்படுத்தவும்."
 
 #: apps/webapp/views.py
 msgid "Role and branches updated."

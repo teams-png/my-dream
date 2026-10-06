@@ -1712,8 +1712,8 @@ msgid "days left"
 msgstr "يوم متبقٍ"
 
 #: templates/webapp/billing.html
-msgid "up to"
-msgstr "حتى"
+msgid "owner"
+msgstr "المالك"
 
 #: templates/webapp/billing.html
 msgid "users"
@@ -1754,6 +1754,10 @@ msgstr "مستخدمون إضافيون"
 #: templates/webapp/billing.html
 msgid "extra branches"
 msgstr "فروع إضافية"
+
+#: templates/webapp/billing.html
+msgid "user"
+msgstr "مستخدم"
 
 #: templates/webapp/billing.html
 msgid "extra user"
@@ -6561,8 +6565,8 @@ msgid "Create account"
 msgstr "إنشاء حساب"
 
 #: templates/webapp/public/landing.html
-msgid "user"
-msgstr "مستخدم"
+msgid "+ owner login free"
+msgstr "+ دخول المالك مجاني"
 
 #: templates/webapp/public/landing.html
 msgid "Up to"
@@ -6888,9 +6892,53 @@ msgstr "لا مشتريات بعد."
 msgid "Owners always see every branch."
 msgstr "المالكون يرون جميع الفروع دائماً."
 
+#: templates/webapp/rbac/_seats.html
+msgid "Your plan"
+msgstr "خطتك"
+
+#: templates/webapp/rbac/_seats.html
+msgid "The owner's login is free."
+msgstr "دخول المالك مجاني."
+
+#: templates/webapp/rbac/_seats.html
+msgid "Used"
+msgstr "المستخدم"
+
+#: templates/webapp/rbac/_seats.html
+msgid "No free user left."
+msgstr "لا يوجد مستخدم متاح."
+
+#: templates/webapp/rbac/_seats.html
+msgid "Upgrade the plan →"
+msgstr "ترقية الخطة ←"
+
+#: templates/webapp/rbac/_seats.html
+msgid "You can still add"
+msgstr "لا يزال بإمكانك إضافة"
+
 #: templates/webapp/rbac/change_role.html
 msgid "Role & branches"
 msgstr "الدور والفروع"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid ""
+"sells, takes orders and payments, adds customers. No reports, purchases, "
+"expenses or settings."
+msgstr ""
+"يبيع ويستلم الطلبات والمدفوعات ويضيف العملاء. بدون تقارير أو مشتريات أو "
+"مصروفات أو إعدادات."
+
+#: templates/webapp/rbac/invite_staff.html
+msgid "Accountant"
+msgstr "محاسب"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid ""
+"accounts, reports, purchases, expenses, banking and payroll. No business "
+"settings or team."
+msgstr ""
+"الحسابات والتقارير والمشتريات والمصروفات والبنوك والرواتب. بدون إعدادات "
+"النشاط أو الفريق."
 
 #: templates/webapp/rbac/members_list.html
 msgid "All branches"
@@ -12034,6 +12082,10 @@ msgstr "لا يزال تعذّر تسجيل %(number)s: %(error)s"
 #: apps/webapp/views.py
 msgid "Marked as handled."
 msgstr "تم التعليم كمُعالج."
+
+#: apps/webapp/views.py
+msgid "Your plan has no free user left. Upgrade the plan under Billing first."
+msgstr "لا يوجد مستخدم متاح في خطتك. قم بترقية الخطة من الفوترة أولاً."
 
 #: apps/webapp/views.py
 msgid "Role and branches updated."

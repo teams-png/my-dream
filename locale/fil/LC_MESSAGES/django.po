@@ -1726,8 +1726,8 @@ msgid "days left"
 msgstr "araw na natitira"
 
 #: templates/webapp/billing.html
-msgid "up to"
-msgstr "hanggang"
+msgid "owner"
+msgstr "may-ari"
 
 #: templates/webapp/billing.html
 msgid "users"
@@ -1768,6 +1768,10 @@ msgstr "dagdag na user"
 #: templates/webapp/billing.html
 msgid "extra branches"
 msgstr "dagdag na sangay"
+
+#: templates/webapp/billing.html
+msgid "user"
+msgstr "user"
 
 #: templates/webapp/billing.html
 msgid "extra user"
@@ -6650,8 +6654,8 @@ msgid "Create account"
 msgstr "Gumawa ng account"
 
 #: templates/webapp/public/landing.html
-msgid "user"
-msgstr "user"
+msgid "+ owner login free"
+msgstr "+ libre ang login ng may-ari"
 
 #: templates/webapp/public/landing.html
 msgid "Up to"
@@ -6977,9 +6981,53 @@ msgstr "Wala pang pagbili."
 msgid "Owners always see every branch."
 msgstr "Laging nakikita ng may-ari ang bawat sangay."
 
+#: templates/webapp/rbac/_seats.html
+msgid "Your plan"
+msgstr "Ang iyong plano"
+
+#: templates/webapp/rbac/_seats.html
+msgid "The owner's login is free."
+msgstr "Libre ang login ng may-ari."
+
+#: templates/webapp/rbac/_seats.html
+msgid "Used"
+msgstr "Nagamit"
+
+#: templates/webapp/rbac/_seats.html
+msgid "No free user left."
+msgstr "Wala nang bakanteng user."
+
+#: templates/webapp/rbac/_seats.html
+msgid "Upgrade the plan →"
+msgstr "I-upgrade ang plano →"
+
+#: templates/webapp/rbac/_seats.html
+msgid "You can still add"
+msgstr "Maaari ka pang magdagdag ng"
+
 #: templates/webapp/rbac/change_role.html
 msgid "Role & branches"
 msgstr "Tungkulin at sangay"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid ""
+"sells, takes orders and payments, adds customers. No reports, purchases, "
+"expenses or settings."
+msgstr ""
+"Nagbebenta, tumatanggap ng order at bayad, nagdadagdag ng customer. Walang "
+"reports, purchases, expenses o settings."
+
+#: templates/webapp/rbac/invite_staff.html
+msgid "Accountant"
+msgstr "Accountant"
+
+#: templates/webapp/rbac/invite_staff.html
+msgid ""
+"accounts, reports, purchases, expenses, banking and payroll. No business "
+"settings or team."
+msgstr ""
+"Accounts, reports, purchases, expenses, banking at payroll. Walang business "
+"settings o team."
 
 #: templates/webapp/rbac/members_list.html
 msgid "All branches"
@@ -12196,6 +12244,12 @@ msgstr "Hindi pa rin maitala ang %(number)s: %(error)s"
 #: apps/webapp/views.py
 msgid "Marked as handled."
 msgstr "Minarkahang naasikaso."
+
+#: apps/webapp/views.py
+msgid "Your plan has no free user left. Upgrade the plan under Billing first."
+msgstr ""
+"Wala nang bakanteng user sa iyong plano. I-upgrade muna ang plano sa "
+"Billing."
 
 #: apps/webapp/views.py
 msgid "Role and branches updated."

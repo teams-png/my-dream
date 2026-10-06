@@ -3,6 +3,7 @@
 {% block title %}Team{% endblock %}
 {% block heading %}Team{% endblock %}
 {% block content %}
+{% include "webapp/rbac/_seats.html" %}
 <div style="margin-bottom:14px;">
   <a class="btn" href="{% url 'webapp:staff_invite' %}">+ Add team member</a>
   <a class="btn btn-secondary" href="{% url 'webapp:role_list' %}">Manage roles</a>

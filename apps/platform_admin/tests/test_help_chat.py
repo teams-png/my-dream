@@ -120,3 +120,44 @@ def test_admin_inbox(tenant_a, tenant_a_owner, tenant_b, admin_user):
     started = SupportTicket.objects.get(company=tenant_b)
     assert r.url == reverse("webapp:platform_support_chat", args=[started.id]) and started.client_unread == 1
     assert SupportMessage.objects.filter(ticket=started, from_admin=True).count() == 1
+
+
+class BrokenEmailBackend:
+    """Like a server with no working SMTP: every send fails."""
+    def __init__(self, *args, **kwargs):
+        pass
+
+    def send_messages(self, messages):
+        raise ConnectionRefusedError("SMTP server not reachable")
+
+
+def test_reply_works_when_email_is_not_set_up(tenant_a, tenant_a_owner, admin_user, settings, django_capture_on_commit_callbacks):
+    """Render without SMTP: the reply is saved and the page works; the email is recorded as failed."""
+    from apps.notifications.models import NotificationDelivery
+    settings.EMAIL_BACKEND = "apps.platform_admin.tests.test_help_chat.BrokenEmailBackend"
+    settings.CELERY_TASK_ALWAYS_EAGER = True
+    support.client_send(tenant_a, tenant_a_owner, "Can you help?")
+    ticket = SupportTicket.objects.get(company=tenant_a)
+    a = _login(admin_user)
+    with django_capture_on_commit_callbacks(execute=True):
+        r = a.post(reverse("webapp:platform_support_chat", args=[ticket.id]), {"action": "reply", "body": "Yes, here is how"})
+    assert r.status_code == 302
+    assert SupportMessage.objects.filter(ticket=ticket, from_admin=True, body="Yes, here is how").exists()
+    assert NotificationDelivery.objects.filter(status="failed").exists()
+    with django_capture_on_commit_callbacks(execute=True):
+        r = a.post(reverse("webapp:platform_support_chat", args=[ticket.id]) + "?after=0",
+                   {"action": "reply", "body": "Second reply"}, HTTP_X_REQUESTED_WITH="fetch")
+    assert r.status_code == 200 and r.json()["messages"][-1]["body"] == "Second reply"
+
+
+def test_no_mail_server_means_in_app_only(tenant_a, tenant_a_owner, admin_user, settings, django_capture_on_commit_callbacks):
+    from apps.notifications.models import Notification, NotificationDelivery
+    settings.EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    settings.EMAIL_HOST = ""
+    support.client_send(tenant_a, tenant_a_owner, "Hello")
+    ticket = SupportTicket.objects.get(company=tenant_a)
+    with django_capture_on_commit_callbacks(execute=True):
+        r = _login(admin_user).post(reverse("webapp:platform_support_chat", args=[ticket.id]), {"action": "reply", "body": "Hi"})
+    assert r.status_code == 302
+    assert Notification.objects.for_company(tenant_a).filter(title="BookPilot support replied").exists()
+    assert not NotificationDelivery.objects.exists()

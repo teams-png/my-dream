@@ -5,11 +5,15 @@ prompt (Section 23: "Design SMS/WhatsApp integration as future features").
 Every notify_* helper below is the single place each event type is worded,
 so other apps call these instead of constructing Notification rows inline.
 """
+import logging
+
 from django.utils import timezone
 from django.db import transaction
 from django.conf import settings
 
 from .models import Notification, NotificationPreference, NotificationDelivery
+
+log = logging.getLogger(__name__)
 
 
 def notify(*, company, title, message="", notif_type="general", recipient=None, idempotency_key=None):
@@ -17,7 +21,7 @@ def notify(*, company, title, message="", notif_type="general", recipient=None, 
         company=company, recipient=recipient, notif_type=notif_type, title=title, message=message,
     )
     from .rules import email_enabled
-    if not email_enabled(company, notif_type):
+    if not email_configured() or not email_enabled(company, notif_type):
         return notification
     recipients = [recipient] if recipient else [m.user for m in company.memberships.filter(is_active=True).select_related("user")]
     for user in recipients:
@@ -36,12 +40,23 @@ def notify(*, company, title, message="", notif_type="general", recipient=None, 
     return notification
 
 
+def email_configured():
+    """SMTP needs a mail server; without EMAIL_HOST notifications stay in-app only (nothing to send, nothing to fail)."""
+    backend = getattr(settings, "EMAIL_BACKEND", "")
+    return not backend.endswith("smtp.EmailBackend") or bool(getattr(settings, "EMAIL_HOST", ""))
+
+
 def _queue_delivery(delivery_id):
+    """Send (or queue) one email. Runs after the commit, so whatever the user did is already saved: an email
+    problem (no SMTP set up, server down) is recorded on the delivery and logged, never shown as an error page."""
     from .tasks import deliver_notification
-    if getattr(settings, "CELERY_TASK_ALWAYS_EAGER", False):
-        deliver_notification(delivery_id)
-    else:
-        deliver_notification.delay(delivery_id)
+    try:
+        if getattr(settings, "CELERY_TASK_ALWAYS_EAGER", False):
+            deliver_notification(delivery_id)
+        else:
+            deliver_notification.delay(delivery_id)
+    except Exception:
+        log.exception("notification email %s could not be sent", delivery_id)
 
 
 def notify_subscription_expiring(company, days_left):

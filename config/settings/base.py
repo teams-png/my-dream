@@ -299,7 +299,7 @@ SIGNUP_LIMIT_PER_IP_PER_HOUR = env.int("SIGNUP_LIMIT_PER_IP_PER_HOUR", default=5
 
 # Shown on the user guide (/guide/) and the Terms, Privacy and Refund pages.
 SUPPORT_EMAIL = env("SUPPORT_EMAIL", default="")
-SUPPORT_WHATSAPP = env("SUPPORT_WHATSAPP", default="")
+SUPPORT_WHATSAPP = env("SUPPORT_WHATSAPP", default="+91 98475 54224")  # WhatsApp and phone
 LEGAL_COMPANY_NAME = env("LEGAL_COMPANY_NAME", default="Ajwaaz")
 LEGAL_COMPANY_ADDRESS = env("LEGAL_COMPANY_ADDRESS", default="")
 LEGAL_CR_NUMBER = env("LEGAL_CR_NUMBER", default="")

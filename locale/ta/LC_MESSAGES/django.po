@@ -3416,6 +3416,10 @@ msgstr "பயனர் வழிகாட்டியைத் திறக்�
 msgid "Other ways to reach us"
 msgstr "எங்களைத் தொடர்புகொள்ள மற்ற வழிகள்"
 
+#: templates/webapp/help.html
+msgid "Call"
+msgstr "அழை"
+
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
 msgstr "ஊழியர்கள்"
@@ -5221,10 +5225,6 @@ msgstr "இந்த மெஸ் உறுப்பினர் நிலைய
 msgid "End membership"
 msgstr "உறுப்பினர் நிலையை முடி"
 
-#: templates/webapp/mess/member.html
-msgid "Call"
-msgstr "அழை"
-
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
 msgstr "மெஸ் திட்டங்கள்"
@@ -6661,6 +6661,16 @@ msgstr ""
 #: templates/webapp/public/landing.html
 msgid "Start your free trial →"
 msgstr "உங்கள் இலவச சோதனையைத் தொடங்குங்கள் →"
+
+#: templates/webapp/public/landing.html
+msgid "Questions? Talk to us"
+msgstr "கேள்விகள் உள்ளதா? எங்களிடம் பேசுங்கள்"
+
+#: templates/webapp/public/landing.html
+msgid "Call or WhatsApp us for a demo, pricing or help setting up."
+msgstr ""
+"டெமோ, விலை அல்லது அமைப்பு உதவிக்கு எங்களை அழையுங்கள் அல்லது WhatsApp "
+"செய்யுங்கள்."
 
 #: templates/webapp/public/landing.html
 msgid "Terms"

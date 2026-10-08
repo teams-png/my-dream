@@ -39,7 +39,8 @@
     {% if support.whatsapp or support.email %}
     <div class="card">
       <h3>📞 {% translate "Other ways to reach us" %}</h3>
-      {% if support.whatsapp %}<p>WhatsApp: <b dir="ltr">{{ support.whatsapp }}</b></p>{% endif %}
+      {% if support.whatsapp %}<p>WhatsApp / {% translate "Call" %}: <b dir="ltr">{{ support.whatsapp }}</b></p>
+      <p style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="{{ support.whatsapp_link }}" target="_blank" rel="noopener">💬 WhatsApp</a><a class="btn btn-secondary" href="{{ support.phone_link }}">📞 {% translate "Call" %}</a></p>{% endif %}
       {% if support.email %}<p>{% translate "Email" %}: <a href="mailto:{{ support.email }}" style="color:var(--accent)">{{ support.email }}</a></p>{% endif %}
     </div>
     {% endif %}

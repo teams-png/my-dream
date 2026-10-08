@@ -3366,6 +3366,10 @@ msgstr "افتح دليل المستخدم"
 msgid "Other ways to reach us"
 msgstr "طرق أخرى للتواصل معنا"
 
+#: templates/webapp/help.html
+msgid "Call"
+msgstr "اتصال"
+
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
 msgstr "الموظفون"
@@ -5146,10 +5150,6 @@ msgstr "إنهاء هذا الاشتراك؟"
 msgid "End membership"
 msgstr "إنهاء الاشتراك"
 
-#: templates/webapp/mess/member.html
-msgid "Call"
-msgstr "اتصال"
-
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
 msgstr "باقات الاشتراك"
@@ -6547,6 +6547,15 @@ msgstr "انضم إلى الأنشطة التي تدير الكاشير والم
 #: templates/webapp/public/landing.html
 msgid "Start your free trial →"
 msgstr "ابدأ تجربتك المجانية ←"
+
+#: templates/webapp/public/landing.html
+msgid "Questions? Talk to us"
+msgstr "أسئلة؟ تحدّث معنا"
+
+#: templates/webapp/public/landing.html
+msgid "Call or WhatsApp us for a demo, pricing or help setting up."
+msgstr ""
+"اتصل بنا أو راسلنا على واتساب لعرض تجريبي أو للأسعار أو للمساعدة في الإعداد."
 
 #: templates/webapp/public/landing.html
 msgid "Terms"

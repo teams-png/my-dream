@@ -3401,6 +3401,10 @@ msgstr "Abrir la guía de usuario"
 msgid "Other ways to reach us"
 msgstr "Otras formas de contactarnos"
 
+#: templates/webapp/help.html
+msgid "Call"
+msgstr "Llamar"
+
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
 msgstr "Personal"
@@ -5203,10 +5207,6 @@ msgstr "¿Terminar esta membresía del comedor?"
 msgid "End membership"
 msgstr "Terminar membresía"
 
-#: templates/webapp/mess/member.html
-msgid "Call"
-msgstr "Llamar"
-
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
 msgstr "Planes de comedor"
@@ -6636,6 +6636,16 @@ msgstr ""
 #: templates/webapp/public/landing.html
 msgid "Start your free trial →"
 msgstr "Empieza tu prueba gratuita →"
+
+#: templates/webapp/public/landing.html
+msgid "Questions? Talk to us"
+msgstr "¿Preguntas? Habla con nosotros"
+
+#: templates/webapp/public/landing.html
+msgid "Call or WhatsApp us for a demo, pricing or help setting up."
+msgstr ""
+"Llámanos o escríbenos por WhatsApp para una demo, precios o ayuda con la "
+"configuración."
 
 #: templates/webapp/public/landing.html
 msgid "Terms"

@@ -3326,6 +3326,10 @@ msgstr "打开用户指南"
 msgid "Other ways to reach us"
 msgstr "其他联系方式"
 
+#: templates/webapp/help.html
+msgid "Call"
+msgstr "拨打"
+
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
 msgstr "员工"
@@ -5083,10 +5087,6 @@ msgstr "结束此包餐会员资格？"
 msgid "End membership"
 msgstr "结束会员资格"
 
-#: templates/webapp/mess/member.html
-msgid "Call"
-msgstr "拨打"
-
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
 msgstr "包餐套餐"
@@ -6435,6 +6435,14 @@ msgstr "加入在 BookPilot 上管理前台、厨房和账目的企业。"
 #: templates/webapp/public/landing.html
 msgid "Start your free trial →"
 msgstr "开始免费试用 →"
+
+#: templates/webapp/public/landing.html
+msgid "Questions? Talk to us"
+msgstr "有疑问？联系我们"
+
+#: templates/webapp/public/landing.html
+msgid "Call or WhatsApp us for a demo, pricing or help setting up."
+msgstr "致电或通过 WhatsApp 联系我们，获取演示、价格或设置帮助。"
 
 #: templates/webapp/public/landing.html
 msgid "Terms"

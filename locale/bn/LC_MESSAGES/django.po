@@ -3379,6 +3379,10 @@ msgstr "ইউজার গাইড খুলুন"
 msgid "Other ways to reach us"
 msgstr "আমাদের সাথে যোগাযোগের অন্যান্য উপায়"
 
+#: templates/webapp/help.html
+msgid "Call"
+msgstr "কল করুন"
+
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
 msgstr "কর্মী"
@@ -5167,10 +5171,6 @@ msgstr "এই মেস সদস্যপদ শেষ করবেন?"
 msgid "End membership"
 msgstr "সদস্যপদ শেষ করুন"
 
-#: templates/webapp/mess/member.html
-msgid "Call"
-msgstr "কল করুন"
-
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
 msgstr "মেস প্ল্যান"
@@ -6576,6 +6576,14 @@ msgstr ""
 #: templates/webapp/public/landing.html
 msgid "Start your free trial →"
 msgstr "আপনার ফ্রি ট্রায়াল শুরু করুন →"
+
+#: templates/webapp/public/landing.html
+msgid "Questions? Talk to us"
+msgstr "প্রশ্ন আছে? আমাদের সাথে কথা বলুন"
+
+#: templates/webapp/public/landing.html
+msgid "Call or WhatsApp us for a demo, pricing or help setting up."
+msgstr "ডেমো, দাম বা সেটআপে সাহায্যের জন্য আমাদের কল বা WhatsApp করুন।"
 
 #: templates/webapp/public/landing.html
 msgid "Terms"

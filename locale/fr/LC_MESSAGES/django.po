@@ -3416,6 +3416,10 @@ msgstr "Ouvrir le guide d’utilisation"
 msgid "Other ways to reach us"
 msgstr "Autres moyens de nous joindre"
 
+#: templates/webapp/help.html
+msgid "Call"
+msgstr "Appeler"
+
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
 msgstr "Personnel"
@@ -5224,10 +5228,6 @@ msgstr "Mettre fin à cette adhésion à la cantine ?"
 msgid "End membership"
 msgstr "Mettre fin à l’adhésion"
 
-#: templates/webapp/mess/member.html
-msgid "Call"
-msgstr "Appeler"
-
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
 msgstr "Formules cantine"
@@ -6662,6 +6662,16 @@ msgstr ""
 #: templates/webapp/public/landing.html
 msgid "Start your free trial →"
 msgstr "Démarrer votre essai gratuit →"
+
+#: templates/webapp/public/landing.html
+msgid "Questions? Talk to us"
+msgstr "Des questions ? Parlez-nous"
+
+#: templates/webapp/public/landing.html
+msgid "Call or WhatsApp us for a demo, pricing or help setting up."
+msgstr ""
+"Appelez-nous ou écrivez-nous sur WhatsApp pour une démo, les tarifs ou de "
+"l'aide à la configuration."
 
 #: templates/webapp/public/landing.html
 msgid "Terms"

@@ -83,3 +83,14 @@ def test_website_and_sign_up_link_the_guide_and_policies():
 def test_expired_accounts_can_still_read_the_guide_and_policies():
     for prefix in ("/guide", "/terms", "/privacy", "/refund-policy"):
         assert prefix in WEBAPP_ALLOWED_PREFIXES
+
+
+@override_settings(SUPPORT_WHATSAPP="+91 98475 54224")
+def test_contact_number_on_the_website_and_guide(client):
+    from django.urls import reverse
+    page = client.get(reverse("webapp:landing")).content.decode()
+    assert "+91 98475 54224" in page and "https://wa.me/919847554224" in page and "tel:+919847554224" in page
+    guide = client.get("/guide/en/help.html").content.decode()
+    assert '<a href="https://wa.me/919847554224"' in guide
+    css = client.get("/guide/style.css").content.decode()
+    assert "--brand:#14532d" in css and "#226db4" not in css

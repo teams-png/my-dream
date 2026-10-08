@@ -3399,6 +3399,10 @@ msgstr "യൂസർ ഗൈഡ് തുറക്കുക"
 msgid "Other ways to reach us"
 msgstr "ഞങ്ങളെ ബന്ധപ്പെടാൻ മറ്റ് വഴികൾ"
 
+#: templates/webapp/help.html
+msgid "Call"
+msgstr "വിളിക്കൂ"
+
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
 msgstr "സ്റ്റാഫ്"
@@ -5201,10 +5205,6 @@ msgstr "ഈ മെസ്സ് അംഗത്വം അവസാനിപ്പ
 msgid "End membership"
 msgstr "അംഗത്വം അവസാനിപ്പിക്കുക"
 
-#: templates/webapp/mess/member.html
-msgid "Call"
-msgstr "വിളിക്കൂ"
-
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
 msgstr "മെസ്സ് പ്ലാനുകൾ"
@@ -6631,6 +6631,16 @@ msgstr ""
 #: templates/webapp/public/landing.html
 msgid "Start your free trial →"
 msgstr "സൗജന്യ ട്രയൽ തുടങ്ങൂ →"
+
+#: templates/webapp/public/landing.html
+msgid "Questions? Talk to us"
+msgstr "സംശയങ്ങളുണ്ടോ? ഞങ്ങളോട് സംസാരിക്കൂ"
+
+#: templates/webapp/public/landing.html
+msgid "Call or WhatsApp us for a demo, pricing or help setting up."
+msgstr ""
+"ഡെമോ, വില, അല്ലെങ്കിൽ സജ്ജീകരണ സഹായത്തിന് ഞങ്ങളെ വിളിക്കൂ അല്ലെങ്കിൽ "
+"WhatsApp ചെയ്യൂ."
 
 #: templates/webapp/public/landing.html
 msgid "Terms"

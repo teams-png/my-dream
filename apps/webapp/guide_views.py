@@ -15,6 +15,7 @@ from django.utils import translation
 
 GUIDE_DIR = Path(__file__).resolve().parent / "guide_site"
 GUIDE_LANGS = ("en", "ml", "ar")
+NO_EMAIL = re.compile(r'<br>[^<>]*(?:<b>[^<>]*</b>)?\s*<a href="mailto:__SUPPORT_EMAIL__">__SUPPORT_EMAIL__</a>')
 PAGE = re.compile(r"^(?:(?:en|ml|ar)/)?[a-z0-9-]+\.html$")
 
 
@@ -24,6 +25,7 @@ def _read(path):
 
 
 def support_details():
+    digits = re.sub(r"\D", "", settings.SUPPORT_WHATSAPP or "")
     return {
         "company": settings.LEGAL_COMPANY_NAME,
         "address": settings.LEGAL_COMPANY_ADDRESS,
@@ -31,13 +33,20 @@ def support_details():
         "country": settings.LEGAL_COUNTRY,
         "email": settings.SUPPORT_EMAIL,
         "whatsapp": settings.SUPPORT_WHATSAPP,
+        "whatsapp_link": f"https://wa.me/{digits}" if digits else "",
+        "phone_link": f"tel:+{digits}" if digits else "",
         "updated": settings.LEGAL_UPDATED,
     }
 
 
 def _fill(html):
     s = support_details()
-    return (html.replace("__SUPPORT_WHATSAPP__", escape(s["whatsapp"] or "—"))
+    number = escape(s["whatsapp"] or "—")
+    if s["whatsapp_link"]:
+        number = f'<a href="{s["whatsapp_link"]}" target="_blank" rel="noopener">{number}</a>'
+    if not s["email"]:  # no address set: drop the "Email:" line rather than show it empty
+        html = NO_EMAIL.sub("", html)
+    return (html.replace("__SUPPORT_WHATSAPP__", number)
                 .replace("__SUPPORT_EMAIL__", escape(s["email"] or ""))
                 .replace("__COMPANY__", escape(s["company"] or "BookPilot")))
 

@@ -3407,6 +3407,10 @@ msgstr "Buksan ang user guide"
 msgid "Other ways to reach us"
 msgstr "Iba pang paraan para makipag-ugnayan sa amin"
 
+#: templates/webapp/help.html
+msgid "Call"
+msgstr "Tawagan"
+
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
 msgstr "Staff"
@@ -5212,10 +5216,6 @@ msgstr "Tapusin ang mess membership na ito?"
 msgid "End membership"
 msgstr "Tapusin ang membership"
 
-#: templates/webapp/mess/member.html
-msgid "Call"
-msgstr "Tawagan"
-
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
 msgstr "Mga mess plan"
@@ -6636,6 +6636,14 @@ msgstr ""
 #: templates/webapp/public/landing.html
 msgid "Start your free trial →"
 msgstr "Simulan ang libreng trial →"
+
+#: templates/webapp/public/landing.html
+msgid "Questions? Talk to us"
+msgstr "May tanong? Kausapin kami"
+
+#: templates/webapp/public/landing.html
+msgid "Call or WhatsApp us for a demo, pricing or help setting up."
+msgstr "Tawagan o i-WhatsApp kami para sa demo, presyo o tulong sa pag-setup."
 
 #: templates/webapp/public/landing.html
 msgid "Terms"

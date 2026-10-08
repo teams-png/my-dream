@@ -18,6 +18,7 @@ from apps.subscriptions.models import SubscriptionPlan
 from apps.subscriptions.pricing import CURRENCY_BY_COUNTRY, LARGE_BUSINESS_TYPES, fx_rates, is_exact, plans_for
 from apps.subscriptions.services import TRIAL_DAYS
 from apps.tenants.models import Company, CompanyBusinessType
+from apps.webapp.guide_views import support_details
 
 POPULAR_TYPES = [
     ("restaurant", "Restaurant / Cafe", "🍽️"), ("supermarket", "Supermarket", "🛒"),
@@ -106,7 +107,7 @@ def landing(request):
     return render(request, "webapp/public/landing.html", {
         "plans": _plans(), "pricing": _pricing_data(), "popular_types": POPULAR_TYPES, "trial_days": TRIAL_DAYS,
         "business_count": len(BUSINESS_TYPE_MAP), "signup_enabled": settings.PUBLIC_SIGNUP_ENABLED,
-        "module_count": Module.objects.count(),
+        "module_count": Module.objects.count(), "support": support_details(),
     })
 
 

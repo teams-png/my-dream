@@ -3378,6 +3378,10 @@ msgstr "یوزر گائیڈ کھولیں"
 msgid "Other ways to reach us"
 msgstr "ہم سے رابطے کے دیگر طریقے"
 
+#: templates/webapp/help.html
+msgid "Call"
+msgstr "کال کریں"
+
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
 msgstr "عملہ"
@@ -5171,10 +5175,6 @@ msgstr "یہ میس ممبرشپ ختم کریں؟"
 msgid "End membership"
 msgstr "ممبرشپ ختم کریں"
 
-#: templates/webapp/mess/member.html
-msgid "Call"
-msgstr "کال کریں"
-
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
 msgstr "میس پلانز"
@@ -6585,6 +6585,14 @@ msgstr ""
 #: templates/webapp/public/landing.html
 msgid "Start your free trial →"
 msgstr "اپنا مفت ٹرائل شروع کریں →"
+
+#: templates/webapp/public/landing.html
+msgid "Questions? Talk to us"
+msgstr "کوئی سوال؟ ہم سے بات کریں"
+
+#: templates/webapp/public/landing.html
+msgid "Call or WhatsApp us for a demo, pricing or help setting up."
+msgstr "ڈیمو، قیمت یا سیٹ اپ میں مدد کے لیے ہمیں کال یا WhatsApp کریں۔"
 
 #: templates/webapp/public/landing.html
 msgid "Terms"

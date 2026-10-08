@@ -3388,6 +3388,10 @@ msgstr "Kullanım kılavuzunu aç"
 msgid "Other ways to reach us"
 msgstr "Bize ulaşmanın diğer yolları"
 
+#: templates/webapp/help.html
+msgid "Call"
+msgstr "Ara"
+
 #: templates/webapp/hr/_tabs.html
 msgid "Staff"
 msgstr "Personel"
@@ -5182,10 +5186,6 @@ msgstr "Bu yemekhane üyeliği sonlandırılsın mı?"
 msgid "End membership"
 msgstr "Üyeliği sonlandır"
 
-#: templates/webapp/mess/member.html
-msgid "Call"
-msgstr "Ara"
-
 #: templates/webapp/mess/menu.html
 msgid "Mess plans"
 msgstr "Yemekhane planları"
@@ -6600,6 +6600,15 @@ msgstr ""
 #: templates/webapp/public/landing.html
 msgid "Start your free trial →"
 msgstr "Ücretsiz denemenizi başlatın →"
+
+#: templates/webapp/public/landing.html
+msgid "Questions? Talk to us"
+msgstr "Sorunuz mu var? Bizimle konuşun"
+
+#: templates/webapp/public/landing.html
+msgid "Call or WhatsApp us for a demo, pricing or help setting up."
+msgstr ""
+"Demo, fiyat veya kurulum yardımı için bizi arayın ya da WhatsApp'tan yazın."
 
 #: templates/webapp/public/landing.html
 msgid "Terms"

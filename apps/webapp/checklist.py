@@ -73,4 +73,5 @@ def summary(company):
     rows = items(company)
     finished = sum(r["done"] for r in rows)
     return {"items": rows, "done": finished, "total": len(rows), "percent": round(100 * finished / len(rows)),
-            "hidden": "checklist_hidden" in milestones(company).milestones}
+            "hidden": "checklist_hidden" in milestones(company).milestones,
+            "next": next((r for r in rows if not r["done"]), None)}

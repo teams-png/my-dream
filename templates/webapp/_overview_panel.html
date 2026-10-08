@@ -1,0 +1,24 @@
+{% load i18n %}<section class="card ov-panel">
+  <div class="ov-panel-head"><h2>{{ panel.title }}</h2><a class="stat-link" href="{{ panel.url }}">{{ panel.link_label }} →</a></div>
+  {% if panel.rows %}
+    {% if panel.kind == "appointments" %}
+      {% for r in panel.rows %}
+      <div class="ov-row">
+        <span class="ov-time">{{ r.time|time:"H:i" }}</span>
+        <span class="ov-main"><b>{{ r.customer }}</b><span>{{ r.service }}{% if r.staff %} · {{ r.staff }}{% endif %}</span></span>
+        {% if r.done_url %}<a class="btn btn-secondary" href="{{ r.done_url }}">✓ {% translate "Done" %}</a>{% else %}<span class="ov-tag {{ r.status }}">{{ r.status_label }}</span>{% endif %}
+      </div>
+      {% endfor %}
+      {% if panel.more %}<div class="ov-row" style="justify-content:center"><a href="{{ panel.url }}">+{{ panel.more }} {% translate "more" %}</a></div>{% endif %}
+    {% elif panel.kind == "staff" %}
+      {% for r in panel.rows %}
+      <div class="ov-row">
+        <span class="ov-main"><b>{{ r.name }}</b><span>{{ r.bills }} {% if r.bills == 1 %}{% translate "bill" %}{% else %}{% translate "bills" %}{% endif %}</span></span>
+        <span class="ov-amount">{{ r.amount|floatformat:2 }}</span>
+      </div>
+      {% endfor %}
+    {% endif %}
+  {% else %}
+    <div class="ov-empty">{{ panel.empty }}{% if panel.empty_url %}<br><a class="btn btn-secondary" href="{{ panel.empty_url }}">{{ panel.empty_label }}</a>{% endif %}</div>
+  {% endif %}
+</section>

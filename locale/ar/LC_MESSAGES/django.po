@@ -34,210 +34,6 @@ msgid "New bill"
 msgstr "فاتورة جديدة"
 
 #: templates/base.html
-msgid "New sale (POS)"
-msgstr "بيع جديد (نقاط البيع)"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "المبيعات"
-
-#: templates/base.html
-msgid "Leads & pipeline"
-msgstr "العملاء المحتملون ومسار المبيعات"
-
-#: templates/base.html
-msgid "Price lists & offers"
-msgstr "قوائم الأسعار والعروض"
-
-#: templates/base.html
-msgid "Invoices"
-msgstr "الفواتير"
-
-#: templates/base.html
-msgid "Quotations"
-msgstr "عروض الأسعار"
-
-#: templates/base.html
-msgid "Sales orders & delivery"
-msgstr "أوامر البيع والتسليم"
-
-#: templates/base.html
-msgid "Billing"
-msgstr "الاشتراك والفواتير"
-
-#: templates/base.html
-msgid "POS"
-msgstr "نقطة البيع"
-
-#: templates/base.html
-msgid "Returns & Refunds"
-msgstr "المرتجعات والاسترداد"
-
-#: templates/base.html
-msgid "Coupons"
-msgstr "القسائم"
-
-#: templates/base.html
-msgid "Loyalty"
-msgstr "الولاء"
-
-#: templates/base.html
-msgid "Purchases"
-msgstr "المشتريات"
-
-#: templates/base.html
-msgid "Purchase orders"
-msgstr "أوامر الشراء"
-
-#: templates/base.html
-msgid "Suppliers"
-msgstr "الموردون"
-
-#: templates/base.html
-msgid "Purchase Reports"
-msgstr "تقارير المشتريات"
-
-#: templates/base.html
-msgid "Finance"
-msgstr "المالية"
-
-#: templates/base.html
-msgid "Bank & cash"
-msgstr "البنك والنقد"
-
-#: templates/base.html
-msgid "Daily report"
-msgstr "التقرير اليومي"
-
-#: templates/base.html
-msgid "Accounts & reports"
-msgstr "الحسابات والتقارير"
-
-#: templates/base.html
-msgid "Finance overview"
-msgstr "نظرة مالية"
-
-#: templates/base.html
-msgid "Cheques (PDC)"
-msgstr "الشيكات المؤجلة"
-
-#: templates/base.html
-msgid "Recurring invoices"
-msgstr "الفواتير المتكررة"
-
-#: templates/base.html
-msgid "Fixed assets"
-msgstr "الأصول الثابتة"
-
-#: templates/base.html
-msgid "Expenses"
-msgstr "المصروفات"
-
-#: templates/base.html
-msgid "Budgets"
-msgstr "الميزانيات"
-
-#: templates/base.html
-msgid "Online payments"
-msgstr "الدفع الإلكتروني"
-
-#: templates/base.html
-msgid "People"
-msgstr "الأشخاص"
-
-#: templates/base.html
-msgid "Customers"
-msgstr "العملاء"
-
-#: templates/base.html
-msgid "Money to collect"
-msgstr "المبالغ المستحقة للتحصيل"
-
-#: templates/base.html
-msgid "Customer reminders"
-msgstr "تذكيرات العملاء"
-
-#: templates/base.html
-msgid "Team"
-msgstr "الفريق"
-
-#: templates/base.html
-msgid "Staff & HR"
-msgstr "الموظفون والموارد البشرية"
-
-#: templates/base.html
-msgid "Attendance"
-msgstr "الحضور"
-
-#: templates/base.html
-msgid "Payroll & advances"
-msgstr "الرواتب والسلف"
-
-#: templates/base.html
-msgid "Business"
-msgstr "النشاط التجاري"
-
-#: templates/base.html
-msgid "Stock & inventory"
-msgstr "المخزون"
-
-#: templates/base.html
-msgid "Analytics"
-msgstr "التحليلات"
-
-#: templates/base.html
-msgid "Branches"
-msgstr "الفروع"
-
-#: templates/base.html
-msgid "Settings"
-msgstr "الإعدادات"
-
-#: templates/base.html
-msgid "Reminders & alerts"
-msgstr "التذكيرات والتنبيهات"
-
-#: templates/base.html
-msgid "Tax & currency"
-msgstr "الضريبة والعملة"
-
-#: templates/base.html
-msgid "Activity log"
-msgstr "سجل النشاط"
-
-#: templates/base.html
-msgid "Notifications"
-msgstr "الإشعارات"
-
-#: templates/base.html
-msgid "Devices & Printers"
-msgstr "الأجهزة والطابعات"
-
-#: templates/base.html
-msgid "Security & 2FA"
-msgstr "الأمان والتحقق بخطوتين"
-
-#: templates/base.html
-msgid "Backups"
-msgstr "النسخ الاحتياطية"
-
-#: templates/base.html
-msgid "Help & support"
-msgstr "المساعدة والدعم"
-
-#: templates/base.html
-msgid "User guide"
-msgstr "دليل المستخدم"
-
-#: templates/base.html
-msgid "API docs"
-msgstr "توثيق واجهة API"
-
-#: templates/base.html
-msgid "⚙ Platform Admin"
-msgstr "⚙ إدارة المنصة"
-
-#: templates/base.html
 msgid "Gym"
 msgstr "النادي الرياضي"
 
@@ -248,6 +44,10 @@ msgstr "الأعضاء"
 #: templates/base.html
 msgid "Membership Plans"
 msgstr "خطط العضوية"
+
+#: templates/base.html
+msgid "Attendance"
+msgstr "الحضور"
 
 #: templates/base.html
 msgid "Reports"
@@ -438,12 +238,208 @@ msgid "Menu & Ingredients"
 msgstr "القائمة والمكونات"
 
 #: templates/base.html
+msgid "Sales"
+msgstr "المبيعات"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "الباقات / الجلسات"
 
 #: templates/base.html
 msgid "Service Reports"
 msgstr "تقارير الخدمات"
+
+#: templates/base.html
+msgid "Leads & pipeline"
+msgstr "العملاء المحتملون ومسار المبيعات"
+
+#: templates/base.html
+msgid "Price lists & offers"
+msgstr "قوائم الأسعار والعروض"
+
+#: templates/base.html
+msgid "Invoices"
+msgstr "الفواتير"
+
+#: templates/base.html
+msgid "Quotations"
+msgstr "عروض الأسعار"
+
+#: templates/base.html
+msgid "Sales orders & delivery"
+msgstr "أوامر البيع والتسليم"
+
+#: templates/base.html
+msgid "Billing"
+msgstr "الاشتراك والفواتير"
+
+#: templates/base.html
+msgid "POS"
+msgstr "نقطة البيع"
+
+#: templates/base.html
+msgid "Returns & Refunds"
+msgstr "المرتجعات والاسترداد"
+
+#: templates/base.html
+msgid "Coupons"
+msgstr "القسائم"
+
+#: templates/base.html
+msgid "Loyalty"
+msgstr "الولاء"
+
+#: templates/base.html
+msgid "Purchases"
+msgstr "المشتريات"
+
+#: templates/base.html
+msgid "Purchase orders"
+msgstr "أوامر الشراء"
+
+#: templates/base.html
+msgid "Suppliers"
+msgstr "الموردون"
+
+#: templates/base.html
+msgid "Purchase Reports"
+msgstr "تقارير المشتريات"
+
+#: templates/base.html
+msgid "Finance"
+msgstr "المالية"
+
+#: templates/base.html
+msgid "Bank & cash"
+msgstr "البنك والنقد"
+
+#: templates/base.html
+msgid "Daily report"
+msgstr "التقرير اليومي"
+
+#: templates/base.html
+msgid "Accounts & reports"
+msgstr "الحسابات والتقارير"
+
+#: templates/base.html
+msgid "Finance overview"
+msgstr "نظرة مالية"
+
+#: templates/base.html
+msgid "Cheques (PDC)"
+msgstr "الشيكات المؤجلة"
+
+#: templates/base.html
+msgid "Recurring invoices"
+msgstr "الفواتير المتكررة"
+
+#: templates/base.html
+msgid "Fixed assets"
+msgstr "الأصول الثابتة"
+
+#: templates/base.html
+msgid "Expenses"
+msgstr "المصروفات"
+
+#: templates/base.html
+msgid "Budgets"
+msgstr "الميزانيات"
+
+#: templates/base.html
+msgid "Online payments"
+msgstr "الدفع الإلكتروني"
+
+#: templates/base.html
+msgid "People"
+msgstr "الأشخاص"
+
+#: templates/base.html
+msgid "Customers"
+msgstr "العملاء"
+
+#: templates/base.html
+msgid "Money to collect"
+msgstr "المبالغ المستحقة للتحصيل"
+
+#: templates/base.html
+msgid "Customer reminders"
+msgstr "تذكيرات العملاء"
+
+#: templates/base.html
+msgid "Team"
+msgstr "الفريق"
+
+#: templates/base.html
+msgid "Staff & HR"
+msgstr "الموظفون والموارد البشرية"
+
+#: templates/base.html
+msgid "Payroll & advances"
+msgstr "الرواتب والسلف"
+
+#: templates/base.html
+msgid "Business"
+msgstr "النشاط التجاري"
+
+#: templates/base.html
+msgid "Stock & inventory"
+msgstr "المخزون"
+
+#: templates/base.html
+msgid "Analytics"
+msgstr "التحليلات"
+
+#: templates/base.html
+msgid "Branches"
+msgstr "الفروع"
+
+#: templates/base.html
+msgid "Settings"
+msgstr "الإعدادات"
+
+#: templates/base.html
+msgid "Reminders & alerts"
+msgstr "التذكيرات والتنبيهات"
+
+#: templates/base.html
+msgid "Tax & currency"
+msgstr "الضريبة والعملة"
+
+#: templates/base.html
+msgid "Activity log"
+msgstr "سجل النشاط"
+
+#: templates/base.html
+msgid "Notifications"
+msgstr "الإشعارات"
+
+#: templates/base.html
+msgid "Devices & Printers"
+msgstr "الأجهزة والطابعات"
+
+#: templates/base.html
+msgid "Security & 2FA"
+msgstr "الأمان والتحقق بخطوتين"
+
+#: templates/base.html
+msgid "Backups"
+msgstr "النسخ الاحتياطية"
+
+#: templates/base.html
+msgid "Help & support"
+msgstr "المساعدة والدعم"
+
+#: templates/base.html
+msgid "User guide"
+msgstr "دليل المستخدم"
+
+#: templates/base.html
+msgid "API docs"
+msgstr "توثيق واجهة API"
+
+#: templates/base.html
+msgid "⚙ Platform Admin"
+msgstr "⚙ إدارة المنصة"
 
 #: templates/base.html
 msgid "Log out"
@@ -545,17 +541,61 @@ msgstr "تغيير كلمة المرور"
 msgid "Install app"
 msgstr "تثبيت التطبيق"
 
-#: templates/webapp/_checklist.html
-msgid "Your BookPilot setup"
-msgstr "إعداد BookPilot"
-
-#: templates/webapp/_checklist.html
-msgid "Hide"
-msgstr "إخفاء"
-
 #: templates/webapp/_excel_button.html
 msgid "Excel"
 msgstr "إكسل"
+
+#: templates/webapp/_getting_started.html
+msgid "Getting started"
+msgstr "البدء"
+
+#: templates/webapp/_getting_started.html
+msgid "Next"
+msgstr "التالي"
+
+#: templates/webapp/_getting_started.html
+msgid "You are looking at sample data"
+msgstr "أنت تشاهد بيانات تجريبية"
+
+#: templates/webapp/_getting_started.html
+msgid "Show all"
+msgstr "عرض الكل"
+
+#: templates/webapp/_getting_started.html
+msgid ""
+"These were added as examples so you can see how everything works. Try a "
+"sale, then remove them and add your own."
+msgstr ""
+"أُضيفت هذه كأمثلة لترى كيف يعمل كل شيء. جرّب عملية بيع، ثم احذفها وأضف "
+"بياناتك."
+
+#: templates/webapp/_getting_started.html
+msgid "products"
+msgstr "منتجات"
+
+#: templates/webapp/_getting_started.html
+msgid "services"
+msgstr "خدمات"
+
+#: templates/webapp/_getting_started.html
+msgid "customers"
+msgstr "عملاء"
+
+#: templates/webapp/_getting_started.html
+msgid "staff"
+msgstr "موظفون"
+
+#: templates/webapp/_getting_started.html
+msgid "Remove all sample products, services, customers and staff?"
+msgstr "حذف كل المنتجات والخدمات والعملاء والموظفين التجريبيين؟"
+
+#: templates/webapp/_getting_started.html
+msgid "Remove sample data"
+msgstr "حذف البيانات التجريبية"
+
+#: templates/webapp/_getting_started.html
+msgid "Hide"
+msgstr "إخفاء"
 
 #: templates/webapp/_industry_nav.html
 msgid "Bookings"
@@ -693,41 +733,21 @@ msgstr "موقعي الإلكتروني"
 msgid "Language"
 msgstr "اللغة"
 
-#: templates/webapp/_sample_banner.html
-msgid "You are looking at sample data"
-msgstr "أنت تشاهد بيانات تجريبية"
+#: templates/webapp/_overview_panel.html
+msgid "Done"
+msgstr "تم"
 
-#: templates/webapp/_sample_banner.html
-msgid ""
-"These were added as examples so you can see how everything works. Try a "
-"sale, then remove them and add your own."
-msgstr ""
-"أُضيفت هذه كأمثلة لترى كيف يعمل كل شيء. جرّب عملية بيع، ثم احذفها وأضف "
-"بياناتك."
+#: templates/webapp/_overview_panel.html
+msgid "more"
+msgstr "المزيد"
 
-#: templates/webapp/_sample_banner.html
-msgid "products"
-msgstr "منتجات"
+#: templates/webapp/_overview_panel.html
+msgid "bill"
+msgstr "فاتورة"
 
-#: templates/webapp/_sample_banner.html
-msgid "services"
-msgstr "خدمات"
-
-#: templates/webapp/_sample_banner.html
-msgid "customers"
-msgstr "عملاء"
-
-#: templates/webapp/_sample_banner.html
-msgid "staff"
-msgstr "موظفون"
-
-#: templates/webapp/_sample_banner.html
-msgid "Remove all sample products, services, customers and staff?"
-msgstr "حذف كل المنتجات والخدمات والعملاء والموظفين التجريبيين؟"
-
-#: templates/webapp/_sample_banner.html
-msgid "Remove sample data"
-msgstr "حذف البيانات التجريبية"
+#: templates/webapp/_overview_panel.html
+msgid "bills"
+msgstr "فواتير"
 
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
@@ -1319,10 +1339,6 @@ msgstr ""
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
 msgstr "حفظ الميزانيات"
-
-#: templates/webapp/automation/daily_report.html
-msgid "bills"
-msgstr "فواتير"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
@@ -2315,10 +2331,6 @@ msgid "due"
 msgstr "مستحق"
 
 #: templates/webapp/crm/lead_detail.html
-msgid "Done"
-msgstr "تم"
-
-#: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
 msgstr "لا نشاط بعد."
 
@@ -2663,28 +2675,12 @@ msgid "No customers yet."
 msgstr "لا عملاء بعد."
 
 #: templates/webapp/dashboard.html
-msgid "Finish setting up your business"
-msgstr "أكمل إعداد نشاطك التجاري"
-
-#: templates/webapp/dashboard.html
-msgid "Add your logo, first products and printer in 3 quick steps."
-msgstr "أضف شعارك وأول منتجاتك والطابعة في 3 خطوات سريعة."
-
-#: templates/webapp/dashboard.html
-msgid "Continue setup"
-msgstr "متابعة الإعداد"
-
-#: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
 msgstr "انتهى اشتراكك."
 
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "جدّد الآن ←"
-
-#: templates/webapp/dashboard.html
-msgid "View billing →"
-msgstr "عرض الفواتير ←"
 
 #: templates/webapp/dashboard.html
 msgid "Subscription renews in"
@@ -2695,16 +2691,16 @@ msgid "New online booking requests"
 msgstr "طلبات حجز إلكترونية جديدة"
 
 #: templates/webapp/dashboard.html
-msgid "Today's sales"
-msgstr "مبيعات اليوم"
+msgid "Finish setting up your business"
+msgstr "أكمل إعداد نشاطك التجاري"
 
 #: templates/webapp/dashboard.html
-msgid "This month's revenue"
-msgstr "إيرادات هذا الشهر"
+msgid "Add your logo, first products and printer in 3 quick steps."
+msgstr "أضف شعارك وأول منتجاتك والطابعة في 3 خطوات سريعة."
 
 #: templates/webapp/dashboard.html
-msgid "Outstanding dues"
-msgstr "المستحقات"
+msgid "Continue setup"
+msgstr "متابعة الإعداد"
 
 #: templates/webapp/dashboard.html
 msgid "Business overview"
@@ -2821,6 +2817,10 @@ msgstr "عمليات البيع"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "أحدث المبيعات"
+
+#: templates/webapp/dashboard.html
+msgid "View all"
+msgstr "عرض الكل"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -6292,10 +6292,6 @@ msgstr "الخطوة"
 msgid "Skip tour"
 msgstr "تخطي الجولة"
 
-#: templates/webapp/pos.html
-msgid "Next"
-msgstr "التالي"
-
 #: templates/webapp/pos_offline_sales.html
 msgid ""
 "Sales made on a till while the internet was down. They are sent to the "
@@ -6460,6 +6456,10 @@ msgstr "1× بيتزا"
 #: templates/webapp/public/landing.html
 msgid "2× Drink"
 msgstr "2× مشروب"
+
+#: templates/webapp/public/landing.html
+msgid "Today's sales"
+msgstr "مبيعات اليوم"
 
 #: templates/webapp/public/landing.html
 msgid "QAR 0"
@@ -7915,10 +7915,6 @@ msgstr "👨‍🍳 المطبخ"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Sales today ·"
 msgstr "مبيعات اليوم ·"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "bill"
-msgstr "فاتورة"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"
@@ -9419,6 +9415,10 @@ msgstr "الخطة والفوترة"
 #: templates/webapp/settings.html
 msgid "Active until"
 msgstr "نشط حتى"
+
+#: templates/webapp/settings.html
+msgid "View billing →"
+msgstr "عرض الفواتير ←"
 
 #: templates/webapp/settings.html
 msgid "Sample data"
@@ -11913,6 +11913,43 @@ msgstr "تم قبول الطلب %(no)s وإرساله إلى المطبخ."
 msgid "Order %(no)s rejected."
 msgstr "تم رفض الطلب %(no)s."
 
+#: apps/webapp/overview.py
+msgid "This month's revenue"
+msgstr "إيرادات هذا الشهر"
+
+#: apps/webapp/overview.py
+msgid "Outstanding dues"
+msgstr "المستحقات"
+
+#: apps/webapp/overview.py
+msgid "%(left)s waiting · %(done)s done"
+msgstr "%(left)s بالانتظار · %(done)s مكتمل"
+
+#: apps/webapp/overview.py
+msgid "Today's appointments"
+msgstr "مواعيد اليوم"
+
+#: apps/webapp/overview.py
+msgid "All appointments"
+msgstr "كل المواعيد"
+
+#: apps/webapp/overview.py
+msgid "No appointments today."
+msgstr "لا توجد مواعيد اليوم."
+
+#: apps/webapp/overview.py
+msgid "Book appointment"
+msgstr "حجز موعد"
+
+#: apps/webapp/overview.py
+msgid "Staff today"
+msgstr "الموظفون اليوم"
+
+#: apps/webapp/overview.py
+msgid ""
+"Choose who did the work when you bill, and each person's total shows here."
+msgstr "اختر من قام بالعمل عند إصدار الفاتورة، وسيظهر إجمالي كل شخص هنا."
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "تم استلام الدفعة — شكراً لك!"
@@ -12656,10 +12693,6 @@ msgstr "تمت إضافة %(count)s أرقام تسلسلية إلى المخز�
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "مسجلة مسبقاً: %(list)s"
-
-#: apps/webapp/templatetags/sample_data.py
-msgid "Book appointment"
-msgstr "حجز موعد"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

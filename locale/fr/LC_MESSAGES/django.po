@@ -34,210 +34,6 @@ msgid "New bill"
 msgstr "Nouvelle addition"
 
 #: templates/base.html
-msgid "New sale (POS)"
-msgstr "Nouvelle vente (caisse)"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "Ventes"
-
-#: templates/base.html
-msgid "Leads & pipeline"
-msgstr "Prospects et pipeline"
-
-#: templates/base.html
-msgid "Price lists & offers"
-msgstr "Listes de prix et offres"
-
-#: templates/base.html
-msgid "Invoices"
-msgstr "Factures"
-
-#: templates/base.html
-msgid "Quotations"
-msgstr "Devis"
-
-#: templates/base.html
-msgid "Sales orders & delivery"
-msgstr "Commandes clients et livraisons"
-
-#: templates/base.html
-msgid "Billing"
-msgstr "Facturation"
-
-#: templates/base.html
-msgid "POS"
-msgstr "Caisse (POS)"
-
-#: templates/base.html
-msgid "Returns & Refunds"
-msgstr "Retours et remboursements"
-
-#: templates/base.html
-msgid "Coupons"
-msgstr "Coupons"
-
-#: templates/base.html
-msgid "Loyalty"
-msgstr "Fidélité"
-
-#: templates/base.html
-msgid "Purchases"
-msgstr "Achats"
-
-#: templates/base.html
-msgid "Purchase orders"
-msgstr "Bons de commande"
-
-#: templates/base.html
-msgid "Suppliers"
-msgstr "Fournisseurs"
-
-#: templates/base.html
-msgid "Purchase Reports"
-msgstr "Rapports d’achats"
-
-#: templates/base.html
-msgid "Finance"
-msgstr "Finances"
-
-#: templates/base.html
-msgid "Bank & cash"
-msgstr "Banque et caisse"
-
-#: templates/base.html
-msgid "Daily report"
-msgstr "Rapport du jour"
-
-#: templates/base.html
-msgid "Accounts & reports"
-msgstr "Comptabilité et rapports"
-
-#: templates/base.html
-msgid "Finance overview"
-msgstr "Aperçu financier"
-
-#: templates/base.html
-msgid "Cheques (PDC)"
-msgstr "Chèques (PDC)"
-
-#: templates/base.html
-msgid "Recurring invoices"
-msgstr "Factures récurrentes"
-
-#: templates/base.html
-msgid "Fixed assets"
-msgstr "Immobilisations"
-
-#: templates/base.html
-msgid "Expenses"
-msgstr "Dépenses"
-
-#: templates/base.html
-msgid "Budgets"
-msgstr "Budgets"
-
-#: templates/base.html
-msgid "Online payments"
-msgstr "Paiements en ligne"
-
-#: templates/base.html
-msgid "People"
-msgstr "Personnes"
-
-#: templates/base.html
-msgid "Customers"
-msgstr "Clients"
-
-#: templates/base.html
-msgid "Money to collect"
-msgstr "Sommes à encaisser"
-
-#: templates/base.html
-msgid "Customer reminders"
-msgstr "Rappels clients"
-
-#: templates/base.html
-msgid "Team"
-msgstr "Équipe"
-
-#: templates/base.html
-msgid "Staff & HR"
-msgstr "Personnel et RH"
-
-#: templates/base.html
-msgid "Attendance"
-msgstr "Présences"
-
-#: templates/base.html
-msgid "Payroll & advances"
-msgstr "Paie et avances"
-
-#: templates/base.html
-msgid "Business"
-msgstr "Entreprise"
-
-#: templates/base.html
-msgid "Stock & inventory"
-msgstr "Stock et inventaire"
-
-#: templates/base.html
-msgid "Analytics"
-msgstr "Statistiques"
-
-#: templates/base.html
-msgid "Branches"
-msgstr "Succursales"
-
-#: templates/base.html
-msgid "Settings"
-msgstr "Paramètres"
-
-#: templates/base.html
-msgid "Reminders & alerts"
-msgstr "Rappels et alertes"
-
-#: templates/base.html
-msgid "Tax & currency"
-msgstr "Taxes et devises"
-
-#: templates/base.html
-msgid "Activity log"
-msgstr "Journal d’activité"
-
-#: templates/base.html
-msgid "Notifications"
-msgstr "Notifications"
-
-#: templates/base.html
-msgid "Devices & Printers"
-msgstr "Appareils et imprimantes"
-
-#: templates/base.html
-msgid "Security & 2FA"
-msgstr "Sécurité et 2FA"
-
-#: templates/base.html
-msgid "Backups"
-msgstr "Sauvegardes"
-
-#: templates/base.html
-msgid "Help & support"
-msgstr "Aide et support"
-
-#: templates/base.html
-msgid "User guide"
-msgstr "Guide d’utilisation"
-
-#: templates/base.html
-msgid "API docs"
-msgstr "Documentation API"
-
-#: templates/base.html
-msgid "⚙ Platform Admin"
-msgstr "⚙ Admin plateforme"
-
-#: templates/base.html
 msgid "Gym"
 msgstr "Salle de sport"
 
@@ -248,6 +44,10 @@ msgstr "Membres"
 #: templates/base.html
 msgid "Membership Plans"
 msgstr "Formules d’abonnement"
+
+#: templates/base.html
+msgid "Attendance"
+msgstr "Présences"
 
 #: templates/base.html
 msgid "Reports"
@@ -438,12 +238,208 @@ msgid "Menu & Ingredients"
 msgstr "Menu et ingrédients"
 
 #: templates/base.html
+msgid "Sales"
+msgstr "Ventes"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "Forfaits / séances"
 
 #: templates/base.html
 msgid "Service Reports"
 msgstr "Rapports de service"
+
+#: templates/base.html
+msgid "Leads & pipeline"
+msgstr "Prospects et pipeline"
+
+#: templates/base.html
+msgid "Price lists & offers"
+msgstr "Listes de prix et offres"
+
+#: templates/base.html
+msgid "Invoices"
+msgstr "Factures"
+
+#: templates/base.html
+msgid "Quotations"
+msgstr "Devis"
+
+#: templates/base.html
+msgid "Sales orders & delivery"
+msgstr "Commandes clients et livraisons"
+
+#: templates/base.html
+msgid "Billing"
+msgstr "Facturation"
+
+#: templates/base.html
+msgid "POS"
+msgstr "Caisse (POS)"
+
+#: templates/base.html
+msgid "Returns & Refunds"
+msgstr "Retours et remboursements"
+
+#: templates/base.html
+msgid "Coupons"
+msgstr "Coupons"
+
+#: templates/base.html
+msgid "Loyalty"
+msgstr "Fidélité"
+
+#: templates/base.html
+msgid "Purchases"
+msgstr "Achats"
+
+#: templates/base.html
+msgid "Purchase orders"
+msgstr "Bons de commande"
+
+#: templates/base.html
+msgid "Suppliers"
+msgstr "Fournisseurs"
+
+#: templates/base.html
+msgid "Purchase Reports"
+msgstr "Rapports d’achats"
+
+#: templates/base.html
+msgid "Finance"
+msgstr "Finances"
+
+#: templates/base.html
+msgid "Bank & cash"
+msgstr "Banque et caisse"
+
+#: templates/base.html
+msgid "Daily report"
+msgstr "Rapport du jour"
+
+#: templates/base.html
+msgid "Accounts & reports"
+msgstr "Comptabilité et rapports"
+
+#: templates/base.html
+msgid "Finance overview"
+msgstr "Aperçu financier"
+
+#: templates/base.html
+msgid "Cheques (PDC)"
+msgstr "Chèques (PDC)"
+
+#: templates/base.html
+msgid "Recurring invoices"
+msgstr "Factures récurrentes"
+
+#: templates/base.html
+msgid "Fixed assets"
+msgstr "Immobilisations"
+
+#: templates/base.html
+msgid "Expenses"
+msgstr "Dépenses"
+
+#: templates/base.html
+msgid "Budgets"
+msgstr "Budgets"
+
+#: templates/base.html
+msgid "Online payments"
+msgstr "Paiements en ligne"
+
+#: templates/base.html
+msgid "People"
+msgstr "Personnes"
+
+#: templates/base.html
+msgid "Customers"
+msgstr "Clients"
+
+#: templates/base.html
+msgid "Money to collect"
+msgstr "Sommes à encaisser"
+
+#: templates/base.html
+msgid "Customer reminders"
+msgstr "Rappels clients"
+
+#: templates/base.html
+msgid "Team"
+msgstr "Équipe"
+
+#: templates/base.html
+msgid "Staff & HR"
+msgstr "Personnel et RH"
+
+#: templates/base.html
+msgid "Payroll & advances"
+msgstr "Paie et avances"
+
+#: templates/base.html
+msgid "Business"
+msgstr "Entreprise"
+
+#: templates/base.html
+msgid "Stock & inventory"
+msgstr "Stock et inventaire"
+
+#: templates/base.html
+msgid "Analytics"
+msgstr "Statistiques"
+
+#: templates/base.html
+msgid "Branches"
+msgstr "Succursales"
+
+#: templates/base.html
+msgid "Settings"
+msgstr "Paramètres"
+
+#: templates/base.html
+msgid "Reminders & alerts"
+msgstr "Rappels et alertes"
+
+#: templates/base.html
+msgid "Tax & currency"
+msgstr "Taxes et devises"
+
+#: templates/base.html
+msgid "Activity log"
+msgstr "Journal d’activité"
+
+#: templates/base.html
+msgid "Notifications"
+msgstr "Notifications"
+
+#: templates/base.html
+msgid "Devices & Printers"
+msgstr "Appareils et imprimantes"
+
+#: templates/base.html
+msgid "Security & 2FA"
+msgstr "Sécurité et 2FA"
+
+#: templates/base.html
+msgid "Backups"
+msgstr "Sauvegardes"
+
+#: templates/base.html
+msgid "Help & support"
+msgstr "Aide et support"
+
+#: templates/base.html
+msgid "User guide"
+msgstr "Guide d’utilisation"
+
+#: templates/base.html
+msgid "API docs"
+msgstr "Documentation API"
+
+#: templates/base.html
+msgid "⚙ Platform Admin"
+msgstr "⚙ Admin plateforme"
 
 #: templates/base.html
 msgid "Log out"
@@ -545,17 +541,62 @@ msgstr "Changer le mot de passe"
 msgid "Install app"
 msgstr "Installer l’app"
 
-#: templates/webapp/_checklist.html
-msgid "Your BookPilot setup"
-msgstr "Configuration de votre BookPilot"
-
-#: templates/webapp/_checklist.html
-msgid "Hide"
-msgstr "Masquer"
-
 #: templates/webapp/_excel_button.html
 msgid "Excel"
 msgstr "Excel"
+
+#: templates/webapp/_getting_started.html
+msgid "Getting started"
+msgstr "Bien démarrer"
+
+#: templates/webapp/_getting_started.html
+msgid "Next"
+msgstr "Suivant"
+
+#: templates/webapp/_getting_started.html
+msgid "You are looking at sample data"
+msgstr "Vous voyez des données d'exemple"
+
+#: templates/webapp/_getting_started.html
+msgid "Show all"
+msgstr "Tout afficher"
+
+#: templates/webapp/_getting_started.html
+msgid ""
+"These were added as examples so you can see how everything works. Try a "
+"sale, then remove them and add your own."
+msgstr ""
+"Elles ont été ajoutées comme exemples pour montrer comment tout fonctionne. "
+"Faites une vente d'essai, puis supprimez-les et ajoutez les vôtres."
+
+#: templates/webapp/_getting_started.html
+msgid "products"
+msgstr "produits"
+
+#: templates/webapp/_getting_started.html
+msgid "services"
+msgstr "services"
+
+#: templates/webapp/_getting_started.html
+msgid "customers"
+msgstr "clients"
+
+#: templates/webapp/_getting_started.html
+msgid "staff"
+msgstr "personnel"
+
+#: templates/webapp/_getting_started.html
+msgid "Remove all sample products, services, customers and staff?"
+msgstr ""
+"Supprimer tous les produits, services, clients et employés d'exemple ?"
+
+#: templates/webapp/_getting_started.html
+msgid "Remove sample data"
+msgstr "Supprimer les données d’exemple"
+
+#: templates/webapp/_getting_started.html
+msgid "Hide"
+msgstr "Masquer"
 
 #: templates/webapp/_industry_nav.html
 msgid "Bookings"
@@ -693,42 +734,21 @@ msgstr "Mon site web"
 msgid "Language"
 msgstr "Langue"
 
-#: templates/webapp/_sample_banner.html
-msgid "You are looking at sample data"
-msgstr "Vous voyez des données d'exemple"
+#: templates/webapp/_overview_panel.html
+msgid "Done"
+msgstr "Fait"
 
-#: templates/webapp/_sample_banner.html
-msgid ""
-"These were added as examples so you can see how everything works. Try a "
-"sale, then remove them and add your own."
-msgstr ""
-"Elles ont été ajoutées comme exemples pour montrer comment tout fonctionne. "
-"Faites une vente d'essai, puis supprimez-les et ajoutez les vôtres."
+#: templates/webapp/_overview_panel.html
+msgid "more"
+msgstr "de plus"
 
-#: templates/webapp/_sample_banner.html
-msgid "products"
-msgstr "produits"
+#: templates/webapp/_overview_panel.html
+msgid "bill"
+msgstr "addition"
 
-#: templates/webapp/_sample_banner.html
-msgid "services"
-msgstr "services"
-
-#: templates/webapp/_sample_banner.html
-msgid "customers"
-msgstr "clients"
-
-#: templates/webapp/_sample_banner.html
-msgid "staff"
-msgstr "personnel"
-
-#: templates/webapp/_sample_banner.html
-msgid "Remove all sample products, services, customers and staff?"
-msgstr ""
-"Supprimer tous les produits, services, clients et employés d'exemple ?"
-
-#: templates/webapp/_sample_banner.html
-msgid "Remove sample data"
-msgstr "Supprimer les données d’exemple"
+#: templates/webapp/_overview_panel.html
+msgid "bills"
+msgstr "additions"
 
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
@@ -1328,10 +1348,6 @@ msgstr ""
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
 msgstr "Enregistrer les budgets"
-
-#: templates/webapp/automation/daily_report.html
-msgid "bills"
-msgstr "additions"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
@@ -2353,10 +2369,6 @@ msgid "due"
 msgstr "échéance"
 
 #: templates/webapp/crm/lead_detail.html
-msgid "Done"
-msgstr "Fait"
-
-#: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
 msgstr "Aucune activité pour l’instant."
 
@@ -2701,6 +2713,22 @@ msgid "No customers yet."
 msgstr "Aucun client pour l’instant."
 
 #: templates/webapp/dashboard.html
+msgid "Your subscription has expired."
+msgstr "Votre abonnement a expiré."
+
+#: templates/webapp/dashboard.html
+msgid "Renew now →"
+msgstr "Renouveler maintenant →"
+
+#: templates/webapp/dashboard.html
+msgid "Subscription renews in"
+msgstr "Renouvellement de l’abonnement dans"
+
+#: templates/webapp/dashboard.html
+msgid "New online booking requests"
+msgstr "Nouvelles demandes de réservation en ligne"
+
+#: templates/webapp/dashboard.html
 msgid "Finish setting up your business"
 msgstr "Terminez la configuration de votre entreprise"
 
@@ -2713,38 +2741,6 @@ msgstr ""
 #: templates/webapp/dashboard.html
 msgid "Continue setup"
 msgstr "Continuer la configuration"
-
-#: templates/webapp/dashboard.html
-msgid "Your subscription has expired."
-msgstr "Votre abonnement a expiré."
-
-#: templates/webapp/dashboard.html
-msgid "Renew now →"
-msgstr "Renouveler maintenant →"
-
-#: templates/webapp/dashboard.html
-msgid "View billing →"
-msgstr "Voir la facturation →"
-
-#: templates/webapp/dashboard.html
-msgid "Subscription renews in"
-msgstr "Renouvellement de l’abonnement dans"
-
-#: templates/webapp/dashboard.html
-msgid "New online booking requests"
-msgstr "Nouvelles demandes de réservation en ligne"
-
-#: templates/webapp/dashboard.html
-msgid "Today's sales"
-msgstr "Ventes du jour"
-
-#: templates/webapp/dashboard.html
-msgid "This month's revenue"
-msgstr "Chiffre d’affaires du mois"
-
-#: templates/webapp/dashboard.html
-msgid "Outstanding dues"
-msgstr "Impayés"
 
 #: templates/webapp/dashboard.html
 msgid "Business overview"
@@ -2861,6 +2857,10 @@ msgstr "Ventes réalisées"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "Ventes récentes"
+
+#: templates/webapp/dashboard.html
+msgid "View all"
+msgstr "Tout voir"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -6404,10 +6404,6 @@ msgstr "Étape"
 msgid "Skip tour"
 msgstr "Passer la visite"
 
-#: templates/webapp/pos.html
-msgid "Next"
-msgstr "Suivant"
-
 #: templates/webapp/pos_offline_sales.html
 msgid ""
 "Sales made on a till while the internet was down. They are sent to the "
@@ -6573,6 +6569,10 @@ msgstr "1× Pizza"
 #: templates/webapp/public/landing.html
 msgid "2× Drink"
 msgstr "2× Boisson"
+
+#: templates/webapp/public/landing.html
+msgid "Today's sales"
+msgstr "Ventes du jour"
 
 #: templates/webapp/public/landing.html
 msgid "QAR 0"
@@ -8047,10 +8047,6 @@ msgstr "👨‍🍳 Cuisine"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Sales today ·"
 msgstr "Ventes du jour ·"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "bill"
-msgstr "addition"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"
@@ -9580,6 +9576,10 @@ msgstr "Forfait et facturation"
 #: templates/webapp/settings.html
 msgid "Active until"
 msgstr "Actif jusqu’au"
+
+#: templates/webapp/settings.html
+msgid "View billing →"
+msgstr "Voir la facturation →"
 
 #: templates/webapp/settings.html
 msgid "Sample data"
@@ -12134,6 +12134,45 @@ msgstr "Commande %(no)s acceptée et envoyée en cuisine."
 msgid "Order %(no)s rejected."
 msgstr "Commande %(no)s refusée."
 
+#: apps/webapp/overview.py
+msgid "This month's revenue"
+msgstr "Chiffre d’affaires du mois"
+
+#: apps/webapp/overview.py
+msgid "Outstanding dues"
+msgstr "Impayés"
+
+#: apps/webapp/overview.py
+msgid "%(left)s waiting · %(done)s done"
+msgstr "%(left)s en attente · %(done)s terminés"
+
+#: apps/webapp/overview.py
+msgid "Today's appointments"
+msgstr "Rendez-vous du jour"
+
+#: apps/webapp/overview.py
+msgid "All appointments"
+msgstr "Tous les rendez-vous"
+
+#: apps/webapp/overview.py
+msgid "No appointments today."
+msgstr "Aucun rendez-vous aujourd'hui."
+
+#: apps/webapp/overview.py
+msgid "Book appointment"
+msgstr "Prendre rendez-vous"
+
+#: apps/webapp/overview.py
+msgid "Staff today"
+msgstr "Équipe du jour"
+
+#: apps/webapp/overview.py
+msgid ""
+"Choose who did the work when you bill, and each person's total shows here."
+msgstr ""
+"Choisissez qui a fait le travail lors de la facturation : le total de chacun"
+" s'affiche ici."
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "Paiement reçu — merci !"
@@ -12904,10 +12943,6 @@ msgstr "%(count)s numéros de série ajoutés au stock."
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "Déjà enregistrés : %(list)s"
-
-#: apps/webapp/templatetags/sample_data.py
-msgid "Book appointment"
-msgstr "Prendre rendez-vous"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

@@ -34,210 +34,6 @@ msgid "New bill"
 msgstr "新账单"
 
 #: templates/base.html
-msgid "New sale (POS)"
-msgstr "新销售（收银）"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "销售"
-
-#: templates/base.html
-msgid "Leads & pipeline"
-msgstr "线索与销售漏斗"
-
-#: templates/base.html
-msgid "Price lists & offers"
-msgstr "价目表与优惠"
-
-#: templates/base.html
-msgid "Invoices"
-msgstr "发票"
-
-#: templates/base.html
-msgid "Quotations"
-msgstr "报价单"
-
-#: templates/base.html
-msgid "Sales orders & delivery"
-msgstr "销售订单与发货"
-
-#: templates/base.html
-msgid "Billing"
-msgstr "账单"
-
-#: templates/base.html
-msgid "POS"
-msgstr "收银（POS）"
-
-#: templates/base.html
-msgid "Returns & Refunds"
-msgstr "退货与退款"
-
-#: templates/base.html
-msgid "Coupons"
-msgstr "优惠券"
-
-#: templates/base.html
-msgid "Loyalty"
-msgstr "会员积分"
-
-#: templates/base.html
-msgid "Purchases"
-msgstr "采购"
-
-#: templates/base.html
-msgid "Purchase orders"
-msgstr "采购订单"
-
-#: templates/base.html
-msgid "Suppliers"
-msgstr "供应商"
-
-#: templates/base.html
-msgid "Purchase Reports"
-msgstr "采购报表"
-
-#: templates/base.html
-msgid "Finance"
-msgstr "财务"
-
-#: templates/base.html
-msgid "Bank & cash"
-msgstr "银行与现金"
-
-#: templates/base.html
-msgid "Daily report"
-msgstr "每日报告"
-
-#: templates/base.html
-msgid "Accounts & reports"
-msgstr "账目与报表"
-
-#: templates/base.html
-msgid "Finance overview"
-msgstr "财务概览"
-
-#: templates/base.html
-msgid "Cheques (PDC)"
-msgstr "支票（PDC）"
-
-#: templates/base.html
-msgid "Recurring invoices"
-msgstr "定期发票"
-
-#: templates/base.html
-msgid "Fixed assets"
-msgstr "固定资产"
-
-#: templates/base.html
-msgid "Expenses"
-msgstr "费用"
-
-#: templates/base.html
-msgid "Budgets"
-msgstr "预算"
-
-#: templates/base.html
-msgid "Online payments"
-msgstr "在线支付"
-
-#: templates/base.html
-msgid "People"
-msgstr "人员"
-
-#: templates/base.html
-msgid "Customers"
-msgstr "客户"
-
-#: templates/base.html
-msgid "Money to collect"
-msgstr "待收款项"
-
-#: templates/base.html
-msgid "Customer reminders"
-msgstr "客户提醒"
-
-#: templates/base.html
-msgid "Team"
-msgstr "团队"
-
-#: templates/base.html
-msgid "Staff & HR"
-msgstr "员工与人事"
-
-#: templates/base.html
-msgid "Attendance"
-msgstr "考勤"
-
-#: templates/base.html
-msgid "Payroll & advances"
-msgstr "工资与预支"
-
-#: templates/base.html
-msgid "Business"
-msgstr "业务"
-
-#: templates/base.html
-msgid "Stock & inventory"
-msgstr "库存"
-
-#: templates/base.html
-msgid "Analytics"
-msgstr "数据分析"
-
-#: templates/base.html
-msgid "Branches"
-msgstr "分店"
-
-#: templates/base.html
-msgid "Settings"
-msgstr "设置"
-
-#: templates/base.html
-msgid "Reminders & alerts"
-msgstr "提醒与警报"
-
-#: templates/base.html
-msgid "Tax & currency"
-msgstr "税务与货币"
-
-#: templates/base.html
-msgid "Activity log"
-msgstr "操作日志"
-
-#: templates/base.html
-msgid "Notifications"
-msgstr "通知"
-
-#: templates/base.html
-msgid "Devices & Printers"
-msgstr "设备与打印机"
-
-#: templates/base.html
-msgid "Security & 2FA"
-msgstr "安全与双重验证"
-
-#: templates/base.html
-msgid "Backups"
-msgstr "备份"
-
-#: templates/base.html
-msgid "Help & support"
-msgstr "帮助与支持"
-
-#: templates/base.html
-msgid "User guide"
-msgstr "用户指南"
-
-#: templates/base.html
-msgid "API docs"
-msgstr "API 文档"
-
-#: templates/base.html
-msgid "⚙ Platform Admin"
-msgstr "⚙ 平台管理"
-
-#: templates/base.html
 msgid "Gym"
 msgstr "健身房"
 
@@ -248,6 +44,10 @@ msgstr "会员"
 #: templates/base.html
 msgid "Membership Plans"
 msgstr "会员套餐"
+
+#: templates/base.html
+msgid "Attendance"
+msgstr "考勤"
 
 #: templates/base.html
 msgid "Reports"
@@ -438,12 +238,208 @@ msgid "Menu & Ingredients"
 msgstr "菜单与原料"
 
 #: templates/base.html
+msgid "Sales"
+msgstr "销售"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "套餐 / 课时"
 
 #: templates/base.html
 msgid "Service Reports"
 msgstr "服务报表"
+
+#: templates/base.html
+msgid "Leads & pipeline"
+msgstr "线索与销售漏斗"
+
+#: templates/base.html
+msgid "Price lists & offers"
+msgstr "价目表与优惠"
+
+#: templates/base.html
+msgid "Invoices"
+msgstr "发票"
+
+#: templates/base.html
+msgid "Quotations"
+msgstr "报价单"
+
+#: templates/base.html
+msgid "Sales orders & delivery"
+msgstr "销售订单与发货"
+
+#: templates/base.html
+msgid "Billing"
+msgstr "账单"
+
+#: templates/base.html
+msgid "POS"
+msgstr "收银（POS）"
+
+#: templates/base.html
+msgid "Returns & Refunds"
+msgstr "退货与退款"
+
+#: templates/base.html
+msgid "Coupons"
+msgstr "优惠券"
+
+#: templates/base.html
+msgid "Loyalty"
+msgstr "会员积分"
+
+#: templates/base.html
+msgid "Purchases"
+msgstr "采购"
+
+#: templates/base.html
+msgid "Purchase orders"
+msgstr "采购订单"
+
+#: templates/base.html
+msgid "Suppliers"
+msgstr "供应商"
+
+#: templates/base.html
+msgid "Purchase Reports"
+msgstr "采购报表"
+
+#: templates/base.html
+msgid "Finance"
+msgstr "财务"
+
+#: templates/base.html
+msgid "Bank & cash"
+msgstr "银行与现金"
+
+#: templates/base.html
+msgid "Daily report"
+msgstr "每日报告"
+
+#: templates/base.html
+msgid "Accounts & reports"
+msgstr "账目与报表"
+
+#: templates/base.html
+msgid "Finance overview"
+msgstr "财务概览"
+
+#: templates/base.html
+msgid "Cheques (PDC)"
+msgstr "支票（PDC）"
+
+#: templates/base.html
+msgid "Recurring invoices"
+msgstr "定期发票"
+
+#: templates/base.html
+msgid "Fixed assets"
+msgstr "固定资产"
+
+#: templates/base.html
+msgid "Expenses"
+msgstr "费用"
+
+#: templates/base.html
+msgid "Budgets"
+msgstr "预算"
+
+#: templates/base.html
+msgid "Online payments"
+msgstr "在线支付"
+
+#: templates/base.html
+msgid "People"
+msgstr "人员"
+
+#: templates/base.html
+msgid "Customers"
+msgstr "客户"
+
+#: templates/base.html
+msgid "Money to collect"
+msgstr "待收款项"
+
+#: templates/base.html
+msgid "Customer reminders"
+msgstr "客户提醒"
+
+#: templates/base.html
+msgid "Team"
+msgstr "团队"
+
+#: templates/base.html
+msgid "Staff & HR"
+msgstr "员工与人事"
+
+#: templates/base.html
+msgid "Payroll & advances"
+msgstr "工资与预支"
+
+#: templates/base.html
+msgid "Business"
+msgstr "业务"
+
+#: templates/base.html
+msgid "Stock & inventory"
+msgstr "库存"
+
+#: templates/base.html
+msgid "Analytics"
+msgstr "数据分析"
+
+#: templates/base.html
+msgid "Branches"
+msgstr "分店"
+
+#: templates/base.html
+msgid "Settings"
+msgstr "设置"
+
+#: templates/base.html
+msgid "Reminders & alerts"
+msgstr "提醒与警报"
+
+#: templates/base.html
+msgid "Tax & currency"
+msgstr "税务与货币"
+
+#: templates/base.html
+msgid "Activity log"
+msgstr "操作日志"
+
+#: templates/base.html
+msgid "Notifications"
+msgstr "通知"
+
+#: templates/base.html
+msgid "Devices & Printers"
+msgstr "设备与打印机"
+
+#: templates/base.html
+msgid "Security & 2FA"
+msgstr "安全与双重验证"
+
+#: templates/base.html
+msgid "Backups"
+msgstr "备份"
+
+#: templates/base.html
+msgid "Help & support"
+msgstr "帮助与支持"
+
+#: templates/base.html
+msgid "User guide"
+msgstr "用户指南"
+
+#: templates/base.html
+msgid "API docs"
+msgstr "API 文档"
+
+#: templates/base.html
+msgid "⚙ Platform Admin"
+msgstr "⚙ 平台管理"
 
 #: templates/base.html
 msgid "Log out"
@@ -545,17 +541,59 @@ msgstr "修改密码"
 msgid "Install app"
 msgstr "安装应用"
 
-#: templates/webapp/_checklist.html
-msgid "Your BookPilot setup"
-msgstr "您的 BookPilot 设置进度"
-
-#: templates/webapp/_checklist.html
-msgid "Hide"
-msgstr "隐藏"
-
 #: templates/webapp/_excel_button.html
 msgid "Excel"
 msgstr "Excel"
+
+#: templates/webapp/_getting_started.html
+msgid "Getting started"
+msgstr "入门"
+
+#: templates/webapp/_getting_started.html
+msgid "Next"
+msgstr "下一步"
+
+#: templates/webapp/_getting_started.html
+msgid "You are looking at sample data"
+msgstr "您正在查看示例数据"
+
+#: templates/webapp/_getting_started.html
+msgid "Show all"
+msgstr "显示全部"
+
+#: templates/webapp/_getting_started.html
+msgid ""
+"These were added as examples so you can see how everything works. Try a "
+"sale, then remove them and add your own."
+msgstr "这些是示例，方便您了解各项功能。试着做一笔销售，然后删除它们并添加您自己的数据。"
+
+#: templates/webapp/_getting_started.html
+msgid "products"
+msgstr "个商品"
+
+#: templates/webapp/_getting_started.html
+msgid "services"
+msgstr "服务"
+
+#: templates/webapp/_getting_started.html
+msgid "customers"
+msgstr "客户"
+
+#: templates/webapp/_getting_started.html
+msgid "staff"
+msgstr "员工"
+
+#: templates/webapp/_getting_started.html
+msgid "Remove all sample products, services, customers and staff?"
+msgstr "删除所有示例商品、服务、客户和员工？"
+
+#: templates/webapp/_getting_started.html
+msgid "Remove sample data"
+msgstr "删除示例数据"
+
+#: templates/webapp/_getting_started.html
+msgid "Hide"
+msgstr "隐藏"
 
 #: templates/webapp/_industry_nav.html
 msgid "Bookings"
@@ -693,39 +731,21 @@ msgstr "我的网站"
 msgid "Language"
 msgstr "语言"
 
-#: templates/webapp/_sample_banner.html
-msgid "You are looking at sample data"
-msgstr "您正在查看示例数据"
+#: templates/webapp/_overview_panel.html
+msgid "Done"
+msgstr "完成"
 
-#: templates/webapp/_sample_banner.html
-msgid ""
-"These were added as examples so you can see how everything works. Try a "
-"sale, then remove them and add your own."
-msgstr "这些是示例，方便您了解各项功能。试着做一笔销售，然后删除它们并添加您自己的数据。"
+#: templates/webapp/_overview_panel.html
+msgid "more"
+msgstr "更多"
 
-#: templates/webapp/_sample_banner.html
-msgid "products"
-msgstr "个商品"
+#: templates/webapp/_overview_panel.html
+msgid "bill"
+msgstr "张账单"
 
-#: templates/webapp/_sample_banner.html
-msgid "services"
-msgstr "服务"
-
-#: templates/webapp/_sample_banner.html
-msgid "customers"
-msgstr "客户"
-
-#: templates/webapp/_sample_banner.html
-msgid "staff"
-msgstr "员工"
-
-#: templates/webapp/_sample_banner.html
-msgid "Remove all sample products, services, customers and staff?"
-msgstr "删除所有示例商品、服务、客户和员工？"
-
-#: templates/webapp/_sample_banner.html
-msgid "Remove sample data"
-msgstr "删除示例数据"
+#: templates/webapp/_overview_panel.html
+msgid "bills"
+msgstr "张账单"
 
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
@@ -1311,10 +1331,6 @@ msgstr "当某类别达到提醒线及超出预算时，您会收到通知（和
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
 msgstr "保存预算"
-
-#: templates/webapp/automation/daily_report.html
-msgid "bills"
-msgstr "张账单"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
@@ -2284,10 +2300,6 @@ msgid "due"
 msgstr "到期"
 
 #: templates/webapp/crm/lead_detail.html
-msgid "Done"
-msgstr "完成"
-
-#: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
 msgstr "暂无动态。"
 
@@ -2632,28 +2644,12 @@ msgid "No customers yet."
 msgstr "暂无客户。"
 
 #: templates/webapp/dashboard.html
-msgid "Finish setting up your business"
-msgstr "完成企业设置"
-
-#: templates/webapp/dashboard.html
-msgid "Add your logo, first products and printer in 3 quick steps."
-msgstr "3 个简单步骤添加您的标志、首批产品和打印机。"
-
-#: templates/webapp/dashboard.html
-msgid "Continue setup"
-msgstr "继续设置"
-
-#: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
 msgstr "您的订阅已过期。"
 
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "立即续订 →"
-
-#: templates/webapp/dashboard.html
-msgid "View billing →"
-msgstr "查看账单 →"
 
 #: templates/webapp/dashboard.html
 msgid "Subscription renews in"
@@ -2664,16 +2660,16 @@ msgid "New online booking requests"
 msgstr "新的在线预订请求"
 
 #: templates/webapp/dashboard.html
-msgid "Today's sales"
-msgstr "今日销售"
+msgid "Finish setting up your business"
+msgstr "完成企业设置"
 
 #: templates/webapp/dashboard.html
-msgid "This month's revenue"
-msgstr "本月收入"
+msgid "Add your logo, first products and printer in 3 quick steps."
+msgstr "3 个简单步骤添加您的标志、首批产品和打印机。"
 
 #: templates/webapp/dashboard.html
-msgid "Outstanding dues"
-msgstr "未结欠款"
+msgid "Continue setup"
+msgstr "继续设置"
 
 #: templates/webapp/dashboard.html
 msgid "Business overview"
@@ -2790,6 +2786,10 @@ msgstr "已完成销售"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "近期销售"
+
+#: templates/webapp/dashboard.html
+msgid "View all"
+msgstr "查看全部"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -6198,10 +6198,6 @@ msgstr "第"
 msgid "Skip tour"
 msgstr "跳过导览"
 
-#: templates/webapp/pos.html
-msgid "Next"
-msgstr "下一步"
-
 #: templates/webapp/pos_offline_sales.html
 msgid ""
 "Sales made on a till while the internet was down. They are sent to the "
@@ -6362,6 +6358,10 @@ msgstr "1× 披萨"
 #: templates/webapp/public/landing.html
 msgid "2× Drink"
 msgstr "2× 饮料"
+
+#: templates/webapp/public/landing.html
+msgid "Today's sales"
+msgstr "今日销售"
 
 #: templates/webapp/public/landing.html
 msgid "QAR 0"
@@ -7776,10 +7776,6 @@ msgstr "👨‍🍳 厨房"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Sales today ·"
 msgstr "今日销售 ·"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "bill"
-msgstr "张账单"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"
@@ -9270,6 +9266,10 @@ msgstr "套餐与账单"
 #: templates/webapp/settings.html
 msgid "Active until"
 msgstr "有效期至"
+
+#: templates/webapp/settings.html
+msgid "View billing →"
+msgstr "查看账单 →"
 
 #: templates/webapp/settings.html
 msgid "Sample data"
@@ -11733,6 +11733,43 @@ msgstr "订单 %(no)s 已接受并送往厨房。"
 msgid "Order %(no)s rejected."
 msgstr "订单 %(no)s 已拒绝。"
 
+#: apps/webapp/overview.py
+msgid "This month's revenue"
+msgstr "本月收入"
+
+#: apps/webapp/overview.py
+msgid "Outstanding dues"
+msgstr "未结欠款"
+
+#: apps/webapp/overview.py
+msgid "%(left)s waiting · %(done)s done"
+msgstr "%(left)s 等待中 · %(done)s 已完成"
+
+#: apps/webapp/overview.py
+msgid "Today's appointments"
+msgstr "今日预约"
+
+#: apps/webapp/overview.py
+msgid "All appointments"
+msgstr "全部预约"
+
+#: apps/webapp/overview.py
+msgid "No appointments today."
+msgstr "今天没有预约。"
+
+#: apps/webapp/overview.py
+msgid "Book appointment"
+msgstr "预约"
+
+#: apps/webapp/overview.py
+msgid "Staff today"
+msgstr "今日员工"
+
+#: apps/webapp/overview.py
+msgid ""
+"Choose who did the work when you bill, and each person's total shows here."
+msgstr "开单时选择服务人员，每个人的合计将显示在这里。"
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "已收到付款 — 谢谢！"
@@ -12472,10 +12509,6 @@ msgstr "已将 %(count)s 个序列号加入库存。"
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "已登记：%(list)s"
-
-#: apps/webapp/templatetags/sample_data.py
-msgid "Book appointment"
-msgstr "预约"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

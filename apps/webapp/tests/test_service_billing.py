@@ -76,3 +76,25 @@ def test_new_bill_is_easy_to_find(salon):
     page = c.get(reverse("webapp:dashboard")).content.decode()
     assert page.count(f'href="{reverse("webapp:pos")}"') >= 3  # sidebar button, quick action, sales menu
     assert reverse("webapp:saloon_appointment_book") in page and "Book appointment" in page
+
+
+def test_overview_shows_todays_appointments_first(salon):
+    import datetime
+    from django.utils import timezone
+    from apps.customers.models import Customer
+    from apps.verticals.saloon.models import Appointment, SaloonService
+    company, c = salon
+    haircut = SaloonService.objects.get(company=company, name="Haircut")
+    when = timezone.localtime().replace(hour=10, minute=0, second=0, microsecond=0)
+    appt = Appointment.objects.create(company=company, customer=Customer.objects.filter(company=company).first(),
+                                      service=haircut, stylist=Employee.objects.filter(company=company).first(),
+                                      scheduled_at=when, price=haircut.product.selling_price)
+    page = c.get(reverse("webapp:dashboard")).content.decode()
+    assert "Today&#x27;s appointments" in page and "Staff today" in page and "Getting started" in page
+    assert page.index("Today&#x27;s appointments") < page.index("Getting started")
+    assert "Business overview" not in page  # the old count tiles are gone for salons
+    done = reverse("webapp:saloon_appointment_complete", args=[appt.id]) + "?next=overview"
+    assert done in page
+    assert c.get(done).url == reverse("webapp:dashboard")
+    appt.refresh_from_db()
+    assert appt.status == "completed"

@@ -377,28 +377,13 @@ def dashboard(request):
         context["online_requests"] = new_requests.count()
         context["online_requests_next"] = new_requests.order_by("date", "time")[:4]
 
-    # Universal, vertical-independent widgets — every company has sales, expenses
-    # and customers regardless of business type, so these render on every dashboard.
-    today = tz.now().date()
-    month_start = today.replace(day=1)
-    invoices_all = SalesInvoice.objects.for_company(company).exclude(status="void")
-    today_sales = invoices_all.filter(date=today).aggregate(t=Sum("total"))["t"] or 0
-    month_revenue = invoices_all.filter(date__gte=month_start).aggregate(t=Sum("total"))["t"] or 0
-    outstanding = invoices_all.aggregate(total=Sum("total"), paid=Sum("amount_paid"))
-    outstanding_dues = (outstanding["total"] or 0) - (outstanding["paid"] or 0)
-    low_stock_count = sum(
-        1 for p in Product.objects.for_company(company).filter(is_active=True, is_stock_tracked=True)
-        if p.current_stock() <= p.reorder_level
-    )
-    recent_invoices = invoices_all.select_related("customer").order_by("-date", "-id")[:6]
-
+    from . import overview
+    today = tz.localdate()
+    context.update(overview.build(company))
     context.update({
-        "today_sales": today_sales,
-        "month_revenue": month_revenue,
-        "outstanding_dues": outstanding_dues,
-        "low_stock_count": low_stock_count,
-        "recent_invoices": recent_invoices,
-        "today_iso": today.isoformat(), "month_start_iso": month_start.isoformat(),
+        "greeting": overview.greeting(), "today": today,
+        "recent_invoices": SalesInvoice.objects.for_company(company).exclude(status="void")
+        .select_related("customer").order_by("-date", "-id")[:6],
     })
     role = getattr(request, "role", None)
     context["show_setup"] = company.onboarding_completed_at is None and (
@@ -1354,7 +1339,7 @@ def appointment_complete(request, appointment_id):
     appt = get_object_or_404(Appointment.objects.for_company(company), id=appointment_id)
     spa_services.complete_appointment(appt)
     messages.success(request, "Appointment marked completed.")
-    return redirect("webapp:appointment_list")
+    return redirect("webapp:dashboard" if request.GET.get("next") == "overview" else "webapp:appointment_list")
 
 
 @login_required
@@ -2275,7 +2260,7 @@ def saloon_appointment_complete(request, appointment_id):
     appt = get_object_or_404(SaloonAppointment.objects.for_company(company), id=appointment_id)
     saloon_services.complete_appointment(appt)
     messages.success(request, "Marked completed.")
-    return redirect("webapp:saloon_appointment_list")
+    return redirect("webapp:dashboard" if request.GET.get("next") == "overview" else "webapp:saloon_appointment_list")
 
 
 @login_required
@@ -2519,7 +2504,7 @@ def beauty_appointment_complete(request, appointment_id):
     appt = get_object_or_404(BeautyAppointment.objects.for_company(company), id=appointment_id)
     beauty_services.complete_appointment(appt)
     messages.success(request, "Marked completed.")
-    return redirect("webapp:beauty_appointment_list")
+    return redirect("webapp:dashboard" if request.GET.get("next") == "overview" else "webapp:beauty_appointment_list")
 
 
 @login_required

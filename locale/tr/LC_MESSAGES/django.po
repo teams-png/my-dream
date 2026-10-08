@@ -34,210 +34,6 @@ msgid "New bill"
 msgstr "Yeni hesap"
 
 #: templates/base.html
-msgid "New sale (POS)"
-msgstr "Yeni satış (POS)"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "Satışlar"
-
-#: templates/base.html
-msgid "Leads & pipeline"
-msgstr "Potansiyel müşteriler ve süreç"
-
-#: templates/base.html
-msgid "Price lists & offers"
-msgstr "Fiyat listeleri ve kampanyalar"
-
-#: templates/base.html
-msgid "Invoices"
-msgstr "Faturalar"
-
-#: templates/base.html
-msgid "Quotations"
-msgstr "Teklifler"
-
-#: templates/base.html
-msgid "Sales orders & delivery"
-msgstr "Satış siparişleri ve teslimat"
-
-#: templates/base.html
-msgid "Billing"
-msgstr "Faturalama"
-
-#: templates/base.html
-msgid "POS"
-msgstr "POS"
-
-#: templates/base.html
-msgid "Returns & Refunds"
-msgstr "İadeler ve geri ödemeler"
-
-#: templates/base.html
-msgid "Coupons"
-msgstr "Kuponlar"
-
-#: templates/base.html
-msgid "Loyalty"
-msgstr "Sadakat"
-
-#: templates/base.html
-msgid "Purchases"
-msgstr "Satın almalar"
-
-#: templates/base.html
-msgid "Purchase orders"
-msgstr "Satın alma siparişleri"
-
-#: templates/base.html
-msgid "Suppliers"
-msgstr "Tedarikçiler"
-
-#: templates/base.html
-msgid "Purchase Reports"
-msgstr "Satın alma raporları"
-
-#: templates/base.html
-msgid "Finance"
-msgstr "Finans"
-
-#: templates/base.html
-msgid "Bank & cash"
-msgstr "Banka ve kasa"
-
-#: templates/base.html
-msgid "Daily report"
-msgstr "Günlük rapor"
-
-#: templates/base.html
-msgid "Accounts & reports"
-msgstr "Hesaplar ve raporlar"
-
-#: templates/base.html
-msgid "Finance overview"
-msgstr "Finans özeti"
-
-#: templates/base.html
-msgid "Cheques (PDC)"
-msgstr "Çekler (PDC)"
-
-#: templates/base.html
-msgid "Recurring invoices"
-msgstr "Tekrarlayan faturalar"
-
-#: templates/base.html
-msgid "Fixed assets"
-msgstr "Duran varlıklar"
-
-#: templates/base.html
-msgid "Expenses"
-msgstr "Giderler"
-
-#: templates/base.html
-msgid "Budgets"
-msgstr "Bütçeler"
-
-#: templates/base.html
-msgid "Online payments"
-msgstr "Online ödemeler"
-
-#: templates/base.html
-msgid "People"
-msgstr "Kişiler"
-
-#: templates/base.html
-msgid "Customers"
-msgstr "Müşteriler"
-
-#: templates/base.html
-msgid "Money to collect"
-msgstr "Tahsil edilecek para"
-
-#: templates/base.html
-msgid "Customer reminders"
-msgstr "Müşteri hatırlatmaları"
-
-#: templates/base.html
-msgid "Team"
-msgstr "Ekip"
-
-#: templates/base.html
-msgid "Staff & HR"
-msgstr "Personel ve İK"
-
-#: templates/base.html
-msgid "Attendance"
-msgstr "Devam"
-
-#: templates/base.html
-msgid "Payroll & advances"
-msgstr "Maaş ve avanslar"
-
-#: templates/base.html
-msgid "Business"
-msgstr "İşletme"
-
-#: templates/base.html
-msgid "Stock & inventory"
-msgstr "Stok ve envanter"
-
-#: templates/base.html
-msgid "Analytics"
-msgstr "Analiz"
-
-#: templates/base.html
-msgid "Branches"
-msgstr "Şubeler"
-
-#: templates/base.html
-msgid "Settings"
-msgstr "Ayarlar"
-
-#: templates/base.html
-msgid "Reminders & alerts"
-msgstr "Hatırlatmalar ve uyarılar"
-
-#: templates/base.html
-msgid "Tax & currency"
-msgstr "Vergi ve para birimi"
-
-#: templates/base.html
-msgid "Activity log"
-msgstr "Etkinlik günlüğü"
-
-#: templates/base.html
-msgid "Notifications"
-msgstr "Bildirimler"
-
-#: templates/base.html
-msgid "Devices & Printers"
-msgstr "Cihazlar ve yazıcılar"
-
-#: templates/base.html
-msgid "Security & 2FA"
-msgstr "Güvenlik ve 2FA"
-
-#: templates/base.html
-msgid "Backups"
-msgstr "Yedekler"
-
-#: templates/base.html
-msgid "Help & support"
-msgstr "Yardım ve destek"
-
-#: templates/base.html
-msgid "User guide"
-msgstr "Kullanım kılavuzu"
-
-#: templates/base.html
-msgid "API docs"
-msgstr "API belgeleri"
-
-#: templates/base.html
-msgid "⚙ Platform Admin"
-msgstr "⚙ Platform yöneticisi"
-
-#: templates/base.html
 msgid "Gym"
 msgstr "Spor salonu"
 
@@ -248,6 +44,10 @@ msgstr "Üyeler"
 #: templates/base.html
 msgid "Membership Plans"
 msgstr "Üyelik planları"
+
+#: templates/base.html
+msgid "Attendance"
+msgstr "Devam"
 
 #: templates/base.html
 msgid "Reports"
@@ -438,12 +238,208 @@ msgid "Menu & Ingredients"
 msgstr "Menü ve malzemeler"
 
 #: templates/base.html
+msgid "Sales"
+msgstr "Satışlar"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "Paketler / seanslar"
 
 #: templates/base.html
 msgid "Service Reports"
 msgstr "Hizmet raporları"
+
+#: templates/base.html
+msgid "Leads & pipeline"
+msgstr "Potansiyel müşteriler ve süreç"
+
+#: templates/base.html
+msgid "Price lists & offers"
+msgstr "Fiyat listeleri ve kampanyalar"
+
+#: templates/base.html
+msgid "Invoices"
+msgstr "Faturalar"
+
+#: templates/base.html
+msgid "Quotations"
+msgstr "Teklifler"
+
+#: templates/base.html
+msgid "Sales orders & delivery"
+msgstr "Satış siparişleri ve teslimat"
+
+#: templates/base.html
+msgid "Billing"
+msgstr "Faturalama"
+
+#: templates/base.html
+msgid "POS"
+msgstr "POS"
+
+#: templates/base.html
+msgid "Returns & Refunds"
+msgstr "İadeler ve geri ödemeler"
+
+#: templates/base.html
+msgid "Coupons"
+msgstr "Kuponlar"
+
+#: templates/base.html
+msgid "Loyalty"
+msgstr "Sadakat"
+
+#: templates/base.html
+msgid "Purchases"
+msgstr "Satın almalar"
+
+#: templates/base.html
+msgid "Purchase orders"
+msgstr "Satın alma siparişleri"
+
+#: templates/base.html
+msgid "Suppliers"
+msgstr "Tedarikçiler"
+
+#: templates/base.html
+msgid "Purchase Reports"
+msgstr "Satın alma raporları"
+
+#: templates/base.html
+msgid "Finance"
+msgstr "Finans"
+
+#: templates/base.html
+msgid "Bank & cash"
+msgstr "Banka ve kasa"
+
+#: templates/base.html
+msgid "Daily report"
+msgstr "Günlük rapor"
+
+#: templates/base.html
+msgid "Accounts & reports"
+msgstr "Hesaplar ve raporlar"
+
+#: templates/base.html
+msgid "Finance overview"
+msgstr "Finans özeti"
+
+#: templates/base.html
+msgid "Cheques (PDC)"
+msgstr "Çekler (PDC)"
+
+#: templates/base.html
+msgid "Recurring invoices"
+msgstr "Tekrarlayan faturalar"
+
+#: templates/base.html
+msgid "Fixed assets"
+msgstr "Duran varlıklar"
+
+#: templates/base.html
+msgid "Expenses"
+msgstr "Giderler"
+
+#: templates/base.html
+msgid "Budgets"
+msgstr "Bütçeler"
+
+#: templates/base.html
+msgid "Online payments"
+msgstr "Online ödemeler"
+
+#: templates/base.html
+msgid "People"
+msgstr "Kişiler"
+
+#: templates/base.html
+msgid "Customers"
+msgstr "Müşteriler"
+
+#: templates/base.html
+msgid "Money to collect"
+msgstr "Tahsil edilecek para"
+
+#: templates/base.html
+msgid "Customer reminders"
+msgstr "Müşteri hatırlatmaları"
+
+#: templates/base.html
+msgid "Team"
+msgstr "Ekip"
+
+#: templates/base.html
+msgid "Staff & HR"
+msgstr "Personel ve İK"
+
+#: templates/base.html
+msgid "Payroll & advances"
+msgstr "Maaş ve avanslar"
+
+#: templates/base.html
+msgid "Business"
+msgstr "İşletme"
+
+#: templates/base.html
+msgid "Stock & inventory"
+msgstr "Stok ve envanter"
+
+#: templates/base.html
+msgid "Analytics"
+msgstr "Analiz"
+
+#: templates/base.html
+msgid "Branches"
+msgstr "Şubeler"
+
+#: templates/base.html
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: templates/base.html
+msgid "Reminders & alerts"
+msgstr "Hatırlatmalar ve uyarılar"
+
+#: templates/base.html
+msgid "Tax & currency"
+msgstr "Vergi ve para birimi"
+
+#: templates/base.html
+msgid "Activity log"
+msgstr "Etkinlik günlüğü"
+
+#: templates/base.html
+msgid "Notifications"
+msgstr "Bildirimler"
+
+#: templates/base.html
+msgid "Devices & Printers"
+msgstr "Cihazlar ve yazıcılar"
+
+#: templates/base.html
+msgid "Security & 2FA"
+msgstr "Güvenlik ve 2FA"
+
+#: templates/base.html
+msgid "Backups"
+msgstr "Yedekler"
+
+#: templates/base.html
+msgid "Help & support"
+msgstr "Yardım ve destek"
+
+#: templates/base.html
+msgid "User guide"
+msgstr "Kullanım kılavuzu"
+
+#: templates/base.html
+msgid "API docs"
+msgstr "API belgeleri"
+
+#: templates/base.html
+msgid "⚙ Platform Admin"
+msgstr "⚙ Platform yöneticisi"
 
 #: templates/base.html
 msgid "Log out"
@@ -545,17 +541,61 @@ msgstr "Şifreyi değiştir"
 msgid "Install app"
 msgstr "Uygulamayı yükle"
 
-#: templates/webapp/_checklist.html
-msgid "Your BookPilot setup"
-msgstr "BookPilot kurulumunuz"
-
-#: templates/webapp/_checklist.html
-msgid "Hide"
-msgstr "Gizle"
-
 #: templates/webapp/_excel_button.html
 msgid "Excel"
 msgstr "Excel"
+
+#: templates/webapp/_getting_started.html
+msgid "Getting started"
+msgstr "Başlarken"
+
+#: templates/webapp/_getting_started.html
+msgid "Next"
+msgstr "İleri"
+
+#: templates/webapp/_getting_started.html
+msgid "You are looking at sample data"
+msgstr "Örnek verileri görüyorsunuz"
+
+#: templates/webapp/_getting_started.html
+msgid "Show all"
+msgstr "Tümünü göster"
+
+#: templates/webapp/_getting_started.html
+msgid ""
+"These were added as examples so you can see how everything works. Try a "
+"sale, then remove them and add your own."
+msgstr ""
+"Her şeyin nasıl çalıştığını görmeniz için örnek olarak eklendi. Bir satış "
+"deneyin, sonra bunları silip kendinizinkini ekleyin."
+
+#: templates/webapp/_getting_started.html
+msgid "products"
+msgstr "ürün"
+
+#: templates/webapp/_getting_started.html
+msgid "services"
+msgstr "hizmet"
+
+#: templates/webapp/_getting_started.html
+msgid "customers"
+msgstr "müşteri"
+
+#: templates/webapp/_getting_started.html
+msgid "staff"
+msgstr "personel"
+
+#: templates/webapp/_getting_started.html
+msgid "Remove all sample products, services, customers and staff?"
+msgstr "Tüm örnek ürünler, hizmetler, müşteriler ve personel silinsin mi?"
+
+#: templates/webapp/_getting_started.html
+msgid "Remove sample data"
+msgstr "Örnek veriyi kaldır"
+
+#: templates/webapp/_getting_started.html
+msgid "Hide"
+msgstr "Gizle"
 
 #: templates/webapp/_industry_nav.html
 msgid "Bookings"
@@ -693,41 +733,21 @@ msgstr "Web sitem"
 msgid "Language"
 msgstr "Dil"
 
-#: templates/webapp/_sample_banner.html
-msgid "You are looking at sample data"
-msgstr "Örnek verileri görüyorsunuz"
+#: templates/webapp/_overview_panel.html
+msgid "Done"
+msgstr "Tamamlandı"
 
-#: templates/webapp/_sample_banner.html
-msgid ""
-"These were added as examples so you can see how everything works. Try a "
-"sale, then remove them and add your own."
-msgstr ""
-"Her şeyin nasıl çalıştığını görmeniz için örnek olarak eklendi. Bir satış "
-"deneyin, sonra bunları silip kendinizinkini ekleyin."
+#: templates/webapp/_overview_panel.html
+msgid "more"
+msgstr "daha"
 
-#: templates/webapp/_sample_banner.html
-msgid "products"
-msgstr "ürün"
+#: templates/webapp/_overview_panel.html
+msgid "bill"
+msgstr "hesap"
 
-#: templates/webapp/_sample_banner.html
-msgid "services"
-msgstr "hizmet"
-
-#: templates/webapp/_sample_banner.html
-msgid "customers"
-msgstr "müşteri"
-
-#: templates/webapp/_sample_banner.html
-msgid "staff"
-msgstr "personel"
-
-#: templates/webapp/_sample_banner.html
-msgid "Remove all sample products, services, customers and staff?"
-msgstr "Tüm örnek ürünler, hizmetler, müşteriler ve personel silinsin mi?"
-
-#: templates/webapp/_sample_banner.html
-msgid "Remove sample data"
-msgstr "Örnek veriyi kaldır"
+#: templates/webapp/_overview_panel.html
+msgid "bills"
+msgstr "hesaplar"
 
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
@@ -1324,10 +1344,6 @@ msgstr ""
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
 msgstr "Bütçeleri kaydet"
-
-#: templates/webapp/automation/daily_report.html
-msgid "bills"
-msgstr "hesaplar"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
@@ -2334,10 +2350,6 @@ msgid "due"
 msgstr "vade"
 
 #: templates/webapp/crm/lead_detail.html
-msgid "Done"
-msgstr "Tamamlandı"
-
-#: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
 msgstr "Henüz etkinlik yok."
 
@@ -2682,28 +2694,12 @@ msgid "No customers yet."
 msgstr "Henüz müşteri yok."
 
 #: templates/webapp/dashboard.html
-msgid "Finish setting up your business"
-msgstr "İşletme kurulumunuzu tamamlayın"
-
-#: templates/webapp/dashboard.html
-msgid "Add your logo, first products and printer in 3 quick steps."
-msgstr "Logonuzu, ilk ürünlerinizi ve yazıcınızı 3 hızlı adımda ekleyin."
-
-#: templates/webapp/dashboard.html
-msgid "Continue setup"
-msgstr "Kuruluma devam et"
-
-#: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
 msgstr "Aboneliğinizin süresi doldu."
 
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "Şimdi yenile →"
-
-#: templates/webapp/dashboard.html
-msgid "View billing →"
-msgstr "Faturalamayı gör →"
 
 #: templates/webapp/dashboard.html
 msgid "Subscription renews in"
@@ -2714,16 +2710,16 @@ msgid "New online booking requests"
 msgstr "Yeni online rezervasyon talepleri"
 
 #: templates/webapp/dashboard.html
-msgid "Today's sales"
-msgstr "Bugünkü satışlar"
+msgid "Finish setting up your business"
+msgstr "İşletme kurulumunuzu tamamlayın"
 
 #: templates/webapp/dashboard.html
-msgid "This month's revenue"
-msgstr "Bu ayın geliri"
+msgid "Add your logo, first products and printer in 3 quick steps."
+msgstr "Logonuzu, ilk ürünlerinizi ve yazıcınızı 3 hızlı adımda ekleyin."
 
 #: templates/webapp/dashboard.html
-msgid "Outstanding dues"
-msgstr "Ödenmemiş borçlar"
+msgid "Continue setup"
+msgstr "Kuruluma devam et"
 
 #: templates/webapp/dashboard.html
 msgid "Business overview"
@@ -2840,6 +2836,10 @@ msgstr "Yapılan satışlar"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "Son satışlar"
+
+#: templates/webapp/dashboard.html
+msgid "View all"
+msgstr "Tümünü gör"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -6343,10 +6343,6 @@ msgstr "Adım"
 msgid "Skip tour"
 msgstr "Turu atla"
 
-#: templates/webapp/pos.html
-msgid "Next"
-msgstr "İleri"
-
 #: templates/webapp/pos_offline_sales.html
 msgid ""
 "Sales made on a till while the internet was down. They are sent to the "
@@ -6511,6 +6507,10 @@ msgstr "1× Pizza"
 #: templates/webapp/public/landing.html
 msgid "2× Drink"
 msgstr "2× İçecek"
+
+#: templates/webapp/public/landing.html
+msgid "Today's sales"
+msgstr "Bugünkü satışlar"
 
 #: templates/webapp/public/landing.html
 msgid "QAR 0"
@@ -7974,10 +7974,6 @@ msgstr "👨‍🍳 Mutfak"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Sales today ·"
 msgstr "Bugünkü satış ·"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "bill"
-msgstr "hesap"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"
@@ -9491,6 +9487,10 @@ msgstr "Plan ve faturalama"
 #: templates/webapp/settings.html
 msgid "Active until"
 msgstr "Şu tarihe kadar aktif"
+
+#: templates/webapp/settings.html
+msgid "View billing →"
+msgstr "Faturalamayı gör →"
 
 #: templates/webapp/settings.html
 msgid "Sample data"
@@ -12016,6 +12016,44 @@ msgstr "%(no)s numaralı sipariş kabul edildi ve mutfağa gönderildi."
 msgid "Order %(no)s rejected."
 msgstr "%(no)s numaralı sipariş reddedildi."
 
+#: apps/webapp/overview.py
+msgid "This month's revenue"
+msgstr "Bu ayın geliri"
+
+#: apps/webapp/overview.py
+msgid "Outstanding dues"
+msgstr "Ödenmemiş borçlar"
+
+#: apps/webapp/overview.py
+msgid "%(left)s waiting · %(done)s done"
+msgstr "%(left)s bekliyor · %(done)s tamamlandı"
+
+#: apps/webapp/overview.py
+msgid "Today's appointments"
+msgstr "Bugünkü randevular"
+
+#: apps/webapp/overview.py
+msgid "All appointments"
+msgstr "Tüm randevular"
+
+#: apps/webapp/overview.py
+msgid "No appointments today."
+msgstr "Bugün randevu yok."
+
+#: apps/webapp/overview.py
+msgid "Book appointment"
+msgstr "Randevu al"
+
+#: apps/webapp/overview.py
+msgid "Staff today"
+msgstr "Bugünkü personel"
+
+#: apps/webapp/overview.py
+msgid ""
+"Choose who did the work when you bill, and each person's total shows here."
+msgstr ""
+"Fatura keserken işi kimin yaptığını seçin; herkesin toplamı burada görünür."
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "Ödeme alındı — teşekkürler!"
@@ -12770,10 +12808,6 @@ msgstr "Stoğa %(count)s seri numarası eklendi."
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "Zaten kayıtlı: %(list)s"
-
-#: apps/webapp/templatetags/sample_data.py
-msgid "Book appointment"
-msgstr "Randevu al"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

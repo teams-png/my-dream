@@ -34,210 +34,6 @@ msgid "New bill"
 msgstr "नया बिल"
 
 #: templates/base.html
-msgid "New sale (POS)"
-msgstr "नई बिक्री (POS)"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "बिक्री"
-
-#: templates/base.html
-msgid "Leads & pipeline"
-msgstr "लीड्स और पाइपलाइन"
-
-#: templates/base.html
-msgid "Price lists & offers"
-msgstr "मूल्य सूची और ऑफ़र"
-
-#: templates/base.html
-msgid "Invoices"
-msgstr "इनवॉइस"
-
-#: templates/base.html
-msgid "Quotations"
-msgstr "कोटेशन"
-
-#: templates/base.html
-msgid "Sales orders & delivery"
-msgstr "सेल्स ऑर्डर और डिलीवरी"
-
-#: templates/base.html
-msgid "Billing"
-msgstr "बिलिंग"
-
-#: templates/base.html
-msgid "POS"
-msgstr "POS"
-
-#: templates/base.html
-msgid "Returns & Refunds"
-msgstr "रिटर्न और रिफंड"
-
-#: templates/base.html
-msgid "Coupons"
-msgstr "कूपन"
-
-#: templates/base.html
-msgid "Loyalty"
-msgstr "लॉयल्टी"
-
-#: templates/base.html
-msgid "Purchases"
-msgstr "खरीद"
-
-#: templates/base.html
-msgid "Purchase orders"
-msgstr "खरीद ऑर्डर"
-
-#: templates/base.html
-msgid "Suppliers"
-msgstr "सप्लायर"
-
-#: templates/base.html
-msgid "Purchase Reports"
-msgstr "खरीद रिपोर्ट"
-
-#: templates/base.html
-msgid "Finance"
-msgstr "वित्त"
-
-#: templates/base.html
-msgid "Bank & cash"
-msgstr "बैंक और नकद"
-
-#: templates/base.html
-msgid "Daily report"
-msgstr "दैनिक रिपोर्ट"
-
-#: templates/base.html
-msgid "Accounts & reports"
-msgstr "खाते और रिपोर्ट"
-
-#: templates/base.html
-msgid "Finance overview"
-msgstr "वित्त ओवरव्यू"
-
-#: templates/base.html
-msgid "Cheques (PDC)"
-msgstr "चेक (PDC)"
-
-#: templates/base.html
-msgid "Recurring invoices"
-msgstr "आवर्ती इनवॉइस"
-
-#: templates/base.html
-msgid "Fixed assets"
-msgstr "स्थायी संपत्ति"
-
-#: templates/base.html
-msgid "Expenses"
-msgstr "खर्च"
-
-#: templates/base.html
-msgid "Budgets"
-msgstr "बजट"
-
-#: templates/base.html
-msgid "Online payments"
-msgstr "ऑनलाइन भुगतान"
-
-#: templates/base.html
-msgid "People"
-msgstr "लोग"
-
-#: templates/base.html
-msgid "Customers"
-msgstr "ग्राहक"
-
-#: templates/base.html
-msgid "Money to collect"
-msgstr "वसूली योग्य राशि"
-
-#: templates/base.html
-msgid "Customer reminders"
-msgstr "ग्राहक रिमाइंडर"
-
-#: templates/base.html
-msgid "Team"
-msgstr "टीम"
-
-#: templates/base.html
-msgid "Staff & HR"
-msgstr "स्टाफ और HR"
-
-#: templates/base.html
-msgid "Attendance"
-msgstr "उपस्थिति"
-
-#: templates/base.html
-msgid "Payroll & advances"
-msgstr "वेतन और एडवांस"
-
-#: templates/base.html
-msgid "Business"
-msgstr "व्यवसाय"
-
-#: templates/base.html
-msgid "Stock & inventory"
-msgstr "स्टॉक और इन्वेंटरी"
-
-#: templates/base.html
-msgid "Analytics"
-msgstr "एनालिटिक्स"
-
-#: templates/base.html
-msgid "Branches"
-msgstr "शाखाएँ"
-
-#: templates/base.html
-msgid "Settings"
-msgstr "सेटिंग्स"
-
-#: templates/base.html
-msgid "Reminders & alerts"
-msgstr "रिमाइंडर और अलर्ट"
-
-#: templates/base.html
-msgid "Tax & currency"
-msgstr "टैक्स और मुद्रा"
-
-#: templates/base.html
-msgid "Activity log"
-msgstr "गतिविधि लॉग"
-
-#: templates/base.html
-msgid "Notifications"
-msgstr "सूचनाएँ"
-
-#: templates/base.html
-msgid "Devices & Printers"
-msgstr "डिवाइस और प्रिंटर"
-
-#: templates/base.html
-msgid "Security & 2FA"
-msgstr "सुरक्षा और 2FA"
-
-#: templates/base.html
-msgid "Backups"
-msgstr "बैकअप"
-
-#: templates/base.html
-msgid "Help & support"
-msgstr "सहायता और समर्थन"
-
-#: templates/base.html
-msgid "User guide"
-msgstr "उपयोगकर्ता गाइड"
-
-#: templates/base.html
-msgid "API docs"
-msgstr "API दस्तावेज़"
-
-#: templates/base.html
-msgid "⚙ Platform Admin"
-msgstr "⚙ प्लेटफ़ॉर्म एडमिन"
-
-#: templates/base.html
 msgid "Gym"
 msgstr "जिम"
 
@@ -248,6 +44,10 @@ msgstr "सदस्य"
 #: templates/base.html
 msgid "Membership Plans"
 msgstr "सदस्यता योजनाएँ"
+
+#: templates/base.html
+msgid "Attendance"
+msgstr "उपस्थिति"
 
 #: templates/base.html
 msgid "Reports"
@@ -438,12 +238,208 @@ msgid "Menu & Ingredients"
 msgstr "मेन्यू और सामग्री"
 
 #: templates/base.html
+msgid "Sales"
+msgstr "बिक्री"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "पैकेज / सेशन"
 
 #: templates/base.html
 msgid "Service Reports"
 msgstr "सर्विस रिपोर्ट"
+
+#: templates/base.html
+msgid "Leads & pipeline"
+msgstr "लीड्स और पाइपलाइन"
+
+#: templates/base.html
+msgid "Price lists & offers"
+msgstr "मूल्य सूची और ऑफ़र"
+
+#: templates/base.html
+msgid "Invoices"
+msgstr "इनवॉइस"
+
+#: templates/base.html
+msgid "Quotations"
+msgstr "कोटेशन"
+
+#: templates/base.html
+msgid "Sales orders & delivery"
+msgstr "सेल्स ऑर्डर और डिलीवरी"
+
+#: templates/base.html
+msgid "Billing"
+msgstr "बिलिंग"
+
+#: templates/base.html
+msgid "POS"
+msgstr "POS"
+
+#: templates/base.html
+msgid "Returns & Refunds"
+msgstr "रिटर्न और रिफंड"
+
+#: templates/base.html
+msgid "Coupons"
+msgstr "कूपन"
+
+#: templates/base.html
+msgid "Loyalty"
+msgstr "लॉयल्टी"
+
+#: templates/base.html
+msgid "Purchases"
+msgstr "खरीद"
+
+#: templates/base.html
+msgid "Purchase orders"
+msgstr "खरीद ऑर्डर"
+
+#: templates/base.html
+msgid "Suppliers"
+msgstr "सप्लायर"
+
+#: templates/base.html
+msgid "Purchase Reports"
+msgstr "खरीद रिपोर्ट"
+
+#: templates/base.html
+msgid "Finance"
+msgstr "वित्त"
+
+#: templates/base.html
+msgid "Bank & cash"
+msgstr "बैंक और नकद"
+
+#: templates/base.html
+msgid "Daily report"
+msgstr "दैनिक रिपोर्ट"
+
+#: templates/base.html
+msgid "Accounts & reports"
+msgstr "खाते और रिपोर्ट"
+
+#: templates/base.html
+msgid "Finance overview"
+msgstr "वित्त ओवरव्यू"
+
+#: templates/base.html
+msgid "Cheques (PDC)"
+msgstr "चेक (PDC)"
+
+#: templates/base.html
+msgid "Recurring invoices"
+msgstr "आवर्ती इनवॉइस"
+
+#: templates/base.html
+msgid "Fixed assets"
+msgstr "स्थायी संपत्ति"
+
+#: templates/base.html
+msgid "Expenses"
+msgstr "खर्च"
+
+#: templates/base.html
+msgid "Budgets"
+msgstr "बजट"
+
+#: templates/base.html
+msgid "Online payments"
+msgstr "ऑनलाइन भुगतान"
+
+#: templates/base.html
+msgid "People"
+msgstr "लोग"
+
+#: templates/base.html
+msgid "Customers"
+msgstr "ग्राहक"
+
+#: templates/base.html
+msgid "Money to collect"
+msgstr "वसूली योग्य राशि"
+
+#: templates/base.html
+msgid "Customer reminders"
+msgstr "ग्राहक रिमाइंडर"
+
+#: templates/base.html
+msgid "Team"
+msgstr "टीम"
+
+#: templates/base.html
+msgid "Staff & HR"
+msgstr "स्टाफ और HR"
+
+#: templates/base.html
+msgid "Payroll & advances"
+msgstr "वेतन और एडवांस"
+
+#: templates/base.html
+msgid "Business"
+msgstr "व्यवसाय"
+
+#: templates/base.html
+msgid "Stock & inventory"
+msgstr "स्टॉक और इन्वेंटरी"
+
+#: templates/base.html
+msgid "Analytics"
+msgstr "एनालिटिक्स"
+
+#: templates/base.html
+msgid "Branches"
+msgstr "शाखाएँ"
+
+#: templates/base.html
+msgid "Settings"
+msgstr "सेटिंग्स"
+
+#: templates/base.html
+msgid "Reminders & alerts"
+msgstr "रिमाइंडर और अलर्ट"
+
+#: templates/base.html
+msgid "Tax & currency"
+msgstr "टैक्स और मुद्रा"
+
+#: templates/base.html
+msgid "Activity log"
+msgstr "गतिविधि लॉग"
+
+#: templates/base.html
+msgid "Notifications"
+msgstr "सूचनाएँ"
+
+#: templates/base.html
+msgid "Devices & Printers"
+msgstr "डिवाइस और प्रिंटर"
+
+#: templates/base.html
+msgid "Security & 2FA"
+msgstr "सुरक्षा और 2FA"
+
+#: templates/base.html
+msgid "Backups"
+msgstr "बैकअप"
+
+#: templates/base.html
+msgid "Help & support"
+msgstr "सहायता और समर्थन"
+
+#: templates/base.html
+msgid "User guide"
+msgstr "उपयोगकर्ता गाइड"
+
+#: templates/base.html
+msgid "API docs"
+msgstr "API दस्तावेज़"
+
+#: templates/base.html
+msgid "⚙ Platform Admin"
+msgstr "⚙ प्लेटफ़ॉर्म एडमिन"
 
 #: templates/base.html
 msgid "Log out"
@@ -545,17 +541,61 @@ msgstr "पासवर्ड बदलें"
 msgid "Install app"
 msgstr "ऐप इंस्टॉल करें"
 
-#: templates/webapp/_checklist.html
-msgid "Your BookPilot setup"
-msgstr "आपका BookPilot सेटअप"
-
-#: templates/webapp/_checklist.html
-msgid "Hide"
-msgstr "छिपाएँ"
-
 #: templates/webapp/_excel_button.html
 msgid "Excel"
 msgstr "Excel"
+
+#: templates/webapp/_getting_started.html
+msgid "Getting started"
+msgstr "शुरुआत करें"
+
+#: templates/webapp/_getting_started.html
+msgid "Next"
+msgstr "आगे"
+
+#: templates/webapp/_getting_started.html
+msgid "You are looking at sample data"
+msgstr "आप सैंपल डेटा देख रहे हैं"
+
+#: templates/webapp/_getting_started.html
+msgid "Show all"
+msgstr "सभी देखें"
+
+#: templates/webapp/_getting_started.html
+msgid ""
+"These were added as examples so you can see how everything works. Try a "
+"sale, then remove them and add your own."
+msgstr ""
+"ये उदाहरण के लिए जोड़े गए हैं ताकि आप देख सकें कि सब कैसे काम करता है। एक "
+"बिक्री करके देखें, फिर इन्हें हटाकर अपना डेटा जोड़ें।"
+
+#: templates/webapp/_getting_started.html
+msgid "products"
+msgstr "उत्पाद"
+
+#: templates/webapp/_getting_started.html
+msgid "services"
+msgstr "सेवाएँ"
+
+#: templates/webapp/_getting_started.html
+msgid "customers"
+msgstr "ग्राहक"
+
+#: templates/webapp/_getting_started.html
+msgid "staff"
+msgstr "स्टाफ"
+
+#: templates/webapp/_getting_started.html
+msgid "Remove all sample products, services, customers and staff?"
+msgstr "सभी सैंपल उत्पाद, सेवाएँ, ग्राहक और स्टाफ हटाएँ?"
+
+#: templates/webapp/_getting_started.html
+msgid "Remove sample data"
+msgstr "नमूना डेटा हटाएँ"
+
+#: templates/webapp/_getting_started.html
+msgid "Hide"
+msgstr "छिपाएँ"
 
 #: templates/webapp/_industry_nav.html
 msgid "Bookings"
@@ -693,41 +733,21 @@ msgstr "मेरी वेबसाइट"
 msgid "Language"
 msgstr "भाषा"
 
-#: templates/webapp/_sample_banner.html
-msgid "You are looking at sample data"
-msgstr "आप सैंपल डेटा देख रहे हैं"
+#: templates/webapp/_overview_panel.html
+msgid "Done"
+msgstr "हो गया"
 
-#: templates/webapp/_sample_banner.html
-msgid ""
-"These were added as examples so you can see how everything works. Try a "
-"sale, then remove them and add your own."
-msgstr ""
-"ये उदाहरण के लिए जोड़े गए हैं ताकि आप देख सकें कि सब कैसे काम करता है। एक "
-"बिक्री करके देखें, फिर इन्हें हटाकर अपना डेटा जोड़ें।"
+#: templates/webapp/_overview_panel.html
+msgid "more"
+msgstr "और"
 
-#: templates/webapp/_sample_banner.html
-msgid "products"
-msgstr "उत्पाद"
+#: templates/webapp/_overview_panel.html
+msgid "bill"
+msgstr "बिल"
 
-#: templates/webapp/_sample_banner.html
-msgid "services"
-msgstr "सेवाएँ"
-
-#: templates/webapp/_sample_banner.html
-msgid "customers"
-msgstr "ग्राहक"
-
-#: templates/webapp/_sample_banner.html
-msgid "staff"
-msgstr "स्टाफ"
-
-#: templates/webapp/_sample_banner.html
-msgid "Remove all sample products, services, customers and staff?"
-msgstr "सभी सैंपल उत्पाद, सेवाएँ, ग्राहक और स्टाफ हटाएँ?"
-
-#: templates/webapp/_sample_banner.html
-msgid "Remove sample data"
-msgstr "नमूना डेटा हटाएँ"
+#: templates/webapp/_overview_panel.html
+msgid "bills"
+msgstr "बिल"
 
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
@@ -1319,10 +1339,6 @@ msgstr ""
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
 msgstr "बजट सेव करें"
-
-#: templates/webapp/automation/daily_report.html
-msgid "bills"
-msgstr "बिल"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
@@ -2323,10 +2339,6 @@ msgid "due"
 msgstr "देय"
 
 #: templates/webapp/crm/lead_detail.html
-msgid "Done"
-msgstr "हो गया"
-
-#: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
 msgstr "अभी कोई गतिविधि नहीं।"
 
@@ -2671,28 +2683,12 @@ msgid "No customers yet."
 msgstr "अभी कोई ग्राहक नहीं।"
 
 #: templates/webapp/dashboard.html
-msgid "Finish setting up your business"
-msgstr "अपने व्यवसाय का सेटअप पूरा करें"
-
-#: templates/webapp/dashboard.html
-msgid "Add your logo, first products and printer in 3 quick steps."
-msgstr "3 आसान चरणों में अपना लोगो, पहले उत्पाद और प्रिंटर जोड़ें।"
-
-#: templates/webapp/dashboard.html
-msgid "Continue setup"
-msgstr "सेटअप जारी रखें"
-
-#: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
 msgstr "आपकी सदस्यता समाप्त हो गई है।"
 
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "अभी नवीनीकरण करें →"
-
-#: templates/webapp/dashboard.html
-msgid "View billing →"
-msgstr "बिलिंग देखें →"
 
 #: templates/webapp/dashboard.html
 msgid "Subscription renews in"
@@ -2703,16 +2699,16 @@ msgid "New online booking requests"
 msgstr "नए ऑनलाइन बुकिंग अनुरोध"
 
 #: templates/webapp/dashboard.html
-msgid "Today's sales"
-msgstr "आज की बिक्री"
+msgid "Finish setting up your business"
+msgstr "अपने व्यवसाय का सेटअप पूरा करें"
 
 #: templates/webapp/dashboard.html
-msgid "This month's revenue"
-msgstr "इस महीने की आय"
+msgid "Add your logo, first products and printer in 3 quick steps."
+msgstr "3 आसान चरणों में अपना लोगो, पहले उत्पाद और प्रिंटर जोड़ें।"
 
 #: templates/webapp/dashboard.html
-msgid "Outstanding dues"
-msgstr "बकाया राशि"
+msgid "Continue setup"
+msgstr "सेटअप जारी रखें"
 
 #: templates/webapp/dashboard.html
 msgid "Business overview"
@@ -2829,6 +2825,10 @@ msgstr "की गई बिक्री"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "हाल की बिक्री"
+
+#: templates/webapp/dashboard.html
+msgid "View all"
+msgstr "सभी देखें"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -6324,10 +6324,6 @@ msgstr "चरण"
 msgid "Skip tour"
 msgstr "टूर छोड़ें"
 
-#: templates/webapp/pos.html
-msgid "Next"
-msgstr "आगे"
-
 #: templates/webapp/pos_offline_sales.html
 msgid ""
 "Sales made on a till while the internet was down. They are sent to the "
@@ -6492,6 +6488,10 @@ msgstr "1× पिज़्ज़ा"
 #: templates/webapp/public/landing.html
 msgid "2× Drink"
 msgstr "2× पेय"
+
+#: templates/webapp/public/landing.html
+msgid "Today's sales"
+msgstr "आज की बिक्री"
 
 #: templates/webapp/public/landing.html
 msgid "QAR 0"
@@ -7948,10 +7948,6 @@ msgstr "👨‍🍳 किचन"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Sales today ·"
 msgstr "आज की बिक्री ·"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "bill"
-msgstr "बिल"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"
@@ -9457,6 +9453,10 @@ msgstr "प्लान और बिलिंग"
 #: templates/webapp/settings.html
 msgid "Active until"
 msgstr "तक सक्रिय"
+
+#: templates/webapp/settings.html
+msgid "View billing →"
+msgstr "बिलिंग देखें →"
 
 #: templates/webapp/settings.html
 msgid "Sample data"
@@ -11973,6 +11973,43 @@ msgstr "ऑर्डर %(no)s स्वीकार कर किचन मे�
 msgid "Order %(no)s rejected."
 msgstr "ऑर्डर %(no)s अस्वीकार किया गया।"
 
+#: apps/webapp/overview.py
+msgid "This month's revenue"
+msgstr "इस महीने की आय"
+
+#: apps/webapp/overview.py
+msgid "Outstanding dues"
+msgstr "बकाया राशि"
+
+#: apps/webapp/overview.py
+msgid "%(left)s waiting · %(done)s done"
+msgstr "%(left)s प्रतीक्षा में · %(done)s पूरे"
+
+#: apps/webapp/overview.py
+msgid "Today's appointments"
+msgstr "आज की अपॉइंटमेंट"
+
+#: apps/webapp/overview.py
+msgid "All appointments"
+msgstr "सभी अपॉइंटमेंट"
+
+#: apps/webapp/overview.py
+msgid "No appointments today."
+msgstr "आज कोई अपॉइंटमेंट नहीं।"
+
+#: apps/webapp/overview.py
+msgid "Book appointment"
+msgstr "अपॉइंटमेंट बुक करें"
+
+#: apps/webapp/overview.py
+msgid "Staff today"
+msgstr "आज का स्टाफ"
+
+#: apps/webapp/overview.py
+msgid ""
+"Choose who did the work when you bill, and each person's total shows here."
+msgstr "बिल बनाते समय काम करने वाले को चुनें, हर व्यक्ति का कुल यहाँ दिखेगा।"
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "भुगतान प्राप्त — धन्यवाद!"
@@ -12720,10 +12757,6 @@ msgstr "स्टॉक में %(count)s सीरियल नंबर ज�
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "पहले से दर्ज: %(list)s"
-
-#: apps/webapp/templatetags/sample_data.py
-msgid "Book appointment"
-msgstr "अपॉइंटमेंट बुक करें"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

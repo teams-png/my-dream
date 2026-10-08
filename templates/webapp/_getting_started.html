@@ -1,0 +1,70 @@
+{% load i18n sample_data %}{% setup_checklist as checklist %}{% sample_summary as samples %}
+{% with show_steps=checklist|default_if_none:False %}
+{% if samples.loaded or show_steps and not checklist.hidden and checklist.percent < 100 %}
+<style>
+.card.gs{padding:0;margin-bottom:18px;overflow:hidden}
+.gs summary{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:14px 18px;cursor:pointer}
+.gs summary::-webkit-details-marker{display:none}
+.gs-bar{flex:1 1 140px;max-width:260px;height:8px;border-radius:99px;background:var(--line,#e4ebe6);overflow:hidden}
+.gs-bar i{display:block;height:100%;background:linear-gradient(90deg,#1f7a45,#8ac926);border-radius:99px;transition:width .4s}
+.gs-next{color:var(--ink-soft);font-size:14px}
+.gs-next a{color:var(--accent);font-weight:600;text-decoration:none}
+.gs-toggle{margin-inline-start:auto;color:var(--accent);font-size:13.5px;font-weight:600}
+.gs-toggle::after{content:" ▾"}.gs[open] .gs-toggle::after{content:" ▴"}
+.gs-body{padding:0 18px 16px;border-top:1px solid var(--line)}
+.gs ul{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.gs li a{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line,#e4ebe6);border-radius:12px;color:inherit;text-decoration:none;font-size:14px}
+.gs li a:hover{border-color:var(--accent)}
+.gs li .tick{width:22px;height:22px;border-radius:50%;border:2px solid var(--line,#cfd8d2);display:grid;place-items:center;flex-shrink:0;font-size:12px}
+.gs li.done a{color:var(--ink-soft)}.gs li.done .label{text-decoration:line-through}
+.gs li.done .tick{background:#1f7a45;border-color:#1f7a45;color:#fff}
+.gs-sample{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:14px;padding:12px 14px;border-radius:12px;background:#fffbea;border:1px solid #f1e3a6}
+.gs-sample .chip{background:#fff;padding:2px 9px;border-radius:99px;font-size:12.5px;font-weight:600}
+.gs-hide{background:none;border:0;color:var(--ink-soft);cursor:pointer;font:inherit;font-size:13px;margin-top:10px}
+</style>
+<details class="card gs" id="bpCheck" data-total="{{ checklist.total }}">
+  <summary>
+    {% if show_steps and not checklist.hidden and checklist.percent < 100 %}
+    <strong>🚀 {% translate "Getting started" %}: <span id="bpPct">{{ checklist.percent }}</span>%</strong>
+    <span class="gs-bar"><i id="bpBar" style="width:{{ checklist.percent }}%"></i></span>
+    {% with next=checklist.next %}{% if next %}<span class="gs-next">{% translate "Next" %}: <a href="{{ next.url }}" onclick="event.stopPropagation()">{{ next.icon }} {{ next.label }} →</a></span>{% endif %}{% endwith %}
+    {% else %}
+    <strong>🧪 {% translate "You are looking at sample data" %}</strong>
+    {% endif %}
+    <span class="gs-toggle">{% translate "Show all" %}</span>
+  </summary>
+  <div class="gs-body">
+    {% if show_steps and not checklist.hidden and checklist.percent < 100 %}
+    <ul>
+      {% for item in checklist.items %}
+      <li class="{% if item.done %}done{% endif %}" data-key="{{ item.key }}"><a href="{{ item.url }}"><span class="tick">{% if item.done %}✓{% endif %}</span><span>{{ item.icon }}</span><span class="label">{{ item.label }}</span></a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if samples.loaded %}
+    <div class="gs-sample">
+      <span style="flex:1 1 240px"><b>🧪 {% translate "You are looking at sample data" %}</b><br>
+        <span style="color:var(--ink-soft);font-size:13.5px">{% translate "These were added as examples so you can see how everything works. Try a sale, then remove them and add your own." %}</span><br>
+        <span style="display:inline-flex;flex-wrap:wrap;gap:6px;margin-top:6px">{% if samples.products %}<span class="chip">📦 {{ samples.products }} {% translate "products" %}</span>{% endif %}{% if samples.services %}<span class="chip">🛎 {{ samples.services }} {% translate "services" %}</span>{% endif %}{% if samples.customers %}<span class="chip">👥 {{ samples.customers }} {% translate "customers" %}</span>{% endif %}{% if samples.staff %}<span class="chip">🧑‍💼 {{ samples.staff }} {% translate "staff" %}</span>{% endif %}</span></span>
+      <form method="post" action="{% url 'webapp:sample_data' %}" onsubmit="return confirm('{% translate "Remove all sample products, services, customers and staff?" %}')" style="margin:0">{% csrf_token %}
+        <input type="hidden" name="action" value="remove"><input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <button class="btn btn-secondary" type="submit">🗑 {% translate "Remove sample data" %}</button>
+      </form>
+    </div>
+    {% endif %}
+    {% if show_steps and not checklist.hidden and checklist.percent < 100 %}<button class="gs-hide" type="button" onclick="bpMilestone('checklist_hidden');this.remove();document.querySelector('#bpCheck ul').remove()">{% translate "Hide" %} {% translate "Getting started" %}</button>{% endif %}
+  </div>
+</details>
+<script>
+(function(){
+  var li=document.querySelector('#bpCheck li[data-key="devices"]');
+  var saved=null;try{saved=localStorage.getItem("bp.devices.v1")}catch(e){}
+  if(li&&saved&&!li.classList.contains("done")){
+    li.classList.add("done");li.querySelector(".tick").textContent="✓";window.bpMilestone&&bpMilestone("devices");
+    var n=document.querySelectorAll("#bpCheck li.done").length,t=+document.getElementById("bpCheck").dataset.total,p=Math.round(100*n/t);
+    document.getElementById("bpPct").textContent=p;document.getElementById("bpBar").style.width=p+"%";
+  }
+})();
+</script>
+{% endif %}
+{% endwith %}

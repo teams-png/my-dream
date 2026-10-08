@@ -41,7 +41,7 @@ def test_overview_tiles_open_their_details_for_every_business_type():
                             "accept_terms": "on", "website": ""})
         c.post("/setup/business/", {"skip_all": "1"})
         links = _check(c, "/", code, failures)
-        assert len(links) >= 5, (code, links)  # 4 money tiles + business tiles + customers
+        assert len(links) >= 4, (code, links)  # the four number tiles, plus business tiles or work lists
         counted += len(links)
         for page in HOMES.get(code, []) + ["/finance/"]:
             found = _check(c, page, code, failures)

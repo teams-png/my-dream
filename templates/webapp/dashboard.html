@@ -4,38 +4,55 @@
 {% block heading %}{% translate "Overview" %}{% endblock %}
 {% block content %}
 {% can "setup" as can_setup %}{% can "analytics" as can_reports %}
-{% load sample_data %}{% quick_actions as actions %}{% if actions %}
-<div class="quick-actions" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px">
-  {% for icon, label, url, primary in actions %}<a class="btn{% if not primary %} btn-secondary{% endif %}" href="{{ url }}" style="font-size:16px;padding:14px 22px">{{ icon }} {{ label }}</a>{% endfor %}
-</div>
-{% endif %}
-{% if request.role.name == "Owner" and not active_company.is_demo %}{% include "webapp/_sample_banner.html" %}{% include "webapp/_checklist.html" %}{% endif %}
-{% if show_setup and can_setup and request.role.name != "Owner" %}
-<a href="{% url 'webapp:setup' step='business' %}" class="card" style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-bottom:18px;text-decoration:none;color:inherit;border-left:4px solid var(--accent)">
-  <span style="font-size:32px">🚀</span>
-  <span style="flex:1 1 200px"><strong style="font-size:16px">{% translate "Finish setting up your business" %}</strong><br><span style="color:var(--ink-soft)">{% translate "Add your logo, first products and printer in 3 quick steps." %}</span></span>
-  <span class="btn">{% translate "Continue setup" %} →</span>
-</a>
-{% endif %}
-{% if subscription and request.role.name == "Owner" %}
-  {% if subscription_days_left < 0 %}
-  <div class="card" style="border-left:4px solid var(--danger); margin-bottom:18px;">
-    <strong style="color:var(--danger);">{% translate "Your subscription has expired." %}</strong>
-    <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">{% translate "Renew now →" %}</a>
-  </div>
-  {% elif subscription.status == "trial" and subscription_days_left <= 7 %}
-  {# Only near the end: the trial is always shown under Settings → Plan & billing. #}
-  <div class="card" style="border-left:4px solid var(--accent); margin-bottom:18px;">
-    <strong>{% translate "Free trial —" %} {{ subscription_days_left }} {% translate "days left" %}</strong>
-    <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">{% translate "View billing →" %}</a>
-  </div>
-  {% elif subscription.status != "trial" and subscription_days_left <= 7 %}
-  <div class="card" style="border-left:4px solid var(--accent); margin-bottom:18px;">
-    <strong>{% translate "Subscription renews in" %} {{ subscription_days_left }} day{{ subscription_days_left|pluralize }}</strong>
-    <a href="{% url 'webapp:billing' %}" style="margin-left:8px; color:var(--accent);">{% translate "View billing →" %}</a>
-  </div>
+{% load sample_data %}{% quick_actions as actions %}
+<style>
+.ov-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px;margin-bottom:16px}
+.ov-hello{font-size:22px;font-weight:700;letter-spacing:-.01em}
+.ov-date{color:var(--ink-soft);font-size:14px;margin-top:2px}
+.ov-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;font-size:13.5px;font-weight:600;text-decoration:none;background:var(--accent-soft,#e9f5ec);color:var(--accent)}
+.ov-chip.bad{background:#fde8e8;color:var(--danger)}
+.ov-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.ov-actions .btn{font-size:16px;padding:13px 20px}
+.ov-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}
+.ov-kpi{display:block;text-decoration:none;color:inherit;border-top:3px solid var(--accent)}
+.ov-kpi .k-label{color:var(--ink-soft);font-size:13px;padding-inline-end:18px}
+.ov-kpi .k-value{font-size:26px;font-weight:700;margin-top:6px}
+.ov-kpi .k-note{color:var(--ink-soft);font-size:12.5px;margin-top:2px}
+.ov-kpi.warn{border-top-color:var(--warning)}.ov-kpi.warn .k-value{color:var(--warning)}
+.ov-kpi.bad{border-top-color:var(--danger)}.ov-kpi.bad .k-value{color:var(--danger)}
+.ov-panels{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px;margin-bottom:18px}
+.card.ov-panel{padding:0;overflow:hidden}
+.ov-panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.ov-panel-head h2{font-size:15px;margin:0}
+.ov-panel-head a{font-size:13.5px;color:var(--accent);text-decoration:none;font-weight:600}
+.ov-panel-head a.stat-link::after{content:none}.ov-panel-head a.stat-link:hover{transform:none;box-shadow:none;text-decoration:underline}
+.ov-row{display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid var(--line)}
+.ov-row:last-child{border-bottom:0}
+.ov-time{font-weight:700;min-width:52px;font-variant-numeric:tabular-nums}
+.ov-main{flex:1;min-width:0}
+.ov-main b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ov-main span{color:var(--ink-soft);font-size:13px}
+.ov-tag{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--paper);color:var(--ink-soft);white-space:nowrap}
+.ov-tag.completed{background:var(--accent-soft,#e9f5ec);color:var(--accent)}
+.ov-tag.no_show{background:#fde8e8;color:var(--danger)}
+.ov-row .btn{padding:6px 12px;font-size:13px}
+.ov-empty{padding:26px 18px;text-align:center;color:var(--ink-soft)}
+.ov-empty .btn{margin-top:10px}
+.ov-amount{font-weight:700;font-variant-numeric:tabular-nums}
+@media(max-width:900px){.ov-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.ov-panels{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:520px){.ov-kpi .k-value{font-size:21px}.ov-actions .btn{flex:1 1 auto;justify-content:center}}
+</style>
+<div class="ov-head">
+  <div><div class="ov-hello">{{ greeting }}{% if request.user.first_name %}, {{ request.user.first_name }}{% endif %} 👋</div>
+    <div class="ov-date">{{ today|date:"l, j F Y" }} · {{ active_company.name }}</div></div>
+  {% if subscription and request.role.name == "Owner" %}
+    {% if subscription_days_left < 0 %}<a class="ov-chip bad" href="{% url 'webapp:billing' %}">⚠ {% translate "Your subscription has expired." %} {% translate "Renew now →" %}</a>
+    {% elif subscription.status == "trial" and subscription_days_left <= 7 %}{# only near the end: the trial is always shown under Settings → Plan & billing #}<a class="ov-chip" href="{% url 'webapp:billing' %}">⏳ {% translate "Free trial —" %} {{ subscription_days_left }} {% translate "days left" %} →</a>
+    {% elif subscription.status != "trial" and subscription_days_left <= 7 %}<a class="ov-chip" href="{% url 'webapp:billing' %}">{% translate "Subscription renews in" %} {{ subscription_days_left }} day{{ subscription_days_left|pluralize }} →</a>
+    {% endif %}
   {% endif %}
-{% endif %}
+</div>
+{% if actions %}<div class="ov-actions">{% for icon, label, url, primary in actions %}<a class="btn{% if not primary %} btn-secondary{% endif %}" href="{{ url }}">{{ icon }} {{ label }}</a>{% endfor %}</div>{% endif %}
 
 {% if online_requests %}
 <a class="card" href="{% url 'webapp:ob_inbox' %}" style="display:block;text-decoration:none;color:inherit;margin-bottom:16px;border:2px solid var(--accent)">
@@ -43,25 +60,34 @@
   <div style="color:var(--ink-soft);font-size:13.5px;margin-top:4px">{% for r in online_requests_next %}{{ r.name }} · {{ r.date|date:"j M" }}{% if r.time %} {{ r.time|time:"H:i" }}{% endif %}{% if not forloop.last %} — {% endif %}{% endfor %}</div>
 </a>
 {% endif %}
-<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:16px;">
-  <a class="card stat-link" href="{% url 'webapp:sales_invoice_list' %}?from={{ today_iso }}&to={{ today_iso }}" style="border-top:3px solid var(--accent);text-decoration:none;color:inherit">
-    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Today's sales" %}</div>
-    <div style="font-size:26px; font-weight:700; margin-top:6px;">{{ today_sales|floatformat:2 }}</div>
+
+<div class="ov-kpis">
+  {% for k in kpis %}{% if not k.reports or can_reports %}
+  <a class="card stat-link ov-kpi {{ k.tone }}" href="{{ k.url }}">
+    <div class="k-label">{{ k.label }}</div>
+    <div class="k-value">{% if "money" in k.tone %}{{ k.value|floatformat:2 }}{% else %}{{ k.value }}{% endif %}</div>
+    {% if k.note %}<div class="k-note">{{ k.note }}</div>{% endif %}
   </a>
-  {% if can_reports %}<a class="card stat-link" href="{% url 'webapp:sales_invoice_list' %}?from={{ month_start_iso }}&to={{ today_iso }}" style="border-top:3px solid var(--accent);text-decoration:none;color:inherit">
-    <div style="color:var(--ink-soft); font-size:13px;">{% translate "This month's revenue" %}</div>
-    <div style="font-size:26px; font-weight:700; margin-top:6px;">{{ month_revenue|floatformat:2 }}</div>
-  </a>{% endif %}
-  <a class="card stat-link" href="{% url 'webapp:receivables' %}" style="border-top:3px solid {% if outstanding_dues > 0 %}var(--warning){% else %}var(--accent){% endif %};text-decoration:none;color:inherit">
-    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Outstanding dues" %}</div>
-    <div style="font-size:26px; font-weight:700; margin-top:6px; {% if outstanding_dues > 0 %}color:var(--warning);{% endif %}">{{ outstanding_dues|floatformat:2 }}</div>
-  </a>
-  <a class="card stat-link" href="{% url 'webapp:stock_home' %}?show=low" style="border-top:3px solid {% if low_stock_count > 0 %}var(--danger){% else %}var(--accent){% endif %};text-decoration:none;color:inherit">
-    <div style="color:var(--ink-soft); font-size:13px;">{% translate "Low stock items" %}</div>
-    <div style="font-size:26px; font-weight:700; margin-top:6px; {% if low_stock_count > 0 %}color:var(--danger);{% endif %}">{{ low_stock_count }}</div>
-  </a>
+  {% endif %}{% endfor %}
 </div>
 
+{% if main %}
+<div class="ov-panels">
+  {% include "webapp/_overview_panel.html" with panel=main %}
+  {% if side %}{% include "webapp/_overview_panel.html" with panel=side %}{% endif %}
+</div>
+{% endif %}
+
+{% if request.role.name == "Owner" and not active_company.is_demo %}{% include "webapp/_getting_started.html" %}{% endif %}
+{% if show_setup and can_setup and request.role.name != "Owner" %}
+<a href="{% url 'webapp:setup' step='business' %}" class="card" style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-bottom:18px;text-decoration:none;color:inherit;border-left:4px solid var(--accent)">
+  <span style="font-size:32px">🚀</span>
+  <span style="flex:1 1 200px"><strong style="font-size:16px">{% translate "Finish setting up your business" %}</strong><br><span style="color:var(--ink-soft)">{% translate "Add your logo, first products and printer in 3 quick steps." %}</span></span>
+  <span class="btn">{% translate "Continue setup" %} →</span>
+</a>
+{% endif %}
+
+{% if not own_layout %}
 <div style="font-size:15px; font-weight:700; margin:22px 0 12px;">{% translate "Business overview" %}</div>
 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
   {% if active_company.business_type.code == "gym" or active_company.business_type.code == "fitness_center" %}
@@ -322,7 +348,9 @@
   </a>
 </div>
 
-<div style="font-size:15px; font-weight:700; margin:26px 0 12px;">{% translate "Recent sales" %}</div>
+{% endif %}
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin:8px 0 12px"><b style="font-size:15px">{% translate "Recent sales" %}</b><a href="{% url 'webapp:sales_invoice_list' %}" style="font-size:13.5px;color:var(--accent);font-weight:600;text-decoration:none">{% translate "View all" %} →</a></div>
 <div class="card" style="padding:0; overflow:hidden;">
   {% if recent_invoices %}
   <table>

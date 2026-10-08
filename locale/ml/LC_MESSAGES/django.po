@@ -34,210 +34,6 @@ msgid "New bill"
 msgstr "പുതിയ ബിൽ"
 
 #: templates/base.html
-msgid "New sale (POS)"
-msgstr "പുതിയ സെയിൽ (POS)"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "വിൽപ്പന"
-
-#: templates/base.html
-msgid "Leads & pipeline"
-msgstr "ലീഡുകളും പൈപ്പ്‌ലൈനും"
-
-#: templates/base.html
-msgid "Price lists & offers"
-msgstr "വില പട്ടികയും ഓഫറുകളും"
-
-#: templates/base.html
-msgid "Invoices"
-msgstr "ഇൻവോയ്സുകൾ"
-
-#: templates/base.html
-msgid "Quotations"
-msgstr "ക്വട്ടേഷനുകൾ"
-
-#: templates/base.html
-msgid "Sales orders & delivery"
-msgstr "സെയിൽസ് ഓർഡറും ഡെലിവറിയും"
-
-#: templates/base.html
-msgid "Billing"
-msgstr "ബില്ലിംഗ്"
-
-#: templates/base.html
-msgid "POS"
-msgstr "POS"
-
-#: templates/base.html
-msgid "Returns & Refunds"
-msgstr "റിട്ടേണുകളും റീഫണ്ടുകളും"
-
-#: templates/base.html
-msgid "Coupons"
-msgstr "കൂപ്പണുകൾ"
-
-#: templates/base.html
-msgid "Loyalty"
-msgstr "ലോയൽറ്റി"
-
-#: templates/base.html
-msgid "Purchases"
-msgstr "പർച്ചേസുകൾ"
-
-#: templates/base.html
-msgid "Purchase orders"
-msgstr "പർച്ചേസ് ഓർഡറുകൾ"
-
-#: templates/base.html
-msgid "Suppliers"
-msgstr "സപ്ലയർമാർ"
-
-#: templates/base.html
-msgid "Purchase Reports"
-msgstr "പർച്ചേസ് റിപ്പോർട്ടുകൾ"
-
-#: templates/base.html
-msgid "Finance"
-msgstr "ഫിനാൻസ്"
-
-#: templates/base.html
-msgid "Bank & cash"
-msgstr "ബാങ്കും ക്യാഷും"
-
-#: templates/base.html
-msgid "Daily report"
-msgstr "ദിവസ റിപ്പോർട്ട്"
-
-#: templates/base.html
-msgid "Accounts & reports"
-msgstr "അക്കൗണ്ട്സ് & റിപ്പോർട്ടുകൾ"
-
-#: templates/base.html
-msgid "Finance overview"
-msgstr "ഫിനാൻസ് അവലോകനം"
-
-#: templates/base.html
-msgid "Cheques (PDC)"
-msgstr "ചെക്കുകൾ (PDC)"
-
-#: templates/base.html
-msgid "Recurring invoices"
-msgstr "ആവർത്തന ഇൻവോയ്സുകൾ"
-
-#: templates/base.html
-msgid "Fixed assets"
-msgstr "സ്ഥിര ആസ്തികൾ"
-
-#: templates/base.html
-msgid "Expenses"
-msgstr "ചെലവുകൾ"
-
-#: templates/base.html
-msgid "Budgets"
-msgstr "ബജറ്റുകൾ"
-
-#: templates/base.html
-msgid "Online payments"
-msgstr "ഓൺലൈൻ പേയ്‌മെന്റ്"
-
-#: templates/base.html
-msgid "People"
-msgstr "ആളുകൾ"
-
-#: templates/base.html
-msgid "Customers"
-msgstr "കസ്റ്റമർമാർ"
-
-#: templates/base.html
-msgid "Money to collect"
-msgstr "പിരിച്ചെടുക്കാനുള്ള പണം"
-
-#: templates/base.html
-msgid "Customer reminders"
-msgstr "കസ്റ്റമർ റിമൈൻഡറുകൾ"
-
-#: templates/base.html
-msgid "Team"
-msgstr "ടീം"
-
-#: templates/base.html
-msgid "Staff & HR"
-msgstr "സ്റ്റാഫ് & HR"
-
-#: templates/base.html
-msgid "Attendance"
-msgstr "ഹാജർ"
-
-#: templates/base.html
-msgid "Payroll & advances"
-msgstr "ശമ്പളം & അഡ്വാൻസ്"
-
-#: templates/base.html
-msgid "Business"
-msgstr "ബിസിനസ്"
-
-#: templates/base.html
-msgid "Stock & inventory"
-msgstr "സ്റ്റോക്ക് & ഇൻവെന്ററി"
-
-#: templates/base.html
-msgid "Analytics"
-msgstr "അനലിറ്റിക്സ്"
-
-#: templates/base.html
-msgid "Branches"
-msgstr "ബ്രാഞ്ചുകൾ"
-
-#: templates/base.html
-msgid "Settings"
-msgstr "സെറ്റിംഗ്സ്"
-
-#: templates/base.html
-msgid "Reminders & alerts"
-msgstr "ഓർമ്മപ്പെടുത്തലുകളും അലേർട്ടുകളും"
-
-#: templates/base.html
-msgid "Tax & currency"
-msgstr "നികുതിയും കറൻസിയും"
-
-#: templates/base.html
-msgid "Activity log"
-msgstr "പ്രവർത്തന രേഖ"
-
-#: templates/base.html
-msgid "Notifications"
-msgstr "അറിയിപ്പുകൾ"
-
-#: templates/base.html
-msgid "Devices & Printers"
-msgstr "ഉപകരണങ്ങളും പ്രിന്ററുകളും"
-
-#: templates/base.html
-msgid "Security & 2FA"
-msgstr "സുരക്ഷയും 2FA-യും"
-
-#: templates/base.html
-msgid "Backups"
-msgstr "ബാക്കപ്പുകൾ"
-
-#: templates/base.html
-msgid "Help & support"
-msgstr "സഹായവും സപ്പോർട്ടും"
-
-#: templates/base.html
-msgid "User guide"
-msgstr "യൂസർ ഗൈഡ്"
-
-#: templates/base.html
-msgid "API docs"
-msgstr "API ഡോക്സ്"
-
-#: templates/base.html
-msgid "⚙ Platform Admin"
-msgstr "⚙ പ്ലാറ്റ്ഫോം അഡ്മിൻ"
-
-#: templates/base.html
 msgid "Gym"
 msgstr "ജിം"
 
@@ -248,6 +44,10 @@ msgstr "അംഗങ്ങൾ"
 #: templates/base.html
 msgid "Membership Plans"
 msgstr "മെമ്പർഷിപ്പ് പ്ലാനുകൾ"
+
+#: templates/base.html
+msgid "Attendance"
+msgstr "ഹാജർ"
 
 #: templates/base.html
 msgid "Reports"
@@ -438,12 +238,208 @@ msgid "Menu & Ingredients"
 msgstr "മെനുവും ചേരുവകളും"
 
 #: templates/base.html
+msgid "Sales"
+msgstr "വിൽപ്പന"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "പാക്കേജുകൾ / സെഷനുകൾ"
 
 #: templates/base.html
 msgid "Service Reports"
 msgstr "സർവീസ് റിപ്പോർട്ടുകൾ"
+
+#: templates/base.html
+msgid "Leads & pipeline"
+msgstr "ലീഡുകളും പൈപ്പ്‌ലൈനും"
+
+#: templates/base.html
+msgid "Price lists & offers"
+msgstr "വില പട്ടികയും ഓഫറുകളും"
+
+#: templates/base.html
+msgid "Invoices"
+msgstr "ഇൻവോയ്സുകൾ"
+
+#: templates/base.html
+msgid "Quotations"
+msgstr "ക്വട്ടേഷനുകൾ"
+
+#: templates/base.html
+msgid "Sales orders & delivery"
+msgstr "സെയിൽസ് ഓർഡറും ഡെലിവറിയും"
+
+#: templates/base.html
+msgid "Billing"
+msgstr "ബില്ലിംഗ്"
+
+#: templates/base.html
+msgid "POS"
+msgstr "POS"
+
+#: templates/base.html
+msgid "Returns & Refunds"
+msgstr "റിട്ടേണുകളും റീഫണ്ടുകളും"
+
+#: templates/base.html
+msgid "Coupons"
+msgstr "കൂപ്പണുകൾ"
+
+#: templates/base.html
+msgid "Loyalty"
+msgstr "ലോയൽറ്റി"
+
+#: templates/base.html
+msgid "Purchases"
+msgstr "പർച്ചേസുകൾ"
+
+#: templates/base.html
+msgid "Purchase orders"
+msgstr "പർച്ചേസ് ഓർഡറുകൾ"
+
+#: templates/base.html
+msgid "Suppliers"
+msgstr "സപ്ലയർമാർ"
+
+#: templates/base.html
+msgid "Purchase Reports"
+msgstr "പർച്ചേസ് റിപ്പോർട്ടുകൾ"
+
+#: templates/base.html
+msgid "Finance"
+msgstr "ഫിനാൻസ്"
+
+#: templates/base.html
+msgid "Bank & cash"
+msgstr "ബാങ്കും ക്യാഷും"
+
+#: templates/base.html
+msgid "Daily report"
+msgstr "ദിവസ റിപ്പോർട്ട്"
+
+#: templates/base.html
+msgid "Accounts & reports"
+msgstr "അക്കൗണ്ട്സ് & റിപ്പോർട്ടുകൾ"
+
+#: templates/base.html
+msgid "Finance overview"
+msgstr "ഫിനാൻസ് അവലോകനം"
+
+#: templates/base.html
+msgid "Cheques (PDC)"
+msgstr "ചെക്കുകൾ (PDC)"
+
+#: templates/base.html
+msgid "Recurring invoices"
+msgstr "ആവർത്തന ഇൻവോയ്സുകൾ"
+
+#: templates/base.html
+msgid "Fixed assets"
+msgstr "സ്ഥിര ആസ്തികൾ"
+
+#: templates/base.html
+msgid "Expenses"
+msgstr "ചെലവുകൾ"
+
+#: templates/base.html
+msgid "Budgets"
+msgstr "ബജറ്റുകൾ"
+
+#: templates/base.html
+msgid "Online payments"
+msgstr "ഓൺലൈൻ പേയ്‌മെന്റ്"
+
+#: templates/base.html
+msgid "People"
+msgstr "ആളുകൾ"
+
+#: templates/base.html
+msgid "Customers"
+msgstr "കസ്റ്റമർമാർ"
+
+#: templates/base.html
+msgid "Money to collect"
+msgstr "പിരിച്ചെടുക്കാനുള്ള പണം"
+
+#: templates/base.html
+msgid "Customer reminders"
+msgstr "കസ്റ്റമർ റിമൈൻഡറുകൾ"
+
+#: templates/base.html
+msgid "Team"
+msgstr "ടീം"
+
+#: templates/base.html
+msgid "Staff & HR"
+msgstr "സ്റ്റാഫ് & HR"
+
+#: templates/base.html
+msgid "Payroll & advances"
+msgstr "ശമ്പളം & അഡ്വാൻസ്"
+
+#: templates/base.html
+msgid "Business"
+msgstr "ബിസിനസ്"
+
+#: templates/base.html
+msgid "Stock & inventory"
+msgstr "സ്റ്റോക്ക് & ഇൻവെന്ററി"
+
+#: templates/base.html
+msgid "Analytics"
+msgstr "അനലിറ്റിക്സ്"
+
+#: templates/base.html
+msgid "Branches"
+msgstr "ബ്രാഞ്ചുകൾ"
+
+#: templates/base.html
+msgid "Settings"
+msgstr "സെറ്റിംഗ്സ്"
+
+#: templates/base.html
+msgid "Reminders & alerts"
+msgstr "ഓർമ്മപ്പെടുത്തലുകളും അലേർട്ടുകളും"
+
+#: templates/base.html
+msgid "Tax & currency"
+msgstr "നികുതിയും കറൻസിയും"
+
+#: templates/base.html
+msgid "Activity log"
+msgstr "പ്രവർത്തന രേഖ"
+
+#: templates/base.html
+msgid "Notifications"
+msgstr "അറിയിപ്പുകൾ"
+
+#: templates/base.html
+msgid "Devices & Printers"
+msgstr "ഉപകരണങ്ങളും പ്രിന്ററുകളും"
+
+#: templates/base.html
+msgid "Security & 2FA"
+msgstr "സുരക്ഷയും 2FA-യും"
+
+#: templates/base.html
+msgid "Backups"
+msgstr "ബാക്കപ്പുകൾ"
+
+#: templates/base.html
+msgid "Help & support"
+msgstr "സഹായവും സപ്പോർട്ടും"
+
+#: templates/base.html
+msgid "User guide"
+msgstr "യൂസർ ഗൈഡ്"
+
+#: templates/base.html
+msgid "API docs"
+msgstr "API ഡോക്സ്"
+
+#: templates/base.html
+msgid "⚙ Platform Admin"
+msgstr "⚙ പ്ലാറ്റ്ഫോം അഡ്മിൻ"
 
 #: templates/base.html
 msgid "Log out"
@@ -545,17 +541,63 @@ msgstr "പാസ്‌വേഡ് മാറ്റുക"
 msgid "Install app"
 msgstr "ആപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക"
 
-#: templates/webapp/_checklist.html
-msgid "Your BookPilot setup"
-msgstr "നിങ്ങളുടെ BookPilot സെറ്റപ്പ്"
-
-#: templates/webapp/_checklist.html
-msgid "Hide"
-msgstr "മറയ്ക്കൂ"
-
 #: templates/webapp/_excel_button.html
 msgid "Excel"
 msgstr "എക്സൽ"
+
+#: templates/webapp/_getting_started.html
+msgid "Getting started"
+msgstr "തുടക്കം"
+
+#: templates/webapp/_getting_started.html
+msgid "Next"
+msgstr "അടുത്തത്"
+
+#: templates/webapp/_getting_started.html
+msgid "You are looking at sample data"
+msgstr "നിങ്ങൾ കാണുന്നത് സാമ്പിൾ ഡാറ്റയാണ്"
+
+#: templates/webapp/_getting_started.html
+msgid "Show all"
+msgstr "എല്ലാം കാണുക"
+
+#: templates/webapp/_getting_started.html
+msgid ""
+"These were added as examples so you can see how everything works. Try a "
+"sale, then remove them and add your own."
+msgstr ""
+"എല്ലാം എങ്ങനെ പ്രവർത്തിക്കുന്നു എന്ന് കാണാൻ ഉദാഹരണമായി ചേർത്തതാണ് ഇവ. ഒരു "
+"സെയിൽ ചെയ്തുനോക്കൂ, പിന്നെ ഇവ നീക്കി നിങ്ങളുടേത് ചേർക്കൂ."
+
+#: templates/webapp/_getting_started.html
+msgid "products"
+msgstr "ഉൽപ്പന്നങ്ങൾ"
+
+#: templates/webapp/_getting_started.html
+msgid "services"
+msgstr "സർവീസുകൾ"
+
+#: templates/webapp/_getting_started.html
+msgid "customers"
+msgstr "കസ്റ്റമേഴ്സ്"
+
+#: templates/webapp/_getting_started.html
+msgid "staff"
+msgstr "സ്റ്റാഫ്"
+
+#: templates/webapp/_getting_started.html
+msgid "Remove all sample products, services, customers and staff?"
+msgstr ""
+"എല്ലാ സാമ്പിൾ പ്രോഡക്ടുകളും സർവീസുകളും കസ്റ്റമേഴ്സും സ്റ്റാഫും നീക്കം "
+"ചെയ്യണോ?"
+
+#: templates/webapp/_getting_started.html
+msgid "Remove sample data"
+msgstr "സാമ്പിൾ ഡാറ്റ നീക്കം ചെയ്യുക"
+
+#: templates/webapp/_getting_started.html
+msgid "Hide"
+msgstr "മറയ്ക്കൂ"
 
 #: templates/webapp/_industry_nav.html
 msgid "Bookings"
@@ -693,43 +735,21 @@ msgstr "എന്റെ വെബ്സൈറ്റ്"
 msgid "Language"
 msgstr "ഭാഷ"
 
-#: templates/webapp/_sample_banner.html
-msgid "You are looking at sample data"
-msgstr "നിങ്ങൾ കാണുന്നത് സാമ്പിൾ ഡാറ്റയാണ്"
+#: templates/webapp/_overview_panel.html
+msgid "Done"
+msgstr "കഴിഞ്ഞു"
 
-#: templates/webapp/_sample_banner.html
-msgid ""
-"These were added as examples so you can see how everything works. Try a "
-"sale, then remove them and add your own."
-msgstr ""
-"എല്ലാം എങ്ങനെ പ്രവർത്തിക്കുന്നു എന്ന് കാണാൻ ഉദാഹരണമായി ചേർത്തതാണ് ഇവ. ഒരു "
-"സെയിൽ ചെയ്തുനോക്കൂ, പിന്നെ ഇവ നീക്കി നിങ്ങളുടേത് ചേർക്കൂ."
+#: templates/webapp/_overview_panel.html
+msgid "more"
+msgstr "കൂടി"
 
-#: templates/webapp/_sample_banner.html
-msgid "products"
-msgstr "ഉൽപ്പന്നങ്ങൾ"
+#: templates/webapp/_overview_panel.html
+msgid "bill"
+msgstr "ബിൽ"
 
-#: templates/webapp/_sample_banner.html
-msgid "services"
-msgstr "സർവീസുകൾ"
-
-#: templates/webapp/_sample_banner.html
-msgid "customers"
-msgstr "കസ്റ്റമേഴ്സ്"
-
-#: templates/webapp/_sample_banner.html
-msgid "staff"
-msgstr "സ്റ്റാഫ്"
-
-#: templates/webapp/_sample_banner.html
-msgid "Remove all sample products, services, customers and staff?"
-msgstr ""
-"എല്ലാ സാമ്പിൾ പ്രോഡക്ടുകളും സർവീസുകളും കസ്റ്റമേഴ്സും സ്റ്റാഫും നീക്കം "
-"ചെയ്യണോ?"
-
-#: templates/webapp/_sample_banner.html
-msgid "Remove sample data"
-msgstr "സാമ്പിൾ ഡാറ്റ നീക്കം ചെയ്യുക"
+#: templates/webapp/_overview_panel.html
+msgid "bills"
+msgstr "ബില്ലുകൾ"
 
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
@@ -1326,10 +1346,6 @@ msgstr ""
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
 msgstr "ബജറ്റുകൾ സേവ് ചെയ്യുക"
-
-#: templates/webapp/automation/daily_report.html
-msgid "bills"
-msgstr "ബില്ലുകൾ"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
@@ -2341,10 +2357,6 @@ msgid "due"
 msgstr "അടയ്ക്കേണ്ടത്"
 
 #: templates/webapp/crm/lead_detail.html
-msgid "Done"
-msgstr "കഴിഞ്ഞു"
-
-#: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
 msgstr "ഇതുവരെ പ്രവർത്തനം ഇല്ല."
 
@@ -2689,28 +2701,12 @@ msgid "No customers yet."
 msgstr "ഇതുവരെ ഉപഭോക്താക്കൾ ഇല്ല."
 
 #: templates/webapp/dashboard.html
-msgid "Finish setting up your business"
-msgstr "നിങ്ങളുടെ ബിസിനസ് സെറ്റപ്പ് പൂർത്തിയാക്കുക"
-
-#: templates/webapp/dashboard.html
-msgid "Add your logo, first products and printer in 3 quick steps."
-msgstr "ലോഗോ, ആദ്യ ഉൽപ്പന്നങ്ങൾ, പ്രിന്റർ — 3 എളുപ്പ ഘട്ടങ്ങളിൽ ചേർക്കുക."
-
-#: templates/webapp/dashboard.html
-msgid "Continue setup"
-msgstr "സെറ്റപ്പ് തുടരുക"
-
-#: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
 msgstr "നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ കാലാവധി കഴിഞ്ഞു."
 
 #: templates/webapp/dashboard.html
 msgid "Renew now →"
 msgstr "ഇപ്പോൾ പുതുക്കുക →"
-
-#: templates/webapp/dashboard.html
-msgid "View billing →"
-msgstr "ബില്ലിംഗ് കാണുക →"
 
 #: templates/webapp/dashboard.html
 msgid "Subscription renews in"
@@ -2721,16 +2717,16 @@ msgid "New online booking requests"
 msgstr "പുതിയ ഓൺലൈൻ ബുക്കിംഗ് അഭ്യർത്ഥനകൾ"
 
 #: templates/webapp/dashboard.html
-msgid "Today's sales"
-msgstr "ഇന്നത്തെ വിൽപ്പന"
+msgid "Finish setting up your business"
+msgstr "നിങ്ങളുടെ ബിസിനസ് സെറ്റപ്പ് പൂർത്തിയാക്കുക"
 
 #: templates/webapp/dashboard.html
-msgid "This month's revenue"
-msgstr "ഈ മാസത്തെ വരുമാനം"
+msgid "Add your logo, first products and printer in 3 quick steps."
+msgstr "ലോഗോ, ആദ്യ ഉൽപ്പന്നങ്ങൾ, പ്രിന്റർ — 3 എളുപ്പ ഘട്ടങ്ങളിൽ ചേർക്കുക."
 
 #: templates/webapp/dashboard.html
-msgid "Outstanding dues"
-msgstr "കുടിശ്ശിക"
+msgid "Continue setup"
+msgstr "സെറ്റപ്പ് തുടരുക"
 
 #: templates/webapp/dashboard.html
 msgid "Business overview"
@@ -2847,6 +2843,10 @@ msgstr "നടന്ന വിൽപ്പനകൾ"
 #: templates/webapp/dashboard.html
 msgid "Recent sales"
 msgstr "സമീപകാല വിൽപ്പന"
+
+#: templates/webapp/dashboard.html
+msgid "View all"
+msgstr "എല്ലാം കാണുക"
 
 #: templates/webapp/dashboard.html
 msgid ""
@@ -6377,10 +6377,6 @@ msgstr "ഘട്ടം"
 msgid "Skip tour"
 msgstr "ടൂർ ഒഴിവാക്കുക"
 
-#: templates/webapp/pos.html
-msgid "Next"
-msgstr "അടുത്തത്"
-
 #: templates/webapp/pos_offline_sales.html
 msgid ""
 "Sales made on a till while the internet was down. They are sent to the "
@@ -6546,6 +6542,10 @@ msgstr "1× പിസ"
 #: templates/webapp/public/landing.html
 msgid "2× Drink"
 msgstr "2× ഡ്രിങ്ക്"
+
+#: templates/webapp/public/landing.html
+msgid "Today's sales"
+msgstr "ഇന്നത്തെ വിൽപ്പന"
 
 #: templates/webapp/public/landing.html
 msgid "QAR 0"
@@ -8013,10 +8013,6 @@ msgstr "👨‍🍳 കിച്ചൺ"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Sales today ·"
 msgstr "ഇന്നത്തെ വിൽപ്പന ·"
-
-#: templates/webapp/restaurant/dashboard.html
-msgid "bill"
-msgstr "ബിൽ"
 
 #: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"
@@ -9531,6 +9527,10 @@ msgstr "പ്ലാനും ബില്ലിംഗും"
 #: templates/webapp/settings.html
 msgid "Active until"
 msgstr "സജീവം വരെ"
+
+#: templates/webapp/settings.html
+msgid "View billing →"
+msgstr "ബില്ലിംഗ് കാണുക →"
 
 #: templates/webapp/settings.html
 msgid "Sample data"
@@ -12071,6 +12071,45 @@ msgstr "ഓർഡർ %(no)s സ്വീകരിച്ച് കിച്ചണ
 msgid "Order %(no)s rejected."
 msgstr "ഓർഡർ %(no)s നിരസിച്ചു."
 
+#: apps/webapp/overview.py
+msgid "This month's revenue"
+msgstr "ഈ മാസത്തെ വരുമാനം"
+
+#: apps/webapp/overview.py
+msgid "Outstanding dues"
+msgstr "കുടിശ്ശിക"
+
+#: apps/webapp/overview.py
+msgid "%(left)s waiting · %(done)s done"
+msgstr "%(left)s കാത്തിരിക്കുന്നു · %(done)s കഴിഞ്ഞു"
+
+#: apps/webapp/overview.py
+msgid "Today's appointments"
+msgstr "ഇന്നത്തെ അപ്പോയിന്റ്മെന്റുകൾ"
+
+#: apps/webapp/overview.py
+msgid "All appointments"
+msgstr "എല്ലാ അപ്പോയിന്റ്മെന്റുകളും"
+
+#: apps/webapp/overview.py
+msgid "No appointments today."
+msgstr "ഇന്ന് അപ്പോയിന്റ്മെന്റുകൾ ഇല്ല."
+
+#: apps/webapp/overview.py
+msgid "Book appointment"
+msgstr "അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക"
+
+#: apps/webapp/overview.py
+msgid "Staff today"
+msgstr "ഇന്നത്തെ സ്റ്റാഫ്"
+
+#: apps/webapp/overview.py
+msgid ""
+"Choose who did the work when you bill, and each person's total shows here."
+msgstr ""
+"ബിൽ ചെയ്യുമ്പോൾ ജോലി ചെയ്തയാളെ തിരഞ്ഞെടുക്കുക, ഓരോരുത്തരുടെയും ആകെ തുക ഇവിടെ"
+" കാണാം."
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "പണം ലഭിച്ചു — നന്ദി!"
@@ -12828,10 +12867,6 @@ msgstr "%(count)s സീരിയൽ നമ്പറുകൾ സ്റ്റോ
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "നേരത്തെ ചേർത്തവ: %(list)s"
-
-#: apps/webapp/templatetags/sample_data.py
-msgid "Book appointment"
-msgstr "അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

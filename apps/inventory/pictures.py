@@ -4,6 +4,8 @@ Every item gets a picture: its uploaded photo, or a ready illustration picked fr
 then the business type. The illustrations are WebP images in static/products/ (made by `manage.py make_product_art`).
 """
 import re
+from functools import lru_cache
+from pathlib import Path
 
 from django.templatetags.static import static
 
@@ -115,7 +117,18 @@ def pick(name, category="", business_code=""):
     return TYPE_DEFAULT.get(business_code, "box")
 
 
+PHOTO_DIR = Path(__file__).resolve().parents[2] / "static" / "products" / "photos"
+
+
+@lru_cache(maxsize=1)
+def _photos():
+    """Keys that have a real photo (static/products/photos/<key>.jpg); the illustration is the fallback."""
+    return {p.stem for p in PHOTO_DIR.glob("*.jpg")} if PHOTO_DIR.is_dir() else set()
+
+
 def art_url(key):
+    if key in _photos():
+        return static(f"products/photos/{key}.jpg")
     return static(f"products/{key}.webp")
 
 

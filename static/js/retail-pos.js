@@ -60,9 +60,15 @@
   function buildRail() {
     const counts = {};
     PRODUCTS.forEach(p => { counts[p.category_id] = (counts[p.category_id] || 0) + 1; });
-    const cats = [{ id: "all", name: T.all, ico: "🛍️", n: PRODUCTS.length }].concat(
+    let cats = [{ id: "all", name: T.all, ico: "🛍️", n: PRODUCTS.length }].concat(
       DATA.categories.map(c => ({ id: String(c.id), name: c.name, ico: catIcon(c.name), n: counts[c.id] || 0 })));
-    $("catRail").innerHTML = cats.map(c => `<button class="cat-btn${c.id === "all" ? " active" : ""}" type="button" data-category="${c.id}"><span class="cat-ico">${c.ico}</span>${esc(c.name)}<span class="cat-count">${c.n}</span></button>`).join("");
+    // Salon / spa billing: open on the services; products sold over the counter (shampoo, oil…) sit on their own tab
+    const services = PRODUCTS.filter(p => !p.tracked).length, goods = PRODUCTS.length - services;
+    if (CFG.serviceBilling && services && goods) {
+      cats = [{ id: "svc", name: T.services, ico: "✂️", n: services }, { id: "prd", name: T.productsForSale, ico: "🧴", n: goods }].concat(cats);
+      activeCat = "svc";
+    }
+    $("catRail").innerHTML = cats.map(c => `<button class="cat-btn${c.id === activeCat ? " active" : ""}" type="button" data-category="${c.id}"><span class="cat-ico">${c.ico}</span>${esc(c.name)}<span class="cat-count">${c.n}</span></button>`).join("");
     $("catRail").addEventListener("click", e => {
       const b = e.target.closest(".cat-btn"); if (!b) return;
       $("catRail").querySelectorAll(".cat-btn").forEach(x => x.classList.toggle("active", x === b));
@@ -102,7 +108,8 @@
     let shown = 0;
     document.querySelectorAll(".prod-card").forEach(card => {
       const p = PRODUCTS.find(x => x.id === +card.dataset.id);
-      const ok = (activeCat === "all" || String(p.category_id) === activeCat) &&
+      const inTab = activeCat === "all" || (activeCat === "svc" ? !p.tracked : activeCat === "prd" ? p.tracked : String(p.category_id) === activeCat);
+      const ok = (inTab || q) &&
         (!q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q) || (p.variant || "").toLowerCase().includes(q) ||
           (p.mobile_units || []).some(u => u.imei.toLowerCase().includes(q)));
       card.hidden = !ok; if (ok) shown++;

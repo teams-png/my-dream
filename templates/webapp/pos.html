@@ -176,9 +176,11 @@ window.POS_CFG = {
   csrf: "{{ csrf_token }}",
   syncUrl: "{% url 'webapp:pos_offline_sync' %}",
   isMobileShop: {{ is_mobile_shop|yesno:"true,false" }},
+  serviceBilling: {{ service_billing|yesno:"true,false" }},
   T: {
+    services: "{% translate 'Services' %}", productsForSale: "{% translate 'Products for sale' %}",
     all: "{% translate 'All' %}", online: "{% translate 'Online' %}", offline: "{% translate 'Offline' %}",
-    results: "{% translate 'products' %}", inStock: "{% translate 'in stock' %}", low: "{% translate 'Low' %}", out: "{% translate 'Sold out' %}",
+    results: "{% if service_billing %}{% translate 'items' %}{% else %}{% translate 'products' %}{% endif %}", inStock: "{% translate 'in stock' %}", low: "{% translate 'Low' %}", out: "{% translate 'Sold out' %}",
     item: "{% translate 'item' %}", items: "{% translate 'items' %}", each: "{% translate 'each' %}", remove: "{% translate 'Remove' %}",
     added: "{% translate 'added' %}", notFound: "{% translate 'Barcode / SKU not found.' %}", outOfStock: "{% translate 'is out of stock.' %}",
     noImei: "{% translate 'No IMEI unit is available for this handset.' %}", cartEmpty: "{% translate 'Cart is empty.' %}",

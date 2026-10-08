@@ -296,6 +296,14 @@ PAYMENT_CREDENTIALS_ENCRYPTION_KEY = env(
 # accept new clients only through Platform Admin -> Add new client.
 PUBLIC_SIGNUP_ENABLED = env.bool("PUBLIC_SIGNUP_ENABLED", default=True)
 SIGNUP_LIMIT_PER_IP_PER_HOUR = env.int("SIGNUP_LIMIT_PER_IP_PER_HOUR", default=5)
+# Phone check at sign-up: a code is sent by SMS to the number the person types (apps/accounts/phone_otp.py).
+# Turns on by itself once the three Twilio values are set; PHONE_OTP_BACKEND="" turns it off.
+TWILIO_ACCOUNT_SID = env("TWILIO_ACCOUNT_SID", default="")
+TWILIO_AUTH_TOKEN = env("TWILIO_AUTH_TOKEN", default="")
+TWILIO_VERIFY_SERVICE_SID = env("TWILIO_VERIFY_SERVICE_SID", default="")
+PHONE_OTP_BACKEND = env("PHONE_OTP_BACKEND", default="twilio" if TWILIO_VERIFY_SERVICE_SID else "")
+PHONE_OTP_CHANNEL = env("PHONE_OTP_CHANNEL", default="sms")  # or "whatsapp" once Twilio has a WhatsApp sender
+PHONE_OTP_SENDS_PER_HOUR = env.int("PHONE_OTP_SENDS_PER_HOUR", default=5)  # per number and per network
 
 # Shown on the user guide (/guide/) and the Terms, Privacy and Refund pages.
 SUPPORT_EMAIL = env("SUPPORT_EMAIL", default="")

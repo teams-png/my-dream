@@ -6822,6 +6822,14 @@ msgid "Your name"
 msgstr "Votre nom"
 
 #: templates/webapp/public/signup.html
+msgid "Mobile number"
+msgstr "Numéro de mobile"
+
+#: templates/webapp/public/signup.html
+msgid "We will send a code to this number."
+msgstr "Nous enverrons un code à ce numéro."
+
+#: templates/webapp/public/signup.html
 msgid "Phone (optional)"
 msgstr "Téléphone (facultatif)"
 
@@ -6829,6 +6837,10 @@ msgstr "Téléphone (facultatif)"
 msgid "I agree to the terms of service and privacy policy."
 msgstr ""
 "J’accepte les conditions d’utilisation et la politique de confidentialité."
+
+#: templates/webapp/public/signup.html
+msgid "Continue →"
+msgstr "Continuer →"
 
 #: templates/webapp/public/signup.html
 msgid "Create my account →"
@@ -6853,6 +6865,30 @@ msgstr "Tarifs Inde, facturés en INR."
 #: templates/webapp/public/signup.html
 msgid "You can change the plan any time from Billing."
 msgstr "Vous pouvez changer de formule à tout moment depuis Facturation."
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your mobile number · BookPilot"
+msgstr "Vérifiez votre numéro de mobile · BookPilot"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your mobile number"
+msgstr "Vérifiez votre numéro de mobile"
+
+#: templates/webapp/public/signup_verify.html
+msgid "We sent a 6-digit code by SMS to"
+msgstr "Nous avons envoyé un code à 6 chiffres par SMS au"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Verify and create my account"
+msgstr "Vérifier et créer mon compte"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Send a new code"
+msgstr "Envoyer un nouveau code"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Change number"
+msgstr "Changer de numéro"
 
 #: templates/webapp/purchase_docs/grn.html
 msgid "Goods receipt"
@@ -9702,6 +9738,16 @@ msgstr "Aucun transfert pour l’instant."
 msgid "Available"
 msgstr "Disponible"
 
+#: apps/accounts/phone_otp.py
+msgid "We could not reach the SMS service. Please try again in a minute."
+msgstr "Impossible de joindre le service SMS. Réessayez dans une minute."
+
+#: apps/accounts/phone_otp.py
+msgid ""
+"We could not send a code to this number. Check the number and try again."
+msgstr ""
+"Impossible d'envoyer un code à ce numéro. Vérifiez le numéro et réessayez."
+
 #: apps/common/form_hints.py
 msgid "e.g. %(sample)s"
 msgstr "ex. %(sample)s"
@@ -11627,6 +11673,39 @@ msgstr "Le loyer de ce mois est déjà facturé."
 #: apps/webapp/property_views.py
 msgid "%(count)s rent invoices created for %(month)s."
 msgstr "%(count)s factures de loyer créées pour %(month)s."
+
+#: apps/webapp/public_views.py
+msgid ""
+"Enter a valid mobile number with the country code, e.g. +91 98475 54224."
+msgstr ""
+"Saisissez un numéro de mobile valide avec l'indicatif du pays, p. ex. +91 "
+"98475 54224."
+
+#: apps/webapp/public_views.py
+msgid ""
+"An account with this mobile number already exists. Please sign in instead."
+msgstr ""
+"Un compte existe déjà avec ce numéro de mobile. Veuillez vous connecter."
+
+#: apps/webapp/public_views.py
+msgid "Too many codes were sent. Please wait an hour and try again."
+msgstr "Trop de codes envoyés. Attendez une heure et réessayez."
+
+#: apps/webapp/public_views.py
+msgid "Please wait %(s)s seconds before asking for a new code."
+msgstr "Veuillez attendre %(s)s secondes avant de demander un nouveau code."
+
+#: apps/webapp/public_views.py
+msgid "A new code is on its way."
+msgstr "Un nouveau code est en route."
+
+#: apps/webapp/public_views.py
+msgid "Too many wrong codes. Ask for a new code."
+msgstr "Trop de codes erronés. Demandez un nouveau code."
+
+#: apps/webapp/public_views.py
+msgid "That code is not right, or it has expired. Try again."
+msgstr "Ce code est incorrect ou a expiré. Réessayez."
 
 #: apps/webapp/purchase_docs_views.py
 msgid "Choose a supplier or type a new supplier's name."

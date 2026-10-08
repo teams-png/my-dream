@@ -6791,12 +6791,24 @@ msgid "Your name"
 msgstr "നിങ്ങളുടെ പേര്"
 
 #: templates/webapp/public/signup.html
+msgid "Mobile number"
+msgstr "മൊബൈൽ നമ്പർ"
+
+#: templates/webapp/public/signup.html
+msgid "We will send a code to this number."
+msgstr "ഈ നമ്പറിലേക്ക് ഞങ്ങൾ ഒരു കോഡ് അയയ്ക്കും."
+
+#: templates/webapp/public/signup.html
 msgid "Phone (optional)"
 msgstr "ഫോൺ (ഓപ്ഷണൽ)"
 
 #: templates/webapp/public/signup.html
 msgid "I agree to the terms of service and privacy policy."
 msgstr "സേവന നിബന്ധനകളും സ്വകാര്യതാ നയവും ഞാൻ അംഗീകരിക്കുന്നു."
+
+#: templates/webapp/public/signup.html
+msgid "Continue →"
+msgstr "തുടരുക →"
 
 #: templates/webapp/public/signup.html
 msgid "Create my account →"
@@ -6821,6 +6833,30 @@ msgstr "ഇന്ത്യ വില, INR-ൽ ബിൽ ചെയ്യും."
 #: templates/webapp/public/signup.html
 msgid "You can change the plan any time from Billing."
 msgstr "Billing-ൽ നിന്ന് എപ്പോൾ വേണമെങ്കിലും പ്ലാൻ മാറ്റാം."
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your mobile number · BookPilot"
+msgstr "മൊബൈൽ നമ്പർ സ്ഥിരീകരിക്കുക · BookPilot"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your mobile number"
+msgstr "മൊബൈൽ നമ്പർ സ്ഥിരീകരിക്കുക"
+
+#: templates/webapp/public/signup_verify.html
+msgid "We sent a 6-digit code by SMS to"
+msgstr "6 അക്ക കോഡ് SMS ആയി അയച്ചിരിക്കുന്നു:"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Verify and create my account"
+msgstr "സ്ഥിരീകരിച്ച് അക്കൗണ്ട് ഉണ്ടാക്കുക"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Send a new code"
+msgstr "പുതിയ കോഡ് അയയ്ക്കുക"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Change number"
+msgstr "നമ്പർ മാറ്റുക"
 
 #: templates/webapp/purchase_docs/grn.html
 msgid "Goods receipt"
@@ -9652,6 +9688,17 @@ msgstr "ഇതുവരെ മാറ്റങ്ങൾ ഇല്ല."
 msgid "Available"
 msgstr "ലഭ്യം"
 
+#: apps/accounts/phone_otp.py
+msgid "We could not reach the SMS service. Please try again in a minute."
+msgstr ""
+"SMS സേവനവുമായി ബന്ധപ്പെടാനായില്ല. ഒരു മിനിറ്റ് കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക."
+
+#: apps/accounts/phone_otp.py
+msgid ""
+"We could not send a code to this number. Check the number and try again."
+msgstr ""
+"ഈ നമ്പറിലേക്ക് കോഡ് അയയ്ക്കാനായില്ല. നമ്പർ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക."
+
 #: apps/common/form_hints.py
 msgid "e.g. %(sample)s"
 msgstr "ഉദാ. %(sample)s"
@@ -11567,6 +11614,36 @@ msgstr "ഈ മാസത്തെ വാടക ഇതിനകം ബിൽ ച�
 #: apps/webapp/property_views.py
 msgid "%(count)s rent invoices created for %(month)s."
 msgstr "%(month)s-ന് %(count)s വാടക ഇൻവോയ്സുകൾ ഉണ്ടാക്കി."
+
+#: apps/webapp/public_views.py
+msgid ""
+"Enter a valid mobile number with the country code, e.g. +91 98475 54224."
+msgstr "കൺട്രി കോഡ് സഹിതം ശരിയായ മൊബൈൽ നമ്പർ നൽകുക, ഉദാ. +91 98475 54224."
+
+#: apps/webapp/public_views.py
+msgid ""
+"An account with this mobile number already exists. Please sign in instead."
+msgstr "ഈ മൊബൈൽ നമ്പറിൽ ഇതിനകം ഒരു അക്കൗണ്ട് ഉണ്ട്. ദയവായി സൈൻ ഇൻ ചെയ്യുക."
+
+#: apps/webapp/public_views.py
+msgid "Too many codes were sent. Please wait an hour and try again."
+msgstr "വളരെയധികം കോഡുകൾ അയച്ചു. ഒരു മണിക്കൂർ കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക."
+
+#: apps/webapp/public_views.py
+msgid "Please wait %(s)s seconds before asking for a new code."
+msgstr "പുതിയ കോഡ് ചോദിക്കുന്നതിന് മുമ്പ് %(s)s സെക്കൻഡ് കാത്തിരിക്കുക."
+
+#: apps/webapp/public_views.py
+msgid "A new code is on its way."
+msgstr "പുതിയ കോഡ് അയച്ചിട്ടുണ്ട്."
+
+#: apps/webapp/public_views.py
+msgid "Too many wrong codes. Ask for a new code."
+msgstr "തെറ്റായ കോഡുകൾ കൂടുതലായി. പുതിയ കോഡ് ചോദിക്കുക."
+
+#: apps/webapp/public_views.py
+msgid "That code is not right, or it has expired. Try again."
+msgstr "കോഡ് ശരിയല്ല, അല്ലെങ്കിൽ കാലാവധി കഴിഞ്ഞു. വീണ്ടും ശ്രമിക്കുക."
 
 #: apps/webapp/purchase_docs_views.py
 msgid "Choose a supplier or type a new supplier's name."

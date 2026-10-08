@@ -6737,12 +6737,24 @@ msgid "Your name"
 msgstr "तपाईंको नाम"
 
 #: templates/webapp/public/signup.html
+msgid "Mobile number"
+msgstr "मोबाइल नम्बर"
+
+#: templates/webapp/public/signup.html
+msgid "We will send a code to this number."
+msgstr "हामी यो नम्बरमा कोड पठाउनेछौं।"
+
+#: templates/webapp/public/signup.html
 msgid "Phone (optional)"
 msgstr "फोन (ऐच्छिक)"
 
 #: templates/webapp/public/signup.html
 msgid "I agree to the terms of service and privacy policy."
 msgstr "म सेवाका सर्त र गोपनीयता नीतिमा सहमत छु।"
+
+#: templates/webapp/public/signup.html
+msgid "Continue →"
+msgstr "जारी राख्नुहोस् →"
 
 #: templates/webapp/public/signup.html
 msgid "Create my account →"
@@ -6767,6 +6779,30 @@ msgstr "भारत मूल्य, INR मा बिल।"
 #: templates/webapp/public/signup.html
 msgid "You can change the plan any time from Billing."
 msgstr "बिलिङबाट जुनसुकै बेला योजना बदल्न सकिन्छ।"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your mobile number · BookPilot"
+msgstr "आफ्नो मोबाइल नम्बर जाँच गर्नुहोस् · BookPilot"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your mobile number"
+msgstr "आफ्नो मोबाइल नम्बर जाँच गर्नुहोस्"
+
+#: templates/webapp/public/signup_verify.html
+msgid "We sent a 6-digit code by SMS to"
+msgstr "हामीले SMS मार्फत ६ अङ्कको कोड पठायौं:"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Verify and create my account"
+msgstr "प्रमाणित गरी मेरो खाता बनाउनुहोस्"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Send a new code"
+msgstr "नयाँ कोड पठाउनुहोस्"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Change number"
+msgstr "नम्बर परिवर्तन गर्नुहोस्"
 
 #: templates/webapp/purchase_docs/grn.html
 msgid "Goods receipt"
@@ -9584,6 +9620,15 @@ msgstr "अझै कुनै स्थानान्तरण छैन।"
 msgid "Available"
 msgstr "उपलब्ध"
 
+#: apps/accounts/phone_otp.py
+msgid "We could not reach the SMS service. Please try again in a minute."
+msgstr "SMS सेवासँग सम्पर्क हुन सकेन। एक मिनेटपछि फेरि प्रयास गर्नुहोस्।"
+
+#: apps/accounts/phone_otp.py
+msgid ""
+"We could not send a code to this number. Check the number and try again."
+msgstr "यो नम्बरमा कोड पठाउन सकिएन। नम्बर जाँचेर फेरि प्रयास गर्नुहोस्।"
+
 #: apps/common/form_hints.py
 msgid "e.g. %(sample)s"
 msgstr "जस्तै %(sample)s"
@@ -11483,6 +11528,36 @@ msgstr "यो महिनाको भाडाको बिल पहिल�
 #: apps/webapp/property_views.py
 msgid "%(count)s rent invoices created for %(month)s."
 msgstr "%(month)s का लागि %(count)s भाडा इनभ्वाइस बनाइयो।"
+
+#: apps/webapp/public_views.py
+msgid ""
+"Enter a valid mobile number with the country code, e.g. +91 98475 54224."
+msgstr "देश कोडसहित सही मोबाइल नम्बर लेख्नुहोस्, जस्तै +91 98475 54224।"
+
+#: apps/webapp/public_views.py
+msgid ""
+"An account with this mobile number already exists. Please sign in instead."
+msgstr "यो मोबाइल नम्बरमा पहिले नै खाता छ। कृपया साइन इन गर्नुहोस्।"
+
+#: apps/webapp/public_views.py
+msgid "Too many codes were sent. Please wait an hour and try again."
+msgstr "धेरै कोड पठाइए। एक घण्टापछि फेरि प्रयास गर्नुहोस्।"
+
+#: apps/webapp/public_views.py
+msgid "Please wait %(s)s seconds before asking for a new code."
+msgstr "नयाँ कोड माग्नुअघि %(s)s सेकेन्ड पर्खनुहोस्।"
+
+#: apps/webapp/public_views.py
+msgid "A new code is on its way."
+msgstr "नयाँ कोड पठाइँदैछ।"
+
+#: apps/webapp/public_views.py
+msgid "Too many wrong codes. Ask for a new code."
+msgstr "धेरै गलत कोड। नयाँ कोड माग्नुहोस्।"
+
+#: apps/webapp/public_views.py
+msgid "That code is not right, or it has expired. Try again."
+msgstr "कोड मिलेन वा म्याद सकियो। फेरि प्रयास गर्नुहोस्।"
 
 #: apps/webapp/purchase_docs_views.py
 msgid "Choose a supplier or type a new supplier's name."

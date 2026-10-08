@@ -6794,12 +6794,24 @@ msgid "Your name"
 msgstr "Iyong pangalan"
 
 #: templates/webapp/public/signup.html
+msgid "Mobile number"
+msgstr "Numero ng mobile"
+
+#: templates/webapp/public/signup.html
+msgid "We will send a code to this number."
+msgstr "Magpapadala kami ng code sa numerong ito."
+
+#: templates/webapp/public/signup.html
 msgid "Phone (optional)"
 msgstr "Telepono (opsyonal)"
 
 #: templates/webapp/public/signup.html
 msgid "I agree to the terms of service and privacy policy."
 msgstr "Sumasang-ayon ako sa terms of service at privacy policy."
+
+#: templates/webapp/public/signup.html
+msgid "Continue →"
+msgstr "Magpatuloy →"
 
 #: templates/webapp/public/signup.html
 msgid "Create my account →"
@@ -6824,6 +6836,30 @@ msgstr "Presyong pang-India, sinisingil sa INR."
 #: templates/webapp/public/signup.html
 msgid "You can change the plan any time from Billing."
 msgstr "Mapapalitan mo ang plan anumang oras sa Billing."
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your mobile number · BookPilot"
+msgstr "Suriin ang iyong mobile number · BookPilot"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your mobile number"
+msgstr "Suriin ang iyong mobile number"
+
+#: templates/webapp/public/signup_verify.html
+msgid "We sent a 6-digit code by SMS to"
+msgstr "Nagpadala kami ng 6-digit na code sa SMS sa"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Verify and create my account"
+msgstr "I-verify at gawin ang aking account"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Send a new code"
+msgstr "Magpadala ng bagong code"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Change number"
+msgstr "Palitan ang numero"
 
 #: templates/webapp/purchase_docs/grn.html
 msgid "Goods receipt"
@@ -9665,6 +9701,18 @@ msgstr "Wala pang paglipat."
 msgid "Available"
 msgstr "Available"
 
+#: apps/accounts/phone_otp.py
+msgid "We could not reach the SMS service. Please try again in a minute."
+msgstr ""
+"Hindi maabot ang SMS service. Subukan muli pagkalipas ng isang minuto."
+
+#: apps/accounts/phone_otp.py
+msgid ""
+"We could not send a code to this number. Check the number and try again."
+msgstr ""
+"Hindi makapagpadala ng code sa numerong ito. Suriin ang numero at subukan "
+"muli."
+
 #: apps/common/form_hints.py
 msgid "e.g. %(sample)s"
 msgstr "hal. %(sample)s"
@@ -11583,6 +11631,40 @@ msgstr "Naka-bill na ang upa ngayong buwan."
 #: apps/webapp/property_views.py
 msgid "%(count)s rent invoices created for %(month)s."
 msgstr "Nagawa ang %(count)s rent invoice para sa %(month)s."
+
+#: apps/webapp/public_views.py
+msgid ""
+"Enter a valid mobile number with the country code, e.g. +91 98475 54224."
+msgstr ""
+"Maglagay ng tamang mobile number kasama ang country code, hal. +91 98475 "
+"54224."
+
+#: apps/webapp/public_views.py
+msgid ""
+"An account with this mobile number already exists. Please sign in instead."
+msgstr "May account na sa mobile number na ito. Mag-sign in na lang."
+
+#: apps/webapp/public_views.py
+msgid "Too many codes were sent. Please wait an hour and try again."
+msgstr ""
+"Masyadong maraming code ang naipadala. Maghintay ng isang oras at subukan "
+"muli."
+
+#: apps/webapp/public_views.py
+msgid "Please wait %(s)s seconds before asking for a new code."
+msgstr "Maghintay ng %(s)s segundo bago humingi ng bagong code."
+
+#: apps/webapp/public_views.py
+msgid "A new code is on its way."
+msgstr "Papunta na ang bagong code."
+
+#: apps/webapp/public_views.py
+msgid "Too many wrong codes. Ask for a new code."
+msgstr "Masyadong maraming maling code. Humingi ng bagong code."
+
+#: apps/webapp/public_views.py
+msgid "That code is not right, or it has expired. Try again."
+msgstr "Mali ang code o expired na. Subukan muli."
 
 #: apps/webapp/purchase_docs_views.py
 msgid "Choose a supplier or type a new supplier's name."

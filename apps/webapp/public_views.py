@@ -6,10 +6,13 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.db import transaction
+from django.contrib.auth.hashers import make_password
 from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.utils.text import slugify
+from django.utils.translation import gettext as _
 
+from apps.accounts import phone_otp
 from apps.accounts import services as account_services
 from apps.accounts.models import LoginAttempt
 from apps.modules.catalog import BUSINESS_TYPE_MAP, business_group
@@ -59,6 +62,7 @@ class SignupForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.fields["business_type"].choices = _business_choices()
         self.fields["plan"].queryset = SubscriptionPlan.objects.filter(is_active=True)
+        self.fields["phone"].required = phone_otp.enabled()
 
     def clean_email(self):
         email = self.cleaned_data["email"].strip().lower()
@@ -75,6 +79,14 @@ class SignupForm(forms.Form):
 
     def clean(self):
         cleaned = super().clean()
+        if cleaned.get("phone") and phone_otp.enabled():
+            number = phone_otp.normalize(cleaned["phone"], cleaned.get("country", ""))
+            if not number:
+                self.add_error("phone", _("Enter a valid mobile number with the country code, e.g. +91 98475 54224."))
+            elif get_user_model().objects.filter(phone=number, phone_verified=True).exists():
+                self.add_error("phone", _("An account with this mobile number already exists. Please sign in instead."))
+            else:
+                cleaned["phone"] = number
         if cleaned.get("website"):
             raise forms.ValidationError("Sign-up could not be completed.")
         plan = cleaned.get("plan")
@@ -117,9 +129,13 @@ def create_trial_account(*, data):
     User = get_user_model()
     first, _, last = data["full_name"].strip().partition(" ")
     user = User.objects.create_user(
-        username=data["email"], email=data["email"], password=data["password"],
+        username=data["email"], email=data["email"], password=data.get("password"),
         first_name=first[:150], last_name=last[:150], phone=data.get("phone", ""),
+        phone_verified=data.get("phone_verified", False),
     )
+    if data.get("password_hash"):  # sign-up waited for the SMS code: the password was kept only as a hash
+        user.password = data["password_hash"]
+        user.save(update_fields=["password"])
     code = data["business_type"]
     business_type, _ = BusinessType.objects.get_or_create(code=code, defaults={"name": BUSINESS_TYPE_MAP.get(code, code)})
     base_slug = slugify(data["business_name"])[:40] or "business"
@@ -140,6 +156,50 @@ def create_trial_account(*, data):
     return user, company
 
 
+PENDING = "pending_signup"
+
+
+def _signup_limited(request):
+    ip_address = account_services.client_ip(request)
+    recent = LoginAttempt.objects.filter(
+        identifier="signup", ip_address=ip_address, attempted_at__gte=timezone.now() - timedelta(hours=1),
+    ).count()
+    return recent >= settings.SIGNUP_LIMIT_PER_IP_PER_HOUR
+
+
+def _finish_signup(request, data):
+    """Create the account, sign the person in and open the setup wizard."""
+    LoginAttempt.objects.create(identifier="signup", ip_address=account_services.client_ip(request), successful=True)
+    try:
+        user, company = create_trial_account(data=data)
+    except Exception as exc:
+        messages.error(request, f"We could not create your account: {exc}")
+        return None
+    login(request, user, backend="django.contrib.auth.backends.ModelBackend")
+    request.session["active_company_id"] = company.id
+    messages.success(request, f"Welcome to BookPilot! Your {TRIAL_DAYS}-day free trial has started.")
+    return redirect("webapp:setup", step="business")
+
+
+def _send_code(request, phone):
+    """Send an SMS code, at most PHONE_OTP_SENDS_PER_HOUR per number and per network. Returns an error or None."""
+    since = timezone.now() - timedelta(hours=1)
+    ip_address = account_services.client_ip(request)
+    limit = settings.PHONE_OTP_SENDS_PER_HOUR
+    sent = LoginAttempt.objects.filter(attempted_at__gte=since, identifier__startswith="otp-send")
+    if sent.filter(identifier=f"otp-send:{phone}").count() >= limit or \
+            sent.filter(ip_address=ip_address).count() >= limit * 2:
+        return _("Too many codes were sent. Please wait an hour and try again.")
+    try:
+        phone_otp.send(phone, request.session)
+    except phone_otp.OtpError as exc:
+        return str(exc)
+    LoginAttempt.objects.create(identifier=f"otp-send:{phone}", ip_address=ip_address, successful=True)
+    request.session["otp_sent_at"] = timezone.now().timestamp()
+    request.session["otp_tries"] = 0
+    return None
+
+
 def signup(request):
     if request.user.is_authenticated:
         return redirect("webapp:dashboard")
@@ -151,27 +211,82 @@ def signup(request):
         initial["plan"] = request.GET["plan"]
     if request.GET.get("type") in BUSINESS_TYPE_MAP:
         initial["business_type"] = request.GET["type"]
+    pending = request.session.get(PENDING)
+    if pending and request.GET.get("edit"):  # "change number" from the code page: keep what was typed
+        initial.update({k: v for k, v in pending.items() if k in SignupForm.base_fields and k != "password"})
     form = SignupForm(request.POST or None, initial=initial)
     if request.method == "POST":
-        ip_address = account_services.client_ip(request)
-        recent = LoginAttempt.objects.filter(
-            identifier="signup", ip_address=ip_address, attempted_at__gte=timezone.now() - timedelta(hours=1),
-        ).count()
-        if recent >= settings.SIGNUP_LIMIT_PER_IP_PER_HOUR:
+        if _signup_limited(request):
             messages.error(request, "Too many sign-ups from this network. Please try again later.")
         elif form.is_valid():
-            LoginAttempt.objects.create(identifier="signup", ip_address=ip_address, successful=True)
-            try:
-                user, company = create_trial_account(data=form.cleaned_data)
-            except Exception as exc:
-                messages.error(request, f"We could not create your account: {exc}")
+            data = dict(form.cleaned_data)
+            if not phone_otp.enabled():
+                response = _finish_signup(request, data)
+                if response:
+                    return response
             else:
-                login(request, user, backend="django.contrib.auth.backends.ModelBackend")
-                request.session["active_company_id"] = company.id
-                messages.success(request, f"Welcome to BookPilot! Your {TRIAL_DAYS}-day free trial has started.")
-                return redirect("webapp:setup", step="business")
+                plan = data.pop("plan")
+                data.update(plan_id=plan.pk if plan else None, password_hash=make_password(data.pop("password")))
+                request.session[PENDING] = data
+                error = _send_code(request, data["phone"])
+                if error:
+                    messages.error(request, error)
+                return redirect("webapp:signup_verify")
     return render(request, "webapp/public/signup.html", {
         "form": form, "plans": _plans(), "pricing": _pricing_data(), "trial_days": TRIAL_DAYS, "popular_types": POPULAR_TYPES,
+        "phone_otp": phone_otp.enabled(),
+    })
+
+
+def signup_verify(request):
+    """Step 2 of sign-up: type the code sent by SMS to the mobile number."""
+    data = request.session.get(PENDING)
+    if request.user.is_authenticated:
+        return redirect("webapp:dashboard")
+    if not data or not phone_otp.enabled():
+        return redirect("webapp:signup")
+    wait = max(0, int(60 - (timezone.now().timestamp() - request.session.get("otp_sent_at", 0))))
+    if request.method == "POST":
+        if request.POST.get("action") == "resend":
+            if wait:
+                messages.error(request, _("Please wait %(s)s seconds before asking for a new code.") % {"s": wait})
+            else:
+                error = _send_code(request, data["phone"])
+                if error:
+                    messages.error(request, error)
+                else:
+                    messages.success(request, _("A new code is on its way."))
+            return redirect("webapp:signup_verify")
+        tries = request.session.get("otp_tries", 0) + 1
+        request.session["otp_tries"] = tries
+        if tries > 5:
+            messages.error(request, _("Too many wrong codes. Ask for a new code."))
+        else:
+            try:
+                ok = phone_otp.check(data["phone"], request.POST.get("code"), request.session)
+            except phone_otp.OtpError as exc:
+                ok = False
+                messages.error(request, str(exc))
+            else:
+                if not ok:
+                    messages.error(request, _("That code is not right, or it has expired. Try again."))
+            if ok:
+                if get_user_model().objects.filter(email__iexact=data["email"]).exists():
+                    messages.error(request, "An account with this email already exists. Please sign in instead.")
+                    return redirect("webapp:login")
+                if _signup_limited(request):
+                    messages.error(request, "Too many sign-ups from this network. Please try again later.")
+                    return redirect("webapp:signup_verify")
+                plan = SubscriptionPlan.objects.filter(pk=data.get("plan_id"), is_active=True).first()
+                response = _finish_signup(request, {**data, "plan": plan, "phone_verified": True})
+                for key in (PENDING, "otp_sent_at", "otp_tries", "phone_otp_hash"):
+                    request.session.pop(key, None)
+                return response or redirect("webapp:signup")
+        return redirect("webapp:signup_verify")
+    phone = data["phone"]
+    return render(request, "webapp/public/signup_verify.html", {
+        "phone": phone[:4] + "•" * (len(phone) - 8) + phone[-4:],  # +919••••4224
+        "wait": wait, "trial_days": TRIAL_DAYS,
     })
 
 

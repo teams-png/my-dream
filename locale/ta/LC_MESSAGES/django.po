@@ -6821,12 +6821,24 @@ msgid "Your name"
 msgstr "உங்கள் பெயர்"
 
 #: templates/webapp/public/signup.html
+msgid "Mobile number"
+msgstr "மொபைல் எண்"
+
+#: templates/webapp/public/signup.html
+msgid "We will send a code to this number."
+msgstr "இந்த எண்ணுக்கு ஒரு குறியீட்டை அனுப்புவோம்."
+
+#: templates/webapp/public/signup.html
 msgid "Phone (optional)"
 msgstr "ஃபோன் (விருப்பம்)"
 
 #: templates/webapp/public/signup.html
 msgid "I agree to the terms of service and privacy policy."
 msgstr "சேவை விதிமுறைகள் மற்றும் தனியுரிமைக் கொள்கையை ஏற்கிறேன்."
+
+#: templates/webapp/public/signup.html
+msgid "Continue →"
+msgstr "தொடரவும் →"
 
 #: templates/webapp/public/signup.html
 msgid "Create my account →"
@@ -6851,6 +6863,30 @@ msgstr "இந்திய விலை, INR இல் பில்."
 #: templates/webapp/public/signup.html
 msgid "You can change the plan any time from Billing."
 msgstr "பில்லிங்கிலிருந்து எப்போது வேண்டுமானாலும் திட்டத்தை மாற்றலாம்."
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your mobile number · BookPilot"
+msgstr "உங்கள் மொபைல் எண்ணைச் சரிபார்க்கவும் · BookPilot"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your mobile number"
+msgstr "உங்கள் மொபைல் எண்ணைச் சரிபார்க்கவும்"
+
+#: templates/webapp/public/signup_verify.html
+msgid "We sent a 6-digit code by SMS to"
+msgstr "6 இலக்க குறியீட்டை SMS மூலம் அனுப்பியுள்ளோம்:"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Verify and create my account"
+msgstr "சரிபார்த்து என் கணக்கை உருவாக்கு"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Send a new code"
+msgstr "புதிய குறியீட்டை அனுப்பு"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Change number"
+msgstr "எண்ணை மாற்று"
 
 #: templates/webapp/purchase_docs/grn.html
 msgid "Goods receipt"
@@ -9702,6 +9738,17 @@ msgstr "இன்னும் மாற்றங்கள் இல்லை."
 msgid "Available"
 msgstr "கிடைக்கிறது"
 
+#: apps/accounts/phone_otp.py
+msgid "We could not reach the SMS service. Please try again in a minute."
+msgstr "SMS சேவையை அணுக முடியவில்லை. ஒரு நிமிடம் கழித்து மீண்டும் முயலவும்."
+
+#: apps/accounts/phone_otp.py
+msgid ""
+"We could not send a code to this number. Check the number and try again."
+msgstr ""
+"இந்த எண்ணுக்கு குறியீட்டை அனுப்ப முடியவில்லை. எண்ணைச் சரிபார்த்து மீண்டும் "
+"முயலவும்."
+
 #: apps/common/form_hints.py
 msgid "e.g. %(sample)s"
 msgstr "எ.கா. %(sample)s"
@@ -11643,6 +11690,38 @@ msgstr "இந்த மாத வாடகைக்கு ஏற்கனவே
 #: apps/webapp/property_views.py
 msgid "%(count)s rent invoices created for %(month)s."
 msgstr "%(month)s க்கு %(count)s வாடகை விலைப்பட்டியல்கள் உருவாக்கப்பட்டன."
+
+#: apps/webapp/public_views.py
+msgid ""
+"Enter a valid mobile number with the country code, e.g. +91 98475 54224."
+msgstr ""
+"நாட்டுக் குறியீட்டுடன் சரியான மொபைல் எண்ணை உள்ளிடவும், எ.கா. +91 98475 "
+"54224."
+
+#: apps/webapp/public_views.py
+msgid ""
+"An account with this mobile number already exists. Please sign in instead."
+msgstr "இந்த மொபைல் எண்ணில் ஏற்கனவே ஒரு கணக்கு உள்ளது. உள்நுழையவும்."
+
+#: apps/webapp/public_views.py
+msgid "Too many codes were sent. Please wait an hour and try again."
+msgstr "அதிகமான குறியீடுகள் அனுப்பப்பட்டன. ஒரு மணி நேரம் கழித்து முயலவும்."
+
+#: apps/webapp/public_views.py
+msgid "Please wait %(s)s seconds before asking for a new code."
+msgstr "புதிய குறியீடு கேட்கும் முன் %(s)s விநாடிகள் காத்திருக்கவும்."
+
+#: apps/webapp/public_views.py
+msgid "A new code is on its way."
+msgstr "புதிய குறியீடு அனுப்பப்படுகிறது."
+
+#: apps/webapp/public_views.py
+msgid "Too many wrong codes. Ask for a new code."
+msgstr "அதிகமான தவறான குறியீடுகள். புதிய குறியீட்டைக் கேளுங்கள்."
+
+#: apps/webapp/public_views.py
+msgid "That code is not right, or it has expired. Try again."
+msgstr "குறியீடு சரியில்லை அல்லது காலாவதியானது. மீண்டும் முயலவும்."
 
 #: apps/webapp/purchase_docs_views.py
 msgid "Choose a supplier or type a new supplier's name."

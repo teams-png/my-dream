@@ -107,14 +107,15 @@ button[type=submit].busy{opacity:.7;pointer-events:none}
     <p class="step">{% translate "2 · Your login" %}</p>
     <div class="grid">
       <label>{% translate "Your name" %}<input name="full_name" value="{{ form.full_name.value|default:'' }}" autocomplete="name" required><div class="errors">{{ form.full_name.errors }}</div></label>
-      <label>{% translate "Phone (optional)" %}<input name="phone" value="{{ form.phone.value|default:'' }}" autocomplete="tel" inputmode="tel"></label>
+      {% if phone_otp %}<label>{% translate "Mobile number" %}<input name="phone" type="tel" value="{{ form.phone.value|default:'' }}" autocomplete="tel" inputmode="tel" placeholder="+91 98475 54224" required><small style="display:block;font-weight:500;margin-top:4px">{% translate "We will send a code to this number." %}</small><div class="errors">{{ form.phone.errors }}</div></label>
+      {% else %}<label>{% translate "Phone (optional)" %}<input name="phone" value="{{ form.phone.value|default:'' }}" autocomplete="tel" inputmode="tel"></label>{% endif %}
       <label class="full">{% translate "Email" %}<input type="email" name="email" value="{{ form.email.value|default:'' }}" autocomplete="email" required><div class="errors">{{ form.email.errors }}</div></label>
       <label class="full">{% translate "Password" %}<input type="password" name="password" id="pw" autocomplete="new-password" minlength="8" required><div class="pw"><i id="pwbar"></i></div><div class="errors">{{ form.password.errors }}</div></label>
     </div>
     <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
     <label class="terms"><input type="checkbox" name="accept_terms" {% if form.accept_terms.value %}checked{% endif %} required><span>{% translate "I agree to the terms of service and privacy policy." %} <a href="{% url 'webapp:terms' %}" target="_blank" rel="noopener">{% translate "Terms" %}</a> · <a href="{% url 'webapp:privacy' %}" target="_blank" rel="noopener">{% translate "Privacy" %}</a> · <a href="{% url 'webapp:refund_policy' %}" target="_blank" rel="noopener">{% translate "Refunds" %}</a></span></label>
     <div class="errors">{{ form.accept_terms.errors }}</div>
-    <button type="submit" id="go">{% translate "Create my account →" %}</button>
+    <button type="submit" id="go">{% if phone_otp %}{% translate "Continue →" %}{% else %}{% translate "Create my account →" %}{% endif %}</button>
     <p class="foot">{% translate "Free for" %} {{ trial_days }} {% translate "days · cancel anytime" %}</p>
   </form>
 </main>

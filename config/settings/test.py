@@ -34,3 +34,4 @@ CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}
 
 # Most tests want an empty restaurant; the starter kit has its own tests.
 RESTAURANT_STARTER_KIT = False
+PHONE_OTP_BACKEND = ""  # sign-up OTP tests switch it on themselves

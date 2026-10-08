@@ -106,6 +106,7 @@ urlpatterns = [
     path("privacy/", guide_views.legal_page, {"page": "privacy"}, name="privacy"),
     path("refund-policy/", guide_views.legal_page, {"page": "refund"}, name="refund_policy"),
     path("signup/", public_views.signup, name="signup"),
+    path("signup/verify/", public_views.signup_verify, name="signup_verify"),
 
     path("sales/invoices/", sales_docs_views.sales_invoice_list, name="sales_invoice_list"),
     path("sales/quotations/", sales_docs_views.quotation_list, name="quotation_list"),

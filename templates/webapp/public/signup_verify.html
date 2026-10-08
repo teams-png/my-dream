@@ -1,0 +1,65 @@
+{% load i18n %}{% load static %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<head>
+{% include "webapp/_app_head.html" %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% translate "Check your mobile number · BookPilot" %}</title>
+<style>
+@font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Regular.ttf" %}');font-weight:400}
+@font-face{font-family:'Inter';src:url('{% static "fonts/Inter-SemiBold.ttf" %}');font-weight:600}
+@font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Bold.ttf" %}');font-weight:700}
+:root{--ink:#0f1a14;--soft:#5b6b62;--line:#e4ebe6;--brand:#14532d;--lime:#c6f432}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:radial-gradient(90% 60% at 100% 0%,rgba(198,244,50,.25),transparent 60%),#f6f8f5;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+a{color:var(--brand);font-weight:600;text-decoration:none}
+.card{width:min(440px,100%);background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px 28px;box-shadow:0 30px 60px rgba(15,26,20,.08);text-align:center}
+.logo{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--ink);margin-bottom:22px}
+.logo i{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--brand),#1f7a45);display:flex;align-items:center;justify-content:center;color:var(--lime);font-style:normal}
+.icon{width:64px;height:64px;border-radius:20px;background:#e9f7ee;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px}
+h1{font-size:24px;letter-spacing:-.03em;margin:0 0 6px}
+p{color:var(--soft);margin:0 0 20px;line-height:1.5}
+.num{color:var(--ink);font-weight:700;white-space:nowrap}
+input{display:block;width:100%;padding:14px;border:1.5px solid var(--line);border-radius:14px;font:inherit;font-size:26px;font-weight:700;letter-spacing:.4em;text-align:center;background:#fff;color:var(--ink)}
+input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px rgba(20,83,45,.12)}
+.go{width:100%;margin-top:14px;padding:15px;border:0;border-radius:14px;background:var(--brand);color:#fff;font:inherit;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 12px 26px rgba(20,83,45,.28)}
+.go:hover{background:#0e3b22}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:18px;font-size:14px;flex-wrap:wrap}
+.link{background:none;border:0;padding:0;font:inherit;font-weight:600;color:var(--brand);cursor:pointer}
+.link:disabled{color:var(--soft);cursor:default}
+.alert{padding:12px 14px;border-radius:12px;background:#fdeceb;color:#c0392b;font-size:14px;margin-bottom:14px;text-align:start}
+.alert.success{background:#e9f7ee;color:#14532d}
+.lang{position:fixed;top:14px;inset-inline-end:14px}
+.lang-switch{margin:0;display:inline-flex}
+.lang-switch label{display:inline-flex;align-items:center;gap:4px;border:1px solid #e3e6ee;border-radius:10px;padding:0 6px 0 8px;background:#fff;font-size:13px;cursor:pointer}
+.lang-switch select{border:0;background:transparent;font:inherit;font-size:13px;font-weight:600;padding:7px 2px;cursor:pointer;color:inherit}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+{% include "webapp/_lang_font.html" %}</head>
+<body>
+<div class="lang">{% include "webapp/_language_switcher.html" %}</div>
+<main class="card">
+  <a class="logo" href="{% url 'webapp:landing' %}"><i>✦</i>{% translate "BookPilot" %}</a>
+  <div class="icon">📱</div>
+  <h1>{% translate "Check your mobile number" %}</h1>
+  <p>{% translate "We sent a 6-digit code by SMS to" %} <span class="num" dir="ltr">{{ phone }}</span></p>
+  {% for m in messages %}<div class="alert{% if m.tags == 'success' %} success{% endif %}" role="alert">{{ m }}</div>{% endfor %}
+  <form method="post">{% csrf_token %}
+    <label class="sr-only" for="code">{% translate "Code" %}</label>
+    <input id="code" name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]*" maxlength="8" placeholder="••••••" required autofocus>
+    <button class="go" type="submit">{% translate "Verify and create my account" %}</button>
+  </form>
+  <div class="row">
+    <form method="post">{% csrf_token %}<input type="hidden" name="action" value="resend">
+      <button class="link" id="resend" type="submit" data-wait="{{ wait }}" {% if wait %}disabled{% endif %}>{% translate "Send a new code" %}<span id="tick">{% if wait %} ({{ wait }}){% endif %}</span></button></form>
+    <a href="{% url 'webapp:signup' %}?edit=1">{% translate "Change number" %}</a>
+  </div>
+</main>
+<script>
+(function(){
+  const b=document.getElementById('resend'),t=document.getElementById('tick');let w=+b.dataset.wait||0;
+  if(!w)return;const id=setInterval(()=>{w--;if(w<=0){clearInterval(id);b.disabled=false;t.textContent=''}else t.textContent=' ('+w+')'},1000);
+})();
+</script>
+</body>
+</html>

@@ -94,11 +94,14 @@ def catalogue(company, absolute, limit=500):
             items.append({"id": c.id, "name": c.name, "price": f"{c.fee:.2f}", "unit": c.billing,
                           "description": c.schedule, "teacher": c.teacher})
     elif kind == "services":
+        from apps.inventory.pictures import art_url, pick
         from .online_booking import items as booking_items
         for s in booking_items(company, "appointment")[:limit]:
-            items.append({"id": s["id"], "name": s["name"], "price": s["price"] or None, "minutes": s.get("minutes")})
+            items.append({"id": s["id"], "name": s["name"], "price": s["price"] or None, "minutes": s.get("minutes"),
+                          "image": absolute(art_url(pick(s["name"], "", company.business_type.code)))})
     else:
         from apps.inventory.models import Product
+        from apps.inventory.pictures import picture_url
         qs = Product.objects.for_company(company).filter(is_active=True).select_related("category").order_by("category__name", "name")
         from apps.verticals.restaurant.online_orders import config as ordering_config, needs_choice
         ordering = ordering_config(company)
@@ -112,7 +115,7 @@ def catalogue(company, absolute, limit=500):
             m = menu.get(p.id)
             items.append({"id": p.id, "name": p.name, "category": p.category.name if p.category else "",
                           "price": f"{p.selling_price:.2f}", "description": getattr(m, "description", "") if m else "",
-                          "image": absolute(m.image.url) if m and m.image else None,
+                          "image": absolute(m.image.url) if m and m.image else absolute(picture_url(p, company.business_type.code)),
                           "vegetarian": getattr(m, "is_vegetarian", None) if m else None,
                           "available": bool(m.is_available) if m else True,
                           "featured": bool(m.is_featured) if m else False,

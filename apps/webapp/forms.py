@@ -98,9 +98,9 @@ class ProductForm(QuickAddMixin, forms.ModelForm):
         model = Product
         fields = [
             "sku", "name", "category", "brand", "unit", "cost_price", "selling_price",
-            "reorder_level", "size", "colour", "material", "design",
+            "reorder_level", "size", "colour", "material", "design", "image",
         ]
-        labels = {"sku": _l("SKU / barcode"), "name": _l("Product name"), "cost_price": _l("Cost price"),
+        labels = {"image": _l("Photo (optional)"), "sku": _l("SKU / barcode"), "name": _l("Product name"), "cost_price": _l("Cost price"),
                   "selling_price": _l("Selling price"), "reorder_level": _l("Reorder level")}
 
     def __init__(self, *args, company=None, **kwargs):

@@ -568,7 +568,7 @@ def product_add(request):
     else:
         form_class = ProductForm
     if request.method == "POST":
-        form = form_class(request.POST, company=company)
+        form = form_class(request.POST, request.FILES, company=company)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.company = company
@@ -591,7 +591,7 @@ def product_edit(request, product_id):
     else:
         form_class = ProductForm
     if request.method == "POST":
-        form = form_class(request.POST, instance=obj, company=company)
+        form = form_class(request.POST, request.FILES, instance=obj, company=company)
         if form.is_valid():
             form.save()
             messages.success(request, "Product updated.")
@@ -3876,6 +3876,7 @@ def _price_rules(company):
 def _pos_catalog(company):
     """Product data for the POS screen, with stock from one grouped query."""
     from apps.inventory.models import StockMovement
+    from apps.inventory.pictures import picture_url
 
     # a product sold in sizes / colours is billed as one of its variants, never as the group itself
     products = list(Product.objects.for_company(company).filter(is_active=True)
@@ -3909,6 +3910,7 @@ def _pos_catalog(company):
             "design": p.design, "variant": p.variant_label, "item_type": item_type, "mobile_units": units,
             "weighed": bool((p.attributes or {}).get("sold_by_weight")),
             "plu": str((p.attributes or {}).get("scale_code") or ""),
+            "img": picture_url(p, company.business_type.code),
         })
         list_price, offer = offers(p)
         if list_price is not None and list_price != p.selling_price:

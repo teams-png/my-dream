@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load sample_data %}
 {% block title %}Products{% endblock %}
 {% block heading %}Products{% endblock %}
 {% block content %}
@@ -13,7 +14,7 @@
   <tr><th>SKU</th><th>Name / Variant</th><th>Category</th><th>Stock</th><th>Cost</th><th>Selling price</th><th></th></tr>
   {% for p in products %}
   <tr>
-    <td>{{ p.sku }}</td><td>{{ p.name }}{% if p.attributes.model_number %}<br><small>{{ p.attributes.model_number }} · {{ p.attributes.ram }} / {{ p.attributes.storage }} · {{ p.attributes.network }}</small>{% endif %}</td><td>{{ p.category.name|default:"—" }}</td>
+    <td>{{ p.sku }}</td><td>{% product_picture p as pic %}<img src="{{ pic }}" alt="" loading="lazy" style="width:38px;height:38px;border-radius:10px;object-fit:cover;vertical-align:middle;margin-inline-end:10px;float:inline-start">{{ p.name }}{% if p.attributes.model_number %}<br><small>{{ p.attributes.model_number }} · {{ p.attributes.ram }} / {{ p.attributes.storage }} · {{ p.attributes.network }}</small>{% endif %}</td><td>{{ p.category.name|default:"—" }}</td>
     <td>{{ p.current_stock }}</td>
     <td>{{ p.cost_price }}</td><td>{{ p.selling_price }}</td>
     <td>

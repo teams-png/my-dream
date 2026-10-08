@@ -73,7 +73,7 @@
   function buildGrid() {
     $("pos-product-grid").innerHTML = PRODUCTS.map((p, i) => `
       <article class="food-card prod-card" data-id="${p.id}" style="--i:${Math.min(i, 30)};--h:${hue(p.name)}">
-        <div class="prod-tile"><span class="ico">${esc(initials(p.name))}</span><span class="stock-pill"></span></div>
+        <div class="prod-tile${p.img ? " has-img" : ""}">${p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy" decoding="async">` : `<span class="ico">${esc(initials(p.name))}</span>`}<span class="stock-pill"></span></div>
         <div class="food-body">
           <div class="food-name">${esc(label(p))}</div>
           <div class="prod-sku">${esc(p.sku)}</div>

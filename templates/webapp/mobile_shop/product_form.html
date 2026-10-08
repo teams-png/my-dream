@@ -3,7 +3,7 @@
 {% block title %}{% if editing %}{% translate "Edit product" %}{% else %}{% translate "Add product" %}{% endif %}{% endblock %}
 {% block heading %}{% if editing %}{% translate "Edit product" %}{% else %}{% translate "Add product" %}{% endif %}{% endblock %}
 {% block content %}
-<form method="post" class="fx" style="max-width:860px" novalidate>{% csrf_token %}
+<form method="post" class="fx" style="max-width:860px" enctype="multipart/form-data" novalidate>{% csrf_token %}
   {% if form.errors %}<div class="fx-errors">{% translate "Please check the highlighted fields." %}{{ form.non_field_errors }}</div>{% endif %}
   <section class="fx-card">
     <h2>📦 {% translate "Product details" %}</h2>

@@ -1,4 +1,6 @@
 from django.db import models
+
+from apps.common.validators import validate_upload_file
 from apps.tenants.models import TenantScopedModel
 
 
@@ -89,6 +91,8 @@ class Product(TenantScopedModel):
         default=dict, blank=True,
         help_text="Free-form spec details (material, warranty, weight...) as key/value pairs.",
     )
+    image = models.ImageField(upload_to="products/", blank=True, null=True, validators=[validate_upload_file],
+                              help_text="Photo shown on the POS and website. Without one, a picture is chosen from the name.")
 
     class Meta:
         unique_together = ("company", "sku")

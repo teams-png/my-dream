@@ -54,3 +54,11 @@ def quick_actions(context):
         actions.append(("📅", _("New booking"), reverse("webapp:booking_add"), False))
     actions.append(("💬", _("Customer reminders"), reverse("webapp:reminders"), False))
     return actions
+
+
+@register.simple_tag(takes_context=True)
+def product_picture(context, product):
+    """Photo or default picture URL for a product (for lists and the website)."""
+    from apps.inventory.pictures import picture_url
+    company = getattr(context.get("request"), "company", None)
+    return picture_url(product, company.business_type.code if company else "")

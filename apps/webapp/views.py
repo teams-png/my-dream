@@ -64,7 +64,7 @@ from apps.expenses import services as expense_services
 from apps.tenants.models import Role, Permission, CompanyMembership, Company, CompanyBusinessType
 from apps.subscriptions.models import Subscription, SubscriptionPlan, SubscriptionPayment
 from apps.modules.models import Module, CompanyModule
-from apps.modules.catalog import business_group, BUSINESS_TYPE_MAP, BUSINESS_TYPE_CHOICES
+from apps.modules.catalog import business_group, billing_mode, BUSINESS_TYPE_MAP, BUSINESS_TYPE_CHOICES
 from .forms import WEB_FEATURES
 from apps.tenants import services as tenant_services
 from apps.sales.models import Coupon
@@ -3877,7 +3877,9 @@ def _pos_catalog(company):
     """Product data for the POS screen, with stock from one grouped query."""
     from apps.inventory.models import StockMovement
 
+    # a product sold in sizes / colours is billed as one of its variants, never as the group itself
     products = list(Product.objects.for_company(company).filter(is_active=True)
+                    .exclude(variants__isnull=False).distinct()
                     .select_related("category").order_by("name"))
     stock = dict(StockMovement.objects.for_company(company).filter(product__in=products)
                  .values("product").annotate(total=Sum("quantity")).values_list("product", "total"))
@@ -3939,7 +3941,16 @@ def pos_view(request):
     if company is None:
         return render(request, "webapp/no_company.html")
     catalog, categories = _pos_catalog(company)
+    service_billing = billing_mode(company.business_type.code)
+    staff = []
+    if service_billing:
+        from apps.employees.models import Employee
+        staff = Employee.objects.for_company(company).filter(is_active=True).order_by("name")
+        for item in catalog:  # "Saloon Service — Haircut" reads as "Haircut" on the billing screen
+            item["name"] = item["name"].split(" — ", 1)[-1]
+        catalog.sort(key=lambda item: (item["tracked"], item["name"].lower()))  # services first, then products
     return render(request, "webapp/pos.html", {
+        "service_billing": service_billing, "staff": staff,
         "pos_data": {
             "products": catalog, "categories": categories,
             "company": {"name": company.name, "address": company.address, "phone": company.phone,

@@ -54,6 +54,10 @@ msgid "Sales orders & delivery"
 msgstr "Satış siparişleri ve teslimat"
 
 #: templates/base.html
+msgid "Billing"
+msgstr "Faturalama"
+
+#: templates/base.html
 msgid "POS"
 msgstr "POS"
 
@@ -128,10 +132,6 @@ msgstr "Bütçeler"
 #: templates/base.html
 msgid "Online payments"
 msgstr "Online ödemeler"
-
-#: templates/base.html
-msgid "Billing"
-msgstr "Faturalama"
 
 #: templates/base.html
 msgid "People"
@@ -661,6 +661,64 @@ msgstr "Web sitem"
 msgid "Language"
 msgstr "Dil"
 
+#: templates/webapp/_sample_banner.html
+msgid "You are looking at sample data"
+msgstr "Örnek verileri görüyorsunuz"
+
+#: templates/webapp/_sample_banner.html
+msgid ""
+"These were added as examples so you can see how everything works. Try a "
+"sale, then remove them and add your own."
+msgstr ""
+"Her şeyin nasıl çalıştığını görmeniz için örnek olarak eklendi. Bir satış "
+"deneyin, sonra bunları silip kendinizinkini ekleyin."
+
+#: templates/webapp/_sample_banner.html
+msgid "products"
+msgstr "ürün"
+
+#: templates/webapp/_sample_banner.html
+msgid "services"
+msgstr "hizmet"
+
+#: templates/webapp/_sample_banner.html
+msgid "customers"
+msgstr "müşteri"
+
+#: templates/webapp/_sample_banner.html
+msgid "staff"
+msgstr "personel"
+
+#: templates/webapp/_sample_banner.html
+msgid "Remove all sample products, services, customers and staff?"
+msgstr "Tüm örnek ürünler, hizmetler, müşteriler ve personel silinsin mi?"
+
+#: templates/webapp/_sample_banner.html
+msgid "Remove sample data"
+msgstr "Örnek veriyi kaldır"
+
+#: templates/webapp/_staff_billing.html
+msgid "Billing by staff – this month"
+msgstr "Personele göre faturalama – bu ay"
+
+#: templates/webapp/_staff_billing.html
+msgid "Staff"
+msgstr "Personel"
+
+#: templates/webapp/_staff_billing.html
+msgid "Bills"
+msgstr "Faturalar"
+
+#: templates/webapp/_staff_billing.html
+msgid "Total"
+msgstr "Toplam"
+
+#: templates/webapp/_staff_billing.html
+msgid ""
+"Choose “Done by” on the Billing screen to see each staff member's work here."
+msgstr ""
+"Her personelin işini burada görmek için Faturalama ekranında “Yapan” seçin."
+
 #: templates/webapp/_theme_toggle.html
 msgid "Dark / light mode"
 msgstr "Koyu / açık mod"
@@ -928,10 +986,6 @@ msgstr "Borç"
 #: templates/webapp/accounts/journal_detail.html
 msgid "Credit"
 msgstr "Alacak"
-
-#: templates/webapp/accounts/journal_detail.html
-msgid "Total"
-msgstr "Toplam"
 
 #: templates/webapp/accounts/journal_detail.html
 msgid "Cancel this journal entry? It will be removed from all reports."
@@ -3393,10 +3447,6 @@ msgid "Call"
 msgstr "Ara"
 
 #: templates/webapp/hr/_tabs.html
-msgid "Staff"
-msgstr "Personel"
-
-#: templates/webapp/hr/_tabs.html
 msgid "Leave"
 msgstr "İzin"
 
@@ -5143,10 +5193,6 @@ msgid ""
 msgstr "Yalnızca üye ayrılıyorsa — yoksa bir sonraki aylık faturaya eklenir."
 
 #: templates/webapp/mess/member.html
-msgid "Bills"
-msgstr "Faturalar"
-
-#: templates/webapp/mess/member.html
 msgid "No bills yet."
 msgstr "Henüz fatura yok."
 
@@ -5865,6 +5911,10 @@ msgid "Product categories"
 msgstr "Ürün kategorileri"
 
 #: templates/webapp/pos.html
+msgid "Search service or product..."
+msgstr "Hizmet veya ürün ara..."
+
+#: templates/webapp/pos.html
 msgid "Scan barcode or search product by name / SKU..."
 msgstr "Barkod okutun veya ad / SKU ile ürün arayın..."
 
@@ -5897,12 +5947,24 @@ msgid "Walk-in Customer"
 msgstr "Genel müşteri"
 
 #: templates/webapp/pos.html
+msgid "Done by"
+msgstr "Yapan"
+
+#: templates/webapp/pos.html
+msgid "Done by (staff)"
+msgstr "Yapan (personel)"
+
+#: templates/webapp/pos.html
 msgid "Branch"
 msgstr "Şube"
 
 #: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "Sepet boş"
+
+#: templates/webapp/pos.html
+msgid "Tap a service to start a bill."
+msgstr "Fatura başlatmak için bir hizmete dokunun."
 
 #: templates/webapp/pos.html
 msgid "Scan a barcode or tap a product to start a sale."
@@ -6027,10 +6089,6 @@ msgstr "Bu kasada bekletilen satışlar. Geri getirmek için birine dokunun."
 #: templates/webapp/pos.html
 msgid "Offline"
 msgstr "Çevrimdışı"
-
-#: templates/webapp/pos.html
-msgid "products"
-msgstr "ürün"
 
 #: templates/webapp/pos.html
 msgid "in stock"
@@ -7621,10 +7679,6 @@ msgstr "örnek gider"
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Remove all sample dishes, staff and expenses?"
 msgstr "Tüm örnek yemekler, personel ve giderler kaldırılsın mı?"
-
-#: templates/webapp/restaurant/_starter_kit.html
-msgid "Remove sample data"
-msgstr "Örnek veriyi kaldır"
 
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Load a full Kerala restaurant menu"
@@ -9255,6 +9309,22 @@ msgstr "Plan ve faturalama"
 #: templates/webapp/settings.html
 msgid "Active until"
 msgstr "Şu tarihe kadar aktif"
+
+#: templates/webapp/settings.html
+msgid "Sample data"
+msgstr "Örnek veriler"
+
+#: templates/webapp/settings.html
+msgid ""
+"Add example products, services and customers for your type of business, to "
+"see how it works."
+msgstr ""
+"Nasıl çalıştığını görmek için işletme türünüze uygun örnek ürün, hizmet ve "
+"müşteriler ekleyin."
+
+#: templates/webapp/settings.html
+msgid "Add sample data"
+msgstr "Örnek veri ekle"
 
 #: templates/webapp/site/editor.html
 msgid "Website kit"
@@ -12099,6 +12169,25 @@ msgstr "%(number)s faturası oluşturuldu."
 #: apps/webapp/sales_docs_views.py
 msgid "Nothing delivered is waiting to be invoiced."
 msgstr "Faturalanmayı bekleyen teslimat yok."
+
+#: apps/webapp/sample_views.py
+msgid "Sample data removed. You can now add your own products and services."
+msgstr ""
+"Örnek veriler silindi. Artık kendi ürün ve hizmetlerinizi ekleyebilirsiniz."
+
+#: apps/webapp/sample_views.py
+msgid ""
+"%(n)s sample items were already used in bills, so they were switched off "
+"instead."
+msgstr ""
+"%(n)s örnek öğe faturalarda kullanılmıştı, bu yüzden silinmek yerine "
+"kapatıldı."
+
+#: apps/webapp/sample_views.py
+msgid "Sample data added. Remove it any time from the overview or Settings."
+msgstr ""
+"Örnek veriler eklendi. İstediğiniz zaman Genel bakış veya Ayarlar'dan "
+"silebilirsiniz."
 
 #: apps/webapp/scale_views.py
 msgid "Use 1–3 digit prefixes separated by commas, e.g. 20,21,22."

@@ -54,6 +54,10 @@ msgid "Sales orders & delivery"
 msgstr "Sales order at delivery"
 
 #: templates/base.html
+msgid "Billing"
+msgstr "Billing"
+
+#: templates/base.html
 msgid "POS"
 msgstr "POS"
 
@@ -128,10 +132,6 @@ msgstr "Mga budget"
 #: templates/base.html
 msgid "Online payments"
 msgstr "Online na bayad"
-
-#: templates/base.html
-msgid "Billing"
-msgstr "Billing"
 
 #: templates/base.html
 msgid "People"
@@ -661,6 +661,66 @@ msgstr "Aking website"
 msgid "Language"
 msgstr "Wika"
 
+#: templates/webapp/_sample_banner.html
+msgid "You are looking at sample data"
+msgstr "Sample data ang nakikita mo"
+
+#: templates/webapp/_sample_banner.html
+msgid ""
+"These were added as examples so you can see how everything works. Try a "
+"sale, then remove them and add your own."
+msgstr ""
+"Idinagdag ang mga ito bilang halimbawa para makita mo kung paano gumagana "
+"ang lahat. Subukan ang isang benta, saka alisin ang mga ito at idagdag ang "
+"sa iyo."
+
+#: templates/webapp/_sample_banner.html
+msgid "products"
+msgstr "produkto"
+
+#: templates/webapp/_sample_banner.html
+msgid "services"
+msgstr "serbisyo"
+
+#: templates/webapp/_sample_banner.html
+msgid "customers"
+msgstr "customer"
+
+#: templates/webapp/_sample_banner.html
+msgid "staff"
+msgstr "staff"
+
+#: templates/webapp/_sample_banner.html
+msgid "Remove all sample products, services, customers and staff?"
+msgstr "Alisin ang lahat ng sample na produkto, serbisyo, customer at staff?"
+
+#: templates/webapp/_sample_banner.html
+msgid "Remove sample data"
+msgstr "Alisin ang sample na data"
+
+#: templates/webapp/_staff_billing.html
+msgid "Billing by staff – this month"
+msgstr "Billing ayon sa staff – ngayong buwan"
+
+#: templates/webapp/_staff_billing.html
+msgid "Staff"
+msgstr "Staff"
+
+#: templates/webapp/_staff_billing.html
+msgid "Bills"
+msgstr "Mga bill"
+
+#: templates/webapp/_staff_billing.html
+msgid "Total"
+msgstr "Kabuuan"
+
+#: templates/webapp/_staff_billing.html
+msgid ""
+"Choose “Done by” on the Billing screen to see each staff member's work here."
+msgstr ""
+"Piliin ang “Ginawa ni” sa Billing screen para makita rito ang trabaho ng "
+"bawat staff."
+
 #: templates/webapp/_theme_toggle.html
 msgid "Dark / light mode"
 msgstr "Dark / light mode"
@@ -928,10 +988,6 @@ msgstr "Debit"
 #: templates/webapp/accounts/journal_detail.html
 msgid "Credit"
 msgstr "Credit"
-
-#: templates/webapp/accounts/journal_detail.html
-msgid "Total"
-msgstr "Kabuuan"
 
 #: templates/webapp/accounts/journal_detail.html
 msgid "Cancel this journal entry? It will be removed from all reports."
@@ -3412,10 +3468,6 @@ msgid "Call"
 msgstr "Tawagan"
 
 #: templates/webapp/hr/_tabs.html
-msgid "Staff"
-msgstr "Staff"
-
-#: templates/webapp/hr/_tabs.html
 msgid "Leave"
 msgstr "Leave"
 
@@ -5173,10 +5225,6 @@ msgstr ""
 "buwanang bill."
 
 #: templates/webapp/mess/member.html
-msgid "Bills"
-msgstr "Mga bill"
-
-#: templates/webapp/mess/member.html
 msgid "No bills yet."
 msgstr "Wala pang bill."
 
@@ -5900,6 +5948,10 @@ msgid "Product categories"
 msgstr "Mga kategorya ng produkto"
 
 #: templates/webapp/pos.html
+msgid "Search service or product..."
+msgstr "Maghanap ng serbisyo o produkto..."
+
+#: templates/webapp/pos.html
 msgid "Scan barcode or search product by name / SKU..."
 msgstr "I-scan ang barcode o hanapin ang produkto ayon sa pangalan / SKU..."
 
@@ -5932,12 +5984,24 @@ msgid "Walk-in Customer"
 msgstr "Walk-in na customer"
 
 #: templates/webapp/pos.html
+msgid "Done by"
+msgstr "Ginawa ni"
+
+#: templates/webapp/pos.html
+msgid "Done by (staff)"
+msgstr "Ginawa ni (staff)"
+
+#: templates/webapp/pos.html
 msgid "Branch"
 msgstr "Sangay"
 
 #: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "Walang laman ang cart"
+
+#: templates/webapp/pos.html
+msgid "Tap a service to start a bill."
+msgstr "I-tap ang isang serbisyo para magsimula ng bill."
 
 #: templates/webapp/pos.html
 msgid "Scan a barcode or tap a product to start a sale."
@@ -6062,10 +6126,6 @@ msgstr "Mga benta na naka-hold sa kahang ito. Pindutin ang isa para ibalik."
 #: templates/webapp/pos.html
 msgid "Offline"
 msgstr "Offline"
-
-#: templates/webapp/pos.html
-msgid "products"
-msgstr "produkto"
 
 #: templates/webapp/pos.html
 msgid "in stock"
@@ -7658,10 +7718,6 @@ msgstr "sample na gastos"
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Remove all sample dishes, staff and expenses?"
 msgstr "Alisin ang lahat ng sample na ulam, staff at gastos?"
-
-#: templates/webapp/restaurant/_starter_kit.html
-msgid "Remove sample data"
-msgstr "Alisin ang sample na data"
 
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Load a full Kerala restaurant menu"
@@ -9300,6 +9356,22 @@ msgstr "Plano at billing"
 #: templates/webapp/settings.html
 msgid "Active until"
 msgstr "Aktibo hanggang"
+
+#: templates/webapp/settings.html
+msgid "Sample data"
+msgstr "Sample data"
+
+#: templates/webapp/settings.html
+msgid ""
+"Add example products, services and customers for your type of business, to "
+"see how it works."
+msgstr ""
+"Magdagdag ng halimbawang produkto, serbisyo at customer para sa uri ng "
+"negosyo mo, para makita kung paano ito gumagana."
+
+#: templates/webapp/settings.html
+msgid "Add sample data"
+msgstr "Magdagdag ng sample data"
 
 #: templates/webapp/site/editor.html
 msgid "Website kit"
@@ -12171,6 +12243,26 @@ msgstr "Nagawa ang invoice %(number)s."
 #: apps/webapp/sales_docs_views.py
 msgid "Nothing delivered is waiting to be invoiced."
 msgstr "Walang naihatid na naghihintay ng invoice."
+
+#: apps/webapp/sample_views.py
+msgid "Sample data removed. You can now add your own products and services."
+msgstr ""
+"Naalis na ang sample data. Puwede mo nang idagdag ang sarili mong produkto "
+"at serbisyo."
+
+#: apps/webapp/sample_views.py
+msgid ""
+"%(n)s sample items were already used in bills, so they were switched off "
+"instead."
+msgstr ""
+"%(n)s sample na item ang nagamit na sa mga bill, kaya pinatay ang mga ito sa"
+" halip na burahin."
+
+#: apps/webapp/sample_views.py
+msgid "Sample data added. Remove it any time from the overview or Settings."
+msgstr ""
+"Naidagdag ang sample data. Alisin ito anumang oras mula sa overview o "
+"Settings."
 
 #: apps/webapp/scale_views.py
 msgid "Use 1–3 digit prefixes separated by commas, e.g. 20,21,22."

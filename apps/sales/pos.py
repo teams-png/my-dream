@@ -113,6 +113,15 @@ def checkout(*, company, user, payload, sale_date=None):
             company=company, user=user, customer=customer, date=today, lines=lines, warehouse=warehouse,
             discount_amount=discount_amount, coupon_code=coupon_code,
         )
+        staff_id = payload.get("staff_id")
+        if staff_id:
+            from apps.employees.models import Employee
+            staff = Employee.objects.for_company(company).filter(id=staff_id, is_active=True).first() \
+                if str(staff_id).isdigit() else None
+            if staff is None:
+                raise PosError("Staff member not found.")
+            invoice.served_by = staff
+            invoice.save(update_fields=["served_by"])
         deferred = payment_method in {"credit", "installment"}
         amount_paid = invoice.total
         if deferred:

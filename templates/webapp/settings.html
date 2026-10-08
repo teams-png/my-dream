@@ -16,6 +16,22 @@
   <a class="btn btn-secondary" href="{% url 'webapp:billing' %}" style="margin-top:12px">{% if days_left < 0 %}{% translate "Renew now →" %}{% else %}{% translate "View billing →" %}{% endif %}</a>
 </div>
 {% endif %}
+{% load sample_data %}{% sample_summary as samples %}{% if samples is not None %}
+<div class="card" style="max-width:460px;margin-bottom:16px">
+  <div style="font-size:13px;color:var(--ink-soft)">{% translate "Sample data" %}</div>
+  {% if samples.loaded %}
+  <p style="margin:6px 0 10px;font-size:14px">📦 {{ samples.products }} {% translate "products" %} · 🛎 {{ samples.services }} {% translate "services" %} · 👥 {{ samples.customers }} {% translate "customers" %}</p>
+  <form method="post" action="{% url 'webapp:sample_data' %}" onsubmit="return confirm('{% translate "Remove all sample products, services, customers and staff?" %}')">{% csrf_token %}
+    <input type="hidden" name="action" value="remove"><input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <button class="btn btn-secondary" type="submit">🗑 {% translate "Remove sample data" %}</button></form>
+  {% else %}
+  <p style="margin:6px 0 10px;font-size:14px">{% translate "Add example products, services and customers for your type of business, to see how it works." %}</p>
+  <form method="post" action="{% url 'webapp:sample_data' %}">{% csrf_token %}
+    <input type="hidden" name="action" value="install"><input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <button class="btn btn-secondary" type="submit">🧪 {% translate "Add sample data" %}</button></form>
+  {% endif %}
+</div>
+{% endif %}
 <div class="card" style="max-width:460px;">
   <form class="stacked" method="post" enctype="multipart/form-data">
     {% csrf_token %}

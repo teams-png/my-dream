@@ -123,6 +123,8 @@ class SalesInvoice(TenantScopedModel):
         "accounts.User", null=True, blank=True, on_delete=models.PROTECT, related_name="approved_sales_discounts"
     )
     warehouse = models.ForeignKey("inventory.Warehouse", null=True, blank=True, on_delete=models.SET_NULL)
+    served_by = models.ForeignKey("employees.Employee", null=True, blank=True, on_delete=models.SET_NULL,
+                                  related_name="served_invoices", help_text="Staff member who did the work (Billing screen).")
     journal_entry = models.OneToOneField("accounting.JournalEntry", null=True, blank=True, on_delete=models.SET_NULL)
 
     class Meta:

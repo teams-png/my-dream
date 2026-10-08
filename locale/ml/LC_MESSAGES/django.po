@@ -54,6 +54,10 @@ msgid "Sales orders & delivery"
 msgstr "സെയിൽസ് ഓർഡറും ഡെലിവറിയും"
 
 #: templates/base.html
+msgid "Billing"
+msgstr "ബില്ലിംഗ്"
+
+#: templates/base.html
 msgid "POS"
 msgstr "POS"
 
@@ -128,10 +132,6 @@ msgstr "ബജറ്റുകൾ"
 #: templates/base.html
 msgid "Online payments"
 msgstr "ഓൺലൈൻ പേയ്‌മെന്റ്"
-
-#: templates/base.html
-msgid "Billing"
-msgstr "ബില്ലിംഗ്"
 
 #: templates/base.html
 msgid "People"
@@ -661,6 +661,67 @@ msgstr "എന്റെ വെബ്സൈറ്റ്"
 msgid "Language"
 msgstr "ഭാഷ"
 
+#: templates/webapp/_sample_banner.html
+msgid "You are looking at sample data"
+msgstr "നിങ്ങൾ കാണുന്നത് സാമ്പിൾ ഡാറ്റയാണ്"
+
+#: templates/webapp/_sample_banner.html
+msgid ""
+"These were added as examples so you can see how everything works. Try a "
+"sale, then remove them and add your own."
+msgstr ""
+"എല്ലാം എങ്ങനെ പ്രവർത്തിക്കുന്നു എന്ന് കാണാൻ ഉദാഹരണമായി ചേർത്തതാണ് ഇവ. ഒരു "
+"സെയിൽ ചെയ്തുനോക്കൂ, പിന്നെ ഇവ നീക്കി നിങ്ങളുടേത് ചേർക്കൂ."
+
+#: templates/webapp/_sample_banner.html
+msgid "products"
+msgstr "ഉൽപ്പന്നങ്ങൾ"
+
+#: templates/webapp/_sample_banner.html
+msgid "services"
+msgstr "സർവീസുകൾ"
+
+#: templates/webapp/_sample_banner.html
+msgid "customers"
+msgstr "കസ്റ്റമേഴ്സ്"
+
+#: templates/webapp/_sample_banner.html
+msgid "staff"
+msgstr "സ്റ്റാഫ്"
+
+#: templates/webapp/_sample_banner.html
+msgid "Remove all sample products, services, customers and staff?"
+msgstr ""
+"എല്ലാ സാമ്പിൾ പ്രോഡക്ടുകളും സർവീസുകളും കസ്റ്റമേഴ്സും സ്റ്റാഫും നീക്കം "
+"ചെയ്യണോ?"
+
+#: templates/webapp/_sample_banner.html
+msgid "Remove sample data"
+msgstr "സാമ്പിൾ ഡാറ്റ നീക്കം ചെയ്യുക"
+
+#: templates/webapp/_staff_billing.html
+msgid "Billing by staff – this month"
+msgstr "സ്റ്റാഫ് തിരിച്ചുള്ള ബില്ലിംഗ് – ഈ മാസം"
+
+#: templates/webapp/_staff_billing.html
+msgid "Staff"
+msgstr "സ്റ്റാഫ്"
+
+#: templates/webapp/_staff_billing.html
+msgid "Bills"
+msgstr "ബില്ലുകൾ"
+
+#: templates/webapp/_staff_billing.html
+msgid "Total"
+msgstr "ആകെ"
+
+#: templates/webapp/_staff_billing.html
+msgid ""
+"Choose “Done by” on the Billing screen to see each staff member's work here."
+msgstr ""
+"ഓരോ സ്റ്റാഫിന്റെയും ജോലി ഇവിടെ കാണാൻ Billing സ്ക്രീനിൽ “Done by” "
+"തിരഞ്ഞെടുക്കുക."
+
 #: templates/webapp/_theme_toggle.html
 msgid "Dark / light mode"
 msgstr "ഡാർക്ക് / ലൈറ്റ് മോഡ്"
@@ -927,10 +988,6 @@ msgstr "ഡെബിറ്റ്"
 #: templates/webapp/accounts/journal_detail.html
 msgid "Credit"
 msgstr "കടം"
-
-#: templates/webapp/accounts/journal_detail.html
-msgid "Total"
-msgstr "ആകെ"
 
 #: templates/webapp/accounts/journal_detail.html
 msgid "Cancel this journal entry? It will be removed from all reports."
@@ -3404,10 +3461,6 @@ msgid "Call"
 msgstr "വിളിക്കൂ"
 
 #: templates/webapp/hr/_tabs.html
-msgid "Staff"
-msgstr "സ്റ്റാഫ്"
-
-#: templates/webapp/hr/_tabs.html
 msgid "Leave"
 msgstr "ലീവ്"
 
@@ -5162,10 +5215,6 @@ msgid ""
 msgstr "മെമ്പർ പോകുകയാണെങ്കിൽ മാത്രം — അല്ലെങ്കിൽ അടുത്ത മാസ ബില്ലിൽ ചേരും."
 
 #: templates/webapp/mess/member.html
-msgid "Bills"
-msgstr "ബില്ലുകൾ"
-
-#: templates/webapp/mess/member.html
 msgid "No bills yet."
 msgstr "ഇതുവരെ ബില്ലുകളില്ല."
 
@@ -5889,6 +5938,10 @@ msgid "Product categories"
 msgstr "ഉൽപ്പന്ന വിഭാഗങ്ങൾ"
 
 #: templates/webapp/pos.html
+msgid "Search service or product..."
+msgstr "സർവീസ് അല്ലെങ്കിൽ പ്രോഡക്ട് തിരയുക..."
+
+#: templates/webapp/pos.html
 msgid "Scan barcode or search product by name / SKU..."
 msgstr "ബാർകോഡ് സ്കാൻ ചെയ്യുക അല്ലെങ്കിൽ പേര് / SKU വെച്ച് തിരയുക..."
 
@@ -5921,12 +5974,24 @@ msgid "Walk-in Customer"
 msgstr "വാക്ക്-ഇൻ കസ്റ്റമർ"
 
 #: templates/webapp/pos.html
+msgid "Done by"
+msgstr "ചെയ്തത്"
+
+#: templates/webapp/pos.html
+msgid "Done by (staff)"
+msgstr "ചെയ്തത് (സ്റ്റാഫ്)"
+
+#: templates/webapp/pos.html
 msgid "Branch"
 msgstr "ബ്രാഞ്ച്"
 
 #: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "കാർട്ട് ശൂന്യമാണ്"
+
+#: templates/webapp/pos.html
+msgid "Tap a service to start a bill."
+msgstr "ബിൽ തുടങ്ങാൻ ഒരു സർവീസ് ടാപ്പ് ചെയ്യുക."
 
 #: templates/webapp/pos.html
 msgid "Scan a barcode or tap a product to start a sale."
@@ -6055,10 +6120,6 @@ msgstr ""
 #: templates/webapp/pos.html
 msgid "Offline"
 msgstr "ഓഫ്‌ലൈൻ"
-
-#: templates/webapp/pos.html
-msgid "products"
-msgstr "ഉൽപ്പന്നങ്ങൾ"
 
 #: templates/webapp/pos.html
 msgid "in stock"
@@ -7653,10 +7714,6 @@ msgstr "സാമ്പിൾ ചെലവുകൾ"
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Remove all sample dishes, staff and expenses?"
 msgstr "എല്ലാ സാമ്പിൾ വിഭവങ്ങളും സ്റ്റാഫും ചെലവുകളും നീക്കം ചെയ്യണോ?"
-
-#: templates/webapp/restaurant/_starter_kit.html
-msgid "Remove sample data"
-msgstr "സാമ്പിൾ ഡാറ്റ നീക്കം ചെയ്യുക"
 
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Load a full Kerala restaurant menu"
@@ -9289,6 +9346,22 @@ msgstr "പ്ലാനും ബില്ലിംഗും"
 #: templates/webapp/settings.html
 msgid "Active until"
 msgstr "സജീവം വരെ"
+
+#: templates/webapp/settings.html
+msgid "Sample data"
+msgstr "സാമ്പിൾ ഡാറ്റ"
+
+#: templates/webapp/settings.html
+msgid ""
+"Add example products, services and customers for your type of business, to "
+"see how it works."
+msgstr ""
+"എങ്ങനെ പ്രവർത്തിക്കുന്നു എന്ന് കാണാൻ നിങ്ങളുടെ ബിസിനസിന് ചേരുന്ന ഉദാഹരണ "
+"പ്രോഡക്ടുകളും സർവീസുകളും കസ്റ്റമേഴ്സും ചേർക്കുക."
+
+#: templates/webapp/settings.html
+msgid "Add sample data"
+msgstr "സാമ്പിൾ ഡാറ്റ ചേർക്കുക"
 
 #: templates/webapp/site/editor.html
 msgid "Website kit"
@@ -12150,6 +12223,25 @@ msgstr "ഇൻവോയ്സ് %(number)s ഉണ്ടാക്കി."
 #: apps/webapp/sales_docs_views.py
 msgid "Nothing delivered is waiting to be invoiced."
 msgstr "ഇൻവോയ്സ് ചെയ്യാനുള്ള ഡെലിവറി ഇല്ല."
+
+#: apps/webapp/sample_views.py
+msgid "Sample data removed. You can now add your own products and services."
+msgstr ""
+"സാമ്പിൾ ഡാറ്റ നീക്കം ചെയ്തു. ഇനി നിങ്ങളുടെ സ്വന്തം പ്രോഡക്ടുകളും സർവീസുകളും "
+"ചേർക്കാം."
+
+#: apps/webapp/sample_views.py
+msgid ""
+"%(n)s sample items were already used in bills, so they were switched off "
+"instead."
+msgstr ""
+"%(n)s സാമ്പിൾ ഐറ്റങ്ങൾ ബില്ലുകളിൽ ഉപയോഗിച്ചതിനാൽ നീക്കം ചെയ്യാതെ ഓഫ് ചെയ്തു."
+
+#: apps/webapp/sample_views.py
+msgid "Sample data added. Remove it any time from the overview or Settings."
+msgstr ""
+"സാമ്പിൾ ഡാറ്റ ചേർത്തു. ഓവർവ്യൂവിൽ നിന്നോ സെറ്റിംഗ്സിൽ നിന്നോ എപ്പോൾ "
+"വേണമെങ്കിലും നീക്കാം."
 
 #: apps/webapp/scale_views.py
 msgid "Use 1–3 digit prefixes separated by commas, e.g. 20,21,22."

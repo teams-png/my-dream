@@ -674,3 +674,13 @@ class MessExtra(TenantScopedModel):
     @property
     def total(self):
         return (self.quantity * self.unit_price).quantize(Decimal("0.01"))
+
+
+class SampleRecord(TenantScopedModel):
+    """One row per object the sample kit created (products, services, customers…), so it can be removed in one click."""
+    content_type = models.ForeignKey("contenttypes.ContentType", on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        indexes = [models.Index(fields=("company", "content_type"))]

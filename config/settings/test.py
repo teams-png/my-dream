@@ -34,4 +34,5 @@ CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}
 
 # Most tests want an empty restaurant; the starter kit has its own tests.
 RESTAURANT_STARTER_KIT = False
+SAMPLE_DATA_KIT = False  # the sample kit has its own tests
 SIGNUP_OTP = ""  # the sign-up code tests switch it on themselves

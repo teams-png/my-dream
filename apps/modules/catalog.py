@@ -152,6 +152,16 @@ EDUCATION_TERMS = {
 }
 
 
+# Businesses that sell services done by a person: their POS is called "Billing", shows services first and asks
+# which staff member did the work.
+SERVICE_BILLING_TYPES = {"saloon", "spa", "beauty_parlour", "vehicle_wash", "gym"}
+
+
+def billing_mode(code):
+    code = ALIASES.get(code, code)
+    return code in SERVICE_BILLING_TYPES or business_group(code) == "service"
+
+
 def business_features(code):
     code = ALIASES.get(code, code)
     return {name for name, codes in INDUSTRY_FEATURES.items() if code in codes}
@@ -162,7 +172,8 @@ def business_profile(code):
     code = ALIASES.get(code, code)
     group = business_group(code)
     profile = {"code": code, "group": group, "name": BUSINESS_TYPE_MAP.get(code, "Business"),
-               "features": sorted(business_features(code)), "online_booking": online_booking_kind(code)}
+               "features": sorted(business_features(code)), "online_booking": online_booking_kind(code),
+               "billing_mode": billing_mode(code)}
     if code in BOOKING_TERMS:
         resource, resources, booking, unit = BOOKING_TERMS[code]
         profile.update(resource_label=resource, resources_label=resources, booking_label=booking,

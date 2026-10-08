@@ -1,0 +1,10 @@
+{% load i18n staff_billing %}{% staff_billing as staff_rows %}
+<h2 style="font-size:16px;margin:24px 0 10px">{% translate "Billing by staff – this month" %}</h2>
+{% if staff_rows %}
+<table>
+  <tr><th>{% translate "Staff" %}</th><th>{% translate "Bills" %}</th><th>{% translate "Total" %}</th></tr>
+  {% for row in staff_rows %}<tr><td>{{ row.served_by__name }}</td><td>{{ row.bills }}</td><td>{{ active_company.default_currency }} {{ row.total|floatformat:2 }}</td></tr>{% endfor %}
+</table>
+{% else %}
+<div class="card empty">{% translate "Choose “Done by” on the Billing screen to see each staff member's work here." %}</div>
+{% endif %}

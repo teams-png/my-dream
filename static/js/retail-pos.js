@@ -415,7 +415,7 @@
     return {
       client_id: clientId || (clientId = uuid()),
       customer_id: val("pos-customer") || null,
-      warehouse_id: val("pos-branch"),
+      warehouse_id: val("pos-branch"), staff_id: val("pos-staff") || null,
       payment_method: method,
       coupon_code: online() ? (val("pos-coupon") || "").trim() : "",
       amount_paid: val("pos-amount-paid"), deposit_method: val("pos-deposit-method"),

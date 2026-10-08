@@ -54,6 +54,10 @@ msgid "Sales orders & delivery"
 msgstr "سیلز آرڈرز اور ڈیلیوری"
 
 #: templates/base.html
+msgid "Billing"
+msgstr "بلنگ"
+
+#: templates/base.html
 msgid "POS"
 msgstr "POS"
 
@@ -128,10 +132,6 @@ msgstr "بجٹ"
 #: templates/base.html
 msgid "Online payments"
 msgstr "آن لائن ادائیگیاں"
-
-#: templates/base.html
-msgid "Billing"
-msgstr "بلنگ"
 
 #: templates/base.html
 msgid "People"
@@ -661,6 +661,64 @@ msgstr "میری ویب سائٹ"
 msgid "Language"
 msgstr "زبان"
 
+#: templates/webapp/_sample_banner.html
+msgid "You are looking at sample data"
+msgstr "آپ نمونہ ڈیٹا دیکھ رہے ہیں"
+
+#: templates/webapp/_sample_banner.html
+msgid ""
+"These were added as examples so you can see how everything works. Try a "
+"sale, then remove them and add your own."
+msgstr ""
+"یہ مثال کے طور پر شامل کیے گئے ہیں تاکہ آپ دیکھ سکیں کہ سب کیسے کام کرتا ہے۔"
+" ایک فروخت کر کے دیکھیں، پھر انہیں ہٹا کر اپنا ڈیٹا شامل کریں۔"
+
+#: templates/webapp/_sample_banner.html
+msgid "products"
+msgstr "مصنوعات"
+
+#: templates/webapp/_sample_banner.html
+msgid "services"
+msgstr "خدمات"
+
+#: templates/webapp/_sample_banner.html
+msgid "customers"
+msgstr "گاہک"
+
+#: templates/webapp/_sample_banner.html
+msgid "staff"
+msgstr "عملہ"
+
+#: templates/webapp/_sample_banner.html
+msgid "Remove all sample products, services, customers and staff?"
+msgstr "تمام نمونہ مصنوعات، خدمات، گاہک اور عملہ ہٹا دیں؟"
+
+#: templates/webapp/_sample_banner.html
+msgid "Remove sample data"
+msgstr "نمونہ ڈیٹا ہٹائیں"
+
+#: templates/webapp/_staff_billing.html
+msgid "Billing by staff – this month"
+msgstr "عملے کے لحاظ سے بلنگ – اس مہینے"
+
+#: templates/webapp/_staff_billing.html
+msgid "Staff"
+msgstr "عملہ"
+
+#: templates/webapp/_staff_billing.html
+msgid "Bills"
+msgstr "بل"
+
+#: templates/webapp/_staff_billing.html
+msgid "Total"
+msgstr "کل"
+
+#: templates/webapp/_staff_billing.html
+msgid ""
+"Choose “Done by” on the Billing screen to see each staff member's work here."
+msgstr ""
+"ہر عملے کا کام یہاں دیکھنے کے لیے بلنگ اسکرین پر “کس نے کیا” منتخب کریں۔"
+
 #: templates/webapp/_theme_toggle.html
 msgid "Dark / light mode"
 msgstr "ڈارک / لائٹ موڈ"
@@ -926,10 +984,6 @@ msgstr "ڈیبٹ"
 #: templates/webapp/accounts/journal_detail.html
 msgid "Credit"
 msgstr "کریڈٹ"
-
-#: templates/webapp/accounts/journal_detail.html
-msgid "Total"
-msgstr "کل"
 
 #: templates/webapp/accounts/journal_detail.html
 msgid "Cancel this journal entry? It will be removed from all reports."
@@ -3383,10 +3437,6 @@ msgid "Call"
 msgstr "کال کریں"
 
 #: templates/webapp/hr/_tabs.html
-msgid "Staff"
-msgstr "عملہ"
-
-#: templates/webapp/hr/_tabs.html
 msgid "Leave"
 msgstr "چھٹی"
 
@@ -5132,10 +5182,6 @@ msgid ""
 msgstr "صرف اگر رکن جا رہا ہو — ورنہ یہ اگلے ماہانہ بل میں شامل ہوں گی۔"
 
 #: templates/webapp/mess/member.html
-msgid "Bills"
-msgstr "بل"
-
-#: templates/webapp/mess/member.html
 msgid "No bills yet."
 msgstr "ابھی کوئی بل نہیں۔"
 
@@ -5853,6 +5899,10 @@ msgid "Product categories"
 msgstr "پروڈکٹ زمرے"
 
 #: templates/webapp/pos.html
+msgid "Search service or product..."
+msgstr "سروس یا پروڈکٹ تلاش کریں..."
+
+#: templates/webapp/pos.html
 msgid "Scan barcode or search product by name / SKU..."
 msgstr "بارکوڈ اسکین کریں یا نام / SKU سے پروڈکٹ تلاش کریں..."
 
@@ -5885,12 +5935,24 @@ msgid "Walk-in Customer"
 msgstr "واک ان گاہک"
 
 #: templates/webapp/pos.html
+msgid "Done by"
+msgstr "کس نے کیا"
+
+#: templates/webapp/pos.html
+msgid "Done by (staff)"
+msgstr "کس نے کیا (عملہ)"
+
+#: templates/webapp/pos.html
 msgid "Branch"
 msgstr "شاخ"
 
 #: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "کارٹ خالی ہے"
+
+#: templates/webapp/pos.html
+msgid "Tap a service to start a bill."
+msgstr "بل شروع کرنے کے لیے کوئی سروس دبائیں۔"
 
 #: templates/webapp/pos.html
 msgid "Scan a barcode or tap a product to start a sale."
@@ -6015,10 +6077,6 @@ msgstr "اس کاؤنٹر پر روکی گئی فروخت۔ واپس لانے ک
 #: templates/webapp/pos.html
 msgid "Offline"
 msgstr "آف لائن"
-
-#: templates/webapp/pos.html
-msgid "products"
-msgstr "مصنوعات"
 
 #: templates/webapp/pos.html
 msgid "in stock"
@@ -7606,10 +7664,6 @@ msgstr "نمونہ اخراجات"
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Remove all sample dishes, staff and expenses?"
 msgstr "تمام نمونہ ڈشز، عملہ اور اخراجات ہٹائیں؟"
-
-#: templates/webapp/restaurant/_starter_kit.html
-msgid "Remove sample data"
-msgstr "نمونہ ڈیٹا ہٹائیں"
 
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Load a full Kerala restaurant menu"
@@ -9232,6 +9286,22 @@ msgstr "پلان اور بلنگ"
 #: templates/webapp/settings.html
 msgid "Active until"
 msgstr "تک فعال"
+
+#: templates/webapp/settings.html
+msgid "Sample data"
+msgstr "نمونہ ڈیٹا"
+
+#: templates/webapp/settings.html
+msgid ""
+"Add example products, services and customers for your type of business, to "
+"see how it works."
+msgstr ""
+"یہ کیسے کام کرتا ہے دیکھنے کے لیے اپنے کاروبار کے مطابق مثالی مصنوعات، خدمات"
+" اور گاہک شامل کریں۔"
+
+#: templates/webapp/settings.html
+msgid "Add sample data"
+msgstr "نمونہ ڈیٹا شامل کریں"
 
 #: templates/webapp/site/editor.html
 msgid "Website kit"
@@ -12077,6 +12147,24 @@ msgstr "انوائس %(number)s بنایا گیا۔"
 #: apps/webapp/sales_docs_views.py
 msgid "Nothing delivered is waiting to be invoiced."
 msgstr "انوائس کے لیے کوئی ڈیلیور شدہ مال انتظار میں نہیں۔"
+
+#: apps/webapp/sample_views.py
+msgid "Sample data removed. You can now add your own products and services."
+msgstr ""
+"نمونہ ڈیٹا ہٹا دیا گیا۔ اب آپ اپنی مصنوعات اور خدمات شامل کر سکتے ہیں۔"
+
+#: apps/webapp/sample_views.py
+msgid ""
+"%(n)s sample items were already used in bills, so they were switched off "
+"instead."
+msgstr ""
+"%(n)s نمونہ آئٹمز بلوں میں استعمال ہو چکے تھے، اس لیے انہیں ہٹانے کے بجائے "
+"بند کر دیا گیا۔"
+
+#: apps/webapp/sample_views.py
+msgid "Sample data added. Remove it any time from the overview or Settings."
+msgstr ""
+"نمونہ ڈیٹا شامل ہو گیا۔ اسے کبھی بھی اوورویو یا سیٹنگز سے ہٹا سکتے ہیں۔"
 
 #: apps/webapp/scale_views.py
 msgid "Use 1–3 digit prefixes separated by commas, e.g. 20,21,22."

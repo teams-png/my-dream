@@ -31,7 +31,7 @@ PAGE_PERMISSIONS = {
         "ob_settings", "ob_wp_plugin", "restaurant_online_settings", "rec_website", "rec_wp_plugin",
         "site_editor", "scale_settings", "gold_rates",
         "restaurant_setup", "restaurant_profile_edit", "restaurant_integration_add", "restaurant_integration_edit",
-        "restaurant_starter_kit", "restaurant_demo_menu", "restaurant_area_add", "restaurant_table_add",
+        "restaurant_starter_kit", "restaurant_demo_menu", "sample_data", "restaurant_area_add", "restaurant_table_add",
         "restaurant_station_add", "restaurant_quick_sale_pin",
         "backups", "backup_download", "backup_drive_callback", "export_data", "company_audit_log",
         "coupon_add", "coupon_toggle", "mess_plan_add", "mess_plan_edit",

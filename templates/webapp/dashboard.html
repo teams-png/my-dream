@@ -4,6 +4,7 @@
 {% block heading %}{% translate "Overview" %}{% endblock %}
 {% block content %}
 {% can "setup" as can_setup %}{% can "analytics" as can_reports %}
+{% if request.role.name == "Owner" %}{% include "webapp/_sample_banner.html" %}{% endif %}
 {% if show_setup and can_setup %}
 <a href="{% url 'webapp:setup' step='business' %}" class="card" style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-bottom:18px;text-decoration:none;color:inherit;border-left:4px solid var(--accent)">
   <span style="font-size:32px">🚀</span>

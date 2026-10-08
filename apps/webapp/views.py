@@ -4405,18 +4405,45 @@ def role_permissions_edit(request, role_id):
         messages.error(request, "System roles (Owner/Accountant/Staff) can't be edited — create a custom role instead.")
         return redirect("webapp:role_list")
 
-    all_permissions = Permission.objects.all().order_by("module", "code")
+    all_permissions = _permissions_for(company)
     current_codes = set(role.permissions.values_list("permission__code", flat=True))
 
     if request.method == "POST":
-        selected = request.POST.getlist("permissions")
+        allowed = {p.code for p in all_permissions}
+        selected = [code for code in request.POST.getlist("permissions") if code in allowed]
         tenant_services.set_role_permissions(role=role, permission_codes=selected)
         messages.success(request, "Permissions updated.")
         return redirect("webapp:role_list")
 
+    groups = {}
+    for perm in all_permissions:
+        groups.setdefault(perm.module, []).append(perm)
     return render(request, "webapp/rbac/role_permissions.html", {
-        "role": role, "all_permissions": all_permissions, "current_codes": current_codes,
+        "role": role, "current_codes": current_codes,
+        "groups": [(PERMISSION_GROUP_TITLES.get(m, m.title()), perms) for m, perms in sorted(
+            groups.items(), key=lambda g: list(PERMISSION_GROUP_TITLES).index(g[0]) if g[0] in PERMISSION_GROUP_TITLES else 99)],
     })
+
+
+# Shown in this order on the role permissions page.
+PERMISSION_GROUP_TITLES = {
+    "sales": "Sales & billing", "customers": "Customers", "restaurant": "Restaurant", "inventory": "Products & stock",
+    "purchases": "Purchases", "suppliers": "Suppliers", "expenses": "Expenses", "reports": "Reports",
+    "collections": "Collections", "banking": "Bank & cash", "accounting": "Accounting", "employees": "Staff & payroll",
+    "tenants": "Business settings & team",
+}
+
+
+def _permissions_for(company):
+    """The permissions that mean something for this business: restaurant ones only for restaurants
+    (or a business that added a restaurant)."""
+    groups = {business_group(company.business_type.code)}
+    groups.update(business_group(code) for code in company.business_suites.filter(is_active=True)
+                  .values_list("business_type__code", flat=True))
+    permissions = Permission.objects.all().order_by("module", "code")
+    if "restaurant" not in groups:
+        permissions = permissions.exclude(module="restaurant")
+    return list(permissions)
 
 
 # ================= ANALYTICS (charts, shared) =================

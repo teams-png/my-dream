@@ -5,11 +5,10 @@
 <form method="post">
   {% csrf_token %}
   <div class="card" style="max-width:520px;">
-    {% regroup all_permissions by module as module_list %}
-    {% for group in module_list %}
+    {% for title, perms in groups %}
     <div style="margin-bottom:16px;">
-      <div style="font-weight:600; font-size:13.5px; text-transform:capitalize; margin-bottom:6px;">{{ group.grouper }}</div>
-      {% for perm in group.list %}
+      <div style="font-weight:600; font-size:13.5px; margin-bottom:6px;">{{ title }}</div>
+      {% for perm in perms %}
       <label style="display:block; font-size:13.5px; font-weight:400; margin:4px 0;">
         <input type="checkbox" name="permissions" value="{{ perm.code }}" {% if perm.code in current_codes %}checked{% endif %}>
         {{ perm.label }}

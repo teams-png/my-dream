@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load static %}
+{% load static sample_data %}
 {% block title %}{% if service_billing %}{% translate "Billing" %}{% else %}{% translate "POS" %}{% endif %}{% endblock %}
 {% block heading %}{% if service_billing %}{% translate "Billing" %}{% else %}{% translate "Point of Sale" %}{% endif %}{% endblock %}
 {% block shell_class %}focus-mode{% endblock %}
@@ -21,6 +21,8 @@
       </div>
     </div>
     <div class="rp-top-actions">
+      {% pos_shortcuts as shortcuts %}
+      <nav class="rp-shortcuts" aria-label="{% translate 'Go to' %}">{% for icon, label, url in shortcuts %}<a class="rp-icon-btn" href="{{ url }}" title="{{ label }}">{{ icon }} <span class="label">{{ label }}</span></a>{% endfor %}</nav>
       <button class="rp-icon-btn" type="button" id="heldBtn" title="{% translate 'Held sales' %}">⏸️ <span class="label">{% translate "Held" %}</span> <span class="badge-n" id="heldCount" hidden>0</span></button>
       <a class="rp-icon-btn rp-hide-sm" href="{% url 'webapp:pos_offline_sales' %}" title="{% translate 'Offline sales' %}">📴 <span class="label">{% translate "Offline sales" %}</span></a>
       <a class="rp-icon-btn rp-hide-sm" href="{% url 'webapp:devices' %}" title="{% translate 'Printer & device settings' %}">🖨 <span class="label">{% translate "Devices" %}</span></a>

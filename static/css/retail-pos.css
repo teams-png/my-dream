@@ -68,3 +68,9 @@ html[data-theme=dark] .cart-item .cart-qty{background:#1d2436}
 @keyframes popIn{0%{transform:scale(.3); opacity:0}70%{transform:scale(1.12)}100%{transform:scale(1); opacity:1}}
 @media(max-width:760px){.cart-setup.two{grid-template-columns:1fr}.seg.cols-5{grid-template-columns:repeat(3,1fr)}}
 .done-actions:has(#doneShare[hidden]) #donePrint{grid-column:1 / -1}
+
+/* Overview / Appointments / Services… shortcuts on the top bar */
+.rp-shortcuts{display:flex; gap:6px; padding-right:10px; margin-right:2px; border-right:1px solid var(--r-line)}
+.rp-shortcuts .rp-icon-btn{background:var(--r-green-soft, #e7f6ee); border-color:transparent; color:var(--r-green, #0f7a4a)}
+.rp-shortcuts .rp-icon-btn:hover{filter:brightness(.96)}
+@media(max-width:760px){ .rp-shortcuts{padding-right:6px; gap:4px} }

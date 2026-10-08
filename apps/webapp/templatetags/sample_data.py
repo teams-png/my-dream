@@ -56,6 +56,36 @@ def quick_actions(context):
     return actions
 
 
+# Shortcuts on the Billing / POS top bar, so the counter can jump to the pages it uses most and back.
+POS_SHORTCUTS = {
+    "saloon": [("📅", "Appointments", "webapp:saloon_appointment_list"), ("✂️", "Services", "webapp:saloon_service_list"),
+               ("📊", "Reports", "webapp:saloon_reports")],
+    "spa": [("📅", "Appointments", "webapp:appointment_list"), ("💆", "Services", "webapp:spa_service_list"),
+            ("📊", "Reports", "webapp:spa_reports")],
+    "beauty_parlour": [("📅", "Appointments", "webapp:beauty_appointment_list"),
+                       ("💄", "Services", "webapp:beauty_service_list"), ("📊", "Reports", "webapp:beauty_reports")],
+    "vehicle_wash": [("🚗", "Orders", "webapp:wash_order_list"), ("🧽", "Packages", "webapp:wash_package_list"),
+                     ("📊", "Reports", "webapp:vehicle_wash_reports")],
+    "gym": [("🧑", "Members", "webapp:member_list"), ("✅", "Attendance", "webapp:attendance_today"),
+            ("📊", "Reports", "webapp:gym_reports")],
+}
+POS_SHORTCUTS.update(barber_shop=POS_SHORTCUTS["saloon"], beauty_salon=POS_SHORTCUTS["beauty_parlour"],
+                     car_wash=POS_SHORTCUTS["vehicle_wash"], fitness_center=POS_SHORTCUTS["gym"])
+
+
+@register.simple_tag(takes_context=True)
+def pos_shortcuts(context):
+    """[(icon, label, url)]: Overview first, then the business type's main pages (products and customers otherwise)."""
+    from django.urls import reverse
+    from django.utils.translation import gettext as _
+    request = context.get("request")
+    company = getattr(request, "company", None)
+    code = company.business_type.code if company else ""
+    links = [("🏠", "Overview", "webapp:dashboard")] + POS_SHORTCUTS.get(
+        code, [("📦", "Products", "webapp:product_list"), ("👥", "Customers", "webapp:customer_list")])
+    return [(icon, _(label), reverse(name)) for icon, label, name in links]
+
+
 @register.simple_tag(takes_context=True)
 def product_picture(context, product):
     """Photo or default picture URL for a product (for lists and the website)."""

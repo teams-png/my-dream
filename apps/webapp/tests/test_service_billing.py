@@ -41,6 +41,9 @@ def test_billing_screen_and_staff_on_the_bill(salon):
     company, c = salon
     page = c.get(reverse("webapp:pos")).content.decode()
     assert "Billing" in page and "Done by (staff)" in page and "Tap a service to start a bill." in page
+    bar = page.split('class="rp-shortcuts"', 1)[1].split("</nav>", 1)[0]
+    for url in ("webapp:dashboard", "webapp:saloon_appointment_list", "webapp:saloon_service_list"):
+        assert f'href="{reverse(url)}"' in bar
     data = json.loads(page.split('id="posData"', 1)[1].split(">", 1)[1].split("</script>", 1)[0])
     names = [p["name"] for p in data["products"]]
     assert "Haircut" in names and "Saloon Service — Haircut" not in names

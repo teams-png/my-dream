@@ -66,3 +66,10 @@ def test_billing_screen_and_staff_on_the_bill(salon):
 def test_nav_says_billing_for_salons_and_pos_for_shops(salon):
     company, c = salon
     assert ">Billing<" in c.get(reverse("webapp:dashboard")).content.decode().replace("<span>", ">").replace("</span>", "<")
+
+
+def test_new_bill_is_easy_to_find(salon):
+    company, c = salon
+    page = c.get(reverse("webapp:dashboard")).content.decode()
+    assert page.count(f'href="{reverse("webapp:pos")}"') >= 3  # sidebar button, quick action, sales menu
+    assert reverse("webapp:saloon_appointment_book") in page and "Book appointment" in page

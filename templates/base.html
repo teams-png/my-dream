@@ -175,6 +175,7 @@
     {% endif %}
     <div class="nav-group">
       <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'webapp:dashboard' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><rect height="9" rx="1.5" width="7" x="3" y="3"></rect><rect height="5" rx="1.5" width="7" x="14" y="3"></rect><rect height="9" rx="1.5" width="7" x="14" y="12"></rect><rect height="5" rx="1.5" width="7" x="3" y="16"></rect></svg><span>{% translate "Overview" %}</span></a>
+      {% if active_company and active_business_profile.group != "restaurant" %}<a class="nav-link nav-bill {% if request.resolver_match.url_name == 'pos' %}active{% endif %}" href="{% url 'webapp:pos' %}" style="background:var(--accent);color:#fff;font-weight:700;margin:6px 0"><span>🧾 {% if active_business_profile.billing_mode %}{% translate "New bill" %}{% else %}{% translate "New sale (POS)" %}{% endif %}</span></a>{% endif %}
 
       <details class="nav-section" {% if request.resolver_match.url_name in "pos,sales_return_list,sales_return_lookup,coupon_list,loyalty_accounts_list" %}open{% endif %}>
         <summary>{% translate "Sales" %}</summary>

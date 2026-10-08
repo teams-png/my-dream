@@ -30,6 +30,14 @@ msgid "Overview"
 msgstr "نظرة عامة"
 
 #: templates/base.html
+msgid "New bill"
+msgstr "فاتورة جديدة"
+
+#: templates/base.html
+msgid "New sale (POS)"
+msgstr "بيع جديد (نقاط البيع)"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "المبيعات"
 
@@ -8338,10 +8346,6 @@ msgid "Normal POS"
 msgstr "نقطة البيع العادية"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "New bill"
-msgstr "فاتورة جديدة"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Menu categories"
 msgstr "فئات القائمة"
 
@@ -12640,6 +12644,10 @@ msgstr "تمت إضافة %(count)s أرقام تسلسلية إلى المخز�
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "مسجلة مسبقاً: %(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Book appointment"
+msgstr "حجز موعد"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

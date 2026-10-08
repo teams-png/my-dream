@@ -30,6 +30,14 @@ msgid "Overview"
 msgstr "ओवरव्यू"
 
 #: templates/base.html
+msgid "New bill"
+msgstr "नया बिल"
+
+#: templates/base.html
+msgid "New sale (POS)"
+msgstr "नई बिक्री (POS)"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "बिक्री"
 
@@ -8372,10 +8380,6 @@ msgid "Normal POS"
 msgstr "सामान्य POS"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "New bill"
-msgstr "नया बिल"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Menu categories"
 msgstr "मेन्यू श्रेणियाँ"
 
@@ -12704,6 +12708,10 @@ msgstr "स्टॉक में %(count)s सीरियल नंबर ज�
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "पहले से दर्ज: %(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Book appointment"
+msgstr "अपॉइंटमेंट बुक करें"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

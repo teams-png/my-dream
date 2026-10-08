@@ -30,6 +30,14 @@ msgid "Overview"
 msgstr "Aperçu"
 
 #: templates/base.html
+msgid "New bill"
+msgstr "Nouvelle addition"
+
+#: templates/base.html
+msgid "New sale (POS)"
+msgstr "Nouvelle vente (caisse)"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "Ventes"
 
@@ -8478,10 +8486,6 @@ msgid "Normal POS"
 msgstr "Caisse normale"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "New bill"
-msgstr "Nouvelle addition"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Menu categories"
 msgstr "Catégories du menu"
 
@@ -12888,6 +12892,10 @@ msgstr "%(count)s numéros de série ajoutés au stock."
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "Déjà enregistrés : %(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Book appointment"
+msgstr "Prendre rendez-vous"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

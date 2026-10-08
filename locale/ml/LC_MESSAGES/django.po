@@ -30,6 +30,14 @@ msgid "Overview"
 msgstr "അവലോകനം"
 
 #: templates/base.html
+msgid "New bill"
+msgstr "പുതിയ ബിൽ"
+
+#: templates/base.html
+msgid "New sale (POS)"
+msgstr "പുതിയ സെയിൽ (POS)"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "വിൽപ്പന"
 
@@ -8439,10 +8447,6 @@ msgid "Normal POS"
 msgstr "സാധാരണ POS"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "New bill"
-msgstr "പുതിയ ബിൽ"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Menu categories"
 msgstr "മെനു വിഭാഗങ്ങൾ"
 
@@ -12812,6 +12816,10 @@ msgstr "%(count)s സീരിയൽ നമ്പറുകൾ സ്റ്റോ
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "നേരത്തെ ചേർത്തവ: %(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Book appointment"
+msgstr "അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

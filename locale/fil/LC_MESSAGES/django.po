@@ -30,6 +30,14 @@ msgid "Overview"
 msgstr "Overview"
 
 #: templates/base.html
+msgid "New bill"
+msgstr "Bagong bill"
+
+#: templates/base.html
+msgid "New sale (POS)"
+msgstr "Bagong benta (POS)"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "Benta"
 
@@ -8444,10 +8452,6 @@ msgid "Normal POS"
 msgstr "Normal na POS"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "New bill"
-msgstr "Bagong bill"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Menu categories"
 msgstr "Mga kategorya ng menu"
 
@@ -12841,6 +12845,10 @@ msgstr "Naidagdag sa stock ang %(count)s serial number."
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "Nakarehistro na: %(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Book appointment"
+msgstr "Mag-book ng appointment"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

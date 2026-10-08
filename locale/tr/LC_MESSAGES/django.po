@@ -30,6 +30,14 @@ msgid "Overview"
 msgstr "Genel bakış"
 
 #: templates/base.html
+msgid "New bill"
+msgstr "Yeni hesap"
+
+#: templates/base.html
+msgid "New sale (POS)"
+msgstr "Yeni satış (POS)"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "Satışlar"
 
@@ -8399,10 +8407,6 @@ msgid "Normal POS"
 msgstr "Normal POS"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "New bill"
-msgstr "Yeni hesap"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Menu categories"
 msgstr "Menü kategorileri"
 
@@ -12754,6 +12758,10 @@ msgstr "Stoğa %(count)s seri numarası eklendi."
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "Zaten kayıtlı: %(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Book appointment"
+msgstr "Randevu al"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

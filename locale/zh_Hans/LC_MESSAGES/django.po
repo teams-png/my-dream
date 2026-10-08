@@ -30,6 +30,14 @@ msgid "Overview"
 msgstr "概览"
 
 #: templates/base.html
+msgid "New bill"
+msgstr "新账单"
+
+#: templates/base.html
+msgid "New sale (POS)"
+msgstr "新销售（收银）"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "销售"
 
@@ -8199,10 +8207,6 @@ msgid "Normal POS"
 msgstr "普通收银"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "New bill"
-msgstr "新账单"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Menu categories"
 msgstr "菜单分类"
 
@@ -12456,6 +12460,10 @@ msgstr "已将 %(count)s 个序列号加入库存。"
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "已登记：%(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Book appointment"
+msgstr "预约"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

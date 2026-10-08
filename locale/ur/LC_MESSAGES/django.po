@@ -30,6 +30,14 @@ msgid "Overview"
 msgstr "جائزہ"
 
 #: templates/base.html
+msgid "New bill"
+msgstr "نیا بل"
+
+#: templates/base.html
+msgid "New sale (POS)"
+msgstr "نئی فروخت (POS)"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "فروخت"
 
@@ -8382,10 +8390,6 @@ msgid "Normal POS"
 msgstr "عام POS"
 
 #: templates/webapp/restaurant/offline_pos.html
-msgid "New bill"
-msgstr "نیا بل"
-
-#: templates/webapp/restaurant/offline_pos.html
 msgid "Menu categories"
 msgstr "مینو کے زمرے"
 
@@ -12726,6 +12730,10 @@ msgstr "اسٹاک میں %(count)s سیریل نمبر شامل کیے گئے۔
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "پہلے سے درج: %(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Book appointment"
+msgstr "اپائنٹمنٹ بک کریں"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

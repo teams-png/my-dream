@@ -34,7 +34,7 @@ class TenantViewSet(viewsets.ReadOnlyModelViewSet):
     """
     serializer_class = TenantSerializer
     permission_classes = [IsPlatformAdmin]
-    queryset = Company.objects.all().select_related("subscription", "subscription__plan").order_by("name")
+    queryset = Company.objects.exclude(is_demo=True).select_related("subscription", "subscription__plan").order_by("name")
 
     @action(detail=True, methods=["post"])
     def suspend(self, request, pk=None):

@@ -3949,8 +3949,12 @@ def pos_view(request):
         for item in catalog:  # "Saloon Service — Haircut" reads as "Haircut" on the billing screen
             item["name"] = item["name"].split(" — ", 1)[-1]
         catalog.sort(key=lambda item: (item["tracked"], item["name"].lower()))  # services first, then products
+    from .checklist import milestones
+    role = getattr(request, "role", None)
+    show_tour = request.GET.get("tour") == "1" or (
+        role is not None and role.name == "Owner" and "tour_done" not in milestones(company).milestones)
     return render(request, "webapp/pos.html", {
-        "service_billing": service_billing, "staff": staff,
+        "service_billing": service_billing, "staff": staff, "show_tour": show_tour,
         "pos_data": {
             "products": catalog, "categories": categories,
             "company": {"name": company.name, "address": company.address, "phone": company.phone,
@@ -4768,86 +4772,53 @@ def product_export_csv(request):
 
 @login_required
 def product_import_csv(request):
-    import csv
-    import io
-    import json
+    """Excel or CSV import, with a template made for this business type."""
+    from . import product_import
 
     company = request.company
-    if request.method == "POST":
-        form = ProductImportForm(request.POST, request.FILES)
-        if form.is_valid():
-            csv_file = request.FILES["csv_file"]
-            try:
-                decoded = csv_file.read().decode("utf-8-sig")
-            except UnicodeDecodeError:
-                messages.error(request, "Couldn't read that file — please upload a plain CSV.")
-                return render(request, "webapp/import_export/product_import.html", {"form": form})
-
-            reader = csv.DictReader(io.StringIO(decoded))
-            required = {"SKU", "Name", "Unit", "Selling Price"}
-            if not required.issubset(set(reader.fieldnames or [])):
-                messages.error(
-                    request,
-                    f"CSV must have these columns: {', '.join(sorted(required))}. "
-                    f"(Optional: Category, Brand, Cost Price, Reorder Level)",
-                )
-                return render(request, "webapp/import_export/product_import.html", {"form": form})
-
-            created, updated, errors = 0, 0, []
-            default_unit = None
-            for i, row in enumerate(reader, start=2):
-                sku = (row.get("SKU") or "").strip()
-                name = (row.get("Name") or "").strip()
-                unit_name = (row.get("Unit") or "").strip()
-                if not sku or not name or not unit_name:
-                    errors.append(f"Row {i}: SKU, Name and Unit are required.")
-                    continue
-                try:
-                    selling_price = Decimal(row.get("Selling Price") or "0")
-                    cost_price = Decimal(row.get("Cost Price") or "0")
-                    reorder_level = int(row.get("Reorder Level") or 0)
-                except Exception:
-                    errors.append(f"Row {i}: invalid number in price/reorder level.")
-                    continue
-
-                unit, _ = Unit.objects.get_or_create(company=company, name=unit_name)
-                category = None
-                if (row.get("Category") or "").strip():
-                    category, _ = ProductCategory.objects.get_or_create(company=company, name=row["Category"].strip())
-                brand = None
-                if (row.get("Brand") or "").strip():
-                    brand, _ = Brand.objects.get_or_create(company=company, name=row["Brand"].strip())
-                try:
-                    attributes = json.loads(row.get("Attributes JSON") or "{}")
-                    if not isinstance(attributes, dict):
-                        raise ValueError
-                except (json.JSONDecodeError, ValueError):
-                    errors.append(f"Row {i}: Attributes JSON must be a JSON object.")
-                    continue
-
-                obj, was_created = Product.objects.update_or_create(
-                    company=company, sku=sku,
-                    defaults={
-                        "name": name, "unit": unit, "category": category, "brand": brand,
-                        "cost_price": cost_price, "selling_price": selling_price, "reorder_level": reorder_level,
-                        "size": (row.get("Size") or "").strip(),
-                        "colour": (row.get("Colour") or "").strip(),
-                        "material": (row.get("Material") or "").strip(),
-                        "design": (row.get("Design") or "").strip(),
-                        "attributes": attributes,
-                    },
-                )
-                created += int(was_created)
-                updated += int(not was_created)
-
+    if company is None:
+        return render(request, "webapp/no_company.html")
+    form = ProductImportForm(request.POST or None, request.FILES or None)
+    if request.method == "POST" and form.is_valid():
+        try:
+            rows, header = product_import.read(request.FILES["csv_file"])
+            if not {"SKU", "Name"}.issubset(header):
+                raise ValueError("The first row must have the column names. Download the template to see them.")
+            created, updated, errors = product_import.import_rows(company, rows)
+        except ValueError as exc:
+            messages.error(request, str(exc))
+        else:
             if errors:
-                messages.warning(request, f"Imported {created} new, updated {updated}. {len(errors)} row(s) skipped: " + " | ".join(errors[:5]))
+                messages.warning(request, _("Imported %(c)s new, updated %(u)s. %(n)s row(s) skipped:") % {
+                    "c": created, "u": updated, "n": len(errors)} + " " + " | ".join(errors[:5]))
             else:
-                messages.success(request, f"Imported {created} new products, updated {updated} existing.")
+                messages.success(request, _("Imported %(c)s new products, updated %(u)s existing.") % {"c": created, "u": updated})
             return redirect("webapp:product_list")
-    else:
-        form = ProductImportForm()
-    return render(request, "webapp/import_export/product_import.html", {"form": form})
+    return render(request, "webapp/import_export/product_import.html", {
+        "form": form, "columns": product_import.columns(company)})
+
+
+@login_required
+def product_import_template(request):
+    """The import template for this business type, with example rows (Excel, or CSV with ?format=csv)."""
+    import csv
+    from django.http import HttpResponse
+    from . import product_import, xlsx
+
+    company = request.company
+    if company is None:
+        return render(request, "webapp/no_company.html")
+    cols, rows = product_import.columns(company), product_import.example_rows(company)
+    name = f"bookpilot-products-{company.business_type.code}"
+    if request.GET.get("format") == "csv":
+        response = HttpResponse(content_type="text/csv; charset=utf-8")
+        response["Content-Disposition"] = f'attachment; filename="{name}.csv"'
+        response.write("\ufeff")
+        writer = csv.writer(response)
+        writer.writerow(cols)
+        writer.writerows(rows)
+        return response
+    return xlsx.response(name, [(_("Products"), [cols] + rows)])
 
 
 @login_required
@@ -4902,7 +4873,7 @@ def superuser_required(view_func):
 @login_required
 @superuser_required
 def platform_admin_dashboard(request):
-    companies = Company.objects.filter(is_active=True)
+    companies = Company.objects.filter(is_active=True, is_demo=False)
     total_clients = companies.count()
     subs = Subscription.objects.select_related("plan", "company")
 
@@ -4933,7 +4904,7 @@ def platform_admin_dashboard(request):
 @superuser_required
 def platform_admin_company_list(request):
     companies = (
-        Company.objects.all().select_related("business_type", "subscription", "subscription__plan")
+        Company.objects.exclude(is_demo=True).select_related("business_type", "subscription", "subscription__plan")
         .order_by("-created_at")
     )
     return render(request, "webapp/platform_admin/company_list.html", {"companies": companies})
@@ -5098,7 +5069,7 @@ def platform_admin_record_payment(request, company_id):
 def platform_admin_analytics(request):
     import json
 
-    companies = Company.objects.filter(is_active=True)
+    companies = Company.objects.filter(is_active=True, is_demo=False)
     payments = SubscriptionPayment.objects.select_related("subscription__company")
 
     by_country = (
@@ -5733,7 +5704,7 @@ def platform_audit_list(request):
 def platform_commercial_control(request):
     """Owner command centre: packages, limits, white-label and multi-suite sales overview."""
     from apps.subscriptions.models import ClientCommercialProfile
-    companies = Company.objects.select_related('business_type').order_by('-created_at')
+    companies = Company.objects.exclude(is_demo=True).select_related('business_type').order_by('-created_at')
     rows=[]
     for c in companies:
         profile,_=ClientCommercialProfile.objects.get_or_create(company=c)

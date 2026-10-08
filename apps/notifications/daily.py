@@ -123,7 +123,8 @@ def run_daily_jobs(force=False):
                           ("cheque_reminders", "apps.finance.services.send_cheque_reminders"),
                           ("medicine_batches", "apps.verticals.medical_shop.tasks.check_medicine_batch_expiry"),
                           ("protein_batches", "apps.verticals.protein_shop.tasks.check_protein_batch_expiry"),
-                          ("backups", "apps.tenants.backups.run_daily")):
+                          ("backups", "apps.tenants.backups.run_daily"),
+                          ("demo_reset", "apps.industry.demo.nightly_reset")):
         module, func = job.rsplit(".", 1)
         try:
             value = getattr(__import__(module, fromlist=[func]), func)()

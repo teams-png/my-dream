@@ -157,8 +157,18 @@ class _Kit:
         self.track(product)
         if stocked and stock and self.warehouse:
             self.opening_stock(product, stock)
+            if attrs.get("item_type") == "handset":
+                self.handsets(product, stock)
         self.details(product, row, size or fields.get("size", ""))
         return product
+
+    def handsets(self, product, count):
+        """A mobile shop sells each phone by its IMEI: one in-stock unit per phone."""
+        from apps.verticals.mobile_shop.models import MobileUnit
+        for i in range(int(count)):
+            self.track(MobileUnit.objects.create(
+                company=self.company, product=product, imei=f"35{product.pk:06d}{i + 1:07d}"[:15], condition="new",
+                warranty_months=12, purchase_price=product.cost_price, warehouse=self.warehouse))
 
     def opening_stock(self, product, quantity):
         from apps.inventory.models import StockMovement
@@ -191,7 +201,8 @@ class _Kit:
         return parent
 
     def service(self, row):
-        return self.product({**row, "unit": "service"}, stocked=False)
+        attrs = {"item_type": "service"} if _code(self.company) == "mobile_shop" else {}
+        return self.product({**row, "unit": "service", "attrs": attrs}, stocked=False)
 
 
 def _currency_factors():

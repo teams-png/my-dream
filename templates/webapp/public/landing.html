@@ -207,7 +207,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <span class="badge"><b>{% translate "NEW" %}</b>{% translate "Kitchen alarm, printers & WhatsApp bills" %}</span>
     <h1>{% translate "Run your whole business from" %} <span class="grad">{% translate "one simple app." %}</span></h1>
     <p class="lead">{% translate "POS, billing, stock, accounts, staff and reports for restaurants, shops, salons, gyms and" %} {{ business_count }} {% translate "business types. Works on your computer, tablet and phone." %}</p>
-    <div class="hero-cta">{% if signup_enabled %}<a class="btn primary" href="{% url 'webapp:signup' %}">{% translate "Start" %} {{ trial_days }}-day free trial →</a>{% endif %}<a class="btn ghost" href="#features">{% translate "See what's inside" %}</a></div>
+    <div class="hero-cta">{% if signup_enabled %}<a class="btn primary" href="{% url 'webapp:signup' %}">{% translate "Start" %} {{ trial_days }}-day free trial →</a>{% endif %}<a class="btn ghost" href="#demo">▶ {% translate "Try a live demo" %}</a></div>
     <div class="trust"><span>{% translate "No card needed" %}</span><span>{% translate "Set up in 2 minutes" %}</span><span>{% translate "Your data is private" %}</span></div>
   </div>
   <div class="mock">
@@ -247,6 +247,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     {% for code, label, icon in popular_types %}<a class="reveal{% cycle '' ' d1' ' d2' %}" href="{% if signup_enabled %}{% url 'webapp:signup' %}?type={{ code }}{% else %}#pricing{% endif %}"><span>{{ icon }}</span>{{ label }}</a>{% endfor %}
   </div>
   <p class="center" style="color:var(--soft);margin-top:18px">{% translate "…and" %} {{ business_count }} {% translate "business types in total." %}</p>
+</div></section>
+
+<section id="demo"><div class="wrap">
+  <div class="center reveal"><span class="eyebrow">{% translate "No sign-up needed" %}</span><h2>{% translate "Try a live demo" %}</h2><p class="sub">{% translate "Open a ready business with products, customers and a week of sales. Make a bill, look at the reports – click around freely." %}</p></div>
+  <div class="biz" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+    {% for code, name, icon in demos %}<a class="reveal" href="{% url 'webapp:demo' code %}" rel="nofollow"><span>{{ icon }}</span>{{ name }}<small style="display:block;color:var(--soft);font-weight:500;margin-top:4px">{% translate "Open demo →" %}</small></a>{% endfor %}
+  </div>
 </div></section>
 
 <section><div class="wrap">

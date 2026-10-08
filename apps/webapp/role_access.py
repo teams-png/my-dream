@@ -43,7 +43,7 @@ PAGE_PERMISSIONS = {
     **dict.fromkeys(["role_list", "role_add", "role_permissions_edit"], ROLES),
     # products, menu and prices
     **dict.fromkeys([
-        "product_add", "product_edit", "product_delete", "product_variant_add", "product_import_csv",
+        "product_add", "product_edit", "product_delete", "product_variant_add", "product_import_csv", "product_import_template",
         "category_add", "category_edit", "category_delete", "brand_add", "brand_delete",
         "inventory_unit_add", "inventory_unit_delete", "unit_list",
         "restaurant_menu_item_add", "restaurant_menu_item_edit", "restaurant_menu_item_toggle",

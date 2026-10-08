@@ -146,6 +146,10 @@ msgid "Money to collect"
 msgstr "வசூலிக்க வேண்டிய பணம்"
 
 #: templates/base.html
+msgid "Customer reminders"
+msgstr "வாடிக்கையாளர் நினைவூட்டல்கள்"
+
+#: templates/base.html
 msgid "Team"
 msgstr "குழு"
 
@@ -446,6 +450,18 @@ msgid "Help"
 msgstr "உதவி"
 
 #: templates/base.html
+msgid "Live demo"
+msgstr "நேரலை டெமோ"
+
+#: templates/base.html
+msgid "Try anything – the demo is reset every night."
+msgstr "எதையும் முயற்சிக்கலாம் – டெமோ ஒவ்வொரு இரவும் மீட்டமைக்கப்படும்."
+
+#: templates/base.html
+msgid "Start your free trial →"
+msgstr "உங்கள் இலவச சோதனையைத் தொடங்குங்கள் →"
+
+#: templates/base.html
 msgid "Restaurant navigation"
 msgstr "உணவக வழிசெலுத்தல்"
 
@@ -520,6 +536,14 @@ msgstr "கடவுச்சொல்லை மாற்று"
 #: templates/webapp/_account_menu.html
 msgid "Install app"
 msgstr "ஆப்பை நிறுவு"
+
+#: templates/webapp/_checklist.html
+msgid "Your BookPilot setup"
+msgstr "உங்கள் BookPilot அமைப்பு"
+
+#: templates/webapp/_checklist.html
+msgid "Hide"
+msgstr "மறை"
 
 #: templates/webapp/_excel_button.html
 msgid "Excel"
@@ -3471,6 +3495,10 @@ msgid "Open the user guide"
 msgstr "பயனர் வழிகாட்டியைத் திறக்கவும்"
 
 #: templates/webapp/help.html
+msgid "Take the tour: make a sale"
+msgstr "சுற்றுப்பயணம்: ஒரு விற்பனை செய்து பாருங்கள்"
+
+#: templates/webapp/help.html
 msgid "Other ways to reach us"
 msgstr "எங்களைத் தொடர்புகொள்ள மற்ற வழிகள்"
 
@@ -4059,6 +4087,63 @@ msgstr "முன்னாள் ஊழியர்கள் இல்லை."
 msgid "No staff yet. Add your first staff member with their salary."
 msgstr ""
 "இன்னும் ஊழியர்கள் இல்லை. உங்கள் முதல் ஊழியரை அவரது சம்பளத்துடன் சேர்க்கவும்."
+
+#: templates/webapp/import_export/product_import.html
+msgid "Import products"
+msgstr "பொருட்களை இறக்குமதி செய்"
+
+#: templates/webapp/import_export/product_import.html
+msgid "Import products from Excel"
+msgstr "Excel-இலிருந்து பொருட்களை இறக்குமதி செய்"
+
+#: templates/webapp/import_export/product_import.html
+msgid "Download the template for your business"
+msgstr "உங்கள் தொழிலுக்கான டெம்ப்ளேட்டைப் பதிவிறக்கவும்"
+
+#: templates/webapp/import_export/product_import.html
+msgid ""
+"It has the columns your type of business needs and a few example rows. Type "
+"or paste your own items over the examples."
+msgstr ""
+"உங்கள் தொழிலுக்குத் தேவையான நெடுவரிசைகளும் சில எடுத்துக்காட்டு வரிகளும் "
+"இதில் உள்ளன. எடுத்துக்காட்டுகளின் மேல் உங்கள் பொருட்களைத் தட்டச்சு செய்யவும்"
+" அல்லது ஒட்டவும்."
+
+#: templates/webapp/import_export/product_import.html
+msgid "Excel template"
+msgstr "Excel டெம்ப்ளேட்"
+
+#: templates/webapp/import_export/product_import.html
+msgid "Columns in your template"
+msgstr "உங்கள் டெம்ப்ளேட்டின் நெடுவரிசைகள்"
+
+#: templates/webapp/import_export/product_import.html
+msgid ""
+"Only SKU and Name are required. A product with the same SKU is updated, not "
+"added twice."
+msgstr ""
+"SKU மற்றும் பெயர் மட்டுமே தேவை. அதே SKU கொண்ட பொருள் புதுப்பிக்கப்படும், "
+"இருமுறை சேர்க்கப்படாது."
+
+#: templates/webapp/import_export/product_import.html
+msgid "Opening Stock is added only for new products."
+msgstr "Opening Stock புதிய பொருட்களுக்கு மட்டுமே சேர்க்கப்படும்."
+
+#: templates/webapp/import_export/product_import.html
+msgid ""
+"For sizes and colours: one row per size / colour, with the main product's "
+"SKU in “Variant of (SKU)”."
+msgstr ""
+"அளவுகள் மற்றும் நிறங்கள்: ஒவ்வொரு அளவு / நிறத்திற்கும் ஒரு வரி, “Variant of "
+"(SKU)”-இல் முதன்மைப் பொருளின் SKU."
+
+#: templates/webapp/import_export/product_import.html
+msgid "Categories, brands and units that don't exist yet are created for you."
+msgstr "இல்லாத வகைகள், பிராண்டுகள், அலகுகள் தானாக உருவாக்கப்படும்."
+
+#: templates/webapp/import_export/product_import.html
+msgid "Upload your file"
+msgstr "உங்கள் கோப்பைப் பதிவேற்றவும்"
 
 #: templates/webapp/industry/booking_board.html
 msgid "In use now"
@@ -5086,10 +5171,6 @@ msgstr "கூடுதல் பொருட்கள்"
 #: templates/webapp/mess/extras.html
 msgid "Extra item"
 msgstr "கூடுதல் பொருள்"
-
-#: templates/webapp/mess/extras.html
-msgid "Hide"
-msgstr "மறை"
 
 #: templates/webapp/mess/extras.html
 msgid "Show"
@@ -6265,6 +6346,53 @@ msgstr "காசாளர்"
 msgid "Printer"
 msgstr "பிரிண்டர்"
 
+#: templates/webapp/pos.html
+msgid "Tap a service to add it to the bill."
+msgstr "பில்லில் சேர்க்க ஒரு சேவையைத் தட்டவும்."
+
+#: templates/webapp/pos.html
+msgid "Tap a product to add it to the sale."
+msgstr "விற்பனையில் சேர்க்க ஒரு பொருளைத் தட்டவும்."
+
+#: templates/webapp/pos.html
+msgid ""
+"Choose who did the work. It shows in Reports, so you can pay commission."
+msgstr ""
+"வேலையைச் செய்தவரைத் தேர்ந்தெடுக்கவும். இது அறிக்கைகளில் வரும், கமிஷன் "
+"கொடுக்க உதவும்."
+
+#: templates/webapp/pos.html
+msgid "Press Charge to take the payment."
+msgstr "பணம் பெற Charge அழுத்தவும்."
+
+#: templates/webapp/pos.html
+msgid ""
+"Choose Cash, Card or Bank and complete the sale. This test bill uses sample "
+"data, which you can remove later."
+msgstr ""
+"ரொக்கம், கார்டு அல்லது வங்கியைத் தேர்ந்தெடுத்து விற்பனையை முடிக்கவும். "
+"இந்தச் சோதனை பில் மாதிரி தரவைப் பயன்படுத்துகிறது, பின்னர் நீக்கலாம்."
+
+#: templates/webapp/pos.html
+msgid ""
+"Send the receipt to the customer on WhatsApp, or print it. That is a full "
+"sale!"
+msgstr ""
+"ரசீதை வாடிக்கையாளருக்கு WhatsApp-இல் அனுப்பவும் அல்லது அச்சிடவும். ஒரு முழு "
+"விற்பனை முடிந்தது!"
+
+#: templates/webapp/pos.html
+msgid "Step"
+msgstr "படி"
+
+#: templates/webapp/pos.html
+msgid "Skip tour"
+msgstr "சுற்றுப்பயணத்தைத் தவிர்"
+
+#: templates/webapp/pos.html
+msgid "Next"
+msgstr "அடுத்து"
+
 #: templates/webapp/pos_offline_sales.html
 msgid ""
 "Sales made on a till while the internet was down. They are sent to the "
@@ -6376,8 +6504,8 @@ msgstr ""
 "அறிக்கைகள். உங்கள் கணினி, டேப்லெட் மற்றும் ஃபோனில் வேலை செய்யும்."
 
 #: templates/webapp/public/landing.html
-msgid "See what's inside"
-msgstr "உள்ளே என்ன உள்ளது பாருங்கள்"
+msgid "Try a live demo"
+msgstr "நேரலை டெமோவை முயற்சிக்கவும்"
 
 #: templates/webapp/public/landing.html
 msgid "No card needed"
@@ -6595,6 +6723,23 @@ msgid "business types in total."
 msgstr "வகை வணிகங்கள்."
 
 #: templates/webapp/public/landing.html
+msgid "No sign-up needed"
+msgstr "பதிவு தேவையில்லை"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Open a ready business with products, customers and a week of sales. Make a "
+"bill, look at the reports – click around freely."
+msgstr ""
+"பொருட்கள், வாடிக்கையாளர்கள், ஒரு வார விற்பனையுடன் தயாரான தொழிலைத் "
+"திறக்கவும். பில் போடுங்கள், அறிக்கைகளைப் பாருங்கள் – சுதந்திரமாகக் கிளிக் "
+"செய்யுங்கள்."
+
+#: templates/webapp/public/landing.html
+msgid "Open demo →"
+msgstr "டெமோவைத் திற →"
+
+#: templates/webapp/public/landing.html
 msgid "business types"
 msgstr "வணிக வகைகள்"
 
@@ -6719,10 +6864,6 @@ msgid ""
 msgstr ""
 "தங்கள் கவுண்டர், சமையலறை மற்றும் கணக்குகளை BookPilot இல் நடத்தும் "
 "வணிகங்களுடன் இணையுங்கள்."
-
-#: templates/webapp/public/landing.html
-msgid "Start your free trial →"
-msgstr "உங்கள் இலவச சோதனையைத் தொடங்குங்கள் →"
 
 #: templates/webapp/public/landing.html
 msgid "Questions? Talk to us"
@@ -7718,6 +7859,49 @@ msgstr "செலுத்தியது"
 msgid "Add cost"
 msgstr "செலவைச் சேர்"
 
+#: templates/webapp/reminders.html
+msgid ""
+"Customers who have not come back for a while, and memberships about to end. "
+"Tap “Send” to open WhatsApp with the message ready – check it and press "
+"send."
+msgstr ""
+"சில காலமாக வராத வாடிக்கையாளர்களும் முடியவிருக்கும் உறுப்பினர்களும். "
+"“அனுப்பு” அழுத்தினால் செய்தி தயாராக WhatsApp திறக்கும் – சரிபார்த்து "
+"அனுப்பவும்."
+
+#: templates/webapp/reminders.html
+msgid "Last visit at least"
+msgstr "கடைசி வருகை குறைந்தது"
+
+#: templates/webapp/reminders.html
+msgid "days ago"
+msgstr "நாட்களுக்கு முன்"
+
+#: templates/webapp/reminders.html
+msgid "reminders sent today."
+msgstr "நினைவூட்டல்கள் இன்று அனுப்பப்பட்டன."
+
+#: templates/webapp/reminders.html
+msgid "Why"
+msgstr "ஏன்"
+
+#: templates/webapp/reminders.html
+msgid ""
+"No one to remind today. Customers appear here when their last visit is older"
+" than the days above."
+msgstr ""
+"இன்று நினைவூட்ட யாரும் இல்லை. மேலே உள்ள நாட்களை விடப் பழைய வருகை கொண்ட "
+"வாடிக்கையாளர்கள் இங்கே தோன்றுவார்கள்."
+
+#: templates/webapp/reminders.html
+msgid "A customer you remind is not shown again for 14 days."
+msgstr ""
+"நினைவூட்டப்பட்ட வாடிக்கையாளர் 14 நாட்களுக்கு மீண்டும் காட்டப்பட மாட்டார்."
+
+#: templates/webapp/reminders.html
+msgid "Sent"
+msgstr "அனுப்பப்பட்டது"
+
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Kerala starter menu is loaded"
 msgstr "கேரள தொடக்க மெனு ஏற்றப்பட்டது"
@@ -8262,10 +8446,6 @@ msgid "Add a table"
 msgstr "மேசையைச் சேர்"
 
 #: templates/webapp/restaurant/new_order.html
-msgid "Step"
-msgstr "படி"
-
-#: templates/webapp/restaurant/new_order.html
 msgid "· Details"
 msgstr "· விவரங்கள்"
 
@@ -8395,10 +8575,6 @@ msgstr ""
 #: templates/webapp/restaurant/offline_pos.html
 msgid "All bills synced"
 msgstr "அனைத்து பில்களும் ஒத்திசைக்கப்பட்டன"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Sent"
-msgstr "அனுப்பப்பட்டது"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "No new items to send."
@@ -9912,6 +10088,90 @@ msgstr "கடனில் (சப்ளையர்)"
 msgid "Already owned (no payment now)"
 msgstr "ஏற்கனவே சொந்தமானது (இப்போது கட்டணம் இல்லை)"
 
+#: apps/industry/demo_guard.py
+msgid ""
+"That is switched off in the demo. Start your free trial to use it with your "
+"own business."
+msgstr ""
+"டெமோவில் இது முடக்கப்பட்டுள்ளது. உங்கள் தொழிலுடன் பயன்படுத்த இலவச சோதனையைத் "
+"தொடங்குங்கள்."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, it has been a while since your last visit to %(shop)s. Shall we"
+" book your next haircut? Reply with a time that suits you."
+msgstr ""
+"வணக்கம் %(name)s, %(shop)s-க்கு நீங்கள் கடைசியாக வந்து சில காலமாகிவிட்டது. "
+"அடுத்த ஹேர்கட்டை முன்பதிவு செய்யலாமா? வசதியான நேரத்தைச் சொல்லுங்கள்."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, it is time for your next beauty treatment at %(shop)s. Reply "
+"with a day that suits you and we will book it."
+msgstr ""
+"வணக்கம் %(name)s, %(shop)s-இல் உங்கள் அடுத்த அழகு சிகிச்சைக்கான நேரம் "
+"வந்துவிட்டது. வசதியான நாளைச் சொன்னால் முன்பதிவு செய்கிறோம்."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, treat yourself again! Reply to book your next relaxing session "
+"at %(shop)s."
+msgstr ""
+"வணக்கம் %(name)s, மீண்டும் ஓய்வெடுங்கள்! %(shop)s-இல் அடுத்த அமர்வை "
+"முன்பதிவு செய்ய பதில் அனுப்புங்கள்."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, your vehicle is due for its wash at %(shop)s. Reply to book a "
+"slot."
+msgstr ""
+"வணக்கம் %(name)s, %(shop)s-இல் உங்கள் வாகனத்தைக் கழுவும் நேரம் வந்துவிட்டது."
+" நேரத்தை முன்பதிவு செய்ய பதில் அனுப்புங்கள்."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, it may be time to refill your medicines from %(shop)s. Reply "
+"and we will keep them ready for you."
+msgstr ""
+"வணக்கம் %(name)s, %(shop)s-இலிருந்து மருந்துகளை மீண்டும் வாங்கும் நேரமாக "
+"இருக்கலாம். பதில் அனுப்பினால் தயாராக வைக்கிறோம்."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, any clothes for washing or dry cleaning? Reply and %(shop)s "
+"will arrange a pickup."
+msgstr ""
+"வணக்கம் %(name)s, சலவை அல்லது டிரை கிளீனிங்கிற்கு துணிகள் உள்ளனவா? பதில் "
+"அனுப்பினால் %(shop)s எடுத்துச் செல்ல ஏற்பாடு செய்யும்."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, we miss you at %(shop)s! Visit us again soon – we have "
+"something new for you."
+msgstr ""
+"வணக்கம் %(name)s, %(shop)s உங்களை மிஸ் செய்கிறது! விரைவில் மீண்டும் "
+"வாருங்கள் – உங்களுக்காக புதியது காத்திருக்கிறது."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, your %(plan)s membership at %(shop)s ends on %(date)s. Renew "
+"now to keep training without a break."
+msgstr ""
+"வணக்கம் %(name)s, %(shop)s-இல் உங்கள் %(plan)s உறுப்பினர் %(date)s அன்று "
+"முடிகிறது. இடைவெளியின்றி பயிற்சி தொடர இப்போதே புதுப்பியுங்கள்."
+
+#: apps/industry/reminders.py
+msgid "Membership ends in %(n)s days"
+msgstr "உறுப்பினர் %(n)s நாட்களில் முடியும்"
+
+#: apps/industry/reminders.py
+msgid "Membership ended %(n)s days ago"
+msgstr "உறுப்பினர் %(n)s நாட்களுக்கு முன் முடிந்தது"
+
+#: apps/industry/reminders.py
+msgid "Last visit %(n)s days ago"
+msgstr "கடைசி வருகை %(n)s நாட்களுக்கு முன்"
+
 #: apps/industry/site_builder.py
 msgid "Our menu"
 msgstr "எங்கள் மெனு"
@@ -10023,6 +10283,105 @@ msgstr "இந்த விலைப்பட்டியல் ஏற்கன�
 #: apps/sales/allocation.py
 msgid "The amount is more than the invoice balance."
 msgstr "தொகை விலைப்பட்டியல் நிலுவையை விட அதிகம்."
+
+#: apps/subscriptions/trial_emails.py
+msgid "Hi %(name)s,"
+msgstr "வணக்கம் %(name)s,"
+
+#: apps/subscriptions/trial_emails.py
+msgid ""
+"Need help? Reply to this email or chat with us from Help inside BookPilot."
+msgstr ""
+"உதவி வேண்டுமா? இந்த மின்னஞ்சலுக்கு பதில் அனுப்பவும் அல்லது BookPilot-இல் "
+"Help மூலம் அரட்டை செய்யவும்."
+
+#: apps/subscriptions/trial_emails.py
+msgid "Welcome to BookPilot, %(shop)s!"
+msgstr "BookPilot-க்கு வரவேற்கிறோம், %(shop)s!"
+
+#: apps/subscriptions/trial_emails.py
+msgid ""
+"Your free trial has started. We added sample products, services and "
+"customers so you can try everything at once."
+msgstr ""
+"உங்கள் இலவச சோதனை தொடங்கிவிட்டது. எல்லாவற்றையும் ஒரே நேரத்தில் முயற்சிக்க "
+"மாதிரி பொருட்கள், சேவைகள், வாடிக்கையாளர்களைச் சேர்த்துள்ளோம்."
+
+#: apps/subscriptions/trial_emails.py
+msgid "Start here – make a test sale in one minute: %(url)s"
+msgstr "இங்கே தொடங்குங்கள் – ஒரு நிமிடத்தில் சோதனை விற்பனை: %(url)s"
+
+#: apps/subscriptions/trial_emails.py
+msgid ""
+"When you are ready, remove the sample data from the Overview page and add "
+"your own."
+msgstr ""
+"தயாரானதும் மேலோட்டப் பக்கத்திலிருந்து மாதிரி தரவை நீக்கி உங்களுடையதைச் "
+"சேர்க்கவும்."
+
+#: apps/subscriptions/trial_emails.py
+msgid "Have you made your first bill yet?"
+msgstr "முதல் பில்லைப் போட்டீர்களா?"
+
+#: apps/subscriptions/trial_emails.py
+msgid ""
+"A quick test sale shows you the whole flow: bill, payment and a WhatsApp "
+"receipt."
+msgstr ""
+"ஒரு சிறிய சோதனை விற்பனை முழு செயல்முறையையும் காட்டும்: பில், பணம் "
+"செலுத்துதல், WhatsApp ரசீது."
+
+#: apps/subscriptions/trial_emails.py
+msgid "Try it now: %(url)s"
+msgstr "இப்போதே முயற்சிக்கவும்: %(url)s"
+
+#: apps/subscriptions/trial_emails.py
+msgid "Your next steps in BookPilot"
+msgstr "BookPilot-இல் உங்கள் அடுத்த படிகள்"
+
+#: apps/subscriptions/trial_emails.py
+msgid "Great start! Here is what is left to finish your setup:"
+msgstr "நல்ல தொடக்கம்! அமைப்பை முடிக்க மீதமுள்ளவை:"
+
+#: apps/subscriptions/trial_emails.py
+msgid "Everything is set up – well done!"
+msgstr "எல்லாம் தயார் – அருமை!"
+
+#: apps/subscriptions/trial_emails.py
+msgid "Open your checklist: %(url)s"
+msgstr "உங்கள் சரிபார்ப்புப் பட்டியலைத் திறக்கவும்: %(url)s"
+
+#: apps/subscriptions/trial_emails.py
+msgid "Your BookPilot trial ends tomorrow"
+msgstr "உங்கள் BookPilot சோதனை நாளை முடிகிறது"
+
+#: apps/subscriptions/trial_emails.py
+msgid ""
+"Pick a plan today to keep billing without a break. Everything you added "
+"stays exactly as it is."
+msgstr ""
+"பில்லிங் தடையின்றி தொடர இன்றே ஒரு திட்டத்தைத் தேர்ந்தெடுக்கவும். நீங்கள் "
+"சேர்த்தவை அனைத்தும் அப்படியே இருக்கும்."
+
+#: apps/subscriptions/trial_emails.py
+msgid "Choose a plan: %(url)s"
+msgstr "திட்டத்தைத் தேர்ந்தெடுக்கவும்: %(url)s"
+
+#: apps/subscriptions/trial_emails.py
+msgid "Your BookPilot trial has ended – your data is safe"
+msgstr "உங்கள் BookPilot சோதனை முடிந்தது – உங்கள் தரவு பாதுகாப்பாக உள்ளது"
+
+#: apps/subscriptions/trial_emails.py
+msgid ""
+"Your products, customers and bills are all still there. Choose a plan to "
+"carry on where you left off."
+msgstr ""
+"உங்கள் பொருட்கள், வாடிக்கையாளர்கள், பில்கள் அனைத்தும் அப்படியே உள்ளன. "
+"நிறுத்திய இடத்திலிருந்து தொடர ஒரு திட்டத்தைத் தேர்ந்தெடுக்கவும்."
+
+#: apps/subscriptions/trial_emails.py
+msgid "Renew now: %(url)s"
+msgstr "இப்போதே புதுப்பிக்கவும்: %(url)s"
 
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
@@ -10718,6 +11077,34 @@ msgstr "ஆட்சேர்ப்பு உரிம எண், அடிக�
 #: apps/webapp/careers_views.py
 msgid "One per line."
 msgstr "ஒரு வரிக்கு ஒன்று."
+
+#: apps/webapp/checklist.py
+msgid "Add your logo and business details"
+msgstr "உங்கள் லோகோ மற்றும் தொழில் விவரங்களைச் சேர்க்கவும்"
+
+#: apps/webapp/checklist.py
+msgid "Make your first sale"
+msgstr "முதல் விற்பனையைச் செய்யவும்"
+
+#: apps/webapp/checklist.py
+msgid "Add your own products or services"
+msgstr "உங்கள் சொந்த பொருட்கள் அல்லது சேவைகளைச் சேர்க்கவும்"
+
+#: apps/webapp/checklist.py
+msgid "Add your staff"
+msgstr "உங்கள் ஊழியர்களைச் சேர்க்கவும்"
+
+#: apps/webapp/checklist.py
+msgid "Connect a printer or scanner"
+msgstr "பிரிண்டர் அல்லது ஸ்கேனரை இணைக்கவும்"
+
+#: apps/webapp/checklist.py
+msgid "Send a receipt on WhatsApp"
+msgstr "WhatsApp-இல் ரசீது அனுப்பவும்"
+
+#: apps/webapp/checklist.py
+msgid "Publish your website"
+msgstr "உங்கள் இணையதளத்தை வெளியிடவும்"
 
 #: apps/webapp/crm_views.py
 msgid "Enter what the deal is about."
@@ -11842,6 +12229,18 @@ msgstr "அதிகமான தவறான குறியீடுகள்.
 msgid "That code is not right, or it has expired. Try again."
 msgstr "குறியீடு சரியில்லை அல்லது காலாவதியானது. மீண்டும் முயலவும்."
 
+#: apps/webapp/public_views.py
+msgid ""
+"You are signed in to your own business. Log out first to open the demo."
+msgstr ""
+"நீங்கள் உங்கள் சொந்த தொழிலில் உள்நுழைந்துள்ளீர்கள். டெமோவைத் திறக்க முதலில் "
+"வெளியேறவும்."
+
+#: apps/webapp/public_views.py
+msgid "Too many demo visits from this network. Please try again later."
+msgstr ""
+"இந்த நெட்வொர்க்கிலிருந்து அதிகமான டெமோ வருகைகள். பின்னர் முயற்சிக்கவும்."
+
 #: apps/webapp/purchase_docs_views.py
 msgid "Choose a supplier or type a new supplier's name."
 msgstr "சப்ளையரைத் தேர்ந்தெடுக்கவும் அல்லது புதிய சப்ளையர் பெயரை உள்ளிடவும்."
@@ -12554,6 +12953,18 @@ msgstr ""
 #: apps/webapp/views.py
 msgid "Role and branches updated."
 msgstr "பங்கும் கிளைகளும் புதுப்பிக்கப்பட்டன."
+
+#: apps/webapp/views.py
+msgid "Imported %(c)s new, updated %(u)s. %(n)s row(s) skipped:"
+msgstr ""
+"%(c)s புதியவை சேர்க்கப்பட்டன, %(u)s புதுப்பிக்கப்பட்டன. %(n)s வரி(கள்) "
+"தவிர்க்கப்பட்டன:"
+
+#: apps/webapp/views.py
+msgid "Imported %(c)s new products, updated %(u)s existing."
+msgstr ""
+"%(c)s புதிய பொருட்கள் சேர்க்கப்பட்டன, %(u)s ஏற்கனவே உள்ளவை "
+"புதுப்பிக்கப்பட்டன."
 
 #: apps/webapp/views.py
 msgid "That plan can't be selected."

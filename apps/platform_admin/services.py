@@ -19,7 +19,7 @@ from apps.accounts.models import User
 
 def dashboard_stats():
     today = timezone.localdate()
-    companies = Company.objects.all()
+    companies = Company.objects.exclude(is_demo=True)
     subs = Subscription.objects.all()
 
     revenue = SubscriptionPayment.objects.filter(is_confirmed=True).aggregate(total=Sum("amount"))["total"] or Decimal("0")

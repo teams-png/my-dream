@@ -117,3 +117,9 @@ def daily_owner_report(company):
 def recruitment_reminders(company):
     from apps.industry.recruitment import daily_reminders
     return daily_reminders(company)
+
+
+@register
+def trial_emails(company):
+    from apps.subscriptions.trial_emails import daily
+    return daily(company)

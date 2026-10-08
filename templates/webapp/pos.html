@@ -195,4 +195,21 @@ window.POS_CFG = {
 </script>
 <script src="{% static 'js/devices.js' %}"></script>
 <script src="{% static 'js/retail-pos.js' %}"></script>
+{% if show_tour %}
+<script src="{% static 'js/tour.js' %}"></script>
+<script>
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    BpTour.start([
+      {el: "#pos-product-grid .prod-card", text: "{% filter escapejs %}{% if service_billing %}{% translate 'Tap a service to add it to the bill.' %}{% else %}{% translate 'Tap a product to add it to the sale.' %}{% endif %}{% endfilter %}"},
+      {% if service_billing %}{el: "#pos-staff", text: "{% filter escapejs %}{% translate 'Choose who did the work. It shows in Reports, so you can pay commission.' %}{% endfilter %}", next: true},{% endif %}
+      {el: "#pos-checkout-btn", text: "{% translate 'Press Charge to take the payment.' %}"},
+      {el: "#completeBtn", text: "{% translate 'Choose Cash, Card or Bank and complete the sale. This test bill uses sample data, which you can remove later.' %}"},
+      {el: "#doneShare", text: "{% translate 'Send the receipt to the customer on WhatsApp, or print it. That is a full sale!' %}", next: true}
+    ], {stepLabel: "{% translate 'Step' %}", skip: "{% translate 'Skip tour' %}", nextLabel: "{% translate 'Next' %}", done: "{% translate 'Done' %}",
+        onEnd: function () { window.bpMilestone && bpMilestone("tour_done"); }});
+  }, 600);
+});
+</script>
+{% endif %}
 {% endblock %}

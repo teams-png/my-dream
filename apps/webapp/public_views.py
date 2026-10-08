@@ -120,6 +120,7 @@ def landing(request):
         "plans": _plans(), "pricing": _pricing_data(), "popular_types": POPULAR_TYPES, "trial_days": TRIAL_DAYS,
         "business_count": len(BUSINESS_TYPE_MAP), "signup_enabled": settings.PUBLIC_SIGNUP_ENABLED,
         "module_count": Module.objects.count(), "support": support_details(),
+        "demos": __import__("apps.industry.demo", fromlist=["DEMOS"]).DEMOS,
     })
 
 
@@ -177,6 +178,8 @@ def _finish_signup(request, data):
         return None
     login(request, user, backend="django.contrib.auth.backends.ModelBackend")
     request.session["active_company_id"] = company.id
+    from apps.subscriptions.trial_emails import send as send_trial_email
+    transaction.on_commit(lambda: send_trial_email(company, "welcome"))
     messages.success(request, f"Welcome to BookPilot! Your {TRIAL_DAYS}-day free trial has started.")
     return redirect("webapp:setup", step="business")
 
@@ -299,3 +302,40 @@ def home(request):
         return landing(request)
     from .views import dashboard
     return dashboard(request)
+
+
+def demo_open(request, code):
+    """Opens a ready demo business, signed in as its owner, without signing up."""
+    from django.contrib.auth import logout
+    from django.http import Http404
+    from apps.industry import demo
+    if code not in demo.CODES:
+        raise Http404
+    if request.user.is_authenticated:
+        company = getattr(request, "company", None)
+        if not (company and company.is_demo):
+            messages.info(request, _("You are signed in to your own business. Log out first to open the demo."))
+            return redirect("webapp:dashboard")
+        logout(request)
+    ip_address = account_services.client_ip(request)
+    recent = LoginAttempt.objects.filter(identifier="demo", ip_address=ip_address,
+                                         attempted_at__gte=timezone.now() - timedelta(hours=1)).count()
+    if recent >= 30:
+        messages.error(request, _("Too many demo visits from this network. Please try again later."))
+        return redirect("webapp:landing")
+    LoginAttempt.objects.create(identifier="demo", ip_address=ip_address, successful=True)
+    company = demo.ensure(code)
+    owner = company.memberships.select_related("user").get(role__name="Owner").user
+    login(request, owner, backend="django.contrib.auth.backends.ModelBackend")
+    request.session["active_company_id"] = company.id
+    demo.mark_used(company)
+    return redirect("webapp:dashboard")
+
+
+def demo_exit(request):
+    """Leaves the demo and goes to sign-up."""
+    from django.contrib.auth import logout
+    company = getattr(request, "company", None)
+    if company is not None and company.is_demo:
+        logout(request)
+    return redirect("webapp:signup")

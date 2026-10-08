@@ -22,3 +22,19 @@ def sample_data(request):
         if sample_kit.install(company, request.user):
             messages.success(request, _("Sample data added. Remove it any time from the overview or Settings."))
     return redirect(safe_next(request, "webapp:dashboard"))
+
+
+MILESTONES = {"devices", "tour_done", "checklist_hidden"}
+
+
+@login_required
+@require_POST
+def milestone(request):
+    """The browser reports a first-time step the server cannot see (printer set up, tour finished, checklist hidden)."""
+    from django.http import JsonResponse
+    from .checklist import mark
+    key = request.POST.get("key", "")
+    if request.company is None or key not in MILESTONES:
+        return JsonResponse({"ok": False}, status=400)
+    mark(request.company, key)
+    return JsonResponse({"ok": True})

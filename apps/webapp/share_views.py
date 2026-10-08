@@ -25,6 +25,8 @@ def invoice_share(request, invoice_id):
         raise Http404
     invoice = get_object_or_404(SalesInvoice.objects.for_company(request.company).select_related("customer"), id=invoice_id)
     url = _public_url(request, invoice)
+    from .checklist import mark
+    mark(request.company, "receipt_shared")
     form = EmailInvoiceForm(request.POST or None, initial={"email": invoice.customer.email})
     if request.method == "POST" and form.is_valid():
         try:

@@ -172,7 +172,7 @@ html:not(.bp-desktop) .desktop-only{display:none !important}
     const card=t.closest('[data-role]');
     if(card){const r=cfg[card.dataset.role];if(t.name&&t.name.endsWith('-mode'))r.mode=t.value;if(t.dataset.field)r[t.dataset.field]=t.type==='number'||t.dataset.field==='width'||t.dataset.field==='baud'?Number(t.value):t.value.trim()}
     if(t.dataset.cfg){let v=t.type==='checkbox'?t.checked:t.value;if(['drawer.pin','alarm.repeat'].includes(t.dataset.cfg))v=Number(v);if(t.dataset.cfg==='alarm.volume')v=parseFloat(v);set(cfg,t.dataset.cfg,v)}
-    D.save(cfg);render();toast('Saved on this device');
+    D.save(cfg);render();toast('Saved on this device');window.bpMilestone&&window.bpMilestone('devices');
   });
   document.querySelectorAll('[data-role]').forEach(card=>{
     const role=card.dataset.role;

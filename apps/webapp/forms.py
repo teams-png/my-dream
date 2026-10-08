@@ -1233,7 +1233,7 @@ class BranchForm(forms.ModelForm):
 # ---------------- Import / Export ----------------
 
 class ProductImportForm(forms.Form):
-    csv_file = forms.FileField(label="CSV file")
+    csv_file = forms.FileField(label="Excel (.xlsx) or CSV file")
 
 # ---------------- Platform Admin ----------------
 

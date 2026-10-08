@@ -98,6 +98,7 @@ MIDDLEWARE = [
     "apps.tenants.middleware.ActiveCompanyMiddleware",       # resolves request.company / request.role
     "apps.subscriptions.middleware.SubscriptionGuardMiddleware",  # blocks routes once subscription expired
     "apps.webapp.role_access.RoleAccessMiddleware",          # pages each role may open (needs request.role)
+    "apps.industry.demo_guard.DemoGuardMiddleware",           # the public demo businesses can't reach outside
     # -------------------------------------
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -298,6 +299,8 @@ PUBLIC_SIGNUP_ENABLED = env.bool("PUBLIC_SIGNUP_ENABLED", default=True)
 SIGNUP_LIMIT_PER_IP_PER_HOUR = env.int("SIGNUP_LIMIT_PER_IP_PER_HOUR", default=5)
 # Sign-up sends a one-time code and makes the account only once it is typed (apps/accounts/signup_otp.py).
 # "email" (default, needs a mail server), "sms" (Twilio Verify, needs the three TWILIO_* values), "" = off.
+# The app's public address, for links in emails sent by daily jobs (Render sets RENDER_EXTERNAL_URL itself).
+SITE_URL = env("SITE_URL", default=env("RENDER_EXTERNAL_URL", default=""))
 SIGNUP_OTP = env("SIGNUP_OTP", default="email")
 SIGNUP_OTP_SENDS_PER_HOUR = env.int("SIGNUP_OTP_SENDS_PER_HOUR", default=5)  # per address/number and per network
 TWILIO_ACCOUNT_SID = env("TWILIO_ACCOUNT_SID", default="")

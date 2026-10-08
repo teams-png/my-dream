@@ -35,6 +35,7 @@
       <h3>📘 {% translate "User guide" %}</h3>
       <p>{% translate "Step-by-step help for every screen." %}</p>
       <a class="btn btn-secondary" href="{% url 'webapp:guide' %}" target="_blank" rel="noopener">{% translate "Open the user guide" %}</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:pos' %}?tour=1" style="margin-top:8px">🧭 {% translate "Take the tour: make a sale" %}</a>
     </div>
     {% if support.whatsapp or support.email %}
     <div class="card">

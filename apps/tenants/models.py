@@ -53,6 +53,7 @@ class Company(models.Model):
     fiscal_year_start_month = models.PositiveSmallIntegerField(default=1)
     is_active = models.BooleanField(default=True)  # False = archived, never hard-deleted
     archived_at = models.DateTimeField(null=True, blank=True)
+    is_demo = models.BooleanField(default=False)  # the public "Try demo" businesses; reset nightly
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -125,6 +126,8 @@ class CompanyOnboarding(models.Model):
     team_setup_complete = models.BooleanField(default=False)
     tax_setup_complete = models.BooleanField(default=False)
     opening_balances_complete = models.BooleanField(default=False)
+    # first-week milestones for the overview checklist and tour: {"receipt_shared": "<iso time>", "tour_done": …}
+    milestones = models.JSONField(default=dict, blank=True)
     completed_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
 

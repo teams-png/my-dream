@@ -129,3 +129,41 @@ def response(filename, sheets):
 
 def wants(request):
     return request.GET.get("format") == "xlsx"
+
+
+def read_rows(data, limit=20000):
+    """The first sheet of an .xlsx file as lists of strings (enough for imports; formulas give their cached value)."""
+    import xml.etree.ElementTree as ET
+    ns = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
+    with zipfile.ZipFile(io.BytesIO(data)) as z:
+        shared = []
+        if "xl/sharedStrings.xml" in z.namelist():
+            for si in ET.fromstring(z.read("xl/sharedStrings.xml")).findall("m:si", ns):
+                shared.append("".join(t.text or "" for t in si.iter(f"{{{ns['m']}}}t")))
+        sheets = sorted(n for n in z.namelist() if re.match(r"xl/worksheets/sheet\d+\.xml$", n))
+        if not sheets:
+            return []
+        root = ET.fromstring(z.read("xl/worksheets/sheet1.xml" if "xl/worksheets/sheet1.xml" in sheets else sheets[0]))
+    rows = []
+    for row in root.iter(f"{{{ns['m']}}}row"):
+        values = {}
+        for c in row.findall("m:c", ns):
+            ref = re.match(r"([A-Z]+)", c.get("r", "A")).group(1)
+            col = 0
+            for ch in ref:
+                col = col * 26 + ord(ch) - 64
+            kind, v = c.get("t"), c.find("m:v", ns)
+            if kind == "inlineStr":
+                text = "".join(t.text or "" for t in c.iter(f"{{{ns['m']}}}t"))
+            elif kind == "s" and v is not None:
+                text = shared[int(v.text)]
+            else:
+                text = v.text if v is not None else ""
+            if text and kind not in ("s", "inlineStr", "str") and re.fullmatch(r"-?\d+\.0+", text):
+                text = text.split(".")[0]
+            values[col] = (text or "").strip()
+        if values:
+            rows.append([values.get(i, "") for i in range(1, max(values) + 1)])
+        if len(rows) >= limit:
+            break
+    return rows

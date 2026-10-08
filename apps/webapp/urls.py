@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, sample_views, security_views, share_views, views
+from . import billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -107,7 +107,12 @@ urlpatterns = [
     path("refund-policy/", guide_views.legal_page, {"page": "refund"}, name="refund_policy"),
     path("signup/", public_views.signup, name="signup"),
     path("signup/verify/", public_views.signup_verify, name="signup_verify"),
+    path("demo/<slug:code>/", public_views.demo_open, name="demo"),
+    path("demo-exit/", public_views.demo_exit, name="demo_exit"),
     path("settings/sample-data/", sample_views.sample_data, name="sample_data"),
+    path("onboarding/milestone/", sample_views.milestone, name="milestone"),
+    path("customers/reminders/", reminder_views.reminder_list, name="reminders"),
+    path("customers/reminders/sent/", reminder_views.reminder_sent, name="reminder_sent"),
 
     path("sales/invoices/", sales_docs_views.sales_invoice_list, name="sales_invoice_list"),
     path("sales/quotations/", sales_docs_views.quotation_list, name="quotation_list"),
@@ -326,6 +331,7 @@ urlpatterns = [
 
     path("mobile-shop/products/export/", views.product_export_csv, name="product_export_csv"),
     path("mobile-shop/products/import/", views.product_import_csv, name="product_import_csv"),
+    path("mobile-shop/products/import/template/", views.product_import_template, name="product_import_template"),
     path("customers/export/", views.customer_export_csv, name="customer_export_csv"),
     path("retail/sales/export/", views.sales_export_csv, name="sales_export_csv"),
 

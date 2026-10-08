@@ -16,3 +16,13 @@ def sample_summary(context):
     found = sample_kit.summary(company)
     found["loaded"] = bool(found["total"])
     return found
+
+
+@register.simple_tag(takes_context=True)
+def setup_checklist(context):
+    request = context.get("request")
+    company = getattr(request, "company", None)
+    if company is None:
+        return None
+    from apps.webapp.checklist import summary
+    return summary(company)

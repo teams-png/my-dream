@@ -1,22 +1,28 @@
 {% extends "base.html" %}
-{% block title %}Import products{% endblock %}
-{% block heading %}Import products from CSV{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Import products" %}{% endblock %}
+{% block heading %}{% translate "Import products from Excel" %}{% endblock %}
 {% block content %}
-<div class="card" style="max-width:520px; margin-bottom:20px;">
-  <p style="margin-top:0; font-size:13.5px; color:var(--ink-soft);">
-    Your CSV needs these column headers (first row):
+<div class="card" style="max-width:640px;margin-bottom:20px">
+  <h3 style="margin-top:0">1. {% translate "Download the template for your business" %}</h3>
+  <p style="font-size:14px;color:var(--ink-soft)">{% translate "It has the columns your type of business needs and a few example rows. Type or paste your own items over the examples." %}</p>
+  <p style="display:flex;gap:8px;flex-wrap:wrap">
+    <a class="btn" href="{% url 'webapp:product_import_template' %}">⬇ {% translate "Excel template" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:product_import_template' %}?format=csv">⬇ CSV</a>
   </p>
-  <p style="font-family:monospace; font-size:12.5px; background:var(--paper); padding:10px; border-radius:6px;">
-    SKU, Name, Unit, Selling Price, Category, Brand, Cost Price, Reorder Level
-  </p>
-  <p style="font-size:13px; color:var(--ink-soft);">
-    Only <strong>SKU, Name, Unit, Selling Price</strong> are required — the rest are optional.
-    If a product with that SKU already exists, it's updated instead of duplicated.
-    Category/Brand/Unit names that don't exist yet are created automatically.
-  </p>
+  <details style="font-size:13px;color:var(--ink-soft)"><summary>{% translate "Columns in your template" %}</summary>
+    <p style="font-family:monospace;font-size:12.5px;background:var(--paper);padding:10px;border-radius:6px;line-height:1.7">{{ columns|join:", " }}</p>
+    <ul style="padding-inline-start:18px;line-height:1.6">
+      <li>{% translate "Only SKU and Name are required. A product with the same SKU is updated, not added twice." %}</li>
+      <li>{% translate "Opening Stock is added only for new products." %}</li>
+      <li>{% translate "For sizes and colours: one row per size / colour, with the main product's SKU in “Variant of (SKU)”." %}</li>
+      <li>{% translate "Categories, brands and units that don't exist yet are created for you." %}</li>
+    </ul>
+  </details>
 </div>
 
-<div class="card" style="max-width:420px;">
+<div class="card" style="max-width:640px">
+  <h3 style="margin-top:0">2. {% translate "Upload your file" %}</h3>
   <form class="stacked" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% for field in form %}
@@ -24,8 +30,8 @@
       {{ field }}
       {{ field.errors }}
     {% endfor %}
-    <button class="btn" style="margin-top:20px;" type="submit">Import</button>
-    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:product_list' %}">Cancel</a>
+    <button class="btn" style="margin-top:20px" type="submit">{% translate "Import" %}</button>
+    <a class="btn btn-secondary" style="margin-top:20px;margin-inline-start:8px" href="{% url 'webapp:product_list' %}">{% translate "Cancel" %}</a>
   </form>
 </div>
 {% endblock %}

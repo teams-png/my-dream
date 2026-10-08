@@ -684,3 +684,14 @@ class SampleRecord(TenantScopedModel):
 
     class Meta:
         indexes = [models.Index(fields=("company", "content_type"))]
+
+
+class CustomerReminder(TenantScopedModel):
+    """A WhatsApp reminder the business sent a customer (revisit, membership ending…), so it isn't sent twice."""
+    customer = models.ForeignKey("customers.Customer", on_delete=models.CASCADE, related_name="reminders")
+    kind = models.CharField(max_length=20)
+    sent_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    sent_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        indexes = [models.Index(fields=("company", "customer", "sent_at"))]

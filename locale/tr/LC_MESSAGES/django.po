@@ -734,20 +734,12 @@ msgid "Language"
 msgstr "Dil"
 
 #: templates/webapp/_overview_panel.html
-msgid "Done"
-msgstr "Tamamlandı"
+msgid "Target"
+msgstr "Hedef"
 
 #: templates/webapp/_overview_panel.html
 msgid "more"
 msgstr "daha"
-
-#: templates/webapp/_overview_panel.html
-msgid "bill"
-msgstr "hesap"
-
-#: templates/webapp/_overview_panel.html
-msgid "bills"
-msgstr "hesaplar"
 
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
@@ -1344,6 +1336,10 @@ msgstr ""
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
 msgstr "Bütçeleri kaydet"
+
+#: templates/webapp/automation/daily_report.html
+msgid "bills"
+msgstr "hesaplar"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
@@ -2350,6 +2346,10 @@ msgid "due"
 msgstr "vade"
 
 #: templates/webapp/crm/lead_detail.html
+msgid "Done"
+msgstr "Tamamlandı"
+
+#: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
 msgstr "Henüz etkinlik yok."
 
@@ -2692,6 +2692,10 @@ msgstr "Aramanızla eşleşen müşteri yok."
 #: templates/webapp/customer_list.html
 msgid "No customers yet."
 msgstr "Henüz müşteri yok."
+
+#: templates/webapp/dashboard.html
+msgid "Time"
+msgstr "Saat"
 
 #: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
@@ -7976,6 +7980,10 @@ msgid "Sales today ·"
 msgstr "Bugünkü satış ·"
 
 #: templates/webapp/restaurant/dashboard.html
+msgid "bill"
+msgstr "hesap"
+
+#: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"
 msgstr "Mutfaktaki fişler"
 
@@ -8193,10 +8201,6 @@ msgstr "· Masa"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Main kitchen"
 msgstr "Ana mutfak"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "0 min"
-msgstr "0 dk"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Start cooking →"
@@ -11785,10 +11789,6 @@ msgid "Not sure / other"
 msgstr "Emin değilim / diğer"
 
 #: apps/webapp/online_booking_views.py
-msgid "Time"
-msgstr "Saat"
-
-#: apps/webapp/online_booking_views.py
 msgid "Number of people"
 msgstr "Kişi sayısı"
 
@@ -12025,6 +12025,28 @@ msgid "Outstanding dues"
 msgstr "Ödenmemiş borçlar"
 
 #: apps/webapp/overview.py
+msgid "Best sellers today"
+msgstr "Bugün en çok satanlar"
+
+#: apps/webapp/overview.py
+msgid "Nothing sold yet today."
+msgstr "Bugün henüz bir şey satılmadı."
+
+#: apps/webapp/overview.py
+msgid "Staff today"
+msgstr "Bugünkü personel"
+
+#: apps/webapp/overview.py
+msgid "%(n)s bills"
+msgstr "%(n)s fatura"
+
+#: apps/webapp/overview.py
+msgid ""
+"Choose who did the work when you bill, and each person's total shows here."
+msgstr ""
+"Fatura keserken işi kimin yaptığını seçin; herkesin toplamı burada görünür."
+
+#: apps/webapp/overview.py
 msgid "%(left)s waiting · %(done)s done"
 msgstr "%(left)s bekliyor · %(done)s tamamlandı"
 
@@ -12045,14 +12067,253 @@ msgid "Book appointment"
 msgstr "Randevu al"
 
 #: apps/webapp/overview.py
-msgid "Staff today"
-msgstr "Bugünkü personel"
+msgid "Table %(t)s"
+msgstr "Masa %(t)s"
 
 #: apps/webapp/overview.py
-msgid ""
-"Choose who did the work when you bill, and each person's total shows here."
+msgid "In the kitchen"
+msgstr "Mutfakta"
+
+#: apps/webapp/overview.py
+msgid "%(n)s late"
+msgstr "%(n)s gecikmeli"
+
+#: apps/webapp/overview.py
+msgid "Orders paid today"
+msgstr "Bugün ödenen siparişler"
+
+#: apps/webapp/overview.py
+msgid "Kitchen timer"
+msgstr "Mutfak zamanlayıcısı"
+
+#: apps/webapp/overview.py
+msgid "Kitchen screen"
+msgstr "Mutfak ekranı"
+
+#: apps/webapp/overview.py
+msgid "Kitchen is clear. Orders sent to the kitchen show here with a timer."
 msgstr ""
-"Fatura keserken işi kimin yaptığını seçin; herkesin toplamı burada görünür."
+"Mutfak boş. Mutfağa gönderilen siparişler burada zamanlayıcıyla görünür."
+
+#: apps/webapp/overview.py
+msgid "Reorder at %(n)s"
+msgstr "%(n)s olunca yeniden sipariş"
+
+#: apps/webapp/overview.py
+msgid "All products are above their reorder level."
+msgstr "Tüm ürünler yeniden sipariş seviyesinin üstünde."
+
+#: apps/webapp/overview.py
+msgid "Repairs in the shop"
+msgstr "Dükkândaki onarımlar"
+
+#: apps/webapp/overview.py
+msgid "Repair jobs"
+msgstr "Onarım işleri"
+
+#: apps/webapp/overview.py
+msgid "All repairs"
+msgstr "Tüm onarımlar"
+
+#: apps/webapp/overview.py
+msgid "No repairs waiting."
+msgstr "Bekleyen onarım yok."
+
+#: apps/webapp/overview.py
+msgid "New repair job"
+msgstr "Yeni onarım işi"
+
+#: apps/webapp/overview.py
+msgid "Cars in the queue"
+msgstr "Sıradaki araçlar"
+
+#: apps/webapp/overview.py
+msgid "Washed today"
+msgstr "Bugün yıkanan"
+
+#: apps/webapp/overview.py
+msgid "Today's queue"
+msgstr "Bugünkü sıra"
+
+#: apps/webapp/overview.py
+msgid "No cars waiting."
+msgstr "Bekleyen araç yok."
+
+#: apps/webapp/overview.py
+msgid "Book a wash"
+msgstr "Yıkama ayırt"
+
+#: apps/webapp/overview.py
+msgid "Not assigned"
+msgstr "Atanmadı"
+
+#: apps/webapp/overview.py
+msgid "%(n)s washes"
+msgstr "%(n)s yıkama"
+
+#: apps/webapp/overview.py
+msgid "Finished washes show here by staff member."
+msgstr "Biten yıkamalar burada personele göre görünür."
+
+#: apps/webapp/overview.py
+msgid "Check-ins today"
+msgstr "Bugünkü girişler"
+
+#: apps/webapp/overview.py
+msgid "Expiring this week"
+msgstr "Bu hafta bitenler"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "%(n)s gün içinde"
+
+#: apps/webapp/overview.py
+msgid "Memberships to renew"
+msgstr "Yenilenecek üyelikler"
+
+#: apps/webapp/overview.py
+msgid "All members"
+msgstr "Tüm üyeler"
+
+#: apps/webapp/overview.py
+msgid "No memberships end this week."
+msgstr "Bu hafta biten üyelik yok."
+
+#: apps/webapp/overview.py
+msgid "Today's check-ins"
+msgstr "Bugünkü girişler"
+
+#: apps/webapp/overview.py
+msgid "No check-ins yet today."
+msgstr "Bugün henüz giriş yok."
+
+#: apps/webapp/overview.py
+msgid "Orders in progress"
+msgstr "Devam eden siparişler"
+
+#: apps/webapp/overview.py
+msgid "Late"
+msgstr "Gecikmeli"
+
+#: apps/webapp/overview.py
+msgid "Due for delivery"
+msgstr "Teslim edilecekler"
+
+#: apps/webapp/overview.py
+msgid "No orders in progress."
+msgstr "Devam eden sipariş yok."
+
+#: apps/webapp/overview.py
+msgid "Nothing waiting for pickup."
+msgstr "Teslim alınmayı bekleyen yok."
+
+#: apps/webapp/overview.py
+msgid "Arriving today"
+msgstr "Bugün gelenler"
+
+#: apps/webapp/overview.py
+msgid "Leaving today"
+msgstr "Bugün ayrılanlar"
+
+#: apps/webapp/overview.py
+msgid "Arriving"
+msgstr "Geliyor"
+
+#: apps/webapp/overview.py
+msgid "Leaving"
+msgstr "Ayrılıyor"
+
+#: apps/webapp/overview.py
+msgid "Arrivals and departures"
+msgstr "Gelişler ve ayrılışlar"
+
+#: apps/webapp/overview.py
+msgid "Booking board"
+msgstr "Rezervasyon panosu"
+
+#: apps/webapp/overview.py
+msgid "No arrivals or departures today."
+msgstr "Bugün geliş veya ayrılış yok."
+
+#: apps/webapp/overview.py
+msgid "Free right now"
+msgstr "Şu an boş"
+
+#: apps/webapp/overview.py
+msgid "Everything is in use."
+msgstr "Hepsi kullanımda."
+
+#: apps/webapp/overview.py
+msgid "%(n)s students"
+msgstr "%(n)s öğrenci"
+
+#: apps/webapp/overview.py
+msgid "Active students"
+msgstr "Aktif öğrenciler"
+
+#: apps/webapp/overview.py
+msgid "All dues"
+msgstr "Tüm borçlar"
+
+#: apps/webapp/overview.py
+msgid "No fees due. Well done!"
+msgstr "Borç yok. Harika!"
+
+#: apps/webapp/overview.py
+msgid "Fees"
+msgstr "Ücretler"
+
+#: apps/webapp/overview.py
+msgid "Rent collected this month"
+msgstr "Bu ay tahsil edilen kira"
+
+#: apps/webapp/overview.py
+msgid "%(n)s vacant"
+msgstr "%(n)s boş"
+
+#: apps/webapp/overview.py
+msgid "%(n)s days late"
+msgstr "%(n)s gün gecikmeli"
+
+#: apps/webapp/overview.py
+msgid "Leases ending soon"
+msgstr "Yakında biten kiralar"
+
+#: apps/webapp/overview.py
+msgid "All leases"
+msgstr "Tüm kiralar"
+
+#: apps/webapp/overview.py
+msgid "No leases end in the next 60 days."
+msgstr "Önümüzdeki 60 günde biten kira yok."
+
+#: apps/webapp/overview.py
+msgid "Open work"
+msgstr "Açık işler"
+
+#: apps/webapp/overview.py
+msgid "All work"
+msgstr "Tüm işler"
+
+#: apps/webapp/overview.py
+msgid "No open work."
+msgstr "Açık iş yok."
+
+#: apps/webapp/overview.py
+msgid "All projects"
+msgstr "Tüm projeler"
+
+#: apps/webapp/overview.py
+msgid "No running projects."
+msgstr "Devam eden proje yok."
+
+#: apps/webapp/overview.py
+msgid "Recent payments"
+msgstr "Son ödemeler"
+
+#: apps/webapp/overview.py
+msgid "All bills"
+msgstr "Tüm faturalar"
 
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
@@ -12808,6 +13069,10 @@ msgstr "Stoğa %(count)s seri numarası eklendi."
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "Zaten kayıtlı: %(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Orders & tables"
+msgstr "Siparişler ve masalar"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

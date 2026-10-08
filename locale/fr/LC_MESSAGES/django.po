@@ -735,20 +735,12 @@ msgid "Language"
 msgstr "Langue"
 
 #: templates/webapp/_overview_panel.html
-msgid "Done"
-msgstr "Fait"
+msgid "Target"
+msgstr "Objectif"
 
 #: templates/webapp/_overview_panel.html
 msgid "more"
 msgstr "de plus"
-
-#: templates/webapp/_overview_panel.html
-msgid "bill"
-msgstr "addition"
-
-#: templates/webapp/_overview_panel.html
-msgid "bills"
-msgstr "additions"
 
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
@@ -1348,6 +1340,10 @@ msgstr ""
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
 msgstr "Enregistrer les budgets"
+
+#: templates/webapp/automation/daily_report.html
+msgid "bills"
+msgstr "additions"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
@@ -2369,6 +2365,10 @@ msgid "due"
 msgstr "échéance"
 
 #: templates/webapp/crm/lead_detail.html
+msgid "Done"
+msgstr "Fait"
+
+#: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
 msgstr "Aucune activité pour l’instant."
 
@@ -2711,6 +2711,10 @@ msgstr "Aucun client ne correspond à votre recherche."
 #: templates/webapp/customer_list.html
 msgid "No customers yet."
 msgstr "Aucun client pour l’instant."
+
+#: templates/webapp/dashboard.html
+msgid "Time"
+msgstr "Heure"
 
 #: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
@@ -8049,6 +8053,10 @@ msgid "Sales today ·"
 msgstr "Ventes du jour ·"
 
 #: templates/webapp/restaurant/dashboard.html
+msgid "bill"
+msgstr "addition"
+
+#: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"
 msgstr "Bons en cuisine"
 
@@ -8266,10 +8274,6 @@ msgstr "· Table"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Main kitchen"
 msgstr "Cuisine principale"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "0 min"
-msgstr "0 min"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Start cooking →"
@@ -11900,10 +11904,6 @@ msgid "Not sure / other"
 msgstr "Je ne sais pas / autre"
 
 #: apps/webapp/online_booking_views.py
-msgid "Time"
-msgstr "Heure"
-
-#: apps/webapp/online_booking_views.py
 msgid "Number of people"
 msgstr "Nombre de personnes"
 
@@ -12143,6 +12143,29 @@ msgid "Outstanding dues"
 msgstr "Impayés"
 
 #: apps/webapp/overview.py
+msgid "Best sellers today"
+msgstr "Meilleures ventes du jour"
+
+#: apps/webapp/overview.py
+msgid "Nothing sold yet today."
+msgstr "Rien de vendu aujourd'hui pour l'instant."
+
+#: apps/webapp/overview.py
+msgid "Staff today"
+msgstr "Équipe du jour"
+
+#: apps/webapp/overview.py
+msgid "%(n)s bills"
+msgstr "%(n)s factures"
+
+#: apps/webapp/overview.py
+msgid ""
+"Choose who did the work when you bill, and each person's total shows here."
+msgstr ""
+"Choisissez qui a fait le travail lors de la facturation : le total de chacun"
+" s'affiche ici."
+
+#: apps/webapp/overview.py
 msgid "%(left)s waiting · %(done)s done"
 msgstr "%(left)s en attente · %(done)s terminés"
 
@@ -12163,15 +12186,254 @@ msgid "Book appointment"
 msgstr "Prendre rendez-vous"
 
 #: apps/webapp/overview.py
-msgid "Staff today"
-msgstr "Équipe du jour"
+msgid "Table %(t)s"
+msgstr "Table %(t)s"
 
 #: apps/webapp/overview.py
-msgid ""
-"Choose who did the work when you bill, and each person's total shows here."
+msgid "In the kitchen"
+msgstr "En cuisine"
+
+#: apps/webapp/overview.py
+msgid "%(n)s late"
+msgstr "%(n)s en retard"
+
+#: apps/webapp/overview.py
+msgid "Orders paid today"
+msgstr "Commandes payées aujourd'hui"
+
+#: apps/webapp/overview.py
+msgid "Kitchen timer"
+msgstr "Minuteur cuisine"
+
+#: apps/webapp/overview.py
+msgid "Kitchen screen"
+msgstr "Écran cuisine"
+
+#: apps/webapp/overview.py
+msgid "Kitchen is clear. Orders sent to the kitchen show here with a timer."
 msgstr ""
-"Choisissez qui a fait le travail lors de la facturation : le total de chacun"
-" s'affiche ici."
+"La cuisine est libre. Les commandes envoyées en cuisine s'affichent ici avec"
+" un minuteur."
+
+#: apps/webapp/overview.py
+msgid "Reorder at %(n)s"
+msgstr "Recommander à %(n)s"
+
+#: apps/webapp/overview.py
+msgid "All products are above their reorder level."
+msgstr "Tous les produits sont au-dessus du seuil de réapprovisionnement."
+
+#: apps/webapp/overview.py
+msgid "Repairs in the shop"
+msgstr "Réparations en boutique"
+
+#: apps/webapp/overview.py
+msgid "Repair jobs"
+msgstr "Réparations"
+
+#: apps/webapp/overview.py
+msgid "All repairs"
+msgstr "Toutes les réparations"
+
+#: apps/webapp/overview.py
+msgid "No repairs waiting."
+msgstr "Aucune réparation en attente."
+
+#: apps/webapp/overview.py
+msgid "New repair job"
+msgstr "Nouvelle réparation"
+
+#: apps/webapp/overview.py
+msgid "Cars in the queue"
+msgstr "Voitures en file"
+
+#: apps/webapp/overview.py
+msgid "Washed today"
+msgstr "Lavées aujourd'hui"
+
+#: apps/webapp/overview.py
+msgid "Today's queue"
+msgstr "File du jour"
+
+#: apps/webapp/overview.py
+msgid "No cars waiting."
+msgstr "Aucune voiture en attente."
+
+#: apps/webapp/overview.py
+msgid "Book a wash"
+msgstr "Réserver un lavage"
+
+#: apps/webapp/overview.py
+msgid "Not assigned"
+msgstr "Non attribué"
+
+#: apps/webapp/overview.py
+msgid "%(n)s washes"
+msgstr "%(n)s lavages"
+
+#: apps/webapp/overview.py
+msgid "Finished washes show here by staff member."
+msgstr "Les lavages terminés s'affichent ici par membre de l'équipe."
+
+#: apps/webapp/overview.py
+msgid "Check-ins today"
+msgstr "Entrées du jour"
+
+#: apps/webapp/overview.py
+msgid "Expiring this week"
+msgstr "Expirent cette semaine"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "dans %(n)s jours"
+
+#: apps/webapp/overview.py
+msgid "Memberships to renew"
+msgstr "Abonnements à renouveler"
+
+#: apps/webapp/overview.py
+msgid "All members"
+msgstr "Tous les membres"
+
+#: apps/webapp/overview.py
+msgid "No memberships end this week."
+msgstr "Aucun abonnement n'expire cette semaine."
+
+#: apps/webapp/overview.py
+msgid "Today's check-ins"
+msgstr "Entrées du jour"
+
+#: apps/webapp/overview.py
+msgid "No check-ins yet today."
+msgstr "Aucune entrée aujourd'hui pour l'instant."
+
+#: apps/webapp/overview.py
+msgid "Orders in progress"
+msgstr "Commandes en cours"
+
+#: apps/webapp/overview.py
+msgid "Late"
+msgstr "En retard"
+
+#: apps/webapp/overview.py
+msgid "Due for delivery"
+msgstr "À livrer"
+
+#: apps/webapp/overview.py
+msgid "No orders in progress."
+msgstr "Aucune commande en cours."
+
+#: apps/webapp/overview.py
+msgid "Nothing waiting for pickup."
+msgstr "Rien à retirer."
+
+#: apps/webapp/overview.py
+msgid "Arriving today"
+msgstr "Arrivées du jour"
+
+#: apps/webapp/overview.py
+msgid "Leaving today"
+msgstr "Départs du jour"
+
+#: apps/webapp/overview.py
+msgid "Arriving"
+msgstr "Arrivée"
+
+#: apps/webapp/overview.py
+msgid "Leaving"
+msgstr "Départ"
+
+#: apps/webapp/overview.py
+msgid "Arrivals and departures"
+msgstr "Arrivées et départs"
+
+#: apps/webapp/overview.py
+msgid "Booking board"
+msgstr "Planning des réservations"
+
+#: apps/webapp/overview.py
+msgid "No arrivals or departures today."
+msgstr "Aucune arrivée ni départ aujourd'hui."
+
+#: apps/webapp/overview.py
+msgid "Free right now"
+msgstr "Libre maintenant"
+
+#: apps/webapp/overview.py
+msgid "Everything is in use."
+msgstr "Tout est occupé."
+
+#: apps/webapp/overview.py
+msgid "%(n)s students"
+msgstr "%(n)s élèves"
+
+#: apps/webapp/overview.py
+msgid "Active students"
+msgstr "Élèves actifs"
+
+#: apps/webapp/overview.py
+msgid "All dues"
+msgstr "Tous les impayés"
+
+#: apps/webapp/overview.py
+msgid "No fees due. Well done!"
+msgstr "Aucun frais dû. Bravo !"
+
+#: apps/webapp/overview.py
+msgid "Fees"
+msgstr "Frais"
+
+#: apps/webapp/overview.py
+msgid "Rent collected this month"
+msgstr "Loyers encaissés ce mois-ci"
+
+#: apps/webapp/overview.py
+msgid "%(n)s vacant"
+msgstr "%(n)s vacants"
+
+#: apps/webapp/overview.py
+msgid "%(n)s days late"
+msgstr "%(n)s jours de retard"
+
+#: apps/webapp/overview.py
+msgid "Leases ending soon"
+msgstr "Baux bientôt terminés"
+
+#: apps/webapp/overview.py
+msgid "All leases"
+msgstr "Tous les baux"
+
+#: apps/webapp/overview.py
+msgid "No leases end in the next 60 days."
+msgstr "Aucun bail ne se termine dans les 60 prochains jours."
+
+#: apps/webapp/overview.py
+msgid "Open work"
+msgstr "Travaux en cours"
+
+#: apps/webapp/overview.py
+msgid "All work"
+msgstr "Tous les travaux"
+
+#: apps/webapp/overview.py
+msgid "No open work."
+msgstr "Aucun travail en cours."
+
+#: apps/webapp/overview.py
+msgid "All projects"
+msgstr "Tous les projets"
+
+#: apps/webapp/overview.py
+msgid "No running projects."
+msgstr "Aucun projet en cours."
+
+#: apps/webapp/overview.py
+msgid "Recent payments"
+msgstr "Paiements récents"
+
+#: apps/webapp/overview.py
+msgid "All bills"
+msgstr "Toutes les factures"
 
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
@@ -12943,6 +13205,10 @@ msgstr "%(count)s numéros de série ajoutés au stock."
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "Déjà enregistrés : %(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Orders & tables"
+msgstr "Commandes et tables"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

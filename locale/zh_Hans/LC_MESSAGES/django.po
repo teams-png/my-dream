@@ -732,20 +732,12 @@ msgid "Language"
 msgstr "语言"
 
 #: templates/webapp/_overview_panel.html
-msgid "Done"
-msgstr "完成"
+msgid "Target"
+msgstr "目标"
 
 #: templates/webapp/_overview_panel.html
 msgid "more"
 msgstr "更多"
-
-#: templates/webapp/_overview_panel.html
-msgid "bill"
-msgstr "张账单"
-
-#: templates/webapp/_overview_panel.html
-msgid "bills"
-msgstr "张账单"
 
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
@@ -1331,6 +1323,10 @@ msgstr "当某类别达到提醒线及超出预算时，您会收到通知（和
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
 msgstr "保存预算"
+
+#: templates/webapp/automation/daily_report.html
+msgid "bills"
+msgstr "张账单"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
@@ -2300,6 +2296,10 @@ msgid "due"
 msgstr "到期"
 
 #: templates/webapp/crm/lead_detail.html
+msgid "Done"
+msgstr "完成"
+
+#: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
 msgstr "暂无动态。"
 
@@ -2642,6 +2642,10 @@ msgstr "没有符合搜索条件的客户。"
 #: templates/webapp/customer_list.html
 msgid "No customers yet."
 msgstr "暂无客户。"
+
+#: templates/webapp/dashboard.html
+msgid "Time"
+msgstr "时间"
 
 #: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
@@ -7778,6 +7782,10 @@ msgid "Sales today ·"
 msgstr "今日销售 ·"
 
 #: templates/webapp/restaurant/dashboard.html
+msgid "bill"
+msgstr "张账单"
+
+#: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"
 msgstr "厨房中的单子"
 
@@ -7993,10 +8001,6 @@ msgstr "· 桌"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Main kitchen"
 msgstr "主厨房"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "0 min"
-msgstr "0 分钟"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Start cooking →"
@@ -11507,10 +11511,6 @@ msgid "Not sure / other"
 msgstr "不确定 / 其他"
 
 #: apps/webapp/online_booking_views.py
-msgid "Time"
-msgstr "时间"
-
-#: apps/webapp/online_booking_views.py
 msgid "Number of people"
 msgstr "人数"
 
@@ -11742,6 +11742,27 @@ msgid "Outstanding dues"
 msgstr "未结欠款"
 
 #: apps/webapp/overview.py
+msgid "Best sellers today"
+msgstr "今日热销"
+
+#: apps/webapp/overview.py
+msgid "Nothing sold yet today."
+msgstr "今天还没有销售。"
+
+#: apps/webapp/overview.py
+msgid "Staff today"
+msgstr "今日员工"
+
+#: apps/webapp/overview.py
+msgid "%(n)s bills"
+msgstr "%(n)s 张账单"
+
+#: apps/webapp/overview.py
+msgid ""
+"Choose who did the work when you bill, and each person's total shows here."
+msgstr "开单时选择服务人员，每个人的合计将显示在这里。"
+
+#: apps/webapp/overview.py
 msgid "%(left)s waiting · %(done)s done"
 msgstr "%(left)s 等待中 · %(done)s 已完成"
 
@@ -11762,13 +11783,252 @@ msgid "Book appointment"
 msgstr "预约"
 
 #: apps/webapp/overview.py
-msgid "Staff today"
-msgstr "今日员工"
+msgid "Table %(t)s"
+msgstr "%(t)s 号桌"
 
 #: apps/webapp/overview.py
-msgid ""
-"Choose who did the work when you bill, and each person's total shows here."
-msgstr "开单时选择服务人员，每个人的合计将显示在这里。"
+msgid "In the kitchen"
+msgstr "厨房中"
+
+#: apps/webapp/overview.py
+msgid "%(n)s late"
+msgstr "%(n)s 个超时"
+
+#: apps/webapp/overview.py
+msgid "Orders paid today"
+msgstr "今日已付订单"
+
+#: apps/webapp/overview.py
+msgid "Kitchen timer"
+msgstr "厨房计时器"
+
+#: apps/webapp/overview.py
+msgid "Kitchen screen"
+msgstr "厨房屏幕"
+
+#: apps/webapp/overview.py
+msgid "Kitchen is clear. Orders sent to the kitchen show here with a timer."
+msgstr "厨房空闲。发送到厨房的订单会带计时器显示在这里。"
+
+#: apps/webapp/overview.py
+msgid "Reorder at %(n)s"
+msgstr "低于 %(n)s 时补货"
+
+#: apps/webapp/overview.py
+msgid "All products are above their reorder level."
+msgstr "所有商品都高于补货线。"
+
+#: apps/webapp/overview.py
+msgid "Repairs in the shop"
+msgstr "店内维修"
+
+#: apps/webapp/overview.py
+msgid "Repair jobs"
+msgstr "维修工单"
+
+#: apps/webapp/overview.py
+msgid "All repairs"
+msgstr "全部维修"
+
+#: apps/webapp/overview.py
+msgid "No repairs waiting."
+msgstr "没有待处理的维修。"
+
+#: apps/webapp/overview.py
+msgid "New repair job"
+msgstr "新建维修工单"
+
+#: apps/webapp/overview.py
+msgid "Cars in the queue"
+msgstr "排队车辆"
+
+#: apps/webapp/overview.py
+msgid "Washed today"
+msgstr "今日已洗"
+
+#: apps/webapp/overview.py
+msgid "Today's queue"
+msgstr "今日队列"
+
+#: apps/webapp/overview.py
+msgid "No cars waiting."
+msgstr "没有等待的车辆。"
+
+#: apps/webapp/overview.py
+msgid "Book a wash"
+msgstr "预约洗车"
+
+#: apps/webapp/overview.py
+msgid "Not assigned"
+msgstr "未分配"
+
+#: apps/webapp/overview.py
+msgid "%(n)s washes"
+msgstr "%(n)s 次洗车"
+
+#: apps/webapp/overview.py
+msgid "Finished washes show here by staff member."
+msgstr "完成的洗车会按员工显示在这里。"
+
+#: apps/webapp/overview.py
+msgid "Check-ins today"
+msgstr "今日签到"
+
+#: apps/webapp/overview.py
+msgid "Expiring this week"
+msgstr "本周到期"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "%(n)s 天后"
+
+#: apps/webapp/overview.py
+msgid "Memberships to renew"
+msgstr "待续费会员"
+
+#: apps/webapp/overview.py
+msgid "All members"
+msgstr "全部会员"
+
+#: apps/webapp/overview.py
+msgid "No memberships end this week."
+msgstr "本周没有到期的会员。"
+
+#: apps/webapp/overview.py
+msgid "Today's check-ins"
+msgstr "今日签到"
+
+#: apps/webapp/overview.py
+msgid "No check-ins yet today."
+msgstr "今天还没有签到。"
+
+#: apps/webapp/overview.py
+msgid "Orders in progress"
+msgstr "进行中的订单"
+
+#: apps/webapp/overview.py
+msgid "Late"
+msgstr "已逾期"
+
+#: apps/webapp/overview.py
+msgid "Due for delivery"
+msgstr "待交付"
+
+#: apps/webapp/overview.py
+msgid "No orders in progress."
+msgstr "没有进行中的订单。"
+
+#: apps/webapp/overview.py
+msgid "Nothing waiting for pickup."
+msgstr "没有待取的订单。"
+
+#: apps/webapp/overview.py
+msgid "Arriving today"
+msgstr "今日到达"
+
+#: apps/webapp/overview.py
+msgid "Leaving today"
+msgstr "今日离开"
+
+#: apps/webapp/overview.py
+msgid "Arriving"
+msgstr "到达"
+
+#: apps/webapp/overview.py
+msgid "Leaving"
+msgstr "离开"
+
+#: apps/webapp/overview.py
+msgid "Arrivals and departures"
+msgstr "到达与离开"
+
+#: apps/webapp/overview.py
+msgid "Booking board"
+msgstr "预订看板"
+
+#: apps/webapp/overview.py
+msgid "No arrivals or departures today."
+msgstr "今天没有到达或离开。"
+
+#: apps/webapp/overview.py
+msgid "Free right now"
+msgstr "当前空闲"
+
+#: apps/webapp/overview.py
+msgid "Everything is in use."
+msgstr "全部在使用中。"
+
+#: apps/webapp/overview.py
+msgid "%(n)s students"
+msgstr "%(n)s 名学生"
+
+#: apps/webapp/overview.py
+msgid "Active students"
+msgstr "在读学生"
+
+#: apps/webapp/overview.py
+msgid "All dues"
+msgstr "全部欠费"
+
+#: apps/webapp/overview.py
+msgid "No fees due. Well done!"
+msgstr "没有欠费。很好！"
+
+#: apps/webapp/overview.py
+msgid "Fees"
+msgstr "费用"
+
+#: apps/webapp/overview.py
+msgid "Rent collected this month"
+msgstr "本月已收租金"
+
+#: apps/webapp/overview.py
+msgid "%(n)s vacant"
+msgstr "%(n)s 间空置"
+
+#: apps/webapp/overview.py
+msgid "%(n)s days late"
+msgstr "逾期 %(n)s 天"
+
+#: apps/webapp/overview.py
+msgid "Leases ending soon"
+msgstr "即将到期的租约"
+
+#: apps/webapp/overview.py
+msgid "All leases"
+msgstr "全部租约"
+
+#: apps/webapp/overview.py
+msgid "No leases end in the next 60 days."
+msgstr "未来 60 天没有到期的租约。"
+
+#: apps/webapp/overview.py
+msgid "Open work"
+msgstr "未完成工作"
+
+#: apps/webapp/overview.py
+msgid "All work"
+msgstr "全部工作"
+
+#: apps/webapp/overview.py
+msgid "No open work."
+msgstr "没有未完成的工作。"
+
+#: apps/webapp/overview.py
+msgid "All projects"
+msgstr "全部项目"
+
+#: apps/webapp/overview.py
+msgid "No running projects."
+msgstr "没有进行中的项目。"
+
+#: apps/webapp/overview.py
+msgid "Recent payments"
+msgstr "最近收款"
+
+#: apps/webapp/overview.py
+msgid "All bills"
+msgstr "全部账单"
 
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
@@ -12509,6 +12769,10 @@ msgstr "已将 %(count)s 个序列号加入库存。"
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "已登记：%(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Orders & tables"
+msgstr "订单与餐桌"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

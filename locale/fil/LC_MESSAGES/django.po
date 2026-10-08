@@ -735,20 +735,12 @@ msgid "Language"
 msgstr "Wika"
 
 #: templates/webapp/_overview_panel.html
-msgid "Done"
-msgstr "Tapos"
+msgid "Target"
+msgstr "Target"
 
 #: templates/webapp/_overview_panel.html
 msgid "more"
 msgstr "pa"
-
-#: templates/webapp/_overview_panel.html
-msgid "bill"
-msgstr "bill"
-
-#: templates/webapp/_overview_panel.html
-msgid "bills"
-msgstr "mga bill"
 
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
@@ -1346,6 +1338,10 @@ msgstr ""
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
 msgstr "I-save ang mga budget"
+
+#: templates/webapp/automation/daily_report.html
+msgid "bills"
+msgstr "mga bill"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
@@ -2362,6 +2358,10 @@ msgid "due"
 msgstr "due"
 
 #: templates/webapp/crm/lead_detail.html
+msgid "Done"
+msgstr "Tapos"
+
+#: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
 msgstr "Wala pang aktibidad."
 
@@ -2706,6 +2706,10 @@ msgstr "Walang customer na tugma sa iyong hinanap."
 #: templates/webapp/customer_list.html
 msgid "No customers yet."
 msgstr "Wala pang customer."
+
+#: templates/webapp/dashboard.html
+msgid "Time"
+msgstr "Oras"
 
 #: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
@@ -8020,6 +8024,10 @@ msgid "Sales today ·"
 msgstr "Benta ngayon ·"
 
 #: templates/webapp/restaurant/dashboard.html
+msgid "bill"
+msgstr "bill"
+
+#: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"
 msgstr "Ticket sa kusina"
 
@@ -8237,10 +8245,6 @@ msgstr "· Mesa"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Main kitchen"
 msgstr "Pangunahing kusina"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "0 min"
-msgstr "0 min"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Start cooking →"
@@ -11859,10 +11863,6 @@ msgid "Not sure / other"
 msgstr "Hindi sigurado / iba pa"
 
 #: apps/webapp/online_booking_views.py
-msgid "Time"
-msgstr "Oras"
-
-#: apps/webapp/online_booking_views.py
 msgid "Number of people"
 msgstr "Bilang ng tao"
 
@@ -12102,6 +12102,29 @@ msgid "Outstanding dues"
 msgstr "Mga natitirang utang"
 
 #: apps/webapp/overview.py
+msgid "Best sellers today"
+msgstr "Pinakamabenta ngayon"
+
+#: apps/webapp/overview.py
+msgid "Nothing sold yet today."
+msgstr "Wala pang naibenta ngayon."
+
+#: apps/webapp/overview.py
+msgid "Staff today"
+msgstr "Staff ngayon"
+
+#: apps/webapp/overview.py
+msgid "%(n)s bills"
+msgstr "%(n)s bill"
+
+#: apps/webapp/overview.py
+msgid ""
+"Choose who did the work when you bill, and each person's total shows here."
+msgstr ""
+"Piliin kung sino ang gumawa kapag nagbi-bill, at makikita rito ang kabuuan "
+"ng bawat isa."
+
+#: apps/webapp/overview.py
 msgid "%(left)s waiting · %(done)s done"
 msgstr "%(left)s naghihintay · %(done)s tapos"
 
@@ -12122,15 +12145,253 @@ msgid "Book appointment"
 msgstr "Mag-book ng appointment"
 
 #: apps/webapp/overview.py
-msgid "Staff today"
-msgstr "Staff ngayon"
+msgid "Table %(t)s"
+msgstr "Mesa %(t)s"
 
 #: apps/webapp/overview.py
-msgid ""
-"Choose who did the work when you bill, and each person's total shows here."
+msgid "In the kitchen"
+msgstr "Nasa kusina"
+
+#: apps/webapp/overview.py
+msgid "%(n)s late"
+msgstr "%(n)s huli"
+
+#: apps/webapp/overview.py
+msgid "Orders paid today"
+msgstr "Mga order na nabayaran ngayon"
+
+#: apps/webapp/overview.py
+msgid "Kitchen timer"
+msgstr "Kitchen timer"
+
+#: apps/webapp/overview.py
+msgid "Kitchen screen"
+msgstr "Kitchen screen"
+
+#: apps/webapp/overview.py
+msgid "Kitchen is clear. Orders sent to the kitchen show here with a timer."
 msgstr ""
-"Piliin kung sino ang gumawa kapag nagbi-bill, at makikita rito ang kabuuan "
-"ng bawat isa."
+"Walang laman ang kusina. Dito lalabas ang mga order sa kusina na may timer."
+
+#: apps/webapp/overview.py
+msgid "Reorder at %(n)s"
+msgstr "Mag-order ulit sa %(n)s"
+
+#: apps/webapp/overview.py
+msgid "All products are above their reorder level."
+msgstr "Lahat ng produkto ay lampas sa reorder level."
+
+#: apps/webapp/overview.py
+msgid "Repairs in the shop"
+msgstr "Mga repair sa tindahan"
+
+#: apps/webapp/overview.py
+msgid "Repair jobs"
+msgstr "Mga repair job"
+
+#: apps/webapp/overview.py
+msgid "All repairs"
+msgstr "Lahat ng repair"
+
+#: apps/webapp/overview.py
+msgid "No repairs waiting."
+msgstr "Walang naghihintay na repair."
+
+#: apps/webapp/overview.py
+msgid "New repair job"
+msgstr "Bagong repair job"
+
+#: apps/webapp/overview.py
+msgid "Cars in the queue"
+msgstr "Mga kotse sa pila"
+
+#: apps/webapp/overview.py
+msgid "Washed today"
+msgstr "Nahugasan ngayon"
+
+#: apps/webapp/overview.py
+msgid "Today's queue"
+msgstr "Pila ngayon"
+
+#: apps/webapp/overview.py
+msgid "No cars waiting."
+msgstr "Walang naghihintay na kotse."
+
+#: apps/webapp/overview.py
+msgid "Book a wash"
+msgstr "Mag-book ng wash"
+
+#: apps/webapp/overview.py
+msgid "Not assigned"
+msgstr "Walang naka-assign"
+
+#: apps/webapp/overview.py
+msgid "%(n)s washes"
+msgstr "%(n)s wash"
+
+#: apps/webapp/overview.py
+msgid "Finished washes show here by staff member."
+msgstr "Dito lalabas ang mga natapos na wash ayon sa staff."
+
+#: apps/webapp/overview.py
+msgid "Check-ins today"
+msgstr "Mga check-in ngayon"
+
+#: apps/webapp/overview.py
+msgid "Expiring this week"
+msgstr "Matatapos ngayong linggo"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "sa loob ng %(n)s araw"
+
+#: apps/webapp/overview.py
+msgid "Memberships to renew"
+msgstr "Mga membership na ire-renew"
+
+#: apps/webapp/overview.py
+msgid "All members"
+msgstr "Lahat ng miyembro"
+
+#: apps/webapp/overview.py
+msgid "No memberships end this week."
+msgstr "Walang membership na matatapos ngayong linggo."
+
+#: apps/webapp/overview.py
+msgid "Today's check-ins"
+msgstr "Mga check-in ngayon"
+
+#: apps/webapp/overview.py
+msgid "No check-ins yet today."
+msgstr "Wala pang check-in ngayon."
+
+#: apps/webapp/overview.py
+msgid "Orders in progress"
+msgstr "Mga order na ginagawa"
+
+#: apps/webapp/overview.py
+msgid "Late"
+msgstr "Huli"
+
+#: apps/webapp/overview.py
+msgid "Due for delivery"
+msgstr "Dapat i-deliver"
+
+#: apps/webapp/overview.py
+msgid "No orders in progress."
+msgstr "Walang order na ginagawa."
+
+#: apps/webapp/overview.py
+msgid "Nothing waiting for pickup."
+msgstr "Walang naghihintay na kunin."
+
+#: apps/webapp/overview.py
+msgid "Arriving today"
+msgstr "Darating ngayon"
+
+#: apps/webapp/overview.py
+msgid "Leaving today"
+msgstr "Aalis ngayon"
+
+#: apps/webapp/overview.py
+msgid "Arriving"
+msgstr "Darating"
+
+#: apps/webapp/overview.py
+msgid "Leaving"
+msgstr "Aalis"
+
+#: apps/webapp/overview.py
+msgid "Arrivals and departures"
+msgstr "Pagdating at pag-alis"
+
+#: apps/webapp/overview.py
+msgid "Booking board"
+msgstr "Booking board"
+
+#: apps/webapp/overview.py
+msgid "No arrivals or departures today."
+msgstr "Walang darating o aalis ngayon."
+
+#: apps/webapp/overview.py
+msgid "Free right now"
+msgstr "Bakante ngayon"
+
+#: apps/webapp/overview.py
+msgid "Everything is in use."
+msgstr "Lahat ay ginagamit."
+
+#: apps/webapp/overview.py
+msgid "%(n)s students"
+msgstr "%(n)s estudyante"
+
+#: apps/webapp/overview.py
+msgid "Active students"
+msgstr "Aktibong estudyante"
+
+#: apps/webapp/overview.py
+msgid "All dues"
+msgstr "Lahat ng utang"
+
+#: apps/webapp/overview.py
+msgid "No fees due. Well done!"
+msgstr "Walang bayaring utang. Magaling!"
+
+#: apps/webapp/overview.py
+msgid "Fees"
+msgstr "Bayarin"
+
+#: apps/webapp/overview.py
+msgid "Rent collected this month"
+msgstr "Upang nakolekta ngayong buwan"
+
+#: apps/webapp/overview.py
+msgid "%(n)s vacant"
+msgstr "%(n)s bakante"
+
+#: apps/webapp/overview.py
+msgid "%(n)s days late"
+msgstr "%(n)s araw na huli"
+
+#: apps/webapp/overview.py
+msgid "Leases ending soon"
+msgstr "Mga lease na malapit matapos"
+
+#: apps/webapp/overview.py
+msgid "All leases"
+msgstr "Lahat ng lease"
+
+#: apps/webapp/overview.py
+msgid "No leases end in the next 60 days."
+msgstr "Walang lease na matatapos sa susunod na 60 araw."
+
+#: apps/webapp/overview.py
+msgid "Open work"
+msgstr "Bukas na trabaho"
+
+#: apps/webapp/overview.py
+msgid "All work"
+msgstr "Lahat ng trabaho"
+
+#: apps/webapp/overview.py
+msgid "No open work."
+msgstr "Walang bukas na trabaho."
+
+#: apps/webapp/overview.py
+msgid "All projects"
+msgstr "Lahat ng proyekto"
+
+#: apps/webapp/overview.py
+msgid "No running projects."
+msgstr "Walang tumatakbong proyekto."
+
+#: apps/webapp/overview.py
+msgid "Recent payments"
+msgstr "Mga kamakailang bayad"
+
+#: apps/webapp/overview.py
+msgid "All bills"
+msgstr "Lahat ng bill"
 
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
@@ -12896,6 +13157,10 @@ msgstr "Naidagdag sa stock ang %(count)s serial number."
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "Nakarehistro na: %(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Orders & tables"
+msgstr "Mga order at mesa"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

@@ -734,20 +734,12 @@ msgid "Language"
 msgstr "भाषा"
 
 #: templates/webapp/_overview_panel.html
-msgid "Done"
-msgstr "भयो"
+msgid "Target"
+msgstr "लक्ष्य"
 
 #: templates/webapp/_overview_panel.html
 msgid "more"
 msgstr "थप"
-
-#: templates/webapp/_overview_panel.html
-msgid "bill"
-msgstr "बिल"
-
-#: templates/webapp/_overview_panel.html
-msgid "bills"
-msgstr "बिल"
 
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
@@ -1341,6 +1333,10 @@ msgstr ""
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
 msgstr "बजेट सेभ गर्नुहोस्"
+
+#: templates/webapp/automation/daily_report.html
+msgid "bills"
+msgstr "बिल"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
@@ -2343,6 +2339,10 @@ msgid "due"
 msgstr "बाँकी"
 
 #: templates/webapp/crm/lead_detail.html
+msgid "Done"
+msgstr "भयो"
+
+#: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
 msgstr "अहिलेसम्म कुनै गतिविधि छैन।"
 
@@ -2685,6 +2685,10 @@ msgstr "तपाईंको खोजसँग कुनै ग्राहक
 #: templates/webapp/customer_list.html
 msgid "No customers yet."
 msgstr "अहिलेसम्म कुनै ग्राहक छैन।"
+
+#: templates/webapp/dashboard.html
+msgid "Time"
+msgstr "समय"
 
 #: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
@@ -7952,6 +7956,10 @@ msgid "Sales today ·"
 msgstr "आजको बिक्री ·"
 
 #: templates/webapp/restaurant/dashboard.html
+msgid "bill"
+msgstr "बिल"
+
+#: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"
 msgstr "भान्सामा टिकट"
 
@@ -8169,10 +8177,6 @@ msgstr "· टेबल"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Main kitchen"
 msgstr "मुख्य भान्सा"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "0 min"
-msgstr "0 मिनेट"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Start cooking →"
@@ -11749,10 +11753,6 @@ msgid "Not sure / other"
 msgstr "पक्का छैन / अन्य"
 
 #: apps/webapp/online_booking_views.py
-msgid "Time"
-msgstr "समय"
-
-#: apps/webapp/online_booking_views.py
 msgid "Number of people"
 msgstr "मानिसहरूको संख्या"
 
@@ -11989,6 +11989,28 @@ msgid "Outstanding dues"
 msgstr "बाँकी रकम"
 
 #: apps/webapp/overview.py
+msgid "Best sellers today"
+msgstr "आज धेरै बिक्री भएका"
+
+#: apps/webapp/overview.py
+msgid "Nothing sold yet today."
+msgstr "आज अहिलेसम्म केही बिक्री भएको छैन।"
+
+#: apps/webapp/overview.py
+msgid "Staff today"
+msgstr "आजका कर्मचारी"
+
+#: apps/webapp/overview.py
+msgid "%(n)s bills"
+msgstr "%(n)s बिल"
+
+#: apps/webapp/overview.py
+msgid ""
+"Choose who did the work when you bill, and each person's total shows here."
+msgstr ""
+"बिल बनाउँदा काम गर्ने व्यक्ति छान्नुहोस्, प्रत्येकको जम्मा यहाँ देखिन्छ।"
+
+#: apps/webapp/overview.py
 msgid "%(left)s waiting · %(done)s done"
 msgstr "%(left)s पर्खिँदै · %(done)s सकियो"
 
@@ -12009,14 +12031,252 @@ msgid "Book appointment"
 msgstr "अपोइन्टमेन्ट बुक गर्नुहोस्"
 
 #: apps/webapp/overview.py
-msgid "Staff today"
-msgstr "आजका कर्मचारी"
+msgid "Table %(t)s"
+msgstr "टेबल %(t)s"
 
 #: apps/webapp/overview.py
-msgid ""
-"Choose who did the work when you bill, and each person's total shows here."
-msgstr ""
-"बिल बनाउँदा काम गर्ने व्यक्ति छान्नुहोस्, प्रत्येकको जम्मा यहाँ देखिन्छ।"
+msgid "In the kitchen"
+msgstr "भान्सामा"
+
+#: apps/webapp/overview.py
+msgid "%(n)s late"
+msgstr "%(n)s ढिला"
+
+#: apps/webapp/overview.py
+msgid "Orders paid today"
+msgstr "आज भुक्तानी भएका अर्डर"
+
+#: apps/webapp/overview.py
+msgid "Kitchen timer"
+msgstr "भान्सा टाइमर"
+
+#: apps/webapp/overview.py
+msgid "Kitchen screen"
+msgstr "भान्सा स्क्रिन"
+
+#: apps/webapp/overview.py
+msgid "Kitchen is clear. Orders sent to the kitchen show here with a timer."
+msgstr "भान्सा खाली छ। भान्सामा पठाइएका अर्डर यहाँ टाइमरसहित देखिन्छन्।"
+
+#: apps/webapp/overview.py
+msgid "Reorder at %(n)s"
+msgstr "%(n)s मा फेरि मगाउनुहोस्"
+
+#: apps/webapp/overview.py
+msgid "All products are above their reorder level."
+msgstr "सबै सामान पुनः अर्डर स्तरभन्दा माथि छन्।"
+
+#: apps/webapp/overview.py
+msgid "Repairs in the shop"
+msgstr "पसलमा मर्मत"
+
+#: apps/webapp/overview.py
+msgid "Repair jobs"
+msgstr "मर्मत काम"
+
+#: apps/webapp/overview.py
+msgid "All repairs"
+msgstr "सबै मर्मत"
+
+#: apps/webapp/overview.py
+msgid "No repairs waiting."
+msgstr "कुनै मर्मत बाँकी छैन।"
+
+#: apps/webapp/overview.py
+msgid "New repair job"
+msgstr "नयाँ मर्मत काम"
+
+#: apps/webapp/overview.py
+msgid "Cars in the queue"
+msgstr "लाइनमा गाडीहरू"
+
+#: apps/webapp/overview.py
+msgid "Washed today"
+msgstr "आज धोइएका"
+
+#: apps/webapp/overview.py
+msgid "Today's queue"
+msgstr "आजको लाइन"
+
+#: apps/webapp/overview.py
+msgid "No cars waiting."
+msgstr "कुनै गाडी पर्खिरहेको छैन।"
+
+#: apps/webapp/overview.py
+msgid "Book a wash"
+msgstr "वास बुक गर्नुहोस्"
+
+#: apps/webapp/overview.py
+msgid "Not assigned"
+msgstr "कसैलाई तोकिएको छैन"
+
+#: apps/webapp/overview.py
+msgid "%(n)s washes"
+msgstr "%(n)s वास"
+
+#: apps/webapp/overview.py
+msgid "Finished washes show here by staff member."
+msgstr "सकिएका वास यहाँ प्रत्येक कर्मचारीको नाममा देखिन्छन्।"
+
+#: apps/webapp/overview.py
+msgid "Check-ins today"
+msgstr "आजका चेक-इन"
+
+#: apps/webapp/overview.py
+msgid "Expiring this week"
+msgstr "यो हप्ता सकिने"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "%(n)s दिनमा"
+
+#: apps/webapp/overview.py
+msgid "Memberships to renew"
+msgstr "नवीकरण गर्नुपर्ने सदस्यता"
+
+#: apps/webapp/overview.py
+msgid "All members"
+msgstr "सबै सदस्य"
+
+#: apps/webapp/overview.py
+msgid "No memberships end this week."
+msgstr "यो हप्ता कुनै सदस्यता सकिँदैन।"
+
+#: apps/webapp/overview.py
+msgid "Today's check-ins"
+msgstr "आजका चेक-इन"
+
+#: apps/webapp/overview.py
+msgid "No check-ins yet today."
+msgstr "आज अहिलेसम्म चेक-इन छैन।"
+
+#: apps/webapp/overview.py
+msgid "Orders in progress"
+msgstr "चलिरहेका अर्डर"
+
+#: apps/webapp/overview.py
+msgid "Late"
+msgstr "ढिला"
+
+#: apps/webapp/overview.py
+msgid "Due for delivery"
+msgstr "डेलिभरी गर्नुपर्ने"
+
+#: apps/webapp/overview.py
+msgid "No orders in progress."
+msgstr "कुनै अर्डर चलिरहेको छैन।"
+
+#: apps/webapp/overview.py
+msgid "Nothing waiting for pickup."
+msgstr "लैजान केही बाँकी छैन।"
+
+#: apps/webapp/overview.py
+msgid "Arriving today"
+msgstr "आज आउने"
+
+#: apps/webapp/overview.py
+msgid "Leaving today"
+msgstr "आज जाने"
+
+#: apps/webapp/overview.py
+msgid "Arriving"
+msgstr "आउँदै"
+
+#: apps/webapp/overview.py
+msgid "Leaving"
+msgstr "जाँदै"
+
+#: apps/webapp/overview.py
+msgid "Arrivals and departures"
+msgstr "आगमन र प्रस्थान"
+
+#: apps/webapp/overview.py
+msgid "Booking board"
+msgstr "बुकिङ बोर्ड"
+
+#: apps/webapp/overview.py
+msgid "No arrivals or departures today."
+msgstr "आज कुनै आगमन वा प्रस्थान छैन।"
+
+#: apps/webapp/overview.py
+msgid "Free right now"
+msgstr "अहिले खाली"
+
+#: apps/webapp/overview.py
+msgid "Everything is in use."
+msgstr "सबै प्रयोगमा छ।"
+
+#: apps/webapp/overview.py
+msgid "%(n)s students"
+msgstr "%(n)s विद्यार्थी"
+
+#: apps/webapp/overview.py
+msgid "Active students"
+msgstr "सक्रिय विद्यार्थी"
+
+#: apps/webapp/overview.py
+msgid "All dues"
+msgstr "सबै बक्यौता"
+
+#: apps/webapp/overview.py
+msgid "No fees due. Well done!"
+msgstr "कुनै शुल्क बाँकी छैन। स्याबास!"
+
+#: apps/webapp/overview.py
+msgid "Fees"
+msgstr "शुल्क"
+
+#: apps/webapp/overview.py
+msgid "Rent collected this month"
+msgstr "यो महिना उठेको भाडा"
+
+#: apps/webapp/overview.py
+msgid "%(n)s vacant"
+msgstr "%(n)s खाली"
+
+#: apps/webapp/overview.py
+msgid "%(n)s days late"
+msgstr "%(n)s दिन ढिला"
+
+#: apps/webapp/overview.py
+msgid "Leases ending soon"
+msgstr "चाँडै सकिने लिज"
+
+#: apps/webapp/overview.py
+msgid "All leases"
+msgstr "सबै लिज"
+
+#: apps/webapp/overview.py
+msgid "No leases end in the next 60 days."
+msgstr "आउँदो 60 दिनमा कुनै लिज सकिँदैन।"
+
+#: apps/webapp/overview.py
+msgid "Open work"
+msgstr "खुला काम"
+
+#: apps/webapp/overview.py
+msgid "All work"
+msgstr "सबै काम"
+
+#: apps/webapp/overview.py
+msgid "No open work."
+msgstr "कुनै खुला काम छैन।"
+
+#: apps/webapp/overview.py
+msgid "All projects"
+msgstr "सबै परियोजना"
+
+#: apps/webapp/overview.py
+msgid "No running projects."
+msgstr "कुनै परियोजना चलिरहेको छैन।"
+
+#: apps/webapp/overview.py
+msgid "Recent payments"
+msgstr "हालका भुक्तानी"
+
+#: apps/webapp/overview.py
+msgid "All bills"
+msgstr "सबै बिल"
 
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
@@ -12767,6 +13027,10 @@ msgstr "स्टकमा %(count)s सिरियल नम्बर थप�
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "पहिल्यै दर्ता: %(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Orders & tables"
+msgstr "अर्डर र टेबल"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

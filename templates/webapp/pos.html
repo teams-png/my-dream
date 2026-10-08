@@ -16,6 +16,7 @@
       <div class="rp-chips">
         <span class="rp-chip">👤 {{ request.user.get_full_name|default:request.user.email }}</span>
         <span class="rp-chip net-chip" id="netChip">{% translate "Online" %}</span>
+        <span class="rp-chip" id="posClock" style="font-variant-numeric:tabular-nums">🕒 {% now "H:i" %}</span>
         <button class="rp-chip pending" id="pendingChip" type="button" hidden title="{% translate 'Sync now' %}">⏳ <b id="pendingCount">0</b> {% translate "waiting to sync" %}</button>
         {% if offline_attention %}<a class="rp-chip warn" href="{% url 'webapp:pos_offline_sales' %}">⚠ {{ offline_attention }} {% translate "need attention" %}</a>{% endif %}
       </div>
@@ -171,6 +172,7 @@
 
 {{ pos_data|json_script:"posData" }}
 <script>
+(function(){var el=document.getElementById("posClock");function t(){el.textContent="🕒 "+new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}t();setInterval(t,10000)})();
 window.POS_CFG = {
   checkoutUrl: "{% url 'webapp:pos_checkout' %}",
   csrf: "{{ csrf_token }}",

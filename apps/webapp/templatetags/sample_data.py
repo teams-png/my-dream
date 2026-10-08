@@ -46,7 +46,9 @@ def quick_actions(context):
         return []
     code = company.business_type.code
     if business_group(code) == "restaurant":
-        return []
+        return [("🍽️", _("Orders & tables"), reverse("webapp:restaurant_dashboard"), True),
+                ("⚡", _("Quick sale"), reverse("webapp:restaurant_quick_sale"), False),
+                ("👨‍🍳", _("Kitchen screen"), reverse("webapp:restaurant_kitchen"), False)]
     actions = [("🧾", _("New bill"), reverse("webapp:pos"), True)]
     if code in BOOK_URL:
         actions.append(("📅", _("Book appointment"), reverse(BOOK_URL[code]), False))

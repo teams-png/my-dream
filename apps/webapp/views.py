@@ -379,7 +379,7 @@ def dashboard(request):
 
     from . import overview
     today = tz.localdate()
-    context.update(overview.build(company))
+    context.update(overview.limit_links(overview.build(company), request))
     context.update({
         "greeting": overview.greeting(), "today": today,
         "recent_invoices": SalesInvoice.objects.for_company(company).exclude(status="void")
@@ -3420,6 +3420,10 @@ def restaurant_kitchen(request):
                    .select_related("order", "order__table", "station")
                    .prefetch_related("order__lines__product__category", "order__lines__modifiers__modifier", "station__categories")
                    .order_by("-priority", "printed_at"))
+    from .overview import kitchen_targets
+    targets = kitchen_targets(request.company, tickets)
+    for ticket in tickets:
+        ticket.target_minutes = targets[ticket.id]
     return render(request, "webapp/restaurant/kitchen.html", {
         "tickets": tickets,
         "queued_count": sum(t.status == "queued" for t in tickets),

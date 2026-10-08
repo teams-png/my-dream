@@ -1,12 +1,56 @@
 {% extends "base.html" %}
 {% load i18n role_access %}
-{% block title %}{% translate "Overview" %}{% endblock %}
-{% block heading %}{% translate "Overview" %}{% endblock %}
+{% block title %}{% translate "Overview" %}<script>
+(function(){
+  /* digital clock: follows the device's 12/24-hour setting */
+  var hm=document.getElementById("ovClockHM"),sec=document.getElementById("ovClockS"),ap=document.getElementById("ovClockAP");
+  var h12=new Intl.DateTimeFormat([], {hour:"numeric"}).resolvedOptions().hour12;
+  function two(n){return(n<10?"0":"")+n}
+  function clock(){var d=new Date(),h=d.getHours();
+    if(h12){ap.textContent=h<12?"AM":"PM";h=h%12||12}
+    hm.textContent=(h12?h:two(h))+":"+two(d.getMinutes());sec.textContent=":"+two(d.getSeconds())}
+  /* kitchen timers: time since the ticket was sent, against the dishes' preparation time */
+  function timers(){var now=Date.now();
+    document.querySelectorAll(".ov-timer").forEach(function(el){
+      var secs=Math.max(0,Math.floor((now-new Date(el.dataset.since))/1000)),target=(+el.dataset.target||15)*60;
+      el.querySelector("b").textContent=Math.floor(secs/60)+":"+two(secs%60);
+      el.querySelector("i>i").style.width=Math.min(100,100*secs/target)+"%";
+      if(!el.classList.contains("stopped")){el.classList.toggle("late",secs>target);el.classList.toggle("warn",secs<=target&&secs>target*.75)}
+    })}
+  function tick(){clock();timers()}
+  tick();setInterval(tick,1000);
+  document.querySelectorAll(".ov-link").forEach(function(row){row.addEventListener("click",function(e){if(!e.target.closest("a,button"))location.href=row.dataset.href})});
+})();
+</script>
+{% endblock %}
+{% block heading %}{% translate "Overview" %}<script>
+(function(){
+  /* digital clock: follows the device's 12/24-hour setting */
+  var hm=document.getElementById("ovClockHM"),sec=document.getElementById("ovClockS"),ap=document.getElementById("ovClockAP");
+  var h12=new Intl.DateTimeFormat([], {hour:"numeric"}).resolvedOptions().hour12;
+  function two(n){return(n<10?"0":"")+n}
+  function clock(){var d=new Date(),h=d.getHours();
+    if(h12){ap.textContent=h<12?"AM":"PM";h=h%12||12}
+    hm.textContent=(h12?h:two(h))+":"+two(d.getMinutes());sec.textContent=":"+two(d.getSeconds())}
+  /* kitchen timers: time since the ticket was sent, against the dishes' preparation time */
+  function timers(){var now=Date.now();
+    document.querySelectorAll(".ov-timer").forEach(function(el){
+      var secs=Math.max(0,Math.floor((now-new Date(el.dataset.since))/1000)),target=(+el.dataset.target||15)*60;
+      el.querySelector("b").textContent=Math.floor(secs/60)+":"+two(secs%60);
+      el.querySelector("i>i").style.width=Math.min(100,100*secs/target)+"%";
+      if(!el.classList.contains("stopped")){el.classList.toggle("late",secs>target);el.classList.toggle("warn",secs<=target&&secs>target*.75)}
+    })}
+  function tick(){clock();timers()}
+  tick();setInterval(tick,1000);
+  document.querySelectorAll(".ov-link").forEach(function(row){row.addEventListener("click",function(e){if(!e.target.closest("a,button"))location.href=row.dataset.href})});
+})();
+</script>
+{% endblock %}
 {% block content %}
 {% can "setup" as can_setup %}{% can "analytics" as can_reports %}
 {% load sample_data %}{% quick_actions as actions %}
 <style>
-.ov-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px;margin-bottom:16px}
+.ov-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-bottom:16px}
 .ov-hello{font-size:22px;font-weight:700;letter-spacing:-.01em}
 .ov-date{color:var(--ink-soft);font-size:14px;margin-top:2px}
 .ov-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;font-size:13.5px;font-weight:600;text-decoration:none;background:var(--accent-soft,#e9f5ec);color:var(--accent)}
@@ -21,6 +65,7 @@
 .ov-kpi.warn{border-top-color:var(--warning)}.ov-kpi.warn .k-value{color:var(--warning)}
 .ov-kpi.bad{border-top-color:var(--danger)}.ov-kpi.bad .k-value{color:var(--danger)}
 .ov-panels{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px;margin-bottom:18px}
+.ov-panels.single{grid-template-columns:minmax(0,1fr)}
 .card.ov-panel{padding:0;overflow:hidden}
 .ov-panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
 .ov-panel-head h2{font-size:15px;margin:0}
@@ -33,24 +78,42 @@
 .ov-main b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ov-main span{color:var(--ink-soft);font-size:13px}
 .ov-tag{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--paper);color:var(--ink-soft);white-space:nowrap}
-.ov-tag.completed{background:var(--accent-soft,#e9f5ec);color:var(--accent)}
-.ov-tag.no_show{background:#fde8e8;color:var(--danger)}
+.ov-tag.ok{background:var(--accent-soft,#e9f5ec);color:var(--accent)}
+.ov-tag.warn{background:#fff4dc;color:#a15c00}
+.ov-tag.bad{background:#fde8e8;color:var(--danger)}
+.ov-link{cursor:pointer}.ov-link:hover{background:var(--paper)}
+.ov-timer{display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:74px}
+.ov-timer b{font-size:20px;font-variant-numeric:tabular-nums;letter-spacing:.02em;color:var(--accent)}
+.ov-timer>i{display:block;width:70px;height:5px;border-radius:9px;background:var(--line);overflow:hidden}
+.ov-timer>i>i{display:block;height:100%;width:0;background:var(--accent);transition:width 1s linear}
+.ov-timer.warn b{color:#c77700}.ov-timer.warn>i>i{background:#e69500}
+.ov-timer.late b{color:var(--danger);animation:ovBlink 1s steps(2) infinite}.ov-timer.late>i>i{background:var(--danger)}
+.ov-timer.stopped b{color:var(--ink-soft);animation:none}
+@keyframes ovBlink{50%{opacity:.45}}
+.ov-clock{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.ov-clock-face{display:flex;align-items:baseline;gap:0;padding:8px 16px;border-radius:14px;background:#0f2a1c;color:#d9f99d;font-variant-numeric:tabular-nums;box-shadow:inset 0 0 0 1px #1f4d33,0 6px 16px rgba(15,42,28,.18)}
+.ov-clock-face b{font-size:30px;font-weight:700;letter-spacing:.04em;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.ov-clock-face small{font-size:15px;opacity:.75;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.ov-clock-face em{font-style:normal;font-size:12px;opacity:.7;margin-inline-start:8px}
 .ov-row .btn{padding:6px 12px;font-size:13px}
 .ov-empty{padding:26px 18px;text-align:center;color:var(--ink-soft)}
 .ov-empty .btn{margin-top:10px}
 .ov-amount{font-weight:700;font-variant-numeric:tabular-nums}
 @media(max-width:900px){.ov-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.ov-panels{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:520px){.ov-kpi .k-value{font-size:21px}.ov-actions .btn{flex:1 1 auto;justify-content:center}}
+@media(max-width:520px){.ov-timer~.ov-tag{display:none}.ov-clock{align-items:stretch;width:100%}.ov-clock-face{justify-content:center}.ov-kpi .k-value{font-size:21px}.ov-actions .btn{flex:1 1 auto;justify-content:center}}
 </style>
 <div class="ov-head">
   <div><div class="ov-hello">{{ greeting }}{% if request.user.first_name %}, {{ request.user.first_name }}{% endif %} 👋</div>
     <div class="ov-date">{{ today|date:"l, j F Y" }} · {{ active_company.name }}</div></div>
+  <div class="ov-clock">
+    <div class="ov-clock-face" id="ovClock" aria-label="{% translate 'Time' %}"><b id="ovClockHM">{% now "H:i" %}</b><small id="ovClockS">{% now ":s" %}</small><em id="ovClockAP"></em></div>
   {% if subscription and request.role.name == "Owner" %}
-    {% if subscription_days_left < 0 %}<a class="ov-chip bad" href="{% url 'webapp:billing' %}">⚠ {% translate "Your subscription has expired." %} {% translate "Renew now →" %}</a>
-    {% elif subscription.status == "trial" and subscription_days_left <= 7 %}{# only near the end: the trial is always shown under Settings → Plan & billing #}<a class="ov-chip" href="{% url 'webapp:billing' %}">⏳ {% translate "Free trial —" %} {{ subscription_days_left }} {% translate "days left" %} →</a>
-    {% elif subscription.status != "trial" and subscription_days_left <= 7 %}<a class="ov-chip" href="{% url 'webapp:billing' %}">{% translate "Subscription renews in" %} {{ subscription_days_left }} day{{ subscription_days_left|pluralize }} →</a>
+      {% if subscription_days_left < 0 %}<a class="ov-chip bad" href="{% url 'webapp:billing' %}">⚠ {% translate "Your subscription has expired." %} {% translate "Renew now →" %}</a>
+      {% elif subscription.status == "trial" and subscription_days_left <= 7 %}{# only near the end: the trial is always shown under Settings → Plan & billing #}<a class="ov-chip" href="{% url 'webapp:billing' %}">⏳ {% translate "Free trial —" %} {{ subscription_days_left }} {% translate "days left" %} →</a>
+      {% elif subscription.status != "trial" and subscription_days_left <= 7 %}<a class="ov-chip" href="{% url 'webapp:billing' %}">{% translate "Subscription renews in" %} {{ subscription_days_left }} day{{ subscription_days_left|pluralize }} →</a>
+      {% endif %}
     {% endif %}
-  {% endif %}
+  </div>
 </div>
 {% if actions %}<div class="ov-actions">{% for icon, label, url, primary in actions %}<a class="btn{% if not primary %} btn-secondary{% endif %}" href="{{ url }}">{{ icon }} {{ label }}</a>{% endfor %}</div>{% endif %}
 
@@ -63,16 +126,16 @@
 
 <div class="ov-kpis">
   {% for k in kpis %}{% if not k.reports or can_reports %}
-  <a class="card stat-link ov-kpi {{ k.tone }}" href="{{ k.url }}">
+  {% if k.url %}<a class="card stat-link ov-kpi {{ k.tone }}" href="{{ k.url }}">{% else %}<div class="card ov-kpi {{ k.tone }}">{% endif %}
     <div class="k-label">{{ k.label }}</div>
     <div class="k-value">{% if "money" in k.tone %}{{ k.value|floatformat:2 }}{% else %}{{ k.value }}{% endif %}</div>
     {% if k.note %}<div class="k-note">{{ k.note }}</div>{% endif %}
-  </a>
+  {% if k.url %}</a>{% else %}</div>{% endif %}
   {% endif %}{% endfor %}
 </div>
 
 {% if main %}
-<div class="ov-panels">
+<div class="ov-panels{% if not side %} single{% endif %}">
   {% include "webapp/_overview_panel.html" with panel=main %}
   {% if side %}{% include "webapp/_overview_panel.html" with panel=side %}{% endif %}
 </div>
@@ -371,4 +434,26 @@
   <div class="empty">{% translate "No sales recorded yet — they'll show up here as soon as you make your first sale." %}</div>
   {% endif %}
 </div>
+<script>
+(function(){
+  /* digital clock: follows the device's 12/24-hour setting */
+  var hm=document.getElementById("ovClockHM"),sec=document.getElementById("ovClockS"),ap=document.getElementById("ovClockAP");
+  var h12=new Intl.DateTimeFormat([], {hour:"numeric"}).resolvedOptions().hour12;
+  function two(n){return(n<10?"0":"")+n}
+  function clock(){var d=new Date(),h=d.getHours();
+    if(h12){ap.textContent=h<12?"AM":"PM";h=h%12||12}
+    hm.textContent=(h12?h:two(h))+":"+two(d.getMinutes());sec.textContent=":"+two(d.getSeconds())}
+  /* kitchen timers: time since the ticket was sent, against the dishes' preparation time */
+  function timers(){var now=Date.now();
+    document.querySelectorAll(".ov-timer").forEach(function(el){
+      var secs=Math.max(0,Math.floor((now-new Date(el.dataset.since))/1000)),target=(+el.dataset.target||15)*60;
+      el.querySelector("b").textContent=Math.floor(secs/60)+":"+two(secs%60);
+      el.querySelector("i>i").style.width=Math.min(100,100*secs/target)+"%";
+      if(!el.classList.contains("stopped")){el.classList.toggle("late",secs>target);el.classList.toggle("warn",secs<=target&&secs>target*.75)}
+    })}
+  function tick(){clock();timers()}
+  tick();setInterval(tick,1000);
+  document.querySelectorAll(".ov-link").forEach(function(row){row.addEventListener("click",function(e){if(!e.target.closest("a,button"))location.href=row.dataset.href})});
+})();
+</script>
 {% endblock %}

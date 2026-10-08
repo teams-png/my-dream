@@ -737,20 +737,12 @@ msgid "Language"
 msgstr "மொழி"
 
 #: templates/webapp/_overview_panel.html
-msgid "Done"
-msgstr "முடிந்தது"
+msgid "Target"
+msgstr "இலக்கு"
 
 #: templates/webapp/_overview_panel.html
 msgid "more"
 msgstr "மேலும்"
-
-#: templates/webapp/_overview_panel.html
-msgid "bill"
-msgstr "பில்"
-
-#: templates/webapp/_overview_panel.html
-msgid "bills"
-msgstr "பில்கள்"
 
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
@@ -1351,6 +1343,10 @@ msgstr ""
 #: templates/webapp/automation/budgets.html
 msgid "Save budgets"
 msgstr "பட்ஜெட்களைச் சேமி"
+
+#: templates/webapp/automation/daily_report.html
+msgid "bills"
+msgstr "பில்கள்"
 
 #: templates/webapp/automation/daily_report.html
 msgid "Money received"
@@ -2368,6 +2364,10 @@ msgid "due"
 msgstr "நிலுவை"
 
 #: templates/webapp/crm/lead_detail.html
+msgid "Done"
+msgstr "முடிந்தது"
+
+#: templates/webapp/crm/lead_detail.html
 msgid "No activity yet."
 msgstr "இன்னும் செயல்பாடு இல்லை."
 
@@ -2711,6 +2711,10 @@ msgstr "உங்கள் தேடலுக்குப் பொருந்�
 #: templates/webapp/customer_list.html
 msgid "No customers yet."
 msgstr "இன்னும் வாடிக்கையாளர்கள் இல்லை."
+
+#: templates/webapp/dashboard.html
+msgid "Time"
+msgstr "நேரம்"
 
 #: templates/webapp/dashboard.html
 msgid "Your subscription has expired."
@@ -8053,6 +8057,10 @@ msgid "Sales today ·"
 msgstr "இன்றைய விற்பனை ·"
 
 #: templates/webapp/restaurant/dashboard.html
+msgid "bill"
+msgstr "பில்"
+
+#: templates/webapp/restaurant/dashboard.html
 msgid "Tickets in kitchen"
 msgstr "சமையலறையில் டிக்கெட்டுகள்"
 
@@ -8270,10 +8278,6 @@ msgstr "· மேசை"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Main kitchen"
 msgstr "பிரதான சமையலறை"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "0 min"
-msgstr "0 நிமி"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Start cooking →"
@@ -11918,10 +11922,6 @@ msgid "Not sure / other"
 msgstr "உறுதியில்லை / மற்றவை"
 
 #: apps/webapp/online_booking_views.py
-msgid "Time"
-msgstr "நேரம்"
-
-#: apps/webapp/online_booking_views.py
 msgid "Number of people"
 msgstr "நபர்களின் எண்ணிக்கை"
 
@@ -12163,6 +12163,29 @@ msgid "Outstanding dues"
 msgstr "நிலுவைத் தொகைகள்"
 
 #: apps/webapp/overview.py
+msgid "Best sellers today"
+msgstr "இன்று அதிகம் விற்றவை"
+
+#: apps/webapp/overview.py
+msgid "Nothing sold yet today."
+msgstr "இன்று இதுவரை எதுவும் விற்கவில்லை."
+
+#: apps/webapp/overview.py
+msgid "Staff today"
+msgstr "இன்றைய ஊழியர்கள்"
+
+#: apps/webapp/overview.py
+msgid "%(n)s bills"
+msgstr "%(n)s பில்கள்"
+
+#: apps/webapp/overview.py
+msgid ""
+"Choose who did the work when you bill, and each person's total shows here."
+msgstr ""
+"பில் போடும்போது வேலை செய்தவரைத் தேர்ந்தெடுங்கள், ஒவ்வொருவரின் மொத்தமும் "
+"இங்கே தெரியும்."
+
+#: apps/webapp/overview.py
 msgid "%(left)s waiting · %(done)s done"
 msgstr "%(left)s காத்திருக்கிறது · %(done)s முடிந்தது"
 
@@ -12183,15 +12206,252 @@ msgid "Book appointment"
 msgstr "சந்திப்பை முன்பதிவு செய்"
 
 #: apps/webapp/overview.py
-msgid "Staff today"
-msgstr "இன்றைய ஊழியர்கள்"
+msgid "Table %(t)s"
+msgstr "மேசை %(t)s"
 
 #: apps/webapp/overview.py
-msgid ""
-"Choose who did the work when you bill, and each person's total shows here."
-msgstr ""
-"பில் போடும்போது வேலை செய்தவரைத் தேர்ந்தெடுங்கள், ஒவ்வொருவரின் மொத்தமும் "
-"இங்கே தெரியும்."
+msgid "In the kitchen"
+msgstr "சமையலறையில்"
+
+#: apps/webapp/overview.py
+msgid "%(n)s late"
+msgstr "%(n)s தாமதம்"
+
+#: apps/webapp/overview.py
+msgid "Orders paid today"
+msgstr "இன்று பணம் செலுத்திய ஆர்டர்கள்"
+
+#: apps/webapp/overview.py
+msgid "Kitchen timer"
+msgstr "சமையலறை டைமர்"
+
+#: apps/webapp/overview.py
+msgid "Kitchen screen"
+msgstr "சமையலறை திரை"
+
+#: apps/webapp/overview.py
+msgid "Kitchen is clear. Orders sent to the kitchen show here with a timer."
+msgstr "சமையலறை காலியாக உள்ளது. அனுப்பிய ஆர்டர்கள் டைமருடன் இங்கே தெரியும்."
+
+#: apps/webapp/overview.py
+msgid "Reorder at %(n)s"
+msgstr "%(n)s இல் மீண்டும் ஆர்டர்"
+
+#: apps/webapp/overview.py
+msgid "All products are above their reorder level."
+msgstr "அனைத்து பொருட்களும் மறு ஆர்டர் அளவுக்கு மேல் உள்ளன."
+
+#: apps/webapp/overview.py
+msgid "Repairs in the shop"
+msgstr "கடையில் உள்ள பழுதுகள்"
+
+#: apps/webapp/overview.py
+msgid "Repair jobs"
+msgstr "பழுது வேலைகள்"
+
+#: apps/webapp/overview.py
+msgid "All repairs"
+msgstr "அனைத்து பழுதுகளும்"
+
+#: apps/webapp/overview.py
+msgid "No repairs waiting."
+msgstr "காத்திருக்கும் பழுது இல்லை."
+
+#: apps/webapp/overview.py
+msgid "New repair job"
+msgstr "புதிய பழுது வேலை"
+
+#: apps/webapp/overview.py
+msgid "Cars in the queue"
+msgstr "வரிசையில் கார்கள்"
+
+#: apps/webapp/overview.py
+msgid "Washed today"
+msgstr "இன்று கழுவியவை"
+
+#: apps/webapp/overview.py
+msgid "Today's queue"
+msgstr "இன்றைய வரிசை"
+
+#: apps/webapp/overview.py
+msgid "No cars waiting."
+msgstr "காத்திருக்கும் கார்கள் இல்லை."
+
+#: apps/webapp/overview.py
+msgid "Book a wash"
+msgstr "வாஷ் முன்பதிவு"
+
+#: apps/webapp/overview.py
+msgid "Not assigned"
+msgstr "யாருக்கும் ஒதுக்கவில்லை"
+
+#: apps/webapp/overview.py
+msgid "%(n)s washes"
+msgstr "%(n)s வாஷ்கள்"
+
+#: apps/webapp/overview.py
+msgid "Finished washes show here by staff member."
+msgstr "முடிந்த வாஷ்கள் ஒவ்வொரு ஊழியர் பெயரிலும் இங்கே தெரியும்."
+
+#: apps/webapp/overview.py
+msgid "Check-ins today"
+msgstr "இன்றைய செக்-இன்கள்"
+
+#: apps/webapp/overview.py
+msgid "Expiring this week"
+msgstr "இந்த வாரம் முடிவடைபவை"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "%(n)s நாட்களில்"
+
+#: apps/webapp/overview.py
+msgid "Memberships to renew"
+msgstr "புதுப்பிக்க வேண்டிய உறுப்பினர்கள்"
+
+#: apps/webapp/overview.py
+msgid "All members"
+msgstr "அனைத்து உறுப்பினர்கள்"
+
+#: apps/webapp/overview.py
+msgid "No memberships end this week."
+msgstr "இந்த வாரம் எந்த உறுப்பினர் காலமும் முடியவில்லை."
+
+#: apps/webapp/overview.py
+msgid "Today's check-ins"
+msgstr "இன்றைய செக்-இன்கள்"
+
+#: apps/webapp/overview.py
+msgid "No check-ins yet today."
+msgstr "இன்று இதுவரை செக்-இன் இல்லை."
+
+#: apps/webapp/overview.py
+msgid "Orders in progress"
+msgstr "நடைபெறும் ஆர்டர்கள்"
+
+#: apps/webapp/overview.py
+msgid "Late"
+msgstr "தாமதம்"
+
+#: apps/webapp/overview.py
+msgid "Due for delivery"
+msgstr "டெலிவரிக்கு உள்ளவை"
+
+#: apps/webapp/overview.py
+msgid "No orders in progress."
+msgstr "நடைபெறும் ஆர்டர்கள் இல்லை."
+
+#: apps/webapp/overview.py
+msgid "Nothing waiting for pickup."
+msgstr "எடுத்துச் செல்ல எதுவும் இல்லை."
+
+#: apps/webapp/overview.py
+msgid "Arriving today"
+msgstr "இன்று வருபவர்கள்"
+
+#: apps/webapp/overview.py
+msgid "Leaving today"
+msgstr "இன்று புறப்படுபவர்கள்"
+
+#: apps/webapp/overview.py
+msgid "Arriving"
+msgstr "வருகை"
+
+#: apps/webapp/overview.py
+msgid "Leaving"
+msgstr "புறப்பாடு"
+
+#: apps/webapp/overview.py
+msgid "Arrivals and departures"
+msgstr "வருகையும் புறப்பாடும்"
+
+#: apps/webapp/overview.py
+msgid "Booking board"
+msgstr "முன்பதிவு பலகை"
+
+#: apps/webapp/overview.py
+msgid "No arrivals or departures today."
+msgstr "இன்று வருகையோ புறப்பாடோ இல்லை."
+
+#: apps/webapp/overview.py
+msgid "Free right now"
+msgstr "இப்போது காலியானவை"
+
+#: apps/webapp/overview.py
+msgid "Everything is in use."
+msgstr "அனைத்தும் பயன்பாட்டில் உள்ளன."
+
+#: apps/webapp/overview.py
+msgid "%(n)s students"
+msgstr "%(n)s மாணவர்கள்"
+
+#: apps/webapp/overview.py
+msgid "Active students"
+msgstr "செயலில் உள்ள மாணவர்கள்"
+
+#: apps/webapp/overview.py
+msgid "All dues"
+msgstr "அனைத்து நிலுவைகள்"
+
+#: apps/webapp/overview.py
+msgid "No fees due. Well done!"
+msgstr "கட்டண நிலுவை இல்லை. சிறப்பு!"
+
+#: apps/webapp/overview.py
+msgid "Fees"
+msgstr "கட்டணங்கள்"
+
+#: apps/webapp/overview.py
+msgid "Rent collected this month"
+msgstr "இந்த மாதம் வசூலான வாடகை"
+
+#: apps/webapp/overview.py
+msgid "%(n)s vacant"
+msgstr "%(n)s காலி"
+
+#: apps/webapp/overview.py
+msgid "%(n)s days late"
+msgstr "%(n)s நாட்கள் தாமதம்"
+
+#: apps/webapp/overview.py
+msgid "Leases ending soon"
+msgstr "விரைவில் முடியும் குத்தகைகள்"
+
+#: apps/webapp/overview.py
+msgid "All leases"
+msgstr "அனைத்து குத்தகைகள்"
+
+#: apps/webapp/overview.py
+msgid "No leases end in the next 60 days."
+msgstr "அடுத்த 60 நாட்களில் எந்த குத்தகையும் முடியவில்லை."
+
+#: apps/webapp/overview.py
+msgid "Open work"
+msgstr "திறந்த வேலைகள்"
+
+#: apps/webapp/overview.py
+msgid "All work"
+msgstr "அனைத்து வேலைகள்"
+
+#: apps/webapp/overview.py
+msgid "No open work."
+msgstr "திறந்த வேலைகள் இல்லை."
+
+#: apps/webapp/overview.py
+msgid "All projects"
+msgstr "அனைத்து திட்டங்கள்"
+
+#: apps/webapp/overview.py
+msgid "No running projects."
+msgstr "நடைபெறும் திட்டங்கள் இல்லை."
+
+#: apps/webapp/overview.py
+msgid "Recent payments"
+msgstr "சமீபத்திய கட்டணங்கள்"
+
+#: apps/webapp/overview.py
+msgid "All bills"
+msgstr "அனைத்து பில்கள்"
 
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
@@ -12967,6 +13227,10 @@ msgstr "இருப்பில் %(count)s வரிசை எண்கள்
 #: apps/webapp/stock_views.py
 msgid "Already registered: %(list)s"
 msgstr "ஏற்கனவே பதிவு செய்யப்பட்டவை: %(list)s"
+
+#: apps/webapp/templatetags/sample_data.py
+msgid "Orders & tables"
+msgstr "ஆர்டர்களும் மேசைகளும்"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

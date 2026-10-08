@@ -12,7 +12,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import gettext as _
 
-from apps.accounts import phone_otp
+from apps.accounts import signup_otp
 from apps.accounts import services as account_services
 from apps.accounts.models import LoginAttempt
 from apps.modules.catalog import BUSINESS_TYPE_MAP, business_group
@@ -62,7 +62,7 @@ class SignupForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.fields["business_type"].choices = _business_choices()
         self.fields["plan"].queryset = SubscriptionPlan.objects.filter(is_active=True)
-        self.fields["phone"].required = phone_otp.enabled()
+        self.fields["phone"].required = signup_otp.method() == "sms"
 
     def clean_email(self):
         email = self.cleaned_data["email"].strip().lower()
@@ -79,8 +79,8 @@ class SignupForm(forms.Form):
 
     def clean(self):
         cleaned = super().clean()
-        if cleaned.get("phone") and phone_otp.enabled():
-            number = phone_otp.normalize(cleaned["phone"], cleaned.get("country", ""))
+        if cleaned.get("phone") and signup_otp.method() == "sms":
+            number = signup_otp.normalize(cleaned["phone"], cleaned.get("country", ""))
             if not number:
                 self.add_error("phone", _("Enter a valid mobile number with the country code, e.g. +91 98475 54224."))
             elif get_user_model().objects.filter(phone=number, phone_verified=True).exists():
@@ -131,7 +131,7 @@ def create_trial_account(*, data):
     user = User.objects.create_user(
         username=data["email"], email=data["email"], password=data.get("password"),
         first_name=first[:150], last_name=last[:150], phone=data.get("phone", ""),
-        phone_verified=data.get("phone_verified", False),
+        phone_verified=data.get("phone_verified", False), email_verified=data.get("email_verified", False),
     )
     if data.get("password_hash"):  # sign-up waited for the SMS code: the password was kept only as a hash
         user.password = data["password_hash"]
@@ -181,20 +181,20 @@ def _finish_signup(request, data):
     return redirect("webapp:setup", step="business")
 
 
-def _send_code(request, phone):
-    """Send an SMS code, at most PHONE_OTP_SENDS_PER_HOUR per number and per network. Returns an error or None."""
+def _send_code(request, to):
+    """Send a sign-up code, at most SIGNUP_OTP_SENDS_PER_HOUR per address and per network. Returns an error or None."""
     since = timezone.now() - timedelta(hours=1)
     ip_address = account_services.client_ip(request)
-    limit = settings.PHONE_OTP_SENDS_PER_HOUR
+    limit = settings.SIGNUP_OTP_SENDS_PER_HOUR
     sent = LoginAttempt.objects.filter(attempted_at__gte=since, identifier__startswith="otp-send")
-    if sent.filter(identifier=f"otp-send:{phone}").count() >= limit or \
+    if sent.filter(identifier=f"otp-send:{to}").count() >= limit or \
             sent.filter(ip_address=ip_address).count() >= limit * 2:
         return _("Too many codes were sent. Please wait an hour and try again.")
     try:
-        phone_otp.send(phone, request.session)
-    except phone_otp.OtpError as exc:
+        signup_otp.send(to, request.session)
+    except signup_otp.OtpError as exc:
         return str(exc)
-    LoginAttempt.objects.create(identifier=f"otp-send:{phone}", ip_address=ip_address, successful=True)
+    LoginAttempt.objects.create(identifier=f"otp-send:{to}", ip_address=ip_address, successful=True)
     request.session["otp_sent_at"] = timezone.now().timestamp()
     request.session["otp_tries"] = 0
     return None
@@ -220,7 +220,7 @@ def signup(request):
             messages.error(request, "Too many sign-ups from this network. Please try again later.")
         elif form.is_valid():
             data = dict(form.cleaned_data)
-            if not phone_otp.enabled():
+            if not signup_otp.enabled():
                 response = _finish_signup(request, data)
                 if response:
                     return response
@@ -228,22 +228,22 @@ def signup(request):
                 plan = data.pop("plan")
                 data.update(plan_id=plan.pk if plan else None, password_hash=make_password(data.pop("password")))
                 request.session[PENDING] = data
-                error = _send_code(request, data["phone"])
+                error = _send_code(request, signup_otp.target(data))
                 if error:
                     messages.error(request, error)
                 return redirect("webapp:signup_verify")
     return render(request, "webapp/public/signup.html", {
         "form": form, "plans": _plans(), "pricing": _pricing_data(), "trial_days": TRIAL_DAYS, "popular_types": POPULAR_TYPES,
-        "phone_otp": phone_otp.enabled(),
+        "otp": signup_otp.method(),
     })
 
 
 def signup_verify(request):
-    """Step 2 of sign-up: type the code sent by SMS to the mobile number."""
+    """Step 2 of sign-up: type the code we emailed (or sent by SMS)."""
     data = request.session.get(PENDING)
     if request.user.is_authenticated:
         return redirect("webapp:dashboard")
-    if not data or not phone_otp.enabled():
+    if not data or not signup_otp.enabled():
         return redirect("webapp:signup")
     wait = max(0, int(60 - (timezone.now().timestamp() - request.session.get("otp_sent_at", 0))))
     if request.method == "POST":
@@ -251,7 +251,7 @@ def signup_verify(request):
             if wait:
                 messages.error(request, _("Please wait %(s)s seconds before asking for a new code.") % {"s": wait})
             else:
-                error = _send_code(request, data["phone"])
+                error = _send_code(request, signup_otp.target(data))
                 if error:
                     messages.error(request, error)
                 else:
@@ -263,8 +263,8 @@ def signup_verify(request):
             messages.error(request, _("Too many wrong codes. Ask for a new code."))
         else:
             try:
-                ok = phone_otp.check(data["phone"], request.POST.get("code"), request.session)
-            except phone_otp.OtpError as exc:
+                ok = signup_otp.check(signup_otp.target(data), request.POST.get("code"), request.session)
+            except signup_otp.OtpError as exc:
                 ok = False
                 messages.error(request, str(exc))
             else:
@@ -278,14 +278,14 @@ def signup_verify(request):
                     messages.error(request, "Too many sign-ups from this network. Please try again later.")
                     return redirect("webapp:signup_verify")
                 plan = SubscriptionPlan.objects.filter(pk=data.get("plan_id"), is_active=True).first()
-                response = _finish_signup(request, {**data, "plan": plan, "phone_verified": True})
-                for key in (PENDING, "otp_sent_at", "otp_tries", "phone_otp_hash"):
+                sms = signup_otp.method() == "sms"
+                response = _finish_signup(request, {**data, "plan": plan, "phone_verified": sms, "email_verified": not sms})
+                for key in (PENDING, "otp_sent_at", "otp_tries", "otp_hash", "otp_made_at"):
                     request.session.pop(key, None)
                 return response or redirect("webapp:signup")
         return redirect("webapp:signup_verify")
-    phone = data["phone"]
     return render(request, "webapp/public/signup_verify.html", {
-        "phone": phone[:4] + "•" * (len(phone) - 8) + phone[-4:],  # +919••••4224
+        "to": signup_otp.masked(signup_otp.target(data)), "by_sms": signup_otp.method() == "sms",
         "wait": wait, "trial_days": TRIAL_DAYS,
     })
 

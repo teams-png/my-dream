@@ -6603,6 +6603,10 @@ msgid "Phone (optional)"
 msgstr "电话（可选）"
 
 #: templates/webapp/public/signup.html
+msgid "We will email you a code to confirm it."
+msgstr "我们会通过电子邮件发送验证码进行确认。"
+
+#: templates/webapp/public/signup.html
 msgid "I agree to the terms of service and privacy policy."
 msgstr "我同意服务条款和隐私政策。"
 
@@ -6639,12 +6643,28 @@ msgid "Check your mobile number · BookPilot"
 msgstr "验证您的手机号码 · BookPilot"
 
 #: templates/webapp/public/signup_verify.html
+msgid "Check your email · BookPilot"
+msgstr "查看您的邮箱 · BookPilot"
+
+#: templates/webapp/public/signup_verify.html
 msgid "Check your mobile number"
 msgstr "验证您的手机号码"
 
 #: templates/webapp/public/signup_verify.html
 msgid "We sent a 6-digit code by SMS to"
 msgstr "我们已通过短信发送 6 位验证码至"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your email"
+msgstr "查看您的邮箱"
+
+#: templates/webapp/public/signup_verify.html
+msgid "We sent a 6-digit code to"
+msgstr "我们已发送 6 位验证码至"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Not there? Look in Spam or Promotions."
+msgstr "没收到？请查看垃圾邮件或推广邮件。"
 
 #: templates/webapp/public/signup_verify.html
 msgid "Verify and create my account"
@@ -6657,6 +6677,10 @@ msgstr "发送新验证码"
 #: templates/webapp/public/signup_verify.html
 msgid "Change number"
 msgstr "更换号码"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Change email"
+msgstr "更换邮箱"
 
 #: templates/webapp/purchase_docs/grn.html
 msgid "Goods receipt"
@@ -9441,11 +9465,29 @@ msgstr "暂无调拨。"
 msgid "Available"
 msgstr "可用"
 
-#: apps/accounts/phone_otp.py
+#: apps/accounts/signup_otp.py
+msgid "Your BookPilot code: %(code)s"
+msgstr "您的 BookPilot 验证码：%(code)s"
+
+#: apps/accounts/signup_otp.py
+msgid "Your BookPilot sign-up code is %(code)s"
+msgstr "您的 BookPilot 注册验证码是 %(code)s"
+
+#: apps/accounts/signup_otp.py
+msgid ""
+"It works for %(minutes)s minutes. If you did not try to create a BookPilot "
+"account, you can ignore this email."
+msgstr "验证码 %(minutes)s 分钟内有效。如果您没有尝试创建 BookPilot 账户，请忽略此邮件。"
+
+#: apps/accounts/signup_otp.py
+msgid "We could not send the email. Check the address and try again."
+msgstr "无法发送邮件，请检查地址后重试。"
+
+#: apps/accounts/signup_otp.py
 msgid "We could not reach the SMS service. Please try again in a minute."
 msgstr "无法连接短信服务，请一分钟后重试。"
 
-#: apps/accounts/phone_otp.py
+#: apps/accounts/signup_otp.py
 msgid ""
 "We could not send a code to this number. Check the number and try again."
 msgstr "无法向此号码发送验证码，请检查号码后重试。"

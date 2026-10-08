@@ -11,6 +11,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=20, blank=True)
     phone_verified = models.BooleanField(default=False)  # proved with an SMS code at sign-up
+    email_verified = models.BooleanField(default=False)  # proved with an emailed code at sign-up
     is_platform_admin = models.BooleanField(default=False)  # super admin, NOT a tenant role
 
     def __str__(self):

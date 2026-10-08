@@ -6718,6 +6718,10 @@ msgid "Phone (optional)"
 msgstr "الهاتف (اختياري)"
 
 #: templates/webapp/public/signup.html
+msgid "We will email you a code to confirm it."
+msgstr "سنرسل إليك رمزًا عبر البريد لتأكيده."
+
+#: templates/webapp/public/signup.html
 msgid "I agree to the terms of service and privacy policy."
 msgstr "أوافق على شروط الخدمة وسياسة الخصوصية."
 
@@ -6754,12 +6758,28 @@ msgid "Check your mobile number · BookPilot"
 msgstr "تحقق من رقم جوالك · BookPilot"
 
 #: templates/webapp/public/signup_verify.html
+msgid "Check your email · BookPilot"
+msgstr "تحقق من بريدك · BookPilot"
+
+#: templates/webapp/public/signup_verify.html
 msgid "Check your mobile number"
 msgstr "تحقق من رقم جوالك"
 
 #: templates/webapp/public/signup_verify.html
 msgid "We sent a 6-digit code by SMS to"
 msgstr "أرسلنا رمزًا من 6 أرقام عبر رسالة نصية إلى"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your email"
+msgstr "تحقق من بريدك"
+
+#: templates/webapp/public/signup_verify.html
+msgid "We sent a 6-digit code to"
+msgstr "أرسلنا رمزًا من 6 أرقام إلى"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Not there? Look in Spam or Promotions."
+msgstr "لم يصلك؟ ابحث في البريد العشوائي أو العروض."
 
 #: templates/webapp/public/signup_verify.html
 msgid "Verify and create my account"
@@ -6772,6 +6792,10 @@ msgstr "إرسال رمز جديد"
 #: templates/webapp/public/signup_verify.html
 msgid "Change number"
 msgstr "تغيير الرقم"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Change email"
+msgstr "تغيير البريد"
 
 #: templates/webapp/purchase_docs/grn.html
 msgid "Goods receipt"
@@ -9580,11 +9604,31 @@ msgstr "لا تحويلات بعد."
 msgid "Available"
 msgstr "متاحة"
 
-#: apps/accounts/phone_otp.py
+#: apps/accounts/signup_otp.py
+msgid "Your BookPilot code: %(code)s"
+msgstr "رمز BookPilot الخاص بك: %(code)s"
+
+#: apps/accounts/signup_otp.py
+msgid "Your BookPilot sign-up code is %(code)s"
+msgstr "رمز التسجيل في BookPilot هو %(code)s"
+
+#: apps/accounts/signup_otp.py
+msgid ""
+"It works for %(minutes)s minutes. If you did not try to create a BookPilot "
+"account, you can ignore this email."
+msgstr ""
+"الرمز صالح لمدة %(minutes)s دقائق. إذا لم تحاول إنشاء حساب BookPilot فيمكنك "
+"تجاهل هذه الرسالة."
+
+#: apps/accounts/signup_otp.py
+msgid "We could not send the email. Check the address and try again."
+msgstr "تعذر إرسال البريد. تحقق من العنوان وحاول مرة أخرى."
+
+#: apps/accounts/signup_otp.py
 msgid "We could not reach the SMS service. Please try again in a minute."
 msgstr "تعذر الوصول إلى خدمة الرسائل. حاول مرة أخرى بعد دقيقة."
 
-#: apps/accounts/phone_otp.py
+#: apps/accounts/signup_otp.py
 msgid ""
 "We could not send a code to this number. Check the number and try again."
 msgstr "تعذر إرسال رمز إلى هذا الرقم. تحقق من الرقم وحاول مرة أخرى."

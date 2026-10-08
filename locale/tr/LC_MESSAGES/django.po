@@ -6771,6 +6771,10 @@ msgid "Phone (optional)"
 msgstr "Telefon (isteğe bağlı)"
 
 #: templates/webapp/public/signup.html
+msgid "We will email you a code to confirm it."
+msgstr "Onaylamak için size e-postayla bir kod göndereceğiz."
+
+#: templates/webapp/public/signup.html
 msgid "I agree to the terms of service and privacy policy."
 msgstr "Hizmet şartlarını ve gizlilik politikasını kabul ediyorum."
 
@@ -6807,12 +6811,28 @@ msgid "Check your mobile number · BookPilot"
 msgstr "Cep numaranızı doğrulayın · BookPilot"
 
 #: templates/webapp/public/signup_verify.html
+msgid "Check your email · BookPilot"
+msgstr "E-postanızı kontrol edin · BookPilot"
+
+#: templates/webapp/public/signup_verify.html
 msgid "Check your mobile number"
 msgstr "Cep numaranızı doğrulayın"
 
 #: templates/webapp/public/signup_verify.html
 msgid "We sent a 6-digit code by SMS to"
 msgstr "SMS ile 6 haneli bir kod gönderdik:"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your email"
+msgstr "E-postanızı kontrol edin"
+
+#: templates/webapp/public/signup_verify.html
+msgid "We sent a 6-digit code to"
+msgstr "6 haneli bir kod gönderdik:"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Not there? Look in Spam or Promotions."
+msgstr "Gelmedi mi? Spam veya Promosyonlar klasörüne bakın."
 
 #: templates/webapp/public/signup_verify.html
 msgid "Verify and create my account"
@@ -6825,6 +6845,10 @@ msgstr "Yeni kod gönder"
 #: templates/webapp/public/signup_verify.html
 msgid "Change number"
 msgstr "Numarayı değiştir"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Change email"
+msgstr "E-postayı değiştir"
 
 #: templates/webapp/purchase_docs/grn.html
 msgid "Goods receipt"
@@ -9651,11 +9675,31 @@ msgstr "Henüz transfer yok."
 msgid "Available"
 msgstr "Mevcut"
 
-#: apps/accounts/phone_otp.py
+#: apps/accounts/signup_otp.py
+msgid "Your BookPilot code: %(code)s"
+msgstr "BookPilot kodunuz: %(code)s"
+
+#: apps/accounts/signup_otp.py
+msgid "Your BookPilot sign-up code is %(code)s"
+msgstr "BookPilot kayıt kodunuz %(code)s"
+
+#: apps/accounts/signup_otp.py
+msgid ""
+"It works for %(minutes)s minutes. If you did not try to create a BookPilot "
+"account, you can ignore this email."
+msgstr ""
+"Kod %(minutes)s dakika geçerlidir. BookPilot hesabı oluşturmaya "
+"çalışmadıysanız bu e-postayı yok sayabilirsiniz."
+
+#: apps/accounts/signup_otp.py
+msgid "We could not send the email. Check the address and try again."
+msgstr "E-posta gönderilemedi. Adresi kontrol edip tekrar deneyin."
+
+#: apps/accounts/signup_otp.py
 msgid "We could not reach the SMS service. Please try again in a minute."
 msgstr "SMS hizmetine ulaşılamadı. Bir dakika sonra tekrar deneyin."
 
-#: apps/accounts/phone_otp.py
+#: apps/accounts/signup_otp.py
 msgid ""
 "We could not send a code to this number. Check the number and try again."
 msgstr "Bu numaraya kod gönderilemedi. Numarayı kontrol edip tekrar deneyin."

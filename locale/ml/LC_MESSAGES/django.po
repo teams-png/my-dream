@@ -6803,6 +6803,10 @@ msgid "Phone (optional)"
 msgstr "ഫോൺ (ഓപ്ഷണൽ)"
 
 #: templates/webapp/public/signup.html
+msgid "We will email you a code to confirm it."
+msgstr "സ്ഥിരീകരിക്കാൻ ഞങ്ങൾ ഒരു കോഡ് ഇമെയിൽ ചെയ്യും."
+
+#: templates/webapp/public/signup.html
 msgid "I agree to the terms of service and privacy policy."
 msgstr "സേവന നിബന്ധനകളും സ്വകാര്യതാ നയവും ഞാൻ അംഗീകരിക്കുന്നു."
 
@@ -6839,12 +6843,28 @@ msgid "Check your mobile number · BookPilot"
 msgstr "മൊബൈൽ നമ്പർ സ്ഥിരീകരിക്കുക · BookPilot"
 
 #: templates/webapp/public/signup_verify.html
+msgid "Check your email · BookPilot"
+msgstr "ഇമെയിൽ പരിശോധിക്കുക · BookPilot"
+
+#: templates/webapp/public/signup_verify.html
 msgid "Check your mobile number"
 msgstr "മൊബൈൽ നമ്പർ സ്ഥിരീകരിക്കുക"
 
 #: templates/webapp/public/signup_verify.html
 msgid "We sent a 6-digit code by SMS to"
 msgstr "6 അക്ക കോഡ് SMS ആയി അയച്ചിരിക്കുന്നു:"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your email"
+msgstr "ഇമെയിൽ പരിശോധിക്കുക"
+
+#: templates/webapp/public/signup_verify.html
+msgid "We sent a 6-digit code to"
+msgstr "6 അക്ക കോഡ് അയച്ചിരിക്കുന്നു:"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Not there? Look in Spam or Promotions."
+msgstr "കണ്ടില്ലേ? Spam അല്ലെങ്കിൽ Promotions-ൽ നോക്കുക."
 
 #: templates/webapp/public/signup_verify.html
 msgid "Verify and create my account"
@@ -6857,6 +6877,10 @@ msgstr "പുതിയ കോഡ് അയയ്ക്കുക"
 #: templates/webapp/public/signup_verify.html
 msgid "Change number"
 msgstr "നമ്പർ മാറ്റുക"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Change email"
+msgstr "ഇമെയിൽ മാറ്റുക"
 
 #: templates/webapp/purchase_docs/grn.html
 msgid "Goods receipt"
@@ -9688,12 +9712,32 @@ msgstr "ഇതുവരെ മാറ്റങ്ങൾ ഇല്ല."
 msgid "Available"
 msgstr "ലഭ്യം"
 
-#: apps/accounts/phone_otp.py
+#: apps/accounts/signup_otp.py
+msgid "Your BookPilot code: %(code)s"
+msgstr "നിങ്ങളുടെ BookPilot കോഡ്: %(code)s"
+
+#: apps/accounts/signup_otp.py
+msgid "Your BookPilot sign-up code is %(code)s"
+msgstr "നിങ്ങളുടെ BookPilot സൈൻ-അപ്പ് കോഡ് %(code)s ആണ്"
+
+#: apps/accounts/signup_otp.py
+msgid ""
+"It works for %(minutes)s minutes. If you did not try to create a BookPilot "
+"account, you can ignore this email."
+msgstr ""
+"ഈ കോഡ് %(minutes)s മിനിറ്റ് മാത്രം പ്രവർത്തിക്കും. നിങ്ങൾ BookPilot "
+"അക്കൗണ്ട് ഉണ്ടാക്കാൻ ശ്രമിച്ചിട്ടില്ലെങ്കിൽ ഈ ഇമെയിൽ അവഗണിക്കാം."
+
+#: apps/accounts/signup_otp.py
+msgid "We could not send the email. Check the address and try again."
+msgstr "ഇമെയിൽ അയയ്ക്കാനായില്ല. വിലാസം പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക."
+
+#: apps/accounts/signup_otp.py
 msgid "We could not reach the SMS service. Please try again in a minute."
 msgstr ""
 "SMS സേവനവുമായി ബന്ധപ്പെടാനായില്ല. ഒരു മിനിറ്റ് കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക."
 
-#: apps/accounts/phone_otp.py
+#: apps/accounts/signup_otp.py
 msgid ""
 "We could not send a code to this number. Check the number and try again."
 msgstr ""

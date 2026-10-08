@@ -6834,6 +6834,10 @@ msgid "Phone (optional)"
 msgstr "Téléphone (facultatif)"
 
 #: templates/webapp/public/signup.html
+msgid "We will email you a code to confirm it."
+msgstr "Nous vous enverrons un code par e-mail pour le confirmer."
+
+#: templates/webapp/public/signup.html
 msgid "I agree to the terms of service and privacy policy."
 msgstr ""
 "J’accepte les conditions d’utilisation et la politique de confidentialité."
@@ -6871,12 +6875,28 @@ msgid "Check your mobile number · BookPilot"
 msgstr "Vérifiez votre numéro de mobile · BookPilot"
 
 #: templates/webapp/public/signup_verify.html
+msgid "Check your email · BookPilot"
+msgstr "Vérifiez vos e-mails · BookPilot"
+
+#: templates/webapp/public/signup_verify.html
 msgid "Check your mobile number"
 msgstr "Vérifiez votre numéro de mobile"
 
 #: templates/webapp/public/signup_verify.html
 msgid "We sent a 6-digit code by SMS to"
 msgstr "Nous avons envoyé un code à 6 chiffres par SMS au"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Check your email"
+msgstr "Vérifiez vos e-mails"
+
+#: templates/webapp/public/signup_verify.html
+msgid "We sent a 6-digit code to"
+msgstr "Nous avons envoyé un code à 6 chiffres à"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Not there? Look in Spam or Promotions."
+msgstr "Introuvable ? Regardez dans Spam ou Promotions."
 
 #: templates/webapp/public/signup_verify.html
 msgid "Verify and create my account"
@@ -6889,6 +6909,10 @@ msgstr "Envoyer un nouveau code"
 #: templates/webapp/public/signup_verify.html
 msgid "Change number"
 msgstr "Changer de numéro"
+
+#: templates/webapp/public/signup_verify.html
+msgid "Change email"
+msgstr "Changer d'e-mail"
 
 #: templates/webapp/purchase_docs/grn.html
 msgid "Goods receipt"
@@ -9738,11 +9762,31 @@ msgstr "Aucun transfert pour l’instant."
 msgid "Available"
 msgstr "Disponible"
 
-#: apps/accounts/phone_otp.py
+#: apps/accounts/signup_otp.py
+msgid "Your BookPilot code: %(code)s"
+msgstr "Votre code BookPilot : %(code)s"
+
+#: apps/accounts/signup_otp.py
+msgid "Your BookPilot sign-up code is %(code)s"
+msgstr "Votre code d'inscription BookPilot est %(code)s"
+
+#: apps/accounts/signup_otp.py
+msgid ""
+"It works for %(minutes)s minutes. If you did not try to create a BookPilot "
+"account, you can ignore this email."
+msgstr ""
+"Il est valable %(minutes)s minutes. Si vous n'avez pas essayé de créer un "
+"compte BookPilot, ignorez cet e-mail."
+
+#: apps/accounts/signup_otp.py
+msgid "We could not send the email. Check the address and try again."
+msgstr "Impossible d'envoyer l'e-mail. Vérifiez l'adresse et réessayez."
+
+#: apps/accounts/signup_otp.py
 msgid "We could not reach the SMS service. Please try again in a minute."
 msgstr "Impossible de joindre le service SMS. Réessayez dans une minute."
 
-#: apps/accounts/phone_otp.py
+#: apps/accounts/signup_otp.py
 msgid ""
 "We could not send a code to this number. Check the number and try again."
 msgstr ""

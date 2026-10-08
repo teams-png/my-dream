@@ -4,7 +4,7 @@
 {% include "webapp/_app_head.html" %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% translate "Check your mobile number · BookPilot" %}</title>
+<title>{% if by_sms %}{% translate "Check your mobile number · BookPilot" %}{% else %}{% translate "Check your email · BookPilot" %}{% endif %}</title>
 <style>
 @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Regular.ttf" %}');font-weight:400}
 @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-SemiBold.ttf" %}');font-weight:600}
@@ -40,9 +40,12 @@ input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px rgba(20,
 <div class="lang">{% include "webapp/_language_switcher.html" %}</div>
 <main class="card">
   <a class="logo" href="{% url 'webapp:landing' %}"><i>✦</i>{% translate "BookPilot" %}</a>
-  <div class="icon">📱</div>
+  {% if by_sms %}<div class="icon">📱</div>
   <h1>{% translate "Check your mobile number" %}</h1>
-  <p>{% translate "We sent a 6-digit code by SMS to" %} <span class="num" dir="ltr">{{ phone }}</span></p>
+  <p>{% translate "We sent a 6-digit code by SMS to" %} <span class="num" dir="ltr">{{ to }}</span></p>
+  {% else %}<div class="icon">✉️</div>
+  <h1>{% translate "Check your email" %}</h1>
+  <p>{% translate "We sent a 6-digit code to" %} <span class="num" dir="ltr">{{ to }}</span><br><small>{% translate "Not there? Look in Spam or Promotions." %}</small></p>{% endif %}
   {% for m in messages %}<div class="alert{% if m.tags == 'success' %} success{% endif %}" role="alert">{{ m }}</div>{% endfor %}
   <form method="post">{% csrf_token %}
     <label class="sr-only" for="code">{% translate "Code" %}</label>
@@ -52,7 +55,7 @@ input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px rgba(20,
   <div class="row">
     <form method="post">{% csrf_token %}<input type="hidden" name="action" value="resend">
       <button class="link" id="resend" type="submit" data-wait="{{ wait }}" {% if wait %}disabled{% endif %}>{% translate "Send a new code" %}<span id="tick">{% if wait %} ({{ wait }}){% endif %}</span></button></form>
-    <a href="{% url 'webapp:signup' %}?edit=1">{% translate "Change number" %}</a>
+    <a href="{% url 'webapp:signup' %}?edit=1">{% if by_sms %}{% translate "Change number" %}{% else %}{% translate "Change email" %}{% endif %}</a>
   </div>
 </main>
 <script>

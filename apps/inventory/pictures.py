@@ -14,12 +14,20 @@ from django.templatetags.static import static
 # (key, emoji, words that point to it — matched against the item's name, then its category)
 ART = [
     # salon, beauty, spa
-    ("haircut", "✂️", "haircut haircuts barber"), ("beard", "🧔", "beard shave moustache trim"),
+    ("haircut", "✂️", "haircut haircuts barber"), ("beard", "🧔", "beard moustache trim"),
+    ("shave", "🪒", "shave shaving clean_shave"), ("hair_style", "💇", "styling style hairstyle blow_dry setting"),
+    ("hair_wash", "🚿", "hair_wash head_wash shampoo_wash"), ("head_massage", "💆", "head_massage champi head_spa scalp"),
     ("hair_colour", "🎨", "hair_colour colour color dye highlight"), ("hair_care", "🧴", "shampoo serum conditioner hair oil lotion wax gel spa"),
-    ("massage", "💆", "massage reflexology therapy head_massage"), ("facial", "🧖", "facial face mask skin peel"),
-    ("nails", "💅", "manicure pedicure nail nails polish"), ("makeup", "💄", "makeup bridal lipstick foundation cosmetic"),
-    ("threading", "🪡", "threading eyebrow waxing"), ("bath", "🛁", "bath moroccan sauna steam"),
-    ("candle", "🕯️", "candle aroma"), ("stone", "🪨", "hot_stone"),
+    ("massage", "💆", "massage therapy body_massage"), ("facial", "🧖", "facial face skin peel cleanup"),
+    ("face_mask", "🧖", "mask face_mask clay_mask"), ("nails", "💅", "manicure nail nails polish"),
+    ("pedicure", "🦶", "pedicure"), ("makeup", "💄", "makeup lipstick foundation cosmetic"),
+    ("bridal", "👰", "bridal bride wedding_hair updo"), ("threading", "🪡", "threading eyebrow waxing"),
+    ("bath", "🛁", "bath moroccan sauna steam flower_bath"), ("candle", "🕯️", "candle"),
+    ("aromatherapy", "🌸", "aromatherapy aroma"), ("stone", "🪨", "hot_stone stones"),
+    ("scrub", "🧽", "scrub scrubs polishing exfoliation exfoliating"), ("body_wrap", "🌿", "wrap body_wrap mud_wrap"),
+    ("foot_massage", "🦶", "foot_massage reflexology foot_reflexology"), ("foot_spa", "🦶", "foot_spa foot_soak"),
+    ("herbal", "🌿", "herbal potli kizhi compress ayurveda ayurvedic abhyanga"),
+    ("spa_oil", "🧴", "massage_oil essential_oil aroma_oil spa_oil"), ("towel", "🧺", "towel towels robe bathrobe"),
     ("perfume", "🌸", "perfume attar oud musk fragrance bakhoor rose"),
     # fashion
     ("shirt", "👔", "shirt formal kandura thobe coverall"), ("tshirt", "👕", "t-shirt tshirt jersey tee top"),
@@ -41,17 +49,21 @@ ART = [
     ("ac", "❄️", "ac conditioner cooling gas_refill ac_service"), ("washing", "🧺", "washing laundry iron dry_clean blanket washing_machine"),
     ("microwave", "📦", "microwave oven fryer appliance"),
     # restaurant and café (before groceries, so "Chicken biryani" is a dish, not chicken)
-    ("biryani", "🍛", "biryani curry mandi kabsa meals thali machboos"), ("dosa", "🫓", "dosa chapati parotta porotta roti naan appam idiyappam puttu"),
-    ("shawarma", "🥙", "shawarma wrap roll falafel"), ("coffee", "☕", "coffee latte cappuccino espresso karak chai"),
-    ("juice", "🥤", "juice shake mojito lime smoothie soda cola drinks drink mocktail"), ("burger", "🍔", "burger"),
-    ("pizza", "🍕", "pizza"), ("sandwich", "🥪", "sandwich club toast"), ("fries", "🍟", "fries"),
+    ("biryani", "🍛", "biryani mandi kabsa machboos"), ("sadya", "🍛", "sadya meals thali"),
+    ("curry", "🍲", "curry gravy beef_curry mutton_curry chicken_curry"), ("fish_curry", "🍲", "fish_curry meen_curry"),
+    ("fried_rice", "🍚", "fried_rice ghee_rice"), ("dosa", "🫓", "dosa uttapam ghee_roast"),
+    ("appam", "🫓", "appam stew idiyappam puttu"), ("porotta", "🫓", "porotta parotta paratha chapati roti naan"),
+    ("tandoori", "🍗", "tandoori grill grilled kebab tikka alfaham alfahm barbecue bbq"),
+    ("shawarma", "🥙", "shawarma roll falafel"), ("coffee", "☕", "coffee latte cappuccino espresso"),
+    ("juice", "🥤", "juice shake smoothie cola drinks drink"), ("mojito", "🍹", "mojito lime soda lemon mocktail"),
+    ("burger", "🍔", "burger"), ("pizza", "🍕", "pizza"), ("sandwich", "🥪", "sandwich club toast"), ("fries", "🍟", "fries"),
     ("ice_cream", "🍨", "icecream ice_cream sundae falooda kulfi"), ("noodles", "🍜", "noodles soup ramen"),
     ("salad", "🥗", "salad"), ("egg", "🥚", "egg eggs omelette"), ("dessert", "🍮", "dessert pudding payasam custard halwa"),
-    ("shrimp", "🍤", "prawn prawns shrimp"),
+    ("shrimp", "🍤", "prawn prawns shrimp prawn_curry"),
     # food & grocery
     ("milk", "🥛", "milk dairy yogurt laban"), ("bread", "🍞", "bread bun loaf"), ("cake", "🎂", "cake"),
     ("croissant", "🥐", "croissant pastry puff"), ("cookies", "🍪", "cookies biscuit"), ("rice", "🍚", "rice basmati grain"),
-    ("oil", "🫒", "oil olive sunflower ghee"), ("sugar", "🧂", "sugar salt spice masala"), ("tea", "🍵", "tea"),
+    ("oil", "🫒", "oil olive sunflower ghee"), ("sugar", "🧂", "sugar salt spice masala"), ("tea", "🍵", "tea chai karak sulaimani"),
     ("banana", "🍌", "banana"), ("apple", "🍎", "apple fruit fruits"), ("tomato", "🍅", "tomato vegetables vegetable"),
     ("onion", "🧅", "onion garlic"), ("fish", "🐟", "fish kingfish seafood"), ("chicken", "🍗", "chicken poultry"),
     ("meat", "🥩", "mutton beef meat lamb cutting"), ("water", "💧", "water"),
@@ -107,8 +119,9 @@ def _tokens(text):
     return re.findall(r"[a-z0-9]+(?:-[a-z0-9]+)?", (text or "").lower())
 
 
-DISHES = {"biryani", "dosa", "shawarma", "coffee", "juice", "burger", "pizza", "sandwich", "fries", "ice_cream",
-          "noodles", "salad", "dessert", "shrimp"}
+DISHES = {"biryani", "sadya", "curry", "fish_curry", "fried_rice", "dosa", "appam", "porotta", "tandoori", "shawarma",
+          "coffee", "juice", "mojito", "burger", "pizza", "sandwich", "fries", "ice_cream", "noodles", "salad", "dessert",
+          "shrimp", "tea"}
 
 
 def pick(name, category="", business_code=""):
@@ -136,15 +149,24 @@ def pick(name, category="", business_code=""):
 PHOTO_DIR = Path(__file__).resolve().parents[2] / "static" / "products" / "photos"
 
 
+# Ladies' salons and spas get the women's photo of a service when there is one (<key>.women.webp).
+WOMEN_TYPES = {"beauty_parlour", "beauty_salon", "spa", "ladies_fashion_boutique"}
+
+
 @lru_cache(maxsize=1)
 def _photos():
-    """Keys that have a real photo; the 3D picture is the fallback."""
+    """Photo names on disk ("haircut", "haircut.women"); the 3D picture is the fallback."""
     return {p.stem for p in PHOTO_DIR.glob("*.webp")} if PHOTO_DIR.is_dir() else set()
 
 
-def art_url(key):
-    if key in _photos():
+def art_url(key, business_code=""):
+    photos = _photos()
+    if business_code in WOMEN_TYPES and f"{key}.women" in photos:
+        return static(f"products/photos/{key}.women.webp")
+    if key in photos:
         return static(f"products/photos/{key}.webp")
+    if f"{key}.women" in photos:
+        return static(f"products/photos/{key}.women.webp")
     return static(f"products/cut/{key}.webp")
 
 
@@ -157,4 +179,4 @@ def picture_url(product, business_code=""):
         except ValueError:
             pass
     category = product.category.name if getattr(product, "category_id", None) else ""
-    return art_url(pick(product.name.split(" — ")[-1], category, business_code))
+    return art_url(pick(product.name.split(" — ")[-1], category, business_code), business_code)

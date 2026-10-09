@@ -3,12 +3,15 @@
     pip install "rembg[cpu]"        # once, on your own computer (not needed on the server)
     python manage.py cutout_photos ~/Downloads/photos
 
-Name each photo after its picture key (haircut.jpg, massage.png, biryani.webp …; see `--keys` for the list).
-The background is removed, the object cropped, centred on a transparent square and saved small. The results
-are committed, so servers never run this; a photo here replaces that key's 3D picture everywhere.
+Name each photo after its picture key (haircut.jpg, massage.png, biryani.webp …; see `--keys` for the list);
+add ".women" (haircut.women.jpg) for the photo ladies' salons and spas should get instead. The background is
+removed, slivers of neighbouring pictures along the edges are dropped (photos cut from a sheet), and the object
+is centred on a transparent square and saved small. The results are committed, so servers never run this; a
+photo here replaces that key's 3D picture everywhere.
 """
 from pathlib import Path
 
+import numpy as np
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from PIL import Image, ImageOps
@@ -17,6 +20,35 @@ from apps.inventory.pictures import ART
 
 SIZE = 360
 TYPES = {".jpg", ".jpeg", ".png", ".webp"}
+
+
+def main_object(cut):
+    """Keep the object in the middle of the photo and what touches it; drop neighbours' slivers along the edges."""
+    from scipy import ndimage
+    arr = np.array(cut)
+    alpha = arr[..., 3]
+    labels, count = ndimage.label(alpha > 90)
+    if count < 2:
+        return cut
+    h, w = alpha.shape
+    sizes = np.array(ndimage.sum(np.ones_like(alpha), labels, range(1, count + 1)))
+    boxes = ndimage.find_objects(labels)
+
+    def centre_score(i):
+        box = boxes[i]
+        cy, cx = (box[0].start + box[0].stop) / 2 / h, (box[1].start + box[1].stop) / 2 / w
+        return sizes[i] * max(0.05, 1 - (((cx - .5) ** 2 + (cy - .5) ** 2) ** .5) * 1.6) ** 2
+    best = max(range(count), key=centre_score)
+    main = boxes[best]
+    keep = np.zeros(alpha.shape, dtype=bool)
+    for i, box in enumerate(boxes):
+        on_edge = box[1].start <= 1 or box[1].stop >= w - 1 or box[0].start <= 1 or box[0].stop >= h - 1
+        near = not (box[1].stop < main[1].start - w * .03 or box[1].start > main[1].stop + w * .03 or
+                    box[0].stop < main[0].start - h * .03 or box[0].start > main[0].stop + h * .03)
+        if i == best or (near and sizes[i] > sizes[best] * .04 and not (on_edge and sizes[i] < sizes[best] * .5)):
+            keep |= labels == i + 1
+    arr[~ndimage.binary_dilation(keep, iterations=3), 3] = 0
+    return Image.fromarray(arr)
 
 
 def tidy(cut):
@@ -39,9 +71,9 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("folder", nargs="?", default="")
         parser.add_argument("--keys", action="store_true", help="list the picture keys and exit")
-        parser.add_argument("--model", default="isnet-general-use", help="rembg model (isnet-general-use, u2net, …)")
+        parser.add_argument("--model", default="birefnet-general", help="rembg model (birefnet-general, isnet-general-use …)")
 
-    def handle(self, *args, folder="", keys=False, model="isnet-general-use", **options):
+    def handle(self, *args, folder="", keys=False, model="birefnet-general", **options):
         known = {k: words for k, _e, words in ART}
         if keys or not folder:
             for key, words in known.items():
@@ -58,17 +90,21 @@ class Command(BaseCommand):
         for path in sorted(Path(folder).expanduser().iterdir()):
             if path.suffix.lower() not in TYPES:
                 continue
-            key = path.stem.lower().replace(" ", "_").replace("-", "_")
+            name = path.stem.lower().replace(" ", "_").replace("-", "_")
+            key = name.removesuffix(".women")
             if key not in known:
                 self.stderr.write(f"{path.name}: not a picture key, skipped (see --keys)")
                 continue
             photo = ImageOps.exif_transpose(Image.open(path)).convert("RGB")
+            if max(photo.size) < 600:  # small photos: the model finds edges better on a larger copy
+                factor = 600 / max(photo.size)
+                photo = photo.resize((round(photo.width * factor), round(photo.height * factor)), Image.LANCZOS)
             photo.thumbnail((1200, 1200))
-            picture = tidy(remove(photo, session=session).convert("RGBA"))
+            picture = tidy(main_object(remove(photo, session=session).convert("RGBA")))
             if picture is None:
                 self.stderr.write(f"{path.name}: nothing found in the photo, skipped")
                 continue
-            picture.save(out / f"{key}.webp", "WEBP", quality=88, method=6)
+            picture.save(out / f"{name}.webp", "WEBP", quality=88, method=6)
             done += 1
-            self.stdout.write(f"{key} ✓")
+            self.stdout.write(f"{name} ✓")
         self.stdout.write(self.style.SUCCESS(f"{done} photos saved in {out}"))

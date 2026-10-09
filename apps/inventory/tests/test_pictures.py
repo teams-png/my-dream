@@ -30,7 +30,25 @@ def test_names_pick_sensible_pictures():
     assert pick("Mystery item", "", "saloon") == "haircut"      # then the business type
     assert pick("Mystery item") == "box"
     assert pick("Chicken biryani") == "biryani" and pick("Masala dosa") == "dosa" and pick("Fresh lime juice") == "juice"
-    assert pick("Karak chai") == "coffee" and pick("Chicken shawarma") == "shawarma"
+    assert pick("Karak chai") == "tea" and pick("Chicken shawarma") == "shawarma" and pick("Cappuccino") == "coffee"
+    assert pick("Prawn curry") == "shrimp" and pick("Fish curry") == "fish_curry" and pick("Beef curry") == "curry"
+    assert pick("Kerala porotta") == "porotta" and pick("Appam & stew") == "appam" and pick("Kerala sadya") == "sadya"
+    assert pick("Head massage") == "head_massage" and pick("Hot stone massage") == "stone" and pick("Foot massage") == "foot_massage"
+    assert pick("Clean shave") == "shave" and pick("Bridal hair") == "bridal" and pick("Body scrub") == "scrub"
+
+
+def test_ladies_salons_get_the_womens_photo(tmp_path, monkeypatch):
+    from apps.inventory import pictures
+    (tmp_path / "haircut.webp").write_bytes(b"x")
+    (tmp_path / "haircut.women.webp").write_bytes(b"x")
+    monkeypatch.setattr(pictures, "PHOTO_DIR", tmp_path)
+    pictures._photos.cache_clear()
+    try:
+        assert pictures.art_url("haircut", "saloon").endswith("photos/haircut.webp")
+        assert pictures.art_url("haircut", "beauty_parlour").endswith("photos/haircut.women.webp")
+        assert pictures.art_url("massage", "spa").endswith("cut/massage.webp")
+    finally:
+        pictures._photos.cache_clear()
 
 
 def test_sample_items_mostly_get_their_own_picture():

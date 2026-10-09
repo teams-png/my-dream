@@ -41,7 +41,7 @@ def test_new_restaurant_opens_with_the_kerala_kit():
     biryani = Product.objects.for_company(company).get(sku="KL-thalassery-chicken-biryani")
     assert biryani.category.name == "Biryani & Rice" and str(biryani.selling_price) == "18.00"
     item = biryani.restaurant_menu_item
-    assert item.image.name == "restaurant/kerala/thalassery-chicken-biryani.png" and "ബിരിയാണി" in item.description
+    assert item.image.name == "restaurant/kerala/photo-thalassery-chicken-biryani.webp" and "ബിരിയാണി" in item.description
     assert item.modifier_groups.filter(name="Spice level").exists()
     assert KitchenStation.objects.for_company(company).count() == 4
     assert DiningTable.objects.for_company(company).count() == 18

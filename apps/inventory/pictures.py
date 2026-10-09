@@ -16,12 +16,12 @@ ART = [
     # salon, beauty, spa
     ("haircut", "✂️", "haircut haircuts barber"), ("beard", "🧔", "beard moustache trim"),
     ("shave", "🪒", "shave shaving clean_shave"), ("hair_style", "💇", "styling style hairstyle blow_dry setting"),
-    ("hair_wash", "🚿", "hair_wash head_wash shampoo_wash"), ("head_massage", "💆", "head_massage champi head_spa scalp"),
+    ("hair_wash", "🚿", "hair_wash head_wash shampoo_wash"), ("head_massage", "💆", "head_massage champi head_spa hair_spa scalp"),
     ("hair_colour", "🎨", "hair_colour colour color dye highlight"), ("hair_care", "🧴", "shampoo serum conditioner hair oil lotion wax gel spa"),
     ("massage", "💆", "massage therapy body_massage"), ("facial", "🧖", "facial face skin peel cleanup"),
     ("face_mask", "🧖", "mask face_mask clay_mask"), ("nails", "💅", "manicure nail nails polish"),
-    ("pedicure", "🦶", "pedicure"), ("makeup", "💄", "makeup lipstick foundation cosmetic"),
-    ("bridal", "👰", "bridal bride wedding_hair updo"), ("threading", "🪡", "threading eyebrow waxing"),
+    ("pedicure", "🦶", "pedicure"), ("bridal", "👰", "bridal bride wedding_hair updo"),
+    ("makeup", "💄", "makeup lipstick foundation cosmetic"), ("threading", "🪡", "threading eyebrow waxing"),
     ("bath", "🛁", "bath moroccan sauna steam flower_bath"), ("candle", "🕯️", "candle"),
     ("aromatherapy", "🌸", "aromatherapy aroma"), ("stone", "🪨", "hot_stone stones"),
     ("scrub", "🧽", "scrub scrubs polishing exfoliation exfoliating"), ("body_wrap", "🌿", "wrap body_wrap mud_wrap"),
@@ -124,6 +124,10 @@ DISHES = {"biryani", "sadya", "curry", "fish_curry", "fried_rice", "dosa", "appa
           "shrimp", "tea"}
 
 
+# Words that say how an item is sold, not what it is: "Facial – 5 sessions" is a facial.
+WEAK = {"package", "fee"}
+
+
 def pick(name, category="", business_code=""):
     """The illustration key for an item: by its name, then its category, then the business type.
     The longest matching word wins ("Hair colour" -> colour, "Beard oil" -> beard); a dish name beats an
@@ -138,7 +142,7 @@ def pick(name, category="", business_code=""):
                     hit = f" {w} " in joined or f" {w}s " in joined
                 else:
                     hit = w in tokens or (len(w) > 4 and any(t.startswith(w) and len(t) - len(w) <= 2 for t in tokens))
-                score = len(w) + (10 if key in DISHES else 0)
+                score = len(w) + (10 if key in DISHES else -5 if key in WEAK else 0)
                 if hit and score > best_len:
                     best, best_len = key, score
         if best:

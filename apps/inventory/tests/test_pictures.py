@@ -34,7 +34,8 @@ def test_names_pick_sensible_pictures():
     assert pick("Prawn curry") == "shrimp" and pick("Fish curry") == "fish_curry" and pick("Beef curry") == "curry"
     assert pick("Kerala porotta") == "porotta" and pick("Appam & stew") == "appam" and pick("Kerala sadya") == "sadya"
     assert pick("Head massage") == "head_massage" and pick("Hot stone massage") == "stone" and pick("Foot massage") == "foot_massage"
-    assert pick("Clean shave") == "shave" and pick("Bridal hair") == "bridal" and pick("Body scrub") == "scrub"
+    assert pick("Clean shave") == "shave" and pick("Bridal makeup") == "bridal" and pick("Body scrub") == "scrub"
+    assert pick("Facial – 5 sessions") == "facial" and pick("Hair spa") == "head_massage"
 
 
 def test_ladies_salons_get_the_womens_photo(tmp_path, monkeypatch):

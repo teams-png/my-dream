@@ -22,6 +22,15 @@ from .models import (DiningArea, DiningTable, KitchenStation, MenuModifier, Menu
 
 log = logging.getLogger(__name__)
 ART_DIR = Path(settings.BASE_DIR) / "static" / "restaurant" / "kerala"
+PHOTO_DIR = Path(settings.BASE_DIR) / "static" / "products" / "photos"
+# Dishes that have a real photo (background removed) in static/products/photos/; the rest keep their drawing.
+PHOTOS = {
+    "appam-chicken-stew": "appam", "masala-dosa": "dosa", "kerala-porotta": "porotta", "onam-sadya": "sadya",
+    "veg-meals": "sadya", "thalassery-chicken-biryani": "biryani", "chicken-fried-rice": "fried_rice",
+    "kudampuli-fish-curry": "fish_curry", "prawns-curry": "shrimp", "beef-curry": "curry", "mutton-curry": "curry",
+    "nadan-chicken-curry": "curry", "alfaham-half": "tandoori", "chaya": "tea", "karak-chai": "tea",
+    "orange-juice": "juice", "lime-mint": "mojito",
+}
 KIT_TYPES = {"restaurant", "catering_company", "cafe_juice_shop"}
 SKU_PREFIX = "KL-"
 
@@ -54,10 +63,12 @@ def _money(company, qar):
 
 def _image_name(code):
     """One shared copy of each picture in media storage; every restaurant's dish points at it."""
-    name = f"restaurant/kerala/{code}.png"
+    photo = PHOTO_DIR / f"{PHOTOS[code]}.webp" if code in PHOTOS else None
+    source, name = (photo, f"restaurant/kerala/photo-{code}.webp") if photo and photo.exists() else \
+        (ART_DIR / f"{code}.png", f"restaurant/kerala/{code}.png")
     try:
         if not default_storage.exists(name):
-            default_storage.save(name, ContentFile((ART_DIR / f"{code}.png").read_bytes()))
+            default_storage.save(name, ContentFile(source.read_bytes()))
     except (OSError, FileNotFoundError):
         log.warning("Kerala menu picture %s is missing", code)
         return ""

@@ -241,3 +241,7 @@
 @media(prefers-reduced-motion:reduce){
   .rpos *,.pos-toast,.rp-dialog[open]{animation:none !important; transition:none !important}
 }
+
+/* real dish photos without a background (restaurant/kerala/photo-*): show the whole plate on a soft tile */
+.food-image:has(img[src*="/photo-"]),.dlg-hero:has(img[src*="/photo-"]){background:radial-gradient(circle at 50% 42%,#fff 0,#f4efe8 72%)}
+.food-image img[src*="/photo-"],.dlg-hero img[src*="/photo-"]{object-fit:contain; padding:6% 10%; box-sizing:border-box; filter:drop-shadow(0 10px 12px rgba(60,30,10,.22))}

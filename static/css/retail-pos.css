@@ -77,3 +77,4 @@ html[data-theme=dark] .cart-item .cart-qty{background:#1d2436}
 .rp-shortcuts .rp-icon-btn{background:var(--r-green-soft, #e7f6ee); border-color:transparent; color:var(--r-green, #0f7a4a)}
 .rp-shortcuts .rp-icon-btn:hover{filter:brightness(.96)}
 @media(max-width:760px){ .rp-shortcuts{padding-right:6px; gap:4px} }
+.prod-card .prod-tile img[src*="/static/products/photos/"]{padding:4% 8%; filter:drop-shadow(0 8px 12px rgba(20,40,30,.22))}

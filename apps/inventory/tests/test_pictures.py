@@ -7,10 +7,14 @@ from apps.industry import sample_catalog
 from apps.inventory.pictures import ART, pick
 
 
-def test_every_illustration_file_exists():
-    folder = Path(settings.BASE_DIR) / "static" / "products"
+def test_every_picture_file_exists_without_a_background():
+    from PIL import Image
+    folder = Path(settings.BASE_DIR) / "static" / "products" / "cut"
     missing = [key for key, _e, _w in ART if not (folder / f"{key}.webp").exists()]
     assert not missing
+    with Image.open(folder / "haircut.webp") as im:
+        assert im.mode == "RGBA" and im.getpixel((0, 0))[3] == 0  # transparent corner
+    assert (folder / "LICENSE.txt").exists()
 
 
 def test_names_pick_sensible_pictures():
@@ -25,6 +29,8 @@ def test_names_pick_sensible_pictures():
     assert pick("Something new", "Shoes") == "shoes"          # falls back to the category
     assert pick("Mystery item", "", "saloon") == "haircut"      # then the business type
     assert pick("Mystery item") == "box"
+    assert pick("Chicken biryani") == "biryani" and pick("Masala dosa") == "dosa" and pick("Fresh lime juice") == "juice"
+    assert pick("Karak chai") == "coffee" and pick("Chicken shawarma") == "shawarma"
 
 
 def test_sample_items_mostly_get_their_own_picture():

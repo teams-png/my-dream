@@ -79,3 +79,6 @@ a.stat-link::after,a.r-stat::after,a.ix-stat::after{content:"→";position:absol
 a.stat-link:hover::after,a.r-stat:hover::after,a.ix-stat:hover::after{opacity:1;transform:translateX(2px);color:var(--accent,#14532d)}
 [dir=rtl] a.stat-link::after,[dir=rtl] a.r-stat::after,[dir=rtl] a.ix-stat::after{content:"←"}
 a.stat-link:focus-visible,a.r-stat:focus-visible,a.ix-stat:focus-visible{outline:2px solid var(--accent,#14532d);outline-offset:2px}
+
+/* default product pictures (static/products/…) have no background: never crop them */
+img[src*="/static/products/"]{object-fit:contain!important;background:#f3f6f4}

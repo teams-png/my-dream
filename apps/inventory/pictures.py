@@ -1,7 +1,9 @@
 """Default pictures for products and services that have no photo of their own.
 
-Every item gets a picture: its uploaded photo, or a ready illustration picked from its name, then its category,
-then the business type. The illustrations are WebP images in static/products/ (made by `manage.py make_product_art`).
+Every item gets a picture: its uploaded photo, or a ready picture picked from its name, then its category, then the
+business type. Ready pictures have no background, so they sit on any tile:
+  static/products/photos/<key>.webp  real photos, background removed (`manage.py cutout_photos <folder>`)
+  static/products/cut/<key>.webp     3D renders, the fallback (`manage.py fetch_product_art`)
 """
 import re
 from functools import lru_cache
@@ -38,13 +40,21 @@ ART = [
     ("glass_guard", "🛡️", "tempered glass screen guard cover case"), ("repair", "🛠️", "repair service diagnosis fix labour board inspection screen_replacement"),
     ("ac", "❄️", "ac conditioner cooling gas_refill ac_service"), ("washing", "🧺", "washing laundry iron dry_clean blanket washing_machine"),
     ("microwave", "📦", "microwave oven fryer appliance"),
+    # restaurant and café (before groceries, so "Chicken biryani" is a dish, not chicken)
+    ("biryani", "🍛", "biryani curry mandi kabsa meals thali machboos"), ("dosa", "🫓", "dosa chapati parotta porotta roti naan appam idiyappam puttu"),
+    ("shawarma", "🥙", "shawarma wrap roll falafel"), ("coffee", "☕", "coffee latte cappuccino espresso karak chai"),
+    ("juice", "🥤", "juice shake mojito lime smoothie soda cola drinks drink mocktail"), ("burger", "🍔", "burger"),
+    ("pizza", "🍕", "pizza"), ("sandwich", "🥪", "sandwich club toast"), ("fries", "🍟", "fries"),
+    ("ice_cream", "🍨", "icecream ice_cream sundae falooda kulfi"), ("noodles", "🍜", "noodles soup ramen"),
+    ("salad", "🥗", "salad"), ("egg", "🥚", "egg eggs omelette"), ("dessert", "🍮", "dessert pudding payasam custard halwa"),
+    ("shrimp", "🍤", "prawn prawns shrimp"),
     # food & grocery
     ("milk", "🥛", "milk dairy yogurt laban"), ("bread", "🍞", "bread bun loaf"), ("cake", "🎂", "cake"),
     ("croissant", "🥐", "croissant pastry puff"), ("cookies", "🍪", "cookies biscuit"), ("rice", "🍚", "rice basmati grain"),
-    ("oil", "🫒", "oil olive sunflower ghee"), ("sugar", "🧂", "sugar salt spice masala"), ("tea", "🍵", "tea coffee"),
+    ("oil", "🫒", "oil olive sunflower ghee"), ("sugar", "🧂", "sugar salt spice masala"), ("tea", "🍵", "tea"),
     ("banana", "🍌", "banana"), ("apple", "🍎", "apple fruit fruits"), ("tomato", "🍅", "tomato vegetables vegetable"),
-    ("onion", "🧅", "onion garlic"), ("fish", "🐟", "fish kingfish seafood prawn"), ("chicken", "🍗", "chicken poultry"),
-    ("meat", "🥩", "mutton beef meat lamb cutting"), ("water", "💧", "water drinks drink juice"),
+    ("onion", "🧅", "onion garlic"), ("fish", "🐟", "fish kingfish seafood"), ("chicken", "🍗", "chicken poultry"),
+    ("meat", "🥩", "mutton beef meat lamb cutting"), ("water", "💧", "water"),
     ("cleaning", "🧽", "dish wash cleaning detergent household soap sanitiser sanitizer hygiene deep cleaning"),
     ("protein", "💪", "protein whey creatine supplement supplements shaker"),
     # health
@@ -97,9 +107,14 @@ def _tokens(text):
     return re.findall(r"[a-z0-9]+(?:-[a-z0-9]+)?", (text or "").lower())
 
 
+DISHES = {"biryani", "dosa", "shawarma", "coffee", "juice", "burger", "pizza", "sandwich", "fries", "ice_cream",
+          "noodles", "salad", "dessert", "shrimp"}
+
+
 def pick(name, category="", business_code=""):
     """The illustration key for an item: by its name, then its category, then the business type.
-    The longest matching word wins ("Hair colour" -> colour, "Beard oil" -> beard)."""
+    The longest matching word wins ("Hair colour" -> colour, "Beard oil" -> beard); a dish name beats an
+    ingredient ("Masala dosa" -> dosa, "Chicken biryani" -> biryani)."""
     for text in (name, category):
         tokens = _tokens(text)
         joined = f" {' '.join(tokens)} "
@@ -110,8 +125,9 @@ def pick(name, category="", business_code=""):
                     hit = f" {w} " in joined or f" {w}s " in joined
                 else:
                     hit = w in tokens or (len(w) > 4 and any(t.startswith(w) and len(t) - len(w) <= 2 for t in tokens))
-                if hit and len(w) > best_len:
-                    best, best_len = key, len(w)
+                score = len(w) + (10 if key in DISHES else 0)
+                if hit and score > best_len:
+                    best, best_len = key, score
         if best:
             return best
     return TYPE_DEFAULT.get(business_code, "box")
@@ -122,14 +138,14 @@ PHOTO_DIR = Path(__file__).resolve().parents[2] / "static" / "products" / "photo
 
 @lru_cache(maxsize=1)
 def _photos():
-    """Keys that have a real photo (static/products/photos/<key>.jpg); the illustration is the fallback."""
-    return {p.stem for p in PHOTO_DIR.glob("*.jpg")} if PHOTO_DIR.is_dir() else set()
+    """Keys that have a real photo; the 3D picture is the fallback."""
+    return {p.stem for p in PHOTO_DIR.glob("*.webp")} if PHOTO_DIR.is_dir() else set()
 
 
 def art_url(key):
     if key in _photos():
-        return static(f"products/photos/{key}.jpg")
-    return static(f"products/{key}.webp")
+        return static(f"products/photos/{key}.webp")
+    return static(f"products/cut/{key}.webp")
 
 
 def picture_url(product, business_code=""):

@@ -1,0 +1,38 @@
+{% load i18n sample_data %}{# shared by the salon, spa and beauty "service" forms: name, duration, price and a photo #}
+<style>
+.svc-photo{display:flex;align-items:center;gap:14px;margin-top:6px}
+.svc-photo img{width:96px;height:96px;object-fit:contain;border-radius:14px;background:#f3f6f4;border:1px solid var(--line);padding:4px;box-sizing:border-box}
+.svc-photo label.pick{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.svc-photo input[type=file]{position:absolute;opacity:0;width:1px;height:1px}
+.svc-hint{color:var(--ink-soft);font-size:13px;margin-top:6px}
+.svc-remove{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:400;margin-top:8px}
+</style>
+<div class="card" style="max-width:440px;">
+  <form class="stacked" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}{% if field.name != "photo" and field.name != "remove_photo" %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endif %}{% endfor %}
+    <label>{% translate "Photo" %}</label>
+    <div class="svc-photo">
+      {% if service %}{% product_picture service.product as pic %}{% endif %}
+      <img id="svcPreview" src="{% if service %}{{ pic }}{% endif %}" alt="" {% if not service %}hidden{% endif %}>
+      <label class="btn btn-secondary pick" for="{{ form.photo.id_for_label }}">📷 {% if service.product.image %}{% translate "Change photo" %}{% else %}{% translate "Upload photo" %}{% endif %}</label>
+      {{ form.photo }}
+    </div>
+    <div class="svc-hint">{% translate "A clear photo of the service. It shows on the billing screen, online booking and your website. Without one, a ready picture is used." %}</div>
+    {{ form.photo.errors }}
+    {% if service.product.image %}<label class="svc-remove">{{ form.remove_photo }} {{ form.remove_photo.label }}</label>{% endif %}
+    <button class="btn" style="margin-top:20px;" type="submit">{% translate "Save" %}</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{{ cancel_url }}">{% translate "Cancel" %}</a>
+  </form>
+</div>
+<script>
+(function(){
+  var input=document.getElementById("{{ form.photo.id_for_label }}"),img=document.getElementById("svcPreview");
+  input.accept="image/jpeg,image/png,image/webp";
+  input.addEventListener("change",function(){var f=input.files&&input.files[0];if(!f)return;img.src=URL.createObjectURL(f);img.hidden=false});
+})();
+</script>

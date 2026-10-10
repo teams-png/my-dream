@@ -741,6 +741,34 @@ msgstr "الهدف"
 msgid "more"
 msgstr "المزيد"
 
+#: templates/webapp/_service_form.html
+msgid "Photo"
+msgstr "صورة"
+
+#: templates/webapp/_service_form.html
+msgid "Change photo"
+msgstr "تغيير الصورة"
+
+#: templates/webapp/_service_form.html
+msgid "Upload photo"
+msgstr "رفع صورة"
+
+#: templates/webapp/_service_form.html
+msgid ""
+"A clear photo of the service. It shows on the billing screen, online booking"
+" and your website. Without one, a ready picture is used."
+msgstr ""
+"صورة واضحة للخدمة. تظهر في شاشة الفوترة والحجز الإلكتروني وموقعك. بدونها "
+"تُستخدم صورة جاهزة."
+
+#: templates/webapp/_service_form.html
+msgid "Save"
+msgstr "حفظ"
+
+#: templates/webapp/_service_form.html
+msgid "Cancel"
+msgstr "إلغاء"
+
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
 msgstr "الفواتير حسب الموظف – هذا الشهر"
@@ -1407,10 +1435,6 @@ msgid ""
 msgstr ""
 "الإرسال التلقائي عبر واتساب يتطلب حساب WhatsApp Business API؛ حتى ذلك الحين "
 "استخدم زر المشاركة."
-
-#: templates/webapp/automation/daily_report.html
-msgid "Save"
-msgstr "حفظ"
 
 #: templates/webapp/automation/reminders.html
 msgid "Reminders"
@@ -3269,10 +3293,6 @@ msgstr "مرتد"
 #: templates/webapp/finance/cheques.html
 msgid "Cancel this cheque?"
 msgstr "إلغاء هذا الشيك؟"
-
-#: templates/webapp/finance/cheques.html
-msgid "Cancel"
-msgstr "إلغاء"
 
 #: templates/webapp/finance/cheques.html
 msgid "No cheques here."

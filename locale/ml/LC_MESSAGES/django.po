@@ -743,6 +743,35 @@ msgstr "ലക്ഷ്യം"
 msgid "more"
 msgstr "കൂടി"
 
+#: templates/webapp/_service_form.html
+msgid "Photo"
+msgstr "ഫോട്ടോ"
+
+#: templates/webapp/_service_form.html
+msgid "Change photo"
+msgstr "ഫോട്ടോ മാറ്റുക"
+
+#: templates/webapp/_service_form.html
+msgid "Upload photo"
+msgstr "ഫോട്ടോ അപ്‌ലോഡ് ചെയ്യുക"
+
+#: templates/webapp/_service_form.html
+msgid ""
+"A clear photo of the service. It shows on the billing screen, online booking"
+" and your website. Without one, a ready picture is used."
+msgstr ""
+"സർവീസിന്റെ വ്യക്തമായ ഒരു ഫോട്ടോ. ഇത് ബില്ലിംഗ് സ്ക്രീനിലും ഓൺലൈൻ "
+"ബുക്കിംഗിലും നിങ്ങളുടെ വെബ്സൈറ്റിലും കാണിക്കും. ഫോട്ടോ ഇല്ലെങ്കിൽ ഒരു റെഡി "
+"ചിത്രം ഉപയോഗിക്കും."
+
+#: templates/webapp/_service_form.html
+msgid "Save"
+msgstr "സേവ് ചെയ്യുക"
+
+#: templates/webapp/_service_form.html
+msgid "Cancel"
+msgstr "റദ്ദാക്കുക"
+
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
 msgstr "സ്റ്റാഫ് തിരിച്ചുള്ള ബില്ലിംഗ് – ഈ മാസം"
@@ -1414,10 +1443,6 @@ msgid ""
 msgstr ""
 "സ്വയം വാട്സ്ആപ്പ് അയയ്ക്കാൻ WhatsApp Business API അക്കൗണ്ട് വേണം; അതുവരെ "
 "ഷെയർ ബട്ടൺ ഉപയോഗിക്കുക."
-
-#: templates/webapp/automation/daily_report.html
-msgid "Save"
-msgstr "സേവ് ചെയ്യുക"
 
 #: templates/webapp/automation/reminders.html
 msgid "Reminders"
@@ -3304,10 +3329,6 @@ msgstr "ബൗൺസ് ആയി"
 #: templates/webapp/finance/cheques.html
 msgid "Cancel this cheque?"
 msgstr "ഈ ചെക്ക് റദ്ദാക്കണോ?"
-
-#: templates/webapp/finance/cheques.html
-msgid "Cancel"
-msgstr "റദ്ദാക്കുക"
 
 #: templates/webapp/finance/cheques.html
 msgid "No cheques here."

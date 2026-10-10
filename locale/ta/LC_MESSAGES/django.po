@@ -744,6 +744,34 @@ msgstr "இலக்கு"
 msgid "more"
 msgstr "மேலும்"
 
+#: templates/webapp/_service_form.html
+msgid "Photo"
+msgstr "புகைப்படம்"
+
+#: templates/webapp/_service_form.html
+msgid "Change photo"
+msgstr "புகைப்படத்தை மாற்று"
+
+#: templates/webapp/_service_form.html
+msgid "Upload photo"
+msgstr "புகைப்படம் பதிவேற்று"
+
+#: templates/webapp/_service_form.html
+msgid ""
+"A clear photo of the service. It shows on the billing screen, online booking"
+" and your website. Without one, a ready picture is used."
+msgstr ""
+"சேவையின் தெளிவான புகைப்படம். இது பில்லிங் திரை, ஆன்லைன் முன்பதிவு மற்றும் "
+"உங்கள் இணையதளத்தில் தெரியும். இல்லையெனில் ஒரு தயார் படம் பயன்படும்."
+
+#: templates/webapp/_service_form.html
+msgid "Save"
+msgstr "சேமி"
+
+#: templates/webapp/_service_form.html
+msgid "Cancel"
+msgstr "ரத்து செய்"
+
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
 msgstr "ஊழியர் வாரியான பில்லிங் – இந்த மாதம்"
@@ -1419,10 +1447,6 @@ msgid ""
 msgstr ""
 "தானியங்கி WhatsApp அனுப்ப WhatsApp Business API கணக்கு தேவை; அதுவரை பகிர் "
 "பொத்தானைப் பயன்படுத்தவும்."
-
-#: templates/webapp/automation/daily_report.html
-msgid "Save"
-msgstr "சேமி"
 
 #: templates/webapp/automation/reminders.html
 msgid "Reminders"
@@ -3319,10 +3343,6 @@ msgstr "திரும்பியது"
 #: templates/webapp/finance/cheques.html
 msgid "Cancel this cheque?"
 msgstr "இந்தக் காசோலையை ரத்து செய்யவா?"
-
-#: templates/webapp/finance/cheques.html
-msgid "Cancel"
-msgstr "ரத்து செய்"
 
 #: templates/webapp/finance/cheques.html
 msgid "No cheques here."

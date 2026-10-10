@@ -741,6 +741,34 @@ msgstr "लक्ष्य"
 msgid "more"
 msgstr "थप"
 
+#: templates/webapp/_service_form.html
+msgid "Photo"
+msgstr "फोटो"
+
+#: templates/webapp/_service_form.html
+msgid "Change photo"
+msgstr "फोटो बदल्नुहोस्"
+
+#: templates/webapp/_service_form.html
+msgid "Upload photo"
+msgstr "फोटो अपलोड गर्नुहोस्"
+
+#: templates/webapp/_service_form.html
+msgid ""
+"A clear photo of the service. It shows on the billing screen, online booking"
+" and your website. Without one, a ready picture is used."
+msgstr ""
+"सेवाको स्पष्ट फोटो। यो बिलिङ स्क्रिन, अनलाइन बुकिङ र तपाईंको वेबसाइटमा "
+"देखिन्छ। फोटो नभए तयार चित्र प्रयोग हुन्छ।"
+
+#: templates/webapp/_service_form.html
+msgid "Save"
+msgstr "सेभ गर्नुहोस्"
+
+#: templates/webapp/_service_form.html
+msgid "Cancel"
+msgstr "रद्द गर्नुहोस्"
+
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
 msgstr "कर्मचारी अनुसार बिलिङ – यो महिना"
@@ -1409,10 +1437,6 @@ msgid ""
 msgstr ""
 "स्वचालित WhatsApp पठाउन WhatsApp Business API खाता चाहिन्छ; तबसम्म सेयर बटन "
 "प्रयोग गर्नुहोस्।"
-
-#: templates/webapp/automation/daily_report.html
-msgid "Save"
-msgstr "सेभ गर्नुहोस्"
 
 #: templates/webapp/automation/reminders.html
 msgid "Reminders"
@@ -3285,10 +3309,6 @@ msgstr "बाउन्स"
 #: templates/webapp/finance/cheques.html
 msgid "Cancel this cheque?"
 msgstr "यो चेक रद्द गर्ने?"
-
-#: templates/webapp/finance/cheques.html
-msgid "Cancel"
-msgstr "रद्द गर्नुहोस्"
 
 #: templates/webapp/finance/cheques.html
 msgid "No cheques here."

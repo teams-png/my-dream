@@ -742,6 +742,35 @@ msgstr "Objectif"
 msgid "more"
 msgstr "de plus"
 
+#: templates/webapp/_service_form.html
+msgid "Photo"
+msgstr "Photo"
+
+#: templates/webapp/_service_form.html
+msgid "Change photo"
+msgstr "Changer la photo"
+
+#: templates/webapp/_service_form.html
+msgid "Upload photo"
+msgstr "Ajouter une photo"
+
+#: templates/webapp/_service_form.html
+msgid ""
+"A clear photo of the service. It shows on the billing screen, online booking"
+" and your website. Without one, a ready picture is used."
+msgstr ""
+"Une photo nette de la prestation. Elle apparaît à la caisse, dans la "
+"réservation en ligne et sur votre site. Sans photo, une image prête à "
+"l'emploi est utilisée."
+
+#: templates/webapp/_service_form.html
+msgid "Save"
+msgstr "Enregistrer"
+
+#: templates/webapp/_service_form.html
+msgid "Cancel"
+msgstr "Annuler"
+
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
 msgstr "Facturation par employé – ce mois"
@@ -1416,10 +1445,6 @@ msgid ""
 msgstr ""
 "L’envoi WhatsApp automatique nécessite un compte WhatsApp Business API ; en "
 "attendant, utilisez le bouton de partage."
-
-#: templates/webapp/automation/daily_report.html
-msgid "Save"
-msgstr "Enregistrer"
 
 #: templates/webapp/automation/reminders.html
 msgid "Reminders"
@@ -3318,10 +3343,6 @@ msgstr "Rejeté"
 #: templates/webapp/finance/cheques.html
 msgid "Cancel this cheque?"
 msgstr "Annuler ce chèque ?"
-
-#: templates/webapp/finance/cheques.html
-msgid "Cancel"
-msgstr "Annuler"
 
 #: templates/webapp/finance/cheques.html
 msgid "No cheques here."

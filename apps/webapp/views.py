@@ -1230,6 +1230,19 @@ def gym_reports(request):
 
 # ================= SPA =================
 
+def _save_service_photo(service, form):
+    """The service's photo lives on its billing product, so every screen that shows the product shows it."""
+    product = service.product
+    if form.cleaned_data.get("photo"):
+        product.image = form.cleaned_data["photo"]
+    elif form.cleaned_data.get("remove_photo") and product.image:
+        product.image.delete(save=False)
+        product.image = None
+    else:
+        return
+    product.save(update_fields=["image"])
+
+
 @login_required
 def spa_service_list(request):
     company = request.company
@@ -1241,14 +1254,15 @@ def spa_service_list(request):
 def spa_service_add(request):
     company = request.company
     if request.method == "POST":
-        form = SpaServiceForm(request.POST)
+        form = SpaServiceForm(request.POST, request.FILES)
         if form.is_valid():
-            spa_services.create_spa_service(
+            service = spa_services.create_spa_service(
                 company=company,
                 name=form.cleaned_data["name"],
                 duration_minutes=form.cleaned_data["duration_minutes"],
                 price=form.cleaned_data["price"],
             )
+            _save_service_photo(service, form)
             messages.success(request, "Service added.")
             return redirect("webapp:spa_service_list")
     else:
@@ -1261,17 +1275,18 @@ def spa_service_edit(request, service_id):
     company = request.company
     obj = get_object_or_404(SpaService.objects.for_company(company), id=service_id)
     if request.method == "POST":
-        form = SpaServiceForm(request.POST)
+        form = SpaServiceForm(request.POST, request.FILES)
         if form.is_valid():
             obj.name = form.cleaned_data["name"]
             obj.duration_minutes = form.cleaned_data["duration_minutes"]
             obj.price = form.cleaned_data["price"]
             obj.save()
+            _save_service_photo(obj, form)
             messages.success(request, "Service updated.")
             return redirect("webapp:spa_service_list")
     else:
         form = SpaServiceForm(initial={"name": obj.name, "duration_minutes": obj.duration_minutes, "price": obj.price})
-    return render(request, "webapp/spa/service_form.html", {"form": form, "editing": True})
+    return render(request, "webapp/spa/service_form.html", {"form": form, "editing": True, "service": obj})
 
 
 @login_required
@@ -2169,12 +2184,13 @@ def saloon_service_list(request):
 def saloon_service_add(request):
     company = request.company
     if request.method == "POST":
-        form = SaloonServiceForm(request.POST)
+        form = SaloonServiceForm(request.POST, request.FILES)
         if form.is_valid():
-            saloon_services.create_saloon_service(
+            service = saloon_services.create_saloon_service(
                 company=company, name=form.cleaned_data["name"],
                 duration_minutes=form.cleaned_data["duration_minutes"], price=form.cleaned_data["price"],
             )
+            _save_service_photo(service, form)
             messages.success(request, "Service added.")
             return redirect("webapp:saloon_service_list")
     else:
@@ -2187,17 +2203,18 @@ def saloon_service_edit(request, service_id):
     company = request.company
     obj = get_object_or_404(SaloonService.objects.for_company(company), id=service_id)
     if request.method == "POST":
-        form = SaloonServiceForm(request.POST)
+        form = SaloonServiceForm(request.POST, request.FILES)
         if form.is_valid():
             obj.name = form.cleaned_data["name"]
             obj.duration_minutes = form.cleaned_data["duration_minutes"]
             obj.price = form.cleaned_data["price"]
             obj.save()
+            _save_service_photo(obj, form)
             messages.success(request, "Service updated.")
             return redirect("webapp:saloon_service_list")
     else:
         form = SaloonServiceForm(initial={"name": obj.name, "duration_minutes": obj.duration_minutes, "price": obj.price})
-    return render(request, "webapp/saloon/service_form.html", {"form": form, "editing": True})
+    return render(request, "webapp/saloon/service_form.html", {"form": form, "editing": True, "service": obj})
 
 
 @login_required
@@ -2413,12 +2430,13 @@ def beauty_service_list(request):
 def beauty_service_add(request):
     company = request.company
     if request.method == "POST":
-        form = BeautyServiceForm(request.POST)
+        form = BeautyServiceForm(request.POST, request.FILES)
         if form.is_valid():
-            beauty_services.create_beauty_service(
+            service = beauty_services.create_beauty_service(
                 company=company, name=form.cleaned_data["name"],
                 duration_minutes=form.cleaned_data["duration_minutes"], price=form.cleaned_data["price"],
             )
+            _save_service_photo(service, form)
             messages.success(request, "Service added.")
             return redirect("webapp:beauty_service_list")
     else:
@@ -2431,17 +2449,18 @@ def beauty_service_edit(request, service_id):
     company = request.company
     obj = get_object_or_404(BeautyService.objects.for_company(company), id=service_id)
     if request.method == "POST":
-        form = BeautyServiceForm(request.POST)
+        form = BeautyServiceForm(request.POST, request.FILES)
         if form.is_valid():
             obj.name = form.cleaned_data["name"]
             obj.duration_minutes = form.cleaned_data["duration_minutes"]
             obj.price = form.cleaned_data["price"]
             obj.save()
+            _save_service_photo(obj, form)
             messages.success(request, "Service updated.")
             return redirect("webapp:beauty_service_list")
     else:
         form = BeautyServiceForm(initial={"name": obj.name, "duration_minutes": obj.duration_minutes, "price": obj.price})
-    return render(request, "webapp/beauty_parlour/service_form.html", {"form": form, "editing": True})
+    return render(request, "webapp/beauty_parlour/service_form.html", {"form": form, "editing": True, "service": obj})
 
 
 @login_required

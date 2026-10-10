@@ -741,6 +741,34 @@ msgstr "লক্ষ্য"
 msgid "more"
 msgstr "আরও"
 
+#: templates/webapp/_service_form.html
+msgid "Photo"
+msgstr "ছবি"
+
+#: templates/webapp/_service_form.html
+msgid "Change photo"
+msgstr "ছবি বদলান"
+
+#: templates/webapp/_service_form.html
+msgid "Upload photo"
+msgstr "ছবি আপলোড করুন"
+
+#: templates/webapp/_service_form.html
+msgid ""
+"A clear photo of the service. It shows on the billing screen, online booking"
+" and your website. Without one, a ready picture is used."
+msgstr ""
+"সেবার একটি পরিষ্কার ছবি। এটি বিলিং স্ক্রিন, অনলাইন বুকিং ও আপনার ওয়েবসাইটে "
+"দেখা যায়। ছবি না থাকলে একটি তৈরি ছবি ব্যবহার হবে।"
+
+#: templates/webapp/_service_form.html
+msgid "Save"
+msgstr "সংরক্ষণ করুন"
+
+#: templates/webapp/_service_form.html
+msgid "Cancel"
+msgstr "বাতিল"
+
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
 msgstr "কর্মী অনুযায়ী বিলিং – এই মাস"
@@ -1406,10 +1434,6 @@ msgid ""
 msgstr ""
 "স্বয়ংক্রিয় WhatsApp পাঠাতে WhatsApp Business API অ্যাকাউন্ট লাগবে; ততদিন "
 "শেয়ার বোতাম ব্যবহার করুন।"
-
-#: templates/webapp/automation/daily_report.html
-msgid "Save"
-msgstr "সংরক্ষণ করুন"
 
 #: templates/webapp/automation/reminders.html
 msgid "Reminders"
@@ -3280,10 +3304,6 @@ msgstr "বাউন্স"
 #: templates/webapp/finance/cheques.html
 msgid "Cancel this cheque?"
 msgstr "এই চেক বাতিল করবেন?"
-
-#: templates/webapp/finance/cheques.html
-msgid "Cancel"
-msgstr "বাতিল"
 
 #: templates/webapp/finance/cheques.html
 msgid "No cheques here."

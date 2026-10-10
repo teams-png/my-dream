@@ -739,6 +739,32 @@ msgstr "目标"
 msgid "more"
 msgstr "更多"
 
+#: templates/webapp/_service_form.html
+msgid "Photo"
+msgstr "照片"
+
+#: templates/webapp/_service_form.html
+msgid "Change photo"
+msgstr "更换照片"
+
+#: templates/webapp/_service_form.html
+msgid "Upload photo"
+msgstr "上传照片"
+
+#: templates/webapp/_service_form.html
+msgid ""
+"A clear photo of the service. It shows on the billing screen, online booking"
+" and your website. Without one, a ready picture is used."
+msgstr "服务的清晰照片。它会显示在收银界面、在线预约和您的网站上。没有照片时使用默认图片。"
+
+#: templates/webapp/_service_form.html
+msgid "Save"
+msgstr "保存"
+
+#: templates/webapp/_service_form.html
+msgid "Cancel"
+msgstr "取消"
+
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
 msgstr "按员工统计开单 – 本月"
@@ -1397,10 +1423,6 @@ msgid ""
 "Automatic WhatsApp sending needs a WhatsApp Business API account; until then"
 " use the share button."
 msgstr "自动发送 WhatsApp 需要 WhatsApp Business API 账户；在此之前请使用分享按钮。"
-
-#: templates/webapp/automation/daily_report.html
-msgid "Save"
-msgstr "保存"
 
 #: templates/webapp/automation/reminders.html
 msgid "Reminders"
@@ -3232,10 +3254,6 @@ msgstr "退票"
 #: templates/webapp/finance/cheques.html
 msgid "Cancel this cheque?"
 msgstr "取消这张支票？"
-
-#: templates/webapp/finance/cheques.html
-msgid "Cancel"
-msgstr "取消"
 
 #: templates/webapp/finance/cheques.html
 msgid "No cheques here."

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load sample_data %}
 {% block title %}Services{% endblock %}
 {% block heading %}Spa services{% endblock %}
 {% block content %}
@@ -8,7 +9,7 @@
   <tr><th>Name</th><th>Duration</th><th>Price</th><th></th></tr>
   {% for s in services %}
   <tr>
-    <td>{{ s.name }}</td><td>{{ s.duration_minutes }} min</td><td>{{ s.price }}</td>
+    <td style="display:flex;align-items:center;gap:10px">{% product_picture s.product as pic %}<img src="{{ pic }}" alt="" loading="lazy" style="width:44px;height:44px;border-radius:10px;object-fit:contain;background:#f3f6f4">{{ s.name }}</td><td>{{ s.duration_minutes }} min</td><td>{{ s.price }}</td>
     <td>
       <a class="btn btn-secondary" href="{% url 'webapp:spa_service_edit' s.id %}">Edit</a>
       <a class="btn btn-secondary" href="{% url 'webapp:spa_service_delete' s.id %}">Delete</a>

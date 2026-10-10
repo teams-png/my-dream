@@ -494,7 +494,21 @@ class NewCustomerQuickForm(forms.ModelForm):
         model = Customer
         fields = ["name", "phone", "email"]
 
-class SpaServiceForm(forms.Form):
+class ServicePhotoFields(forms.Form):
+    """Optional photo for a salon / spa / beauty service; it shows on the billing screen, booking page and website."""
+    photo = forms.ImageField(required=False, label="Photo",
+                             help_text="JPG, PNG or WebP. Leave empty to keep the ready picture.")
+    remove_photo = forms.BooleanField(required=False, label="Use the ready picture instead of my photo")
+
+    def clean_photo(self):
+        photo = self.cleaned_data.get("photo")
+        if photo:
+            from apps.common.validators import validate_upload_file
+            validate_upload_file(photo)
+        return photo
+
+
+class SpaServiceForm(ServicePhotoFields):
     name = forms.CharField(max_length=150)
     duration_minutes = forms.IntegerField(min_value=1)
     price = forms.DecimalField(max_digits=10, decimal_places=2)
@@ -769,7 +783,7 @@ class ServiceTicketForm(forms.Form):
 
 # ---------------- Saloon ----------------
 
-class SaloonServiceForm(forms.Form):
+class SaloonServiceForm(ServicePhotoFields):
     name = forms.CharField(max_length=150)
     duration_minutes = forms.IntegerField(min_value=1)
     price = forms.DecimalField(max_digits=10, decimal_places=2)
@@ -872,7 +886,7 @@ class SaloonPackagePurchaseForm(forms.Form):
 
 # ---------------- Beauty Parlour ----------------
 
-class BeautyServiceForm(forms.Form):
+class BeautyServiceForm(ServicePhotoFields):
     name = forms.CharField(max_length=150)
     duration_minutes = forms.IntegerField(min_value=1)
     price = forms.DecimalField(max_digits=10, decimal_places=2)

@@ -742,6 +742,34 @@ msgstr "Target"
 msgid "more"
 msgstr "pa"
 
+#: templates/webapp/_service_form.html
+msgid "Photo"
+msgstr "Larawan"
+
+#: templates/webapp/_service_form.html
+msgid "Change photo"
+msgstr "Palitan ang larawan"
+
+#: templates/webapp/_service_form.html
+msgid "Upload photo"
+msgstr "Mag-upload ng larawan"
+
+#: templates/webapp/_service_form.html
+msgid ""
+"A clear photo of the service. It shows on the billing screen, online booking"
+" and your website. Without one, a ready picture is used."
+msgstr ""
+"Malinaw na larawan ng serbisyo. Lalabas ito sa billing screen, online "
+"booking at sa iyong website. Kung wala, isang handang larawan ang gagamitin."
+
+#: templates/webapp/_service_form.html
+msgid "Save"
+msgstr "I-save"
+
+#: templates/webapp/_service_form.html
+msgid "Cancel"
+msgstr "Kanselahin"
+
 #: templates/webapp/_staff_billing.html
 msgid "Billing by staff – this month"
 msgstr "Billing ayon sa staff – ngayong buwan"
@@ -1414,10 +1442,6 @@ msgid ""
 msgstr ""
 "Kailangan ng WhatsApp Business API account para sa awtomatikong pagpapadala;"
 " habang wala pa, gamitin ang share button."
-
-#: templates/webapp/automation/daily_report.html
-msgid "Save"
-msgstr "I-save"
 
 #: templates/webapp/automation/reminders.html
 msgid "Reminders"
@@ -3311,10 +3335,6 @@ msgstr "Tumalbog"
 #: templates/webapp/finance/cheques.html
 msgid "Cancel this cheque?"
 msgstr "Kanselahin ang tsekeng ito?"
-
-#: templates/webapp/finance/cheques.html
-msgid "Cancel"
-msgstr "Kanselahin"
 
 #: templates/webapp/finance/cheques.html
 msgid "No cheques here."

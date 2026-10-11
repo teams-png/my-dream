@@ -162,6 +162,14 @@ msgid "Team orders"
 msgstr "球队订单"
 
 #: templates/base.html
+msgid "Rentals"
+msgstr "租赁"
+
+#: templates/base.html
+msgid "Size charts"
+msgstr "尺码表"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "销售"
 
@@ -192,6 +200,10 @@ msgstr "药店"
 #: templates/base.html
 msgid "Batches & expiry"
 msgstr "批次与有效期"
+
+#: templates/base.html
+msgid "Refills"
+msgstr "定期补货"
 
 #: templates/base.html
 msgid "Protein Shop"
@@ -718,6 +730,10 @@ msgstr "加餐"
 #: templates/webapp/_industry_nav.html
 msgid "Plans & menu"
 msgstr "套餐与菜单"
+
+#: templates/webapp/_industry_nav.html
+msgid "Website orders"
+msgstr "网站订单"
 
 #: templates/webapp/_industry_nav.html
 msgid "My website"
@@ -7787,6 +7803,85 @@ msgstr "支付给"
 msgid "Add cost"
 msgstr "添加成本"
 
+#: templates/webapp/refills/list.html
+msgid "Refill subscriptions"
+msgstr "定期补货订阅"
+
+#: templates/webapp/refills/list.html
+msgid ""
+"Customers who buy the same item every few weeks. See who is due, remind them"
+" on WhatsApp and make the bill in one tap — the next date moves on by "
+"itself."
+msgstr "每隔几周购买同一商品的顾客。查看谁到期了，通过 WhatsApp 提醒，一键开单——下次日期会自动顺延。"
+
+#: templates/webapp/refills/list.html
+msgid "Due now"
+msgstr "现在到期"
+
+#: templates/webapp/refills/list.html
+msgid "All active"
+msgstr "全部进行中"
+
+#: templates/webapp/refills/list.html
+msgid "Paused"
+msgstr "已暂停"
+
+#: templates/webapp/refills/list.html
+msgid "Due today"
+msgstr "今天到期"
+
+#: templates/webapp/refills/list.html
+msgid "Make bill"
+msgstr "开单"
+
+#: templates/webapp/refills/list.html
+msgid "Skip"
+msgstr "跳过"
+
+#: templates/webapp/refills/list.html
+msgid "Remove this refill?"
+msgstr "删除这个补货订阅？"
+
+#: templates/webapp/refills/list.html
+msgid "No refills due in the next 3 days."
+msgstr "未来 3 天内没有到期的补货。"
+
+#: templates/webapp/refills/list.html
+msgid "No refills yet. Add your regular customers on the right."
+msgstr "还没有补货订阅。请在右侧添加常客。"
+
+#: templates/webapp/refills/list.html
+msgid "New refill"
+msgstr "新建补货"
+
+#: templates/webapp/refills/list.html
+msgid "Quantity"
+msgstr "数量"
+
+#: templates/webapp/refills/list.html
+msgid "Every (days)"
+msgstr "每隔（天）"
+
+#: templates/webapp/refills/list.html
+msgid "First refill on"
+msgstr "首次补货日期"
+
+#: templates/webapp/refills/list.html
+msgid "Subscriber discount %"
+msgstr "订阅折扣 %"
+
+#: templates/webapp/refills/list.html
+msgid "Deliver to the customer"
+msgstr "送货给顾客"
+
+#: templates/webapp/refills/list.html
+msgid "e.g. chocolate flavour, call before delivery"
+msgstr "例如 巧克力口味，送货前请来电"
+
+#: templates/webapp/refills/list.html
+msgid "Add refill"
+msgstr "添加补货"
+
 #: templates/webapp/reminders.html
 msgid ""
 "Customers who have not come back for a while, and memberships about to end. "
@@ -8140,10 +8235,6 @@ msgid "Filter kitchen orders"
 msgstr "筛选厨房订单"
 
 #: templates/webapp/restaurant/kitchen.html
-msgid "All active"
-msgstr "全部进行中"
-
-#: templates/webapp/restaurant/kitchen.html
 msgid "Waiting"
 msgstr "等待中"
 
@@ -8438,10 +8529,6 @@ msgstr "选择加料和数量。"
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Kitchen note"
 msgstr "厨房备注"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Quantity"
-msgstr "数量"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Add to Order"
@@ -9462,6 +9549,112 @@ msgstr "为您的业务类型添加示例商品、服务和客户，了解系统
 msgid "Add sample data"
 msgstr "添加示例数据"
 
+#: templates/webapp/shop_orders/inbox.html
+msgid "Website shop is off"
+msgstr "网站商店已关闭"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Switch it on below to show “+ Add” and a cart on your website."
+msgstr "在下方开启，即可在网站上显示“+ 添加”和购物车。"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Customers can see your products, but cannot order."
+msgstr "顾客可以看到商品，但无法下单。"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
+"Confirm each new order, send it, then make the bill. This page beeps when a "
+"new order comes."
+msgstr "确认每个新订单，发货，然后开单。有新订单时此页面会提示音。"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
+"Your BookPilot website is not switched on yet. Ask your BookPilot team to "
+"switch on the Website add-on — or put the cart on your own website with the "
+"Website kit."
+msgstr ""
+"您的 BookPilot 网站尚未开启。请联系 BookPilot 团队开启网站功能——或用 Website kit 把购物车放到您自己的网站上。"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "WhatsApp customer"
+msgstr "WhatsApp 联系顾客"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Share / pay link"
+msgstr "分享 / 付款链接"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Out for delivery"
+msgstr "配送中"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Make bill (paid / delivered)"
+msgstr "开单（已付款 / 已送达）"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Close this order without a bill?"
+msgstr "不开单直接关闭此订单？"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Reason, e.g. out of stock"
+msgstr "原因，例如 缺货"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No open website orders."
+msgstr "没有未完成的网站订单。"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No website orders yet."
+msgstr "还没有网站订单。"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Online shop settings"
+msgstr "网店设置"
+
+#: templates/webapp/site/_base.html
+msgid "Preview"
+msgstr "预览"
+
+#: templates/webapp/site/_base.html
+msgid "not public yet"
+msgstr "尚未公开"
+
+#: templates/webapp/site/_base.html
+msgid "Home"
+msgstr "首页"
+
+#: templates/webapp/site/_base.html
+msgid "About"
+msgstr "关于我们"
+
+#: templates/webapp/site/_base.html
+msgid "Book now"
+msgstr "立即预订"
+
+#: templates/webapp/site/_base.html
+msgid "Call us"
+msgstr "致电我们"
+
+#: templates/webapp/site/_base.html
+msgid "Menu"
+msgstr "菜单"
+
+#: templates/webapp/site/_base.html
+msgid "Follow us"
+msgstr "关注我们"
+
+#: templates/webapp/site/_base.html
+msgid "VAT"
+msgstr "增值税"
+
+#: templates/webapp/site/_card.html
+msgid "+ Add"
+msgstr "+ 添加"
+
+#: templates/webapp/site/_card.html
+msgid "Veg"
+msgstr "素"
+
 #: templates/webapp/site/editor.html
 msgid "Website kit"
 msgstr "网站套件"
@@ -9489,6 +9682,74 @@ msgid ""
 msgstr "菜单、价格、优惠、电话和地址直接来自 BookPilot — 在那里修改，网站即会更新。"
 
 #: templates/webapp/site/editor.html
+msgid "Online shop"
+msgstr "网店"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website has a Shop page with every product, a page for each product, a "
+"cart and checkout. Orders arrive in Website orders; stock and prices come "
+"from BookPilot."
+msgstr "您的网站有包含全部商品的商店页、每个商品的详情页、购物车和结账。订单进入“网站订单”；库存和价格来自 BookPilot。"
+
+#: templates/webapp/site/editor.html
+msgid "Website orders & shop settings"
+msgstr "网站订单和商店设置"
+
+#: templates/webapp/site/editor.html
+msgid "Switch on the cart"
+msgstr "开启购物车"
+
+#: templates/webapp/site/editor.html
+msgid "Products & photos"
+msgstr "商品和照片"
+
+#: templates/webapp/site/editor.html
+msgid "Use your own domain (e.g. from Hostinger)"
+msgstr "使用您自己的域名（例如来自 Hostinger）"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Buy the domain (Hostinger, GoDaddy, Namecheap…). You only need the domain — "
+"no hosting plan."
+msgstr "购买域名（Hostinger、GoDaddy、Namecheap…）。只需要域名——不需要主机套餐。"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"In Hostinger: hPanel → Domains → your domain → DNS / Nameservers → Manage "
+"DNS records."
+msgstr ""
+"在 Hostinger：hPanel → Domains → 您的域名 → DNS / Nameservers → Manage DNS "
+"records。"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Delete the old A and CNAME records for “@” and “www” (the parking page)."
+msgstr "删除“@”和“www”的旧 A 记录和 CNAME 记录（停放页面）。"
+
+#: templates/webapp/site/editor.html
+msgid "Add a CNAME record:"
+msgstr "添加一条 CNAME 记录："
+
+#: templates/webapp/site/editor.html
+msgid "Add an A record:"
+msgstr "添加一条 A 记录："
+
+#: templates/webapp/site/editor.html
+msgid "(so the address without www also works)"
+msgstr "（这样不带 www 的地址也能访问）"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Send the domain name to your BookPilot team. We connect it and switch on the"
+" free SSL (https). It usually works within 1–24 hours."
+msgstr "把域名发给 BookPilot 团队。我们会完成连接并开启免费 SSL（https）。通常 1–24 小时内生效。"
+
+#: templates/webapp/site/editor.html
+msgid "Until then your website works at"
+msgstr "在此之前，您的网站地址是"
+
+#: templates/webapp/site/editor.html
 msgid "Design"
 msgstr "设计"
 
@@ -9507,40 +9768,89 @@ msgid "Sections"
 msgstr "版块"
 
 #: templates/webapp/site/editor.html
-msgid "Preview"
-msgstr "预览"
+msgid ""
+"Make the website look like your own design. Your CSS is added after the "
+"theme, so it wins. Useful classes: .hero, .section, .card, .btn, .price, "
+"header.top, footer, .prod (product page), .shop-bar, .chips. Colours: --p "
+"(main), --a (highlight)."
+msgstr ""
+"让网站呈现您自己的设计。您的 CSS 在主题之后加载，因此优先生效。常用 class：.hero, .section, .card, .btn, "
+".price, header.top, footer, .prod（商品页）, .shop-bar, .chips。颜色：--p（主色）, "
+"--a（强调色）。"
+
+#: templates/webapp/site/editor.html
+msgid "Pages"
+msgstr "页面"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Add more pages to your website: About us, Warranty, Delivery & returns, "
+"Terms…"
+msgstr "为网站添加更多页面：关于我们、保修、配送与退货、条款…"
+
+#: templates/webapp/site/editor.html
+msgid "hidden"
+msgstr "已隐藏"
+
+#: templates/webapp/site/editor.html
+msgid "footer"
+msgstr "页脚"
+
+#: templates/webapp/site/editor.html
+msgid "Page title"
+msgstr "页面标题"
+
+#: templates/webapp/site/editor.html
+msgid "Web address"
+msgstr "网址"
+
+#: templates/webapp/site/editor.html
+msgid "Page text"
+msgstr "页面内容"
+
+#: templates/webapp/site/editor.html
+msgid "Show in the top menu (off: footer only)"
+msgstr "显示在顶部菜单（关闭：仅在页脚）"
+
+#: templates/webapp/site/editor.html
+msgid "Page is live"
+msgstr "页面已发布"
+
+#: templates/webapp/site/editor.html
+msgid "Save page"
+msgstr "保存页面"
+
+#: templates/webapp/site/editor.html
+msgid "Delete this page?"
+msgstr "删除此页面？"
+
+#: templates/webapp/site/editor.html
+msgid "New page"
+msgstr "新页面"
+
+#: templates/webapp/site/editor.html
+msgid "Add page"
+msgstr "添加页面"
 
 #: templates/webapp/site/editor.html
 msgid "Open full page"
 msgstr "打开完整页面"
 
 #: templates/webapp/site/page.html
-msgid "not public yet"
-msgstr "尚未公开"
-
-#: templates/webapp/site/page.html
-msgid "About"
-msgstr "关于我们"
-
-#: templates/webapp/site/page.html
-msgid "Book now"
-msgstr "立即预订"
-
-#: templates/webapp/site/page.html
-msgid "Call us"
-msgstr "致电我们"
+msgid "Shop now"
+msgstr "立即选购"
 
 #: templates/webapp/site/page.html
 msgid "Available now"
 msgstr "现在有售"
 
 #: templates/webapp/site/page.html
-msgid "+ Add"
-msgstr "+ 添加"
+msgid "Popular products"
+msgstr "热门商品"
 
 #: templates/webapp/site/page.html
-msgid "Veg"
-msgstr "素"
+msgid "See all products"
+msgstr "查看全部商品"
 
 #: templates/webapp/site/page.html
 msgid "Send your request — we confirm by phone or WhatsApp."
@@ -9570,13 +9880,93 @@ msgstr "联系我们"
 msgid "We usually reply within the day."
 msgstr "我们通常会在当天回复。"
 
-#: templates/webapp/site/page.html
-msgid "Follow us"
-msgstr "关注我们"
+#: templates/webapp/site/product.html
+msgid "Out of stock"
+msgstr "缺货"
 
-#: templates/webapp/site/page.html
-msgid "VAT"
-msgstr "增值税"
+#: templates/webapp/site/product.html
+msgid "Options"
+msgstr "选项"
+
+#: templates/webapp/site/product.html
+msgid "Add to cart"
+msgstr "加入购物车"
+
+#: templates/webapp/site/product.html
+msgid "Ask on WhatsApp"
+msgstr "WhatsApp 咨询"
+
+#: templates/webapp/site/product.html
+msgid "Size chart"
+msgstr "尺码表"
+
+#: templates/webapp/site/product.html
+msgid "You may also like"
+msgstr "猜你喜欢"
+
+#: templates/webapp/site/shop.html
+msgid "All products"
+msgstr "全部商品"
+
+#: templates/webapp/site/shop.html
+msgid "Search products…"
+msgstr "搜索商品…"
+
+#: templates/webapp/site/shop.html
+msgid "Sort"
+msgstr "排序"
+
+#: templates/webapp/site/shop.html
+msgid "Sort: name"
+msgstr "排序：名称"
+
+#: templates/webapp/site/shop.html
+msgid "Price: low to high"
+msgstr "价格：从低到高"
+
+#: templates/webapp/site/shop.html
+msgid "Price: high to low"
+msgstr "价格：从高到低"
+
+#: templates/webapp/site/shop.html
+msgid "Newest"
+msgstr "最新"
+
+#: templates/webapp/site/shop.html
+msgid "No products found."
+msgstr "未找到商品。"
+
+#: templates/webapp/site/shop.html
+msgid "Previous"
+msgstr "上一页"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Sorry, the shop could not complete this order."
+msgstr "抱歉，商店无法完成此订单。"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Confirmed"
+msgstr "已确认"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "On the way"
+msgstr "配送中"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "The shop has your order and will confirm it shortly."
+msgstr "商店已收到您的订单，将尽快确认。"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Your order is confirmed and being packed."
+msgstr "您的订单已确认，正在打包。"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Your order is on its way."
+msgstr "您的订单正在配送中。"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Thank you for shopping with us!"
+msgstr "感谢您的购买！"
 
 #: templates/webapp/sports_shop/product_list.html
 msgid "Import from Excel"
@@ -9605,6 +9995,210 @@ msgstr "尺码 / 颜色"
 #: templates/webapp/sports_shop/product_list.html
 msgid "No products yet."
 msgstr "暂无商品。"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Rental"
+msgstr "租赁"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Print agreement"
+msgstr "打印协议"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Remind on WhatsApp"
+msgstr "WhatsApp 提醒"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Rental agreement"
+msgstr "租赁协议"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "ID"
+msgstr "证件"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Per day"
+msgstr "每天"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Return by"
+msgstr "归还日期"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Late"
+msgstr "已逾期"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Deposit"
+msgstr "押金"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "day(s)"
+msgstr "天"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid ""
+"The customer returns the items in the same condition. Late days are charged "
+"at the daily rate; damage or missing parts are charged from the deposit."
+msgstr "顾客须按原样归还物品。逾期天数按日租金收费；损坏或缺失部件从押金中扣除。"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Items returned"
+msgstr "物品已归还"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Damage / missing parts charge"
+msgstr "损坏 / 缺件费用"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Return & make bill"
+msgstr "归还并开单"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Cancel this rental without a bill?"
+msgstr "不开单直接取消此租赁？"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Cancel rental"
+msgstr "取消租赁"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid ""
+"The bill is paid from the deposit first; the screen tells you what to give "
+"back or collect."
+msgstr "账单先从押金中支付；屏幕会显示需退还或需收取的金额。"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "New rental"
+msgstr "新建租赁"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Add your rental items first."
+msgstr "请先添加租赁物品。"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Rental items"
+msgstr "租赁物品"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "ID kept (QID / passport no.)"
+msgstr "留存证件（QID / 护照号）"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "day"
+msgstr "天"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "deposit"
+msgstr "押金"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "free"
+msgstr "空闲"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Deposit taken"
+msgstr "已收押金"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Auto from items"
+msgstr "按物品自动计算"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "e.g. helmet included, small scratch on frame"
+msgstr "例如 含头盔，车架有小划痕"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Save rental"
+msgstr "保存租赁"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Equipment rental"
+msgstr "器材租赁"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Out now"
+msgstr "当前租出"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "late"
+msgstr "逾期"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Nothing is out on rent."
+msgstr "当前没有租出的物品。"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Rate per day"
+msgstr "日租金"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Deposit per piece"
+msgstr "每件押金"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "How many you own"
+msgstr "拥有数量"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Yes"
+msgstr "是"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "No"
+msgstr "否"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Add the gear you rent out: bicycles, kayaks, rackets, tents…"
+msgstr "添加您出租的器材：自行车、皮划艇、球拍、帐篷…"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "New item"
+msgstr "新物品"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "e.g. Mountain bike"
+msgstr "例如 山地自行车"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid ""
+"A size guide per category (jerseys, shoes, gloves…). Staff can show it at "
+"the counter, and your website shows it on every product of that category."
+msgstr "每个分类一张尺码指南（球衣、鞋、手套…）。店员可在柜台展示，网站也会在该分类的每个商品上显示。"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "No category"
+msgstr "无分类"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "Delete this size chart?"
+msgstr "删除此尺码表？"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "No size charts yet."
+msgstr "还没有尺码表。"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "New size chart"
+msgstr "新建尺码表"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "e.g. Football jerseys"
+msgstr "例如 足球球衣"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid ""
+"One row per line, columns separated by commas. The first line is the "
+"heading. You can paste from Excel."
+msgstr "每行一条，列用逗号分隔。第一行是表头。可以从 Excel 粘贴。"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "e.g. Between two sizes? Take the bigger one."
+msgstr "例如 介于两个尺码之间？选大一号。"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "Add size chart"
+msgstr "添加尺码表"
 
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Print list for the printer"
@@ -9753,6 +10347,20 @@ msgid "No batches here."
 msgstr "这里没有批次。"
 
 #: templates/webapp/stock/batches.html
+msgid "Near-expiry discount"
+msgstr "临期折扣"
+
+#: templates/webapp/stock/batches.html
+msgid ""
+"Sell old stock before it expires: while an item's next batch expires soon, "
+"billing gives this discount automatically (POS and invoices)."
+msgstr "在过期前卖掉旧库存：当某商品下一批次即将过期时，开单会自动给出此折扣（收银和发票）。"
+
+#: templates/webapp/stock/batches.html
+msgid "When it expires within (days)"
+msgstr "在多少天内过期时"
+
+#: templates/webapp/stock/batches.html
 msgid "Batches you entered before this update are kept on the older screen."
 msgstr "本次更新前录入的批次保留在旧页面中。"
 
@@ -9897,10 +10505,6 @@ msgstr "库存价值（成本）"
 #: templates/webapp/stock/home.html
 msgid "Running low"
 msgstr "库存偏低"
-
-#: templates/webapp/stock/home.html
-msgid "Out of stock"
-msgstr "缺货"
 
 #: templates/webapp/stock/home.html
 msgid "Batches expiring (30 days)"
@@ -10064,6 +10668,26 @@ msgid ""
 "own business."
 msgstr "演示中已关闭此功能。开始免费试用，即可在您自己的业务中使用。"
 
+#: apps/industry/expiry_deals.py
+msgid "Near expiry −%(pct)s%% (%(days)s days left)"
+msgstr "临期 −%(pct)s%%（剩 %(days)s 天）"
+
+#: apps/industry/expiry_deals.py
+msgid ""
+"Hi %(name)s, your %(item)s refill from %(shop)s is due on %(date)s. Reply "
+"YES and we will keep it ready%(delivery)s."
+msgstr ""
+"%(name)s 您好，您在 %(shop)s 的 %(item)s 补货将于 %(date)s 到期。回复 "
+"YES，我们会为您备好%(delivery)s。"
+
+#: apps/industry/expiry_deals.py
+msgid " for delivery"
+msgstr "并送货"
+
+#: apps/industry/models.py
+msgid "Ready / on the way"
+msgstr "已备好 / 配送中"
+
 #: apps/industry/reminders.py
 msgid ""
 "Hi %(name)s, it has been a while since your last visit to %(shop)s. Shall we"
@@ -10130,6 +10754,100 @@ msgstr "会员已于 %(n)s 天前到期"
 msgid "Last visit %(n)s days ago"
 msgstr "上次到访：%(n)s 天前"
 
+#: apps/industry/shop_orders.py
+msgid "Enter a phone number we can call."
+msgstr "请输入我们可以联系到您的电话号码。"
+
+#: apps/industry/shop_orders.py
+msgid "Online ordering is switched off."
+msgstr "在线点餐已关闭。"
+
+#: apps/industry/shop_orders.py
+msgid "Sorry, we are not taking online orders right now. Please call us."
+msgstr "抱歉，我们目前不接受在线订单。请致电我们。"
+
+#: apps/industry/shop_orders.py
+msgid "Enter your name."
+msgstr "请输入您的姓名。"
+
+#: apps/industry/shop_orders.py
+msgid "This order type is not available."
+msgstr "此订单类型不可用。"
+
+#: apps/industry/shop_orders.py
+msgid "Enter the delivery address."
+msgstr "请输入送餐地址。"
+
+#: apps/industry/shop_orders.py
+msgid "Your cart is empty."
+msgstr "您的购物车是空的。"
+
+#: apps/industry/shop_orders.py
+msgid "Too many items in one order. Please call us for big orders."
+msgstr "单个订单的商品过多。大额订单请致电我们。"
+
+#: apps/industry/shop_orders.py
+msgid "Your cart is not valid. Please refresh the page."
+msgstr "您的购物车无效。请刷新页面。"
+
+#: apps/industry/shop_orders.py
+msgid "You can order 1 to %(n)s of each item."
+msgstr "每件商品可订购 1 至 %(n)s 份。"
+
+#: apps/industry/shop_orders.py
+msgid ""
+"An item in your cart is no longer sold online. Please refresh the page."
+msgstr "购物车中有商品已不再在线销售。请刷新页面。"
+
+#: apps/industry/shop_orders.py
+msgid "Sorry, %(item)s is out of stock."
+msgstr "抱歉，%(item)s 已售罄。"
+
+#: apps/industry/shop_orders.py
+msgid "Only %(n)s of %(item)s left."
+msgstr "%(item)s 仅剩 %(n)s 件。"
+
+#: apps/industry/shop_orders.py
+msgid "The minimum order for delivery is %(amount)s."
+msgstr "外送最低订单金额为 %(amount)s。"
+
+#: apps/industry/shop_orders.py
+msgid "This order was already handled."
+msgstr "此订单已被处理。"
+
+#: apps/industry/shop_orders.py
+msgid "The shop could not take this order."
+msgstr "商店无法接受此订单。"
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, we received your order %(ref)s at %(shop)s. We will confirm it "
+"shortly."
+msgstr "%(name)s 您好，%(shop)s 已收到您的订单 %(ref)s，我们会尽快确认。"
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, your order %(ref)s at %(shop)s is confirmed. Total %(total)s."
+msgstr "%(name)s 您好，您在 %(shop)s 的订单 %(ref)s 已确认。合计 %(total)s。"
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, your order %(ref)s from %(shop)s is on the way."
+msgstr "%(name)s 您好，您在 %(shop)s 的订单 %(ref)s 正在配送中。"
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, your order %(ref)s is ready for pickup at %(shop)s."
+msgstr "%(name)s 您好，您的订单 %(ref)s 已可在 %(shop)s 自取。"
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, sorry — we could not complete your order %(ref)s at %(shop)s. "
+"%(reason)s"
+msgstr "%(name)s 您好，抱歉——我们无法完成您在 %(shop)s 的订单 %(ref)s。%(reason)s"
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, thank you for shopping at %(shop)s!"
+msgstr "%(name)s 您好，感谢您在 %(shop)s 购物！"
+
 #: apps/industry/site_builder.py
 msgid "Our menu"
 msgstr "我们的菜单"
@@ -10149,10 +10867,6 @@ msgstr "课程"
 #: apps/industry/site_builder.py
 msgid "hour"
 msgstr "小时"
-
-#: apps/industry/site_builder.py
-msgid "day"
-msgstr "天"
 
 #: apps/industry/site_builder.py
 msgid "night"
@@ -10177,6 +10891,14 @@ msgstr "学期"
 #: apps/industry/site_builder.py
 msgid "Our products"
 msgstr "我们的产品"
+
+#: apps/industry/site_builder.py
+msgid "Colour"
+msgstr "颜色"
+
+#: apps/industry/site_builder.py
+msgid "Material"
+msgstr "材质"
 
 #: apps/notifications/rules.py
 msgid "Customer bills due"
@@ -10350,46 +11072,6 @@ msgid "Accepted"
 msgstr "已接受"
 
 #: apps/verticals/restaurant/online_orders.py
-msgid "Enter a phone number we can call."
-msgstr "请输入我们可以联系到您的电话号码。"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Online ordering is switched off."
-msgstr "在线点餐已关闭。"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Sorry, we are not taking online orders right now. Please call us."
-msgstr "抱歉，我们目前不接受在线订单。请致电我们。"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Enter your name."
-msgstr "请输入您的姓名。"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "This order type is not available."
-msgstr "此订单类型不可用。"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Enter the delivery address."
-msgstr "请输入送餐地址。"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Your cart is empty."
-msgstr "您的购物车是空的。"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Too many items in one order. Please call us for big orders."
-msgstr "单个订单的商品过多。大额订单请致电我们。"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Your cart is not valid. Please refresh the page."
-msgstr "您的购物车无效。请刷新页面。"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "You can order 1 to %(n)s of each item."
-msgstr "每件商品可订购 1 至 %(n)s 份。"
-
-#: apps/verticals/restaurant/online_orders.py
 msgid ""
 "An item in your cart is no longer on the menu. Please refresh the page."
 msgstr "您购物车中的某件商品已不在菜单上。请刷新页面。"
@@ -10397,14 +11079,6 @@ msgstr "您购物车中的某件商品已不在菜单上。请刷新页面。"
 #: apps/verticals/restaurant/online_orders.py
 msgid "Sorry, %(item)s is not available online right now."
 msgstr "抱歉，%(item)s 目前不提供在线订购。"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "The minimum order for delivery is %(amount)s."
-msgstr "外送最低订单金额为 %(amount)s。"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "This order was already handled."
-msgstr "此订单已被处理。"
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -10775,14 +11449,6 @@ msgstr "总工作经验（年）"
 #: apps/webapp/careers_views.py
 msgid "Gulf experience?"
 msgstr "有海湾地区工作经验？"
-
-#: apps/webapp/careers_views.py
-msgid "Yes"
-msgstr "是"
-
-#: apps/webapp/careers_views.py
-msgid "No"
-msgstr "否"
 
 #: apps/webapp/careers_views.py
 msgid "Highest qualification"
@@ -11242,6 +11908,14 @@ msgstr "售价"
 #: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "补货点"
+
+#: apps/webapp/forms.py
+msgid "Description for the website"
+msgstr "网站描述"
+
+#: apps/webapp/forms.py
+msgid "Shown on the product page of your online shop."
+msgstr "显示在网店的商品页上。"
 
 #: apps/webapp/forms.py
 msgid "…or new client name"
@@ -11908,10 +12582,6 @@ msgid "Table reservation"
 msgstr "餐桌预订"
 
 #: apps/webapp/online_booking_views.py
-msgid "Confirmed"
-msgstr "已确认"
-
-#: apps/webapp/online_booking_views.py
 msgid "Declined"
 msgstr "已拒绝"
 
@@ -12136,6 +12806,10 @@ msgid "Receive stock"
 msgstr "收货入库"
 
 #: apps/webapp/overview.py
+msgid "Refills due"
+msgstr "到期补货"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "店内维修"
 
@@ -12214,10 +12888,6 @@ msgstr "今天还没有签到。"
 #: apps/webapp/overview.py
 msgid "Orders in progress"
 msgstr "进行中的订单"
-
-#: apps/webapp/overview.py
-msgid "Late"
-msgstr "已逾期"
 
 #: apps/webapp/overview.py
 msgid "Due for delivery"
@@ -12829,6 +13499,26 @@ msgstr "首选国籍（如有）。"
 msgid "Accommodation, food, transport…"
 msgstr "住宿、餐食、交通…"
 
+#: apps/webapp/refill_views.py
+msgid "Choose the customer and the item, and enter how often."
+msgstr "请选择顾客和商品，并填写间隔天数。"
+
+#: apps/webapp/refill_views.py
+msgid "Refill added for %(name)s."
+msgstr "已为 %(name)s 添加补货。"
+
+#: apps/webapp/refill_views.py
+msgid "Bill %(inv)s made. Next refill on %(date)s."
+msgstr "已开单 %(inv)s。下次补货：%(date)s。"
+
+#: apps/webapp/refill_views.py
+msgid "Skipped. Next refill on %(date)s."
+msgstr "已跳过。下次补货：%(date)s。"
+
+#: apps/webapp/refill_views.py
+msgid "Refill removed."
+msgstr "补货已删除。"
+
 #: apps/webapp/restaurant_order_views.py
 msgid "Yesterday"
 msgstr "昨天"
@@ -12923,6 +13613,50 @@ msgstr "秤设置已保存。"
 msgid "Your password has been changed."
 msgstr "您的密码已修改。"
 
+#: apps/webapp/shop_order_views.py
+msgid "Pickup from the shop"
+msgstr "到店自取"
+
+#: apps/webapp/shop_order_views.py
+msgid "Free delivery over"
+msgstr "满额免运费"
+
+#: apps/webapp/shop_order_views.py
+msgid "Shows “+ Add” on every product in stock and a cart on your website."
+msgstr "在每个有货商品上显示“+ 添加”，并在网站上显示购物车。"
+
+#: apps/webapp/shop_order_views.py
+msgid "0 = always charge delivery."
+msgstr "0 = 始终收取运费。"
+
+#: apps/webapp/shop_order_views.py
+msgid "Delivery inside Doha in 24 hours · Cash or card on delivery"
+msgstr "多哈市内 24 小时送达 · 货到付款（现金或刷卡）"
+
+#: apps/webapp/shop_order_views.py
+msgid "Online shop settings saved."
+msgstr "网店设置已保存。"
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s confirmed. Let the customer know on WhatsApp."
+msgstr "订单 %(ref)s 已确认。请通过 WhatsApp 通知顾客。"
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s marked ready."
+msgstr "订单 %(ref)s 已标记为备好。"
+
+#: apps/webapp/shop_order_views.py
+msgid "Bill %(inv)s made for %(ref)s. Stock is updated."
+msgstr "已为 %(ref)s 开单 %(inv)s。库存已更新。"
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s closed."
+msgstr "订单 %(ref)s 已关闭。"
+
+#: apps/webapp/shop_order_views.py
+msgid "You can also bill it from New bill."
+msgstr "您也可以在“新开单”中开单。"
+
 #: apps/webapp/site_views.py
 msgid "Main colour"
 msgstr "主色"
@@ -12980,6 +13714,10 @@ msgid "Show contact form"
 msgstr "显示联系表单"
 
 #: apps/webapp/site_views.py
+msgid "My own CSS"
+msgstr "我的 CSS"
+
+#: apps/webapp/site_views.py
 msgid "Leave empty to use the company logo."
 msgstr "留空则使用公司标志。"
 
@@ -12992,12 +13730,97 @@ msgid "Visitors can also switch to"
 msgstr "访客还可以切换到"
 
 #: apps/webapp/site_views.py
-msgid "Menu"
-msgstr "菜单"
-
-#: apps/webapp/site_views.py
 msgid "Phone, address & logo"
 msgstr "电话、地址和标志"
+
+#: apps/webapp/site_views.py
+msgid "e.g. warranty → yoursite.com/p/warranty/"
+msgstr "例如 warranty → yoursite.com/p/warranty/"
+
+#: apps/webapp/site_views.py
+msgid ""
+"Plain text, or HTML (headings, lists, pictures, tables, YouTube / Google "
+"Maps embeds). Scripts are removed."
+msgstr "纯文本或 HTML（标题、列表、图片、表格、YouTube / Google 地图嵌入）。脚本会被移除。"
+
+#: apps/webapp/site_views.py
+msgid "Another page already uses this address."
+msgstr "已有其他页面使用此网址。"
+
+#: apps/webapp/site_views.py
+msgid "Page deleted."
+msgstr "页面已删除。"
+
+#: apps/webapp/site_views.py
+msgid "Page saved."
+msgstr "页面已保存。"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Size chart deleted."
+msgstr "尺码表已删除。"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Enter a name and the table."
+msgstr "请输入名称和表格。"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Size chart saved."
+msgstr "尺码表已保存。"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Enter the item name."
+msgstr "请输入物品名称。"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental item saved."
+msgstr "租赁物品已保存。"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Choose the customer or enter a new name."
+msgstr "请选择顾客或输入新姓名。"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Choose at least one item."
+msgstr "请至少选择一件物品。"
+
+#: apps/webapp/sports_extra_views.py
+msgid "The return date can't be in the past."
+msgstr "归还日期不能早于今天。"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Not enough free: %(items)s"
+msgstr "空闲数量不足：%(items)s"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental %(n)s saved."
+msgstr "租赁 %(n)s 已保存。"
+
+#: apps/webapp/sports_extra_views.py
+msgid ""
+"Hi %(name)s, a reminder from %(shop)s: rental %(n)s is due back on %(date)s."
+" Thank you!"
+msgstr "%(name)s 您好，%(shop)s 提醒：租赁 %(n)s 应于 %(date)s 归还。谢谢！"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental cancelled."
+msgstr "租赁已取消。"
+
+#: apps/webapp/sports_extra_views.py
+msgid "This rental is already closed."
+msgstr "此租赁已结束。"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Returned: %(note)s"
+msgstr "已归还：%(note)s"
+
+#: apps/webapp/sports_extra_views.py
+msgid ""
+"Returned. Bill %(inv)s paid from the deposit — give back %(cur)s %(amt)s."
+msgstr "已归还。账单 %(inv)s 已从押金支付——请退还 %(cur)s %(amt)s。"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Returned. Bill %(inv)s — collect %(cur)s %(amt)s."
+msgstr "已归还。账单 %(inv)s——请收取 %(cur)s %(amt)s。"
 
 #: apps/webapp/stock_views.py
 msgid "Damaged"
@@ -13054,6 +13877,14 @@ msgstr "盘点完成。有差异的库存已更正。"
 #: apps/webapp/stock_views.py
 msgid "Progress saved."
 msgstr "进度已保存。"
+
+#: apps/webapp/stock_views.py
+msgid "Enter whole days and a percent."
+msgstr "请输入整天数和百分比。"
+
+#: apps/webapp/stock_views.py
+msgid "Near-expiry discount saved."
+msgstr "临期折扣已保存。"
 
 #: apps/webapp/stock_views.py
 msgid "Choose an item and enter the batch number."
@@ -13259,6 +14090,22 @@ msgid "Please enter your name and a phone number or email."
 msgstr "请输入您的姓名以及电话号码或邮箱。"
 
 #: apps/webapp/website_kit_views.py
+msgid "The shop will confirm your order shortly."
+msgstr "商店将尽快确认您的订单。"
+
+#: apps/webapp/website_kit_views.py
+msgid "Your cart is empty. Tap “+ Add” on a product."
+msgstr "购物车是空的。请在商品上点击“+ 添加”。"
+
+#: apps/webapp/website_kit_views.py
+msgid "Note, e.g. colour, model, best time to call"
+msgstr "备注，例如 颜色、型号、方便来电的时间"
+
+#: apps/webapp/website_kit_views.py
+msgid "Free delivery over %s"
+msgstr "满 %s 免运费"
+
+#: apps/webapp/website_kit_views.py
 msgid "Order sent"
 msgstr "订单已发送"
 
@@ -13345,10 +14192,6 @@ msgstr "房间"
 #: apps/modules/catalog.py
 msgid "Reservation"
 msgstr "预订"
-
-#: apps/modules/catalog.py
-msgid "Rental"
-msgstr "租赁"
 
 #: apps/modules/catalog.py
 msgid "Halls"

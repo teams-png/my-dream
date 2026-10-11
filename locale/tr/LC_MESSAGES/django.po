@@ -162,6 +162,14 @@ msgid "Team orders"
 msgstr "Takım siparişleri"
 
 #: templates/base.html
+msgid "Rentals"
+msgstr "Kiralamalar"
+
+#: templates/base.html
+msgid "Size charts"
+msgstr "Beden tabloları"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "Satışlar"
 
@@ -192,6 +200,10 @@ msgstr "Eczane"
 #: templates/base.html
 msgid "Batches & expiry"
 msgstr "Partiler ve son kullanma"
+
+#: templates/base.html
+msgid "Refills"
+msgstr "Yenilemeler"
 
 #: templates/base.html
 msgid "Protein Shop"
@@ -720,6 +732,10 @@ msgstr "Ekstralar"
 #: templates/webapp/_industry_nav.html
 msgid "Plans & menu"
 msgstr "Planlar ve menü"
+
+#: templates/webapp/_industry_nav.html
+msgid "Website orders"
+msgstr "Web sitesi siparişleri"
 
 #: templates/webapp/_industry_nav.html
 msgid "My website"
@@ -7979,6 +7995,88 @@ msgstr "Ödenen"
 msgid "Add cost"
 msgstr "Maliyet ekle"
 
+#: templates/webapp/refills/list.html
+msgid "Refill subscriptions"
+msgstr "Yenileme abonelikleri"
+
+#: templates/webapp/refills/list.html
+msgid ""
+"Customers who buy the same item every few weeks. See who is due, remind them"
+" on WhatsApp and make the bill in one tap — the next date moves on by "
+"itself."
+msgstr ""
+"Birkaç haftada bir aynı ürünü alan müşteriler. Kimin zamanı geldiğini görün,"
+" WhatsApp'tan hatırlatın ve tek dokunuşla fatura kesin — sonraki tarih "
+"kendiliğinden ilerler."
+
+#: templates/webapp/refills/list.html
+msgid "Due now"
+msgstr "Şimdi zamanı gelen"
+
+#: templates/webapp/refills/list.html
+msgid "All active"
+msgstr "Tüm aktifler"
+
+#: templates/webapp/refills/list.html
+msgid "Paused"
+msgstr "Duraklatıldı"
+
+#: templates/webapp/refills/list.html
+msgid "Due today"
+msgstr "Bugün"
+
+#: templates/webapp/refills/list.html
+msgid "Make bill"
+msgstr "Fatura kes"
+
+#: templates/webapp/refills/list.html
+msgid "Skip"
+msgstr "Atla"
+
+#: templates/webapp/refills/list.html
+msgid "Remove this refill?"
+msgstr "Bu yenileme silinsin mi?"
+
+#: templates/webapp/refills/list.html
+msgid "No refills due in the next 3 days."
+msgstr "Önümüzdeki 3 günde yenileme yok."
+
+#: templates/webapp/refills/list.html
+msgid "No refills yet. Add your regular customers on the right."
+msgstr "Henüz yenileme yok. Düzenli müşterilerinizi sağdan ekleyin."
+
+#: templates/webapp/refills/list.html
+msgid "New refill"
+msgstr "Yeni yenileme"
+
+#: templates/webapp/refills/list.html
+msgid "Quantity"
+msgstr "Adet"
+
+#: templates/webapp/refills/list.html
+msgid "Every (days)"
+msgstr "Her (gün)"
+
+#: templates/webapp/refills/list.html
+msgid "First refill on"
+msgstr "İlk yenileme"
+
+#: templates/webapp/refills/list.html
+msgid "Subscriber discount %"
+msgstr "Abone indirimi %"
+
+#: templates/webapp/refills/list.html
+msgid "Deliver to the customer"
+msgstr "Müşteriye teslim et"
+
+#: templates/webapp/refills/list.html
+msgid "e.g. chocolate flavour, call before delivery"
+msgstr "ör. çikolata aromalı, teslimattan önce arayın"
+
+#: templates/webapp/refills/list.html
+msgid "Add refill"
+msgstr "Yenileme ekle"
+
 #: templates/webapp/reminders.html
 msgid ""
 "Customers who have not come back for a while, and memberships about to end. "
@@ -8345,10 +8443,6 @@ msgid "Filter kitchen orders"
 msgstr "Mutfak siparişlerini filtrele"
 
 #: templates/webapp/restaurant/kitchen.html
-msgid "All active"
-msgstr "Tüm aktifler"
-
-#: templates/webapp/restaurant/kitchen.html
 msgid "Waiting"
 msgstr "Bekliyor"
 
@@ -8645,10 +8739,6 @@ msgstr "Ekstraları ve adedi seçin."
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Kitchen note"
 msgstr "Mutfak notu"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Quantity"
-msgstr "Adet"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Add to Order"
@@ -9690,6 +9780,116 @@ msgstr ""
 msgid "Add sample data"
 msgstr "Örnek veri ekle"
 
+#: templates/webapp/shop_orders/inbox.html
+msgid "Website shop is off"
+msgstr "Web mağazası kapalı"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Switch it on below to show “+ Add” and a cart on your website."
+msgstr "Sitenizde “+ Ekle” ve sepet göstermek için aşağıdan açın."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Customers can see your products, but cannot order."
+msgstr "Müşteriler ürünlerinizi görebilir ama sipariş veremez."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
+"Confirm each new order, send it, then make the bill. This page beeps when a "
+"new order comes."
+msgstr ""
+"Her yeni siparişi onaylayın, gönderin, sonra fatura kesin. Yeni sipariş "
+"gelince bu sayfa bip sesi çıkarır."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
+"Your BookPilot website is not switched on yet. Ask your BookPilot team to "
+"switch on the Website add-on — or put the cart on your own website with the "
+"Website kit."
+msgstr ""
+"BookPilot web siteniz henüz açık değil. BookPilot ekibinden Web sitesi "
+"eklentisini açmasını isteyin — ya da Website kit ile sepeti kendi sitenize "
+"koyun."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "WhatsApp customer"
+msgstr "Müşteriye WhatsApp"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Share / pay link"
+msgstr "Paylaşım / ödeme bağlantısı"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Out for delivery"
+msgstr "Teslimata çıktı"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Make bill (paid / delivered)"
+msgstr "Fatura kes (ödendi / teslim edildi)"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Close this order without a bill?"
+msgstr "Bu sipariş faturasız kapatılsın mı?"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Reason, e.g. out of stock"
+msgstr "Neden, ör. stokta yok"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No open website orders."
+msgstr "Açık web sitesi siparişi yok."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No website orders yet."
+msgstr "Henüz web sitesi siparişi yok."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Online shop settings"
+msgstr "Online mağaza ayarları"
+
+#: templates/webapp/site/_base.html
+msgid "Preview"
+msgstr "Önizleme"
+
+#: templates/webapp/site/_base.html
+msgid "not public yet"
+msgstr "henüz yayında değil"
+
+#: templates/webapp/site/_base.html
+msgid "Home"
+msgstr "Ana sayfa"
+
+#: templates/webapp/site/_base.html
+msgid "About"
+msgstr "Hakkımızda"
+
+#: templates/webapp/site/_base.html
+msgid "Book now"
+msgstr "Hemen rezervasyon"
+
+#: templates/webapp/site/_base.html
+msgid "Call us"
+msgstr "Bizi arayın"
+
+#: templates/webapp/site/_base.html
+msgid "Menu"
+msgstr "Menü"
+
+#: templates/webapp/site/_base.html
+msgid "Follow us"
+msgstr "Bizi takip edin"
+
+#: templates/webapp/site/_base.html
+msgid "VAT"
+msgstr "KDV"
+
+#: templates/webapp/site/_card.html
+msgid "+ Add"
+msgstr "+ Ekle"
+
+#: templates/webapp/site/_card.html
+msgid "Veg"
+msgstr "Vejetaryen"
+
 #: templates/webapp/site/editor.html
 msgid "Website kit"
 msgstr "Web sitesi kiti"
@@ -9721,6 +9921,81 @@ msgstr ""
 " orada değiştirin, web sitesi güncellensin."
 
 #: templates/webapp/site/editor.html
+msgid "Online shop"
+msgstr "Online mağaza"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website has a Shop page with every product, a page for each product, a "
+"cart and checkout. Orders arrive in Website orders; stock and prices come "
+"from BookPilot."
+msgstr ""
+"Sitenizde tüm ürünlerin olduğu bir Mağaza sayfası, her ürün için bir sayfa, "
+"sepet ve ödeme var. Siparişler Web sitesi siparişlerine düşer; stok ve "
+"fiyatlar BookPilot'tan gelir."
+
+#: templates/webapp/site/editor.html
+msgid "Website orders & shop settings"
+msgstr "Web sitesi siparişleri ve mağaza ayarları"
+
+#: templates/webapp/site/editor.html
+msgid "Switch on the cart"
+msgstr "Sepeti aç"
+
+#: templates/webapp/site/editor.html
+msgid "Products & photos"
+msgstr "Ürünler ve fotoğraflar"
+
+#: templates/webapp/site/editor.html
+msgid "Use your own domain (e.g. from Hostinger)"
+msgstr "Kendi alan adınızı kullanın (ör. Hostinger'dan)"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Buy the domain (Hostinger, GoDaddy, Namecheap…). You only need the domain — "
+"no hosting plan."
+msgstr ""
+"Alan adını satın alın (Hostinger, GoDaddy, Namecheap…). Sadece alan adı "
+"yeterli — hosting planı gerekmez."
+
+#: templates/webapp/site/editor.html
+msgid ""
+"In Hostinger: hPanel → Domains → your domain → DNS / Nameservers → Manage "
+"DNS records."
+msgstr ""
+"Hostinger'da: hPanel → Alan adları → alan adınız → DNS / Nameservers → DNS "
+"kayıtlarını yönet."
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Delete the old A and CNAME records for “@” and “www” (the parking page)."
+msgstr "“@” ve “www” için eski A ve CNAME kayıtlarını silin (park sayfası)."
+
+#: templates/webapp/site/editor.html
+msgid "Add a CNAME record:"
+msgstr "Bir CNAME kaydı ekleyin:"
+
+#: templates/webapp/site/editor.html
+msgid "Add an A record:"
+msgstr "Bir A kaydı ekleyin:"
+
+#: templates/webapp/site/editor.html
+msgid "(so the address without www also works)"
+msgstr "(www olmadan da adres çalışsın diye)"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Send the domain name to your BookPilot team. We connect it and switch on the"
+" free SSL (https). It usually works within 1–24 hours."
+msgstr ""
+"Alan adını BookPilot ekibine gönderin. Bağlayıp ücretsiz SSL'i (https) "
+"açarız. Genelde 1–24 saat içinde çalışır."
+
+#: templates/webapp/site/editor.html
+msgid "Until then your website works at"
+msgstr "O zamana kadar siteniz şu adreste çalışır"
+
+#: templates/webapp/site/editor.html
 msgid "Design"
 msgstr "Tasarım"
 
@@ -9741,40 +10016,92 @@ msgid "Sections"
 msgstr "Bölümler"
 
 #: templates/webapp/site/editor.html
-msgid "Preview"
-msgstr "Önizleme"
+msgid ""
+"Make the website look like your own design. Your CSS is added after the "
+"theme, so it wins. Useful classes: .hero, .section, .card, .btn, .price, "
+"header.top, footer, .prod (product page), .shop-bar, .chips. Colours: --p "
+"(main), --a (highlight)."
+msgstr ""
+"Siteyi kendi tasarımınıza benzetin. CSS'iniz temadan sonra eklenir, bu "
+"yüzden geçerli olan odur. Faydalı sınıflar: .hero, .section, .card, .btn, "
+".price, header.top, footer, .prod (ürün sayfası), .shop-bar, .chips. "
+"Renkler: --p (ana), --a (vurgu)."
+
+#: templates/webapp/site/editor.html
+msgid "Pages"
+msgstr "Sayfalar"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Add more pages to your website: About us, Warranty, Delivery & returns, "
+"Terms…"
+msgstr ""
+"Sitenize başka sayfalar ekleyin: Hakkımızda, Garanti, Teslimat ve iade, "
+"Koşullar…"
+
+#: templates/webapp/site/editor.html
+msgid "hidden"
+msgstr "gizli"
+
+#: templates/webapp/site/editor.html
+msgid "footer"
+msgstr "alt bilgi"
+
+#: templates/webapp/site/editor.html
+msgid "Page title"
+msgstr "Sayfa başlığı"
+
+#: templates/webapp/site/editor.html
+msgid "Web address"
+msgstr "Web adresi"
+
+#: templates/webapp/site/editor.html
+msgid "Page text"
+msgstr "Sayfa metni"
+
+#: templates/webapp/site/editor.html
+msgid "Show in the top menu (off: footer only)"
+msgstr "Üst menüde göster (kapalı: sadece alt bilgide)"
+
+#: templates/webapp/site/editor.html
+msgid "Page is live"
+msgstr "Sayfa yayında"
+
+#: templates/webapp/site/editor.html
+msgid "Save page"
+msgstr "Sayfayı kaydet"
+
+#: templates/webapp/site/editor.html
+msgid "Delete this page?"
+msgstr "Bu sayfa silinsin mi?"
+
+#: templates/webapp/site/editor.html
+msgid "New page"
+msgstr "Yeni sayfa"
+
+#: templates/webapp/site/editor.html
+msgid "Add page"
+msgstr "Sayfa ekle"
 
 #: templates/webapp/site/editor.html
 msgid "Open full page"
 msgstr "Tam sayfayı aç"
 
 #: templates/webapp/site/page.html
-msgid "not public yet"
-msgstr "henüz yayında değil"
-
-#: templates/webapp/site/page.html
-msgid "About"
-msgstr "Hakkımızda"
-
-#: templates/webapp/site/page.html
-msgid "Book now"
-msgstr "Hemen rezervasyon"
-
-#: templates/webapp/site/page.html
-msgid "Call us"
-msgstr "Bizi arayın"
+msgid "Shop now"
+msgstr "Hemen alışveriş yap"
 
 #: templates/webapp/site/page.html
 msgid "Available now"
 msgstr "Şu an mevcut"
 
 #: templates/webapp/site/page.html
-msgid "+ Add"
-msgstr "+ Ekle"
+msgid "Popular products"
+msgstr "Popüler ürünler"
 
 #: templates/webapp/site/page.html
-msgid "Veg"
-msgstr "Vejetaryen"
+msgid "See all products"
+msgstr "Tüm ürünleri gör"
 
 #: templates/webapp/site/page.html
 msgid "Send your request — we confirm by phone or WhatsApp."
@@ -9805,13 +10132,93 @@ msgstr "Bize ulaşın"
 msgid "We usually reply within the day."
 msgstr "Genellikle aynı gün yanıt veririz."
 
-#: templates/webapp/site/page.html
-msgid "Follow us"
-msgstr "Bizi takip edin"
+#: templates/webapp/site/product.html
+msgid "Out of stock"
+msgstr "Stokta yok"
 
-#: templates/webapp/site/page.html
-msgid "VAT"
-msgstr "KDV"
+#: templates/webapp/site/product.html
+msgid "Options"
+msgstr "Seçenekler"
+
+#: templates/webapp/site/product.html
+msgid "Add to cart"
+msgstr "Sepete ekle"
+
+#: templates/webapp/site/product.html
+msgid "Ask on WhatsApp"
+msgstr "WhatsApp'tan sor"
+
+#: templates/webapp/site/product.html
+msgid "Size chart"
+msgstr "Beden tablosu"
+
+#: templates/webapp/site/product.html
+msgid "You may also like"
+msgstr "Bunlar da hoşunuza gidebilir"
+
+#: templates/webapp/site/shop.html
+msgid "All products"
+msgstr "Tüm ürünler"
+
+#: templates/webapp/site/shop.html
+msgid "Search products…"
+msgstr "Ürün ara…"
+
+#: templates/webapp/site/shop.html
+msgid "Sort"
+msgstr "Sırala"
+
+#: templates/webapp/site/shop.html
+msgid "Sort: name"
+msgstr "Sıra: ad"
+
+#: templates/webapp/site/shop.html
+msgid "Price: low to high"
+msgstr "Fiyat: artan"
+
+#: templates/webapp/site/shop.html
+msgid "Price: high to low"
+msgstr "Fiyat: azalan"
+
+#: templates/webapp/site/shop.html
+msgid "Newest"
+msgstr "En yeni"
+
+#: templates/webapp/site/shop.html
+msgid "No products found."
+msgstr "Ürün bulunamadı."
+
+#: templates/webapp/site/shop.html
+msgid "Previous"
+msgstr "Önceki"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Sorry, the shop could not complete this order."
+msgstr "Üzgünüz, mağaza bu siparişi tamamlayamadı."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Confirmed"
+msgstr "Onaylandı"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "On the way"
+msgstr "Yolda"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "The shop has your order and will confirm it shortly."
+msgstr "Mağaza siparişinizi aldı ve kısa süre içinde onaylayacak."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Your order is confirmed and being packed."
+msgstr "Siparişiniz onaylandı ve paketleniyor."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Your order is on its way."
+msgstr "Siparişiniz yolda."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Thank you for shopping with us!"
+msgstr "Bizden alışveriş yaptığınız için teşekkürler!"
 
 #: templates/webapp/sports_shop/product_list.html
 msgid "Import from Excel"
@@ -9840,6 +10247,220 @@ msgstr "Beden / renk"
 #: templates/webapp/sports_shop/product_list.html
 msgid "No products yet."
 msgstr "Henüz ürün yok."
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Rental"
+msgstr "Kiralama"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Print agreement"
+msgstr "Sözleşmeyi yazdır"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Remind on WhatsApp"
+msgstr "WhatsApp'tan hatırlat"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Rental agreement"
+msgstr "Kiralama sözleşmesi"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "ID"
+msgstr "Kimlik"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Per day"
+msgstr "Günlük"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Return by"
+msgstr "İade tarihi"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Late"
+msgstr "Gecikmeli"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Deposit"
+msgstr "Depozito"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "day(s)"
+msgstr "gün"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid ""
+"The customer returns the items in the same condition. Late days are charged "
+"at the daily rate; damage or missing parts are charged from the deposit."
+msgstr ""
+"Müşteri ürünleri aynı durumda iade eder. Geciken günler günlük ücretten "
+"alınır; hasar veya eksik parçalar depozitodan kesilir."
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Items returned"
+msgstr "Ürünler iade edildi"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Damage / missing parts charge"
+msgstr "Hasar / eksik parça ücreti"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Return & make bill"
+msgstr "İade al ve fatura kes"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Cancel this rental without a bill?"
+msgstr "Bu kiralama faturasız iptal edilsin mi?"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Cancel rental"
+msgstr "Kiralamayı iptal et"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid ""
+"The bill is paid from the deposit first; the screen tells you what to give "
+"back or collect."
+msgstr ""
+"Fatura önce depozitodan ödenir; ekran ne kadar geri vereceğinizi veya tahsil"
+" edeceğinizi söyler."
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "New rental"
+msgstr "Yeni kiralama"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Add your rental items first."
+msgstr "Önce kiralık ürünlerinizi ekleyin."
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Rental items"
+msgstr "Kiralık ürünler"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "ID kept (QID / passport no.)"
+msgstr "Alınan kimlik (QID / pasaport no.)"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "day"
+msgstr "gün"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "deposit"
+msgstr "depozito"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "free"
+msgstr "boşta"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Deposit taken"
+msgstr "Alınan depozito"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Auto from items"
+msgstr "Ürünlerden otomatik"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "e.g. helmet included, small scratch on frame"
+msgstr "ör. kask dahil, kadroda küçük çizik"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Save rental"
+msgstr "Kiralamayı kaydet"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Equipment rental"
+msgstr "Ekipman kiralama"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Out now"
+msgstr "Şu an dışarıda"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "late"
+msgstr "gecikmiş"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Nothing is out on rent."
+msgstr "Kirada hiçbir şey yok."
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Rate per day"
+msgstr "Günlük ücret"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Deposit per piece"
+msgstr "Parça başı depozito"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "How many you own"
+msgstr "Kaç tane var"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Yes"
+msgstr "Evet"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "No"
+msgstr "Hayır"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Add the gear you rent out: bicycles, kayaks, rackets, tents…"
+msgstr ""
+"Kiraladığınız ekipmanı ekleyin: bisikletler, kanolar, raketler, çadırlar…"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "New item"
+msgstr "Yeni ürün"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "e.g. Mountain bike"
+msgstr "ör. Dağ bisikleti"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid ""
+"A size guide per category (jerseys, shoes, gloves…). Staff can show it at "
+"the counter, and your website shows it on every product of that category."
+msgstr ""
+"Her kategori için bir beden rehberi (formalar, ayakkabılar, eldivenler…). "
+"Personel tezgâhta gösterebilir, siteniz de o kategorideki her üründe "
+"gösterir."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "No category"
+msgstr "Kategori yok"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "Delete this size chart?"
+msgstr "Bu beden tablosu silinsin mi?"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "No size charts yet."
+msgstr "Henüz beden tablosu yok."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "New size chart"
+msgstr "Yeni beden tablosu"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "e.g. Football jerseys"
+msgstr "ör. Futbol formaları"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid ""
+"One row per line, columns separated by commas. The first line is the "
+"heading. You can paste from Excel."
+msgstr ""
+"Her satır bir sıra, sütunlar virgülle ayrılır. İlk satır başlıktır. "
+"Excel'den yapıştırabilirsiniz."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "e.g. Between two sizes? Take the bigger one."
+msgstr "ör. İki beden arasında mı? Büyüğünü alın."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "Add size chart"
+msgstr "Beden tablosu ekle"
 
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Print list for the printer"
@@ -9991,6 +10612,22 @@ msgid "No batches here."
 msgstr "Burada parti yok."
 
 #: templates/webapp/stock/batches.html
+msgid "Near-expiry discount"
+msgstr "Son kullanma yaklaşan indirim"
+
+#: templates/webapp/stock/batches.html
+msgid ""
+"Sell old stock before it expires: while an item's next batch expires soon, "
+"billing gives this discount automatically (POS and invoices)."
+msgstr ""
+"Eski stoğu süresi dolmadan satın: bir ürünün sıradaki partisinin süresi "
+"yaklaşınca faturalama bu indirimi otomatik uygular (POS ve faturalar)."
+
+#: templates/webapp/stock/batches.html
+msgid "When it expires within (days)"
+msgstr "Şu kadar gün içinde dolarsa"
+
+#: templates/webapp/stock/batches.html
 msgid "Batches you entered before this update are kept on the older screen."
 msgstr "Bu güncellemeden önce girilen partiler eski ekranda duruyor."
 
@@ -10136,10 +10773,6 @@ msgstr "Stok değeri (maliyet)"
 #: templates/webapp/stock/home.html
 msgid "Running low"
 msgstr "Azalıyor"
-
-#: templates/webapp/stock/home.html
-msgid "Out of stock"
-msgstr "Stokta yok"
 
 #: templates/webapp/stock/home.html
 msgid "Batches expiring (30 days)"
@@ -10307,6 +10940,26 @@ msgstr ""
 "Bu özellik demoda kapalı. Kendi işletmenizde kullanmak için ücretsiz "
 "denemeyi başlatın."
 
+#: apps/industry/expiry_deals.py
+msgid "Near expiry −%(pct)s%% (%(days)s days left)"
+msgstr "Son kullanma yakın −%(pct)s%% (%(days)s gün kaldı)"
+
+#: apps/industry/expiry_deals.py
+msgid ""
+"Hi %(name)s, your %(item)s refill from %(shop)s is due on %(date)s. Reply "
+"YES and we will keep it ready%(delivery)s."
+msgstr ""
+"Merhaba %(name)s, %(shop)s'tan %(item)s yenilemeniz %(date)s tarihinde. EVET"
+" yazın, hazır tutalım%(delivery)s."
+
+#: apps/industry/expiry_deals.py
+msgid " for delivery"
+msgstr "teslimat için"
+
+#: apps/industry/models.py
+msgid "Ready / on the way"
+msgstr "Hazır / yolda"
+
 #: apps/industry/reminders.py
 msgid ""
 "Hi %(name)s, it has been a while since your last visit to %(shop)s. Shall we"
@@ -10391,6 +11044,109 @@ msgstr "Üyelik %(n)s gün önce bitti"
 msgid "Last visit %(n)s days ago"
 msgstr "Son ziyaret %(n)s gün önce"
 
+#: apps/industry/shop_orders.py
+msgid "Enter a phone number we can call."
+msgstr "Sizi arayabileceğimiz bir telefon numarası girin."
+
+#: apps/industry/shop_orders.py
+msgid "Online ordering is switched off."
+msgstr "Online sipariş kapalı."
+
+#: apps/industry/shop_orders.py
+msgid "Sorry, we are not taking online orders right now. Please call us."
+msgstr "Üzgünüz, şu anda online sipariş almıyoruz. Lütfen bizi arayın."
+
+#: apps/industry/shop_orders.py
+msgid "Enter your name."
+msgstr "Adınızı girin."
+
+#: apps/industry/shop_orders.py
+msgid "This order type is not available."
+msgstr "Bu sipariş türü mevcut değil."
+
+#: apps/industry/shop_orders.py
+msgid "Enter the delivery address."
+msgstr "Teslimat adresini girin."
+
+#: apps/industry/shop_orders.py
+msgid "Your cart is empty."
+msgstr "Sepetiniz boş."
+
+#: apps/industry/shop_orders.py
+msgid "Too many items in one order. Please call us for big orders."
+msgstr ""
+"Bir siparişte çok fazla ürün var. Büyük siparişler için lütfen bizi arayın."
+
+#: apps/industry/shop_orders.py
+msgid "Your cart is not valid. Please refresh the page."
+msgstr "Sepetiniz geçersiz. Lütfen sayfayı yenileyin."
+
+#: apps/industry/shop_orders.py
+msgid "You can order 1 to %(n)s of each item."
+msgstr "Her üründen 1 ile %(n)s arasında sipariş verebilirsiniz."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"An item in your cart is no longer sold online. Please refresh the page."
+msgstr ""
+"Sepetinizdeki bir ürün artık online satılmıyor. Lütfen sayfayı yenileyin."
+
+#: apps/industry/shop_orders.py
+msgid "Sorry, %(item)s is out of stock."
+msgstr "Üzgünüz, %(item)s stokta yok."
+
+#: apps/industry/shop_orders.py
+msgid "Only %(n)s of %(item)s left."
+msgstr "%(item)s için sadece %(n)s adet kaldı."
+
+#: apps/industry/shop_orders.py
+msgid "The minimum order for delivery is %(amount)s."
+msgstr "Teslimat için en az sipariş tutarı %(amount)s."
+
+#: apps/industry/shop_orders.py
+msgid "This order was already handled."
+msgstr "Bu sipariş zaten işlendi."
+
+#: apps/industry/shop_orders.py
+msgid "The shop could not take this order."
+msgstr "Mağaza bu siparişi alamadı."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, we received your order %(ref)s at %(shop)s. We will confirm it "
+"shortly."
+msgstr ""
+"Merhaba %(name)s, %(shop)s'ta %(ref)s siparişinizi aldık. Kısa süre içinde "
+"onaylayacağız."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, your order %(ref)s at %(shop)s is confirmed. Total %(total)s."
+msgstr ""
+"Merhaba %(name)s, %(shop)s'taki %(ref)s siparişiniz onaylandı. Toplam "
+"%(total)s."
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, your order %(ref)s from %(shop)s is on the way."
+msgstr "Merhaba %(name)s, %(shop)s'tan %(ref)s siparişiniz yolda."
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, your order %(ref)s is ready for pickup at %(shop)s."
+msgstr ""
+"Merhaba %(name)s, %(ref)s siparişiniz %(shop)s'ta teslim almaya hazır."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, sorry — we could not complete your order %(ref)s at %(shop)s. "
+"%(reason)s"
+msgstr ""
+"Merhaba %(name)s, üzgünüz — %(shop)s'taki %(ref)s siparişinizi "
+"tamamlayamadık. %(reason)s"
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, thank you for shopping at %(shop)s!"
+msgstr "Merhaba %(name)s, %(shop)s'tan alışveriş yaptığınız için teşekkürler!"
+
 #: apps/industry/site_builder.py
 msgid "Our menu"
 msgstr "Menümüz"
@@ -10410,10 +11166,6 @@ msgstr "Kurslar"
 #: apps/industry/site_builder.py
 msgid "hour"
 msgstr "saat"
-
-#: apps/industry/site_builder.py
-msgid "day"
-msgstr "gün"
 
 #: apps/industry/site_builder.py
 msgid "night"
@@ -10438,6 +11190,14 @@ msgstr "dönem"
 #: apps/industry/site_builder.py
 msgid "Our products"
 msgstr "Ürünlerimiz"
+
+#: apps/industry/site_builder.py
+msgid "Colour"
+msgstr "Renk"
+
+#: apps/industry/site_builder.py
+msgid "Material"
+msgstr "Malzeme"
 
 #: apps/notifications/rules.py
 msgid "Customer bills due"
@@ -10622,47 +11382,6 @@ msgid "Accepted"
 msgstr "Kabul edildi"
 
 #: apps/verticals/restaurant/online_orders.py
-msgid "Enter a phone number we can call."
-msgstr "Sizi arayabileceğimiz bir telefon numarası girin."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Online ordering is switched off."
-msgstr "Online sipariş kapalı."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Sorry, we are not taking online orders right now. Please call us."
-msgstr "Üzgünüz, şu anda online sipariş almıyoruz. Lütfen bizi arayın."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Enter your name."
-msgstr "Adınızı girin."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "This order type is not available."
-msgstr "Bu sipariş türü mevcut değil."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Enter the delivery address."
-msgstr "Teslimat adresini girin."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Your cart is empty."
-msgstr "Sepetiniz boş."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Too many items in one order. Please call us for big orders."
-msgstr ""
-"Bir siparişte çok fazla ürün var. Büyük siparişler için lütfen bizi arayın."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Your cart is not valid. Please refresh the page."
-msgstr "Sepetiniz geçersiz. Lütfen sayfayı yenileyin."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "You can order 1 to %(n)s of each item."
-msgstr "Her üründen 1 ile %(n)s arasında sipariş verebilirsiniz."
-
-#: apps/verticals/restaurant/online_orders.py
 msgid ""
 "An item in your cart is no longer on the menu. Please refresh the page."
 msgstr "Sepetinizdeki bir ürün artık menüde yok. Lütfen sayfayı yenileyin."
@@ -10670,14 +11389,6 @@ msgstr "Sepetinizdeki bir ürün artık menüde yok. Lütfen sayfayı yenileyin.
 #: apps/verticals/restaurant/online_orders.py
 msgid "Sorry, %(item)s is not available online right now."
 msgstr "Üzgünüz, %(item)s şu anda online olarak mevcut değil."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "The minimum order for delivery is %(amount)s."
-msgstr "Teslimat için en az sipariş tutarı %(amount)s."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "This order was already handled."
-msgstr "Bu sipariş zaten işlendi."
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -11053,14 +11764,6 @@ msgstr "Toplam deneyim (yıl)"
 #: apps/webapp/careers_views.py
 msgid "Gulf experience?"
 msgstr "Körfez deneyimi?"
-
-#: apps/webapp/careers_views.py
-msgid "Yes"
-msgstr "Evet"
-
-#: apps/webapp/careers_views.py
-msgid "No"
-msgstr "Hayır"
 
 #: apps/webapp/careers_views.py
 msgid "Highest qualification"
@@ -11526,6 +12229,14 @@ msgstr "Satış fiyatı"
 #: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "Yeniden sipariş seviyesi"
+
+#: apps/webapp/forms.py
+msgid "Description for the website"
+msgstr "Web sitesi açıklaması"
+
+#: apps/webapp/forms.py
+msgid "Shown on the product page of your online shop."
+msgstr "Online mağazanızın ürün sayfasında görünür."
 
 #: apps/webapp/forms.py
 msgid "…or new client name"
@@ -12197,10 +12908,6 @@ msgid "Table reservation"
 msgstr "Masa rezervasyonu"
 
 #: apps/webapp/online_booking_views.py
-msgid "Confirmed"
-msgstr "Onaylandı"
-
-#: apps/webapp/online_booking_views.py
 msgid "Declined"
 msgstr "Reddedildi"
 
@@ -12431,6 +13138,10 @@ msgid "Receive stock"
 msgstr "Stok teslim al"
 
 #: apps/webapp/overview.py
+msgid "Refills due"
+msgstr "Zamanı gelen yenilemeler"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "Dükkândaki onarımlar"
 
@@ -12509,10 +13220,6 @@ msgstr "Bugün henüz giriş yok."
 #: apps/webapp/overview.py
 msgid "Orders in progress"
 msgstr "Devam eden siparişler"
-
-#: apps/webapp/overview.py
-msgid "Late"
-msgstr "Gecikmeli"
 
 #: apps/webapp/overview.py
 msgid "Due for delivery"
@@ -13134,6 +13841,26 @@ msgstr "Tercih edilen uyruk, varsa."
 msgid "Accommodation, food, transport…"
 msgstr "Konaklama, yemek, ulaşım…"
 
+#: apps/webapp/refill_views.py
+msgid "Choose the customer and the item, and enter how often."
+msgstr "Müşteriyi ve ürünü seçin, ne sıklıkla olduğunu girin."
+
+#: apps/webapp/refill_views.py
+msgid "Refill added for %(name)s."
+msgstr "%(name)s için yenileme eklendi."
+
+#: apps/webapp/refill_views.py
+msgid "Bill %(inv)s made. Next refill on %(date)s."
+msgstr "%(inv)s faturası kesildi. Sonraki yenileme %(date)s."
+
+#: apps/webapp/refill_views.py
+msgid "Skipped. Next refill on %(date)s."
+msgstr "Atlandı. Sonraki yenileme %(date)s."
+
+#: apps/webapp/refill_views.py
+msgid "Refill removed."
+msgstr "Yenileme silindi."
+
 #: apps/webapp/restaurant_order_views.py
 msgid "Yesterday"
 msgstr "Dün"
@@ -13233,6 +13960,50 @@ msgstr "Terazi ayarları kaydedildi."
 msgid "Your password has been changed."
 msgstr "Şifreniz değiştirildi."
 
+#: apps/webapp/shop_order_views.py
+msgid "Pickup from the shop"
+msgstr "Mağazadan teslim al"
+
+#: apps/webapp/shop_order_views.py
+msgid "Free delivery over"
+msgstr "Şu tutarın üzerinde ücretsiz teslimat"
+
+#: apps/webapp/shop_order_views.py
+msgid "Shows “+ Add” on every product in stock and a cart on your website."
+msgstr "Stoktaki her üründe “+ Ekle” ve sitenizde sepet gösterir."
+
+#: apps/webapp/shop_order_views.py
+msgid "0 = always charge delivery."
+msgstr "0 = teslimatı her zaman ücretlendir."
+
+#: apps/webapp/shop_order_views.py
+msgid "Delivery inside Doha in 24 hours · Cash or card on delivery"
+msgstr "Doha içinde 24 saatte teslimat · Teslimatta nakit veya kart"
+
+#: apps/webapp/shop_order_views.py
+msgid "Online shop settings saved."
+msgstr "Online mağaza ayarları kaydedildi."
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s confirmed. Let the customer know on WhatsApp."
+msgstr "%(ref)s siparişi onaylandı. Müşteriye WhatsApp'tan haber verin."
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s marked ready."
+msgstr "%(ref)s siparişi hazır olarak işaretlendi."
+
+#: apps/webapp/shop_order_views.py
+msgid "Bill %(inv)s made for %(ref)s. Stock is updated."
+msgstr "%(ref)s için %(inv)s faturası kesildi. Stok güncellendi."
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s closed."
+msgstr "%(ref)s siparişi kapatıldı."
+
+#: apps/webapp/shop_order_views.py
+msgid "You can also bill it from New bill."
+msgstr "Yeni fatura ekranından da faturalayabilirsiniz."
+
 #: apps/webapp/site_views.py
 msgid "Main colour"
 msgstr "Ana renk"
@@ -13290,6 +14061,10 @@ msgid "Show contact form"
 msgstr "İletişim formunu göster"
 
 #: apps/webapp/site_views.py
+msgid "My own CSS"
+msgstr "Kendi CSS'im"
+
+#: apps/webapp/site_views.py
 msgid "Leave empty to use the company logo."
 msgstr "Şirket logosunu kullanmak için boş bırakın."
 
@@ -13302,12 +14077,103 @@ msgid "Visitors can also switch to"
 msgstr "Ziyaretçiler şu dillere de geçebilir"
 
 #: apps/webapp/site_views.py
-msgid "Menu"
-msgstr "Menü"
-
-#: apps/webapp/site_views.py
 msgid "Phone, address & logo"
 msgstr "Telefon, adres ve logo"
+
+#: apps/webapp/site_views.py
+msgid "e.g. warranty → yoursite.com/p/warranty/"
+msgstr "ör. warranty → siteniz.com/p/warranty/"
+
+#: apps/webapp/site_views.py
+msgid ""
+"Plain text, or HTML (headings, lists, pictures, tables, YouTube / Google "
+"Maps embeds). Scripts are removed."
+msgstr ""
+"Düz metin veya HTML (başlıklar, listeler, resimler, tablolar, YouTube / "
+"Google Maps gömmeleri). Scriptler kaldırılır."
+
+#: apps/webapp/site_views.py
+msgid "Another page already uses this address."
+msgstr "Bu adresi başka bir sayfa zaten kullanıyor."
+
+#: apps/webapp/site_views.py
+msgid "Page deleted."
+msgstr "Sayfa silindi."
+
+#: apps/webapp/site_views.py
+msgid "Page saved."
+msgstr "Sayfa kaydedildi."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Size chart deleted."
+msgstr "Beden tablosu silindi."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Enter a name and the table."
+msgstr "Bir ad ve tablo girin."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Size chart saved."
+msgstr "Beden tablosu kaydedildi."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Enter the item name."
+msgstr "Ürün adını girin."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental item saved."
+msgstr "Kiralık ürün kaydedildi."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Choose the customer or enter a new name."
+msgstr "Müşteriyi seçin veya yeni bir ad girin."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Choose at least one item."
+msgstr "En az bir ürün seçin."
+
+#: apps/webapp/sports_extra_views.py
+msgid "The return date can't be in the past."
+msgstr "İade tarihi geçmişte olamaz."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Not enough free: %(items)s"
+msgstr "Yeterince boşta yok: %(items)s"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental %(n)s saved."
+msgstr "%(n)s kiralaması kaydedildi."
+
+#: apps/webapp/sports_extra_views.py
+msgid ""
+"Hi %(name)s, a reminder from %(shop)s: rental %(n)s is due back on %(date)s."
+" Thank you!"
+msgstr ""
+"Merhaba %(name)s, %(shop)s'tan hatırlatma: %(n)s kiralamasının iade tarihi "
+"%(date)s. Teşekkürler!"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental cancelled."
+msgstr "Kiralama iptal edildi."
+
+#: apps/webapp/sports_extra_views.py
+msgid "This rental is already closed."
+msgstr "Bu kiralama zaten kapalı."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Returned: %(note)s"
+msgstr "İade edildi: %(note)s"
+
+#: apps/webapp/sports_extra_views.py
+msgid ""
+"Returned. Bill %(inv)s paid from the deposit — give back %(cur)s %(amt)s."
+msgstr ""
+"İade edildi. %(inv)s faturası depozitodan ödendi — %(cur)s %(amt)s geri "
+"verin."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Returned. Bill %(inv)s — collect %(cur)s %(amt)s."
+msgstr "İade edildi. %(inv)s faturası — %(cur)s %(amt)s tahsil edin."
 
 #: apps/webapp/stock_views.py
 msgid "Damaged"
@@ -13364,6 +14230,14 @@ msgstr "Stok sayımı tamamlandı. Farklı olan yerlerde stok düzeltildi."
 #: apps/webapp/stock_views.py
 msgid "Progress saved."
 msgstr "İlerleme kaydedildi."
+
+#: apps/webapp/stock_views.py
+msgid "Enter whole days and a percent."
+msgstr "Tam gün ve yüzde girin."
+
+#: apps/webapp/stock_views.py
+msgid "Near-expiry discount saved."
+msgstr "Son kullanma indirimi kaydedildi."
 
 #: apps/webapp/stock_views.py
 msgid "Choose an item and enter the batch number."
@@ -13583,6 +14457,22 @@ msgid "Please enter your name and a phone number or email."
 msgstr "Lütfen adınızı ve bir telefon numarası veya e-posta girin."
 
 #: apps/webapp/website_kit_views.py
+msgid "The shop will confirm your order shortly."
+msgstr "Mağaza siparişinizi kısa süre içinde onaylayacak."
+
+#: apps/webapp/website_kit_views.py
+msgid "Your cart is empty. Tap “+ Add” on a product."
+msgstr "Sepetiniz boş. Bir üründe “+ Ekle”ye dokunun."
+
+#: apps/webapp/website_kit_views.py
+msgid "Note, e.g. colour, model, best time to call"
+msgstr "Not, ör. renk, model, aranmak için uygun saat"
+
+#: apps/webapp/website_kit_views.py
+msgid "Free delivery over %s"
+msgstr "%s üzeri ücretsiz teslimat"
+
+#: apps/webapp/website_kit_views.py
 msgid "Order sent"
 msgstr "Sipariş gönderildi"
 
@@ -13669,10 +14559,6 @@ msgstr "Odalar"
 #: apps/modules/catalog.py
 msgid "Reservation"
 msgstr "Rezervasyon"
-
-#: apps/modules/catalog.py
-msgid "Rental"
-msgstr "Kiralama"
 
 #: apps/modules/catalog.py
 msgid "Halls"

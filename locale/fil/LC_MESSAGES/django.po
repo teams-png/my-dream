@@ -162,6 +162,14 @@ msgid "Team orders"
 msgstr "Mga team order"
 
 #: templates/base.html
+msgid "Rentals"
+msgstr "Mga renta"
+
+#: templates/base.html
+msgid "Size charts"
+msgstr "Mga size chart"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "Benta"
 
@@ -192,6 +200,10 @@ msgstr "Botika"
 #: templates/base.html
 msgid "Batches & expiry"
 msgstr "Batch at expiry"
+
+#: templates/base.html
+msgid "Refills"
+msgstr "Mga refill"
 
 #: templates/base.html
 msgid "Protein Shop"
@@ -721,6 +733,10 @@ msgstr "Mga extra"
 #: templates/webapp/_industry_nav.html
 msgid "Plans & menu"
 msgstr "Mga plano at menu"
+
+#: templates/webapp/_industry_nav.html
+msgid "Website orders"
+msgstr "Mga order sa website"
 
 #: templates/webapp/_industry_nav.html
 msgid "My website"
@@ -8020,6 +8036,88 @@ msgstr "Binayaran kay"
 msgid "Add cost"
 msgstr "Magdagdag ng gastos"
 
+#: templates/webapp/refills/list.html
+msgid "Refill subscriptions"
+msgstr "Mga refill subscription"
+
+#: templates/webapp/refills/list.html
+msgid ""
+"Customers who buy the same item every few weeks. See who is due, remind them"
+" on WhatsApp and make the bill in one tap — the next date moves on by "
+"itself."
+msgstr ""
+"Mga customer na bumibili ng parehong item tuwing ilang linggo. Tingnan kung "
+"sino ang due, paalalahanan sa WhatsApp at gumawa ng bill sa isang tap — "
+"kusang uusad ang susunod na petsa."
+
+#: templates/webapp/refills/list.html
+msgid "Due now"
+msgstr "Due ngayon"
+
+#: templates/webapp/refills/list.html
+msgid "All active"
+msgstr "Lahat ng aktibo"
+
+#: templates/webapp/refills/list.html
+msgid "Paused"
+msgstr "Naka-pause"
+
+#: templates/webapp/refills/list.html
+msgid "Due today"
+msgstr "Due ngayong araw"
+
+#: templates/webapp/refills/list.html
+msgid "Make bill"
+msgstr "Gumawa ng bill"
+
+#: templates/webapp/refills/list.html
+msgid "Skip"
+msgstr "Laktawan"
+
+#: templates/webapp/refills/list.html
+msgid "Remove this refill?"
+msgstr "Alisin ang refill na ito?"
+
+#: templates/webapp/refills/list.html
+msgid "No refills due in the next 3 days."
+msgstr "Walang refill na due sa susunod na 3 araw."
+
+#: templates/webapp/refills/list.html
+msgid "No refills yet. Add your regular customers on the right."
+msgstr "Wala pang refill. Idagdag ang iyong mga suki sa kanan."
+
+#: templates/webapp/refills/list.html
+msgid "New refill"
+msgstr "Bagong refill"
+
+#: templates/webapp/refills/list.html
+msgid "Quantity"
+msgstr "Dami"
+
+#: templates/webapp/refills/list.html
+msgid "Every (days)"
+msgstr "Tuwing (araw)"
+
+#: templates/webapp/refills/list.html
+msgid "First refill on"
+msgstr "Unang refill sa"
+
+#: templates/webapp/refills/list.html
+msgid "Subscriber discount %"
+msgstr "Diskwento ng subscriber %"
+
+#: templates/webapp/refills/list.html
+msgid "Deliver to the customer"
+msgstr "Ihatid sa customer"
+
+#: templates/webapp/refills/list.html
+msgid "e.g. chocolate flavour, call before delivery"
+msgstr "hal. chocolate flavour, tumawag bago ihatid"
+
+#: templates/webapp/refills/list.html
+msgid "Add refill"
+msgstr "Idagdag ang refill"
+
 #: templates/webapp/reminders.html
 msgid ""
 "Customers who have not come back for a while, and memberships about to end. "
@@ -8389,10 +8487,6 @@ msgid "Filter kitchen orders"
 msgstr "I-filter ang order sa kusina"
 
 #: templates/webapp/restaurant/kitchen.html
-msgid "All active"
-msgstr "Lahat ng aktibo"
-
-#: templates/webapp/restaurant/kitchen.html
 msgid "Waiting"
 msgstr "Naghihintay"
 
@@ -8690,10 +8784,6 @@ msgstr "Pumili ng add-on at dami."
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Kitchen note"
 msgstr "Tala para sa kusina"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Quantity"
-msgstr "Dami"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Add to Order"
@@ -9742,6 +9832,117 @@ msgstr ""
 msgid "Add sample data"
 msgstr "Magdagdag ng sample data"
 
+#: templates/webapp/shop_orders/inbox.html
+msgid "Website shop is off"
+msgstr "Naka-off ang shop ng website"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Switch it on below to show “+ Add” and a cart on your website."
+msgstr "I-on sa ibaba para ipakita ang “+ Add” at cart sa iyong website."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Customers can see your products, but cannot order."
+msgstr ""
+"Nakikita ng mga customer ang mga produkto mo pero hindi sila makaka-order."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
+"Confirm each new order, send it, then make the bill. This page beeps when a "
+"new order comes."
+msgstr ""
+"Kumpirmahin ang bawat bagong order, ipadala, saka gumawa ng bill. Tumutunog "
+"ang page na ito kapag may bagong order."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
+"Your BookPilot website is not switched on yet. Ask your BookPilot team to "
+"switch on the Website add-on — or put the cart on your own website with the "
+"Website kit."
+msgstr ""
+"Hindi pa naka-on ang iyong BookPilot website. Hilingin sa BookPilot team na "
+"i-on ang Website add-on — o ilagay ang cart sa sarili mong website gamit ang"
+" Website kit."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "WhatsApp customer"
+msgstr "WhatsApp sa customer"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Share / pay link"
+msgstr "Share / pay link"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Out for delivery"
+msgstr "Papunta na sa delivery"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Make bill (paid / delivered)"
+msgstr "Gumawa ng bill (bayad / naihatid)"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Close this order without a bill?"
+msgstr "Isara ang order na ito nang walang bill?"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Reason, e.g. out of stock"
+msgstr "Dahilan, hal. ubos na"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No open website orders."
+msgstr "Walang bukas na order sa website."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No website orders yet."
+msgstr "Wala pang order sa website."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Online shop settings"
+msgstr "Settings ng online shop"
+
+#: templates/webapp/site/_base.html
+msgid "Preview"
+msgstr "Preview"
+
+#: templates/webapp/site/_base.html
+msgid "not public yet"
+msgstr "hindi pa publiko"
+
+#: templates/webapp/site/_base.html
+msgid "Home"
+msgstr "Home"
+
+#: templates/webapp/site/_base.html
+msgid "About"
+msgstr "Tungkol sa amin"
+
+#: templates/webapp/site/_base.html
+msgid "Book now"
+msgstr "Mag-book ngayon"
+
+#: templates/webapp/site/_base.html
+msgid "Call us"
+msgstr "Tawagan kami"
+
+#: templates/webapp/site/_base.html
+msgid "Menu"
+msgstr "Menu"
+
+#: templates/webapp/site/_base.html
+msgid "Follow us"
+msgstr "I-follow kami"
+
+#: templates/webapp/site/_base.html
+msgid "VAT"
+msgstr "VAT"
+
+#: templates/webapp/site/_card.html
+msgid "+ Add"
+msgstr "+ Idagdag"
+
+#: templates/webapp/site/_card.html
+msgid "Veg"
+msgstr "Veg"
+
 #: templates/webapp/site/editor.html
 msgid "Website kit"
 msgstr "Website kit"
@@ -9773,6 +9974,82 @@ msgstr ""
 "baguhin doon at mag-a-update ang website."
 
 #: templates/webapp/site/editor.html
+msgid "Online shop"
+msgstr "Online shop"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website has a Shop page with every product, a page for each product, a "
+"cart and checkout. Orders arrive in Website orders; stock and prices come "
+"from BookPilot."
+msgstr ""
+"May Shop page ang website mo na may lahat ng produkto, isang page bawat "
+"produkto, cart at checkout. Pumapasok ang mga order sa Website orders; "
+"galing sa BookPilot ang stock at presyo."
+
+#: templates/webapp/site/editor.html
+msgid "Website orders & shop settings"
+msgstr "Website orders at shop settings"
+
+#: templates/webapp/site/editor.html
+msgid "Switch on the cart"
+msgstr "I-on ang cart"
+
+#: templates/webapp/site/editor.html
+msgid "Products & photos"
+msgstr "Mga produkto at larawan"
+
+#: templates/webapp/site/editor.html
+msgid "Use your own domain (e.g. from Hostinger)"
+msgstr "Gamitin ang sariling domain (hal. mula sa Hostinger)"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Buy the domain (Hostinger, GoDaddy, Namecheap…). You only need the domain — "
+"no hosting plan."
+msgstr ""
+"Bilhin ang domain (Hostinger, GoDaddy, Namecheap…). Domain lang ang "
+"kailangan — walang hosting plan."
+
+#: templates/webapp/site/editor.html
+msgid ""
+"In Hostinger: hPanel → Domains → your domain → DNS / Nameservers → Manage "
+"DNS records."
+msgstr ""
+"Sa Hostinger: hPanel → Domains → iyong domain → DNS / Nameservers → Manage "
+"DNS records."
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Delete the old A and CNAME records for “@” and “www” (the parking page)."
+msgstr ""
+"Burahin ang lumang A at CNAME records para sa “@” at “www” (parking page)."
+
+#: templates/webapp/site/editor.html
+msgid "Add a CNAME record:"
+msgstr "Magdagdag ng CNAME record:"
+
+#: templates/webapp/site/editor.html
+msgid "Add an A record:"
+msgstr "Magdagdag ng A record:"
+
+#: templates/webapp/site/editor.html
+msgid "(so the address without www also works)"
+msgstr "(para gumana rin ang address na walang www)"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Send the domain name to your BookPilot team. We connect it and switch on the"
+" free SSL (https). It usually works within 1–24 hours."
+msgstr ""
+"Ipadala ang pangalan ng domain sa BookPilot team. Ikokonekta namin ito at "
+"bubuksan ang libreng SSL (https). Karaniwang gumagana sa loob ng 1–24 oras."
+
+#: templates/webapp/site/editor.html
+msgid "Until then your website works at"
+msgstr "Hanggang doon, gumagana ang website mo sa"
+
+#: templates/webapp/site/editor.html
 msgid "Design"
 msgstr "Disenyo"
 
@@ -9793,40 +10070,92 @@ msgid "Sections"
 msgstr "Mga seksyon"
 
 #: templates/webapp/site/editor.html
-msgid "Preview"
-msgstr "Preview"
+msgid ""
+"Make the website look like your own design. Your CSS is added after the "
+"theme, so it wins. Useful classes: .hero, .section, .card, .btn, .price, "
+"header.top, footer, .prod (product page), .shop-bar, .chips. Colours: --p "
+"(main), --a (highlight)."
+msgstr ""
+"Gawing kamukha ng sarili mong disenyo ang website. Idinadagdag ang CSS mo "
+"pagkatapos ng theme, kaya ito ang nananaig. Mga kapaki-pakinabang na class: "
+".hero, .section, .card, .btn, .price, header.top, footer, .prod (product "
+"page), .shop-bar, .chips. Kulay: --p (pangunahin), --a (highlight)."
+
+#: templates/webapp/site/editor.html
+msgid "Pages"
+msgstr "Mga page"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Add more pages to your website: About us, Warranty, Delivery & returns, "
+"Terms…"
+msgstr ""
+"Magdagdag ng iba pang page sa website mo: About us, Warranty, Delivery at "
+"returns, Terms…"
+
+#: templates/webapp/site/editor.html
+msgid "hidden"
+msgstr "nakatago"
+
+#: templates/webapp/site/editor.html
+msgid "footer"
+msgstr "footer"
+
+#: templates/webapp/site/editor.html
+msgid "Page title"
+msgstr "Pamagat ng page"
+
+#: templates/webapp/site/editor.html
+msgid "Web address"
+msgstr "Web address"
+
+#: templates/webapp/site/editor.html
+msgid "Page text"
+msgstr "Teksto ng page"
+
+#: templates/webapp/site/editor.html
+msgid "Show in the top menu (off: footer only)"
+msgstr "Ipakita sa itaas na menu (off: sa footer lang)"
+
+#: templates/webapp/site/editor.html
+msgid "Page is live"
+msgstr "Live ang page"
+
+#: templates/webapp/site/editor.html
+msgid "Save page"
+msgstr "I-save ang page"
+
+#: templates/webapp/site/editor.html
+msgid "Delete this page?"
+msgstr "Burahin ang page na ito?"
+
+#: templates/webapp/site/editor.html
+msgid "New page"
+msgstr "Bagong page"
+
+#: templates/webapp/site/editor.html
+msgid "Add page"
+msgstr "Idagdag ang page"
 
 #: templates/webapp/site/editor.html
 msgid "Open full page"
 msgstr "Buksan ang buong pahina"
 
 #: templates/webapp/site/page.html
-msgid "not public yet"
-msgstr "hindi pa publiko"
-
-#: templates/webapp/site/page.html
-msgid "About"
-msgstr "Tungkol sa amin"
-
-#: templates/webapp/site/page.html
-msgid "Book now"
-msgstr "Mag-book ngayon"
-
-#: templates/webapp/site/page.html
-msgid "Call us"
-msgstr "Tawagan kami"
+msgid "Shop now"
+msgstr "Mamili na"
 
 #: templates/webapp/site/page.html
 msgid "Available now"
 msgstr "Available ngayon"
 
 #: templates/webapp/site/page.html
-msgid "+ Add"
-msgstr "+ Idagdag"
+msgid "Popular products"
+msgstr "Mga sikat na produkto"
 
 #: templates/webapp/site/page.html
-msgid "Veg"
-msgstr "Veg"
+msgid "See all products"
+msgstr "Tingnan lahat ng produkto"
 
 #: templates/webapp/site/page.html
 msgid "Send your request — we confirm by phone or WhatsApp."
@@ -9858,13 +10187,93 @@ msgstr "Makipag-ugnayan sa amin"
 msgid "We usually reply within the day."
 msgstr "Karaniwan kaming sumasagot sa loob ng araw."
 
-#: templates/webapp/site/page.html
-msgid "Follow us"
-msgstr "I-follow kami"
+#: templates/webapp/site/product.html
+msgid "Out of stock"
+msgstr "Ubos na"
 
-#: templates/webapp/site/page.html
-msgid "VAT"
-msgstr "VAT"
+#: templates/webapp/site/product.html
+msgid "Options"
+msgstr "Mga opsyon"
+
+#: templates/webapp/site/product.html
+msgid "Add to cart"
+msgstr "Idagdag sa cart"
+
+#: templates/webapp/site/product.html
+msgid "Ask on WhatsApp"
+msgstr "Magtanong sa WhatsApp"
+
+#: templates/webapp/site/product.html
+msgid "Size chart"
+msgstr "Size chart"
+
+#: templates/webapp/site/product.html
+msgid "You may also like"
+msgstr "Baka magustuhan mo rin"
+
+#: templates/webapp/site/shop.html
+msgid "All products"
+msgstr "Lahat ng produkto"
+
+#: templates/webapp/site/shop.html
+msgid "Search products…"
+msgstr "Maghanap ng produkto…"
+
+#: templates/webapp/site/shop.html
+msgid "Sort"
+msgstr "Ayusin"
+
+#: templates/webapp/site/shop.html
+msgid "Sort: name"
+msgstr "Ayos: pangalan"
+
+#: templates/webapp/site/shop.html
+msgid "Price: low to high"
+msgstr "Presyo: mababa pataas"
+
+#: templates/webapp/site/shop.html
+msgid "Price: high to low"
+msgstr "Presyo: mataas pababa"
+
+#: templates/webapp/site/shop.html
+msgid "Newest"
+msgstr "Pinakabago"
+
+#: templates/webapp/site/shop.html
+msgid "No products found."
+msgstr "Walang nakitang produkto."
+
+#: templates/webapp/site/shop.html
+msgid "Previous"
+msgstr "Nakaraan"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Sorry, the shop could not complete this order."
+msgstr "Paumanhin, hindi natapos ng shop ang order na ito."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Confirmed"
+msgstr "Kumpirmado"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "On the way"
+msgstr "Papunta na"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "The shop has your order and will confirm it shortly."
+msgstr "Natanggap ng shop ang order mo at kukumpirmahin agad."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Your order is confirmed and being packed."
+msgstr "Kumpirmado ang order mo at inihahanda na."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Your order is on its way."
+msgstr "Papunta na ang order mo."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Thank you for shopping with us!"
+msgstr "Salamat sa pamimili sa amin!"
 
 #: templates/webapp/sports_shop/product_list.html
 msgid "Import from Excel"
@@ -9893,6 +10302,221 @@ msgstr "Sukat / kulay"
 #: templates/webapp/sports_shop/product_list.html
 msgid "No products yet."
 msgstr "Wala pang produkto."
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Rental"
+msgstr "Rental"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Print agreement"
+msgstr "I-print ang kasunduan"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Remind on WhatsApp"
+msgstr "Paalala sa WhatsApp"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Rental agreement"
+msgstr "Kasunduan sa renta"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "ID"
+msgstr "ID"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Per day"
+msgstr "Bawat araw"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Return by"
+msgstr "Ibalik bago"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Late"
+msgstr "Huli"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Deposit"
+msgstr "Deposito"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "day(s)"
+msgstr "araw"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid ""
+"The customer returns the items in the same condition. Late days are charged "
+"at the daily rate; damage or missing parts are charged from the deposit."
+msgstr ""
+"Ibabalik ng customer ang mga gamit sa parehong kondisyon. Sisingilin ang mga"
+" late na araw sa daily rate; ang sira o kulang na piyesa ay kukunin sa "
+"deposito."
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Items returned"
+msgstr "Naibalik ang mga gamit"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Damage / missing parts charge"
+msgstr "Singil sa sira / kulang na piyesa"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Return & make bill"
+msgstr "Ibalik at gumawa ng bill"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Cancel this rental without a bill?"
+msgstr "Kanselahin ang rentang ito nang walang bill?"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Cancel rental"
+msgstr "Kanselahin ang renta"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid ""
+"The bill is paid from the deposit first; the screen tells you what to give "
+"back or collect."
+msgstr ""
+"Babayaran muna ang bill mula sa deposito; sasabihin ng screen kung magkano "
+"ang ibabalik o sisingilin."
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "New rental"
+msgstr "Bagong renta"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Add your rental items first."
+msgstr "Idagdag muna ang mga gamit na pinaparenta."
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Rental items"
+msgstr "Mga gamit na pinaparenta"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "ID kept (QID / passport no.)"
+msgstr "ID na itinago (QID / passport no.)"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "day"
+msgstr "araw"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "deposit"
+msgstr "deposito"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "free"
+msgstr "bakante"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Deposit taken"
+msgstr "Natanggap na deposito"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Auto from items"
+msgstr "Awtomatiko mula sa mga gamit"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "e.g. helmet included, small scratch on frame"
+msgstr "hal. kasama ang helmet, maliit na gasgas sa frame"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Save rental"
+msgstr "I-save ang renta"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Equipment rental"
+msgstr "Renta ng kagamitan"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Out now"
+msgstr "Nasa labas ngayon"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "late"
+msgstr "late"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Nothing is out on rent."
+msgstr "Walang nakarenta ngayon."
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Rate per day"
+msgstr "Rate bawat araw"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Deposit per piece"
+msgstr "Deposito bawat piraso"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "How many you own"
+msgstr "Ilan ang mayroon ka"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Yes"
+msgstr "Oo"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "No"
+msgstr "Hindi"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Add the gear you rent out: bicycles, kayaks, rackets, tents…"
+msgstr ""
+"Idagdag ang mga kagamitang pinaparenta mo: bisikleta, kayak, raketa, tent…"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "New item"
+msgstr "Bagong gamit"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "e.g. Mountain bike"
+msgstr "hal. Mountain bike"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid ""
+"A size guide per category (jerseys, shoes, gloves…). Staff can show it at "
+"the counter, and your website shows it on every product of that category."
+msgstr ""
+"Isang size guide bawat kategorya (jersey, sapatos, gloves…). Maipapakita ito"
+" ng staff sa counter, at ipinapakita ng website sa bawat produkto sa "
+"kategoryang iyon."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "No category"
+msgstr "Walang kategorya"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "Delete this size chart?"
+msgstr "Burahin ang size chart na ito?"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "No size charts yet."
+msgstr "Wala pang size chart."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "New size chart"
+msgstr "Bagong size chart"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "e.g. Football jerseys"
+msgstr "hal. Football jerseys"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid ""
+"One row per line, columns separated by commas. The first line is the "
+"heading. You can paste from Excel."
+msgstr ""
+"Isang row bawat linya, hinihiwalay ng kuwit ang mga column. Ang unang linya "
+"ang heading. Puwedeng i-paste mula sa Excel."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "e.g. Between two sizes? Take the bigger one."
+msgstr "hal. Nasa pagitan ng dalawang size? Piliin ang mas malaki."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "Add size chart"
+msgstr "Idagdag ang size chart"
 
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Print list for the printer"
@@ -10043,6 +10667,23 @@ msgid "No batches here."
 msgstr "Walang batch dito."
 
 #: templates/webapp/stock/batches.html
+msgid "Near-expiry discount"
+msgstr "Diskwento sa malapit nang mag-expire"
+
+#: templates/webapp/stock/batches.html
+msgid ""
+"Sell old stock before it expires: while an item's next batch expires soon, "
+"billing gives this discount automatically (POS and invoices)."
+msgstr ""
+"Ibenta ang lumang stock bago mag-expire: kapag malapit nang mag-expire ang "
+"susunod na batch ng isang item, awtomatikong ibibigay ng billing ang "
+"diskwentong ito (POS at invoice)."
+
+#: templates/webapp/stock/batches.html
+msgid "When it expires within (days)"
+msgstr "Kapag mag-e-expire sa loob ng (araw)"
+
+#: templates/webapp/stock/batches.html
 msgid "Batches you entered before this update are kept on the older screen."
 msgstr ""
 "Ang mga batch na inilagay bago ang update na ito ay nasa lumang screen."
@@ -10191,10 +10832,6 @@ msgstr "Halaga ng stock (cost)"
 #: templates/webapp/stock/home.html
 msgid "Running low"
 msgstr "Paubos na"
-
-#: templates/webapp/stock/home.html
-msgid "Out of stock"
-msgstr "Ubos na"
 
 #: templates/webapp/stock/home.html
 msgid "Batches expiring (30 days)"
@@ -10367,6 +11004,26 @@ msgstr ""
 "Naka-off ito sa demo. Simulan ang libreng trial para magamit ito sa sarili "
 "mong negosyo."
 
+#: apps/industry/expiry_deals.py
+msgid "Near expiry −%(pct)s%% (%(days)s days left)"
+msgstr "Malapit mag-expire −%(pct)s%% (%(days)s araw na lang)"
+
+#: apps/industry/expiry_deals.py
+msgid ""
+"Hi %(name)s, your %(item)s refill from %(shop)s is due on %(date)s. Reply "
+"YES and we will keep it ready%(delivery)s."
+msgstr ""
+"Hi %(name)s, ang refill mo ng %(item)s mula sa %(shop)s ay due sa %(date)s. "
+"Mag-reply ng YES at ihahanda namin%(delivery)s."
+
+#: apps/industry/expiry_deals.py
+msgid " for delivery"
+msgstr "para sa delivery"
+
+#: apps/industry/models.py
+msgid "Ready / on the way"
+msgstr "Handa / papunta na"
+
 #: apps/industry/reminders.py
 msgid ""
 "Hi %(name)s, it has been a while since your last visit to %(shop)s. Shall we"
@@ -10451,6 +11108,109 @@ msgstr "Natapos ang membership %(n)s araw na ang nakalipas"
 msgid "Last visit %(n)s days ago"
 msgstr "Huling bisita %(n)s araw na ang nakalipas"
 
+#: apps/industry/shop_orders.py
+msgid "Enter a phone number we can call."
+msgstr "Maglagay ng numero ng telepono na matatawagan namin."
+
+#: apps/industry/shop_orders.py
+msgid "Online ordering is switched off."
+msgstr "Naka-off ang online ordering."
+
+#: apps/industry/shop_orders.py
+msgid "Sorry, we are not taking online orders right now. Please call us."
+msgstr ""
+"Paumanhin, hindi kami tumatanggap ng online order ngayon. Pakitawagan kami."
+
+#: apps/industry/shop_orders.py
+msgid "Enter your name."
+msgstr "Ilagay ang iyong pangalan."
+
+#: apps/industry/shop_orders.py
+msgid "This order type is not available."
+msgstr "Hindi available ang uri ng order na ito."
+
+#: apps/industry/shop_orders.py
+msgid "Enter the delivery address."
+msgstr "Ilagay ang delivery address."
+
+#: apps/industry/shop_orders.py
+msgid "Your cart is empty."
+msgstr "Walang laman ang cart mo."
+
+#: apps/industry/shop_orders.py
+msgid "Too many items in one order. Please call us for big orders."
+msgstr ""
+"Masyadong maraming item sa isang order. Pakitawagan kami para sa malalaking "
+"order."
+
+#: apps/industry/shop_orders.py
+msgid "Your cart is not valid. Please refresh the page."
+msgstr "Hindi valid ang cart mo. Paki-refresh ang pahina."
+
+#: apps/industry/shop_orders.py
+msgid "You can order 1 to %(n)s of each item."
+msgstr "Maaari kang mag-order ng 1 hanggang %(n)s sa bawat item."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"An item in your cart is no longer sold online. Please refresh the page."
+msgstr ""
+"Hindi na ibinebenta online ang isang item sa cart mo. Paki-refresh ang page."
+
+#: apps/industry/shop_orders.py
+msgid "Sorry, %(item)s is out of stock."
+msgstr "Paumanhin, ubos na ang %(item)s."
+
+#: apps/industry/shop_orders.py
+msgid "Only %(n)s of %(item)s left."
+msgstr "%(n)s na lang ang natitirang %(item)s."
+
+#: apps/industry/shop_orders.py
+msgid "The minimum order for delivery is %(amount)s."
+msgstr "Ang minimum na order para sa delivery ay %(amount)s."
+
+#: apps/industry/shop_orders.py
+msgid "This order was already handled."
+msgstr "Naasikaso na ang order na ito."
+
+#: apps/industry/shop_orders.py
+msgid "The shop could not take this order."
+msgstr "Hindi natanggap ng shop ang order na ito."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, we received your order %(ref)s at %(shop)s. We will confirm it "
+"shortly."
+msgstr ""
+"Hi %(name)s, natanggap namin ang order mo %(ref)s sa %(shop)s. Kukumpirmahin"
+" namin agad."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, your order %(ref)s at %(shop)s is confirmed. Total %(total)s."
+msgstr ""
+"Hi %(name)s, kumpirmado ang order mo %(ref)s sa %(shop)s. Kabuuan %(total)s."
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, your order %(ref)s from %(shop)s is on the way."
+msgstr "Hi %(name)s, papunta na ang order mo %(ref)s mula sa %(shop)s."
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, your order %(ref)s is ready for pickup at %(shop)s."
+msgstr "Hi %(name)s, handa nang kunin ang order mo %(ref)s sa %(shop)s."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, sorry — we could not complete your order %(ref)s at %(shop)s. "
+"%(reason)s"
+msgstr ""
+"Hi %(name)s, paumanhin — hindi namin natapos ang order mo %(ref)s sa "
+"%(shop)s. %(reason)s"
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, thank you for shopping at %(shop)s!"
+msgstr "Hi %(name)s, salamat sa pamimili sa %(shop)s!"
+
 #: apps/industry/site_builder.py
 msgid "Our menu"
 msgstr "Ang aming menu"
@@ -10470,10 +11230,6 @@ msgstr "Mga kurso"
 #: apps/industry/site_builder.py
 msgid "hour"
 msgstr "oras"
-
-#: apps/industry/site_builder.py
-msgid "day"
-msgstr "araw"
 
 #: apps/industry/site_builder.py
 msgid "night"
@@ -10498,6 +11254,14 @@ msgstr "term"
 #: apps/industry/site_builder.py
 msgid "Our products"
 msgstr "Ang aming mga produkto"
+
+#: apps/industry/site_builder.py
+msgid "Colour"
+msgstr "Kulay"
+
+#: apps/industry/site_builder.py
+msgid "Material"
+msgstr "Materyal"
 
 #: apps/notifications/rules.py
 msgid "Customer bills due"
@@ -10684,49 +11448,6 @@ msgid "Accepted"
 msgstr "Tinanggap"
 
 #: apps/verticals/restaurant/online_orders.py
-msgid "Enter a phone number we can call."
-msgstr "Maglagay ng numero ng telepono na matatawagan namin."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Online ordering is switched off."
-msgstr "Naka-off ang online ordering."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Sorry, we are not taking online orders right now. Please call us."
-msgstr ""
-"Paumanhin, hindi kami tumatanggap ng online order ngayon. Pakitawagan kami."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Enter your name."
-msgstr "Ilagay ang iyong pangalan."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "This order type is not available."
-msgstr "Hindi available ang uri ng order na ito."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Enter the delivery address."
-msgstr "Ilagay ang delivery address."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Your cart is empty."
-msgstr "Walang laman ang cart mo."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Too many items in one order. Please call us for big orders."
-msgstr ""
-"Masyadong maraming item sa isang order. Pakitawagan kami para sa malalaking "
-"order."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Your cart is not valid. Please refresh the page."
-msgstr "Hindi valid ang cart mo. Paki-refresh ang pahina."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "You can order 1 to %(n)s of each item."
-msgstr "Maaari kang mag-order ng 1 hanggang %(n)s sa bawat item."
-
-#: apps/verticals/restaurant/online_orders.py
 msgid ""
 "An item in your cart is no longer on the menu. Please refresh the page."
 msgstr "Wala na sa menu ang isang item sa cart mo. Paki-refresh ang pahina."
@@ -10734,14 +11455,6 @@ msgstr "Wala na sa menu ang isang item sa cart mo. Paki-refresh ang pahina."
 #: apps/verticals/restaurant/online_orders.py
 msgid "Sorry, %(item)s is not available online right now."
 msgstr "Paumanhin, hindi available online ang %(item)s ngayon."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "The minimum order for delivery is %(amount)s."
-msgstr "Ang minimum na order para sa delivery ay %(amount)s."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "This order was already handled."
-msgstr "Naasikaso na ang order na ito."
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -11119,14 +11832,6 @@ msgstr "Kabuuang karanasan (taon)"
 #: apps/webapp/careers_views.py
 msgid "Gulf experience?"
 msgstr "May karanasan sa Gulf?"
-
-#: apps/webapp/careers_views.py
-msgid "Yes"
-msgstr "Oo"
-
-#: apps/webapp/careers_views.py
-msgid "No"
-msgstr "Hindi"
 
 #: apps/webapp/careers_views.py
 msgid "Highest qualification"
@@ -11595,6 +12300,14 @@ msgstr "Presyo ng benta"
 #: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "Reorder level"
+
+#: apps/webapp/forms.py
+msgid "Description for the website"
+msgstr "Paglalarawan para sa website"
+
+#: apps/webapp/forms.py
+msgid "Shown on the product page of your online shop."
+msgstr "Ipinapakita sa product page ng online shop mo."
 
 #: apps/webapp/forms.py
 msgid "…or new client name"
@@ -12273,10 +12986,6 @@ msgid "Table reservation"
 msgstr "Reserbasyon ng mesa"
 
 #: apps/webapp/online_booking_views.py
-msgid "Confirmed"
-msgstr "Kumpirmado"
-
-#: apps/webapp/online_booking_views.py
 msgid "Declined"
 msgstr "Tinanggihan"
 
@@ -12509,6 +13218,10 @@ msgid "Receive stock"
 msgstr "Tumanggap ng stock"
 
 #: apps/webapp/overview.py
+msgid "Refills due"
+msgstr "Mga refill na due"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "Mga repair sa tindahan"
 
@@ -12587,10 +13300,6 @@ msgstr "Wala pang check-in ngayon."
 #: apps/webapp/overview.py
 msgid "Orders in progress"
 msgstr "Mga order na ginagawa"
-
-#: apps/webapp/overview.py
-msgid "Late"
-msgstr "Huli"
 
 #: apps/webapp/overview.py
 msgid "Due for delivery"
@@ -13218,6 +13927,26 @@ msgstr "Gustong nasyonalidad, kung mayroon."
 msgid "Accommodation, food, transport…"
 msgstr "Tirahan, pagkain, transportasyon…"
 
+#: apps/webapp/refill_views.py
+msgid "Choose the customer and the item, and enter how often."
+msgstr "Piliin ang customer at item, at ilagay kung gaano kadalas."
+
+#: apps/webapp/refill_views.py
+msgid "Refill added for %(name)s."
+msgstr "Naidagdag ang refill para kay %(name)s."
+
+#: apps/webapp/refill_views.py
+msgid "Bill %(inv)s made. Next refill on %(date)s."
+msgstr "Nagawa ang bill %(inv)s. Susunod na refill sa %(date)s."
+
+#: apps/webapp/refill_views.py
+msgid "Skipped. Next refill on %(date)s."
+msgstr "Nilaktawan. Susunod na refill sa %(date)s."
+
+#: apps/webapp/refill_views.py
+msgid "Refill removed."
+msgstr "Naalis ang refill."
+
 #: apps/webapp/restaurant_order_views.py
 msgid "Yesterday"
 msgstr "Kahapon"
@@ -13320,6 +14049,51 @@ msgstr "Na-save ang setting ng timbangan."
 msgid "Your password has been changed."
 msgstr "Napalitan na ang iyong password."
 
+#: apps/webapp/shop_order_views.py
+msgid "Pickup from the shop"
+msgstr "Kunin sa shop"
+
+#: apps/webapp/shop_order_views.py
+msgid "Free delivery over"
+msgstr "Libreng delivery kapag lampas sa"
+
+#: apps/webapp/shop_order_views.py
+msgid "Shows “+ Add” on every product in stock and a cart on your website."
+msgstr ""
+"Nagpapakita ng “+ Add” sa bawat produktong may stock at cart sa website mo."
+
+#: apps/webapp/shop_order_views.py
+msgid "0 = always charge delivery."
+msgstr "0 = laging maningil ng delivery."
+
+#: apps/webapp/shop_order_views.py
+msgid "Delivery inside Doha in 24 hours · Cash or card on delivery"
+msgstr "Delivery sa loob ng Doha sa 24 oras · Cash o card sa delivery"
+
+#: apps/webapp/shop_order_views.py
+msgid "Online shop settings saved."
+msgstr "Na-save ang settings ng online shop."
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s confirmed. Let the customer know on WhatsApp."
+msgstr "Nakumpirma ang order %(ref)s. Sabihan ang customer sa WhatsApp."
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s marked ready."
+msgstr "Minarkahang handa ang order %(ref)s."
+
+#: apps/webapp/shop_order_views.py
+msgid "Bill %(inv)s made for %(ref)s. Stock is updated."
+msgstr "Nagawa ang bill %(inv)s para sa %(ref)s. Na-update ang stock."
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s closed."
+msgstr "Naisara ang order %(ref)s."
+
+#: apps/webapp/shop_order_views.py
+msgid "You can also bill it from New bill."
+msgstr "Puwede mo rin itong i-bill mula sa New bill."
+
 #: apps/webapp/site_views.py
 msgid "Main colour"
 msgstr "Pangunahing kulay"
@@ -13377,6 +14151,10 @@ msgid "Show contact form"
 msgstr "Ipakita ang contact form"
 
 #: apps/webapp/site_views.py
+msgid "My own CSS"
+msgstr "Sarili kong CSS"
+
+#: apps/webapp/site_views.py
 msgid "Leave empty to use the company logo."
 msgstr "Iwanang blangko para gamitin ang logo ng kumpanya."
 
@@ -13389,12 +14167,103 @@ msgid "Visitors can also switch to"
 msgstr "Maaari ring lumipat ang mga bisita sa"
 
 #: apps/webapp/site_views.py
-msgid "Menu"
-msgstr "Menu"
-
-#: apps/webapp/site_views.py
 msgid "Phone, address & logo"
 msgstr "Telepono, address at logo"
+
+#: apps/webapp/site_views.py
+msgid "e.g. warranty → yoursite.com/p/warranty/"
+msgstr "hal. warranty → yoursite.com/p/warranty/"
+
+#: apps/webapp/site_views.py
+msgid ""
+"Plain text, or HTML (headings, lists, pictures, tables, YouTube / Google "
+"Maps embeds). Scripts are removed."
+msgstr ""
+"Plain text, o HTML (headings, lists, larawan, tables, YouTube / Google Maps "
+"embeds). Inaalis ang scripts."
+
+#: apps/webapp/site_views.py
+msgid "Another page already uses this address."
+msgstr "May ibang page na gumagamit ng address na ito."
+
+#: apps/webapp/site_views.py
+msgid "Page deleted."
+msgstr "Nabura ang page."
+
+#: apps/webapp/site_views.py
+msgid "Page saved."
+msgstr "Na-save ang page."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Size chart deleted."
+msgstr "Nabura ang size chart."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Enter a name and the table."
+msgstr "Ilagay ang pangalan at ang table."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Size chart saved."
+msgstr "Na-save ang size chart."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Enter the item name."
+msgstr "Ilagay ang pangalan ng gamit."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental item saved."
+msgstr "Na-save ang gamit na pinaparenta."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Choose the customer or enter a new name."
+msgstr "Piliin ang customer o maglagay ng bagong pangalan."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Choose at least one item."
+msgstr "Pumili ng kahit isang gamit."
+
+#: apps/webapp/sports_extra_views.py
+msgid "The return date can't be in the past."
+msgstr "Hindi puwedeng nakalipas na ang petsa ng pagbalik."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Not enough free: %(items)s"
+msgstr "Kulang ang bakante: %(items)s"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental %(n)s saved."
+msgstr "Na-save ang renta %(n)s."
+
+#: apps/webapp/sports_extra_views.py
+msgid ""
+"Hi %(name)s, a reminder from %(shop)s: rental %(n)s is due back on %(date)s."
+" Thank you!"
+msgstr ""
+"Hi %(name)s, paalala mula sa %(shop)s: ang renta %(n)s ay dapat ibalik sa "
+"%(date)s. Salamat!"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental cancelled."
+msgstr "Kinansela ang renta."
+
+#: apps/webapp/sports_extra_views.py
+msgid "This rental is already closed."
+msgstr "Sarado na ang rentang ito."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Returned: %(note)s"
+msgstr "Naibalik: %(note)s"
+
+#: apps/webapp/sports_extra_views.py
+msgid ""
+"Returned. Bill %(inv)s paid from the deposit — give back %(cur)s %(amt)s."
+msgstr ""
+"Naibalik. Nabayaran ang bill %(inv)s mula sa deposito — ibalik ang %(cur)s "
+"%(amt)s."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Returned. Bill %(inv)s — collect %(cur)s %(amt)s."
+msgstr "Naibalik. Bill %(inv)s — singilin ang %(cur)s %(amt)s."
 
 #: apps/webapp/stock_views.py
 msgid "Damaged"
@@ -13452,6 +14321,14 @@ msgstr ""
 #: apps/webapp/stock_views.py
 msgid "Progress saved."
 msgstr "Na-save ang progreso."
+
+#: apps/webapp/stock_views.py
+msgid "Enter whole days and a percent."
+msgstr "Maglagay ng buong araw at porsyento."
+
+#: apps/webapp/stock_views.py
+msgid "Near-expiry discount saved."
+msgstr "Na-save ang diskwento sa malapit mag-expire."
 
 #: apps/webapp/stock_views.py
 msgid "Choose an item and enter the batch number."
@@ -13676,6 +14553,22 @@ msgid "Please enter your name and a phone number or email."
 msgstr "Pakilagay ang iyong pangalan at numero ng telepono o email."
 
 #: apps/webapp/website_kit_views.py
+msgid "The shop will confirm your order shortly."
+msgstr "Kukumpirmahin agad ng shop ang order mo."
+
+#: apps/webapp/website_kit_views.py
+msgid "Your cart is empty. Tap “+ Add” on a product."
+msgstr "Walang laman ang cart mo. I-tap ang “+ Add” sa isang produkto."
+
+#: apps/webapp/website_kit_views.py
+msgid "Note, e.g. colour, model, best time to call"
+msgstr "Tala, hal. kulay, modelo, magandang oras para tumawag"
+
+#: apps/webapp/website_kit_views.py
+msgid "Free delivery over %s"
+msgstr "Libreng delivery kapag lampas sa %s"
+
+#: apps/webapp/website_kit_views.py
 msgid "Order sent"
 msgstr "Naipadala ang order"
 
@@ -13762,10 +14655,6 @@ msgstr "Mga kuwarto"
 #: apps/modules/catalog.py
 msgid "Reservation"
 msgstr "Reserbasyon"
-
-#: apps/modules/catalog.py
-msgid "Rental"
-msgstr "Rental"
 
 #: apps/modules/catalog.py
 msgid "Halls"

@@ -162,6 +162,14 @@ msgid "Team orders"
 msgstr "टिम अर्डरहरू"
 
 #: templates/base.html
+msgid "Rentals"
+msgstr "भाडाहरू"
+
+#: templates/base.html
+msgid "Size charts"
+msgstr "साइज चार्टहरू"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "बिक्री"
 
@@ -192,6 +200,10 @@ msgstr "औषधि पसल"
 #: templates/base.html
 msgid "Batches & expiry"
 msgstr "ब्याच र म्याद"
+
+#: templates/base.html
+msgid "Refills"
+msgstr "रिफिलहरू"
 
 #: templates/base.html
 msgid "Protein Shop"
@@ -720,6 +732,10 @@ msgstr "थप परिकार"
 #: templates/webapp/_industry_nav.html
 msgid "Plans & menu"
 msgstr "योजना र मेनु"
+
+#: templates/webapp/_industry_nav.html
+msgid "Website orders"
+msgstr "वेबसाइट अर्डरहरू"
 
 #: templates/webapp/_industry_nav.html
 msgid "My website"
@@ -7955,6 +7971,87 @@ msgstr "कसलाई तिरिएको"
 msgid "Add cost"
 msgstr "लागत थप्नुहोस्"
 
+#: templates/webapp/refills/list.html
+msgid "Refill subscriptions"
+msgstr "रिफिल सदस्यताहरू"
+
+#: templates/webapp/refills/list.html
+msgid ""
+"Customers who buy the same item every few weeks. See who is due, remind them"
+" on WhatsApp and make the bill in one tap — the next date moves on by "
+"itself."
+msgstr ""
+"केही हप्तामा एउटै सामान किन्ने ग्राहकहरू। कसको पालो आयो हेर्नुहोस्, WhatsApp"
+" मा सम्झाउनुहोस् र एक ट्यापमा बिल बनाउनुहोस् — अर्को मिति आफैं सर्छ।"
+
+#: templates/webapp/refills/list.html
+msgid "Due now"
+msgstr "अहिले बाँकी"
+
+#: templates/webapp/refills/list.html
+msgid "All active"
+msgstr "सबै सक्रिय"
+
+#: templates/webapp/refills/list.html
+msgid "Paused"
+msgstr "रोकिएको"
+
+#: templates/webapp/refills/list.html
+msgid "Due today"
+msgstr "आज बाँकी"
+
+#: templates/webapp/refills/list.html
+msgid "Make bill"
+msgstr "बिल बनाउनुहोस्"
+
+#: templates/webapp/refills/list.html
+msgid "Skip"
+msgstr "छोड्नुहोस्"
+
+#: templates/webapp/refills/list.html
+msgid "Remove this refill?"
+msgstr "यो रिफिल हटाउने?"
+
+#: templates/webapp/refills/list.html
+msgid "No refills due in the next 3 days."
+msgstr "आउँदो ३ दिनमा कुनै रिफिल बाँकी छैन।"
+
+#: templates/webapp/refills/list.html
+msgid "No refills yet. Add your regular customers on the right."
+msgstr "अहिलेसम्म रिफिल छैन। नियमित ग्राहकहरू दायाँतिर थप्नुहोस्।"
+
+#: templates/webapp/refills/list.html
+msgid "New refill"
+msgstr "नयाँ रिफिल"
+
+#: templates/webapp/refills/list.html
+msgid "Quantity"
+msgstr "परिमाण"
+
+#: templates/webapp/refills/list.html
+msgid "Every (days)"
+msgstr "हरेक (दिन)"
+
+#: templates/webapp/refills/list.html
+msgid "First refill on"
+msgstr "पहिलो रिफिल"
+
+#: templates/webapp/refills/list.html
+msgid "Subscriber discount %"
+msgstr "सदस्य छुट %"
+
+#: templates/webapp/refills/list.html
+msgid "Deliver to the customer"
+msgstr "ग्राहकलाई डेलिभर गर्नुहोस्"
+
+#: templates/webapp/refills/list.html
+msgid "e.g. chocolate flavour, call before delivery"
+msgstr "जस्तै चकलेट फ्लेभर, डेलिभरीअघि फोन गर्नुहोस्"
+
+#: templates/webapp/refills/list.html
+msgid "Add refill"
+msgstr "रिफिल थप्नुहोस्"
+
 #: templates/webapp/reminders.html
 msgid ""
 "Customers who have not come back for a while, and memberships about to end. "
@@ -8320,10 +8417,6 @@ msgid "Filter kitchen orders"
 msgstr "भान्सा अर्डर छान्नुहोस्"
 
 #: templates/webapp/restaurant/kitchen.html
-msgid "All active"
-msgstr "सबै सक्रिय"
-
-#: templates/webapp/restaurant/kitchen.html
 msgid "Waiting"
 msgstr "पर्खँदै"
 
@@ -8620,10 +8713,6 @@ msgstr "एड-अन र परिमाण छान्नुहोस्।"
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Kitchen note"
 msgstr "भान्सा नोट"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Quantity"
-msgstr "परिमाण"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Add to Order"
@@ -9658,6 +9747,115 @@ msgstr ""
 msgid "Add sample data"
 msgstr "नमुना डेटा थप्नुहोस्"
 
+#: templates/webapp/shop_orders/inbox.html
+msgid "Website shop is off"
+msgstr "वेबसाइट पसल बन्द छ"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Switch it on below to show “+ Add” and a cart on your website."
+msgstr "वेबसाइटमा “+ Add” र कार्ट देखाउन तल खोल्नुहोस्।"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Customers can see your products, but cannot order."
+msgstr "ग्राहकले उत्पादन हेर्न सक्छन्, तर अर्डर गर्न सक्दैनन्।"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
+"Confirm each new order, send it, then make the bill. This page beeps when a "
+"new order comes."
+msgstr ""
+"हरेक नयाँ अर्डर पुष्टि गर्नुहोस्, पठाउनुहोस्, अनि बिल बनाउनुहोस्। नयाँ अर्डर"
+" आउँदा यो पेज बिप गर्छ।"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
+"Your BookPilot website is not switched on yet. Ask your BookPilot team to "
+"switch on the Website add-on — or put the cart on your own website with the "
+"Website kit."
+msgstr ""
+"तपाईंको BookPilot वेबसाइट अझै खुलेको छैन। BookPilot टोलीलाई Website add-on "
+"खोल्न भन्नुहोस् — वा Website kit ले आफ्नै वेबसाइटमा कार्ट राख्नुहोस्।"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "WhatsApp customer"
+msgstr "ग्राहकलाई WhatsApp"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Share / pay link"
+msgstr "सेयर / भुक्तानी लिङ्क"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Out for delivery"
+msgstr "डेलिभरीमा निस्कियो"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Make bill (paid / delivered)"
+msgstr "बिल बनाउनुहोस् (तिरेको / डेलिभर भएको)"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Close this order without a bill?"
+msgstr "बिल बिना यो अर्डर बन्द गर्ने?"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Reason, e.g. out of stock"
+msgstr "कारण, जस्तै स्टक छैन"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No open website orders."
+msgstr "खुला वेबसाइट अर्डर छैन।"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No website orders yet."
+msgstr "अहिलेसम्म वेबसाइट अर्डर छैन।"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Online shop settings"
+msgstr "अनलाइन पसल सेटिङ"
+
+#: templates/webapp/site/_base.html
+msgid "Preview"
+msgstr "पूर्वावलोकन"
+
+#: templates/webapp/site/_base.html
+msgid "not public yet"
+msgstr "अझै सार्वजनिक छैन"
+
+#: templates/webapp/site/_base.html
+msgid "Home"
+msgstr "गृहपृष्ठ"
+
+#: templates/webapp/site/_base.html
+msgid "About"
+msgstr "हाम्रो बारेमा"
+
+#: templates/webapp/site/_base.html
+msgid "Book now"
+msgstr "अहिले बुक गर्नुहोस्"
+
+#: templates/webapp/site/_base.html
+msgid "Call us"
+msgstr "हामीलाई फोन गर्नुहोस्"
+
+#: templates/webapp/site/_base.html
+msgid "Menu"
+msgstr "मेनु"
+
+#: templates/webapp/site/_base.html
+msgid "Follow us"
+msgstr "हामीलाई फलो गर्नुहोस्"
+
+#: templates/webapp/site/_base.html
+msgid "VAT"
+msgstr "VAT"
+
+#: templates/webapp/site/_card.html
+msgid "+ Add"
+msgstr "+ थप्नुहोस्"
+
+#: templates/webapp/site/_card.html
+msgid "Veg"
+msgstr "शाकाहारी"
+
 #: templates/webapp/site/editor.html
 msgid "Website kit"
 msgstr "वेबसाइट किट"
@@ -9689,6 +9887,80 @@ msgstr ""
 "बदल्नुहोस्, वेबसाइट अपडेट हुन्छ।"
 
 #: templates/webapp/site/editor.html
+msgid "Online shop"
+msgstr "अनलाइन पसल"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website has a Shop page with every product, a page for each product, a "
+"cart and checkout. Orders arrive in Website orders; stock and prices come "
+"from BookPilot."
+msgstr ""
+"तपाईंको वेबसाइटमा सबै उत्पादनको Shop पेज, हरेक उत्पादनको पेज, कार्ट र चेकआउट"
+" छ। अर्डर Website orders मा आउँछन्; स्टक र मूल्य BookPilot बाट।"
+
+#: templates/webapp/site/editor.html
+msgid "Website orders & shop settings"
+msgstr "वेबसाइट अर्डर र पसल सेटिङ"
+
+#: templates/webapp/site/editor.html
+msgid "Switch on the cart"
+msgstr "कार्ट खोल्नुहोस्"
+
+#: templates/webapp/site/editor.html
+msgid "Products & photos"
+msgstr "उत्पादन र फोटो"
+
+#: templates/webapp/site/editor.html
+msgid "Use your own domain (e.g. from Hostinger)"
+msgstr "आफ्नै डोमेन प्रयोग गर्नुहोस् (जस्तै Hostinger बाट)"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Buy the domain (Hostinger, GoDaddy, Namecheap…). You only need the domain — "
+"no hosting plan."
+msgstr ""
+"डोमेन किन्नुहोस् (Hostinger, GoDaddy, Namecheap…)। डोमेन मात्र चाहिन्छ — "
+"होस्टिङ प्लान चाहिँदैन।"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"In Hostinger: hPanel → Domains → your domain → DNS / Nameservers → Manage "
+"DNS records."
+msgstr ""
+"Hostinger मा: hPanel → Domains → तपाईंको डोमेन → DNS / Nameservers → Manage "
+"DNS records।"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Delete the old A and CNAME records for “@” and “www” (the parking page)."
+msgstr "“@” र “www” का पुराना A र CNAME रेकर्ड मेटाउनुहोस् (पार्किङ पेज)।"
+
+#: templates/webapp/site/editor.html
+msgid "Add a CNAME record:"
+msgstr "एउटा CNAME रेकर्ड थप्नुहोस्:"
+
+#: templates/webapp/site/editor.html
+msgid "Add an A record:"
+msgstr "एउटा A रेकर्ड थप्नुहोस्:"
+
+#: templates/webapp/site/editor.html
+msgid "(so the address without www also works)"
+msgstr "(www बिनाको ठेगाना पनि चलोस् भनेर)"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Send the domain name to your BookPilot team. We connect it and switch on the"
+" free SSL (https). It usually works within 1–24 hours."
+msgstr ""
+"डोमेनको नाम BookPilot टोलीलाई पठाउनुहोस्। हामी जोडेर निःशुल्क SSL (https) "
+"खोल्छौं। सामान्यतया १–२४ घण्टामा चल्छ।"
+
+#: templates/webapp/site/editor.html
+msgid "Until then your website works at"
+msgstr "त्यतिन्जेल तपाईंको वेबसाइट यहाँ चल्छ"
+
+#: templates/webapp/site/editor.html
 msgid "Design"
 msgstr "डिजाइन"
 
@@ -9709,40 +9981,91 @@ msgid "Sections"
 msgstr "खण्डहरू"
 
 #: templates/webapp/site/editor.html
-msgid "Preview"
-msgstr "पूर्वावलोकन"
+msgid ""
+"Make the website look like your own design. Your CSS is added after the "
+"theme, so it wins. Useful classes: .hero, .section, .card, .btn, .price, "
+"header.top, footer, .prod (product page), .shop-bar, .chips. Colours: --p "
+"(main), --a (highlight)."
+msgstr ""
+"वेबसाइटलाई आफ्नै डिजाइनजस्तो बनाउनुहोस्। तपाईंको CSS थिमपछि थपिन्छ, त्यसैले "
+"त्यही लागू हुन्छ। उपयोगी classes: .hero, .section, .card, .btn, .price, "
+"header.top, footer, .prod (उत्पादन पेज), .shop-bar, .chips. रङ: --p (मुख्य),"
+" --a (हाइलाइट)।"
+
+#: templates/webapp/site/editor.html
+msgid "Pages"
+msgstr "पेजहरू"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Add more pages to your website: About us, Warranty, Delivery & returns, "
+"Terms…"
+msgstr ""
+"वेबसाइटमा थप पेज थप्नुहोस्: About us, वारेन्टी, डेलिभरी र फिर्ता, सर्तहरू…"
+
+#: templates/webapp/site/editor.html
+msgid "hidden"
+msgstr "लुकाइएको"
+
+#: templates/webapp/site/editor.html
+msgid "footer"
+msgstr "फुटर"
+
+#: templates/webapp/site/editor.html
+msgid "Page title"
+msgstr "पेजको शीर्षक"
+
+#: templates/webapp/site/editor.html
+msgid "Web address"
+msgstr "वेब ठेगाना"
+
+#: templates/webapp/site/editor.html
+msgid "Page text"
+msgstr "पेजको पाठ"
+
+#: templates/webapp/site/editor.html
+msgid "Show in the top menu (off: footer only)"
+msgstr "माथिको मेनुमा देखाउनुहोस् (बन्द: फुटरमा मात्र)"
+
+#: templates/webapp/site/editor.html
+msgid "Page is live"
+msgstr "पेज लाइभ छ"
+
+#: templates/webapp/site/editor.html
+msgid "Save page"
+msgstr "पेज सेभ गर्नुहोस्"
+
+#: templates/webapp/site/editor.html
+msgid "Delete this page?"
+msgstr "यो पेज मेटाउने?"
+
+#: templates/webapp/site/editor.html
+msgid "New page"
+msgstr "नयाँ पेज"
+
+#: templates/webapp/site/editor.html
+msgid "Add page"
+msgstr "पेज थप्नुहोस्"
 
 #: templates/webapp/site/editor.html
 msgid "Open full page"
 msgstr "पूरा पृष्ठ खोल्नुहोस्"
 
 #: templates/webapp/site/page.html
-msgid "not public yet"
-msgstr "अझै सार्वजनिक छैन"
-
-#: templates/webapp/site/page.html
-msgid "About"
-msgstr "हाम्रो बारेमा"
-
-#: templates/webapp/site/page.html
-msgid "Book now"
-msgstr "अहिले बुक गर्नुहोस्"
-
-#: templates/webapp/site/page.html
-msgid "Call us"
-msgstr "हामीलाई फोन गर्नुहोस्"
+msgid "Shop now"
+msgstr "अहिले किन्नुहोस्"
 
 #: templates/webapp/site/page.html
 msgid "Available now"
 msgstr "अहिले उपलब्ध"
 
 #: templates/webapp/site/page.html
-msgid "+ Add"
-msgstr "+ थप्नुहोस्"
+msgid "Popular products"
+msgstr "लोकप्रिय उत्पादन"
 
 #: templates/webapp/site/page.html
-msgid "Veg"
-msgstr "शाकाहारी"
+msgid "See all products"
+msgstr "सबै उत्पादन हेर्नुहोस्"
 
 #: templates/webapp/site/page.html
 msgid "Send your request — we confirm by phone or WhatsApp."
@@ -9772,13 +10095,93 @@ msgstr "हामीलाई सम्पर्क गर्नुहोस्"
 msgid "We usually reply within the day."
 msgstr "हामी प्रायः सोही दिन जवाफ दिन्छौं।"
 
-#: templates/webapp/site/page.html
-msgid "Follow us"
-msgstr "हामीलाई फलो गर्नुहोस्"
+#: templates/webapp/site/product.html
+msgid "Out of stock"
+msgstr "स्टकमा छैन"
 
-#: templates/webapp/site/page.html
-msgid "VAT"
-msgstr "VAT"
+#: templates/webapp/site/product.html
+msgid "Options"
+msgstr "विकल्पहरू"
+
+#: templates/webapp/site/product.html
+msgid "Add to cart"
+msgstr "कार्टमा थप्नुहोस्"
+
+#: templates/webapp/site/product.html
+msgid "Ask on WhatsApp"
+msgstr "WhatsApp मा सोध्नुहोस्"
+
+#: templates/webapp/site/product.html
+msgid "Size chart"
+msgstr "साइज चार्ट"
+
+#: templates/webapp/site/product.html
+msgid "You may also like"
+msgstr "तपाईंलाई यो पनि मन पर्न सक्छ"
+
+#: templates/webapp/site/shop.html
+msgid "All products"
+msgstr "सबै उत्पादन"
+
+#: templates/webapp/site/shop.html
+msgid "Search products…"
+msgstr "उत्पादन खोज्नुहोस्…"
+
+#: templates/webapp/site/shop.html
+msgid "Sort"
+msgstr "क्रम"
+
+#: templates/webapp/site/shop.html
+msgid "Sort: name"
+msgstr "क्रम: नाम"
+
+#: templates/webapp/site/shop.html
+msgid "Price: low to high"
+msgstr "मूल्य: कमदेखि बढी"
+
+#: templates/webapp/site/shop.html
+msgid "Price: high to low"
+msgstr "मूल्य: बढीदेखि कम"
+
+#: templates/webapp/site/shop.html
+msgid "Newest"
+msgstr "नयाँ"
+
+#: templates/webapp/site/shop.html
+msgid "No products found."
+msgstr "कुनै उत्पादन भेटिएन।"
+
+#: templates/webapp/site/shop.html
+msgid "Previous"
+msgstr "अघिल्लो"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Sorry, the shop could not complete this order."
+msgstr "माफ गर्नुहोस्, पसलले यो अर्डर पूरा गर्न सकेन।"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Confirmed"
+msgstr "पुष्टि भएको"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "On the way"
+msgstr "बाटोमा"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "The shop has your order and will confirm it shortly."
+msgstr "पसलले तपाईंको अर्डर पायो र छिट्टै पुष्टि गर्नेछ।"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Your order is confirmed and being packed."
+msgstr "तपाईंको अर्डर पुष्टि भयो र प्याक हुँदैछ।"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Your order is on its way."
+msgstr "तपाईंको अर्डर बाटोमा छ।"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Thank you for shopping with us!"
+msgstr "हामीसँग किनमेल गर्नुभएकोमा धन्यवाद!"
 
 #: templates/webapp/sports_shop/product_list.html
 msgid "Import from Excel"
@@ -9807,6 +10210,216 @@ msgstr "साइज / रङ"
 #: templates/webapp/sports_shop/product_list.html
 msgid "No products yet."
 msgstr "अहिलेसम्म कुनै उत्पादन छैन।"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Rental"
+msgstr "भाडा"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Print agreement"
+msgstr "सम्झौता प्रिन्ट गर्नुहोस्"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Remind on WhatsApp"
+msgstr "WhatsApp मा सम्झाउनुहोस्"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Rental agreement"
+msgstr "भाडा सम्झौता"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "ID"
+msgstr "परिचय"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Per day"
+msgstr "प्रति दिन"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Return by"
+msgstr "फिर्ता गर्ने मिति"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Late"
+msgstr "ढिला"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Deposit"
+msgstr "धरौटी"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "day(s)"
+msgstr "दिन"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid ""
+"The customer returns the items in the same condition. Late days are charged "
+"at the daily rate; damage or missing parts are charged from the deposit."
+msgstr ""
+"ग्राहकले सामान उही अवस्थामा फिर्ता गर्नेछन्। ढिलो दिनको दैनिक दरमा शुल्क "
+"लाग्नेछ; क्षति वा हराएका पार्ट धरौटीबाट काटिनेछ।"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Items returned"
+msgstr "सामान फिर्ता आयो"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Damage / missing parts charge"
+msgstr "क्षति / हराएका पार्टको शुल्क"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Return & make bill"
+msgstr "फिर्ता लिनुहोस् र बिल बनाउनुहोस्"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Cancel this rental without a bill?"
+msgstr "बिल बिना यो भाडा रद्द गर्ने?"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Cancel rental"
+msgstr "भाडा रद्द गर्नुहोस्"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid ""
+"The bill is paid from the deposit first; the screen tells you what to give "
+"back or collect."
+msgstr "बिल पहिले धरौटीबाट तिरिन्छ; कति फिर्ता दिने वा लिने स्क्रिनले बताउँछ।"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "New rental"
+msgstr "नयाँ भाडा"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Add your rental items first."
+msgstr "पहिले भाडाका सामान थप्नुहोस्।"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Rental items"
+msgstr "भाडाका सामान"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "ID kept (QID / passport no.)"
+msgstr "राखिएको परिचय (QID / राहदानी नं.)"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "day"
+msgstr "दिन"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "deposit"
+msgstr "धरौटी"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "free"
+msgstr "खाली"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Deposit taken"
+msgstr "लिइएको धरौटी"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Auto from items"
+msgstr "सामानबाट आफैं"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "e.g. helmet included, small scratch on frame"
+msgstr "जस्तै हेल्मेट सहित, फ्रेममा सानो कोरिएको"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Save rental"
+msgstr "भाडा सेभ गर्नुहोस्"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Equipment rental"
+msgstr "उपकरण भाडा"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Out now"
+msgstr "अहिले बाहिर"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "late"
+msgstr "ढिलो"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Nothing is out on rent."
+msgstr "अहिले केही पनि भाडामा छैन।"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Rate per day"
+msgstr "दैनिक दर"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Deposit per piece"
+msgstr "प्रति थान धरौटी"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "How many you own"
+msgstr "तपाईंसँग कति छन्"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Yes"
+msgstr "हो"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "No"
+msgstr "होइन"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Add the gear you rent out: bicycles, kayaks, rackets, tents…"
+msgstr "भाडामा दिने उपकरण थप्नुहोस्: साइकल, कायक, र्‍याकेट, पाल…"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "New item"
+msgstr "नयाँ सामान"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "e.g. Mountain bike"
+msgstr "जस्तै माउन्टेन बाइक"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid ""
+"A size guide per category (jerseys, shoes, gloves…). Staff can show it at "
+"the counter, and your website shows it on every product of that category."
+msgstr ""
+"हरेक वर्गका लागि साइज गाइड (जर्सी, जुत्ता, पन्जा…)। कर्मचारीले काउन्टरमा "
+"देखाउन सक्छन्, र वेबसाइटले त्यो वर्गका हरेक उत्पादनमा देखाउँछ।"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "No category"
+msgstr "वर्ग छैन"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "Delete this size chart?"
+msgstr "यो साइज चार्ट मेटाउने?"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "No size charts yet."
+msgstr "अहिलेसम्म साइज चार्ट छैन।"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "New size chart"
+msgstr "नयाँ साइज चार्ट"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "e.g. Football jerseys"
+msgstr "जस्तै फुटबल जर्सी"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid ""
+"One row per line, columns separated by commas. The first line is the "
+"heading. You can paste from Excel."
+msgstr ""
+"हरेक लाइनमा एक पङ्क्ति, स्तम्भ अल्पविरामले छुट्याइएको। पहिलो लाइन शीर्षक हो।"
+" Excel बाट पेस्ट गर्न सकिन्छ।"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "e.g. Between two sizes? Take the bigger one."
+msgstr "जस्तै दुई साइजको बीचमा? ठूलो लिनुहोस्।"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "Add size chart"
+msgstr "साइज चार्ट थप्नुहोस्"
 
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Print list for the printer"
@@ -9957,6 +10570,22 @@ msgid "No batches here."
 msgstr "यहाँ कुनै ब्याच छैन।"
 
 #: templates/webapp/stock/batches.html
+msgid "Near-expiry discount"
+msgstr "म्याद नजिकको छुट"
+
+#: templates/webapp/stock/batches.html
+msgid ""
+"Sell old stock before it expires: while an item's next batch expires soon, "
+"billing gives this discount automatically (POS and invoices)."
+msgstr ""
+"म्याद सकिनुअघि पुरानो स्टक बेच्नुहोस्: कुनै सामानको अर्को ब्याचको म्याद "
+"नजिकिँदा बिलिङले यो छुट आफैं दिन्छ (POS र इनभ्वाइस)।"
+
+#: templates/webapp/stock/batches.html
+msgid "When it expires within (days)"
+msgstr "यति दिनभित्र म्याद सकिँदा"
+
+#: templates/webapp/stock/batches.html
 msgid "Batches you entered before this update are kept on the older screen."
 msgstr "यो अपडेटअघि प्रविष्ट गरिएका ब्याचहरू पुरानो स्क्रिनमा राखिएका छन्।"
 
@@ -10102,10 +10731,6 @@ msgstr "स्टक मूल्य (लागत)"
 #: templates/webapp/stock/home.html
 msgid "Running low"
 msgstr "कम हुँदै"
-
-#: templates/webapp/stock/home.html
-msgid "Out of stock"
-msgstr "स्टकमा छैन"
 
 #: templates/webapp/stock/home.html
 msgid "Batches expiring (30 days)"
@@ -10273,6 +10898,26 @@ msgstr ""
 "डेमोमा यो बन्द छ। आफ्नो व्यवसायमा प्रयोग गर्न निःशुल्क ट्रायल सुरु "
 "गर्नुहोस्।"
 
+#: apps/industry/expiry_deals.py
+msgid "Near expiry −%(pct)s%% (%(days)s days left)"
+msgstr "म्याद नजिक −%(pct)s%% (%(days)s दिन बाँकी)"
+
+#: apps/industry/expiry_deals.py
+msgid ""
+"Hi %(name)s, your %(item)s refill from %(shop)s is due on %(date)s. Reply "
+"YES and we will keep it ready%(delivery)s."
+msgstr ""
+"नमस्ते %(name)s, %(shop)s बाट तपाईंको %(item)s रिफिल %(date)s मा बाँकी छ। "
+"YES लेख्नुहोस्, हामी तयार राख्छौं%(delivery)s।"
+
+#: apps/industry/expiry_deals.py
+msgid " for delivery"
+msgstr "डेलिभरीका लागि"
+
+#: apps/industry/models.py
+msgid "Ready / on the way"
+msgstr "तयार / बाटोमा"
+
 #: apps/industry/reminders.py
 msgid ""
 "Hi %(name)s, it has been a while since your last visit to %(shop)s. Shall we"
@@ -10357,6 +11002,108 @@ msgstr "सदस्यता %(n)s दिनअघि सकियो"
 msgid "Last visit %(n)s days ago"
 msgstr "अन्तिम भ्रमण %(n)s दिनअघि"
 
+#: apps/industry/shop_orders.py
+msgid "Enter a phone number we can call."
+msgstr "हामीले फोन गर्न सक्ने फोन नम्बर लेख्नुहोस्।"
+
+#: apps/industry/shop_orders.py
+msgid "Online ordering is switched off."
+msgstr "अनलाइन अर्डर बन्द छ।"
+
+#: apps/industry/shop_orders.py
+msgid "Sorry, we are not taking online orders right now. Please call us."
+msgstr ""
+"माफ गर्नुहोस्, हामी अहिले अनलाइन अर्डर लिइरहेका छैनौं। कृपया हामीलाई फोन "
+"गर्नुहोस्।"
+
+#: apps/industry/shop_orders.py
+msgid "Enter your name."
+msgstr "आफ्नो नाम लेख्नुहोस्।"
+
+#: apps/industry/shop_orders.py
+msgid "This order type is not available."
+msgstr "यो अर्डर प्रकार उपलब्ध छैन।"
+
+#: apps/industry/shop_orders.py
+msgid "Enter the delivery address."
+msgstr "डेलिभरी ठेगाना लेख्नुहोस्।"
+
+#: apps/industry/shop_orders.py
+msgid "Your cart is empty."
+msgstr "तपाईंको कार्ट खाली छ।"
+
+#: apps/industry/shop_orders.py
+msgid "Too many items in one order. Please call us for big orders."
+msgstr "एउटै अर्डरमा धेरै सामान। ठूला अर्डरका लागि कृपया फोन गर्नुहोस्।"
+
+#: apps/industry/shop_orders.py
+msgid "Your cart is not valid. Please refresh the page."
+msgstr "तपाईंको कार्ट मान्य छैन। कृपया पृष्ठ रिफ्रेस गर्नुहोस्।"
+
+#: apps/industry/shop_orders.py
+msgid "You can order 1 to %(n)s of each item."
+msgstr "तपाईं हरेक सामान 1 देखि %(n)s सम्म अर्डर गर्न सक्नुहुन्छ।"
+
+#: apps/industry/shop_orders.py
+msgid ""
+"An item in your cart is no longer sold online. Please refresh the page."
+msgstr "तपाईंको कार्टको एउटा सामान अब अनलाइन बिक्दैन। पेज रिफ्रेस गर्नुहोस्।"
+
+#: apps/industry/shop_orders.py
+msgid "Sorry, %(item)s is out of stock."
+msgstr "माफ गर्नुहोस्, %(item)s स्टकमा छैन।"
+
+#: apps/industry/shop_orders.py
+msgid "Only %(n)s of %(item)s left."
+msgstr "%(item)s मात्र %(n)s वटा बाँकी।"
+
+#: apps/industry/shop_orders.py
+msgid "The minimum order for delivery is %(amount)s."
+msgstr "डेलिभरीका लागि न्यूनतम अर्डर %(amount)s हो।"
+
+#: apps/industry/shop_orders.py
+msgid "This order was already handled."
+msgstr "यो अर्डर पहिल्यै सम्हालिसकिएको छ।"
+
+#: apps/industry/shop_orders.py
+msgid "The shop could not take this order."
+msgstr "पसलले यो अर्डर लिन सकेन।"
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, we received your order %(ref)s at %(shop)s. We will confirm it "
+"shortly."
+msgstr ""
+"नमस्ते %(name)s, %(shop)s मा तपाईंको अर्डर %(ref)s पायौं। छिट्टै पुष्टि "
+"गर्नेछौं।"
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, your order %(ref)s at %(shop)s is confirmed. Total %(total)s."
+msgstr ""
+"नमस्ते %(name)s, %(shop)s मा तपाईंको अर्डर %(ref)s पुष्टि भयो। जम्मा "
+"%(total)s।"
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, your order %(ref)s from %(shop)s is on the way."
+msgstr "नमस्ते %(name)s, %(shop)s बाट तपाईंको अर्डर %(ref)s बाटोमा छ।"
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, your order %(ref)s is ready for pickup at %(shop)s."
+msgstr "नमस्ते %(name)s, तपाईंको अर्डर %(ref)s %(shop)s मा लिन तयार छ।"
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, sorry — we could not complete your order %(ref)s at %(shop)s. "
+"%(reason)s"
+msgstr ""
+"नमस्ते %(name)s, माफ गर्नुहोस् — %(shop)s मा तपाईंको अर्डर %(ref)s पूरा गर्न"
+" सकिएन। %(reason)s"
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, thank you for shopping at %(shop)s!"
+msgstr "नमस्ते %(name)s, %(shop)s मा किनमेल गर्नुभएकोमा धन्यवाद!"
+
 #: apps/industry/site_builder.py
 msgid "Our menu"
 msgstr "हाम्रो मेनु"
@@ -10376,10 +11123,6 @@ msgstr "कोर्सहरू"
 #: apps/industry/site_builder.py
 msgid "hour"
 msgstr "घण्टा"
-
-#: apps/industry/site_builder.py
-msgid "day"
-msgstr "दिन"
 
 #: apps/industry/site_builder.py
 msgid "night"
@@ -10404,6 +11147,14 @@ msgstr "टर्म"
 #: apps/industry/site_builder.py
 msgid "Our products"
 msgstr "हाम्रा उत्पादनहरू"
+
+#: apps/industry/site_builder.py
+msgid "Colour"
+msgstr "रङ"
+
+#: apps/industry/site_builder.py
+msgid "Material"
+msgstr "सामग्री"
 
 #: apps/notifications/rules.py
 msgid "Customer bills due"
@@ -10587,48 +11338,6 @@ msgid "Accepted"
 msgstr "स्वीकृत"
 
 #: apps/verticals/restaurant/online_orders.py
-msgid "Enter a phone number we can call."
-msgstr "हामीले फोन गर्न सक्ने फोन नम्बर लेख्नुहोस्।"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Online ordering is switched off."
-msgstr "अनलाइन अर्डर बन्द छ।"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Sorry, we are not taking online orders right now. Please call us."
-msgstr ""
-"माफ गर्नुहोस्, हामी अहिले अनलाइन अर्डर लिइरहेका छैनौं। कृपया हामीलाई फोन "
-"गर्नुहोस्।"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Enter your name."
-msgstr "आफ्नो नाम लेख्नुहोस्।"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "This order type is not available."
-msgstr "यो अर्डर प्रकार उपलब्ध छैन।"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Enter the delivery address."
-msgstr "डेलिभरी ठेगाना लेख्नुहोस्।"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Your cart is empty."
-msgstr "तपाईंको कार्ट खाली छ।"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Too many items in one order. Please call us for big orders."
-msgstr "एउटै अर्डरमा धेरै सामान। ठूला अर्डरका लागि कृपया फोन गर्नुहोस्।"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Your cart is not valid. Please refresh the page."
-msgstr "तपाईंको कार्ट मान्य छैन। कृपया पृष्ठ रिफ्रेस गर्नुहोस्।"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "You can order 1 to %(n)s of each item."
-msgstr "तपाईं हरेक सामान 1 देखि %(n)s सम्म अर्डर गर्न सक्नुहुन्छ।"
-
-#: apps/verticals/restaurant/online_orders.py
 msgid ""
 "An item in your cart is no longer on the menu. Please refresh the page."
 msgstr ""
@@ -10637,14 +11346,6 @@ msgstr ""
 #: apps/verticals/restaurant/online_orders.py
 msgid "Sorry, %(item)s is not available online right now."
 msgstr "माफ गर्नुहोस्, %(item)s अहिले अनलाइन उपलब्ध छैन।"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "The minimum order for delivery is %(amount)s."
-msgstr "डेलिभरीका लागि न्यूनतम अर्डर %(amount)s हो।"
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "This order was already handled."
-msgstr "यो अर्डर पहिल्यै सम्हालिसकिएको छ।"
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -11020,14 +11721,6 @@ msgstr "कुल अनुभव (वर्ष)"
 #: apps/webapp/careers_views.py
 msgid "Gulf experience?"
 msgstr "खाडी अनुभव?"
-
-#: apps/webapp/careers_views.py
-msgid "Yes"
-msgstr "हो"
-
-#: apps/webapp/careers_views.py
-msgid "No"
-msgstr "होइन"
 
 #: apps/webapp/careers_views.py
 msgid "Highest qualification"
@@ -11490,6 +12183,14 @@ msgstr "बिक्री मूल्य"
 #: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "पुनः अर्डर स्तर"
+
+#: apps/webapp/forms.py
+msgid "Description for the website"
+msgstr "वेबसाइटका लागि विवरण"
+
+#: apps/webapp/forms.py
+msgid "Shown on the product page of your online shop."
+msgstr "अनलाइन पसलको उत्पादन पेजमा देखिन्छ।"
 
 #: apps/webapp/forms.py
 msgid "…or new client name"
@@ -12158,10 +12859,6 @@ msgid "Table reservation"
 msgstr "टेबल आरक्षण"
 
 #: apps/webapp/online_booking_views.py
-msgid "Confirmed"
-msgstr "पुष्टि भएको"
-
-#: apps/webapp/online_booking_views.py
 msgid "Declined"
 msgstr "अस्वीकृत"
 
@@ -12392,6 +13089,10 @@ msgid "Receive stock"
 msgstr "स्टक प्राप्त गर्नुहोस्"
 
 #: apps/webapp/overview.py
+msgid "Refills due"
+msgstr "बाँकी रिफिल"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "पसलमा मर्मत"
 
@@ -12470,10 +13171,6 @@ msgstr "आज अहिलेसम्म चेक-इन छैन।"
 #: apps/webapp/overview.py
 msgid "Orders in progress"
 msgstr "चलिरहेका अर्डर"
-
-#: apps/webapp/overview.py
-msgid "Late"
-msgstr "ढिला"
 
 #: apps/webapp/overview.py
 msgid "Due for delivery"
@@ -13093,6 +13790,26 @@ msgstr "रुचाइएको राष्ट्रियता, भए।"
 msgid "Accommodation, food, transport…"
 msgstr "बसोबास, खाना, यातायात…"
 
+#: apps/webapp/refill_views.py
+msgid "Choose the customer and the item, and enter how often."
+msgstr "ग्राहक र सामान छान्नुहोस्, र कति दिनमा लेख्नुहोस्।"
+
+#: apps/webapp/refill_views.py
+msgid "Refill added for %(name)s."
+msgstr "%(name)s का लागि रिफिल थपियो।"
+
+#: apps/webapp/refill_views.py
+msgid "Bill %(inv)s made. Next refill on %(date)s."
+msgstr "बिल %(inv)s बन्यो। अर्को रिफिल %(date)s।"
+
+#: apps/webapp/refill_views.py
+msgid "Skipped. Next refill on %(date)s."
+msgstr "छोडियो। अर्को रिफिल %(date)s।"
+
+#: apps/webapp/refill_views.py
+msgid "Refill removed."
+msgstr "रिफिल हटाइयो।"
+
 #: apps/webapp/restaurant_order_views.py
 msgid "Yesterday"
 msgstr "हिजो"
@@ -13189,6 +13906,50 @@ msgstr "तराजु सेटिङ सुरक्षित गरियो
 msgid "Your password has been changed."
 msgstr "तपाईंको पासवर्ड परिवर्तन भयो।"
 
+#: apps/webapp/shop_order_views.py
+msgid "Pickup from the shop"
+msgstr "पसलबाट लैजानुहोस्"
+
+#: apps/webapp/shop_order_views.py
+msgid "Free delivery over"
+msgstr "योभन्दा माथि निःशुल्क डेलिभरी"
+
+#: apps/webapp/shop_order_views.py
+msgid "Shows “+ Add” on every product in stock and a cart on your website."
+msgstr "स्टकमा भएका हरेक उत्पादनमा “+ Add” र वेबसाइटमा कार्ट देखाउँछ।"
+
+#: apps/webapp/shop_order_views.py
+msgid "0 = always charge delivery."
+msgstr "0 = सधैं डेलिभरी शुल्क लिनुहोस्।"
+
+#: apps/webapp/shop_order_views.py
+msgid "Delivery inside Doha in 24 hours · Cash or card on delivery"
+msgstr "दोहाभित्र २४ घण्टामा डेलिभरी · डेलिभरीमा नगद वा कार्ड"
+
+#: apps/webapp/shop_order_views.py
+msgid "Online shop settings saved."
+msgstr "अनलाइन पसल सेटिङ सेभ भयो।"
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s confirmed. Let the customer know on WhatsApp."
+msgstr "अर्डर %(ref)s पुष्टि भयो। ग्राहकलाई WhatsApp मा जानकारी दिनुहोस्।"
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s marked ready."
+msgstr "अर्डर %(ref)s तयार भनी चिनो लगाइयो।"
+
+#: apps/webapp/shop_order_views.py
+msgid "Bill %(inv)s made for %(ref)s. Stock is updated."
+msgstr "%(ref)s का लागि बिल %(inv)s बन्यो। स्टक अपडेट भयो।"
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s closed."
+msgstr "अर्डर %(ref)s बन्द भयो।"
+
+#: apps/webapp/shop_order_views.py
+msgid "You can also bill it from New bill."
+msgstr "तपाईं New bill बाट पनि बिल गर्न सक्नुहुन्छ।"
+
 #: apps/webapp/site_views.py
 msgid "Main colour"
 msgstr "मुख्य रङ"
@@ -13246,6 +14007,10 @@ msgid "Show contact form"
 msgstr "सम्पर्क फारम देखाउनुहोस्"
 
 #: apps/webapp/site_views.py
+msgid "My own CSS"
+msgstr "मेरो आफ्नै CSS"
+
+#: apps/webapp/site_views.py
 msgid "Leave empty to use the company logo."
 msgstr "कम्पनीको लोगो प्रयोग गर्न खाली छोड्नुहोस्।"
 
@@ -13258,12 +14023,102 @@ msgid "Visitors can also switch to"
 msgstr "आगन्तुकहरू यी भाषामा पनि बदल्न सक्छन्"
 
 #: apps/webapp/site_views.py
-msgid "Menu"
-msgstr "मेनु"
-
-#: apps/webapp/site_views.py
 msgid "Phone, address & logo"
 msgstr "फोन, ठेगाना र लोगो"
+
+#: apps/webapp/site_views.py
+msgid "e.g. warranty → yoursite.com/p/warranty/"
+msgstr "जस्तै warranty → yoursite.com/p/warranty/"
+
+#: apps/webapp/site_views.py
+msgid ""
+"Plain text, or HTML (headings, lists, pictures, tables, YouTube / Google "
+"Maps embeds). Scripts are removed."
+msgstr ""
+"सादा पाठ, वा HTML (शीर्षक, सूची, तस्बिर, तालिका, YouTube / Google Maps "
+"embed)। Scripts हटाइन्छ।"
+
+#: apps/webapp/site_views.py
+msgid "Another page already uses this address."
+msgstr "यो ठेगाना अर्को पेजले पहिल्यै प्रयोग गरिरहेको छ।"
+
+#: apps/webapp/site_views.py
+msgid "Page deleted."
+msgstr "पेज मेटाइयो।"
+
+#: apps/webapp/site_views.py
+msgid "Page saved."
+msgstr "पेज सेभ भयो।"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Size chart deleted."
+msgstr "साइज चार्ट मेटाइयो।"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Enter a name and the table."
+msgstr "नाम र तालिका लेख्नुहोस्।"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Size chart saved."
+msgstr "साइज चार्ट सेभ भयो।"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Enter the item name."
+msgstr "सामानको नाम लेख्नुहोस्।"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental item saved."
+msgstr "भाडाको सामान सेभ भयो।"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Choose the customer or enter a new name."
+msgstr "ग्राहक छान्नुहोस् वा नयाँ नाम लेख्नुहोस्।"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Choose at least one item."
+msgstr "कम्तीमा एउटा सामान छान्नुहोस्।"
+
+#: apps/webapp/sports_extra_views.py
+msgid "The return date can't be in the past."
+msgstr "फिर्ता गर्ने मिति बितिसकेको हुन सक्दैन।"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Not enough free: %(items)s"
+msgstr "पर्याप्त खाली छैन: %(items)s"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental %(n)s saved."
+msgstr "भाडा %(n)s सेभ भयो।"
+
+#: apps/webapp/sports_extra_views.py
+msgid ""
+"Hi %(name)s, a reminder from %(shop)s: rental %(n)s is due back on %(date)s."
+" Thank you!"
+msgstr ""
+"नमस्ते %(name)s, %(shop)s बाट सम्झना: भाडा %(n)s %(date)s मा फिर्ता "
+"गर्नुपर्छ। धन्यवाद!"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental cancelled."
+msgstr "भाडा रद्द भयो।"
+
+#: apps/webapp/sports_extra_views.py
+msgid "This rental is already closed."
+msgstr "यो भाडा पहिल्यै बन्द छ।"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Returned: %(note)s"
+msgstr "फिर्ता: %(note)s"
+
+#: apps/webapp/sports_extra_views.py
+msgid ""
+"Returned. Bill %(inv)s paid from the deposit — give back %(cur)s %(amt)s."
+msgstr ""
+"फिर्ता आयो। बिल %(inv)s धरौटीबाट तिरियो — %(cur)s %(amt)s फिर्ता दिनुहोस्।"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Returned. Bill %(inv)s — collect %(cur)s %(amt)s."
+msgstr "फिर्ता आयो। बिल %(inv)s — %(cur)s %(amt)s लिनुहोस्।"
 
 #: apps/webapp/stock_views.py
 msgid "Damaged"
@@ -13320,6 +14175,14 @@ msgstr "स्टक गणना सकियो। फरक भएको ठ�
 #: apps/webapp/stock_views.py
 msgid "Progress saved."
 msgstr "प्रगति सुरक्षित गरियो।"
+
+#: apps/webapp/stock_views.py
+msgid "Enter whole days and a percent."
+msgstr "पूरा दिन र प्रतिशत लेख्नुहोस्।"
+
+#: apps/webapp/stock_views.py
+msgid "Near-expiry discount saved."
+msgstr "म्याद नजिकको छुट सेभ भयो।"
 
 #: apps/webapp/stock_views.py
 msgid "Choose an item and enter the batch number."
@@ -13538,6 +14401,22 @@ msgid "Please enter your name and a phone number or email."
 msgstr "कृपया आफ्नो नाम र फोन नम्बर वा इमेल लेख्नुहोस्।"
 
 #: apps/webapp/website_kit_views.py
+msgid "The shop will confirm your order shortly."
+msgstr "पसलले छिट्टै तपाईंको अर्डर पुष्टि गर्नेछ।"
+
+#: apps/webapp/website_kit_views.py
+msgid "Your cart is empty. Tap “+ Add” on a product."
+msgstr "तपाईंको कार्ट खाली छ। कुनै उत्पादनमा “+ Add” ट्याप गर्नुहोस्।"
+
+#: apps/webapp/website_kit_views.py
+msgid "Note, e.g. colour, model, best time to call"
+msgstr "नोट, जस्तै रङ, मोडेल, फोन गर्ने उपयुक्त समय"
+
+#: apps/webapp/website_kit_views.py
+msgid "Free delivery over %s"
+msgstr "%s भन्दा माथि निःशुल्क डेलिभरी"
+
+#: apps/webapp/website_kit_views.py
 msgid "Order sent"
 msgstr "अर्डर पठाइयो"
 
@@ -13624,10 +14503,6 @@ msgstr "कोठाहरू"
 #: apps/modules/catalog.py
 msgid "Reservation"
 msgstr "आरक्षण"
-
-#: apps/modules/catalog.py
-msgid "Rental"
-msgstr "भाडा"
 
 #: apps/modules/catalog.py
 msgid "Halls"

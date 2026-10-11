@@ -162,6 +162,14 @@ msgid "Team orders"
 msgstr "ടീം ഓർഡറുകൾ"
 
 #: templates/base.html
+msgid "Rentals"
+msgstr "റെന്റലുകൾ"
+
+#: templates/base.html
+msgid "Size charts"
+msgstr "സൈസ് ചാർട്ടുകൾ"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "വിൽപ്പന"
 
@@ -192,6 +200,10 @@ msgstr "മെഡിക്കൽ ഷോപ്പ്"
 #: templates/base.html
 msgid "Batches & expiry"
 msgstr "ബാച്ചും കാലാവധിയും"
+
+#: templates/base.html
+msgid "Refills"
+msgstr "റീഫില്ലുകൾ"
 
 #: templates/base.html
 msgid "Protein Shop"
@@ -722,6 +734,10 @@ msgstr "എക്സ്ട്രാ"
 #: templates/webapp/_industry_nav.html
 msgid "Plans & menu"
 msgstr "പ്ലാനുകളും മെനുവും"
+
+#: templates/webapp/_industry_nav.html
+msgid "Website orders"
+msgstr "വെബ്സൈറ്റ് ഓർഡറുകൾ"
 
 #: templates/webapp/_industry_nav.html
 msgid "My website"
@@ -8018,6 +8034,88 @@ msgstr "ആർക്ക് നൽകി"
 msgid "Add cost"
 msgstr "ചെലവ് ചേർക്കുക"
 
+#: templates/webapp/refills/list.html
+msgid "Refill subscriptions"
+msgstr "റീഫിൽ സബ്സ്ക്രിപ്ഷനുകൾ"
+
+#: templates/webapp/refills/list.html
+msgid ""
+"Customers who buy the same item every few weeks. See who is due, remind them"
+" on WhatsApp and make the bill in one tap — the next date moves on by "
+"itself."
+msgstr ""
+"ഏതാനും ആഴ്ച കൂടുമ്പോൾ ഒരേ സാധനം വാങ്ങുന്ന ഉപഭോക്താക്കൾ. ആരുടേതാണ് due എന്ന് "
+"കാണുക, WhatsApp-ൽ ഓർമ്മിപ്പിക്കുക, ഒറ്റ tap-ൽ ബിൽ ഉണ്ടാക്കുക — അടുത്ത തീയതി "
+"തനിയെ മാറും."
+
+#: templates/webapp/refills/list.html
+msgid "Due now"
+msgstr "ഇപ്പോൾ due"
+
+#: templates/webapp/refills/list.html
+msgid "All active"
+msgstr "എല്ലാ സജീവവും"
+
+#: templates/webapp/refills/list.html
+msgid "Paused"
+msgstr "നിർത്തിവെച്ചു"
+
+#: templates/webapp/refills/list.html
+msgid "Due today"
+msgstr "ഇന്ന് due"
+
+#: templates/webapp/refills/list.html
+msgid "Make bill"
+msgstr "ബിൽ ഉണ്ടാക്കുക"
+
+#: templates/webapp/refills/list.html
+msgid "Skip"
+msgstr "ഒഴിവാക്കുക"
+
+#: templates/webapp/refills/list.html
+msgid "Remove this refill?"
+msgstr "ഈ റീഫിൽ നീക്കം ചെയ്യണോ?"
+
+#: templates/webapp/refills/list.html
+msgid "No refills due in the next 3 days."
+msgstr "അടുത്ത 3 ദിവസത്തിനുള്ളിൽ റീഫില്ലുകളൊന്നുമില്ല."
+
+#: templates/webapp/refills/list.html
+msgid "No refills yet. Add your regular customers on the right."
+msgstr "ഇതുവരെ റീഫില്ലുകളില്ല. സ്ഥിരം ഉപഭോക്താക്കളെ വലതുവശത്ത് ചേർക്കുക."
+
+#: templates/webapp/refills/list.html
+msgid "New refill"
+msgstr "പുതിയ റീഫിൽ"
+
+#: templates/webapp/refills/list.html
+msgid "Quantity"
+msgstr "എണ്ണം"
+
+#: templates/webapp/refills/list.html
+msgid "Every (days)"
+msgstr "ഓരോ (ദിവസം)"
+
+#: templates/webapp/refills/list.html
+msgid "First refill on"
+msgstr "ആദ്യ റീഫിൽ തീയതി"
+
+#: templates/webapp/refills/list.html
+msgid "Subscriber discount %"
+msgstr "സബ്സ്ക്രൈബർ ഡിസ്കൗണ്ട് %"
+
+#: templates/webapp/refills/list.html
+msgid "Deliver to the customer"
+msgstr "ഉപഭോക്താവിന് ഡെലിവർ ചെയ്യുക"
+
+#: templates/webapp/refills/list.html
+msgid "e.g. chocolate flavour, call before delivery"
+msgstr "ഉദാ. ചോക്ലേറ്റ് ഫ്ലേവർ, ഡെലിവറിക്ക് മുമ്പ് വിളിക്കുക"
+
+#: templates/webapp/refills/list.html
+msgid "Add refill"
+msgstr "റീഫിൽ ചേർക്കുക"
+
 #: templates/webapp/reminders.html
 msgid ""
 "Customers who have not come back for a while, and memberships about to end. "
@@ -8384,10 +8482,6 @@ msgid "Filter kitchen orders"
 msgstr "കിച്ചൺ ഓർഡറുകൾ ഫിൽട്ടർ ചെയ്യുക"
 
 #: templates/webapp/restaurant/kitchen.html
-msgid "All active"
-msgstr "എല്ലാ സജീവവും"
-
-#: templates/webapp/restaurant/kitchen.html
 msgid "Waiting"
 msgstr "കാത്തിരിക്കുന്നു"
 
@@ -8684,10 +8778,6 @@ msgstr "ആഡ്-ഓണുകളും എണ്ണവും തിരഞ്ഞ
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Kitchen note"
 msgstr "കിച്ചണിനുള്ള കുറിപ്പ്"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Quantity"
-msgstr "എണ്ണം"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Add to Order"
@@ -9731,6 +9821,116 @@ msgstr ""
 msgid "Add sample data"
 msgstr "സാമ്പിൾ ഡാറ്റ ചേർക്കുക"
 
+#: templates/webapp/shop_orders/inbox.html
+msgid "Website shop is off"
+msgstr "വെബ്സൈറ്റ് ഷോപ്പ് ഓഫ് ആണ്"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Switch it on below to show “+ Add” and a cart on your website."
+msgstr "വെബ്സൈറ്റിൽ “+ Add”-ഉം കാർട്ടും കാണിക്കാൻ താഴെ ഓൺ ചെയ്യുക."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Customers can see your products, but cannot order."
+msgstr "ഉപഭോക്താക്കൾക്ക് ഉൽപ്പന്നങ്ങൾ കാണാം, പക്ഷേ ഓർഡർ ചെയ്യാനാവില്ല."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
+"Confirm each new order, send it, then make the bill. This page beeps when a "
+"new order comes."
+msgstr ""
+"ഓരോ പുതിയ ഓർഡറും confirm ചെയ്യുക, അയക്കുക, പിന്നെ ബിൽ ഉണ്ടാക്കുക. പുതിയ ഓർഡർ"
+" വരുമ്പോൾ ഈ പേജ് ബീപ് ചെയ്യും."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
+"Your BookPilot website is not switched on yet. Ask your BookPilot team to "
+"switch on the Website add-on — or put the cart on your own website with the "
+"Website kit."
+msgstr ""
+"നിങ്ങളുടെ BookPilot വെബ്സൈറ്റ് ഇതുവരെ ഓൺ ചെയ്തിട്ടില്ല. Website add-on ഓൺ "
+"ചെയ്യാൻ BookPilot ടീമിനോട് പറയുക — അല്ലെങ്കിൽ Website kit ഉപയോഗിച്ച് "
+"നിങ്ങളുടെ സ്വന്തം വെബ്സൈറ്റിൽ കാർട്ട് വെക്കുക."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "WhatsApp customer"
+msgstr "ഉപഭോക്താവിന് WhatsApp"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Share / pay link"
+msgstr "ഷെയർ / പേ ലിങ്ക്"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Out for delivery"
+msgstr "ഡെലിവറിക്കായി പുറപ്പെട്ടു"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Make bill (paid / delivered)"
+msgstr "ബിൽ ഉണ്ടാക്കുക (പണം കിട്ടി / ഡെലിവർ ചെയ്തു)"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Close this order without a bill?"
+msgstr "ബിൽ ഇല്ലാതെ ഈ ഓർഡർ ക്ലോസ് ചെയ്യണോ?"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Reason, e.g. out of stock"
+msgstr "കാരണം, ഉദാ. സ്റ്റോക്ക് ഇല്ല"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No open website orders."
+msgstr "തുറന്ന വെബ്സൈറ്റ് ഓർഡറുകളൊന്നുമില്ല."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No website orders yet."
+msgstr "ഇതുവരെ വെബ്സൈറ്റ് ഓർഡറുകളില്ല."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Online shop settings"
+msgstr "ഓൺലൈൻ ഷോപ്പ് സെറ്റിംഗ്സ്"
+
+#: templates/webapp/site/_base.html
+msgid "Preview"
+msgstr "പ്രിവ്യൂ"
+
+#: templates/webapp/site/_base.html
+msgid "not public yet"
+msgstr "ഇതുവരെ പബ്ലിക് അല്ല"
+
+#: templates/webapp/site/_base.html
+msgid "Home"
+msgstr "ഹോം"
+
+#: templates/webapp/site/_base.html
+msgid "About"
+msgstr "ഞങ്ങളെക്കുറിച്ച്"
+
+#: templates/webapp/site/_base.html
+msgid "Book now"
+msgstr "ഇപ്പോൾ ബുക്ക് ചെയ്യുക"
+
+#: templates/webapp/site/_base.html
+msgid "Call us"
+msgstr "ഞങ്ങളെ വിളിക്കൂ"
+
+#: templates/webapp/site/_base.html
+msgid "Menu"
+msgstr "മെനു"
+
+#: templates/webapp/site/_base.html
+msgid "Follow us"
+msgstr "ഞങ്ങളെ ഫോളോ ചെയ്യൂ"
+
+#: templates/webapp/site/_base.html
+msgid "VAT"
+msgstr "VAT"
+
+#: templates/webapp/site/_card.html
+msgid "+ Add"
+msgstr "+ ചേർക്കുക"
+
+#: templates/webapp/site/_card.html
+msgid "Veg"
+msgstr "വെജ്"
+
 #: templates/webapp/site/editor.html
 msgid "Website kit"
 msgstr "വെബ്സൈറ്റ് കിറ്റ്"
@@ -9762,6 +9962,82 @@ msgstr ""
 "അവിടെ മാറ്റിയാൽ വെബ്സൈറ്റും അപ്ഡേറ്റ് ആകും."
 
 #: templates/webapp/site/editor.html
+msgid "Online shop"
+msgstr "ഓൺലൈൻ ഷോപ്പ്"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website has a Shop page with every product, a page for each product, a "
+"cart and checkout. Orders arrive in Website orders; stock and prices come "
+"from BookPilot."
+msgstr ""
+"നിങ്ങളുടെ വെബ്സൈറ്റിൽ എല്ലാ ഉൽപ്പന്നങ്ങളുമുള്ള Shop പേജ്, ഓരോ "
+"ഉൽപ്പന്നത്തിനും ഒരു പേജ്, കാർട്ട്, ചെക്ക്ഔട്ട് എന്നിവയുണ്ട്. ഓർഡറുകൾ Website"
+" orders-ൽ വരും; സ്റ്റോക്കും വിലയും BookPilot-ൽ നിന്ന്."
+
+#: templates/webapp/site/editor.html
+msgid "Website orders & shop settings"
+msgstr "വെബ്സൈറ്റ് ഓർഡറുകളും ഷോപ്പ് സെറ്റിംഗ്സും"
+
+#: templates/webapp/site/editor.html
+msgid "Switch on the cart"
+msgstr "കാർട്ട് ഓൺ ചെയ്യുക"
+
+#: templates/webapp/site/editor.html
+msgid "Products & photos"
+msgstr "ഉൽപ്പന്നങ്ങളും ഫോട്ടോകളും"
+
+#: templates/webapp/site/editor.html
+msgid "Use your own domain (e.g. from Hostinger)"
+msgstr "സ്വന്തം ഡൊമെയ്ൻ ഉപയോഗിക്കുക (ഉദാ. Hostinger-ൽ നിന്ന്)"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Buy the domain (Hostinger, GoDaddy, Namecheap…). You only need the domain — "
+"no hosting plan."
+msgstr ""
+"ഡൊമെയ്ൻ വാങ്ങുക (Hostinger, GoDaddy, Namecheap…). ഡൊമെയ്ൻ മാത്രം മതി — "
+"ഹോസ്റ്റിംഗ് പ്ലാൻ വേണ്ട."
+
+#: templates/webapp/site/editor.html
+msgid ""
+"In Hostinger: hPanel → Domains → your domain → DNS / Nameservers → Manage "
+"DNS records."
+msgstr ""
+"Hostinger-ൽ: hPanel → Domains → നിങ്ങളുടെ ഡൊമെയ്ൻ → DNS / Nameservers → "
+"Manage DNS records."
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Delete the old A and CNAME records for “@” and “www” (the parking page)."
+msgstr ""
+"“@”, “www” എന്നിവയുടെ പഴയ A, CNAME records ഡിലീറ്റ് ചെയ്യുക (parking page)."
+
+#: templates/webapp/site/editor.html
+msgid "Add a CNAME record:"
+msgstr "ഒരു CNAME record ചേർക്കുക:"
+
+#: templates/webapp/site/editor.html
+msgid "Add an A record:"
+msgstr "ഒരു A record ചേർക്കുക:"
+
+#: templates/webapp/site/editor.html
+msgid "(so the address without www also works)"
+msgstr "(www ഇല്ലാത്ത വിലാസവും പ്രവർത്തിക്കാൻ)"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Send the domain name to your BookPilot team. We connect it and switch on the"
+" free SSL (https). It usually works within 1–24 hours."
+msgstr ""
+"ഡൊമെയ്ൻ പേര് BookPilot ടീമിന് അയക്കുക. ഞങ്ങൾ അത് ബന്ധിപ്പിച്ച് സൗജന്യ SSL "
+"(https) ഓൺ ചെയ്യും. സാധാരണ 1–24 മണിക്കൂറിനുള്ളിൽ പ്രവർത്തിക്കും."
+
+#: templates/webapp/site/editor.html
+msgid "Until then your website works at"
+msgstr "അതുവരെ നിങ്ങളുടെ വെബ്സൈറ്റ് ഇവിടെ പ്രവർത്തിക്കും"
+
+#: templates/webapp/site/editor.html
 msgid "Design"
 msgstr "ഡിസൈൻ"
 
@@ -9782,40 +10058,92 @@ msgid "Sections"
 msgstr "വിഭാഗങ്ങൾ"
 
 #: templates/webapp/site/editor.html
-msgid "Preview"
-msgstr "പ്രിവ്യൂ"
+msgid ""
+"Make the website look like your own design. Your CSS is added after the "
+"theme, so it wins. Useful classes: .hero, .section, .card, .btn, .price, "
+"header.top, footer, .prod (product page), .shop-bar, .chips. Colours: --p "
+"(main), --a (highlight)."
+msgstr ""
+"വെബ്സൈറ്റ് നിങ്ങളുടെ സ്വന്തം ഡിസൈൻ പോലെയാക്കുക. നിങ്ങളുടെ CSS തീമിന് ശേഷം "
+"ചേർക്കും, അതിനാൽ അതാണ് ജയിക്കുക. ഉപയോഗപ്രദമായ classes: .hero, .section, "
+".card, .btn, .price, header.top, footer, .prod (product page), .shop-bar, "
+".chips. നിറങ്ങൾ: --p (main), --a (highlight)."
+
+#: templates/webapp/site/editor.html
+msgid "Pages"
+msgstr "പേജുകൾ"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Add more pages to your website: About us, Warranty, Delivery & returns, "
+"Terms…"
+msgstr ""
+"വെബ്സൈറ്റിലേക്ക് കൂടുതൽ പേജുകൾ ചേർക്കുക: About us, Warranty, Delivery & "
+"returns, Terms…"
+
+#: templates/webapp/site/editor.html
+msgid "hidden"
+msgstr "മറച്ചത്"
+
+#: templates/webapp/site/editor.html
+msgid "footer"
+msgstr "ഫൂട്ടർ"
+
+#: templates/webapp/site/editor.html
+msgid "Page title"
+msgstr "പേജ് തലക്കെട്ട്"
+
+#: templates/webapp/site/editor.html
+msgid "Web address"
+msgstr "വെബ് വിലാസം"
+
+#: templates/webapp/site/editor.html
+msgid "Page text"
+msgstr "പേജിലെ എഴുത്ത്"
+
+#: templates/webapp/site/editor.html
+msgid "Show in the top menu (off: footer only)"
+msgstr "മുകളിലെ മെനുവിൽ കാണിക്കുക (ഓഫ്: ഫൂട്ടറിൽ മാത്രം)"
+
+#: templates/webapp/site/editor.html
+msgid "Page is live"
+msgstr "പേജ് ലൈവ് ആണ്"
+
+#: templates/webapp/site/editor.html
+msgid "Save page"
+msgstr "പേജ് സേവ് ചെയ്യുക"
+
+#: templates/webapp/site/editor.html
+msgid "Delete this page?"
+msgstr "ഈ പേജ് ഡിലീറ്റ് ചെയ്യണോ?"
+
+#: templates/webapp/site/editor.html
+msgid "New page"
+msgstr "പുതിയ പേജ്"
+
+#: templates/webapp/site/editor.html
+msgid "Add page"
+msgstr "പേജ് ചേർക്കുക"
 
 #: templates/webapp/site/editor.html
 msgid "Open full page"
 msgstr "മുഴുവൻ പേജ് തുറക്കുക"
 
 #: templates/webapp/site/page.html
-msgid "not public yet"
-msgstr "ഇതുവരെ പബ്ലിക് അല്ല"
-
-#: templates/webapp/site/page.html
-msgid "About"
-msgstr "ഞങ്ങളെക്കുറിച്ച്"
-
-#: templates/webapp/site/page.html
-msgid "Book now"
-msgstr "ഇപ്പോൾ ബുക്ക് ചെയ്യുക"
-
-#: templates/webapp/site/page.html
-msgid "Call us"
-msgstr "ഞങ്ങളെ വിളിക്കൂ"
+msgid "Shop now"
+msgstr "ഇപ്പോൾ വാങ്ങൂ"
 
 #: templates/webapp/site/page.html
 msgid "Available now"
 msgstr "ഇപ്പോൾ ലഭ്യം"
 
 #: templates/webapp/site/page.html
-msgid "+ Add"
-msgstr "+ ചേർക്കുക"
+msgid "Popular products"
+msgstr "ജനപ്രിയ ഉൽപ്പന്നങ്ങൾ"
 
 #: templates/webapp/site/page.html
-msgid "Veg"
-msgstr "വെജ്"
+msgid "See all products"
+msgstr "എല്ലാ ഉൽപ്പന്നങ്ങളും കാണുക"
 
 #: templates/webapp/site/page.html
 msgid "Send your request — we confirm by phone or WhatsApp."
@@ -9845,13 +10173,93 @@ msgstr "ഞങ്ങളെ ബന്ധപ്പെടുക"
 msgid "We usually reply within the day."
 msgstr "സാധാരണ അന്നുതന്നെ മറുപടി നൽകും."
 
-#: templates/webapp/site/page.html
-msgid "Follow us"
-msgstr "ഞങ്ങളെ ഫോളോ ചെയ്യൂ"
+#: templates/webapp/site/product.html
+msgid "Out of stock"
+msgstr "സ്റ്റോക്ക് തീർന്നു"
 
-#: templates/webapp/site/page.html
-msgid "VAT"
-msgstr "VAT"
+#: templates/webapp/site/product.html
+msgid "Options"
+msgstr "ഓപ്ഷനുകൾ"
+
+#: templates/webapp/site/product.html
+msgid "Add to cart"
+msgstr "കാർട്ടിലേക്ക് ചേർക്കുക"
+
+#: templates/webapp/site/product.html
+msgid "Ask on WhatsApp"
+msgstr "WhatsApp-ൽ ചോദിക്കുക"
+
+#: templates/webapp/site/product.html
+msgid "Size chart"
+msgstr "സൈസ് ചാർട്ട്"
+
+#: templates/webapp/site/product.html
+msgid "You may also like"
+msgstr "നിങ്ങൾക്ക് ഇഷ്ടപ്പെട്ടേക്കാം"
+
+#: templates/webapp/site/shop.html
+msgid "All products"
+msgstr "എല്ലാ ഉൽപ്പന്നങ്ങളും"
+
+#: templates/webapp/site/shop.html
+msgid "Search products…"
+msgstr "ഉൽപ്പന്നങ്ങൾ തിരയുക…"
+
+#: templates/webapp/site/shop.html
+msgid "Sort"
+msgstr "ക്രമം"
+
+#: templates/webapp/site/shop.html
+msgid "Sort: name"
+msgstr "ക്രമം: പേര്"
+
+#: templates/webapp/site/shop.html
+msgid "Price: low to high"
+msgstr "വില: കുറഞ്ഞതിൽ നിന്ന് കൂടിയതിലേക്ക്"
+
+#: templates/webapp/site/shop.html
+msgid "Price: high to low"
+msgstr "വില: കൂടിയതിൽ നിന്ന് കുറഞ്ഞതിലേക്ക്"
+
+#: templates/webapp/site/shop.html
+msgid "Newest"
+msgstr "ഏറ്റവും പുതിയത്"
+
+#: templates/webapp/site/shop.html
+msgid "No products found."
+msgstr "ഉൽപ്പന്നങ്ങളൊന്നും കണ്ടെത്തിയില്ല."
+
+#: templates/webapp/site/shop.html
+msgid "Previous"
+msgstr "മുമ്പത്തേത്"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Sorry, the shop could not complete this order."
+msgstr "ക്ഷമിക്കണം, ഷോപ്പിന് ഈ ഓർഡർ പൂർത്തിയാക്കാനായില്ല."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Confirmed"
+msgstr "സ്ഥിരീകരിച്ചു"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "On the way"
+msgstr "വഴിയിലാണ്"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "The shop has your order and will confirm it shortly."
+msgstr "ഷോപ്പിന് നിങ്ങളുടെ ഓർഡർ കിട്ടി, ഉടൻ confirm ചെയ്യും."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Your order is confirmed and being packed."
+msgstr "നിങ്ങളുടെ ഓർഡർ confirm ചെയ്തു, പാക്ക് ചെയ്യുന്നു."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Your order is on its way."
+msgstr "നിങ്ങളുടെ ഓർഡർ വഴിയിലാണ്."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Thank you for shopping with us!"
+msgstr "ഞങ്ങളോടൊപ്പം ഷോപ്പ് ചെയ്തതിന് നന്ദി!"
 
 #: templates/webapp/sports_shop/product_list.html
 msgid "Import from Excel"
@@ -9880,6 +10288,222 @@ msgstr "സൈസ് / നിറം"
 #: templates/webapp/sports_shop/product_list.html
 msgid "No products yet."
 msgstr "ഇതുവരെ ഉൽപ്പന്നങ്ങളൊന്നുമില്ല."
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Rental"
+msgstr "വാടക"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Print agreement"
+msgstr "എഗ്രിമെന്റ് പ്രിന്റ് ചെയ്യുക"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Remind on WhatsApp"
+msgstr "WhatsApp-ൽ ഓർമ്മിപ്പിക്കുക"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Rental agreement"
+msgstr "റെന്റൽ എഗ്രിമെന്റ്"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "ID"
+msgstr "ID"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Per day"
+msgstr "പ്രതിദിനം"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Return by"
+msgstr "തിരികെ നൽകേണ്ടത്"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Late"
+msgstr "വൈകി"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Deposit"
+msgstr "ഡെപ്പോസിറ്റ്"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "day(s)"
+msgstr "ദിവസം"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid ""
+"The customer returns the items in the same condition. Late days are charged "
+"at the daily rate; damage or missing parts are charged from the deposit."
+msgstr ""
+"ഉപഭോക്താവ് സാധനങ്ങൾ അതേ അവസ്ഥയിൽ തിരികെ നൽകണം. വൈകിയ ദിവസങ്ങൾക്ക് ദിവസ "
+"നിരക്ക് ഈടാക്കും; കേടുപാടുകളോ നഷ്ടപ്പെട്ട ഭാഗങ്ങളോ ഡെപ്പോസിറ്റിൽ നിന്ന് "
+"ഈടാക്കും."
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Items returned"
+msgstr "സാധനങ്ങൾ തിരികെ ലഭിച്ചു"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Damage / missing parts charge"
+msgstr "കേടുപാട് / നഷ്ടപ്പെട്ട ഭാഗങ്ങളുടെ ചാർജ്"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Return & make bill"
+msgstr "തിരികെ വാങ്ങി ബിൽ ഉണ്ടാക്കുക"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Cancel this rental without a bill?"
+msgstr "ബിൽ ഇല്ലാതെ ഈ റെന്റൽ റദ്ദാക്കണോ?"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Cancel rental"
+msgstr "റെന്റൽ റദ്ദാക്കുക"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid ""
+"The bill is paid from the deposit first; the screen tells you what to give "
+"back or collect."
+msgstr ""
+"ബിൽ ആദ്യം ഡെപ്പോസിറ്റിൽ നിന്ന് അടയ്ക്കും; എത്ര തിരികെ നൽകണം അല്ലെങ്കിൽ "
+"വാങ്ങണം എന്ന് സ്ക്രീൻ പറയും."
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "New rental"
+msgstr "പുതിയ റെന്റൽ"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Add your rental items first."
+msgstr "ആദ്യം റെന്റൽ സാധനങ്ങൾ ചേർക്കുക."
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Rental items"
+msgstr "റെന്റൽ സാധനങ്ങൾ"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "ID kept (QID / passport no.)"
+msgstr "വാങ്ങിവെച്ച ID (QID / പാസ്പോർട്ട് നമ്പർ)"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "day"
+msgstr "ദിവസം"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "deposit"
+msgstr "ഡെപ്പോസിറ്റ്"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "free"
+msgstr "ലഭ്യം"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Deposit taken"
+msgstr "വാങ്ങിയ ഡെപ്പോസിറ്റ്"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Auto from items"
+msgstr "സാധനങ്ങളിൽ നിന്ന് തനിയെ"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "e.g. helmet included, small scratch on frame"
+msgstr "ഉദാ. ഹെൽമെറ്റ് ഉൾപ്പെടെ, ഫ്രെയിമിൽ ചെറിയ പോറൽ"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Save rental"
+msgstr "റെന്റൽ സേവ് ചെയ്യുക"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Equipment rental"
+msgstr "ഉപകരണ റെന്റൽ"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Out now"
+msgstr "ഇപ്പോൾ പുറത്ത്"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "late"
+msgstr "വൈകി"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Nothing is out on rent."
+msgstr "ഒന്നും വാടകയ്ക്ക് പുറത്തില്ല."
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Rate per day"
+msgstr "പ്രതിദിന നിരക്ക്"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Deposit per piece"
+msgstr "ഒരെണ്ണത്തിന്റെ ഡെപ്പോസിറ്റ്"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "How many you own"
+msgstr "നിങ്ങളുടെ കൈവശം എത്ര"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Yes"
+msgstr "ഉണ്ട്"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "No"
+msgstr "ഇല്ല"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Add the gear you rent out: bicycles, kayaks, rackets, tents…"
+msgstr ""
+"വാടകയ്ക്ക് നൽകുന്ന സാധനങ്ങൾ ചേർക്കുക: സൈക്കിളുകൾ, കയാക്കുകൾ, റാക്കറ്റുകൾ, "
+"ടെന്റുകൾ…"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "New item"
+msgstr "പുതിയ സാധനം"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "e.g. Mountain bike"
+msgstr "ഉദാ. മൗണ്ടൻ ബൈക്ക്"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid ""
+"A size guide per category (jerseys, shoes, gloves…). Staff can show it at "
+"the counter, and your website shows it on every product of that category."
+msgstr ""
+"ഓരോ വിഭാഗത്തിനും ഒരു സൈസ് ഗൈഡ് (ജേഴ്സികൾ, ഷൂസ്, ഗ്ലൗസ്…). സ്റ്റാഫിന് "
+"കൗണ്ടറിൽ കാണിക്കാം, ആ വിഭാഗത്തിലെ ഓരോ ഉൽപ്പന്നത്തിലും വെബ്സൈറ്റ് ഇത് "
+"കാണിക്കും."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "No category"
+msgstr "വിഭാഗമില്ല"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "Delete this size chart?"
+msgstr "ഈ സൈസ് ചാർട്ട് ഡിലീറ്റ് ചെയ്യണോ?"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "No size charts yet."
+msgstr "ഇതുവരെ സൈസ് ചാർട്ടുകളില്ല."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "New size chart"
+msgstr "പുതിയ സൈസ് ചാർട്ട്"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "e.g. Football jerseys"
+msgstr "ഉദാ. ഫുട്ബോൾ ജേഴ്സികൾ"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid ""
+"One row per line, columns separated by commas. The first line is the "
+"heading. You can paste from Excel."
+msgstr ""
+"ഓരോ വരിയും ഓരോ ലൈനിൽ, കോളങ്ങൾ കോമ കൊണ്ട് വേർതിരിക്കുക. ആദ്യ വരി തലക്കെട്ട്. "
+"Excel-ൽ നിന്ന് പേസ്റ്റ് ചെയ്യാം."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "e.g. Between two sizes? Take the bigger one."
+msgstr "ഉദാ. രണ്ട് സൈസുകൾക്കിടയിലാണോ? വലുത് എടുക്കുക."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "Add size chart"
+msgstr "സൈസ് ചാർട്ട് ചേർക്കുക"
 
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Print list for the printer"
@@ -10032,6 +10656,23 @@ msgid "No batches here."
 msgstr "ഇവിടെ ബാച്ചുകൾ ഇല്ല."
 
 #: templates/webapp/stock/batches.html
+msgid "Near-expiry discount"
+msgstr "കാലാവധി അടുത്തവയ്ക്ക് ഡിസ്കൗണ്ട്"
+
+#: templates/webapp/stock/batches.html
+msgid ""
+"Sell old stock before it expires: while an item's next batch expires soon, "
+"billing gives this discount automatically (POS and invoices)."
+msgstr ""
+"കാലാവധി കഴിയും മുമ്പ് പഴയ സ്റ്റോക്ക് വിൽക്കുക: ഒരു സാധനത്തിന്റെ അടുത്ത "
+"ബാച്ചിന്റെ കാലാവധി അടുത്താൽ, ബില്ലിംഗ് ഈ ഡിസ്കൗണ്ട് തനിയെ നൽകും (POS-ലും "
+"ഇൻവോയ്സിലും)."
+
+#: templates/webapp/stock/batches.html
+msgid "When it expires within (days)"
+msgstr "കാലാവധി തീരാൻ (ദിവസം) ഇത്രയുള്ളപ്പോൾ"
+
+#: templates/webapp/stock/batches.html
 msgid "Batches you entered before this update are kept on the older screen."
 msgstr "ഈ അപ്ഡേറ്റിന് മുമ്പ് നൽകിയ ബാച്ചുകൾ പഴയ സ്ക്രീനിൽ തന്നെയുണ്ട്."
 
@@ -10178,10 +10819,6 @@ msgstr "സ്റ്റോക്ക് മൂല്യം (വാങ്ങിയ
 #: templates/webapp/stock/home.html
 msgid "Running low"
 msgstr "കുറഞ്ഞുവരുന്നു"
-
-#: templates/webapp/stock/home.html
-msgid "Out of stock"
-msgstr "സ്റ്റോക്ക് തീർന്നു"
 
 #: templates/webapp/stock/home.html
 msgid "Batches expiring (30 days)"
@@ -10352,6 +10989,26 @@ msgid ""
 "own business."
 msgstr "ഡെമോയിൽ ഇത് ഓഫാണ്. നിങ്ങളുടെ ബിസിനസിൽ ഉപയോഗിക്കാൻ ഫ്രീ ട്രയൽ തുടങ്ങൂ."
 
+#: apps/industry/expiry_deals.py
+msgid "Near expiry −%(pct)s%% (%(days)s days left)"
+msgstr "കാലാവധി അടുത്തത് −%(pct)s%% (%(days)s ദിവസം ബാക്കി)"
+
+#: apps/industry/expiry_deals.py
+msgid ""
+"Hi %(name)s, your %(item)s refill from %(shop)s is due on %(date)s. Reply "
+"YES and we will keep it ready%(delivery)s."
+msgstr ""
+"ഹായ് %(name)s, %(shop)s-ൽ നിന്നുള്ള നിങ്ങളുടെ %(item)s റീഫിൽ %(date)s-ന് due"
+" ആണ്. YES എന്ന് മറുപടി അയച്ചാൽ ഞങ്ങൾ തയ്യാറാക്കി വെക്കാം%(delivery)s."
+
+#: apps/industry/expiry_deals.py
+msgid " for delivery"
+msgstr "ഡെലിവറിക്ക്"
+
+#: apps/industry/models.py
+msgid "Ready / on the way"
+msgstr "തയ്യാർ / വഴിയിൽ"
+
 #: apps/industry/reminders.py
 msgid ""
 "Hi %(name)s, it has been a while since your last visit to %(shop)s. Shall we"
@@ -10436,6 +11093,108 @@ msgstr "മെമ്പർഷിപ്പ് %(n)s ദിവസം മുമ്�
 msgid "Last visit %(n)s days ago"
 msgstr "അവസാന സന്ദർശനം %(n)s ദിവസം മുമ്പ്"
 
+#: apps/industry/shop_orders.py
+msgid "Enter a phone number we can call."
+msgstr "വിളിക്കാൻ പറ്റുന്ന ഒരു ഫോൺ നമ്പർ നൽകുക."
+
+#: apps/industry/shop_orders.py
+msgid "Online ordering is switched off."
+msgstr "ഓൺലൈൻ ഓർഡർ ഓഫ് ആണ്."
+
+#: apps/industry/shop_orders.py
+msgid "Sorry, we are not taking online orders right now. Please call us."
+msgstr "ക്ഷമിക്കണം, ഇപ്പോൾ ഓൺലൈൻ ഓർഡറുകൾ എടുക്കുന്നില്ല. ദയവായി വിളിക്കൂ."
+
+#: apps/industry/shop_orders.py
+msgid "Enter your name."
+msgstr "നിങ്ങളുടെ പേര് നൽകുക."
+
+#: apps/industry/shop_orders.py
+msgid "This order type is not available."
+msgstr "ഈ ഓർഡർ രീതി ലഭ്യമല്ല."
+
+#: apps/industry/shop_orders.py
+msgid "Enter the delivery address."
+msgstr "ഡെലിവറി വിലാസം നൽകുക."
+
+#: apps/industry/shop_orders.py
+msgid "Your cart is empty."
+msgstr "നിങ്ങളുടെ കാർട്ട് ശൂന്യമാണ്."
+
+#: apps/industry/shop_orders.py
+msgid "Too many items in one order. Please call us for big orders."
+msgstr "ഒരു ഓർഡറിൽ ഐറ്റങ്ങൾ കൂടുതലാണ്. വലിയ ഓർഡറുകൾക്ക് ദയവായി വിളിക്കൂ."
+
+#: apps/industry/shop_orders.py
+msgid "Your cart is not valid. Please refresh the page."
+msgstr "നിങ്ങളുടെ കാർട്ട് ശരിയല്ല. പേജ് റിഫ്രഷ് ചെയ്യുക."
+
+#: apps/industry/shop_orders.py
+msgid "You can order 1 to %(n)s of each item."
+msgstr "ഓരോ ഐറ്റവും 1 മുതൽ %(n)s വരെ ഓർഡർ ചെയ്യാം."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"An item in your cart is no longer sold online. Please refresh the page."
+msgstr ""
+"കാർട്ടിലെ ഒരു സാധനം ഇപ്പോൾ ഓൺലൈനിൽ വിൽക്കുന്നില്ല. പേജ് റിഫ്രഷ് ചെയ്യുക."
+
+#: apps/industry/shop_orders.py
+msgid "Sorry, %(item)s is out of stock."
+msgstr "ക്ഷമിക്കണം, %(item)s സ്റ്റോക്കില്ല."
+
+#: apps/industry/shop_orders.py
+msgid "Only %(n)s of %(item)s left."
+msgstr "%(item)s ഇനി %(n)s എണ്ണം മാത്രം."
+
+#: apps/industry/shop_orders.py
+msgid "The minimum order for delivery is %(amount)s."
+msgstr "ഡെലിവറിക്കുള്ള മിനിമം ഓർഡർ %(amount)s ആണ്."
+
+#: apps/industry/shop_orders.py
+msgid "This order was already handled."
+msgstr "ഈ ഓർഡർ ഇതിനകം കൈകാര്യം ചെയ്തു."
+
+#: apps/industry/shop_orders.py
+msgid "The shop could not take this order."
+msgstr "ഷോപ്പിന് ഈ ഓർഡർ എടുക്കാനായില്ല."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, we received your order %(ref)s at %(shop)s. We will confirm it "
+"shortly."
+msgstr ""
+"ഹായ് %(name)s, %(shop)s-ൽ നിങ്ങളുടെ ഓർഡർ %(ref)s ലഭിച്ചു. ഉടൻ confirm "
+"ചെയ്യാം."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, your order %(ref)s at %(shop)s is confirmed. Total %(total)s."
+msgstr ""
+"ഹായ് %(name)s, %(shop)s-ലെ നിങ്ങളുടെ ഓർഡർ %(ref)s confirm ചെയ്തു. ആകെ "
+"%(total)s."
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, your order %(ref)s from %(shop)s is on the way."
+msgstr "ഹായ് %(name)s, %(shop)s-ൽ നിന്നുള്ള നിങ്ങളുടെ ഓർഡർ %(ref)s വഴിയിലാണ്."
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, your order %(ref)s is ready for pickup at %(shop)s."
+msgstr ""
+"ഹായ് %(name)s, നിങ്ങളുടെ ഓർഡർ %(ref)s %(shop)s-ൽ കൊണ്ടുപോകാൻ തയ്യാറാണ്."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, sorry — we could not complete your order %(ref)s at %(shop)s. "
+"%(reason)s"
+msgstr ""
+"ഹായ് %(name)s, ക്ഷമിക്കണം — %(shop)s-ലെ നിങ്ങളുടെ ഓർഡർ %(ref)s "
+"പൂർത്തിയാക്കാനായില്ല. %(reason)s"
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, thank you for shopping at %(shop)s!"
+msgstr "ഹായ് %(name)s, %(shop)s-ൽ ഷോപ്പ് ചെയ്തതിന് നന്ദി!"
+
 #: apps/industry/site_builder.py
 msgid "Our menu"
 msgstr "ഞങ്ങളുടെ മെനു"
@@ -10455,10 +11214,6 @@ msgstr "കോഴ്സുകൾ"
 #: apps/industry/site_builder.py
 msgid "hour"
 msgstr "മണിക്കൂർ"
-
-#: apps/industry/site_builder.py
-msgid "day"
-msgstr "ദിവസം"
 
 #: apps/industry/site_builder.py
 msgid "night"
@@ -10483,6 +11238,14 @@ msgstr "ടേം"
 #: apps/industry/site_builder.py
 msgid "Our products"
 msgstr "ഞങ്ങളുടെ ഉൽപ്പന്നങ്ങൾ"
+
+#: apps/industry/site_builder.py
+msgid "Colour"
+msgstr "നിറം"
+
+#: apps/industry/site_builder.py
+msgid "Material"
+msgstr "മെറ്റീരിയൽ"
 
 #: apps/notifications/rules.py
 msgid "Customer bills due"
@@ -10667,46 +11430,6 @@ msgid "Accepted"
 msgstr "സ്വീകരിച്ചു"
 
 #: apps/verticals/restaurant/online_orders.py
-msgid "Enter a phone number we can call."
-msgstr "വിളിക്കാൻ പറ്റുന്ന ഒരു ഫോൺ നമ്പർ നൽകുക."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Online ordering is switched off."
-msgstr "ഓൺലൈൻ ഓർഡർ ഓഫ് ആണ്."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Sorry, we are not taking online orders right now. Please call us."
-msgstr "ക്ഷമിക്കണം, ഇപ്പോൾ ഓൺലൈൻ ഓർഡറുകൾ എടുക്കുന്നില്ല. ദയവായി വിളിക്കൂ."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Enter your name."
-msgstr "നിങ്ങളുടെ പേര് നൽകുക."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "This order type is not available."
-msgstr "ഈ ഓർഡർ രീതി ലഭ്യമല്ല."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Enter the delivery address."
-msgstr "ഡെലിവറി വിലാസം നൽകുക."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Your cart is empty."
-msgstr "നിങ്ങളുടെ കാർട്ട് ശൂന്യമാണ്."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Too many items in one order. Please call us for big orders."
-msgstr "ഒരു ഓർഡറിൽ ഐറ്റങ്ങൾ കൂടുതലാണ്. വലിയ ഓർഡറുകൾക്ക് ദയവായി വിളിക്കൂ."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Your cart is not valid. Please refresh the page."
-msgstr "നിങ്ങളുടെ കാർട്ട് ശരിയല്ല. പേജ് റിഫ്രഷ് ചെയ്യുക."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "You can order 1 to %(n)s of each item."
-msgstr "ഓരോ ഐറ്റവും 1 മുതൽ %(n)s വരെ ഓർഡർ ചെയ്യാം."
-
-#: apps/verticals/restaurant/online_orders.py
 msgid ""
 "An item in your cart is no longer on the menu. Please refresh the page."
 msgstr "കാർട്ടിലെ ഒരു ഐറ്റം ഇപ്പോൾ മെനുവിൽ ഇല്ല. പേജ് റിഫ്രഷ് ചെയ്യുക."
@@ -10714,14 +11437,6 @@ msgstr "കാർട്ടിലെ ഒരു ഐറ്റം ഇപ്പോൾ
 #: apps/verticals/restaurant/online_orders.py
 msgid "Sorry, %(item)s is not available online right now."
 msgstr "ക്ഷമിക്കണം, %(item)s ഇപ്പോൾ ഓൺലൈനായി ലഭ്യമല്ല."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "The minimum order for delivery is %(amount)s."
-msgstr "ഡെലിവറിക്കുള്ള മിനിമം ഓർഡർ %(amount)s ആണ്."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "This order was already handled."
-msgstr "ഈ ഓർഡർ ഇതിനകം കൈകാര്യം ചെയ്തു."
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -11102,14 +11817,6 @@ msgstr "ആകെ പരിചയം (വർഷം)"
 #: apps/webapp/careers_views.py
 msgid "Gulf experience?"
 msgstr "ഗൾഫ് പരിചയമുണ്ടോ?"
-
-#: apps/webapp/careers_views.py
-msgid "Yes"
-msgstr "ഉണ്ട്"
-
-#: apps/webapp/careers_views.py
-msgid "No"
-msgstr "ഇല്ല"
 
 #: apps/webapp/careers_views.py
 msgid "Highest qualification"
@@ -11575,6 +12282,14 @@ msgstr "വിൽപ്പന വില"
 #: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "റീഓർഡർ നില"
+
+#: apps/webapp/forms.py
+msgid "Description for the website"
+msgstr "വെബ്സൈറ്റിനുള്ള വിവരണം"
+
+#: apps/webapp/forms.py
+msgid "Shown on the product page of your online shop."
+msgstr "ഓൺലൈൻ ഷോപ്പിന്റെ ഉൽപ്പന്ന പേജിൽ കാണിക്കും."
 
 #: apps/webapp/forms.py
 msgid "…or new client name"
@@ -12255,10 +12970,6 @@ msgid "Table reservation"
 msgstr "ടേബിൾ റിസർവേഷൻ"
 
 #: apps/webapp/online_booking_views.py
-msgid "Confirmed"
-msgstr "സ്ഥിരീകരിച്ചു"
-
-#: apps/webapp/online_booking_views.py
 msgid "Declined"
 msgstr "നിരസിച്ചു"
 
@@ -12488,6 +13199,10 @@ msgid "Receive stock"
 msgstr "സ്റ്റോക്ക് സ്വീകരിക്കുക"
 
 #: apps/webapp/overview.py
+msgid "Refills due"
+msgstr "due ആയ റീഫില്ലുകൾ"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "കടയിലുള്ള റിപ്പയറുകൾ"
 
@@ -12566,10 +13281,6 @@ msgstr "ഇന്ന് ഇതുവരെ ചെക്ക്-ഇൻ ഇല്�
 #: apps/webapp/overview.py
 msgid "Orders in progress"
 msgstr "നടന്നുകൊണ്ടിരിക്കുന്ന ഓർഡറുകൾ"
-
-#: apps/webapp/overview.py
-msgid "Late"
-msgstr "വൈകി"
 
 #: apps/webapp/overview.py
 msgid "Due for delivery"
@@ -13193,6 +13904,27 @@ msgstr "ഇഷ്ടപ്പെട്ട നാഷണാലിറ്റി, ഉ
 msgid "Accommodation, food, transport…"
 msgstr "താമസം, ഭക്ഷണം, യാത്ര…"
 
+#: apps/webapp/refill_views.py
+msgid "Choose the customer and the item, and enter how often."
+msgstr ""
+"ഉപഭോക്താവിനെയും സാധനവും തിരഞ്ഞെടുത്ത്, എത്ര ദിവസം കൂടുമ്പോൾ എന്ന് നൽകുക."
+
+#: apps/webapp/refill_views.py
+msgid "Refill added for %(name)s."
+msgstr "%(name)s-ന് റീഫിൽ ചേർത്തു."
+
+#: apps/webapp/refill_views.py
+msgid "Bill %(inv)s made. Next refill on %(date)s."
+msgstr "ബിൽ %(inv)s ഉണ്ടാക്കി. അടുത്ത റീഫിൽ %(date)s-ന്."
+
+#: apps/webapp/refill_views.py
+msgid "Skipped. Next refill on %(date)s."
+msgstr "ഒഴിവാക്കി. അടുത്ത റീഫിൽ %(date)s-ന്."
+
+#: apps/webapp/refill_views.py
+msgid "Refill removed."
+msgstr "റീഫിൽ നീക്കം ചെയ്തു."
+
 #: apps/webapp/restaurant_order_views.py
 msgid "Yesterday"
 msgstr "ഇന്നലെ"
@@ -13292,6 +14024,53 @@ msgstr "സ്കെയിൽ സെറ്റിംഗ്സ് സേവ് ച
 msgid "Your password has been changed."
 msgstr "നിങ്ങളുടെ പാസ്‌വേഡ് മാറ്റി."
 
+#: apps/webapp/shop_order_views.py
+msgid "Pickup from the shop"
+msgstr "ഷോപ്പിൽ നിന്ന് എടുക്കുക"
+
+#: apps/webapp/shop_order_views.py
+msgid "Free delivery over"
+msgstr "ഇതിന് മുകളിൽ സൗജന്യ ഡെലിവറി"
+
+#: apps/webapp/shop_order_views.py
+msgid "Shows “+ Add” on every product in stock and a cart on your website."
+msgstr ""
+"സ്റ്റോക്കിലുള്ള ഓരോ ഉൽപ്പന്നത്തിലും “+ Add”-ഉം വെബ്സൈറ്റിൽ കാർട്ടും "
+"കാണിക്കും."
+
+#: apps/webapp/shop_order_views.py
+msgid "0 = always charge delivery."
+msgstr "0 = എപ്പോഴും ഡെലിവറി ചാർജ് ഈടാക്കുക."
+
+#: apps/webapp/shop_order_views.py
+msgid "Delivery inside Doha in 24 hours · Cash or card on delivery"
+msgstr ""
+"ദോഹയ്ക്കുള്ളിൽ 24 മണിക്കൂറിൽ ഡെലിവറി · ഡെലിവറിയിൽ ക്യാഷ് അല്ലെങ്കിൽ കാർഡ്"
+
+#: apps/webapp/shop_order_views.py
+msgid "Online shop settings saved."
+msgstr "ഓൺലൈൻ ഷോപ്പ് സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s confirmed. Let the customer know on WhatsApp."
+msgstr "ഓർഡർ %(ref)s confirm ചെയ്തു. ഉപഭോക്താവിനെ WhatsApp-ൽ അറിയിക്കുക."
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s marked ready."
+msgstr "ഓർഡർ %(ref)s തയ്യാർ എന്ന് മാർക്ക് ചെയ്തു."
+
+#: apps/webapp/shop_order_views.py
+msgid "Bill %(inv)s made for %(ref)s. Stock is updated."
+msgstr "%(ref)s-ന് ബിൽ %(inv)s ഉണ്ടാക്കി. സ്റ്റോക്ക് അപ്ഡേറ്റ് ചെയ്തു."
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s closed."
+msgstr "ഓർഡർ %(ref)s ക്ലോസ് ചെയ്തു."
+
+#: apps/webapp/shop_order_views.py
+msgid "You can also bill it from New bill."
+msgstr "New bill-ൽ നിന്നും ബിൽ ചെയ്യാം."
+
 #: apps/webapp/site_views.py
 msgid "Main colour"
 msgstr "പ്രധാന നിറം"
@@ -13349,6 +14128,10 @@ msgid "Show contact form"
 msgstr "കോൺടാക്റ്റ് ഫോം കാണിക്കുക"
 
 #: apps/webapp/site_views.py
+msgid "My own CSS"
+msgstr "എന്റെ സ്വന്തം CSS"
+
+#: apps/webapp/site_views.py
 msgid "Leave empty to use the company logo."
 msgstr "കമ്പനി ലോഗോ ഉപയോഗിക്കാൻ ശൂന്യമായി വിടുക."
 
@@ -13361,12 +14144,103 @@ msgid "Visitors can also switch to"
 msgstr "സന്ദർശകർക്ക് ഇതിലേക്കും മാറാം"
 
 #: apps/webapp/site_views.py
-msgid "Menu"
-msgstr "മെനു"
-
-#: apps/webapp/site_views.py
 msgid "Phone, address & logo"
 msgstr "ഫോൺ, വിലാസം & ലോഗോ"
+
+#: apps/webapp/site_views.py
+msgid "e.g. warranty → yoursite.com/p/warranty/"
+msgstr "ഉദാ. warranty → yoursite.com/p/warranty/"
+
+#: apps/webapp/site_views.py
+msgid ""
+"Plain text, or HTML (headings, lists, pictures, tables, YouTube / Google "
+"Maps embeds). Scripts are removed."
+msgstr ""
+"സാധാരണ എഴുത്ത്, അല്ലെങ്കിൽ HTML (തലക്കെട്ടുകൾ, ലിസ്റ്റുകൾ, ചിത്രങ്ങൾ, "
+"ടേബിളുകൾ, YouTube / Google Maps embeds). Scripts നീക്കം ചെയ്യും."
+
+#: apps/webapp/site_views.py
+msgid "Another page already uses this address."
+msgstr "മറ്റൊരു പേജ് ഇതിനകം ഈ വിലാസം ഉപയോഗിക്കുന്നു."
+
+#: apps/webapp/site_views.py
+msgid "Page deleted."
+msgstr "പേജ് ഡിലീറ്റ് ചെയ്തു."
+
+#: apps/webapp/site_views.py
+msgid "Page saved."
+msgstr "പേജ് സേവ് ചെയ്തു."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Size chart deleted."
+msgstr "സൈസ് ചാർട്ട് ഡിലീറ്റ് ചെയ്തു."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Enter a name and the table."
+msgstr "പേരും ടേബിളും നൽകുക."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Size chart saved."
+msgstr "സൈസ് ചാർട്ട് സേവ് ചെയ്തു."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Enter the item name."
+msgstr "സാധനത്തിന്റെ പേര് നൽകുക."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental item saved."
+msgstr "റെന്റൽ സാധനം സേവ് ചെയ്തു."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Choose the customer or enter a new name."
+msgstr "ഉപഭോക്താവിനെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ പേര് നൽകുക."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Choose at least one item."
+msgstr "കുറഞ്ഞത് ഒരു സാധനം തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/sports_extra_views.py
+msgid "The return date can't be in the past."
+msgstr "തിരികെ നൽകേണ്ട തീയതി കഴിഞ്ഞുപോയതാകരുത്."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Not enough free: %(items)s"
+msgstr "മതിയായത്ര ലഭ്യമല്ല: %(items)s"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental %(n)s saved."
+msgstr "റെന്റൽ %(n)s സേവ് ചെയ്തു."
+
+#: apps/webapp/sports_extra_views.py
+msgid ""
+"Hi %(name)s, a reminder from %(shop)s: rental %(n)s is due back on %(date)s."
+" Thank you!"
+msgstr ""
+"ഹായ് %(name)s, %(shop)s-ൽ നിന്ന് ഒരു ഓർമ്മപ്പെടുത്തൽ: റെന്റൽ %(n)s "
+"%(date)s-ന് തിരികെ നൽകണം. നന്ദി!"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental cancelled."
+msgstr "റെന്റൽ റദ്ദാക്കി."
+
+#: apps/webapp/sports_extra_views.py
+msgid "This rental is already closed."
+msgstr "ഈ റെന്റൽ ഇതിനകം ക്ലോസ് ചെയ്തു."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Returned: %(note)s"
+msgstr "തിരികെ ലഭിച്ചു: %(note)s"
+
+#: apps/webapp/sports_extra_views.py
+msgid ""
+"Returned. Bill %(inv)s paid from the deposit — give back %(cur)s %(amt)s."
+msgstr ""
+"തിരികെ ലഭിച്ചു. ബിൽ %(inv)s ഡെപ്പോസിറ്റിൽ നിന്ന് അടച്ചു — %(cur)s %(amt)s "
+"തിരികെ നൽകുക."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Returned. Bill %(inv)s — collect %(cur)s %(amt)s."
+msgstr "തിരികെ ലഭിച്ചു. ബിൽ %(inv)s — %(cur)s %(amt)s വാങ്ങുക."
 
 #: apps/webapp/stock_views.py
 msgid "Damaged"
@@ -13424,6 +14298,14 @@ msgstr ""
 #: apps/webapp/stock_views.py
 msgid "Progress saved."
 msgstr "പുരോഗതി സേവ് ചെയ്തു."
+
+#: apps/webapp/stock_views.py
+msgid "Enter whole days and a percent."
+msgstr "മുഴുവൻ ദിവസങ്ങളും ഒരു ശതമാനവും നൽകുക."
+
+#: apps/webapp/stock_views.py
+msgid "Near-expiry discount saved."
+msgstr "കാലാവധി അടുത്തവയ്ക്കുള്ള ഡിസ്കൗണ്ട് സേവ് ചെയ്തു."
 
 #: apps/webapp/stock_views.py
 msgid "Choose an item and enter the batch number."
@@ -13647,6 +14529,23 @@ msgid "Please enter your name and a phone number or email."
 msgstr "നിങ്ങളുടെ പേരും ഫോൺ നമ്പറോ ഇമെയിലോ നൽകുക."
 
 #: apps/webapp/website_kit_views.py
+msgid "The shop will confirm your order shortly."
+msgstr "ഷോപ്പ് നിങ്ങളുടെ ഓർഡർ ഉടൻ confirm ചെയ്യും."
+
+#: apps/webapp/website_kit_views.py
+msgid "Your cart is empty. Tap “+ Add” on a product."
+msgstr ""
+"നിങ്ങളുടെ കാർട്ട് ശൂന്യമാണ്. ഒരു ഉൽപ്പന്നത്തിൽ “+ Add” ടാപ്പ് ചെയ്യുക."
+
+#: apps/webapp/website_kit_views.py
+msgid "Note, e.g. colour, model, best time to call"
+msgstr "കുറിപ്പ്, ഉദാ. നിറം, മോഡൽ, വിളിക്കാൻ പറ്റിയ സമയം"
+
+#: apps/webapp/website_kit_views.py
+msgid "Free delivery over %s"
+msgstr "%s-ന് മുകളിൽ സൗജന്യ ഡെലിവറി"
+
+#: apps/webapp/website_kit_views.py
 msgid "Order sent"
 msgstr "ഓർഡർ അയച്ചു"
 
@@ -13733,10 +14632,6 @@ msgstr "മുറികൾ"
 #: apps/modules/catalog.py
 msgid "Reservation"
 msgstr "റിസർവേഷൻ"
-
-#: apps/modules/catalog.py
-msgid "Rental"
-msgstr "വാടക"
 
 #: apps/modules/catalog.py
 msgid "Halls"

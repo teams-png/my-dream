@@ -162,6 +162,14 @@ msgid "Team orders"
 msgstr "Pedidos de equipo"
 
 #: templates/base.html
+msgid "Rentals"
+msgstr "Alquileres"
+
+#: templates/base.html
+msgid "Size charts"
+msgstr "Guías de tallas"
+
+#: templates/base.html
 msgid "Sales"
 msgstr "Ventas"
 
@@ -192,6 +200,10 @@ msgstr "Farmacia"
 #: templates/base.html
 msgid "Batches & expiry"
 msgstr "Lotes y caducidad"
+
+#: templates/base.html
+msgid "Refills"
+msgstr "Recargas"
 
 #: templates/base.html
 msgid "Protein Shop"
@@ -721,6 +733,10 @@ msgstr "Extras"
 #: templates/webapp/_industry_nav.html
 msgid "Plans & menu"
 msgstr "Planes y menú"
+
+#: templates/webapp/_industry_nav.html
+msgid "Website orders"
+msgstr "Pedidos web"
 
 #: templates/webapp/_industry_nav.html
 msgid "My website"
@@ -8020,6 +8036,88 @@ msgstr "Pagado a"
 msgid "Add cost"
 msgstr "Añadir costo"
 
+#: templates/webapp/refills/list.html
+msgid "Refill subscriptions"
+msgstr "Suscripciones de recarga"
+
+#: templates/webapp/refills/list.html
+msgid ""
+"Customers who buy the same item every few weeks. See who is due, remind them"
+" on WhatsApp and make the bill in one tap — the next date moves on by "
+"itself."
+msgstr ""
+"Clientes que compran el mismo artículo cada pocas semanas. Vea a quién le "
+"toca, recuérdeles por WhatsApp y haga la factura con un toque — la siguiente"
+" fecha avanza sola."
+
+#: templates/webapp/refills/list.html
+msgid "Due now"
+msgstr "Pendientes ahora"
+
+#: templates/webapp/refills/list.html
+msgid "All active"
+msgstr "Todos los activos"
+
+#: templates/webapp/refills/list.html
+msgid "Paused"
+msgstr "En pausa"
+
+#: templates/webapp/refills/list.html
+msgid "Due today"
+msgstr "Toca hoy"
+
+#: templates/webapp/refills/list.html
+msgid "Make bill"
+msgstr "Hacer factura"
+
+#: templates/webapp/refills/list.html
+msgid "Skip"
+msgstr "Saltar"
+
+#: templates/webapp/refills/list.html
+msgid "Remove this refill?"
+msgstr "¿Eliminar esta recarga?"
+
+#: templates/webapp/refills/list.html
+msgid "No refills due in the next 3 days."
+msgstr "No hay recargas en los próximos 3 días."
+
+#: templates/webapp/refills/list.html
+msgid "No refills yet. Add your regular customers on the right."
+msgstr "Aún no hay recargas. Añada a sus clientes habituales a la derecha."
+
+#: templates/webapp/refills/list.html
+msgid "New refill"
+msgstr "Nueva recarga"
+
+#: templates/webapp/refills/list.html
+msgid "Quantity"
+msgstr "Cantidad"
+
+#: templates/webapp/refills/list.html
+msgid "Every (days)"
+msgstr "Cada (días)"
+
+#: templates/webapp/refills/list.html
+msgid "First refill on"
+msgstr "Primera recarga el"
+
+#: templates/webapp/refills/list.html
+msgid "Subscriber discount %"
+msgstr "Descuento de suscriptor %"
+
+#: templates/webapp/refills/list.html
+msgid "Deliver to the customer"
+msgstr "Entregar al cliente"
+
+#: templates/webapp/refills/list.html
+msgid "e.g. chocolate flavour, call before delivery"
+msgstr "p. ej. sabor chocolate, llamar antes de entregar"
+
+#: templates/webapp/refills/list.html
+msgid "Add refill"
+msgstr "Añadir recarga"
+
 #: templates/webapp/reminders.html
 msgid ""
 "Customers who have not come back for a while, and memberships about to end. "
@@ -8386,10 +8484,6 @@ msgid "Filter kitchen orders"
 msgstr "Filtrar pedidos de cocina"
 
 #: templates/webapp/restaurant/kitchen.html
-msgid "All active"
-msgstr "Todos los activos"
-
-#: templates/webapp/restaurant/kitchen.html
 msgid "Waiting"
 msgstr "En espera"
 
@@ -8688,10 +8782,6 @@ msgstr "Elige extras y cantidad."
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Kitchen note"
 msgstr "Nota para cocina"
-
-#: templates/webapp/restaurant/offline_pos.html
-msgid "Quantity"
-msgstr "Cantidad"
 
 #: templates/webapp/restaurant/offline_pos.html
 msgid "Add to Order"
@@ -9738,6 +9828,116 @@ msgstr ""
 msgid "Add sample data"
 msgstr "Añadir datos de ejemplo"
 
+#: templates/webapp/shop_orders/inbox.html
+msgid "Website shop is off"
+msgstr "La tienda web está apagada"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Switch it on below to show “+ Add” and a cart on your website."
+msgstr "Actívela abajo para mostrar “+ Añadir” y un carrito en su web."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Customers can see your products, but cannot order."
+msgstr "Los clientes ven sus productos, pero no pueden pedir."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
+"Confirm each new order, send it, then make the bill. This page beeps when a "
+"new order comes."
+msgstr ""
+"Confirme cada pedido nuevo, envíelo y luego haga la factura. Esta página "
+"suena cuando llega un pedido."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
+"Your BookPilot website is not switched on yet. Ask your BookPilot team to "
+"switch on the Website add-on — or put the cart on your own website with the "
+"Website kit."
+msgstr ""
+"Su web de BookPilot aún no está activada. Pida al equipo de BookPilot que "
+"active el complemento Web — o ponga el carrito en su propia web con el "
+"Website kit."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "WhatsApp customer"
+msgstr "WhatsApp al cliente"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Share / pay link"
+msgstr "Enlace para compartir / pagar"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Out for delivery"
+msgstr "En reparto"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Make bill (paid / delivered)"
+msgstr "Hacer factura (pagado / entregado)"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Close this order without a bill?"
+msgstr "¿Cerrar este pedido sin factura?"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Reason, e.g. out of stock"
+msgstr "Motivo, p. ej. sin stock"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No open website orders."
+msgstr "No hay pedidos web abiertos."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No website orders yet."
+msgstr "Aún no hay pedidos web."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Online shop settings"
+msgstr "Ajustes de la tienda online"
+
+#: templates/webapp/site/_base.html
+msgid "Preview"
+msgstr "Vista previa"
+
+#: templates/webapp/site/_base.html
+msgid "not public yet"
+msgstr "aún no es público"
+
+#: templates/webapp/site/_base.html
+msgid "Home"
+msgstr "Inicio"
+
+#: templates/webapp/site/_base.html
+msgid "About"
+msgstr "Nosotros"
+
+#: templates/webapp/site/_base.html
+msgid "Book now"
+msgstr "Reservar ahora"
+
+#: templates/webapp/site/_base.html
+msgid "Call us"
+msgstr "Llámanos"
+
+#: templates/webapp/site/_base.html
+msgid "Menu"
+msgstr "Menú"
+
+#: templates/webapp/site/_base.html
+msgid "Follow us"
+msgstr "Síguenos"
+
+#: templates/webapp/site/_base.html
+msgid "VAT"
+msgstr "IVA"
+
+#: templates/webapp/site/_card.html
+msgid "+ Add"
+msgstr "+ Añadir"
+
+#: templates/webapp/site/_card.html
+msgid "Veg"
+msgstr "Veg"
+
 #: templates/webapp/site/editor.html
 msgid "Website kit"
 msgstr "Kit de sitio web"
@@ -9769,6 +9969,83 @@ msgstr ""
 "BookPilot — cámbialos allí y el sitio se actualiza."
 
 #: templates/webapp/site/editor.html
+msgid "Online shop"
+msgstr "Tienda online"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website has a Shop page with every product, a page for each product, a "
+"cart and checkout. Orders arrive in Website orders; stock and prices come "
+"from BookPilot."
+msgstr ""
+"Su web tiene una página Tienda con todos los productos, una página por "
+"producto, carrito y pago. Los pedidos llegan a Pedidos web; stock y precios "
+"vienen de BookPilot."
+
+#: templates/webapp/site/editor.html
+msgid "Website orders & shop settings"
+msgstr "Pedidos web y ajustes de tienda"
+
+#: templates/webapp/site/editor.html
+msgid "Switch on the cart"
+msgstr "Activar el carrito"
+
+#: templates/webapp/site/editor.html
+msgid "Products & photos"
+msgstr "Productos y fotos"
+
+#: templates/webapp/site/editor.html
+msgid "Use your own domain (e.g. from Hostinger)"
+msgstr "Use su propio dominio (p. ej. de Hostinger)"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Buy the domain (Hostinger, GoDaddy, Namecheap…). You only need the domain — "
+"no hosting plan."
+msgstr ""
+"Compre el dominio (Hostinger, GoDaddy, Namecheap…). Solo necesita el dominio"
+" — sin plan de hosting."
+
+#: templates/webapp/site/editor.html
+msgid ""
+"In Hostinger: hPanel → Domains → your domain → DNS / Nameservers → Manage "
+"DNS records."
+msgstr ""
+"En Hostinger: hPanel → Dominios → su dominio → DNS / Nameservers → "
+"Administrar registros DNS."
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Delete the old A and CNAME records for “@” and “www” (the parking page)."
+msgstr ""
+"Borre los registros A y CNAME antiguos de “@” y “www” (página de "
+"aparcamiento)."
+
+#: templates/webapp/site/editor.html
+msgid "Add a CNAME record:"
+msgstr "Añada un registro CNAME:"
+
+#: templates/webapp/site/editor.html
+msgid "Add an A record:"
+msgstr "Añada un registro A:"
+
+#: templates/webapp/site/editor.html
+msgid "(so the address without www also works)"
+msgstr "(para que la dirección sin www también funcione)"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Send the domain name to your BookPilot team. We connect it and switch on the"
+" free SSL (https). It usually works within 1–24 hours."
+msgstr ""
+"Envíe el nombre del dominio al equipo de BookPilot. Lo conectamos y "
+"activamos el SSL gratis (https). Suele funcionar en 1–24 horas."
+
+#: templates/webapp/site/editor.html
+msgid "Until then your website works at"
+msgstr "Mientras tanto su web funciona en"
+
+#: templates/webapp/site/editor.html
 msgid "Design"
 msgstr "Diseño"
 
@@ -9789,40 +10066,92 @@ msgid "Sections"
 msgstr "Secciones"
 
 #: templates/webapp/site/editor.html
-msgid "Preview"
-msgstr "Vista previa"
+msgid ""
+"Make the website look like your own design. Your CSS is added after the "
+"theme, so it wins. Useful classes: .hero, .section, .card, .btn, .price, "
+"header.top, footer, .prod (product page), .shop-bar, .chips. Colours: --p "
+"(main), --a (highlight)."
+msgstr ""
+"Haga que la web luzca con su propio diseño. Su CSS se añade después del "
+"tema, así que manda. Clases útiles: .hero, .section, .card, .btn, .price, "
+"header.top, footer, .prod (página de producto), .shop-bar, .chips. Colores: "
+"--p (principal), --a (destacado)."
+
+#: templates/webapp/site/editor.html
+msgid "Pages"
+msgstr "Páginas"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Add more pages to your website: About us, Warranty, Delivery & returns, "
+"Terms…"
+msgstr ""
+"Añada más páginas a su web: Sobre nosotros, Garantía, Envíos y devoluciones,"
+" Términos…"
+
+#: templates/webapp/site/editor.html
+msgid "hidden"
+msgstr "oculta"
+
+#: templates/webapp/site/editor.html
+msgid "footer"
+msgstr "pie"
+
+#: templates/webapp/site/editor.html
+msgid "Page title"
+msgstr "Título de la página"
+
+#: templates/webapp/site/editor.html
+msgid "Web address"
+msgstr "Dirección web"
+
+#: templates/webapp/site/editor.html
+msgid "Page text"
+msgstr "Texto de la página"
+
+#: templates/webapp/site/editor.html
+msgid "Show in the top menu (off: footer only)"
+msgstr "Mostrar en el menú superior (apagado: solo en el pie)"
+
+#: templates/webapp/site/editor.html
+msgid "Page is live"
+msgstr "Página publicada"
+
+#: templates/webapp/site/editor.html
+msgid "Save page"
+msgstr "Guardar página"
+
+#: templates/webapp/site/editor.html
+msgid "Delete this page?"
+msgstr "¿Eliminar esta página?"
+
+#: templates/webapp/site/editor.html
+msgid "New page"
+msgstr "Nueva página"
+
+#: templates/webapp/site/editor.html
+msgid "Add page"
+msgstr "Añadir página"
 
 #: templates/webapp/site/editor.html
 msgid "Open full page"
 msgstr "Abrir página completa"
 
 #: templates/webapp/site/page.html
-msgid "not public yet"
-msgstr "aún no es público"
-
-#: templates/webapp/site/page.html
-msgid "About"
-msgstr "Nosotros"
-
-#: templates/webapp/site/page.html
-msgid "Book now"
-msgstr "Reservar ahora"
-
-#: templates/webapp/site/page.html
-msgid "Call us"
-msgstr "Llámanos"
+msgid "Shop now"
+msgstr "Comprar ahora"
 
 #: templates/webapp/site/page.html
 msgid "Available now"
 msgstr "Disponible ahora"
 
 #: templates/webapp/site/page.html
-msgid "+ Add"
-msgstr "+ Añadir"
+msgid "Popular products"
+msgstr "Productos populares"
 
 #: templates/webapp/site/page.html
-msgid "Veg"
-msgstr "Veg"
+msgid "See all products"
+msgstr "Ver todos los productos"
 
 #: templates/webapp/site/page.html
 msgid "Send your request — we confirm by phone or WhatsApp."
@@ -9852,13 +10181,93 @@ msgstr "Contáctanos"
 msgid "We usually reply within the day."
 msgstr "Normalmente respondemos en el día."
 
-#: templates/webapp/site/page.html
-msgid "Follow us"
-msgstr "Síguenos"
+#: templates/webapp/site/product.html
+msgid "Out of stock"
+msgstr "Agotado"
 
-#: templates/webapp/site/page.html
-msgid "VAT"
-msgstr "IVA"
+#: templates/webapp/site/product.html
+msgid "Options"
+msgstr "Opciones"
+
+#: templates/webapp/site/product.html
+msgid "Add to cart"
+msgstr "Añadir al carrito"
+
+#: templates/webapp/site/product.html
+msgid "Ask on WhatsApp"
+msgstr "Preguntar por WhatsApp"
+
+#: templates/webapp/site/product.html
+msgid "Size chart"
+msgstr "Guía de tallas"
+
+#: templates/webapp/site/product.html
+msgid "You may also like"
+msgstr "También te puede gustar"
+
+#: templates/webapp/site/shop.html
+msgid "All products"
+msgstr "Todos los productos"
+
+#: templates/webapp/site/shop.html
+msgid "Search products…"
+msgstr "Buscar productos…"
+
+#: templates/webapp/site/shop.html
+msgid "Sort"
+msgstr "Ordenar"
+
+#: templates/webapp/site/shop.html
+msgid "Sort: name"
+msgstr "Orden: nombre"
+
+#: templates/webapp/site/shop.html
+msgid "Price: low to high"
+msgstr "Precio: de menor a mayor"
+
+#: templates/webapp/site/shop.html
+msgid "Price: high to low"
+msgstr "Precio: de mayor a menor"
+
+#: templates/webapp/site/shop.html
+msgid "Newest"
+msgstr "Más nuevos"
+
+#: templates/webapp/site/shop.html
+msgid "No products found."
+msgstr "No se encontraron productos."
+
+#: templates/webapp/site/shop.html
+msgid "Previous"
+msgstr "Anterior"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Sorry, the shop could not complete this order."
+msgstr "Lo sentimos, la tienda no pudo completar este pedido."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Confirmed"
+msgstr "Confirmada"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "On the way"
+msgstr "En camino"
+
+#: templates/webapp/site/shop_order_status.html
+msgid "The shop has your order and will confirm it shortly."
+msgstr "La tienda tiene su pedido y lo confirmará en breve."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Your order is confirmed and being packed."
+msgstr "Su pedido está confirmado y se está empaquetando."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Your order is on its way."
+msgstr "Su pedido está en camino."
+
+#: templates/webapp/site/shop_order_status.html
+msgid "Thank you for shopping with us!"
+msgstr "¡Gracias por su compra!"
 
 #: templates/webapp/sports_shop/product_list.html
 msgid "Import from Excel"
@@ -9887,6 +10296,219 @@ msgstr "Talla / color"
 #: templates/webapp/sports_shop/product_list.html
 msgid "No products yet."
 msgstr "Aún no hay productos."
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Rental"
+msgstr "Alquiler"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Print agreement"
+msgstr "Imprimir contrato"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Remind on WhatsApp"
+msgstr "Recordar por WhatsApp"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Rental agreement"
+msgstr "Contrato de alquiler"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "ID"
+msgstr "Identificación"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Per day"
+msgstr "Por día"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Return by"
+msgstr "Devolver el"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Late"
+msgstr "Con retraso"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Deposit"
+msgstr "Fianza"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "day(s)"
+msgstr "día(s)"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid ""
+"The customer returns the items in the same condition. Late days are charged "
+"at the daily rate; damage or missing parts are charged from the deposit."
+msgstr ""
+"El cliente devuelve los artículos en el mismo estado. Los días de retraso se"
+" cobran a la tarifa diaria; daños o piezas faltantes se cobran de la fianza."
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Items returned"
+msgstr "Artículos devueltos"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Damage / missing parts charge"
+msgstr "Cargo por daños / piezas faltantes"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Return & make bill"
+msgstr "Devolver y facturar"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Cancel this rental without a bill?"
+msgstr "¿Cancelar este alquiler sin factura?"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid "Cancel rental"
+msgstr "Cancelar alquiler"
+
+#: templates/webapp/sports_shop/rental_detail.html
+msgid ""
+"The bill is paid from the deposit first; the screen tells you what to give "
+"back or collect."
+msgstr ""
+"La factura se paga primero con la fianza; la pantalla le dice qué devolver o"
+" cobrar."
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "New rental"
+msgstr "Nuevo alquiler"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Add your rental items first."
+msgstr "Añada primero sus artículos de alquiler."
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Rental items"
+msgstr "Artículos de alquiler"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "ID kept (QID / passport no.)"
+msgstr "Documento retenido (QID / n.º de pasaporte)"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "day"
+msgstr "día"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "deposit"
+msgstr "fianza"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "free"
+msgstr "libres"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Deposit taken"
+msgstr "Fianza cobrada"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Auto from items"
+msgstr "Automática según artículos"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "e.g. helmet included, small scratch on frame"
+msgstr "p. ej. casco incluido, pequeño rasguño en el cuadro"
+
+#: templates/webapp/sports_shop/rental_form.html
+msgid "Save rental"
+msgstr "Guardar alquiler"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Equipment rental"
+msgstr "Alquiler de equipo"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Out now"
+msgstr "Fuera ahora"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "late"
+msgstr "tarde"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Nothing is out on rent."
+msgstr "No hay nada alquilado."
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Rate per day"
+msgstr "Tarifa por día"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Deposit per piece"
+msgstr "Fianza por pieza"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "How many you own"
+msgstr "Cuántos tiene"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Yes"
+msgstr "Sí"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "No"
+msgstr "No"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "Add the gear you rent out: bicycles, kayaks, rackets, tents…"
+msgstr "Añada el equipo que alquila: bicicletas, kayaks, raquetas, tiendas…"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "New item"
+msgstr "Nuevo artículo"
+
+#: templates/webapp/sports_shop/rentals.html
+msgid "e.g. Mountain bike"
+msgstr "p. ej. Bicicleta de montaña"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid ""
+"A size guide per category (jerseys, shoes, gloves…). Staff can show it at "
+"the counter, and your website shows it on every product of that category."
+msgstr ""
+"Una guía de tallas por categoría (camisetas, zapatillas, guantes…). El "
+"personal puede mostrarla en el mostrador y su web la muestra en cada "
+"producto de esa categoría."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "No category"
+msgstr "Sin categoría"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "Delete this size chart?"
+msgstr "¿Eliminar esta guía de tallas?"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "No size charts yet."
+msgstr "Aún no hay guías de tallas."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "New size chart"
+msgstr "Nueva guía de tallas"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "e.g. Football jerseys"
+msgstr "p. ej. Camisetas de fútbol"
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid ""
+"One row per line, columns separated by commas. The first line is the "
+"heading. You can paste from Excel."
+msgstr ""
+"Una fila por línea, columnas separadas por comas. La primera línea es el "
+"encabezado. Puede pegar desde Excel."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "e.g. Between two sizes? Take the bigger one."
+msgstr "p. ej. ¿Entre dos tallas? Elija la mayor."
+
+#: templates/webapp/sports_shop/size_charts.html
+msgid "Add size chart"
+msgstr "Añadir guía de tallas"
 
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Print list for the printer"
@@ -10037,6 +10659,23 @@ msgid "No batches here."
 msgstr "No hay lotes aquí."
 
 #: templates/webapp/stock/batches.html
+msgid "Near-expiry discount"
+msgstr "Descuento por caducidad cercana"
+
+#: templates/webapp/stock/batches.html
+msgid ""
+"Sell old stock before it expires: while an item's next batch expires soon, "
+"billing gives this discount automatically (POS and invoices)."
+msgstr ""
+"Venda el stock viejo antes de que caduque: cuando el siguiente lote de un "
+"artículo caduca pronto, la facturación aplica este descuento automáticamente"
+" (TPV y facturas)."
+
+#: templates/webapp/stock/batches.html
+msgid "When it expires within (days)"
+msgstr "Cuando caduca en (días)"
+
+#: templates/webapp/stock/batches.html
 msgid "Batches you entered before this update are kept on the older screen."
 msgstr ""
 "Los lotes ingresados antes de esta actualización se conservan en la pantalla"
@@ -10185,10 +10824,6 @@ msgstr "Valor del stock (costo)"
 #: templates/webapp/stock/home.html
 msgid "Running low"
 msgstr "Quedan pocos"
-
-#: templates/webapp/stock/home.html
-msgid "Out of stock"
-msgstr "Agotado"
 
 #: templates/webapp/stock/home.html
 msgid "Batches expiring (30 days)"
@@ -10362,6 +10997,26 @@ msgstr ""
 "Esto está desactivado en la demo. Empieza tu prueba gratis para usarlo con "
 "tu negocio."
 
+#: apps/industry/expiry_deals.py
+msgid "Near expiry −%(pct)s%% (%(days)s days left)"
+msgstr "Caduca pronto −%(pct)s%% (quedan %(days)s días)"
+
+#: apps/industry/expiry_deals.py
+msgid ""
+"Hi %(name)s, your %(item)s refill from %(shop)s is due on %(date)s. Reply "
+"YES and we will keep it ready%(delivery)s."
+msgstr ""
+"Hola %(name)s, su recarga de %(item)s en %(shop)s toca el %(date)s. Responda"
+" SÍ y la tendremos lista%(delivery)s."
+
+#: apps/industry/expiry_deals.py
+msgid " for delivery"
+msgstr "para entrega"
+
+#: apps/industry/models.py
+msgid "Ready / on the way"
+msgstr "Listo / en camino"
+
 #: apps/industry/reminders.py
 msgid ""
 "Hi %(name)s, it has been a while since your last visit to %(shop)s. Shall we"
@@ -10446,6 +11101,107 @@ msgstr "La membresía terminó hace %(n)s días"
 msgid "Last visit %(n)s days ago"
 msgstr "Última visita hace %(n)s días"
 
+#: apps/industry/shop_orders.py
+msgid "Enter a phone number we can call."
+msgstr "Introduce un número de teléfono al que podamos llamar."
+
+#: apps/industry/shop_orders.py
+msgid "Online ordering is switched off."
+msgstr "Los pedidos en línea están desactivados."
+
+#: apps/industry/shop_orders.py
+msgid "Sorry, we are not taking online orders right now. Please call us."
+msgstr ""
+"Lo sentimos, ahora no aceptamos pedidos en línea. Por favor, llámanos."
+
+#: apps/industry/shop_orders.py
+msgid "Enter your name."
+msgstr "Introduce tu nombre."
+
+#: apps/industry/shop_orders.py
+msgid "This order type is not available."
+msgstr "Este tipo de pedido no está disponible."
+
+#: apps/industry/shop_orders.py
+msgid "Enter the delivery address."
+msgstr "Introduce la dirección de entrega."
+
+#: apps/industry/shop_orders.py
+msgid "Your cart is empty."
+msgstr "Tu carrito está vacío."
+
+#: apps/industry/shop_orders.py
+msgid "Too many items in one order. Please call us for big orders."
+msgstr "Demasiados artículos en un pedido. Llámanos para pedidos grandes."
+
+#: apps/industry/shop_orders.py
+msgid "Your cart is not valid. Please refresh the page."
+msgstr "Tu carrito no es válido. Actualiza la página."
+
+#: apps/industry/shop_orders.py
+msgid "You can order 1 to %(n)s of each item."
+msgstr "Puedes pedir de 1 a %(n)s de cada artículo."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"An item in your cart is no longer sold online. Please refresh the page."
+msgstr "Un artículo de su carrito ya no se vende online. Actualice la página."
+
+#: apps/industry/shop_orders.py
+msgid "Sorry, %(item)s is out of stock."
+msgstr "Lo sentimos, %(item)s está agotado."
+
+#: apps/industry/shop_orders.py
+msgid "Only %(n)s of %(item)s left."
+msgstr "Solo quedan %(n)s de %(item)s."
+
+#: apps/industry/shop_orders.py
+msgid "The minimum order for delivery is %(amount)s."
+msgstr "El pedido mínimo para entrega es %(amount)s."
+
+#: apps/industry/shop_orders.py
+msgid "This order was already handled."
+msgstr "Este pedido ya fue gestionado."
+
+#: apps/industry/shop_orders.py
+msgid "The shop could not take this order."
+msgstr "La tienda no pudo aceptar este pedido."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, we received your order %(ref)s at %(shop)s. We will confirm it "
+"shortly."
+msgstr ""
+"Hola %(name)s, recibimos su pedido %(ref)s en %(shop)s. Lo confirmaremos en "
+"breve."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, your order %(ref)s at %(shop)s is confirmed. Total %(total)s."
+msgstr ""
+"Hola %(name)s, su pedido %(ref)s en %(shop)s está confirmado. Total "
+"%(total)s."
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, your order %(ref)s from %(shop)s is on the way."
+msgstr "Hola %(name)s, su pedido %(ref)s de %(shop)s está en camino."
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, your order %(ref)s is ready for pickup at %(shop)s."
+msgstr "Hola %(name)s, su pedido %(ref)s está listo para recoger en %(shop)s."
+
+#: apps/industry/shop_orders.py
+msgid ""
+"Hi %(name)s, sorry — we could not complete your order %(ref)s at %(shop)s. "
+"%(reason)s"
+msgstr ""
+"Hola %(name)s, lo sentimos — no pudimos completar su pedido %(ref)s en "
+"%(shop)s. %(reason)s"
+
+#: apps/industry/shop_orders.py
+msgid "Hi %(name)s, thank you for shopping at %(shop)s!"
+msgstr "Hola %(name)s, ¡gracias por comprar en %(shop)s!"
+
 #: apps/industry/site_builder.py
 msgid "Our menu"
 msgstr "Nuestro menú"
@@ -10465,10 +11221,6 @@ msgstr "Cursos"
 #: apps/industry/site_builder.py
 msgid "hour"
 msgstr "hora"
-
-#: apps/industry/site_builder.py
-msgid "day"
-msgstr "día"
 
 #: apps/industry/site_builder.py
 msgid "night"
@@ -10493,6 +11245,14 @@ msgstr "periodo"
 #: apps/industry/site_builder.py
 msgid "Our products"
 msgstr "Nuestros productos"
+
+#: apps/industry/site_builder.py
+msgid "Colour"
+msgstr "Color"
+
+#: apps/industry/site_builder.py
+msgid "Material"
+msgstr "Material"
 
 #: apps/notifications/rules.py
 msgid "Customer bills due"
@@ -10678,47 +11438,6 @@ msgid "Accepted"
 msgstr "Aceptado"
 
 #: apps/verticals/restaurant/online_orders.py
-msgid "Enter a phone number we can call."
-msgstr "Introduce un número de teléfono al que podamos llamar."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Online ordering is switched off."
-msgstr "Los pedidos en línea están desactivados."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Sorry, we are not taking online orders right now. Please call us."
-msgstr ""
-"Lo sentimos, ahora no aceptamos pedidos en línea. Por favor, llámanos."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Enter your name."
-msgstr "Introduce tu nombre."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "This order type is not available."
-msgstr "Este tipo de pedido no está disponible."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Enter the delivery address."
-msgstr "Introduce la dirección de entrega."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Your cart is empty."
-msgstr "Tu carrito está vacío."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Too many items in one order. Please call us for big orders."
-msgstr "Demasiados artículos en un pedido. Llámanos para pedidos grandes."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "Your cart is not valid. Please refresh the page."
-msgstr "Tu carrito no es válido. Actualiza la página."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "You can order 1 to %(n)s of each item."
-msgstr "Puedes pedir de 1 a %(n)s de cada artículo."
-
-#: apps/verticals/restaurant/online_orders.py
 msgid ""
 "An item in your cart is no longer on the menu. Please refresh the page."
 msgstr "Un artículo de tu carrito ya no está en el menú. Actualiza la página."
@@ -10726,14 +11445,6 @@ msgstr "Un artículo de tu carrito ya no está en el menú. Actualiza la página
 #: apps/verticals/restaurant/online_orders.py
 msgid "Sorry, %(item)s is not available online right now."
 msgstr "Lo sentimos, %(item)s no está disponible en línea ahora mismo."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "The minimum order for delivery is %(amount)s."
-msgstr "El pedido mínimo para entrega es %(amount)s."
-
-#: apps/verticals/restaurant/online_orders.py
-msgid "This order was already handled."
-msgstr "Este pedido ya fue gestionado."
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -11113,14 +11824,6 @@ msgstr "Experiencia total (años)"
 #: apps/webapp/careers_views.py
 msgid "Gulf experience?"
 msgstr "¿Experiencia en el Golfo?"
-
-#: apps/webapp/careers_views.py
-msgid "Yes"
-msgstr "Sí"
-
-#: apps/webapp/careers_views.py
-msgid "No"
-msgstr "No"
 
 #: apps/webapp/careers_views.py
 msgid "Highest qualification"
@@ -11587,6 +12290,14 @@ msgstr "Precio de venta"
 #: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "Punto de pedido"
+
+#: apps/webapp/forms.py
+msgid "Description for the website"
+msgstr "Descripción para la web"
+
+#: apps/webapp/forms.py
+msgid "Shown on the product page of your online shop."
+msgstr "Se muestra en la página del producto de su tienda online."
 
 #: apps/webapp/forms.py
 msgid "…or new client name"
@@ -12265,10 +12976,6 @@ msgid "Table reservation"
 msgstr "Reserva de mesa"
 
 #: apps/webapp/online_booking_views.py
-msgid "Confirmed"
-msgstr "Confirmada"
-
-#: apps/webapp/online_booking_views.py
 msgid "Declined"
 msgstr "Rechazada"
 
@@ -12501,6 +13208,10 @@ msgid "Receive stock"
 msgstr "Recibir stock"
 
 #: apps/webapp/overview.py
+msgid "Refills due"
+msgstr "Recargas pendientes"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "Reparaciones en tienda"
 
@@ -12579,10 +13290,6 @@ msgstr "Aún no hay entradas hoy."
 #: apps/webapp/overview.py
 msgid "Orders in progress"
 msgstr "Pedidos en curso"
-
-#: apps/webapp/overview.py
-msgid "Late"
-msgstr "Con retraso"
 
 #: apps/webapp/overview.py
 msgid "Due for delivery"
@@ -13206,6 +13913,26 @@ msgstr "Nacionalidad preferida, si hay."
 msgid "Accommodation, food, transport…"
 msgstr "Alojamiento, comida, transporte…"
 
+#: apps/webapp/refill_views.py
+msgid "Choose the customer and the item, and enter how often."
+msgstr "Elija el cliente y el artículo, e indique cada cuánto."
+
+#: apps/webapp/refill_views.py
+msgid "Refill added for %(name)s."
+msgstr "Recarga añadida para %(name)s."
+
+#: apps/webapp/refill_views.py
+msgid "Bill %(inv)s made. Next refill on %(date)s."
+msgstr "Factura %(inv)s hecha. Próxima recarga el %(date)s."
+
+#: apps/webapp/refill_views.py
+msgid "Skipped. Next refill on %(date)s."
+msgstr "Saltada. Próxima recarga el %(date)s."
+
+#: apps/webapp/refill_views.py
+msgid "Refill removed."
+msgstr "Recarga eliminada."
+
 #: apps/webapp/restaurant_order_views.py
 msgid "Yesterday"
 msgstr "Ayer"
@@ -13308,6 +14035,50 @@ msgstr "Ajustes de la balanza guardados."
 msgid "Your password has been changed."
 msgstr "Tu contraseña se ha cambiado."
 
+#: apps/webapp/shop_order_views.py
+msgid "Pickup from the shop"
+msgstr "Recoger en la tienda"
+
+#: apps/webapp/shop_order_views.py
+msgid "Free delivery over"
+msgstr "Envío gratis a partir de"
+
+#: apps/webapp/shop_order_views.py
+msgid "Shows “+ Add” on every product in stock and a cart on your website."
+msgstr "Muestra “+ Añadir” en cada producto con stock y un carrito en su web."
+
+#: apps/webapp/shop_order_views.py
+msgid "0 = always charge delivery."
+msgstr "0 = cobrar siempre el envío."
+
+#: apps/webapp/shop_order_views.py
+msgid "Delivery inside Doha in 24 hours · Cash or card on delivery"
+msgstr "Entrega en Doha en 24 horas · Efectivo o tarjeta a la entrega"
+
+#: apps/webapp/shop_order_views.py
+msgid "Online shop settings saved."
+msgstr "Ajustes de la tienda guardados."
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s confirmed. Let the customer know on WhatsApp."
+msgstr "Pedido %(ref)s confirmado. Avise al cliente por WhatsApp."
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s marked ready."
+msgstr "Pedido %(ref)s marcado como listo."
+
+#: apps/webapp/shop_order_views.py
+msgid "Bill %(inv)s made for %(ref)s. Stock is updated."
+msgstr "Factura %(inv)s hecha para %(ref)s. Stock actualizado."
+
+#: apps/webapp/shop_order_views.py
+msgid "Order %(ref)s closed."
+msgstr "Pedido %(ref)s cerrado."
+
+#: apps/webapp/shop_order_views.py
+msgid "You can also bill it from New bill."
+msgstr "También puede facturarlo desde Nueva factura."
+
 #: apps/webapp/site_views.py
 msgid "Main colour"
 msgstr "Color principal"
@@ -13365,6 +14136,10 @@ msgid "Show contact form"
 msgstr "Mostrar formulario de contacto"
 
 #: apps/webapp/site_views.py
+msgid "My own CSS"
+msgstr "Mi propio CSS"
+
+#: apps/webapp/site_views.py
 msgid "Leave empty to use the company logo."
 msgstr "Déjalo vacío para usar el logotipo de la empresa."
 
@@ -13377,12 +14152,102 @@ msgid "Visitors can also switch to"
 msgstr "Los visitantes también pueden cambiar a"
 
 #: apps/webapp/site_views.py
-msgid "Menu"
-msgstr "Menú"
-
-#: apps/webapp/site_views.py
 msgid "Phone, address & logo"
 msgstr "Teléfono, dirección y logotipo"
+
+#: apps/webapp/site_views.py
+msgid "e.g. warranty → yoursite.com/p/warranty/"
+msgstr "p. ej. warranty → susitio.com/p/warranty/"
+
+#: apps/webapp/site_views.py
+msgid ""
+"Plain text, or HTML (headings, lists, pictures, tables, YouTube / Google "
+"Maps embeds). Scripts are removed."
+msgstr ""
+"Texto simple o HTML (títulos, listas, imágenes, tablas, inserciones de "
+"YouTube / Google Maps). Los scripts se eliminan."
+
+#: apps/webapp/site_views.py
+msgid "Another page already uses this address."
+msgstr "Otra página ya usa esta dirección."
+
+#: apps/webapp/site_views.py
+msgid "Page deleted."
+msgstr "Página eliminada."
+
+#: apps/webapp/site_views.py
+msgid "Page saved."
+msgstr "Página guardada."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Size chart deleted."
+msgstr "Guía de tallas eliminada."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Enter a name and the table."
+msgstr "Escriba un nombre y la tabla."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Size chart saved."
+msgstr "Guía de tallas guardada."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Enter the item name."
+msgstr "Escriba el nombre del artículo."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental item saved."
+msgstr "Artículo de alquiler guardado."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Choose the customer or enter a new name."
+msgstr "Elija el cliente o escriba un nombre nuevo."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Choose at least one item."
+msgstr "Elija al menos un artículo."
+
+#: apps/webapp/sports_extra_views.py
+msgid "The return date can't be in the past."
+msgstr "La fecha de devolución no puede estar en el pasado."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Not enough free: %(items)s"
+msgstr "No hay suficientes libres: %(items)s"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental %(n)s saved."
+msgstr "Alquiler %(n)s guardado."
+
+#: apps/webapp/sports_extra_views.py
+msgid ""
+"Hi %(name)s, a reminder from %(shop)s: rental %(n)s is due back on %(date)s."
+" Thank you!"
+msgstr ""
+"Hola %(name)s, un recordatorio de %(shop)s: el alquiler %(n)s se devuelve el"
+" %(date)s. ¡Gracias!"
+
+#: apps/webapp/sports_extra_views.py
+msgid "Rental cancelled."
+msgstr "Alquiler cancelado."
+
+#: apps/webapp/sports_extra_views.py
+msgid "This rental is already closed."
+msgstr "Este alquiler ya está cerrado."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Returned: %(note)s"
+msgstr "Devuelto: %(note)s"
+
+#: apps/webapp/sports_extra_views.py
+msgid ""
+"Returned. Bill %(inv)s paid from the deposit — give back %(cur)s %(amt)s."
+msgstr ""
+"Devuelto. Factura %(inv)s pagada con la fianza — devuelva %(cur)s %(amt)s."
+
+#: apps/webapp/sports_extra_views.py
+msgid "Returned. Bill %(inv)s — collect %(cur)s %(amt)s."
+msgstr "Devuelto. Factura %(inv)s — cobre %(cur)s %(amt)s."
 
 #: apps/webapp/stock_views.py
 msgid "Damaged"
@@ -13439,6 +14304,14 @@ msgstr "Conteo terminado. Se corrigió el stock donde había diferencias."
 #: apps/webapp/stock_views.py
 msgid "Progress saved."
 msgstr "Progreso guardado."
+
+#: apps/webapp/stock_views.py
+msgid "Enter whole days and a percent."
+msgstr "Escriba días enteros y un porcentaje."
+
+#: apps/webapp/stock_views.py
+msgid "Near-expiry discount saved."
+msgstr "Descuento por caducidad guardado."
 
 #: apps/webapp/stock_views.py
 msgid "Choose an item and enter the batch number."
@@ -13661,6 +14534,22 @@ msgid "Please enter your name and a phone number or email."
 msgstr "Introduce tu nombre y un teléfono o correo."
 
 #: apps/webapp/website_kit_views.py
+msgid "The shop will confirm your order shortly."
+msgstr "La tienda confirmará su pedido en breve."
+
+#: apps/webapp/website_kit_views.py
+msgid "Your cart is empty. Tap “+ Add” on a product."
+msgstr "Su carrito está vacío. Toque “+ Añadir” en un producto."
+
+#: apps/webapp/website_kit_views.py
+msgid "Note, e.g. colour, model, best time to call"
+msgstr "Nota, p. ej. color, modelo, mejor hora para llamar"
+
+#: apps/webapp/website_kit_views.py
+msgid "Free delivery over %s"
+msgstr "Envío gratis a partir de %s"
+
+#: apps/webapp/website_kit_views.py
 msgid "Order sent"
 msgstr "Pedido enviado"
 
@@ -13747,10 +14636,6 @@ msgstr "Habitaciones"
 #: apps/modules/catalog.py
 msgid "Reservation"
 msgstr "Reserva"
-
-#: apps/modules/catalog.py
-msgid "Rental"
-msgstr "Alquiler"
 
 #: apps/modules/catalog.py
 msgid "Halls"

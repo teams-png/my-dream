@@ -91,6 +91,9 @@ def kit_for(code):
 
 # ------------------------------------------------------------------ install
 
+BATCH_TYPES = {"protein_shop", "medical_shop"}
+
+
 class _Kit:
     def __init__(self, company, user):
         from apps.inventory.models import Warehouse
@@ -155,7 +158,9 @@ class _Kit:
             reorder_level=2 if stocked else 0, is_stock_tracked=stocked, tracking_type="basic" if stocked else "none",
             parent=parent, attributes=attrs, **fields)
         self.track(product)
-        if stocked and stock and self.warehouse:
+        if stocked and stock and self.warehouse and self.expires(row):
+            self.opening_batches(product, stock)
+        elif stocked and stock and self.warehouse:
             self.opening_stock(product, stock)
             if attrs.get("item_type") == "handset":
                 self.handsets(product, stock)
@@ -169,6 +174,27 @@ class _Kit:
             self.track(MobileUnit.objects.create(
                 company=self.company, product=product, imei=f"35{product.pk:06d}{i + 1:07d}"[:15], condition="new",
                 warranty_months=12, purchase_price=product.cost_price, warehouse=self.warehouse))
+
+    def expires(self, row):
+        """Supplements and medicines carry an expiry date; shakers, devices and the like do not."""
+        return _code(self.company) in BATCH_TYPES and row["category"] not in ("Accessories", "Devices")
+
+    def opening_batches(self, product, quantity):
+        """Two batches, so the expiry list and first-expiry-first-out billing have something to show."""
+        import datetime
+        from apps.inventory import services as inv
+        from apps.inventory.models import StockMovement
+        product.tracking_type = "batch"
+        product.save(update_fields=["tracking_type"])
+        today = timezone.localdate()
+        soon = max(1, int(quantity) * 2 // 5)
+        for number, days, qty in ((f"S{product.pk}-A", 40, soon), (f"S{product.pk}-B", 540, int(quantity) - soon)):
+            batch = inv.create_batch(company=self.company, product=product, batch_number=number,
+                                     expiry_date=today + datetime.timedelta(days=days))
+            self.track(batch)
+            self.track(StockMovement.objects.create(company=self.company, product=product, warehouse=self.warehouse,
+                                                    quantity=Decimal(qty), reason="adjustment", batch=batch,
+                                                    reference="Sample opening stock"))
 
     def opening_stock(self, product, quantity):
         from apps.inventory.models import StockMovement

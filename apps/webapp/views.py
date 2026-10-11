@@ -543,12 +543,17 @@ def product_list(request):
     return render(request, "webapp/mobile_shop/product_list.html", {"products": products})
 
 
+# Shops with their own menu that still sell ordinary stock get the full product form (photo, brand, barcode, extras).
+FULL_PRODUCT_FORM_TYPES = {"protein_shop", "medical_shop", "pharmacy", "sports_shop", "fitness_sports_store", "cycle_shop"}
+
+
 @login_required
 def product_add(request):
     company = request.company
     if company and company.business_type.code == "mobile_shop":
         form_class = MobileProductForm
-    elif company and business_group(company.business_type.code) == "retail":
+    elif company and (business_group(company.business_type.code) == "retail" or
+                      company.business_type.code in FULL_PRODUCT_FORM_TYPES):
         form_class = BusinessProductForm
     else:
         form_class = ProductForm
@@ -571,7 +576,8 @@ def product_edit(request, product_id):
     obj = get_object_or_404(Product.objects.for_company(company), id=product_id)
     if company and company.business_type.code == "mobile_shop":
         form_class = MobileProductForm
-    elif company and business_group(company.business_type.code) == "retail":
+    elif company and (business_group(company.business_type.code) == "retail" or
+                      company.business_type.code in FULL_PRODUCT_FORM_TYPES):
         form_class = BusinessProductForm
     else:
         form_class = ProductForm

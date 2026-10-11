@@ -10,6 +10,7 @@ from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from django.db import IntegrityError, transaction
 from django.db.models import Q, Sum
+from django.urls import reverse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.utils.dateparse import parse_date
@@ -320,8 +321,17 @@ def batches(request):
         if show == "expiring" and (state == "ok" or stock <= 0):
             continue
         rows.append({"b": b, "stock": stock, "days": days, "state": state, "value": max(stock, ZERO) * b.product.cost_price})
+    # Shops that kept batches in the older supplement / medicine screens can still open those records.
+    legacy_url = ""
+    code = company.business_type.code
+    if code == "protein_shop":
+        from apps.verticals.protein_shop.models import ProteinBatch
+        legacy_url = reverse("webapp:protein_batch_list") if ProteinBatch.objects.for_company(company).exists() else ""
+    elif code in ("medical_shop", "pharmacy"):
+        from apps.verticals.medical_shop.models import MedicineBatch
+        legacy_url = reverse("webapp:medicine_batch_list") if MedicineBatch.objects.for_company(company).exists() else ""
     return render(request, "webapp/stock/batches.html", {
-        "rows": rows, "show": show, "warehouses": warehouses, "today": today,
+        "rows": rows, "show": show, "warehouses": warehouses, "today": today, "legacy_url": legacy_url,
         "at_risk": sum((r["value"] for r in rows if r["state"] != "ok"), ZERO),
         "products": Product.objects.for_company(company).filter(is_active=True, is_stock_tracked=True).order_by("name")})
 

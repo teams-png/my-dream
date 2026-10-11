@@ -13,6 +13,7 @@
     {% if r.state == "expired" %}<span class="hr-chip bad">{% translate "Expired" %}</span>{% elif r.state == "soon" %}<span class="hr-chip warn">{{ r.days }} {% translate "days left" %}</span>{% endif %}
     <b>{{ r.stock|floatformat:"-3" }}</b>{% if r.state != "ok" and r.stock > 0 %}<a class="btn btn-secondary" href="{% url 'webapp:stock_adjust' %}?product={{ r.b.product.id }}">{% translate "Write off" %}</a>{% endif %}</div>{% empty %}<div class="hr-card hr-empty">{% translate "No batches here." %}</div>{% endfor %}</div>
 </div>
+{% if legacy_url %}<p class="hr-card" style="margin:0 0 12px">{% translate "Batches you entered before this update are kept on the older screen." %} <a href="{{ legacy_url }}">{% translate "Open older batch records" %} →</a></p>{% endif %}
 <form method="post" class="hr-card">{% csrf_token %}<h3>＋ {% translate "Receive a batch" %}</h3>
   <div class="hr-form">
     <label class="wide">{% translate "Item" %}<select name="product" required><option value="">—</option>{% for p in products %}<option value="{{ p.id }}">{{ p.name }} · {{ p.sku }}</option>{% endfor %}</select></label>

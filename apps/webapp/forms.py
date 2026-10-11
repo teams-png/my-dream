@@ -179,7 +179,10 @@ class BusinessProductForm(ProductForm):
         "clothing_store": ("gender", "size_range", "material_spec", "design_reference", "season_collection"),
         "ladies_fashion_boutique": ("size_range", "colour_range", "material_spec", "design_reference", "season_collection"),
         "book_store": ("isbn", "author", "publisher", "grade_subject"),
-        "perfume_shop": ("fragrance_family", "volume_ml", "concentration"),
+        "perfume_shop": ("fragrance_family", "volume_ml", "concentration", "gender"),
+        "protein_shop": ("flavour", "pack_size", "servings", "goal"),
+        "medical_shop": ("generic_name", "strength", "pack_size", "prescription_required"),
+        "pharmacy": ("generic_name", "strength", "pack_size", "prescription_required"),
         "watch_shop": ("model_number", "movement", "strap_material", "water_resistance"),
         "jewelry_shop": ("weight_grams", "purity", "making_mode", "making_charge", "stone_value", "stone_details"),
         "auto_spare_parts": ("part_number", "oem_number", "compatible_models"),
@@ -252,7 +255,12 @@ class BusinessProductForm(ProductForm):
         "hs_code": "HS / customs code", "minimum_order_quantity": "Minimum order quantity",
         "lead_time_days": "Lead time (days)", "carton_reference": "Carton / pack reference",
         "service_interval_days": "Service interval (days)",
+        "flavour": "Flavour", "servings": "Servings per pack", "goal": "Goal (e.g. muscle gain, weight loss)",
+        "generic_name": "Generic name", "strength": "Strength (e.g. 500 mg)",
+        "prescription_required": "Prescription needed",
     }
+    # Shops whose stock has an expiry: new products are batch-tracked, so billing sells the batch that expires first.
+    BATCH_TYPES = {"protein_shop", "medical_shop", "pharmacy"}
     wholesale_price = forms.DecimalField(max_digits=12, decimal_places=2, required=False)
     carton_quantity = forms.DecimalField(max_digits=12, decimal_places=3, required=False)
 
@@ -268,13 +276,13 @@ class BusinessProductForm(ProductForm):
                     self.fields[name] = forms.ChoiceField(required=False, label=label, choices=[("per_gram", "Per gram"), ("fixed", "Fixed amount"), ("percent", "% of gold value")])
                 elif name == "stone_value":
                     self.fields[name] = forms.DecimalField(required=False, label=label, max_digits=12, decimal_places=2)
-                elif name in {"serial_required", "assembly_required"}:
+                elif name in {"serial_required", "assembly_required", "prescription_required"}:
                     self.fields[name] = forms.BooleanField(required=False, label=label)
                 elif name in {"production_date", "expiry_date"}:
                     self.fields[name] = forms.DateField(required=False, label=label, widget=forms.DateInput(attrs={"type": "date"}))
                 elif name in {"weight_grams", "making_charge", "mileage"}:
                     self.fields[name] = forms.DecimalField(required=False, label=label, max_digits=12, decimal_places=2)
-                elif name in {"warranty_months", "model_year", "production_lead_days", "preparation_minutes", "lead_time_days", "service_interval_days"}:
+                elif name in {"warranty_months", "model_year", "production_lead_days", "preparation_minutes", "lead_time_days", "service_interval_days", "servings"}:
                     self.fields[name] = forms.IntegerField(required=False, label=label)
                 elif name in {"minimum_order_quantity"}:
                     self.fields[name] = forms.DecimalField(required=False, label=label, max_digits=12, decimal_places=3)
@@ -314,6 +322,8 @@ class BusinessProductForm(ProductForm):
         obj.attributes = attrs
         if self.cleaned_data.get("serial_required"):
             obj.tracking_type = "serial"
+        elif not obj.pk and obj.is_stock_tracked and self.business_code in self.BATCH_TYPES:
+            obj.tracking_type = "batch"
         if commit:
             obj.save()
         return obj

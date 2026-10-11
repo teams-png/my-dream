@@ -182,6 +182,37 @@ def _retail(company, today, money):
     return [money["today"], money["bills"], money["low"], money["month"]], main, _top_items(company, today)
 
 
+def expiring_batches(company, today, days=60):
+    """Batches still in stock that expire within `days` (or already have), soonest first: [(batch, qty, days_left)]."""
+    from apps.inventory.models import ProductBatch, StockMovement
+    held = {r["batch_id"]: r["q"] for r in StockMovement.objects.for_company(company).filter(batch__isnull=False)
+            .values("batch_id").annotate(q=Sum("quantity"))}
+    rows = []
+    for b in (ProductBatch.objects.for_company(company).filter(expiry_date__lte=today + timedelta(days=days))
+              .select_related("product").order_by("expiry_date")):
+        if held.get(b.id, 0) > 0:
+            rows.append((b, held[b.id], (b.expiry_date - today).days))
+    return rows
+
+
+def _expiry(company, today, money):
+    """Pharmacies and supplement shops: what expires soon matters more than what runs low."""
+    rows_raw = expiring_batches(company, today)
+    batches_url = reverse("webapp:stock_batches")
+    rows = [{"lead": f"{b.expiry_date:%d %b}", "title": b.product.name,
+             "sub": _("Batch %(b)s · %(q)s in stock") % {"b": b.batch_number, "q": f"{qty.normalize():f}"},
+             "badge": _("Expired") if left < 0 else _("Today") if left == 0 else _("in %(n)s days") % {"n": left},
+             "tone": "bad" if left <= 7 else "warn", "url": batches_url} for b, qty, left in rows_raw]
+    soon = sum(1 for _b, _q, left in rows_raw if left <= 30)
+    kpis = [money["today"], money["bills"],
+            _kpi(_("Expiring in 30 days"), soon, batches_url, tone="bad" if soon else "",
+                 note=_("%(n)s already expired") % {"n": sum(1 for r in rows_raw if r[2] < 0)} if any(r[2] < 0 for r in rows_raw) else ""),
+            money["month"]]
+    main = _panel(_("Expiring soon"), batches_url, _("Batches & expiry"), rows,
+                  _("Nothing expires in the next 60 days."), batches_url, _("Receive stock"))
+    return kpis, main, _top_items(company, today)
+
+
 def _mobile(company, today, money):
     from apps.verticals.mobile_shop.models import MobileRepairJob
     jobs = list(MobileRepairJob.objects.for_company(company).exclude(status__in=["completed", "cancelled"])
@@ -405,6 +436,8 @@ def build(company):
         parts = _service(company, today, money)
     elif group == "project" or code == "construction":
         parts = _projects(company, today, money)
+    elif code in ("protein_shop", "medical_shop"):
+        parts = _expiry(company, today, money)
     else:
         parts = _retail(company, today, money)
     kpis, main, side = parts

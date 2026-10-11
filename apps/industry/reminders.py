@@ -38,6 +38,7 @@ def revisit_message(company, customer):
         "spa": _("Hi %(name)s, treat yourself again! Reply to book your next relaxing session at %(shop)s."),
         "vehicle_wash": _("Hi %(name)s, your vehicle is due for its wash at %(shop)s. Reply to book a slot."),
         "medical_shop": _("Hi %(name)s, it may be time to refill your medicines from %(shop)s. Reply and we will keep them ready for you."),
+        "protein_shop": _("Hi %(name)s, your supplements from %(shop)s may be running low. Reply and we will keep your next pack ready."),
         "laundry_dry_cleaning": _("Hi %(name)s, any clothes for washing or dry cleaning? Reply and %(shop)s will arrange a pickup."),
     }
     default = _("Hi %(name)s, we miss you at %(shop)s! Visit us again soon – we have something new for you.")

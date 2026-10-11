@@ -1,0 +1,17 @@
+{% include "webapp/website_kit/starter/_head.html" %}
+<header class="hero py-5 text-white">
+  <div class="container py-4">
+    <h1 class="display-5 fw-bold">{{ name }}</h1>
+    <p class="lead opacity-75">Write one line about the business here.</p>
+    {% if shop %}<a class="btn btn-light btn-lg" href="shop.html">Shop now</a>{% endif %}
+  </div>
+</header>
+<main class="container py-5">
+  <h2 class="mb-4">{% if shop %}Popular products{% else %}What we offer{% endif %}</h2>
+  <!-- BookPilot: live products / menu / services, always up to date -->
+  <div class="bookpilot-catalogue" data-limit="8"></div>
+  <script src="{{ urls.catalogue_js }}" defer></script>
+  {% if offers %}<h2 class="mt-5 mb-3">Offers</h2>
+  <div class="bookpilot-offers-note text-muted">Offers from BookPilot show in the products above.</div>{% endif %}
+</main>
+{% include "webapp/website_kit/starter/_foot.html" %}

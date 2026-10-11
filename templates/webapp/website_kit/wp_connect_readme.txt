@@ -13,6 +13,8 @@ Connects this WordPress site to {{ company }}'s BookPilot account. Everything is
 
 == Shortcodes ==
 [bookpilot_enquiry]                       Contact / enquiry form → BookPilot CRM leads
+[bookpilot_shop]                          Full online shop: filters, product pages, wishlist, reviews, cart & checkout
+[bookpilot_shop category="12"]            Start on one category
 [bookpilot_catalogue]                     Live menu / services / products / rooms / courses / jobs
 [bookpilot_catalogue category="Drinks" limit="12"]
 [bookpilot_catalogue hide_sold_out="yes"]  Hide items marked not available in the POS

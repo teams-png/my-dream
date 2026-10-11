@@ -434,7 +434,7 @@ def product_page(design, absolute, base, lang, preview, product_id):
         if key in HIDDEN_ATTRS or value in ("", None, False) or isinstance(value, (dict, list)):
             continue
         value = _l("Yes") if value is True else value
-        specs.append((labels.get(key) or key.replace("_", " ").capitalize(), value))
+        specs.append((FACET_LABELS.get(key) or labels.get(key) or key.replace("_", " ").capitalize(), value))
     options = [{"id": s.id, "label": s.variant_label or s.name, "url": f"{base}shop/{s.id}/{q}"} for s in siblings]
     from .models import ProductPhoto, ProductReview
     photos = [item["image"]] + [absolute(ph.image.url) for ph in ProductPhoto.objects.filter(company=company, product=p)[:8]]

@@ -1,0 +1,6 @@
+/* {{ name }} — your own design. Change the brand colour here; the BookPilot widgets follow it. */
+:root { --brand: {{ color }}; }
+.btn-brand { background: var(--brand); border-color: var(--brand); color: #fff; }
+.btn-brand:hover { filter: brightness(.92); color: #fff; }
+.hero { background: linear-gradient(135deg, var(--brand), #0b1220); }
+.bookpilot-shop, .bookpilot-catalogue { --c: var(--brand); }

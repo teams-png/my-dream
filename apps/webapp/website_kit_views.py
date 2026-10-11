@@ -177,6 +177,122 @@ def kit_catalogue_js(request, public_id):
         "color": kit.accent_color or "#0f766e"})
 
 
+# ------------------------------------------------------------------ full shop for any website (WordPress, Bootstrap, HTML)
+
+def _shop_design(kit):
+    from apps.industry import site_builder
+    from apps.industry import shop_orders
+    if not shop_orders.applies(kit.company):
+        raise Http404
+    return site_builder.design_for(kit.company)
+
+
+def kit_shop_json(request, public_id):
+    """Products with filters for shop.js: the same data as the hosted Shop page."""
+    from django.utils import translation
+    from apps.industry import site_builder
+    kit = _kit_or_404(public_id)
+    design = _shop_design(kit)
+    lang = site_lang(kit.company, request.GET.get("lang"))
+    with translation.override(lang):
+        data = site_builder.shop_page(design, request.build_absolute_uri, "", lang, False, request.GET)
+        facets = data["facets"]
+        body = {"currency": kit.company.default_currency, "total": data["total"], "page": data["page"], "pages": data["pages"],
+                "category": data["category"].id if data["category"] else None,
+                "categories": [{"id": c.id, "name": c.name} for c in data["categories"]],
+                "facets": {"brand": facets["brands"], "colour": facets["colours"], "size": facets["sizes"],
+                           "attrs": facets["attrs"], "price_lo": facets["price_lo"], "price_hi": facets["price_hi"]},
+                "items": [{k: v for k, v in i.items() if k != "url"} for i in data["items"]],
+                "ordering": bool(data["ordering"])}
+    response = _public_json(body)
+    response["Cache-Control"] = "public, max-age=60"
+    return response
+
+
+def kit_product_json(request, public_id, product_id):
+    from django.utils import translation
+    from apps.industry import site_builder
+    kit = _kit_or_404(public_id)
+    design = _shop_design(kit)
+    lang = site_lang(kit.company, request.GET.get("lang"))
+    with translation.override(lang):
+        data = site_builder.product_page(design, request.build_absolute_uri, "", lang, False, product_id)
+        if data is None:
+            raise Http404
+        item = {k: v for k, v in data["item"].items() if k not in ("url", "category_url")}
+        chart = data.get("size_chart")
+        body = {"currency": kit.company.default_currency, "item": item, "ordering": bool(data["ordering"]),
+                "specs": [[str(k), str(v)] for k, v in data["specs"]], "photos": data["photos"],
+                "options": [{"id": o["id"], "label": o["label"]} for o in data["options"]],
+                "size_chart": {"name": chart.name, "rows": chart.rows, "note": chart.note} if chart else None,
+                "reviews_on": data["reviews_on"],
+                "reviews": [{"name": r.name, "rating": r.rating, "text": r.text, "date": r.created_at.strftime("%d %b %Y")}
+                            for r in data["product_reviews"]],
+                "related": [{k: v for k, v in i.items() if k != "url"} for i in data["related"]]}
+    response = _public_json(body)
+    response["Cache-Control"] = "public, max-age=60"
+    return response
+
+
+@csrf_exempt
+def kit_review(request, public_id, product_id):
+    from apps.industry import shop_orders
+    from apps.industry.models import ProductReview
+    kit = _kit_or_404(public_id)
+    if request.method == "OPTIONS":
+        return _cors(request, HttpResponse())
+    design = _shop_design(kit)
+    if request.method != "POST" or not design.shop_reviews:
+        raise Http404
+    try:
+        data = json.loads(request.body or b"{}")
+    except ValueError:
+        data = {}
+    product = shop_orders.sellable(kit.company).filter(id=product_id).first()
+    name = str(data.get("name") or "").strip()[:80]
+    if product and len(name) >= 2 and not data.get("company_website") and not _too_many(request, kit):
+        try:
+            rating = min(5, max(1, int(data.get("rating") or 5)))
+        except (TypeError, ValueError):
+            rating = 5
+        ProductReview.objects.create(company=kit.company, product=product, name=name, rating=rating,
+                                     text=str(data.get("text") or "").strip()[:2000])
+    return _cors(request, JsonResponse({"ok": True}, status=201))
+
+
+def kit_shop_js(request, public_id):
+    from django.utils import translation
+    from django.utils.translation import gettext as _
+    kit = _kit_or_404(public_id)
+    _shop_design(kit)
+    lang = site_lang(kit.company, request.GET.get("lang"))
+    with translation.override(lang):
+        t = {k: str(v) for k, v in {
+            "all": _("All"), "filters": _("Filters"), "search": _("Search products…"), "price": _("Price"),
+            "in_stock": _("In stock only"), "brand": _("Brand"), "colour": _("Colour"), "size": _("Size"),
+            "apply": _("Apply"), "clear": _("Clear all"), "sort_name": _("Sort: name"), "sort_low": _("Price: low to high"),
+            "sort_high": _("Price: high to low"), "sort_new": _("Newest"), "none": _("No products found."),
+            "add": _("+ Add"), "add_cart": _("Add to cart"), "sold_out": _("Sold out"), "sale": _("Sale"),
+            "back": _("Back to shop"), "prev": _("Previous"), "next": _("Next"), "reviews": _("Reviews"),
+            "write_review": _("Write a review"), "your_name": _("Your name"), "liked": _("What did you like?"),
+            "send_review": _("Send review"), "review_thanks": _("Thank you! Your review will show after the shop checks it."),
+            "no_reviews": _("No reviews yet. Be the first!"), "size_chart": _("Size chart"), "options": _("Options"),
+            "also": _("You may also like"), "in_stock_label": _("In stock"), "wishlist": _("My wishlist"),
+            "products": _("products"), "left": _("left"), "ask": _("Ask on WhatsApp")}.items()}
+        rtl = translation.get_language_bidi()
+    from apps.industry.website_kit import info
+    phone = "".join(ch for ch in (kit.company.phone or "") if ch.isdigit())
+    cfg = {"shop": request.build_absolute_uri(reverse("webapp:kit_shop_json", args=[public_id])),
+           "product": request.build_absolute_uri(reverse("webapp:kit_product_json", args=[public_id, 0])).replace("/0.json", "/{id}.json"),
+           "review": request.build_absolute_uri(reverse("webapp:kit_review", args=[public_id, 0])).replace("/0/review/", "/{id}/review/"),
+           "order_js": request.build_absolute_uri(reverse("webapp:kit_order_js", args=[public_id])) + f"?lang={lang}",
+           "color": kit.accent_color or "#0f766e", "lang": lang, "rtl": rtl, "t": t, "whatsapp": phone,
+           "key": f"bp-wish-{public_id}"}
+    response = _js(request, "webapp/website_kit/shop.js", cfg)
+    response["Cache-Control"] = "public, max-age=300"
+    return response
+
+
 # ------------------------------------------------------------------ website ordering (restaurant cart)
 
 ORDER_LIMIT = 6  # orders per hour from one visitor
@@ -509,6 +625,9 @@ def kit_detail(request, company_id):
     urls = {"info": _abs(request, "webapp:kit_info", pid), "catalogue": _abs(request, "webapp:kit_catalogue", pid),
             "enquiry": _abs(request, "webapp:kit_enquiry", pid), "enquiry_js": _abs(request, "webapp:kit_enquiry_js", pid),
             "catalogue_js": _abs(request, "webapp:kit_catalogue_js", pid)}
+    from apps.industry import shop_orders
+    if shop_orders.applies(company):
+        urls["shop_js"] = _abs(request, "webapp:kit_shop_js", pid)
     if booking_site:
         urls.update(booking_js=_abs(request, "webapp:book_form_js", booking_site.slug),
                     booking_page=_abs(request, "webapp:book_page", booking_site.slug),
@@ -604,6 +723,9 @@ def _snippets(ctx):
     out = [("Contact / enquiry form", f'<div class="bookpilot-enquiry"></div>\n<script src="{urls["enquiry_js"]}" defer></script>'),
            ("Catalogue list (" + ctx["caps"]["catalogue"] + ")",
             f'<div class="bookpilot-catalogue"></div>\n<script src="{urls["catalogue_js"]}" defer></script>')]
+    if "shop_js" in urls:
+        out.insert(0, ("Full online shop (filters, product pages, cart)",
+                       f'<div class="bookpilot-shop"></div>\n<script src="{urls["shop_js"]}" defer></script>'))
     if "booking_js" in urls:
         out.insert(0, ("Booking form", f'<div class="bookpilot-booking"></div>\n<script src="{urls["booking_js"]}" defer></script>'))
     if "careers_js" in urls:
@@ -635,6 +757,40 @@ def kit_wp_plugin(request, company_id):
         z.writestr("bookpilot-connect/readme.txt", render_to_string("webapp/website_kit/wp_connect_readme.txt", ctx))
     response = HttpResponse(buf.getvalue(), content_type="application/zip")
     response["Content-Disposition"] = f'attachment; filename="bookpilot-connect-{ctx["kit_id"]}.zip"'
+    return response
+
+
+@login_required
+@superuser_required
+def kit_bootstrap_starter(request, company_id):
+    """A ready Bootstrap 5 website (home, shop, contact) with the BookPilot widgets in place, to upload to any
+    hosting and then change freely."""
+    from apps.industry import shop_orders
+    company = get_object_or_404(Company, id=company_id)
+    kit = svc.kit_for(company)
+    pid = kit.public_id
+    lang = site_lang(company)
+    urls = {"catalogue_js": _abs(request, "webapp:kit_catalogue_js", pid) + f"?lang={lang}",
+            "enquiry_js": _abs(request, "webapp:kit_enquiry_js", pid) + f"?lang={lang}"}
+    shop = shop_orders.applies(company)
+    if shop:
+        urls["shop_js"] = _abs(request, "webapp:kit_shop_js", pid) + f"?lang={lang}"
+    booking = BookingSite.objects.filter(company=company, enabled=True).first()
+    if booking:
+        urls["booking_js"] = _abs(request, "webapp:book_form_js", booking.slug) + f"?lang={lang}"
+    from django.utils import translation
+    ctx = {"name": company.name, "phone": company.phone, "email": company.email, "address": company.address,
+           "color": kit.accent_color or "#0f766e", "urls": urls, "shop": shop, "lang": lang,
+           "rtl": translation.get_language_info(lang).get("bidi", False) if lang else False, "offers": True}
+    folder = f"{pid}-website"
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
+        for name in ("index.html", "contact.html") + (("shop.html",) if shop else ()):
+            z.writestr(f"{folder}/{name}", render_to_string(f"webapp/website_kit/starter/{name}", ctx))
+        z.writestr(f"{folder}/assets/style.css", render_to_string("webapp/website_kit/starter/style.css", ctx))
+        z.writestr(f"{folder}/README.txt", render_to_string("webapp/website_kit/starter/README.txt", ctx))
+    response = HttpResponse(buf.getvalue(), content_type="application/zip")
+    response["Content-Disposition"] = f'attachment; filename="{folder}.zip"'
     return response
 
 

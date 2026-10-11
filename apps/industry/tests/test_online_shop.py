@@ -241,3 +241,34 @@ def test_offers_coupon_reviews_gallery_wishlist_and_online_pay(shop, monkeypatch
     # wishlist view
     wl = Client().get(f"{base}shop/", {"ids": str(item.id)}).content.decode()
     assert "My wishlist" in wl and "1 product" in wl
+
+
+def test_shop_widget_for_wordpress_and_bootstrap_sites(shop, admin_client):
+    import io
+    import zipfile
+    from apps.inventory.models import Product
+    company, owner, kit = shop
+    item = Product.objects.filter(company=company, is_stock_tracked=True, variants__isnull=True).first()
+    js = Client().get(reverse("webapp:kit_shop_js", args=[kit.public_id])).content.decode()
+    assert "bookpilot-shop" in js and "/shop.json" in js and "/order.js" in js
+    data = Client().get(reverse("webapp:kit_shop_json", args=[kit.public_id]), {"q": item.name[:5]}).json()
+    assert data["total"] >= 1 and any(i["id"] == item.id for i in data["items"]) and "brand" in data["facets"]
+    assert Client().get(reverse("webapp:kit_shop_json", args=[kit.public_id])).get("Access-Control-Allow-Origin") == "*"
+    prod = Client().get(reverse("webapp:kit_product_json", args=[kit.public_id, item.id])).json()
+    assert prod["item"]["name"] == item.name and prod["ordering"] is True
+    r = Client().post(reverse("webapp:kit_review", args=[kit.public_id, item.id]), json.dumps({"name": "Sam", "rating": 5}),
+                      content_type="application/json", HTTP_ORIGIN="https://shop.example")
+    assert r.status_code == 201
+    from apps.industry.models import ProductReview
+    assert ProductReview.objects.filter(product=item, name="Sam", is_approved=False).exists()
+
+    plugin = zipfile.ZipFile(io.BytesIO(admin_client.get(reverse("webapp:kit_wp_plugin", args=[company.id])).content))
+    php = plugin.read("bookpilot-connect/bookpilot-connect.php").decode()
+    assert "add_shortcode('bookpilot_shop'" in php
+    starter = zipfile.ZipFile(io.BytesIO(admin_client.get(reverse("webapp:kit_bootstrap_starter", args=[company.id])).content))
+    names = starter.namelist()
+    assert any(n.endswith("shop.html") for n in names) and any(n.endswith("assets/style.css") for n in names)
+    shop_html = starter.read([n for n in names if n.endswith("shop.html")][0]).decode()
+    assert 'class="bookpilot-shop"' in shop_html and "bootstrap@5" in shop_html and "/shop.js" in shop_html
+    page = admin_client.get(reverse("webapp:kit_detail", args=[company.id])).content.decode()
+    assert "Full online shop" in page and "Bootstrap website starter" in page

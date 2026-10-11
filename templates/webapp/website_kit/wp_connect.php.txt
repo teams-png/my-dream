@@ -2,7 +2,7 @@
 /**
  * Plugin Name: BookPilot Connect — {{ company|cut:'*/' }}
  * Description: Connects this website to {{ company|cut:'*/' }}'s BookPilot account: contact form, live catalogue, business details{% if booking_slug %}, online booking{% endif %}{% if careers_slug %}, jobs and job applications{% endif %}. Everything submitted here goes straight to BookPilot.
- * Version: 1.3.0
+ * Version: 1.4.0
  * Author: BookPilot
  * License: GPLv2 or later
  * Requires at least: 5.0
@@ -56,7 +56,7 @@ function bookpilot_connect_cache_key($name, $lang) {
 
 function bookpilot_connect_widget($class, $script_handle, $path, $atts) {
     $atts['lang'] = bookpilot_connect_lang($atts);
-    wp_enqueue_script($script_handle, esc_url(bookpilot_connect_url($path . '?lang=' . rawurlencode($atts['lang']))), array(), '1.3.0', true);
+    wp_enqueue_script($script_handle, esc_url(bookpilot_connect_url($path . '?lang=' . rawurlencode($atts['lang']))), array(), '1.4.0', true);
     return '<div class="' . esc_attr($class) . '"' . bookpilot_connect_attrs($atts) . '></div>';
 }
 
@@ -66,6 +66,14 @@ function bookpilot_connect_enquiry($atts) {
     return bookpilot_connect_widget('bookpilot-enquiry', 'bookpilot-enquiry', '/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/enquiry.js', $a);
 }
 add_shortcode('bookpilot_enquiry', 'bookpilot_connect_enquiry');
+
+/* [bookpilot_shop category="12" color="#0f766e" lang="ar"] — the full online shop: filters, product pages, wishlist,
+   reviews and the cart (orders go to BookPilot → Website orders) */
+function bookpilot_connect_shop($atts) {
+    $a = shortcode_atts(array('category' => '', 'lang' => '', 'color' => ''), $atts, 'bookpilot_shop');
+    return bookpilot_connect_widget('bookpilot-shop', 'bookpilot-shop', '/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/shop.js', $a);
+}
+add_shortcode('bookpilot_shop', 'bookpilot_connect_shop');
 
 /* [bookpilot_booking item="…" lang="ar" thanks="…"] — online booking form */
 function bookpilot_connect_booking($atts) {
@@ -165,7 +173,7 @@ function bookpilot_connect_catalogue($atts) {
     }
     $ordering = $a['order'] !== 'no' && !empty($data['ordering']['enabled']);
     if ($ordering) {
-        wp_enqueue_script('bookpilot-order', esc_url(bookpilot_connect_url('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/order.js?lang=' . rawurlencode($lang))), array(), '1.3.0', true);
+        wp_enqueue_script('bookpilot-order', esc_url(bookpilot_connect_url('/kit/' . rawurlencode(bookpilot_connect_opt('kit_id')) . '/order.js?lang=' . rawurlencode($lang))), array(), '1.4.0', true);
     }
     $units = array('hour' => 'hour', 'day' => 'day', 'night' => 'night', 'month' => 'month', 'monthly' => 'month');
     $groups = array();

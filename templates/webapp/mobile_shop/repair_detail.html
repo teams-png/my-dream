@@ -1,5 +1,44 @@
-{% extends "base.html" %}{% block title %}{{ job.job_number }}{% endblock %}{% block heading %}Repair {{ job.job_number }}{% endblock %}
-{% block content %}<div class="card"><p><b>{{ job.customer.name }}</b> · {{ job.device_description }} · IMEI {{ job.imei|default:"—" }}</p><p>Issue: {{ job.reported_issue }}</p><p>Status: {{ job.get_status_display }} · Technician: {{ job.assigned_technician|default:"—" }}{% if job.is_warranty_job %} · Warranty job{% endif %}</p><p><a class="btn btn-secondary" href="{% url 'webapp:mobile_repair_edit' job.id %}">Edit job</a> <a class="btn btn-secondary" href="{% url 'webapp:mobile_repair_part_add' job.id %}">+ Spare part</a></p></div>
-<h3>Parts used</h3><table><tr><th>Part</th><th>Qty</th><th>Cost</th><th>Charge</th></tr>{% for p in parts %}<tr><td>{{ p.product.name }}</td><td>{{ p.quantity }}</td><td>{{ p.unit_cost }}</td><td>{{ p.line_total }}</td></tr>{% empty %}<tr><td colspan="4">No parts added.</td></tr>{% endfor %}</table>
-{% if job.status != 'completed' and job.status != 'cancelled' %}<div class="card" style="margin-top:18px;"><form method="post" action="{% url 'webapp:mobile_repair_complete' job.id %}">{% csrf_token %}<label>Labour charge</label><input name="labour_cost" type="number" step="0.01" value="{{ job.labour_cost }}"><label>Work done</label><textarea name="work_done">{{ job.work_done }}</textarea><button class="btn" type="submit">Complete & create invoice</button></form></div>{% endif %}
-{% if job.invoice %}<p><a class="btn" target="_blank" href="{% url 'webapp:invoice_pdf' job.invoice.id %}">Print repair invoice</a> <a class="btn btn-secondary" href="{% url 'webapp:invoice_share' job.invoice.id %}">Share on WhatsApp / email</a></p>{% endif %}{% endblock %}
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ job.job_number }}{% endblock %}
+{% block heading %}{% translate "Repair" %} {{ job.job_number }}{% endblock %}
+{% block content %}
+<style>
+.jc-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.jc{max-width:820px}.jc dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px 18px;margin:0}
+.jc dt{color:var(--ink-soft);font-size:12.5px}.jc dd{margin:2px 0 0;font-weight:600}
+.jc .terms{color:var(--ink-soft);font-size:12px;margin-top:16px}.jc .sign{display:flex;justify-content:space-between;margin-top:40px;font-size:13px}
+.jc-print-only{display:none}
+@media print{body *{visibility:hidden}.jc,.jc *{visibility:visible}.jc{position:absolute;inset:0;max-width:none;box-shadow:none;border:0}.jc-print-only{display:block}}
+</style>
+<div class="jc-actions">
+  <a class="btn" href="#" onclick="window.print();return false">🖨 {% translate "Print job card" %}</a>
+  {% if whatsapp %}<a class="btn btn-secondary" target="_blank" rel="noopener" href="{{ whatsapp }}">💬 {% translate "Send status on WhatsApp" %}</a>{% endif %}
+  <a class="btn btn-secondary" href="{% url 'webapp:mobile_repair_edit' job.id %}">{% translate "Edit / change status" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:mobile_repair_part_add' job.id %}">+ {% translate "Spare part" %}</a>
+</div>
+<div class="card jc">
+  <div class="jc-print-only"><h2 style="margin:0">{{ active_company.name }}</h2><p style="margin:2px 0 12px">{{ active_company.phone }} · {% translate "Repair job card" %} {{ job.job_number }}</p></div>
+  <dl>
+    <div><dt>{% translate "Customer" %}</dt><dd>{{ job.customer.name }}{% if job.customer.phone %}<br><small>{{ job.customer.phone }}</small>{% endif %}</dd></div>
+    <div><dt>{% translate "Device" %}</dt><dd>{{ job.device_description }}</dd></div>
+    <div><dt>IMEI</dt><dd>{{ job.imei|default:"—" }}</dd></div>
+    <div><dt>{% translate "Received" %}</dt><dd>{{ job.received_at|date:"d M Y, H:i" }}</dd></div>
+    <div><dt>{% translate "Ready by" %}</dt><dd>{{ job.promised_date|date:"d M Y"|default:"—" }}</dd></div>
+    <div><dt>{% translate "Status" %}</dt><dd>{{ job.get_status_display }}{% if job.is_warranty_job %} · {% translate "Warranty repair" %}{% endif %}</dd></div>
+    <div><dt>{% translate "Estimated cost" %}</dt><dd>{{ job.estimated_cost|floatformat:2 }}</dd></div>
+    <div><dt>{% translate "Advance paid" %}</dt><dd>{{ job.advance|floatformat:2 }}</dd></div>
+    <div><dt>{% translate "Left with the phone" %}</dt><dd>{{ job.accessories|default:"—" }}</dd></div>
+    <div><dt>{% translate "Screen lock" %}</dt><dd>{% if job.lock_code %}{% translate "Given" %}<span class="no-print"> ({{ job.lock_code }})</span>{% else %}—{% endif %}</dd></div>
+    <div><dt>{% translate "Technician" %}</dt><dd>{{ job.assigned_technician|default:"—" }}</dd></div>
+  </dl>
+  <p style="margin-top:14px"><b>{% translate "Problem reported" %}:</b> {{ job.reported_issue }}</p>
+  {% if job.diagnosis %}<p><b>{% translate "Diagnosis" %}:</b> {{ job.diagnosis }}</p>{% endif %}
+  <p class="terms">{% translate "Please bring this card when you collect the phone. We are not responsible for data on the device or for phones not collected within 30 days of the ready date." %}</p>
+  <div class="sign"><span>{% translate "Customer signature" %} ____________</span><span>{% translate "Shop" %} ____________</span></div>
+</div>
+<h3>{% translate "Parts used" %}</h3>
+<table><tr><th>{% translate "Part" %}</th><th>{% translate "Qty" %}</th><th>{% translate "Cost" %}</th><th>{% translate "Charge" %}</th></tr>{% for p in parts %}<tr><td>{{ p.product.name }}</td><td>{{ p.quantity }}</td><td>{{ p.unit_cost }}</td><td>{{ p.line_total }}</td></tr>{% empty %}<tr><td colspan="4">{% translate "No parts added." %}</td></tr>{% endfor %}</table>
+{% if job.status != 'completed' and job.status != 'cancelled' %}<div class="card" style="margin-top:18px;max-width:520px"><form class="stacked" method="post" action="{% url 'webapp:mobile_repair_complete' job.id %}">{% csrf_token %}<label>{% translate "Labour charge" %}</label><input name="labour_cost" type="number" step="0.01" value="{{ job.labour_cost }}"><label>{% translate "Work done" %}</label><textarea name="work_done">{{ job.work_done }}</textarea>{% if job.advance %}<p style="color:var(--ink-soft);font-size:13px">{% translate "Advance taken off the bill" %}: {{ job.advance|floatformat:2 }}</p>{% endif %}<button class="btn" type="submit">{% translate "Complete & create invoice" %}</button></form></div>{% endif %}
+{% if job.invoice %}<p style="margin-top:14px"><a class="btn" target="_blank" href="{% url 'webapp:invoice_pdf' job.invoice.id %}">{% translate "Print repair invoice" %}</a> <a class="btn btn-secondary" href="{% url 'webapp:invoice_share' job.invoice.id %}">{% translate "Share on WhatsApp / email" %}</a></p>{% endif %}
+{% endblock %}

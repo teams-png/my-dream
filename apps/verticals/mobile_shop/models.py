@@ -80,6 +80,10 @@ class MobileRepairJob(TenantScopedModel):
     labour_cost = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     parts_total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     is_warranty_job = models.BooleanField(default=False)
+    promised_date = models.DateField(null=True, blank=True, help_text="When the customer was told to collect it.")
+    advance = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    lock_code = models.CharField(max_length=40, blank=True, help_text="PIN / pattern, only if the customer shares it.")
+    accessories = models.CharField(max_length=200, blank=True, help_text="Left with the phone, e.g. charger, cover, SIM.")
 
     class Meta:
         unique_together = ("company", "job_number")

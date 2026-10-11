@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Repair job" %}{% endblock %}
+{% block heading %}{% if job %}{% translate "Repair job" %} {{ job.job_number }}{% else %}{% translate "New repair job" %}{% endif %}{% endblock %}
+{% block content %}
+<style>
+.rj{max-width:760px}.rj h3{margin:18px 0 6px;font-size:15px}.rj .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 14px}
+.rj .grid > div{display:flex;flex-direction:column}.rj ul{list-style:none;padding:0;margin:4px 0;display:flex;flex-wrap:wrap;gap:6px 14px}
+.rj ul label{display:flex;align-items:center;gap:6px;font-weight:400}.rj .err{color:var(--danger);font-size:13px}
+@media(max-width:620px){.rj .grid{grid-template-columns:minmax(0,1fr)}}
+</style>
+<div class="card rj">
+<form class="stacked" method="post">{% csrf_token %}
+  {{ form.non_field_errors }}
+  <h3>👤 {% translate "Customer" %}</h3>
+  <div class="grid">
+    <div><label for="{{ form.customer.id_for_label }}">{% translate "Customer" %}</label>{{ form.customer }}<span class="err">{{ form.customer.errors|striptags }}</span></div>
+    {% if not job %}<div><label for="{{ form.new_customer_name.id_for_label }}">{% translate "…or new customer name" %}</label>{{ form.new_customer_name }}</div>
+    <div><label for="{{ form.new_customer_phone.id_for_label }}">{% translate "New customer phone / WhatsApp" %}</label>{{ form.new_customer_phone }}</div>{% else %}{{ form.new_customer_name.as_hidden }}{{ form.new_customer_phone.as_hidden }}{% endif %}
+  </div>
+  <h3>📱 {% translate "Phone" %}</h3>
+  <div class="grid">
+    <div><label for="{{ form.device_description.id_for_label }}">{% translate "Device" %}</label>{{ form.device_description }}<span class="err">{{ form.device_description.errors|striptags }}</span></div>
+    <div><label for="{{ form.imei.id_for_label }}">IMEI</label>{{ form.imei }}</div>
+    <div><label for="{{ form.lock_code.id_for_label }}">{% translate "Screen lock PIN / pattern" %}</label>{{ form.lock_code }}</div>
+    <div><label for="{{ form.mobile_unit.id_for_label }}">{% translate "Phone sold by us (optional)" %}</label>{{ form.mobile_unit }}</div>
+  </div>
+  <label for="{{ form.reported_issue.id_for_label }}">{% translate "Problem reported" %}</label>{{ form.reported_issue }}<span class="err">{{ form.reported_issue.errors|striptags }}</span>
+  <label>{% translate "Left with the phone" %}</label>{{ form.accessory_list }}
+  {% if job %}<label for="{{ form.diagnosis.id_for_label }}">{% translate "Diagnosis" %}</label>{{ form.diagnosis }}{% else %}{{ form.diagnosis }}{% endif %}
+  <h3>💰 {% translate "Cost and pickup" %}</h3>
+  <div class="grid">
+    <div><label for="{{ form.estimated_cost.id_for_label }}">{% translate "Estimated cost" %}</label>{{ form.estimated_cost }}</div>
+    <div><label for="{{ form.advance.id_for_label }}">{% translate "Advance paid" %}</label>{{ form.advance }}</div>
+    <div><label for="{{ form.promised_date.id_for_label }}">{% translate "Ready by" %}</label>{{ form.promised_date }}</div>
+    <div><label for="{{ form.assigned_technician.id_for_label }}">{% translate "Technician" %}</label>{{ form.assigned_technician }}</div>
+    <div><label for="{{ form.status.id_for_label }}">{% translate "Status" %}</label>{{ form.status }}</div>
+    <div><label for="{{ form.service_product.id_for_label }}">{% translate "Bill the labour as" %}</label>{{ form.service_product }}</div>
+  </div>
+  <label style="display:flex;align-items:center;gap:8px;font-weight:400;margin-top:10px">{{ form.is_warranty_job }} {% translate "Warranty repair" %}</label>
+  {% if form.warehouse.is_hidden %}{{ form.warehouse }}{% else %}<label for="{{ form.warehouse.id_for_label }}">{% translate "Branch" %}</label>{{ form.warehouse }}{% endif %}<span class="err">{{ form.warehouse.errors|striptags }}</span>
+  <button class="btn" type="submit" style="margin-top:18px">{% translate "Save job card" %}</button>
+  <a class="btn btn-secondary" style="margin-top:18px" href="{% if job %}{% url 'webapp:mobile_repair_detail' job.id %}{% else %}{% url 'webapp:mobile_repair_list' %}{% endif %}">{% translate "Cancel" %}</a>
+</form>
+</div>
+{% endblock %}

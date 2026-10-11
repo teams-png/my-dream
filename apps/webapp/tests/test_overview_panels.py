@@ -132,3 +132,23 @@ def test_team_order_with_players_print_sheet_and_status():
     assert bad.status_code == 200 and "at least one player" in bad.content.decode()
     other, _u, oc = _business("perfume_shop")
     assert oc.get(reverse("webapp:team_order_list")).status_code == 404
+
+
+def test_mobile_repair_job_card_new_customer_whatsapp_print_and_advance():
+    from apps.verticals.mobile_shop.models import MobileRepairJob
+    company, _user, c = _business("mobile_shop")
+    form = c.get(reverse("webapp:mobile_repair_add")).content.decode()
+    assert "Left with the phone" in form and 'name="new_customer_name"' in form and 'name="promised_date"' in form
+    r = c.post(reverse("webapp:mobile_repair_add"), {
+        "new_customer_name": "Faisal", "new_customer_phone": "5555 1234", "device_description": "iPhone 13",
+        "imei": "356789012345678", "reported_issue": "Cracked screen", "lock_code": "1234",
+        "accessory_list": ["Charger", "Back cover"], "estimated_cost": "300", "advance": "100",
+        "promised_date": "2030-01-05", "status": "received"})
+    assert r.status_code == 302, r.content.decode()[:3000]
+    job = MobileRepairJob.objects.get(company=company)
+    assert job.customer.name == "Faisal" and job.accessories == "Charger, Back cover" and job.warehouse_id
+    page = c.get(r.url).content.decode()
+    assert "Print job card" in page and "wa.me/974" in page and "received" in page.lower()
+    c.post(reverse("webapp:mobile_repair_complete", args=[job.id]), {"labour_cost": "250", "work_done": "Screen replaced"})
+    job.refresh_from_db()
+    assert job.invoice and job.invoice.amount_paid == 100

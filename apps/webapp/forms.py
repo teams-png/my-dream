@@ -405,17 +405,65 @@ class MobileBulkIMEIForm(forms.Form):
 
 
 class MobileRepairJobForm(forms.ModelForm):
+    """The repair job card: who, which phone, what is wrong, what was left with it, when to collect, advance."""
+    new_customer_name = forms.CharField(required=False, max_length=150, label="…or new customer name")
+    new_customer_phone = forms.CharField(required=False, max_length=30, label="New customer phone / WhatsApp")
+    ACCESSORY_CHOICES = [("Charger", "Charger"), ("Cable", "Cable"), ("Back cover", "Back cover"), ("SIM card", "SIM card"),
+                         ("Memory card", "Memory card"), ("Box", "Box")]
+    accessory_list = forms.MultipleChoiceField(required=False, choices=ACCESSORY_CHOICES, label="Left with the phone",
+                                               widget=forms.CheckboxSelectMultiple)
+
     class Meta:
         model = MobileRepairJob
-        fields = ["customer", "mobile_unit", "device_description", "imei", "reported_issue", "diagnosis", "estimated_cost", "assigned_technician", "warehouse", "service_product", "is_warranty_job", "status"]
+        fields = ["customer", "device_description", "imei", "mobile_unit", "reported_issue", "lock_code", "estimated_cost",
+                  "advance", "promised_date", "assigned_technician", "is_warranty_job", "status", "diagnosis",
+                  "warehouse", "service_product"]
+        labels = {"imei": "IMEI", "mobile_unit": "Phone sold by us (optional)", "reported_issue": "Problem reported",
+                  "lock_code": "Screen lock PIN / pattern", "estimated_cost": "Estimated cost", "advance": "Advance paid",
+                  "promised_date": "Ready by", "assigned_technician": "Technician", "is_warranty_job": "Warranty repair",
+                  "service_product": "Bill the labour as"}
+        widgets = {"reported_issue": forms.Textarea(attrs={"rows": 2}), "diagnosis": forms.Textarea(attrs={"rows": 2}),
+                   "promised_date": forms.DateInput(attrs={"type": "date"})}
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
+        self.company = company
+        self.fields["customer"].required = False
         self.fields["customer"].queryset = Customer.objects.for_company(company)
         self.fields["mobile_unit"].queryset = MobileUnit.objects.for_company(company)
-        self.fields["warehouse"].queryset = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True))
+        warehouses = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True))
+        self.fields["warehouse"].queryset = warehouses
+        self.fields["warehouse"].required = False
         self.fields["service_product"].queryset = Product.objects.for_company(company).filter(is_stock_tracked=False)
         self.fields["assigned_technician"].queryset = self.fields["assigned_technician"].queryset.filter(memberships__company=company, memberships__is_active=True).distinct()
+        if not self.instance.pk:
+            self.fields["diagnosis"].widget = forms.HiddenInput()
+            if warehouses.count() == 1:
+                self.fields["warehouse"].widget = forms.HiddenInput()
+                self.initial.setdefault("warehouse", warehouses.first().pk)
+        held = [a.strip() for a in (self.instance.accessories or "").split(",") if a.strip()]
+        self.initial.setdefault("accessory_list", held)
+
+    def clean(self):
+        data = super().clean()
+        if not data.get("customer") and not (data.get("new_customer_name") or "").strip():
+            self.add_error("customer", "Choose the customer or type a new customer's name.")
+        if not data.get("warehouse"):
+            data["warehouse"] = self.fields["warehouse"].queryset.first()
+            if data["warehouse"] is None:
+                self.add_error("warehouse", "Add a branch / warehouse first.")
+        return data
+
+    def save(self, commit=True):
+        job = super().save(commit=False)
+        if not job.customer_id:
+            job.customer = Customer.objects.create(company=self.company, name=self.cleaned_data["new_customer_name"].strip(),
+                                                   phone=(self.cleaned_data.get("new_customer_phone") or "").strip()[:20])
+        job.warehouse = self.cleaned_data["warehouse"]
+        job.accessories = ", ".join(self.cleaned_data.get("accessory_list") or [])
+        if commit:
+            job.save()
+        return job
 
 
 class MobileRepairPartForm(forms.ModelForm):

@@ -770,13 +770,39 @@ def mobile_repair_form(request, job_id=None):
         obj.save()
         messages.success(request, "Repair job saved.")
         return redirect("webapp:mobile_repair_detail", job_id=obj.id)
-    return render(request, "webapp/mobile_shop/form.html", {"form": form, "heading": "Repair job", "cancel_url": "webapp:mobile_repair_list"})
+    return render(request, "webapp/mobile_shop/repair_form.html", {"form": form, "job": job})
 
 
 @login_required
 def mobile_repair_detail(request, job_id):
     job = get_object_or_404(MobileRepairJob.objects.for_company(request.company).select_related("customer", "assigned_technician", "invoice"), id=job_id)
-    return render(request, "webapp/mobile_shop/repair_detail.html", {"job": job, "parts": job.parts.select_related("product")})
+    return render(request, "webapp/mobile_shop/repair_detail.html", {
+        "job": job, "parts": job.parts.select_related("product"), "whatsapp": _repair_whatsapp(job),
+        "print": request.GET.get("print") == "1"})
+
+
+def _repair_whatsapp(job):
+    """A WhatsApp link with the job's status typed in, for the customer's number (empty when there is none)."""
+    from urllib.parse import quote
+    from apps.sales.sharing import normalise_phone
+    phone = normalise_phone(job.customer.phone or "", job.company.country)
+    if not phone:
+        return ""
+    name, shop, device, number = job.customer.name, job.company.name, job.device_description, job.job_number
+    if job.status == "ready":
+        total = (job.labour_cost or 0) + (job.parts_total or 0) or job.estimated_cost
+        text = _("Hi %(name)s, your %(device)s is ready for pickup at %(shop)s. Job %(job)s. Amount due: %(amount)s.") % {
+            "name": name, "device": device, "shop": shop, "job": number, "amount": f"{max(total - job.advance, 0):.2f}"}
+    elif job.status == "received":
+        text = _("Hi %(name)s, we have received your %(device)s at %(shop)s (job %(job)s). We will message you when it is ready.") % {
+            "name": name, "device": device, "shop": shop, "job": number}
+    elif job.status == "waiting_parts":
+        text = _("Hi %(name)s, your %(device)s (job %(job)s) is waiting for a spare part. We will update you as soon as it arrives. – %(shop)s") % {
+            "name": name, "device": device, "shop": shop, "job": number}
+    else:
+        text = _("Hi %(name)s, update on your %(device)s (job %(job)s) at %(shop)s: %(status)s.") % {
+            "name": name, "device": device, "shop": shop, "job": number, "status": job.get_status_display()}
+    return f"https://wa.me/{phone}?text={quote(text)}"
 
 
 @login_required
@@ -806,10 +832,18 @@ def mobile_repair_complete(request, job_id):
     if request.method == "POST":
         labour = Decimal(request.POST.get("labour_cost") or 0)
         final = labour + job.parts_total
-        mobile_shop_services.complete_repair_job(company=request.company, user=request.user, job=job,
+        if final and (not job.service_product_id or job.service_product.is_stock_tracked):
+            from apps.industry.common import service_product  # the bill needs a non-stock line
+            job.service_product = service_product(request.company, "REPAIR-LABOUR", "Repair service")
+            job.save(update_fields=["service_product"])
+        job = mobile_shop_services.complete_repair_job(company=request.company, user=request.user, job=job,
             date=tz.now().date(), final_cost=final, work_done=request.POST.get("work_done", ""))
         job.labour_cost = labour
         job.save(update_fields=["labour_cost"])
+        if job.invoice_id and job.advance > 0:  # the advance taken at the counter pays part of the bill
+            from apps.sales.services import record_customer_payment
+            record_customer_payment(company=request.company, user=request.user, customer=job.customer, invoice=job.invoice,
+                                    amount=min(job.advance, job.invoice.total), date=tz.now().date(), method="cash")
         messages.success(request, "Repair completed and invoice created.")
     return redirect("webapp:mobile_repair_detail", job_id=job.id)
 

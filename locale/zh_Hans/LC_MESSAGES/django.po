@@ -1816,6 +1816,31 @@ msgstr "保存汇率"
 msgid "No exchange rates yet."
 msgstr "尚无汇率。"
 
+#: templates/webapp/barcode_print_sheet.html
+msgid "Back"
+msgstr "返回"
+
+#: templates/webapp/barcode_print_sheet.html
+msgid "labels"
+msgstr "个标签"
+
+#: templates/webapp/billing.html
+msgid ""
+"Your free trial has ended. Your account and all its data will be deleted on"
+msgstr "您的免费试用已结束。您的账户及其所有数据将被删除，日期："
+
+#: templates/webapp/billing.html
+msgid "Choose a plan below to keep everything — or download your data first."
+msgstr "请在下方选择一个方案以保留所有内容 — 或先下载您的数据。"
+
+#: templates/webapp/billing.html
+msgid "Download my data"
+msgstr "下载我的数据"
+
+#: templates/webapp/billing.html
+msgid "Free trial accounts without a plan are deleted on"
+msgstr "未选择方案的免费试用账户将被删除，日期："
+
 #: templates/webapp/billing.html
 msgid "Free trial —"
 msgstr "免费试用 —"
@@ -5679,10 +5704,6 @@ msgid ""
 "With photos and prices, so you can try the POS right away. Edit or delete "
 "them later."
 msgstr "含照片和价格，可立即试用收银。之后可编辑或删除。"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Back"
-msgstr "返回"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Skip this step"
@@ -11127,9 +11148,43 @@ msgstr "此发票已付清。"
 msgid "The amount is more than the invoice balance."
 msgstr "金额超过发票余额。"
 
-#: apps/subscriptions/trial_emails.py
+#: apps/subscriptions/retention.py
 msgid "Hi %(name)s,"
 msgstr "%(name)s 您好，"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account will be deleted on %(date)s"
+msgstr "您的 BookPilot 账户将于 %(date)s 被删除"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial has ended. Choose a plan to keep your products, customers "
+"and bills — or download your data before %(date)s."
+msgstr "您的免费试用已结束。请选择一个方案以保留您的产品、客户和账单 — 或在 %(date)s 之前下载您的数据。"
+
+#: apps/subscriptions/retention.py
+msgid "Choose a plan: %(url)s"
+msgstr "选择套餐：%(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Download your data: %(url)s"
+msgstr "下载您的数据：%(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account has been closed"
+msgstr "您的 BookPilot 账户已关闭"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial ended and no plan was chosen, so the account %(shop)s is now"
+" closed."
+msgstr "您的免费试用已结束且未选择方案，因此账户 %(shop)s 现已关闭。"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"It will be deleted for good on %(date)s. To keep it, reply to this email "
+"before then."
+msgstr "它将于 %(date)s 被永久删除。如需保留，请在此之前回复此邮件。"
 
 #: apps/subscriptions/trial_emails.py
 msgid ""
@@ -11197,10 +11252,6 @@ msgid ""
 msgstr "今天选择套餐，开单不中断。您添加的一切都会保留。"
 
 #: apps/subscriptions/trial_emails.py
-msgid "Choose a plan: %(url)s"
-msgstr "选择套餐：%(url)s"
-
-#: apps/subscriptions/trial_emails.py
 msgid "Your BookPilot trial has ended – your data is safe"
 msgstr "您的 BookPilot 试用已结束——数据安全无虞"
 
@@ -11209,6 +11260,10 @@ msgid ""
 "Your products, customers and bills are all still there. Choose a plan to "
 "carry on where you left off."
 msgstr "您的商品、客户和账单都还在。选择套餐即可从上次中断处继续。"
+
+#: apps/subscriptions/trial_emails.py
+msgid "Without a plan, the account and its data are deleted on %(date)s."
+msgstr "没有方案时，账户及其数据将于 %(date)s 被删除。"
 
 #: apps/subscriptions/trial_emails.py
 msgid "Renew now: %(url)s"

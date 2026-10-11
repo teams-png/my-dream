@@ -681,16 +681,17 @@ def barcode_print(request):
     company = request.company
     products = Product.objects.for_company(company).filter(is_active=True).order_by("name")
 
-    if request.method == "POST":
-        selected_ids = request.POST.getlist("product_ids")
+    data = request.POST if request.method == "POST" else request.GET
+    if request.method == "POST" or data.get("print"):  # a GET link, so Back and reload work on the label sheet
+        selected_ids = data.getlist("product_ids")
         items = []
-        for pid in selected_ids:
-            qty = request.POST.get(f"qty_{pid}", "1")
+        for pid in selected_ids[:500]:
+            qty = data.get(f"qty_{pid}", "1")
             try:
-                qty = max(1, int(qty))
+                qty = min(500, max(1, int(qty)))
             except (TypeError, ValueError):
                 qty = 1
-            product = Product.objects.for_company(company).filter(id=pid).first()
+            product = Product.objects.for_company(company).filter(id=pid).first() if str(pid).isdigit() else None
             if product:
                 items.extend([product] * qty)
         return render(request, "webapp/barcode_print_sheet.html", {"items": items})
@@ -5043,7 +5044,15 @@ def platform_admin_company_detail(request, company_id):
     customer_count = Customer.objects.for_company(company).count()
     active_modules = list(company.active_modules().values_list("name", flat=True))
 
+    from apps.subscriptions import retention as _ret
+    from apps.subscriptions.models import AccountRetention
+    _sub = Subscription.objects.filter(company=company).first()
+    _r = AccountRetention.objects.filter(company=company).first()
+    retention_info = {"delete_on": _ret.delete_on(_sub) if _sub and company.is_active else None,
+                      "keep": bool(_r and _r.keep), "closed": bool(_r and _r.closed_at), "purge_on": _r.purge_on if _r else None,
+                      "unpaid_trial": bool(_sub and _sub.status in ("trial", "expired") and not _ret.ever_paid(_sub))}
     return render(request, "webapp/platform_admin/company_detail.html", {
+        "retention_info": retention_info,
         "company": company, "memberships": memberships, "owner_membership": owner_membership,
         "subscription": subscription, "payments": payments,
         "revenue": revenue, "customer_count": customer_count, "active_modules": active_modules,
@@ -5294,6 +5303,10 @@ def billing_view(request):
         "price_estimate": local_estimate(amount_due(subscription), subscription.plan.currency, company.default_currency)
         if subscription else None,
         "addons": addons(subscription) if subscription else None,
+        "delete_on": __import__("apps.subscriptions.retention", fromlist=["delete_on"]).delete_on(subscription)
+        if subscription and is_owner else None,
+        "delete_soon_on": (subscription.end_date + timedelta(days=__import__("apps.subscriptions.retention", fromlist=["delete_after"]).delete_after()))
+        if subscription and is_owner and subscription.status == "trial" else None,
     })
 
 
@@ -5865,10 +5878,32 @@ def platform_admin_company_restore(request, company_id):
         from django.http import HttpResponseNotAllowed
         return HttpResponseNotAllowed(["POST"])
     company = get_object_or_404(Company, pk=company_id)
+    from apps.subscriptions.models import AccountRetention
+    if AccountRetention.objects.filter(company=company, closed_at__isnull=False).exists():
+        from apps.subscriptions.retention import restore
+        restore(company)  # an unpaid trial closed automatically: reopen and stop the countdown
     company.is_active = True
     company.archived_at = None
     company.save(update_fields=["is_active", "archived_at"])
     messages.success(request, f"{company.name} restored.")
+    return redirect("webapp:platform_admin_company_detail", company_id=company.pk)
+
+
+@login_required
+@superuser_required
+def platform_admin_retention(request, company_id):
+    """Keep an unpaid trial from being deleted automatically (or let the countdown run again)."""
+    from apps.subscriptions.models import AccountRetention
+    if request.method != "POST":
+        from django.http import HttpResponseNotAllowed
+        return HttpResponseNotAllowed(["POST"])
+    company = get_object_or_404(Company, pk=company_id)
+    retention, _created = AccountRetention.objects.get_or_create(company=company)
+    retention.keep = request.POST.get("keep") == "1"
+    retention.note = "Kept by the platform admin" if retention.keep else "Countdown back on"
+    retention.save(update_fields=["keep", "note"])
+    messages.success(request, f"{company.name}: " + ("will not be deleted automatically." if retention.keep
+                                                       else "unpaid-trial clean-up is back on."))
     return redirect("webapp:platform_admin_company_detail", company_id=company.pk)
 
 

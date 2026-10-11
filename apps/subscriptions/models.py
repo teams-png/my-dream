@@ -147,3 +147,27 @@ class SubscriptionInvoice(models.Model):
 
     def __str__(self):
         return self.number or f"Invoice {self.pk}"
+
+
+class AccountRetention(models.Model):
+    """What happens to a free trial nobody paid for: warnings, then the account is closed, then deleted.
+    The platform admin can tick `keep` to stop it for one client."""
+    company = models.OneToOneField("tenants.Company", on_delete=models.CASCADE, related_name="retention")
+    keep = models.BooleanField(default=False, help_text="Never delete this account automatically.")
+    closed_at = models.DateTimeField(null=True, blank=True)
+    purge_on = models.DateField(null=True, blank=True)
+    note = models.CharField(max_length=255, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class DeletedAccountLog(models.Model):
+    """A short record kept after an unpaid trial was deleted (no business data, just who and when)."""
+    company_name = models.CharField(max_length=255)
+    owner_email = models.CharField(max_length=254, blank=True)
+    business_type = models.CharField(max_length=60, blank=True)
+    trial_ended = models.DateField(null=True, blank=True)
+    deleted_at = models.DateTimeField(auto_now_add=True)
+    reason = models.CharField(max_length=120, default="Unpaid trial")
+
+    class Meta:
+        ordering = ["-deleted_at"]

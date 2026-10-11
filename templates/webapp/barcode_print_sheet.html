@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% load i18n %}<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,9 @@
 <style>
   body{ font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; margin:24px; }
   .toolbar{ margin-bottom:16px; }
-  .toolbar button{ background:#14532D; color:#fff; border:none; padding:9px 16px; border-radius:6px; cursor:pointer; font-size:14px; }
+  .toolbar{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .toolbar button, .toolbar a{ background:#14532D; color:#fff; border:none; padding:9px 16px; border-radius:6px; cursor:pointer; font-size:14px; text-decoration:none; }
+  .toolbar a.ghost{ background:#fff; color:#14532D; border:1px solid #14532D; }
   .sheet{ display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
   .label{ border:1px dashed #ccc; padding:8px; text-align:center; }
   .label img{ max-width:100%; }
@@ -18,7 +20,12 @@
 </style>
 </head>
 <body>
-  <div class="toolbar"><button onclick="window.print()">Print</button></div>
+  <div class="toolbar">
+    <a class="ghost" href="{% url 'webapp:barcode_print' %}">← {% translate "Back" %}</a>
+    <button onclick="window.print()">🖨 {% translate "Print" %}</button>
+    <a class="ghost" href="{% url 'webapp:dashboard' %}">{% translate "Overview" %}</a>
+    <span style="color:#64748b;font-size:13px">{{ items|length }} {% translate "labels" %}</span>
+  </div>
   <div class="sheet">
     {% for p in items %}
     <div class="label">

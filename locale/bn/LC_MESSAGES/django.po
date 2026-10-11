@@ -1840,6 +1840,34 @@ msgstr "হার সংরক্ষণ করুন"
 msgid "No exchange rates yet."
 msgstr "এখনো কোনো বিনিময় হার নেই।"
 
+#: templates/webapp/barcode_print_sheet.html
+msgid "Back"
+msgstr "ফিরে যান"
+
+#: templates/webapp/barcode_print_sheet.html
+msgid "labels"
+msgstr "লেবেল"
+
+#: templates/webapp/billing.html
+msgid ""
+"Your free trial has ended. Your account and all its data will be deleted on"
+msgstr ""
+"আপনার ফ্রি ট্রায়াল শেষ হয়েছে। আপনার অ্যাকাউন্ট ও এর সব ডেটা মুছে ফেলা হবে "
+"এই তারিখে:"
+
+#: templates/webapp/billing.html
+msgid "Choose a plan below to keep everything — or download your data first."
+msgstr ""
+"সবকিছু রাখতে নিচে একটি প্ল্যান বেছে নিন — অথবা আগে আপনার ডেটা ডাউনলোড করুন।"
+
+#: templates/webapp/billing.html
+msgid "Download my data"
+msgstr "আমার ডেটা ডাউনলোড করুন"
+
+#: templates/webapp/billing.html
+msgid "Free trial accounts without a plan are deleted on"
+msgstr "প্ল্যান ছাড়া ফ্রি ট্রায়াল অ্যাকাউন্ট মুছে ফেলা হয় এই তারিখে:"
+
 #: templates/webapp/billing.html
 msgid "Free trial —"
 msgstr "ফ্রি ট্রায়াল —"
@@ -5787,10 +5815,6 @@ msgid ""
 msgstr ""
 "ছবি ও দামসহ, যাতে POS সাথে সাথে চেষ্টা করতে পারেন। পরে সম্পাদনা বা মুছতে "
 "পারবেন।"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Back"
-msgstr "ফিরে যান"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Skip this step"
@@ -11380,9 +11404,49 @@ msgstr "এই ইনভয়েস আগেই পরিশোধ করা �
 msgid "The amount is more than the invoice balance."
 msgstr "পরিমাণটি ইনভয়েসের বাকি অর্থের চেয়ে বেশি।"
 
-#: apps/subscriptions/trial_emails.py
+#: apps/subscriptions/retention.py
 msgid "Hi %(name)s,"
 msgstr "হ্যালো %(name)s,"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account will be deleted on %(date)s"
+msgstr "আপনার BookPilot অ্যাকাউন্ট %(date)s তারিখে মুছে ফেলা হবে"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial has ended. Choose a plan to keep your products, customers "
+"and bills — or download your data before %(date)s."
+msgstr ""
+"আপনার ফ্রি ট্রায়াল শেষ হয়েছে। আপনার পণ্য, গ্রাহক ও বিল রাখতে একটি প্ল্যান "
+"বেছে নিন — অথবা %(date)s-এর আগে আপনার ডেটা ডাউনলোড করুন।"
+
+#: apps/subscriptions/retention.py
+msgid "Choose a plan: %(url)s"
+msgstr "প্ল্যান বেছে নিন: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Download your data: %(url)s"
+msgstr "আপনার ডেটা ডাউনলোড করুন: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account has been closed"
+msgstr "আপনার BookPilot অ্যাকাউন্ট বন্ধ করা হয়েছে"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial ended and no plan was chosen, so the account %(shop)s is now"
+" closed."
+msgstr ""
+"আপনার ফ্রি ট্রায়াল শেষ হয়েছে এবং কোনো প্ল্যান বেছে নেওয়া হয়নি, তাই "
+"%(shop)s অ্যাকাউন্টটি এখন বন্ধ।"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"It will be deleted for good on %(date)s. To keep it, reply to this email "
+"before then."
+msgstr ""
+"এটি %(date)s তারিখে স্থায়ীভাবে মুছে ফেলা হবে। রাখতে চাইলে তার আগে এই "
+"ইমেইলের উত্তর দিন।"
 
 #: apps/subscriptions/trial_emails.py
 msgid ""
@@ -11456,10 +11520,6 @@ msgstr ""
 "তেমনই থাকবে।"
 
 #: apps/subscriptions/trial_emails.py
-msgid "Choose a plan: %(url)s"
-msgstr "প্ল্যান বেছে নিন: %(url)s"
-
-#: apps/subscriptions/trial_emails.py
 msgid "Your BookPilot trial has ended – your data is safe"
 msgstr "আপনার BookPilot ট্রায়াল শেষ – আপনার ডেটা নিরাপদ"
 
@@ -11470,6 +11530,10 @@ msgid ""
 msgstr ""
 "আপনার পণ্য, গ্রাহক ও বিল সব আছে। যেখানে থেমেছিলেন সেখান থেকে চালাতে একটি "
 "প্ল্যান বেছে নিন।"
+
+#: apps/subscriptions/trial_emails.py
+msgid "Without a plan, the account and its data are deleted on %(date)s."
+msgstr "প্ল্যান ছাড়া, অ্যাকাউন্ট ও এর ডেটা %(date)s তারিখে মুছে ফেলা হয়।"
 
 #: apps/subscriptions/trial_emails.py
 msgid "Renew now: %(url)s"

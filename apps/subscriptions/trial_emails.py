@@ -28,7 +28,7 @@ def _site():
 
 
 def _send(company, user, subject, lines):
-    body = "\n\n".join([_("Hi %(name)s,") % {"name": user.first_name or user.email}] + lines +
+    body = "\n\n".join([_("Hi %(name)s,") % {"name": user.first_name or user.email}] + [l for l in lines if l] +
                        [_("Need help? Reply to this email or chat with us from Help inside BookPilot."), "— BookPilot"])
     send_mail(subject, body, None, [user.email], fail_silently=False)
 
@@ -61,8 +61,12 @@ def message_for(company, kind):
             _("Pick a plan today to keep billing without a break. Everything you added stays exactly as it is."),
             _("Choose a plan: %(url)s") % {"url": site + reverse("webapp:billing")},
         ])
+    from .retention import delete_after
+    sub = getattr(company, "subscription", None)
+    gone = (sub.end_date + timedelta(days=delete_after())) if sub else None
     return (_("Your BookPilot trial has ended – your data is safe"), [
         _("Your products, customers and bills are all still there. Choose a plan to carry on where you left off."),
+        _("Without a plan, the account and its data are deleted on %(date)s.") % {"date": gone.strftime("%d %b %Y")} if gone else "",
         _("Renew now: %(url)s") % {"url": site + reverse("webapp:billing")},
     ])
 

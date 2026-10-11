@@ -1836,6 +1836,31 @@ msgstr "حفظ السعر"
 msgid "No exchange rates yet."
 msgstr "لا أسعار صرف بعد."
 
+#: templates/webapp/barcode_print_sheet.html
+msgid "Back"
+msgstr "رجوع"
+
+#: templates/webapp/barcode_print_sheet.html
+msgid "labels"
+msgstr "ملصقات"
+
+#: templates/webapp/billing.html
+msgid ""
+"Your free trial has ended. Your account and all its data will be deleted on"
+msgstr "انتهت تجربتك المجانية. سيتم حذف حسابك وجميع بياناته في"
+
+#: templates/webapp/billing.html
+msgid "Choose a plan below to keep everything — or download your data first."
+msgstr "اختر خطة أدناه للاحتفاظ بكل شيء — أو قم بتنزيل بياناتك أولاً."
+
+#: templates/webapp/billing.html
+msgid "Download my data"
+msgstr "تنزيل بياناتي"
+
+#: templates/webapp/billing.html
+msgid "Free trial accounts without a plan are deleted on"
+msgstr "تُحذف حسابات التجربة المجانية التي لا تملك خطة في"
+
 #: templates/webapp/billing.html
 msgid "Free trial —"
 msgstr "تجربة مجانية —"
@@ -5766,10 +5791,6 @@ msgid ""
 "With photos and prices, so you can try the POS right away. Edit or delete "
 "them later."
 msgstr "مع الصور والأسعار لتجربة نقطة البيع فورًا. عدّلها أو احذفها لاحقًا."
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Back"
-msgstr "رجوع"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Skip this step"
@@ -11330,9 +11351,47 @@ msgstr "هذه الفاتورة مدفوعة مسبقاً."
 msgid "The amount is more than the invoice balance."
 msgstr "المبلغ أكبر من رصيد الفاتورة."
 
-#: apps/subscriptions/trial_emails.py
+#: apps/subscriptions/retention.py
 msgid "Hi %(name)s,"
 msgstr "مرحبًا %(name)s،"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account will be deleted on %(date)s"
+msgstr "سيتم حذف حسابك في BookPilot في %(date)s"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial has ended. Choose a plan to keep your products, customers "
+"and bills — or download your data before %(date)s."
+msgstr ""
+"انتهت تجربتك المجانية. اختر خطة للاحتفاظ بمنتجاتك وعملائك وفواتيرك — أو قم "
+"بتنزيل بياناتك قبل %(date)s."
+
+#: apps/subscriptions/retention.py
+msgid "Choose a plan: %(url)s"
+msgstr "اختر خطة: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Download your data: %(url)s"
+msgstr "تنزيل بياناتك: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account has been closed"
+msgstr "تم إغلاق حسابك في BookPilot"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial ended and no plan was chosen, so the account %(shop)s is now"
+" closed."
+msgstr ""
+"انتهت تجربتك المجانية ولم يتم اختيار خطة، لذا تم إغلاق الحساب %(shop)s الآن."
+
+#: apps/subscriptions/retention.py
+msgid ""
+"It will be deleted for good on %(date)s. To keep it, reply to this email "
+"before then."
+msgstr ""
+"سيتم حذفه نهائياً في %(date)s. للاحتفاظ به، قم بالرد على هذا البريد قبل ذلك."
 
 #: apps/subscriptions/trial_emails.py
 msgid ""
@@ -11406,10 +11465,6 @@ msgid ""
 msgstr "اختر خطة اليوم لتواصل الفوترة دون توقف. كل ما أضفته يبقى كما هو."
 
 #: apps/subscriptions/trial_emails.py
-msgid "Choose a plan: %(url)s"
-msgstr "اختر خطة: %(url)s"
-
-#: apps/subscriptions/trial_emails.py
 msgid "Your BookPilot trial has ended – your data is safe"
 msgstr "انتهت تجربتك في BookPilot – بياناتك آمنة"
 
@@ -11418,6 +11473,10 @@ msgid ""
 "Your products, customers and bills are all still there. Choose a plan to "
 "carry on where you left off."
 msgstr "منتجاتك وعملاؤك وفواتيرك كلها موجودة. اختر خطة لتكمل من حيث توقفت."
+
+#: apps/subscriptions/trial_emails.py
+msgid "Without a plan, the account and its data are deleted on %(date)s."
+msgstr "بدون خطة، يتم حذف الحساب وبياناته في %(date)s."
 
 #: apps/subscriptions/trial_emails.py
 msgid "Renew now: %(url)s"

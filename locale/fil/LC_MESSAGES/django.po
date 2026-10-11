@@ -1853,6 +1853,35 @@ msgstr "I-save ang rate"
 msgid "No exchange rates yet."
 msgstr "Wala pang exchange rate."
 
+#: templates/webapp/barcode_print_sheet.html
+msgid "Back"
+msgstr "Bumalik"
+
+#: templates/webapp/barcode_print_sheet.html
+msgid "labels"
+msgstr "mga label"
+
+#: templates/webapp/billing.html
+msgid ""
+"Your free trial has ended. Your account and all its data will be deleted on"
+msgstr ""
+"Tapos na ang iyong libreng trial. Ang iyong account at lahat ng data nito ay"
+" buburahin sa"
+
+#: templates/webapp/billing.html
+msgid "Choose a plan below to keep everything — or download your data first."
+msgstr ""
+"Pumili ng plan sa ibaba para mapanatili ang lahat — o i-download muna ang "
+"iyong data."
+
+#: templates/webapp/billing.html
+msgid "Download my data"
+msgstr "I-download ang aking data"
+
+#: templates/webapp/billing.html
+msgid "Free trial accounts without a plan are deleted on"
+msgstr "Ang mga libreng trial account na walang plan ay binubura sa"
+
 #: templates/webapp/billing.html
 msgid "Free trial —"
 msgstr "Libreng trial —"
@@ -5846,10 +5875,6 @@ msgid ""
 "them later."
 msgstr ""
 "May larawan at presyo, para masubukan agad ang POS. I-edit o burahin mamaya."
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Back"
-msgstr "Bumalik"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Skip this step"
@@ -11500,9 +11525,50 @@ msgstr "Bayad na ang invoice na ito."
 msgid "The amount is more than the invoice balance."
 msgstr "Mas malaki ang halaga kaysa sa balanse ng invoice."
 
-#: apps/subscriptions/trial_emails.py
+#: apps/subscriptions/retention.py
 msgid "Hi %(name)s,"
 msgstr "Hi %(name)s,"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account will be deleted on %(date)s"
+msgstr "Buburahin ang iyong BookPilot account sa %(date)s"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial has ended. Choose a plan to keep your products, customers "
+"and bills — or download your data before %(date)s."
+msgstr ""
+"Tapos na ang iyong libreng trial. Pumili ng plan para mapanatili ang iyong "
+"mga produkto, customer at bill — o i-download ang iyong data bago ang "
+"%(date)s."
+
+#: apps/subscriptions/retention.py
+msgid "Choose a plan: %(url)s"
+msgstr "Pumili ng plan: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Download your data: %(url)s"
+msgstr "I-download ang iyong data: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account has been closed"
+msgstr "Isinara na ang iyong BookPilot account"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial ended and no plan was chosen, so the account %(shop)s is now"
+" closed."
+msgstr ""
+"Natapos ang iyong libreng trial at walang napiling plan, kaya sarado na "
+"ngayon ang account na %(shop)s."
+
+#: apps/subscriptions/retention.py
+msgid ""
+"It will be deleted for good on %(date)s. To keep it, reply to this email "
+"before then."
+msgstr ""
+"Tuluyan itong buburahin sa %(date)s. Para mapanatili ito, sumagot sa email "
+"na ito bago noon."
 
 #: apps/subscriptions/trial_emails.py
 msgid ""
@@ -11581,10 +11647,6 @@ msgstr ""
 "idinagdag mo."
 
 #: apps/subscriptions/trial_emails.py
-msgid "Choose a plan: %(url)s"
-msgstr "Pumili ng plan: %(url)s"
-
-#: apps/subscriptions/trial_emails.py
 msgid "Your BookPilot trial has ended – your data is safe"
 msgstr "Tapos na ang BookPilot trial mo – ligtas ang data mo"
 
@@ -11595,6 +11657,11 @@ msgid ""
 msgstr ""
 "Nandoon pa rin ang lahat ng produkto, customer at bill mo. Pumili ng plan "
 "para ituloy kung saan ka huminto."
+
+#: apps/subscriptions/trial_emails.py
+msgid "Without a plan, the account and its data are deleted on %(date)s."
+msgstr ""
+"Kung walang plan, ang account at ang data nito ay binubura sa %(date)s."
 
 #: apps/subscriptions/trial_emails.py
 msgid "Renew now: %(url)s"

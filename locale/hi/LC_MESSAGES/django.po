@@ -1840,6 +1840,34 @@ msgstr "दर सेव करें"
 msgid "No exchange rates yet."
 msgstr "अभी कोई विनिमय दर नहीं।"
 
+#: templates/webapp/barcode_print_sheet.html
+msgid "Back"
+msgstr "वापस"
+
+#: templates/webapp/barcode_print_sheet.html
+msgid "labels"
+msgstr "लेबल"
+
+#: templates/webapp/billing.html
+msgid ""
+"Your free trial has ended. Your account and all its data will be deleted on"
+msgstr ""
+"आपका फ्री ट्रायल खत्म हो गया है। आपका अकाउंट और उसका सारा डेटा इस दिन डिलीट "
+"हो जाएगा:"
+
+#: templates/webapp/billing.html
+msgid "Choose a plan below to keep everything — or download your data first."
+msgstr ""
+"सब कुछ रखने के लिए नीचे एक प्लान चुनें — या पहले अपना डेटा डाउनलोड कर लें।"
+
+#: templates/webapp/billing.html
+msgid "Download my data"
+msgstr "मेरा डेटा डाउनलोड करें"
+
+#: templates/webapp/billing.html
+msgid "Free trial accounts without a plan are deleted on"
+msgstr "बिना प्लान वाले फ्री ट्रायल अकाउंट इस दिन डिलीट होते हैं:"
+
 #: templates/webapp/billing.html
 msgid "Free trial —"
 msgstr "मुफ़्त ट्रायल —"
@@ -5796,10 +5824,6 @@ msgid ""
 msgstr ""
 "फ़ोटो और कीमतों के साथ, ताकि आप तुरंत POS आज़मा सकें। बाद में संपादित करें "
 "या हटाएँ।"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Back"
-msgstr "वापस"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Skip this step"
@@ -11388,9 +11412,49 @@ msgstr "इस इनवॉइस का भुगतान पहले ही 
 msgid "The amount is more than the invoice balance."
 msgstr "राशि इनवॉइस की शेष राशि से अधिक है।"
 
-#: apps/subscriptions/trial_emails.py
+#: apps/subscriptions/retention.py
 msgid "Hi %(name)s,"
 msgstr "नमस्ते %(name)s,"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account will be deleted on %(date)s"
+msgstr "आपका BookPilot अकाउंट %(date)s को डिलीट हो जाएगा"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial has ended. Choose a plan to keep your products, customers "
+"and bills — or download your data before %(date)s."
+msgstr ""
+"आपका फ्री ट्रायल खत्म हो गया है। अपने प्रोडक्ट, ग्राहक और बिल रखने के लिए एक"
+" प्लान चुनें — या %(date)s से पहले अपना डेटा डाउनलोड कर लें।"
+
+#: apps/subscriptions/retention.py
+msgid "Choose a plan: %(url)s"
+msgstr "प्लान चुनें: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Download your data: %(url)s"
+msgstr "अपना डेटा डाउनलोड करें: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account has been closed"
+msgstr "आपका BookPilot अकाउंट बंद कर दिया गया है"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial ended and no plan was chosen, so the account %(shop)s is now"
+" closed."
+msgstr ""
+"आपका फ्री ट्रायल खत्म हो गया और कोई प्लान नहीं चुना गया, इसलिए अकाउंट "
+"%(shop)s अब बंद है।"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"It will be deleted for good on %(date)s. To keep it, reply to this email "
+"before then."
+msgstr ""
+"यह %(date)s को हमेशा के लिए डिलीट हो जाएगा। इसे रखने के लिए उससे पहले इस "
+"ईमेल का जवाब दें।"
 
 #: apps/subscriptions/trial_emails.py
 msgid ""
@@ -11462,10 +11526,6 @@ msgstr ""
 "बिना रुकावट बिलिंग के लिए आज ही प्लान चुनें। आपका सारा डेटा वैसा ही रहेगा।"
 
 #: apps/subscriptions/trial_emails.py
-msgid "Choose a plan: %(url)s"
-msgstr "प्लान चुनें: %(url)s"
-
-#: apps/subscriptions/trial_emails.py
 msgid "Your BookPilot trial has ended – your data is safe"
 msgstr "आपका BookPilot ट्रायल खत्म हो गया – आपका डेटा सुरक्षित है"
 
@@ -11476,6 +11536,10 @@ msgid ""
 msgstr ""
 "आपके उत्पाद, ग्राहक और बिल सब वहीं हैं। जहाँ छोड़ा था वहीं से जारी रखने के "
 "लिए प्लान चुनें।"
+
+#: apps/subscriptions/trial_emails.py
+msgid "Without a plan, the account and its data are deleted on %(date)s."
+msgstr "प्लान के बिना, अकाउंट और उसका डेटा %(date)s को डिलीट हो जाता है।"
 
 #: apps/subscriptions/trial_emails.py
 msgid "Renew now: %(url)s"

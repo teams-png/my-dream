@@ -3,6 +3,10 @@
 {% block title %}Billing{% endblock %}
 {% block heading %}Billing &amp; Subscription{% endblock %}
 {% block content %}
+{% if delete_on %}<div class="card" style="margin-bottom:18px;border:2px solid #dc2626;background:#fef2f2">
+  <b style="color:#991b1b">⚠ {% translate "Your free trial has ended. Your account and all its data will be deleted on" %} {{ delete_on|date:"j M Y" }}.</b>
+  <div style="margin-top:6px">{% translate "Choose a plan below to keep everything — or download your data first." %} <a href="{% url 'webapp:export_data' %}">⬇ {% translate "Download my data" %}</a></div>
+</div>{% elif delete_soon_on %}<p style="font-size:13px;color:var(--ink-soft);margin:0 0 12px">{% translate "Free trial accounts without a plan are deleted on" %} {{ delete_soon_on|date:"j M Y" }}.</p>{% endif %}
 {% if not subscription %}
 <div class="card empty">No subscription found for this business. Contact support.</div>
 {% else %}

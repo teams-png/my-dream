@@ -1852,6 +1852,35 @@ msgstr "നിരക്ക് സേവ് ചെയ്യുക"
 msgid "No exchange rates yet."
 msgstr "ഇതുവരെ വിനിമയ നിരക്കുകൾ ഇല്ല."
 
+#: templates/webapp/barcode_print_sheet.html
+msgid "Back"
+msgstr "തിരികെ"
+
+#: templates/webapp/barcode_print_sheet.html
+msgid "labels"
+msgstr "ലേബലുകൾ"
+
+#: templates/webapp/billing.html
+msgid ""
+"Your free trial has ended. Your account and all its data will be deleted on"
+msgstr ""
+"നിങ്ങളുടെ ഫ്രീ ട്രയൽ കഴിഞ്ഞു. നിങ്ങളുടെ അക്കൗണ്ടും അതിലെ എല്ലാ ഡാറ്റയും "
+"ഡിലീറ്റ് ആകുന്ന തീയതി:"
+
+#: templates/webapp/billing.html
+msgid "Choose a plan below to keep everything — or download your data first."
+msgstr ""
+"എല്ലാം നിലനിർത്താൻ താഴെ ഒരു പ്ലാൻ തിരഞ്ഞെടുക്കുക — അല്ലെങ്കിൽ ആദ്യം "
+"നിങ്ങളുടെ ഡാറ്റ ഡൗൺലോഡ് ചെയ്യുക."
+
+#: templates/webapp/billing.html
+msgid "Download my data"
+msgstr "എന്റെ ഡാറ്റ ഡൗൺലോഡ് ചെയ്യുക"
+
+#: templates/webapp/billing.html
+msgid "Free trial accounts without a plan are deleted on"
+msgstr "പ്ലാൻ എടുക്കാത്ത ഫ്രീ ട്രയൽ അക്കൗണ്ടുകൾ ഡിലീറ്റ് ആകുന്ന തീയതി:"
+
 #: templates/webapp/billing.html
 msgid "Free trial —"
 msgstr "സൗജന്യ ട്രയൽ —"
@@ -5834,10 +5863,6 @@ msgid ""
 msgstr ""
 "ഫോട്ടോയും വിലയും സഹിതം, POS ഉടൻ പരീക്ഷിക്കാൻ. പിന്നീട് എഡിറ്റ് ചെയ്യുകയോ "
 "ഡിലീറ്റ് ചെയ്യുകയോ ചെയ്യാം."
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Back"
-msgstr "തിരികെ"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Skip this step"
@@ -11485,9 +11510,50 @@ msgstr "ഈ ഇൻവോയ്സ് നേരത്തെ അടച്ചു."
 msgid "The amount is more than the invoice balance."
 msgstr "തുക ഇൻവോയ്സ് ബാക്കിയേക്കാൾ കൂടുതലാണ്."
 
-#: apps/subscriptions/trial_emails.py
+#: apps/subscriptions/retention.py
 msgid "Hi %(name)s,"
 msgstr "ഹായ് %(name)s,"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account will be deleted on %(date)s"
+msgstr "നിങ്ങളുടെ BookPilot അക്കൗണ്ട് %(date)s-ന് ഡിലീറ്റ് ആകും"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial has ended. Choose a plan to keep your products, customers "
+"and bills — or download your data before %(date)s."
+msgstr ""
+"നിങ്ങളുടെ ഫ്രീ ട്രയൽ കഴിഞ്ഞു. നിങ്ങളുടെ പ്രോഡക്റ്റുകൾ, കസ്റ്റമർമാർ, ബില്ലുകൾ"
+" എന്നിവ നിലനിർത്താൻ ഒരു പ്ലാൻ തിരഞ്ഞെടുക്കുക — അല്ലെങ്കിൽ %(date)s-ന് മുമ്പ്"
+" നിങ്ങളുടെ ഡാറ്റ ഡൗൺലോഡ് ചെയ്യുക."
+
+#: apps/subscriptions/retention.py
+msgid "Choose a plan: %(url)s"
+msgstr "പ്ലാൻ തിരഞ്ഞെടുക്കുക: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Download your data: %(url)s"
+msgstr "നിങ്ങളുടെ ഡാറ്റ ഡൗൺലോഡ് ചെയ്യാൻ: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account has been closed"
+msgstr "നിങ്ങളുടെ BookPilot അക്കൗണ്ട് ക്ലോസ് ചെയ്തു"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial ended and no plan was chosen, so the account %(shop)s is now"
+" closed."
+msgstr ""
+"ഫ്രീ ട്രയൽ കഴിഞ്ഞിട്ടും പ്ലാൻ തിരഞ്ഞെടുക്കാത്തതിനാൽ %(shop)s എന്ന അക്കൗണ്ട് "
+"ഇപ്പോൾ ക്ലോസ് ചെയ്തു."
+
+#: apps/subscriptions/retention.py
+msgid ""
+"It will be deleted for good on %(date)s. To keep it, reply to this email "
+"before then."
+msgstr ""
+"%(date)s-ന് ഇത് പൂർണ്ണമായി ഡിലീറ്റ് ആകും. നിലനിർത്തണമെങ്കിൽ അതിന് മുമ്പ് ഈ "
+"ഇമെയിലിന് മറുപടി അയക്കുക."
 
 #: apps/subscriptions/trial_emails.py
 msgid ""
@@ -11564,10 +11630,6 @@ msgstr ""
 "ചേർത്തതെല്ലാം അതുപോലെ തന്നെ ഉണ്ടാകും."
 
 #: apps/subscriptions/trial_emails.py
-msgid "Choose a plan: %(url)s"
-msgstr "പ്ലാൻ തിരഞ്ഞെടുക്കുക: %(url)s"
-
-#: apps/subscriptions/trial_emails.py
 msgid "Your BookPilot trial has ended – your data is safe"
 msgstr "നിങ്ങളുടെ BookPilot ട്രയൽ തീർന്നു – ഡാറ്റ സുരക്ഷിതമാണ്"
 
@@ -11578,6 +11640,11 @@ msgid ""
 msgstr ""
 "നിങ്ങളുടെ പ്രോഡക്ടുകളും കസ്റ്റമേഴ്സും ബില്ലുകളും എല്ലാം അവിടെ തന്നെയുണ്ട്. "
 "നിർത്തിയിടത്തുനിന്ന് തുടരാൻ ഒരു പ്ലാൻ തിരഞ്ഞെടുക്കൂ."
+
+#: apps/subscriptions/trial_emails.py
+msgid "Without a plan, the account and its data are deleted on %(date)s."
+msgstr ""
+"പ്ലാൻ ഇല്ലെങ്കിൽ, അക്കൗണ്ടും അതിലെ ഡാറ്റയും %(date)s-ന് ഡിലീറ്റ് ആകും."
 
 #: apps/subscriptions/trial_emails.py
 msgid "Renew now: %(url)s"

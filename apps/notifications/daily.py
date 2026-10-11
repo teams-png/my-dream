@@ -119,6 +119,7 @@ def run_daily_jobs(force=False):
         return {"skipped": "already ran today"}
     summary = {"companies": 0}
     for job_name, job in (("subscriptions", "apps.subscriptions.services.run_daily_expiry_check"),
+                          ("trial_cleanup", "apps.subscriptions.retention.run_daily"),
                           ("recurring_invoices", "apps.finance.services.run_all_recurring_invoices"),
                           ("cheque_reminders", "apps.finance.services.send_cheque_reminders"),
                           ("medicine_batches", "apps.verticals.medical_shop.tasks.check_medicine_batch_expiry"),

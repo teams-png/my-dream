@@ -1852,6 +1852,34 @@ msgstr "Guardar tasa"
 msgid "No exchange rates yet."
 msgstr "Aún no hay tipos de cambio."
 
+#: templates/webapp/barcode_print_sheet.html
+msgid "Back"
+msgstr "Atrás"
+
+#: templates/webapp/barcode_print_sheet.html
+msgid "labels"
+msgstr "etiquetas"
+
+#: templates/webapp/billing.html
+msgid ""
+"Your free trial has ended. Your account and all its data will be deleted on"
+msgstr ""
+"Tu prueba gratuita ha terminado. Tu cuenta y todos sus datos se eliminarán "
+"el"
+
+#: templates/webapp/billing.html
+msgid "Choose a plan below to keep everything — or download your data first."
+msgstr ""
+"Elige un plan abajo para conservarlo todo — o descarga tus datos primero."
+
+#: templates/webapp/billing.html
+msgid "Download my data"
+msgstr "Descargar mis datos"
+
+#: templates/webapp/billing.html
+msgid "Free trial accounts without a plan are deleted on"
+msgstr "Las cuentas de prueba gratuita sin plan se eliminan el"
+
 #: templates/webapp/billing.html
 msgid "Free trial —"
 msgstr "Prueba gratuita —"
@@ -5836,10 +5864,6 @@ msgid ""
 msgstr ""
 "Con fotos y precios, para que pruebes el POS enseguida. Edítalos o "
 "elimínalos después."
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Back"
-msgstr "Atrás"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Skip this step"
@@ -11487,9 +11511,49 @@ msgstr "Esta factura ya está pagada."
 msgid "The amount is more than the invoice balance."
 msgstr "El importe supera el saldo de la factura."
 
-#: apps/subscriptions/trial_emails.py
+#: apps/subscriptions/retention.py
 msgid "Hi %(name)s,"
 msgstr "Hola %(name)s:"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account will be deleted on %(date)s"
+msgstr "Tu cuenta de BookPilot se eliminará el %(date)s"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial has ended. Choose a plan to keep your products, customers "
+"and bills — or download your data before %(date)s."
+msgstr ""
+"Tu prueba gratuita ha terminado. Elige un plan para conservar tus productos,"
+" clientes y facturas — o descarga tus datos antes del %(date)s."
+
+#: apps/subscriptions/retention.py
+msgid "Choose a plan: %(url)s"
+msgstr "Elige un plan: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Download your data: %(url)s"
+msgstr "Descarga tus datos: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account has been closed"
+msgstr "Tu cuenta de BookPilot ha sido cerrada"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial ended and no plan was chosen, so the account %(shop)s is now"
+" closed."
+msgstr ""
+"Tu prueba gratuita terminó y no se eligió ningún plan, así que la cuenta "
+"%(shop)s ahora está cerrada."
+
+#: apps/subscriptions/retention.py
+msgid ""
+"It will be deleted for good on %(date)s. To keep it, reply to this email "
+"before then."
+msgstr ""
+"Se eliminará definitivamente el %(date)s. Para conservarla, responde a este "
+"correo antes de esa fecha."
 
 #: apps/subscriptions/trial_emails.py
 msgid ""
@@ -11567,10 +11631,6 @@ msgstr ""
 " queda igual."
 
 #: apps/subscriptions/trial_emails.py
-msgid "Choose a plan: %(url)s"
-msgstr "Elige un plan: %(url)s"
-
-#: apps/subscriptions/trial_emails.py
 msgid "Your BookPilot trial has ended – your data is safe"
 msgstr "Tu prueba de BookPilot terminó: tus datos están a salvo"
 
@@ -11581,6 +11641,10 @@ msgid ""
 msgstr ""
 "Tus productos, clientes y facturas siguen ahí. Elige un plan para continuar "
 "donde lo dejaste."
+
+#: apps/subscriptions/trial_emails.py
+msgid "Without a plan, the account and its data are deleted on %(date)s."
+msgstr "Sin un plan, la cuenta y sus datos se eliminan el %(date)s."
 
 #: apps/subscriptions/trial_emails.py
 msgid "Renew now: %(url)s"

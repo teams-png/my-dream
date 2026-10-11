@@ -1848,6 +1848,35 @@ msgstr "Kuru kaydet"
 msgid "No exchange rates yet."
 msgstr "Henüz döviz kuru yok."
 
+#: templates/webapp/barcode_print_sheet.html
+msgid "Back"
+msgstr "Geri"
+
+#: templates/webapp/barcode_print_sheet.html
+msgid "labels"
+msgstr "etiket"
+
+#: templates/webapp/billing.html
+msgid ""
+"Your free trial has ended. Your account and all its data will be deleted on"
+msgstr ""
+"Ücretsiz denemeniz sona erdi. Hesabınız ve tüm verileri şu tarihte "
+"silinecek:"
+
+#: templates/webapp/billing.html
+msgid "Choose a plan below to keep everything — or download your data first."
+msgstr ""
+"Her şeyi korumak için aşağıdan bir plan seçin — ya da önce verilerinizi "
+"indirin."
+
+#: templates/webapp/billing.html
+msgid "Download my data"
+msgstr "Verilerimi indir"
+
+#: templates/webapp/billing.html
+msgid "Free trial accounts without a plan are deleted on"
+msgstr "Planı olmayan ücretsiz deneme hesapları şu tarihte silinir:"
+
 #: templates/webapp/billing.html
 msgid "Free trial —"
 msgstr "Ücretsiz deneme —"
@@ -5811,10 +5840,6 @@ msgid ""
 msgstr ""
 "Fotoğraf ve fiyatlarıyla, POS’u hemen deneyebilmeniz için. Sonra düzenleyin "
 "veya silin."
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Back"
-msgstr "Geri"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Skip this step"
@@ -11433,9 +11458,50 @@ msgstr "Bu fatura zaten ödendi."
 msgid "The amount is more than the invoice balance."
 msgstr "Tutar fatura bakiyesinden fazla."
 
-#: apps/subscriptions/trial_emails.py
+#: apps/subscriptions/retention.py
 msgid "Hi %(name)s,"
 msgstr "Merhaba %(name)s,"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account will be deleted on %(date)s"
+msgstr "BookPilot hesabınız %(date)s tarihinde silinecek"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial has ended. Choose a plan to keep your products, customers "
+"and bills — or download your data before %(date)s."
+msgstr ""
+"Ücretsiz denemeniz sona erdi. Ürünlerinizi, müşterilerinizi ve "
+"faturalarınızı korumak için bir plan seçin — ya da %(date)s tarihinden önce "
+"verilerinizi indirin."
+
+#: apps/subscriptions/retention.py
+msgid "Choose a plan: %(url)s"
+msgstr "Plan seçin: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Download your data: %(url)s"
+msgstr "Verilerinizi indirin: %(url)s"
+
+#: apps/subscriptions/retention.py
+msgid "Your BookPilot account has been closed"
+msgstr "BookPilot hesabınız kapatıldı"
+
+#: apps/subscriptions/retention.py
+msgid ""
+"Your free trial ended and no plan was chosen, so the account %(shop)s is now"
+" closed."
+msgstr ""
+"Ücretsiz denemeniz sona erdi ve plan seçilmedi, bu nedenle %(shop)s hesabı "
+"artık kapalı."
+
+#: apps/subscriptions/retention.py
+msgid ""
+"It will be deleted for good on %(date)s. To keep it, reply to this email "
+"before then."
+msgstr ""
+"%(date)s tarihinde kalıcı olarak silinecek. Korumak için bu tarihten önce bu"
+" e-postayı yanıtlayın."
 
 #: apps/subscriptions/trial_emails.py
 msgid ""
@@ -11512,10 +11578,6 @@ msgstr ""
 "olduğu gibi kalır."
 
 #: apps/subscriptions/trial_emails.py
-msgid "Choose a plan: %(url)s"
-msgstr "Plan seçin: %(url)s"
-
-#: apps/subscriptions/trial_emails.py
 msgid "Your BookPilot trial has ended – your data is safe"
 msgstr "BookPilot denemeniz bitti – verileriniz güvende"
 
@@ -11526,6 +11588,10 @@ msgid ""
 msgstr ""
 "Ürünleriniz, müşterileriniz ve faturalarınız yerinde duruyor. Kaldığınız "
 "yerden devam etmek için bir plan seçin."
+
+#: apps/subscriptions/trial_emails.py
+msgid "Without a plan, the account and its data are deleted on %(date)s."
+msgstr "Plan olmadan hesap ve verileri %(date)s tarihinde silinir."
 
 #: apps/subscriptions/trial_emails.py
 msgid "Renew now: %(url)s"

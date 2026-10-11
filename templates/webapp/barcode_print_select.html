@@ -4,8 +4,7 @@
 {% block content %}
 <p style="color:var(--ink-soft); font-size:13.5px;">Pick products and how many labels of each you need, then print.</p>
 {% if products %}
-<form method="post">
-  {% csrf_token %}
+<form method="get"><input type="hidden" name="print" value="1">
   <table>
     <tr><th></th><th>Product</th><th>SKU</th><th>Labels</th></tr>
     {% for p in products %}

@@ -47,6 +47,7 @@ urlpatterns = [
     path("platform/clients/<int:company_id>/business-suites/", views.platform_admin_manage_business_suites, name="platform_admin_manage_business_suites"),
 
     path("platform/clients/<int:company_id>/restore/", views.platform_admin_company_restore, name="platform_admin_company_restore"),
+    path("platform/clients/<int:company_id>/retention/", views.platform_admin_retention, name="platform_admin_retention"),
     path("platform/clients/<int:company_id>/roles/", views.platform_admin_roles, name="platform_admin_roles"),
     path("platform/clients/<int:company_id>/roles/<int:role_id>/permissions/", views.platform_admin_role_permissions, name="platform_admin_role_permissions"),
     path("platform/website-kit/", website_kit_views.kit_list, name="kit_list"),

@@ -14,6 +14,21 @@
   {% if company.is_active %}<a class="btn btn-secondary" href="{% url 'webapp:platform_admin_company_delete' company.id %}" style="color:var(--danger); border-color:var(--danger);">Archive client</a>{% else %}<form method="post" action="{% url 'webapp:platform_admin_company_restore' company.id %}" style="display:inline">{% csrf_token %}<button class="btn" type="submit">Restore client</button></form>{% endif %}
 </div>
 
+{% if retention_info.unpaid_trial or retention_info.closed or retention_info.keep %}
+<div class="card" style="margin-bottom:18px;border-left:4px solid {% if retention_info.keep %}#16a34a{% else %}#dc2626{% endif %}">
+  <b>🗑 Unpaid trial clean-up</b>
+  <div style="font-size:13.5px;margin:6px 0 10px;color:var(--ink-soft)">
+    {% if retention_info.keep %}Marked <b>Keep</b> — this account is never deleted automatically.
+    {% elif retention_info.closed %}Closed automatically. It will be <b>deleted for good on {{ retention_info.purge_on|date:"d M Y" }}</b> unless you restore it.
+    {% elif retention_info.delete_on %}Trial ended, no payment. The account closes on <b>{{ retention_info.delete_on|date:"d M Y" }}</b> (owner gets warnings 14, 7, 3 and 1 day before), then is deleted a week later.
+    {% else %}Still on trial. If nobody pays, it is closed {{ "30" }} days after the trial ends and deleted a week later.{% endif %}
+  </div>
+  <form method="post" action="{% url 'webapp:platform_admin_retention' company.id %}" style="display:inline">{% csrf_token %}
+    {% if retention_info.keep %}<input type="hidden" name="keep" value="0"><button class="btn btn-secondary" type="submit">Turn the clean-up back on</button>
+    {% else %}<input type="hidden" name="keep" value="1"><button class="btn" type="submit">Keep this account</button>{% endif %}
+  </form>
+</div>
+{% endif %}
 <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:22px;">
   <div class="card">
     <div style="color:var(--ink-soft); font-size:13px;">Total revenue</div>

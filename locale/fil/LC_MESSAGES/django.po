@@ -242,6 +242,10 @@ msgid "Online orders"
 msgstr "Online na order"
 
 #: templates/base.html
+msgid "Deliveries"
+msgstr "Mga delivery"
+
+#: templates/base.html
 msgid "Kitchen / KOT"
 msgstr "Kusina / KOT"
 
@@ -8210,6 +8214,42 @@ msgstr ""
 msgid "Sent"
 msgstr "Naipadala"
 
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Delivery board"
+msgstr "Delivery board"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Delivery area"
+msgstr "Delivery area"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "— delivery area —"
+msgstr "— delivery area —"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Set"
+msgstr "I-set"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Area"
+msgstr "Area"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Rider"
+msgstr "Rider"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "— choose rider —"
+msgstr "— pumili ng rider —"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Assign"
+msgstr "I-assign"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "No riders yet — add them on the delivery board."
+msgstr "Wala pang rider — idagdag sila sa delivery board."
+
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Kerala starter menu is loaded"
 msgstr "Na-load na ang Kerala starter menu"
@@ -8497,6 +8537,227 @@ msgstr "Walang koneksyon sa internet"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Open offline POS →"
 msgstr "Buksan ang offline POS →"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "New delivery order"
+msgstr "Bagong delivery order"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery report"
+msgstr "Ulat ng delivery"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Cash with riders"
+msgstr "Cash na hawak ng mga rider"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid ""
+"Add your delivery riders below first. Each rider gets a private page on "
+"their phone to see their orders and mark them delivered."
+msgstr ""
+"Idagdag muna ang iyong mga delivery rider sa ibaba. Bawat rider ay may "
+"pribadong page sa kanilang phone para makita ang kanilang mga order at "
+"markahan itong naihatid."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Map"
+msgstr "Mapa"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "With rider"
+msgstr "Hawak ng rider"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Collect"
+msgstr "Singilin"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Late"
+msgstr "Huli"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "delivered"
+msgstr "naihatid"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Out for delivery"
+msgstr "Papunta na sa delivery"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Tell customer"
+msgstr "Sabihan ang customer"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivered · cash"
+msgstr "Naihatid · cash"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivered · card"
+msgstr "Naihatid · card"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Why not delivered? (not answering, wrong address…)"
+msgstr "Bakit hindi naihatid? (hindi sumasagot, maling address…)"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Not delivered"
+msgstr "Hindi naihatid"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Riders"
+msgstr "Mga rider"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "on the way now"
+msgstr "papunta na ngayon"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "cash with rider"
+msgstr "cash na hawak ng rider"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Stock location"
+msgstr "Lokasyon ng stock"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid ""
+"Received the money from this rider? The delivered orders will be billed now."
+msgstr ""
+"Natanggap mo na ba ang pera mula sa rider na ito? Ibi-bill na ngayon ang mga"
+" naihatid na order."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Receive cash & bill"
+msgstr "Tanggapin ang cash at i-bill"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Send page link"
+msgstr "Ipadala ang link ng page"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Rider page"
+msgstr "Page ng rider"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Vehicle"
+msgstr "Sasakyan"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "ID / licence no."
+msgstr "ID / numero ng lisensya"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Turn off"
+msgstr "I-off"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Turn on"
+msgstr "I-on"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Make a new private link? The old link stops working."
+msgstr "Gumawa ng bagong pribadong link? Hindi na gagana ang lumang link."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "New link"
+msgstr "Bagong link"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add a rider"
+msgstr "Magdagdag ng rider"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "e.g. Ajmal"
+msgstr "hal. Ajmal"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Phone (WhatsApp)"
+msgstr "Phone (WhatsApp)"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Bike · 123456"
+msgstr "Motor · 123456"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add rider"
+msgstr "Idagdag ang rider"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery areas & charges"
+msgstr "Mga delivery area at singil"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Pick the area on a delivery order and its charge is added to the bill."
+msgstr ""
+"Piliin ang area sa delivery order at idadagdag sa bill ang singil nito."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Free over"
+msgstr "Libre kapag lampas"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Minutes"
+msgstr "Minuto"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "e.g. Al Sadd"
+msgstr "hal. Al Sadd"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery charge"
+msgstr "Delivery charge"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Free delivery over"
+msgstr "Libreng delivery kapag lampas sa"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Usual minutes"
+msgstr "Karaniwang minuto"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add area"
+msgstr "Idagdag ang area"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Cash collected"
+msgstr "Nakolektang cash"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Card at the door"
+msgstr "Card sa pinto"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Delivery charges"
+msgstr "Mga delivery charge"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "By rider"
+msgstr "Ayon sa rider"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Order value"
+msgstr "Halaga ng order"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Avg. minutes on the road"
+msgstr "Average na minuto sa daan"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "No deliveries in these days."
+msgstr "Walang delivery sa mga araw na ito."
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "By area"
+msgstr "Ayon sa area"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Cash received from riders"
+msgstr "Cash na natanggap mula sa mga rider"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "When"
+msgstr "Kailan"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Kitchen board"
@@ -9360,10 +9621,6 @@ msgid "Service + tip"
 msgstr "Service + tip"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Stock location"
-msgstr "Lokasyon ng stock"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Payment method"
 msgstr "Paraan ng bayad"
 
@@ -9525,6 +9782,46 @@ msgstr "KABUUAN"
 #: templates/webapp/restaurant/receipt_print.html
 msgid "Print Receipt"
 msgstr "I-print ang resibo"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "My deliveries"
+msgstr "Aking mga delivery"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "cash with you"
+msgstr "cash na hawak mo"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "To deliver"
+msgstr "Ihahatid"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Paid already — collect nothing"
+msgstr "Bayad na — walang sisingilin"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Picked up — on the way"
+msgstr "Nakuha na — papunta na"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Could not deliver?"
+msgstr "Hindi naihatid?"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Why? (not answering, wrong address…)"
+msgstr "Bakit? (hindi sumasagot, maling address…)"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Bring it back"
+msgstr "Ibalik ito"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "No orders for you right now. This page refreshes by itself."
+msgstr "Wala kang order ngayon. Kusang nagre-refresh ang page na ito."
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Delivered today"
+msgstr "Naihatid ngayong araw"
 
 #: templates/webapp/retail/reports.html
 msgid "Product"
@@ -9773,10 +10070,6 @@ msgid "Turn off two-step login"
 msgstr "I-off ang two-step login"
 
 #: templates/webapp/security.html
-msgid "Turn off"
-msgstr "I-off"
-
-#: templates/webapp/security.html
 msgid "Install"
 msgstr "I-install ang"
 
@@ -9803,10 +10096,6 @@ msgstr "Hindi ma-scan? Ilagay ang key na ito:"
 #: templates/webapp/security.html
 msgid "Type the 6-digit code shown in the app:"
 msgstr "I-type ang 6-digit na code na nasa app:"
-
-#: templates/webapp/security.html
-msgid "Turn on"
-msgstr "I-on"
 
 #: templates/webapp/security.html
 msgid ""
@@ -9951,10 +10240,6 @@ msgstr "WhatsApp sa customer"
 #: templates/webapp/shop_orders/inbox.html
 msgid "Share / pay link"
 msgstr "Share / pay link"
-
-#: templates/webapp/shop_orders/inbox.html
-msgid "Out for delivery"
-msgstr "Papunta na sa delivery"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Delivered — close order"
@@ -10510,10 +10795,6 @@ msgid "Return by"
 msgstr "Ibalik bago"
 
 #: templates/webapp/sports_shop/rental_detail.html
-msgid "Late"
-msgstr "Huli"
-
-#: templates/webapp/sports_shop/rental_detail.html
 msgid "Deposit"
 msgstr "Deposito"
 
@@ -10982,10 +11263,6 @@ msgstr "Kasaysayan ng stock"
 #: templates/webapp/stock/history.html
 msgid "Current stock"
 msgstr "Kasalukuyang stock"
-
-#: templates/webapp/stock/history.html
-msgid "When"
-msgstr "Kailan"
 
 #: templates/webapp/stock/history.html
 msgid "What"
@@ -11667,6 +11944,74 @@ msgstr ""
 msgid "Renew now: %(url)s"
 msgstr "Mag-renew na: %(url)s"
 
+#: apps/verticals/restaurant/delivery.py
+msgid "This is not an open delivery order."
+msgstr "Hindi ito bukas na delivery order."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "The bill is already paid."
+msgstr "Bayad na ang bill."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is already delivered."
+msgstr "Naihatid na ang order na ito."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Choose an active rider."
+msgstr "Pumili ng aktibong rider."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Choose a rider first."
+msgstr "Pumili muna ng rider."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is not waiting to go out."
+msgstr "Hindi naghihintay lumabas ang order na ito."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is not on the way."
+msgstr "Hindi papunta ang order na ito."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "How did the customer pay?"
+msgstr "Paano nagbayad ang customer?"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Nothing to settle for %(name)s."
+msgstr "Walang aayusin para kay %(name)s."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Add a stock location first."
+msgstr "Magdagdag muna ng stock location."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "%(order)s has no items."
+msgstr "Walang item ang %(order)s."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Hello,"
+msgstr "Kumusta,"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Your order %(order)s from %(shop)s is on the way."
+msgstr "Papunta na ang iyong order na %(order)s mula sa %(shop)s."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Rider: %(name)s · %(phone)s"
+msgstr "Rider: %(name)s · %(phone)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Amount to pay: %(amount)s"
+msgstr "Halagang babayaran: %(amount)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Your delivery page (keep this link private): %(url)s"
+msgstr "Ang iyong delivery page (huwag ibahagi ang link na ito): %(url)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "No area"
+msgstr "Walang area"
+
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "Nakaupo"
@@ -11680,12 +12025,44 @@ msgid "Served"
 msgstr "Naihain na"
 
 #: apps/verticals/restaurant/models.py
+msgid "—"
+msgstr "—"
+
+#: apps/verticals/restaurant/models.py
+msgid "Waiting for a rider"
+msgstr "Naghihintay ng rider"
+
+#: apps/verticals/restaurant/models.py
+msgid "Rider assigned"
+msgstr "May rider na"
+
+#: apps/verticals/restaurant/models.py
+msgid "Paid already"
+msgstr "Bayad na"
+
+#: apps/verticals/restaurant/models.py
 msgid "Queued"
 msgstr "Nakapila"
 
 #: apps/verticals/restaurant/models.py
 msgid "Accepted"
 msgstr "Tinanggap"
+
+#: apps/verticals/restaurant/models.py
+msgid "e.g. Bike · 123456"
+msgstr "hal. Motor · 123456"
+
+#: apps/verticals/restaurant/models.py
+msgid "QID / licence number"
+msgstr "QID / numero ng lisensya"
+
+#: apps/verticals/restaurant/models.py
+msgid "0 = always charge"
+msgstr "0 = laging singilin"
+
+#: apps/verticals/restaurant/models.py
+msgid "Usual delivery time"
+msgstr "Karaniwang oras ng delivery"
 
 #: apps/verticals/restaurant/online_orders.py
 msgid ""
@@ -12372,6 +12749,70 @@ msgstr "%(item)s: %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "Naitakda ang %(count)s presyo."
+
+#: apps/webapp/delivery_views.py
+msgid "Enter a valid amount."
+msgstr "Maglagay ng tamang halaga."
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s → %(rider)s"
+msgstr "%(order)s → %(rider)s"
+
+#: apps/webapp/delivery_views.py
+msgid "no rider"
+msgstr "walang rider"
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s is on the way. Send the customer a WhatsApp from the card."
+msgstr ""
+"Papunta na ang %(order)s. Padalhan ang customer ng WhatsApp mula sa card."
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s delivered."
+msgstr "Naihatid ang %(order)s."
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s marked not delivered. Assign it again when ready."
+msgstr ""
+"Minarkahang hindi naihatid ang %(order)s. I-assign muli kapag handa na."
+
+#: apps/webapp/delivery_views.py
+msgid "Delivery area saved. Delivery charge: %(fee)s"
+msgstr "Na-save ang delivery area. Delivery charge: %(fee)s"
+
+#: apps/webapp/delivery_views.py
+msgid "Received %(cash)s cash from %(name)s. %(n)s order(s) billed."
+msgstr ""
+"Natanggap ang %(cash)s na cash mula kay %(name)s. %(n)s order ang na-bill."
+
+#: apps/webapp/delivery_views.py
+msgid "Enter the rider's name and phone number."
+msgstr "Ilagay ang pangalan at phone number ng rider."
+
+#: apps/webapp/delivery_views.py
+msgid "Rider %(name)s saved. Send them their page link on WhatsApp."
+msgstr ""
+"Na-save ang rider na si %(name)s. Ipadala sa kanila ang link ng page sa "
+"WhatsApp."
+
+#: apps/webapp/delivery_views.py
+msgid "%(name)s still has orders on the way."
+msgstr "May mga order pang papunta si %(name)s."
+
+#: apps/webapp/delivery_views.py
+msgid ""
+"New link made — the old link no longer works. Send %(name)s the new one."
+msgstr ""
+"Nagawa ang bagong link — hindi na gumagana ang luma. Ipadala kay %(name)s "
+"ang bago."
+
+#: apps/webapp/delivery_views.py
+msgid "Enter the area name."
+msgstr "Ilagay ang pangalan ng area."
+
+#: apps/webapp/delivery_views.py
+msgid "Delivery area %(name)s saved."
+msgstr "Na-save ang delivery area na %(name)s."
 
 #: apps/webapp/education_views.py
 msgid "Batches"
@@ -13106,10 +13547,6 @@ msgid "Room"
 msgstr "Kuwarto"
 
 #: apps/webapp/online_booking_views.py
-msgid "Vehicle"
-msgstr "Sasakyan"
-
-#: apps/webapp/online_booking_views.py
 msgid "Equipment"
 msgstr "Kagamitan"
 
@@ -13295,10 +13732,6 @@ msgstr "I-pause — hindi tumatanggap ng order ngayon"
 #: apps/webapp/online_order_views.py
 msgid "Home delivery"
 msgstr "Home delivery"
-
-#: apps/webapp/online_order_views.py
-msgid "Delivery charge"
-msgstr "Delivery charge"
 
 #: apps/webapp/online_order_views.py
 msgid "Minimum order for delivery"
@@ -14311,10 +14744,6 @@ msgstr "Napalitan na ang iyong password."
 #: apps/webapp/shop_order_views.py
 msgid "Pickup from the shop"
 msgstr "Kunin sa shop"
-
-#: apps/webapp/shop_order_views.py
-msgid "Free delivery over"
-msgstr "Libreng delivery kapag lampas sa"
 
 #: apps/webapp/shop_order_views.py
 msgid "Customers can use coupon codes"

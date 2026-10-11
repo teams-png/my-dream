@@ -219,6 +219,18 @@ class RestaurantOrder(TenantScopedModel):
     delivery_phone = models.CharField(max_length=30, blank=True)
     delivery_driver = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name="restaurant_deliveries")
     reservation = models.ForeignKey(TableReservation, null=True, blank=True, on_delete=models.SET_NULL, related_name="orders")
+    # Home delivery: who takes it, where it is, and how the customer paid at the door.
+    DELIVERY_STATUS = [("", _("—")), ("waiting", _("Waiting for a rider")), ("assigned", _("Rider assigned")),
+                       ("out", _("On the way")), ("delivered", _("Delivered")), ("failed", _("Not delivered"))]
+    COLLECT = [("", _("—")), ("cash", _("Cash")), ("card", _("Card")), ("prepaid", _("Paid already"))]
+    rider = models.ForeignKey("DeliveryRider", null=True, blank=True, on_delete=models.SET_NULL, related_name="orders")
+    zone = models.ForeignKey("DeliveryZone", null=True, blank=True, on_delete=models.SET_NULL, related_name="orders")
+    delivery_status = models.CharField(max_length=10, choices=DELIVERY_STATUS, default="", blank=True, db_index=True)
+    dispatched_at = models.DateTimeField(null=True, blank=True)
+    delivered_at = models.DateTimeField(null=True, blank=True)
+    collect_method = models.CharField(max_length=10, choices=COLLECT, default="", blank=True)
+    delivery_note = models.CharField(max_length=255, blank=True)
+    handover = models.ForeignKey("DeliveryHandover", null=True, blank=True, on_delete=models.SET_NULL, related_name="orders")
     public_order_token = models.UUIDField(null=True, blank=True, unique=True, editable=False)
     cancelled_reason = models.CharField(max_length=255, blank=True)
     cancelled_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name="restaurant_orders_cancelled")
@@ -421,3 +433,51 @@ class StarterSample(TenantScopedModel):
 
     class Meta:
         indexes = [models.Index(fields=("company", "kind"))]
+
+
+class DeliveryRider(TenantScopedModel):
+    """A delivery boy. Opens their own page from a private link (no login needed) to see and close their orders."""
+    name = models.CharField(max_length=120)
+    phone = models.CharField(max_length=30)
+    vehicle = models.CharField(max_length=80, blank=True, help_text=_("e.g. Bike · 123456"))
+    id_number = models.CharField(max_length=60, blank=True, help_text=_("QID / licence number"))
+    is_active = models.BooleanField(default=True)
+    token = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-is_active", "name"]
+
+    def __str__(self):
+        return self.name
+
+
+class DeliveryZone(TenantScopedModel):
+    """An area with its own delivery charge, e.g. "Al Sadd — 10", "Wakra — 20"."""
+    name = models.CharField(max_length=100)
+    fee = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    free_over = models.DecimalField(max_digits=10, decimal_places=2, default=0, help_text=_("0 = always charge"))
+    minutes = models.PositiveSmallIntegerField(default=30, help_text=_("Usual delivery time"))
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["-is_active", "fee", "name"]
+
+    def __str__(self):
+        return self.name
+
+    def fee_for(self, subtotal):
+        return Decimal("0") if self.free_over and subtotal >= self.free_over else self.fee
+
+
+class DeliveryHandover(TenantScopedModel):
+    """Cash a rider brought back; the delivered orders in it are billed at that moment."""
+    rider = models.ForeignKey(DeliveryRider, on_delete=models.PROTECT, related_name="handovers")
+    cash = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    card = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    orders_count = models.PositiveIntegerField(default=0)
+    received_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]

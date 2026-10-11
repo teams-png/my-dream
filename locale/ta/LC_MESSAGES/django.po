@@ -242,6 +242,10 @@ msgid "Online orders"
 msgstr "ஆன்லைன் ஆர்டர்கள்"
 
 #: templates/base.html
+msgid "Deliveries"
+msgstr "டெலிவரிகள்"
+
+#: templates/base.html
 msgid "Kitchen / KOT"
 msgstr "சமையலறை / KOT"
 
@@ -8243,6 +8247,42 @@ msgstr ""
 msgid "Sent"
 msgstr "அனுப்பப்பட்டது"
 
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Delivery board"
+msgstr "டெலிவரி பலகை"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Delivery area"
+msgstr "டெலிவரி பகுதி"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "— delivery area —"
+msgstr "— டெலிவரி பகுதி —"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Set"
+msgstr "அமை"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Area"
+msgstr "பகுதி"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Rider"
+msgstr "ரைடர்"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "— choose rider —"
+msgstr "— ரைடரைத் தேர்ந்தெடு —"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Assign"
+msgstr "ஒப்படை"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "No riders yet — add them on the delivery board."
+msgstr "இன்னும் ரைடர்கள் இல்லை — டெலிவரி பலகையில் சேர்க்கவும்."
+
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Kerala starter menu is loaded"
 msgstr "கேரள தொடக்க மெனு ஏற்றப்பட்டது"
@@ -8531,6 +8571,228 @@ msgstr "இணைய இணைப்பு இல்லை"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Open offline POS →"
 msgstr "ஆஃப்லைன் POS ஐத் திற →"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "New delivery order"
+msgstr "புதிய டெலிவரி ஆர்டர்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery report"
+msgstr "டெலிவரி அறிக்கை"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Cash with riders"
+msgstr "ரைடர்களிடம் உள்ள பணம்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid ""
+"Add your delivery riders below first. Each rider gets a private page on "
+"their phone to see their orders and mark them delivered."
+msgstr ""
+"முதலில் கீழே உங்கள் டெலிவரி ரைடர்களைச் சேர்க்கவும். ஒவ்வொரு ரைடருக்கும் "
+"தங்கள் ஆர்டர்களைப் பார்த்து டெலிவர் செய்ததாகக் குறிக்க போனில் ஒரு தனிப்பட்ட "
+"பக்கம் கிடைக்கும்."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Map"
+msgstr "வரைபடம்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "With rider"
+msgstr "ரைடரிடம்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Collect"
+msgstr "வசூலிக்கவும்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Late"
+msgstr "தாமதம்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "delivered"
+msgstr "டெலிவர் செய்யப்பட்டது"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Out for delivery"
+msgstr "டெலிவரிக்குப் புறப்பட்டது"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Tell customer"
+msgstr "வாடிக்கையாளருக்குத் தெரிவி"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivered · cash"
+msgstr "டெலிவர் · பணம்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivered · card"
+msgstr "டெலிவர் · கார்டு"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Why not delivered? (not answering, wrong address…)"
+msgstr "ஏன் டெலிவர் ஆகவில்லை? (பதிலில்லை, தவறான முகவரி…)"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Not delivered"
+msgstr "டெலிவர் ஆகவில்லை"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Riders"
+msgstr "ரைடர்கள்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "on the way now"
+msgstr "இப்போது வழியில்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "cash with rider"
+msgstr "ரைடரிடம் உள்ள பணம்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Stock location"
+msgstr "ஸ்டாக் இடம்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid ""
+"Received the money from this rider? The delivered orders will be billed now."
+msgstr ""
+"இந்த ரைடரிடமிருந்து பணம் பெற்றீர்களா? டெலிவர் ஆன ஆர்டர்கள் இப்போது பில் "
+"செய்யப்படும்."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Receive cash & bill"
+msgstr "பணம் பெற்று பில் செய்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Send page link"
+msgstr "பக்க இணைப்பை அனுப்பு"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Rider page"
+msgstr "ரைடர் பக்கம்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Vehicle"
+msgstr "வாகனம்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "ID / licence no."
+msgstr "அடையாள / உரிம எண்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Turn off"
+msgstr "அணை"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Turn on"
+msgstr "இயக்கு"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Make a new private link? The old link stops working."
+msgstr "புதிய தனிப்பட்ட இணைப்பை உருவாக்கவா? பழைய இணைப்பு வேலை செய்யாது."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "New link"
+msgstr "புதிய இணைப்பு"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add a rider"
+msgstr "ரைடரைச் சேர்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "e.g. Ajmal"
+msgstr "எ.கா. அஜ்மல்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Phone (WhatsApp)"
+msgstr "போன் (வாட்ஸ்அப்)"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Bike · 123456"
+msgstr "பைக் · 123456"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add rider"
+msgstr "ரைடரைச் சேர்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery areas & charges"
+msgstr "டெலிவரி பகுதிகள் மற்றும் கட்டணங்கள்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Pick the area on a delivery order and its charge is added to the bill."
+msgstr ""
+"டெலிவரி ஆர்டரில் பகுதியைத் தேர்ந்தெடுத்தால் அதன் கட்டணம் பில்லில் "
+"சேர்க்கப்படும்."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Free over"
+msgstr "இதற்கு மேல் இலவசம்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Minutes"
+msgstr "நிமிடங்கள்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "e.g. Al Sadd"
+msgstr "எ.கா. அல் சத்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery charge"
+msgstr "டெலிவரி கட்டணம்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Free delivery over"
+msgstr "இதற்கு மேல் இலவச டெலிவரி"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Usual minutes"
+msgstr "வழக்கமான நிமிடங்கள்"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add area"
+msgstr "பகுதியைச் சேர்"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Cash collected"
+msgstr "வசூலித்த பணம்"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Card at the door"
+msgstr "வாசலில் கார்டு"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Delivery charges"
+msgstr "டெலிவரி கட்டணங்கள்"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "By rider"
+msgstr "ரைடர் வாரியாக"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Order value"
+msgstr "ஆர்டர் மதிப்பு"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Avg. minutes on the road"
+msgstr "வழியில் சராசரி நிமிடங்கள்"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "No deliveries in these days."
+msgstr "இந்த நாட்களில் டெலிவரிகள் இல்லை."
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "By area"
+msgstr "பகுதி வாரியாக"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Cash received from riders"
+msgstr "ரைடர்களிடமிருந்து பெற்ற பணம்"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "When"
+msgstr "எப்போது"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Kitchen board"
@@ -9395,10 +9657,6 @@ msgid "Service + tip"
 msgstr "சேவை + டிப்"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Stock location"
-msgstr "ஸ்டாக் இடம்"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Payment method"
 msgstr "கட்டண முறை"
 
@@ -9558,6 +9816,48 @@ msgstr "மொத்தம்"
 #: templates/webapp/restaurant/receipt_print.html
 msgid "Print Receipt"
 msgstr "ரசீது அச்சிடு"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "My deliveries"
+msgstr "என் டெலிவரிகள்"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "cash with you"
+msgstr "உங்களிடம் உள்ள பணம்"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "To deliver"
+msgstr "டெலிவர் செய்ய வேண்டியவை"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Paid already — collect nothing"
+msgstr "ஏற்கனவே செலுத்தப்பட்டது — எதுவும் வசூலிக்க வேண்டாம்"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Picked up — on the way"
+msgstr "எடுத்தேன் — வழியில்"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Could not deliver?"
+msgstr "டெலிவர் செய்ய முடியவில்லையா?"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Why? (not answering, wrong address…)"
+msgstr "ஏன்? (பதிலில்லை, தவறான முகவரி…)"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Bring it back"
+msgstr "திரும்பக் கொண்டு வா"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "No orders for you right now. This page refreshes by itself."
+msgstr ""
+"இப்போது உங்களுக்கு ஆர்டர்கள் இல்லை. இந்தப் பக்கம் தானாகப் "
+"புதுப்பிக்கப்படும்."
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Delivered today"
+msgstr "இன்று டெலிவர் ஆனவை"
 
 #: templates/webapp/retail/reports.html
 msgid "Product"
@@ -9808,10 +10108,6 @@ msgid "Turn off two-step login"
 msgstr "இரு-படி உள்நுழைவை அணை"
 
 #: templates/webapp/security.html
-msgid "Turn off"
-msgstr "அணை"
-
-#: templates/webapp/security.html
 msgid "Install"
 msgstr "நிறுவு"
 
@@ -9838,10 +10134,6 @@ msgstr "ஸ்கேன் செய்ய முடியவில்லைய�
 #: templates/webapp/security.html
 msgid "Type the 6-digit code shown in the app:"
 msgstr "ஆப்பில் காட்டும் 6 இலக்கக் குறியீட்டை உள்ளிடவும்:"
-
-#: templates/webapp/security.html
-msgid "Turn on"
-msgstr "இயக்கு"
 
 #: templates/webapp/security.html
 msgid ""
@@ -9989,10 +10281,6 @@ msgstr "வாடிக்கையாளருக்கு WhatsApp"
 #: templates/webapp/shop_orders/inbox.html
 msgid "Share / pay link"
 msgstr "பகிர் / கட்டண இணைப்பு"
-
-#: templates/webapp/shop_orders/inbox.html
-msgid "Out for delivery"
-msgstr "டெலிவரிக்குப் புறப்பட்டது"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Delivered — close order"
@@ -10550,10 +10838,6 @@ msgid "Return by"
 msgstr "திருப்பித் தர வேண்டிய தேதி"
 
 #: templates/webapp/sports_shop/rental_detail.html
-msgid "Late"
-msgstr "தாமதம்"
-
-#: templates/webapp/sports_shop/rental_detail.html
 msgid "Deposit"
 msgstr "வைப்புத்தொகை"
 
@@ -11023,10 +11307,6 @@ msgstr "இருப்பு வரலாறு"
 #: templates/webapp/stock/history.html
 msgid "Current stock"
 msgstr "தற்போதைய இருப்பு"
-
-#: templates/webapp/stock/history.html
-msgid "When"
-msgstr "எப்போது"
 
 #: templates/webapp/stock/history.html
 msgid "What"
@@ -11712,6 +11992,74 @@ msgstr "திட்டம் இல்லாமல், கணக்கும்
 msgid "Renew now: %(url)s"
 msgstr "இப்போதே புதுப்பிக்கவும்: %(url)s"
 
+#: apps/verticals/restaurant/delivery.py
+msgid "This is not an open delivery order."
+msgstr "இது திறந்த டெலிவரி ஆர்டர் அல்ல."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "The bill is already paid."
+msgstr "பில் ஏற்கனவே செலுத்தப்பட்டது."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is already delivered."
+msgstr "இந்த ஆர்டர் ஏற்கனவே டெலிவர் ஆனது."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Choose an active rider."
+msgstr "செயலில் உள்ள ரைடரைத் தேர்ந்தெடுக்கவும்."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Choose a rider first."
+msgstr "முதலில் ஒரு ரைடரைத் தேர்ந்தெடுக்கவும்."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is not waiting to go out."
+msgstr "இந்த ஆர்டர் புறப்படக் காத்திருக்கவில்லை."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is not on the way."
+msgstr "இந்த ஆர்டர் வழியில் இல்லை."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "How did the customer pay?"
+msgstr "வாடிக்கையாளர் எப்படிப் பணம் செலுத்தினார்?"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Nothing to settle for %(name)s."
+msgstr "%(name)s-க்கு கணக்கு முடிக்க எதுவும் இல்லை."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Add a stock location first."
+msgstr "முதலில் ஒரு ஸ்டாக் இடத்தைச் சேர்க்கவும்."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "%(order)s has no items."
+msgstr "%(order)s-இல் பொருட்கள் இல்லை."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Hello,"
+msgstr "வணக்கம்,"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Your order %(order)s from %(shop)s is on the way."
+msgstr "%(shop)s-இலிருந்து உங்கள் ஆர்டர் %(order)s வழியில் உள்ளது."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Rider: %(name)s · %(phone)s"
+msgstr "ரைடர்: %(name)s · %(phone)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Amount to pay: %(amount)s"
+msgstr "செலுத்த வேண்டிய தொகை: %(amount)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Your delivery page (keep this link private): %(url)s"
+msgstr "உங்கள் டெலிவரி பக்கம் (இந்த இணைப்பை யாருக்கும் தர வேண்டாம்): %(url)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "No area"
+msgstr "பகுதி இல்லை"
+
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "அமர்ந்துள்ளனர்"
@@ -11725,12 +12073,44 @@ msgid "Served"
 msgstr "பரிமாறப்பட்டது"
 
 #: apps/verticals/restaurant/models.py
+msgid "—"
+msgstr "—"
+
+#: apps/verticals/restaurant/models.py
+msgid "Waiting for a rider"
+msgstr "ரைடருக்காகக் காத்திருக்கிறது"
+
+#: apps/verticals/restaurant/models.py
+msgid "Rider assigned"
+msgstr "ரைடர் ஒப்படைக்கப்பட்டார்"
+
+#: apps/verticals/restaurant/models.py
+msgid "Paid already"
+msgstr "ஏற்கனவே செலுத்தப்பட்டது"
+
+#: apps/verticals/restaurant/models.py
 msgid "Queued"
 msgstr "வரிசையில்"
 
 #: apps/verticals/restaurant/models.py
 msgid "Accepted"
 msgstr "ஏற்கப்பட்டது"
+
+#: apps/verticals/restaurant/models.py
+msgid "e.g. Bike · 123456"
+msgstr "எ.கா. பைக் · 123456"
+
+#: apps/verticals/restaurant/models.py
+msgid "QID / licence number"
+msgstr "QID / உரிம எண்"
+
+#: apps/verticals/restaurant/models.py
+msgid "0 = always charge"
+msgstr "0 = எப்போதும் கட்டணம்"
+
+#: apps/verticals/restaurant/models.py
+msgid "Usual delivery time"
+msgstr "வழக்கமான டெலிவரி நேரம்"
 
 #: apps/verticals/restaurant/online_orders.py
 msgid ""
@@ -12430,6 +12810,73 @@ msgstr "%(item)s: %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "%(count)s விலைகள் அமைக்கப்பட்டன."
+
+#: apps/webapp/delivery_views.py
+msgid "Enter a valid amount."
+msgstr "சரியான தொகையை உள்ளிடவும்."
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s → %(rider)s"
+msgstr "%(order)s → %(rider)s"
+
+#: apps/webapp/delivery_views.py
+msgid "no rider"
+msgstr "ரைடர் இல்லை"
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s is on the way. Send the customer a WhatsApp from the card."
+msgstr ""
+"%(order)s வழியில் உள்ளது. கார்டிலிருந்து வாடிக்கையாளருக்கு வாட்ஸ்அப் "
+"அனுப்பவும்."
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s delivered."
+msgstr "%(order)s டெலிவர் ஆனது."
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s marked not delivered. Assign it again when ready."
+msgstr ""
+"%(order)s டெலிவர் ஆகவில்லை எனக் குறிக்கப்பட்டது. தயாரானதும் மீண்டும் "
+"ஒப்படைக்கவும்."
+
+#: apps/webapp/delivery_views.py
+msgid "Delivery area saved. Delivery charge: %(fee)s"
+msgstr "டெலிவரி பகுதி சேமிக்கப்பட்டது. டெலிவரி கட்டணம்: %(fee)s"
+
+#: apps/webapp/delivery_views.py
+msgid "Received %(cash)s cash from %(name)s. %(n)s order(s) billed."
+msgstr ""
+"%(name)s-இடமிருந்து %(cash)s பணம் பெறப்பட்டது. %(n)s ஆர்டர் பில் "
+"செய்யப்பட்டது."
+
+#: apps/webapp/delivery_views.py
+msgid "Enter the rider's name and phone number."
+msgstr "ரைடரின் பெயர் மற்றும் போன் எண்ணை உள்ளிடவும்."
+
+#: apps/webapp/delivery_views.py
+msgid "Rider %(name)s saved. Send them their page link on WhatsApp."
+msgstr ""
+"ரைடர் %(name)s சேமிக்கப்பட்டார். அவர்களுக்கு வாட்ஸ்அப்பில் பக்க இணைப்பை "
+"அனுப்பவும்."
+
+#: apps/webapp/delivery_views.py
+msgid "%(name)s still has orders on the way."
+msgstr "%(name)s-இடம் இன்னும் வழியில் ஆர்டர்கள் உள்ளன."
+
+#: apps/webapp/delivery_views.py
+msgid ""
+"New link made — the old link no longer works. Send %(name)s the new one."
+msgstr ""
+"புதிய இணைப்பு உருவாக்கப்பட்டது — பழைய இணைப்பு இனி வேலை செய்யாது. "
+"%(name)s-க்கு புதியதை அனுப்பவும்."
+
+#: apps/webapp/delivery_views.py
+msgid "Enter the area name."
+msgstr "பகுதியின் பெயரை உள்ளிடவும்."
+
+#: apps/webapp/delivery_views.py
+msgid "Delivery area %(name)s saved."
+msgstr "டெலிவரி பகுதி %(name)s சேமிக்கப்பட்டது."
 
 #: apps/webapp/education_views.py
 msgid "Batches"
@@ -13171,10 +13618,6 @@ msgid "Room"
 msgstr "அறை"
 
 #: apps/webapp/online_booking_views.py
-msgid "Vehicle"
-msgstr "வாகனம்"
-
-#: apps/webapp/online_booking_views.py
 msgid "Equipment"
 msgstr "உபகரணம்"
 
@@ -13361,10 +13804,6 @@ msgstr "இடைநிறுத்து — இப்போது ஆர்ட
 #: apps/webapp/online_order_views.py
 msgid "Home delivery"
 msgstr "வீட்டு டெலிவரி"
-
-#: apps/webapp/online_order_views.py
-msgid "Delivery charge"
-msgstr "டெலிவரி கட்டணம்"
 
 #: apps/webapp/online_order_views.py
 msgid "Minimum order for delivery"
@@ -14387,10 +14826,6 @@ msgstr "உங்கள் கடவுச்சொல் மாற்றப்�
 #: apps/webapp/shop_order_views.py
 msgid "Pickup from the shop"
 msgstr "கடையிலிருந்து பெறுதல்"
-
-#: apps/webapp/shop_order_views.py
-msgid "Free delivery over"
-msgstr "இதற்கு மேல் இலவச டெலிவரி"
 
 #: apps/webapp/shop_order_views.py
 msgid "Customers can use coupon codes"

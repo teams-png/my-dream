@@ -1,0 +1,21 @@
+{% load i18n %}{% if order.channel == "delivery" and order.status != "cancelled" %}
+<div class="dlp" style="margin:8px 12px 10px;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:var(--paper);display:grid;gap:6px;font-size:14px">
+  <div style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap"><b>🛵 {% translate "Delivery" %}</b><span style="font-weight:800">{{ order.get_delivery_status_display }}</span><a href="{% url 'webapp:restaurant_deliveries' %}" style="margin-inline-start:auto">{% translate "Delivery board" %} →</a></div>
+  <div style="overflow-wrap:anywhere">📍 {{ order.delivery_address|default:"—" }}{% if order.delivery_phone %} · <a href="tel:{{ order.delivery_phone }}">{{ order.delivery_phone }}</a>{% endif %}</div>
+  {% if order.status != "paid" and delivery_zones %}
+  <form method="post" action="{% url 'webapp:restaurant_delivery_action' %}" style="display:flex;gap:6px;margin:0">{% csrf_token %}
+    <input type="hidden" name="do" value="zone"><input type="hidden" name="order_id" value="{{ order.id }}"><input type="hidden" name="next" value="{{ request.path }}">
+    <select name="zone_id" style="flex:1;min-width:0" aria-label="{% translate 'Delivery area' %}"><option value="">{% translate "— delivery area —" %}</option>{% for z in delivery_zones %}<option value="{{ z.id }}"{% if order.zone_id == z.id %} selected{% endif %}>{{ z.name }} · {{ z.fee|floatformat:2 }}</option>{% endfor %}</select>
+    <button class="btn btn-secondary" style="min-height:36px">{% translate "Set" %}</button>
+  </form>
+  {% elif order.zone %}<div>{% translate "Area" %}: {{ order.zone.name }}</div>{% endif %}
+  {% if order.delivery_status != "delivered" and order.delivery_status %}
+  <form method="post" action="{% url 'webapp:restaurant_delivery_action' %}" style="display:flex;gap:6px;margin:0">{% csrf_token %}
+    <input type="hidden" name="do" value="assign"><input type="hidden" name="order_id" value="{{ order.id }}"><input type="hidden" name="next" value="{{ request.path }}">
+    <select name="rider_id" style="flex:1;min-width:0" aria-label="{% translate 'Rider' %}"><option value="">{% translate "— choose rider —" %}</option>{% for r in delivery_riders %}<option value="{{ r.id }}"{% if order.rider_id == r.id %} selected{% endif %}>{{ r.name }}</option>{% endfor %}</select>
+    <button class="btn btn-secondary" style="min-height:36px">{% translate "Assign" %}</button>
+  </form>
+  {% elif order.rider %}<div>{% translate "Rider" %}: <b>{{ order.rider.name }}</b> · {{ order.delivered_at|time:"H:i" }} · {{ order.get_collect_method_display }}</div>{% endif %}
+  {% if order.delivery_status and not delivery_riders %}<small>{% translate "No riders yet — add them on the delivery board." %}</small>{% endif %}
+</div>
+{% endif %}

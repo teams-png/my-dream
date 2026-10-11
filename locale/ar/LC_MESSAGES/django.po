@@ -242,6 +242,10 @@ msgid "Online orders"
 msgstr "الطلبات الإلكترونية"
 
 #: templates/base.html
+msgid "Deliveries"
+msgstr "التوصيلات"
+
+#: templates/base.html
 msgid "Kitchen / KOT"
 msgstr "المطبخ / تذاكر الطلبات"
 
@@ -8098,6 +8102,42 @@ msgstr "العميل الذي تذكّره لا يظهر مرة أخرى لمد�
 msgid "Sent"
 msgstr "أُرسل"
 
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Delivery board"
+msgstr "لوحة التوصيل"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Delivery area"
+msgstr "منطقة التوصيل"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "— delivery area —"
+msgstr "— منطقة التوصيل —"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Set"
+msgstr "تعيين"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Area"
+msgstr "المنطقة"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Rider"
+msgstr "السائق"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "— choose rider —"
+msgstr "— اختر السائق —"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Assign"
+msgstr "إسناد"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "No riders yet — add them on the delivery board."
+msgstr "لا يوجد سائقون بعد — أضفهم في لوحة التوصيل."
+
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Kerala starter menu is loaded"
 msgstr "تم تحميل قائمة كيرلا الجاهزة"
@@ -8382,6 +8422,223 @@ msgstr "لا يوجد اتصال بالإنترنت"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Open offline POS →"
 msgstr "افتح نقطة البيع دون اتصال ←"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "New delivery order"
+msgstr "طلب توصيل جديد"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery report"
+msgstr "تقرير التوصيل"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Cash with riders"
+msgstr "النقد مع السائقين"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid ""
+"Add your delivery riders below first. Each rider gets a private page on "
+"their phone to see their orders and mark them delivered."
+msgstr ""
+"أضف سائقي التوصيل أدناه أولاً. يحصل كل سائق على صفحة خاصة على هاتفه لرؤية "
+"طلباته وتأكيد التسليم."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Map"
+msgstr "الخريطة"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "With rider"
+msgstr "مع السائق"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Collect"
+msgstr "تحصيل"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Late"
+msgstr "متأخر"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "delivered"
+msgstr "تم التسليم"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Out for delivery"
+msgstr "خرج للتوصيل"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Tell customer"
+msgstr "إبلاغ العميل"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivered · cash"
+msgstr "تم التسليم · نقداً"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivered · card"
+msgstr "تم التسليم · بطاقة"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Why not delivered? (not answering, wrong address…)"
+msgstr "لماذا لم يتم التسليم؟ (لا يرد، عنوان خاطئ…)"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Not delivered"
+msgstr "لم يتم التسليم"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Riders"
+msgstr "السائقون"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "on the way now"
+msgstr "في الطريق الآن"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "cash with rider"
+msgstr "نقد مع السائق"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Stock location"
+msgstr "موقع المخزون"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid ""
+"Received the money from this rider? The delivered orders will be billed now."
+msgstr "هل استلمت المال من هذا السائق؟ ستتم فوترة الطلبات المسلّمة الآن."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Receive cash & bill"
+msgstr "استلام النقد والفوترة"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Send page link"
+msgstr "إرسال رابط الصفحة"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Rider page"
+msgstr "صفحة السائق"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Vehicle"
+msgstr "المركبة"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "ID / licence no."
+msgstr "رقم الهوية / الرخصة"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Turn off"
+msgstr "إيقاف"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Turn on"
+msgstr "تفعيل"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Make a new private link? The old link stops working."
+msgstr "إنشاء رابط خاص جديد؟ سيتوقف الرابط القديم عن العمل."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "New link"
+msgstr "رابط جديد"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add a rider"
+msgstr "إضافة سائق"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "e.g. Ajmal"
+msgstr "مثال: أجمل"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Phone (WhatsApp)"
+msgstr "الهاتف (واتساب)"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Bike · 123456"
+msgstr "دراجة · 123456"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add rider"
+msgstr "إضافة سائق"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery areas & charges"
+msgstr "مناطق التوصيل والرسوم"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Pick the area on a delivery order and its charge is added to the bill."
+msgstr "اختر المنطقة في طلب التوصيل وستضاف رسومها إلى الفاتورة."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Free over"
+msgstr "مجاني فوق"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Minutes"
+msgstr "الدقائق"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "e.g. Al Sadd"
+msgstr "مثال: السد"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery charge"
+msgstr "رسوم التوصيل"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Free delivery over"
+msgstr "توصيل مجاني فوق"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Usual minutes"
+msgstr "الدقائق المعتادة"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add area"
+msgstr "إضافة منطقة"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Cash collected"
+msgstr "النقد المحصّل"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Card at the door"
+msgstr "بطاقة عند الباب"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Delivery charges"
+msgstr "رسوم التوصيل"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "By rider"
+msgstr "حسب السائق"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Order value"
+msgstr "قيمة الطلب"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Avg. minutes on the road"
+msgstr "متوسط الدقائق في الطريق"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "No deliveries in these days."
+msgstr "لا توجد توصيلات في هذه الأيام."
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "By area"
+msgstr "حسب المنطقة"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Cash received from riders"
+msgstr "النقد المستلم من السائقين"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "When"
+msgstr "متى"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Kitchen board"
@@ -9232,10 +9489,6 @@ msgid "Service + tip"
 msgstr "الخدمة + الإكرامية"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Stock location"
-msgstr "موقع المخزون"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Payment method"
 msgstr "طريقة الدفع"
 
@@ -9395,6 +9648,46 @@ msgstr "الإجمالي"
 #: templates/webapp/restaurant/receipt_print.html
 msgid "Print Receipt"
 msgstr "طباعة الإيصال"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "My deliveries"
+msgstr "توصيلاتي"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "cash with you"
+msgstr "النقد معك"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "To deliver"
+msgstr "للتوصيل"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Paid already — collect nothing"
+msgstr "مدفوع مسبقاً — لا تحصّل شيئاً"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Picked up — on the way"
+msgstr "تم الاستلام — في الطريق"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Could not deliver?"
+msgstr "لم تتمكن من التسليم؟"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Why? (not answering, wrong address…)"
+msgstr "لماذا؟ (لا يرد، عنوان خاطئ…)"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Bring it back"
+msgstr "إعادته"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "No orders for you right now. This page refreshes by itself."
+msgstr "لا توجد طلبات لك الآن. هذه الصفحة تتحدث تلقائياً."
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Delivered today"
+msgstr "تم التسليم اليوم"
 
 #: templates/webapp/retail/reports.html
 msgid "Product"
@@ -9641,10 +9934,6 @@ msgid "Turn off two-step login"
 msgstr "إيقاف التحقق بخطوتين"
 
 #: templates/webapp/security.html
-msgid "Turn off"
-msgstr "إيقاف"
-
-#: templates/webapp/security.html
 msgid "Install"
 msgstr "تثبيت"
 
@@ -9671,10 +9960,6 @@ msgstr "لا يمكنك المسح؟ أدخل هذا المفتاح:"
 #: templates/webapp/security.html
 msgid "Type the 6-digit code shown in the app:"
 msgstr "اكتب الرمز المكوّن من 6 أرقام الظاهر في التطبيق:"
-
-#: templates/webapp/security.html
-msgid "Turn on"
-msgstr "تفعيل"
 
 #: templates/webapp/security.html
 msgid ""
@@ -9812,10 +10097,6 @@ msgstr "واتساب العميل"
 #: templates/webapp/shop_orders/inbox.html
 msgid "Share / pay link"
 msgstr "رابط المشاركة / الدفع"
-
-#: templates/webapp/shop_orders/inbox.html
-msgid "Out for delivery"
-msgstr "خرج للتوصيل"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Delivered — close order"
@@ -10362,10 +10643,6 @@ msgid "Return by"
 msgstr "الإرجاع بتاريخ"
 
 #: templates/webapp/sports_shop/rental_detail.html
-msgid "Late"
-msgstr "متأخر"
-
-#: templates/webapp/sports_shop/rental_detail.html
 msgid "Deposit"
 msgstr "التأمين"
 
@@ -10823,10 +11100,6 @@ msgstr "سجل المخزون"
 #: templates/webapp/stock/history.html
 msgid "Current stock"
 msgstr "المخزون الحالي"
-
-#: templates/webapp/stock/history.html
-msgid "When"
-msgstr "متى"
 
 #: templates/webapp/stock/history.html
 msgid "What"
@@ -11482,6 +11755,74 @@ msgstr "بدون خطة، يتم حذف الحساب وبياناته في %(dat
 msgid "Renew now: %(url)s"
 msgstr "جدّد الآن: %(url)s"
 
+#: apps/verticals/restaurant/delivery.py
+msgid "This is not an open delivery order."
+msgstr "هذا ليس طلب توصيل مفتوحاً."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "The bill is already paid."
+msgstr "الفاتورة مدفوعة بالفعل."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is already delivered."
+msgstr "تم تسليم هذا الطلب بالفعل."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Choose an active rider."
+msgstr "اختر سائقاً نشطاً."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Choose a rider first."
+msgstr "اختر سائقاً أولاً."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is not waiting to go out."
+msgstr "هذا الطلب لا ينتظر الخروج."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is not on the way."
+msgstr "هذا الطلب ليس في الطريق."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "How did the customer pay?"
+msgstr "كيف دفع العميل؟"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Nothing to settle for %(name)s."
+msgstr "لا شيء للتسوية مع %(name)s."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Add a stock location first."
+msgstr "أضف موقع مخزون أولاً."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "%(order)s has no items."
+msgstr "الطلب %(order)s لا يحتوي على أصناف."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Hello,"
+msgstr "مرحباً،"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Your order %(order)s from %(shop)s is on the way."
+msgstr "طلبك %(order)s من %(shop)s في الطريق."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Rider: %(name)s · %(phone)s"
+msgstr "السائق: %(name)s · %(phone)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Amount to pay: %(amount)s"
+msgstr "المبلغ المطلوب: %(amount)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Your delivery page (keep this link private): %(url)s"
+msgstr "صفحة التوصيل الخاصة بك (احتفظ بهذا الرابط سراً): %(url)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "No area"
+msgstr "بدون منطقة"
+
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "جالس"
@@ -11495,12 +11836,44 @@ msgid "Served"
 msgstr "تم التقديم"
 
 #: apps/verticals/restaurant/models.py
+msgid "—"
+msgstr "—"
+
+#: apps/verticals/restaurant/models.py
+msgid "Waiting for a rider"
+msgstr "بانتظار سائق"
+
+#: apps/verticals/restaurant/models.py
+msgid "Rider assigned"
+msgstr "تم إسناد سائق"
+
+#: apps/verticals/restaurant/models.py
+msgid "Paid already"
+msgstr "مدفوع مسبقاً"
+
+#: apps/verticals/restaurant/models.py
 msgid "Queued"
 msgstr "في الانتظار"
 
 #: apps/verticals/restaurant/models.py
 msgid "Accepted"
 msgstr "مقبول"
+
+#: apps/verticals/restaurant/models.py
+msgid "e.g. Bike · 123456"
+msgstr "مثال: دراجة · 123456"
+
+#: apps/verticals/restaurant/models.py
+msgid "QID / licence number"
+msgstr "رقم الهوية القطرية / الرخصة"
+
+#: apps/verticals/restaurant/models.py
+msgid "0 = always charge"
+msgstr "0 = تحصيل الرسوم دائماً"
+
+#: apps/verticals/restaurant/models.py
+msgid "Usual delivery time"
+msgstr "مدة التوصيل المعتادة"
 
 #: apps/verticals/restaurant/online_orders.py
 msgid ""
@@ -12173,6 +12546,65 @@ msgstr "%(item)s: %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "تم تحديد %(count)s أسعار."
+
+#: apps/webapp/delivery_views.py
+msgid "Enter a valid amount."
+msgstr "أدخل مبلغاً صحيحاً."
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s → %(rider)s"
+msgstr "%(order)s → %(rider)s"
+
+#: apps/webapp/delivery_views.py
+msgid "no rider"
+msgstr "بدون سائق"
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s is on the way. Send the customer a WhatsApp from the card."
+msgstr "الطلب %(order)s في الطريق. أرسل للعميل رسالة واتساب من البطاقة."
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s delivered."
+msgstr "تم تسليم %(order)s."
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s marked not delivered. Assign it again when ready."
+msgstr "تم تحديد %(order)s كغير مسلّم. أسنده مرة أخرى عند الجاهزية."
+
+#: apps/webapp/delivery_views.py
+msgid "Delivery area saved. Delivery charge: %(fee)s"
+msgstr "تم حفظ منطقة التوصيل. رسوم التوصيل: %(fee)s"
+
+#: apps/webapp/delivery_views.py
+msgid "Received %(cash)s cash from %(name)s. %(n)s order(s) billed."
+msgstr "تم استلام %(cash)s نقداً من %(name)s. تمت فوترة %(n)s طلب."
+
+#: apps/webapp/delivery_views.py
+msgid "Enter the rider's name and phone number."
+msgstr "أدخل اسم السائق ورقم هاتفه."
+
+#: apps/webapp/delivery_views.py
+msgid "Rider %(name)s saved. Send them their page link on WhatsApp."
+msgstr "تم حفظ السائق %(name)s. أرسل له رابط صفحته عبر واتساب."
+
+#: apps/webapp/delivery_views.py
+msgid "%(name)s still has orders on the way."
+msgstr "لدى %(name)s طلبات لا تزال في الطريق."
+
+#: apps/webapp/delivery_views.py
+msgid ""
+"New link made — the old link no longer works. Send %(name)s the new one."
+msgstr ""
+"تم إنشاء رابط جديد — الرابط القديم لم يعد يعمل. أرسل الرابط الجديد إلى "
+"%(name)s."
+
+#: apps/webapp/delivery_views.py
+msgid "Enter the area name."
+msgstr "أدخل اسم المنطقة."
+
+#: apps/webapp/delivery_views.py
+msgid "Delivery area %(name)s saved."
+msgstr "تم حفظ منطقة التوصيل %(name)s."
 
 #: apps/webapp/education_views.py
 msgid "Batches"
@@ -12897,10 +13329,6 @@ msgid "Room"
 msgstr "الغرفة"
 
 #: apps/webapp/online_booking_views.py
-msgid "Vehicle"
-msgstr "المركبة"
-
-#: apps/webapp/online_booking_views.py
 msgid "Equipment"
 msgstr "المعدات"
 
@@ -13083,10 +13511,6 @@ msgstr "إيقاف — لا نستقبل طلبات الآن"
 #: apps/webapp/online_order_views.py
 msgid "Home delivery"
 msgstr "توصيل للمنزل"
-
-#: apps/webapp/online_order_views.py
-msgid "Delivery charge"
-msgstr "رسوم التوصيل"
 
 #: apps/webapp/online_order_views.py
 msgid "Minimum order for delivery"
@@ -14073,10 +14497,6 @@ msgstr "تم تغيير كلمة المرور."
 #: apps/webapp/shop_order_views.py
 msgid "Pickup from the shop"
 msgstr "الاستلام من المتجر"
-
-#: apps/webapp/shop_order_views.py
-msgid "Free delivery over"
-msgstr "توصيل مجاني فوق"
 
 #: apps/webapp/shop_order_views.py
 msgid "Customers can use coupon codes"

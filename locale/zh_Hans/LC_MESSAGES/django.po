@@ -242,6 +242,10 @@ msgid "Online orders"
 msgstr "在线订单"
 
 #: templates/base.html
+msgid "Deliveries"
+msgstr "外卖配送"
+
+#: templates/base.html
 msgid "Kitchen / KOT"
 msgstr "厨房 / KOT"
 
@@ -7959,6 +7963,42 @@ msgstr "已提醒的客户 14 天内不会再次显示。"
 msgid "Sent"
 msgstr "已发送"
 
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Delivery board"
+msgstr "配送看板"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Delivery area"
+msgstr "配送区域"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "— delivery area —"
+msgstr "— 配送区域 —"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Set"
+msgstr "设置"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Area"
+msgstr "区域"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Rider"
+msgstr "骑手"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "— choose rider —"
+msgstr "— 选择骑手 —"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Assign"
+msgstr "分配"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "No riders yet — add them on the delivery board."
+msgstr "还没有骑手 — 请在配送看板中添加。"
+
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Kerala starter menu is loaded"
 msgstr "已加载喀拉拉入门菜单"
@@ -8237,6 +8277,221 @@ msgstr "没有网络连接"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Open offline POS →"
 msgstr "打开离线收银 →"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "New delivery order"
+msgstr "新建外卖订单"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery report"
+msgstr "配送报表"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Cash with riders"
+msgstr "骑手手中的现金"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid ""
+"Add your delivery riders below first. Each rider gets a private page on "
+"their phone to see their orders and mark them delivered."
+msgstr "请先在下方添加配送骑手。每位骑手都会在手机上获得一个私人页面，用于查看订单并标记已送达。"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Map"
+msgstr "地图"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "With rider"
+msgstr "在骑手手中"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Collect"
+msgstr "应收"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Late"
+msgstr "已逾期"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "delivered"
+msgstr "已送达"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Out for delivery"
+msgstr "配送中"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Tell customer"
+msgstr "通知顾客"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivered · cash"
+msgstr "已送达 · 现金"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivered · card"
+msgstr "已送达 · 刷卡"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Why not delivered? (not answering, wrong address…)"
+msgstr "为什么没送达？（无人接听、地址错误…）"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Not delivered"
+msgstr "未送达"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Riders"
+msgstr "骑手"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "on the way now"
+msgstr "正在配送中"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "cash with rider"
+msgstr "骑手手中的现金"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Stock location"
+msgstr "库存位置"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid ""
+"Received the money from this rider? The delivered orders will be billed now."
+msgstr "已收到该骑手的钱款了吗？已送达的订单将立即开票。"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Receive cash & bill"
+msgstr "收取现金并开票"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Send page link"
+msgstr "发送页面链接"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Rider page"
+msgstr "骑手页面"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Vehicle"
+msgstr "车辆"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "ID / licence no."
+msgstr "证件 / 驾照号"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Turn off"
+msgstr "关闭"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Turn on"
+msgstr "开启"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Make a new private link? The old link stops working."
+msgstr "创建新的私人链接？旧链接将失效。"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "New link"
+msgstr "新链接"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add a rider"
+msgstr "添加骑手"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "e.g. Ajmal"
+msgstr "例如 Ajmal"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Phone (WhatsApp)"
+msgstr "电话（WhatsApp）"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Bike · 123456"
+msgstr "摩托车 · 123456"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add rider"
+msgstr "添加骑手"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery areas & charges"
+msgstr "配送区域和费用"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Pick the area on a delivery order and its charge is added to the bill."
+msgstr "在外卖订单上选择区域，其配送费会加到账单中。"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Free over"
+msgstr "满额免运费"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Minutes"
+msgstr "分钟"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "e.g. Al Sadd"
+msgstr "例如 Al Sadd"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery charge"
+msgstr "配送费"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Free delivery over"
+msgstr "满额免运费"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Usual minutes"
+msgstr "通常分钟数"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add area"
+msgstr "添加区域"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Cash collected"
+msgstr "已收现金"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Card at the door"
+msgstr "上门刷卡"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Delivery charges"
+msgstr "配送费"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "By rider"
+msgstr "按骑手"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Order value"
+msgstr "订单金额"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Avg. minutes on the road"
+msgstr "平均在途分钟数"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "No deliveries in these days."
+msgstr "这些天没有配送。"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "By area"
+msgstr "按区域"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Cash received from riders"
+msgstr "从骑手处收到的现金"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "When"
+msgstr "时间"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Kitchen board"
@@ -9079,10 +9334,6 @@ msgid "Service + tip"
 msgstr "服务费 + 小费"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Stock location"
-msgstr "库存位置"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Payment method"
 msgstr "付款方式"
 
@@ -9242,6 +9493,46 @@ msgstr "合计"
 #: templates/webapp/restaurant/receipt_print.html
 msgid "Print Receipt"
 msgstr "打印小票"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "My deliveries"
+msgstr "我的配送"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "cash with you"
+msgstr "你手中的现金"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "To deliver"
+msgstr "待配送"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Paid already — collect nothing"
+msgstr "已付款 — 无需收款"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Picked up — on the way"
+msgstr "已取餐 — 配送中"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Could not deliver?"
+msgstr "无法送达？"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Why? (not answering, wrong address…)"
+msgstr "原因？（无人接听、地址错误…）"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Bring it back"
+msgstr "带回"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "No orders for you right now. This page refreshes by itself."
+msgstr "你现在没有订单。此页面会自动刷新。"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Delivered today"
+msgstr "今日已送达"
 
 #: templates/webapp/retail/reports.html
 msgid "Product"
@@ -9488,10 +9779,6 @@ msgid "Turn off two-step login"
 msgstr "关闭两步登录"
 
 #: templates/webapp/security.html
-msgid "Turn off"
-msgstr "关闭"
-
-#: templates/webapp/security.html
 msgid "Install"
 msgstr "请在手机上安装"
 
@@ -9518,10 +9805,6 @@ msgstr "无法扫描？请输入此密钥："
 #: templates/webapp/security.html
 msgid "Type the 6-digit code shown in the app:"
 msgstr "输入应用中显示的 6 位验证码："
-
-#: templates/webapp/security.html
-msgid "Turn on"
-msgstr "开启"
 
 #: templates/webapp/security.html
 msgid ""
@@ -9652,10 +9935,6 @@ msgstr "WhatsApp 联系顾客"
 #: templates/webapp/shop_orders/inbox.html
 msgid "Share / pay link"
 msgstr "分享 / 付款链接"
-
-#: templates/webapp/shop_orders/inbox.html
-msgid "Out for delivery"
-msgstr "配送中"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Delivered — close order"
@@ -10189,10 +10468,6 @@ msgid "Return by"
 msgstr "归还日期"
 
 #: templates/webapp/sports_shop/rental_detail.html
-msgid "Late"
-msgstr "已逾期"
-
-#: templates/webapp/sports_shop/rental_detail.html
 msgid "Deposit"
 msgstr "押金"
 
@@ -10641,10 +10916,6 @@ msgstr "库存历史"
 #: templates/webapp/stock/history.html
 msgid "Current stock"
 msgstr "当前库存"
-
-#: templates/webapp/stock/history.html
-msgid "When"
-msgstr "时间"
 
 #: templates/webapp/stock/history.html
 msgid "What"
@@ -11269,6 +11540,74 @@ msgstr "没有方案时，账户及其数据将于 %(date)s 被删除。"
 msgid "Renew now: %(url)s"
 msgstr "立即续费：%(url)s"
 
+#: apps/verticals/restaurant/delivery.py
+msgid "This is not an open delivery order."
+msgstr "这不是未完成的外卖订单。"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "The bill is already paid."
+msgstr "账单已支付。"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is already delivered."
+msgstr "该订单已送达。"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Choose an active rider."
+msgstr "请选择一位在岗骑手。"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Choose a rider first."
+msgstr "请先选择骑手。"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is not waiting to go out."
+msgstr "该订单不在等待出发。"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is not on the way."
+msgstr "该订单不在配送途中。"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "How did the customer pay?"
+msgstr "顾客是如何付款的？"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Nothing to settle for %(name)s."
+msgstr "%(name)s 没有需要结算的内容。"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Add a stock location first."
+msgstr "请先添加一个库存地点。"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "%(order)s has no items."
+msgstr "%(order)s 没有任何商品。"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Hello,"
+msgstr "您好，"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Your order %(order)s from %(shop)s is on the way."
+msgstr "您在 %(shop)s 的订单 %(order)s 正在配送中。"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Rider: %(name)s · %(phone)s"
+msgstr "骑手：%(name)s · %(phone)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Amount to pay: %(amount)s"
+msgstr "应付金额：%(amount)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Your delivery page (keep this link private): %(url)s"
+msgstr "你的配送页面（请勿分享此链接）：%(url)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "No area"
+msgstr "无区域"
+
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "已入座"
@@ -11282,12 +11621,44 @@ msgid "Served"
 msgstr "已上菜"
 
 #: apps/verticals/restaurant/models.py
+msgid "—"
+msgstr "—"
+
+#: apps/verticals/restaurant/models.py
+msgid "Waiting for a rider"
+msgstr "等待骑手"
+
+#: apps/verticals/restaurant/models.py
+msgid "Rider assigned"
+msgstr "已分配骑手"
+
+#: apps/verticals/restaurant/models.py
+msgid "Paid already"
+msgstr "已付款"
+
+#: apps/verticals/restaurant/models.py
 msgid "Queued"
 msgstr "排队中"
 
 #: apps/verticals/restaurant/models.py
 msgid "Accepted"
 msgstr "已接受"
+
+#: apps/verticals/restaurant/models.py
+msgid "e.g. Bike · 123456"
+msgstr "例如 摩托车 · 123456"
+
+#: apps/verticals/restaurant/models.py
+msgid "QID / licence number"
+msgstr "QID / 驾照号码"
+
+#: apps/verticals/restaurant/models.py
+msgid "0 = always charge"
+msgstr "0 = 始终收费"
+
+#: apps/verticals/restaurant/models.py
+msgid "Usual delivery time"
+msgstr "通常配送时间"
 
 #: apps/verticals/restaurant/online_orders.py
 msgid ""
@@ -11958,6 +12329,63 @@ msgstr "%(item)s：%(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "已设置 %(count)s 个价格。"
+
+#: apps/webapp/delivery_views.py
+msgid "Enter a valid amount."
+msgstr "请输入有效金额。"
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s → %(rider)s"
+msgstr "%(order)s → %(rider)s"
+
+#: apps/webapp/delivery_views.py
+msgid "no rider"
+msgstr "无骑手"
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s is on the way. Send the customer a WhatsApp from the card."
+msgstr "%(order)s 正在配送中。请从卡片给顾客发送 WhatsApp 消息。"
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s delivered."
+msgstr "%(order)s 已送达。"
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s marked not delivered. Assign it again when ready."
+msgstr "%(order)s 已标记为未送达。准备好后请重新分配。"
+
+#: apps/webapp/delivery_views.py
+msgid "Delivery area saved. Delivery charge: %(fee)s"
+msgstr "配送区域已保存。配送费：%(fee)s"
+
+#: apps/webapp/delivery_views.py
+msgid "Received %(cash)s cash from %(name)s. %(n)s order(s) billed."
+msgstr "已从 %(name)s 收到现金 %(cash)s。%(n)s 个订单已开票。"
+
+#: apps/webapp/delivery_views.py
+msgid "Enter the rider's name and phone number."
+msgstr "请输入骑手的姓名和电话号码。"
+
+#: apps/webapp/delivery_views.py
+msgid "Rider %(name)s saved. Send them their page link on WhatsApp."
+msgstr "骑手 %(name)s 已保存。请通过 WhatsApp 发送其页面链接。"
+
+#: apps/webapp/delivery_views.py
+msgid "%(name)s still has orders on the way."
+msgstr "%(name)s 仍有订单在配送中。"
+
+#: apps/webapp/delivery_views.py
+msgid ""
+"New link made — the old link no longer works. Send %(name)s the new one."
+msgstr "已创建新链接 — 旧链接已失效。请将新链接发送给 %(name)s。"
+
+#: apps/webapp/delivery_views.py
+msgid "Enter the area name."
+msgstr "请输入区域名称。"
+
+#: apps/webapp/delivery_views.py
+msgid "Delivery area %(name)s saved."
+msgstr "配送区域 %(name)s 已保存。"
 
 #: apps/webapp/education_views.py
 msgid "Batches"
@@ -12681,10 +13109,6 @@ msgid "Room"
 msgstr "房间"
 
 #: apps/webapp/online_booking_views.py
-msgid "Vehicle"
-msgstr "车辆"
-
-#: apps/webapp/online_booking_views.py
 msgid "Equipment"
 msgstr "设备"
 
@@ -12867,10 +13291,6 @@ msgstr "暂停 — 现在不接单"
 #: apps/webapp/online_order_views.py
 msgid "Home delivery"
 msgstr "送餐上门"
-
-#: apps/webapp/online_order_views.py
-msgid "Delivery charge"
-msgstr "配送费"
 
 #: apps/webapp/online_order_views.py
 msgid "Minimum order for delivery"
@@ -13851,10 +14271,6 @@ msgstr "您的密码已修改。"
 #: apps/webapp/shop_order_views.py
 msgid "Pickup from the shop"
 msgstr "到店自取"
-
-#: apps/webapp/shop_order_views.py
-msgid "Free delivery over"
-msgstr "满额免运费"
 
 #: apps/webapp/shop_order_views.py
 msgid "Customers can use coupon codes"

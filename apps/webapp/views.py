@@ -51,7 +51,7 @@ from apps.verticals.medical_shop.models import MedicineBatch, DispenseRecord
 from apps.verticals.medical_shop import services as medical_services
 from apps.verticals.protein_shop.models import ProteinBatch, SaleRecord
 from apps.verticals.protein_shop import services as protein_services
-from apps.verticals.restaurant.models import OfflineOrderSync, DiningArea, DiningTable, FoodWaste, KitchenStation, KitchenTicket, MenuModifier, MenuModifierGroup, MenuModifierOption, RestaurantMenuItem, RestaurantProfile, RestaurantOrderLine, RecipeIngredient, RestaurantCombo, RestaurantComboItem, RestaurantOrder, RestaurantShift, TableReservation, DeliveryIntegration, DeliveryOrderImport
+from apps.verticals.restaurant.models import OfflineOrderSync, DiningArea, DiningTable, FoodWaste, KitchenStation, KitchenTicket, MenuModifier, MenuModifierGroup, MenuModifierOption, RestaurantMenuItem, RestaurantProfile, RestaurantOrderLine, RecipeIngredient, RestaurantCombo, RestaurantComboItem, RestaurantOrder, RestaurantShift, TableReservation, DeliveryIntegration, DeliveryOrderImport, DeliveryRider, DeliveryZone
 from apps.verticals.restaurant import services as restaurant_services
 from apps.verticals.construction.models import Project, Contractor, ProjectExpense, ProjectMilestone, ProjectTask, ProjectTimesheet
 from apps.verticals.construction import services as construction_services
@@ -3388,6 +3388,9 @@ def restaurant_order_add(request):
             delivery_address=d.get("delivery_address", ""), delivery_phone=d.get("delivery_phone", ""),
             guests=d.get("guests") or 0,
         )
+        if d.get("channel") == "delivery" and d.get("zone"):
+            from apps.verticals.restaurant import delivery as delivery_svc
+            delivery_svc.set_zone(order, d["zone"])
         return redirect("webapp:restaurant_order_detail", order_id=order.id)
     return render(request, "webapp/restaurant/new_order.html", {
         "form": form,
@@ -3504,6 +3507,8 @@ def restaurant_order_detail(request, order_id):
         "merge_candidates": merge_candidates, "menu_items": menu_items,
         "menu_categories": categories,
         "active_modifiers": MenuModifier.objects.for_company(company).filter(is_active=True),
+        "delivery_riders": DeliveryRider.objects.for_company(company).filter(is_active=True) if order.channel == "delivery" else [],
+        "delivery_zones": DeliveryZone.objects.for_company(company).filter(is_active=True) if order.channel == "delivery" else [],
     })
 
 

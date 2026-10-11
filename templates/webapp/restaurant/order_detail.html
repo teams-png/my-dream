@@ -80,6 +80,7 @@
         <svg class="mb-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 15l6-6 6 6"/></svg>
       </button>
       <div class="cart-title"><h2>{% translate "Current order" %}</h2><span class="cart-count">{{ line_count }} {% if line_count == 1 %}{% translate "item" %}{% else %}{% translate "items" %}{% endif %}</span></div>
+      {% include "webapp/restaurant/_delivery_panel.html" %}
       {% if line_count %}
       <div class="cart-lines">
         {% for line in order.lines.all %}

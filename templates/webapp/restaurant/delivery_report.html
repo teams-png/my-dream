@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Delivery report" %}{% endblock %}
+{% block heading %}📊 {% translate "Delivery report" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.dr-f{display:flex;flex-wrap:wrap;gap:8px;align-items:end;margin-bottom:14px}.dr-f label{display:grid;gap:4px;font-weight:700;font-size:13.5px}
+.dr-k{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.dr-k div{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:10px 14px}.dr-k b{display:block;font-size:20px}.dr-k small{color:var(--ink-soft)}
+.dr-t{width:100%;border-collapse:collapse;background:var(--panel)}.dr-t th,.dr-t td{padding:9px 8px;border-top:1px solid var(--line);text-align:start;white-space:nowrap}
+.dr-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;margin-bottom:18px}
+</style>
+<div class="ix">
+  <form class="dr-f" method="get">
+    <label>{% translate "From" %}<input type="date" name="start" value="{{ start|date:'Y-m-d' }}"></label>
+    <label>{% translate "To" %}<input type="date" name="end" value="{{ end|date:'Y-m-d' }}"></label>
+    <button class="btn">{% translate "Show" %}</button>
+    <a class="btn btn-secondary" href="{% url 'webapp:restaurant_deliveries' %}">← {% translate "Deliveries" %}</a>
+  </form>
+  <div class="dr-k">
+    <div><b>{{ totals.delivered }}</b><small>{% translate "Delivered" %}</small></div>
+    <div><b>{{ totals.failed }}</b><small>{% translate "Not delivered" %}</small></div>
+    <div><b>{{ currency }} {{ totals.cash|floatformat:2 }}</b><small>{% translate "Cash collected" %}</small></div>
+    <div><b>{{ currency }} {{ totals.card|floatformat:2 }}</b><small>{% translate "Card at the door" %}</small></div>
+    <div><b>{{ currency }} {{ totals.fees|floatformat:2 }}</b><small>{% translate "Delivery charges" %}</small></div>
+  </div>
+  <h3>🛵 {% translate "By rider" %}</h3>
+  <div class="dr-wrap"><table class="dr-t">
+    <tr><th>{% translate "Rider" %}</th><th>{% translate "Delivered" %}</th><th>{% translate "Not delivered" %}</th><th>{% translate "Order value" %}</th><th>{% translate "Cash" %}</th><th>{% translate "Card" %}</th><th>{% translate "Delivery charges" %}</th><th>{% translate "Avg. minutes on the road" %}</th></tr>
+    {% for r in rows %}<tr><td><b>{{ r.rider.name }}</b></td><td>{{ r.delivered }}</td><td>{{ r.failed }}</td><td>{{ currency }} {{ r.value|floatformat:2 }}</td><td>{{ currency }} {{ r.cash|floatformat:2 }}</td><td>{{ currency }} {{ r.card|floatformat:2 }}</td><td>{{ currency }} {{ r.fees|floatformat:2 }}</td><td>{{ r.avg_minutes|default:"—" }}</td></tr>
+    {% empty %}<tr><td colspan="8">{% translate "No deliveries in these days." %}</td></tr>{% endfor %}
+  </table></div>
+  {% if zones %}
+  <h3>📍 {% translate "By area" %}</h3>
+  <div class="dr-wrap"><table class="dr-t">
+    <tr><th>{% translate "Area" %}</th><th>{% translate "Orders" %}</th><th>{% translate "Order value" %}</th></tr>
+    {% for name, z in zones %}<tr><td>{{ name }}</td><td>{{ z.orders }}</td><td>{{ currency }} {{ z.value|floatformat:2 }}</td></tr>{% endfor %}
+  </table></div>
+  {% endif %}
+  <h3>💵 {% translate "Cash received from riders" %}</h3>
+  <div class="dr-wrap"><table class="dr-t">
+    <tr><th>{% translate "When" %}</th><th>{% translate "Rider" %}</th><th>{% translate "Orders" %}</th><th>{% translate "Cash" %}</th><th>{% translate "Card" %}</th><th>{% translate "Received by" %}</th></tr>
+    {% for h in handovers %}<tr><td>{{ h.created_at|date:"j M H:i" }}</td><td>{{ h.rider.name }}</td><td>{{ h.orders_count }}</td><td>{{ currency }} {{ h.cash|floatformat:2 }}</td><td>{{ currency }} {{ h.card|floatformat:2 }}</td><td>{{ h.received_by.get_full_name|default:h.received_by.email|default:"—" }}</td></tr>
+    {% empty %}<tr><td colspan="6">—</td></tr>{% endfor %}
+  </table></div>
+</div>
+{% endblock %}

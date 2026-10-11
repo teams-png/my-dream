@@ -242,6 +242,10 @@ msgid "Online orders"
 msgstr "ऑनलाइन ऑर्डर"
 
 #: templates/base.html
+msgid "Deliveries"
+msgstr "डिलीवरी"
+
+#: templates/base.html
 msgid "Kitchen / KOT"
 msgstr "किचन / KOT"
 
@@ -8136,6 +8140,42 @@ msgstr "जिस ग्राहक को याद दिलाया गय�
 msgid "Sent"
 msgstr "भेजा गया"
 
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Delivery board"
+msgstr "डिलीवरी बोर्ड"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Delivery area"
+msgstr "डिलीवरी एरिया"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "— delivery area —"
+msgstr "— डिलीवरी एरिया —"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Set"
+msgstr "सेट करें"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Area"
+msgstr "एरिया"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Rider"
+msgstr "राइडर"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "— choose rider —"
+msgstr "— राइडर चुनें —"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Assign"
+msgstr "सौंपें"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "No riders yet — add them on the delivery board."
+msgstr "अभी कोई राइडर नहीं — डिलीवरी बोर्ड पर जोड़ें।"
+
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Kerala starter menu is loaded"
 msgstr "केरल स्टार्टर मेन्यू लोड है"
@@ -8421,6 +8461,223 @@ msgstr "इंटरनेट कनेक्शन नहीं"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Open offline POS →"
 msgstr "ऑफ़लाइन POS खोलें →"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "New delivery order"
+msgstr "नया डिलीवरी ऑर्डर"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery report"
+msgstr "डिलीवरी रिपोर्ट"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Cash with riders"
+msgstr "राइडरों के पास कैश"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid ""
+"Add your delivery riders below first. Each rider gets a private page on "
+"their phone to see their orders and mark them delivered."
+msgstr ""
+"पहले नीचे अपने डिलीवरी राइडर जोड़ें। हर राइडर को अपने फ़ोन पर एक निजी पेज "
+"मिलता है जहाँ वह अपने ऑर्डर देख सकता है और डिलीवर्ड मार्क कर सकता है।"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Map"
+msgstr "मैप"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "With rider"
+msgstr "राइडर के पास"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Collect"
+msgstr "वसूलें"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Late"
+msgstr "देर से"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "delivered"
+msgstr "डिलीवर हुआ"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Out for delivery"
+msgstr "डिलीवरी के लिए निकला"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Tell customer"
+msgstr "ग्राहक को बताएँ"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivered · cash"
+msgstr "डिलीवर हुआ · कैश"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivered · card"
+msgstr "डिलीवर हुआ · कार्ड"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Why not delivered? (not answering, wrong address…)"
+msgstr "डिलीवर क्यों नहीं हुआ? (फ़ोन नहीं उठा रहे, गलत पता…)"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Not delivered"
+msgstr "डिलीवर नहीं हुआ"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Riders"
+msgstr "राइडर"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "on the way now"
+msgstr "अभी रास्ते में"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "cash with rider"
+msgstr "राइडर के पास कैश"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Stock location"
+msgstr "स्टॉक स्थान"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid ""
+"Received the money from this rider? The delivered orders will be billed now."
+msgstr "क्या इस राइडर से पैसे मिल गए? डिलीवर हुए ऑर्डरों का बिल अभी बनेगा।"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Receive cash & bill"
+msgstr "कैश लें और बिल बनाएँ"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Send page link"
+msgstr "पेज लिंक भेजें"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Rider page"
+msgstr "राइडर पेज"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Vehicle"
+msgstr "वाहन"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "ID / licence no."
+msgstr "आईडी / लाइसेंस नंबर"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Turn off"
+msgstr "बंद करें"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Turn on"
+msgstr "चालू करें"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Make a new private link? The old link stops working."
+msgstr "नया निजी लिंक बनाएँ? पुराना लिंक काम करना बंद कर देगा।"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "New link"
+msgstr "नया लिंक"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add a rider"
+msgstr "राइडर जोड़ें"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "e.g. Ajmal"
+msgstr "जैसे अजमल"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Phone (WhatsApp)"
+msgstr "फ़ोन (व्हाट्सऐप)"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Bike · 123456"
+msgstr "बाइक · 123456"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add rider"
+msgstr "राइडर जोड़ें"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery areas & charges"
+msgstr "डिलीवरी एरिया और चार्ज"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Pick the area on a delivery order and its charge is added to the bill."
+msgstr "डिलीवरी ऑर्डर पर एरिया चुनें और उसका चार्ज बिल में जुड़ जाएगा।"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Free over"
+msgstr "इससे ऊपर मुफ़्त"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Minutes"
+msgstr "मिनट"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "e.g. Al Sadd"
+msgstr "जैसे अल सद्द"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery charge"
+msgstr "डिलीवरी शुल्क"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Free delivery over"
+msgstr "इससे ऊपर मुफ़्त डिलीवरी"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Usual minutes"
+msgstr "सामान्य मिनट"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add area"
+msgstr "एरिया जोड़ें"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Cash collected"
+msgstr "वसूला गया कैश"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Card at the door"
+msgstr "दरवाज़े पर कार्ड"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Delivery charges"
+msgstr "डिलीवरी चार्ज"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "By rider"
+msgstr "राइडर के अनुसार"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Order value"
+msgstr "ऑर्डर मूल्य"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Avg. minutes on the road"
+msgstr "रास्ते में औसत मिनट"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "No deliveries in these days."
+msgstr "इन दिनों में कोई डिलीवरी नहीं।"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "By area"
+msgstr "एरिया के अनुसार"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Cash received from riders"
+msgstr "राइडरों से मिला कैश"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "When"
+msgstr "कब"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Kitchen board"
@@ -9273,10 +9530,6 @@ msgid "Service + tip"
 msgstr "सर्विस + टिप"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Stock location"
-msgstr "स्टॉक स्थान"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Payment method"
 msgstr "भुगतान का तरीका"
 
@@ -9436,6 +9689,46 @@ msgstr "कुल"
 #: templates/webapp/restaurant/receipt_print.html
 msgid "Print Receipt"
 msgstr "रसीद प्रिंट करें"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "My deliveries"
+msgstr "मेरी डिलीवरी"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "cash with you"
+msgstr "आपके पास कैश"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "To deliver"
+msgstr "डिलीवर करना है"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Paid already — collect nothing"
+msgstr "पहले ही भुगतान हो चुका — कुछ न लें"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Picked up — on the way"
+msgstr "उठा लिया — रास्ते में"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Could not deliver?"
+msgstr "डिलीवर नहीं कर पाए?"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Why? (not answering, wrong address…)"
+msgstr "क्यों? (फ़ोन नहीं उठा रहे, गलत पता…)"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Bring it back"
+msgstr "वापस लाएँ"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "No orders for you right now. This page refreshes by itself."
+msgstr "अभी आपके लिए कोई ऑर्डर नहीं। यह पेज अपने आप रिफ़्रेश होता है।"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Delivered today"
+msgstr "आज डिलीवर हुए"
 
 #: templates/webapp/retail/reports.html
 msgid "Product"
@@ -9682,10 +9975,6 @@ msgid "Turn off two-step login"
 msgstr "दो-चरणीय लॉगिन बंद करें"
 
 #: templates/webapp/security.html
-msgid "Turn off"
-msgstr "बंद करें"
-
-#: templates/webapp/security.html
 msgid "Install"
 msgstr "इंस्टॉल करें"
 
@@ -9712,10 +10001,6 @@ msgstr "स्कैन नहीं हो रहा? यह कुंजी �
 #: templates/webapp/security.html
 msgid "Type the 6-digit code shown in the app:"
 msgstr "ऐप में दिखा 6 अंकों का कोड लिखें:"
-
-#: templates/webapp/security.html
-msgid "Turn on"
-msgstr "चालू करें"
 
 #: templates/webapp/security.html
 msgid ""
@@ -9857,10 +10142,6 @@ msgstr "ग्राहक को WhatsApp"
 #: templates/webapp/shop_orders/inbox.html
 msgid "Share / pay link"
 msgstr "शेयर / पेमेंट लिंक"
-
-#: templates/webapp/shop_orders/inbox.html
-msgid "Out for delivery"
-msgstr "डिलीवरी के लिए निकला"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Delivered — close order"
@@ -10410,10 +10691,6 @@ msgid "Return by"
 msgstr "लौटाने की तारीख"
 
 #: templates/webapp/sports_shop/rental_detail.html
-msgid "Late"
-msgstr "देर से"
-
-#: templates/webapp/sports_shop/rental_detail.html
 msgid "Deposit"
 msgstr "डिपॉज़िट"
 
@@ -10877,10 +11154,6 @@ msgstr "स्टॉक इतिहास"
 #: templates/webapp/stock/history.html
 msgid "Current stock"
 msgstr "वर्तमान स्टॉक"
-
-#: templates/webapp/stock/history.html
-msgid "When"
-msgstr "कब"
 
 #: templates/webapp/stock/history.html
 msgid "What"
@@ -11545,6 +11818,74 @@ msgstr "प्लान के बिना, अकाउंट और उसक
 msgid "Renew now: %(url)s"
 msgstr "अभी रिन्यू करें: %(url)s"
 
+#: apps/verticals/restaurant/delivery.py
+msgid "This is not an open delivery order."
+msgstr "यह खुला डिलीवरी ऑर्डर नहीं है।"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "The bill is already paid."
+msgstr "बिल पहले ही भुगतान हो चुका है।"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is already delivered."
+msgstr "यह ऑर्डर पहले ही डिलीवर हो चुका है।"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Choose an active rider."
+msgstr "एक सक्रिय राइडर चुनें।"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Choose a rider first."
+msgstr "पहले एक राइडर चुनें।"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is not waiting to go out."
+msgstr "यह ऑर्डर निकलने का इंतज़ार नहीं कर रहा।"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is not on the way."
+msgstr "यह ऑर्डर रास्ते में नहीं है।"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "How did the customer pay?"
+msgstr "ग्राहक ने कैसे भुगतान किया?"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Nothing to settle for %(name)s."
+msgstr "%(name)s के लिए हिसाब करने को कुछ नहीं।"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Add a stock location first."
+msgstr "पहले एक स्टॉक लोकेशन जोड़ें।"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "%(order)s has no items."
+msgstr "%(order)s में कोई आइटम नहीं है।"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Hello,"
+msgstr "नमस्ते,"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Your order %(order)s from %(shop)s is on the way."
+msgstr "%(shop)s से आपका ऑर्डर %(order)s रास्ते में है।"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Rider: %(name)s · %(phone)s"
+msgstr "राइडर: %(name)s · %(phone)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Amount to pay: %(amount)s"
+msgstr "भुगतान राशि: %(amount)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Your delivery page (keep this link private): %(url)s"
+msgstr "आपका डिलीवरी पेज (यह लिंक किसी को न दें): %(url)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "No area"
+msgstr "कोई एरिया नहीं"
+
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "बैठे हुए"
@@ -11558,12 +11899,44 @@ msgid "Served"
 msgstr "परोसा गया"
 
 #: apps/verticals/restaurant/models.py
+msgid "—"
+msgstr "—"
+
+#: apps/verticals/restaurant/models.py
+msgid "Waiting for a rider"
+msgstr "राइडर का इंतज़ार"
+
+#: apps/verticals/restaurant/models.py
+msgid "Rider assigned"
+msgstr "राइडर सौंपा गया"
+
+#: apps/verticals/restaurant/models.py
+msgid "Paid already"
+msgstr "पहले ही भुगतान"
+
+#: apps/verticals/restaurant/models.py
 msgid "Queued"
 msgstr "कतार में"
 
 #: apps/verticals/restaurant/models.py
 msgid "Accepted"
 msgstr "स्वीकृत"
+
+#: apps/verticals/restaurant/models.py
+msgid "e.g. Bike · 123456"
+msgstr "जैसे बाइक · 123456"
+
+#: apps/verticals/restaurant/models.py
+msgid "QID / licence number"
+msgstr "QID / लाइसेंस नंबर"
+
+#: apps/verticals/restaurant/models.py
+msgid "0 = always charge"
+msgstr "0 = हमेशा चार्ज करें"
+
+#: apps/verticals/restaurant/models.py
+msgid "Usual delivery time"
+msgstr "सामान्य डिलीवरी समय"
 
 #: apps/verticals/restaurant/online_orders.py
 msgid ""
@@ -12242,6 +12615,64 @@ msgstr "%(item)s: %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "%(count)s कीमतें सेट की गईं।"
+
+#: apps/webapp/delivery_views.py
+msgid "Enter a valid amount."
+msgstr "सही राशि दर्ज करें।"
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s → %(rider)s"
+msgstr "%(order)s → %(rider)s"
+
+#: apps/webapp/delivery_views.py
+msgid "no rider"
+msgstr "कोई राइडर नहीं"
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s is on the way. Send the customer a WhatsApp from the card."
+msgstr "%(order)s रास्ते में है। कार्ड से ग्राहक को व्हाट्सऐप भेजें।"
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s delivered."
+msgstr "%(order)s डिलीवर हुआ।"
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s marked not delivered. Assign it again when ready."
+msgstr "%(order)s डिलीवर नहीं हुआ मार्क किया। तैयार होने पर फिर से सौंपें।"
+
+#: apps/webapp/delivery_views.py
+msgid "Delivery area saved. Delivery charge: %(fee)s"
+msgstr "डिलीवरी एरिया सेव हुआ। डिलीवरी चार्ज: %(fee)s"
+
+#: apps/webapp/delivery_views.py
+msgid "Received %(cash)s cash from %(name)s. %(n)s order(s) billed."
+msgstr "%(name)s से %(cash)s कैश मिला। %(n)s ऑर्डर का बिल बना।"
+
+#: apps/webapp/delivery_views.py
+msgid "Enter the rider's name and phone number."
+msgstr "राइडर का नाम और फ़ोन नंबर दर्ज करें।"
+
+#: apps/webapp/delivery_views.py
+msgid "Rider %(name)s saved. Send them their page link on WhatsApp."
+msgstr "राइडर %(name)s सेव हुआ। उन्हें व्हाट्सऐप पर पेज लिंक भेजें।"
+
+#: apps/webapp/delivery_views.py
+msgid "%(name)s still has orders on the way."
+msgstr "%(name)s के ऑर्डर अभी भी रास्ते में हैं।"
+
+#: apps/webapp/delivery_views.py
+msgid ""
+"New link made — the old link no longer works. Send %(name)s the new one."
+msgstr ""
+"नया लिंक बना — पुराना लिंक अब काम नहीं करेगा। %(name)s को नया लिंक भेजें।"
+
+#: apps/webapp/delivery_views.py
+msgid "Enter the area name."
+msgstr "एरिया का नाम दर्ज करें।"
+
+#: apps/webapp/delivery_views.py
+msgid "Delivery area %(name)s saved."
+msgstr "डिलीवरी एरिया %(name)s सेव हुआ।"
 
 #: apps/webapp/education_views.py
 msgid "Batches"
@@ -12969,10 +13400,6 @@ msgid "Room"
 msgstr "कमरा"
 
 #: apps/webapp/online_booking_views.py
-msgid "Vehicle"
-msgstr "वाहन"
-
-#: apps/webapp/online_booking_views.py
 msgid "Equipment"
 msgstr "उपकरण"
 
@@ -13155,10 +13582,6 @@ msgstr "रोकें — अभी ऑर्डर नहीं ले रह
 #: apps/webapp/online_order_views.py
 msgid "Home delivery"
 msgstr "होम डिलीवरी"
-
-#: apps/webapp/online_order_views.py
-msgid "Delivery charge"
-msgstr "डिलीवरी शुल्क"
 
 #: apps/webapp/online_order_views.py
 msgid "Minimum order for delivery"
@@ -14150,10 +14573,6 @@ msgstr "आपका पासवर्ड बदल दिया गया ह�
 #: apps/webapp/shop_order_views.py
 msgid "Pickup from the shop"
 msgstr "दुकान से पिकअप"
-
-#: apps/webapp/shop_order_views.py
-msgid "Free delivery over"
-msgstr "इससे ऊपर मुफ़्त डिलीवरी"
 
 #: apps/webapp/shop_order_views.py
 msgid "Customers can use coupon codes"

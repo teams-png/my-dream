@@ -242,6 +242,10 @@ msgid "Online orders"
 msgstr "Online siparişler"
 
 #: templates/base.html
+msgid "Deliveries"
+msgstr "Teslimatlar"
+
+#: templates/base.html
 msgid "Kitchen / KOT"
 msgstr "Mutfak / KOT"
 
@@ -8165,6 +8169,42 @@ msgstr "Hatırlatılan müşteri 14 gün boyunca tekrar gösterilmez."
 msgid "Sent"
 msgstr "Gönderildi"
 
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Delivery board"
+msgstr "Teslimat panosu"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Delivery area"
+msgstr "Teslimat bölgesi"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "— delivery area —"
+msgstr "— teslimat bölgesi —"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Set"
+msgstr "Ayarla"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Area"
+msgstr "Bölge"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Rider"
+msgstr "Kurye"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "— choose rider —"
+msgstr "— kurye seçin —"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "Assign"
+msgstr "Ata"
+
+#: templates/webapp/restaurant/_delivery_panel.html
+msgid "No riders yet — add them on the delivery board."
+msgstr "Henüz kurye yok — teslimat panosundan ekleyin."
+
 #: templates/webapp/restaurant/_starter_kit.html
 msgid "Kerala starter menu is loaded"
 msgstr "Kerala başlangıç menüsü yüklendi"
@@ -8452,6 +8492,224 @@ msgstr "İnternet bağlantısı yok"
 #: templates/webapp/restaurant/dashboard.html
 msgid "Open offline POS →"
 msgstr "Çevrimdışı POS’u aç →"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "New delivery order"
+msgstr "Yeni teslimat siparişi"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery report"
+msgstr "Teslimat raporu"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Cash with riders"
+msgstr "Kuryelerdeki nakit"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid ""
+"Add your delivery riders below first. Each rider gets a private page on "
+"their phone to see their orders and mark them delivered."
+msgstr ""
+"Önce kuryelerinizi aşağıya ekleyin. Her kurye, siparişlerini görmek ve "
+"teslim edildi olarak işaretlemek için telefonunda özel bir sayfa alır."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Map"
+msgstr "Harita"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "With rider"
+msgstr "Kuryede"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Collect"
+msgstr "Tahsil et"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Late"
+msgstr "Gecikmeli"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "delivered"
+msgstr "teslim edildi"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Out for delivery"
+msgstr "Teslimata çıktı"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Tell customer"
+msgstr "Müşteriye bildir"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivered · cash"
+msgstr "Teslim edildi · nakit"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivered · card"
+msgstr "Teslim edildi · kart"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Why not delivered? (not answering, wrong address…)"
+msgstr "Neden teslim edilmedi? (cevap vermiyor, yanlış adres…)"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Not delivered"
+msgstr "Teslim edilmedi"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Riders"
+msgstr "Kuryeler"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "on the way now"
+msgstr "şu an yolda"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "cash with rider"
+msgstr "kuryedeki nakit"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Stock location"
+msgstr "Stok konumu"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid ""
+"Received the money from this rider? The delivered orders will be billed now."
+msgstr ""
+"Bu kuryeden parayı aldınız mı? Teslim edilen siparişler şimdi faturalanacak."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Receive cash & bill"
+msgstr "Nakdi al ve faturala"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Send page link"
+msgstr "Sayfa bağlantısını gönder"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Rider page"
+msgstr "Kurye sayfası"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Vehicle"
+msgstr "Araç"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "ID / licence no."
+msgstr "Kimlik / ehliyet no."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Turn off"
+msgstr "Kapat"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Turn on"
+msgstr "Aç"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Make a new private link? The old link stops working."
+msgstr "Yeni özel bağlantı oluşturulsun mu? Eski bağlantı çalışmayı durdurur."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "New link"
+msgstr "Yeni bağlantı"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add a rider"
+msgstr "Kurye ekle"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "e.g. Ajmal"
+msgstr "örn. Ajmal"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Phone (WhatsApp)"
+msgstr "Telefon (WhatsApp)"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Bike · 123456"
+msgstr "Motosiklet · 123456"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add rider"
+msgstr "Kuryeyi ekle"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery areas & charges"
+msgstr "Teslimat bölgeleri ve ücretleri"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Pick the area on a delivery order and its charge is added to the bill."
+msgstr "Teslimat siparişinde bölgeyi seçin, ücreti faturaya eklenir."
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Free over"
+msgstr "Üzerinde ücretsiz"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Minutes"
+msgstr "Dakika"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "e.g. Al Sadd"
+msgstr "örn. Al Sadd"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Delivery charge"
+msgstr "Teslimat ücreti"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Free delivery over"
+msgstr "Şu tutarın üzerinde ücretsiz teslimat"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Usual minutes"
+msgstr "Olağan dakika"
+
+#: templates/webapp/restaurant/deliveries.html
+msgid "Add area"
+msgstr "Bölge ekle"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Cash collected"
+msgstr "Tahsil edilen nakit"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Card at the door"
+msgstr "Kapıda kart"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Delivery charges"
+msgstr "Teslimat ücretleri"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "By rider"
+msgstr "Kuryeye göre"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Order value"
+msgstr "Sipariş tutarı"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Avg. minutes on the road"
+msgstr "Yolda ortalama dakika"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "No deliveries in these days."
+msgstr "Bu günlerde teslimat yok."
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "By area"
+msgstr "Bölgeye göre"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "Cash received from riders"
+msgstr "Kuryelerden alınan nakit"
+
+#: templates/webapp/restaurant/delivery_report.html
+msgid "When"
+msgstr "Ne zaman"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Kitchen board"
@@ -9311,10 +9569,6 @@ msgid "Service + tip"
 msgstr "Servis + bahşiş"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "Stock location"
-msgstr "Stok konumu"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Payment method"
 msgstr "Ödeme yöntemi"
 
@@ -9474,6 +9728,46 @@ msgstr "TOPLAM"
 #: templates/webapp/restaurant/receipt_print.html
 msgid "Print Receipt"
 msgstr "Fiş yazdır"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "My deliveries"
+msgstr "Teslimatlarım"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "cash with you"
+msgstr "sizdeki nakit"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "To deliver"
+msgstr "Teslim edilecek"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Paid already — collect nothing"
+msgstr "Zaten ödendi — hiçbir şey tahsil etmeyin"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Picked up — on the way"
+msgstr "Alındı — yolda"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Could not deliver?"
+msgstr "Teslim edemediniz mi?"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Why? (not answering, wrong address…)"
+msgstr "Neden? (cevap vermiyor, yanlış adres…)"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Bring it back"
+msgstr "Geri getir"
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "No orders for you right now. This page refreshes by itself."
+msgstr "Şu an size ait sipariş yok. Bu sayfa kendiliğinden yenilenir."
+
+#: templates/webapp/restaurant/rider_page.html
+msgid "Delivered today"
+msgstr "Bugün teslim edilenler"
 
 #: templates/webapp/retail/reports.html
 msgid "Product"
@@ -9720,10 +10014,6 @@ msgid "Turn off two-step login"
 msgstr "İki adımlı girişi kapat"
 
 #: templates/webapp/security.html
-msgid "Turn off"
-msgstr "Kapat"
-
-#: templates/webapp/security.html
 msgid "Install"
 msgstr "Telefonunuza"
 
@@ -9750,10 +10040,6 @@ msgstr "Okutamıyor musunuz? Bu anahtarı girin:"
 #: templates/webapp/security.html
 msgid "Type the 6-digit code shown in the app:"
 msgstr "Uygulamada görünen 6 haneli kodu yazın:"
-
-#: templates/webapp/security.html
-msgid "Turn on"
-msgstr "Aç"
 
 #: templates/webapp/security.html
 msgid ""
@@ -9896,10 +10182,6 @@ msgstr "Müşteriye WhatsApp"
 #: templates/webapp/shop_orders/inbox.html
 msgid "Share / pay link"
 msgstr "Paylaşım / ödeme bağlantısı"
-
-#: templates/webapp/shop_orders/inbox.html
-msgid "Out for delivery"
-msgstr "Teslimata çıktı"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Delivered — close order"
@@ -10452,10 +10734,6 @@ msgid "Return by"
 msgstr "İade tarihi"
 
 #: templates/webapp/sports_shop/rental_detail.html
-msgid "Late"
-msgstr "Gecikmeli"
-
-#: templates/webapp/sports_shop/rental_detail.html
 msgid "Deposit"
 msgstr "Depozito"
 
@@ -10920,10 +11198,6 @@ msgstr "Stok geçmişi"
 #: templates/webapp/stock/history.html
 msgid "Current stock"
 msgstr "Mevcut stok"
-
-#: templates/webapp/stock/history.html
-msgid "When"
-msgstr "Ne zaman"
 
 #: templates/webapp/stock/history.html
 msgid "What"
@@ -11597,6 +11871,74 @@ msgstr "Plan olmadan hesap ve verileri %(date)s tarihinde silinir."
 msgid "Renew now: %(url)s"
 msgstr "Şimdi yenileyin: %(url)s"
 
+#: apps/verticals/restaurant/delivery.py
+msgid "This is not an open delivery order."
+msgstr "Bu açık bir teslimat siparişi değil."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "The bill is already paid."
+msgstr "Fatura zaten ödendi."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is already delivered."
+msgstr "Bu sipariş zaten teslim edildi."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Choose an active rider."
+msgstr "Aktif bir kurye seçin."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Choose a rider first."
+msgstr "Önce bir kurye seçin."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is not waiting to go out."
+msgstr "Bu sipariş çıkmayı beklemiyor."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "This order is not on the way."
+msgstr "Bu sipariş yolda değil."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "How did the customer pay?"
+msgstr "Müşteri nasıl ödedi?"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Nothing to settle for %(name)s."
+msgstr "%(name)s için hesaplaşılacak bir şey yok."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Add a stock location first."
+msgstr "Önce bir stok konumu ekleyin."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "%(order)s has no items."
+msgstr "%(order)s içinde ürün yok."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Hello,"
+msgstr "Merhaba,"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Your order %(order)s from %(shop)s is on the way."
+msgstr "%(shop)s üzerinden verdiğiniz %(order)s siparişiniz yolda."
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Rider: %(name)s · %(phone)s"
+msgstr "Kurye: %(name)s · %(phone)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Amount to pay: %(amount)s"
+msgstr "Ödenecek tutar: %(amount)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "Your delivery page (keep this link private): %(url)s"
+msgstr "Teslimat sayfanız (bu bağlantıyı kimseyle paylaşmayın): %(url)s"
+
+#: apps/verticals/restaurant/delivery.py
+msgid "No area"
+msgstr "Bölge yok"
+
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "Oturdu"
@@ -11610,12 +11952,44 @@ msgid "Served"
 msgstr "Servis edildi"
 
 #: apps/verticals/restaurant/models.py
+msgid "—"
+msgstr "—"
+
+#: apps/verticals/restaurant/models.py
+msgid "Waiting for a rider"
+msgstr "Kurye bekleniyor"
+
+#: apps/verticals/restaurant/models.py
+msgid "Rider assigned"
+msgstr "Kurye atandı"
+
+#: apps/verticals/restaurant/models.py
+msgid "Paid already"
+msgstr "Zaten ödendi"
+
+#: apps/verticals/restaurant/models.py
 msgid "Queued"
 msgstr "Sırada"
 
 #: apps/verticals/restaurant/models.py
 msgid "Accepted"
 msgstr "Kabul edildi"
+
+#: apps/verticals/restaurant/models.py
+msgid "e.g. Bike · 123456"
+msgstr "örn. Motosiklet · 123456"
+
+#: apps/verticals/restaurant/models.py
+msgid "QID / licence number"
+msgstr "QID / ehliyet numarası"
+
+#: apps/verticals/restaurant/models.py
+msgid "0 = always charge"
+msgstr "0 = her zaman ücret al"
+
+#: apps/verticals/restaurant/models.py
+msgid "Usual delivery time"
+msgstr "Olağan teslimat süresi"
 
 #: apps/verticals/restaurant/online_orders.py
 msgid ""
@@ -12297,6 +12671,66 @@ msgstr "%(item)s: %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "%(count)s fiyat belirlendi."
+
+#: apps/webapp/delivery_views.py
+msgid "Enter a valid amount."
+msgstr "Geçerli bir tutar girin."
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s → %(rider)s"
+msgstr "%(order)s → %(rider)s"
+
+#: apps/webapp/delivery_views.py
+msgid "no rider"
+msgstr "kurye yok"
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s is on the way. Send the customer a WhatsApp from the card."
+msgstr "%(order)s yolda. Karttan müşteriye WhatsApp gönderin."
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s delivered."
+msgstr "%(order)s teslim edildi."
+
+#: apps/webapp/delivery_views.py
+msgid "%(order)s marked not delivered. Assign it again when ready."
+msgstr ""
+"%(order)s teslim edilmedi olarak işaretlendi. Hazır olunca tekrar atayın."
+
+#: apps/webapp/delivery_views.py
+msgid "Delivery area saved. Delivery charge: %(fee)s"
+msgstr "Teslimat bölgesi kaydedildi. Teslimat ücreti: %(fee)s"
+
+#: apps/webapp/delivery_views.py
+msgid "Received %(cash)s cash from %(name)s. %(n)s order(s) billed."
+msgstr "%(name)s kişisinden %(cash)s nakit alındı. %(n)s sipariş faturalandı."
+
+#: apps/webapp/delivery_views.py
+msgid "Enter the rider's name and phone number."
+msgstr "Kuryenin adını ve telefon numarasını girin."
+
+#: apps/webapp/delivery_views.py
+msgid "Rider %(name)s saved. Send them their page link on WhatsApp."
+msgstr "Kurye %(name)s kaydedildi. Sayfa bağlantısını WhatsApp ile gönderin."
+
+#: apps/webapp/delivery_views.py
+msgid "%(name)s still has orders on the way."
+msgstr "%(name)s kişisinin hâlâ yolda siparişleri var."
+
+#: apps/webapp/delivery_views.py
+msgid ""
+"New link made — the old link no longer works. Send %(name)s the new one."
+msgstr ""
+"Yeni bağlantı oluşturuldu — eski bağlantı artık çalışmıyor. Yenisini "
+"%(name)s kişisine gönderin."
+
+#: apps/webapp/delivery_views.py
+msgid "Enter the area name."
+msgstr "Bölge adını girin."
+
+#: apps/webapp/delivery_views.py
+msgid "Delivery area %(name)s saved."
+msgstr "%(name)s teslimat bölgesi kaydedildi."
 
 #: apps/webapp/education_views.py
 msgid "Batches"
@@ -13024,10 +13458,6 @@ msgid "Room"
 msgstr "Oda"
 
 #: apps/webapp/online_booking_views.py
-msgid "Vehicle"
-msgstr "Araç"
-
-#: apps/webapp/online_booking_views.py
 msgid "Equipment"
 msgstr "Ekipman"
 
@@ -13211,10 +13641,6 @@ msgstr "Duraklat — şu an sipariş alınmıyor"
 #: apps/webapp/online_order_views.py
 msgid "Home delivery"
 msgstr "Eve teslimat"
-
-#: apps/webapp/online_order_views.py
-msgid "Delivery charge"
-msgstr "Teslimat ücreti"
 
 #: apps/webapp/online_order_views.py
 msgid "Minimum order for delivery"
@@ -14216,10 +14642,6 @@ msgstr "Şifreniz değiştirildi."
 #: apps/webapp/shop_order_views.py
 msgid "Pickup from the shop"
 msgstr "Mağazadan teslim al"
-
-#: apps/webapp/shop_order_views.py
-msgid "Free delivery over"
-msgstr "Şu tutarın üzerinde ücretsiz teslimat"
 
 #: apps/webapp/shop_order_views.py
 msgid "Customers can use coupon codes"

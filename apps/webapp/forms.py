@@ -30,7 +30,7 @@ from apps.subscriptions.models import Subscription, SubscriptionPlan, Subscripti
 from apps.modules.models import BusinessType, Module, CompanyModule
 from apps.platform_admin.models import SupportTicket
 from apps.modules.catalog import BUSINESS_TYPE_CHOICES
-from apps.verticals.restaurant.models import DiningArea, DiningTable, FoodWaste, KitchenStation, MenuModifier, MenuModifierGroup, MenuModifierOption, RestaurantMenuItem, RestaurantProfile, RecipeIngredient, RestaurantCombo, RestaurantComboItem, RestaurantOrder, RestaurantShift, TableReservation, DeliveryIntegration
+from apps.verticals.restaurant.models import DiningArea, DiningTable, FoodWaste, KitchenStation, MenuModifier, MenuModifierGroup, MenuModifierOption, RestaurantMenuItem, RestaurantProfile, RecipeIngredient, RestaurantCombo, RestaurantComboItem, RestaurantOrder, RestaurantShift, TableReservation, DeliveryIntegration, DeliveryZone
 
 # Toggleable webapp-level features an admin can enable/disable per client.
 # Distinct from apps.modules' older backend/vertical module codes (kept as "webui_*"
@@ -1567,10 +1567,12 @@ class RestaurantOrderForm(forms.Form):
     customer = forms.ModelChoiceField(queryset=Customer.objects.none(), required=False)
     delivery_address = forms.CharField(widget=forms.Textarea(attrs={"rows": 2}), required=False)
     delivery_phone = forms.CharField(max_length=30, required=False)
+    zone = forms.ModelChoiceField(queryset=DeliveryZone.objects.none(), required=False, empty_label="—")
     guests = forms.IntegerField(min_value=0, max_value=500, required=False)
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields["zone"].queryset = DeliveryZone.objects.for_company(company).filter(is_active=True)
         self.fields["table"].queryset = DiningTable.objects.for_company(company).filter(is_active=True)
         self.fields["customer"].queryset = Customer.objects.for_company(company).filter(is_active=True)
 

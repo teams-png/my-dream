@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import team_order_views
-from . import sports_extra_views, refill_views, shop_order_views, billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
+from . import delivery_views, sports_extra_views, refill_views, shop_order_views, billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -579,6 +579,10 @@ urlpatterns = [
     path("website-orders/waiting.json", shop_order_views.waiting, name="shop_orders_waiting"),
     path("website-orders/reviews/<int:review_id>/", shop_order_views.review_action, name="shop_review_action"),
     path("restaurant/online-orders/", online_order_views.inbox, name="restaurant_online_orders"),
+    path("restaurant/deliveries/", delivery_views.board, name="restaurant_deliveries"),
+    path("restaurant/deliveries/action/", delivery_views.action, name="restaurant_delivery_action"),
+    path("restaurant/deliveries/report/", delivery_views.report, name="restaurant_delivery_report"),
+    path("d/<uuid:token>/", delivery_views.rider_page, name="delivery_rider_page"),
     path("restaurant/online-orders/settings/", online_order_views.settings_save, name="restaurant_online_settings"),
     path("restaurant/online-orders/<int:online_id>/action/", online_order_views.action, name="restaurant_online_action"),
     path("restaurant/online-orders/waiting.json", online_order_views.waiting, name="restaurant_online_waiting"),

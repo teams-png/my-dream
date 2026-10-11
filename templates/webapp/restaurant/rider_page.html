@@ -1,0 +1,68 @@
+{% load i18n %}{% get_current_language as LANG %}{% get_current_language_bidi as RTL %}<!doctype html>
+<html lang="{{ LANG }}" dir="{% if RTL %}rtl{% else %}ltr{% endif %}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>{% translate "My deliveries" %} · {{ company.name }}</title>
+<style>
+:root{--ink:#172033;--soft:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--card:#fff;--go:#16a34a;--warn:#b45309}
+@media(prefers-color-scheme:dark){:root{--ink:#e2e8f0;--soft:#94a3b8;--line:#334155;--bg:#0f172a;--card:#1e293b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;gap:10px;align-items:center;z-index:2}
+header b{font-size:17px}header small{display:block;color:var(--soft)}header .cash{margin-inline-start:auto;text-align:end;font-weight:800}
+main{max-width:640px;margin:0 auto;padding:12px 16px 40px}
+.msg{padding:10px 14px;border-radius:12px;margin:8px 0;background:#dcfce7;color:#166534;font-weight:700}.msg.error{background:#fee2e2;color:#991b1b}
+h2{font-size:16px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.card.out{border:2px solid var(--go)}
+.top{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.top b{font-size:17px}.top .amt{margin-inline-start:auto;font-weight:900;font-size:18px}
+.pay{display:inline-block;margin-top:4px;padding:3px 10px;border-radius:99px;font-weight:800;font-size:13px;background:#fef3c7;color:#92400e}.pay.paid{background:#dcfce7;color:#166534}
+.addr{margin:8px 0;overflow-wrap:anywhere}
+.items{margin:6px 0;padding:0 0 0 18px;color:var(--soft);font-size:14.5px}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;min-height:48px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:800;text-decoration:none;cursor:pointer;width:100%}
+.btn.go{background:var(--go);border-color:var(--go);color:#fff}.acts .wide{grid-column:1/-1}
+form{margin:0}input[type=text]{width:100%;min-height:44px;border:1px solid var(--line);border-radius:10px;padding:0 10px;font:inherit;background:var(--card);color:var(--ink)}
+details{margin-top:8px}summary{cursor:pointer;color:var(--warn);font-weight:700}
+.done{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid var(--line)}.done span:last-child{margin-inline-start:auto}
+.empty{text-align:center;color:var(--soft);padding:30px 0}
+</style></head>
+<body>
+<header><span style="font-size:26px">🛵</span><span><b>{{ rider.name }}</b><small>{{ company.name }}</small></span>
+  <span class="cash">{{ currency }} {{ cash|floatformat:2 }}<small>{% translate "cash with you" %}</small></span></header>
+<main>
+  {% for m in messages %}<div class="msg {{ m.tags }}">{{ m }}</div>{% endfor %}
+  <h2>{% translate "To deliver" %} ({{ open|length }})</h2>
+  {% for o in open %}
+  <div class="card {% if o.delivery_status == 'out' %}out{% endif %}">
+    <div class="top"><b>{{ o.order_number }}</b><span class="amt">{{ currency }} {{ o.total|floatformat:2 }}</span></div>
+    {% if o.collect %}<span class="pay">💵 {% translate "Collect" %} {{ currency }} {{ o.collect|floatformat:2 }}</span>{% else %}<span class="pay paid">✅ {% translate "Paid already — collect nothing" %}</span>{% endif %}
+    <div class="addr">{% if o.customer %}<b>{{ o.customer.name }}</b><br>{% endif %}📍 {{ o.delivery_address }}</div>
+    <ul class="items">{% for l in o.items %}<li>{{ l.quantity|floatformat:"-3" }} × {{ l.product.name }}{% if l.notes %} — {{ l.notes }}{% endif %}</li>{% endfor %}</ul>
+    <div class="acts">
+      {% if o.maps %}<a class="btn" href="{{ o.maps }}" target="_blank" rel="noopener">🗺 {% translate "Map" %}</a>{% endif %}
+      {% if o.delivery_phone %}<a class="btn" href="tel:{{ o.delivery_phone }}">📞 {% translate "Call" %}</a>{% endif %}
+      {% if o.delivery_status == "assigned" %}
+      <form class="wide" method="post">{% csrf_token %}<input type="hidden" name="order_id" value="{{ o.id }}"><button class="btn go wide" name="do" value="out">🛵 {% translate "Picked up — on the way" %}</button></form>
+      {% else %}
+      <form method="post">{% csrf_token %}<input type="hidden" name="order_id" value="{{ o.id }}"><input type="hidden" name="do" value="delivered">
+        <button class="btn go" name="method" value="{% if o.collect %}cash{% else %}prepaid{% endif %}">✅ {% if o.collect %}{% translate "Delivered · cash" %}{% else %}{% translate "Delivered" %}{% endif %}</button></form>
+      {% if o.collect %}<form method="post">{% csrf_token %}<input type="hidden" name="order_id" value="{{ o.id }}"><input type="hidden" name="do" value="delivered">
+        <button class="btn" name="method" value="card">💳 {% translate "Delivered · card" %}</button></form>{% endif %}
+      {% endif %}
+    </div>
+    {% if o.delivery_status == "out" %}
+    <details><summary>↩ {% translate "Could not deliver?" %}</summary>
+      <form method="post" style="display:grid;gap:8px;margin-top:8px">{% csrf_token %}<input type="hidden" name="order_id" value="{{ o.id }}"><input type="hidden" name="do" value="failed">
+        <input type="text" name="reason" maxlength="200" required placeholder="{% translate 'Why? (not answering, wrong address…)' %}">
+        <button class="btn">{% translate "Bring it back" %}</button></form>
+    </details>
+    {% endif %}
+  </div>
+  {% empty %}<div class="empty">{% translate "No orders for you right now. This page refreshes by itself." %}</div>{% endfor %}
+
+  {% if done %}
+  <h2>{% translate "Delivered today" %} ({{ done|length }})</h2>
+  <div class="card">{% for o in done %}<div class="done"><b>{{ o.order_number }}</b><small>{{ o.delivered_at|time:"H:i" }} · {{ o.get_collect_method_display }}</small><span>{{ currency }} {{ o.total|floatformat:2 }}</span></div>{% endfor %}</div>
+  {% endif %}
+</main>
+<script>setTimeout(function(){if(!document.querySelector("input:focus"))location.reload()},45000)</script>
+</body></html>

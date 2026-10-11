@@ -77,7 +77,7 @@ def import_delivery_order(*, integration, payload):
         order = create_order(
             company=company, channel="delivery", customer=customer,
             delivery_address=customer_data.get("address") or payload.get("delivery_address", ""),
-            delivery_phone=phone,
+            delivery_phone=phone, own_delivery=False,
         )
         for item in payload.get("items", []):
             product = Product.objects.for_company(company).filter(sku=item.get("sku"), is_active=True).first()
@@ -130,7 +130,7 @@ EDITABLE_ORDER_STATUSES = {"draft", "held", "kitchen", "ready", "served"}
 
 @transaction.atomic
 def create_order(*, company, channel, table=None, customer=None, waiter=None, shift=None,
-                 delivery_address="", delivery_phone="", delivery_driver=None, guests=0):
+                 delivery_address="", delivery_phone="", delivery_driver=None, guests=0, own_delivery=True, zone=None):
     if channel == "dine_in" and table is None:
         raise ValidationError("A table is required for dine-in orders.")
     if channel == "delivery" and not delivery_address:
@@ -140,6 +140,8 @@ def create_order(*, company, channel, table=None, customer=None, waiter=None, sh
         channel=channel, table=table, customer=customer, waiter=waiter, shift=shift,
         delivery_address=delivery_address, delivery_phone=delivery_phone, delivery_driver=delivery_driver,
         guests=guests or 0, tax_percent=_restaurant_tax_percent(company),
+        # our own rider takes it (a delivery app's order is carried by the app's rider)
+        delivery_status="waiting" if channel == "delivery" and own_delivery else "", zone=zone,
     )
     if table:
         table.status = "occupied"; table.save(update_fields=["status"])

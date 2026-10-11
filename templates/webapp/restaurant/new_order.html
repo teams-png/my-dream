@@ -30,6 +30,7 @@
       <div><label>{% translate "Customer (optional)" %} {{ form.customer }}</label><div class="r-errors">{{ form.customer.errors }}</div></div>
       <div class="r-slot" id="guestsField"><label>{% translate "Guests" %} <input type="number" name="guests" min="0" max="500" value="{{ form.guests.value|default:'' }}" placeholder="e.g. 4" inputmode="numeric"></label><div class="r-errors">{{ form.guests.errors }}</div></div>
       <div class="r-slot" id="phoneField"><label>{% translate "Delivery phone" %} {{ form.delivery_phone }}</label><div class="r-errors">{{ form.delivery_phone.errors }}</div></div>
+      {% if form.zone.field.queryset.exists %}<div class="r-slot" id="zoneField"><label>{% translate "Delivery area" %} {{ form.zone }}</label><div class="r-errors">{{ form.zone.errors }}</div></div>{% endif %}
       <div class="r-slot" id="addressField" style="grid-column:1/-1"><label>{% translate "Delivery address" %} {{ form.delivery_address }}</label><div class="r-errors">{{ form.delivery_address.errors }}</div></div>
     </div>
 
@@ -47,6 +48,7 @@
     document.getElementById('tableField').hidden=ch!=='dine_in';document.getElementById('guestsField').hidden=ch!=='dine_in';
     document.getElementById('addressField').hidden=ch!=='delivery';
     document.getElementById('phoneField').hidden=ch!=='delivery';
+    var zf=document.getElementById('zoneField');if(zf)zf.hidden=ch!=='delivery';
     document.getElementById('detailsStep').textContent=ch==='dine_in'?'3':'2';
     const t=document.querySelector('[name=table]:checked');
     document.getElementById('summary').textContent=labels[ch]+' order'+(ch==='dine_in'?(t?' · Table '+t.parentElement.querySelector('b').textContent:' · pick a table'):'');

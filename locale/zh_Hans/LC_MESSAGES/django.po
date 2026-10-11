@@ -9605,6 +9605,26 @@ msgstr ""
 "您的 BookPilot 网站尚未开启。请联系 BookPilot 团队开启网站功能——或用 Website kit 把购物车放到您自己的网站上。"
 
 #: templates/webapp/shop_orders/inbox.html
+msgid "Orders this month"
+msgstr "本月订单"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Website sales this month"
+msgstr "本月网站销售额"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Orders in the last 7 days"
+msgstr "最近 7 天订单"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Pay online"
+msgstr "在线支付"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Pay on delivery / pickup"
+msgstr "货到 / 自取时付款"
+
+#: templates/webapp/shop_orders/inbox.html
 msgid "WhatsApp customer"
 msgstr "WhatsApp 联系顾客"
 
@@ -9615,6 +9635,10 @@ msgstr "分享 / 付款链接"
 #: templates/webapp/shop_orders/inbox.html
 msgid "Out for delivery"
 msgstr "配送中"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Delivered — close order"
+msgstr "已送达 — 关闭订单"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Make bill (paid / delivered)"
@@ -9635,6 +9659,18 @@ msgstr "没有未完成的网站订单。"
 #: templates/webapp/shop_orders/inbox.html
 msgid "No website orders yet."
 msgstr "还没有网站订单。"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Reviews waiting for approval"
+msgstr "待审核的评价"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No reviews waiting."
+msgstr "没有待审核的评价。"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "To take card payments on the website, set up Online payments first."
+msgstr "如需在网站上收取银行卡付款，请先设置在线支付。"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Online shop settings"
@@ -9677,12 +9713,24 @@ msgid "VAT"
 msgstr "增值税"
 
 #: templates/webapp/site/_card.html
+msgid "Save to wishlist"
+msgstr "加入心愿单"
+
+#: templates/webapp/site/_card.html
+msgid "Sale"
+msgstr "特价"
+
+#: templates/webapp/site/_card.html
 msgid "+ Add"
 msgstr "+ 添加"
 
 #: templates/webapp/site/_card.html
 msgid "Veg"
 msgstr "素"
+
+#: templates/webapp/site/blocks/search.html
+msgid "Search products…"
+msgstr "搜索商品…"
 
 #: templates/webapp/site/editor.html
 msgid "Website kit"
@@ -9936,8 +9984,40 @@ msgid "Size chart"
 msgstr "尺码表"
 
 #: templates/webapp/site/product.html
+msgid "Reviews"
+msgstr "评价"
+
+#: templates/webapp/site/product.html
+msgid "No reviews yet. Be the first!"
+msgstr "暂无评价。来写第一条吧！"
+
+#: templates/webapp/site/product.html
+msgid "Thank you! Your review will show after the shop checks it."
+msgstr "谢谢！店铺审核后您的评价将会显示。"
+
+#: templates/webapp/site/product.html
+msgid "Write a review"
+msgstr "写评价"
+
+#: templates/webapp/site/product.html
+msgid "Rating"
+msgstr "评分"
+
+#: templates/webapp/site/product.html
+msgid "What did you like?"
+msgstr "您喜欢哪些方面？"
+
+#: templates/webapp/site/product.html
+msgid "Send review"
+msgstr "提交评价"
+
+#: templates/webapp/site/product.html
 msgid "You may also like"
 msgstr "猜你喜欢"
+
+#: templates/webapp/site/shop.html
+msgid "My wishlist"
+msgstr "我的心愿单"
 
 #: templates/webapp/site/shop.html
 msgid "All products"
@@ -9946,10 +10026,6 @@ msgstr "全部商品"
 #: templates/webapp/site/shop.html
 msgid "Filters"
 msgstr "筛选"
-
-#: templates/webapp/site/shop.html
-msgid "Search products…"
-msgstr "搜索商品…"
 
 #: templates/webapp/site/shop.html
 msgid "Lowest price"
@@ -10873,6 +10949,18 @@ msgstr "%(item)s 仅剩 %(n)s 件。"
 #: apps/industry/shop_orders.py
 msgid "The minimum order for delivery is %(amount)s."
 msgstr "外送最低订单金额为 %(amount)s。"
+
+#: apps/industry/shop_orders.py
+msgid "This coupon code is not valid."
+msgstr "此优惠码无效。"
+
+#: apps/industry/shop_orders.py
+msgid "Thank you for your order %(ref)s at %(shop)s."
+msgstr "感谢您在 %(shop)s 的订单 %(ref)s。"
+
+#: apps/industry/shop_orders.py
+msgid "Your order %(ref)s — %(shop)s"
+msgstr "您的订单 %(ref)s — %(shop)s"
 
 #: apps/industry/shop_orders.py
 msgid "This order was already handled."
@@ -11983,6 +12071,23 @@ msgstr "售价"
 #: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "补货点"
+
+#: apps/webapp/forms.py
+msgid "Up to 8 photos at a time."
+msgstr "每次最多 8 张照片。"
+
+#: apps/webapp/forms.py
+msgid "More photos for the website"
+msgstr "网站的更多照片"
+
+#: apps/webapp/forms.py
+msgid ""
+"Choose several photos at once. They show as a gallery on the product page."
+msgstr "可一次选择多张照片，将在商品页以图集形式展示。"
+
+#: apps/webapp/forms.py
+msgid "Remove photos"
+msgstr "删除照片"
 
 #: apps/webapp/forms.py
 msgid "Description for the website"
@@ -13697,12 +13802,36 @@ msgid "Free delivery over"
 msgstr "满额免运费"
 
 #: apps/webapp/shop_order_views.py
+msgid "Customers can use coupon codes"
+msgstr "顾客可使用优惠码"
+
+#: apps/webapp/shop_order_views.py
+msgid "Offer “Pay online” (card)"
+msgstr "提供“在线支付”（银行卡）"
+
+#: apps/webapp/shop_order_views.py
+msgid "Show product reviews"
+msgstr "显示商品评价"
+
+#: apps/webapp/shop_order_views.py
 msgid "Shows “+ Add” on every product in stock and a cart on your website."
 msgstr "在每个有货商品上显示“+ 添加”，并在网站上显示购物车。"
 
 #: apps/webapp/shop_order_views.py
 msgid "0 = always charge delivery."
 msgstr "0 = 始终收取运费。"
+
+#: apps/webapp/shop_order_views.py
+msgid "Codes you made under Coupons."
+msgstr "在“优惠券”中创建的优惠码。"
+
+#: apps/webapp/shop_order_views.py
+msgid "Needs Online payments set up (SkipCash / Razorpay)."
+msgstr "需先设置在线支付（SkipCash / Razorpay）。"
+
+#: apps/webapp/shop_order_views.py
+msgid "New reviews wait here until you approve them."
+msgstr "新评价会在这里等待您审核。"
 
 #: apps/webapp/shop_order_views.py
 msgid "Delivery inside Doha in 24 hours · Cash or card on delivery"
@@ -13731,6 +13860,14 @@ msgstr "订单 %(ref)s 已关闭。"
 #: apps/webapp/shop_order_views.py
 msgid "You can also bill it from New bill."
 msgstr "您也可以在“新开单”中开单。"
+
+#: apps/webapp/shop_order_views.py
+msgid "Review approved — it shows on the website."
+msgstr "评价已通过 — 已在网站上显示。"
+
+#: apps/webapp/shop_order_views.py
+msgid "Review deleted."
+msgstr "评价已删除。"
 
 #: apps/webapp/site_views.py
 msgid "Main colour"
@@ -14163,6 +14300,26 @@ msgstr "发送失败。请重试。"
 #: apps/webapp/website_kit_views.py
 msgid "Please enter your name and a phone number or email."
 msgstr "请输入您的姓名以及电话号码或邮箱。"
+
+#: apps/webapp/website_kit_views.py
+msgid "Back to shop"
+msgstr "返回商店"
+
+#: apps/webapp/website_kit_views.py
+msgid "Coupon code"
+msgstr "优惠码"
+
+#: apps/webapp/website_kit_views.py
+msgid "Pay online now (card)"
+msgstr "立即在线支付（银行卡）"
+
+#: apps/webapp/website_kit_views.py
+msgid "By ordering you agree to our terms."
+msgstr "下单即表示您同意我们的条款。"
+
+#: apps/webapp/website_kit_views.py
+msgid "Taking you to the secure payment page…"
+msgstr "正在跳转到安全支付页面…"
 
 #: apps/webapp/website_kit_views.py
 msgid "The shop will confirm your order shortly."

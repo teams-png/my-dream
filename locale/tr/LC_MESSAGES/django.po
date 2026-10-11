@@ -9845,6 +9845,26 @@ msgstr ""
 "koyun."
 
 #: templates/webapp/shop_orders/inbox.html
+msgid "Orders this month"
+msgstr "Bu ayın siparişleri"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Website sales this month"
+msgstr "Bu ayın web sitesi satışları"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Orders in the last 7 days"
+msgstr "Son 7 günün siparişleri"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Pay online"
+msgstr "Online öde"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Pay on delivery / pickup"
+msgstr "Teslimatta / mağazada öde"
+
+#: templates/webapp/shop_orders/inbox.html
 msgid "WhatsApp customer"
 msgstr "Müşteriye WhatsApp"
 
@@ -9855,6 +9875,10 @@ msgstr "Paylaşım / ödeme bağlantısı"
 #: templates/webapp/shop_orders/inbox.html
 msgid "Out for delivery"
 msgstr "Teslimata çıktı"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Delivered — close order"
+msgstr "Teslim edildi — siparişi kapat"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Make bill (paid / delivered)"
@@ -9875,6 +9899,18 @@ msgstr "Açık web sitesi siparişi yok."
 #: templates/webapp/shop_orders/inbox.html
 msgid "No website orders yet."
 msgstr "Henüz web sitesi siparişi yok."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Reviews waiting for approval"
+msgstr "Onay bekleyen yorumlar"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No reviews waiting."
+msgstr "Bekleyen yorum yok."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "To take card payments on the website, set up Online payments first."
+msgstr "Web sitesinde kartla ödeme almak için önce Online ödemeleri kurun."
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Online shop settings"
@@ -9917,12 +9953,24 @@ msgid "VAT"
 msgstr "KDV"
 
 #: templates/webapp/site/_card.html
+msgid "Save to wishlist"
+msgstr "Favorilere kaydet"
+
+#: templates/webapp/site/_card.html
+msgid "Sale"
+msgstr "İndirim"
+
+#: templates/webapp/site/_card.html
 msgid "+ Add"
 msgstr "+ Ekle"
 
 #: templates/webapp/site/_card.html
 msgid "Veg"
 msgstr "Vejetaryen"
+
+#: templates/webapp/site/blocks/search.html
+msgid "Search products…"
+msgstr "Ürün ara…"
 
 #: templates/webapp/site/editor.html
 msgid "Website kit"
@@ -10195,8 +10243,40 @@ msgid "Size chart"
 msgstr "Beden tablosu"
 
 #: templates/webapp/site/product.html
+msgid "Reviews"
+msgstr "Yorumlar"
+
+#: templates/webapp/site/product.html
+msgid "No reviews yet. Be the first!"
+msgstr "Henüz yorum yok. İlk yorumu siz yazın!"
+
+#: templates/webapp/site/product.html
+msgid "Thank you! Your review will show after the shop checks it."
+msgstr "Teşekkürler! Yorumunuz mağaza kontrol ettikten sonra görünecek."
+
+#: templates/webapp/site/product.html
+msgid "Write a review"
+msgstr "Yorum yaz"
+
+#: templates/webapp/site/product.html
+msgid "Rating"
+msgstr "Puan"
+
+#: templates/webapp/site/product.html
+msgid "What did you like?"
+msgstr "Neyi beğendiniz?"
+
+#: templates/webapp/site/product.html
+msgid "Send review"
+msgstr "Yorumu gönder"
+
+#: templates/webapp/site/product.html
 msgid "You may also like"
 msgstr "Bunlar da hoşunuza gidebilir"
+
+#: templates/webapp/site/shop.html
+msgid "My wishlist"
+msgstr "Favorilerim"
 
 #: templates/webapp/site/shop.html
 msgid "All products"
@@ -10205,10 +10285,6 @@ msgstr "Tüm ürünler"
 #: templates/webapp/site/shop.html
 msgid "Filters"
 msgstr "Filtreler"
-
-#: templates/webapp/site/shop.html
-msgid "Search products…"
-msgstr "Ürün ara…"
 
 #: templates/webapp/site/shop.html
 msgid "Lowest price"
@@ -11172,6 +11248,18 @@ msgstr "%(item)s için sadece %(n)s adet kaldı."
 #: apps/industry/shop_orders.py
 msgid "The minimum order for delivery is %(amount)s."
 msgstr "Teslimat için en az sipariş tutarı %(amount)s."
+
+#: apps/industry/shop_orders.py
+msgid "This coupon code is not valid."
+msgstr "Bu kupon kodu geçerli değil."
+
+#: apps/industry/shop_orders.py
+msgid "Thank you for your order %(ref)s at %(shop)s."
+msgstr "%(shop)s'tan %(ref)s siparişiniz için teşekkürler."
+
+#: apps/industry/shop_orders.py
+msgid "Your order %(ref)s — %(shop)s"
+msgstr "Siparişiniz %(ref)s — %(shop)s"
 
 #: apps/industry/shop_orders.py
 msgid "This order was already handled."
@@ -12311,6 +12399,23 @@ msgstr "Satış fiyatı"
 #: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "Yeniden sipariş seviyesi"
+
+#: apps/webapp/forms.py
+msgid "Up to 8 photos at a time."
+msgstr "Bir seferde en fazla 8 fotoğraf."
+
+#: apps/webapp/forms.py
+msgid "More photos for the website"
+msgstr "Web sitesi için daha fazla fotoğraf"
+
+#: apps/webapp/forms.py
+msgid ""
+"Choose several photos at once. They show as a gallery on the product page."
+msgstr "Birkaç fotoğrafı birden seçin. Ürün sayfasında galeri olarak görünür."
+
+#: apps/webapp/forms.py
+msgid "Remove photos"
+msgstr "Fotoğrafları kaldır"
 
 #: apps/webapp/forms.py
 msgid "Description for the website"
@@ -14051,12 +14156,36 @@ msgid "Free delivery over"
 msgstr "Şu tutarın üzerinde ücretsiz teslimat"
 
 #: apps/webapp/shop_order_views.py
+msgid "Customers can use coupon codes"
+msgstr "Müşteriler kupon kodu kullanabilir"
+
+#: apps/webapp/shop_order_views.py
+msgid "Offer “Pay online” (card)"
+msgstr "“Online öde” (kart) seçeneği sun"
+
+#: apps/webapp/shop_order_views.py
+msgid "Show product reviews"
+msgstr "Ürün yorumlarını göster"
+
+#: apps/webapp/shop_order_views.py
 msgid "Shows “+ Add” on every product in stock and a cart on your website."
 msgstr "Stoktaki her üründe “+ Ekle” ve sitenizde sepet gösterir."
 
 #: apps/webapp/shop_order_views.py
 msgid "0 = always charge delivery."
 msgstr "0 = teslimatı her zaman ücretlendir."
+
+#: apps/webapp/shop_order_views.py
+msgid "Codes you made under Coupons."
+msgstr "Kuponlar'da oluşturduğunuz kodlar."
+
+#: apps/webapp/shop_order_views.py
+msgid "Needs Online payments set up (SkipCash / Razorpay)."
+msgstr "Online ödemelerin (SkipCash / Razorpay) kurulu olması gerekir."
+
+#: apps/webapp/shop_order_views.py
+msgid "New reviews wait here until you approve them."
+msgstr "Yeni yorumlar siz onaylayana kadar burada bekler."
 
 #: apps/webapp/shop_order_views.py
 msgid "Delivery inside Doha in 24 hours · Cash or card on delivery"
@@ -14085,6 +14214,14 @@ msgstr "%(ref)s siparişi kapatıldı."
 #: apps/webapp/shop_order_views.py
 msgid "You can also bill it from New bill."
 msgstr "Yeni fatura ekranından da faturalayabilirsiniz."
+
+#: apps/webapp/shop_order_views.py
+msgid "Review approved — it shows on the website."
+msgstr "Yorum onaylandı — web sitesinde görünüyor."
+
+#: apps/webapp/shop_order_views.py
+msgid "Review deleted."
+msgstr "Yorum silindi."
 
 #: apps/webapp/site_views.py
 msgid "Main colour"
@@ -14537,6 +14674,26 @@ msgstr "Gönderilemedi. Lütfen tekrar deneyin."
 #: apps/webapp/website_kit_views.py
 msgid "Please enter your name and a phone number or email."
 msgstr "Lütfen adınızı ve bir telefon numarası veya e-posta girin."
+
+#: apps/webapp/website_kit_views.py
+msgid "Back to shop"
+msgstr "Mağazaya dön"
+
+#: apps/webapp/website_kit_views.py
+msgid "Coupon code"
+msgstr "Kupon kodu"
+
+#: apps/webapp/website_kit_views.py
+msgid "Pay online now (card)"
+msgstr "Şimdi online öde (kart)"
+
+#: apps/webapp/website_kit_views.py
+msgid "By ordering you agree to our terms."
+msgstr "Sipariş vererek koşullarımızı kabul edersiniz."
+
+#: apps/webapp/website_kit_views.py
+msgid "Taking you to the secure payment page…"
+msgstr "Güvenli ödeme sayfasına yönlendiriliyorsunuz…"
 
 #: apps/webapp/website_kit_views.py
 msgid "The shop will confirm your order shortly."

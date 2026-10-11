@@ -9939,6 +9939,26 @@ msgstr ""
 " le Website kit."
 
 #: templates/webapp/shop_orders/inbox.html
+msgid "Orders this month"
+msgstr "Commandes ce mois-ci"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Website sales this month"
+msgstr "Ventes du site ce mois-ci"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Orders in the last 7 days"
+msgstr "Commandes des 7 derniers jours"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Pay online"
+msgstr "Payer en ligne"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Pay on delivery / pickup"
+msgstr "Paiement à la livraison / au retrait"
+
+#: templates/webapp/shop_orders/inbox.html
 msgid "WhatsApp customer"
 msgstr "WhatsApp au client"
 
@@ -9949,6 +9969,10 @@ msgstr "Lien de partage / paiement"
 #: templates/webapp/shop_orders/inbox.html
 msgid "Out for delivery"
 msgstr "En livraison"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Delivered — close order"
+msgstr "Livrée — clôturer la commande"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Make bill (paid / delivered)"
@@ -9969,6 +9993,20 @@ msgstr "Aucune commande du site en cours."
 #: templates/webapp/shop_orders/inbox.html
 msgid "No website orders yet."
 msgstr "Aucune commande du site pour l'instant."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Reviews waiting for approval"
+msgstr "Avis en attente de validation"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No reviews waiting."
+msgstr "Aucun avis en attente."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "To take card payments on the website, set up Online payments first."
+msgstr ""
+"Pour accepter la carte sur le site, configurez d'abord les paiements en "
+"ligne."
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Online shop settings"
@@ -10011,12 +10049,24 @@ msgid "VAT"
 msgstr "TVA"
 
 #: templates/webapp/site/_card.html
+msgid "Save to wishlist"
+msgstr "Ajouter aux favoris"
+
+#: templates/webapp/site/_card.html
+msgid "Sale"
+msgstr "Promo"
+
+#: templates/webapp/site/_card.html
 msgid "+ Add"
 msgstr "+ Ajouter"
 
 #: templates/webapp/site/_card.html
 msgid "Veg"
 msgstr "Végé"
+
+#: templates/webapp/site/blocks/search.html
+msgid "Search products…"
+msgstr "Rechercher des produits…"
 
 #: templates/webapp/site/editor.html
 msgid "Website kit"
@@ -10291,8 +10341,40 @@ msgid "Size chart"
 msgstr "Guide des tailles"
 
 #: templates/webapp/site/product.html
+msgid "Reviews"
+msgstr "Avis"
+
+#: templates/webapp/site/product.html
+msgid "No reviews yet. Be the first!"
+msgstr "Aucun avis pour l'instant. Soyez le premier !"
+
+#: templates/webapp/site/product.html
+msgid "Thank you! Your review will show after the shop checks it."
+msgstr "Merci ! Votre avis apparaîtra après vérification par la boutique."
+
+#: templates/webapp/site/product.html
+msgid "Write a review"
+msgstr "Écrire un avis"
+
+#: templates/webapp/site/product.html
+msgid "Rating"
+msgstr "Note"
+
+#: templates/webapp/site/product.html
+msgid "What did you like?"
+msgstr "Qu'avez-vous aimé ?"
+
+#: templates/webapp/site/product.html
+msgid "Send review"
+msgstr "Envoyer l'avis"
+
+#: templates/webapp/site/product.html
 msgid "You may also like"
 msgstr "Vous aimerez aussi"
+
+#: templates/webapp/site/shop.html
+msgid "My wishlist"
+msgstr "Mes favoris"
 
 #: templates/webapp/site/shop.html
 msgid "All products"
@@ -10301,10 +10383,6 @@ msgstr "Tous les produits"
 #: templates/webapp/site/shop.html
 msgid "Filters"
 msgstr "Filtres"
-
-#: templates/webapp/site/shop.html
-msgid "Search products…"
-msgstr "Rechercher des produits…"
 
 #: templates/webapp/site/shop.html
 msgid "Lowest price"
@@ -11279,6 +11357,18 @@ msgstr "Il ne reste que %(n)s de %(item)s."
 #: apps/industry/shop_orders.py
 msgid "The minimum order for delivery is %(amount)s."
 msgstr "La commande minimum pour la livraison est de %(amount)s."
+
+#: apps/industry/shop_orders.py
+msgid "This coupon code is not valid."
+msgstr "Ce code promo n'est pas valide."
+
+#: apps/industry/shop_orders.py
+msgid "Thank you for your order %(ref)s at %(shop)s."
+msgstr "Merci pour votre commande %(ref)s chez %(shop)s."
+
+#: apps/industry/shop_orders.py
+msgid "Your order %(ref)s — %(shop)s"
+msgstr "Votre commande %(ref)s — %(shop)s"
 
 #: apps/industry/shop_orders.py
 msgid "This order was already handled."
@@ -12427,6 +12517,25 @@ msgstr "Prix de vente"
 #: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "Seuil de réapprovisionnement"
+
+#: apps/webapp/forms.py
+msgid "Up to 8 photos at a time."
+msgstr "Jusqu'à 8 photos à la fois."
+
+#: apps/webapp/forms.py
+msgid "More photos for the website"
+msgstr "Plus de photos pour le site"
+
+#: apps/webapp/forms.py
+msgid ""
+"Choose several photos at once. They show as a gallery on the product page."
+msgstr ""
+"Choisissez plusieurs photos à la fois. Elles forment une galerie sur la page"
+" produit."
+
+#: apps/webapp/forms.py
+msgid "Remove photos"
+msgstr "Supprimer des photos"
 
 #: apps/webapp/forms.py
 msgid "Description for the website"
@@ -14193,6 +14302,18 @@ msgid "Free delivery over"
 msgstr "Livraison gratuite dès"
 
 #: apps/webapp/shop_order_views.py
+msgid "Customers can use coupon codes"
+msgstr "Les clients peuvent utiliser des codes promo"
+
+#: apps/webapp/shop_order_views.py
+msgid "Offer “Pay online” (card)"
+msgstr "Proposer « Payer en ligne » (carte)"
+
+#: apps/webapp/shop_order_views.py
+msgid "Show product reviews"
+msgstr "Afficher les avis produits"
+
+#: apps/webapp/shop_order_views.py
 msgid "Shows “+ Add” on every product in stock and a cart on your website."
 msgstr ""
 "Affiche « + Ajouter » sur chaque produit en stock et un panier sur votre "
@@ -14201,6 +14322,18 @@ msgstr ""
 #: apps/webapp/shop_order_views.py
 msgid "0 = always charge delivery."
 msgstr "0 = toujours facturer la livraison."
+
+#: apps/webapp/shop_order_views.py
+msgid "Codes you made under Coupons."
+msgstr "Les codes créés dans Coupons."
+
+#: apps/webapp/shop_order_views.py
+msgid "Needs Online payments set up (SkipCash / Razorpay)."
+msgstr "Nécessite les paiements en ligne (SkipCash / Razorpay)."
+
+#: apps/webapp/shop_order_views.py
+msgid "New reviews wait here until you approve them."
+msgstr "Les nouveaux avis attendent ici votre validation."
 
 #: apps/webapp/shop_order_views.py
 msgid "Delivery inside Doha in 24 hours · Cash or card on delivery"
@@ -14229,6 +14362,14 @@ msgstr "Commande %(ref)s clôturée."
 #: apps/webapp/shop_order_views.py
 msgid "You can also bill it from New bill."
 msgstr "Vous pouvez aussi la facturer depuis Nouvelle facture."
+
+#: apps/webapp/shop_order_views.py
+msgid "Review approved — it shows on the website."
+msgstr "Avis approuvé — il s'affiche sur le site."
+
+#: apps/webapp/shop_order_views.py
+msgid "Review deleted."
+msgstr "Avis supprimé."
 
 #: apps/webapp/site_views.py
 msgid "Main colour"
@@ -14689,6 +14830,26 @@ msgstr "Envoi impossible. Veuillez réessayer."
 #: apps/webapp/website_kit_views.py
 msgid "Please enter your name and a phone number or email."
 msgstr "Veuillez saisir votre nom et un numéro de téléphone ou un e-mail."
+
+#: apps/webapp/website_kit_views.py
+msgid "Back to shop"
+msgstr "Retour à la boutique"
+
+#: apps/webapp/website_kit_views.py
+msgid "Coupon code"
+msgstr "Code promo"
+
+#: apps/webapp/website_kit_views.py
+msgid "Pay online now (card)"
+msgstr "Payer en ligne maintenant (carte)"
+
+#: apps/webapp/website_kit_views.py
+msgid "By ordering you agree to our terms."
+msgstr "En commandant, vous acceptez nos conditions."
+
+#: apps/webapp/website_kit_views.py
+msgid "Taking you to the secure payment page…"
+msgstr "Redirection vers la page de paiement sécurisée…"
 
 #: apps/webapp/website_kit_views.py
 msgid "The shop will confirm your order shortly."

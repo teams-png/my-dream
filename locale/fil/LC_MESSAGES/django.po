@@ -9900,6 +9900,26 @@ msgstr ""
 " Website kit."
 
 #: templates/webapp/shop_orders/inbox.html
+msgid "Orders this month"
+msgstr "Mga order ngayong buwan"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Website sales this month"
+msgstr "Benta sa website ngayong buwan"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Orders in the last 7 days"
+msgstr "Mga order sa nakaraang 7 araw"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Pay online"
+msgstr "Magbayad online"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Pay on delivery / pickup"
+msgstr "Magbayad sa delivery / pickup"
+
+#: templates/webapp/shop_orders/inbox.html
 msgid "WhatsApp customer"
 msgstr "WhatsApp sa customer"
 
@@ -9910,6 +9930,10 @@ msgstr "Share / pay link"
 #: templates/webapp/shop_orders/inbox.html
 msgid "Out for delivery"
 msgstr "Papunta na sa delivery"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Delivered — close order"
+msgstr "Naihatid — isara ang order"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Make bill (paid / delivered)"
@@ -9930,6 +9954,18 @@ msgstr "Walang bukas na order sa website."
 #: templates/webapp/shop_orders/inbox.html
 msgid "No website orders yet."
 msgstr "Wala pang order sa website."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Reviews waiting for approval"
+msgstr "Mga review na naghihintay ng approval"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No reviews waiting."
+msgstr "Walang review na naghihintay."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "To take card payments on the website, set up Online payments first."
+msgstr "Para tumanggap ng card sa website, i-set up muna ang Online payments."
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Online shop settings"
@@ -9972,12 +10008,24 @@ msgid "VAT"
 msgstr "VAT"
 
 #: templates/webapp/site/_card.html
+msgid "Save to wishlist"
+msgstr "I-save sa wishlist"
+
+#: templates/webapp/site/_card.html
+msgid "Sale"
+msgstr "Sale"
+
+#: templates/webapp/site/_card.html
 msgid "+ Add"
 msgstr "+ Idagdag"
 
 #: templates/webapp/site/_card.html
 msgid "Veg"
 msgstr "Veg"
+
+#: templates/webapp/site/blocks/search.html
+msgid "Search products…"
+msgstr "Maghanap ng produkto…"
 
 #: templates/webapp/site/editor.html
 msgid "Website kit"
@@ -10253,8 +10301,40 @@ msgid "Size chart"
 msgstr "Size chart"
 
 #: templates/webapp/site/product.html
+msgid "Reviews"
+msgstr "Mga review"
+
+#: templates/webapp/site/product.html
+msgid "No reviews yet. Be the first!"
+msgstr "Wala pang review. Ikaw ang mauna!"
+
+#: templates/webapp/site/product.html
+msgid "Thank you! Your review will show after the shop checks it."
+msgstr "Salamat! Lalabas ang review mo pagkatapos itong suriin ng shop."
+
+#: templates/webapp/site/product.html
+msgid "Write a review"
+msgstr "Sumulat ng review"
+
+#: templates/webapp/site/product.html
+msgid "Rating"
+msgstr "Rating"
+
+#: templates/webapp/site/product.html
+msgid "What did you like?"
+msgstr "Ano ang nagustuhan mo?"
+
+#: templates/webapp/site/product.html
+msgid "Send review"
+msgstr "Ipadala ang review"
+
+#: templates/webapp/site/product.html
 msgid "You may also like"
 msgstr "Baka magustuhan mo rin"
+
+#: templates/webapp/site/shop.html
+msgid "My wishlist"
+msgstr "Aking wishlist"
 
 #: templates/webapp/site/shop.html
 msgid "All products"
@@ -10263,10 +10343,6 @@ msgstr "Lahat ng produkto"
 #: templates/webapp/site/shop.html
 msgid "Filters"
 msgstr "Mga filter"
-
-#: templates/webapp/site/shop.html
-msgid "Search products…"
-msgstr "Maghanap ng produkto…"
 
 #: templates/webapp/site/shop.html
 msgid "Lowest price"
@@ -11241,6 +11317,18 @@ msgstr "%(n)s na lang ang natitirang %(item)s."
 #: apps/industry/shop_orders.py
 msgid "The minimum order for delivery is %(amount)s."
 msgstr "Ang minimum na order para sa delivery ay %(amount)s."
+
+#: apps/industry/shop_orders.py
+msgid "This coupon code is not valid."
+msgstr "Hindi valid ang coupon code na ito."
+
+#: apps/industry/shop_orders.py
+msgid "Thank you for your order %(ref)s at %(shop)s."
+msgstr "Salamat sa order mo %(ref)s sa %(shop)s."
+
+#: apps/industry/shop_orders.py
+msgid "Your order %(ref)s — %(shop)s"
+msgstr "Ang order mo %(ref)s — %(shop)s"
 
 #: apps/industry/shop_orders.py
 msgid "This order was already handled."
@@ -12385,6 +12473,25 @@ msgstr "Presyo ng benta"
 #: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "Reorder level"
+
+#: apps/webapp/forms.py
+msgid "Up to 8 photos at a time."
+msgstr "Hanggang 8 larawan bawat beses."
+
+#: apps/webapp/forms.py
+msgid "More photos for the website"
+msgstr "Dagdag na larawan para sa website"
+
+#: apps/webapp/forms.py
+msgid ""
+"Choose several photos at once. They show as a gallery on the product page."
+msgstr ""
+"Pumili ng ilang larawan nang sabay. Lalabas ang mga ito bilang gallery sa "
+"product page."
+
+#: apps/webapp/forms.py
+msgid "Remove photos"
+msgstr "Alisin ang mga larawan"
 
 #: apps/webapp/forms.py
 msgid "Description for the website"
@@ -14143,6 +14250,18 @@ msgid "Free delivery over"
 msgstr "Libreng delivery kapag lampas sa"
 
 #: apps/webapp/shop_order_views.py
+msgid "Customers can use coupon codes"
+msgstr "Puwedeng gumamit ng coupon code ang mga customer"
+
+#: apps/webapp/shop_order_views.py
+msgid "Offer “Pay online” (card)"
+msgstr "Mag-alok ng “Magbayad online” (card)"
+
+#: apps/webapp/shop_order_views.py
+msgid "Show product reviews"
+msgstr "Ipakita ang mga review ng produkto"
+
+#: apps/webapp/shop_order_views.py
 msgid "Shows “+ Add” on every product in stock and a cart on your website."
 msgstr ""
 "Nagpapakita ng “+ Add” sa bawat produktong may stock at cart sa website mo."
@@ -14150,6 +14269,18 @@ msgstr ""
 #: apps/webapp/shop_order_views.py
 msgid "0 = always charge delivery."
 msgstr "0 = laging maningil ng delivery."
+
+#: apps/webapp/shop_order_views.py
+msgid "Codes you made under Coupons."
+msgstr "Mga code na ginawa mo sa Coupons."
+
+#: apps/webapp/shop_order_views.py
+msgid "Needs Online payments set up (SkipCash / Razorpay)."
+msgstr "Kailangang naka-set up ang Online payments (SkipCash / Razorpay)."
+
+#: apps/webapp/shop_order_views.py
+msgid "New reviews wait here until you approve them."
+msgstr "Naghihintay dito ang mga bagong review hanggang aprubahan mo."
 
 #: apps/webapp/shop_order_views.py
 msgid "Delivery inside Doha in 24 hours · Cash or card on delivery"
@@ -14178,6 +14309,14 @@ msgstr "Naisara ang order %(ref)s."
 #: apps/webapp/shop_order_views.py
 msgid "You can also bill it from New bill."
 msgstr "Puwede mo rin itong i-bill mula sa New bill."
+
+#: apps/webapp/shop_order_views.py
+msgid "Review approved — it shows on the website."
+msgstr "Naaprubahan ang review — lumalabas na sa website."
+
+#: apps/webapp/shop_order_views.py
+msgid "Review deleted."
+msgstr "Nabura ang review."
 
 #: apps/webapp/site_views.py
 msgid "Main colour"
@@ -14636,6 +14775,26 @@ msgstr "Hindi maipadala. Pakisubukan ulit."
 #: apps/webapp/website_kit_views.py
 msgid "Please enter your name and a phone number or email."
 msgstr "Pakilagay ang iyong pangalan at numero ng telepono o email."
+
+#: apps/webapp/website_kit_views.py
+msgid "Back to shop"
+msgstr "Bumalik sa shop"
+
+#: apps/webapp/website_kit_views.py
+msgid "Coupon code"
+msgstr "Coupon code"
+
+#: apps/webapp/website_kit_views.py
+msgid "Pay online now (card)"
+msgstr "Magbayad online ngayon (card)"
+
+#: apps/webapp/website_kit_views.py
+msgid "By ordering you agree to our terms."
+msgstr "Sa pag-order, sumasang-ayon ka sa aming mga tuntunin."
+
+#: apps/webapp/website_kit_views.py
+msgid "Taking you to the secure payment page…"
+msgstr "Dinadala ka sa secure na payment page…"
 
 #: apps/webapp/website_kit_views.py
 msgid "The shop will confirm your order shortly."

@@ -9938,6 +9938,26 @@ msgstr ""
 "இணையதளத்தில் கார்ட் வையுங்கள்."
 
 #: templates/webapp/shop_orders/inbox.html
+msgid "Orders this month"
+msgstr "இந்த மாத ஆர்டர்கள்"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Website sales this month"
+msgstr "இந்த மாத இணையதள விற்பனை"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Orders in the last 7 days"
+msgstr "கடந்த 7 நாள் ஆர்டர்கள்"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Pay online"
+msgstr "ஆன்லைனில் செலுத்து"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Pay on delivery / pickup"
+msgstr "டெலிவரி / பெறும்போது செலுத்து"
+
+#: templates/webapp/shop_orders/inbox.html
 msgid "WhatsApp customer"
 msgstr "வாடிக்கையாளருக்கு WhatsApp"
 
@@ -9948,6 +9968,10 @@ msgstr "பகிர் / கட்டண இணைப்பு"
 #: templates/webapp/shop_orders/inbox.html
 msgid "Out for delivery"
 msgstr "டெலிவரிக்குப் புறப்பட்டது"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Delivered — close order"
+msgstr "டெலிவரி ஆனது — ஆர்டரை மூடு"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Make bill (paid / delivered)"
@@ -9968,6 +9992,18 @@ msgstr "திறந்த இணையதள ஆர்டர்கள் இல
 #: templates/webapp/shop_orders/inbox.html
 msgid "No website orders yet."
 msgstr "இன்னும் இணையதள ஆர்டர்கள் இல்லை."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Reviews waiting for approval"
+msgstr "ஒப்புதலுக்காகக் காத்திருக்கும் மதிப்புரைகள்"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No reviews waiting."
+msgstr "காத்திருக்கும் மதிப்புரைகள் இல்லை."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "To take card payments on the website, set up Online payments first."
+msgstr "இணையதளத்தில் கார்டு கட்டணம் பெற முதலில் Online payments அமைக்கவும்."
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Online shop settings"
@@ -10010,12 +10046,24 @@ msgid "VAT"
 msgstr "VAT"
 
 #: templates/webapp/site/_card.html
+msgid "Save to wishlist"
+msgstr "விருப்பப்பட்டியலில் சேமி"
+
+#: templates/webapp/site/_card.html
+msgid "Sale"
+msgstr "தள்ளுபடி"
+
+#: templates/webapp/site/_card.html
 msgid "+ Add"
 msgstr "+ சேர்"
 
 #: templates/webapp/site/_card.html
 msgid "Veg"
 msgstr "சைவம்"
+
+#: templates/webapp/site/blocks/search.html
+msgid "Search products…"
+msgstr "பொருட்களைத் தேடுங்கள்…"
 
 #: templates/webapp/site/editor.html
 msgid "Website kit"
@@ -10293,8 +10341,40 @@ msgid "Size chart"
 msgstr "அளவு அட்டவணை"
 
 #: templates/webapp/site/product.html
+msgid "Reviews"
+msgstr "மதிப்புரைகள்"
+
+#: templates/webapp/site/product.html
+msgid "No reviews yet. Be the first!"
+msgstr "இன்னும் மதிப்புரைகள் இல்லை. முதலில் நீங்கள் எழுதுங்கள்!"
+
+#: templates/webapp/site/product.html
+msgid "Thank you! Your review will show after the shop checks it."
+msgstr "நன்றி! கடை சரிபார்த்த பிறகு உங்கள் மதிப்புரை காட்டப்படும்."
+
+#: templates/webapp/site/product.html
+msgid "Write a review"
+msgstr "மதிப்புரை எழுது"
+
+#: templates/webapp/site/product.html
+msgid "Rating"
+msgstr "மதிப்பீடு"
+
+#: templates/webapp/site/product.html
+msgid "What did you like?"
+msgstr "உங்களுக்கு என்ன பிடித்தது?"
+
+#: templates/webapp/site/product.html
+msgid "Send review"
+msgstr "மதிப்புரையை அனுப்பு"
+
+#: templates/webapp/site/product.html
 msgid "You may also like"
 msgstr "உங்களுக்குப் பிடிக்கலாம்"
+
+#: templates/webapp/site/shop.html
+msgid "My wishlist"
+msgstr "என் விருப்பப்பட்டியல்"
 
 #: templates/webapp/site/shop.html
 msgid "All products"
@@ -10303,10 +10383,6 @@ msgstr "எல்லா பொருட்களும்"
 #: templates/webapp/site/shop.html
 msgid "Filters"
 msgstr "வடிகட்டிகள்"
-
-#: templates/webapp/site/shop.html
-msgid "Search products…"
-msgstr "பொருட்களைத் தேடுங்கள்…"
 
 #: templates/webapp/site/shop.html
 msgid "Lowest price"
@@ -11285,6 +11361,18 @@ msgstr "%(item)s இன்னும் %(n)s மட்டுமே உள்ள�
 #: apps/industry/shop_orders.py
 msgid "The minimum order for delivery is %(amount)s."
 msgstr "டெலிவரிக்கான குறைந்தபட்ச ஆர்டர் %(amount)s."
+
+#: apps/industry/shop_orders.py
+msgid "This coupon code is not valid."
+msgstr "இந்தக் கூப்பன் குறியீடு செல்லாது."
+
+#: apps/industry/shop_orders.py
+msgid "Thank you for your order %(ref)s at %(shop)s."
+msgstr "%(shop)s-இல் உங்கள் ஆர்டர் %(ref)s-க்கு நன்றி."
+
+#: apps/industry/shop_orders.py
+msgid "Your order %(ref)s — %(shop)s"
+msgstr "உங்கள் ஆர்டர் %(ref)s — %(shop)s"
 
 #: apps/industry/shop_orders.py
 msgid "This order was already handled."
@@ -12444,6 +12532,25 @@ msgstr "விற்பனை விலை"
 #: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "மறு ஆர்டர் நிலை"
+
+#: apps/webapp/forms.py
+msgid "Up to 8 photos at a time."
+msgstr "ஒரே முறையில் 8 புகைப்படங்கள் வரை."
+
+#: apps/webapp/forms.py
+msgid "More photos for the website"
+msgstr "இணையதளத்துக்கு மேலும் புகைப்படங்கள்"
+
+#: apps/webapp/forms.py
+msgid ""
+"Choose several photos at once. They show as a gallery on the product page."
+msgstr ""
+"பல புகைப்படங்களை ஒரே நேரத்தில் தேர்வு செய்யுங்கள். பொருள் பக்கத்தில் "
+"கேலரியாக காட்டப்படும்."
+
+#: apps/webapp/forms.py
+msgid "Remove photos"
+msgstr "புகைப்படங்களை நீக்கு"
 
 #: apps/webapp/forms.py
 msgid "Description for the website"
@@ -14220,6 +14327,18 @@ msgid "Free delivery over"
 msgstr "இதற்கு மேல் இலவச டெலிவரி"
 
 #: apps/webapp/shop_order_views.py
+msgid "Customers can use coupon codes"
+msgstr "வாடிக்கையாளர்கள் கூப்பன் குறியீடுகளைப் பயன்படுத்தலாம்"
+
+#: apps/webapp/shop_order_views.py
+msgid "Offer “Pay online” (card)"
+msgstr "“ஆன்லைனில் செலுத்து” (கார்டு) வழங்கு"
+
+#: apps/webapp/shop_order_views.py
+msgid "Show product reviews"
+msgstr "பொருள் மதிப்புரைகளைக் காட்டு"
+
+#: apps/webapp/shop_order_views.py
 msgid "Shows “+ Add” on every product in stock and a cart on your website."
 msgstr ""
 "கையிருப்பில் உள்ள ஒவ்வொரு பொருளிலும் “+ Add” மற்றும் இணையதளத்தில் கார்ட் "
@@ -14228,6 +14347,18 @@ msgstr ""
 #: apps/webapp/shop_order_views.py
 msgid "0 = always charge delivery."
 msgstr "0 = எப்போதும் டெலிவரி கட்டணம் வசூலி."
+
+#: apps/webapp/shop_order_views.py
+msgid "Codes you made under Coupons."
+msgstr "Coupons-இல் உருவாக்கிய குறியீடுகள்."
+
+#: apps/webapp/shop_order_views.py
+msgid "Needs Online payments set up (SkipCash / Razorpay)."
+msgstr "Online payments (SkipCash / Razorpay) அமைக்கப்பட வேண்டும்."
+
+#: apps/webapp/shop_order_views.py
+msgid "New reviews wait here until you approve them."
+msgstr "புதிய மதிப்புரைகள் நீங்கள் ஒப்புதல் தரும் வரை இங்கே காத்திருக்கும்."
 
 #: apps/webapp/shop_order_views.py
 msgid "Delivery inside Doha in 24 hours · Cash or card on delivery"
@@ -14260,6 +14391,14 @@ msgstr "ஆர்டர் %(ref)s மூடப்பட்டது."
 #: apps/webapp/shop_order_views.py
 msgid "You can also bill it from New bill."
 msgstr "New bill-இலிருந்தும் பில் போடலாம்."
+
+#: apps/webapp/shop_order_views.py
+msgid "Review approved — it shows on the website."
+msgstr "மதிப்புரை ஒப்புதல் பெற்றது — இணையதளத்தில் காட்டப்படுகிறது."
+
+#: apps/webapp/shop_order_views.py
+msgid "Review deleted."
+msgstr "மதிப்புரை நீக்கப்பட்டது."
 
 #: apps/webapp/site_views.py
 msgid "Main colour"
@@ -14727,6 +14866,26 @@ msgstr "அனுப்ப முடியவில்லை. மீண்டு
 #: apps/webapp/website_kit_views.py
 msgid "Please enter your name and a phone number or email."
 msgstr "உங்கள் பெயரையும் தொலைபேசி எண் அல்லது மின்னஞ்சலையும் உள்ளிடவும்."
+
+#: apps/webapp/website_kit_views.py
+msgid "Back to shop"
+msgstr "கடைக்குத் திரும்பு"
+
+#: apps/webapp/website_kit_views.py
+msgid "Coupon code"
+msgstr "கூப்பன் குறியீடு"
+
+#: apps/webapp/website_kit_views.py
+msgid "Pay online now (card)"
+msgstr "இப்போது ஆன்லைனில் செலுத்து (கார்டு)"
+
+#: apps/webapp/website_kit_views.py
+msgid "By ordering you agree to our terms."
+msgstr "ஆர்டர் செய்வதன் மூலம் எங்கள் விதிமுறைகளை ஏற்கிறீர்கள்."
+
+#: apps/webapp/website_kit_views.py
+msgid "Taking you to the secure payment page…"
+msgstr "பாதுகாப்பான கட்டணப் பக்கத்திற்கு அழைத்துச் செல்கிறோம்…"
 
 #: apps/webapp/website_kit_views.py
 msgid "The shop will confirm your order shortly."

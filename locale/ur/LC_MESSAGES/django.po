@@ -9817,6 +9817,26 @@ msgstr ""
 "کرنے کو کہیں — یا Website kit سے اپنی ویب سائٹ پر کارٹ لگائیں۔"
 
 #: templates/webapp/shop_orders/inbox.html
+msgid "Orders this month"
+msgstr "اس مہینے کے آرڈرز"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Website sales this month"
+msgstr "اس مہینے کی ویب سائٹ سیل"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Orders in the last 7 days"
+msgstr "پچھلے 7 دنوں کے آرڈرز"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Pay online"
+msgstr "آن لائن ادائیگی"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Pay on delivery / pickup"
+msgstr "ڈیلیوری / پک اپ پر ادائیگی"
+
+#: templates/webapp/shop_orders/inbox.html
 msgid "WhatsApp customer"
 msgstr "گاہک کو WhatsApp"
 
@@ -9827,6 +9847,10 @@ msgstr "شیئر / ادائیگی لنک"
 #: templates/webapp/shop_orders/inbox.html
 msgid "Out for delivery"
 msgstr "ڈیلیوری کے لیے روانہ"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Delivered — close order"
+msgstr "ڈیلیور ہو گیا — آرڈر بند کریں"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Make bill (paid / delivered)"
@@ -9847,6 +9871,19 @@ msgstr "کوئی کھلا ویب سائٹ آرڈر نہیں۔"
 #: templates/webapp/shop_orders/inbox.html
 msgid "No website orders yet."
 msgstr "ابھی کوئی ویب سائٹ آرڈر نہیں۔"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Reviews waiting for approval"
+msgstr "منظوری کے منتظر ریویوز"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "No reviews waiting."
+msgstr "کوئی ریویو منتظر نہیں۔"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "To take card payments on the website, set up Online payments first."
+msgstr ""
+"ویب سائٹ پر کارڈ سے ادائیگی لینے کے لیے پہلے Online payments سیٹ کریں۔"
 
 #: templates/webapp/shop_orders/inbox.html
 msgid "Online shop settings"
@@ -9889,12 +9926,24 @@ msgid "VAT"
 msgstr "VAT"
 
 #: templates/webapp/site/_card.html
+msgid "Save to wishlist"
+msgstr "وش لسٹ میں محفوظ کریں"
+
+#: templates/webapp/site/_card.html
+msgid "Sale"
+msgstr "سیل"
+
+#: templates/webapp/site/_card.html
 msgid "+ Add"
 msgstr "+ شامل کریں"
 
 #: templates/webapp/site/_card.html
 msgid "Veg"
 msgstr "سبزی"
+
+#: templates/webapp/site/blocks/search.html
+msgid "Search products…"
+msgstr "مصنوعات تلاش کریں…"
 
 #: templates/webapp/site/editor.html
 msgid "Website kit"
@@ -10165,8 +10214,40 @@ msgid "Size chart"
 msgstr "سائز چارٹ"
 
 #: templates/webapp/site/product.html
+msgid "Reviews"
+msgstr "ریویوز"
+
+#: templates/webapp/site/product.html
+msgid "No reviews yet. Be the first!"
+msgstr "ابھی کوئی ریویو نہیں۔ پہلا آپ لکھیں!"
+
+#: templates/webapp/site/product.html
+msgid "Thank you! Your review will show after the shop checks it."
+msgstr "شکریہ! دکان کی جانچ کے بعد آپ کا ریویو دکھائی دے گا۔"
+
+#: templates/webapp/site/product.html
+msgid "Write a review"
+msgstr "ریویو لکھیں"
+
+#: templates/webapp/site/product.html
+msgid "Rating"
+msgstr "ریٹنگ"
+
+#: templates/webapp/site/product.html
+msgid "What did you like?"
+msgstr "آپ کو کیا پسند آیا؟"
+
+#: templates/webapp/site/product.html
+msgid "Send review"
+msgstr "ریویو بھیجیں"
+
+#: templates/webapp/site/product.html
 msgid "You may also like"
 msgstr "آپ کو یہ بھی پسند آ سکتا ہے"
+
+#: templates/webapp/site/shop.html
+msgid "My wishlist"
+msgstr "میری وش لسٹ"
 
 #: templates/webapp/site/shop.html
 msgid "All products"
@@ -10175,10 +10256,6 @@ msgstr "تمام مصنوعات"
 #: templates/webapp/site/shop.html
 msgid "Filters"
 msgstr "فلٹرز"
-
-#: templates/webapp/site/shop.html
-msgid "Search products…"
-msgstr "مصنوعات تلاش کریں…"
 
 #: templates/webapp/site/shop.html
 msgid "Lowest price"
@@ -11137,6 +11214,18 @@ msgstr "%(item)s کے صرف %(n)s باقی ہیں۔"
 #: apps/industry/shop_orders.py
 msgid "The minimum order for delivery is %(amount)s."
 msgstr "ڈیلیوری کے لیے کم از کم آرڈر %(amount)s ہے۔"
+
+#: apps/industry/shop_orders.py
+msgid "This coupon code is not valid."
+msgstr "یہ کوپن کوڈ درست نہیں۔"
+
+#: apps/industry/shop_orders.py
+msgid "Thank you for your order %(ref)s at %(shop)s."
+msgstr "%(shop)s پر آپ کے آرڈر %(ref)s کا شکریہ۔"
+
+#: apps/industry/shop_orders.py
+msgid "Your order %(ref)s — %(shop)s"
+msgstr "آپ کا آرڈر %(ref)s — %(shop)s"
 
 #: apps/industry/shop_orders.py
 msgid "This order was already handled."
@@ -12273,6 +12362,25 @@ msgstr "فروخت قیمت"
 #: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "دوبارہ آرڈر کی سطح"
+
+#: apps/webapp/forms.py
+msgid "Up to 8 photos at a time."
+msgstr "ایک وقت میں 8 تصاویر تک۔"
+
+#: apps/webapp/forms.py
+msgid "More photos for the website"
+msgstr "ویب سائٹ کے لیے مزید تصاویر"
+
+#: apps/webapp/forms.py
+msgid ""
+"Choose several photos at once. They show as a gallery on the product page."
+msgstr ""
+"ایک ساتھ کئی تصاویر منتخب کریں۔ یہ پروڈکٹ صفحے پر گیلری کی صورت دکھائی دیں "
+"گی۔"
+
+#: apps/webapp/forms.py
+msgid "Remove photos"
+msgstr "تصاویر ہٹائیں"
 
 #: apps/webapp/forms.py
 msgid "Description for the website"
@@ -14009,12 +14117,36 @@ msgid "Free delivery over"
 msgstr "اس سے اوپر مفت ڈیلیوری"
 
 #: apps/webapp/shop_order_views.py
+msgid "Customers can use coupon codes"
+msgstr "گاہک کوپن کوڈ استعمال کر سکتے ہیں"
+
+#: apps/webapp/shop_order_views.py
+msgid "Offer “Pay online” (card)"
+msgstr "“آن لائن ادائیگی” (کارڈ) دیں"
+
+#: apps/webapp/shop_order_views.py
+msgid "Show product reviews"
+msgstr "پروڈکٹ ریویوز دکھائیں"
+
+#: apps/webapp/shop_order_views.py
 msgid "Shows “+ Add” on every product in stock and a cart on your website."
 msgstr "اسٹاک والی ہر پروڈکٹ پر “+ Add” اور ویب سائٹ پر کارٹ دکھاتا ہے۔"
 
 #: apps/webapp/shop_order_views.py
 msgid "0 = always charge delivery."
 msgstr "0 = ہمیشہ ڈیلیوری چارج لیں۔"
+
+#: apps/webapp/shop_order_views.py
+msgid "Codes you made under Coupons."
+msgstr "Coupons میں بنائے گئے کوڈ۔"
+
+#: apps/webapp/shop_order_views.py
+msgid "Needs Online payments set up (SkipCash / Razorpay)."
+msgstr "Online payments (SkipCash / Razorpay) سیٹ ہونا ضروری۔"
+
+#: apps/webapp/shop_order_views.py
+msgid "New reviews wait here until you approve them."
+msgstr "نئے ریویوز آپ کی منظوری تک یہاں رہتے ہیں۔"
 
 #: apps/webapp/shop_order_views.py
 msgid "Delivery inside Doha in 24 hours · Cash or card on delivery"
@@ -14043,6 +14175,14 @@ msgstr "آرڈر %(ref)s بند ہوا۔"
 #: apps/webapp/shop_order_views.py
 msgid "You can also bill it from New bill."
 msgstr "آپ اسے New bill سے بھی بل کر سکتے ہیں۔"
+
+#: apps/webapp/shop_order_views.py
+msgid "Review approved — it shows on the website."
+msgstr "ریویو منظور — ویب سائٹ پر دکھائی دے رہا ہے۔"
+
+#: apps/webapp/shop_order_views.py
+msgid "Review deleted."
+msgstr "ریویو حذف ہو گیا۔"
 
 #: apps/webapp/site_views.py
 msgid "Main colour"
@@ -14492,6 +14632,26 @@ msgstr "بھیجا نہیں جا سکا۔ براہ کرم دوبارہ کوشش 
 #: apps/webapp/website_kit_views.py
 msgid "Please enter your name and a phone number or email."
 msgstr "براہ کرم اپنا نام اور فون نمبر یا ای میل درج کریں۔"
+
+#: apps/webapp/website_kit_views.py
+msgid "Back to shop"
+msgstr "شاپ پر واپس"
+
+#: apps/webapp/website_kit_views.py
+msgid "Coupon code"
+msgstr "کوپن کوڈ"
+
+#: apps/webapp/website_kit_views.py
+msgid "Pay online now (card)"
+msgstr "ابھی آن لائن ادائیگی کریں (کارڈ)"
+
+#: apps/webapp/website_kit_views.py
+msgid "By ordering you agree to our terms."
+msgstr "آرڈر کر کے آپ ہماری شرائط مانتے ہیں۔"
+
+#: apps/webapp/website_kit_views.py
+msgid "Taking you to the secure payment page…"
+msgstr "محفوظ ادائیگی صفحے پر لے جا رہے ہیں…"
 
 #: apps/webapp/website_kit_views.py
 msgid "The shop will confirm your order shortly."

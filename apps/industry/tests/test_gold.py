@@ -103,7 +103,7 @@ def test_product_form_saves_industry_fields_for_every_type(jeweller):
     unit = Unit.objects.for_company(company).first() or Unit.objects.create(company=company, name="pcs")
     sample = {"weight_grams": "12.5", "making_charge": "10", "mileage": "1200", "stone_value": "50",
               "minimum_order_quantity": "2.5", "warranty_months": "12", "model_year": "2025",
-              "production_lead_days": "3", "preparation_minutes": "5", "lead_time_days": "7",
+              "production_lead_days": "3", "preparation_minutes": "5", "lead_time_days": "7", "servings": "30",
               "service_interval_days": "90", "production_date": "2026-01-01", "expiry_date": "2026-12-31",
               "purity": "22K", "making_mode": "fixed", "serial_required": "", "assembly_required": "on"}
     for n, code in enumerate(BusinessProductForm.INDUSTRY_FIELDS):
@@ -113,8 +113,12 @@ def test_product_form_saves_industry_fields_for_every_type(jeweller):
         company.business_type = business_type
         data = {"sku": f"SKU{n}", "name": f"Item {code}", "unit": unit.id, "cost_price": "1",
                 "selling_price": "2", "reorder_level": "0", "wholesale_price": "1.5", "carton_quantity": "6"}
+        blank = BusinessProductForm(company=company)
         for name in BusinessProductForm.INDUSTRY_FIELDS[code]:
             data[name] = sample.get(name, "text")
+            choices = [str(v) for v, _l in getattr(blank.fields[name], "choices", []) if v]
+            if choices and data[name] not in choices:  # e.g. sport / gender pick lists
+                data[name] = choices[0]
         form = BusinessProductForm(data=data, company=company)
         assert form.is_valid(), (code, form.errors)
         product = form.save(commit=False)

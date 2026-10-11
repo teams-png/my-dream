@@ -158,6 +158,14 @@ msgid "Products"
 msgstr "المنتجات"
 
 #: templates/base.html
+msgid "Team orders"
+msgstr "طلبات الفرق"
+
+#: templates/base.html
+msgid "Sales"
+msgstr "المبيعات"
+
+#: templates/base.html
 msgid "Cycle Shop"
 msgstr "متجر الدراجات"
 
@@ -182,20 +190,12 @@ msgid "Medical Shop"
 msgstr "الصيدلية"
 
 #: templates/base.html
-msgid "Batches"
-msgstr "الدفعات"
-
-#: templates/base.html
-msgid "Dispense History"
-msgstr "سجل الصرف"
+msgid "Batches & expiry"
+msgstr "الدفعات والصلاحية"
 
 #: templates/base.html
 msgid "Protein Shop"
 msgstr "متجر البروتين"
-
-#: templates/base.html
-msgid "Sale History"
-msgstr "سجل المبيعات"
 
 #: templates/base.html
 msgid "Construction"
@@ -236,10 +236,6 @@ msgstr "المطبخ / تذاكر الطلبات"
 #: templates/base.html
 msgid "Menu & Ingredients"
 msgstr "القائمة والمكونات"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "المبيعات"
 
 #: templates/base.html
 msgid "Packages / Sessions"
@@ -5411,6 +5407,171 @@ msgstr "تفاصيل المنتج"
 msgid "Shown on the POS, invoices and your website."
 msgstr "يظهر في نقطة البيع والفواتير وموقعك."
 
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair"
+msgstr "إصلاح"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print job card"
+msgstr "طباعة بطاقة العمل"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Send status on WhatsApp"
+msgstr "إرسال الحالة عبر واتساب"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Edit / change status"
+msgstr "تعديل / تغيير الحالة"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Spare part"
+msgstr "قطعة غيار"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair job card"
+msgstr "بطاقة عمل الإصلاح"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Device"
+msgstr "الجهاز"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Received"
+msgstr "المستلم"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Ready by"
+msgstr "جاهز بتاريخ"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Warranty repair"
+msgstr "إصلاح ضمن الضمان"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Estimated cost"
+msgstr "التكلفة التقديرية"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Left with the phone"
+msgstr "سُلّم مع الهاتف"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Screen lock"
+msgstr "قفل الشاشة"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Given"
+msgstr "مُقدَّم"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Technician"
+msgstr "الفني"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Problem reported"
+msgstr "المشكلة المبلغ عنها"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Diagnosis"
+msgstr "التشخيص"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid ""
+"Please bring this card when you collect the phone. We are not responsible "
+"for data on the device or for phones not collected within 30 days of the "
+"ready date."
+msgstr ""
+"يرجى إحضار هذه البطاقة عند استلام الهاتف. لسنا مسؤولين عن البيانات الموجودة "
+"على الجهاز أو عن الهواتف التي لا تُستلم خلال 30 يومًا من تاريخ الجاهزية."
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Customer signature"
+msgstr "توقيع العميل"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Shop"
+msgstr "المحل"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Parts used"
+msgstr "القطع المستخدمة"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Part"
+msgstr "القطعة"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Charge"
+msgstr "تحصيل"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "No parts added."
+msgstr "لم تُضف أي قطع."
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Labour charge"
+msgstr "أجرة العمل"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Work done"
+msgstr "العمل المنجز"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Advance taken off the bill"
+msgstr "المقدَّم المخصوم من الفاتورة"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Complete & create invoice"
+msgstr "إنهاء وإنشاء فاتورة"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print repair invoice"
+msgstr "طباعة فاتورة الإصلاح"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Share on WhatsApp / email"
+msgstr "مشاركة عبر واتساب / البريد"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Repair job"
+msgstr "عمل إصلاح"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New repair job"
+msgstr "عمل إصلاح جديد"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "…or new customer name"
+msgstr "…أو اسم عميل جديد"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New customer phone / WhatsApp"
+msgstr "هاتف / واتساب العميل الجديد"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Screen lock PIN / pattern"
+msgstr "رمز / نمط قفل الشاشة"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Phone sold by us (optional)"
+msgstr "هاتف بعناه نحن (اختياري)"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Cost and pickup"
+msgstr "التكلفة والاستلام"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Bill the labour as"
+msgstr "احتساب أجرة العمل كـ"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Branch"
+msgstr "الفرع"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Save job card"
+msgstr "حفظ بطاقة العمل"
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "لا صلاحية"
@@ -5703,10 +5864,6 @@ msgstr "فتح الحجز"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "المطلوب"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Received"
-msgstr "المستلم"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Reason"
@@ -6022,10 +6179,6 @@ msgid "Done by (staff)"
 msgstr "نفّذه (الموظف)"
 
 #: templates/webapp/pos.html
-msgid "Branch"
-msgstr "الفرع"
-
-#: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "السلة فارغة"
 
@@ -6044,10 +6197,6 @@ msgstr "تعليق"
 #: templates/webapp/pos.html
 msgid "Clear"
 msgstr "مسح"
-
-#: templates/webapp/pos.html
-msgid "Charge"
-msgstr "تحصيل"
 
 #: templates/webapp/pos.html
 msgid "Take payment"
@@ -6152,6 +6301,10 @@ msgstr "أضف إلى البيع"
 #: templates/webapp/pos.html
 msgid "Sales parked on this till. Tap one to bring it back."
 msgstr "مبيعات معلّقة على نقطة البيع هذه. اضغط على أحدها لاستعادته."
+
+#: templates/webapp/pos.html
+msgid "Quantity (ml)"
+msgstr "الكمية (مل)"
 
 #: templates/webapp/pos.html
 msgid "Products for sale"
@@ -9114,6 +9267,10 @@ msgstr "الإجمالي"
 msgid "Print Receipt"
 msgstr "طباعة الإيصال"
 
+#: templates/webapp/retail/reports.html
+msgid "Product"
+msgstr "المنتج"
+
 #: templates/webapp/sales_docs/_doc_head.html
 msgid "Valid until"
 msgstr "صالح حتى"
@@ -9578,9 +9735,120 @@ msgstr "تابعنا"
 msgid "VAT"
 msgstr "ضريبة القيمة المضافة"
 
-#: templates/webapp/stock/_tabs.html
+#: templates/webapp/sports_shop/product_list.html
+msgid "Import from Excel"
+msgstr "استيراد من Excel"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Sport"
+msgstr "الرياضة"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Colour / size"
+msgstr "اللون / المقاس"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Gender"
+msgstr "الجنس"
+
+#: templates/webapp/sports_shop/product_list.html
 msgid "Stock"
 msgstr "المخزون"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Size / colour"
+msgstr "المقاس / اللون"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "No products yet."
+msgstr "لا توجد منتجات بعد."
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Print list for the printer"
+msgstr "طباعة القائمة للمطبعة"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Update status"
+msgstr "تحديث الحالة"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Delivery date"
+msgstr "تاريخ التسليم"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Pieces"
+msgstr "القطع"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Sizes"
+msgstr "المقاسات"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Name on jersey"
+msgstr "الاسم على القميص"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Size"
+msgstr "المقاس"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team order"
+msgstr "طلب فريق"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Edit team order"
+msgstr "تعديل طلب الفريق"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "New team order"
+msgstr "طلب فريق جديد"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team / club / school"
+msgstr "الفريق / النادي / المدرسة"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Doha Strikers FC"
+msgstr "مثال: Doha Strikers FC"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Contact phone"
+msgstr "هاتف التواصل"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "What is being made"
+msgstr "ما الذي يُصنع"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Home jersey – blue, name and number on the back"
+msgstr "مثال: قميص الأرض – أزرق، الاسم والرقم على الظهر"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Price per piece"
+msgstr "سعر القطعة"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Players — one per line: Name, Number, Size"
+msgstr "اللاعبون — واحد في كل سطر: الاسم، الرقم، المقاس"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Tip: copy the list from Excel or WhatsApp and paste it here."
+msgstr "نصيحة: انسخ القائمة من Excel أو واتساب والصقها هنا."
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Font, colours, sponsor logo…"
+msgstr "الخط، الألوان، شعار الراعي…"
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid ""
+"Jerseys for clubs, schools and companies — each player's name, number and "
+"size, ready for the printer."
+msgstr ""
+"قمصان للأندية والمدارس والشركات — اسم كل لاعب ورقمه ومقاسه جاهزة للمطبعة."
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid "No team orders yet."
+msgstr "لا توجد طلبات فرق بعد."
 
 #: templates/webapp/stock/_tabs.html
 msgid "Adjust"
@@ -9589,10 +9857,6 @@ msgstr "تعديل"
 #: templates/webapp/stock/_tabs.html
 msgid "Stock taking"
 msgstr "جرد المخزون"
-
-#: templates/webapp/stock/_tabs.html
-msgid "Batches & expiry"
-msgstr "الدفعات والصلاحية"
 
 #: templates/webapp/stock/_tabs.html
 msgid "Serial numbers"
@@ -9645,6 +9909,14 @@ msgstr "شطب"
 #: templates/webapp/stock/batches.html
 msgid "No batches here."
 msgstr "لا دفعات هنا."
+
+#: templates/webapp/stock/batches.html
+msgid "Batches you entered before this update are kept on the older screen."
+msgstr "الدفعات التي أدخلتها قبل هذا التحديث محفوظة في الشاشة القديمة."
+
+#: templates/webapp/stock/batches.html
+msgid "Open older batch records"
+msgstr "فتح سجلات الدفعات القديمة"
 
 #: templates/webapp/stock/batches.html
 msgid "Receive a batch"
@@ -9990,6 +10262,14 @@ msgid ""
 msgstr ""
 "مرحبًا %(name)s، ربما حان وقت إعادة صرف أدويتك من %(shop)s. ردّ وسنجهّزها "
 "لك."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, your supplements from %(shop)s may be running low. Reply and we"
+" will keep your next pack ready."
+msgstr ""
+"مرحبًا %(name)s، قد تكون مكملاتك من %(shop)s على وشك النفاد. رد علينا وسنجهز"
+" لك العبوة التالية."
 
 #: apps/industry/reminders.py
 msgid ""
@@ -10623,10 +10903,6 @@ msgid "CV & documents"
 msgstr "السيرة الذاتية والمستندات"
 
 #: apps/webapp/careers_views.py
-msgid "Gender"
-msgstr "الجنس"
-
-#: apps/webapp/careers_views.py
 msgid "Male"
 msgstr "ذكر"
 
@@ -10982,6 +11258,10 @@ msgstr "%(item)s: %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "تم تحديد %(count)s أسعار."
+
+#: apps/webapp/education_views.py
+msgid "Batches"
+msgstr "الدفعات"
 
 #: apps/webapp/education_views.py
 msgid "Class"
@@ -12019,6 +12299,30 @@ msgid "All products are above their reorder level."
 msgstr "جميع المنتجات فوق حد إعادة الطلب."
 
 #: apps/webapp/overview.py
+msgid "Batch %(b)s · %(q)s in stock"
+msgstr "الدفعة %(b)s · %(q)s في المخزون"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "خلال %(n)s أيام"
+
+#: apps/webapp/overview.py
+msgid "%(n)s already expired"
+msgstr "%(n)s منتهية الصلاحية بالفعل"
+
+#: apps/webapp/overview.py
+msgid "Expiring soon"
+msgstr "تنتهي صلاحيتها قريبًا"
+
+#: apps/webapp/overview.py
+msgid "Nothing expires in the next 60 days."
+msgstr "لا شيء تنتهي صلاحيته خلال الـ 60 يومًا القادمة."
+
+#: apps/webapp/overview.py
+msgid "Receive stock"
+msgstr "استلام مخزون"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "إصلاحات في المحل"
 
@@ -12033,10 +12337,6 @@ msgstr "كل الإصلاحات"
 #: apps/webapp/overview.py
 msgid "No repairs waiting."
 msgstr "لا توجد إصلاحات منتظرة."
-
-#: apps/webapp/overview.py
-msgid "New repair job"
-msgstr "عمل إصلاح جديد"
 
 #: apps/webapp/overview.py
 msgid "Cars in the queue"
@@ -12077,10 +12377,6 @@ msgstr "تسجيلات الدخول اليوم"
 #: apps/webapp/overview.py
 msgid "Expiring this week"
 msgstr "تنتهي هذا الأسبوع"
-
-#: apps/webapp/overview.py
-msgid "in %(n)s days"
-msgstr "خلال %(n)s أيام"
 
 #: apps/webapp/overview.py
 msgid "Memberships to renew"
@@ -12974,9 +13270,77 @@ msgstr "تمت إضافة %(count)s أرقام تسلسلية إلى المخز�
 msgid "Already registered: %(list)s"
 msgstr "مسجلة مسبقاً: %(list)s"
 
+#: apps/webapp/team_order_views.py
+msgid "Enter the team name and what is being made."
+msgstr "أدخل اسم الفريق وما الذي يُصنع."
+
+#: apps/webapp/team_order_views.py
+msgid "Choose the delivery date."
+msgstr "اختر تاريخ التسليم."
+
+#: apps/webapp/team_order_views.py
+msgid "Price and advance must be numbers."
+msgstr "يجب أن يكون السعر والمقدَّم أرقامًا."
+
+#: apps/webapp/team_order_views.py
+msgid "Add at least one player: name, number, size — one per line."
+msgstr "أضف لاعبًا واحدًا على الأقل: الاسم، الرقم، المقاس — واحد في كل سطر."
+
+#: apps/webapp/team_order_views.py
+msgid "Team order saved."
+msgstr "تم حفظ طلب الفريق."
+
+#: apps/webapp/team_order_views.py
+msgid "Status updated."
+msgstr "تم تحديث الحالة."
+
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "الطلبات والطاولات"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s is ready for pickup at %(shop)s. Job %(job)s. "
+"Amount due: %(amount)s."
+msgstr ""
+"مرحبًا %(name)s، جهازك %(device)s جاهز للاستلام في %(shop)s. رقم العمل "
+"%(job)s. المبلغ المستحق: %(amount)s."
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, we have received your %(device)s at %(shop)s (job %(job)s). We "
+"will message you when it is ready."
+msgstr ""
+"مرحبًا %(name)s، استلمنا جهازك %(device)s في %(shop)s (رقم العمل %(job)s). "
+"سنراسلك عندما يكون جاهزًا."
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s (job %(job)s) is waiting for a spare part. We "
+"will update you as soon as it arrives. – %(shop)s"
+msgstr ""
+"مرحبًا %(name)s، جهازك %(device)s (رقم العمل %(job)s) بانتظار قطعة غيار. "
+"سنبلغك فور وصولها. – %(shop)s"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, update on your %(device)s (job %(job)s) at %(shop)s: "
+"%(status)s."
+msgstr ""
+"مرحبًا %(name)s، تحديث بخصوص جهازك %(device)s (رقم العمل %(job)s) في "
+"%(shop)s: %(status)s."
+
+#: apps/webapp/views.py
+msgid "Fragrance family"
+msgstr "عائلة العطر"
+
+#: apps/webapp/views.py
+msgid "Concentration"
+msgstr "التركيز"
+
+#: apps/webapp/views.py
+msgid "Bottle size (ml)"
+msgstr "حجم الزجاجة (مل)"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

@@ -158,6 +158,14 @@ msgid "Products"
 msgstr "പ്രോഡക്റ്റുകൾ"
 
 #: templates/base.html
+msgid "Team orders"
+msgstr "ടീം ഓർഡറുകൾ"
+
+#: templates/base.html
+msgid "Sales"
+msgstr "വിൽപ്പന"
+
+#: templates/base.html
 msgid "Cycle Shop"
 msgstr "സൈക്കിൾ ഷോപ്പ്"
 
@@ -182,20 +190,12 @@ msgid "Medical Shop"
 msgstr "മെഡിക്കൽ ഷോപ്പ്"
 
 #: templates/base.html
-msgid "Batches"
-msgstr "ബാച്ചുകൾ"
-
-#: templates/base.html
-msgid "Dispense History"
-msgstr "വിതരണ ചരിത്രം"
+msgid "Batches & expiry"
+msgstr "ബാച്ചും കാലാവധിയും"
 
 #: templates/base.html
 msgid "Protein Shop"
 msgstr "പ്രോട്ടീൻ ഷോപ്പ്"
-
-#: templates/base.html
-msgid "Sale History"
-msgstr "വിൽപ്പന ചരിത്രം"
 
 #: templates/base.html
 msgid "Construction"
@@ -236,10 +236,6 @@ msgstr "കിച്ചൺ / KOT"
 #: templates/base.html
 msgid "Menu & Ingredients"
 msgstr "മെനുവും ചേരുവകളും"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "വിൽപ്പന"
 
 #: templates/base.html
 msgid "Packages / Sessions"
@@ -5475,6 +5471,172 @@ msgstr "ഉൽപ്പന്ന വിവരങ്ങൾ"
 msgid "Shown on the POS, invoices and your website."
 msgstr "POS, ഇൻവോയ്സുകൾ, നിങ്ങളുടെ വെബ്സൈറ്റ് എന്നിവയിൽ കാണിക്കും."
 
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair"
+msgstr "റിപ്പയർ"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print job card"
+msgstr "ജോബ് കാർഡ് പ്രിന്റ് ചെയ്യുക"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Send status on WhatsApp"
+msgstr "സ്റ്റാറ്റസ് WhatsApp-ൽ അയക്കുക"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Edit / change status"
+msgstr "എഡിറ്റ് / സ്റ്റാറ്റസ് മാറ്റുക"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Spare part"
+msgstr "സ്പെയർ പാർട്ട്"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair job card"
+msgstr "റിപ്പയർ ജോബ് കാർഡ്"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Device"
+msgstr "ഉപകരണം"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Received"
+msgstr "ലഭിച്ചത്"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Ready by"
+msgstr "തയ്യാറാകുന്ന തീയതി"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Warranty repair"
+msgstr "വാറന്റി റിപ്പയർ"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Estimated cost"
+msgstr "ഏകദേശ ചെലവ്"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Left with the phone"
+msgstr "ഫോണിനൊപ്പം നൽകിയത്"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Screen lock"
+msgstr "സ്ക്രീൻ ലോക്ക്"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Given"
+msgstr "നൽകിയത്"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Technician"
+msgstr "ടെക്നീഷ്യൻ"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Problem reported"
+msgstr "പറഞ്ഞ പ്രശ്നം"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Diagnosis"
+msgstr "പരിശോധനാ ഫലം"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid ""
+"Please bring this card when you collect the phone. We are not responsible "
+"for data on the device or for phones not collected within 30 days of the "
+"ready date."
+msgstr ""
+"ഫോൺ തിരികെ വാങ്ങുമ്പോൾ ഈ കാർഡ് കൊണ്ടുവരിക. ഉപകരണത്തിലെ ഡാറ്റയ്ക്കോ, തയ്യാറായ"
+" തീയതി മുതൽ 30 ദിവസത്തിനുള്ളിൽ കൊണ്ടുപോകാത്ത ഫോണുകൾക്കോ ഞങ്ങൾ "
+"ഉത്തരവാദികളല്ല."
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Customer signature"
+msgstr "ഉപഭോക്താവിന്റെ ഒപ്പ്"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Shop"
+msgstr "ഷോപ്പ്"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Parts used"
+msgstr "ഉപയോഗിച്ച പാർട്ടുകൾ"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Part"
+msgstr "പാർട്ട്"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Charge"
+msgstr "ചാർജ് ചെയ്യുക"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "No parts added."
+msgstr "പാർട്ടുകൾ ചേർത്തിട്ടില്ല."
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Labour charge"
+msgstr "ലേബർ ചാർജ്"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Work done"
+msgstr "ചെയ്ത ജോലി"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Advance taken off the bill"
+msgstr "ബില്ലിൽ നിന്ന് കുറച്ച അഡ്വാൻസ്"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Complete & create invoice"
+msgstr "പൂർത്തിയാക്കി ഇൻവോയ്സ് ഉണ്ടാക്കുക"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print repair invoice"
+msgstr "റിപ്പയർ ഇൻവോയ്സ് പ്രിന്റ് ചെയ്യുക"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Share on WhatsApp / email"
+msgstr "WhatsApp / ഇമെയിൽ വഴി പങ്കിടുക"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Repair job"
+msgstr "റിപ്പയർ ജോബ്"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New repair job"
+msgstr "പുതിയ റിപ്പയർ ജോലി"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "…or new customer name"
+msgstr "…അല്ലെങ്കിൽ പുതിയ ഉപഭോക്താവിന്റെ പേര്"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New customer phone / WhatsApp"
+msgstr "പുതിയ ഉപഭോക്താവിന്റെ ഫോൺ / WhatsApp"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Screen lock PIN / pattern"
+msgstr "സ്ക്രീൻ ലോക്ക് PIN / പാറ്റേൺ"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Phone sold by us (optional)"
+msgstr "ഞങ്ങൾ വിറ്റ ഫോൺ (ഓപ്ഷണൽ)"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Cost and pickup"
+msgstr "ചെലവും തിരികെ വാങ്ങലും"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Bill the labour as"
+msgstr "ലേബർ ബിൽ ചെയ്യേണ്ടത്"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Branch"
+msgstr "ബ്രാഞ്ച്"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Save job card"
+msgstr "ജോബ് കാർഡ് സേവ് ചെയ്യുക"
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "അനുമതി ഇല്ല"
@@ -5773,10 +5935,6 @@ msgstr "ബുക്കിംഗ് തുറക്കുക"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "ആവശ്യം"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Received"
-msgstr "ലഭിച്ചത്"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Reason"
@@ -6100,10 +6258,6 @@ msgid "Done by (staff)"
 msgstr "ചെയ്തത് (സ്റ്റാഫ്)"
 
 #: templates/webapp/pos.html
-msgid "Branch"
-msgstr "ബ്രാഞ്ച്"
-
-#: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "കാർട്ട് ശൂന്യമാണ്"
 
@@ -6124,10 +6278,6 @@ msgstr "ഹോൾഡ്"
 #: templates/webapp/pos.html
 msgid "Clear"
 msgstr "മായ്ക്കുക"
-
-#: templates/webapp/pos.html
-msgid "Charge"
-msgstr "ചാർജ് ചെയ്യുക"
 
 #: templates/webapp/pos.html
 msgid "Take payment"
@@ -6234,6 +6384,10 @@ msgstr "വിൽപ്പനയിൽ ചേർക്കുക"
 msgid "Sales parked on this till. Tap one to bring it back."
 msgstr ""
 "ഈ കൗണ്ടറിൽ ഹോൾഡ് ചെയ്ത വിൽപ്പനകൾ. തിരികെ കൊണ്ടുവരാൻ ഒന്നിൽ ടാപ്പ് ചെയ്യുക."
+
+#: templates/webapp/pos.html
+msgid "Quantity (ml)"
+msgstr "അളവ് (ml)"
 
 #: templates/webapp/pos.html
 msgid "Products for sale"
@@ -9223,6 +9377,10 @@ msgstr "ആകെ"
 msgid "Print Receipt"
 msgstr "രസീത് പ്രിന്റ്"
 
+#: templates/webapp/retail/reports.html
+msgid "Product"
+msgstr "ഉൽപ്പന്നം"
+
 #: templates/webapp/sales_docs/_doc_head.html
 msgid "Valid until"
 msgstr "കാലാവധി"
@@ -9695,9 +9853,123 @@ msgstr "ഞങ്ങളെ ഫോളോ ചെയ്യൂ"
 msgid "VAT"
 msgstr "VAT"
 
-#: templates/webapp/stock/_tabs.html
+#: templates/webapp/sports_shop/product_list.html
+msgid "Import from Excel"
+msgstr "Excel-ൽ നിന്ന് ഇമ്പോർട്ട് ചെയ്യുക"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Sport"
+msgstr "കായിക ഇനം"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Colour / size"
+msgstr "നിറം / സൈസ്"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Gender"
+msgstr "ലിംഗം"
+
+#: templates/webapp/sports_shop/product_list.html
 msgid "Stock"
 msgstr "സ്റ്റോക്ക്"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Size / colour"
+msgstr "സൈസ് / നിറം"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "No products yet."
+msgstr "ഇതുവരെ ഉൽപ്പന്നങ്ങളൊന്നുമില്ല."
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Print list for the printer"
+msgstr "പ്രിന്ററിനുള്ള ലിസ്റ്റ് പ്രിന്റ് ചെയ്യുക"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Update status"
+msgstr "സ്റ്റാറ്റസ് മാറ്റുക"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Delivery date"
+msgstr "ഡെലിവറി തീയതി"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Pieces"
+msgstr "എണ്ണം"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Sizes"
+msgstr "സൈസുകൾ"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Name on jersey"
+msgstr "ജേഴ്സിയിലെ പേര്"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Size"
+msgstr "സൈസ്"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team order"
+msgstr "ടീം ഓർഡർ"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Edit team order"
+msgstr "ടീം ഓർഡർ എഡിറ്റ് ചെയ്യുക"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "New team order"
+msgstr "പുതിയ ടീം ഓർഡർ"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team / club / school"
+msgstr "ടീം / ക്ലബ് / സ്കൂൾ"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Doha Strikers FC"
+msgstr "ഉദാ. Doha Strikers FC"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Contact phone"
+msgstr "ബന്ധപ്പെടാനുള്ള ഫോൺ"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "What is being made"
+msgstr "എന്താണ് ഉണ്ടാക്കുന്നത്"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Home jersey – blue, name and number on the back"
+msgstr "ഉദാ. ഹോം ജേഴ്സി – നീല, പുറകിൽ പേരും നമ്പറും"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Price per piece"
+msgstr "ഒരെണ്ണത്തിന്റെ വില"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Players — one per line: Name, Number, Size"
+msgstr "കളിക്കാർ — ഓരോ വരിയിലും ഒരാൾ: പേര്, നമ്പർ, സൈസ്"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Tip: copy the list from Excel or WhatsApp and paste it here."
+msgstr ""
+"ടിപ്പ്: Excel-ൽ നിന്നോ WhatsApp-ൽ നിന്നോ ലിസ്റ്റ് കോപ്പി ചെയ്ത് ഇവിടെ "
+"പേസ്റ്റ് ചെയ്യുക."
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Font, colours, sponsor logo…"
+msgstr "ഫോണ്ട്, നിറങ്ങൾ, സ്പോൺസർ ലോഗോ…"
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid ""
+"Jerseys for clubs, schools and companies — each player's name, number and "
+"size, ready for the printer."
+msgstr ""
+"ക്ലബ്ബുകൾ, സ്കൂളുകൾ, കമ്പനികൾ എന്നിവർക്കുള്ള ജേഴ്സികൾ — ഓരോ കളിക്കാരന്റെയും "
+"പേര്, നമ്പർ, സൈസ് പ്രിന്ററിന് തയ്യാർ."
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid "No team orders yet."
+msgstr "ഇതുവരെ ടീം ഓർഡറുകളൊന്നുമില്ല."
 
 #: templates/webapp/stock/_tabs.html
 msgid "Adjust"
@@ -9706,10 +9978,6 @@ msgstr "ക്രമീകരിക്കുക"
 #: templates/webapp/stock/_tabs.html
 msgid "Stock taking"
 msgstr "സ്റ്റോക്ക് എണ്ണൽ"
-
-#: templates/webapp/stock/_tabs.html
-msgid "Batches & expiry"
-msgstr "ബാച്ചും കാലാവധിയും"
 
 #: templates/webapp/stock/_tabs.html
 msgid "Serial numbers"
@@ -9762,6 +10030,14 @@ msgstr "എഴുതിത്തള്ളുക"
 #: templates/webapp/stock/batches.html
 msgid "No batches here."
 msgstr "ഇവിടെ ബാച്ചുകൾ ഇല്ല."
+
+#: templates/webapp/stock/batches.html
+msgid "Batches you entered before this update are kept on the older screen."
+msgstr "ഈ അപ്ഡേറ്റിന് മുമ്പ് നൽകിയ ബാച്ചുകൾ പഴയ സ്ക്രീനിൽ തന്നെയുണ്ട്."
+
+#: templates/webapp/stock/batches.html
+msgid "Open older batch records"
+msgstr "പഴയ ബാച്ച് രേഖകൾ തുറക്കുക"
 
 #: templates/webapp/stock/batches.html
 msgid "Receive a batch"
@@ -10115,6 +10391,14 @@ msgid ""
 msgstr ""
 "ഹായ് %(name)s, %(shop)s-ൽ നിന്ന് മരുന്നുകൾ വീണ്ടും വാങ്ങാൻ സമയമായിരിക്കാം. "
 "മറുപടി അയച്ചാൽ ഞങ്ങൾ റെഡിയാക്കി വെക്കാം."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, your supplements from %(shop)s may be running low. Reply and we"
+" will keep your next pack ready."
+msgstr ""
+"ഹായ് %(name)s, %(shop)s-ൽ നിന്നുള്ള നിങ്ങളുടെ സപ്ലിമെന്റുകൾ തീരാറായിരിക്കാം."
+" മറുപടി അയച്ചാൽ അടുത്ത പാക്ക് ഞങ്ങൾ തയ്യാറാക്കി വെക്കാം."
 
 #: apps/industry/reminders.py
 msgid ""
@@ -10764,10 +11048,6 @@ msgid "CV & documents"
 msgstr "CV-യും രേഖകളും"
 
 #: apps/webapp/careers_views.py
-msgid "Gender"
-msgstr "ലിംഗം"
-
-#: apps/webapp/careers_views.py
 msgid "Male"
 msgstr "പുരുഷൻ"
 
@@ -11126,6 +11406,10 @@ msgstr "%(item)s: %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "%(count)s വിലകൾ സെറ്റ് ചെയ്തു."
+
+#: apps/webapp/education_views.py
+msgid "Batches"
+msgstr "ബാച്ചുകൾ"
 
 #: apps/webapp/education_views.py
 msgid "Class"
@@ -12180,6 +12464,30 @@ msgid "All products are above their reorder level."
 msgstr "എല്ലാ ഉൽപ്പന്നങ്ങളും റീഓർഡർ ലെവലിന് മുകളിലാണ്."
 
 #: apps/webapp/overview.py
+msgid "Batch %(b)s · %(q)s in stock"
+msgstr "ബാച്ച് %(b)s · %(q)s സ്റ്റോക്കിൽ"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "%(n)s ദിവസത്തിനുള്ളിൽ"
+
+#: apps/webapp/overview.py
+msgid "%(n)s already expired"
+msgstr "%(n)s ഇതിനകം കാലാവധി കഴിഞ്ഞു"
+
+#: apps/webapp/overview.py
+msgid "Expiring soon"
+msgstr "ഉടൻ കാലാവധി തീരുന്നവ"
+
+#: apps/webapp/overview.py
+msgid "Nothing expires in the next 60 days."
+msgstr "അടുത്ത 60 ദിവസത്തിനുള്ളിൽ ഒന്നും കാലാവധി തീരുന്നില്ല."
+
+#: apps/webapp/overview.py
+msgid "Receive stock"
+msgstr "സ്റ്റോക്ക് സ്വീകരിക്കുക"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "കടയിലുള്ള റിപ്പയറുകൾ"
 
@@ -12194,10 +12502,6 @@ msgstr "എല്ലാ റിപ്പയറുകളും"
 #: apps/webapp/overview.py
 msgid "No repairs waiting."
 msgstr "കാത്തിരിക്കുന്ന റിപ്പയറുകൾ ഇല്ല."
-
-#: apps/webapp/overview.py
-msgid "New repair job"
-msgstr "പുതിയ റിപ്പയർ ജോലി"
 
 #: apps/webapp/overview.py
 msgid "Cars in the queue"
@@ -12238,10 +12542,6 @@ msgstr "ഇന്നത്തെ ചെക്ക്-ഇനുകൾ"
 #: apps/webapp/overview.py
 msgid "Expiring this week"
 msgstr "ഈ ആഴ്ച തീരുന്നവ"
-
-#: apps/webapp/overview.py
-msgid "in %(n)s days"
-msgstr "%(n)s ദിവസത്തിനുള്ളിൽ"
 
 #: apps/webapp/overview.py
 msgid "Memberships to renew"
@@ -13149,9 +13449,78 @@ msgstr "%(count)s സീരിയൽ നമ്പറുകൾ സ്റ്റോ
 msgid "Already registered: %(list)s"
 msgstr "നേരത്തെ ചേർത്തവ: %(list)s"
 
+#: apps/webapp/team_order_views.py
+msgid "Enter the team name and what is being made."
+msgstr "ടീമിന്റെ പേരും എന്താണ് ഉണ്ടാക്കുന്നതെന്നും നൽകുക."
+
+#: apps/webapp/team_order_views.py
+msgid "Choose the delivery date."
+msgstr "ഡെലിവറി തീയതി തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/team_order_views.py
+msgid "Price and advance must be numbers."
+msgstr "വിലയും അഡ്വാൻസും നമ്പറുകൾ ആയിരിക്കണം."
+
+#: apps/webapp/team_order_views.py
+msgid "Add at least one player: name, number, size — one per line."
+msgstr ""
+"കുറഞ്ഞത് ഒരു കളിക്കാരനെ ചേർക്കുക: പേര്, നമ്പർ, സൈസ് — ഓരോ വരിയിലും ഒന്ന്."
+
+#: apps/webapp/team_order_views.py
+msgid "Team order saved."
+msgstr "ടീം ഓർഡർ സേവ് ചെയ്തു."
+
+#: apps/webapp/team_order_views.py
+msgid "Status updated."
+msgstr "സ്റ്റാറ്റസ് മാറ്റി."
+
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "ഓർഡറുകളും ടേബിളുകളും"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s is ready for pickup at %(shop)s. Job %(job)s. "
+"Amount due: %(amount)s."
+msgstr ""
+"ഹായ് %(name)s, നിങ്ങളുടെ %(device)s %(shop)s-ൽ കൊണ്ടുപോകാൻ തയ്യാറാണ്. ജോബ് "
+"%(job)s. അടയ്ക്കാനുള്ള തുക: %(amount)s."
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, we have received your %(device)s at %(shop)s (job %(job)s). We "
+"will message you when it is ready."
+msgstr ""
+"ഹായ് %(name)s, നിങ്ങളുടെ %(device)s %(shop)s-ൽ ലഭിച്ചു (ജോബ് %(job)s). "
+"തയ്യാറാകുമ്പോൾ ഞങ്ങൾ മെസേജ് അയക്കാം."
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s (job %(job)s) is waiting for a spare part. We "
+"will update you as soon as it arrives. – %(shop)s"
+msgstr ""
+"ഹായ് %(name)s, നിങ്ങളുടെ %(device)s (ജോബ് %(job)s) ഒരു സ്പെയർ പാർട്ടിനായി "
+"കാത്തിരിക്കുന്നു. അത് എത്തിയാലുടൻ അറിയിക്കാം. – %(shop)s"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, update on your %(device)s (job %(job)s) at %(shop)s: "
+"%(status)s."
+msgstr ""
+"ഹായ് %(name)s, %(shop)s-ലെ നിങ്ങളുടെ %(device)s (ജോബ് %(job)s) സംബന്ധിച്ച "
+"അപ്ഡേറ്റ്: %(status)s."
+
+#: apps/webapp/views.py
+msgid "Fragrance family"
+msgstr "സുഗന്ധ വിഭാഗം"
+
+#: apps/webapp/views.py
+msgid "Concentration"
+msgstr "കോൺസെൻട്രേഷൻ"
+
+#: apps/webapp/views.py
+msgid "Bottle size (ml)"
+msgstr "കുപ്പിയുടെ അളവ് (ml)"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

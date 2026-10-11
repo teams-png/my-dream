@@ -158,6 +158,14 @@ msgid "Products"
 msgstr "পণ্য"
 
 #: templates/base.html
+msgid "Team orders"
+msgstr "টিম অর্ডার"
+
+#: templates/base.html
+msgid "Sales"
+msgstr "বিক্রয়"
+
+#: templates/base.html
 msgid "Cycle Shop"
 msgstr "সাইকেল শপ"
 
@@ -182,20 +190,12 @@ msgid "Medical Shop"
 msgstr "মেডিকেল শপ"
 
 #: templates/base.html
-msgid "Batches"
-msgstr "ব্যাচ"
-
-#: templates/base.html
-msgid "Dispense History"
-msgstr "ওষুধ বিতরণের ইতিহাস"
+msgid "Batches & expiry"
+msgstr "ব্যাচ ও মেয়াদ"
 
 #: templates/base.html
 msgid "Protein Shop"
 msgstr "প্রোটিন শপ"
-
-#: templates/base.html
-msgid "Sale History"
-msgstr "বিক্রয়ের ইতিহাস"
 
 #: templates/base.html
 msgid "Construction"
@@ -236,10 +236,6 @@ msgstr "রান্নাঘর / KOT"
 #: templates/base.html
 msgid "Menu & Ingredients"
 msgstr "মেনু ও উপকরণ"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "বিক্রয়"
 
 #: templates/base.html
 msgid "Packages / Sessions"
@@ -5432,6 +5428,171 @@ msgstr "পণ্যের বিবরণ"
 msgid "Shown on the POS, invoices and your website."
 msgstr "POS, ইনভয়েস ও আপনার ওয়েবসাইটে দেখানো হয়।"
 
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair"
+msgstr "মেরামত"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print job card"
+msgstr "জব কার্ড প্রিন্ট করুন"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Send status on WhatsApp"
+msgstr "স্ট্যাটাস WhatsApp-এ পাঠান"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Edit / change status"
+msgstr "সম্পাদনা / স্ট্যাটাস বদলান"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Spare part"
+msgstr "খুচরা যন্ত্রাংশ"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair job card"
+msgstr "মেরামত জব কার্ড"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Device"
+msgstr "ডিভাইস"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Received"
+msgstr "পাওয়া গেছে"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Ready by"
+msgstr "প্রস্তুত হওয়ার তারিখ"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Warranty repair"
+msgstr "ওয়ারেন্টি মেরামত"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Estimated cost"
+msgstr "আনুমানিক খরচ"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Left with the phone"
+msgstr "ফোনের সাথে দেওয়া"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Screen lock"
+msgstr "স্ক্রিন লক"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Given"
+msgstr "দেওয়া হয়েছে"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Technician"
+msgstr "টেকনিশিয়ান"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Problem reported"
+msgstr "জানানো সমস্যা"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Diagnosis"
+msgstr "পরীক্ষার ফল"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid ""
+"Please bring this card when you collect the phone. We are not responsible "
+"for data on the device or for phones not collected within 30 days of the "
+"ready date."
+msgstr ""
+"ফোন নিতে আসার সময় এই কার্ডটি আনুন। ডিভাইসের ডেটা বা প্রস্তুতের তারিখ থেকে "
+"৩০ দিনের মধ্যে না নেওয়া ফোনের জন্য আমরা দায়ী নই।"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Customer signature"
+msgstr "গ্রাহকের স্বাক্ষর"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Shop"
+msgstr "দোকান"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Parts used"
+msgstr "ব্যবহৃত যন্ত্রাংশ"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Part"
+msgstr "যন্ত্রাংশ"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Charge"
+msgstr "চার্জ করুন"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "No parts added."
+msgstr "কোনো যন্ত্রাংশ যোগ করা হয়নি।"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Labour charge"
+msgstr "মজুরি"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Work done"
+msgstr "করা কাজ"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Advance taken off the bill"
+msgstr "বিল থেকে বাদ দেওয়া অগ্রিম"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Complete & create invoice"
+msgstr "সম্পূর্ণ করুন ও ইনভয়েস তৈরি করুন"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print repair invoice"
+msgstr "মেরামত ইনভয়েস প্রিন্ট করুন"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Share on WhatsApp / email"
+msgstr "WhatsApp / ইমেইলে শেয়ার করুন"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Repair job"
+msgstr "মেরামত কাজ"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New repair job"
+msgstr "নতুন মেরামতের কাজ"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "…or new customer name"
+msgstr "…অথবা নতুন গ্রাহকের নাম"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New customer phone / WhatsApp"
+msgstr "নতুন গ্রাহকের ফোন / WhatsApp"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Screen lock PIN / pattern"
+msgstr "স্ক্রিন লক PIN / প্যাটার্ন"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Phone sold by us (optional)"
+msgstr "আমাদের বিক্রি করা ফোন (ঐচ্ছিক)"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Cost and pickup"
+msgstr "খরচ ও ফেরত নেওয়া"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Bill the labour as"
+msgstr "মজুরি বিল হবে এভাবে"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Branch"
+msgstr "শাখা"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Save job card"
+msgstr "জব কার্ড সংরক্ষণ করুন"
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "অনুমতি নেই"
@@ -5724,10 +5885,6 @@ msgstr "বুকিং খুলুন"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "চান"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Received"
-msgstr "পাওয়া গেছে"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Reason"
@@ -6046,10 +6203,6 @@ msgid "Done by (staff)"
 msgstr "কে করেছে (কর্মী)"
 
 #: templates/webapp/pos.html
-msgid "Branch"
-msgstr "শাখা"
-
-#: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "কার্ট খালি"
 
@@ -6068,10 +6221,6 @@ msgstr "স্থগিত রাখুন"
 #: templates/webapp/pos.html
 msgid "Clear"
 msgstr "মুছুন"
-
-#: templates/webapp/pos.html
-msgid "Charge"
-msgstr "চার্জ করুন"
 
 #: templates/webapp/pos.html
 msgid "Take payment"
@@ -6176,6 +6325,10 @@ msgstr "বিক্রয়ে যোগ করুন"
 #: templates/webapp/pos.html
 msgid "Sales parked on this till. Tap one to bring it back."
 msgstr "এই কাউন্টারে স্থগিত বিক্রয়। ফিরিয়ে আনতে একটিতে ট্যাপ করুন।"
+
+#: templates/webapp/pos.html
+msgid "Quantity (ml)"
+msgstr "পরিমাণ (ml)"
 
 #: templates/webapp/pos.html
 msgid "Products for sale"
@@ -9147,6 +9300,10 @@ msgstr "মোট"
 msgid "Print Receipt"
 msgstr "রসিদ প্রিন্ট করুন"
 
+#: templates/webapp/retail/reports.html
+msgid "Product"
+msgstr "পণ্য"
+
 #: templates/webapp/sales_docs/_doc_head.html
 msgid "Valid until"
 msgstr "বৈধ পর্যন্ত"
@@ -9617,9 +9774,121 @@ msgstr "আমাদের ফলো করুন"
 msgid "VAT"
 msgstr "VAT"
 
-#: templates/webapp/stock/_tabs.html
+#: templates/webapp/sports_shop/product_list.html
+msgid "Import from Excel"
+msgstr "Excel থেকে ইমপোর্ট করুন"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Sport"
+msgstr "খেলা"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Colour / size"
+msgstr "রং / সাইজ"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Gender"
+msgstr "লিঙ্গ"
+
+#: templates/webapp/sports_shop/product_list.html
 msgid "Stock"
 msgstr "স্টক"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Size / colour"
+msgstr "সাইজ / রং"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "No products yet."
+msgstr "এখনও কোনো পণ্য নেই।"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Print list for the printer"
+msgstr "প্রিন্টারের জন্য তালিকা প্রিন্ট করুন"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Update status"
+msgstr "স্ট্যাটাস আপডেট করুন"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Delivery date"
+msgstr "ডেলিভারির তারিখ"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Pieces"
+msgstr "পিস"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Sizes"
+msgstr "সাইজ"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Name on jersey"
+msgstr "জার্সিতে নাম"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Size"
+msgstr "সাইজ"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team order"
+msgstr "টিম অর্ডার"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Edit team order"
+msgstr "টিম অর্ডার সম্পাদনা"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "New team order"
+msgstr "নতুন টিম অর্ডার"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team / club / school"
+msgstr "টিম / ক্লাব / স্কুল"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Doha Strikers FC"
+msgstr "যেমন Doha Strikers FC"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Contact phone"
+msgstr "যোগাযোগের ফোন"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "What is being made"
+msgstr "কী তৈরি হচ্ছে"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Home jersey – blue, name and number on the back"
+msgstr "যেমন হোম জার্সি – নীল, পিছনে নাম ও নম্বর"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Price per piece"
+msgstr "প্রতি পিসের দাম"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Players — one per line: Name, Number, Size"
+msgstr "খেলোয়াড় — প্রতি লাইনে একজন: নাম, নম্বর, সাইজ"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Tip: copy the list from Excel or WhatsApp and paste it here."
+msgstr "টিপ: Excel বা WhatsApp থেকে তালিকা কপি করে এখানে পেস্ট করুন।"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Font, colours, sponsor logo…"
+msgstr "ফন্ট, রং, স্পনসর লোগো…"
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid ""
+"Jerseys for clubs, schools and companies — each player's name, number and "
+"size, ready for the printer."
+msgstr ""
+"ক্লাব, স্কুল ও কোম্পানির জার্সি — প্রত্যেক খেলোয়াড়ের নাম, নম্বর ও সাইজ "
+"প্রিন্টারের জন্য প্রস্তুত।"
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid "No team orders yet."
+msgstr "এখনও কোনো টিম অর্ডার নেই।"
 
 #: templates/webapp/stock/_tabs.html
 msgid "Adjust"
@@ -9628,10 +9897,6 @@ msgstr "সমন্বয়"
 #: templates/webapp/stock/_tabs.html
 msgid "Stock taking"
 msgstr "স্টক গণনা"
-
-#: templates/webapp/stock/_tabs.html
-msgid "Batches & expiry"
-msgstr "ব্যাচ ও মেয়াদ"
 
 #: templates/webapp/stock/_tabs.html
 msgid "Serial numbers"
@@ -9684,6 +9949,14 @@ msgstr "অবলোপন করুন"
 #: templates/webapp/stock/batches.html
 msgid "No batches here."
 msgstr "এখানে কোনো ব্যাচ নেই।"
+
+#: templates/webapp/stock/batches.html
+msgid "Batches you entered before this update are kept on the older screen."
+msgstr "এই আপডেটের আগে দেওয়া ব্যাচগুলো পুরনো স্ক্রিনে রাখা আছে।"
+
+#: templates/webapp/stock/batches.html
+msgid "Open older batch records"
+msgstr "পুরনো ব্যাচ রেকর্ড খুলুন"
 
 #: templates/webapp/stock/batches.html
 msgid "Receive a batch"
@@ -10032,6 +10305,14 @@ msgid ""
 msgstr ""
 "হ্যালো %(name)s, হয়তো %(shop)s থেকে ওষুধ আবার নেওয়ার সময় হয়েছে। উত্তর "
 "দিন, আমরা তৈরি রাখব।"
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, your supplements from %(shop)s may be running low. Reply and we"
+" will keep your next pack ready."
+msgstr ""
+"হাই %(name)s, %(shop)s থেকে কেনা আপনার সাপ্লিমেন্ট হয়তো শেষ হয়ে আসছে। "
+"উত্তর দিন, আমরা পরের প্যাক তৈরি রাখব।"
 
 #: apps/industry/reminders.py
 msgid ""
@@ -10676,10 +10957,6 @@ msgid "CV & documents"
 msgstr "CV ও নথি"
 
 #: apps/webapp/careers_views.py
-msgid "Gender"
-msgstr "লিঙ্গ"
-
-#: apps/webapp/careers_views.py
 msgid "Male"
 msgstr "পুরুষ"
 
@@ -11037,6 +11314,10 @@ msgstr "%(item)s: %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "%(count)sটি দাম নির্ধারণ করা হয়েছে।"
+
+#: apps/webapp/education_views.py
+msgid "Batches"
+msgstr "ব্যাচ"
 
 #: apps/webapp/education_views.py
 msgid "Class"
@@ -12082,6 +12363,30 @@ msgid "All products are above their reorder level."
 msgstr "সব পণ্য রিঅর্ডার স্তরের উপরে।"
 
 #: apps/webapp/overview.py
+msgid "Batch %(b)s · %(q)s in stock"
+msgstr "ব্যাচ %(b)s · %(q)s স্টকে"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "%(n)s দিনের মধ্যে"
+
+#: apps/webapp/overview.py
+msgid "%(n)s already expired"
+msgstr "%(n)s ইতিমধ্যে মেয়াদোত্তীর্ণ"
+
+#: apps/webapp/overview.py
+msgid "Expiring soon"
+msgstr "শীঘ্রই মেয়াদ শেষ"
+
+#: apps/webapp/overview.py
+msgid "Nothing expires in the next 60 days."
+msgstr "আগামী ৬০ দিনে কিছুরই মেয়াদ শেষ হচ্ছে না।"
+
+#: apps/webapp/overview.py
+msgid "Receive stock"
+msgstr "স্টক গ্রহণ করুন"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "দোকানে মেরামত"
 
@@ -12096,10 +12401,6 @@ msgstr "সব মেরামত"
 #: apps/webapp/overview.py
 msgid "No repairs waiting."
 msgstr "কোনো মেরামত বাকি নেই।"
-
-#: apps/webapp/overview.py
-msgid "New repair job"
-msgstr "নতুন মেরামতের কাজ"
 
 #: apps/webapp/overview.py
 msgid "Cars in the queue"
@@ -12140,10 +12441,6 @@ msgstr "আজকের চেক-ইন"
 #: apps/webapp/overview.py
 msgid "Expiring this week"
 msgstr "এই সপ্তাহে শেষ হচ্ছে"
-
-#: apps/webapp/overview.py
-msgid "in %(n)s days"
-msgstr "%(n)s দিনের মধ্যে"
 
 #: apps/webapp/overview.py
 msgid "Memberships to renew"
@@ -13042,9 +13339,77 @@ msgstr "স্টকে %(count)sটি সিরিয়াল নম্বর
 msgid "Already registered: %(list)s"
 msgstr "আগেই নিবন্ধিত: %(list)s"
 
+#: apps/webapp/team_order_views.py
+msgid "Enter the team name and what is being made."
+msgstr "টিমের নাম ও কী তৈরি হচ্ছে লিখুন।"
+
+#: apps/webapp/team_order_views.py
+msgid "Choose the delivery date."
+msgstr "ডেলিভারির তারিখ বেছে নিন।"
+
+#: apps/webapp/team_order_views.py
+msgid "Price and advance must be numbers."
+msgstr "দাম ও অগ্রিম অবশ্যই সংখ্যা হতে হবে।"
+
+#: apps/webapp/team_order_views.py
+msgid "Add at least one player: name, number, size — one per line."
+msgstr "অন্তত একজন খেলোয়াড় যোগ করুন: নাম, নম্বর, সাইজ — প্রতি লাইনে একজন।"
+
+#: apps/webapp/team_order_views.py
+msgid "Team order saved."
+msgstr "টিম অর্ডার সংরক্ষিত হয়েছে।"
+
+#: apps/webapp/team_order_views.py
+msgid "Status updated."
+msgstr "স্ট্যাটাস আপডেট হয়েছে।"
+
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "অর্ডার ও টেবিল"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s is ready for pickup at %(shop)s. Job %(job)s. "
+"Amount due: %(amount)s."
+msgstr ""
+"হাই %(name)s, আপনার %(device)s %(shop)s-এ নেওয়ার জন্য প্রস্তুত। কাজ "
+"%(job)s। বকেয়া: %(amount)s।"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, we have received your %(device)s at %(shop)s (job %(job)s). We "
+"will message you when it is ready."
+msgstr ""
+"হাই %(name)s, আমরা %(shop)s-এ আপনার %(device)s পেয়েছি (কাজ %(job)s)। "
+"প্রস্তুত হলে জানাব।"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s (job %(job)s) is waiting for a spare part. We "
+"will update you as soon as it arrives. – %(shop)s"
+msgstr ""
+"হাই %(name)s, আপনার %(device)s (কাজ %(job)s) একটি খুচরা যন্ত্রাংশের "
+"অপেক্ষায় আছে। এলেই জানাব। – %(shop)s"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, update on your %(device)s (job %(job)s) at %(shop)s: "
+"%(status)s."
+msgstr ""
+"হাই %(name)s, %(shop)s-এ আপনার %(device)s (কাজ %(job)s)-এর আপডেট: "
+"%(status)s।"
+
+#: apps/webapp/views.py
+msgid "Fragrance family"
+msgstr "সুগন্ধের ধরন"
+
+#: apps/webapp/views.py
+msgid "Concentration"
+msgstr "ঘনত্ব"
+
+#: apps/webapp/views.py
+msgid "Bottle size (ml)"
+msgstr "বোতলের আকার (ml)"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

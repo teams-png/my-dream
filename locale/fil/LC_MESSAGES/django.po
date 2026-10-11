@@ -158,6 +158,14 @@ msgid "Products"
 msgstr "Mga produkto"
 
 #: templates/base.html
+msgid "Team orders"
+msgstr "Mga team order"
+
+#: templates/base.html
+msgid "Sales"
+msgstr "Benta"
+
+#: templates/base.html
 msgid "Cycle Shop"
 msgstr "Bisikleta Shop"
 
@@ -182,20 +190,12 @@ msgid "Medical Shop"
 msgstr "Botika"
 
 #: templates/base.html
-msgid "Batches"
-msgstr "Mga batch"
-
-#: templates/base.html
-msgid "Dispense History"
-msgstr "Kasaysayan ng pagbibigay ng gamot"
+msgid "Batches & expiry"
+msgstr "Batch at expiry"
 
 #: templates/base.html
 msgid "Protein Shop"
 msgstr "Protein Shop"
-
-#: templates/base.html
-msgid "Sale History"
-msgstr "Kasaysayan ng benta"
 
 #: templates/base.html
 msgid "Construction"
@@ -236,10 +236,6 @@ msgstr "Kusina / KOT"
 #: templates/base.html
 msgid "Menu & Ingredients"
 msgstr "Menu at sangkap"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "Benta"
 
 #: templates/base.html
 msgid "Packages / Sessions"
@@ -5487,6 +5483,172 @@ msgstr "Detalye ng produkto"
 msgid "Shown on the POS, invoices and your website."
 msgstr "Ipinapakita sa POS, invoice at iyong website."
 
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair"
+msgstr "Pagkukumpuni"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print job card"
+msgstr "I-print ang job card"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Send status on WhatsApp"
+msgstr "Ipadala ang status sa WhatsApp"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Edit / change status"
+msgstr "I-edit / palitan ang status"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Spare part"
+msgstr "Spare part"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair job card"
+msgstr "Repair job card"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Device"
+msgstr "Device"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Received"
+msgstr "Natanggap"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Ready by"
+msgstr "Handa sa petsang"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Warranty repair"
+msgstr "Warranty na pagkukumpuni"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Estimated cost"
+msgstr "Tantiyang gastos"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Left with the phone"
+msgstr "Iniwan kasama ng telepono"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Screen lock"
+msgstr "Screen lock"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Given"
+msgstr "Ibinigay"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Technician"
+msgstr "Technician"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Problem reported"
+msgstr "Iniulat na problema"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Diagnosis"
+msgstr "Diagnosis"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid ""
+"Please bring this card when you collect the phone. We are not responsible "
+"for data on the device or for phones not collected within 30 days of the "
+"ready date."
+msgstr ""
+"Pakidala ang card na ito pagkuha ng telepono. Hindi kami mananagot sa data "
+"sa device o sa mga teleponong hindi nakuha sa loob ng 30 araw mula sa "
+"petsang handa."
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Customer signature"
+msgstr "Pirma ng customer"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Shop"
+msgstr "Tindahan"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Parts used"
+msgstr "Mga piyesang ginamit"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Part"
+msgstr "Piyesa"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Charge"
+msgstr "Singilin"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "No parts added."
+msgstr "Walang piyesang idinagdag."
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Labour charge"
+msgstr "Bayad sa trabaho"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Work done"
+msgstr "Ginawang trabaho"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Advance taken off the bill"
+msgstr "Paunang bayad na ibinawas sa bill"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Complete & create invoice"
+msgstr "Tapusin at gumawa ng invoice"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print repair invoice"
+msgstr "I-print ang repair invoice"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Share on WhatsApp / email"
+msgstr "Ibahagi sa WhatsApp / email"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Repair job"
+msgstr "Repair job"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New repair job"
+msgstr "Bagong repair job"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "…or new customer name"
+msgstr "…o pangalan ng bagong customer"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New customer phone / WhatsApp"
+msgstr "Telepono / WhatsApp ng bagong customer"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Screen lock PIN / pattern"
+msgstr "Screen lock PIN / pattern"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Phone sold by us (optional)"
+msgstr "Teleponong binili sa amin (opsyonal)"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Cost and pickup"
+msgstr "Gastos at pagkuha"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Bill the labour as"
+msgstr "I-bill ang trabaho bilang"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Branch"
+msgstr "Sangay"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Save job card"
+msgstr "I-save ang job card"
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "Walang access"
@@ -5784,10 +5946,6 @@ msgstr "Buksan ang booking"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "Gusto"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Received"
-msgstr "Natanggap"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Reason"
@@ -6109,10 +6267,6 @@ msgid "Done by (staff)"
 msgstr "Ginawa ni (staff)"
 
 #: templates/webapp/pos.html
-msgid "Branch"
-msgstr "Sangay"
-
-#: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "Walang laman ang cart"
 
@@ -6131,10 +6285,6 @@ msgstr "I-hold"
 #: templates/webapp/pos.html
 msgid "Clear"
 msgstr "I-clear"
-
-#: templates/webapp/pos.html
-msgid "Charge"
-msgstr "Singilin"
 
 #: templates/webapp/pos.html
 msgid "Take payment"
@@ -6239,6 +6389,10 @@ msgstr "Idagdag sa benta"
 #: templates/webapp/pos.html
 msgid "Sales parked on this till. Tap one to bring it back."
 msgstr "Mga benta na naka-hold sa kahang ito. Pindutin ang isa para ibalik."
+
+#: templates/webapp/pos.html
+msgid "Quantity (ml)"
+msgstr "Dami (ml)"
 
 #: templates/webapp/pos.html
 msgid "Products for sale"
@@ -9234,6 +9388,10 @@ msgstr "KABUUAN"
 msgid "Print Receipt"
 msgstr "I-print ang resibo"
 
+#: templates/webapp/retail/reports.html
+msgid "Product"
+msgstr "Produkto"
+
 #: templates/webapp/sales_docs/_doc_head.html
 msgid "Valid until"
 msgstr "Valid hanggang"
@@ -9708,9 +9866,121 @@ msgstr "I-follow kami"
 msgid "VAT"
 msgstr "VAT"
 
-#: templates/webapp/stock/_tabs.html
+#: templates/webapp/sports_shop/product_list.html
+msgid "Import from Excel"
+msgstr "Mag-import mula sa Excel"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Sport"
+msgstr "Isport"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Colour / size"
+msgstr "Kulay / sukat"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Gender"
+msgstr "Kasarian"
+
+#: templates/webapp/sports_shop/product_list.html
 msgid "Stock"
 msgstr "Stock"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Size / colour"
+msgstr "Sukat / kulay"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "No products yet."
+msgstr "Wala pang produkto."
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Print list for the printer"
+msgstr "I-print ang listahan para sa printer"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Update status"
+msgstr "I-update ang status"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Delivery date"
+msgstr "Petsa ng delivery"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Pieces"
+msgstr "Piraso"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Sizes"
+msgstr "Mga sukat"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Name on jersey"
+msgstr "Pangalan sa jersey"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Size"
+msgstr "Sukat"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team order"
+msgstr "Team order"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Edit team order"
+msgstr "I-edit ang team order"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "New team order"
+msgstr "Bagong team order"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team / club / school"
+msgstr "Team / club / paaralan"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Doha Strikers FC"
+msgstr "hal. Doha Strikers FC"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Contact phone"
+msgstr "Telepono ng contact"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "What is being made"
+msgstr "Ano ang ginagawa"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Home jersey – blue, name and number on the back"
+msgstr "hal. Home jersey – asul, pangalan at numero sa likod"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Price per piece"
+msgstr "Presyo bawat piraso"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Players — one per line: Name, Number, Size"
+msgstr "Mga manlalaro — isa bawat linya: Pangalan, Numero, Sukat"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Tip: copy the list from Excel or WhatsApp and paste it here."
+msgstr "Tip: kopyahin ang listahan mula sa Excel o WhatsApp at i-paste dito."
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Font, colours, sponsor logo…"
+msgstr "Font, mga kulay, logo ng sponsor…"
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid ""
+"Jerseys for clubs, schools and companies — each player's name, number and "
+"size, ready for the printer."
+msgstr ""
+"Mga jersey para sa club, paaralan at kumpanya — pangalan, numero at sukat ng"
+" bawat manlalaro, handa para sa printer."
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid "No team orders yet."
+msgstr "Wala pang team order."
 
 #: templates/webapp/stock/_tabs.html
 msgid "Adjust"
@@ -9719,10 +9989,6 @@ msgstr "I-adjust"
 #: templates/webapp/stock/_tabs.html
 msgid "Stock taking"
 msgstr "Stock taking"
-
-#: templates/webapp/stock/_tabs.html
-msgid "Batches & expiry"
-msgstr "Batch at expiry"
 
 #: templates/webapp/stock/_tabs.html
 msgid "Serial numbers"
@@ -9775,6 +10041,15 @@ msgstr "I-write off"
 #: templates/webapp/stock/batches.html
 msgid "No batches here."
 msgstr "Walang batch dito."
+
+#: templates/webapp/stock/batches.html
+msgid "Batches you entered before this update are kept on the older screen."
+msgstr ""
+"Ang mga batch na inilagay bago ang update na ito ay nasa lumang screen."
+
+#: templates/webapp/stock/batches.html
+msgid "Open older batch records"
+msgstr "Buksan ang mga lumang batch record"
 
 #: templates/webapp/stock/batches.html
 msgid "Receive a batch"
@@ -10131,6 +10406,14 @@ msgid ""
 msgstr ""
 "Hi %(name)s, baka oras na para bumili ulit ng gamot mo sa %(shop)s. Mag-"
 "reply at ihahanda namin."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, your supplements from %(shop)s may be running low. Reply and we"
+" will keep your next pack ready."
+msgstr ""
+"Hi %(name)s, baka paubos na ang supplements mo mula sa %(shop)s. Mag-reply "
+"at ihahanda namin ang susunod mong pack."
 
 #: apps/industry/reminders.py
 msgid ""
@@ -10782,10 +11065,6 @@ msgid "CV & documents"
 msgstr "CV at dokumento"
 
 #: apps/webapp/careers_views.py
-msgid "Gender"
-msgstr "Kasarian"
-
-#: apps/webapp/careers_views.py
 msgid "Male"
 msgstr "Lalaki"
 
@@ -11148,6 +11427,10 @@ msgstr "%(item)s: %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "Naitakda ang %(count)s presyo."
+
+#: apps/webapp/education_views.py
+msgid "Batches"
+msgstr "Mga batch"
 
 #: apps/webapp/education_views.py
 msgid "Class"
@@ -12202,6 +12485,30 @@ msgid "All products are above their reorder level."
 msgstr "Lahat ng produkto ay lampas sa reorder level."
 
 #: apps/webapp/overview.py
+msgid "Batch %(b)s · %(q)s in stock"
+msgstr "Batch %(b)s · %(q)s sa stock"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "sa loob ng %(n)s araw"
+
+#: apps/webapp/overview.py
+msgid "%(n)s already expired"
+msgstr "%(n)s expired na"
+
+#: apps/webapp/overview.py
+msgid "Expiring soon"
+msgstr "Malapit nang mag-expire"
+
+#: apps/webapp/overview.py
+msgid "Nothing expires in the next 60 days."
+msgstr "Walang mag-e-expire sa susunod na 60 araw."
+
+#: apps/webapp/overview.py
+msgid "Receive stock"
+msgstr "Tumanggap ng stock"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "Mga repair sa tindahan"
 
@@ -12216,10 +12523,6 @@ msgstr "Lahat ng repair"
 #: apps/webapp/overview.py
 msgid "No repairs waiting."
 msgstr "Walang naghihintay na repair."
-
-#: apps/webapp/overview.py
-msgid "New repair job"
-msgstr "Bagong repair job"
 
 #: apps/webapp/overview.py
 msgid "Cars in the queue"
@@ -12260,10 +12563,6 @@ msgstr "Mga check-in ngayon"
 #: apps/webapp/overview.py
 msgid "Expiring this week"
 msgstr "Matatapos ngayong linggo"
-
-#: apps/webapp/overview.py
-msgid "in %(n)s days"
-msgstr "sa loob ng %(n)s araw"
 
 #: apps/webapp/overview.py
 msgid "Memberships to renew"
@@ -13178,9 +13477,78 @@ msgstr "Naidagdag sa stock ang %(count)s serial number."
 msgid "Already registered: %(list)s"
 msgstr "Nakarehistro na: %(list)s"
 
+#: apps/webapp/team_order_views.py
+msgid "Enter the team name and what is being made."
+msgstr "Ilagay ang pangalan ng team at kung ano ang ginagawa."
+
+#: apps/webapp/team_order_views.py
+msgid "Choose the delivery date."
+msgstr "Piliin ang petsa ng delivery."
+
+#: apps/webapp/team_order_views.py
+msgid "Price and advance must be numbers."
+msgstr "Dapat numero ang presyo at paunang bayad."
+
+#: apps/webapp/team_order_views.py
+msgid "Add at least one player: name, number, size — one per line."
+msgstr ""
+"Magdagdag ng kahit isang manlalaro: pangalan, numero, sukat — isa bawat "
+"linya."
+
+#: apps/webapp/team_order_views.py
+msgid "Team order saved."
+msgstr "Na-save ang team order."
+
+#: apps/webapp/team_order_views.py
+msgid "Status updated."
+msgstr "Na-update ang status."
+
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "Mga order at mesa"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s is ready for pickup at %(shop)s. Job %(job)s. "
+"Amount due: %(amount)s."
+msgstr ""
+"Hi %(name)s, handa nang kunin ang %(device)s mo sa %(shop)s. Job %(job)s. "
+"Babayaran: %(amount)s."
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, we have received your %(device)s at %(shop)s (job %(job)s). We "
+"will message you when it is ready."
+msgstr ""
+"Hi %(name)s, natanggap namin ang %(device)s mo sa %(shop)s (job %(job)s). "
+"Magme-message kami kapag handa na."
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s (job %(job)s) is waiting for a spare part. We "
+"will update you as soon as it arrives. – %(shop)s"
+msgstr ""
+"Hi %(name)s, ang %(device)s mo (job %(job)s) ay naghihintay ng spare part. "
+"Sasabihan ka namin pagdating nito. – %(shop)s"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, update on your %(device)s (job %(job)s) at %(shop)s: "
+"%(status)s."
+msgstr ""
+"Hi %(name)s, update sa %(device)s mo (job %(job)s) sa %(shop)s: %(status)s."
+
+#: apps/webapp/views.py
+msgid "Fragrance family"
+msgstr "Uri ng halimuyak"
+
+#: apps/webapp/views.py
+msgid "Concentration"
+msgstr "Konsentrasyon"
+
+#: apps/webapp/views.py
+msgid "Bottle size (ml)"
+msgstr "Laki ng bote (ml)"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

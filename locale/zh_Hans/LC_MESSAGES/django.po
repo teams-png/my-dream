@@ -158,6 +158,14 @@ msgid "Products"
 msgstr "产品"
 
 #: templates/base.html
+msgid "Team orders"
+msgstr "球队订单"
+
+#: templates/base.html
+msgid "Sales"
+msgstr "销售"
+
+#: templates/base.html
 msgid "Cycle Shop"
 msgstr "自行车店"
 
@@ -182,20 +190,12 @@ msgid "Medical Shop"
 msgstr "药店"
 
 #: templates/base.html
-msgid "Batches"
-msgstr "批次"
-
-#: templates/base.html
-msgid "Dispense History"
-msgstr "配药记录"
+msgid "Batches & expiry"
+msgstr "批次与有效期"
 
 #: templates/base.html
 msgid "Protein Shop"
 msgstr "蛋白粉店"
-
-#: templates/base.html
-msgid "Sale History"
-msgstr "销售记录"
 
 #: templates/base.html
 msgid "Construction"
@@ -236,10 +236,6 @@ msgstr "厨房 / KOT"
 #: templates/base.html
 msgid "Menu & Ingredients"
 msgstr "菜单与原料"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "销售"
 
 #: templates/base.html
 msgid "Packages / Sessions"
@@ -5336,6 +5332,169 @@ msgstr "商品详情"
 msgid "Shown on the POS, invoices and your website."
 msgstr "显示在收银、发票和您的网站上。"
 
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair"
+msgstr "维修"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print job card"
+msgstr "打印工单"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Send status on WhatsApp"
+msgstr "通过 WhatsApp 发送状态"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Edit / change status"
+msgstr "编辑 / 更改状态"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Spare part"
+msgstr "备件"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair job card"
+msgstr "维修工单"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Device"
+msgstr "设备"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Received"
+msgstr "收到"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Ready by"
+msgstr "预计完成日期"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Warranty repair"
+msgstr "保修维修"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Estimated cost"
+msgstr "预估费用"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Left with the phone"
+msgstr "随机留下的物品"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Screen lock"
+msgstr "屏幕锁"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Given"
+msgstr "已收"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Technician"
+msgstr "技术员"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Problem reported"
+msgstr "报修问题"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Diagnosis"
+msgstr "检测结果"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid ""
+"Please bring this card when you collect the phone. We are not responsible "
+"for data on the device or for phones not collected within 30 days of the "
+"ready date."
+msgstr "取机时请携带此单。我们不对设备内的数据负责，也不对完成日期起 30 天内未取回的手机负责。"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Customer signature"
+msgstr "客户签名"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Shop"
+msgstr "店铺"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Parts used"
+msgstr "使用的配件"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Part"
+msgstr "配件"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Charge"
+msgstr "收款"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "No parts added."
+msgstr "未添加配件。"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Labour charge"
+msgstr "人工费"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Work done"
+msgstr "完成的工作"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Advance taken off the bill"
+msgstr "从账单中扣除的定金"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Complete & create invoice"
+msgstr "完成并开具发票"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print repair invoice"
+msgstr "打印维修发票"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Share on WhatsApp / email"
+msgstr "通过 WhatsApp / 邮件分享"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Repair job"
+msgstr "维修工单"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New repair job"
+msgstr "新建维修工单"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "…or new customer name"
+msgstr "…或新客户姓名"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New customer phone / WhatsApp"
+msgstr "新客户电话 / WhatsApp"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Screen lock PIN / pattern"
+msgstr "屏幕锁 PIN / 图案"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Phone sold by us (optional)"
+msgstr "本店售出的手机（可选）"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Cost and pickup"
+msgstr "费用与取机"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Bill the labour as"
+msgstr "人工费记为"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Branch"
+msgstr "分店"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Save job card"
+msgstr "保存工单"
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "无权访问"
@@ -5615,10 +5774,6 @@ msgstr "打开预订"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "需要"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Received"
-msgstr "收到"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Reason"
@@ -5930,10 +6085,6 @@ msgid "Done by (staff)"
 msgstr "服务人员（员工）"
 
 #: templates/webapp/pos.html
-msgid "Branch"
-msgstr "分店"
-
-#: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "购物车为空"
 
@@ -5952,10 +6103,6 @@ msgstr "挂单"
 #: templates/webapp/pos.html
 msgid "Clear"
 msgstr "清空"
-
-#: templates/webapp/pos.html
-msgid "Charge"
-msgstr "收款"
 
 #: templates/webapp/pos.html
 msgid "Take payment"
@@ -6058,6 +6205,10 @@ msgstr "加入销售"
 #: templates/webapp/pos.html
 msgid "Sales parked on this till. Tap one to bring it back."
 msgstr "本收银台的挂单。点击一笔即可恢复。"
+
+#: templates/webapp/pos.html
+msgid "Quantity (ml)"
+msgstr "数量（毫升）"
 
 #: templates/webapp/pos.html
 msgid "Products for sale"
@@ -8965,6 +9116,10 @@ msgstr "合计"
 msgid "Print Receipt"
 msgstr "打印小票"
 
+#: templates/webapp/retail/reports.html
+msgid "Product"
+msgstr "商品"
+
 #: templates/webapp/sales_docs/_doc_head.html
 msgid "Valid until"
 msgstr "有效期至"
@@ -9423,9 +9578,119 @@ msgstr "关注我们"
 msgid "VAT"
 msgstr "增值税"
 
-#: templates/webapp/stock/_tabs.html
+#: templates/webapp/sports_shop/product_list.html
+msgid "Import from Excel"
+msgstr "从 Excel 导入"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Sport"
+msgstr "运动项目"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Colour / size"
+msgstr "颜色 / 尺码"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Gender"
+msgstr "性别"
+
+#: templates/webapp/sports_shop/product_list.html
 msgid "Stock"
 msgstr "库存"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Size / colour"
+msgstr "尺码 / 颜色"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "No products yet."
+msgstr "暂无商品。"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Print list for the printer"
+msgstr "打印印刷清单"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Update status"
+msgstr "更新状态"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Delivery date"
+msgstr "交付日期"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Pieces"
+msgstr "件数"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Sizes"
+msgstr "尺码"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Name on jersey"
+msgstr "球衣上的名字"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Size"
+msgstr "尺码"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team order"
+msgstr "球队订单"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Edit team order"
+msgstr "编辑球队订单"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "New team order"
+msgstr "新建球队订单"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team / club / school"
+msgstr "球队 / 俱乐部 / 学校"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Doha Strikers FC"
+msgstr "例如 Doha Strikers FC"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Contact phone"
+msgstr "联系电话"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "What is being made"
+msgstr "制作内容"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Home jersey – blue, name and number on the back"
+msgstr "例如 主场球衣 – 蓝色，背后印名字和号码"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Price per piece"
+msgstr "单价"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Players — one per line: Name, Number, Size"
+msgstr "球员 — 每行一位：姓名, 号码, 尺码"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Tip: copy the list from Excel or WhatsApp and paste it here."
+msgstr "提示：从 Excel 或 WhatsApp 复制名单并粘贴到这里。"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Font, colours, sponsor logo…"
+msgstr "字体、颜色、赞助商标志…"
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid ""
+"Jerseys for clubs, schools and companies — each player's name, number and "
+"size, ready for the printer."
+msgstr "为俱乐部、学校和公司定制球衣 — 每位球员的姓名、号码和尺码，可直接交给印刷厂。"
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid "No team orders yet."
+msgstr "暂无球队订单。"
 
 #: templates/webapp/stock/_tabs.html
 msgid "Adjust"
@@ -9434,10 +9699,6 @@ msgstr "调整"
 #: templates/webapp/stock/_tabs.html
 msgid "Stock taking"
 msgstr "盘点"
-
-#: templates/webapp/stock/_tabs.html
-msgid "Batches & expiry"
-msgstr "批次与有效期"
 
 #: templates/webapp/stock/_tabs.html
 msgid "Serial numbers"
@@ -9490,6 +9751,14 @@ msgstr "报损"
 #: templates/webapp/stock/batches.html
 msgid "No batches here."
 msgstr "这里没有批次。"
+
+#: templates/webapp/stock/batches.html
+msgid "Batches you entered before this update are kept on the older screen."
+msgstr "本次更新前录入的批次保留在旧页面中。"
+
+#: templates/webapp/stock/batches.html
+msgid "Open older batch records"
+msgstr "打开旧批次记录"
 
 #: templates/webapp/stock/batches.html
 msgid "Receive a batch"
@@ -9824,6 +10093,12 @@ msgid ""
 "Hi %(name)s, it may be time to refill your medicines from %(shop)s. Reply "
 "and we will keep them ready for you."
 msgstr "%(name)s 您好，或许该在 %(shop)s 补充您的药品了。回复后我们会为您备好。"
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, your supplements from %(shop)s may be running low. Reply and we"
+" will keep your next pack ready."
+msgstr "%(name)s 您好，您在 %(shop)s 购买的补剂可能快用完了。回复我们，我们会为您备好下一包。"
 
 #: apps/industry/reminders.py
 msgid ""
@@ -10446,10 +10721,6 @@ msgid "CV & documents"
 msgstr "简历与文件"
 
 #: apps/webapp/careers_views.py
-msgid "Gender"
-msgstr "性别"
-
-#: apps/webapp/careers_views.py
 msgid "Male"
 msgstr "男"
 
@@ -10803,6 +11074,10 @@ msgstr "%(item)s：%(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "已设置 %(count)s 个价格。"
+
+#: apps/webapp/education_views.py
+msgid "Batches"
+msgstr "批次"
 
 #: apps/webapp/education_views.py
 msgid "Class"
@@ -11837,6 +12112,30 @@ msgid "All products are above their reorder level."
 msgstr "所有商品都高于补货线。"
 
 #: apps/webapp/overview.py
+msgid "Batch %(b)s · %(q)s in stock"
+msgstr "批次 %(b)s · 库存 %(q)s"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "%(n)s 天后"
+
+#: apps/webapp/overview.py
+msgid "%(n)s already expired"
+msgstr "%(n)s 已过期"
+
+#: apps/webapp/overview.py
+msgid "Expiring soon"
+msgstr "即将过期"
+
+#: apps/webapp/overview.py
+msgid "Nothing expires in the next 60 days."
+msgstr "未来 60 天内没有即将过期的商品。"
+
+#: apps/webapp/overview.py
+msgid "Receive stock"
+msgstr "收货入库"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "店内维修"
 
@@ -11851,10 +12150,6 @@ msgstr "全部维修"
 #: apps/webapp/overview.py
 msgid "No repairs waiting."
 msgstr "没有待处理的维修。"
-
-#: apps/webapp/overview.py
-msgid "New repair job"
-msgstr "新建维修工单"
 
 #: apps/webapp/overview.py
 msgid "Cars in the queue"
@@ -11895,10 +12190,6 @@ msgstr "今日签到"
 #: apps/webapp/overview.py
 msgid "Expiring this week"
 msgstr "本周到期"
-
-#: apps/webapp/overview.py
-msgid "in %(n)s days"
-msgstr "%(n)s 天后"
 
 #: apps/webapp/overview.py
 msgid "Memberships to renew"
@@ -12788,9 +13079,69 @@ msgstr "已将 %(count)s 个序列号加入库存。"
 msgid "Already registered: %(list)s"
 msgstr "已登记：%(list)s"
 
+#: apps/webapp/team_order_views.py
+msgid "Enter the team name and what is being made."
+msgstr "请输入球队名称和制作内容。"
+
+#: apps/webapp/team_order_views.py
+msgid "Choose the delivery date."
+msgstr "请选择交付日期。"
+
+#: apps/webapp/team_order_views.py
+msgid "Price and advance must be numbers."
+msgstr "价格和定金必须是数字。"
+
+#: apps/webapp/team_order_views.py
+msgid "Add at least one player: name, number, size — one per line."
+msgstr "请至少添加一名球员：姓名、号码、尺码 — 每行一位。"
+
+#: apps/webapp/team_order_views.py
+msgid "Team order saved."
+msgstr "球队订单已保存。"
+
+#: apps/webapp/team_order_views.py
+msgid "Status updated."
+msgstr "状态已更新。"
+
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "订单与餐桌"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s is ready for pickup at %(shop)s. Job %(job)s. "
+"Amount due: %(amount)s."
+msgstr "%(name)s 您好，您的 %(device)s 已可在 %(shop)s 取回。工单 %(job)s。应付金额：%(amount)s。"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, we have received your %(device)s at %(shop)s (job %(job)s). We "
+"will message you when it is ready."
+msgstr "%(name)s 您好，%(shop)s 已收到您的 %(device)s（工单 %(job)s）。修好后我们会通知您。"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s (job %(job)s) is waiting for a spare part. We "
+"will update you as soon as it arrives. – %(shop)s"
+msgstr "%(name)s 您好，您的 %(device)s（工单 %(job)s）正在等待备件。到货后我们会立即通知您。– %(shop)s"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, update on your %(device)s (job %(job)s) at %(shop)s: "
+"%(status)s."
+msgstr "%(name)s 您好，您在 %(shop)s 的 %(device)s（工单 %(job)s）最新进度：%(status)s。"
+
+#: apps/webapp/views.py
+msgid "Fragrance family"
+msgstr "香调类别"
+
+#: apps/webapp/views.py
+msgid "Concentration"
+msgstr "浓度"
+
+#: apps/webapp/views.py
+msgid "Bottle size (ml)"
+msgstr "瓶装容量（毫升）"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

@@ -158,6 +158,14 @@ msgid "Products"
 msgstr "பொருட்கள்"
 
 #: templates/base.html
+msgid "Team orders"
+msgstr "அணி ஆர்டர்கள்"
+
+#: templates/base.html
+msgid "Sales"
+msgstr "விற்பனை"
+
+#: templates/base.html
 msgid "Cycle Shop"
 msgstr "சைக்கிள் கடை"
 
@@ -182,20 +190,12 @@ msgid "Medical Shop"
 msgstr "மருந்துக் கடை"
 
 #: templates/base.html
-msgid "Batches"
-msgstr "தொகுதிகள்"
-
-#: templates/base.html
-msgid "Dispense History"
-msgstr "மருந்து வழங்கல் வரலாறு"
+msgid "Batches & expiry"
+msgstr "தொகுதிகள் & காலாவதி"
 
 #: templates/base.html
 msgid "Protein Shop"
 msgstr "புரோட்டீன் கடை"
-
-#: templates/base.html
-msgid "Sale History"
-msgstr "விற்பனை வரலாறு"
 
 #: templates/base.html
 msgid "Construction"
@@ -236,10 +236,6 @@ msgstr "சமையலறை / KOT"
 #: templates/base.html
 msgid "Menu & Ingredients"
 msgstr "மெனு & பொருட்கள்"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "விற்பனை"
 
 #: templates/base.html
 msgid "Packages / Sessions"
@@ -5497,6 +5493,172 @@ msgstr "பொருள் விவரங்கள்"
 msgid "Shown on the POS, invoices and your website."
 msgstr "POS, இன்வாய்ஸ்கள் மற்றும் உங்கள் இணையதளத்தில் காட்டப்படும்."
 
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair"
+msgstr "பழுதுநீக்கம்"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print job card"
+msgstr "வேலை அட்டையை அச்சிடு"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Send status on WhatsApp"
+msgstr "நிலையை WhatsApp-ல் அனுப்பு"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Edit / change status"
+msgstr "திருத்து / நிலையை மாற்று"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Spare part"
+msgstr "உதிரி பாகம்"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair job card"
+msgstr "பழுதுநீக்க வேலை அட்டை"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Device"
+msgstr "சாதனம்"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Received"
+msgstr "பெறப்பட்டது"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Ready by"
+msgstr "தயாராகும் தேதி"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Warranty repair"
+msgstr "உத்தரவாத பழுதுநீக்கம்"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Estimated cost"
+msgstr "மதிப்பிடப்பட்ட செலவு"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Left with the phone"
+msgstr "தொலைபேசியுடன் கொடுத்தவை"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Screen lock"
+msgstr "திரைப் பூட்டு"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Given"
+msgstr "கொடுத்தது"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Technician"
+msgstr "தொழில்நுட்பர்"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Problem reported"
+msgstr "தெரிவித்த பிரச்சனை"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Diagnosis"
+msgstr "கண்டறிதல்"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid ""
+"Please bring this card when you collect the phone. We are not responsible "
+"for data on the device or for phones not collected within 30 days of the "
+"ready date."
+msgstr ""
+"தொலைபேசியைப் பெற வரும்போது இந்த அட்டையைக் கொண்டு வாருங்கள். சாதனத்தில் உள்ள "
+"தரவுக்கோ, தயாரான தேதியிலிருந்து 30 நாட்களுக்குள் பெறப்படாத தொலைபேசிகளுக்கோ "
+"நாங்கள் பொறுப்பல்ல."
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Customer signature"
+msgstr "வாடிக்கையாளர் கையொப்பம்"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Shop"
+msgstr "கடை"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Parts used"
+msgstr "பயன்படுத்திய பாகங்கள்"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Part"
+msgstr "பாகம்"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Charge"
+msgstr "கட்டணம் வசூலி"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "No parts added."
+msgstr "பாகங்கள் எதுவும் சேர்க்கப்படவில்லை."
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Labour charge"
+msgstr "கூலி"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Work done"
+msgstr "செய்த வேலை"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Advance taken off the bill"
+msgstr "பில்லில் கழிக்கப்பட்ட முன்பணம்"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Complete & create invoice"
+msgstr "முடித்து விலைப்பட்டியல் உருவாக்கு"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print repair invoice"
+msgstr "பழுதுநீக்க விலைப்பட்டியலை அச்சிடு"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Share on WhatsApp / email"
+msgstr "WhatsApp / மின்னஞ்சலில் பகிர்"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Repair job"
+msgstr "பழுதுநீக்க வேலை"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New repair job"
+msgstr "புதிய பழுது வேலை"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "…or new customer name"
+msgstr "…அல்லது புதிய வாடிக்கையாளர் பெயர்"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New customer phone / WhatsApp"
+msgstr "புதிய வாடிக்கையாளர் தொலைபேசி / WhatsApp"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Screen lock PIN / pattern"
+msgstr "திரைப் பூட்டு PIN / பேட்டர்ன்"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Phone sold by us (optional)"
+msgstr "நாங்கள் விற்ற தொலைபேசி (விருப்பம்)"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Cost and pickup"
+msgstr "செலவும் பெறுதலும்"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Bill the labour as"
+msgstr "கூலியை இவ்வாறு பில் செய்"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Branch"
+msgstr "கிளை"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Save job card"
+msgstr "வேலை அட்டையைச் சேமி"
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "அணுகல் இல்லை"
@@ -5797,10 +5959,6 @@ msgstr "முன்பதிவைத் திற"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "விரும்புவது"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Received"
-msgstr "பெறப்பட்டது"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Reason"
@@ -6128,10 +6286,6 @@ msgid "Done by (staff)"
 msgstr "செய்தவர் (ஊழியர்)"
 
 #: templates/webapp/pos.html
-msgid "Branch"
-msgstr "கிளை"
-
-#: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "கூடை காலியாக உள்ளது"
 
@@ -6151,10 +6305,6 @@ msgstr "நிறுத்தி வை"
 #: templates/webapp/pos.html
 msgid "Clear"
 msgstr "அழி"
-
-#: templates/webapp/pos.html
-msgid "Charge"
-msgstr "கட்டணம் வசூலி"
 
 #: templates/webapp/pos.html
 msgid "Take payment"
@@ -6261,6 +6411,10 @@ msgstr "விற்பனையில் சேர்"
 msgid "Sales parked on this till. Tap one to bring it back."
 msgstr ""
 "இந்தக் கவுண்டரில் நிறுத்திய விற்பனைகள். திரும்பக் கொண்டுவர ஒன்றைத் தட்டவும்."
+
+#: templates/webapp/pos.html
+msgid "Quantity (ml)"
+msgstr "அளவு (ml)"
 
 #: templates/webapp/pos.html
 msgid "Products for sale"
@@ -9266,6 +9420,10 @@ msgstr "மொத்தம்"
 msgid "Print Receipt"
 msgstr "ரசீது அச்சிடு"
 
+#: templates/webapp/retail/reports.html
+msgid "Product"
+msgstr "பொருள்"
+
 #: templates/webapp/sales_docs/_doc_head.html
 msgid "Valid until"
 msgstr "செல்லுபடியாகும் வரை"
@@ -9747,9 +9905,122 @@ msgstr "எங்களைப் பின்தொடருங்கள்"
 msgid "VAT"
 msgstr "VAT"
 
-#: templates/webapp/stock/_tabs.html
+#: templates/webapp/sports_shop/product_list.html
+msgid "Import from Excel"
+msgstr "Excel-லிருந்து இறக்குமதி"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Sport"
+msgstr "விளையாட்டு"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Colour / size"
+msgstr "நிறம் / அளவு"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Gender"
+msgstr "பாலினம்"
+
+#: templates/webapp/sports_shop/product_list.html
 msgid "Stock"
 msgstr "இருப்பு"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Size / colour"
+msgstr "அளவு / நிறம்"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "No products yet."
+msgstr "இன்னும் பொருட்கள் இல்லை."
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Print list for the printer"
+msgstr "அச்சகத்திற்கான பட்டியலை அச்சிடு"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Update status"
+msgstr "நிலையைப் புதுப்பி"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Delivery date"
+msgstr "டெலிவரி தேதி"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Pieces"
+msgstr "எண்ணிக்கை"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Sizes"
+msgstr "அளவுகள்"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Name on jersey"
+msgstr "ஜெர்சியில் பெயர்"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Size"
+msgstr "அளவு"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team order"
+msgstr "அணி ஆர்டர்"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Edit team order"
+msgstr "அணி ஆர்டரைத் திருத்து"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "New team order"
+msgstr "புதிய அணி ஆர்டர்"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team / club / school"
+msgstr "அணி / கிளப் / பள்ளி"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Doha Strikers FC"
+msgstr "எ.கா. Doha Strikers FC"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Contact phone"
+msgstr "தொடர்பு தொலைபேசி"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "What is being made"
+msgstr "என்ன தயாரிக்கப்படுகிறது"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Home jersey – blue, name and number on the back"
+msgstr "எ.கா. ஹோம் ஜெர்சி – நீலம், பின்புறம் பெயரும் எண்ணும்"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Price per piece"
+msgstr "ஒன்றின் விலை"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Players — one per line: Name, Number, Size"
+msgstr "வீரர்கள் — ஒரு வரிக்கு ஒருவர்: பெயர், எண், அளவு"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Tip: copy the list from Excel or WhatsApp and paste it here."
+msgstr ""
+"குறிப்பு: Excel அல்லது WhatsApp-லிருந்து பட்டியலை நகலெடுத்து இங்கே ஒட்டவும்."
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Font, colours, sponsor logo…"
+msgstr "எழுத்துரு, நிறங்கள், ஸ்பான்சர் லோகோ…"
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid ""
+"Jerseys for clubs, schools and companies — each player's name, number and "
+"size, ready for the printer."
+msgstr ""
+"கிளப்புகள், பள்ளிகள், நிறுவனங்களுக்கான ஜெர்சிகள் — ஒவ்வொரு வீரரின் பெயர், "
+"எண், அளவு அச்சகத்திற்குத் தயார்."
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid "No team orders yet."
+msgstr "இன்னும் அணி ஆர்டர்கள் இல்லை."
 
 #: templates/webapp/stock/_tabs.html
 msgid "Adjust"
@@ -9758,10 +10029,6 @@ msgstr "சரிசெய்"
 #: templates/webapp/stock/_tabs.html
 msgid "Stock taking"
 msgstr "இருப்புக் கணக்கெடுப்பு"
-
-#: templates/webapp/stock/_tabs.html
-msgid "Batches & expiry"
-msgstr "தொகுதிகள் & காலாவதி"
 
 #: templates/webapp/stock/_tabs.html
 msgid "Serial numbers"
@@ -9814,6 +10081,14 @@ msgstr "தள்ளுபடி செய்"
 #: templates/webapp/stock/batches.html
 msgid "No batches here."
 msgstr "இங்கே தொகுதிகள் இல்லை."
+
+#: templates/webapp/stock/batches.html
+msgid "Batches you entered before this update are kept on the older screen."
+msgstr "இந்தப் புதுப்பிப்புக்கு முன் உள்ளிட்ட தொகுதிகள் பழைய திரையில் உள்ளன."
+
+#: templates/webapp/stock/batches.html
+msgid "Open older batch records"
+msgstr "பழைய தொகுதி பதிவுகளைத் திற"
 
 #: templates/webapp/stock/batches.html
 msgid "Receive a batch"
@@ -10171,6 +10446,15 @@ msgid ""
 msgstr ""
 "வணக்கம் %(name)s, %(shop)s-இலிருந்து மருந்துகளை மீண்டும் வாங்கும் நேரமாக "
 "இருக்கலாம். பதில் அனுப்பினால் தயாராக வைக்கிறோம்."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, your supplements from %(shop)s may be running low. Reply and we"
+" will keep your next pack ready."
+msgstr ""
+"வணக்கம் %(name)s, %(shop)s-இல் வாங்கிய உங்கள் சப்ளிமெண்ட்கள் "
+"தீர்ந்துகொண்டிருக்கலாம். பதில் அனுப்புங்கள், அடுத்த பேக்கைத் தயாராக "
+"வைக்கிறோம்."
 
 #: apps/industry/reminders.py
 msgid ""
@@ -10830,10 +11114,6 @@ msgid "CV & documents"
 msgstr "CV & ஆவணங்கள்"
 
 #: apps/webapp/careers_views.py
-msgid "Gender"
-msgstr "பாலினம்"
-
-#: apps/webapp/careers_views.py
 msgid "Male"
 msgstr "ஆண்"
 
@@ -11200,6 +11480,10 @@ msgstr "%(item)s: %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "%(count)s விலைகள் அமைக்கப்பட்டன."
+
+#: apps/webapp/education_views.py
+msgid "Batches"
+msgstr "தொகுதிகள்"
 
 #: apps/webapp/education_views.py
 msgid "Class"
@@ -12262,6 +12546,30 @@ msgid "All products are above their reorder level."
 msgstr "அனைத்து பொருட்களும் மறு ஆர்டர் அளவுக்கு மேல் உள்ளன."
 
 #: apps/webapp/overview.py
+msgid "Batch %(b)s · %(q)s in stock"
+msgstr "தொகுதி %(b)s · %(q)s கையிருப்பில்"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "%(n)s நாட்களில்"
+
+#: apps/webapp/overview.py
+msgid "%(n)s already expired"
+msgstr "%(n)s ஏற்கனவே காலாவதியானவை"
+
+#: apps/webapp/overview.py
+msgid "Expiring soon"
+msgstr "விரைவில் காலாவதியாகும்"
+
+#: apps/webapp/overview.py
+msgid "Nothing expires in the next 60 days."
+msgstr "அடுத்த 60 நாட்களில் எதுவும் காலாவதியாகவில்லை."
+
+#: apps/webapp/overview.py
+msgid "Receive stock"
+msgstr "சரக்கைப் பெறு"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "கடையில் உள்ள பழுதுகள்"
 
@@ -12276,10 +12584,6 @@ msgstr "அனைத்து பழுதுகளும்"
 #: apps/webapp/overview.py
 msgid "No repairs waiting."
 msgstr "காத்திருக்கும் பழுது இல்லை."
-
-#: apps/webapp/overview.py
-msgid "New repair job"
-msgstr "புதிய பழுது வேலை"
 
 #: apps/webapp/overview.py
 msgid "Cars in the queue"
@@ -12320,10 +12624,6 @@ msgstr "இன்றைய செக்-இன்கள்"
 #: apps/webapp/overview.py
 msgid "Expiring this week"
 msgstr "இந்த வாரம் முடிவடைபவை"
-
-#: apps/webapp/overview.py
-msgid "in %(n)s days"
-msgstr "%(n)s நாட்களில்"
 
 #: apps/webapp/overview.py
 msgid "Memberships to renew"
@@ -13248,9 +13548,78 @@ msgstr "இருப்பில் %(count)s வரிசை எண்கள்
 msgid "Already registered: %(list)s"
 msgstr "ஏற்கனவே பதிவு செய்யப்பட்டவை: %(list)s"
 
+#: apps/webapp/team_order_views.py
+msgid "Enter the team name and what is being made."
+msgstr "அணியின் பெயரையும் என்ன தயாரிக்கப்படுகிறது என்பதையும் உள்ளிடவும்."
+
+#: apps/webapp/team_order_views.py
+msgid "Choose the delivery date."
+msgstr "டெலிவரி தேதியைத் தேர்ந்தெடுக்கவும்."
+
+#: apps/webapp/team_order_views.py
+msgid "Price and advance must be numbers."
+msgstr "விலையும் முன்பணமும் எண்களாக இருக்க வேண்டும்."
+
+#: apps/webapp/team_order_views.py
+msgid "Add at least one player: name, number, size — one per line."
+msgstr ""
+"குறைந்தது ஒரு வீரரைச் சேர்க்கவும்: பெயர், எண், அளவு — ஒரு வரிக்கு ஒன்று."
+
+#: apps/webapp/team_order_views.py
+msgid "Team order saved."
+msgstr "அணி ஆர்டர் சேமிக்கப்பட்டது."
+
+#: apps/webapp/team_order_views.py
+msgid "Status updated."
+msgstr "நிலை புதுப்பிக்கப்பட்டது."
+
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "ஆர்டர்களும் மேசைகளும்"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s is ready for pickup at %(shop)s. Job %(job)s. "
+"Amount due: %(amount)s."
+msgstr ""
+"வணக்கம் %(name)s, உங்கள் %(device)s %(shop)s-இல் பெற்றுக்கொள்ளத் தயார். வேலை"
+" %(job)s. செலுத்த வேண்டியது: %(amount)s."
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, we have received your %(device)s at %(shop)s (job %(job)s). We "
+"will message you when it is ready."
+msgstr ""
+"வணக்கம் %(name)s, உங்கள் %(device)s %(shop)s-இல் பெறப்பட்டது (வேலை %(job)s)."
+" தயாரானதும் செய்தி அனுப்புவோம்."
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s (job %(job)s) is waiting for a spare part. We "
+"will update you as soon as it arrives. – %(shop)s"
+msgstr ""
+"வணக்கம் %(name)s, உங்கள் %(device)s (வேலை %(job)s) ஒரு உதிரி பாகத்திற்காகக் "
+"காத்திருக்கிறது. அது வந்தவுடன் தெரிவிப்போம். – %(shop)s"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, update on your %(device)s (job %(job)s) at %(shop)s: "
+"%(status)s."
+msgstr ""
+"வணக்கம் %(name)s, %(shop)s-இல் உங்கள் %(device)s (வேலை %(job)s) பற்றிய "
+"புதுப்பிப்பு: %(status)s."
+
+#: apps/webapp/views.py
+msgid "Fragrance family"
+msgstr "நறுமண வகை"
+
+#: apps/webapp/views.py
+msgid "Concentration"
+msgstr "செறிவு"
+
+#: apps/webapp/views.py
+msgid "Bottle size (ml)"
+msgstr "பாட்டில் அளவு (ml)"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

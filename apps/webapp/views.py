@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db import transaction
 from django.db.models import Sum, Count, Q, F, DecimalField
 from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _l
 from django.views.decorators.cache import never_cache
 from django.db.models.deletion import ProtectedError
 from django.utils import timezone
@@ -3067,8 +3068,8 @@ def retail_reports(request):
 
 
 REPORT_ATTRIBUTES = {
-    "perfume_shop": (("fragrance_family", "Fragrance family"), ("concentration", "Concentration"),
-                     ("volume_ml", "Bottle size (ml)"), ("gender", "For")),
+    "perfume_shop": (("fragrance_family", _l("Fragrance family")), ("concentration", _l("Concentration")),
+                     ("volume_ml", _l("Bottle size (ml)")), ("gender", _l("Gender"))),
 }
 
 

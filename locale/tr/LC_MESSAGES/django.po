@@ -158,6 +158,14 @@ msgid "Products"
 msgstr "Ürünler"
 
 #: templates/base.html
+msgid "Team orders"
+msgstr "Takım siparişleri"
+
+#: templates/base.html
+msgid "Sales"
+msgstr "Satışlar"
+
+#: templates/base.html
 msgid "Cycle Shop"
 msgstr "Bisiklet mağazası"
 
@@ -182,20 +190,12 @@ msgid "Medical Shop"
 msgstr "Eczane"
 
 #: templates/base.html
-msgid "Batches"
-msgstr "Partiler"
-
-#: templates/base.html
-msgid "Dispense History"
-msgstr "İlaç verme geçmişi"
+msgid "Batches & expiry"
+msgstr "Partiler ve son kullanma"
 
 #: templates/base.html
 msgid "Protein Shop"
 msgstr "Protein mağazası"
-
-#: templates/base.html
-msgid "Sale History"
-msgstr "Satış geçmişi"
 
 #: templates/base.html
 msgid "Construction"
@@ -236,10 +236,6 @@ msgstr "Mutfak / KOT"
 #: templates/base.html
 msgid "Menu & Ingredients"
 msgstr "Menü ve malzemeler"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "Satışlar"
 
 #: templates/base.html
 msgid "Packages / Sessions"
@@ -5451,6 +5447,172 @@ msgstr "Ürün ayrıntıları"
 msgid "Shown on the POS, invoices and your website."
 msgstr "POS’ta, faturalarda ve web sitenizde gösterilir."
 
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair"
+msgstr "Onarım"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print job card"
+msgstr "İş kartını yazdır"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Send status on WhatsApp"
+msgstr "Durumu WhatsApp ile gönder"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Edit / change status"
+msgstr "Düzenle / durumu değiştir"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Spare part"
+msgstr "Yedek parça"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair job card"
+msgstr "Onarım iş kartı"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Device"
+msgstr "Cihaz"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Received"
+msgstr "Alındı"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Ready by"
+msgstr "Hazır olma tarihi"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Warranty repair"
+msgstr "Garanti kapsamında onarım"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Estimated cost"
+msgstr "Tahmini maliyet"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Left with the phone"
+msgstr "Telefonla birlikte bırakılanlar"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Screen lock"
+msgstr "Ekran kilidi"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Given"
+msgstr "Verildi"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Technician"
+msgstr "Teknisyen"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Problem reported"
+msgstr "Bildirilen sorun"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Diagnosis"
+msgstr "Arıza tespiti"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid ""
+"Please bring this card when you collect the phone. We are not responsible "
+"for data on the device or for phones not collected within 30 days of the "
+"ready date."
+msgstr ""
+"Telefonu teslim alırken lütfen bu kartı getirin. Cihazdaki verilerden veya "
+"hazır olma tarihinden itibaren 30 gün içinde alınmayan telefonlardan sorumlu"
+" değiliz."
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Customer signature"
+msgstr "Müşteri imzası"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Shop"
+msgstr "Mağaza"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Parts used"
+msgstr "Kullanılan parçalar"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Part"
+msgstr "Parça"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Charge"
+msgstr "Tahsil et"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "No parts added."
+msgstr "Parça eklenmedi."
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Labour charge"
+msgstr "İşçilik ücreti"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Work done"
+msgstr "Yapılan iş"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Advance taken off the bill"
+msgstr "Faturadan düşülen kapora"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Complete & create invoice"
+msgstr "Tamamla ve fatura oluştur"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print repair invoice"
+msgstr "Onarım faturasını yazdır"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Share on WhatsApp / email"
+msgstr "WhatsApp / e-posta ile paylaş"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Repair job"
+msgstr "Onarım işi"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New repair job"
+msgstr "Yeni onarım işi"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "…or new customer name"
+msgstr "…veya yeni müşteri adı"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New customer phone / WhatsApp"
+msgstr "Yeni müşteri telefonu / WhatsApp"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Screen lock PIN / pattern"
+msgstr "Ekran kilidi PIN / desen"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Phone sold by us (optional)"
+msgstr "Bizim sattığımız telefon (isteğe bağlı)"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Cost and pickup"
+msgstr "Maliyet ve teslim"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Bill the labour as"
+msgstr "İşçiliği şu şekilde faturala"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Branch"
+msgstr "Şube"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Save job card"
+msgstr "İş kartını kaydet"
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "Erişim yok"
@@ -5747,10 +5909,6 @@ msgstr "Rezervasyonu aç"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "İstediği"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Received"
-msgstr "Alındı"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Reason"
@@ -6071,10 +6229,6 @@ msgid "Done by (staff)"
 msgstr "Yapan (personel)"
 
 #: templates/webapp/pos.html
-msgid "Branch"
-msgstr "Şube"
-
-#: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "Sepet boş"
 
@@ -6093,10 +6247,6 @@ msgstr "Beklet"
 #: templates/webapp/pos.html
 msgid "Clear"
 msgstr "Temizle"
-
-#: templates/webapp/pos.html
-msgid "Charge"
-msgstr "Tahsil et"
 
 #: templates/webapp/pos.html
 msgid "Take payment"
@@ -6201,6 +6351,10 @@ msgstr "Satışa ekle"
 #: templates/webapp/pos.html
 msgid "Sales parked on this till. Tap one to bring it back."
 msgstr "Bu kasada bekletilen satışlar. Geri getirmek için birine dokunun."
+
+#: templates/webapp/pos.html
+msgid "Quantity (ml)"
+msgstr "Miktar (ml)"
 
 #: templates/webapp/pos.html
 msgid "Products for sale"
@@ -9184,6 +9338,10 @@ msgstr "TOPLAM"
 msgid "Print Receipt"
 msgstr "Fiş yazdır"
 
+#: templates/webapp/retail/reports.html
+msgid "Product"
+msgstr "Ürün"
+
 #: templates/webapp/sales_docs/_doc_head.html
 msgid "Valid until"
 msgstr "Geçerlilik"
@@ -9655,9 +9813,122 @@ msgstr "Bizi takip edin"
 msgid "VAT"
 msgstr "KDV"
 
-#: templates/webapp/stock/_tabs.html
+#: templates/webapp/sports_shop/product_list.html
+msgid "Import from Excel"
+msgstr "Excel'den içe aktar"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Sport"
+msgstr "Spor"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Colour / size"
+msgstr "Renk / beden"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Gender"
+msgstr "Cinsiyet"
+
+#: templates/webapp/sports_shop/product_list.html
 msgid "Stock"
 msgstr "Stok"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Size / colour"
+msgstr "Beden / renk"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "No products yet."
+msgstr "Henüz ürün yok."
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Print list for the printer"
+msgstr "Matbaa için listeyi yazdır"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Update status"
+msgstr "Durumu güncelle"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Delivery date"
+msgstr "Teslim tarihi"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Pieces"
+msgstr "Adet"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Sizes"
+msgstr "Bedenler"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Name on jersey"
+msgstr "Formadaki isim"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Size"
+msgstr "Beden"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team order"
+msgstr "Takım siparişi"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Edit team order"
+msgstr "Takım siparişini düzenle"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "New team order"
+msgstr "Yeni takım siparişi"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team / club / school"
+msgstr "Takım / kulüp / okul"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Doha Strikers FC"
+msgstr "ör. Doha Strikers FC"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Contact phone"
+msgstr "İletişim telefonu"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "What is being made"
+msgstr "Ne üretiliyor"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Home jersey – blue, name and number on the back"
+msgstr "ör. İç saha forması – mavi, arkada isim ve numara"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Price per piece"
+msgstr "Adet fiyatı"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Players — one per line: Name, Number, Size"
+msgstr "Oyuncular — her satıra bir: İsim, Numara, Beden"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Tip: copy the list from Excel or WhatsApp and paste it here."
+msgstr ""
+"İpucu: Listeyi Excel'den veya WhatsApp'tan kopyalayıp buraya yapıştırın."
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Font, colours, sponsor logo…"
+msgstr "Yazı tipi, renkler, sponsor logosu…"
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid ""
+"Jerseys for clubs, schools and companies — each player's name, number and "
+"size, ready for the printer."
+msgstr ""
+"Kulüpler, okullar ve şirketler için formalar — her oyuncunun adı, numarası "
+"ve bedeni matbaaya hazır."
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid "No team orders yet."
+msgstr "Henüz takım siparişi yok."
 
 #: templates/webapp/stock/_tabs.html
 msgid "Adjust"
@@ -9666,10 +9937,6 @@ msgstr "Düzelt"
 #: templates/webapp/stock/_tabs.html
 msgid "Stock taking"
 msgstr "Stok sayımı"
-
-#: templates/webapp/stock/_tabs.html
-msgid "Batches & expiry"
-msgstr "Partiler ve son kullanma"
 
 #: templates/webapp/stock/_tabs.html
 msgid "Serial numbers"
@@ -9722,6 +9989,14 @@ msgstr "Zarar yaz"
 #: templates/webapp/stock/batches.html
 msgid "No batches here."
 msgstr "Burada parti yok."
+
+#: templates/webapp/stock/batches.html
+msgid "Batches you entered before this update are kept on the older screen."
+msgstr "Bu güncellemeden önce girilen partiler eski ekranda duruyor."
+
+#: templates/webapp/stock/batches.html
+msgid "Open older batch records"
+msgstr "Eski parti kayıtlarını aç"
 
 #: templates/webapp/stock/batches.html
 msgid "Receive a batch"
@@ -10071,6 +10346,14 @@ msgid ""
 msgstr ""
 "Merhaba %(name)s, %(shop)s'tan ilaçlarınızı yenileme zamanı gelmiş olabilir."
 " Yanıt verin, hazır tutalım."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, your supplements from %(shop)s may be running low. Reply and we"
+" will keep your next pack ready."
+msgstr ""
+"Merhaba %(name)s, %(shop)s'tan aldığınız takviyeler bitmek üzere olabilir. "
+"Yanıt verin, bir sonraki paketinizi hazır tutalım."
 
 #: apps/industry/reminders.py
 msgid ""
@@ -10716,10 +10999,6 @@ msgid "CV & documents"
 msgstr "CV ve belgeler"
 
 #: apps/webapp/careers_views.py
-msgid "Gender"
-msgstr "Cinsiyet"
-
-#: apps/webapp/careers_views.py
 msgid "Male"
 msgstr "Erkek"
 
@@ -11079,6 +11358,10 @@ msgstr "%(item)s: %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "%(count)s fiyat belirlendi."
+
+#: apps/webapp/education_views.py
+msgid "Batches"
+msgstr "Partiler"
 
 #: apps/webapp/education_views.py
 msgid "Class"
@@ -12124,6 +12407,30 @@ msgid "All products are above their reorder level."
 msgstr "Tüm ürünler yeniden sipariş seviyesinin üstünde."
 
 #: apps/webapp/overview.py
+msgid "Batch %(b)s · %(q)s in stock"
+msgstr "Parti %(b)s · stokta %(q)s"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "%(n)s gün içinde"
+
+#: apps/webapp/overview.py
+msgid "%(n)s already expired"
+msgstr "%(n)s zaten süresi doldu"
+
+#: apps/webapp/overview.py
+msgid "Expiring soon"
+msgstr "Yakında süresi dolacaklar"
+
+#: apps/webapp/overview.py
+msgid "Nothing expires in the next 60 days."
+msgstr "Önümüzdeki 60 günde süresi dolan bir şey yok."
+
+#: apps/webapp/overview.py
+msgid "Receive stock"
+msgstr "Stok teslim al"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "Dükkândaki onarımlar"
 
@@ -12138,10 +12445,6 @@ msgstr "Tüm onarımlar"
 #: apps/webapp/overview.py
 msgid "No repairs waiting."
 msgstr "Bekleyen onarım yok."
-
-#: apps/webapp/overview.py
-msgid "New repair job"
-msgstr "Yeni onarım işi"
 
 #: apps/webapp/overview.py
 msgid "Cars in the queue"
@@ -12182,10 +12485,6 @@ msgstr "Bugünkü girişler"
 #: apps/webapp/overview.py
 msgid "Expiring this week"
 msgstr "Bu hafta bitenler"
-
-#: apps/webapp/overview.py
-msgid "in %(n)s days"
-msgstr "%(n)s gün içinde"
 
 #: apps/webapp/overview.py
 msgid "Memberships to renew"
@@ -13090,9 +13389,77 @@ msgstr "Stoğa %(count)s seri numarası eklendi."
 msgid "Already registered: %(list)s"
 msgstr "Zaten kayıtlı: %(list)s"
 
+#: apps/webapp/team_order_views.py
+msgid "Enter the team name and what is being made."
+msgstr "Takım adını ve ne üretildiğini girin."
+
+#: apps/webapp/team_order_views.py
+msgid "Choose the delivery date."
+msgstr "Teslim tarihini seçin."
+
+#: apps/webapp/team_order_views.py
+msgid "Price and advance must be numbers."
+msgstr "Fiyat ve kapora sayı olmalıdır."
+
+#: apps/webapp/team_order_views.py
+msgid "Add at least one player: name, number, size — one per line."
+msgstr "En az bir oyuncu ekleyin: isim, numara, beden — her satıra bir."
+
+#: apps/webapp/team_order_views.py
+msgid "Team order saved."
+msgstr "Takım siparişi kaydedildi."
+
+#: apps/webapp/team_order_views.py
+msgid "Status updated."
+msgstr "Durum güncellendi."
+
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "Siparişler ve masalar"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s is ready for pickup at %(shop)s. Job %(job)s. "
+"Amount due: %(amount)s."
+msgstr ""
+"Merhaba %(name)s, %(device)s cihazınız %(shop)s'ta teslim almaya hazır. İş "
+"%(job)s. Ödenecek tutar: %(amount)s."
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, we have received your %(device)s at %(shop)s (job %(job)s). We "
+"will message you when it is ready."
+msgstr ""
+"Merhaba %(name)s, %(device)s cihazınızı %(shop)s'ta teslim aldık (iş "
+"%(job)s). Hazır olduğunda size yazacağız."
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s (job %(job)s) is waiting for a spare part. We "
+"will update you as soon as it arrives. – %(shop)s"
+msgstr ""
+"Merhaba %(name)s, %(device)s cihazınız (iş %(job)s) yedek parça bekliyor. "
+"Gelir gelmez size haber vereceğiz. – %(shop)s"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, update on your %(device)s (job %(job)s) at %(shop)s: "
+"%(status)s."
+msgstr ""
+"Merhaba %(name)s, %(shop)s'taki %(device)s cihazınızla (iş %(job)s) ilgili "
+"güncelleme: %(status)s."
+
+#: apps/webapp/views.py
+msgid "Fragrance family"
+msgstr "Koku ailesi"
+
+#: apps/webapp/views.py
+msgid "Concentration"
+msgstr "Konsantrasyon"
+
+#: apps/webapp/views.py
+msgid "Bottle size (ml)"
+msgstr "Şişe boyutu (ml)"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

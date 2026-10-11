@@ -43,7 +43,7 @@
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px;">
   <div><h2 style="font-size:16px;">Top categories</h2><table><tr><th>Category</th><th>Units</th></tr>{% for p in top_categories %}<tr><td>{{ p.product__category__name|default:"Uncategorised" }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No data</td></tr>{% endfor %}</table></div>
   {% for g in attribute_reports %}
-  <div><h2 style="font-size:16px;">{% translate g.title %}</h2><table><tr><th>{% translate g.title %}</th><th>Units</th><th>Revenue</th></tr>{% for r in g.rows %}<tr><td>{{ r.label }}</td><td>{{ r.units|floatformat:"-2" }}</td><td>{{ r.revenue|floatformat:2 }}</td></tr>{% empty %}<tr><td colspan="3">No data</td></tr>{% endfor %}</table></div>
+  <div><h2 style="font-size:16px;">{{ g.title }}</h2><table><tr><th>{{ g.title }}</th><th>Units</th><th>Revenue</th></tr>{% for r in g.rows %}<tr><td>{{ r.label }}</td><td>{{ r.units|floatformat:"-2" }}</td><td>{{ r.revenue|floatformat:2 }}</td></tr>{% empty %}<tr><td colspan="3">No data</td></tr>{% endfor %}</table></div>
   {% endfor %}
 </div>
 {% else %}

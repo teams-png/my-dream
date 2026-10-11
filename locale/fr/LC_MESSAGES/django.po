@@ -158,6 +158,14 @@ msgid "Products"
 msgstr "Produits"
 
 #: templates/base.html
+msgid "Team orders"
+msgstr "Commandes d'équipe"
+
+#: templates/base.html
+msgid "Sales"
+msgstr "Ventes"
+
+#: templates/base.html
 msgid "Cycle Shop"
 msgstr "Magasin de vélos"
 
@@ -182,20 +190,12 @@ msgid "Medical Shop"
 msgstr "Pharmacie"
 
 #: templates/base.html
-msgid "Batches"
-msgstr "Lots"
-
-#: templates/base.html
-msgid "Dispense History"
-msgstr "Historique de délivrance"
+msgid "Batches & expiry"
+msgstr "Lots et péremption"
 
 #: templates/base.html
 msgid "Protein Shop"
 msgstr "Boutique de protéines"
-
-#: templates/base.html
-msgid "Sale History"
-msgstr "Historique des ventes"
 
 #: templates/base.html
 msgid "Construction"
@@ -236,10 +236,6 @@ msgstr "Cuisine / KOT"
 #: templates/base.html
 msgid "Menu & Ingredients"
 msgstr "Menu et ingrédients"
-
-#: templates/base.html
-msgid "Sales"
-msgstr "Ventes"
 
 #: templates/base.html
 msgid "Packages / Sessions"
@@ -5500,6 +5496,172 @@ msgstr "Détails du produit"
 msgid "Shown on the POS, invoices and your website."
 msgstr "Affiché en caisse, sur les factures et sur votre site."
 
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair"
+msgstr "Réparation"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print job card"
+msgstr "Imprimer la fiche de travail"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Send status on WhatsApp"
+msgstr "Envoyer le statut sur WhatsApp"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Edit / change status"
+msgstr "Modifier / changer le statut"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Spare part"
+msgstr "Pièce détachée"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Repair job card"
+msgstr "Fiche de réparation"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Device"
+msgstr "Appareil"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Received"
+msgstr "Reçu"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Ready by"
+msgstr "Prêt le"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Warranty repair"
+msgstr "Réparation sous garantie"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Estimated cost"
+msgstr "Coût estimé"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Left with the phone"
+msgstr "Laissé avec le téléphone"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Screen lock"
+msgstr "Verrouillage de l'écran"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Given"
+msgstr "Remis"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Technician"
+msgstr "Technicien"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Problem reported"
+msgstr "Problème signalé"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Diagnosis"
+msgstr "Diagnostic"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid ""
+"Please bring this card when you collect the phone. We are not responsible "
+"for data on the device or for phones not collected within 30 days of the "
+"ready date."
+msgstr ""
+"Merci d'apporter cette fiche pour récupérer le téléphone. Nous ne sommes pas"
+" responsables des données de l'appareil ni des téléphones non récupérés dans"
+" les 30 jours suivant la date prévue."
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Customer signature"
+msgstr "Signature du client"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Shop"
+msgstr "Boutique"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Parts used"
+msgstr "Pièces utilisées"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Part"
+msgstr "Pièce"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Charge"
+msgstr "Encaisser"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "No parts added."
+msgstr "Aucune pièce ajoutée."
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Labour charge"
+msgstr "Main-d'œuvre"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Work done"
+msgstr "Travail effectué"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Advance taken off the bill"
+msgstr "Acompte déduit de la facture"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Complete & create invoice"
+msgstr "Terminer et créer la facture"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Print repair invoice"
+msgstr "Imprimer la facture de réparation"
+
+#: templates/webapp/mobile_shop/repair_detail.html
+msgid "Share on WhatsApp / email"
+msgstr "Partager par WhatsApp / e-mail"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Repair job"
+msgstr "Réparation"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New repair job"
+msgstr "Nouvelle réparation"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "…or new customer name"
+msgstr "…ou nom d'un nouveau client"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "New customer phone / WhatsApp"
+msgstr "Téléphone / WhatsApp du nouveau client"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Screen lock PIN / pattern"
+msgstr "Code / schéma de verrouillage"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Phone sold by us (optional)"
+msgstr "Téléphone vendu par nous (facultatif)"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Cost and pickup"
+msgstr "Coût et retrait"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Bill the labour as"
+msgstr "Facturer la main-d'œuvre comme"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Branch"
+msgstr "Succursale"
+
+#: templates/webapp/mobile_shop/repair_form.html
+msgid "Save job card"
+msgstr "Enregistrer la fiche"
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "Accès refusé"
@@ -5801,10 +5963,6 @@ msgstr "Ouvrir la réservation"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "Souhaite"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Received"
-msgstr "Reçu"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Reason"
@@ -6129,10 +6287,6 @@ msgid "Done by (staff)"
 msgstr "Réalisé par (employé)"
 
 #: templates/webapp/pos.html
-msgid "Branch"
-msgstr "Succursale"
-
-#: templates/webapp/pos.html
 msgid "Cart is empty"
 msgstr "Le panier est vide"
 
@@ -6152,10 +6306,6 @@ msgstr "Mettre en attente"
 #: templates/webapp/pos.html
 msgid "Clear"
 msgstr "Vider"
-
-#: templates/webapp/pos.html
-msgid "Charge"
-msgstr "Encaisser"
 
 #: templates/webapp/pos.html
 msgid "Take payment"
@@ -6261,6 +6411,10 @@ msgstr "Ajouter à la vente"
 #: templates/webapp/pos.html
 msgid "Sales parked on this till. Tap one to bring it back."
 msgstr "Ventes en attente sur cette caisse. Touchez-en une pour la reprendre."
+
+#: templates/webapp/pos.html
+msgid "Quantity (ml)"
+msgstr "Quantité (ml)"
 
 #: templates/webapp/pos.html
 msgid "Products for sale"
@@ -9271,6 +9425,10 @@ msgstr "TOTAL"
 msgid "Print Receipt"
 msgstr "Imprimer le ticket"
 
+#: templates/webapp/retail/reports.html
+msgid "Product"
+msgstr "Produit"
+
 #: templates/webapp/sales_docs/_doc_head.html
 msgid "Valid until"
 msgstr "Valable jusqu’au"
@@ -9744,9 +9902,121 @@ msgstr "Suivez-nous"
 msgid "VAT"
 msgstr "TVA"
 
-#: templates/webapp/stock/_tabs.html
+#: templates/webapp/sports_shop/product_list.html
+msgid "Import from Excel"
+msgstr "Importer depuis Excel"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Sport"
+msgstr "Sport"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Colour / size"
+msgstr "Couleur / taille"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Gender"
+msgstr "Sexe"
+
+#: templates/webapp/sports_shop/product_list.html
 msgid "Stock"
 msgstr "Stock"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "Size / colour"
+msgstr "Taille / couleur"
+
+#: templates/webapp/sports_shop/product_list.html
+msgid "No products yet."
+msgstr "Aucun produit pour le moment."
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Print list for the printer"
+msgstr "Imprimer la liste pour l'imprimeur"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Update status"
+msgstr "Mettre à jour le statut"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Delivery date"
+msgstr "Date de livraison"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Pieces"
+msgstr "Pièces"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Sizes"
+msgstr "Tailles"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Name on jersey"
+msgstr "Nom sur le maillot"
+
+#: templates/webapp/sports_shop/team_order_detail.html
+msgid "Size"
+msgstr "Taille"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team order"
+msgstr "Commande d'équipe"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Edit team order"
+msgstr "Modifier la commande d'équipe"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "New team order"
+msgstr "Nouvelle commande d'équipe"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Team / club / school"
+msgstr "Équipe / club / école"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Doha Strikers FC"
+msgstr "ex. Doha Strikers FC"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Contact phone"
+msgstr "Téléphone de contact"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "What is being made"
+msgstr "Ce qui est fabriqué"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "e.g. Home jersey – blue, name and number on the back"
+msgstr "ex. Maillot domicile – bleu, nom et numéro au dos"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Price per piece"
+msgstr "Prix par pièce"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Players — one per line: Name, Number, Size"
+msgstr "Joueurs — un par ligne : Nom, Numéro, Taille"
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Tip: copy the list from Excel or WhatsApp and paste it here."
+msgstr "Astuce : copiez la liste depuis Excel ou WhatsApp et collez-la ici."
+
+#: templates/webapp/sports_shop/team_order_form.html
+msgid "Font, colours, sponsor logo…"
+msgstr "Police, couleurs, logo du sponsor…"
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid ""
+"Jerseys for clubs, schools and companies — each player's name, number and "
+"size, ready for the printer."
+msgstr ""
+"Maillots pour clubs, écoles et entreprises — nom, numéro et taille de chaque"
+" joueur, prêts pour l'imprimeur."
+
+#: templates/webapp/sports_shop/team_orders.html
+msgid "No team orders yet."
+msgstr "Aucune commande d'équipe pour le moment."
 
 #: templates/webapp/stock/_tabs.html
 msgid "Adjust"
@@ -9755,10 +10025,6 @@ msgstr "Ajuster"
 #: templates/webapp/stock/_tabs.html
 msgid "Stock taking"
 msgstr "Inventaire"
-
-#: templates/webapp/stock/_tabs.html
-msgid "Batches & expiry"
-msgstr "Lots et péremption"
 
 #: templates/webapp/stock/_tabs.html
 msgid "Serial numbers"
@@ -9811,6 +10077,14 @@ msgstr "Passer en perte"
 #: templates/webapp/stock/batches.html
 msgid "No batches here."
 msgstr "Aucun lot ici."
+
+#: templates/webapp/stock/batches.html
+msgid "Batches you entered before this update are kept on the older screen."
+msgstr "Les lots saisis avant cette mise à jour restent sur l'ancien écran."
+
+#: templates/webapp/stock/batches.html
+msgid "Open older batch records"
+msgstr "Ouvrir les anciens lots"
 
 #: templates/webapp/stock/batches.html
 msgid "Receive a batch"
@@ -10167,6 +10441,14 @@ msgid ""
 msgstr ""
 "Bonjour %(name)s, il est peut-être temps de renouveler vos médicaments chez "
 "%(shop)s. Répondez et nous les préparons."
+
+#: apps/industry/reminders.py
+msgid ""
+"Hi %(name)s, your supplements from %(shop)s may be running low. Reply and we"
+" will keep your next pack ready."
+msgstr ""
+"Bonjour %(name)s, vos compléments de %(shop)s arrivent peut-être à leur fin."
+" Répondez-nous et nous préparerons votre prochain paquet."
 
 #: apps/industry/reminders.py
 msgid ""
@@ -10820,10 +11102,6 @@ msgid "CV & documents"
 msgstr "CV et documents"
 
 #: apps/webapp/careers_views.py
-msgid "Gender"
-msgstr "Sexe"
-
-#: apps/webapp/careers_views.py
 msgid "Male"
 msgstr "Homme"
 
@@ -11186,6 +11464,10 @@ msgstr "%(item)s : %(price)s"
 #: apps/webapp/crm_views.py
 msgid "%(count)s prices set."
 msgstr "%(count)s prix définis."
+
+#: apps/webapp/education_views.py
+msgid "Batches"
+msgstr "Lots"
 
 #: apps/webapp/education_views.py
 msgid "Class"
@@ -12245,6 +12527,30 @@ msgid "All products are above their reorder level."
 msgstr "Tous les produits sont au-dessus du seuil de réapprovisionnement."
 
 #: apps/webapp/overview.py
+msgid "Batch %(b)s · %(q)s in stock"
+msgstr "Lot %(b)s · %(q)s en stock"
+
+#: apps/webapp/overview.py
+msgid "in %(n)s days"
+msgstr "dans %(n)s jours"
+
+#: apps/webapp/overview.py
+msgid "%(n)s already expired"
+msgstr "%(n)s déjà périmé(s)"
+
+#: apps/webapp/overview.py
+msgid "Expiring soon"
+msgstr "Expire bientôt"
+
+#: apps/webapp/overview.py
+msgid "Nothing expires in the next 60 days."
+msgstr "Rien n'expire dans les 60 prochains jours."
+
+#: apps/webapp/overview.py
+msgid "Receive stock"
+msgstr "Réceptionner du stock"
+
+#: apps/webapp/overview.py
 msgid "Repairs in the shop"
 msgstr "Réparations en boutique"
 
@@ -12259,10 +12565,6 @@ msgstr "Toutes les réparations"
 #: apps/webapp/overview.py
 msgid "No repairs waiting."
 msgstr "Aucune réparation en attente."
-
-#: apps/webapp/overview.py
-msgid "New repair job"
-msgstr "Nouvelle réparation"
 
 #: apps/webapp/overview.py
 msgid "Cars in the queue"
@@ -12303,10 +12605,6 @@ msgstr "Entrées du jour"
 #: apps/webapp/overview.py
 msgid "Expiring this week"
 msgstr "Expirent cette semaine"
-
-#: apps/webapp/overview.py
-msgid "in %(n)s days"
-msgstr "dans %(n)s jours"
 
 #: apps/webapp/overview.py
 msgid "Memberships to renew"
@@ -13227,9 +13525,77 @@ msgstr "%(count)s numéros de série ajoutés au stock."
 msgid "Already registered: %(list)s"
 msgstr "Déjà enregistrés : %(list)s"
 
+#: apps/webapp/team_order_views.py
+msgid "Enter the team name and what is being made."
+msgstr "Saisissez le nom de l'équipe et ce qui est fabriqué."
+
+#: apps/webapp/team_order_views.py
+msgid "Choose the delivery date."
+msgstr "Choisissez la date de livraison."
+
+#: apps/webapp/team_order_views.py
+msgid "Price and advance must be numbers."
+msgstr "Le prix et l'acompte doivent être des nombres."
+
+#: apps/webapp/team_order_views.py
+msgid "Add at least one player: name, number, size — one per line."
+msgstr "Ajoutez au moins un joueur : nom, numéro, taille — un par ligne."
+
+#: apps/webapp/team_order_views.py
+msgid "Team order saved."
+msgstr "Commande d'équipe enregistrée."
+
+#: apps/webapp/team_order_views.py
+msgid "Status updated."
+msgstr "Statut mis à jour."
+
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "Commandes et tables"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s is ready for pickup at %(shop)s. Job %(job)s. "
+"Amount due: %(amount)s."
+msgstr ""
+"Bonjour %(name)s, votre %(device)s est prêt à être retiré chez %(shop)s. "
+"Travail %(job)s. Montant dû : %(amount)s."
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, we have received your %(device)s at %(shop)s (job %(job)s). We "
+"will message you when it is ready."
+msgstr ""
+"Bonjour %(name)s, nous avons reçu votre %(device)s chez %(shop)s (travail "
+"%(job)s). Nous vous écrirons quand il sera prêt."
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, your %(device)s (job %(job)s) is waiting for a spare part. We "
+"will update you as soon as it arrives. – %(shop)s"
+msgstr ""
+"Bonjour %(name)s, votre %(device)s (travail %(job)s) attend une pièce "
+"détachée. Nous vous informerons dès son arrivée. – %(shop)s"
+
+#: apps/webapp/views.py
+msgid ""
+"Hi %(name)s, update on your %(device)s (job %(job)s) at %(shop)s: "
+"%(status)s."
+msgstr ""
+"Bonjour %(name)s, nouvelles de votre %(device)s (travail %(job)s) chez "
+"%(shop)s : %(status)s."
+
+#: apps/webapp/views.py
+msgid "Fragrance family"
+msgstr "Famille olfactive"
+
+#: apps/webapp/views.py
+msgid "Concentration"
+msgstr "Concentration"
+
+#: apps/webapp/views.py
+msgid "Bottle size (ml)"
+msgstr "Taille du flacon (ml)"
 
 #: apps/webapp/views.py
 msgid "Sample data removed."

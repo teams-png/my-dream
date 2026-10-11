@@ -42,7 +42,33 @@ def config(company):
     return {"enabled": True, "open": not design.shop_paused, "pickup": design.shop_pickup,
             "delivery": design.shop_delivery, "delivery_fee": f"{design.shop_delivery_fee:.2f}",
             "free_over": f"{design.shop_free_delivery_over:.2f}", "minimum": f"{design.shop_minimum:.2f}",
-            "ready_minutes": 0, "note": design.shop_note, "currency": company.default_currency, "shop": True}
+            "ready_minutes": 0, "note": design.shop_note, "currency": company.default_currency, "shop": True,
+            "coupons": design.shop_coupons, "pay_online": online_ready(company) and design.shop_online_payment,
+            "terms_url": terms_url(company)}
+
+
+def online_ready(company):
+    from apps.sales import online_pay
+    config = online_pay.settings_for(company)
+    return bool(config and config.ready)
+
+
+def terms_url(company):
+    """The website's own Terms page, if the owner made one (shown at checkout)."""
+    from .models import SitePage
+    page = SitePage.objects.filter(company=company, published=True, slug__in=("terms", "terms-and-conditions", "terms-conditions")).first()
+    return f"p/{page.slug}/" if page else ""
+
+
+def price_rules(company):
+    """product -> (price, offer name): the walk-in price (price lists, offers, near-expiry), same as the POS."""
+    from apps.webapp.views import _price_rules
+    rules = _price_rules(company)
+
+    def resolve(product):
+        price, offer = rules(product)
+        return (product.selling_price if price is None else price), offer
+    return resolve
 
 
 def stock_for(company, products):
@@ -123,6 +149,8 @@ def place(company, data, source=""):
         wanted[pid] = wanted.get(pid, 0) + qty
     products = {p.id: p for p in sellable(company).filter(id__in=wanted)}
     stock = stock_for(company, products.values())
+    priced = price_rules(company)
+    prices = {}
     subtotal = Decimal("0")
     for pid, qty in wanted.items():
         product = products.get(pid)
@@ -134,10 +162,21 @@ def place(company, data, source=""):
                 raise ValidationError(_("Sorry, %(item)s is out of stock.") % {"item": product.name})
             if qty > have:
                 raise ValidationError(_("Only %(n)s of %(item)s left.") % {"n": have, "item": product.name})
-        subtotal += product.selling_price * qty
+        prices[pid] = priced(product)[0]
+        subtotal += prices[pid] * qty
     if mode == "delivery" and design.shop_minimum and subtotal < design.shop_minimum:
         raise ValidationError(_("The minimum order for delivery is %(amount)s.") % {"amount": f"{company.default_currency} {design.shop_minimum:.2f}"})
     fee = delivery_fee(design, subtotal) if mode == "delivery" else Decimal("0")
+    code, discount = str(data.get("coupon") or "").strip()[:30], Decimal("0")
+    if code and design.shop_coupons:
+        from apps.sales.services import validate_coupon
+        try:
+            _coupon, discount = validate_coupon(company=company, code=code, subtotal=subtotal, date=timezone.localdate())
+        except ValidationError:
+            raise ValidationError(_("This coupon code is not valid."))
+    else:
+        code = ""
+    pay_online = data.get("payment") == "online" and cfg.get("pay_online")
 
     customer = Customer.objects.for_company(company).filter(phone=phone).first()
     if not customer:
@@ -146,14 +185,57 @@ def place(company, data, source=""):
     order = ShopOrder.objects.create(
         company=company, number=_number(company), mode=mode, customer=customer, customer_name=name, phone=phone,
         email=email, address=address if mode == "delivery" else "", note=note, source=source[:120],
-        subtotal=subtotal, delivery_fee=fee, total=subtotal + fee)
+        subtotal=subtotal, delivery_fee=fee, coupon_code=code, discount=discount, total=subtotal + fee - discount,
+        payment_method="online" if pay_online else "cod")
     for pid, qty in wanted.items():
         p = products[pid]
         label = f"{p.name} — {p.variant_label}" if p.variant_label else p.name
-        ShopOrderLine.objects.create(order=order, product=p, name=label[:255], quantity=qty, unit_price=p.selling_price,
-                                     line_total=p.selling_price * qty)
+        ShopOrderLine.objects.create(order=order, product=p, name=label[:255], quantity=qty, unit_price=prices[pid],
+                                     line_total=prices[pid] * qty)
+    if pay_online:  # the bill is made now so the customer pays it online; stock goes out with it
+        _bill(order, _owner(company))
     _tell_staff(order)
+    _email_customer(order)
     return order
+
+
+def _owner(company):
+    m = (company.memberships.filter(is_active=True, role__name="Owner").select_related("user").first()
+         or company.memberships.select_related("user").first())
+    return m.user if m else None
+
+
+def pay_url(order, absolute):
+    """Where the customer pays an online order: the invoice page with its Pay-now button."""
+    if not order.invoice_id:
+        return ""
+    from django.urls import reverse
+    from apps.sales import sharing
+    return absolute(reverse("webapp:public_invoice", args=[sharing.share_token(order.invoice)]))
+
+
+def _email_customer(order):
+    """A copy of the order to the customer's email (when given and email is set up)."""
+    if not order.email:
+        return
+    try:
+        from django.conf import settings
+        from django.core.mail import send_mail
+        from apps.notifications.services import email_configured
+        if not email_configured():
+            return
+        lines = "\n".join(f"{l.quantity} x {l.name} — {order.company.default_currency} {l.line_total:.2f}" for l in order.lines.all())
+        body = _("Thank you for your order %(ref)s at %(shop)s.") % {"ref": order.number, "shop": order.company.name}
+        body += f"\n\n{lines}\n"
+        if order.delivery_fee:
+            body += f"{_('Delivery')}: {order.delivery_fee:.2f}\n"
+        if order.discount:
+            body += f"{_('Discount')}: -{order.discount:.2f}\n"
+        body += f"{_('Total')}: {order.company.default_currency} {order.total:.2f}\n\n{order.company.phone or ''}"
+        send_mail(_("Your order %(ref)s — %(shop)s") % {"ref": order.number, "shop": order.company.name}, body,
+                  getattr(settings, "DEFAULT_FROM_EMAIL", None), [order.email], fail_silently=True)
+    except Exception:  # never lose an order over an email
+        pass
 
 
 def _tell_staff(order):
@@ -194,10 +276,21 @@ def mark_ready(order, user):
 
 @transaction.atomic
 def make_bill(order, user, warehouse=None):
-    """Creates the sales invoice (stock goes out now) and closes the order. Payment is taken at pickup / delivery."""
+    """Creates the sales invoice (stock goes out now) and closes the order. Payment is taken at pickup / delivery.
+    An order paid online already has its bill: this only closes it."""
+    order = _lock(order, OPEN)
+    if not order.invoice_id:
+        order = _bill(order, user, warehouse)
+    order.status = "done"
+    if not order.handled_by_id:
+        order.handled_by, order.handled_at = user, timezone.now()
+    order.save(update_fields=["status", "handled_by", "handled_at"])
+    return order
+
+
+def _bill(order, user, warehouse=None):
     from apps.industry.common import default_warehouse, service_product
     from apps.sales.services import create_invoice
-    order = _lock(order, OPEN)
     lines = [{"product": l.product, "quantity": Decimal(l.quantity), "unit_price": l.unit_price}
              for l in order.lines.select_related("product")]
     if order.delivery_fee:
@@ -205,13 +298,18 @@ def make_bill(order, user, warehouse=None):
                       "quantity": Decimal("1"), "unit_price": order.delivery_fee})
     try:
         invoice = create_invoice(company=order.company, user=user, customer=order.customer, date=timezone.localdate(),
-                                 warehouse=warehouse or default_warehouse(order.company), lines=lines)
+                                 warehouse=warehouse or default_warehouse(order.company), lines=lines,
+                                 discount_amount=order.discount, coupon_code=order.coupon_code)
     except ValueError as exc:  # e.g. a phone that needs its IMEI picked, or stock that ran out
         raise ValidationError(str(exc))
-    order.invoice, order.status = invoice, "done"
-    if not order.handled_by_id:
-        order.handled_by, order.handled_at = user, timezone.now()
-    order.save(update_fields=["invoice", "status", "handled_by", "handled_at"])
+    if order.coupon_code:
+        from apps.sales.models import Coupon
+        from apps.sales.services import redeem_coupon_usage
+        coupon = Coupon.objects.for_company(order.company).filter(code__iexact=order.coupon_code).first()
+        if coupon:
+            redeem_coupon_usage(coupon)
+    order.invoice = invoice
+    order.save(update_fields=["invoice"])
     return order
 
 

@@ -117,12 +117,15 @@ def catalogue(company, absolute, limit=500):
             menu = {m.product_id: m for m in RestaurantMenuItem.objects.for_company(company).prefetch_related("modifier_groups")}
             if menu:
                 qs = qs.filter(id__in=menu.keys()).order_by("restaurant_menu_item__sort_order", "name")
+        priced = shop_orders.price_rules(company) if shop is not None else None
         for p in qs[:limit]:
             m = menu.get(p.id)
             in_stock = not p.is_stock_tracked or stock.get(p.id, 0) > 0
+            price, offer = priced(p) if priced else (p.selling_price, "")
             items.append({"id": p.id, "name": f"{p.name} — {p.variant_label}" if p.variant_label else p.name,
                           "category": p.category.name if p.category else "",
-                          "price": f"{p.selling_price:.2f}", "description": getattr(m, "description", "") if m else "",
+                          "price": f"{price:.2f}", "was": f"{p.selling_price:.2f}" if price < p.selling_price else "",
+                          "offer": offer, "description": getattr(m, "description", "") if m else "",
                           "image": absolute(m.image.url) if m and m.image else absolute(picture_url(p, company.business_type.code)),
                           "vegetarian": getattr(m, "is_vegetarian", None) if m else None,
                           "available": bool(m.is_available) if m else in_stock,

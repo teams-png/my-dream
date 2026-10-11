@@ -37,6 +37,11 @@
   {% if design.package != "shop" %}<div class="card" style="margin-bottom:14px;border:2px solid #f59e0b">🛒 {% translate "The cart and website orders come with the E-commerce website package. Your website still shows every product with its own page and a WhatsApp button." %} <a href="{% url 'webapp:help' %}">{% translate "Ask to upgrade" %} →</a></div>{% endif %}
   {% if not design.enabled %}<div class="card" style="margin-bottom:14px">{% translate "Your BookPilot website is not switched on yet. Ask your BookPilot team to switch on the Website add-on — or put the cart on your own website with the Website kit." %}</div>{% endif %}
 
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:12px">
+    <div class="card" style="padding:12px 14px"><small style="color:var(--ink-soft)">{% translate "Orders this month" %}</small><div style="font-size:22px;font-weight:800">{{ stats.month_orders }}</div></div>
+    <div class="card" style="padding:12px 14px"><small style="color:var(--ink-soft)">{% translate "Website sales this month" %}</small><div style="font-size:22px;font-weight:800">{{ currency }} {{ stats.month_total|floatformat:2 }}</div></div>
+    <div class="card" style="padding:12px 14px"><small style="color:var(--ink-soft)">{% translate "Orders in the last 7 days" %}</small><div style="font-size:22px;font-weight:800">{{ stats.week }}</div></div>
+  </div>
   <div class="oo-tabs">
     <a class="{% if show == 'open' %}on{% endif %}" href="?show=open">{% translate "Open orders" %}{% if new_count %} · {{ new_count }} {% translate "new" %}{% endif %}</a>
     <a class="{% if show != 'open' %}on{% endif %}" href="?show=all">{% translate "All orders" %}</a>
@@ -52,7 +57,9 @@
     <ul class="oo-lines">
       {% for l in o.lines.all %}<li><span>{{ l.quantity }} × {{ l.name }}</span><span>{{ l.line_total|floatformat:2 }}</span></li>{% endfor %}
       {% if o.delivery_fee %}<li><span>{% translate "Delivery" %}</span><span>{{ o.delivery_fee|floatformat:2 }}</span></li>{% endif %}
+      {% if o.discount %}<li><span>{% translate "Discount" %} ({{ o.coupon_code }})</span><span>−{{ o.discount|floatformat:2 }}</span></li>{% endif %}
     </ul>
+    <div>{% if o.payment_method == "online" %}💳 {% translate "Pay online" %}{% if o.invoice and o.invoice.status == "paid" %} · <b style="color:#166534">✓ {% translate "Paid" %}</b>{% else %} · <b style="color:#92400e">{% translate "Not paid yet" %}</b>{% endif %}{% else %}💵 {% translate "Pay on delivery / pickup" %}{% endif %}</div>
     {% if o.address %}<div>📍 {{ o.address }}</div>{% endif %}
     {% if o.note %}<div>📝 {{ o.note }}</div>{% endif %}
     {% if o.reject_reason %}<div style="color:#991b1b">✖ {{ o.reject_reason }}</div>{% endif %}
@@ -67,7 +74,7 @@
       <form method="post" action="{% url 'webapp:shop_order_action' o.id %}">{% csrf_token %}<input type="hidden" name="do" value="ready"><button class="btn btn-secondary" type="submit">{% if o.mode == "delivery" %}🚚 {% translate "Out for delivery" %}{% else %}📦 {% translate "Ready for pickup" %}{% endif %}</button></form>
       {% endif %}
       {% if o.status == "new" or o.status == "confirmed" or o.status == "ready" %}
-      <form method="post" action="{% url 'webapp:shop_order_action' o.id %}">{% csrf_token %}<input type="hidden" name="do" value="bill"><button class="btn" type="submit">🧾 {% translate "Make bill (paid / delivered)" %}</button></form>
+      <form method="post" action="{% url 'webapp:shop_order_action' o.id %}">{% csrf_token %}<input type="hidden" name="do" value="bill"><button class="btn" type="submit">{% if o.invoice_id %}✓ {% translate "Delivered — close order" %}{% else %}🧾 {% translate "Make bill (paid / delivered)" %}{% endif %}</button></form>
       <form method="post" action="{% url 'webapp:shop_order_action' o.id %}" onsubmit="return confirm('{% translate "Close this order without a bill?" %}')">{% csrf_token %}<input type="hidden" name="do" value="{% if o.status == 'new' %}reject{% else %}cancel{% endif %}"><input name="reason" maxlength="255" placeholder="{% translate 'Reason, e.g. out of stock' %}"><button class="btn btn-secondary" type="submit">✖ {% if o.status == 'new' %}{% translate "Reject" %}{% else %}{% translate "Cancel" %}{% endif %}</button></form>
       {% endif %}
     </div>
@@ -75,6 +82,14 @@
   {% empty %}
   <div class="card empty">{% if show == "open" %}{% translate "No open website orders." %}{% else %}{% translate "No website orders yet." %}{% endif %}</div>
   {% endfor %}
+
+  <div class="card" id="reviews" style="margin-top:18px"><h3 style="margin:0 0 8px">⭐ {% translate "Reviews waiting for approval" %}</h3>
+    {% for rv in pending_reviews %}<div style="border-top:1px solid var(--line);padding:10px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <span style="flex:1 1 260px"><b>{{ rv.product.name }}</b> · {{ rv.rating }}★ · {{ rv.name }}<br><small style="color:var(--ink-soft)">{{ rv.text|truncatechars:240 }}</small></span>
+      <form method="post" action="{% url 'webapp:shop_review_action' rv.id %}" style="margin:0;display:flex;gap:6px">{% csrf_token %}<button class="btn" name="do" value="approve">✓ {% translate "Approve" %}</button><button class="btn btn-secondary" name="do" value="delete">{% translate "Delete" %}</button></form>
+    </div>{% empty %}<p style="color:var(--ink-soft);margin:0">{% translate "No reviews waiting." %}</p>{% endfor %}
+  </div>
+  {% if not online_ready %}<p style="color:var(--ink-soft);font-size:13px;margin:12px 0 0">💳 {% translate "To take card payments on the website, set up Online payments first." %} <a href="{% url 'webapp:online_payment_settings' %}">{% translate "Online payments" %} →</a></p>{% endif %}
 
   {% url 'webapp:shop_order_settings' as settings_url %}
   <details class="card" style="margin-top:18px" {% if not design.shop_enabled %}open{% endif %}>

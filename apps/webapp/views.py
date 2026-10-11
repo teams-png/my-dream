@@ -575,6 +575,9 @@ def product_add(request):
             obj = form.save(commit=False)
             obj.company = company
             obj.save()
+            if "gallery" in form.fields:
+                from .forms import save_product_gallery
+                save_product_gallery(form, obj)
             _sync_sports_detail(obj)
             messages.success(request, "Product added.")
             return redirect("webapp:product_list")
@@ -597,7 +600,11 @@ def product_edit(request, product_id):
     if request.method == "POST":
         form = form_class(request.POST, request.FILES, instance=obj, company=company)
         if form.is_valid():
-            _sync_sports_detail(form.save())
+            saved = form.save()
+            _sync_sports_detail(saved)
+            if "gallery" in form.fields:
+                from .forms import save_product_gallery
+                save_product_gallery(form, saved)
             messages.success(request, "Product updated.")
             return redirect("webapp:product_list")
     else:

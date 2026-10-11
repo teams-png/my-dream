@@ -8,6 +8,7 @@ from django.core.exceptions import ValidationError
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy as _l
 
@@ -77,6 +78,9 @@ def _build_site(request, design, preview=False, base=None, kind="home", **extra)
                 raise Http404
             ctx.update(data)
             ctx["wa_text"] = f"{data['item']['name']} — {ctx['currency']} {data['item']['price']}\n{request.build_absolute_uri()}"
+            ctx["page_url"] = request.build_absolute_uri(request.path)
+            ctx["review_url"] = f"{base}shop/{extra['product_id']}/review/" + ctx["q"]
+            ctx["reviewed"] = request.GET.get("reviewed") == "1"
             template = "webapp/site/product.html"
         elif kind == "page":
             page = next((p for p in ctx["menu_pages"] + ctx["footer_pages"] if p.slug == extra["slug"]), None)
@@ -157,6 +161,53 @@ def site_domain_product(request, product_id):
 
 def site_domain_page(request, slug):
     return _domain(request, "page", slug=slug)
+
+
+def _review(request, design, base, product_id):
+    """A visitor's review from the product page; it waits for the shop to approve it."""
+    from django.core.cache import cache
+    from django.http import HttpResponseRedirect
+    from apps.industry import shop_orders
+    from apps.industry.models import ProductReview
+    if request.method != "POST" or not design.shop_reviews:
+        raise Http404
+    product = shop_orders.sellable(design.company).filter(id=product_id).first()
+    if product is None:
+        raise Http404
+    q = request.META.get("QUERY_STRING", "")
+    back = f"{base}shop/{product_id}/" + (f"?{q}&" if q else "?") + "reviewed=1#reviews"
+    fwd = request.META.get("HTTP_X_FORWARDED_FOR", "")
+    ip = (fwd.split(",")[0].strip() if fwd else request.META.get("REMOTE_ADDR", "")) or "?"
+    key = f"site-review:{design.company_id}:{ip}"
+    count = cache.get(key, 0)
+    name = (request.POST.get("name") or "").strip()[:80]
+    if request.POST.get("company_website") or count >= 5 or len(name) < 2:  # bots and floods get the same thank-you
+        return HttpResponseRedirect(back)
+    cache.set(key, count + 1, 3600)
+    try:
+        rating = min(5, max(1, int(request.POST.get("rating") or 5)))
+    except ValueError:
+        rating = 5
+    ProductReview.objects.create(company=design.company, product=product, name=name, rating=rating,
+                                 text=(request.POST.get("text") or "").strip()[:2000])
+    return HttpResponseRedirect(back)
+
+
+@csrf_exempt
+def site_public_review(request, public_id, product_id):
+    kit = website_kit.by_public_id(public_id)
+    design = SiteDesign._base_manager.filter(company=kit.company).first() if kit else None
+    if design is None or not (design.enabled and design.published):
+        raise Http404
+    return _review(request, design, f"/site/{public_id}/", product_id)
+
+
+@csrf_exempt
+def site_domain_review(request, product_id):
+    design = getattr(request, "site_design", None)
+    if design is None or not design.published:
+        raise Http404
+    return _review(request, design, "/", product_id)
 
 
 def site_domain_sitemap(request):

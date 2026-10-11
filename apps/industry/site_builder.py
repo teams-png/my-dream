@@ -217,15 +217,34 @@ def layout(design, base, lang, preview):
             "footer_pages": [p for p in pages if not p.show_in_menu], "custom_css": clean_css(design.custom_css)}
 
 
-def _item(p, company, absolute, base, q, stock, ordering):
+def _item(p, company, absolute, base, q, stock, ordering, extras=None):
+    """One product for the website. `extras` = shop_extras(company, products): offer prices and review stars."""
     from apps.inventory.pictures import picture_url
+    extras = extras or {}
     in_stock = not p.is_stock_tracked or stock.get(p.id, 0) > 0
+    price, offer = extras["price"](p) if "price" in extras else (p.selling_price, "")
+    left = int(stock.get(p.id, 0))
+    stars = extras.get("stars", {}).get(p.id)
     return {"id": p.id, "name": f"{p.name} — {p.variant_label}" if p.variant_label else p.name,
             "category": p.category.name if p.category_id else "", "category_id": p.category_id,
-            "price": f"{p.selling_price:.2f}", "image": absolute(picture_url(p, company.business_type.code)),
+            "price": f"{price:.2f}", "was": f"{p.selling_price:.2f}" if price < p.selling_price else "", "offer": offer,
+            "image": absolute(picture_url(p, company.business_type.code)),
             "available": in_stock, "orderable": bool(ordering and ordering.get("open") and in_stock),
-            "tracked": p.is_stock_tracked, "stock": int(stock.get(p.id, 0)), "url": f"{base}shop/{p.id}/{q}",
+            "tracked": p.is_stock_tracked, "stock": left, "low": p.is_stock_tracked and 0 < left <= 3,
+            "url": f"{base}shop/{p.id}/{q}", "rating": stars[0] if stars else None, "reviews": stars[1] if stars else 0,
             "brand": p.brand.name if p.brand_id else "", "description": (p.attributes or {}).get("web_description", "")}
+
+
+def shop_extras(company, products):
+    """Offer prices (same rules as the POS) and approved review stars for these products."""
+    from django.db.models import Avg, Count
+    from . import shop_orders
+    from .models import ProductReview
+    ids = [p.id for p in products]
+    stars = {r["product_id"]: (round(float(r["avg"]), 1), r["n"]) for r in
+             ProductReview.objects.filter(company=company, product_id__in=ids, is_approved=True)
+             .values("product_id").annotate(avg=Avg("rating"), n=Count("id"))}
+    return {"price": shop_orders.price_rules(company), "stars": stars}
 
 
 # Attribute filters shown on the Shop page when the shop's products have them (labels from the product form).
@@ -287,6 +306,9 @@ def shop_page(design, absolute, base, lang, preview, params=None):
     in_stock = params.get("stock") == "1"
 
     qs = scope
+    wish = [int(x) for x in (params.get("ids") or "").split(",") if x.strip().isdigit()][:100]
+    if wish:  # the visitor's saved list (kept in their browser)
+        qs = qs.filter(id__in=wish)
     if brands_on:
         qs = qs.filter(brand_id__in=brands_on)
     if colours_on:
@@ -346,10 +368,11 @@ def shop_page(design, absolute, base, lang, preview, params=None):
     page_rows = list(qs[(page - 1) * PAGE_SIZE: page * PAGE_SIZE])
     q = query(lang, design, preview)
     stock = shop_orders.stock_for(company, page_rows)
-    items = [_item(p, company, absolute, base, q, stock, ordering) for p in page_rows]
+    extras = shop_extras(company, page_rows)
+    items = [_item(p, company, absolute, base, q, stock, ordering, extras) for p in page_rows]
 
     # the current choice, so links keep it (multi-value)
-    current = {"cat": category.id if category else None, "q": search, "sort": sort,
+    current = {"cat": category.id if category else None, "q": search, "sort": sort, "ids": ",".join(map(str, wish)),
                "brand": sorted(str(b) for b in brands_on), "colour": sorted(colours_on), "size": sorted(sizes_on),
                "min": params.get("min") or "", "max": params.get("max") or "", "stock": "1" if in_stock else ""}
     current.update({f"a_{k}": sorted(v) for k, v in attrs_on.items()})
@@ -376,6 +399,7 @@ def shop_page(design, absolute, base, lang, preview, params=None):
         chips.append({"label": "✓", "url": url(stock=""), "stock": True})
     return {"items": items, "categories": cats, "category": category, "search": search, "sort": sort, "total": total,
             "page": page, "pages": pages, "ordering": ordering, "facets": facets, "chips": chips, "in_stock_only": in_stock,
+            "wishlist": bool(wish),
             "price_min": current["min"], "price_max": current["max"],
             "clear_url": url(brand=[], colour=[], size=[], min="", max="", stock="", **{f"a_{k}": [] for k in attrs_on}),
             "all_url": url(cat=None),
@@ -397,7 +421,8 @@ def product_page(design, absolute, base, lang, preview, product_id):
     related = list(shop_orders.sellable(company).filter(category_id=p.category_id).exclude(id__in=[s.id for s in siblings])
                    .select_related("category", "brand").order_by("?")[:4]) if p.category_id else []
     stock = shop_orders.stock_for(company, siblings + related)
-    item = _item(p, company, absolute, base, q, stock, ordering)
+    extras = shop_extras(company, [p] + related)
+    item = _item(p, company, absolute, base, q, stock, ordering, extras)
     if p.category_id:
         item["category_url"] = f"{base}shop/" + query(lang, design, preview, cat=p.category_id)
     labels = BusinessProductForm.FIELD_LABELS
@@ -411,7 +436,11 @@ def product_page(design, absolute, base, lang, preview, product_id):
         value = _l("Yes") if value is True else value
         specs.append((labels.get(key) or key.replace("_", " ").capitalize(), value))
     options = [{"id": s.id, "label": s.variant_label or s.name, "url": f"{base}shop/{s.id}/{q}"} for s in siblings]
+    from .models import ProductPhoto, ProductReview
+    photos = [item["image"]] + [absolute(ph.image.url) for ph in ProductPhoto.objects.filter(company=company, product=p)[:8]]
+    reviews = list(ProductReview.objects.filter(company=company, product=p, is_approved=True)[:20])
     from apps.verticals.sports_shop.models import SizeChart
     chart = SizeChart.objects.filter(company=company, category_id=p.category_id).first() if p.category_id else None
     return {"item": item, "specs": specs, "options": options, "ordering": ordering, "size_chart": chart,
-            "related": [_item(r, company, absolute, base, q, stock, ordering) for r in related]}
+            "photos": photos if len(photos) > 1 else [], "product_reviews": reviews, "reviews_on": design.shop_reviews,
+            "related": [_item(r, company, absolute, base, q, stock, ordering, extras) for r in related]}

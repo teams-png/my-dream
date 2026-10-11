@@ -1,12 +1,15 @@
-{% load i18n %}<div class="card">
+{% load i18n %}<div class="card{% if item.url %} pcard{% endif %}">
+        {% if item.url %}<button type="button" class="wish" data-wish="{{ item.id }}" aria-label="{% translate 'Save to wishlist' %}">♡</button>{% endif %}
+        {% if item.was or item.low or item.available is False %}<div class="badges">{% if item.was %}<span class="badge sale">{% translate "Sale" %}</span>{% endif %}{% if item.available is False %}<span class="badge out">{% translate "Sold out" %}</span>{% elif item.low %}<span class="badge low">{% blocktranslate with n=item.stock %}Only {{ n }} left{% endblocktranslate %}</span>{% endif %}</div>{% endif %}
         {% if item.url %}<a class="pl" href="{{ item.url }}">{% endif %}{% if item.image %}<img src="{{ item.image }}" alt="{{ item.name }}" loading="lazy">{% endif %}
         <h3>{{ item.name }}</h3>{% if item.url %}</a>{% endif %}
+        {% if item.rating %}<span class="stars" title="{{ item.rating }} / 5">{% include "webapp/site/_stars.html" with r=item.rating %} <small>({{ item.reviews }})</small></span>{% endif %}
         {% if item.description %}<p class="desc">{{ item.description|truncatechars:160 }}</p>{% endif %}
         {% if item.location %}<p class="desc">📍 {{ item.location }}{% if item.vacancies %} · {{ item.vacancies }} {% translate "vacancies" %}{% endif %}</p>{% endif %}
         {% if item.teacher %}<p class="desc">👤 {{ item.teacher }}</p>{% endif %}
         <div class="row">
-          {% if item.price %}<span class="price">{{ currency }} {{ item.price }}{% if item.unit %} <small style="font-weight:600;color:var(--soft)">/ {% translate item.unit %}</small>{% endif %}</span>{% else %}<span></span>{% endif %}
-          {% if ordering %}{% if item.orderable %}<button type="button" class="add" data-bp-add data-id="{{ item.id }}" data-name="{{ item.name }}" data-price="{{ item.price }}">{% translate "+ Add" %}</button>{% elif item.available is False %}<span class="tag out">{% translate "Sold out" %}</span>{% endif %}{% endif %}
+          {% if item.price %}<span class="price">{{ currency }} {{ item.price }}{% if item.was %} <s class="was-s">{{ item.was }}</s>{% endif %}{% if item.unit %} <small style="font-weight:600;color:var(--soft)">/ {% translate item.unit %}</small>{% endif %}</span>{% else %}<span></span>{% endif %}
+          {% if ordering %}{% if item.orderable %}<button type="button" class="add" data-bp-add data-id="{{ item.id }}" data-name="{{ item.name }}" data-price="{{ item.price }}">{% translate "+ Add" %}</button>{% elif item.available is False and not item.url %}<span class="tag out">{% translate "Sold out" %}</span>{% endif %}{% endif %}
           {% if item.vegetarian %}<span class="tag veg">{% translate "Veg" %}</span>{% elif item.minutes %}<span class="tag">{{ item.minutes }} {% translate "min" %}</span>{% elif item.capacity %}<span class="tag">👥 {{ item.capacity }}</span>{% endif %}
         </div>
       </div>

@@ -3,14 +3,18 @@
 {% block description %}{{ item.name }} — {{ currency }} {{ item.price }}{% if item.brand %} · {{ item.brand }}{% endif %} · {{ company.name }}{% endblock %}
 {% block og %}<meta property="og:title" content="{{ item.name }}"><meta property="og:type" content="product">{% if item.image %}<meta property="og:image" content="{{ item.image }}">{% endif %}
 <meta property="product:price:amount" content="{{ item.price }}"><meta property="product:price:currency" content="{{ currency }}">{% endblock %}
+{% block head_extra %}<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"{{ item.name|escapejs }}","image":"{{ item.image|escapejs }}"{% if item.brand %},"brand":{"@type":"Brand","name":"{{ item.brand|escapejs }}"}{% endif %},"offers":{"@type":"Offer","price":"{{ item.price }}","priceCurrency":"{{ currency }}","availability":"https://schema.org/{% if item.available %}InStock{% else %}OutOfStock{% endif %}","url":"{{ page_url|escapejs }}"}{% if item.reviews %},"aggregateRating":{"@type":"AggregateRating","ratingValue":"{{ item.rating }}","reviewCount":"{{ item.reviews }}"}{% endif %}}</script>{% endblock %}
 {% block main %}
 <div class="wrap">
   <p class="crumbs"><a href="{{ home }}">{% translate "Home" %}</a> › <a href="{{ shop_url }}">{% translate "Shop" %}</a>{% if item.category_url %} › <a href="{{ item.category_url }}">{{ item.category }}</a>{% endif %}</p>
   <div class="prod">
-    <div class="pic">{% if item.image %}<img src="{{ item.image }}" alt="{{ item.name }}">{% endif %}</div>
+    <div><div class="pic">{% if item.image %}<img id="mainPic" src="{{ item.image }}" alt="{{ item.name }}">{% endif %}</div>
+      {% if photos %}<div class="thumbs">{% for ph in photos %}<button type="button" data-pic="{{ ph }}"{% if forloop.first %} class="on"{% endif %} aria-label="{% translate 'Photo' %} {{ forloop.counter }}"><img src="{{ ph }}" alt="" loading="lazy"></button>{% endfor %}</div>
+      <script>document.querySelector(".thumbs").addEventListener("click",function(e){var b=e.target.closest("[data-pic]");if(!b)return;document.getElementById("mainPic").src=b.dataset.pic;[].forEach.call(this.children,function(x){x.classList.toggle("on",x===b)})});</script>{% endif %}</div>
     <div>
       {% if item.brand %}<div style="color:var(--soft);font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:.06em">{{ item.brand }}</div>{% endif %}
       <h1>{{ item.name }}</h1>
+      {% if item.rating %}<a class="stars" href="#reviews" style="text-decoration:none">{% include "webapp/site/_stars.html" with r=item.rating %} {{ item.rating }} ({{ item.reviews }})</a>{% endif %}
       <div class="big-price">{{ currency }} {{ item.price }}{% if item.was %}<span class="was">{{ currency }} {{ item.was }}</span>{% endif %}</div>
       {% if item.offer %}<span class="tag">🏷 {{ item.offer }}</span>{% endif %}
       {% if item.tracked %}<p>{% if item.stock <= 0 %}<span class="stock out">{% translate "Out of stock" %}</span>{% elif item.stock <= 3 %}<span class="stock low">{% blocktranslate with n=item.stock %}Only {{ n }} left{% endblocktranslate %}</span>{% else %}<span class="stock">✓ {% translate "In stock" %}</span>{% endif %}</p>{% endif %}
@@ -19,6 +23,10 @@
         {% if ordering and item.orderable %}<button type="button" class="add" data-bp-add data-id="{{ item.id }}" data-name="{{ item.name }}" data-price="{{ item.price }}">🛒 {% translate "Add to cart" %}</button>{% endif %}
         {% if whatsapp %}<a class="btn alt" href="https://wa.me/{{ whatsapp }}?text={{ wa_text|urlencode }}" target="_blank" rel="noopener">💬 {% translate "Ask on WhatsApp" %}</a>{% endif %}
       </div>
+      <div class="share"><button type="button" data-wish="{{ item.id }}" class="wish" style="position:static;box-shadow:none;border:1px solid var(--line)">♡</button>
+        <a href="https://wa.me/?text={{ page_url|urlencode }}" target="_blank" rel="noopener">{% translate "Share" %}: WhatsApp</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ page_url|urlencode }}" target="_blank" rel="noopener">Facebook</a>
+        <button type="button" onclick="navigator.clipboard&&navigator.clipboard.writeText(location.href);this.textContent='✓'">{% translate "Copy link" %}</button></div>
       {% if size_chart %}<details class="panel" style="margin:14px 0;padding:14px 18px"><summary style="cursor:pointer;font-weight:700">📏 {% translate "Size chart" %} — {{ size_chart.name }}</summary>
         <div style="overflow-x:auto"><table class="specs">{% for row in size_chart.rows %}<tr>{% for cell in row %}{% if forloop.parentloop.first %}<th style="text-align:start;padding:8px 4px">{{ cell }}</th>{% else %}<td>{{ cell }}</td>{% endif %}{% endfor %}</tr>{% endfor %}</table></div>
         {% if size_chart.note %}<p style="color:var(--soft);margin:0">{{ size_chart.note }}</p>{% endif %}</details>{% endif %}
@@ -26,6 +34,18 @@
       {% if item.description %}<div class="rich">{{ item.description|linebreaks }}</div>{% endif %}
     </div>
   </div>
+  {% if reviews_on %}<section id="reviews" style="padding-bottom:30px"><h2 style="font-size:24px">{% translate "Reviews" %}{% if item.reviews %} · {{ item.rating }} ★{% endif %}</h2>
+    {% for rv in product_reviews %}<div class="review">{% include "webapp/site/_stars.html" with r=rv.rating %} <b>{{ rv.name }}</b><small style="color:var(--soft)">{{ rv.created_at|date:"j M Y" }}</small>{% if rv.text %}<p style="margin:6px 0 0;white-space:pre-line">{{ rv.text }}</p>{% endif %}</div>{% empty %}<p style="color:var(--soft)">{% translate "No reviews yet. Be the first!" %}</p>{% endfor %}
+    {% if reviewed %}<p class="panel" style="margin-top:12px">✓ {% translate "Thank you! Your review will show after the shop checks it." %}</p>{% else %}
+    <details style="margin-top:12px"><summary style="cursor:pointer;font-weight:700">✍ {% translate "Write a review" %}</summary>
+      <form method="post" action="{{ review_url }}" class="rform" style="margin-top:10px">
+        <input name="name" required maxlength="80" placeholder="{% translate 'Your name' %}">
+        <select name="rating" aria-label="{% translate 'Rating' %}">{% for n in "54321" %}<option value="{{ n }}">{{ n }} ★</option>{% endfor %}</select>
+        <textarea name="text" rows="3" maxlength="2000" placeholder="{% translate 'What did you like?' %}"></textarea>
+        <input class="bpo-hp" name="company_website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px">
+        <button class="btn" type="submit">{% translate "Send review" %}</button>
+      </form></details>{% endif %}
+  </section>{% endif %}
   {% if related %}<section style="padding-bottom:56px"><h2 style="font-size:24px">{% translate "You may also like" %}</h2>
   <div class="grid pgrid">{% for item in related %}{% include "webapp/site/_card.html" %}{% endfor %}</div></section>{% endif %}
 </div>

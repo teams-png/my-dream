@@ -2,7 +2,7 @@
 {% block title %}{% if category %}{{ category.name }} · {% endif %}{% translate "Shop" %} · {{ company.name }}{% endblock %}
 {% block main %}
 <section class="section" style="padding-top:8px"><div class="wrap">
-  <div class="page-head"><h1>{% if category %}{{ category.name }}{% else %}{% translate "All products" %}{% endif %}</h1>
+  <div class="page-head"><h1>{% if wishlist %}♥ {% translate "My wishlist" %}{% elif category %}{{ category.name }}{% else %}{% translate "All products" %}{% endif %}</h1>
     <p class="lead" style="color:var(--soft);margin:0">{% blocktranslate count n=total %}{{ n }} product{% plural %}{{ n }} products{% endblocktranslate %}</p></div>
   {% if categories|length > 1 %}<nav class="chips" aria-label="{% translate 'Categories' %}" style="margin:8px 0 4px">
     <a href="{{ all_url }}"{% if not category %} class="on"{% endif %}>{% translate "All" %}</a>

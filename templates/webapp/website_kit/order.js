@@ -47,7 +47,7 @@
   if (cfg.rtl) box.setAttribute("dir", "rtl");
   var toast = document.createElement("div"); toast.className = "bpo-toast";
   document.body.appendChild(bar); document.body.appendChild(bg); document.body.appendChild(box); document.body.appendChild(toast);
-  var mode = cfg.pickup ? "pickup" : "delivery", form = {name: "", phone: "", email: "", address: "", note: ""}, sending = false, done = null;
+  var mode = cfg.pickup ? "pickup" : "delivery", form = {name: "", phone: "", email: "", address: "", note: "", coupon: ""}, sending = false, done = null, pay = "cod", disc = 0, discCode = "";
 
   function say(text) { toast.textContent = text; toast.classList.add("on"); clearTimeout(say.t); say.t = setTimeout(function () { toast.classList.remove("on"); }, 2200); }
 
@@ -71,6 +71,12 @@
   }
 
   function render() {
+    if (done && done.pay_url) {
+      box.innerHTML = '<div class="bpo-head"><h3>' + esc(L.order_sent) + '</h3></div><div class="bpo-body"><div class="bpo-done"><div class="big">💳</div><h2 style="margin:6px 0">' +
+        esc(done.reference) + "</h2><p>" + esc(L.going_to_pay || "") + '</p><p><a class="bpo-go" style="display:inline-block;text-decoration:none;padding:12px 22px" href="' + esc(done.pay_url) + '">' + esc(L.pay_now || "Pay") + " · " + esc(money(+done.total)) + "</a></p></div></div>";
+      setTimeout(function () { location.href = done.pay_url; }, 1200);
+      return;
+    }
     if (done) {
       box.innerHTML = '<div class="bpo-head"><h3>' + esc(L.order_sent) + '</h3><button class="bpo-x" type="button" data-close>✕</button></div><div class="bpo-body"><div class="bpo-done">' +
         '<div class="big">✅</div><h2 style="margin:6px 0">' + esc(done.reference) + "</h2><p>" + esc(L.thanks) + " " +
@@ -97,23 +103,38 @@
       (cfg.note ? '<p class="bpo-note">' + esc(cfg.note) + "</p>" : "") + rows +
       '<div class="bpo-sum"><div><span>' + esc(L.items) + "</span><span>" + esc(money(sub)) + "</span></div>" +
       (f ? "<div><span>" + esc(L.delivery) + "</span><span>" + esc(money(f)) + "</span></div>" : "") +
-      '<div class="t"><span>' + esc(L.total) + "</span><span>" + esc(money(sub + f)) + "</span></div>" +
+      (disc ? "<div><span>" + esc(L.discount || "") + " (" + esc(discCode) + ")</span><span>−" + esc(money(disc)) + "</span></div>" : "") +
+      '<div class="t"><span>' + esc(L.total) + "</span><span>" + esc(money(sub + f - disc)) + "</span></div>" +
       (mode === "delivery" && parseFloat(cfg.free_over || 0) && L.free_over ? '<div style="color:#64748b">' + esc(L.free_over.replace("%s", money(+cfg.free_over))) + "</div>" : "") +
       (mode === "delivery" && min && sub < min ? '<div style="color:#b45309">' + esc(L.minimum) + " " + esc(money(min)) + "</div>" : "") + "</div>" +
       (cart.length && cfg.open ? modes + '<div class="bpo-f"><input name="name" placeholder="' + esc(L.name) + '" autocomplete="name" value="' + esc(form.name) + '">' +
         '<input name="phone" type="tel" placeholder="' + esc(L.phone) + '" autocomplete="tel" value="' + esc(form.phone) + '">' +
         (cfg.shop ? '<input name="email" type="email" placeholder="' + esc(L.email) + '" autocomplete="email" value="' + esc(form.email) + '">' : "") +
         (mode === "delivery" ? '<textarea name="address" rows="2" placeholder="' + esc(L.address) + '">' + esc(form.address) + "</textarea>" : "") +
-        '<input name="note" placeholder="' + esc(L.note) + '" value="' + esc(form.note) + '"><input class="bpo-hp" name="company_website" tabindex="-1" autocomplete="off"></div>' : "") +
+        '<input name="note" placeholder="' + esc(L.note) + '" value="' + esc(form.note) + '"><input class="bpo-hp" name="company_website" tabindex="-1" autocomplete="off">' +
+        (cfg.coupons ? '<div style="display:flex;gap:6px"><input name="coupon" placeholder="' + esc(L.coupon || "") + '" value="' + esc(form.coupon) + '" style="flex:1"><button type="button" data-coupon style="border:1px solid #cbd5e1;background:#fff;border-radius:10px;padding:0 14px;font-weight:700">' + esc(L.apply || "OK") + "</button></div>" : "") +
+        (cfg.pay_online ? '<div class="bpo-modes"><label class="' + (pay === "cod" ? "on" : "") + '"><input type="radio" name="bpo-pay" value="cod">💵 ' + esc(L.pay_cod || "") + '</label><label class="' + (pay === "online" ? "on" : "") + '"><input type="radio" name="bpo-pay" value="online">💳 ' + esc(L.pay_online || "") + "</label></div>" : "") +
+        "</div>" : "") +
       '<p class="bpo-err" id="bpo-err"></p></div>' +
       (cart.length && cfg.open ? '<div class="bpo-foot"><button class="bpo-go" type="button" data-send' + (sending ? " disabled" : "") + ">" +
-        esc(sending ? L.sending : L.place + " · " + money(sub + f)) + '</button><p style="margin:8px 0 0;text-align:center;color:#64748b;font-size:13px">' +
-        esc(mode === "delivery" ? L.pay_delivery : L.pay_pickup) + "</p></div>" : "");
+        esc(sending ? L.sending : L.place + " · " + money(sub + f - disc)) + '</button><p style="margin:8px 0 0;text-align:center;color:#64748b;font-size:13px">' +
+        esc(pay === "online" ? (L.pay_online || "") : (mode === "delivery" ? L.pay_delivery : L.pay_pickup)) +
+        (cfg.terms_url ? ' · <a href="' + esc(cfg.terms_url) + '" target="_blank" rel="noopener">' + esc(L.terms || "") + "</a>" : "") + "</p></div>" : "");
   }
 
   function open() { render(); box.classList.add("on"); bg.classList.add("on"); paintButtons(); }
   function close() { box.classList.remove("on"); bg.classList.remove("on"); if (done) { done = null; } paintButtons(); }
   function readForm() { var els = box.querySelectorAll(".bpo-f input, .bpo-f textarea"); for (var i = 0; i < els.length; i++) if (els[i].name in form) form[els[i].name] = els[i].value; }
+
+  function checkCoupon() {
+    readForm();
+    var code = (form.coupon || "").trim(), err = box.querySelector("#bpo-err");
+    if (!code || !cfg.coupon_endpoint) return;
+    fetch(cfg.coupon_endpoint + "?code=" + encodeURIComponent(code) + "&subtotal=" + subtotal() + "&lang=" + encodeURIComponent(cfg.lang || ""))
+      .then(function (r) { return r.json(); })
+      .then(function (d) { if (d.ok) { disc = parseFloat(d.discount) || 0; discCode = code; render(); } else { disc = 0; discCode = ""; render(); box.querySelector("#bpo-err").textContent = d.error || ""; } })
+      .catch(function () { if (err) err.textContent = L.offline; });
+  }
 
   function send() {
     readForm();
@@ -124,7 +145,7 @@
     var hp = box.querySelector(".bpo-hp");
     sending = true; render(); err = box.querySelector("#bpo-err");
     fetch(cfg.endpoint, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({
-      name: form.name, phone: form.phone, email: form.email, mode: mode, lang: cfg.lang, address: mode === "delivery" ? form.address : "", note: form.note,
+      name: form.name, phone: form.phone, email: form.email, mode: mode, coupon: discCode, payment: pay, lang: cfg.lang, address: mode === "delivery" ? form.address : "", note: form.note,
       company_website: hp ? hp.value : "", items: cart.map(function (x) { return {id: x.id, qty: x.qty}; })})})
       .then(function (r) { return r.json().catch(function () { return {ok: false, error: L.failed}; }); })
       .then(function (d) {
@@ -156,9 +177,11 @@
       if (l) { l.qty += t.getAttribute("data-inc") ? 1 : -1; if (l.qty > 50) l.qty = 50; if (l.qty < 1) cart.splice(cart.indexOf(l), 1); }
       save(); render(); paintButtons();
     } else if (t.hasAttribute("data-send")) { send(); }
+    else if (t.hasAttribute("data-coupon")) { checkCoupon(); }
   });
   box.addEventListener("change", function (e) {
     if (e.target.name === "bpo-mode") { readForm(); mode = e.target.value; render(); }
+    if (e.target.name === "bpo-pay") { readForm(); pay = e.target.value; render(); }
   });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && box.classList.contains("on")) close(); });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", paintButtons); else paintButtons();

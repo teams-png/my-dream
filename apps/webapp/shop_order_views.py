@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.utils.translation import gettext as _, gettext_lazy as _l
 from django.views.decorators.http import require_POST
 
@@ -21,13 +22,18 @@ class ShopForm(forms.ModelForm):
     class Meta:
         model = SiteDesign
         fields = ["shop_enabled", "shop_paused", "shop_pickup", "shop_delivery", "shop_delivery_fee",
-                  "shop_free_delivery_over", "shop_minimum", "shop_note"]
+                  "shop_free_delivery_over", "shop_minimum", "shop_note", "shop_coupons", "shop_online_payment", "shop_reviews"]
         labels = {"shop_enabled": _l("Take orders from my website (cart)"), "shop_paused": _l("Pause — not taking orders now"),
                   "shop_pickup": _l("Pickup from the shop"), "shop_delivery": _l("Home delivery"),
                   "shop_delivery_fee": _l("Delivery charge"), "shop_free_delivery_over": _l("Free delivery over"),
-                  "shop_minimum": _l("Minimum order for delivery"), "shop_note": _l("Note in the cart")}
+                  "shop_minimum": _l("Minimum order for delivery"), "shop_note": _l("Note in the cart"),
+                  "shop_coupons": _l("Customers can use coupon codes"), "shop_online_payment": _l("Offer “Pay online” (card)"),
+                  "shop_reviews": _l("Show product reviews")}
         help_texts = {"shop_enabled": _l("Shows “+ Add” on every product in stock and a cart on your website."),
-                      "shop_free_delivery_over": _l("0 = always charge delivery."), "shop_minimum": _l("0 = no minimum.")}
+                      "shop_free_delivery_over": _l("0 = always charge delivery."), "shop_minimum": _l("0 = no minimum."),
+                      "shop_coupons": _l("Codes you made under Coupons."),
+                      "shop_online_payment": _l("Needs Online payments set up (SkipCash / Razorpay)."),
+                      "shop_reviews": _l("New reviews wait here until you approve them.")}
         widgets = {"shop_note": forms.TextInput(attrs={"placeholder": _l("Delivery inside Doha in 24 hours · Cash or card on delivery")})}
 
     def clean(self):
@@ -59,7 +65,18 @@ def inbox(request):
     for o in orders:
         o.whatsapp = _whatsapp(o)
     kit = website_kit.kit_for(company)
+    from datetime import timedelta
+    from django.db.models import Count, Sum
+    from django.utils import timezone
+    from apps.industry.models import ProductReview
+    month = timezone.localdate().replace(day=1)
+    stats = qs.filter(created_at__date__gte=month).exclude(status__in=("rejected", "cancelled")).aggregate(
+        n=Count("id"), total=Sum("total"))
+    week = qs.filter(created_at__gte=timezone.now() - timedelta(days=7)).count()
     return render(request, "webapp/shop_orders/inbox.html", {
+        "stats": {"month_orders": stats["n"] or 0, "month_total": stats["total"] or 0, "week": week},
+        "pending_reviews": ProductReview.objects.for_company(company).filter(is_approved=False).select_related("product")[:50],
+        "online_ready": svc.online_ready(company),
         "orders": orders, "show": show, "design": design, "form": ShopForm(instance=design, prefix="s"),
         "new_count": qs.filter(status="new").count(), "currency": company.default_currency, "kit": kit,
         "site_url": f"https://{design.custom_domain}" if design.custom_domain and design.domain_status == "live" else
@@ -108,6 +125,22 @@ def action(request, order_id):
     except ValidationError as exc:
         messages.error(request, " ".join(exc.messages) + " " + _("You can also bill it from New bill."))
     return redirect(request.POST.get("next") or "webapp:shop_orders")
+
+
+@login_required
+@require_POST
+def review_action(request, review_id):
+    from apps.industry.models import ProductReview
+    company = _company_or_404(request)
+    review = get_object_or_404(ProductReview.objects.for_company(company), id=review_id)
+    if request.POST.get("do") == "approve":
+        review.is_approved = True
+        review.save(update_fields=["is_approved"])
+        messages.success(request, _("Review approved — it shows on the website."))
+    else:
+        review.delete()
+        messages.success(request, _("Review deleted."))
+    return redirect(reverse("webapp:shop_orders") + "#reviews")
 
 
 @login_required

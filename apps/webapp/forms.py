@@ -171,6 +171,36 @@ class MobileProductForm(ProductForm):
         return obj
 
 
+class MultipleImageInput(forms.ClearableFileInput):
+    allow_multiple_selected = True
+
+
+class MultipleImageField(forms.ImageField):
+    """Several photos in one file box (the product gallery)."""
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("widget", MultipleImageInput(attrs={"accept": "image/*"}))
+        super().__init__(*args, **kwargs)
+
+    def clean(self, data, initial=None):
+        files = data if isinstance(data, (list, tuple)) else ([data] if data else [])
+        if len(files) > 8:
+            raise forms.ValidationError(_l("Up to 8 photos at a time."))
+        return [super(MultipleImageField, self).clean(f, initial) for f in files]
+
+
+def save_product_gallery(form, product):
+    """Adds the new gallery photos and removes the ticked ones."""
+    from apps.industry.models import ProductPhoto
+    from apps.common.validators import validate_upload_file
+    remove = form.cleaned_data.get("remove_photos") or []
+    if remove:
+        ProductPhoto.objects.filter(product=product, id__in=[int(x) for x in remove]).delete()
+    start = ProductPhoto.objects.filter(product=product).count()
+    for i, f in enumerate(form.cleaned_data.get("gallery") or []):
+        validate_upload_file(f)
+        ProductPhoto.objects.create(company=product.company, product=product, image=f, sort_order=start + i)
+
+
 class BusinessProductForm(ProductForm):
     """Industry-aware product master while retaining the shared stock/POS engine."""
     INDUSTRY_FIELDS = {
@@ -309,6 +339,16 @@ class BusinessProductForm(ProductForm):
             self.fields["sold_by_ml"] = forms.BooleanField(
                 required=False, label="Sold by the ml (decant / loose oil)", initial=bool(attrs.get("sold_by_ml")),
                 help_text="Billing asks how many ml; the price is per ml.")
+        self.fields["gallery"] = MultipleImageField(
+            required=False, label=_l("More photos for the website"),
+            help_text=_l("Choose several photos at once. They show as a gallery on the product page."))
+        if self.instance and self.instance.pk:
+            from apps.industry.models import ProductPhoto
+            photos = list(ProductPhoto.objects.filter(product=self.instance))
+            if photos:
+                self.fields["remove_photos"] = forms.MultipleChoiceField(
+                    required=False, label=_l("Remove photos"), widget=forms.CheckboxSelectMultiple,
+                    choices=[(str(ph.id), ph.image.name.rsplit("/", 1)[-1]) for ph in photos])
         self.fields["web_description"] = forms.CharField(
             required=False, max_length=4000, label=_l("Description for the website"), initial=attrs.get("web_description", ""),
             widget=forms.Textarea(attrs={"rows": 3}), help_text=_l("Shown on the product page of your online shop."))

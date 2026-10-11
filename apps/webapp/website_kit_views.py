@@ -238,9 +238,12 @@ def kit_order(request, public_id):
                     from apps.industry import shop_orders
                     online = shop_orders.place(kit.company, data, source=source)
                     reference, accepted = online.number, False
+                    pay = shop_orders.pay_url(online, request.build_absolute_uri)
             track = request.build_absolute_uri(reverse("webapp:kit_order_status", args=[public_id, online.token])) + f"?lang={lang}"
             body, status = {"ok": True, "reference": reference, "total": f"{online.total:.2f}",
                             "track_url": track, "accepted": accepted}, 201
+            if not online_orders.is_restaurant(kit.company) and pay:
+                body["pay_url"] = pay
         except ValidationError as exc:
             with translation.override(lang):
                 body, status = {"ok": False, "error": " ".join(str(m) for m in exc.messages)}, 400
@@ -261,6 +264,9 @@ def cart_labels(shop=False):
     from django.utils.translation import gettext as _
     labels = _cart_labels()
     if shop:  # a shop, not a restaurant
+        labels.update(coupon=_("Coupon code"), apply=_("Apply"), pay_cod=_("Pay on delivery / pickup"),
+                      pay_online=_("Pay online now (card)"), pay_now=_("Pay now"), discount=_("Discount"),
+                      terms=_("By ordering you agree to our terms."), going_to_pay=_("Taking you to the secure payment page…"))
         labels.update(will_confirm=_("The shop will confirm your order shortly."), pickup_from=_("Pickup from the shop"),
                       empty=_("Your cart is empty. Tap “+ Add” on a product."),
                       note=_("Note, e.g. colour, model, best time to call"), email=_("Email (optional)"),
@@ -300,10 +306,48 @@ def kit_order_js(request, public_id):
     cfg = cfg or {"enabled": False}
     with translation.override(lang):
         cfg.update(t=cart_labels(shop=shop), lang=lang, rtl=translation.get_language_bidi())
+    if cfg.get("terms_url"):
+        cfg["terms_url"] = request.build_absolute_uri(reverse("webapp:site_public", args=[public_id]) + cfg["terms_url"])
+    if cfg.get("coupons"):
+        cfg["coupon_endpoint"] = request.build_absolute_uri(reverse("webapp:kit_coupon", args=[public_id]))
     cfg.update(endpoint=request.build_absolute_uri(reverse("webapp:kit_order", args=[public_id])),
                color=kit.accent_color or "#0f766e", key=f"bp-cart-{public_id}", phone=kit.company.phone or "")
     response = _js(request, "webapp/website_kit/order.js", cfg)
     response["Cache-Control"] = "public, max-age=60"
+    return response
+
+
+def kit_coupon(request, public_id):
+    """Checks a coupon for the website cart: {ok, discount} for the given subtotal (the order re-checks it)."""
+    from decimal import Decimal, InvalidOperation
+    from django.utils import timezone, translation
+    from apps.industry import shop_orders
+    from django.utils.translation import gettext as _
+    from apps.sales.services import validate_coupon
+    kit = _kit_or_404(public_id)
+    fwd = request.META.get("HTTP_X_FORWARDED_FOR", "")
+    ip = (fwd.split(",")[0].strip() if fwd else request.META.get("REMOTE_ADDR", "")) or "?"
+    key = f"kit-coupon:{kit.pk}:{ip}"
+    if not cache.add(key, 1, 3600):
+        try:
+            tries = cache.incr(key)
+        except ValueError:
+            tries = 1
+    else:
+        tries = 1
+    cfg = shop_orders.config(kit.company)
+    lang = site_lang(kit.company, request.GET.get("lang"))
+    with translation.override(lang):
+        if not cfg or not cfg.get("coupons") or tries > 30:  # no guessing codes
+            return _public_json({"ok": False, "error": _("This coupon code is not valid.")}, 400)
+        try:
+            subtotal = Decimal(request.GET.get("subtotal") or "0")
+            _c, discount = validate_coupon(company=kit.company, code=request.GET.get("code") or "", subtotal=subtotal,
+                                           date=timezone.localdate())
+        except (ValidationError, InvalidOperation):
+            return _public_json({"ok": False, "error": _("This coupon code is not valid.")}, 400)
+    response = _public_json({"ok": True, "discount": f"{discount:.2f}"})
+    response["Cache-Control"] = "no-store"
     return response
 
 

@@ -530,6 +530,14 @@ class SiteDesign(TenantScopedModel):
     shop_free_delivery_over = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     shop_minimum = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     shop_note = models.CharField(max_length=255, blank=True)
+    shop_coupons = models.BooleanField(default=True)
+    shop_online_payment = models.BooleanField(default=True)
+    shop_reviews = models.BooleanField(default=True)
+    # platform admin: custom design (Bootstrap / own HTML) around the live BookPilot shop
+    custom_head = models.TextField(blank=True, help_text="Extra <head> code: Bootstrap / font links, Google Analytics, pixel.")
+    custom_header = models.TextField(blank=True, help_text="Replaces the standard header. Placeholders like [[menu]].")
+    custom_footer = models.TextField(blank=True, help_text="Replaces the standard footer.")
+    custom_home = models.TextField(blank=True, help_text="Replaces the standard home page. Placeholders like [[products]].")
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -574,7 +582,11 @@ class ShopOrder(TenantScopedModel):
     source = models.CharField(max_length=120, blank=True)
     subtotal = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     delivery_fee = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    coupon_code = models.CharField(max_length=30, blank=True)
+    discount = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    PAYMENT = [("cod", _l("Pay on delivery / pickup")), ("online", _l("Pay online"))]
+    payment_method = models.CharField(max_length=10, choices=PAYMENT, default="cod")
     invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
     reject_reason = models.CharField(max_length=255, blank=True)
     handled_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
@@ -802,3 +814,27 @@ class RefillSubscription(TenantScopedModel):
 
     def __str__(self):
         return f"{self.customer} · {self.product}"
+
+
+class ProductPhoto(TenantScopedModel):
+    """Extra photos of a product for the website gallery (the product's own image stays the main one)."""
+    product = models.ForeignKey("inventory.Product", on_delete=models.CASCADE, related_name="photos")
+    image = models.ImageField(upload_to="product_photos/", validators=[validate_upload_file])
+    sort_order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["sort_order", "id"]
+
+
+class ProductReview(TenantScopedModel):
+    """A customer review from the website; shown after the shop approves it."""
+    product = models.ForeignKey("inventory.Product", on_delete=models.CASCADE, related_name="reviews")
+    name = models.CharField(max_length=80)
+    rating = models.PositiveSmallIntegerField(default=5)
+    text = models.TextField(max_length=2000, blank=True)
+    is_approved = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [models.Index(fields=("company", "product", "is_approved"))]

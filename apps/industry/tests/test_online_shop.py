@@ -27,7 +27,8 @@ def shop(admin_client):
     _admin_save(admin_client, company, **{"a-package": "shop"})
     owner.post(reverse("webapp:site_editor"), _design_data(**{"d-custom_css": ".hero{color:red}</style><script>alert(1)</script>"}))
     owner.post(reverse("webapp:shop_order_settings"), {"s-shop_enabled": "on", "s-shop_pickup": "on", "s-shop_delivery": "on",
-               "s-shop_delivery_fee": "15", "s-shop_free_delivery_over": "500", "s-shop_minimum": "0", "s-shop_note": "Cash on delivery"})
+               "s-shop_delivery_fee": "15", "s-shop_free_delivery_over": "500", "s-shop_minimum": "0", "s-shop_note": "Cash on delivery",
+               "s-shop_coupons": "on", "s-shop_online_payment": "on", "s-shop_reviews": "on"})
     kit = website_kit.kit_for(company)
     return company, owner, kit
 
@@ -165,3 +166,78 @@ def test_website_packages_billing_and_cart_only_for_ecommerce(shop, admin_client
         assert addons(sub)["website_amount"] == 399
     landing = Client().get(reverse("webapp:landing")).content.decode()
     assert "E-commerce website" in landing and '"shop": 699' in landing
+
+
+def test_offers_coupon_reviews_gallery_wishlist_and_online_pay(shop, monkeypatch):
+    import datetime
+    from django.core.files.uploadedfile import SimpleUploadedFile
+    from django.utils import timezone
+    from apps.industry import shop_orders
+    from apps.industry.models import ProductPhoto, ProductReview
+    from apps.inventory.models import Product
+    from apps.sales.models import Coupon, Promotion
+    company, owner, kit = shop
+    base = f"/site/{kit.public_id}/"
+    item = Product.objects.filter(company=company, is_stock_tracked=True, variants__isnull=True).first()
+    today = timezone.localdate()
+    Promotion.objects.create(company=company, name="Big sale", product=item, discount_type="percentage",
+                             discount_value=10, start_date=today, end_date=today + datetime.timedelta(days=5), is_active=True)
+    cache.clear()
+    offer = (item.selling_price * Decimal("0.9")).quantize(Decimal("0.01"))
+    page = Client().get(f"{base}shop/{item.id}/").content.decode()
+    assert f"{offer:.2f}" in page and "Big sale" in page and '"@type":"Product"' in page and "Write a review" in page
+
+    Coupon.objects.create(company=company, code="EID10", discount_type="fixed", discount_value=20,
+                          start_date=today, expiry_date=today + datetime.timedelta(days=5))
+    ok = Client().get(reverse("webapp:kit_coupon", args=[kit.public_id]), {"code": "eid10", "subtotal": "500"}).json()
+    assert ok["ok"] and ok["discount"] == "20.00"
+    assert not Client().get(reverse("webapp:kit_coupon", args=[kit.public_id]), {"code": "NOPE", "subtotal": "500"}).json()["ok"]
+
+    r = Client().post(reverse("webapp:kit_order", args=[kit.public_id]), json.dumps({
+        "name": "Huda", "phone": "+974 5555 8888", "mode": "pickup", "coupon": "EID10",
+        "items": [{"id": item.id, "qty": 1}]}), content_type="application/json", REMOTE_ADDR="10.30.0.1")
+    assert r.status_code == 201, r.content
+    order = ShopOrder.objects.get(number=r.json()["reference"])
+    assert order.lines.get().unit_price == offer and order.discount == 20 and order.total == offer - 20
+    assert "pay_url" not in r.json()
+
+    monkeypatch.setattr(shop_orders, "online_ready", lambda company: True)
+    r = Client().post(reverse("webapp:kit_order", args=[kit.public_id]), json.dumps({
+        "name": "Huda", "phone": "+974 5555 8888", "mode": "pickup", "payment": "online",
+        "items": [{"id": item.id, "qty": 1}]}), content_type="application/json", REMOTE_ADDR="10.30.0.2")
+    paid = ShopOrder.objects.get(number=r.json()["reference"])
+    assert paid.payment_method == "online" and paid.invoice and r.json()["pay_url"].startswith("http")
+    assert paid.status == "new"
+    owner.post(reverse("webapp:shop_order_action", args=[paid.id]), {"do": "bill"})
+    paid.refresh_from_db()
+    assert paid.status == "done" and ShopOrder.objects.filter(invoice=paid.invoice).count() == 1
+
+    # reviews wait for approval
+    Client().post(f"{base}shop/{item.id}/review/", {"name": "Ali", "rating": "4", "text": "Fast laptop"})
+    rv = ProductReview.objects.get(company=company)
+    assert not rv.is_approved and "Fast laptop" in owner.get(reverse("webapp:shop_orders")).content.decode()
+    owner.post(reverse("webapp:shop_review_action", args=[rv.id]), {"do": "approve"})
+    cache.clear()
+    assert "Fast laptop" in Client().get(f"{base}shop/{item.id}/").content.decode()
+
+    # gallery
+    import io
+    from PIL import Image
+    buf = io.BytesIO()
+    Image.new("RGB", (20, 20), "red").save(buf, "PNG")
+    pic = SimpleUploadedFile("a.png", buf.getvalue(), content_type="image/png")
+    form = owner.get(reverse("webapp:product_edit", args=[item.id])).content.decode()
+    assert 'name="gallery"' in form and "multiple" in form
+    from apps.webapp.forms import BusinessProductForm, save_product_gallery
+    f = BusinessProductForm(data={"sku": item.sku, "name": item.name, "unit": item.unit_id, "cost_price": "1",
+                                  "selling_price": str(item.selling_price), "reorder_level": "0"},
+                            files={"gallery": [pic]}, instance=item, company=company)
+    f.is_valid()
+    save_product_gallery(f, item)
+    assert ProductPhoto.objects.filter(product=item).count() == 1
+    cache.clear()
+    assert 'class="thumbs"' in Client().get(f"{base}shop/{item.id}/").content.decode()
+
+    # wishlist view
+    wl = Client().get(f"{base}shop/", {"ids": str(item.id)}).content.decode()
+    assert "My wishlist" in wl and "1 product" in wl

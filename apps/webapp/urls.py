@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import team_order_views
-from . import billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
+from . import shop_order_views, billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -56,6 +56,9 @@ urlpatterns = [
     path("platform/website-kit/<int:company_id>/site/", site_views.site_admin_editor, name="site_admin_editor"),
     path("website/", site_views.site_editor, name="site_editor"),
     path("site/<slug:public_id>/", site_views.site_public, name="site_public"),
+    path("site/<slug:public_id>/shop/", site_views.site_public_shop, name="site_public_shop"),
+    path("site/<slug:public_id>/shop/<int:product_id>/", site_views.site_public_product, name="site_public_product"),
+    path("site/<slug:public_id>/p/<slug:slug>/", site_views.site_public_page, name="site_public_page"),
     path("kit/<slug:public_id>/info.json", website_kit_views.kit_info, name="kit_info"),
     path("kit/<slug:public_id>/catalogue.json", website_kit_views.kit_catalogue, name="kit_catalogue"),
     path("kit/<slug:public_id>/offers.json", website_kit_views.kit_offers, name="kit_offers"),
@@ -554,6 +557,10 @@ urlpatterns = [
     path("restaurant/setup/demo-menu/", views.restaurant_demo_menu, name="restaurant_demo_menu"),
     path("restaurant/setup/kerala-kit/", views.restaurant_starter_kit, name="restaurant_starter_kit"),
     path("restaurant/quick/", quick_sale_views.quick_sale, name="restaurant_quick_sale"),
+    path("website-orders/", shop_order_views.inbox, name="shop_orders"),
+    path("website-orders/settings/", shop_order_views.settings_save, name="shop_order_settings"),
+    path("website-orders/<int:order_id>/action/", shop_order_views.action, name="shop_order_action"),
+    path("website-orders/waiting.json", shop_order_views.waiting, name="shop_orders_waiting"),
     path("restaurant/online-orders/", online_order_views.inbox, name="restaurant_online_orders"),
     path("restaurant/online-orders/settings/", online_order_views.settings_save, name="restaurant_online_settings"),
     path("restaurant/online-orders/<int:online_id>/action/", online_order_views.action, name="restaurant_online_action"),

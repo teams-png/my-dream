@@ -104,8 +104,14 @@ def catalogue(company, absolute, limit=500):
         from apps.inventory.pictures import picture_url
         qs = Product.objects.for_company(company).filter(is_active=True).select_related("category").order_by("category__name", "name")
         from apps.verticals.restaurant.online_orders import config as ordering_config, needs_choice
+        from . import shop_orders
         ordering = ordering_config(company)
-        menu = {}
+        menu, stock, shop = {}, {}, None
+        if ordering is None and shop_orders.applies(company):  # a shop: sell each size / colour, show what is in stock
+            shop = shop_orders.config(company)
+            ordering = shop
+            qs = shop_orders.sellable(company).select_related("category").order_by("category__name", "name")
+            stock = shop_orders.stock_for(company, list(qs[:limit]))
         if company.business_type.code in ("restaurant", "cafe_juice_shop", "catering_company"):
             from apps.verticals.restaurant.models import RestaurantMenuItem
             menu = {m.product_id: m for m in RestaurantMenuItem.objects.for_company(company).prefetch_related("modifier_groups")}
@@ -113,13 +119,16 @@ def catalogue(company, absolute, limit=500):
                 qs = qs.filter(id__in=menu.keys()).order_by("restaurant_menu_item__sort_order", "name")
         for p in qs[:limit]:
             m = menu.get(p.id)
-            items.append({"id": p.id, "name": p.name, "category": p.category.name if p.category else "",
+            in_stock = not p.is_stock_tracked or stock.get(p.id, 0) > 0
+            items.append({"id": p.id, "name": f"{p.name} — {p.variant_label}" if p.variant_label else p.name,
+                          "category": p.category.name if p.category else "",
                           "price": f"{p.selling_price:.2f}", "description": getattr(m, "description", "") if m else "",
                           "image": absolute(m.image.url) if m and m.image else absolute(picture_url(p, company.business_type.code)),
                           "vegetarian": getattr(m, "is_vegetarian", None) if m else None,
-                          "available": bool(m.is_available) if m else True,
+                          "available": bool(m.is_available) if m else in_stock,
                           "featured": bool(m.is_featured) if m else False,
-                          "orderable": bool(ordering and m and m.is_orderable_now() and not needs_choice(m))})
+                          "orderable": bool(shop and shop["open"] and in_stock) if shop is not None or not menu else
+                          bool(ordering and m and m.is_orderable_now() and not needs_choice(m))})
     out = {"kind": kind, "currency": cur, "items": items}
     if kind == "products":
         out["ordering"] = ordering or {"enabled": False}

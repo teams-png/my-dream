@@ -1,0 +1,39 @@
+{% load i18n %}<!doctype html>
+<html lang="{{ lang }}" dir="{% if lang_bidi %}rtl{% else %}ltr{% endif %}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+{% if order.status == "new" or order.status == "confirmed" or order.status == "ready" %}<meta http-equiv="refresh" content="30">{% endif %}
+<meta name="robots" content="noindex">{% include "webapp/_lang_font.html" %}
+<title>{{ order.number }} · {{ company.name }}</title>
+<style>
+:root{--c:{{ color }}}
+*{box-sizing:border-box}body{margin:0;background:#f8fafc;color:#172033;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;display:grid;place-items:start center;min-height:100vh;padding:24px 16px}
+.box{background:#fff;border-radius:22px;box-shadow:0 18px 50px #0f172a14;padding:26px 22px;width:min(480px,100%)}
+.big{font-size:52px;text-align:center;line-height:1}h1{margin:8px 0 2px;text-align:center;font-size:24px}.sub{text-align:center;color:#64748b;margin:0 0 18px}
+.steps{display:flex;gap:6px;margin:18px 0}.steps div{flex:1;text-align:center;font-size:13px;font-weight:700;color:#94a3b8}
+.steps div i{display:block;height:6px;border-radius:9px;background:#e2e8f0;margin-bottom:6px}.steps div.on{color:var(--c)}.steps div.on i{background:var(--c)}
+.msg{padding:12px 14px;border-radius:14px;background:#f1f5f9;margin:12px 0;font-weight:600}.msg.bad{background:#fee2e2;color:#991b1b}.msg.good{background:#dcfce7;color:#166534}
+ul{list-style:none;margin:12px 0;padding:0}li{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #f1f5f9}li span:first-child{flex:1;min-width:0}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:18px;margin-top:8px}.muted{color:#64748b;font-size:14px}
+a{color:var(--c);font-weight:700}
+</style></head><body><main class="box">
+{% with s=order.status %}
+<div class="big">{% if s == "new" %}⏳{% elif s == "confirmed" %}📦{% elif s == "ready" %}{% if order.mode == "delivery" %}🚚{% else %}✅{% endif %}{% elif s == "done" %}🎉{% else %}❌{% endif %}</div>
+<h1>{{ order.number }}</h1>
+<p class="sub">{{ company.name }}</p>
+{% if s == "rejected" or s == "cancelled" %}
+  <div class="msg bad">{% translate "Sorry, the shop could not complete this order." %}{% if order.reject_reason %}<br>{{ order.reject_reason }}{% endif %}</div>
+{% else %}
+  <div class="steps">
+    {% for step, on in steps %}<div class="{% if on %}on{% endif %}"><i></i>{% if step == "new" %}{% translate "Received" %}{% elif step == "confirmed" %}{% translate "Confirmed" %}{% elif step == "ready" %}{% if order.mode == "delivery" %}{% translate "On the way" %}{% else %}{% translate "Ready" %}{% endif %}{% else %}{% translate "Done" %}{% endif %}</div>{% endfor %}
+  </div>
+  {% if s == "new" %}<div class="msg">{% translate "The shop has your order and will confirm it shortly." %}</div>
+  {% elif s == "confirmed" %}<div class="msg">{% translate "Your order is confirmed and being packed." %}</div>
+  {% elif s == "ready" %}<div class="msg good">{% if order.mode == "delivery" %}{% translate "Your order is on its way." %}{% else %}{% translate "Your order is ready for pickup." %}{% endif %}</div>
+  {% else %}<div class="msg good">{% translate "Thank you for shopping with us!" %}</div>{% endif %}
+{% endif %}
+<ul>{% for l in lines %}<li><span>{{ l.quantity }} × {{ l.name }}</span><span>{{ company.default_currency }} {{ l.line_total|floatformat:2 }}</span></li>{% endfor %}
+{% if order.delivery_fee %}<li><span>{% translate "Delivery" %}</span><span>{{ company.default_currency }} {{ order.delivery_fee|floatformat:2 }}</span></li>{% endif %}</ul>
+<div class="tot"><span>{% translate "Total" %}</span><span>{{ company.default_currency }} {{ order.total|floatformat:2 }}</span></div>
+<p class="muted">{% if order.mode == "delivery" %}🚚 {% translate "Delivery to:" %} {{ order.address }}{% else %}🛍 {% translate "Pickup from" %} {{ company.name }}{% if company.address %}, {{ company.address }}{% endif %}{% endif %}<br>{% if order.mode == "delivery" %}{% translate "Pay on delivery" %}{% else %}{% translate "Pay on pickup" %}{% endif %}</p>
+{% if company.phone %}<p class="muted">{% translate "Questions? Call" %} <a href="tel:{{ company.phone }}">{{ company.phone }}</a></p>{% endif %}
+{% endwith %}
+</main></body></html>

@@ -47,7 +47,7 @@
   if (cfg.rtl) box.setAttribute("dir", "rtl");
   var toast = document.createElement("div"); toast.className = "bpo-toast";
   document.body.appendChild(bar); document.body.appendChild(bg); document.body.appendChild(box); document.body.appendChild(toast);
-  var mode = cfg.pickup ? "pickup" : "delivery", form = {name: "", phone: "", address: "", note: ""}, sending = false, done = null;
+  var mode = cfg.pickup ? "pickup" : "delivery", form = {name: "", phone: "", email: "", address: "", note: ""}, sending = false, done = null;
 
   function say(text) { toast.textContent = text; toast.classList.add("on"); clearTimeout(say.t); say.t = setTimeout(function () { toast.classList.remove("on"); }, 2200); }
 
@@ -64,7 +64,11 @@
     bar.classList.toggle("on", n > 0 && !box.classList.contains("on"));
   }
 
-  function fee() { return mode === "delivery" ? parseFloat(cfg.delivery_fee || 0) : 0; }
+  function fee() {
+    var over = parseFloat(cfg.free_over || 0);
+    if (mode !== "delivery" || (over && subtotal() >= over)) return 0;
+    return parseFloat(cfg.delivery_fee || 0);
+  }
 
   function render() {
     if (done) {
@@ -94,9 +98,11 @@
       '<div class="bpo-sum"><div><span>' + esc(L.items) + "</span><span>" + esc(money(sub)) + "</span></div>" +
       (f ? "<div><span>" + esc(L.delivery) + "</span><span>" + esc(money(f)) + "</span></div>" : "") +
       '<div class="t"><span>' + esc(L.total) + "</span><span>" + esc(money(sub + f)) + "</span></div>" +
+      (mode === "delivery" && parseFloat(cfg.free_over || 0) && L.free_over ? '<div style="color:#64748b">' + esc(L.free_over.replace("%s", money(+cfg.free_over))) + "</div>" : "") +
       (mode === "delivery" && min && sub < min ? '<div style="color:#b45309">' + esc(L.minimum) + " " + esc(money(min)) + "</div>" : "") + "</div>" +
       (cart.length && cfg.open ? modes + '<div class="bpo-f"><input name="name" placeholder="' + esc(L.name) + '" autocomplete="name" value="' + esc(form.name) + '">' +
         '<input name="phone" type="tel" placeholder="' + esc(L.phone) + '" autocomplete="tel" value="' + esc(form.phone) + '">' +
+        (cfg.shop ? '<input name="email" type="email" placeholder="' + esc(L.email) + '" autocomplete="email" value="' + esc(form.email) + '">' : "") +
         (mode === "delivery" ? '<textarea name="address" rows="2" placeholder="' + esc(L.address) + '">' + esc(form.address) + "</textarea>" : "") +
         '<input name="note" placeholder="' + esc(L.note) + '" value="' + esc(form.note) + '"><input class="bpo-hp" name="company_website" tabindex="-1" autocomplete="off"></div>' : "") +
       '<p class="bpo-err" id="bpo-err"></p></div>' +
@@ -118,7 +124,7 @@
     var hp = box.querySelector(".bpo-hp");
     sending = true; render(); err = box.querySelector("#bpo-err");
     fetch(cfg.endpoint, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({
-      name: form.name, phone: form.phone, mode: mode, lang: cfg.lang, address: mode === "delivery" ? form.address : "", note: form.note,
+      name: form.name, phone: form.phone, email: form.email, mode: mode, lang: cfg.lang, address: mode === "delivery" ? form.address : "", note: form.note,
       company_website: hp ? hp.value : "", items: cart.map(function (x) { return {id: x.id, qty: x.qty}; })})})
       .then(function (r) { return r.json().catch(function () { return {ok: false, error: L.failed}; }); })
       .then(function (d) {

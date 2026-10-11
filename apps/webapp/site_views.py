@@ -13,7 +13,7 @@ from django.utils.translation import gettext_lazy as _l
 
 from apps.industry import site_builder as svc
 from apps.industry import website_kit
-from apps.industry.models import SiteDesign
+from apps.industry.models import SiteDesign, SitePage
 from apps.tenants.models import Company
 
 from .online_booking_views import owner_only
@@ -24,14 +24,40 @@ COLOR = re.compile(r"#[0-9a-fA-F]{6}")
 
 # ------------------------------------------------------------------ public website
 
-def _render_site(request, design, preview=False):
+def _render_site(request, design, preview=False, base=None, kind="home", **extra):
     from django.utils import translation
     lang = svc.pick_language(design, request.GET.get("lang"))
+    base = base or "/"
     with translation.override(lang):
         ctx = svc.content(design, request.build_absolute_uri)
         ctx.update(preview=preview, lang=lang, lang_bidi=translation.get_language_bidi(),
-                   switch=svc.language_links(design, lang, preview))
-        response = render(request, "webapp/site/page.html", ctx)
+                   switch=svc.language_links(design, lang, preview), page_kind=kind,
+                   has_catalogue=bool(ctx["groups"]), **svc.layout(design, base, lang, preview))
+        template = "webapp/site/page.html"
+        if kind == "home" and ctx["shop_url"]:  # a shop's home shows a few products; the Shop page has them all
+            items = [i for g in ctx["groups"] for i in g["items"]]
+            items.sort(key=lambda i: not i.get("available", True))
+            for i in items:
+                i["url"] = f"{base}shop/{i['id']}/{ctx['q']}"
+            ctx["groups"] = [{"name": "", "items": items[:8]}] if items else []
+        elif kind == "shop":
+            ctx.update(svc.shop_page(design, request.build_absolute_uri, base, lang, preview, **extra))
+            template = "webapp/site/shop.html"
+        elif kind == "product":
+            data = svc.product_page(design, request.build_absolute_uri, base, lang, preview, extra["product_id"])
+            if data is None:
+                raise Http404
+            ctx.update(data)
+            ctx["wa_text"] = f"{data['item']['name']} — {ctx['currency']} {data['item']['price']}\n{request.build_absolute_uri()}"
+            template = "webapp/site/product.html"
+        elif kind == "page":
+            page = next((p for p in ctx["menu_pages"] + ctx["footer_pages"] if p.slug == extra["slug"]), None)
+            if page is None:
+                raise Http404
+            from apps.industry.site_html import clean_html
+            ctx.update(current_page=page, body=clean_html(page.body))
+            template = "webapp/site/custom_page.html"
+        response = render(request, template, ctx)
     response["Cache-Control"] = "no-store" if preview else "public, max-age=60"
     response["X-Frame-Options"] = "SAMEORIGIN"  # the design area shows it in a preview frame
     return response
@@ -46,7 +72,16 @@ def _can_preview(request, company):
     return company.memberships.filter(user=user, is_active=True).exists()
 
 
-def site_public(request, public_id):
+def _shop_args(request):
+    try:
+        cat = int(request.GET.get("cat") or 0) or None
+        page = int(request.GET.get("page") or 1)
+    except ValueError:
+        cat, page = None, 1
+    return {"category_id": cat, "search": request.GET.get("q", ""), "sort": request.GET.get("sort", ""), "page": page}
+
+
+def _public(request, public_id, kind="home", **extra):
     kit = website_kit.by_public_id(public_id)
     if kit is None:
         raise Http404
@@ -54,15 +89,73 @@ def site_public(request, public_id):
     preview = request.GET.get("preview") == "1" and _can_preview(request, kit.company)
     if design is None or not (preview or (design.enabled and design.published)):
         raise Http404("This website is not published.")
-    return _render_site(request, design, preview)
+    if kind == "shop":
+        extra = _shop_args(request)
+    return _render_site(request, design, preview, base=f"/site/{public_id}/", kind=kind, **extra)
 
 
-def site_domain_home(request):
+def site_public(request, public_id):
+    return _public(request, public_id)
+
+
+def site_public_shop(request, public_id):
+    return _public(request, public_id, "shop")
+
+
+def site_public_product(request, public_id, product_id):
+    return _public(request, public_id, "product", product_id=product_id)
+
+
+def site_public_page(request, public_id, slug):
+    return _public(request, public_id, "page", slug=slug)
+
+
+def _domain(request, kind="home", **extra):
     """The site on the business's own domain (see CustomDomainMiddleware)."""
     design = getattr(request, "site_design", None)
     if design is None or not design.published:
         raise Http404("This website is not published yet.")
-    return _render_site(request, design)
+    if kind == "shop":
+        extra = _shop_args(request)
+    return _render_site(request, design, base="/", kind=kind, **extra)
+
+
+def site_domain_home(request):
+    return _domain(request)
+
+
+def site_domain_shop(request):
+    return _domain(request, "shop")
+
+
+def site_domain_product(request, product_id):
+    return _domain(request, "product", product_id=product_id)
+
+
+def site_domain_page(request, slug):
+    return _domain(request, "page", slug=slug)
+
+
+def site_domain_sitemap(request):
+    from django.http import HttpResponse
+    from apps.industry import shop_orders
+    design = getattr(request, "site_design", None)
+    if design is None or not design.published:
+        raise Http404
+    root = request.build_absolute_uri("/")
+    urls = [root]
+    if svc.is_shop(design.company):
+        urls.append(root + "shop/")
+        urls += [f"{root}shop/{pid}/" for pid in shop_orders.sellable(design.company).values_list("id", flat=True)[:2000]]
+    urls += [f"{root}p/{p.slug}/" for p in svc.pages_for(design.company, "/", "")]
+    body = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + \
+        "".join(f"<url><loc>{u}</loc></url>" for u in urls) + "</urlset>"
+    return HttpResponse(body, content_type="application/xml")
+
+
+def site_domain_robots(request):
+    from django.http import HttpResponse
+    return HttpResponse(f"User-agent: *\nAllow: /\nSitemap: {request.build_absolute_uri('/sitemap.xml')}\n", content_type="text/plain")
 
 
 # ------------------------------------------------------------------ design area
@@ -75,16 +168,18 @@ class DesignForm(forms.ModelForm):
         model = SiteDesign
         fields = ["published", "language", "extra_languages", "theme", "font", "primary_color", "accent_color", "logo",
                   "hero_image", "hero_title", "hero_subtitle", "about", "opening_hours", "whatsapp", "instagram", "facebook",
-                  "tiktok", "map_url", "show_catalogue", "show_offers", "show_booking", "show_careers", "show_contact"]
+                  "tiktok", "map_url", "show_catalogue", "show_offers", "show_booking", "show_careers", "show_contact", "custom_css"]
         labels = {"language": _l("Website language"), "published": _l("Website is live"), "theme": _l("Design"), "font": _l("Font"), "logo": _l("Logo"),
                   "hero_image": _l("Cover photo"), "hero_title": _l("Big title"), "hero_subtitle": _l("Line under the title"),
                   "about": _l("About us"), "opening_hours": _l("Opening hours"), "whatsapp": _l("WhatsApp number"),
                   "map_url": _l("Google Maps link"), "show_catalogue": _l("Show menu / services / products"),
                   "show_offers": _l("Show offers"), "show_booking": _l("Show booking form"),
-                  "show_careers": _l("Show jobs"), "show_contact": _l("Show contact form")}
+                  "show_careers": _l("Show jobs"), "show_contact": _l("Show contact form"), "custom_css": _l("My own CSS")}
         help_texts = {"logo": _l("Leave empty to use the company logo."),
                       "opening_hours": _l("One line each, e.g. Sat–Thu 10am–11pm")}
-        widgets = {"about": forms.Textarea(attrs={"rows": 4}), "opening_hours": forms.Textarea(attrs={"rows": 3})}
+        widgets = {"about": forms.Textarea(attrs={"rows": 4}), "opening_hours": forms.Textarea(attrs={"rows": 3}),
+                   "custom_css": forms.Textarea(attrs={"rows": 8, "spellcheck": "false", "style": "font-family:monospace",
+                                                       "placeholder": ".hero{background:#111}\n.card{border-radius:4px}\n.btn{background:#e11d48}"})}
 
     extra_languages = forms.MultipleChoiceField(required=False, label=_l("Visitors can also switch to"),
                                                 widget=forms.CheckboxSelectMultiple)
@@ -121,11 +216,10 @@ class AdminSiteForm(forms.ModelForm):
 
     class Meta:
         model = SiteDesign
-        fields = ["enabled", "custom_domain", "domain_status", "custom_css", "custom_html"]
+        fields = ["enabled", "custom_domain", "domain_status", "custom_html"]
         labels = {"enabled": "Website add-on is on for this client", "domain_status": "Domain status",
-                  "custom_css": "Custom CSS", "custom_html": "Custom HTML section"}
-        widgets = {"custom_css": forms.Textarea(attrs={"rows": 6, "style": "font-family:monospace"}),
-                   "custom_html": forms.Textarea(attrs={"rows": 6, "style": "font-family:monospace"})}
+                  "custom_html": "Custom HTML section"}
+        widgets = {"custom_html": forms.Textarea(attrs={"rows": 6, "style": "font-family:monospace"})}
 
     def clean_custom_domain(self):
         host = svc.normalise_domain(self.cleaned_data.get("custom_domain"))
@@ -152,6 +246,8 @@ def _editor(request, company, admin):
     form = DesignForm(request.POST if action == "design" else None, request.FILES if action == "design" else None,
                       instance=design, prefix="d")
     aform = AdminSiteForm(request.POST if action == "admin" else None, instance=design, prefix="a") if admin else None
+    if action in ("page_save", "page_delete") and not admin:
+        return _page_action(request, company, action)
     target = {"design": form, "admin": aform}.get(action)
     if target is not None and (action != "design" or design.enabled or admin) and target.is_valid():
         saved = target.save()
@@ -176,8 +272,59 @@ def _editor(request, company, admin):
            "public": public, "preview": f"{public}?preview=1", "links": links,
            "own": f"https://{design.custom_domain}" if design.custom_domain else "",
            "base_template": "webapp/admin_base.html" if admin else "base.html",
-           "host": request.get_host().split(":")[0]}
+           "host": request.get_host().split(":")[0], "pages": SitePage.objects.filter(company=company),
+           "is_shop": svc.is_shop(company), "page_form": SitePageForm(prefix="pg") if not admin else None}
     return render(request, "webapp/site/editor.html", ctx)
+
+
+class SitePageForm(forms.ModelForm):
+    slug = forms.CharField(required=False, max_length=80)
+
+    class Meta:
+        model = SitePage
+        fields = ["title", "slug", "body", "show_in_menu", "published", "sort_order"]
+        labels = {"title": _l("Page title"), "slug": _l("Web address"), "body": _l("Page text"),
+                  "show_in_menu": _l("Show in the top menu (off: footer only)"), "published": _l("Page is live"),
+                  "sort_order": _l("Order")}
+        help_texts = {"slug": _l("e.g. warranty → yoursite.com/p/warranty/"),
+                      "body": _l("Plain text, or HTML (headings, lists, pictures, tables, YouTube / Google Maps embeds). Scripts are removed.")}
+        widgets = {"body": forms.Textarea(attrs={"rows": 10})}
+
+    def __init__(self, *args, company=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.company = company
+        self.fields["sort_order"].required = False
+        self.fields["slug"].label = _l("Web address")
+        self.fields["slug"].help_text = _l("e.g. warranty → yoursite.com/p/warranty/")
+
+    def clean_sort_order(self):
+        return self.cleaned_data.get("sort_order") or 0
+
+    def clean_slug(self):
+        from django.utils.text import slugify
+        slug = slugify(self.cleaned_data.get("slug") or self.cleaned_data.get("title") or "")[:80] or "page"
+        if self.company and SitePage.objects.filter(company=self.company, slug=slug).exclude(pk=self.instance.pk).exists():
+            raise ValidationError(_("Another page already uses this address."))
+        return slug
+
+
+def _page_action(request, company, action):
+    page = None
+    if request.POST.get("page_id"):
+        page = get_object_or_404(SitePage.objects.filter(company=company), id=request.POST["page_id"])
+    if action == "page_delete" and page:
+        page.delete()
+        messages.success(request, _("Page deleted."))
+        return redirect(request.path + "#pages")
+    form = SitePageForm(request.POST, instance=page, prefix="pg", company=company)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.company = company
+        obj.save()
+        messages.success(request, _("Page saved."))
+    else:
+        messages.error(request, " ".join(str(e) for errs in form.errors.values() for e in errs))
+    return redirect(request.path + "#pages")
 
 
 @login_required

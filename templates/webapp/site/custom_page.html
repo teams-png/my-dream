@@ -1,0 +1,9 @@
+{% extends "webapp/site/_base.html" %}{% load i18n %}
+{% block title %}{{ current_page.title }} · {{ company.name }}{% endblock %}
+{% block description %}{{ body|striptags|truncatechars:150 }}{% endblock %}
+{% block main %}
+<section class="section" style="padding-top:8px"><div class="wrap">
+  <div class="page-head"><h1>{{ current_page.title }}</h1></div>
+  <div class="rich">{{ body|safe }}</div>
+</div></section>
+{% endblock %}

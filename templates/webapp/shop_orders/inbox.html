@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Website orders" %}{% endblock %}
+{% block heading %}🛒 {% translate "Website orders" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.oo-state{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:var(--panel);margin-bottom:14px}
+.oo-state .dot{width:12px;height:12px;border-radius:50%;background:#94a3b8;flex:none}.oo-state.on .dot{background:#16a34a;box-shadow:0 0 0 4px #16a34a22}.oo-state.paused .dot{background:#f59e0b}
+.oo-state b{font-size:16px}.oo-state small{display:block;color:var(--ink-soft)}
+.oo-tabs{display:flex;gap:8px;margin:6px 0 12px}.oo-tabs a{padding:6px 14px;border-radius:99px;border:1px solid var(--line);text-decoration:none;font-weight:700;color:inherit}.oo-tabs a.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.oo-card{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px 16px;margin-bottom:12px}
+.oo-card.new{border:2px solid #f59e0b;box-shadow:0 6px 22px #f59e0b22}
+.oo-top{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}.oo-top .grow{flex:1 1 160px;min-width:0}
+.oo-top b{font-size:16px}.oo-top small{color:var(--ink-soft)}
+.oo-mode{padding:3px 10px;border-radius:99px;font-weight:800;font-size:12.5px;background:#e0f2fe;color:#075985}.oo-mode.delivery{background:#fef3c7;color:#92400e}
+.oo-chip{padding:3px 10px;border-radius:99px;font-size:12.5px;font-weight:800;background:var(--paper)}
+.oo-chip.new{background:#fef3c7;color:#92400e}.oo-chip.confirmed{background:#e0f2fe;color:#075985}.oo-chip.ready,.oo-chip.done{background:#dcfce7;color:#166534}.oo-chip.rejected,.oo-chip.cancelled{background:#fee2e2;color:#991b1b}
+.oo-lines{margin:10px 0;padding:0;list-style:none;display:grid;gap:4px}.oo-lines li{display:flex;gap:8px}.oo-lines li span:first-child{flex:1;min-width:0}
+.oo-total{font-weight:800;font-size:17px}
+.oo-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}.oo-acts form{margin:0;display:flex;gap:8px;flex-wrap:wrap}
+.oo-acts .go{background:#16a34a;border-color:#16a34a}.oo-acts input[name=reason]{min-width:0;flex:1 1 160px}
+.oo-set{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 18px}
+.oo-set .wide{grid-column:1/-1}.oo-set label:not(.chk){display:grid;gap:6px;align-content:start}.oo-set label.chk{display:flex;gap:10px;align-items:flex-start;font-weight:700}.oo-set label.chk input{margin-top:3px;width:18px;height:18px;flex:none}
+.oo-set .help{display:block;font-weight:400;color:var(--ink-soft);font-size:13px}
+</style>
+<div class="ix">
+  <div class="oo-state {% if design.shop_enabled %}{% if design.shop_paused %}paused{% else %}on{% endif %}{% endif %}">
+    <span class="dot"></span>
+    <span style="flex:1 1 220px;min-width:0">
+      {% if not design.shop_enabled %}<b>{% translate "Website shop is off" %}</b><small>{% translate "Switch it on below to show “+ Add” and a cart on your website." %}</small>
+      {% elif design.shop_paused %}<b>{% translate "Paused — not taking orders now" %}</b><small>{% translate "Customers can see your products, but cannot order." %}</small>
+      {% else %}<b>{% translate "Taking orders from your website" %}</b><small>{% translate "Confirm each new order, send it, then make the bill. This page beeps when a new order comes." %}</small>{% endif %}
+    </span>
+    <a class="btn btn-secondary" href="{{ site_url }}" target="_blank" rel="noopener">↗ {% translate "Open my website" %}</a>
+  </div>
+  {% if not design.enabled %}<div class="card" style="margin-bottom:14px">{% translate "Your BookPilot website is not switched on yet. Ask your BookPilot team to switch on the Website add-on — or put the cart on your own website with the Website kit." %}</div>{% endif %}
+
+  <div class="oo-tabs">
+    <a class="{% if show == 'open' %}on{% endif %}" href="?show=open">{% translate "Open orders" %}{% if new_count %} · {{ new_count }} {% translate "new" %}{% endif %}</a>
+    <a class="{% if show != 'open' %}on{% endif %}" href="?show=all">{% translate "All orders" %}</a>
+  </div>
+
+  {% for o in orders %}
+  <div class="oo-card{% if o.status == 'new' %} new{% endif %}">
+    <div class="oo-top">
+      <span class="grow"><b>{{ o.number }}</b> · {{ o.customer_name }} · <a href="tel:{{ o.phone }}">{{ o.phone }}</a>{% if o.email %} · {{ o.email }}{% endif %}<br><small>{{ o.created_at|date:"d M, H:i" }}{% if o.source %} · {{ o.source }}{% endif %}</small></span>
+      <span class="oo-mode {{ o.mode }}">{% if o.mode == "delivery" %}🚚{% else %}🛍{% endif %} {{ o.get_mode_display }}</span>
+      <span class="oo-chip {{ o.status }}">{{ o.get_status_display }}</span>
+    </div>
+    <ul class="oo-lines">
+      {% for l in o.lines.all %}<li><span>{{ l.quantity }} × {{ l.name }}</span><span>{{ l.line_total|floatformat:2 }}</span></li>{% endfor %}
+      {% if o.delivery_fee %}<li><span>{% translate "Delivery" %}</span><span>{{ o.delivery_fee|floatformat:2 }}</span></li>{% endif %}
+    </ul>
+    {% if o.address %}<div>📍 {{ o.address }}</div>{% endif %}
+    {% if o.note %}<div>📝 {{ o.note }}</div>{% endif %}
+    {% if o.reject_reason %}<div style="color:#991b1b">✖ {{ o.reject_reason }}</div>{% endif %}
+    <div class="oo-acts">
+      <span class="oo-total" style="margin-inline-end:auto">{{ currency }} {{ o.total|floatformat:2 }}</span>
+      {% if o.whatsapp %}<a class="btn btn-secondary" href="{{ o.whatsapp }}" target="_blank" rel="noopener">💬 {% translate "WhatsApp customer" %}</a>{% endif %}
+      {% if o.invoice_id %}<a class="btn btn-secondary" href="{% url 'webapp:invoice_pdf' o.invoice_id %}" target="_blank">🧾 {{ o.invoice.invoice_number }}</a><a class="btn btn-secondary" href="{% url 'webapp:invoice_share' o.invoice_id %}">{% translate "Share / pay link" %}</a>{% endif %}
+      {% if o.status == "new" %}
+      <form method="post" action="{% url 'webapp:shop_order_action' o.id %}">{% csrf_token %}<input type="hidden" name="do" value="confirm"><button class="btn go" type="submit">✓ {% translate "Confirm" %}</button></form>
+      {% endif %}
+      {% if o.status == "new" or o.status == "confirmed" %}
+      <form method="post" action="{% url 'webapp:shop_order_action' o.id %}">{% csrf_token %}<input type="hidden" name="do" value="ready"><button class="btn btn-secondary" type="submit">{% if o.mode == "delivery" %}🚚 {% translate "Out for delivery" %}{% else %}📦 {% translate "Ready for pickup" %}{% endif %}</button></form>
+      {% endif %}
+      {% if o.status == "new" or o.status == "confirmed" or o.status == "ready" %}
+      <form method="post" action="{% url 'webapp:shop_order_action' o.id %}">{% csrf_token %}<input type="hidden" name="do" value="bill"><button class="btn" type="submit">🧾 {% translate "Make bill (paid / delivered)" %}</button></form>
+      <form method="post" action="{% url 'webapp:shop_order_action' o.id %}" onsubmit="return confirm('{% translate "Close this order without a bill?" %}')">{% csrf_token %}<input type="hidden" name="do" value="{% if o.status == 'new' %}reject{% else %}cancel{% endif %}"><input name="reason" maxlength="255" placeholder="{% translate 'Reason, e.g. out of stock' %}"><button class="btn btn-secondary" type="submit">✖ {% if o.status == 'new' %}{% translate "Reject" %}{% else %}{% translate "Cancel" %}{% endif %}</button></form>
+      {% endif %}
+    </div>
+  </div>
+  {% empty %}
+  <div class="card empty">{% if show == "open" %}{% translate "No open website orders." %}{% else %}{% translate "No website orders yet." %}{% endif %}</div>
+  {% endfor %}
+
+  {% url 'webapp:shop_order_settings' as settings_url %}
+  <details class="card" style="margin-top:18px" {% if not design.shop_enabled %}open{% endif %}>
+    <summary style="cursor:pointer;font-weight:800">⚙ {% translate "Online shop settings" %}</summary>
+    <form method="post" action="{{ settings_url }}" style="margin-top:12px">{% csrf_token %}
+      <div class="oo-set">
+        {% for field in form %}
+          {% if field.field.widget.input_type == "checkbox" %}
+          <label class="chk">{{ field }}<span>{{ field.label }}{% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}</span></label>
+          {% else %}
+          <label class="{% if field.name == 'shop_note' %}wide{% endif %}">{{ field.label }}{{ field }}{% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}</label>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <button class="btn" type="submit" style="margin-top:12px">{% translate "Save" %}</button>
+    </form>
+  </details>
+</div>
+{% endblock %}

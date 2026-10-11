@@ -12,7 +12,14 @@ PUBLIC = {"kit_info", "kit_catalogue", "kit_offers", "kit_order", "kit_order_js"
           "site_public"}
 
 public_patterns = [p for p in app_urlpatterns if getattr(p, "name", None) in PUBLIC]
-public_patterns.append(path("", site_views.site_domain_home, name="site_domain_home"))
+public_patterns += [
+    path("", site_views.site_domain_home, name="site_domain_home"),
+    path("shop/", site_views.site_domain_shop, name="site_domain_shop"),
+    path("shop/<int:product_id>/", site_views.site_domain_product, name="site_domain_product"),
+    path("p/<slug:slug>/", site_views.site_domain_page, name="site_domain_page"),
+    path("sitemap.xml", site_views.site_domain_sitemap, name="site_domain_sitemap"),
+    path("robots.txt", site_views.site_domain_robots, name="site_domain_robots"),
+]
 
 urlpatterns = [path("", include((public_patterns, "webapp")))]
 

@@ -229,11 +229,18 @@ def kit_order(request, public_id):
         from django.utils import translation
         lang = site_lang(kit.company, str(data.get("lang") or ""))
         try:
+            source = origin.split("://", 1)[-1] if origin else ("api" if trusted else "")
             with translation.override(lang):
-                online = online_orders.place(kit.company, data, source=origin.split("://", 1)[-1] if origin else ("api" if trusted else ""))
+                if online_orders.is_restaurant(kit.company):
+                    online = online_orders.place(kit.company, data, source=source)
+                    reference, accepted = online.order.order_number, online.status == "accepted"
+                else:
+                    from apps.industry import shop_orders
+                    online = shop_orders.place(kit.company, data, source=source)
+                    reference, accepted = online.number, False
             track = request.build_absolute_uri(reverse("webapp:kit_order_status", args=[public_id, online.token])) + f"?lang={lang}"
-            body, status = {"ok": True, "reference": online.order.order_number, "total": f"{online.total:.2f}",
-                            "track_url": track, "accepted": online.status == "accepted"}, 201
+            body, status = {"ok": True, "reference": reference, "total": f"{online.total:.2f}",
+                            "track_url": track, "accepted": accepted}, 201
         except ValidationError as exc:
             with translation.override(lang):
                 body, status = {"ok": False, "error": " ".join(str(m) for m in exc.messages)}, 400
@@ -250,7 +257,18 @@ def site_lang(company, wanted=None):
     return design.language if design and design.language in codes else "en"
 
 
-def cart_labels():
+def cart_labels(shop=False):
+    from django.utils.translation import gettext as _
+    labels = _cart_labels()
+    if shop:  # a shop, not a restaurant
+        labels.update(will_confirm=_("The shop will confirm your order shortly."), pickup_from=_("Pickup from the shop"),
+                      empty=_("Your cart is empty. Tap “+ Add” on a product."),
+                      note=_("Note, e.g. colour, model, best time to call"), email=_("Email (optional)"),
+                      free_over=_("Free delivery over %s"))
+    return labels
+
+
+def _cart_labels():
     from django.utils.translation import gettext as _
     return {"your_order": _("Your order"), "view_order": _("View order"), "order_sent": _("Order sent"),
             "thanks": _("Thank you!"), "in_kitchen": _("Your order is in the kitchen."),
@@ -274,9 +292,14 @@ def kit_order_js(request, public_id):
     from apps.verticals.restaurant import online_orders
     kit = _kit_or_404(public_id)
     lang = site_lang(kit.company, request.GET.get("lang"))
-    cfg = online_orders.config(kit.company) or {"enabled": False}
+    cfg = online_orders.config(kit.company)
+    shop = cfg is None
+    if shop:
+        from apps.industry import shop_orders
+        cfg = shop_orders.config(kit.company)
+    cfg = cfg or {"enabled": False}
     with translation.override(lang):
-        cfg.update(t=cart_labels(), lang=lang, rtl=translation.get_language_bidi())
+        cfg.update(t=cart_labels(shop=shop), lang=lang, rtl=translation.get_language_bidi())
     cfg.update(endpoint=request.build_absolute_uri(reverse("webapp:kit_order", args=[public_id])),
                color=kit.accent_color or "#0f766e", key=f"bp-cart-{public_id}", phone=kit.company.phone or "")
     response = _js(request, "webapp/website_kit/order.js", cfg)
@@ -285,8 +308,12 @@ def kit_order_js(request, public_id):
 
 
 def kit_order_status(request, public_id, token):
+    from apps.industry.models import ShopOrder
     from apps.verticals.restaurant.models import OnlineOrder
     kit = _kit_or_404(public_id)
+    shop_order = ShopOrder._base_manager.select_related("company").filter(token=token, company=kit.company).first()
+    if shop_order is not None:
+        return _shop_order_status(request, kit, shop_order)
     online = get_object_or_404(OnlineOrder._base_manager.select_related("order", "company"), token=token, company=kit.company)
     lines = [line for line in online.order.lines.select_related("product") if line.product.sku != "DELIVERY-FEE"]
     fee = sum((line.total for line in online.order.lines.all() if line.product.sku == "DELIVERY-FEE"), 0)
@@ -298,6 +325,20 @@ def kit_order_status(request, public_id, token):
         return render(request, "webapp/restaurant/online_status.html", {"lang": lang, "lang_bidi": translation.get_language_bidi(),
         "online": online, "order": online.order, "company": kit.company, "lines": lines, "fee": fee,
         "color": kit.accent_color or "#0f766e", "steps": _steps(online.stage)})
+
+
+def _shop_order_status(request, kit, order):
+    from django.utils import translation
+    if request.GET.get("format") == "json":
+        return _public_json({"reference": order.number, "stage": order.status})
+    lang = site_lang(kit.company, request.GET.get("lang"))
+    names = ["new", "confirmed", "ready", "done"]
+    reached = names.index(order.status) if order.status in names else -1
+    with translation.override(lang):
+        return render(request, "webapp/site/shop_order_status.html", {
+            "lang": lang, "lang_bidi": translation.get_language_bidi(), "order": order, "company": kit.company,
+            "lines": order.lines.all(), "color": kit.accent_color or "#0f766e",
+            "steps": [(name, i <= reached) for i, name in enumerate(names)]})
 
 
 def _steps(stage):

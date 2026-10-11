@@ -1,0 +1,31 @@
+{% extends "webapp/site/_base.html" %}{% load i18n %}
+{% block title %}{% if category %}{{ category.name }} · {% endif %}{% translate "Shop" %} · {{ company.name }}{% endblock %}
+{% block main %}
+<section class="section" style="padding-top:8px"><div class="wrap">
+  <div class="page-head"><h1>{% if category %}{{ category.name }}{% else %}{% translate "All products" %}{% endif %}</h1>
+    <p class="lead" style="color:var(--soft);margin:0">{% blocktranslate count n=total %}{{ n }} product{% plural %}{{ n }} products{% endblocktranslate %}</p></div>
+  <div class="shop-bar">
+    <form method="get" role="search">
+      {% if lang_q %}<input type="hidden" name="lang" value="{{ lang_q }}">{% endif %}{% if preview %}<input type="hidden" name="preview" value="1">{% endif %}
+      {% if category %}<input type="hidden" name="cat" value="{{ category.id }}">{% endif %}
+      <input type="search" name="q" value="{{ search }}" placeholder="{% translate 'Search products…' %}" aria-label="{% translate 'Search products' %}">
+      <select name="sort" onchange="this.form.submit()" aria-label="{% translate 'Sort' %}">
+        <option value="">{% translate "Sort: name" %}</option>
+        <option value="low"{% if sort == "low" %} selected{% endif %}>{% translate "Price: low to high" %}</option>
+        <option value="high"{% if sort == "high" %} selected{% endif %}>{% translate "Price: high to low" %}</option>
+        <option value="new"{% if sort == "new" %} selected{% endif %}>{% translate "Newest" %}</option>
+      </select>
+    </form>
+  </div>
+  {% if categories|length > 1 %}<nav class="chips" aria-label="{% translate 'Categories' %}">
+    <a href="{{ shop_url }}"{% if not category %} class="on"{% endif %}>{% translate "All" %}</a>
+    {% for c in categories %}<a href="{{ c.url }}"{% if category and category.id == c.id %} class="on"{% endif %}>{{ c.name }}</a>{% endfor %}
+  </nav>{% endif %}
+  {% if items %}
+  <div class="grid pgrid" style="margin-top:14px">{% for item in items %}{% include "webapp/site/_card.html" %}{% endfor %}</div>
+  {% else %}
+  <p style="color:var(--soft);margin-top:20px">{% translate "No products found." %}</p>
+  {% endif %}
+  {% if pages > 1 %}<nav class="pager">{% if prev_url %}<a href="{{ prev_url }}">← {% translate "Previous" %}</a>{% endif %}<span>{{ page }} / {{ pages }}</span>{% if next_url %}<a href="{{ next_url }}">{% translate "Next" %} →</a>{% endif %}</nav>{% endif %}
+</div></section>
+{% endblock %}

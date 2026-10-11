@@ -309,6 +309,9 @@ class BusinessProductForm(ProductForm):
             self.fields["sold_by_ml"] = forms.BooleanField(
                 required=False, label="Sold by the ml (decant / loose oil)", initial=bool(attrs.get("sold_by_ml")),
                 help_text="Billing asks how many ml; the price is per ml.")
+        self.fields["web_description"] = forms.CharField(
+            required=False, max_length=4000, label=_l("Description for the website"), initial=attrs.get("web_description", ""),
+            widget=forms.Textarea(attrs={"rows": 3}), help_text=_l("Shown on the product page of your online shop."))
         self.fields["wholesale_price"].initial = attrs.get("wholesale_price")
         self.fields["carton_quantity"].initial = attrs.get("carton_quantity")
 
@@ -326,6 +329,8 @@ class BusinessProductForm(ProductForm):
         for name in ("wholesale_price", "carton_quantity"):
             value = self.cleaned_data.get(name)
             attrs[name] = str(value) if value is not None else ""
+        if "web_description" in self.fields:
+            attrs["web_description"] = (self.cleaned_data.get("web_description") or "").strip()
         if self.weighed:
             attrs["sold_by_weight"] = bool(self.cleaned_data.get("sold_by_weight"))
             attrs["scale_code"] = (self.cleaned_data.get("scale_code") or "").strip().lstrip("0")

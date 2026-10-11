@@ -170,3 +170,123 @@ def content(design, absolute):
         from .careers import site_for
         ctx["careers_slug"] = site_for(company).slug
     return ctx
+
+
+# ------------------------------------------------------------------ shop pages (many-page website)
+
+PAGE_SIZE = 24
+HIDDEN_ATTRS = {"sold_by_weight", "sold_by_ml", "scale_code", "item_type", "wholesale_price", "carton_quantity",
+                "web_description", "serial_required", "making_mode", "making_charge", "stone_value"}
+
+
+def query(lang, design, preview, **params):
+    """'?lang=ar&preview=1&cat=3' — keeps the visitor's language and the owner's preview on every link."""
+    from urllib.parse import urlencode
+    parts = {}
+    if lang and lang != design.language:
+        parts["lang"] = lang
+    if preview:
+        parts["preview"] = "1"
+    parts.update({k: v for k, v in params.items() if v not in (None, "", 1) or k != "page"})
+    parts = {k: v for k, v in parts.items() if v not in (None, "")}
+    return ("?" + urlencode(parts)) if parts else ""
+
+
+def is_shop(company):
+    from . import shop_orders
+    return shop_orders.applies(company)
+
+
+def pages_for(company, base, q):
+    from .models import SitePage
+    out = []
+    for p in SitePage.objects.filter(company=company, published=True):
+        p.url = f"{base}p/{p.slug}/{q}"
+        out.append(p)
+    return out
+
+
+def layout(design, base, lang, preview):
+    """Links and pieces every page of the website shares (header menu, footer, the owner's CSS)."""
+    from .site_html import clean_css
+    q = query(lang, design, preview)
+    pages = pages_for(design.company, base, q)
+    shop = is_shop(design.company) and design.show_catalogue
+    return {"base": base, "q": q, "home": base + q, "lang_q": lang if lang != design.language else "",
+            "shop_url": f"{base}shop/{q}" if shop else "", "menu_pages": [p for p in pages if p.show_in_menu],
+            "footer_pages": [p for p in pages if not p.show_in_menu], "custom_css": clean_css(design.custom_css)}
+
+
+def _item(p, company, absolute, base, q, stock, ordering):
+    from apps.inventory.pictures import picture_url
+    in_stock = not p.is_stock_tracked or stock.get(p.id, 0) > 0
+    return {"id": p.id, "name": f"{p.name} — {p.variant_label}" if p.variant_label else p.name,
+            "category": p.category.name if p.category_id else "", "category_id": p.category_id,
+            "price": f"{p.selling_price:.2f}", "image": absolute(picture_url(p, company.business_type.code)),
+            "available": in_stock, "orderable": bool(ordering and ordering.get("open") and in_stock),
+            "tracked": p.is_stock_tracked, "stock": int(stock.get(p.id, 0)), "url": f"{base}shop/{p.id}/{q}",
+            "brand": p.brand.name if p.brand_id else "", "description": (p.attributes or {}).get("web_description", "")}
+
+
+def shop_page(design, absolute, base, lang, preview, category_id=None, search="", sort="", page=1):
+    from apps.inventory.models import ProductCategory
+    from . import shop_orders
+    company = design.company
+    ordering = shop_orders.config(company)
+    qs = shop_orders.sellable(company).select_related("category", "brand")
+    cats = list(ProductCategory.objects.filter(company=company, id__in=qs.values("category_id")).order_by("name"))
+    category = next((c for c in cats if c.id == category_id), None)
+    if category:
+        qs = qs.filter(category=category)
+    search = (search or "").strip()[:80]
+    if search:
+        from django.db.models import Q
+        qs = qs.filter(Q(name__icontains=search) | Q(brand__name__icontains=search) | Q(sku__iexact=search) |
+                       Q(category__name__icontains=search))
+    qs = qs.order_by({"low": "selling_price", "high": "-selling_price", "new": "-id"}.get(sort, "name"), "id")
+    total = qs.count()
+    pages = max(1, -(-total // PAGE_SIZE))
+    page = min(max(1, page), pages)
+    rows = list(qs[(page - 1) * PAGE_SIZE: page * PAGE_SIZE])
+    q = query(lang, design, preview)
+    stock = shop_orders.stock_for(company, rows)
+    items = [_item(p, company, absolute, base, q, stock, ordering) for p in rows]
+    for c in cats:
+        c.url = f"{base}shop/" + query(lang, design, preview, cat=c.id)
+    more = dict(cat=category.id if category else None, q=search, sort=sort)
+    return {"items": items, "categories": cats, "category": category, "search": search, "sort": sort, "total": total,
+            "page": page, "pages": pages, "ordering": ordering,
+            "prev_url": f"{base}shop/" + query(lang, design, preview, page=page - 1, **more) if page > 1 else "",
+            "next_url": f"{base}shop/" + query(lang, design, preview, page=page + 1, **more) if page < pages else ""}
+
+
+def product_page(design, absolute, base, lang, preview, product_id):
+    """None when the product is not sold on the website."""
+    from apps.webapp.forms import BusinessProductForm
+    from . import shop_orders
+    company = design.company
+    p = shop_orders.sellable(company).select_related("category", "brand", "parent").filter(id=product_id).first()
+    if p is None:
+        return None
+    ordering = shop_orders.config(company)
+    q = query(lang, design, preview)
+    siblings = list(shop_orders.sellable(company).filter(parent_id=p.parent_id).order_by("id")) if p.parent_id else [p]
+    related = list(shop_orders.sellable(company).filter(category_id=p.category_id).exclude(id__in=[s.id for s in siblings])
+                   .select_related("category", "brand").order_by("?")[:4]) if p.category_id else []
+    stock = shop_orders.stock_for(company, siblings + related)
+    item = _item(p, company, absolute, base, q, stock, ordering)
+    if p.category_id:
+        item["category_url"] = f"{base}shop/" + query(lang, design, preview, cat=p.category_id)
+    labels = BusinessProductForm.FIELD_LABELS
+    specs = []
+    for field, label in (("size", _l("Size")), ("colour", _l("Colour")), ("material", _l("Material"))):
+        if getattr(p, field):
+            specs.append((label, getattr(p, field)))
+    for key, value in (p.attributes or {}).items():
+        if key in HIDDEN_ATTRS or value in ("", None, False) or isinstance(value, (dict, list)):
+            continue
+        value = _l("Yes") if value is True else value
+        specs.append((labels.get(key) or key.replace("_", " ").capitalize(), value))
+    options = [{"id": s.id, "label": s.variant_label or s.name, "url": f"{base}shop/{s.id}/{q}"} for s in siblings]
+    return {"item": item, "specs": specs, "options": options, "ordering": ordering,
+            "related": [_item(r, company, absolute, base, q, stock, ordering) for r in related]}

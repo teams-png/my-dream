@@ -49,15 +49,38 @@
           <p>{{ aform.domain_status.label_tag }}{{ aform.domain_status }}</p>
         </div>
         <div class="muted" style="margin:-4px 0 12px;line-height:1.6">
-          <b>Own domain steps:</b> 1) At the client's domain company add a DNS record: <code>CNAME www → {{ host }}</code> (bare domain: ALIAS/ANAME to {{ host }}, or forward it to www).
+          <b>Own domain steps:</b> 1) At the client's domain company (e.g. Hostinger → DNS records) add <code>CNAME www → {{ host }}</code> and <code>A @ → 216.24.57.1</code> (Render's address for bare domains).
           2) In Render → bookpilot-web → Settings → Custom Domains add the same domain (Render issues the SSL certificate).
           3) When it opens, set status to <b>Live</b>. Until then the site works at <code>{{ public }}</code>.
         </div>
-        <p>{{ aform.custom_css.label_tag }}{{ aform.custom_css }}<span class="helptext">Added after the theme styles. Use .site, .hero, .section, .card…</span></p>
         <p>{{ aform.custom_html.label_tag }}{{ aform.custom_html }}<span class="helptext">{{ aform.custom_html.help_text }}</span></p>
         <button class="btn" type="submit">Save admin settings</button>
       </form>
     </div>
+    {% endif %}
+
+    {% if is_shop and not admin %}
+    <div class="card">
+      <h3>🛒 {% translate "Online shop" %}</h3>
+      <p style="margin:0 0 10px">{% translate "Your website has a Shop page with every product, a page for each product, a cart and checkout. Orders arrive in Website orders; stock and prices come from BookPilot." %}</p>
+      <a class="btn" href="{% url 'webapp:shop_orders' %}">{% if design.shop_enabled %}{% translate "Website orders & shop settings" %}{% else %}{% translate "Switch on the cart" %}{% endif %}</a>
+      <a class="btn btn-secondary" href="{% url 'webapp:product_list' %}">{% translate "Products & photos" %}</a>
+    </div>
+    {% endif %}
+
+    {% if not admin %}
+    <details class="card" id="domain">
+      <summary style="cursor:pointer;font-weight:800">🌍 {% translate "Use your own domain (e.g. from Hostinger)" %}</summary>
+      <ol style="line-height:1.7;margin:10px 0 0;padding-inline-start:20px">
+        <li>{% translate "Buy the domain (Hostinger, GoDaddy, Namecheap…). You only need the domain — no hosting plan." %}</li>
+        <li>{% translate "In Hostinger: hPanel → Domains → your domain → DNS / Nameservers → Manage DNS records." %}</li>
+        <li>{% translate "Delete the old A and CNAME records for “@” and “www” (the parking page)." %}</li>
+        <li>{% translate "Add a CNAME record:" %} <code>www</code> → <code>{{ host }}</code></li>
+        <li>{% translate "Add an A record:" %} <code>@</code> → <code>216.24.57.1</code> {% translate "(so the address without www also works)" %}</li>
+        <li>{% translate "Send the domain name to your BookPilot team. We connect it and switch on the free SSL (https). It usually works within 1–24 hours." %}</li>
+      </ol>
+      <p class="muted" style="margin:10px 0 0">{% translate "Until then your website works at" %} <code>{{ public }}</code></p>
+    </details>
     {% endif %}
 
     {% if design.enabled or admin %}
@@ -99,9 +122,46 @@
           <p><label>{{ form.show_careers }} {{ form.show_careers.label }}</label></p>
           <p><label>{{ form.show_contact }} {{ form.show_contact.label }}</label></p>
         </div>
+        <details style="margin-bottom:12px"{% if design.custom_css %} open{% endif %}><summary style="cursor:pointer;font-weight:700">🎨 {{ form.custom_css.label }}</summary>
+          <p style="margin-top:8px">{{ form.custom_css }}<span class="helptext">{% translate "Make the website look like your own design. Your CSS is added after the theme, so it wins. Useful classes: .hero, .section, .card, .btn, .price, header.top, footer, .prod (product page), .shop-bar, .chips. Colours: --p (main), --a (highlight)." %}</span></p>
+        </details>
         <button class="btn" type="submit">{% translate "Save website" %}</button>
       </form>
     </div>
+
+    {% if not admin %}
+    <div class="card" id="pages">
+      <h3>📄 {% translate "Pages" %}</h3>
+      <p class="muted" style="margin:0 0 10px">{% translate "Add more pages to your website: About us, Warranty, Delivery & returns, Terms…" %}</p>
+      {% for pg in pages %}
+      <details style="border-top:1px solid var(--line);padding:8px 0">
+        <summary style="cursor:pointer"><b>{{ pg.title }}</b> <span class="muted">/p/{{ pg.slug }}/{% if not pg.published %} · {% translate "hidden" %}{% endif %}{% if not pg.show_in_menu %} · {% translate "footer" %}{% endif %}</span></summary>
+        <form method="post" style="margin-top:8px">{% csrf_token %}<input type="hidden" name="action" value="page_save"><input type="hidden" name="page_id" value="{{ pg.id }}">
+          <p><label>{% translate "Page title" %}</label><input name="pg-title" value="{{ pg.title }}" maxlength="120" required></p>
+          <p><label>{% translate "Web address" %}</label><input name="pg-slug" value="{{ pg.slug }}" maxlength="80"></p>
+          <p><label>{% translate "Page text" %}</label><textarea name="pg-body" rows="10">{{ pg.body }}</textarea></p>
+          <div class="grid2"><p class="checks"><label><input type="checkbox" name="pg-show_in_menu"{% if pg.show_in_menu %} checked{% endif %}> {% translate "Show in the top menu (off: footer only)" %}</label></p>
+          <p class="checks"><label><input type="checkbox" name="pg-published"{% if pg.published %} checked{% endif %}> {% translate "Page is live" %}</label></p></div>
+          <p><label>{% translate "Order" %}</label><input name="pg-sort_order" type="number" min="0" value="{{ pg.sort_order }}" style="max-width:120px"></p>
+          <button class="btn" type="submit">{% translate "Save page" %}</button>
+          <button class="btn btn-secondary" type="submit" name="action" value="page_delete" onclick="return confirm('{% translate "Delete this page?" %}')">{% translate "Delete" %}</button>
+          {% if design.published %}<a href="{{ public }}p/{{ pg.slug }}/" target="_blank" rel="noopener">↗ {% translate "Open" %}</a>{% endif %}
+        </form>
+      </details>
+      {% endfor %}
+      <details style="border-top:1px solid var(--line);padding:8px 0"{% if not pages %} open{% endif %}>
+        <summary style="cursor:pointer;font-weight:700">＋ {% translate "New page" %}</summary>
+        <form method="post" style="margin-top:8px">{% csrf_token %}<input type="hidden" name="action" value="page_save">
+          <p>{{ page_form.title.label_tag }}{{ page_form.title }}</p>
+          <p>{{ page_form.slug.label_tag }}{{ page_form.slug }}<span class="helptext">{{ page_form.slug.help_text }}</span></p>
+          <p>{{ page_form.body.label_tag }}{{ page_form.body }}<span class="helptext">{{ page_form.body.help_text }}</span></p>
+          <div class="grid2"><p class="checks"><label>{{ page_form.show_in_menu }} {{ page_form.show_in_menu.label }}</label></p>
+          <p class="checks"><label>{{ page_form.published }} {{ page_form.published.label }}</label></p></div>
+          <button class="btn" type="submit">{% translate "Add page" %}</button>
+        </form>
+      </details>
+    </div>
+    {% endif %}
     {% endif %}
   </div>
 

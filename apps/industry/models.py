@@ -1,7 +1,9 @@
+import uuid
 from decimal import Decimal
 
 from django.conf import settings
 from django.db import models
+from django.utils.translation import gettext_lazy as _l
 
 from apps.common.validators import validate_upload_file
 
@@ -516,11 +518,81 @@ class SiteDesign(TenantScopedModel):
     domain_status = models.CharField(max_length=10, choices=DOMAIN_STATUS, blank=True, default="")
     custom_css = models.TextField(blank=True)
     custom_html = models.TextField(blank=True, help_text="Extra section shown above the contact section.")
+    # online shop (shops that sell products: computer, mobile, perfume…; restaurants use their own ordering)
+    shop_enabled = models.BooleanField(default=False)
+    shop_paused = models.BooleanField(default=False)
+    shop_pickup = models.BooleanField(default=True)
+    shop_delivery = models.BooleanField(default=True)
+    shop_delivery_fee = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    shop_free_delivery_over = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    shop_minimum = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    shop_note = models.CharField(max_length=255, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Website · {self.company_id}"
+
+
+class SitePage(TenantScopedModel):
+    """An extra page of the hosted website (About, Warranty, Delivery & returns…), written by the owner."""
+    title = models.CharField(max_length=120)
+    slug = models.SlugField(max_length=80)
+    body = models.TextField(blank=True, help_text="Text or simple HTML. Scripts are removed.")
+    show_in_menu = models.BooleanField(default=True)
+    published = models.BooleanField(default=True)
+    sort_order = models.PositiveIntegerField(default=0)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["sort_order", "title"]
+        unique_together = ("company", "slug")
+
+    def __str__(self):
+        return self.title
+
+
+class ShopOrder(TenantScopedModel):
+    """An order a customer placed in a shop's website cart. Staff confirm it, pack / send it and make the bill
+    (stock goes out then), or reject it with a reason. Prices always come from BookPilot."""
+    MODES = [("pickup", _l("Pickup")), ("delivery", _l("Delivery"))]
+    STATUS = [("new", _l("New")), ("confirmed", _l("Confirmed")), ("ready", _l("Ready / on the way")),
+              ("done", _l("Billed")), ("rejected", _l("Rejected")), ("cancelled", _l("Cancelled"))]
+    number = models.CharField(max_length=20)
+    token = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    status = models.CharField(max_length=10, choices=STATUS, default="new")
+    mode = models.CharField(max_length=10, choices=MODES, default="pickup")
+    customer = models.ForeignKey("customers.Customer", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    customer_name = models.CharField(max_length=150)
+    phone = models.CharField(max_length=30)
+    email = models.EmailField(blank=True)
+    address = models.TextField(blank=True)
+    note = models.CharField(max_length=255, blank=True)
+    source = models.CharField(max_length=120, blank=True)
+    subtotal = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    delivery_fee = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    reject_reason = models.CharField(max_length=255, blank=True)
+    handled_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    handled_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [models.Index(fields=["company", "status"])]
+
+    def __str__(self):
+        return f"{self.number} · {self.customer_name}"
+
+
+class ShopOrderLine(models.Model):
+    order = models.ForeignKey(ShopOrder, on_delete=models.CASCADE, related_name="lines")
+    product = models.ForeignKey("inventory.Product", on_delete=models.PROTECT, related_name="+")
+    name = models.CharField(max_length=255)
+    quantity = models.PositiveIntegerField(default=1)
+    unit_price = models.DecimalField(max_digits=12, decimal_places=2)
+    line_total = models.DecimalField(max_digits=12, decimal_places=2)
 
 
 class MessPlan(TenantScopedModel):

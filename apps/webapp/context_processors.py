@@ -58,3 +58,16 @@ def support_badges(request):
     if company is not None:
         out["support_client_unread"] = lambda: support.client_unread_total(company)
     return out
+
+
+def website_shop(request):
+    """Whether the sidebar shows "Website orders" (a shop whose website cart is on); evaluated only when used."""
+    company = getattr(request, "company", None)
+    if company is None or not getattr(company, "business_type_id", None):
+        return {}
+
+    def on():
+        from apps.industry.models import SiteDesign
+        from apps.industry.shop_orders import applies
+        return applies(company) and SiteDesign.objects.filter(company=company, shop_enabled=True).exists()
+    return {"shop_orders_on": on}

@@ -29,7 +29,7 @@ PAGE_PERMISSIONS = {
         "company_settings", "setup", "branch_list", "branch_add", "branch_edit", "branch_delete",
         "tax_currency", "online_payment_settings", "reminder_settings", "daily_report", "budgets",
         "ob_settings", "ob_wp_plugin", "restaurant_online_settings", "rec_website", "rec_wp_plugin",
-        "site_editor", "scale_settings", "gold_rates",
+        "site_editor", "shop_order_settings", "scale_settings", "gold_rates",
         "restaurant_setup", "restaurant_profile_edit", "restaurant_integration_add", "restaurant_integration_edit",
         "restaurant_starter_kit", "restaurant_demo_menu", "sample_data", "restaurant_area_add", "restaurant_table_add",
         "restaurant_station_add", "restaurant_quick_sale_pin",

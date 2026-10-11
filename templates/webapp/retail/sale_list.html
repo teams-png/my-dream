@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block title %}Sales{% endblock %}
 {% block heading %}Sales{% endblock %}
 {% block content %}
 <div style="margin-bottom:14px;">
-  <a class="btn" href="{% url 'webapp:retail_sale_add' %}">+ New sale</a>
+  <a class="btn" href="{% url 'webapp:pos' %}">🧾 {% translate "New bill" %}</a>
   <a class="btn btn-secondary" href="{% url 'webapp:sales_export_csv' %}">Export CSV</a>
 </div>
 {% if invoices %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Team order" %}{% endblock %}
+{% block heading %}{% if order %}{% translate "Edit team order" %}{% else %}{% translate "New team order" %}{% endif %}{% endblock %}
+{% block content %}
+<div class="card" style="max-width:640px">
+  {% for e in errors %}<p style="color:var(--danger);margin:0 0 8px">{{ e }}</p>{% endfor %}
+  <form class="stacked" method="post">{% csrf_token %}
+    <label>{% translate "Team / club / school" %}</label>
+    <input name="team_name" required value="{{ v.team_name|default:'' }}" placeholder="{% translate 'e.g. Doha Strikers FC' %}">
+    <label>{% translate "Customer (optional)" %}</label>
+    <select name="customer"><option value="">—</option>{% for c in customers %}<option value="{{ c.id }}"{% if v.customer == c.id|stringformat:'s' %} selected{% endif %}>{{ c.name }}</option>{% endfor %}</select>
+    <label>{% translate "Contact phone" %}</label>
+    <input name="contact_phone" value="{{ v.contact_phone|default:'' }}" placeholder="+974 5555 1234">
+    <label>{% translate "What is being made" %}</label>
+    <input name="item" required value="{{ v.item|default:'' }}" placeholder="{% translate 'e.g. Home jersey – blue, name and number on the back' %}">
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+      <div><label>{% translate "Price per piece" %}</label><input name="price_per_piece" inputmode="decimal" value="{{ v.price_per_piece|default:'' }}" placeholder="65.00"></div>
+      <div><label>{% translate "Advance paid" %}</label><input name="advance" inputmode="decimal" value="{{ v.advance|default:'0' }}"></div>
+      <div><label>{% translate "Delivery date" %}</label><input type="date" name="due_date" required value="{{ v.due_date|default:'' }}"></div>
+    </div>
+    <label>{% translate "Players — one per line: Name, Number, Size" %}</label>
+    <textarea name="players" rows="10" placeholder="Rahul, 7, M&#10;Ahmed, 10, L&#10;Joseph, 1, XL">{{ v.players|default:'' }}</textarea>
+    <small style="color:var(--ink-soft)">{% translate "Tip: copy the list from Excel or WhatsApp and paste it here." %}</small>
+    <label>{% translate "Notes" %}</label>
+    <textarea name="notes" rows="2" placeholder="{% translate 'Font, colours, sponsor logo…' %}">{{ v.notes|default:'' }}</textarea>
+    <button class="btn" type="submit" style="margin-top:16px">{% translate "Save" %}</button>
+    <a class="btn btn-secondary" style="margin-top:16px" href="{% url 'webapp:team_order_list' %}">{% translate "Cancel" %}</a>
+  </form>
+</div>
+{% endblock %}

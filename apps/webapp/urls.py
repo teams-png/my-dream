@@ -1,5 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from . import team_order_views
 from . import billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
 
 app_name = "webapp"
@@ -456,6 +457,10 @@ urlpatterns = [
     # ---- Sports Shop ----
     path("sports-shop/products/", views.sports_product_list, name="sports_product_list"),
     path("sports-shop/products/add/", views.sports_product_add, name="sports_product_add"),
+    path("sports-shop/team-orders/", team_order_views.team_order_list, name="team_order_list"),
+    path("sports-shop/team-orders/new/", team_order_views.team_order_form, name="team_order_add"),
+    path("sports-shop/team-orders/<int:order_id>/", team_order_views.team_order_detail, name="team_order_detail"),
+    path("sports-shop/team-orders/<int:order_id>/edit/", team_order_views.team_order_form, name="team_order_edit"),
 
     # ---- Cycle Shop ----
     path("cycle-shop/units/", views.cycle_unit_list, name="cycle_unit_list"),

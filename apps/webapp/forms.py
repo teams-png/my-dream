@@ -181,6 +181,8 @@ class BusinessProductForm(ProductForm):
         "book_store": ("isbn", "author", "publisher", "grade_subject"),
         "perfume_shop": ("fragrance_family", "volume_ml", "concentration", "gender"),
         "protein_shop": ("flavour", "pack_size", "servings", "goal"),
+        "sports_shop": ("sport_category", "gender", "material_spec"),
+        "fitness_sports_store": ("sport_category", "gender", "material_spec"),
         "medical_shop": ("generic_name", "strength", "pack_size", "prescription_required"),
         "pharmacy": ("generic_name", "strength", "pack_size", "prescription_required"),
         "watch_shop": ("model_number", "movement", "strap_material", "water_resistance"),
@@ -255,7 +257,7 @@ class BusinessProductForm(ProductForm):
         "hs_code": "HS / customs code", "minimum_order_quantity": "Minimum order quantity",
         "lead_time_days": "Lead time (days)", "carton_reference": "Carton / pack reference",
         "service_interval_days": "Service interval (days)",
-        "flavour": "Flavour", "servings": "Servings per pack", "goal": "Goal (e.g. muscle gain, weight loss)",
+        "sport_category": "Sport", "flavour": "Flavour", "servings": "Servings per pack", "goal": "Goal (e.g. muscle gain, weight loss)",
         "generic_name": "Generic name", "strength": "Strength (e.g. 500 mg)",
         "prescription_required": "Prescription needed",
     }
@@ -270,7 +272,11 @@ class BusinessProductForm(ProductForm):
         active = set(self.INDUSTRY_FIELDS.get(self.business_code, ()))
         for name, label in self.FIELD_LABELS.items():
             if name in active:
-                if name == "purity" and self.business_code == "jewelry_shop":
+                if name in ("sport_category", "gender") and self.business_code in ("sports_shop", "fitness_sports_store"):
+                    from apps.verticals.sports_shop.models import SportsProductDetail as SPD
+                    choices = SPD.SPORT_CATEGORY if name == "sport_category" else SPD.GENDER
+                    self.fields[name] = forms.ChoiceField(required=False, label=label, choices=choices)
+                elif name == "purity" and self.business_code == "jewelry_shop":
                     self.fields[name] = forms.ChoiceField(required=False, label="Karat", choices=[("", "—"), ("24K", "24K"), ("22K", "22K"), ("21K", "21K"), ("18K", "18K")])
                 elif name == "making_mode":
                     self.fields[name] = forms.ChoiceField(required=False, label=label, choices=[("per_gram", "Per gram"), ("fixed", "Fixed amount"), ("percent", "% of gold value")])

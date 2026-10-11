@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Team orders" %}{% endblock %}
+{% block heading %}{% translate "Team orders" %}{% endblock %}
+{% block content %}
+<p style="color:var(--ink-soft);margin-top:0">{% translate "Jerseys for clubs, schools and companies — each player's name, number and size, ready for the printer." %}</p>
+<div style="margin-bottom:14px"><a class="btn" href="{% url 'webapp:team_order_add' %}">+ {% translate "New team order" %}</a></div>
+{% if orders %}
+<table>
+  <tr><th>{% translate "Due" %}</th><th>{% translate "Team" %}</th><th>{% translate "Item" %}</th><th>{% translate "Pieces" %}</th><th>{% translate "Balance" %}</th><th>{% translate "Status" %}</th><th></th></tr>
+  {% for o in orders %}
+  <tr>
+    <td style="white-space:nowrap{% if o.due_date < today and o.status != 'delivered' %};color:var(--danger);font-weight:700{% endif %}">{{ o.due_date|date:"d M" }}</td>
+    <td><b>{{ o.team_name }}</b>{% if o.contact_phone %}<br><small>{{ o.contact_phone }}</small>{% endif %}</td>
+    <td>{{ o.item }}</td><td>{{ o.pieces }}</td><td>{{ o.balance|floatformat:2 }}</td>
+    <td><span class="badge">{{ o.get_status_display }}</span></td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:team_order_detail' o.id %}">{% translate "Open" %}</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="card empty">{% translate "No team orders yet." %}</div>
+{% endif %}
+{% endblock %}

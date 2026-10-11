@@ -543,6 +543,17 @@ def product_list(request):
     return render(request, "webapp/mobile_shop/product_list.html", {"products": products})
 
 
+def _sync_sports_detail(product):
+    """Sports shops list products by sport and gender: keep that row in step with the product form."""
+    if product.company.business_type.code not in ("sports_shop", "fitness_sports_store"):
+        return
+    attrs = product.attributes or {}
+    SportsProductDetail.objects.update_or_create(
+        company=product.company, product=product,
+        defaults={"sport_category": attrs.get("sport_category") or "other", "gender": attrs.get("gender") or "unisex",
+                  "size": product.size or "", "material": attrs.get("material_spec") or product.material or ""})
+
+
 # Shops with their own menu that still sell ordinary stock get the full product form (photo, brand, barcode, extras).
 FULL_PRODUCT_FORM_TYPES = {"protein_shop", "medical_shop", "pharmacy", "sports_shop", "fitness_sports_store", "cycle_shop"}
 
@@ -563,6 +574,7 @@ def product_add(request):
             obj = form.save(commit=False)
             obj.company = company
             obj.save()
+            _sync_sports_detail(obj)
             messages.success(request, "Product added.")
             return redirect("webapp:product_list")
     else:
@@ -584,7 +596,7 @@ def product_edit(request, product_id):
     if request.method == "POST":
         form = form_class(request.POST, request.FILES, instance=obj, company=company)
         if form.is_valid():
-            form.save()
+            _sync_sports_detail(form.save())
             messages.success(request, "Product updated.")
             return redirect("webapp:product_list")
     else:
@@ -616,12 +628,15 @@ def product_variant_add(request, product_id):
         form = VariantForm(request.POST)
         if form.is_valid():
             d = form.cleaned_data
-            Product.objects.create(
+            variant = Product.objects.create(
                 company=company, sku=d["sku"], name=parent.name, category=parent.category, brand=parent.brand,
                 unit=parent.unit, cost_price=d["cost_price"], selling_price=d["selling_price"],
                 parent=parent, variant_label=d["variant_label"], size=d["size"], colour=d["colour"],
                 material=d["material"] or parent.material, design=d["design"] or parent.design,
+                attributes=dict(parent.attributes or {}), image=parent.image.name if parent.image else None,
+                tracking_type=parent.tracking_type if parent.tracking_type in ("batch", "serial") else "basic",
             )
+            _sync_sports_detail(variant)
             if parent.is_stock_tracked and not parent.current_stock():
                 parent.is_stock_tracked = False  # the variants carry the stock now
                 parent.save(update_fields=["is_stock_tracked"])
@@ -1988,34 +2003,15 @@ def vehicle_wash_reports(request):
 @login_required
 def sports_product_list(request):
     company = request.company
-    details = (
-        SportsProductDetail.objects.for_company(company).select_related("product", "product__category")
-        .filter(product__variants__isnull=True).order_by("product__name", "product__variant_label")
-        if company else []
-    )
-    return render(request, "webapp/sports_shop/product_list.html", {"details": details})
+    products = (Product.objects.for_company(company).filter(is_active=True, variants__isnull=True)
+                .select_related("category", "brand", "sports_detail").order_by("name", "variant_label") if company else [])
+    return render(request, "webapp/sports_shop/product_list.html", {"products": products})
 
 
 @login_required
 def sports_product_add(request):
-    company = request.company
-    if request.method == "POST":
-        form = SportsProductForm(request.POST, company=company)
-        if form.is_valid():
-            d = form.cleaned_data
-            product = Product.objects.create(
-                company=company, sku=d["sku"], name=d["name"], category=d["category"], unit=d["unit"],
-                cost_price=d["cost_price"], selling_price=d["selling_price"],
-            )
-            SportsProductDetail.objects.create(
-                company=company, product=product, sport_category=d["sport_category"],
-                size=d["size"], gender=d["gender"], material=d["material"],
-            )
-            messages.success(request, "Product added.")
-            return redirect("webapp:sports_product_list")
-    else:
-        form = SportsProductForm(company=company)
-    return render(request, "webapp/sports_shop/product_form.html", {"form": form})
+    """Kept for old links: sports shops now use the full product form (photo, brand, barcode, colours, sizes)."""
+    return redirect("webapp:product_add")
 
 
 # ================= CYCLE SHOP =================

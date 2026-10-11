@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ order.team_name }}{% endblock %}
+{% block heading %}{{ order.team_name }}{% endblock %}
+{% block content %}
+<style>@media print{nav,.nav,.topbar,.no-print,header{display:none!important}.main{margin:0!important;padding:0!important}.card{box-shadow:none;border:0}}</style>
+<div class="no-print" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;align-items:center">
+  <a class="btn" href="#" onclick="window.print();return false">🖨 {% translate "Print list for the printer" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:team_order_edit' order.id %}">{% translate "Edit" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:pos' %}">🧾 {% translate "New bill" %}</a>
+  <form method="post" style="display:flex;gap:6px;margin:0;margin-inline-start:auto">{% csrf_token %}
+    <select name="status">{% for v, l in statuses %}<option value="{{ v }}"{% if v == order.status %} selected{% endif %}>{{ l }}</option>{% endfor %}</select>
+    <button class="btn btn-secondary" type="submit">{% translate "Update status" %}</button>
+  </form>
+</div>
+<div class="card">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px">
+    <div><small>{% translate "Item" %}</small><br><b>{{ order.item }}</b></div>
+    <div><small>{% translate "Delivery date" %}</small><br><b>{{ order.due_date|date:"d M Y" }}</b></div>
+    <div><small>{% translate "Pieces" %}</small><br><b>{{ order.pieces }}</b></div>
+    <div><small>{% translate "Total" %}</small><br><b>{{ order.total|floatformat:2 }}</b></div>
+    <div><small>{% translate "Advance paid" %}</small><br><b>{{ order.advance|floatformat:2 }}</b></div>
+    <div><small>{% translate "Balance" %}</small><br><b>{{ order.balance|floatformat:2 }}</b></div>
+    <div><small>{% translate "Status" %}</small><br><b>{{ order.get_status_display }}</b></div>
+  </div>
+  <p><b>{% translate "Sizes" %}:</b> {% for size, n in sizes %}{{ size }} × {{ n }}{% if not forloop.last %} · {% endif %}{% endfor %}</p>
+  <table>
+    <tr><th>#</th><th>{% translate "Name on jersey" %}</th><th>{% translate "Number" %}</th><th>{% translate "Size" %}</th></tr>
+    {% for p in order.players.all %}<tr><td>{{ forloop.counter }}</td><td><b>{{ p.name|upper }}</b></td><td><b>{{ p.number }}</b></td><td>{{ p.size }}</td></tr>{% endfor %}
+  </table>
+  {% if order.notes %}<p style="margin-top:12px"><b>{% translate "Notes" %}:</b> {{ order.notes|linebreaksbr }}</p>{% endif %}
+</div>
+{% endblock %}

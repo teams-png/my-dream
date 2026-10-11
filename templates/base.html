@@ -238,6 +238,9 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'brand_list' %}active{% endif %}" href="{% url 'webapp:brand_list' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M20.6 12.4 12.4 20.6a2 2 0 0 1-2.8 0L3 14V3h11l6.6 6.6a2 2 0 0 1 0 2.8z"></path><circle cx="7.5" cy="7.5" r="1.2"></circle></svg><span>{% translate "Brands" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'barcode_print' %}active{% endif %}" href="{% url 'webapp:barcode_print' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M3 4v16M7 4v16M11 4v10M15 4v16M19 4v10M21 4v16"></path></svg><span>{% translate "Print Barcodes" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'category_list' %}active{% endif %}" href="{% url 'webapp:category_list' %}"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"></path></svg><span>{% translate "Categories" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'team_order_list' %}active{% endif %}" href="{% url 'webapp:team_order_list' %}"><span>👕 {% translate "Team orders" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'retail_sale_list' %}active{% endif %}" href="{% url 'webapp:retail_sale_list' %}"><span>{% translate "Sales" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'retail_reports' %}active{% endif %}" href="{% url 'webapp:retail_reports' %}"><span>{% translate "Reports" %}</span></a>
       </details>
 
       {% elif active_company.business_type.code == "cycle_shop" %}

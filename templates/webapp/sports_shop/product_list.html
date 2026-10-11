@@ -1,19 +1,28 @@
 {% extends "base.html" %}
-{% block title %}Products{% endblock %}
-{% block heading %}Products{% endblock %}
+{% load i18n sample_data %}
+{% block title %}{% translate "Products" %}{% endblock %}
+{% block heading %}{% translate "Products" %}{% endblock %}
 {% block content %}
-<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:sports_product_add' %}">+ Add product</a></div>
-{% if details %}
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+  <a class="btn" href="{% url 'webapp:product_add' %}">+ {% translate "Add product" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:product_import_csv' %}">⬆ {% translate "Import from Excel" %}</a>
+</div>
+{% if products %}
 <table>
-  <tr><th>Name</th><th>Sport</th><th>Size</th><th>Gender</th><th>Price</th></tr>
-  {% for d in details %}
+  <tr><th>{% translate "Name" %}</th><th>{% translate "Sport" %}</th><th>{% translate "Colour / size" %}</th><th>{% translate "Gender" %}</th><th>{% translate "Stock" %}</th><th>{% translate "Price" %}</th><th></th></tr>
+  {% for p in products %}
   <tr>
-    <td>{{ d.product.name }}{% if d.product.variant_label %} <span style="color:var(--ink-soft)">— {{ d.product.variant_label }}</span>{% endif %}</td><td>{{ d.get_sport_category_display }}</td>
-    <td>{{ d.size|default:"—" }}</td><td>{{ d.get_gender_display }}</td><td>{{ d.product.selling_price }}</td>
+    <td style="display:flex;align-items:center;gap:10px">{% product_picture p as pic %}<img src="{{ pic }}" alt="" loading="lazy" style="width:40px;height:40px;border-radius:10px;object-fit:contain;background:#f3f6f4">{{ p.name }}</td>
+    <td>{% if p.sports_detail %}{{ p.sports_detail.get_sport_category_display }}{% else %}—{% endif %}</td>
+    <td>{{ p.variant_label|default:p.size|default:"—" }}</td>
+    <td>{% if p.sports_detail %}{{ p.sports_detail.get_gender_display }}{% else %}—{% endif %}</td>
+    <td>{% if p.is_stock_tracked %}{{ p.current_stock|floatformat:"-2" }}{% else %}—{% endif %}</td>
+    <td>{{ p.selling_price }}</td>
+    <td style="white-space:nowrap"><a class="btn btn-secondary" href="{% url 'webapp:product_edit' p.id %}">{% translate "Edit" %}</a>{% if not p.parent_id %} <a class="btn btn-secondary" href="{% url 'webapp:product_variant_add' p.id %}">+ {% translate "Size / colour" %}</a>{% endif %}</td>
   </tr>
   {% endfor %}
 </table>
 {% else %}
-<div class="card empty">No products yet.</div>
+<div class="card empty">{% translate "No products yet." %}</div>
 {% endif %}
 {% endblock %}

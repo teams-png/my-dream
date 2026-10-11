@@ -38,8 +38,8 @@ def _origin(request):
 
 
 def _ip(request):
-    fwd = request.META.get("HTTP_X_FORWARDED_FOR", "")
-    return (fwd.split(",")[0].strip() if fwd else request.META.get("REMOTE_ADDR", "")) or "?"
+    from apps.accounts.services import client_ip
+    return client_ip(request) or "?"
 
 
 def _too_many(request, site):

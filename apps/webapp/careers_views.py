@@ -54,8 +54,8 @@ def _public(request, template, context, status=200):
 
 
 def _ip(request):
-    forwarded = request.META.get("HTTP_X_FORWARDED_FOR", "")
-    return (forwarded.split(",")[0].strip() if forwarded else request.META.get("REMOTE_ADDR", "")) or "?"
+    from apps.accounts.services import client_ip
+    return client_ip(request) or "?"
 
 
 def _too_many(request, site):

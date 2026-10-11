@@ -251,8 +251,8 @@ def _review(request, design, base, product_id):
         raise Http404
     q = request.META.get("QUERY_STRING", "")
     back = f"{base}shop/{product_id}/" + (f"?{q}&" if q else "?") + "reviewed=1#reviews"
-    fwd = request.META.get("HTTP_X_FORWARDED_FOR", "")
-    ip = (fwd.split(",")[0].strip() if fwd else request.META.get("REMOTE_ADDR", "")) or "?"
+    from apps.accounts.services import client_ip
+    ip = client_ip(request) or "?"
     key = f"site-review:{design.company_id}:{ip}"
     count = cache.get(key, 0)
     name = (request.POST.get("name") or "").strip()[:80]

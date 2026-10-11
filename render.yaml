@@ -1,19 +1,16 @@
-# Render Blueprint (Phase 1 Section 31). Commit this at the repo root and
-# use Render's "New > Blueprint" flow to provision everything below in one
-# pass, instead of clicking through each service by hand.
+# Render Blueprint — paid plans, ready for real customers.
 #
-# This blueprint runs entirely on Render's FREE plan: one web service,
-# Postgres and Key Value (Redis). Background workers are not available on
-# the free plan, so Celery tasks run inline (CELERY_TASK_ALWAYS_EAGER) and
-# the Celery worker/beat services are listed at the bottom, commented out,
-# for when you move to a paid plan.
+# New setup: Render → New → Blueprint → pick this repo. Render creates everything below and asks for
+# every value marked `sync: false` (secrets are typed into Render, never committed to GitHub).
+# Already running services made by hand? This file does not change them — copy the plan, start command
+# and environment values below into each service's Settings in the Render dashboard instead.
 #
-# During the Blueprint setup, Render asks for the values marked
-# `sync: false` below (Render won't invent these for you, on purpose —
-# see Phase 1 Section 27 "never put secrets in GitHub").
+# Monthly cost at these plans (check render.com/pricing): web Starter, Postgres Basic-256MB,
+# Key Value Starter, Cron Job (billed per minute it runs — a few cents). Move the web service to
+# Standard (2 GB) when you have many shops online at once, and raise WEB_CONCURRENCY to 4.
 databases:
   - name: bookpilot-db
-    plan: free
+    plan: basic-256mb        # paid Postgres: kept forever, daily backups (the free one is deleted after 30 days)
     databaseName: bookpilot
     user: bookpilot
 
@@ -21,22 +18,25 @@ services:
   - type: web
     name: bookpilot-web
     runtime: python
-    plan: free
+    plan: starter            # always on (the free plan sleeps and loses uploads)
     buildCommand: "./build.sh"
-    startCommand: "daphne -b 0.0.0.0 -p $PORT config.asgi:application"
+    # Several worker processes (HTTP + the kitchen screen's WebSockets), instead of one daphne process.
+    startCommand: "gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker -w ${WEB_CONCURRENCY:-2} -b 0.0.0.0:$PORT --timeout 120 --graceful-timeout 30"
     envVars:
       - key: PYTHON_VERSION
         value: "3.12.8"
+      - key: WEB_CONCURRENCY
+        value: "2"           # Starter (512 MB): 2. Standard (2 GB): 4.
       - key: DJANGO_SETTINGS_MODULE
         value: config.settings.render
       - key: DJANGO_SECRET_KEY
         generateValue: true
       - key: PAYMENT_CREDENTIALS_ENCRYPTION_KEY
+        generateValue: true  # encrypts clients' payment keys — never change it once clients have saved keys
+      - key: BACKUP_TOKEN_KEY
         generateValue: true
-      - key: DJANGO_ALLOWED_HOSTS
-        value: .onrender.com
-      - key: CSRF_TRUSTED_ORIGINS
-        value: https://*.onrender.com
+      - key: CRON_SECRET
+        generateValue: true
       - key: DATABASE_URL
         fromDatabase:
           name: bookpilot-db
@@ -46,64 +46,89 @@ services:
           name: bookpilot-redis
           type: keyvalue
           property: connectionString
-      - key: CRON_SECRET
-        generateValue: true
+      # No separate Celery worker: e-mails and alerts are sent inside the web request (EMAIL_TIMEOUT caps the wait).
       - key: CELERY_TASK_ALWAYS_EAGER
         value: "True"
-      # First login for the platform owner (created once by build.sh).
+
+      # --- Your own domain (e.g. app.yourdomain.com). Comma-separated; keep .onrender.com while testing. ---
+      - key: DJANGO_ALLOWED_HOSTS
+        sync: false          # app.yourdomain.com,yourdomain.com,.onrender.com
+      - key: CSRF_TRUSTED_ORIGINS
+        sync: false          # https://app.yourdomain.com,https://yourdomain.com,https://*.onrender.com
+      - key: SITE_URL
+        sync: false          # https://app.yourdomain.com  (links in e-mails, payment return pages)
+
+      # --- First platform-owner login (created once by build.sh; turn on 2FA after the first login). ---
       - key: PLATFORM_ADMIN_EMAIL
         sync: false
       - key: PLATFORM_ADMIN_PASSWORD
         sync: false
-      # Uploaded media (logos etc.) is lost on redeploy while this is False.
-      # Set it to "True" and fill in the AWS_* variables in the dashboard
-      # before real customers start using the app.
+
+      # --- E-mail: needed for sign-up codes, password reset, trial warnings, bills by e-mail. ---
+      - key: EMAIL_HOST
+        sync: false          # e.g. smtp.hostinger.com / smtp.zoho.com / smtp-relay.brevo.com
+      - key: EMAIL_PORT
+        value: "587"
+      - key: EMAIL_USE_TLS
+        value: "True"
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
+      - key: DEFAULT_FROM_EMAIL
+        sync: false          # BookPilot <noreply@yourdomain.com>
+      - key: SUPPORT_EMAIL
+        sync: false
+
+      # --- Uploaded photos, logos and backups: must be on S3-compatible storage (Render's disk is wiped on deploy). ---
       - key: USE_S3
-        value: "False"
+        value: "True"
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: AWS_STORAGE_BUCKET_NAME
+        sync: false
+      - key: AWS_S3_ENDPOINT_URL
+        sync: false          # empty for Amazon S3; https://<account>.r2.cloudflarestorage.com for Cloudflare R2
+
+      # --- Your company details on the Terms / Privacy / Refund pages. ---
+      - key: LEGAL_COMPANY_NAME
+        sync: false
+      - key: LEGAL_COMPANY_ADDRESS
+        sync: false
+      - key: LEGAL_CR_NUMBER
+        sync: false
+
+      # --- Your own subscription payments (clients paying you). Leave test mode on until live keys are in. ---
+      - key: SKIPCASH_TEST_MODE
+        value: "True"
+      # Add when ready: SKIPCASH_CLIENT_ID, SKIPCASH_KEY_ID, SKIPCASH_KEY_SECRET, SKIPCASH_WEBHOOK_KEY,
+      # RAZORPAY_KEY_ID / RAZORPAY_KEY_SECRET / RAZORPAY_WEBHOOK_SECRET (India), SENTRY_DSN (error alerts).
 
   - type: keyvalue
     name: bookpilot-redis
-    plan: free
-    ipAllowList: []
+    plan: starter            # paid: data is kept on restart (cache, rate limits, kitchen-screen updates)
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList: []          # only reachable from your Render services
 
-  # --- Paid plan only: uncomment, then set CELERY_TASK_ALWAYS_EAGER=False
-  # on the web service. Use the same DJANGO_SECRET_KEY on all services
-  # (an Environment Group is the easiest way).
-  #
-  # - type: worker
-  #   name: bookpilot-celery-worker
-  #   runtime: python
-  #   plan: starter
-  #   buildCommand: "pip install -r requirements/production.txt"
-  #   startCommand: "celery -A config worker --loglevel=info"
-  #   envVars:
-  #     - key: PYTHON_VERSION
-  #       value: "3.12.8"
-  #     - key: DJANGO_SETTINGS_MODULE
-  #       value: config.settings.render
-  #     - key: DJANGO_SECRET_KEY
-  #       sync: false
-  #     - key: DATABASE_URL
-  #       fromDatabase:
-  #         name: bookpilot-db
-  #         property: connectionString
-  #     - key: REDIS_URL
-  #       fromService:
-  #         name: bookpilot-redis
-  #         type: keyvalue
-  #         property: connectionString
-  #     - key: USE_S3
-  #       value: "True"
-  #     - key: AWS_ACCESS_KEY_ID
-  #       sync: false
-  #     - key: AWS_SECRET_ACCESS_KEY
-  #       sync: false
-  #     - key: AWS_STORAGE_BUCKET_NAME
-  #       sync: false
-  #     - key: AWS_S3_ENDPOINT_URL
-  #       sync: false
-  #
-  # - type: worker
-  #   name: bookpilot-celery-beat
-  #   (same as the worker above, with
-  #    startCommand: "celery -A config beat --loglevel=info")
+  # Once a day: reminders, trial e-mails and clean-up, recurring bills, owner reports, backups.
+  # It calls the live site's /cron/daily/ (the same thing the GitHub Action does; running both is safe —
+  # the jobs run only once per day).
+  - type: cron
+    name: bookpilot-daily
+    runtime: python
+    plan: starter
+    schedule: "30 20 * * *"  # 20:30 UTC = 23:30 Qatar / 02:00 India
+    buildCommand: "true"
+    startCommand: "python scripts/call_daily_jobs.py"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      - key: BOOKPILOT_URL
+        sync: false          # https://app.yourdomain.com
+      - key: CRON_SECRET
+        fromService:
+          name: bookpilot-web
+          type: web
+          envVarKey: CRON_SECRET

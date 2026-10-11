@@ -1,7 +1,7 @@
 name: daily-jobs
 
-# Runs BookPilot's once-a-day jobs (reminders, overdue and expiry alerts, recurring invoices,
-# the owner's daily report, budget alerts) on the live site, which has no background worker.
+# Backup trigger for BookPilot's once-a-day jobs (render.yaml also has a Render Cron Job that does the same;
+# running both is safe — the jobs run once per day). Scheduled Actions run only on the default branch.
 # Set up once in the repository settings:
 #   Settings → Secrets and variables → Actions
 #     Variables: BOOKPILOT_URL  (e.g. https://bookpilot-web.onrender.com)

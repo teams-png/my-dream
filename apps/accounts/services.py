@@ -32,7 +32,13 @@ def record_attempt(identifier, ip_address, *, successful):
 
 
 def client_ip(request):
-    forwarded = request.META.get("HTTP_X_FORWARDED_FOR")
+    """The visitor's address for rate limits. Render's edge (Cloudflare) sets CF-Connecting-IP / True-Client-IP itself,
+    while the first X-Forwarded-For entry can be typed by the client, so those two win when present."""
+    meta = request.META
+    for header in ("HTTP_CF_CONNECTING_IP", "HTTP_TRUE_CLIENT_IP"):
+        if meta.get(header):
+            return meta[header].strip()[:45]
+    forwarded = meta.get("HTTP_X_FORWARDED_FOR")
     if forwarded:
-        return forwarded.split(",")[0].strip()
-    return request.META.get("REMOTE_ADDR")
+        return forwarded.split(",")[0].strip()[:45]
+    return meta.get("REMOTE_ADDR")

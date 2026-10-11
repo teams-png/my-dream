@@ -99,8 +99,8 @@ def kit_offers(request, public_id):
 
 
 def _too_many(request, kit):
-    fwd = request.META.get("HTTP_X_FORWARDED_FOR", "")
-    ip = (fwd.split(",")[0].strip() if fwd else request.META.get("REMOTE_ADDR", "")) or "?"
+    from apps.accounts.services import client_ip
+    ip = client_ip(request) or "?"
     key = f"kit-enquiry:{kit.pk}:{ip}"
     if cache.add(key, 1, 3600):
         return False
@@ -299,8 +299,8 @@ ORDER_LIMIT = 6  # orders per hour from one visitor
 
 
 def _order_flood(request, kit):
-    fwd = request.META.get("HTTP_X_FORWARDED_FOR", "")
-    ip = (fwd.split(",")[0].strip() if fwd else request.META.get("REMOTE_ADDR", "")) or "?"
+    from apps.accounts.services import client_ip
+    ip = client_ip(request) or "?"
     key = f"kit-order:{kit.pk}:{ip}"
     if cache.add(key, 1, 3600):
         return False
@@ -441,8 +441,8 @@ def kit_coupon(request, public_id):
     from django.utils.translation import gettext as _
     from apps.sales.services import validate_coupon
     kit = _kit_or_404(public_id)
-    fwd = request.META.get("HTTP_X_FORWARDED_FOR", "")
-    ip = (fwd.split(",")[0].strip() if fwd else request.META.get("REMOTE_ADDR", "")) or "?"
+    from apps.accounts.services import client_ip
+    ip = client_ip(request) or "?"
     key = f"kit-coupon:{kit.pk}:{ip}"
     if not cache.add(key, 1, 3600):
         try:

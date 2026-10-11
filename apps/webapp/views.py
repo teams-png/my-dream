@@ -3672,7 +3672,8 @@ def restaurant_public_order(request, token):
     profile = get_object_or_404(RestaurantProfile.objects.select_related("company"), public_menu_token=token)
     if not profile.qr_ordering_enabled:
         return JsonResponse({"error": "Self-ordering is not enabled."}, status=403)
-    ip = request.META.get("REMOTE_ADDR", "unknown")
+    from apps.accounts.services import client_ip
+    ip = client_ip(request) or "unknown"
     throttle_key = f"qr-order:{profile.id}:{ip}"
     attempts = cache.get(throttle_key, 0)
     if attempts >= 10: return JsonResponse({"error": "Too many orders. Please ask a staff member."}, status=429)

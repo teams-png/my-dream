@@ -7123,6 +7123,29 @@ msgid "for each branch after the first"
 msgstr "ആദ്യത്തേതിന് ശേഷം ഓരോ ബ്രാഞ്ചിനും"
 
 #: templates/webapp/public/landing.html
+msgid "Business website"
+msgstr "ബിസിനസ് വെബ്സൈറ്റ്"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Your own website with pages, products and WhatsApp — on your own domain"
+msgstr ""
+"പേജുകളും ഉൽപ്പന്നങ്ങളും WhatsApp-ഉം ഉള്ള നിങ്ങളുടെ സ്വന്തം വെബ്സൈറ്റ് — "
+"നിങ്ങളുടെ സ്വന്തം ഡൊമെയ്നിൽ"
+
+#: templates/webapp/public/landing.html
+msgid "E-commerce website"
+msgstr "ഇ-കൊമേഴ്സ് വെബ്സൈറ്റ്"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Everything in the website, plus cart, checkout and website orders in "
+"BookPilot"
+msgstr ""
+"വെബ്സൈറ്റിലുള്ളതെല്ലാം, കൂടാതെ കാർട്ട്, ചെക്ക്ഔട്ട്, BookPilot-ൽ വെബ്സൈറ്റ് "
+"ഓർഡറുകൾ"
+
+#: templates/webapp/public/landing.html
 msgid "per extra user / year"
 msgstr "ഓരോ അധിക യൂസർക്കും / വർഷം"
 
@@ -9843,6 +9866,19 @@ msgstr ""
 
 #: templates/webapp/shop_orders/inbox.html
 msgid ""
+"The cart and website orders come with the E-commerce website package. Your "
+"website still shows every product with its own page and a WhatsApp button."
+msgstr ""
+"കാർട്ടും വെബ്സൈറ്റ് ഓർഡറുകളും ഇ-കൊമേഴ്സ് വെബ്സൈറ്റ് പാക്കേജിലാണ്. നിങ്ങളുടെ "
+"വെബ്സൈറ്റ് ഇപ്പോഴും ഓരോ ഉൽപ്പന്നവും സ്വന്തം പേജും WhatsApp ബട്ടണും സഹിതം "
+"കാണിക്കും."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Ask to upgrade"
+msgstr "അപ്ഗ്രേഡ് ചെയ്യാൻ ചോദിക്കുക"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
 "Your BookPilot website is not switched on yet. Ask your BookPilot team to "
 "switch on the Website add-on — or put the cart on your own website with the "
 "Website kit."
@@ -9964,6 +10000,15 @@ msgstr ""
 #: templates/webapp/site/editor.html
 msgid "Online shop"
 msgstr "ഓൺലൈൻ ഷോപ്പ്"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website shows every product with its own page. To take orders with a "
+"cart and checkout, upgrade to the E-commerce website package."
+msgstr ""
+"നിങ്ങളുടെ വെബ്സൈറ്റ് ഓരോ ഉൽപ്പന്നവും സ്വന്തം പേജ് സഹിതം കാണിക്കുന്നു. "
+"കാർട്ടും ചെക്ക്ഔട്ടും വഴി ഓർഡർ എടുക്കാൻ ഇ-കൊമേഴ്സ് വെബ്സൈറ്റ് പാക്കേജിലേക്ക്"
+" അപ്ഗ്രേഡ് ചെയ്യുക."
 
 #: templates/webapp/site/editor.html
 msgid ""
@@ -10202,8 +10247,40 @@ msgid "All products"
 msgstr "എല്ലാ ഉൽപ്പന്നങ്ങളും"
 
 #: templates/webapp/site/shop.html
+msgid "Filters"
+msgstr "ഫിൽട്ടറുകൾ"
+
+#: templates/webapp/site/shop.html
 msgid "Search products…"
 msgstr "ഉൽപ്പന്നങ്ങൾ തിരയുക…"
+
+#: templates/webapp/site/shop.html
+msgid "Lowest price"
+msgstr "കുറഞ്ഞ വില"
+
+#: templates/webapp/site/shop.html
+msgid "Highest price"
+msgstr "കൂടിയ വില"
+
+#: templates/webapp/site/shop.html
+msgid "In stock only"
+msgstr "സ്റ്റോക്കിലുള്ളവ മാത്രം"
+
+#: templates/webapp/site/shop.html
+msgid "Brand"
+msgstr "ബ്രാൻഡ്"
+
+#: templates/webapp/site/shop.html
+msgid "Colour"
+msgstr "നിറം"
+
+#: templates/webapp/site/shop.html
+msgid "Size"
+msgstr "സൈസ്"
+
+#: templates/webapp/site/shop.html
+msgid "Clear all"
+msgstr "എല്ലാം മായ്ക്കുക"
 
 #: templates/webapp/site/shop.html
 msgid "Sort"
@@ -10528,10 +10605,6 @@ msgstr "സൈസുകൾ"
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Name on jersey"
 msgstr "ജേഴ്സിയിലെ പേര്"
-
-#: templates/webapp/sports_shop/team_order_detail.html
-msgid "Size"
-msgstr "സൈസ്"
 
 #: templates/webapp/sports_shop/team_order_form.html
 msgid "Team order"
@@ -11240,8 +11313,20 @@ msgid "Our products"
 msgstr "ഞങ്ങളുടെ ഉൽപ്പന്നങ്ങൾ"
 
 #: apps/industry/site_builder.py
-msgid "Colour"
-msgstr "നിറം"
+msgid "RAM"
+msgstr "RAM"
+
+#: apps/industry/site_builder.py
+msgid "Storage"
+msgstr "സ്റ്റോറേജ്"
+
+#: apps/industry/site_builder.py
+msgid "Processor"
+msgstr "പ്രോസസർ"
+
+#: apps/industry/site_builder.py
+msgid "Screen size"
+msgstr "സ്ക്രീൻ വലിപ്പം"
 
 #: apps/industry/site_builder.py
 msgid "Material"

@@ -31,6 +31,8 @@ TIER_LABEL = {"standard": "Business", "large": "Large Shop"}
 # Yearly add-ons: each user above the biggest plan's users, and each branch above the first.
 # India follows the same ratio as its plan prices (QAR 899 plan = INR 8,999), so QAR 100 = INR 1,000.
 ADDON_PRICES = {GLOBAL: {"user": 100, "branch": 100}, INDIA: {"user": 1000, "branch": 1000}}
+# Yearly website add-ons: a website (pages, products, enquiries) or an e-commerce website (adds cart and orders).
+WEBSITE_PRICES = {GLOBAL: {"website": 399, "shop": 699}, INDIA: {"website": 3999, "shop": 6999}}
 
 # How much of each currency one QAR buys, for display only. The GCC
 # currencies and USD are pegged, so these are exact; the others float and
@@ -128,10 +130,25 @@ def addons(subscription, company=None):
     extra_branches = max(branches - plan.max_warehouses, 0) if plan.extra_branch_price else 0
     users_amount = plan.extra_user_price * extra_users
     branches_amount = plan.extra_branch_price * extra_branches
+    site = website_addon(company or subscription.company, plan)
+    website_amount = site[2] if site else Decimal("0")
     return {"users": users, "branches": branches, "extra_users": extra_users, "extra_branches": extra_branches,
             "extra_user_price": plan.extra_user_price, "extra_branch_price": plan.extra_branch_price,
             "users_amount": users_amount, "branches_amount": branches_amount,
-            "plan_price": plan.price, "total": plan.price + users_amount + branches_amount, "currency": plan.currency}
+            "website": site[1] if site else "", "website_amount": website_amount,
+            "plan_price": plan.price, "total": plan.price + users_amount + branches_amount + website_amount,
+            "currency": plan.currency}
+
+
+def website_addon(company, plan=None):
+    """(package, label, yearly price) of the client's website add-on, or None when it is off."""
+    from apps.industry.models import SiteDesign
+    design = SiteDesign._base_manager.filter(company=company, enabled=True).first()
+    if design is None:
+        return None
+    region = plan.country if plan and plan.country in WEBSITE_PRICES else region_for(company.country)
+    price = Decimal(WEBSITE_PRICES[region][design.package])
+    return design.package, design.get_package_display(), price
 
 
 def amount_due(subscription):

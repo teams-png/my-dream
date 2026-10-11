@@ -24,7 +24,7 @@ def shop(admin_client):
         company, owner = _signup("computer_shop", "pc@shop.qa")
     with override_settings(SAMPLE_DATA_KIT=True):
         sample_kit.install(company, User.objects.get(email="pc@shop.qa"))
-    _admin_save(admin_client, company)
+    _admin_save(admin_client, company, **{"a-package": "shop"})
     owner.post(reverse("webapp:site_editor"), _design_data(**{"d-custom_css": ".hero{color:red}</style><script>alert(1)</script>"}))
     owner.post(reverse("webapp:shop_order_settings"), {"s-shop_enabled": "on", "s-shop_pickup": "on", "s-shop_delivery": "on",
                "s-shop_delivery_fee": "15", "s-shop_free_delivery_over": "500", "s-shop_minimum": "0", "s-shop_note": "Cash on delivery"})
@@ -107,7 +107,7 @@ def test_owner_pages_and_own_domain(shop, admin_client):
     home = Client().get(f"/site/{kit.public_id}/").content.decode()
     assert "Warranty &amp; returns" in home  # in the top menu
 
-    _admin_save(admin_client, company, **{"a-custom_domain": "www.pcworld.qa", "a-domain_status": "live"})
+    _admin_save(admin_client, company, **{"a-custom_domain": "www.pcworld.qa", "a-domain_status": "live", "a-package": "shop"})
     cache.clear()
     domain = Client(HTTP_HOST="pcworld.qa")
     assert domain.get("/").status_code == 200
@@ -116,3 +116,52 @@ def test_owner_pages_and_own_domain(shop, admin_client):
     assert domain.get("/p/warranty-returns/").status_code == 200
     assert "/shop/" in domain.get("/sitemap.xml").content.decode()
     assert domain.get("/login/").status_code == 404  # the client's domain never opens the BookPilot app
+
+
+def test_shop_filters_side_bar(shop):
+    from apps.inventory.models import Brand, Product, ProductCategory, Unit
+    company, owner, kit = shop
+    cat = ProductCategory.objects.create(company=company, name="Tees")
+    unit = Unit.objects.filter(company=company).first()
+    nike, puma = Brand.objects.create(company=company, name="Nike"), Brand.objects.create(company=company, name="Puma")
+    for i, (brand, colour, size, price, ram) in enumerate([(nike, "Red", "M", 50, "8GB"), (nike, "Blue", "L", 80, "16GB"),
+                                                           (puma, "Red", "S", 120, "16GB")]):
+        Product.objects.create(company=company, sku=f"T{i}", name=f"Tee {i}", category=cat, brand=brand, colour=colour,
+                               size=size, unit=unit, selling_price=price, is_stock_tracked=False, tracking_type="none",
+                               attributes={"ram": ram})
+    base = f"/site/{kit.public_id}/shop/"
+    page = Client().get(base, {"cat": cat.id}).content.decode()
+    assert 'name="brand"' in page and 'name="colour"' in page and 'name="size"' in page and 'name="a_ram"' in page
+    assert "Nike" in page and "Puma" in page and ">S<" in page.replace("\n", "")
+
+    def names(**params):
+        html = Client().get(base, {"cat": cat.id, **params}).content.decode()
+        return {n for n in ("Tee 0", "Tee 1", "Tee 2") if n in html}
+    assert names(brand=str(nike.id)) == {"Tee 0", "Tee 1"}
+    assert names(colour="Red") == {"Tee 0", "Tee 2"}
+    assert names(colour="Red", brand=str(nike.id)) == {"Tee 0"}
+    assert names(size=["S", "L"]) == {"Tee 1", "Tee 2"}
+    assert names(min="60", max="100") == {"Tee 1"}
+    assert names(a_ram="16GB") == {"Tee 1", "Tee 2"}
+    chips = Client().get(base, {"cat": cat.id, "colour": "Red"}).content.decode()
+    assert "Red ✕" in chips and "Clear all" in chips
+
+
+def test_website_packages_billing_and_cart_only_for_ecommerce(shop, admin_client):
+    from apps.industry import shop_orders
+    from apps.subscriptions.pricing import addons
+    company, owner, kit = shop
+    sub = getattr(company, "subscription", None)
+    if sub is not None:
+        assert addons(sub)["website_amount"] == 699
+    assert shop_orders.config(company) is not None
+    _admin_save(admin_client, company, **{"a-package": "website"})
+    cache.clear()
+    assert shop_orders.config(company) is None
+    home = Client().get(f"/site/{kit.public_id}/").content.decode()
+    assert "data-bp-add" not in home and "/shop/" in home  # products still shown, no cart
+    assert "E-commerce website package" in owner.get(reverse("webapp:shop_orders")).content.decode()
+    if sub is not None:
+        assert addons(sub)["website_amount"] == 399
+    landing = Client().get(reverse("webapp:landing")).content.decode()
+    assert "E-commerce website" in landing and '"shop": 699' in landing

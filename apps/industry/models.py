@@ -487,7 +487,10 @@ class SiteDesign(TenantScopedModel):
              ("Cairo", "Cairo (Arabic)"), ("Lora", "Lora"), ("Montserrat", "Montserrat")]
     DOMAIN_STATUS = [("", "No own domain"), ("pending", "Waiting for DNS"), ("live", "Live")]
 
+    PACKAGES = [("website", "Website"), ("shop", "E-commerce website")]
     enabled = models.BooleanField(default=False, help_text="Website add-on switched on by the platform admin.")
+    package = models.CharField(max_length=10, choices=PACKAGES, default="website",
+                               help_text="Website: pages and products. E-commerce: adds the cart and website orders.")
     published = models.BooleanField(default=False)
     theme = models.CharField(max_length=12, choices=THEMES, default="fresh")
     font = models.CharField(max_length=30, choices=FONTS, default="Poppins")

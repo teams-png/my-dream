@@ -44,6 +44,7 @@
       <form method="post">{% csrf_token %}<input type="hidden" name="action" value="admin">
         {{ aform.non_field_errors }}
         <p class="checks"><label>{{ aform.enabled }} {{ aform.enabled.label }}</label></p>
+        <p>{{ aform.package.label_tag }}{{ aform.package }}</p>
         <div class="grid2">
           <p>{{ aform.custom_domain.label_tag }}{{ aform.custom_domain }}{{ aform.custom_domain.errors }}</p>
           <p>{{ aform.domain_status.label_tag }}{{ aform.domain_status }}</p>
@@ -62,8 +63,13 @@
     {% if is_shop and not admin %}
     <div class="card">
       <h3>🛒 {% translate "Online shop" %}</h3>
+      {% if design.package != "shop" %}
+      <p style="margin:0 0 10px">{% translate "Your website shows every product with its own page. To take orders with a cart and checkout, upgrade to the E-commerce website package." %}</p>
+      <a class="btn btn-secondary" href="{% url 'webapp:help' %}">💬 {% translate "Ask to upgrade" %}</a>
+      {% else %}
       <p style="margin:0 0 10px">{% translate "Your website has a Shop page with every product, a page for each product, a cart and checkout. Orders arrive in Website orders; stock and prices come from BookPilot." %}</p>
       <a class="btn" href="{% url 'webapp:shop_orders' %}">{% if design.shop_enabled %}{% translate "Website orders & shop settings" %}{% else %}{% translate "Switch on the cart" %}{% endif %}</a>
+      {% endif %}
       <a class="btn btn-secondary" href="{% url 'webapp:product_list' %}">{% translate "Products & photos" %}</a>
     </div>
     {% endif %}

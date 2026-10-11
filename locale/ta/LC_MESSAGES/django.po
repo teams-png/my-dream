@@ -7154,6 +7154,29 @@ msgid "for each branch after the first"
 msgstr "முதல் கிளைக்குப் பிறகு ஒவ்வொன்றுக்கும்"
 
 #: templates/webapp/public/landing.html
+msgid "Business website"
+msgstr "வணிக இணையதளம்"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Your own website with pages, products and WhatsApp — on your own domain"
+msgstr ""
+"பக்கங்கள், பொருட்கள், WhatsApp உடன் உங்கள் சொந்த இணையதளம் — உங்கள் சொந்த "
+"டொமைனில்"
+
+#: templates/webapp/public/landing.html
+msgid "E-commerce website"
+msgstr "இ-காமர்ஸ் இணையதளம்"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Everything in the website, plus cart, checkout and website orders in "
+"BookPilot"
+msgstr ""
+"இணையதளத்தில் உள்ள அனைத்தும், கூடவே கார்ட், செக்அவுட், BookPilot-ல் இணையதள "
+"ஆர்டர்கள்"
+
+#: templates/webapp/public/landing.html
 msgid "per extra user / year"
 msgstr "ஒவ்வொரு கூடுதல் பயனருக்கும் / ஆண்டு"
 
@@ -9893,6 +9916,19 @@ msgstr ""
 
 #: templates/webapp/shop_orders/inbox.html
 msgid ""
+"The cart and website orders come with the E-commerce website package. Your "
+"website still shows every product with its own page and a WhatsApp button."
+msgstr ""
+"கார்ட்டும் இணையதள ஆர்டர்களும் இ-காமர்ஸ் இணையதள தொகுப்பில் உள்ளன. உங்கள் "
+"இணையதளம் ஒவ்வொரு பொருளையும் அதன் பக்கம் மற்றும் WhatsApp பொத்தானுடன் இன்னும்"
+" காட்டும்."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Ask to upgrade"
+msgstr "மேம்படுத்தக் கேளுங்கள்"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
 "Your BookPilot website is not switched on yet. Ask your BookPilot team to "
 "switch on the Website add-on — or put the cart on your own website with the "
 "Website kit."
@@ -10014,6 +10050,15 @@ msgstr ""
 #: templates/webapp/site/editor.html
 msgid "Online shop"
 msgstr "ஆன்லைன் கடை"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website shows every product with its own page. To take orders with a "
+"cart and checkout, upgrade to the E-commerce website package."
+msgstr ""
+"உங்கள் இணையதளம் ஒவ்வொரு பொருளையும் அதன் சொந்தப் பக்கத்துடன் காட்டுகிறது. "
+"கார்ட் மற்றும் செக்அவுட் மூலம் ஆர்டர் பெற இ-காமர்ஸ் இணையதள தொகுப்புக்கு "
+"மேம்படுத்துங்கள்."
 
 #: templates/webapp/site/editor.html
 msgid ""
@@ -10256,8 +10301,40 @@ msgid "All products"
 msgstr "எல்லா பொருட்களும்"
 
 #: templates/webapp/site/shop.html
+msgid "Filters"
+msgstr "வடிகட்டிகள்"
+
+#: templates/webapp/site/shop.html
 msgid "Search products…"
 msgstr "பொருட்களைத் தேடுங்கள்…"
+
+#: templates/webapp/site/shop.html
+msgid "Lowest price"
+msgstr "குறைந்த விலை"
+
+#: templates/webapp/site/shop.html
+msgid "Highest price"
+msgstr "அதிக விலை"
+
+#: templates/webapp/site/shop.html
+msgid "In stock only"
+msgstr "கையிருப்பில் உள்ளவை மட்டும்"
+
+#: templates/webapp/site/shop.html
+msgid "Brand"
+msgstr "பிராண்ட்"
+
+#: templates/webapp/site/shop.html
+msgid "Colour"
+msgstr "நிறம்"
+
+#: templates/webapp/site/shop.html
+msgid "Size"
+msgstr "அளவு"
+
+#: templates/webapp/site/shop.html
+msgid "Clear all"
+msgstr "அனைத்தையும் அழி"
 
 #: templates/webapp/site/shop.html
 msgid "Sort"
@@ -10582,10 +10659,6 @@ msgstr "அளவுகள்"
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Name on jersey"
 msgstr "ஜெர்சியில் பெயர்"
-
-#: templates/webapp/sports_shop/team_order_detail.html
-msgid "Size"
-msgstr "அளவு"
 
 #: templates/webapp/sports_shop/team_order_form.html
 msgid "Team order"
@@ -11303,8 +11376,20 @@ msgid "Our products"
 msgstr "எங்கள் தயாரிப்புகள்"
 
 #: apps/industry/site_builder.py
-msgid "Colour"
-msgstr "நிறம்"
+msgid "RAM"
+msgstr "RAM"
+
+#: apps/industry/site_builder.py
+msgid "Storage"
+msgstr "சேமிப்பகம்"
+
+#: apps/industry/site_builder.py
+msgid "Processor"
+msgstr "செயலி"
+
+#: apps/industry/site_builder.py
+msgid "Screen size"
+msgstr "திரை அளவு"
 
 #: apps/industry/site_builder.py
 msgid "Material"

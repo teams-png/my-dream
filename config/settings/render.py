@@ -66,3 +66,9 @@ if SENTRY_DSN:  # optional error alerts: set SENTRY_DSN in Render's environment
     sentry_sdk.init(dsn=SENTRY_DSN, send_default_pii=False,
                     traces_sample_rate=env.float("SENTRY_TRACES_SAMPLE_RATE", default=0.0),
                     environment=env("SENTRY_ENVIRONMENT", default="render"))
+
+# One cache shared by every web worker (rate limits, client-domain lookups, cached website pages).
+# Render Key Value (Redis) is already in the blueprint for Channels; without it each worker keeps its own cache.
+if env("REDIS_URL", default=""):
+    CACHES = {"default": {"BACKEND": "django.core.cache.backends.redis.RedisCache", "LOCATION": env("REDIS_URL"),
+                          "KEY_PREFIX": "bp", "TIMEOUT": 300}}

@@ -24,7 +24,35 @@ COLOR = re.compile(r"#[0-9a-fA-F]{6}")
 
 # ------------------------------------------------------------------ public website
 
+PAGE_CACHE_SECONDS = 60
+
+
+def _page_cache_key(request, design):
+    import hashlib
+    raw = f"{design.company_id}|{design.updated_at.timestamp() if design.updated_at else 0}|{request.get_host()}|{request.get_full_path()}"
+    return "site-page:" + hashlib.sha256(raw.encode()).hexdigest()
+
+
 def _render_site(request, design, preview=False, base=None, kind="home", **extra):
+    """Public website pages are the same for every visitor, so each is built once a minute at most
+    (saving the owner's design clears it at once); the owner's preview is never cached."""
+    from django.core.cache import cache
+    from django.http import HttpResponse
+    key = None if preview or request.method != "GET" else _page_cache_key(request, design)
+    if key:
+        hit = cache.get(key)
+        if hit is not None:
+            response = HttpResponse(hit)
+            response["Cache-Control"] = f"public, max-age={PAGE_CACHE_SECONDS}"
+            response["X-Frame-Options"] = "SAMEORIGIN"
+            return response
+    response = _build_site(request, design, preview, base, kind, **extra)
+    if key and response.status_code == 200:
+        cache.set(key, response.content, PAGE_CACHE_SECONDS)
+    return response
+
+
+def _build_site(request, design, preview=False, base=None, kind="home", **extra):
     from django.utils import translation
     lang = svc.pick_language(design, request.GET.get("lang"))
     base = base or "/"
@@ -73,12 +101,7 @@ def _can_preview(request, company):
 
 
 def _shop_args(request):
-    try:
-        cat = int(request.GET.get("cat") or 0) or None
-        page = int(request.GET.get("page") or 1)
-    except ValueError:
-        cat, page = None, 1
-    return {"category_id": cat, "search": request.GET.get("q", ""), "sort": request.GET.get("sort", ""), "page": page}
+    return {"params": request.GET}
 
 
 def _public(request, public_id, kind="home", **extra):
@@ -216,10 +239,18 @@ class AdminSiteForm(forms.ModelForm):
 
     class Meta:
         model = SiteDesign
-        fields = ["enabled", "custom_domain", "domain_status", "custom_html"]
+        fields = ["enabled", "package", "custom_domain", "domain_status", "custom_html"]
         labels = {"enabled": "Website add-on is on for this client", "domain_status": "Domain status",
+                  "package": "Package (billed yearly: Website QAR 399 · E-commerce QAR 699)",
                   "custom_html": "Custom HTML section"}
         widgets = {"custom_html": forms.Textarea(attrs={"rows": 6, "style": "font-family:monospace"})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["package"].required = False
+
+    def clean_package(self):
+        return self.cleaned_data.get("package") or self.instance.package or "website"
 
     def clean_custom_domain(self):
         host = svc.normalise_domain(self.cleaned_data.get("custom_domain"))

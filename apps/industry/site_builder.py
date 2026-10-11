@@ -188,8 +188,8 @@ def query(lang, design, preview, **params):
     if preview:
         parts["preview"] = "1"
     parts.update({k: v for k, v in params.items() if v not in (None, "", 1) or k != "page"})
-    parts = {k: v for k, v in parts.items() if v not in (None, "")}
-    return ("?" + urlencode(parts)) if parts else ""
+    parts = {k: v for k, v in parts.items() if v not in (None, "", [], ())}
+    return ("?" + urlencode(parts, doseq=True)) if parts else ""
 
 
 def is_shop(company):
@@ -228,36 +228,159 @@ def _item(p, company, absolute, base, q, stock, ordering):
             "brand": p.brand.name if p.brand_id else "", "description": (p.attributes or {}).get("web_description", "")}
 
 
-def shop_page(design, absolute, base, lang, preview, category_id=None, search="", sort="", page=1):
-    from apps.inventory.models import ProductCategory
+# Attribute filters shown on the Shop page when the shop's products have them (labels from the product form).
+FACET_ATTRS = ("gender", "fragrance_family", "concentration", "volume_ml", "flavour", "goal", "pack_size",
+               "sport_category", "processor", "ram", "storage", "screen_size", "network", "material_spec", "age_group",
+               "size_range", "purity", "strength")
+FACET_MAX_VALUES = 30
+FACET_LABELS = {"ram": _l("RAM"), "storage": _l("Storage"), "processor": _l("Processor"), "screen_size": _l("Screen size"),
+                "network": _l("Network")}
+
+
+def _num(value):
+    from decimal import Decimal, InvalidOperation
+    try:
+        v = Decimal(str(value).strip())
+        return v if v >= 0 else None
+    except (InvalidOperation, ValueError):
+        return None
+
+
+def _values(params, key):
+    return [v.strip()[:80] for v in (params.getlist(key) if hasattr(params, "getlist") else params.get(key, []) or [])
+            if v and v.strip()][:20]
+
+
+def shop_page(design, absolute, base, lang, preview, params=None):
+    """The Shop page: products with a filter side bar (category, brand, colour, size, price, stock and the
+    shop type's own details such as RAM or fragrance family). Several ticks in one filter widen it (OR); filters
+    together narrow it (AND). Counts are of the products matching the search and category."""
+    from collections import Counter
+    from django.db.models import Max, Min, Q
+    from apps.inventory.models import Brand, ProductCategory
+    from apps.webapp.forms import BusinessProductForm
     from . import shop_orders
+    params = params or {}
     company = design.company
     ordering = shop_orders.config(company)
-    qs = shop_orders.sellable(company).select_related("category", "brand")
-    cats = list(ProductCategory.objects.filter(company=company, id__in=qs.values("category_id")).order_by("name"))
+    all_qs = shop_orders.sellable(company).select_related("category", "brand")
+    try:
+        category_id = int(params.get("cat") or 0) or None
+        page = int(params.get("page") or 1)
+    except (TypeError, ValueError):
+        category_id, page = None, 1
+    cats = list(ProductCategory.objects.filter(company=company, id__in=all_qs.values("category_id")).order_by("name"))
     category = next((c for c in cats if c.id == category_id), None)
-    if category:
-        qs = qs.filter(category=category)
-    search = (search or "").strip()[:80]
+    search = (params.get("q") or "").strip()[:80]
+    sort = params.get("sort") or ""
+    scope = all_qs.filter(category=category) if category else all_qs
     if search:
-        from django.db.models import Q
-        qs = qs.filter(Q(name__icontains=search) | Q(brand__name__icontains=search) | Q(sku__iexact=search) |
-                       Q(category__name__icontains=search))
+        scope = scope.filter(Q(name__icontains=search) | Q(brand__name__icontains=search) | Q(sku__iexact=search) |
+                             Q(category__name__icontains=search) | Q(variant_label__icontains=search))
+
+    # ---- what the visitor ticked
+    brands_on = {int(v) for v in _values(params, "brand") if v.isdigit()}
+    colours_on, sizes_on = set(_values(params, "colour")), set(_values(params, "size"))
+    attrs_on = {k: set(_values(params, f"a_{k}")) for k in FACET_ATTRS}
+    attrs_on = {k: v for k, v in attrs_on.items() if v}
+    pmin, pmax = _num(params.get("min") or ""), _num(params.get("max") or "")
+    in_stock = params.get("stock") == "1"
+
+    qs = scope
+    if brands_on:
+        qs = qs.filter(brand_id__in=brands_on)
+    if colours_on:
+        qs = qs.filter(colour__in=colours_on)
+    if sizes_on:
+        qs = qs.filter(size__in=sizes_on)
+    for key, values in attrs_on.items():
+        cond = Q()
+        for v in values:
+            cond |= Q(**{f"attributes__{key}": v})
+            n = _num(v)
+            if n is not None and n == n.to_integral_value():
+                cond |= Q(**{f"attributes__{key}": int(n)})
+        qs = qs.filter(cond)
+    if pmin is not None:
+        qs = qs.filter(selling_price__gte=pmin)
+    if pmax is not None:
+        qs = qs.filter(selling_price__lte=pmax)
+    if in_stock:
+        stocked_ids = [pid for pid, q in shop_orders.stock_for(company, list(qs.filter(is_stock_tracked=True))).items() if q > 0]
+        qs = qs.filter(Q(is_stock_tracked=False) | Q(id__in=stocked_ids))
+
+    # ---- filter options with counts (from the products matching the search and category)
+    rows = list(scope.values("brand_id", "colour", "size", "attributes")[:3000])
+    brand_counts = Counter(r["brand_id"] for r in rows if r["brand_id"])
+    brand_names = dict(Brand.objects.filter(id__in=brand_counts).values_list("id", "name"))
+    colour_counts = Counter(r["colour"].strip() for r in rows if (r["colour"] or "").strip())
+    size_counts = Counter(r["size"].strip() for r in rows if (r["size"] or "").strip())
+    labels = BusinessProductForm.FIELD_LABELS
+    attr_facets = []
+    for key in FACET_ATTRS:
+        counts = Counter(str(r["attributes"].get(key)).strip() for r in rows
+                         if isinstance(r["attributes"], dict) and r["attributes"].get(key) not in (None, "", False, True))
+        if counts and len(counts) <= FACET_MAX_VALUES and (len(counts) > 1 or key in attrs_on):
+            attr_facets.append({"key": f"a_{key}", "label": FACET_LABELS.get(key) or labels.get(key) or key.replace("_", " ").capitalize(),
+                                "options": [{"value": v, "label": v, "count": n, "on": v in attrs_on.get(key, ())}
+                                            for v, n in sorted(counts.items(), key=lambda kv: kv[0].lower())]})
+    span = scope.aggregate(lo=Min("selling_price"), hi=Max("selling_price"))
+
+    def size_key(v):
+        order = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL", "2XL", "3XL"]
+        return (0, order.index(v.upper()), 0) if v.upper() in order else (1, float(v) if _num(v) is not None else 0, v)
+
+    facets = {
+        "brands": [{"value": str(b), "label": brand_names.get(b, "?"), "count": n, "on": b in brands_on}
+                   for b, n in sorted(brand_counts.items(), key=lambda kv: brand_names.get(kv[0], "").lower())],
+        "colours": [{"value": c, "label": c, "count": n, "on": c in colours_on} for c, n in sorted(colour_counts.items())],
+        "sizes": [{"value": z, "label": z, "count": n, "on": z in sizes_on} for z, n in sorted(size_counts.items(), key=lambda kv: size_key(kv[0]))],
+        "attrs": attr_facets,
+        "price_lo": int(span["lo"] or 0), "price_hi": int((span["hi"] or 0) + 1),
+    }
+
     qs = qs.order_by({"low": "selling_price", "high": "-selling_price", "new": "-id"}.get(sort, "name"), "id")
     total = qs.count()
     pages = max(1, -(-total // PAGE_SIZE))
     page = min(max(1, page), pages)
-    rows = list(qs[(page - 1) * PAGE_SIZE: page * PAGE_SIZE])
+    page_rows = list(qs[(page - 1) * PAGE_SIZE: page * PAGE_SIZE])
     q = query(lang, design, preview)
-    stock = shop_orders.stock_for(company, rows)
-    items = [_item(p, company, absolute, base, q, stock, ordering) for p in rows]
+    stock = shop_orders.stock_for(company, page_rows)
+    items = [_item(p, company, absolute, base, q, stock, ordering) for p in page_rows]
+
+    # the current choice, so links keep it (multi-value)
+    current = {"cat": category.id if category else None, "q": search, "sort": sort,
+               "brand": sorted(str(b) for b in brands_on), "colour": sorted(colours_on), "size": sorted(sizes_on),
+               "min": params.get("min") or "", "max": params.get("max") or "", "stock": "1" if in_stock else ""}
+    current.update({f"a_{k}": sorted(v) for k, v in attrs_on.items()})
+
+    def url(**change):
+        state = {**current, **change}
+        return f"{base}shop/" + query(lang, design, preview, **state)
+
     for c in cats:
-        c.url = f"{base}shop/" + query(lang, design, preview, cat=c.id)
-    more = dict(cat=category.id if category else None, q=search, sort=sort)
+        c.url = url(cat=c.id, page=None)
+    chips = []
+    for b in sorted(brands_on):
+        chips.append({"label": brand_names.get(b, "?"), "url": url(brand=[x for x in current["brand"] if x != str(b)])})
+    for key, label_key in (("colour", "colour"), ("size", "size")):
+        for v in current[key]:
+            chips.append({"label": v, "url": url(**{key: [x for x in current[key] if x != v]})})
+    for k, values in attrs_on.items():
+        for v in sorted(values):
+            chips.append({"label": v, "url": url(**{f"a_{k}": [x for x in current[f"a_{k}"] if x != v]})})
+    if current["min"] or current["max"]:
+        chips.append({"label": f"{design.company.default_currency} {current['min'] or 0}–{current['max'] or '∞'}",
+                      "url": url(min="", max="")})
+    if in_stock:
+        chips.append({"label": "✓", "url": url(stock=""), "stock": True})
     return {"items": items, "categories": cats, "category": category, "search": search, "sort": sort, "total": total,
-            "page": page, "pages": pages, "ordering": ordering,
-            "prev_url": f"{base}shop/" + query(lang, design, preview, page=page - 1, **more) if page > 1 else "",
-            "next_url": f"{base}shop/" + query(lang, design, preview, page=page + 1, **more) if page < pages else ""}
+            "page": page, "pages": pages, "ordering": ordering, "facets": facets, "chips": chips, "in_stock_only": in_stock,
+            "price_min": current["min"], "price_max": current["max"],
+            "clear_url": url(brand=[], colour=[], size=[], min="", max="", stock="", **{f"a_{k}": [] for k in attrs_on}),
+            "all_url": url(cat=None),
+            "prev_url": url(page=page - 1) if page > 1 else "",
+            "next_url": url(page=page + 1) if page < pages else ""}
 
 
 def product_page(design, absolute, base, lang, preview, product_id):

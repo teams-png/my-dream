@@ -7025,6 +7025,25 @@ msgid "for each branch after the first"
 msgstr "لكل فرع بعد الأول"
 
 #: templates/webapp/public/landing.html
+msgid "Business website"
+msgstr "موقع النشاط التجاري"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Your own website with pages, products and WhatsApp — on your own domain"
+msgstr "موقعك الخاص بالصفحات والمنتجات وواتساب — على نطاقك الخاص"
+
+#: templates/webapp/public/landing.html
+msgid "E-commerce website"
+msgstr "موقع تجارة إلكترونية"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Everything in the website, plus cart, checkout and website orders in "
+"BookPilot"
+msgstr "كل ما في الموقع، بالإضافة إلى السلة والدفع وطلبات الموقع في BookPilot"
+
+#: templates/webapp/public/landing.html
 msgid "per extra user / year"
 msgstr "لكل مستخدم إضافي / سنة"
 
@@ -9726,6 +9745,18 @@ msgstr ""
 
 #: templates/webapp/shop_orders/inbox.html
 msgid ""
+"The cart and website orders come with the E-commerce website package. Your "
+"website still shows every product with its own page and a WhatsApp button."
+msgstr ""
+"السلة وطلبات الموقع ضمن باقة موقع التجارة الإلكترونية. يظل موقعك يعرض كل "
+"منتج بصفحته الخاصة وزر واتساب."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Ask to upgrade"
+msgstr "اطلب الترقية"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
 "Your BookPilot website is not switched on yet. Ask your BookPilot team to "
 "switch on the Website add-on — or put the cart on your own website with the "
 "Website kit."
@@ -9845,6 +9876,14 @@ msgstr ""
 #: templates/webapp/site/editor.html
 msgid "Online shop"
 msgstr "المتجر الإلكتروني"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website shows every product with its own page. To take orders with a "
+"cart and checkout, upgrade to the E-commerce website package."
+msgstr ""
+"يعرض موقعك كل منتج بصفحته الخاصة. لاستقبال الطلبات عبر السلة والدفع، قم "
+"بالترقية إلى باقة موقع التجارة الإلكترونية."
 
 #: templates/webapp/site/editor.html
 msgid ""
@@ -10078,8 +10117,40 @@ msgid "All products"
 msgstr "كل المنتجات"
 
 #: templates/webapp/site/shop.html
+msgid "Filters"
+msgstr "الفلاتر"
+
+#: templates/webapp/site/shop.html
 msgid "Search products…"
 msgstr "ابحث عن منتج…"
+
+#: templates/webapp/site/shop.html
+msgid "Lowest price"
+msgstr "أقل سعر"
+
+#: templates/webapp/site/shop.html
+msgid "Highest price"
+msgstr "أعلى سعر"
+
+#: templates/webapp/site/shop.html
+msgid "In stock only"
+msgstr "المتوفر فقط"
+
+#: templates/webapp/site/shop.html
+msgid "Brand"
+msgstr "العلامة التجارية"
+
+#: templates/webapp/site/shop.html
+msgid "Colour"
+msgstr "اللون"
+
+#: templates/webapp/site/shop.html
+msgid "Size"
+msgstr "المقاس"
+
+#: templates/webapp/site/shop.html
+msgid "Clear all"
+msgstr "مسح الكل"
 
 #: templates/webapp/site/shop.html
 msgid "Sort"
@@ -10398,10 +10469,6 @@ msgstr "المقاسات"
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Name on jersey"
 msgstr "الاسم على القميص"
-
-#: templates/webapp/sports_shop/team_order_detail.html
-msgid "Size"
-msgstr "المقاس"
 
 #: templates/webapp/sports_shop/team_order_form.html
 msgid "Team order"
@@ -11092,8 +11159,20 @@ msgid "Our products"
 msgstr "منتجاتنا"
 
 #: apps/industry/site_builder.py
-msgid "Colour"
-msgstr "اللون"
+msgid "RAM"
+msgstr "الذاكرة RAM"
+
+#: apps/industry/site_builder.py
+msgid "Storage"
+msgstr "التخزين"
+
+#: apps/industry/site_builder.py
+msgid "Processor"
+msgstr "المعالج"
+
+#: apps/industry/site_builder.py
+msgid "Screen size"
+msgstr "حجم الشاشة"
 
 #: apps/industry/site_builder.py
 msgid "Material"

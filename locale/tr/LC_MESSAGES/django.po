@@ -7084,6 +7084,28 @@ msgid "for each branch after the first"
 msgstr "ilkinden sonraki her şube için"
 
 #: templates/webapp/public/landing.html
+msgid "Business website"
+msgstr "İşletme web sitesi"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Your own website with pages, products and WhatsApp — on your own domain"
+msgstr ""
+"Sayfalar, ürünler ve WhatsApp ile kendi web siteniz — kendi alan adınızda"
+
+#: templates/webapp/public/landing.html
+msgid "E-commerce website"
+msgstr "E-ticaret web sitesi"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Everything in the website, plus cart, checkout and website orders in "
+"BookPilot"
+msgstr ""
+"Web sitesindeki her şey, artı sepet, ödeme ve BookPilot'ta web sitesi "
+"siparişleri"
+
+#: templates/webapp/public/landing.html
 msgid "per extra user / year"
 msgstr "ek kullanıcı başına / yıl"
 
@@ -9802,6 +9824,18 @@ msgstr ""
 
 #: templates/webapp/shop_orders/inbox.html
 msgid ""
+"The cart and website orders come with the E-commerce website package. Your "
+"website still shows every product with its own page and a WhatsApp button."
+msgstr ""
+"Sepet ve web sitesi siparişleri E-ticaret web sitesi paketindedir. Siteniz "
+"yine de her ürünü kendi sayfası ve WhatsApp düğmesiyle gösterir."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Ask to upgrade"
+msgstr "Yükseltme iste"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
 "Your BookPilot website is not switched on yet. Ask your BookPilot team to "
 "switch on the Website add-on — or put the cart on your own website with the "
 "Website kit."
@@ -9923,6 +9957,14 @@ msgstr ""
 #: templates/webapp/site/editor.html
 msgid "Online shop"
 msgstr "Online mağaza"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website shows every product with its own page. To take orders with a "
+"cart and checkout, upgrade to the E-commerce website package."
+msgstr ""
+"Siteniz her ürünü kendi sayfasıyla gösterir. Sepet ve ödeme ile sipariş "
+"almak için E-ticaret web sitesi paketine geçin."
 
 #: templates/webapp/site/editor.html
 msgid ""
@@ -10161,8 +10203,40 @@ msgid "All products"
 msgstr "Tüm ürünler"
 
 #: templates/webapp/site/shop.html
+msgid "Filters"
+msgstr "Filtreler"
+
+#: templates/webapp/site/shop.html
 msgid "Search products…"
 msgstr "Ürün ara…"
+
+#: templates/webapp/site/shop.html
+msgid "Lowest price"
+msgstr "En düşük fiyat"
+
+#: templates/webapp/site/shop.html
+msgid "Highest price"
+msgstr "En yüksek fiyat"
+
+#: templates/webapp/site/shop.html
+msgid "In stock only"
+msgstr "Sadece stoktakiler"
+
+#: templates/webapp/site/shop.html
+msgid "Brand"
+msgstr "Marka"
+
+#: templates/webapp/site/shop.html
+msgid "Colour"
+msgstr "Renk"
+
+#: templates/webapp/site/shop.html
+msgid "Size"
+msgstr "Beden"
+
+#: templates/webapp/site/shop.html
+msgid "Clear all"
+msgstr "Tümünü temizle"
 
 #: templates/webapp/site/shop.html
 msgid "Sort"
@@ -10485,10 +10559,6 @@ msgstr "Bedenler"
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Name on jersey"
 msgstr "Formadaki isim"
-
-#: templates/webapp/sports_shop/team_order_detail.html
-msgid "Size"
-msgstr "Beden"
 
 #: templates/webapp/sports_shop/team_order_form.html
 msgid "Team order"
@@ -11192,8 +11262,20 @@ msgid "Our products"
 msgstr "Ürünlerimiz"
 
 #: apps/industry/site_builder.py
-msgid "Colour"
-msgstr "Renk"
+msgid "RAM"
+msgstr "RAM"
+
+#: apps/industry/site_builder.py
+msgid "Storage"
+msgstr "Depolama"
+
+#: apps/industry/site_builder.py
+msgid "Processor"
+msgstr "İşlemci"
+
+#: apps/industry/site_builder.py
+msgid "Screen size"
+msgstr "Ekran boyutu"
 
 #: apps/industry/site_builder.py
 msgid "Material"

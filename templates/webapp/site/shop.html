@@ -4,28 +4,59 @@
 <section class="section" style="padding-top:8px"><div class="wrap">
   <div class="page-head"><h1>{% if category %}{{ category.name }}{% else %}{% translate "All products" %}{% endif %}</h1>
     <p class="lead" style="color:var(--soft);margin:0">{% blocktranslate count n=total %}{{ n }} product{% plural %}{{ n }} products{% endblocktranslate %}</p></div>
-  <div class="shop-bar">
-    <form method="get" role="search">
-      {% if lang_q %}<input type="hidden" name="lang" value="{{ lang_q }}">{% endif %}{% if preview %}<input type="hidden" name="preview" value="1">{% endif %}
-      {% if category %}<input type="hidden" name="cat" value="{{ category.id }}">{% endif %}
-      <input type="search" name="q" value="{{ search }}" placeholder="{% translate 'Search products…' %}" aria-label="{% translate 'Search products' %}">
-      <select name="sort" onchange="this.form.submit()" aria-label="{% translate 'Sort' %}">
-        <option value="">{% translate "Sort: name" %}</option>
-        <option value="low"{% if sort == "low" %} selected{% endif %}>{% translate "Price: low to high" %}</option>
-        <option value="high"{% if sort == "high" %} selected{% endif %}>{% translate "Price: high to low" %}</option>
-        <option value="new"{% if sort == "new" %} selected{% endif %}>{% translate "Newest" %}</option>
-      </select>
-    </form>
-  </div>
-  {% if categories|length > 1 %}<nav class="chips" aria-label="{% translate 'Categories' %}">
-    <a href="{{ shop_url }}"{% if not category %} class="on"{% endif %}>{% translate "All" %}</a>
+  {% if categories|length > 1 %}<nav class="chips" aria-label="{% translate 'Categories' %}" style="margin:8px 0 4px">
+    <a href="{{ all_url }}"{% if not category %} class="on"{% endif %}>{% translate "All" %}</a>
     {% for c in categories %}<a href="{{ c.url }}"{% if category and category.id == c.id %} class="on"{% endif %}>{{ c.name }}</a>{% endfor %}
   </nav>{% endif %}
-  {% if items %}
-  <div class="grid pgrid" style="margin-top:14px">{% for item in items %}{% include "webapp/site/_card.html" %}{% endfor %}</div>
-  {% else %}
-  <p style="color:var(--soft);margin-top:20px">{% translate "No products found." %}</p>
-  {% endif %}
-  {% if pages > 1 %}<nav class="pager">{% if prev_url %}<a href="{{ prev_url }}">← {% translate "Previous" %}</a>{% endif %}<span>{{ page }} / {{ pages }}</span>{% if next_url %}<a href="{{ next_url }}">{% translate "Next" %} →</a>{% endif %}</nav>{% endif %}
+  <div class="shop-layout">
+    <details class="filters" id="shopFilters">
+      <summary>⚙ {% translate "Filters" %}{% if chips %} · {{ chips|length }}{% endif %}</summary>
+      <form method="get" id="filterForm">
+        {% if lang_q %}<input type="hidden" name="lang" value="{{ lang_q }}">{% endif %}{% if preview %}<input type="hidden" name="preview" value="1">{% endif %}
+        {% if category %}<input type="hidden" name="cat" value="{{ category.id }}">{% endif %}
+        {% if sort %}<input type="hidden" name="sort" value="{{ sort }}">{% endif %}
+        <div class="fgroup"><label class="ftitle" for="fq">{% translate "Search" %}</label>
+          <input id="fq" type="search" name="q" value="{{ search }}" placeholder="{% translate 'Search products…' %}"></div>
+        <div class="fgroup"><span class="ftitle">{% translate "Price" %} ({{ currency }})</span>
+          <div class="frange"><input type="number" name="min" min="0" step="1" value="{{ price_min }}" placeholder="{{ facets.price_lo }}" aria-label="{% translate 'Lowest price' %}"><span>–</span><input type="number" name="max" min="0" step="1" value="{{ price_max }}" placeholder="{{ facets.price_hi }}" aria-label="{% translate 'Highest price' %}"></div></div>
+        <div class="fgroup"><label class="fopt"><input type="checkbox" name="stock" value="1" {% if in_stock_only %}checked{% endif %}> {% translate "In stock only" %}</label></div>
+        {% if facets.brands|length > 1 %}<div class="fgroup"><span class="ftitle">{% translate "Brand" %}</span>
+          {% for o in facets.brands %}<label class="fopt"><input type="checkbox" name="brand" value="{{ o.value }}" {% if o.on %}checked{% endif %}> {{ o.label }} <small>{{ o.count }}</small></label>{% endfor %}</div>{% endif %}
+        {% if facets.colours %}<div class="fgroup"><span class="ftitle">{% translate "Colour" %}</span>
+          {% for o in facets.colours %}<label class="fopt"><input type="checkbox" name="colour" value="{{ o.value }}" {% if o.on %}checked{% endif %}> {{ o.label }} <small>{{ o.count }}</small></label>{% endfor %}</div>{% endif %}
+        {% if facets.sizes %}<div class="fgroup"><span class="ftitle">{% translate "Size" %}</span><div class="fsizes">
+          {% for o in facets.sizes %}<label class="fsize{% if o.on %} on{% endif %}"><input type="checkbox" name="size" value="{{ o.value }}" {% if o.on %}checked{% endif %}>{{ o.label }}</label>{% endfor %}</div></div>{% endif %}
+        {% for f in facets.attrs %}<div class="fgroup"><span class="ftitle">{{ f.label }}</span>
+          {% for o in f.options %}<label class="fopt"><input type="checkbox" name="{{ f.key }}" value="{{ o.value }}" {% if o.on %}checked{% endif %}> {{ o.label }} <small>{{ o.count }}</small></label>{% endfor %}</div>{% endfor %}
+        <div class="fgroup factions"><button class="btn" type="submit">{% translate "Apply" %}</button>{% if chips %}<a href="{{ clear_url }}">{% translate "Clear all" %}</a>{% endif %}</div>
+      </form>
+    </details>
+    <div class="shop-results">
+      <div class="shop-bar">
+        {% if chips %}<div class="fchips">{% for c in chips %}<a href="{{ c.url }}" title="{% translate 'Remove' %}">{% if c.stock %}{% translate "In stock only" %}{% else %}{{ c.label }}{% endif %} ✕</a>{% endfor %}</div>{% endif %}
+        <form method="get" style="margin-inline-start:auto;flex:0 0 auto">
+          {% for key, vals in request.GET.lists %}{% if key != "sort" and key != "page" %}{% for v in vals %}<input type="hidden" name="{{ key }}" value="{{ v }}">{% endfor %}{% endif %}{% endfor %}
+          <select name="sort" onchange="this.form.submit()" aria-label="{% translate 'Sort' %}">
+            <option value="">{% translate "Sort: name" %}</option>
+            <option value="low"{% if sort == "low" %} selected{% endif %}>{% translate "Price: low to high" %}</option>
+            <option value="high"{% if sort == "high" %} selected{% endif %}>{% translate "Price: high to low" %}</option>
+            <option value="new"{% if sort == "new" %} selected{% endif %}>{% translate "Newest" %}</option>
+          </select>
+        </form>
+      </div>
+      {% if items %}
+      <div class="grid pgrid">{% for item in items %}{% include "webapp/site/_card.html" %}{% endfor %}</div>
+      {% else %}
+      <p style="color:var(--soft);margin-top:20px">{% translate "No products found." %}{% if chips %} <a href="{{ clear_url }}">{% translate "Clear all" %}</a>{% endif %}</p>
+      {% endif %}
+      {% if pages > 1 %}<nav class="pager">{% if prev_url %}<a href="{{ prev_url }}">← {% translate "Previous" %}</a>{% endif %}<span>{{ page }} / {{ pages }}</span>{% if next_url %}<a href="{{ next_url }}">{% translate "Next" %} →</a>{% endif %}</nav>{% endif %}
+    </div>
+  </div>
 </div></section>
+<script>
+(function(){var d=document.getElementById("shopFilters"),f=document.getElementById("filterForm");
+  if(window.matchMedia("(min-width: 900px)").matches)d.open=true;
+  f.addEventListener("change",function(e){if(e.target.type==="checkbox")f.submit();});
+  f.addEventListener("submit",function(){[].forEach.call(f.querySelectorAll("input"),function(i){if(!i.value&&i.type!=="checkbox")i.disabled=true;});});})();
+</script>
 {% endblock %}

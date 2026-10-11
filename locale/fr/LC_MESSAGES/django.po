@@ -7153,6 +7153,28 @@ msgid "for each branch after the first"
 msgstr "par succursale au-delà de la première"
 
 #: templates/webapp/public/landing.html
+msgid "Business website"
+msgstr "Site web d'entreprise"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Your own website with pages, products and WhatsApp — on your own domain"
+msgstr ""
+"Votre propre site avec pages, produits et WhatsApp — sur votre propre "
+"domaine"
+
+#: templates/webapp/public/landing.html
+msgid "E-commerce website"
+msgstr "Site e-commerce"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Everything in the website, plus cart, checkout and website orders in "
+"BookPilot"
+msgstr ""
+"Tout le site web, plus panier, commande et commandes du site dans BookPilot"
+
+#: templates/webapp/public/landing.html
 msgid "per extra user / year"
 msgstr "par utilisateur supplémentaire / an"
 
@@ -9895,6 +9917,19 @@ msgstr ""
 
 #: templates/webapp/shop_orders/inbox.html
 msgid ""
+"The cart and website orders come with the E-commerce website package. Your "
+"website still shows every product with its own page and a WhatsApp button."
+msgstr ""
+"Le panier et les commandes du site font partie du forfait Site e-commerce. "
+"Votre site affiche toujours chaque produit avec sa page et un bouton "
+"WhatsApp."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Ask to upgrade"
+msgstr "Demander la mise à niveau"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
 "Your BookPilot website is not switched on yet. Ask your BookPilot team to "
 "switch on the Website add-on — or put the cart on your own website with the "
 "Website kit."
@@ -10016,6 +10051,14 @@ msgstr ""
 #: templates/webapp/site/editor.html
 msgid "Online shop"
 msgstr "Boutique en ligne"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website shows every product with its own page. To take orders with a "
+"cart and checkout, upgrade to the E-commerce website package."
+msgstr ""
+"Votre site affiche chaque produit avec sa propre page. Pour prendre des "
+"commandes avec panier et paiement, passez au forfait Site e-commerce."
 
 #: templates/webapp/site/editor.html
 msgid ""
@@ -10256,8 +10299,40 @@ msgid "All products"
 msgstr "Tous les produits"
 
 #: templates/webapp/site/shop.html
+msgid "Filters"
+msgstr "Filtres"
+
+#: templates/webapp/site/shop.html
 msgid "Search products…"
 msgstr "Rechercher des produits…"
+
+#: templates/webapp/site/shop.html
+msgid "Lowest price"
+msgstr "Prix minimum"
+
+#: templates/webapp/site/shop.html
+msgid "Highest price"
+msgstr "Prix maximum"
+
+#: templates/webapp/site/shop.html
+msgid "In stock only"
+msgstr "En stock uniquement"
+
+#: templates/webapp/site/shop.html
+msgid "Brand"
+msgstr "Marque"
+
+#: templates/webapp/site/shop.html
+msgid "Colour"
+msgstr "Couleur"
+
+#: templates/webapp/site/shop.html
+msgid "Size"
+msgstr "Taille"
+
+#: templates/webapp/site/shop.html
+msgid "Clear all"
+msgstr "Tout effacer"
 
 #: templates/webapp/site/shop.html
 msgid "Sort"
@@ -10581,10 +10656,6 @@ msgstr "Tailles"
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Name on jersey"
 msgstr "Nom sur le maillot"
-
-#: templates/webapp/sports_shop/team_order_detail.html
-msgid "Size"
-msgstr "Taille"
 
 #: templates/webapp/sports_shop/team_order_form.html
 msgid "Team order"
@@ -11298,8 +11369,20 @@ msgid "Our products"
 msgstr "Nos produits"
 
 #: apps/industry/site_builder.py
-msgid "Colour"
-msgstr "Couleur"
+msgid "RAM"
+msgstr "RAM"
+
+#: apps/industry/site_builder.py
+msgid "Storage"
+msgstr "Stockage"
+
+#: apps/industry/site_builder.py
+msgid "Processor"
+msgstr "Processeur"
+
+#: apps/industry/site_builder.py
+msgid "Screen size"
+msgstr "Taille d'écran"
 
 #: apps/industry/site_builder.py
 msgid "Material"

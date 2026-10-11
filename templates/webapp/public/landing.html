@@ -311,6 +311,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     billed:"{% translate 'Prices are per year. Customers outside India are billed in QAR; other currencies are an estimate.' %}",
     branch1:"{% translate '1 branch included' %}",xUser:"{% translate 'Extra user' %}",xBranch:"{% translate 'Extra branch' %}",
     xUserNote:"{% translate 'for each user after' %}",xBranchNote:"{% translate 'for each branch after the first' %}",
+    xSite:"{% translate 'Business website' %}",xSiteNote:"{% translate 'Your own website with pages, products and WhatsApp — on your own domain' %}",
+    xShop:"{% translate 'E-commerce website' %}",xShopNote:"{% translate 'Everything in the website, plus cart, checkout and website orders in BookPilot' %}",
     perUser:"{% translate 'per extra user / year' %}",perBranch:"{% translate 'per extra branch / year' %}",
     india:"{% translate 'Prices are per year, billed in INR.' %}",approx:"{% translate 'approx.' %}"};
   let tier='standard',region='Global';
@@ -335,6 +337,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     const parts=[];
     if(top&&top.extra_user)parts.push(`<div class="addon"><span class="ico">👤</span><div><b>${T.xUser}</b><span>${T.xUserNote} ${top.users}</span></div><div class="amt">${top.currency} ${fmt(top.extra_user)}${conv(top.extra_user)}<br><small>/ ${T.year}</small></div></div>`);
     if(top&&top.extra_branch)parts.push(`<div class="addon"><span class="ico">🏬</span><div><b>${T.xBranch}</b><span>${T.xBranchNote}</span></div><div class="amt">${top.currency} ${fmt(top.extra_branch)}${conv(top.extra_branch)}<br><small>/ ${T.year}</small></div></div>`);
+    const W=(P.website||{})[region];
+    if(top&&W){const cur0=top.currency;
+      parts.push(`<div class="addon"><span class="ico">🌐</span><div><b>${T.xSite}</b><span>${T.xSiteNote}</span></div><div class="amt">${cur0} ${fmt(W.website)}${conv(W.website)}<br><small>/ ${T.year}</small></div></div>`);
+      parts.push(`<div class="addon"><span class="ico">🛒</span><div><b>${T.xShop}</b><span>${T.xShopNote}</span></div><div class="amt">${cur0} ${fmt(W.shop)}${conv(W.shop)}<br><small>/ ${T.year}</small></div></div>`);}
     ab.innerHTML=parts.join('');ab.hidden=!parts.length;
   }
   document.getElementById('tierTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){tier=b.dataset.tier;render()}});

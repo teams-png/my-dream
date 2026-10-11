@@ -110,6 +110,7 @@ def _pricing_data():
                    "branches": p.max_warehouses, "extra_user": f"{p.extra_user_price:.0f}" if p.extra_user_price else "",
                    "extra_branch": f"{p.extra_branch_price:.0f}" if p.extra_branch_price else ""} for p in _plans()],
         "large_types": sorted(LARGE_BUSINESS_TYPES),
+        "website": __import__("apps.subscriptions.pricing", fromlist=["WEBSITE_PRICES"]).WEBSITE_PRICES,
         "fx": {code: {"rate": str(rate), "exact": is_exact(code)} for code, rate in fx_rates().items()},
         "country_currency": CURRENCY_BY_COUNTRY,
     }

@@ -7054,6 +7054,25 @@ msgid "for each branch after the first"
 msgstr "প্রথমটির পরে প্রতি শাখার জন্য"
 
 #: templates/webapp/public/landing.html
+msgid "Business website"
+msgstr "ব্যবসার ওয়েবসাইট"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Your own website with pages, products and WhatsApp — on your own domain"
+msgstr "পেজ, পণ্য ও WhatsApp সহ আপনার নিজের ওয়েবসাইট — আপনার নিজের ডোমেইনে"
+
+#: templates/webapp/public/landing.html
+msgid "E-commerce website"
+msgstr "ই-কমার্স ওয়েবসাইট"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Everything in the website, plus cart, checkout and website orders in "
+"BookPilot"
+msgstr "ওয়েবসাইটের সবকিছু, সাথে কার্ট, চেকআউট ও BookPilot-এ ওয়েবসাইট অর্ডার"
+
+#: templates/webapp/public/landing.html
 msgid "per extra user / year"
 msgstr "প্রতি অতিরিক্ত ব্যবহারকারী / বছর"
 
@@ -9764,6 +9783,18 @@ msgstr ""
 
 #: templates/webapp/shop_orders/inbox.html
 msgid ""
+"The cart and website orders come with the E-commerce website package. Your "
+"website still shows every product with its own page and a WhatsApp button."
+msgstr ""
+"কার্ট ও ওয়েবসাইট অর্ডার ই-কমার্স ওয়েবসাইট প্যাকেজে আছে। আপনার ওয়েবসাইট "
+"এখনও প্রতিটি পণ্য নিজস্ব পেজ ও WhatsApp বোতাম সহ দেখায়।"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Ask to upgrade"
+msgstr "আপগ্রেডের জন্য বলুন"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
 "Your BookPilot website is not switched on yet. Ask your BookPilot team to "
 "switch on the Website add-on — or put the cart on your own website with the "
 "Website kit."
@@ -9884,6 +9915,14 @@ msgstr ""
 #: templates/webapp/site/editor.html
 msgid "Online shop"
 msgstr "অনলাইন শপ"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website shows every product with its own page. To take orders with a "
+"cart and checkout, upgrade to the E-commerce website package."
+msgstr ""
+"আপনার ওয়েবসাইট প্রতিটি পণ্য নিজস্ব পেজ সহ দেখায়। কার্ট ও চেকআউটে অর্ডার "
+"নিতে ই-কমার্স ওয়েবসাইট প্যাকেজে আপগ্রেড করুন।"
 
 #: templates/webapp/site/editor.html
 msgid ""
@@ -10120,8 +10159,40 @@ msgid "All products"
 msgstr "সব পণ্য"
 
 #: templates/webapp/site/shop.html
+msgid "Filters"
+msgstr "ফিল্টার"
+
+#: templates/webapp/site/shop.html
 msgid "Search products…"
 msgstr "পণ্য খুঁজুন…"
+
+#: templates/webapp/site/shop.html
+msgid "Lowest price"
+msgstr "সর্বনিম্ন দাম"
+
+#: templates/webapp/site/shop.html
+msgid "Highest price"
+msgstr "সর্বোচ্চ দাম"
+
+#: templates/webapp/site/shop.html
+msgid "In stock only"
+msgstr "শুধু স্টকে থাকা"
+
+#: templates/webapp/site/shop.html
+msgid "Brand"
+msgstr "ব্র্যান্ড"
+
+#: templates/webapp/site/shop.html
+msgid "Colour"
+msgstr "রং"
+
+#: templates/webapp/site/shop.html
+msgid "Size"
+msgstr "সাইজ"
+
+#: templates/webapp/site/shop.html
+msgid "Clear all"
+msgstr "সব মুছুন"
 
 #: templates/webapp/site/shop.html
 msgid "Sort"
@@ -10441,10 +10512,6 @@ msgstr "সাইজ"
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Name on jersey"
 msgstr "জার্সিতে নাম"
-
-#: templates/webapp/sports_shop/team_order_detail.html
-msgid "Size"
-msgstr "সাইজ"
 
 #: templates/webapp/sports_shop/team_order_form.html
 msgid "Team order"
@@ -11142,8 +11209,20 @@ msgid "Our products"
 msgstr "আমাদের পণ্য"
 
 #: apps/industry/site_builder.py
-msgid "Colour"
-msgstr "রং"
+msgid "RAM"
+msgstr "RAM"
+
+#: apps/industry/site_builder.py
+msgid "Storage"
+msgstr "স্টোরেজ"
+
+#: apps/industry/site_builder.py
+msgid "Processor"
+msgstr "প্রসেসর"
+
+#: apps/industry/site_builder.py
+msgid "Screen size"
+msgstr "স্ক্রিনের আকার"
 
 #: apps/industry/site_builder.py
 msgid "Material"

@@ -6896,6 +6896,25 @@ msgid "for each branch after the first"
 msgstr "首个之后每个分店"
 
 #: templates/webapp/public/landing.html
+msgid "Business website"
+msgstr "企业网站"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Your own website with pages, products and WhatsApp — on your own domain"
+msgstr "带页面、商品和 WhatsApp 的专属网站——使用您自己的域名"
+
+#: templates/webapp/public/landing.html
+msgid "E-commerce website"
+msgstr "电商网站"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Everything in the website, plus cart, checkout and website orders in "
+"BookPilot"
+msgstr "包含网站的全部功能，另加购物车、结账以及 BookPilot 中的网站订单"
+
+#: templates/webapp/public/landing.html
 msgid "per extra user / year"
 msgstr "每个额外用户 / 年"
 
@@ -9569,6 +9588,16 @@ msgstr "确认每个新订单，发货，然后开单。有新订单时此页面
 
 #: templates/webapp/shop_orders/inbox.html
 msgid ""
+"The cart and website orders come with the E-commerce website package. Your "
+"website still shows every product with its own page and a WhatsApp button."
+msgstr "购物车和网站订单属于电商网站套餐。您的网站仍会展示每个商品的详情页和 WhatsApp 按钮。"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Ask to upgrade"
+msgstr "申请升级"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
 "Your BookPilot website is not switched on yet. Ask your BookPilot team to "
 "switch on the Website add-on — or put the cart on your own website with the "
 "Website kit."
@@ -9684,6 +9713,12 @@ msgstr "菜单、价格、优惠、电话和地址直接来自 BookPilot — 在
 #: templates/webapp/site/editor.html
 msgid "Online shop"
 msgstr "网店"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website shows every product with its own page. To take orders with a "
+"cart and checkout, upgrade to the E-commerce website package."
+msgstr "您的网站会为每个商品展示详情页。如需通过购物车和结账接单，请升级到电商网站套餐。"
 
 #: templates/webapp/site/editor.html
 msgid ""
@@ -9909,8 +9944,40 @@ msgid "All products"
 msgstr "全部商品"
 
 #: templates/webapp/site/shop.html
+msgid "Filters"
+msgstr "筛选"
+
+#: templates/webapp/site/shop.html
 msgid "Search products…"
 msgstr "搜索商品…"
+
+#: templates/webapp/site/shop.html
+msgid "Lowest price"
+msgstr "最低价"
+
+#: templates/webapp/site/shop.html
+msgid "Highest price"
+msgstr "最高价"
+
+#: templates/webapp/site/shop.html
+msgid "In stock only"
+msgstr "仅显示有货"
+
+#: templates/webapp/site/shop.html
+msgid "Brand"
+msgstr "品牌"
+
+#: templates/webapp/site/shop.html
+msgid "Colour"
+msgstr "颜色"
+
+#: templates/webapp/site/shop.html
+msgid "Size"
+msgstr "尺码"
+
+#: templates/webapp/site/shop.html
+msgid "Clear all"
+msgstr "全部清除"
 
 #: templates/webapp/site/shop.html
 msgid "Sort"
@@ -10223,10 +10290,6 @@ msgstr "尺码"
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Name on jersey"
 msgstr "球衣上的名字"
-
-#: templates/webapp/sports_shop/team_order_detail.html
-msgid "Size"
-msgstr "尺码"
 
 #: templates/webapp/sports_shop/team_order_form.html
 msgid "Team order"
@@ -10893,8 +10956,20 @@ msgid "Our products"
 msgstr "我们的产品"
 
 #: apps/industry/site_builder.py
-msgid "Colour"
-msgstr "颜色"
+msgid "RAM"
+msgstr "内存"
+
+#: apps/industry/site_builder.py
+msgid "Storage"
+msgstr "存储"
+
+#: apps/industry/site_builder.py
+msgid "Processor"
+msgstr "处理器"
+
+#: apps/industry/site_builder.py
+msgid "Screen size"
+msgstr "屏幕尺寸"
 
 #: apps/industry/site_builder.py
 msgid "Material"

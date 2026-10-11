@@ -34,6 +34,7 @@
     </span>
     <a class="btn btn-secondary" href="{{ site_url }}" target="_blank" rel="noopener">↗ {% translate "Open my website" %}</a>
   </div>
+  {% if design.package != "shop" %}<div class="card" style="margin-bottom:14px;border:2px solid #f59e0b">🛒 {% translate "The cart and website orders come with the E-commerce website package. Your website still shows every product with its own page and a WhatsApp button." %} <a href="{% url 'webapp:help' %}">{% translate "Ask to upgrade" %} →</a></div>{% endif %}
   {% if not design.enabled %}<div class="card" style="margin-bottom:14px">{% translate "Your BookPilot website is not switched on yet. Ask your BookPilot team to switch on the Website add-on — or put the cart on your own website with the Website kit." %}</div>{% endif %}
 
   <div class="oo-tabs">

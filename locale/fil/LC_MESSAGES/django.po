@@ -7123,6 +7123,29 @@ msgid "for each branch after the first"
 msgstr "para sa bawat sangay pagkatapos ng una"
 
 #: templates/webapp/public/landing.html
+msgid "Business website"
+msgstr "Website ng negosyo"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Your own website with pages, products and WhatsApp — on your own domain"
+msgstr ""
+"Sariling website na may mga page, produkto at WhatsApp — sa sarili mong "
+"domain"
+
+#: templates/webapp/public/landing.html
+msgid "E-commerce website"
+msgstr "E-commerce website"
+
+#: templates/webapp/public/landing.html
+msgid ""
+"Everything in the website, plus cart, checkout and website orders in "
+"BookPilot"
+msgstr ""
+"Lahat ng nasa website, dagdag ang cart, checkout at website orders sa "
+"BookPilot"
+
+#: templates/webapp/public/landing.html
 msgid "per extra user / year"
 msgstr "kada dagdag na user / taon"
 
@@ -9855,6 +9878,19 @@ msgstr ""
 
 #: templates/webapp/shop_orders/inbox.html
 msgid ""
+"The cart and website orders come with the E-commerce website package. Your "
+"website still shows every product with its own page and a WhatsApp button."
+msgstr ""
+"Kasama sa E-commerce website package ang cart at website orders. Ipinapakita"
+" pa rin ng website mo ang bawat produkto na may sariling page at WhatsApp "
+"button."
+
+#: templates/webapp/shop_orders/inbox.html
+msgid "Ask to upgrade"
+msgstr "Humiling ng upgrade"
+
+#: templates/webapp/shop_orders/inbox.html
+msgid ""
 "Your BookPilot website is not switched on yet. Ask your BookPilot team to "
 "switch on the Website add-on — or put the cart on your own website with the "
 "Website kit."
@@ -9976,6 +10012,15 @@ msgstr ""
 #: templates/webapp/site/editor.html
 msgid "Online shop"
 msgstr "Online shop"
+
+#: templates/webapp/site/editor.html
+msgid ""
+"Your website shows every product with its own page. To take orders with a "
+"cart and checkout, upgrade to the E-commerce website package."
+msgstr ""
+"Ipinapakita ng website mo ang bawat produkto na may sariling page. Para "
+"tumanggap ng order gamit ang cart at checkout, mag-upgrade sa E-commerce "
+"website package."
 
 #: templates/webapp/site/editor.html
 msgid ""
@@ -10216,8 +10261,40 @@ msgid "All products"
 msgstr "Lahat ng produkto"
 
 #: templates/webapp/site/shop.html
+msgid "Filters"
+msgstr "Mga filter"
+
+#: templates/webapp/site/shop.html
 msgid "Search products…"
 msgstr "Maghanap ng produkto…"
+
+#: templates/webapp/site/shop.html
+msgid "Lowest price"
+msgstr "Pinakamababang presyo"
+
+#: templates/webapp/site/shop.html
+msgid "Highest price"
+msgstr "Pinakamataas na presyo"
+
+#: templates/webapp/site/shop.html
+msgid "In stock only"
+msgstr "May stock lang"
+
+#: templates/webapp/site/shop.html
+msgid "Brand"
+msgstr "Brand"
+
+#: templates/webapp/site/shop.html
+msgid "Colour"
+msgstr "Kulay"
+
+#: templates/webapp/site/shop.html
+msgid "Size"
+msgstr "Sukat"
+
+#: templates/webapp/site/shop.html
+msgid "Clear all"
+msgstr "I-clear lahat"
 
 #: templates/webapp/site/shop.html
 msgid "Sort"
@@ -10541,10 +10618,6 @@ msgstr "Mga sukat"
 #: templates/webapp/sports_shop/team_order_detail.html
 msgid "Name on jersey"
 msgstr "Pangalan sa jersey"
-
-#: templates/webapp/sports_shop/team_order_detail.html
-msgid "Size"
-msgstr "Sukat"
 
 #: templates/webapp/sports_shop/team_order_form.html
 msgid "Team order"
@@ -11256,8 +11329,20 @@ msgid "Our products"
 msgstr "Ang aming mga produkto"
 
 #: apps/industry/site_builder.py
-msgid "Colour"
-msgstr "Kulay"
+msgid "RAM"
+msgstr "RAM"
+
+#: apps/industry/site_builder.py
+msgid "Storage"
+msgstr "Storage"
+
+#: apps/industry/site_builder.py
+msgid "Processor"
+msgstr "Processor"
+
+#: apps/industry/site_builder.py
+msgid "Screen size"
+msgstr "Laki ng screen"
 
 #: apps/industry/site_builder.py
 msgid "Material"

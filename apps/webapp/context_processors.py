@@ -69,5 +69,5 @@ def website_shop(request):
     def on():
         from apps.industry.models import SiteDesign
         from apps.industry.shop_orders import applies
-        return applies(company) and SiteDesign.objects.filter(company=company, shop_enabled=True).exists()
+        return applies(company) and SiteDesign.objects.filter(company=company, package="shop").exists()
     return {"shop_orders_on": on}

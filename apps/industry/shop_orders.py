@@ -36,7 +36,8 @@ def settings_for(company):
 def config(company):
     """What the website cart needs to know. None when the online shop is off."""
     design = settings_for(company)
-    if not design or not design.shop_enabled or not applies(company) or not (design.shop_pickup or design.shop_delivery):
+    if (not design or design.package != "shop" or not design.shop_enabled or not applies(company)
+            or not (design.shop_pickup or design.shop_delivery)):
         return None
     return {"enabled": True, "open": not design.shop_paused, "pickup": design.shop_pickup,
             "delivery": design.shop_delivery, "delivery_fee": f"{design.shop_delivery_fee:.2f}",

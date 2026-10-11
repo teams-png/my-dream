@@ -210,7 +210,23 @@ def _expiry(company, today, money):
             money["month"]]
     main = _panel(_("Expiring soon"), batches_url, _("Batches & expiry"), rows,
                   _("Nothing expires in the next 60 days."), batches_url, _("Receive stock"))
-    return kpis, main, _top_items(company, today)
+    return kpis, main, _refills(company, today) or _top_items(company, today)
+
+
+def _refills(company, today):
+    """Regular customers whose refill is due — the side panel once the shop uses refills."""
+    from apps.industry.expiry_deals import due
+    from apps.industry.models import RefillSubscription
+    if not RefillSubscription.objects.for_company(company).filter(is_active=True).exists():
+        return None
+    url = reverse("webapp:refill_list")
+    rows = []
+    for s in due(company):
+        left = (s.next_date - today).days
+        rows.append({"lead": f"{s.next_date:%d %b}", "title": s.customer.name, "sub": f"{s.quantity} × {s.product.name}",
+                     "badge": _("Late") if left < 0 else _("Today") if left == 0 else _("in %(n)s days") % {"n": left},
+                     "tone": "bad" if left < 0 else "warn" if left == 0 else "", "url": url})
+    return _panel(_("Refills due"), url, _("Refills"), rows, _("No refills due in the next 3 days."))
 
 
 def _mobile(company, today, money):

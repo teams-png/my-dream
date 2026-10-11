@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Refills" %}{% endblock %}
+{% block heading %}🔁 {% translate "Refill subscriptions" %}{% endblock %}
+{% block content %}
+<div class="hr">
+<p style="color:var(--ink-soft);margin:0 0 12px">{% translate "Customers who buy the same item every few weeks. See who is due, remind them on WhatsApp and make the bill in one tap — the next date moves on by itself." %}</p>
+<div class="hr-actions" style="margin-bottom:12px">
+  <a class="hr-chip {% if show == 'due' %}ok{% endif %}" style="padding:8px 12px" href="?show=due">{% translate "Due now" %}{% if due_count %} · {{ due_count }}{% endif %}</a>
+  <a class="hr-chip {% if show == 'active' %}ok{% endif %}" style="padding:8px 12px" href="?show=active">{% translate "All active" %}</a>
+  <a class="hr-chip {% if show == 'all' %}ok{% endif %}" style="padding:8px 12px" href="?show=all">{% translate "All" %}</a>
+</div>
+<div class="hr-grid2">
+<div class="hr-list">
+  {% for s in subs %}
+  <div class="hr-row" style="flex-wrap:wrap">
+    <span class="grow"><b>{{ s.customer.name }}</b> · {{ s.quantity }} × {{ s.product.name }}
+      <small>{% blocktranslate with n=s.every_days %}every {{ n }} days{% endblocktranslate %}{% if s.discount_percent %} · −{{ s.discount_percent|floatformat:"-2" }}%{% endif %}{% if s.delivery %} · 🚚 {% translate "Delivery" %}{% endif %}{% if s.note %} · {{ s.note }}{% endif %}{% if s.customer.phone %} · {{ s.customer.phone }}{% endif %}</small></span>
+    {% if not s.is_active %}<span class="hr-chip">{% translate "Paused" %}</span>
+    {% elif s.days < 0 %}<span class="hr-chip bad">{% blocktranslate with n=s.days|stringformat:"d"|slice:"1:" %}{{ n }} days late{% endblocktranslate %}</span>
+    {% elif s.days == 0 %}<span class="hr-chip warn">{% translate "Due today" %}</span>
+    {% else %}<span class="hr-chip">{{ s.next_date|date:"j M" }}</span>{% endif %}
+    <span class="hr-actions" style="gap:6px">
+      {% if s.whatsapp and s.is_active %}<a class="btn btn-secondary" href="{{ s.whatsapp }}" target="_blank" rel="noopener">💬 {% translate "Remind" %}</a>{% endif %}
+      {% if s.is_active %}
+      <form method="post" action="{% url 'webapp:refill_action' s.id %}" style="margin:0">{% csrf_token %}<input type="hidden" name="do" value="bill"><button class="btn" type="submit">🧾 {% translate "Make bill" %}</button></form>
+      <form method="post" action="{% url 'webapp:refill_action' s.id %}" style="margin:0">{% csrf_token %}<input type="hidden" name="do" value="skip"><button class="btn btn-secondary" type="submit">{% translate "Skip" %}</button></form>
+      <form method="post" action="{% url 'webapp:refill_action' s.id %}" style="margin:0">{% csrf_token %}<input type="hidden" name="do" value="pause"><button class="btn btn-secondary" type="submit">{% translate "Pause" %}</button></form>
+      {% else %}
+      <form method="post" action="{% url 'webapp:refill_action' s.id %}" style="margin:0">{% csrf_token %}<input type="hidden" name="do" value="resume"><button class="btn btn-secondary" type="submit">{% translate "Resume" %}</button></form>
+      <form method="post" action="{% url 'webapp:refill_action' s.id %}" style="margin:0" onsubmit="return confirm('{% translate "Remove this refill?" %}')">{% csrf_token %}<input type="hidden" name="do" value="delete"><button class="btn btn-secondary" type="submit">{% translate "Delete" %}</button></form>
+      {% endif %}
+      {% if s.last_invoice_id %}<a href="{% url 'webapp:invoice_pdf' s.last_invoice_id %}" target="_blank">{{ s.last_invoice.invoice_number }}</a>{% endif %}
+    </span>
+  </div>
+  {% empty %}
+  <div class="hr-card hr-empty">{% if show == "due" %}{% translate "No refills due in the next 3 days." %}{% else %}{% translate "No refills yet. Add your regular customers on the right." %}{% endif %}</div>
+  {% endfor %}
+</div>
+<form method="post" action="{% url 'webapp:refill_add' %}" class="hr-card">{% csrf_token %}<h3>＋ {% translate "New refill" %}</h3>
+  <div class="hr-form">
+    <label class="wide">{% translate "Customer" %}<select name="customer"><option value="">—</option>{% for c in customers %}<option value="{{ c.id }}">{{ c.name }}{% if c.phone %} · {{ c.phone }}{% endif %}</option>{% endfor %}</select></label>
+    <label>{% translate "…or new customer name" %}<input name="new_name" maxlength="255"></label>
+    <label>{% translate "Phone / WhatsApp" %}<input name="new_phone" maxlength="20" inputmode="tel"></label>
+    <label class="wide">{% translate "Item" %}<select name="product" required><option value="">—</option>{% for p in products %}<option value="{{ p.id }}">{{ p.name }}{% if p.variant_label %} — {{ p.variant_label }}{% endif %} · {{ p.selling_price }}</option>{% endfor %}</select></label>
+    <label>{% translate "Quantity" %}<input type="number" name="quantity" min="1" value="1"></label>
+    <label>{% translate "Every (days)" %}<input type="number" name="every_days" min="1" max="365" value="30"></label>
+    <label>{% translate "First refill on" %}<input type="date" name="next_date"></label>
+    <label>{% translate "Subscriber discount %" %}<input type="number" name="discount_percent" min="0" max="90" step="0.5" value="0"></label>
+    <label class="wide" style="display:flex;gap:8px;align-items:center;font-weight:700"><input type="checkbox" name="delivery" style="width:18px;height:18px"> {% translate "Deliver to the customer" %}</label>
+    <label class="wide">{% translate "Note" %}<input name="note" maxlength="255" placeholder="{% translate 'e.g. chocolate flavour, call before delivery' %}"></label>
+    <div class="wide"><button class="btn" type="submit">{% translate "Add refill" %}</button></div>
+  </div>
+</form>
+</div>
+</div>
+{% endblock %}

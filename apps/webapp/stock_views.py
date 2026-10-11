@@ -284,6 +284,19 @@ def batches(request):
         if request.role and not request.role.permissions.filter(permission__code=MANAGE).exists():
             messages.error(request, _("You don't have permission to do that."))
             return redirect("webapp:stock_batches")
+        if request.POST.get("action") == "near_rule":  # near-expiry discount
+            from apps.industry.expiry_deals import rule_for
+            rule = rule_for(company)
+            rule.enabled = bool(request.POST.get("enabled"))
+            try:
+                rule.days = max(1, min(365, int(request.POST.get("days") or 30)))
+                rule.percent = max(ZERO, min(Decimal("90"), _dec(request.POST.get("percent") or "0") or ZERO))
+            except (TypeError, ValueError):
+                messages.error(request, _("Enter whole days and a percent."))
+                return redirect("webapp:stock_batches")
+            rule.save()
+            messages.success(request, _("Near-expiry discount saved."))
+            return redirect("webapp:stock_batches")
         product = Product.objects.for_company(company).filter(id=pick_id(request.POST.get("product"))).first()
         warehouse = warehouses.filter(id=pick_id(request.POST.get("warehouse"))).first()
         qty = _dec(request.POST.get("quantity") or "0") or ZERO
@@ -312,6 +325,8 @@ def batches(request):
     qty = {r["batch_id"]: r["q"] for r in StockMovement.objects.for_company(company).filter(batch__isnull=False)
            .values("batch_id").annotate(q=Sum("quantity"))}
     rows = []
+    from apps.industry import expiry_deals
+    near, rule = expiry_deals.near_expiry(company), expiry_deals.rule_for(company)
     for b in ProductBatch.objects.for_company(company).select_related("product").order_by("expiry_date", "batch_number"):
         stock = qty.get(b.id) or ZERO
         days = (b.expiry_date - today).days if b.expiry_date else None
@@ -320,7 +335,9 @@ def batches(request):
             continue
         if show == "expiring" and (state == "ok" or stock <= 0):
             continue
-        rows.append({"b": b, "stock": stock, "days": days, "state": state, "value": max(stock, ZERO) * b.product.cost_price})
+        on_sale = near.get(b.product_id)
+        rows.append({"b": b, "stock": stock, "days": days, "state": state, "value": max(stock, ZERO) * b.product.cost_price,
+                     "discount": on_sale[2] if on_sale and on_sale[0]["id"] == b.id else None})
     # Shops that kept batches in the older supplement / medicine screens can still open those records.
     legacy_url = ""
     code = company.business_type.code
@@ -331,7 +348,7 @@ def batches(request):
         from apps.verticals.medical_shop.models import MedicineBatch
         legacy_url = reverse("webapp:medicine_batch_list") if MedicineBatch.objects.for_company(company).exists() else ""
     return render(request, "webapp/stock/batches.html", {
-        "rows": rows, "show": show, "warehouses": warehouses, "today": today, "legacy_url": legacy_url,
+        "rows": rows, "show": show, "warehouses": warehouses, "today": today, "legacy_url": legacy_url, "rule": rule,
         "at_risk": sum((r["value"] for r in rows if r["state"] != "ok"), ZERO),
         "products": Product.objects.for_company(company).filter(is_active=True, is_stock_tracked=True).order_by("name")})
 

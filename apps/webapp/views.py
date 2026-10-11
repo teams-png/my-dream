@@ -3936,7 +3936,9 @@ def _price_rules(company):
         list_prices.setdefault(item.product_id, item.unit_price)
     promos = list(Promotion.objects.for_company(company).filter(is_active=True, start_date__lte=today, end_date__gte=today)
                   .order_by("-priority", "id"))
-    if not list_prices and not promos:
+    from apps.industry import expiry_deals
+    near = expiry_deals.near_expiry(company)  # items whose next batch expires soon sell at a discount
+    if not list_prices and not promos and not near:
         return lambda product: (None, "")
 
     def resolve(product):
@@ -3945,6 +3947,10 @@ def _price_rules(company):
         if promo:
             cut = price * promo.discount_value / Decimal("100") if promo.discount_type == "percentage" else promo.discount_value
             price = max(price - cut, Decimal("0"))
+        hit = near.get(product.id) if product.tracking_type == "batch" and product.is_stock_tracked else None
+        if hit:
+            _batch, days, pct = hit
+            return expiry_deals.cut(product.selling_price, pct, price), expiry_deals.label(pct, days)
         return price.quantize(Decimal("0.01")), promo.name if promo else ""
     return resolve
 

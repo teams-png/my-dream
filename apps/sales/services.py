@@ -263,6 +263,10 @@ def resolve_commercial_price(*, company, customer, product, date):
             price -= promotion.discount_value
         price = max(price, Decimal("0"))
         source += "+promotion"
+    from apps.industry.expiry_deals import price_for
+    near, label = price_for(company, product, price)
+    if label:
+        price, source = near, source + "+near_expiry"
     return price.quantize(Decimal("0.01")), source, promotion
 
 

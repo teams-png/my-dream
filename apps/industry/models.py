@@ -767,3 +767,35 @@ class CustomerReminder(TenantScopedModel):
 
     class Meta:
         indexes = [models.Index(fields=("company", "customer", "sent_at"))]
+
+
+class NearExpiryRule(TenantScopedModel):
+    """Sell stock that expires soon at a discount: while an item's first-to-go batch expires within `days`,
+    its price drops by `percent` in billing (POS and invoices)."""
+    enabled = models.BooleanField(default=False)
+    days = models.PositiveIntegerField(default=30)
+    percent = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal("20"))
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class RefillSubscription(TenantScopedModel):
+    """A customer who buys the same item again and again (protein tub, monthly medicine): the shop sees who is
+    due, reminds them on WhatsApp and makes the bill in one tap."""
+    customer = models.ForeignKey("customers.Customer", on_delete=models.CASCADE, related_name="refills")
+    product = models.ForeignKey("inventory.Product", on_delete=models.PROTECT, related_name="+")
+    quantity = models.PositiveIntegerField(default=1)
+    every_days = models.PositiveIntegerField(default=30)
+    next_date = models.DateField()
+    discount_percent = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    delivery = models.BooleanField(default=False)
+    note = models.CharField(max_length=255, blank=True)
+    is_active = models.BooleanField(default=True)
+    last_invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["next_date"]
+        indexes = [models.Index(fields=("company", "is_active", "next_date"))]
+
+    def __str__(self):
+        return f"{self.customer} · {self.product}"

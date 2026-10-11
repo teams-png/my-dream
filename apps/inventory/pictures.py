@@ -30,7 +30,7 @@ ART = [
     ("spa_oil", "🧴", "massage_oil essential_oil aroma_oil spa_oil"), ("towel", "🧺", "towel towels robe bathrobe"),
     ("perfume", "🌸", "perfume attar oud musk fragrance bakhoor rose"),
     # fashion
-    ("shirt", "👔", "shirt formal kandura thobe coverall"), ("tshirt", "👕", "t-shirt tshirt jersey tee top"),
+    ("shirt", "👔", "shirt formal kandura thobe coverall"), ("tshirt", "👕", "t-shirt tshirt jersey tee top football_jersey sports_jersey"),
     ("dress", "👗", "dress gown kurti abaya frock boutique party_gown"), ("saree", "🥻", "saree sari silk"),
     ("trousers", "👖", "pant pants jeans trouser"), ("kids_wear", "🧸", "romper kids wear baby"),
     ("shoes", "👟", "shoe shoes sneaker running footwear shoe_polish"), ("sandals", "👡", "sandal sandals heels slipper"),
@@ -40,7 +40,7 @@ ART = [
     ("sunglasses", "🕶️", "sunglasses aviator"), ("watch", "⌚", "watch chronograph strap smart_watch dress_watch"),
     ("ring", "💍", "ring diamond"), ("jewel", "📿", "bangle chain necklace gold jewellery jewelry earring"),
     # electronics
-    ("phone", "📱", "phone mobile iphone galaxy samsung redmi smartphone handset"), ("charger", "🔌", "charger cable hdmi adapter port plug"),
+    ("phone", "📱", "phone mobile iphone galaxy samsung redmi smartphone handset"), ("charger", "🔌", "charger cable hdmi adapter port plug charging_port"),
     ("headphones", "🎧", "earbuds headphones earphone audio"), ("speaker", "🔊", "speaker sound"),
     ("laptop", "💻", "laptop computer pc windows laptop_cleaning"), ("monitor", "🖥️", "monitor tv television screen led"),
     ("mouse", "🖱️", "mouse keyboard"), ("battery", "🔋", "battery powerbank power_bank"), ("storage", "💾", "ssd storage drive memory"),

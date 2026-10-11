@@ -195,6 +195,9 @@ class _Kit:
     def variants(self, row):
         """A parent product plus one product per size × colour, each with its own stock."""
         parent = self.product(row)
+        if parent.is_stock_tracked:  # stock lives on the variants, so the parent never shows as "out of stock"
+            parent.is_stock_tracked = False
+            parent.save(update_fields=["is_stock_tracked"])
         for colour in row["colours"] or [""]:
             for size in row["sizes"] or [""]:
                 self.product(row, parent=parent, size=size, colour=colour, stock=row["stock"])

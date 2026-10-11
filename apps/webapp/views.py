@@ -616,6 +616,9 @@ def product_variant_add(request, product_id):
                 parent=parent, variant_label=d["variant_label"], size=d["size"], colour=d["colour"],
                 material=d["material"] or parent.material, design=d["design"] or parent.design,
             )
+            if parent.is_stock_tracked and not parent.current_stock():
+                parent.is_stock_tracked = False  # the variants carry the stock now
+                parent.save(update_fields=["is_stock_tracked"])
             messages.success(request, "Variant added.")
             return redirect("webapp:product_list")
     else:
@@ -1981,7 +1984,7 @@ def sports_product_list(request):
     company = request.company
     details = (
         SportsProductDetail.objects.for_company(company).select_related("product", "product__category")
-        .order_by("product__name")
+        .filter(product__variants__isnull=True).order_by("product__name", "product__variant_label")
         if company else []
     )
     return render(request, "webapp/sports_shop/product_list.html", {"details": details})

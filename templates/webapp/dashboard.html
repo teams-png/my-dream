@@ -1,51 +1,7 @@
 {% extends "base.html" %}
 {% load i18n role_access %}
-{% block title %}{% translate "Overview" %}<script>
-(function(){
-  /* digital clock: follows the device's 12/24-hour setting */
-  var hm=document.getElementById("ovClockHM"),sec=document.getElementById("ovClockS"),ap=document.getElementById("ovClockAP");
-  var h12=new Intl.DateTimeFormat([], {hour:"numeric"}).resolvedOptions().hour12;
-  function two(n){return(n<10?"0":"")+n}
-  function clock(){var d=new Date(),h=d.getHours();
-    if(h12){ap.textContent=h<12?"AM":"PM";h=h%12||12}
-    hm.textContent=(h12?h:two(h))+":"+two(d.getMinutes());sec.textContent=":"+two(d.getSeconds())}
-  /* kitchen timers: time since the ticket was sent, against the dishes' preparation time */
-  function timers(){var now=Date.now();
-    document.querySelectorAll(".ov-timer").forEach(function(el){
-      var secs=Math.max(0,Math.floor((now-new Date(el.dataset.since))/1000)),target=(+el.dataset.target||15)*60;
-      el.querySelector("b").textContent=Math.floor(secs/60)+":"+two(secs%60);
-      el.querySelector("i>i").style.width=Math.min(100,100*secs/target)+"%";
-      if(!el.classList.contains("stopped")){el.classList.toggle("late",secs>target);el.classList.toggle("warn",secs<=target&&secs>target*.75)}
-    })}
-  function tick(){clock();timers()}
-  tick();setInterval(tick,1000);
-  document.querySelectorAll(".ov-link").forEach(function(row){row.addEventListener("click",function(e){if(!e.target.closest("a,button"))location.href=row.dataset.href})});
-})();
-</script>
-{% endblock %}
-{% block heading %}{% translate "Overview" %}<script>
-(function(){
-  /* digital clock: follows the device's 12/24-hour setting */
-  var hm=document.getElementById("ovClockHM"),sec=document.getElementById("ovClockS"),ap=document.getElementById("ovClockAP");
-  var h12=new Intl.DateTimeFormat([], {hour:"numeric"}).resolvedOptions().hour12;
-  function two(n){return(n<10?"0":"")+n}
-  function clock(){var d=new Date(),h=d.getHours();
-    if(h12){ap.textContent=h<12?"AM":"PM";h=h%12||12}
-    hm.textContent=(h12?h:two(h))+":"+two(d.getMinutes());sec.textContent=":"+two(d.getSeconds())}
-  /* kitchen timers: time since the ticket was sent, against the dishes' preparation time */
-  function timers(){var now=Date.now();
-    document.querySelectorAll(".ov-timer").forEach(function(el){
-      var secs=Math.max(0,Math.floor((now-new Date(el.dataset.since))/1000)),target=(+el.dataset.target||15)*60;
-      el.querySelector("b").textContent=Math.floor(secs/60)+":"+two(secs%60);
-      el.querySelector("i>i").style.width=Math.min(100,100*secs/target)+"%";
-      if(!el.classList.contains("stopped")){el.classList.toggle("late",secs>target);el.classList.toggle("warn",secs<=target&&secs>target*.75)}
-    })}
-  function tick(){clock();timers()}
-  tick();setInterval(tick,1000);
-  document.querySelectorAll(".ov-link").forEach(function(row){row.addEventListener("click",function(e){if(!e.target.closest("a,button"))location.href=row.dataset.href})});
-})();
-</script>
-{% endblock %}
+{% block title %}{% translate "Overview" %}{% endblock %}
+{% block heading %}{% translate "Overview" %}{% endblock %}
 {% block content %}
 {% can "setup" as can_setup %}{% can "analytics" as can_reports %}
 {% load sample_data %}{% quick_actions as actions %}

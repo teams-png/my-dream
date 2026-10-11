@@ -57,3 +57,35 @@ def test_shop_overview_lists_low_stock_and_best_sellers():
     page = c.get(reverse("webapp:dashboard")).content.decode()
     assert "Running low" in page and "Fresh milk 1L" in page and "Out of stock" in page
     assert "Best sellers today" in page and "Business overview" not in page
+
+
+def test_overview_title_is_clean():
+    import re
+    _company, _user, c = _business("perfume_shop")
+    page = c.get(reverse("webapp:dashboard")).content.decode()
+    title = re.search(r"<title>(.*?)</title>", page, re.S).group(1)
+    assert "<script" not in title and "Overview" in title
+    assert page.count("digital clock") == 1
+
+
+def test_variant_parents_never_show_as_out_of_stock():
+    from django.test import override_settings
+    from apps.industry import sample_kit
+    from apps.inventory.models import Product
+    company, user, c = _business("sports_shop")
+    with override_settings(SAMPLE_DATA_KIT=True):
+        sample_kit.install(company, user)
+    parent = Product.objects.filter(company=company, variants__isnull=False).distinct().first()
+    assert parent and not parent.is_stock_tracked
+    page = c.get(reverse("webapp:dashboard")).content.decode()
+    assert "Out of stock" not in page
+    listing = c.get(reverse("webapp:sports_product_list")).content.decode()
+    assert "Red / S" in listing or "S" in listing
+    from apps.inventory.pictures import pick
+    assert pick("Football jersey") == "tshirt" and pick("Charging port (Samsung A-series)") == "charger"
+
+
+def test_perfume_and_protein_forms_have_their_own_examples():
+    _company, _user, c = _business("perfume_shop")
+    page = c.get(reverse("webapp:product_add")).content.decode()
+    assert "Keratin" not in page and "Oud Royal" in page

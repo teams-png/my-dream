@@ -8,7 +8,7 @@
   <tr><th>Name</th><th>Sport</th><th>Size</th><th>Gender</th><th>Price</th></tr>
   {% for d in details %}
   <tr>
-    <td>{{ d.product.name }}</td><td>{{ d.get_sport_category_display }}</td>
+    <td>{{ d.product.name }}{% if d.product.variant_label %} <span style="color:var(--ink-soft)">— {{ d.product.variant_label }}</span>{% endif %}</td><td>{{ d.get_sport_category_display }}</td>
     <td>{{ d.size|default:"—" }}</td><td>{{ d.get_gender_display }}</td><td>{{ d.product.selling_price }}</td>
   </tr>
   {% endfor %}

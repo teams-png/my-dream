@@ -1,5 +1,5 @@
 {% extends "webapp/site/_base.html" %}{% load i18n %}
-{% block main %}
+{% block main %}{% if custom_home_html %}{{ custom_home_html|safe }}{% else %}
 
 <section id="top" class="hero{% if hero %} has-img{% endif %}"{% if hero %} style="background-image:url('{{ hero }}')"{% endif %}>
   <div class="wrap">
@@ -83,4 +83,4 @@
   {% endif %}
 </div></section>
 
-{% endblock %}
+{% endif %}{% endblock %}

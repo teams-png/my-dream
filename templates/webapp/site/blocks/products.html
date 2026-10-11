@@ -1,0 +1,1 @@
+{% load i18n %}{% if groups %}<div class="grid{% if shop_url %} pgrid{% endif %}">{% for g in groups %}{% for item in g.items %}{% include "webapp/site/_card.html" %}{% endfor %}{% endfor %}</div>{% endif %}

@@ -36,7 +36,7 @@ nav.links{display:flex;gap:18px;margin-inline-start:auto;font-weight:600;font-si
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:6px}
 .card img{width:calc(100% + 36px);margin:-18px -18px 8px;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r) var(--r) 0 0;max-width:none}
 .card img[src*="/static/products/"],.card img[src*="/photo-"]{object-fit:contain;padding:6% 18%;box-sizing:border-box;background:radial-gradient(circle at 50% 40%,#fff 0,#eef2ef 75%);filter:drop-shadow(0 8px 10px rgba(20,40,30,.16))}
-.card h3{margin:0;font-size:17px}.card .desc{color:var(--soft);font-size:14px;margin:0}.card .row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:6px}
+.card h3{margin:0;font-size:17px}.card .desc{color:var(--soft);font-size:14px;margin:0}.card .crow{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:6px}
 .price{font-weight:800;color:var(--p)}.tag{font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--p) 12%,#fff);color:var(--p)}
 .veg{background:#dcfce7;color:#166534}
 .add{border:1.5px solid var(--p);background:#fff;color:var(--p);border-radius:999px;padding:7px 14px;font-weight:700;font-size:14px;font-family:inherit;line-height:1;cursor:pointer;white-space:nowrap}.add:hover{background:var(--p);color:#fff}.tag.out{background:#fee2e2;color:#991b1b}
@@ -81,7 +81,7 @@ nav.links a.on{color:var(--p)}
 .specs{width:100%;border-collapse:collapse;margin:18px 0}.specs td{padding:9px 4px;border-bottom:1px solid var(--line);vertical-align:top}.specs td:first-child{color:var(--soft);width:42%}
 .buy{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}.buy .add{padding:13px 26px;font-size:16px;background:var(--p);color:#fff}
 .opts{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.opts a{padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}.opts a.on{border-color:var(--p);color:var(--p)}
-@media(max-width:560px){.grid.pgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pgrid .card{padding:12px;gap:4px}.pgrid .card img{width:calc(100% + 24px);margin:-12px -12px 6px}.pgrid .card h3{font-size:14.5px}.pgrid .card .row{flex-wrap:wrap;gap:6px}.pgrid .price{font-size:14px}.pgrid .add{padding:6px 10px;font-size:13px}}
+@media(max-width:560px){.grid.pgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pgrid .card{padding:12px;gap:4px}.pgrid .card img{width:calc(100% + 24px);margin:-12px -12px 6px}.pgrid .card h3{font-size:14.5px}.pgrid .card .crow{flex-wrap:wrap;gap:6px}.pgrid .price{font-size:14px}.pgrid .add{padding:6px 10px;font-size:13px}}
 .shop-layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:24px;align-items:start;margin-top:14px}
 @media(max-width:899px){.shop-layout{grid-template-columns:1fr;gap:12px}}
 .filters{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px}
@@ -107,10 +107,11 @@ nav.links a.on{color:var(--p)}
 .rich table{border-collapse:collapse;width:100%}.rich td,.rich th{border:1px solid var(--line);padding:8px}
 {{ custom_css|safe }}
 </style>
+{% if custom_head_html %}{{ custom_head_html|safe }}{% endif %}
 </head>
 <body class="site t-{{ design.theme }} {% block body_class %}{% endblock %}">
 {% if preview %}<div class="preview-bar">{% translate "Preview" %}{% if not design.published %} — {% translate "not public yet" %}{% endif %}</div>{% endif %}
-<header class="top"><div class="wrap">
+{% if custom_header_html %}{{ custom_header_html|safe }}{% else %}<header class="top"><div class="wrap">
   <a class="brand" href="{{ home }}">{% if logo %}<img src="{{ logo }}" alt="">{% endif %}<span>{{ company.name }}</span></a>
   <nav class="links" id="siteNav">
     <a href="{{ home }}"{% if page_kind == "home" %} class="on"{% endif %}>{% translate "Home" %}</a>
@@ -125,16 +126,16 @@ nav.links a.on{color:var(--p)}
   {% if switch %}<nav class="langs" aria-label="Language">{% for code, name, q, on in switch %}<a href="{{ q }}" lang="{{ code }}"{% if on %} class="on" aria-current="true"{% endif %}>{{ name }}</a>{% endfor %}</nav>{% endif %}
   {% if booking_slug %}<a class="btn" href="{{ home }}#book">{% translate "Book now" %}</a>{% elif company.phone %}<a class="btn" href="tel:{{ phone_link }}">{% translate "Call us" %}</a>{% endif %}
   <button class="menu-btn" type="button" aria-label="{% translate 'Menu' %}" aria-controls="siteNav" onclick="document.getElementById('siteNav').classList.toggle('open')">☰</button>
-</div></header>
+</div></header>{% endif %}
 {% block main %}{% endblock %}
-<footer><div class="wrap">
+{% if custom_footer_html %}{{ custom_footer_html|safe }}{% else %}<footer><div class="wrap">
   <div class="cols">
     <div><h4>{{ company.name }}</h4>{% for pg in footer_pages %}<div><a href="{{ pg.url }}">{{ pg.title }}</a></div>{% endfor %}{% if company.address %}<div style="white-space:pre-line">{{ company.address }}</div>{% endif %}</div>
     <div><h4>{% translate "Contact" %}</h4>{% if company.phone %}<div>{{ company.phone }}</div>{% endif %}{% if company.email %}<div>{{ company.email }}</div>{% endif %}</div>
     {% if socials %}<div><h4>{% translate "Follow us" %}</h4>{% for name, url in socials %}<div><a href="{{ url }}" target="_blank" rel="noopener">{{ name }}</a></div>{% endfor %}</div>{% endif %}
   </div>
   <p style="margin:26px 0 0;opacity:.7">© {{ year }} {{ company.name }}{% if info.vat_number %} · {% translate "VAT" %} {{ info.vat_number }}{% endif %}</p>
-</div></footer>
+</div></footer>{% endif %}
 {% if whatsapp %}<a class="wa" href="https://wa.me/{{ whatsapp }}" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>{% endif %}
 {% if ordering %}<script src="{% url 'webapp:kit_order_js' kit.public_id %}?lang={{ lang }}" defer></script>{% endif %}
 {% if shop_url %}<a class="wishbar" id="wishBar" href="{{ shop_url }}">♥ <span></span></a>

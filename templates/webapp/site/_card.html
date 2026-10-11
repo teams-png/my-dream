@@ -7,7 +7,7 @@
         {% if item.description %}<p class="desc">{{ item.description|truncatechars:160 }}</p>{% endif %}
         {% if item.location %}<p class="desc">📍 {{ item.location }}{% if item.vacancies %} · {{ item.vacancies }} {% translate "vacancies" %}{% endif %}</p>{% endif %}
         {% if item.teacher %}<p class="desc">👤 {{ item.teacher }}</p>{% endif %}
-        <div class="row">
+        <div class="crow">
           {% if item.price %}<span class="price">{{ currency }} {{ item.price }}{% if item.was %} <s class="was-s">{{ item.was }}</s>{% endif %}{% if item.unit %} <small style="font-weight:600;color:var(--soft)">/ {% translate item.unit %}</small>{% endif %}</span>{% else %}<span></span>{% endif %}
           {% if ordering %}{% if item.orderable %}<button type="button" class="add" data-bp-add data-id="{{ item.id }}" data-name="{{ item.name }}" data-price="{{ item.price }}">{% translate "+ Add" %}</button>{% elif item.available is False and not item.url %}<span class="tag out">{% translate "Sold out" %}</span>{% endif %}{% endif %}
           {% if item.vegetarian %}<span class="tag veg">{% translate "Veg" %}</span>{% elif item.minutes %}<span class="tag">{{ item.minutes }} {% translate "min" %}</span>{% elif item.capacity %}<span class="tag">👥 {{ item.capacity }}</span>{% endif %}

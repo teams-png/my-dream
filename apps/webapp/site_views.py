@@ -89,10 +89,85 @@ def _build_site(request, design, preview=False, base=None, kind="home", **extra)
             from apps.industry.site_html import clean_html
             ctx.update(current_page=page, body=clean_html(page.body))
             template = "webapp/site/custom_page.html"
+        if design.custom_header or design.custom_footer or design.custom_home or design.custom_head:
+            _custom_design(request, design, ctx)
         response = render(request, template, ctx)
     response["Cache-Control"] = "no-store" if preview else "public, max-age=60"
     response["X-Frame-Options"] = "SAMEORIGIN"  # the design area shows it in a preview frame
     return response
+
+
+# [[name]] placeholders the platform admin can put in a custom header, footer or home page (Bootstrap / own HTML).
+PLACEHOLDER_BLOCKS = ("products", "categories", "menu", "menu_items", "offers", "contact", "booking", "search", "hours",
+                      "lang_switch")
+
+
+PLACEHOLDERS_LIST = ("company_name", "logo", "logo_url", "home_url", "shop_url", "menu", "menu_items", "search", "cart_button",
+                     "lang_switch", "hero_title", "hero_subtitle", "hero_image", "products", "categories", "offers", "about",
+                     "hours", "contact", "booking", "phone", "email", "address", "whatsapp_url", "currency", "year")
+
+BOOTSTRAP_STARTER = {
+    "custom_head": '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">\n'
+                   '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>\n'
+                   '<style>.hero-bp{background:linear-gradient(135deg,var(--p),#0b1220);color:#fff}</style>',
+    "custom_header": '<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">\n'
+                     '  <div class="container">\n'
+                     '    <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="[[home_url]]">[[logo]] [[company_name]]</a>\n'
+                     '    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bpNav"><span class="navbar-toggler-icon"></span></button>\n'
+                     '    <div class="collapse navbar-collapse" id="bpNav">\n'
+                     '      <ul class="navbar-nav ms-auto">[[menu_items]]</ul>\n'
+                     '      <div class="ms-lg-3 my-2 my-lg-0">[[search]]</div>\n'
+                     '    </div>\n  </div>\n</nav>',
+    "custom_home": '<section class="hero-bp py-5">\n  <div class="container py-5">\n'
+                   '    <h1 class="display-5 fw-bold">[[hero_title]]</h1>\n    <p class="lead opacity-75">[[hero_subtitle]]</p>\n'
+                   '    <a class="btn btn-light btn-lg" href="[[shop_url]]">Shop now</a>\n  </div>\n</section>\n'
+                   '<main class="container py-5">\n  [[categories]]\n  <h2 class="my-4">Popular products</h2>\n  [[products]]\n'
+                   '  [[offers]]\n'
+                   '  <div class="row g-4 mt-4">\n    <div class="col-md-6"><h2>About us</h2><p>[[about]]</p>[[hours]]</div>\n'
+                   '    <div class="col-md-6"><h2>Contact us</h2>[[contact]]</div>\n  </div>\n</main>',
+    "custom_footer": '<footer class="bg-dark text-light py-5 mt-5">\n  <div class="container d-flex flex-wrap justify-content-between gap-3">\n'
+                     '    <div><b>[[company_name]]</b><div class="small opacity-75">[[address]]</div></div>\n'
+                     '    <div class="small">📞 [[phone]]<br>✉️ [[email]]</div>\n  </div>\n'
+                     '  <div class="container small opacity-50 mt-3">© [[year]] [[company_name]]</div>\n</footer>',
+}
+
+
+def _custom_design(request, design, ctx):
+    """Fills the admin's custom HTML with live BookPilot parts: [[products]], [[menu_items]], [[contact]]…"""
+    import re
+    from django.template.loader import render_to_string
+    from django.utils.html import escape
+    company = design.company
+    if ctx.get("shop_url"):
+        from apps.inventory.models import ProductCategory
+        from apps.industry import shop_orders
+        cats = ProductCategory.objects.filter(company=company, id__in=shop_orders.sellable(company).values("category_id")).order_by("name")
+        ctx["nav_categories"] = [{"name": c.name, "url": f"{ctx['base']}shop/" + svc.query(ctx["lang"], design, ctx["preview"], cat=c.id)} for c in cats]
+    simple = {
+        "company_name": escape(company.name), "phone": escape(company.phone or ""), "email": escape(company.email or ""),
+        "address": escape(company.address or ""), "home_url": escape(ctx["home"]), "shop_url": escape(ctx.get("shop_url") or ctx["home"]),
+        "logo_url": escape(ctx.get("logo") or ""), "logo": f'<img src="{escape(ctx["logo"])}" alt="{escape(company.name)}" style="max-height:44px">' if ctx.get("logo") else "",
+        "whatsapp_url": f"https://wa.me/{ctx['whatsapp']}" if ctx.get("whatsapp") else "", "year": str(ctx.get("year") or ""),
+        "about": escape(design.about or "").replace("\n", "<br>"), "hero_title": escape(design.hero_title or company.name),
+        "hero_subtitle": escape(design.hero_subtitle or ""), "hero_image": escape(ctx.get("hero") or ""),
+        "currency": escape(company.default_currency),
+        "cart_button": '<button type="button" class="btn btn-outline-dark" onclick="var b=document.querySelector(\'.bpo-bar\');b&&b.click()">🛒</button>',
+    }
+    cache = {}
+
+    def fill(text):
+        def sub(m):
+            key = m.group(1).strip().lower()
+            if key in simple:
+                return simple[key]
+            if key in PLACEHOLDER_BLOCKS:
+                if key not in cache:
+                    cache[key] = render_to_string(f"webapp/site/blocks/{key}.html", ctx, request=request)
+                return cache[key]
+            return m.group(0)
+        return re.sub(r"\[\[\s*([a-zA-Z_]+)\s*\]\]", sub, text or "")
+    ctx.update(custom_head_html=fill(design.custom_head), custom_header_html=fill(design.custom_header),
+               custom_footer_html=fill(design.custom_footer), custom_home_html=fill(design.custom_home))
 
 
 def _can_preview(request, company):
@@ -290,11 +365,15 @@ class AdminSiteForm(forms.ModelForm):
 
     class Meta:
         model = SiteDesign
-        fields = ["enabled", "package", "custom_domain", "domain_status", "custom_html"]
+        fields = ["enabled", "package", "custom_domain", "domain_status", "custom_html", "custom_head", "custom_header",
+                  "custom_footer", "custom_home"]
         labels = {"enabled": "Website add-on is on for this client", "domain_status": "Domain status",
                   "package": "Package (billed yearly: Website QAR 399 · E-commerce QAR 699)",
+                  "custom_head": "Custom <head> code", "custom_header": "Custom header", "custom_footer": "Custom footer",
+                  "custom_home": "Custom home page",
                   "custom_html": "Custom HTML section"}
-        widgets = {"custom_html": forms.Textarea(attrs={"rows": 6, "style": "font-family:monospace"})}
+        widgets = {k: forms.Textarea(attrs={"rows": 8, "style": "font-family:monospace", "spellcheck": "false"})
+                   for k in ("custom_html", "custom_head", "custom_header", "custom_footer", "custom_home")}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -355,7 +434,8 @@ def _editor(request, company, admin):
            "own": f"https://{design.custom_domain}" if design.custom_domain else "",
            "base_template": "webapp/admin_base.html" if admin else "base.html",
            "host": request.get_host().split(":")[0], "pages": SitePage.objects.filter(company=company),
-           "is_shop": svc.is_shop(company), "page_form": SitePageForm(prefix="pg") if not admin else None}
+           "is_shop": svc.is_shop(company), "page_form": SitePageForm(prefix="pg") if not admin else None,
+           "placeholders": PLACEHOLDERS_LIST, "starter": BOOTSTRAP_STARTER if admin else None}
     return render(request, "webapp/site/editor.html", ctx)
 
 

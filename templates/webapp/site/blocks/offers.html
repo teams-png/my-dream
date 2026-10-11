@@ -1,0 +1,1 @@
+{% load i18n %}{% if offers %}<h2 class="bp-offers-title">{% translate "Offers" %}</h2><div class="grid">{% for o in offers %}<div class="card offer"><div class="big">{{ o.discount }} {% translate "off" %}</div><h3>{{ o.name }}</h3>{% if o.product %}<p class="desc" style="color:#111">{{ o.product }}</p>{% endif %}</div>{% endfor %}</div>{% endif %}

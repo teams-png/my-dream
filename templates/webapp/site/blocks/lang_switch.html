@@ -1,0 +1,1 @@
+{% if switch %}<nav class="langs" aria-label="Language">{% for code, name, q, on in switch %}<a href="{{ q }}" lang="{{ code }}"{% if on %} class="on"{% endif %}>{{ name }}</a>{% endfor %}</nav>{% endif %}

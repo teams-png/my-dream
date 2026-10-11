@@ -1,0 +1,1 @@
+{% if design.show_contact and kit.enquiry_enabled %}<div id="contact" class="bookpilot-enquiry" data-lang="{{ lang }}"></div><script src="{% url 'webapp:kit_enquiry_js' kit.public_id %}?lang={{ lang }}" defer></script>{% endif %}

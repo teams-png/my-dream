@@ -1,0 +1,1 @@
+{% load i18n %}<a href="{{ home }}">{% translate "Home" %}</a>{% if shop_url %} <a href="{{ shop_url }}">{% translate "Shop" %}</a>{% endif %}{% for pg in menu_pages %} <a href="{{ pg.url }}">{{ pg.title }}</a>{% endfor %} <a href="{{ home }}#contact">{% translate "Contact" %}</a>

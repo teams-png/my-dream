@@ -272,3 +272,19 @@ def test_shop_widget_for_wordpress_and_bootstrap_sites(shop, admin_client):
     assert 'class="bookpilot-shop"' in shop_html and "bootstrap@5" in shop_html and "/shop.js" in shop_html
     page = admin_client.get(reverse("webapp:kit_detail", args=[company.id])).content.decode()
     assert "Full online shop" in page and "Bootstrap website starter" in page
+
+
+def test_custom_bootstrap_design_with_placeholders(shop, admin_client):
+    from apps.webapp.site_views import BOOTSTRAP_STARTER
+    company, owner, kit = shop
+    editor = admin_client.get(reverse("webapp:site_admin_editor", args=[company.id])).content.decode()
+    assert "Load Bootstrap 5 starter" in editor and "[[menu_items]]" in editor
+    _admin_save(admin_client, company, **{"a-package": "shop", **{f"a-{k}": v for k, v in BOOTSTRAP_STARTER.items()}})
+    cache.clear()
+    base = f"/site/{kit.public_id}/"
+    home = Client().get(base).content.decode()
+    assert "bootstrap@5.3.3" in home and 'class="navbar navbar-expand-lg' in home and "[[" not in home
+    assert f'href="{base}shop/"' in home and 'class="nav-item"' in home and "data-bp-add" in home
+    assert 'class="bookpilot-enquiry"' in home and "Popular products" in home and 'class="chips"' in home
+    shop_page = Client().get(base + "shop/").content.decode()
+    assert 'class="navbar navbar-expand-lg' in shop_page and 'id="filterForm"' in shop_page and "bg-dark text-light" in shop_page

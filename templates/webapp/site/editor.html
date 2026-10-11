@@ -1,7 +1,19 @@
 {% extends base_template %}
 {% load i18n %}
-{% block title %}{% translate "My website" %}{% endblock %}
-{% block heading %}🌐 {% translate "My website" %}{% if admin %} · {{ company.name }}{% endif %}{% endblock %}
+{% block title %}{% translate "My website" %}{% if admin %}{{ starter|json_script:"bpStarter" }}
+<script>document.getElementById("loadStarter")&&document.getElementById("loadStarter").addEventListener("click",function(){
+  var d=JSON.parse(document.getElementById("bpStarter").textContent),f=function(n){return document.querySelector('[name="a-'+n+'"]')};
+  var busy=["custom_head","custom_header","custom_home","custom_footer"].some(function(n){return f(n).value.trim()});
+  if(busy&&!confirm("Replace what is in the custom design boxes?"))return;
+  ["custom_head","custom_header","custom_home","custom_footer"].forEach(function(n){f(n).value=d[n]});});</script>{% endif %}
+{% endblock %}
+{% block heading %}🌐 {% translate "My website" %}{% if admin %} · {{ company.name }}{% endif %}{% if admin %}{{ starter|json_script:"bpStarter" }}
+<script>document.getElementById("loadStarter")&&document.getElementById("loadStarter").addEventListener("click",function(){
+  var d=JSON.parse(document.getElementById("bpStarter").textContent),f=function(n){return document.querySelector('[name="a-'+n+'"]')};
+  var busy=["custom_head","custom_header","custom_home","custom_footer"].some(function(n){return f(n).value.trim()});
+  if(busy&&!confirm("Replace what is in the custom design boxes?"))return;
+  ["custom_head","custom_header","custom_home","custom_footer"].forEach(function(n){f(n).value=d[n]});});</script>{% endif %}
+{% endblock %}
 {% block content %}
 <style>
 .site-langs{margin:0 0 12px}.site-langs summary{cursor:pointer;font-weight:600}.lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px 12px;margin:8px 0}.lang-grid label{display:flex;gap:6px;align-items:center;font-weight:500}
@@ -55,6 +67,17 @@
           3) When it opens, set status to <b>Live</b>. Until then the site works at <code>{{ public }}</code>.
         </div>
         <p>{{ aform.custom_html.label_tag }}{{ aform.custom_html }}<span class="helptext">{{ aform.custom_html.help_text }}</span></p>
+        <details style="margin:6px 0 14px" {% if design.custom_header or design.custom_home or design.custom_footer or design.custom_head %}open{% endif %}>
+          <summary style="cursor:pointer;font-weight:800">🧩 Custom design — Bootstrap / own HTML around the live shop</summary>
+          <p class="muted" style="line-height:1.6">Write the client's own header, footer and home page in HTML (Bootstrap or anything). BookPilot keeps the Shop, product pages, cart, orders and forms working. Leave a box empty to keep the standard part.
+            <button type="button" class="btn btn-secondary" style="padding:4px 10px" id="loadStarter">Load Bootstrap 5 starter</button></p>
+          <p class="muted" style="line-height:1.7"><b>Placeholders:</b>
+            {% for ph in placeholders %}<code>[[{{ ph }}]]</code> {% endfor %}</p>
+          <p>{{ aform.custom_head.label_tag }}{{ aform.custom_head }}<span class="helptext">Bootstrap / Google Fonts links, Google Analytics, Facebook pixel…</span></p>
+          <p>{{ aform.custom_header.label_tag }}{{ aform.custom_header }}<span class="helptext">Use [[menu_items]] inside a Bootstrap &lt;ul class="navbar-nav"&gt;, or [[menu]] for plain links.</span></p>
+          <p>{{ aform.custom_home.label_tag }}{{ aform.custom_home }}<span class="helptext">Use [[products]], [[categories]], [[offers]], [[contact]], [[booking]]…</span></p>
+          <p>{{ aform.custom_footer.label_tag }}{{ aform.custom_footer }}</p>
+        </details>
         <button class="btn" type="submit">Save admin settings</button>
       </form>
     </div>
@@ -181,4 +204,10 @@
   </div>
   {% endif %}
 </div>
+{% if admin %}{{ starter|json_script:"bpStarter" }}
+<script>document.getElementById("loadStarter")&&document.getElementById("loadStarter").addEventListener("click",function(){
+  var d=JSON.parse(document.getElementById("bpStarter").textContent),f=function(n){return document.querySelector('[name="a-'+n+'"]')};
+  var busy=["custom_head","custom_header","custom_home","custom_footer"].some(function(n){return f(n).value.trim()});
+  if(busy&&!confirm("Replace what is in the custom design boxes?"))return;
+  ["custom_head","custom_header","custom_home","custom_footer"].forEach(function(n){f(n).value=d[n]});});</script>{% endif %}
 {% endblock %}

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block title %}Reports{% endblock %}
 {% block heading %}Reports{% endblock %}
 {% block content %}
@@ -29,18 +30,27 @@
 <h2 style="font-size:16px; margin-bottom:10px;">Top-selling products</h2>
 {% if top_products %}
 <table>
-  <tr><th>Dress / Variant</th><th>Size</th><th>Colour</th><th>Units sold</th><th>Revenue</th></tr>
+  <tr><th>{% translate "Product" %}</th>{% if not attribute_reports %}<th>Size</th><th>Colour</th>{% endif %}<th>Units sold</th><th>Revenue</th></tr>
   {% for p in top_products %}
-  <tr><td>{{ p.product__name }}{% if p.product__variant_label %} — {{ p.product__variant_label }}{% endif %}</td><td>{{ p.product__size|default:"—" }}</td><td>{{ p.product__colour|default:"—" }}</td><td>{{ p.units_sold }}</td><td>{{ p.revenue }}</td></tr>
+  <tr><td>{{ p.product__name }}{% if p.product__variant_label %} — {{ p.product__variant_label }}{% endif %}</td>{% if not attribute_reports %}<td>{{ p.product__size|default:"—" }}</td><td>{{ p.product__colour|default:"—" }}</td>{% endif %}<td>{{ p.units_sold }}</td><td>{{ p.revenue }}</td></tr>
   {% endfor %}
 </table>
 {% else %}
 <div class="card empty">No sales recorded yet.</div>
 {% endif %}
 
+{% if attribute_reports %}
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px;">
+  <div><h2 style="font-size:16px;">Top categories</h2><table><tr><th>Category</th><th>Units</th></tr>{% for p in top_categories %}<tr><td>{{ p.product__category__name|default:"Uncategorised" }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No data</td></tr>{% endfor %}</table></div>
+  {% for g in attribute_reports %}
+  <div><h2 style="font-size:16px;">{% translate g.title %}</h2><table><tr><th>{% translate g.title %}</th><th>Units</th><th>Revenue</th></tr>{% for r in g.rows %}<tr><td>{{ r.label }}</td><td>{{ r.units|floatformat:"-2" }}</td><td>{{ r.revenue|floatformat:2 }}</td></tr>{% empty %}<tr><td colspan="3">No data</td></tr>{% endfor %}</table></div>
+  {% endfor %}
+</div>
+{% else %}
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;">
   <div><h2 style="font-size:16px;">Top categories</h2><table><tr><th>Category</th><th>Units</th></tr>{% for p in top_categories %}<tr><td>{{ p.product__category__name|default:"Uncategorised" }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No data</td></tr>{% endfor %}</table></div>
   <div><h2 style="font-size:16px;">Top sizes</h2><table><tr><th>Size</th><th>Units</th></tr>{% for p in top_sizes %}<tr><td>{{ p.product__size }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No size data</td></tr>{% endfor %}</table></div>
   <div><h2 style="font-size:16px;">Top colours</h2><table><tr><th>Colour</th><th>Units</th></tr>{% for p in top_colours %}<tr><td>{{ p.product__colour }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No colour data</td></tr>{% endfor %}</table></div>
 </div>
+{% endif %}
 {% endblock %}

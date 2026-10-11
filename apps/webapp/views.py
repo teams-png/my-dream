@@ -3057,7 +3057,35 @@ def retail_reports(request):
             .order_by("-units_sold")[:8]
         ),
     }
+    from apps.modules.catalog import ALIASES
+    code = company.business_type.code if company.business_type_id else ""
+    code = ALIASES.get(code, code)
+    groups = REPORT_ATTRIBUTES.get(code)
+    if groups:  # e.g. perfume: by fragrance family / concentration / bottle size instead of size / colour
+        context["attribute_reports"] = _attribute_reports(lines, groups)
     return render(request, "webapp/retail/reports.html", context)
+
+
+REPORT_ATTRIBUTES = {
+    "perfume_shop": (("fragrance_family", "Fragrance family"), ("concentration", "Concentration"),
+                     ("volume_ml", "Bottle size (ml)"), ("gender", "For")),
+}
+
+
+def _attribute_reports(lines, groups):
+    """Units and revenue per product attribute value (attributes live in a JSON field)."""
+    from collections import defaultdict
+    totals = {key: defaultdict(lambda: [Decimal("0"), Decimal("0")]) for key, _ in groups}
+    for line in lines:
+        attrs = line.product.attributes or {}
+        for key, _ in groups:
+            value = str(attrs.get(key) or "").strip()
+            if value:
+                totals[key][value][0] += line.quantity
+                totals[key][value][1] += line.line_total
+    return [{"title": title, "rows": sorted(({"label": k, "units": v[0], "revenue": v[1]} for k, v in totals[key].items()),
+                                            key=lambda r: -r["revenue"])[:8]}
+            for key, title in groups]
 
 
 # ================= RESTAURANT / CAFE / CATERING =================
@@ -3955,7 +3983,8 @@ def _pos_catalog(company):
             "tracked": p.is_stock_tracked, "reorder": p.reorder_level,
             "category_id": p.category_id, "size": p.size, "colour": p.colour, "material": p.material,
             "design": p.design, "variant": p.variant_label, "item_type": item_type, "mobile_units": units,
-            "weighed": bool((p.attributes or {}).get("sold_by_weight")),
+            "weighed": bool((p.attributes or {}).get("sold_by_weight") or (p.attributes or {}).get("sold_by_ml")),
+            "unit": "ml" if (p.attributes or {}).get("sold_by_ml") else "kg",
             "plu": str((p.attributes or {}).get("scale_code") or ""),
             "img": picture_url(p, company.business_type.code),
         })

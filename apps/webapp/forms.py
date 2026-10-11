@@ -305,6 +305,10 @@ class BusinessProductForm(ProductForm):
             self.fields["scale_code"] = forms.CharField(
                 required=False, max_length=10, label="Scale item code (PLU)", initial=attrs.get("scale_code", ""),
                 help_text="The item number programmed in the weighing scale, e.g. 123.")
+        if self.business_code == "perfume_shop":  # decants / loose attar: the price is per ml
+            self.fields["sold_by_ml"] = forms.BooleanField(
+                required=False, label="Sold by the ml (decant / loose oil)", initial=bool(attrs.get("sold_by_ml")),
+                help_text="Billing asks how many ml; the price is per ml.")
         self.fields["wholesale_price"].initial = attrs.get("wholesale_price")
         self.fields["carton_quantity"].initial = attrs.get("carton_quantity")
 
@@ -325,6 +329,8 @@ class BusinessProductForm(ProductForm):
         if self.weighed:
             attrs["sold_by_weight"] = bool(self.cleaned_data.get("sold_by_weight"))
             attrs["scale_code"] = (self.cleaned_data.get("scale_code") or "").strip().lstrip("0")
+        if "sold_by_ml" in self.fields:
+            attrs["sold_by_ml"] = bool(self.cleaned_data.get("sold_by_ml"))
         obj.attributes = attrs
         if self.cleaned_data.get("serial_required"):
             obj.tracking_type = "serial"

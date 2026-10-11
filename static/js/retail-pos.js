@@ -16,7 +16,8 @@
   function round2(v) { const x = v * 100, f = Math.floor(x + 1e-9), d = x - f; if (Math.abs(d - 0.5) < 1e-7) return (f % 2 === 0 ? f : f + 1) / 100; return Math.round(x) / 100; }
   const money = n => round2(+n || 0).toFixed(2);
   const round3 = n => Math.round((+n || 0) * 1000) / 1000;
-  const qtyText = i => (i.weighed ? round3(i.qty).toFixed(3) + " kg" : String(i.qty));
+  const unitOf = i => i.unit || "kg";
+  const qtyText = i => (i.weighed ? (unitOf(i) === "kg" ? round3(i.qty).toFixed(3) : String(round3(i.qty))) + " " + unitOf(i) : String(i.qty));
   const esc = t => String(t == null ? "" : t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const hue = s => { let h = 0; for (const ch of String(s)) h = (h * 31 + ch.charCodeAt(0)) % 360; return h; };
   const initials = s => String(s).trim().split(/\s+/).slice(0, 2).map(w => w[0] || "").join("").toUpperCase();
@@ -83,7 +84,7 @@
         <div class="food-body">
           <div class="food-name">${esc(label(p))}</div>
           <div class="prod-sku">${esc(p.sku)}</div>
-          <div class="food-meta"><span class="food-price"><small>${esc(CUR)}</small>${esc(p.price)}${p.weighed ? `<small> /kg</small>` : ""}</span>
+          <div class="food-meta"><span class="food-price"><small>${esc(CUR)}</small>${esc(p.price)}${p.weighed ? `<small> /${esc(unitOf(p))}</small>` : ""}</span>
             <button class="food-add" type="button" aria-label="${esc(label(p))}">+</button></div>
         </div>
       </article>`).join("");
@@ -138,7 +139,7 @@
     const key = unit ? `${p.id}-${unit.id}` : String(p.id);
     if (!cart[key]) {
       cart[key] = { key, id: p.id, name: label(p), sku: p.sku, price: parseFloat(p.price), qty: 0,
-        mobile_unit_id: unit ? unit.id : null, imei: unit ? unit.imei : null, weighed: !!p.weighed, isNew: true };
+        mobile_unit_id: unit ? unit.id : null, imei: unit ? unit.imei : null, weighed: !!p.weighed, unit: unitOf(p), isNew: true };
     }
     cart[key].qty = unit ? 1 : (p.weighed ? round3(cart[key].qty + (qty || 0)) : cart[key].qty + (qty || 1));
     cart[key].isNew = true;
@@ -151,7 +152,11 @@
   function openWeigh(p, fromEl) {
     weighing = { p, fromEl };
     $("weighName").textContent = label(p);
-    $("weighPrice").textContent = `${CUR} ${money(p.price)} / kg`;
+    const unit = unitOf(p), steps = unit === "ml" ? [3, 6, 12, 25, 50] : [0.25, 0.5, 1, 1.5, 2];
+    $("weighPrice").textContent = `${CUR} ${money(p.price)} / ${unit}`;
+    $("weighLabel").textContent = unit === "ml" ? T.qtyMl : T.weightKg;
+    $("weighKg").placeholder = unit === "ml" ? "0" : "0.000";
+    $("weighQuick").innerHTML = steps.map(n => `<button type="button" data-kg="${n}">${unit === "kg" && n < 1 ? (n === 0.25 ? "¼" : "½") : n} ${unit}</button>`).join("");
     $("weighKg").value = ""; $("weighAmt").value = "";
     updateWeigh();
     $("weighDialog").showModal();
@@ -211,9 +216,9 @@
         <span class="cart-ico" style="--h:${hue(i.name.split(" — ")[0])}">${esc(initials(i.name))}</span>
         <div class="line-mid">
           <div class="cart-name">${esc(i.name)}</div>
-          <div class="cart-note">${i.imei ? "IMEI " + esc(i.imei) : `<span class="each">${money(i.price)} ${i.weighed ? "/ kg" : T.each}</span>`}</div>
+          <div class="cart-note">${i.imei ? "IMEI " + esc(i.imei) : `<span class="each">${money(i.price)} ${i.weighed ? "/ " + esc(unitOf(i)) : T.each}</span>`}</div>
           ${i.imei ? "" : i.weighed
-            ? `<div class="row"><div class="cart-qty"><button class="qty-btn" type="button" data-step="-0.1" aria-label="−">−</button><input type="number" min="0" step="0.001" value="${round3(i.qty).toFixed(3)}" aria-label="kg" data-qty style="width:62px"><button class="qty-btn" type="button" data-step="0.1" aria-label="+">+</button></div><span class="each">kg</span></div>`
+            ? `<div class="row"><div class="cart-qty"><button class="qty-btn" type="button" data-step="${unitOf(i) === "kg" ? -0.1 : -1}" aria-label="−">−</button><input type="number" min="0" step="0.001" value="${unitOf(i) === "kg" ? round3(i.qty).toFixed(3) : round3(i.qty)}" aria-label="${esc(unitOf(i))}" data-qty style="width:62px"><button class="qty-btn" type="button" data-step="${unitOf(i) === "kg" ? 0.1 : 1}" aria-label="+">+</button></div><span class="each">${esc(unitOf(i))}</span></div>`
             : `<div class="row"><div class="cart-qty"><button class="qty-btn" type="button" data-step="-1" aria-label="−">−</button><input type="number" min="0" step="1" value="${i.qty}" aria-label="Qty" data-qty><button class="qty-btn" type="button" data-step="1" aria-label="+">+</button></div></div>`}
         </div>
         <div class="line-side"><span class="cart-price">${money(i.price * i.qty)}</span>

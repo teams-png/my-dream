@@ -152,7 +152,7 @@
     <form method="dialog" id="weighForm">
       <div class="dlg-head"><h3 id="weighName"></h3><p id="weighPrice"></p><button class="dlg-close" type="button" data-close aria-label="{% translate 'Close' %}">✕</button></div>
       <div class="dlg-body">
-        <label class="field-label" for="weighKg">{% translate "Weight (kg)" %}</label>
+        <label class="field-label" for="weighKg" id="weighLabel">{% translate "Weight (kg)" %}</label>
         <input class="rp-input" id="weighKg" type="number" min="0" step="0.001" inputmode="decimal" placeholder="0.000" style="font-size:24px;height:58px;font-weight:800">
         <div class="quick-cash" id="weighQuick"><button type="button" data-kg="0.25">¼ kg</button><button type="button" data-kg="0.5">½ kg</button><button type="button" data-kg="1">1 kg</button><button type="button" data-kg="1.5">1.5 kg</button><button type="button" data-kg="2">2 kg</button></div>
         <label class="field-label" for="weighAmt">{% translate "or amount" %} ({{ active_company.default_currency }})</label>
@@ -180,7 +180,7 @@ window.POS_CFG = {
   isMobileShop: {{ is_mobile_shop|yesno:"true,false" }},
   serviceBilling: {{ service_billing|yesno:"true,false" }},
   T: {
-    services: "{% translate 'Services' %}", productsForSale: "{% translate 'Products for sale' %}",
+    weightKg: "{% translate 'Weight (kg)' %}", qtyMl: "{% translate 'Quantity (ml)' %}", services: "{% translate 'Services' %}", productsForSale: "{% translate 'Products for sale' %}",
     all: "{% translate 'All' %}", online: "{% translate 'Online' %}", offline: "{% translate 'Offline' %}",
     results: "{% if service_billing %}{% translate 'items' %}{% else %}{% translate 'products' %}{% endif %}", inStock: "{% translate 'in stock' %}", low: "{% translate 'Low' %}", out: "{% translate 'Sold out' %}",
     item: "{% translate 'item' %}", items: "{% translate 'items' %}", each: "{% translate 'each' %}", remove: "{% translate 'Remove' %}",

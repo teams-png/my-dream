@@ -28,7 +28,9 @@ ART = [
     ("foot_massage", "🦶", "foot_massage reflexology foot_reflexology"), ("foot_spa", "🦶", "foot_spa foot_soak"),
     ("herbal", "🌿", "herbal potli kizhi compress ayurveda ayurvedic abhyanga"),
     ("spa_oil", "🧴", "massage_oil essential_oil aroma_oil spa_oil"), ("towel", "🧺", "towel towels robe bathrobe"),
-    ("perfume", "🌸", "perfume attar oud musk fragrance bakhoor rose"),
+    ("perfume", "🌸", "perfume musk fragrance rose"), ("oud", "🪵", "oud agarwood woody"),
+    ("bakhoor", "🪔", "bakhoor bakhour bukhoor incense dukhoon"), ("attar", "🏺", "attar"),
+    ("decant", "🧪", "decant decants tester vial"),
     # fashion
     ("shirt", "👔", "shirt formal kandura thobe coverall"), ("tshirt", "👕", "t-shirt tshirt jersey tee top football_jersey sports_jersey"),
     ("dress", "👗", "dress gown kurti abaya frock boutique party_gown"), ("saree", "🥻", "saree sari silk"),
@@ -108,7 +110,7 @@ ART = [
 ART_BY_KEY = {key: emoji for key, emoji, _words in ART}
 _WORDS = [(key, [w.replace("_", " ") for w in words.split()]) for key, _e, words in ART]  # a_b = phrase "a b"
 TYPE_DEFAULT = {"saloon": "haircut", "beauty_parlour": "makeup", "spa": "massage", "gym": "gym", "vehicle_wash": "car",
-                "mobile_shop": "phone", "pharmacy": "medicine", "medical_shop": "medicine", "textile": "fabric",
+                "mobile_shop": "phone", "perfume_shop": "perfume", "pharmacy": "medicine", "medical_shop": "medicine", "textile": "fabric",
                 "clothing_store": "tshirt", "ladies_fashion_boutique": "dress", "footwear_store": "shoes",
                 "supermarket": "rice", "grocery_store": "rice", "bakery": "bread", "jewelry_shop": "jewel",
                 "electronics_store": "monitor", "computer_shop": "laptop", "restaurant": "food_service",

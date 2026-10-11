@@ -142,7 +142,11 @@ KITS = {
                      P("Rose Musk 50ml", "Floral", 220, "Ajmal", stock=10, gender="Women", volume_ml=50,
                        fragrance_family="Floral", concentration="Eau de Parfum"),
                      P("Bakhoor 50g", "Bakhoor", 60, "Rasasi", stock=20),
-                     P("Attar 12ml", "Attar", 80, "Ajmal", stock=15, gender="Unisex", volume_ml=12)],
+                     P("Attar 12ml", "Attar", 80, "Ajmal", stock=15, gender="Unisex", volume_ml=12),
+                     P("Oud oil decant (per ml)", "Decants", 12, "Arabian Oud", stock=300, unit="ml", sold_by_ml=True,
+                       fragrance_family="Oud / woody", concentration="Perfume oil"),
+                     P("Gift set – Oud & Musk", "Gift sets", 599, "Arabian Oud", stock=5, gender="Unisex")],
+        "services": [S("Gift wrapping", "Service", 15), S("Engraving on bottle", "Service", 25)],
     },
     "watch_shop": {
         "products": [P("Men's chronograph watch", "Men", 899, "Casio", stock=4, gender="Men", model_number="EFR-539",

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ r.number }}{% endblock %}
+{% block heading %}🚲 {% translate "Rental" %} {{ r.number }}{% endblock %}
+{% block content %}
+<style>@media print{.no-print,.sidebar,header,nav{display:none!important}.main{margin:0!important}}</style>
+<div class="hr">
+<div class="hr-actions no-print" style="margin-bottom:12px">
+  <a class="btn btn-secondary" href="{% url 'webapp:sports_rentals' %}">← {% translate "Rentals" %}</a>
+  <button class="btn btn-secondary" type="button" onclick="window.print()">🖨 {% translate "Print agreement" %}</button>
+  {% if whatsapp and r.status == "out" %}<a class="btn btn-secondary" href="{{ whatsapp }}" target="_blank" rel="noopener">💬 {% translate "Remind on WhatsApp" %}</a>{% endif %}
+  {% if r.invoice_id %}<a class="btn btn-secondary" href="{% url 'webapp:invoice_pdf' r.invoice_id %}" target="_blank">🧾 {{ r.invoice.invoice_number }}</a>{% endif %}
+</div>
+<div class="hr-card" style="max-width:760px">
+  <h3 style="margin:0 0 4px">{{ company.name }} — {% translate "Rental agreement" %}</h3>
+  <p style="margin:0 0 12px;color:var(--ink-soft)">{{ r.number }} · {{ r.out_at|date:"j M Y, H:i" }}</p>
+  <p><b>{{ r.customer.name }}</b>{% if r.customer.phone %} · {{ r.customer.phone }}{% endif %}{% if r.id_document %} · {% translate "ID" %} {{ r.id_document }}{% endif %}</p>
+  <table class="table"><tr><th>{% translate "Item" %}</th><th>{% translate "Qty" %}</th><th>{% translate "Per day" %}</th></tr>
+    {% for l in lines %}<tr><td>{{ l.item.name }}</td><td>{{ l.quantity }}</td><td>{{ l.rate_per_day }}</td></tr>{% endfor %}</table>
+  <p>{% translate "Return by" %} <b>{{ r.due_back|date:"j M Y" }}</b>{% if late %} · <span class="hr-chip bad">{% translate "Late" %}</span>{% endif %} · {% translate "Deposit" %} <b>{{ active_company.default_currency }} {{ r.deposit }}</b></p>
+  {% if r.status == "out" %}
+  <p>{% blocktranslate with d=days cur=active_company.default_currency amt=estimate|floatformat:2 %}So far: {{ d }} day(s) — {{ cur }} {{ amt }}{% endblocktranslate %}</p>
+  {% else %}
+  <p>{% translate "Status" %}: <b>{{ r.get_status_display }}</b>{% if r.returned_at %} · {{ r.returned_at|date:"j M Y, H:i" }} · {{ r.days_charged }} {% translate "day(s)" %} · {% translate "Bill" %} {{ active_company.default_currency }} {{ r.charge }}{% endif %}</p>
+  {% endif %}
+  {% if r.notes %}<p style="white-space:pre-line;color:var(--ink-soft)">{{ r.notes }}</p>{% endif %}
+  <p style="font-size:12.5px;color:var(--ink-soft)">{% translate "The customer returns the items in the same condition. Late days are charged at the daily rate; damage or missing parts are charged from the deposit." %}</p>
+  <p style="margin-top:34px">{% translate "Customer signature" %} ____________________ &nbsp; {% translate "Shop" %} ____________________</p>
+</div>
+{% if r.status == "out" %}
+<form method="post" action="{% url 'webapp:sports_rental_return' r.id %}" class="hr-card no-print" style="max-width:760px;margin-top:12px">{% csrf_token %}
+  <h3>↩ {% translate "Items returned" %}</h3>
+  <div class="hr-form">
+    <label>{% translate "Damage / missing parts charge" %}<input type="number" name="damage_charge" step="0.01" min="0" value="0"></label>
+    <label>{% translate "Note" %}<input name="return_note" maxlength="255"></label>
+    <div class="wide"><button class="btn" type="submit">{% translate "Return & make bill" %}</button>
+      <button class="btn btn-secondary" type="submit" name="do" value="cancel" onclick="return confirm('{% translate "Cancel this rental without a bill?" %}')">{% translate "Cancel rental" %}</button></div>
+  </div>
+  <p style="color:var(--ink-soft);font-size:12.5px;margin:8px 0 0">{% translate "The bill is paid from the deposit first; the screen tells you what to give back or collect." %}</p>
+</form>
+{% endif %}
+</div>
+{% endblock %}

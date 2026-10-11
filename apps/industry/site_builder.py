@@ -288,5 +288,7 @@ def product_page(design, absolute, base, lang, preview, product_id):
         value = _l("Yes") if value is True else value
         specs.append((labels.get(key) or key.replace("_", " ").capitalize(), value))
     options = [{"id": s.id, "label": s.variant_label or s.name, "url": f"{base}shop/{s.id}/{q}"} for s in siblings]
-    return {"item": item, "specs": specs, "options": options, "ordering": ordering,
+    from apps.verticals.sports_shop.models import SizeChart
+    chart = SizeChart.objects.filter(company=company, category_id=p.category_id).first() if p.category_id else None
+    return {"item": item, "specs": specs, "options": options, "ordering": ordering, "size_chart": chart,
             "related": [_item(r, company, absolute, base, q, stock, ordering) for r in related]}

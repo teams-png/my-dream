@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Rentals" %}{% endblock %}
+{% block heading %}🚲 {% translate "Equipment rental" %}{% endblock %}
+{% block content %}
+<div class="hr">
+<div class="hr-actions" style="margin-bottom:12px">
+  <a class="btn" href="{% url 'webapp:sports_rental_add' %}">＋ {% translate "New rental" %}</a>
+  <a class="hr-chip {% if show == 'out' %}ok{% endif %}" style="padding:8px 12px" href="?show=out">{% translate "Out now" %}{% if overdue %} · {{ overdue }} {% translate "late" %}{% endif %}</a>
+  <a class="hr-chip {% if show != 'out' %}ok{% endif %}" style="padding:8px 12px" href="?show=all">{% translate "All" %}</a>
+</div>
+<div class="hr-grid2">
+<div class="hr-list">
+  {% for r in rentals %}
+  <a class="hr-row" href="{% url 'webapp:sports_rental_detail' r.id %}" style="text-decoration:none;color:inherit">
+    <span class="grow"><b>{{ r.number }}</b> · {{ r.customer.name }}<small>{% for l in r.lines.all %}{{ l.quantity }} × {{ l.item.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</small></span>
+    {% if r.status == "out" %}{% if r.late %}<span class="hr-chip bad">{% translate "Late" %} · {{ r.due_back|date:"j M" }}</span>{% else %}<span class="hr-chip warn">{% translate "Back" %} {{ r.due_back|date:"j M" }}</span>{% endif %}
+    {% else %}<span class="hr-chip {% if r.status == 'returned' %}ok{% endif %}">{{ r.get_status_display }}</span>{% endif %}
+  </a>
+  {% empty %}<div class="hr-card hr-empty">{% translate "Nothing is out on rent." %}</div>{% endfor %}
+</div>
+<div>
+  <div class="hr-card"><h3>{% translate "Rental items" %}</h3>
+    {% for i in items %}
+    <details style="border-top:1px solid var(--line);padding:6px 0"><summary style="cursor:pointer"><b>{{ i.name }}</b> · {{ active_company.default_currency }} {{ i.rate_per_day }}/{% translate "day" %} · {{ i.free }}/{{ i.quantity_owned }} {% translate "free" %}{% if not i.is_active %} · {% translate "off" %}{% endif %}</summary>
+      <form method="post" class="hr-form" style="margin-top:6px">{% csrf_token %}<input type="hidden" name="item_id" value="{{ i.id }}">
+        <label class="wide">{% translate "Name" %}<input name="name" value="{{ i.name }}" maxlength="120"></label>
+        <label>{% translate "Rate per day" %}<input name="rate_per_day" type="number" step="0.01" min="0" value="{{ i.rate_per_day }}"></label>
+        <label>{% translate "Deposit per piece" %}<input name="deposit" type="number" step="0.01" min="0" value="{{ i.deposit }}"></label>
+        <label>{% translate "How many you own" %}<input name="quantity_owned" type="number" min="0" value="{{ i.quantity_owned }}"></label>
+        <label>{% translate "Active" %}<select name="is_active"><option value="on">{% translate "Yes" %}</option><option value="off"{% if not i.is_active %} selected{% endif %}>{% translate "No" %}</option></select></label>
+        <div class="wide"><button class="btn" type="submit">{% translate "Save" %}</button></div>
+      </form></details>
+    {% empty %}<p style="color:var(--ink-soft)">{% translate "Add the gear you rent out: bicycles, kayaks, rackets, tents…" %}</p>{% endfor %}
+    <form method="post" class="hr-form" style="border-top:1px solid var(--line);padding-top:10px;margin-top:6px">{% csrf_token %}
+      <label class="wide">{% translate "New item" %}<input name="name" maxlength="120" placeholder="{% translate 'e.g. Mountain bike' %}"></label>
+      <label>{% translate "Rate per day" %}<input name="rate_per_day" type="number" step="0.01" min="0" required></label>
+      <label>{% translate "Deposit per piece" %}<input name="deposit" type="number" step="0.01" min="0" value="0"></label>
+      <label>{% translate "How many you own" %}<input name="quantity_owned" type="number" min="0" value="1"></label>
+      <div class="wide"><button class="btn btn-secondary" type="submit">＋ {% translate "Add item" %}</button></div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

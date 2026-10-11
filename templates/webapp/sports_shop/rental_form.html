@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "New rental" %}{% endblock %}
+{% block heading %}🚲 {% translate "New rental" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% if not items %}<div class="hr-card">{% translate "Add your rental items first." %} <a href="{% url 'webapp:sports_rentals' %}">{% translate "Rental items" %} →</a></div>{% else %}
+<form method="post" class="hr-card" style="max-width:760px">{% csrf_token %}
+  <div class="hr-form">
+    <label class="wide">{% translate "Customer" %}<select name="customer"><option value="">—</option>{% for c in customers %}<option value="{{ c.id }}">{{ c.name }}{% if c.phone %} · {{ c.phone }}{% endif %}</option>{% endfor %}</select></label>
+    <label>{% translate "…or new customer name" %}<input name="new_name" maxlength="255"></label>
+    <label>{% translate "Phone / WhatsApp" %}<input name="new_phone" maxlength="20" inputmode="tel"></label>
+    <label>{% translate "ID kept (QID / passport no.)" %}<input name="id_document" maxlength="60"></label>
+    <label>{% translate "Return by" %}<input type="date" name="due_back" value="{{ tomorrow|date:'Y-m-d' }}" required></label>
+    <div class="wide"><b>{% translate "Items" %}</b>
+      {% for i in items %}<div class="hr-row" style="margin-top:6px"><span class="grow">{{ i.name }}<small>{{ active_company.default_currency }} {{ i.rate_per_day }}/{% translate "day" %} · {% translate "deposit" %} {{ i.deposit }} · {{ i.free }} {% translate "free" %}</small></span>
+        <input type="number" name="qty_{{ i.id }}" min="0" max="{{ i.free }}" value="0" style="width:80px"{% if not i.free %} disabled{% endif %}></div>{% endfor %}
+    </div>
+    <label>{% translate "Deposit taken" %}<input type="number" name="deposit" step="0.01" min="0" placeholder="{% translate 'Auto from items' %}"></label>
+    <label class="wide">{% translate "Notes" %}<input name="notes" maxlength="500" placeholder="{% translate 'e.g. helmet included, small scratch on frame' %}"></label>
+    <div class="wide"><button class="btn" type="submit">{% translate "Save rental" %}</button> <a class="btn btn-secondary" href="{% url 'webapp:sports_rentals' %}">{% translate "Cancel" %}</a></div>
+  </div>
+</form>
+{% endif %}
+</div>
+{% endblock %}

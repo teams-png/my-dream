@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import team_order_views
-from . import refill_views, shop_order_views, billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
+from . import sports_extra_views, refill_views, shop_order_views, billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -557,6 +557,11 @@ urlpatterns = [
     path("restaurant/setup/demo-menu/", views.restaurant_demo_menu, name="restaurant_demo_menu"),
     path("restaurant/setup/kerala-kit/", views.restaurant_starter_kit, name="restaurant_starter_kit"),
     path("restaurant/quick/", quick_sale_views.quick_sale, name="restaurant_quick_sale"),
+    path("sports/size-charts/", sports_extra_views.size_charts, name="size_charts"),
+    path("sports/rentals/", sports_extra_views.rental_list, name="sports_rentals"),
+    path("sports/rentals/new/", sports_extra_views.rental_add, name="sports_rental_add"),
+    path("sports/rentals/<int:rental_id>/", sports_extra_views.rental_detail, name="sports_rental_detail"),
+    path("sports/rentals/<int:rental_id>/return/", sports_extra_views.rental_return, name="sports_rental_return"),
     path("refills/", refill_views.refill_list, name="refill_list"),
     path("refills/add/", refill_views.refill_add, name="refill_add"),
     path("refills/<int:sub_id>/action/", refill_views.refill_action, name="refill_action"),

@@ -19,6 +19,9 @@
         {% if ordering and item.orderable %}<button type="button" class="add" data-bp-add data-id="{{ item.id }}" data-name="{{ item.name }}" data-price="{{ item.price }}">🛒 {% translate "Add to cart" %}</button>{% endif %}
         {% if whatsapp %}<a class="btn alt" href="https://wa.me/{{ whatsapp }}?text={{ wa_text|urlencode }}" target="_blank" rel="noopener">💬 {% translate "Ask on WhatsApp" %}</a>{% endif %}
       </div>
+      {% if size_chart %}<details class="panel" style="margin:14px 0;padding:14px 18px"><summary style="cursor:pointer;font-weight:700">📏 {% translate "Size chart" %} — {{ size_chart.name }}</summary>
+        <div style="overflow-x:auto"><table class="specs">{% for row in size_chart.rows %}<tr>{% for cell in row %}{% if forloop.parentloop.first %}<th style="text-align:start;padding:8px 4px">{{ cell }}</th>{% else %}<td>{{ cell }}</td>{% endif %}{% endfor %}</tr>{% endfor %}</table></div>
+        {% if size_chart.note %}<p style="color:var(--soft);margin:0">{{ size_chart.note }}</p>{% endif %}</details>{% endif %}
       {% if specs %}<table class="specs">{% for label, value in specs %}<tr><td>{{ label }}</td><td>{{ value }}</td></tr>{% endfor %}</table>{% endif %}
       {% if item.description %}<div class="rich">{{ item.description|linebreaks }}</div>{% endif %}
     </div>

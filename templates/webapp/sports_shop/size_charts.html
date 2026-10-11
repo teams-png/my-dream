@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Size charts" %}{% endblock %}
+{% block heading %}📏 {% translate "Size charts" %}{% endblock %}
+{% block content %}
+<div class="hr">
+<p style="color:var(--ink-soft);margin:0 0 12px">{% translate "A size guide per category (jerseys, shoes, gloves…). Staff can show it at the counter, and your website shows it on every product of that category." %}</p>
+<div class="hr-grid2">
+<div>
+  {% for c in charts %}
+  <div class="hr-card" style="margin-bottom:12px">
+    <div style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap"><h3 style="margin:0;flex:1">{{ c.name }}</h3><span class="hr-chip">{% if c.category %}{{ c.category.name }}{% else %}{% translate "No category" %}{% endif %}</span>
+      <button class="btn btn-secondary" type="button" onclick="window.print()">🖨 {% translate "Print" %}</button></div>
+    <div style="overflow-x:auto;margin-top:10px"><table class="table">{% for row in c.rows %}<tr>{% for cell in row %}{% if forloop.parentloop.first %}<th>{{ cell }}</th>{% else %}<td>{{ cell }}</td>{% endif %}{% endfor %}</tr>{% endfor %}</table></div>
+    {% if c.note %}<p style="color:var(--ink-soft);margin:8px 0 0">{{ c.note }}</p>{% endif %}
+    <details style="margin-top:10px"><summary style="cursor:pointer">{% translate "Edit" %}</summary>
+      <form method="post" class="hr-form" style="margin-top:8px">{% csrf_token %}<input type="hidden" name="chart_id" value="{{ c.id }}">
+        <label>{% translate "Name" %}<input name="name" value="{{ c.name }}" required maxlength="120"></label>
+        <label>{% translate "Category" %}<select name="category"><option value="">—</option>{% for cat in categories %}<option value="{{ cat.id }}"{% if c.category_id == cat.id %} selected{% endif %}>{{ cat.name }}</option>{% endfor %}</select></label>
+        <label class="wide">{% translate "Table" %}<textarea name="table" rows="6" style="font-family:monospace">{{ c.table }}</textarea></label>
+        <label class="wide">{% translate "Note" %}<input name="note" value="{{ c.note }}" maxlength="255"></label>
+        <div class="wide"><button class="btn" type="submit">{% translate "Save" %}</button> <button class="btn btn-secondary" type="submit" name="do" value="delete" onclick="return confirm('{% translate "Delete this size chart?" %}')">{% translate "Delete" %}</button></div>
+      </form></details>
+  </div>
+  {% empty %}<div class="hr-card hr-empty">{% translate "No size charts yet." %}</div>{% endfor %}
+</div>
+<form method="post" class="hr-card">{% csrf_token %}<h3>＋ {% translate "New size chart" %}</h3>
+  <div class="hr-form">
+    <label>{% translate "Name" %}<input name="name" required maxlength="120" placeholder="{% translate 'e.g. Football jerseys' %}"></label>
+    <label>{% translate "Category" %}<select name="category"><option value="">—</option>{% for cat in categories %}<option value="{{ cat.id }}">{{ cat.name }}</option>{% endfor %}</select></label>
+    <label class="wide">{% translate "Table" %}<textarea name="table" rows="7" required style="font-family:monospace" placeholder="{{ example }}"></textarea>
+      <small style="color:var(--ink-soft)">{% translate "One row per line, columns separated by commas. The first line is the heading. You can paste from Excel." %}</small></label>
+    <label class="wide">{% translate "Note" %}<input name="note" maxlength="255" placeholder="{% translate 'e.g. Between two sizes? Take the bigger one.' %}"></label>
+    <div class="wide"><button class="btn" type="submit">{% translate "Add size chart" %}</button></div>
+  </div>
+</form>
+</div>
+</div>
+{% endblock %}

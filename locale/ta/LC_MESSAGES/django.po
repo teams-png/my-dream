@@ -254,12 +254,16 @@ msgid "Menu & Ingredients"
 msgstr "மெனு & பொருட்கள்"
 
 #: templates/base.html
-msgid "Job cards"
-msgstr "ஜாப் கார்டுகள்"
+msgid "Eye tests & orders"
+msgstr "கண் பரிசோதனைகள் & ஆர்டர்கள்"
 
 #: templates/base.html
 msgid "Appointments calendar"
 msgstr "அப்பாயிண்ட்மென்ட் நாள்காட்டி"
+
+#: templates/base.html
+msgid "Job cards"
+msgstr "ஜாப் கார்டுகள்"
 
 #: templates/base.html
 msgid "Service contracts (AMC)"
@@ -5303,6 +5307,170 @@ msgstr "நகலெடு"
 msgid "Share…"
 msgstr "பகிர்…"
 
+#: templates/webapp/jobs/_record.html
+msgid "Visit record"
+msgstr "வருகைப் பதிவு"
+
+#: templates/webapp/jobs/_record.html
+msgid "BP"
+msgstr "BP"
+
+#: templates/webapp/jobs/_record.html
+msgid "Pulse"
+msgstr "நாடித்துடிப்பு"
+
+#: templates/webapp/jobs/_record.html
+msgid "Temp °C"
+msgstr "வெப்பநிலை °C"
+
+#: templates/webapp/jobs/_record.html
+msgid "Weight kg"
+msgstr "எடை kg"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sugar"
+msgstr "சர்க்கரை"
+
+#: templates/webapp/jobs/_record.html
+msgid "Complaint"
+msgstr "புகார்"
+
+#: templates/webapp/jobs/_record.html
+msgid "Diagnosis"
+msgstr "கண்டறிதல்"
+
+#: templates/webapp/jobs/_record.html
+msgid "Medicine"
+msgstr "மருந்து"
+
+#: templates/webapp/jobs/_record.html
+msgid "Dose"
+msgstr "அளவு"
+
+#: templates/webapp/jobs/_record.html
+msgid "How often"
+msgstr "எத்தனை முறை"
+
+#: templates/webapp/jobs/_record.html
+msgid "Days"
+msgstr "நாட்கள்"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Paracetamol 500 mg"
+msgstr "எ.கா. பாராசிட்டமால் 500 mg"
+
+#: templates/webapp/jobs/_record.html
+msgid "after food"
+msgstr "உணவுக்குப் பின்"
+
+#: templates/webapp/jobs/_record.html
+msgid "Advice"
+msgstr "அறிவுரை"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save record"
+msgstr "பதிவைச் சேமி"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription"
+msgstr "மருந்துச்சீட்டை அச்சிடு"
+
+#: templates/webapp/jobs/_record.html
+msgid "Book the next visit"
+msgstr "அடுத்த வருகையைப் பதிவு செய்"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test results"
+msgstr "பரிசோதனை முடிவுகள்"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sample"
+msgstr "மாதிரி"
+
+#: templates/webapp/jobs/_record.html
+msgid "Blood, urine…"
+msgstr "இரத்தம், சிறுநீர்…"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test"
+msgstr "பரிசோதனை"
+
+#: templates/webapp/jobs/_record.html
+msgid "Result"
+msgstr "முடிவு"
+
+#: templates/webapp/jobs/_record.html
+msgid "Normal range"
+msgstr "இயல்பு வரம்பு"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Haemoglobin"
+msgstr "எ.கா. ஹீமோகுளோபின்"
+
+#: templates/webapp/jobs/_record.html
+msgid "Remarks"
+msgstr "குறிப்புகள்"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save results"
+msgstr "முடிவுகளைச் சேமி"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print report"
+msgstr "அறிக்கையை அச்சிடு"
+
+#: templates/webapp/jobs/_record.html
+msgid "Eye test"
+msgstr "கண் பரிசோதனை"
+
+#: templates/webapp/jobs/_record.html
+msgid "Right (R)"
+msgstr "வலது (R)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Left (L)"
+msgstr "இடது (L)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Frame"
+msgstr "ஃப்ரேம்"
+
+#: templates/webapp/jobs/_record.html
+msgid "Lens"
+msgstr "லென்ஸ்"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Blue-cut 1.56"
+msgstr "எ.கா. ப்ளூ-கட் 1.56"
+
+#: templates/webapp/jobs/_record.html
+msgid "Last test"
+msgstr "கடைசி பரிசோதனை"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save eye test"
+msgstr "கண் பரிசோதனையைச் சேமி"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription / order"
+msgstr "மருந்துச்சீட்டு / ஆர்டரை அச்சிடு"
+
+#: templates/webapp/jobs/_record.html
+msgid "Garment tags"
+msgstr "ஆடை டேக்குகள்"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print tags"
+msgstr "டேக்குகளை அச்சிடு"
+
+#: templates/webapp/jobs/_record.html
+msgid ""
+"Add the pieces below (e.g. Shirt – wash & iron × 3); each piece gets its own"
+" tag number."
+msgstr ""
+"கீழே துண்டுகளைச் சேர்க்கவும் (எ.கா. சட்டை – துவைத்து அயர்ன் × 3); ஒவ்வொரு "
+"துண்டுக்கும் தனி டேக் எண் கிடைக்கும்."
+
 #: templates/webapp/jobs/board.html
 msgid "New job / appointment"
 msgstr "புதிய ஜாப் / அப்பாயிண்ட்மென்ட்"
@@ -5541,6 +5709,34 @@ msgstr "குறிப்பைச் சேர்"
 #: templates/webapp/jobs/detail.html
 msgid "Follow-up"
 msgstr "பின்தொடர்வு"
+
+#: templates/webapp/jobs/doc.html
+msgid "Prescription"
+msgstr "மருந்துச்சீட்டு"
+
+#: templates/webapp/jobs/doc.html
+msgid "Test report"
+msgstr "பரிசோதனை அறிக்கை"
+
+#: templates/webapp/jobs/doc.html
+msgid "Eye prescription"
+msgstr "கண் மருந்துச்சீட்டு"
+
+#: templates/webapp/jobs/doc.html
+msgid "Date of birth"
+msgstr "பிறந்த தேதி"
+
+#: templates/webapp/jobs/doc.html
+msgid "Temp"
+msgstr "வெப்பநிலை"
+
+#: templates/webapp/jobs/doc.html
+msgid "H = above, L = below the normal range."
+msgstr "H = இயல்புக்கு மேல், L = இயல்புக்குக் கீழ்."
+
+#: templates/webapp/jobs/doc.html
+msgid "Signature"
+msgstr "கையொப்பம்"
 
 #: templates/webapp/jobs/new.html
 msgid "New job"
@@ -6185,10 +6381,6 @@ msgstr "தொழில்நுட்பர்"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Problem reported"
 msgstr "தெரிவித்த பிரச்சனை"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Diagnosis"
-msgstr "கண்டறிதல்"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid ""
@@ -7241,10 +7433,6 @@ msgstr "ஆஃப்லைன் எண்"
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "விற்ற நேரம்"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Result"
-msgstr "முடிவு"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Retry"
@@ -8313,10 +8501,6 @@ msgstr "கடவுச்சீட்டு காலாவதியானத�
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Profile"
 msgstr "சுயவிவரம்"
-
-#: templates/webapp/recruitment/candidate_detail.html
-msgid "Date of birth"
-msgstr "பிறந்த தேதி"
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Passport"
@@ -12112,6 +12296,30 @@ msgstr ""
 msgid " for delivery"
 msgstr "டெலிவரிக்கு"
 
+#: apps/industry/job_records.py
+msgid "This job is cancelled."
+msgstr "இந்த ஜாப் ரத்து செய்யப்பட்டது."
+
+#: apps/industry/job_records.py
+msgid "Nothing to record for this business."
+msgstr "இந்த வணிகத்திற்குப் பதிவு செய்ய எதுவும் இல்லை."
+
+#: apps/industry/job_records.py
+msgid "Choose a date from today on."
+msgstr "இன்று அல்லது அதற்குப் பிறகான தேதியைத் தேர்ந்தெடுக்கவும்."
+
+#: apps/industry/job_records.py
+msgid "follow-up"
+msgstr "பின்தொடர்வு"
+
+#: apps/industry/job_records.py
+msgid "Follow-up: %(title)s"
+msgstr "பின்தொடர்வு: %(title)s"
+
+#: apps/industry/job_records.py
+msgid "Follow-up of %(number)s"
+msgstr "%(number)s-இன் பின்தொடர்வு"
+
 #: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "வேலை என்ன என்று சொல்லுங்கள்."
@@ -14216,6 +14424,10 @@ msgstr "நிலை: %(status)s"
 #: apps/webapp/job_views.py
 msgid "Bill %(number)s made."
 msgstr "பில் %(number)s உருவாக்கப்பட்டது."
+
+#: apps/webapp/job_views.py
+msgid "Follow-up %(number)s booked for %(date)s."
+msgstr "பின்தொடர்வு %(number)s %(date)s அன்று பதிவு செய்யப்பட்டது."
 
 #: apps/webapp/job_views.py
 msgid "Job closed without a bill."

@@ -254,12 +254,16 @@ msgid "Menu & Ingredients"
 msgstr "Menü ve malzemeler"
 
 #: templates/base.html
-msgid "Job cards"
-msgstr "İş kartları"
+msgid "Eye tests & orders"
+msgstr "Göz muayeneleri ve siparişler"
 
 #: templates/base.html
 msgid "Appointments calendar"
 msgstr "Randevu takvimi"
+
+#: templates/base.html
+msgid "Job cards"
+msgstr "İş kartları"
 
 #: templates/base.html
 msgid "Service contracts (AMC)"
@@ -5262,6 +5266,170 @@ msgstr "Kopyala"
 msgid "Share…"
 msgstr "Paylaş…"
 
+#: templates/webapp/jobs/_record.html
+msgid "Visit record"
+msgstr "Ziyaret kaydı"
+
+#: templates/webapp/jobs/_record.html
+msgid "BP"
+msgstr "Tansiyon"
+
+#: templates/webapp/jobs/_record.html
+msgid "Pulse"
+msgstr "Nabız"
+
+#: templates/webapp/jobs/_record.html
+msgid "Temp °C"
+msgstr "Ateş °C"
+
+#: templates/webapp/jobs/_record.html
+msgid "Weight kg"
+msgstr "Kilo kg"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sugar"
+msgstr "Şeker"
+
+#: templates/webapp/jobs/_record.html
+msgid "Complaint"
+msgstr "Şikâyet"
+
+#: templates/webapp/jobs/_record.html
+msgid "Diagnosis"
+msgstr "Arıza tespiti"
+
+#: templates/webapp/jobs/_record.html
+msgid "Medicine"
+msgstr "İlaç"
+
+#: templates/webapp/jobs/_record.html
+msgid "Dose"
+msgstr "Doz"
+
+#: templates/webapp/jobs/_record.html
+msgid "How often"
+msgstr "Sıklık"
+
+#: templates/webapp/jobs/_record.html
+msgid "Days"
+msgstr "Gün"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Paracetamol 500 mg"
+msgstr "örn. Parasetamol 500 mg"
+
+#: templates/webapp/jobs/_record.html
+msgid "after food"
+msgstr "yemekten sonra"
+
+#: templates/webapp/jobs/_record.html
+msgid "Advice"
+msgstr "Öneriler"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save record"
+msgstr "Kaydı kaydet"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription"
+msgstr "Reçeteyi yazdır"
+
+#: templates/webapp/jobs/_record.html
+msgid "Book the next visit"
+msgstr "Sonraki ziyareti ayarla"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test results"
+msgstr "Test sonuçları"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sample"
+msgstr "Numune"
+
+#: templates/webapp/jobs/_record.html
+msgid "Blood, urine…"
+msgstr "Kan, idrar…"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test"
+msgstr "Test"
+
+#: templates/webapp/jobs/_record.html
+msgid "Result"
+msgstr "Sonuç"
+
+#: templates/webapp/jobs/_record.html
+msgid "Normal range"
+msgstr "Normal aralık"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Haemoglobin"
+msgstr "örn. Hemoglobin"
+
+#: templates/webapp/jobs/_record.html
+msgid "Remarks"
+msgstr "Açıklamalar"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save results"
+msgstr "Sonuçları kaydet"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print report"
+msgstr "Raporu yazdır"
+
+#: templates/webapp/jobs/_record.html
+msgid "Eye test"
+msgstr "Göz muayenesi"
+
+#: templates/webapp/jobs/_record.html
+msgid "Right (R)"
+msgstr "Sağ (R)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Left (L)"
+msgstr "Sol (L)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Frame"
+msgstr "Çerçeve"
+
+#: templates/webapp/jobs/_record.html
+msgid "Lens"
+msgstr "Cam"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Blue-cut 1.56"
+msgstr "örn. Mavi ışık 1.56"
+
+#: templates/webapp/jobs/_record.html
+msgid "Last test"
+msgstr "Son muayene"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save eye test"
+msgstr "Göz muayenesini kaydet"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription / order"
+msgstr "Reçete / siparişi yazdır"
+
+#: templates/webapp/jobs/_record.html
+msgid "Garment tags"
+msgstr "Giysi etiketleri"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print tags"
+msgstr "Etiketleri yazdır"
+
+#: templates/webapp/jobs/_record.html
+msgid ""
+"Add the pieces below (e.g. Shirt – wash & iron × 3); each piece gets its own"
+" tag number."
+msgstr ""
+"Parçaları aşağıya ekleyin (örn. Gömlek – yıkama ve ütü × 3); her parça kendi"
+" etiket numarasını alır."
+
 #: templates/webapp/jobs/board.html
 msgid "New job / appointment"
 msgstr "Yeni iş / randevu"
@@ -5498,6 +5666,34 @@ msgstr "Not ekle"
 #: templates/webapp/jobs/detail.html
 msgid "Follow-up"
 msgstr "Takip"
+
+#: templates/webapp/jobs/doc.html
+msgid "Prescription"
+msgstr "Reçete"
+
+#: templates/webapp/jobs/doc.html
+msgid "Test report"
+msgstr "Test raporu"
+
+#: templates/webapp/jobs/doc.html
+msgid "Eye prescription"
+msgstr "Göz reçetesi"
+
+#: templates/webapp/jobs/doc.html
+msgid "Date of birth"
+msgstr "Doğum tarihi"
+
+#: templates/webapp/jobs/doc.html
+msgid "Temp"
+msgstr "Ateş"
+
+#: templates/webapp/jobs/doc.html
+msgid "H = above, L = below the normal range."
+msgstr "H = normalin üstünde, L = normalin altında."
+
+#: templates/webapp/jobs/doc.html
+msgid "Signature"
+msgstr "İmza"
 
 #: templates/webapp/jobs/new.html
 msgid "New job"
@@ -6134,10 +6330,6 @@ msgstr "Teknisyen"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Problem reported"
 msgstr "Bildirilen sorun"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Diagnosis"
-msgstr "Arıza tespiti"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid ""
@@ -7173,10 +7365,6 @@ msgstr "Çevrimdışı no."
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "Satış zamanı"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Result"
-msgstr "Sonuç"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Retry"
@@ -8236,10 +8424,6 @@ msgstr "Pasaportun süresi doldu."
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Profile"
 msgstr "Profil"
-
-#: templates/webapp/recruitment/candidate_detail.html
-msgid "Date of birth"
-msgstr "Doğum tarihi"
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Passport"
@@ -11992,6 +12176,30 @@ msgstr ""
 msgid " for delivery"
 msgstr "teslimat için"
 
+#: apps/industry/job_records.py
+msgid "This job is cancelled."
+msgstr "Bu iş iptal edildi."
+
+#: apps/industry/job_records.py
+msgid "Nothing to record for this business."
+msgstr "Bu işletme için kaydedilecek bir şey yok."
+
+#: apps/industry/job_records.py
+msgid "Choose a date from today on."
+msgstr "Bugünden itibaren bir tarih seçin."
+
+#: apps/industry/job_records.py
+msgid "follow-up"
+msgstr "kontrol"
+
+#: apps/industry/job_records.py
+msgid "Follow-up: %(title)s"
+msgstr "Kontrol: %(title)s"
+
+#: apps/industry/job_records.py
+msgid "Follow-up of %(number)s"
+msgstr "%(number)s kontrolü"
+
 #: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "İşin ne olduğunu yazın."
@@ -14055,6 +14263,10 @@ msgstr "Durum: %(status)s"
 #: apps/webapp/job_views.py
 msgid "Bill %(number)s made."
 msgstr "%(number)s numaralı fatura kesildi."
+
+#: apps/webapp/job_views.py
+msgid "Follow-up %(number)s booked for %(date)s."
+msgstr "%(number)s kontrolü %(date)s için ayarlandı."
 
 #: apps/webapp/job_views.py
 msgid "Job closed without a bill."

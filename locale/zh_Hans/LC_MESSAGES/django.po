@@ -254,12 +254,16 @@ msgid "Menu & Ingredients"
 msgstr "菜单与原料"
 
 #: templates/base.html
-msgid "Job cards"
-msgstr "工单"
+msgid "Eye tests & orders"
+msgstr "验光与配镜单"
 
 #: templates/base.html
 msgid "Appointments calendar"
 msgstr "预约日历"
+
+#: templates/base.html
+msgid "Job cards"
+msgstr "工单"
 
 #: templates/base.html
 msgid "Service contracts (AMC)"
@@ -5152,6 +5156,168 @@ msgstr "复制"
 msgid "Share…"
 msgstr "分享…"
 
+#: templates/webapp/jobs/_record.html
+msgid "Visit record"
+msgstr "就诊记录"
+
+#: templates/webapp/jobs/_record.html
+msgid "BP"
+msgstr "血压"
+
+#: templates/webapp/jobs/_record.html
+msgid "Pulse"
+msgstr "脉搏"
+
+#: templates/webapp/jobs/_record.html
+msgid "Temp °C"
+msgstr "体温 °C"
+
+#: templates/webapp/jobs/_record.html
+msgid "Weight kg"
+msgstr "体重 kg"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sugar"
+msgstr "血糖"
+
+#: templates/webapp/jobs/_record.html
+msgid "Complaint"
+msgstr "主诉"
+
+#: templates/webapp/jobs/_record.html
+msgid "Diagnosis"
+msgstr "检测结果"
+
+#: templates/webapp/jobs/_record.html
+msgid "Medicine"
+msgstr "药品"
+
+#: templates/webapp/jobs/_record.html
+msgid "Dose"
+msgstr "剂量"
+
+#: templates/webapp/jobs/_record.html
+msgid "How often"
+msgstr "次数"
+
+#: templates/webapp/jobs/_record.html
+msgid "Days"
+msgstr "天数"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Paracetamol 500 mg"
+msgstr "例如 对乙酰氨基酚 500 mg"
+
+#: templates/webapp/jobs/_record.html
+msgid "after food"
+msgstr "饭后"
+
+#: templates/webapp/jobs/_record.html
+msgid "Advice"
+msgstr "医嘱"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save record"
+msgstr "保存记录"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription"
+msgstr "打印处方"
+
+#: templates/webapp/jobs/_record.html
+msgid "Book the next visit"
+msgstr "预约下次就诊"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test results"
+msgstr "检验结果"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sample"
+msgstr "样本"
+
+#: templates/webapp/jobs/_record.html
+msgid "Blood, urine…"
+msgstr "血液、尿液…"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test"
+msgstr "项目"
+
+#: templates/webapp/jobs/_record.html
+msgid "Result"
+msgstr "结果"
+
+#: templates/webapp/jobs/_record.html
+msgid "Normal range"
+msgstr "参考范围"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Haemoglobin"
+msgstr "例如 血红蛋白"
+
+#: templates/webapp/jobs/_record.html
+msgid "Remarks"
+msgstr "备注"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save results"
+msgstr "保存结果"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print report"
+msgstr "打印报告"
+
+#: templates/webapp/jobs/_record.html
+msgid "Eye test"
+msgstr "验光"
+
+#: templates/webapp/jobs/_record.html
+msgid "Right (R)"
+msgstr "右眼 (R)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Left (L)"
+msgstr "左眼 (L)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Frame"
+msgstr "镜架"
+
+#: templates/webapp/jobs/_record.html
+msgid "Lens"
+msgstr "镜片"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Blue-cut 1.56"
+msgstr "例如 防蓝光 1.56"
+
+#: templates/webapp/jobs/_record.html
+msgid "Last test"
+msgstr "上次检查"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save eye test"
+msgstr "保存验光"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription / order"
+msgstr "打印处方 / 订单"
+
+#: templates/webapp/jobs/_record.html
+msgid "Garment tags"
+msgstr "衣物标签"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print tags"
+msgstr "打印标签"
+
+#: templates/webapp/jobs/_record.html
+msgid ""
+"Add the pieces below (e.g. Shirt – wash & iron × 3); each piece gets its own"
+" tag number."
+msgstr "在下方添加衣物（例如 衬衫 – 洗烫 × 3）；每件都会有自己的标签号。"
+
 #: templates/webapp/jobs/board.html
 msgid "New job / appointment"
 msgstr "新工单 / 预约"
@@ -5385,6 +5551,34 @@ msgstr "添加备注"
 #: templates/webapp/jobs/detail.html
 msgid "Follow-up"
 msgstr "回访"
+
+#: templates/webapp/jobs/doc.html
+msgid "Prescription"
+msgstr "处方"
+
+#: templates/webapp/jobs/doc.html
+msgid "Test report"
+msgstr "检验报告"
+
+#: templates/webapp/jobs/doc.html
+msgid "Eye prescription"
+msgstr "配镜处方"
+
+#: templates/webapp/jobs/doc.html
+msgid "Date of birth"
+msgstr "出生日期"
+
+#: templates/webapp/jobs/doc.html
+msgid "Temp"
+msgstr "体温"
+
+#: templates/webapp/jobs/doc.html
+msgid "H = above, L = below the normal range."
+msgstr "H = 高于、L = 低于参考范围。"
+
+#: templates/webapp/jobs/doc.html
+msgid "Signature"
+msgstr "签名"
 
 #: templates/webapp/jobs/new.html
 msgid "New job"
@@ -6007,10 +6201,6 @@ msgstr "技术员"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Problem reported"
 msgstr "报修问题"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Diagnosis"
-msgstr "检测结果"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid ""
@@ -7009,10 +7199,6 @@ msgstr "离线编号"
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "销售时间"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Result"
-msgstr "结果"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Retry"
@@ -8029,10 +8215,6 @@ msgstr "护照已过期。"
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Profile"
 msgstr "资料"
-
-#: templates/webapp/recruitment/candidate_detail.html
-msgid "Date of birth"
-msgstr "出生日期"
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Passport"
@@ -11697,6 +11879,30 @@ msgstr ""
 msgid " for delivery"
 msgstr "并送货"
 
+#: apps/industry/job_records.py
+msgid "This job is cancelled."
+msgstr "此工单已取消。"
+
+#: apps/industry/job_records.py
+msgid "Nothing to record for this business."
+msgstr "此业务没有需要记录的内容。"
+
+#: apps/industry/job_records.py
+msgid "Choose a date from today on."
+msgstr "请选择今天或之后的日期。"
+
+#: apps/industry/job_records.py
+msgid "follow-up"
+msgstr "复诊"
+
+#: apps/industry/job_records.py
+msgid "Follow-up: %(title)s"
+msgstr "复诊：%(title)s"
+
+#: apps/industry/job_records.py
+msgid "Follow-up of %(number)s"
+msgstr "%(number)s 的复诊"
+
 #: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "请说明工作内容。"
@@ -13696,6 +13902,10 @@ msgstr "状态：%(status)s"
 #: apps/webapp/job_views.py
 msgid "Bill %(number)s made."
 msgstr "已开具账单 %(number)s。"
+
+#: apps/webapp/job_views.py
+msgid "Follow-up %(number)s booked for %(date)s."
+msgstr "已预约复诊 %(number)s，时间 %(date)s。"
 
 #: apps/webapp/job_views.py
 msgid "Job closed without a bill."

@@ -31,7 +31,19 @@ SUBJECT_LABELS = {"person": (_l("Patient / person"), _l("File no. / ID")), "stud
 
 
 def staff_view(view):
-    return login_required(require_business_group("service", "saloon", "project")(view))
+    """Service, salon and project businesses — and shops with an eye-test desk (optical)."""
+    from functools import wraps
+    from apps.modules.catalog import business_features
+    guarded = require_business_group("service", "saloon", "project")(view)
+
+    @wraps(view)
+    def wrapped(request, *args, **kwargs):
+        company = getattr(request, "company", None)
+        if company is not None and company.business_type_id and \
+                "eye_test" in business_features(company.business_type.code):
+            return view(request, *args, **kwargs)
+        return guarded(request, *args, **kwargs)
+    return login_required(wrapped)
 
 
 def _pk(value):
@@ -166,6 +178,19 @@ def job_detail(request, case_id):
     svc.ensure_number(job)
     link = svc.status_url(request, job)
     lines = list(job.lines.select_related("product"))
+    from apps.industry import job_records
+    kind = job_records.kind_for(company)
+    record = job.record or {}
+    extra = {"kind": kind, "rec": record}
+    if kind == "clinic":
+        extra["rx_rows"] = (record.get("rx") or []) + [{}] * max(1, 4 - len(record.get("rx") or []))
+    if kind == "lab":
+        extra["res_rows"] = (record.get("results") or []) + [{}] * max(1, 6 - len(record.get("results") or []))
+    if kind == "eye":
+        extra["prev_eye"] = job_records.previous_eye(job)
+        extra["eye_fields"] = job_records.EYE_FIELDS
+    if kind == "laundry":
+        extra["tags"] = job_records.laundry_tags(job)
     return render(request, "webapp/jobs/detail.html", {
         "job": job, "lines": lines, "amount": svc.total(job), "currency": company.default_currency,
         "notes": job.case_notes.order_by("-date", "-id"), "status_link": link,
@@ -173,6 +198,7 @@ def job_detail(request, case_id):
         "products": Product.objects.for_company(company).filter(is_active=True).order_by("name")[:1500],
         "staff": Employee.objects.for_company(company).filter(is_active=True).order_by("name"),
         "labels": _labels(company), "closed": job.status in ("completed", "cancelled") or bool(job.invoice_id),
+        **extra,
     })
 
 
@@ -203,6 +229,16 @@ def job_action(request, case_id):
             invoice = svc.bill(job, request.user, method=request.POST.get("method", ""),
                                discount=request.POST.get("discount") or 0)
             messages.success(request, _("Bill %(number)s made.") % {"number": invoice.invoice_number})
+        elif what == "record":
+            from apps.industry import job_records
+            job_records.save(job, request.POST, job_records.kind_for(company))
+            messages.success(request, _("Saved."))
+        elif what == "follow_up":
+            from apps.industry import job_records
+            new = job_records.book_follow_up(job, parse_date(request.POST.get("date") or ""))
+            messages.success(request, _("Follow-up %(number)s booked for %(date)s.") % {
+                "number": new.number, "date": timezone.localtime(new.scheduled_at).strftime("%d %b %Y %H:%M")})
+            return redirect("webapp:service_case_detail", case_id=new.id)
         elif what == "close_free":
             svc.close_without_bill(job)
             messages.success(request, _("Job closed without a bill."))
@@ -228,6 +264,14 @@ def job_print(request, case_id):
     job = get_object_or_404(ServiceCase.objects.for_company(company)
                             .select_related("profile", "profile__customer", "assigned_staff", "invoice"), id=case_id)
     svc.ensure_number(job)
+    from apps.industry import job_records
+    doc = request.GET.get("doc", "")
+    kind = job_records.kind_for(company)
+    if doc in ("rx", "lab", "eye", "tags") and kind == {"rx": "clinic", "lab": "lab", "eye": "eye", "tags": "laundry"}[doc]:
+        return render(request, "webapp/jobs/doc.html", {
+            "job": job, "doc": doc, "rec": job.record or {}, "company": company, "labels": _labels(company),
+            "tags": job_records.laundry_tags(job) if doc == "tags" else [], "eye_fields": job_records.EYE_FIELDS,
+            "staff": job.assigned_staff})
     return render(request, "webapp/jobs/print.html", {
         "job": job, "lines": job.lines.all(), "amount": svc.total(job), "currency": company.default_currency,
         "company": company, "labels": _labels(company), "status_link": svc.status_url(request, job)})

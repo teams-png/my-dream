@@ -254,12 +254,16 @@ msgid "Menu & Ingredients"
 msgstr "مینو اور اجزاء"
 
 #: templates/base.html
-msgid "Job cards"
-msgstr "جاب کارڈز"
+msgid "Eye tests & orders"
+msgstr "آنکھوں کے ٹیسٹ اور آرڈر"
 
 #: templates/base.html
 msgid "Appointments calendar"
 msgstr "اپوائنٹمنٹ کیلنڈر"
+
+#: templates/base.html
+msgid "Job cards"
+msgstr "جاب کارڈز"
 
 #: templates/base.html
 msgid "Service contracts (AMC)"
@@ -5251,6 +5255,170 @@ msgstr "کاپی"
 msgid "Share…"
 msgstr "شیئر کریں…"
 
+#: templates/webapp/jobs/_record.html
+msgid "Visit record"
+msgstr "وزٹ ریکارڈ"
+
+#: templates/webapp/jobs/_record.html
+msgid "BP"
+msgstr "بی پی"
+
+#: templates/webapp/jobs/_record.html
+msgid "Pulse"
+msgstr "نبض"
+
+#: templates/webapp/jobs/_record.html
+msgid "Temp °C"
+msgstr "درجہ حرارت °C"
+
+#: templates/webapp/jobs/_record.html
+msgid "Weight kg"
+msgstr "وزن kg"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sugar"
+msgstr "شوگر"
+
+#: templates/webapp/jobs/_record.html
+msgid "Complaint"
+msgstr "شکایت"
+
+#: templates/webapp/jobs/_record.html
+msgid "Diagnosis"
+msgstr "تشخیص"
+
+#: templates/webapp/jobs/_record.html
+msgid "Medicine"
+msgstr "دوا"
+
+#: templates/webapp/jobs/_record.html
+msgid "Dose"
+msgstr "خوراک"
+
+#: templates/webapp/jobs/_record.html
+msgid "How often"
+msgstr "کتنی بار"
+
+#: templates/webapp/jobs/_record.html
+msgid "Days"
+msgstr "دن"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Paracetamol 500 mg"
+msgstr "مثلاً پیراسیٹامول 500 mg"
+
+#: templates/webapp/jobs/_record.html
+msgid "after food"
+msgstr "کھانے کے بعد"
+
+#: templates/webapp/jobs/_record.html
+msgid "Advice"
+msgstr "مشورہ"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save record"
+msgstr "ریکارڈ محفوظ کریں"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription"
+msgstr "نسخہ پرنٹ کریں"
+
+#: templates/webapp/jobs/_record.html
+msgid "Book the next visit"
+msgstr "اگلا وزٹ بک کریں"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test results"
+msgstr "ٹیسٹ کے نتائج"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sample"
+msgstr "نمونہ"
+
+#: templates/webapp/jobs/_record.html
+msgid "Blood, urine…"
+msgstr "خون، پیشاب…"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test"
+msgstr "ٹیسٹ"
+
+#: templates/webapp/jobs/_record.html
+msgid "Result"
+msgstr "نتیجہ"
+
+#: templates/webapp/jobs/_record.html
+msgid "Normal range"
+msgstr "نارمل حد"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Haemoglobin"
+msgstr "مثلاً ہیموگلوبن"
+
+#: templates/webapp/jobs/_record.html
+msgid "Remarks"
+msgstr "تبصرے"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save results"
+msgstr "نتائج محفوظ کریں"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print report"
+msgstr "رپورٹ پرنٹ کریں"
+
+#: templates/webapp/jobs/_record.html
+msgid "Eye test"
+msgstr "آنکھوں کا ٹیسٹ"
+
+#: templates/webapp/jobs/_record.html
+msgid "Right (R)"
+msgstr "دائیں (R)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Left (L)"
+msgstr "بائیں (L)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Frame"
+msgstr "فریم"
+
+#: templates/webapp/jobs/_record.html
+msgid "Lens"
+msgstr "لینز"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Blue-cut 1.56"
+msgstr "مثلاً بلیو کٹ 1.56"
+
+#: templates/webapp/jobs/_record.html
+msgid "Last test"
+msgstr "پچھلا ٹیسٹ"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save eye test"
+msgstr "آنکھوں کا ٹیسٹ محفوظ کریں"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription / order"
+msgstr "نسخہ / آرڈر پرنٹ کریں"
+
+#: templates/webapp/jobs/_record.html
+msgid "Garment tags"
+msgstr "کپڑوں کے ٹیگ"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print tags"
+msgstr "ٹیگ پرنٹ کریں"
+
+#: templates/webapp/jobs/_record.html
+msgid ""
+"Add the pieces below (e.g. Shirt – wash & iron × 3); each piece gets its own"
+" tag number."
+msgstr ""
+"نیچے پیس شامل کریں (مثلاً قمیض – دھلائی اور استری × 3)؛ ہر پیس کو اپنا ٹیگ "
+"نمبر ملے گا۔"
+
 #: templates/webapp/jobs/board.html
 msgid "New job / appointment"
 msgstr "نیا جاب / اپوائنٹمنٹ"
@@ -5487,6 +5655,34 @@ msgstr "نوٹ شامل کریں"
 #: templates/webapp/jobs/detail.html
 msgid "Follow-up"
 msgstr "فالو اپ"
+
+#: templates/webapp/jobs/doc.html
+msgid "Prescription"
+msgstr "نسخہ"
+
+#: templates/webapp/jobs/doc.html
+msgid "Test report"
+msgstr "ٹیسٹ رپورٹ"
+
+#: templates/webapp/jobs/doc.html
+msgid "Eye prescription"
+msgstr "آنکھوں کا نسخہ"
+
+#: templates/webapp/jobs/doc.html
+msgid "Date of birth"
+msgstr "تاریخ پیدائش"
+
+#: templates/webapp/jobs/doc.html
+msgid "Temp"
+msgstr "درجہ حرارت"
+
+#: templates/webapp/jobs/doc.html
+msgid "H = above, L = below the normal range."
+msgstr "H = نارمل سے اوپر، L = نارمل سے نیچے۔"
+
+#: templates/webapp/jobs/doc.html
+msgid "Signature"
+msgstr "دستخط"
 
 #: templates/webapp/jobs/new.html
 msgid "New job"
@@ -6123,10 +6319,6 @@ msgstr "ٹیکنیشن"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Problem reported"
 msgstr "بتایا گیا مسئلہ"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Diagnosis"
-msgstr "تشخیص"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid ""
@@ -7158,10 +7350,6 @@ msgstr "آف لائن نمبر"
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "فروخت کا وقت"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Result"
-msgstr "نتیجہ"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Retry"
@@ -8217,10 +8405,6 @@ msgstr "پاسپورٹ کی میعاد ختم ہو چکی ہے۔"
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Profile"
 msgstr "پروفائل"
-
-#: templates/webapp/recruitment/candidate_detail.html
-msgid "Date of birth"
-msgstr "تاریخ پیدائش"
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Passport"
@@ -11959,6 +12143,30 @@ msgstr ""
 msgid " for delivery"
 msgstr "ڈیلیوری کے لیے"
 
+#: apps/industry/job_records.py
+msgid "This job is cancelled."
+msgstr "یہ جاب منسوخ ہے۔"
+
+#: apps/industry/job_records.py
+msgid "Nothing to record for this business."
+msgstr "اس کاروبار کے لیے ریکارڈ کرنے کو کچھ نہیں۔"
+
+#: apps/industry/job_records.py
+msgid "Choose a date from today on."
+msgstr "آج یا اس کے بعد کی تاریخ منتخب کریں۔"
+
+#: apps/industry/job_records.py
+msgid "follow-up"
+msgstr "فالو اپ"
+
+#: apps/industry/job_records.py
+msgid "Follow-up: %(title)s"
+msgstr "فالو اپ: %(title)s"
+
+#: apps/industry/job_records.py
+msgid "Follow-up of %(number)s"
+msgstr "%(number)s کا فالو اپ"
+
 #: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "بتائیں جاب کیا ہے۔"
@@ -14018,6 +14226,10 @@ msgstr "اسٹیٹس: %(status)s"
 #: apps/webapp/job_views.py
 msgid "Bill %(number)s made."
 msgstr "بل %(number)s بن گیا۔"
+
+#: apps/webapp/job_views.py
+msgid "Follow-up %(number)s booked for %(date)s."
+msgstr "فالو اپ %(number)s %(date)s کے لیے بک ہو گیا۔"
 
 #: apps/webapp/job_views.py
 msgid "Job closed without a bill."

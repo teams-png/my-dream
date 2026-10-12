@@ -254,12 +254,16 @@ msgid "Menu & Ingredients"
 msgstr "القائمة والمكونات"
 
 #: templates/base.html
-msgid "Job cards"
-msgstr "بطاقات العمل"
+msgid "Eye tests & orders"
+msgstr "فحوصات النظر والطلبات"
 
 #: templates/base.html
 msgid "Appointments calendar"
 msgstr "تقويم المواعيد"
+
+#: templates/base.html
+msgid "Job cards"
+msgstr "بطاقات العمل"
 
 #: templates/base.html
 msgid "Service contracts (AMC)"
@@ -5221,6 +5225,170 @@ msgstr "نسخ"
 msgid "Share…"
 msgstr "مشاركة…"
 
+#: templates/webapp/jobs/_record.html
+msgid "Visit record"
+msgstr "سجل الزيارة"
+
+#: templates/webapp/jobs/_record.html
+msgid "BP"
+msgstr "الضغط"
+
+#: templates/webapp/jobs/_record.html
+msgid "Pulse"
+msgstr "النبض"
+
+#: templates/webapp/jobs/_record.html
+msgid "Temp °C"
+msgstr "الحرارة °م"
+
+#: templates/webapp/jobs/_record.html
+msgid "Weight kg"
+msgstr "الوزن كغ"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sugar"
+msgstr "السكر"
+
+#: templates/webapp/jobs/_record.html
+msgid "Complaint"
+msgstr "الشكوى"
+
+#: templates/webapp/jobs/_record.html
+msgid "Diagnosis"
+msgstr "التشخيص"
+
+#: templates/webapp/jobs/_record.html
+msgid "Medicine"
+msgstr "الدواء"
+
+#: templates/webapp/jobs/_record.html
+msgid "Dose"
+msgstr "الجرعة"
+
+#: templates/webapp/jobs/_record.html
+msgid "How often"
+msgstr "عدد المرات"
+
+#: templates/webapp/jobs/_record.html
+msgid "Days"
+msgstr "الأيام"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Paracetamol 500 mg"
+msgstr "مثال: باراسيتامول 500 ملغ"
+
+#: templates/webapp/jobs/_record.html
+msgid "after food"
+msgstr "بعد الأكل"
+
+#: templates/webapp/jobs/_record.html
+msgid "Advice"
+msgstr "النصيحة"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save record"
+msgstr "حفظ السجل"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription"
+msgstr "طباعة الوصفة"
+
+#: templates/webapp/jobs/_record.html
+msgid "Book the next visit"
+msgstr "حجز الزيارة القادمة"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test results"
+msgstr "نتائج الفحوصات"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sample"
+msgstr "العينة"
+
+#: templates/webapp/jobs/_record.html
+msgid "Blood, urine…"
+msgstr "دم، بول…"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test"
+msgstr "الفحص"
+
+#: templates/webapp/jobs/_record.html
+msgid "Result"
+msgstr "النتيجة"
+
+#: templates/webapp/jobs/_record.html
+msgid "Normal range"
+msgstr "المعدل الطبيعي"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Haemoglobin"
+msgstr "مثال: الهيموغلوبين"
+
+#: templates/webapp/jobs/_record.html
+msgid "Remarks"
+msgstr "ملاحظات"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save results"
+msgstr "حفظ النتائج"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print report"
+msgstr "طباعة التقرير"
+
+#: templates/webapp/jobs/_record.html
+msgid "Eye test"
+msgstr "فحص النظر"
+
+#: templates/webapp/jobs/_record.html
+msgid "Right (R)"
+msgstr "اليمنى (R)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Left (L)"
+msgstr "اليسرى (L)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Frame"
+msgstr "الإطار"
+
+#: templates/webapp/jobs/_record.html
+msgid "Lens"
+msgstr "العدسة"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Blue-cut 1.56"
+msgstr "مثال: حماية من الضوء الأزرق 1.56"
+
+#: templates/webapp/jobs/_record.html
+msgid "Last test"
+msgstr "آخر فحص"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save eye test"
+msgstr "حفظ فحص النظر"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription / order"
+msgstr "طباعة الوصفة / الطلب"
+
+#: templates/webapp/jobs/_record.html
+msgid "Garment tags"
+msgstr "بطاقات الملابس"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print tags"
+msgstr "طباعة البطاقات"
+
+#: templates/webapp/jobs/_record.html
+msgid ""
+"Add the pieces below (e.g. Shirt – wash & iron × 3); each piece gets its own"
+" tag number."
+msgstr ""
+"أضف القطع أدناه (مثل: قميص – غسيل وكي × 3)؛ تحصل كل قطعة على رقم بطاقة خاص "
+"بها."
+
 #: templates/webapp/jobs/board.html
 msgid "New job / appointment"
 msgstr "عمل / موعد جديد"
@@ -5456,6 +5624,34 @@ msgstr "إضافة ملاحظة"
 #: templates/webapp/jobs/detail.html
 msgid "Follow-up"
 msgstr "متابعة"
+
+#: templates/webapp/jobs/doc.html
+msgid "Prescription"
+msgstr "وصفة طبية"
+
+#: templates/webapp/jobs/doc.html
+msgid "Test report"
+msgstr "تقرير الفحص"
+
+#: templates/webapp/jobs/doc.html
+msgid "Eye prescription"
+msgstr "وصفة النظر"
+
+#: templates/webapp/jobs/doc.html
+msgid "Date of birth"
+msgstr "تاريخ الميلاد"
+
+#: templates/webapp/jobs/doc.html
+msgid "Temp"
+msgstr "الحرارة"
+
+#: templates/webapp/jobs/doc.html
+msgid "H = above, L = below the normal range."
+msgstr "H = أعلى، L = أدنى من المعدل الطبيعي."
+
+#: templates/webapp/jobs/doc.html
+msgid "Signature"
+msgstr "التوقيع"
 
 #: templates/webapp/jobs/new.html
 msgid "New job"
@@ -6088,10 +6284,6 @@ msgstr "الفني"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Problem reported"
 msgstr "المشكلة المبلغ عنها"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Diagnosis"
-msgstr "التشخيص"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid ""
@@ -7115,10 +7307,6 @@ msgstr "رقم دون اتصال"
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "وقت البيع"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Result"
-msgstr "النتيجة"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Retry"
@@ -8168,10 +8356,6 @@ msgstr "انتهت صلاحية جواز السفر."
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Profile"
 msgstr "الملف"
-
-#: templates/webapp/recruitment/candidate_detail.html
-msgid "Date of birth"
-msgstr "تاريخ الميلاد"
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Passport"
@@ -11892,6 +12076,30 @@ msgstr ""
 msgid " for delivery"
 msgstr "للتوصيل"
 
+#: apps/industry/job_records.py
+msgid "This job is cancelled."
+msgstr "هذا العمل ملغى."
+
+#: apps/industry/job_records.py
+msgid "Nothing to record for this business."
+msgstr "لا شيء لتسجيله لهذا النشاط."
+
+#: apps/industry/job_records.py
+msgid "Choose a date from today on."
+msgstr "اختر تاريخاً من اليوم فصاعداً."
+
+#: apps/industry/job_records.py
+msgid "follow-up"
+msgstr "متابعة"
+
+#: apps/industry/job_records.py
+msgid "Follow-up: %(title)s"
+msgstr "متابعة: %(title)s"
+
+#: apps/industry/job_records.py
+msgid "Follow-up of %(number)s"
+msgstr "متابعة لـ %(number)s"
+
 #: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "اذكر ما هو العمل."
@@ -13923,6 +14131,10 @@ msgstr "الحالة: %(status)s"
 #: apps/webapp/job_views.py
 msgid "Bill %(number)s made."
 msgstr "تم إصدار الفاتورة %(number)s."
+
+#: apps/webapp/job_views.py
+msgid "Follow-up %(number)s booked for %(date)s."
+msgstr "تم حجز المتابعة %(number)s في %(date)s."
 
 #: apps/webapp/job_views.py
 msgid "Job closed without a bill."

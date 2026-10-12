@@ -1,0 +1,55 @@
+{% load i18n %}{% get_current_language as LANG %}{% get_current_language_bidi as RTL %}<!doctype html>
+<html lang="{{ LANG }}" dir="{% if RTL %}rtl{% else %}ltr{% endif %}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ job.number }} · {{ company.name }}</title>
+<style>
+body{font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:#111;margin:0;background:#fff}
+.pg{max-width:760px;margin:0 auto;padding:24px}
+.hd{display:flex;justify-content:space-between;gap:16px;border-bottom:2px solid #111;padding-bottom:10px}.hd h1{margin:0;font-size:20px}.hd .r{text-align:end}
+.who{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 24px;margin:12px 0}.who span{color:#555}
+h2{font-size:16px;margin:16px 0 6px}
+table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #ccc;padding:6px;text-align:start}
+.flag{color:#b91c1c;font-weight:900}.big{font-size:22px;font-weight:800}
+.sig{margin-top:50px;display:flex;justify-content:flex-end}.sig div{border-top:1px solid #111;padding-top:4px;min-width:220px;text-align:center;color:#555}
+.bar{display:flex;gap:8px;margin-bottom:14px}.bar a,.bar button{padding:8px 14px;border-radius:8px;border:1px solid #ccc;background:#f8f8f8;font:inherit;cursor:pointer;color:#111;text-decoration:none}
+.tags{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.tag{border:1.5px dashed #111;border-radius:8px;padding:8px;break-inside:avoid}.tag b{display:block;font-size:18px;letter-spacing:.5px}.tag small{color:#555}
+@media print{.bar{display:none}.pg{padding:0}}
+</style></head><body><div class="pg">
+<div class="bar"><a href="{% url 'webapp:service_case_detail' job.id %}">← {% translate "Back" %}</a><button onclick="print()">🖨 {% translate "Print" %}</button></div>
+{% if doc == "tags" %}
+  <div class="tags">{% for t in tags %}<div class="tag"><b>{{ t.tag }}</b>{{ t.item }}<br><small>{{ job.profile.customer.name }} · {{ job.profile.customer.phone }}{% if job.ready_by %}<br>{% translate "Ready by" %} {{ job.ready_by|date:"j M H:i" }}{% endif %}</small></div>{% endfor %}</div>
+{% else %}
+<div class="hd"><div><h1>{{ company.name }}</h1>{% if company.address %}<div>{{ company.address }}</div>{% endif %}{% if company.phone %}<div>{{ company.phone }}</div>{% endif %}</div>
+  <div class="r"><b>{% if doc == "rx" %}{% translate "Prescription" %}{% elif doc == "lab" %}{% translate "Test report" %}{% else %}{% translate "Eye prescription" %}{% endif %}</b><br>{{ job.number }}<br>{{ job.opened_date|date:"j M Y" }}</div></div>
+<div class="who">
+  <div><span>{% translate "Name" %}:</span> <b>{{ job.profile.subject_name }}</b>{% if job.profile.subject_name != job.profile.customer.name %} ({{ job.profile.customer.name }}){% endif %}</div>
+  <div><span>{{ labels.1 }}:</span> {{ job.profile.identifier|default:job.profile.reference_code|default:"—" }}</div>
+  {% if job.profile.date_of_birth %}<div><span>{% translate "Date of birth" %}:</span> {{ job.profile.date_of_birth|date:"j M Y" }}</div>{% endif %}
+  <div><span>{% translate "Phone" %}:</span> {{ job.profile.customer.phone|default:"—" }}</div>
+</div>
+{% if doc == "rx" %}
+  {% if rec.vitals %}<p>{% if rec.vitals.bp %}BP {{ rec.vitals.bp }} · {% endif %}{% if rec.vitals.pulse %}{% translate "Pulse" %} {{ rec.vitals.pulse }} · {% endif %}{% if rec.vitals.temp %}{% translate "Temp" %} {{ rec.vitals.temp }}°C · {% endif %}{% if rec.vitals.weight %}{{ rec.vitals.weight }} kg · {% endif %}{% if rec.vitals.spo2 %}SpO₂ {{ rec.vitals.spo2 }}% · {% endif %}{% if rec.vitals.sugar %}{% translate "Sugar" %} {{ rec.vitals.sugar }}{% endif %}</p>{% endif %}
+  {% if rec.complaint %}<p><b>{% translate "Complaint" %}:</b> {{ rec.complaint|linebreaksbr }}</p>{% endif %}
+  {% if rec.diagnosis %}<p><b>{% translate "Diagnosis" %}:</b> {{ rec.diagnosis|linebreaksbr }}</p>{% endif %}
+  <h2 class="big">℞</h2>
+  <table><tr><th>#</th><th>{% translate "Medicine" %}</th><th>{% translate "Dose" %}</th><th>{% translate "How often" %}</th><th>{% translate "Days" %}</th><th>{% translate "Note" %}</th></tr>
+  {% for r in rec.rx %}<tr><td>{{ forloop.counter }}</td><td><b>{{ r.medicine }}</b></td><td>{{ r.dose }}</td><td>{{ r.freq }}</td><td>{{ r.days }}</td><td>{{ r.note }}</td></tr>{% empty %}<tr><td colspan="6">—</td></tr>{% endfor %}</table>
+  {% if rec.advice %}<p><b>{% translate "Advice" %}:</b> {{ rec.advice|linebreaksbr }}</p>{% endif %}
+  {% if rec.next_visit %}<p><b>{% translate "Next visit" %}:</b> {{ rec.next_visit }}</p>{% endif %}
+{% elif doc == "lab" %}
+  {% if rec.sample %}<p><b>{% translate "Sample" %}:</b> {{ rec.sample }}</p>{% endif %}
+  <table><tr><th>{% translate "Test" %}</th><th>{% translate "Result" %}</th><th>{% translate "Unit" %}</th><th>{% translate "Normal range" %}</th></tr>
+  {% for r in rec.results %}<tr><td>{{ r.test }}</td><td><b>{{ r.value }}</b> <span class="flag">{{ r.flag }}</span></td><td>{{ r.unit }}</td><td>{{ r.range }}</td></tr>{% empty %}<tr><td colspan="4">—</td></tr>{% endfor %}</table>
+  {% if rec.remarks %}<p><b>{% translate "Remarks" %}:</b> {{ rec.remarks|linebreaksbr }}</p>{% endif %}
+  <p style="color:#555;font-size:12px">{% translate "H = above, L = below the normal range." %}</p>
+{% else %}
+  <table><tr><th></th><th>SPH</th><th>CYL</th><th>AXIS</th><th>ADD</th><th>VA</th></tr>
+    <tr><th>{% translate "Right (R)" %}</th><td>{{ rec.eye.R.sph }}</td><td>{{ rec.eye.R.cyl }}</td><td>{{ rec.eye.R.axis }}</td><td>{{ rec.eye.R.add }}</td><td>{{ rec.eye.R.va }}</td></tr>
+    <tr><th>{% translate "Left (L)" %}</th><td>{{ rec.eye.L.sph }}</td><td>{{ rec.eye.L.cyl }}</td><td>{{ rec.eye.L.axis }}</td><td>{{ rec.eye.L.add }}</td><td>{{ rec.eye.L.va }}</td></tr></table>
+  <p>{% if rec.pd %}<b>PD:</b> {{ rec.pd }} · {% endif %}{% if rec.frame %}<b>{% translate "Frame" %}:</b> {{ rec.frame }} · {% endif %}{% if rec.lens %}<b>{% translate "Lens" %}:</b> {{ rec.lens }}{% endif %}</p>
+  {% if rec.notes %}<p>{{ rec.notes|linebreaksbr }}</p>{% endif %}
+  {% if job.ready_by %}<p><b>{% translate "Ready by" %}:</b> {{ job.ready_by|date:"j M Y H:i" }}</p>{% endif %}
+{% endif %}
+<div class="sig"><div>{{ staff.name|default:"" }}<br>{% translate "Signature" %}</div></div>
+{% endif %}
+</div></body></html>

@@ -254,12 +254,16 @@ msgid "Menu & Ingredients"
 msgstr "Menu at sangkap"
 
 #: templates/base.html
-msgid "Job cards"
-msgstr "Mga job card"
+msgid "Eye tests & orders"
+msgstr "Mga eye test at order"
 
 #: templates/base.html
 msgid "Appointments calendar"
 msgstr "Kalendaryo ng appointment"
+
+#: templates/base.html
+msgid "Job cards"
+msgstr "Mga job card"
 
 #: templates/base.html
 msgid "Service contracts (AMC)"
@@ -5292,6 +5296,170 @@ msgstr "Kopyahin"
 msgid "Share…"
 msgstr "Ibahagi…"
 
+#: templates/webapp/jobs/_record.html
+msgid "Visit record"
+msgstr "Rekord ng bisita"
+
+#: templates/webapp/jobs/_record.html
+msgid "BP"
+msgstr "BP"
+
+#: templates/webapp/jobs/_record.html
+msgid "Pulse"
+msgstr "Pulso"
+
+#: templates/webapp/jobs/_record.html
+msgid "Temp °C"
+msgstr "Temp °C"
+
+#: templates/webapp/jobs/_record.html
+msgid "Weight kg"
+msgstr "Timbang kg"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sugar"
+msgstr "Asukal"
+
+#: templates/webapp/jobs/_record.html
+msgid "Complaint"
+msgstr "Reklamo"
+
+#: templates/webapp/jobs/_record.html
+msgid "Diagnosis"
+msgstr "Diagnosis"
+
+#: templates/webapp/jobs/_record.html
+msgid "Medicine"
+msgstr "Gamot"
+
+#: templates/webapp/jobs/_record.html
+msgid "Dose"
+msgstr "Dosis"
+
+#: templates/webapp/jobs/_record.html
+msgid "How often"
+msgstr "Gaano kadalas"
+
+#: templates/webapp/jobs/_record.html
+msgid "Days"
+msgstr "Araw"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Paracetamol 500 mg"
+msgstr "hal. Paracetamol 500 mg"
+
+#: templates/webapp/jobs/_record.html
+msgid "after food"
+msgstr "pagkatapos kumain"
+
+#: templates/webapp/jobs/_record.html
+msgid "Advice"
+msgstr "Payo"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save record"
+msgstr "I-save ang rekord"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription"
+msgstr "I-print ang reseta"
+
+#: templates/webapp/jobs/_record.html
+msgid "Book the next visit"
+msgstr "I-book ang susunod na bisita"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test results"
+msgstr "Mga resulta ng test"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sample"
+msgstr "Sample"
+
+#: templates/webapp/jobs/_record.html
+msgid "Blood, urine…"
+msgstr "Dugo, ihi…"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test"
+msgstr "Test"
+
+#: templates/webapp/jobs/_record.html
+msgid "Result"
+msgstr "Resulta"
+
+#: templates/webapp/jobs/_record.html
+msgid "Normal range"
+msgstr "Normal na range"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Haemoglobin"
+msgstr "hal. Hemoglobin"
+
+#: templates/webapp/jobs/_record.html
+msgid "Remarks"
+msgstr "Puna"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save results"
+msgstr "I-save ang resulta"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print report"
+msgstr "I-print ang ulat"
+
+#: templates/webapp/jobs/_record.html
+msgid "Eye test"
+msgstr "Eye test"
+
+#: templates/webapp/jobs/_record.html
+msgid "Right (R)"
+msgstr "Kanan (R)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Left (L)"
+msgstr "Kaliwa (L)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Frame"
+msgstr "Frame"
+
+#: templates/webapp/jobs/_record.html
+msgid "Lens"
+msgstr "Lente"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Blue-cut 1.56"
+msgstr "hal. Blue-cut 1.56"
+
+#: templates/webapp/jobs/_record.html
+msgid "Last test"
+msgstr "Huling test"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save eye test"
+msgstr "I-save ang eye test"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription / order"
+msgstr "I-print ang reseta / order"
+
+#: templates/webapp/jobs/_record.html
+msgid "Garment tags"
+msgstr "Mga tag ng damit"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print tags"
+msgstr "I-print ang mga tag"
+
+#: templates/webapp/jobs/_record.html
+msgid ""
+"Add the pieces below (e.g. Shirt – wash & iron × 3); each piece gets its own"
+" tag number."
+msgstr ""
+"Idagdag ang mga piraso sa ibaba (hal. Polo – laba at plantsa × 3); bawat "
+"piraso ay may sariling tag number."
+
 #: templates/webapp/jobs/board.html
 msgid "New job / appointment"
 msgstr "Bagong trabaho / appointment"
@@ -5529,6 +5697,34 @@ msgstr "Magdagdag ng tala"
 #: templates/webapp/jobs/detail.html
 msgid "Follow-up"
 msgstr "Follow-up"
+
+#: templates/webapp/jobs/doc.html
+msgid "Prescription"
+msgstr "Reseta"
+
+#: templates/webapp/jobs/doc.html
+msgid "Test report"
+msgstr "Ulat ng test"
+
+#: templates/webapp/jobs/doc.html
+msgid "Eye prescription"
+msgstr "Reseta sa mata"
+
+#: templates/webapp/jobs/doc.html
+msgid "Date of birth"
+msgstr "Petsa ng kapanganakan"
+
+#: templates/webapp/jobs/doc.html
+msgid "Temp"
+msgstr "Temp"
+
+#: templates/webapp/jobs/doc.html
+msgid "H = above, L = below the normal range."
+msgstr "H = lampas, L = kulang sa normal na range."
+
+#: templates/webapp/jobs/doc.html
+msgid "Signature"
+msgstr "Pirma"
 
 #: templates/webapp/jobs/new.html
 msgid "New job"
@@ -6173,10 +6369,6 @@ msgstr "Technician"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Problem reported"
 msgstr "Iniulat na problema"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Diagnosis"
-msgstr "Diagnosis"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid ""
@@ -7216,10 +7408,6 @@ msgstr "Offline no."
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "Nabenta noong"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Result"
-msgstr "Resulta"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Retry"
@@ -8280,10 +8468,6 @@ msgstr "Expired na ang pasaporte."
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Profile"
 msgstr "Profile"
-
-#: templates/webapp/recruitment/candidate_detail.html
-msgid "Date of birth"
-msgstr "Petsa ng kapanganakan"
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Passport"
@@ -12066,6 +12250,30 @@ msgstr ""
 msgid " for delivery"
 msgstr "para sa delivery"
 
+#: apps/industry/job_records.py
+msgid "This job is cancelled."
+msgstr "Kinansela ang trabahong ito."
+
+#: apps/industry/job_records.py
+msgid "Nothing to record for this business."
+msgstr "Walang itatala para sa negosyong ito."
+
+#: apps/industry/job_records.py
+msgid "Choose a date from today on."
+msgstr "Pumili ng petsa mula ngayon."
+
+#: apps/industry/job_records.py
+msgid "follow-up"
+msgstr "follow-up"
+
+#: apps/industry/job_records.py
+msgid "Follow-up: %(title)s"
+msgstr "Follow-up: %(title)s"
+
+#: apps/industry/job_records.py
+msgid "Follow-up of %(number)s"
+msgstr "Follow-up ng %(number)s"
+
 #: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "Sabihin kung ano ang trabaho."
@@ -14143,6 +14351,10 @@ msgstr "Status: %(status)s"
 #: apps/webapp/job_views.py
 msgid "Bill %(number)s made."
 msgstr "Nagawa ang bill %(number)s."
+
+#: apps/webapp/job_views.py
+msgid "Follow-up %(number)s booked for %(date)s."
+msgstr "Na-book ang follow-up %(number)s sa %(date)s."
 
 #: apps/webapp/job_views.py
 msgid "Job closed without a bill."

@@ -147,6 +147,14 @@ AMC_TASK = ("Run maintenance contracts (AMC)",
    "Contracts ending in 30 days are listed under <b>Ending soon</b>: press [[Ask to renew]] to WhatsApp the customer, then [[Renew]]. You can also [[Pause]] or [[Cancel contract]]."],
   dict(tip="A contract entered late does not create job cards for visits that are already past."))
 svc["tasks"].insert(4, AMC_TASK)
+# Records on the job card for clinics, labs, optical shops and laundries
+svc["tasks"].insert(2, ("Clinic, lab, optical &amp; laundry records",
+  ["<b>Clinics</b>: on the job card fill the <b>Visit record</b> — BP, pulse, temperature, weight, SpO₂, sugar, complaint, diagnosis, medicines (dose, how often, days) and advice. Press [[Print prescription]].",
+   "Set a <b>Next visit</b> date and press [[Book the next visit]] — a new appointment is made for the same patient and doctor.",
+   "<b>Laboratories</b>: enter each test with its result, unit and normal range. Results above or below the range are marked <b>H</b> / <b>L</b>. Press [[Print report]].",
+   "<b>Optical shops</b>: open [[👓 Eye tests &amp; orders]], fill the eye power for right and left eye, PD, frame and lens, then [[Print prescription / order]]. The last test of the same customer is shown to compare.",
+   "<b>Laundries</b>: add each item with its count (e.g. <i>Shirt – wash &amp; iron × 3</i>); every piece gets its own tag number. Press [[Print tags]]."],
+  dict(tip="Only the record for your kind of business is shown on the job card.")))
 for _v in VERTICALS:
     if _v.get("slug") == "project-agency":
         _v["tasks"] = [AMC_TASK] + list(_v.get("tasks", []))

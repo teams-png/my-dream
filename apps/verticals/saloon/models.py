@@ -97,6 +97,7 @@ class ServiceCase(TenantScopedModel):
     finished_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     contract = models.ForeignKey("ServiceContract", null=True, blank=True, on_delete=models.SET_NULL, related_name="visits")
+    record = models.JSONField(default=dict, blank=True)  # clinic visit / lab results / eye test / laundry details
     visit_no = models.PositiveSmallIntegerField(default=0)
     profile = models.ForeignKey(ServiceClientProfile, on_delete=models.PROTECT, related_name="cases")
     title = models.CharField(max_length=200)

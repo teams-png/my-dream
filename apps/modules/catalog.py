@@ -131,6 +131,14 @@ INDUSTRY_FEATURES = {
     "recruitment": {"recruitment_agency"},
     # monthly meal packages ("mess"): members, daily meal tick, mess cut and monthly bills
     "mess": {"restaurant", "cafe_juice_shop", "catering_company"},
+    # patient visit record on the job card: vitals, diagnosis, prescription print, follow-up
+    "clinic": {"dental_clinic", "medical_clinic", "physiotherapy_center", "veterinary_clinic", "home_nursing"},
+    # test results report on the job card
+    "lab": {"diagnostic_laboratory"},
+    # eye test (power for each eye), frame and lens order on a job card — also opens job cards for the optical shop
+    "eye_test": {"optical_shop"},
+    # garment tags and tag slips for every piece on the job card
+    "laundry": {"laundry_dry_cleaning"},
     # yearly maintenance / service contracts (AMC) with visits planned by themselves and contract billing
     "contracts": {"ac_maintenance", "pest_control", "home_services", "repair_services", "cleaning_equipment_service",
                   "electronics_repair", "computer_repair", "security_services", "cleaning_company",

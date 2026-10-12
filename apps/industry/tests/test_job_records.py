@@ -1,0 +1,90 @@
+"""Job card records per business kind: clinic visit + prescription + follow-up, lab report with flags,
+optical eye test (also opens job cards for the optical shop), laundry tags."""
+from datetime import timedelta
+
+import pytest
+from django.test import Client
+from django.urls import reverse
+from django.utils import timezone
+
+from apps.industry import job_records
+from apps.verticals.saloon.models import ServiceCase
+
+from .test_jobs import _clean_cache, _garage, _new_job  # noqa: F401
+
+pytestmark = pytest.mark.django_db
+
+
+def _job(company, owner, staff, **extra):
+    _new_job(owner, staff, **extra)
+    return ServiceCase.objects.filter(company=company).latest("id")
+
+
+def test_clinic_visit_prescription_and_follow_up():
+    company, owner, staff = _garage("r1@t.qa", kind="dental_clinic")
+    job = _job(company, owner, staff, subject_name="Sara", identifier="MRN-77", title="Tooth pain")
+    act = reverse("webapp:job_action", args=[job.id])
+    nv = (timezone.localdate() + timedelta(days=7)).isoformat()
+    owner.post(act, {"do": "record", "v_bp": "120/80", "v_pulse": "72", "complaint": "Pain lower left",
+                     "diagnosis": "Caries 36", "advice": "Soft food",
+                     "rx_medicine": ["Amoxicillin 500 mg", "", "Ibuprofen 400 mg"], "rx_dose": ["1 cap", "", "1 tab"],
+                     "rx_freq": ["1-1-1", "", "1-0-1"], "rx_days": ["5", "", "3"], "rx_note": ["after food", "", ""],
+                     "next_visit": nv})
+    job.refresh_from_db()
+    assert job.record["vitals"]["bp"] == "120/80" and len(job.record["rx"]) == 2 and job.record["next_visit"] == nv
+    page = owner.get(reverse("webapp:service_case_detail", args=[job.id])).content.decode()
+    assert "Visit record" in page and "Amoxicillin" in page and "Book the next visit" in page
+    rx = owner.get(reverse("webapp:job_print", args=[job.id]) + "?doc=rx").content.decode()
+    assert "Prescription" in rx and "Ibuprofen 400 mg" in rx and "MRN-77" in rx and "120/80" in rx
+    assert owner.get(reverse("webapp:job_print", args=[job.id]) + "?doc=lab").content.decode().find("Test report") == -1
+    r = owner.post(act, {"do": "follow_up", "date": nv})
+    follow = ServiceCase.objects.filter(company=company).latest("id")
+    assert follow.pk != job.pk and follow.title.startswith("Follow-up") and follow.profile == job.profile
+    assert timezone.localtime(follow.scheduled_at).date().isoformat() == nv and r.url.endswith(f"/{follow.id}/")
+
+
+def test_lab_report_flags():
+    company, owner, staff = _garage("r2@t.qa", kind="diagnostic_laboratory")
+    job = _job(company, owner, staff, subject_name="Ravi", title="CBC")
+    owner.post(reverse("webapp:job_action", args=[job.id]), {
+        "do": "record", "sample": "Blood", "res_test": ["Haemoglobin", "WBC", "Sugar (F)"],
+        "res_value": ["10.2", "7.5", "130"], "res_unit": ["g/dL", "10^3/uL", "mg/dL"],
+        "res_range": ["12-16", "4-11", "<100"]})
+    job.refresh_from_db()
+    assert [r["flag"] for r in job.record["results"]] == ["L", "", "H"]
+    report = owner.get(reverse("webapp:job_print", args=[job.id]) + "?doc=lab").content.decode()
+    assert "Test report" in report and "Haemoglobin" in report and "Blood" in report
+    assert job_records._flag("abc", "1-2") == "" and job_records._flag("5", ">3") == ""
+
+
+def test_optical_eye_test_and_laundry_tags():
+    company, owner, staff = _garage("r3@t.qa", kind="optical_shop")  # a shop: job cards open through "eye_test"
+    assert owner.get(reverse("webapp:service_case_list")).status_code == 200
+    job = _job(company, owner, staff, subject_name="Khalid", title="Eye test + glasses")
+    owner.post(reverse("webapp:job_action", args=[job.id]), {
+        "do": "record", "R_sph": "-1.25", "R_cyl": "-0.50", "R_axis": "180", "L_sph": "-1.00", "pd": "62",
+        "frame": "Ray-Ban RB5154", "lens": "Blue-cut 1.56"})
+    job.refresh_from_db()
+    assert job.record["eye"]["R"]["sph"] == "-1.25" and job.profile.details["eye_rx"]["pd"] == "62"
+    second = _job(company, owner, staff, subject_name="Khalid", title="New glasses")
+    assert job_records.previous_eye(second) == job
+    assert "Last test" in owner.get(reverse("webapp:service_case_detail", args=[second.id])).content.decode()
+    eye = owner.get(reverse("webapp:job_print", args=[job.id]) + "?doc=eye").content.decode()
+    assert "Eye prescription" in eye and "-1.25" in eye and "Blue-cut" in eye
+
+    company2, owner2, staff2 = _garage("r4@t.qa", kind="laundry_dry_cleaning")
+    lj = _job(company2, owner2, staff2, subject_name="", title="Wash & iron")
+    act = reverse("webapp:job_action", args=[lj.id])
+    owner2.post(act, {"do": "line", "description": "Shirt – wash & iron", "quantity": "3", "unit_price": "5"})
+    owner2.post(act, {"do": "line", "description": "Thobe – dry clean", "quantity": "1", "unit_price": "12"})
+    tags = job_records.laundry_tags(lj)
+    assert [t["tag"] for t in tags] == [f"{lj.number}-{i}" for i in range(1, 5)] and tags[3]["item"] == "Thobe – dry clean"
+    sheet = owner2.get(reverse("webapp:job_print", args=[lj.id]) + "?doc=tags").content.decode()
+    assert f"{lj.number}-4" in sheet
+    # a garage has no special record
+    company3, owner3, staff3 = _garage("r5@t.qa")
+    assert job_records.kind_for(company3) is None
+    gj = _job(company3, owner3, staff3)
+    owner3.post(reverse("webapp:job_action", args=[gj.id]), {"do": "record", "v_bp": "1"})
+    gj.refresh_from_db()
+    assert gj.record == {}

@@ -254,12 +254,16 @@ msgid "Menu & Ingredients"
 msgstr "Menú e ingredientes"
 
 #: templates/base.html
-msgid "Job cards"
-msgstr "Órdenes de trabajo"
+msgid "Eye tests & orders"
+msgstr "Exámenes de vista y pedidos"
 
 #: templates/base.html
 msgid "Appointments calendar"
 msgstr "Calendario de citas"
+
+#: templates/base.html
+msgid "Job cards"
+msgstr "Órdenes de trabajo"
 
 #: templates/base.html
 msgid "Service contracts (AMC)"
@@ -5281,6 +5285,170 @@ msgstr "Copiar"
 msgid "Share…"
 msgstr "Compartir…"
 
+#: templates/webapp/jobs/_record.html
+msgid "Visit record"
+msgstr "Registro de la visita"
+
+#: templates/webapp/jobs/_record.html
+msgid "BP"
+msgstr "PA"
+
+#: templates/webapp/jobs/_record.html
+msgid "Pulse"
+msgstr "Pulso"
+
+#: templates/webapp/jobs/_record.html
+msgid "Temp °C"
+msgstr "Temp. °C"
+
+#: templates/webapp/jobs/_record.html
+msgid "Weight kg"
+msgstr "Peso kg"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sugar"
+msgstr "Glucosa"
+
+#: templates/webapp/jobs/_record.html
+msgid "Complaint"
+msgstr "Motivo"
+
+#: templates/webapp/jobs/_record.html
+msgid "Diagnosis"
+msgstr "Diagnóstico"
+
+#: templates/webapp/jobs/_record.html
+msgid "Medicine"
+msgstr "Medicamento"
+
+#: templates/webapp/jobs/_record.html
+msgid "Dose"
+msgstr "Dosis"
+
+#: templates/webapp/jobs/_record.html
+msgid "How often"
+msgstr "Frecuencia"
+
+#: templates/webapp/jobs/_record.html
+msgid "Days"
+msgstr "Días"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Paracetamol 500 mg"
+msgstr "p. ej. Paracetamol 500 mg"
+
+#: templates/webapp/jobs/_record.html
+msgid "after food"
+msgstr "después de comer"
+
+#: templates/webapp/jobs/_record.html
+msgid "Advice"
+msgstr "Indicaciones"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save record"
+msgstr "Guardar registro"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription"
+msgstr "Imprimir receta"
+
+#: templates/webapp/jobs/_record.html
+msgid "Book the next visit"
+msgstr "Reservar la próxima visita"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test results"
+msgstr "Resultados"
+
+#: templates/webapp/jobs/_record.html
+msgid "Sample"
+msgstr "Muestra"
+
+#: templates/webapp/jobs/_record.html
+msgid "Blood, urine…"
+msgstr "Sangre, orina…"
+
+#: templates/webapp/jobs/_record.html
+msgid "Test"
+msgstr "Prueba"
+
+#: templates/webapp/jobs/_record.html
+msgid "Result"
+msgstr "Resultado"
+
+#: templates/webapp/jobs/_record.html
+msgid "Normal range"
+msgstr "Rango normal"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Haemoglobin"
+msgstr "p. ej. Hemoglobina"
+
+#: templates/webapp/jobs/_record.html
+msgid "Remarks"
+msgstr "Observaciones"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save results"
+msgstr "Guardar resultados"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print report"
+msgstr "Imprimir informe"
+
+#: templates/webapp/jobs/_record.html
+msgid "Eye test"
+msgstr "Examen de la vista"
+
+#: templates/webapp/jobs/_record.html
+msgid "Right (R)"
+msgstr "Derecho (D)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Left (L)"
+msgstr "Izquierdo (I)"
+
+#: templates/webapp/jobs/_record.html
+msgid "Frame"
+msgstr "Montura"
+
+#: templates/webapp/jobs/_record.html
+msgid "Lens"
+msgstr "Lente"
+
+#: templates/webapp/jobs/_record.html
+msgid "e.g. Blue-cut 1.56"
+msgstr "p. ej. Filtro azul 1.56"
+
+#: templates/webapp/jobs/_record.html
+msgid "Last test"
+msgstr "Último examen"
+
+#: templates/webapp/jobs/_record.html
+msgid "Save eye test"
+msgstr "Guardar examen"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print prescription / order"
+msgstr "Imprimir receta / pedido"
+
+#: templates/webapp/jobs/_record.html
+msgid "Garment tags"
+msgstr "Etiquetas de prendas"
+
+#: templates/webapp/jobs/_record.html
+msgid "Print tags"
+msgstr "Imprimir etiquetas"
+
+#: templates/webapp/jobs/_record.html
+msgid ""
+"Add the pieces below (e.g. Shirt – wash & iron × 3); each piece gets its own"
+" tag number."
+msgstr ""
+"Añade las prendas abajo (p. ej. Camisa – lavar y planchar × 3); cada prenda "
+"recibe su número de etiqueta."
+
 #: templates/webapp/jobs/board.html
 msgid "New job / appointment"
 msgstr "Nuevo trabajo / cita"
@@ -5518,6 +5686,34 @@ msgstr "Añadir nota"
 #: templates/webapp/jobs/detail.html
 msgid "Follow-up"
 msgstr "Seguimiento"
+
+#: templates/webapp/jobs/doc.html
+msgid "Prescription"
+msgstr "Receta"
+
+#: templates/webapp/jobs/doc.html
+msgid "Test report"
+msgstr "Informe de resultados"
+
+#: templates/webapp/jobs/doc.html
+msgid "Eye prescription"
+msgstr "Receta óptica"
+
+#: templates/webapp/jobs/doc.html
+msgid "Date of birth"
+msgstr "Fecha de nacimiento"
+
+#: templates/webapp/jobs/doc.html
+msgid "Temp"
+msgstr "Temp."
+
+#: templates/webapp/jobs/doc.html
+msgid "H = above, L = below the normal range."
+msgstr "H = por encima, L = por debajo del rango normal."
+
+#: templates/webapp/jobs/doc.html
+msgid "Signature"
+msgstr "Firma"
 
 #: templates/webapp/jobs/new.html
 msgid "New job"
@@ -6158,10 +6354,6 @@ msgstr "Técnico"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Problem reported"
 msgstr "Problema reportado"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Diagnosis"
-msgstr "Diagnóstico"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid ""
@@ -7208,10 +7400,6 @@ msgstr "N.º sin conexión"
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "Vendida el"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Result"
-msgstr "Resultado"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Retry"
@@ -8275,10 +8463,6 @@ msgstr "El pasaporte ha vencido."
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Profile"
 msgstr "Perfil"
-
-#: templates/webapp/recruitment/candidate_detail.html
-msgid "Date of birth"
-msgstr "Fecha de nacimiento"
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "Passport"
@@ -12052,6 +12236,30 @@ msgstr ""
 msgid " for delivery"
 msgstr "para entrega"
 
+#: apps/industry/job_records.py
+msgid "This job is cancelled."
+msgstr "Este trabajo está cancelado."
+
+#: apps/industry/job_records.py
+msgid "Nothing to record for this business."
+msgstr "No hay nada que registrar para este negocio."
+
+#: apps/industry/job_records.py
+msgid "Choose a date from today on."
+msgstr "Elige una fecha a partir de hoy."
+
+#: apps/industry/job_records.py
+msgid "follow-up"
+msgstr "seguimiento"
+
+#: apps/industry/job_records.py
+msgid "Follow-up: %(title)s"
+msgstr "Seguimiento: %(title)s"
+
+#: apps/industry/job_records.py
+msgid "Follow-up of %(number)s"
+msgstr "Seguimiento de %(number)s"
+
 #: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "Indica cuál es el trabajo."
@@ -14125,6 +14333,10 @@ msgstr "Estado: %(status)s"
 #: apps/webapp/job_views.py
 msgid "Bill %(number)s made."
 msgstr "Factura %(number)s creada."
+
+#: apps/webapp/job_views.py
+msgid "Follow-up %(number)s booked for %(date)s."
+msgstr "Seguimiento %(number)s reservado para el %(date)s."
 
 #: apps/webapp/job_views.py
 msgid "Job closed without a bill."

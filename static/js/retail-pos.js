@@ -54,7 +54,7 @@
     [/home|kitchen|house|clean/i, "🏠"], [/beauty|cosmetic|personal care|skin/i, "💄"], [/book|station/i, "📚"], [/toy|kid/i, "🧸"], [/elect|device|laptop|computer/i, "🔌"],
     [/pharma|medic|health/i, "💊"], [/service|repair/i, "🛠️"]];
   const catIcon = name => (CAT_ICONS.find(([re]) => re.test(name)) || [0, "🏷️"])[1];
-  const inCart = id => Object.values(cart).filter(i => i.id === id).reduce((s, i) => s + i.qty, 0);
+  const inCart = id => Object.values(cart).filter(i => i.id === id).reduce((s, i) => s + i.qty * (i.factor || 1), 0);
   const available = p => (p.item_type === "handset" ? p.mobile_units.filter(u => !cart[p.id + "-" + u.id]).length : parseFloat(p.stock) - inCart(p.id));
   const soldOut = p => (p.tracked || p.item_type === "handset") && available(p) <= 0;
 
@@ -122,6 +122,7 @@
   /* ------------------------------------------------------------ cart */
   function chooseAndAdd(p, fromEl) {
     if (p.weighed) return openWeigh(p, fromEl);
+    if (p.item_type !== "handset" && (p.packs || []).length) return choosePack(p, fromEl);
     if (p.item_type !== "handset") return addToCart(p, null, fromEl);
     const units = p.mobile_units.filter(u => !cart[p.id + "-" + u.id]);
     if (!units.length) return toast(T.noImei, true);
@@ -135,12 +136,27 @@
     $("imeiDialog").showModal();
   }
 
-  function addToCart(p, unit, fromEl, qty) {
-    const key = unit ? `${p.id}-${unit.id}` : String(p.id);
+  /* carton / box / strip: sell the piece or one of the product's packs */
+  function choosePack(p, fromEl) {
+    $("packProduct").textContent = label(p);
+    const rows = [{ id: "", name: T.piece, factor: "1", price: p.price }].concat(p.packs);
+    $("packList").innerHTML = rows.map(k => `<button class="pick-row" type="button" data-pack="${k.id}"><span><b>${esc(k.name)}</b>${k.id ? `<br><small>${esc(k.factor)} ${T.pieces}</small>` : ""}</span><b>${esc(CUR)} ${money(k.price)}</b></button>`).join("");
+    $("packList").onclick = e => {
+      const b = e.target.closest("[data-pack]"); if (!b) return;
+      $("packDialog").close();
+      addToCart(p, null, fromEl, 1, b.dataset.pack ? p.packs.find(k => String(k.id) === b.dataset.pack) : null);
+    };
+    $("packDialog").showModal();
+  }
+
+  function addToCart(p, unit, fromEl, qty, pack) {
+    const key = unit ? `${p.id}-${unit.id}` : pack ? `${p.id}-pk${pack.id}` : String(p.id);
     if (!cart[key]) {
-      cart[key] = { key, id: p.id, name: label(p), sku: p.sku, price: parseFloat(p.price), qty: 0,
+      cart[key] = { key, id: p.id, name: label(p) + (pack ? ` — ${pack.name} (${pack.factor})` : ""), sku: p.sku,
+        price: parseFloat(pack ? pack.price : p.price), qty: 0, pack_id: pack ? pack.id : null, factor: pack ? parseFloat(pack.factor) : 1,
         mobile_unit_id: unit ? unit.id : null, imei: unit ? unit.imei : null, weighed: !!p.weighed, unit: unitOf(p), isNew: true };
     }
+    if (pack && p.tracked && available(p) < cart[key].factor) toast(`${cart[key].name} · ${+available(p).toFixed(3)} ${T.inStock}`, true);
     cart[key].qty = unit ? 1 : (p.weighed ? round3(cart[key].qty + (qty || 0)) : cart[key].qty + (qty || 1));
     cart[key].isNew = true;
     if (fromEl) fly(fromEl);
@@ -242,8 +258,9 @@
     qty = item.weighed ? round3(qty) : Math.floor(+qty || 0);
     if (qty <= 0) delete cart[key];
     else {
-      const p = PRODUCTS.find(x => x.id === item.id);
-      if (p.tracked && qty > parseFloat(p.stock) - (inCart(p.id) - item.qty)) toast(`${item.name} · ${Math.max(0, +(parseFloat(p.stock) - (inCart(p.id) - item.qty)).toFixed(3))} ${T.inStock}`, true);
+      const p = PRODUCTS.find(x => x.id === item.id), f = item.factor || 1;
+      const room = parseFloat(p.stock) - (inCart(p.id) - item.qty * f);
+      if (p.tracked && qty * f > room) toast(`${item.name} · ${Math.max(0, +room.toFixed(3))} ${T.inStock}`, true);
       item.qty = qty;
     }
     changed();
@@ -302,6 +319,16 @@
     }
     let exact = PRODUCTS.find(p => p.sku.toLowerCase() === sku);
     let scannedUnit = null;
+    if (!exact) {  // a carton / box barcode
+      let pack = null;
+      const owner = PRODUCTS.find(p => (pack = (p.packs || []).find(k => k.barcode && k.barcode.toLowerCase() === sku)));
+      if (owner && pack) {
+        addToCart(owner, null, null, 1, pack);
+        searchInput.value = ""; filterGrid();
+        toast(`✓ ${label(owner)} — ${pack.name} ${T.added}`); beep(880);
+        return true;
+      }
+    }
     if (!exact) {
       exact = PRODUCTS.find(p => (scannedUnit = (p.mobile_units || []).find(u => u.imei.toLowerCase() === sku || (u.serial_number || "").toLowerCase() === sku)));
     }
@@ -432,7 +459,7 @@
       coupon_code: online() ? (val("pos-coupon") || "").trim() : "",
       amount_paid: val("pos-amount-paid"), deposit_method: val("pos-deposit-method"),
       installment_count: val("pos-installment-count"), frequency: val("pos-frequency"), next_due_date: val("pos-next-due"),
-      lines: lines().map(i => ({ product_id: i.id, quantity: i.qty, unit_price: i.price, mobile_unit_id: i.mobile_unit_id, name: i.name })),
+      lines: lines().map(i => ({ product_id: i.id, quantity: i.qty, unit_price: i.price, mobile_unit_id: i.mobile_unit_id, pack_id: i.pack_id || null, name: i.name })),
     };
   }
 

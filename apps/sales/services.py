@@ -68,6 +68,28 @@ def _next_invoice_number(company):
     return f"INV-{n:06d}"
 
 
+def _with_pack(line):
+    """A line may sell a pack (``"pack": ProductPack``): quantity and price are per pack, stock moves
+    quantity × pieces-per-pack. Returns a copy with unit_name, unit_factor and stock_qty filled in."""
+    line = dict(line)
+    pack = line.pop("pack", None)
+    if pack is not None:
+        if pack.product_id != line["product"].id:
+            raise ValidationError("That pack belongs to another product.")
+        if line["product"].tracking_type == "serial":
+            raise ValidationError("Serial-numbered items are sold one by one, not in packs.")
+        line.setdefault("unit_name", pack.name)
+        line.setdefault("unit_factor", pack.factor)
+    line.setdefault("unit_name", "")
+    line.setdefault("unit_factor", Decimal("1"))
+    factor = Decimal(line["unit_factor"] or 1)
+    if factor <= 0:
+        raise ValidationError("Pieces per pack must be more than 0.")
+    line["unit_factor"] = factor
+    line["stock_qty"] = Decimal(line["quantity"]) * factor
+    return line
+
+
 @transaction.atomic
 def create_invoice(*, company, user, customer, date, lines, warehouse, due_date=None, tax_rate=Decimal("0"),
                     discount_amount=Decimal("0"), coupon_code="", discount_reason="",
@@ -94,6 +116,7 @@ def create_invoice(*, company, user, customer, date, lines, warehouse, due_date=
     )
     if rate <= 0:
         raise ValidationError("Exchange rate must be positive.")
+    lines = [_with_pack(l) for l in lines]
     computed_lines = []
     uses_tax_codes = any(l.get("tax_code") is not None for l in lines)
     for line in lines:
@@ -140,6 +163,7 @@ def create_invoice(*, company, user, customer, date, lines, warehouse, due_date=
             unit_price=l["unit_price"], line_total=Decimal(l["quantity"]) * Decimal(l["unit_price"]),
             batch=l.get("batch"), serial=l.get("serial"), so_line=l.get("so_line"),
             tax_code=l.get("tax_code"), taxable_amount=taxable, tax_amount=line_tax,
+            unit_name=l["unit_name"], unit_factor=l["unit_factor"],
         )
         for l, taxable, line_tax in computed_lines
     ])
@@ -157,7 +181,7 @@ def create_invoice(*, company, user, customer, date, lines, warehouse, due_date=
         if product.tracking_type == "batch" and l.get("batch") is not None:
             sell_batch_stock(
                 company=company, product=product, warehouse=warehouse, batch=l["batch"],
-                quantity=l["quantity"], reference=invoice.invoice_number,
+                quantity=l["stock_qty"], reference=invoice.invoice_number,
             )
         elif product.tracking_type == "serial" and l.get("serial") is not None:
             sell_serial_stock(
@@ -166,7 +190,7 @@ def create_invoice(*, company, user, customer, date, lines, warehouse, due_date=
         elif product.tracking_type == "batch":
             # No batch chosen (POS, quick sale): take stock from the batches that expire first.
             from apps.inventory.services import suggest_fefo_batches
-            remaining = Decimal(l["quantity"])
+            remaining = l["stock_qty"]
             today = invoice.date if hasattr(invoice.date, "year") else parse_date(str(invoice.date))
             for suggestion in suggest_fefo_batches(company=company, product=product, warehouse=warehouse,
                                                    quantity_needed=remaining):
@@ -185,7 +209,7 @@ def create_invoice(*, company, user, customer, date, lines, warehouse, due_date=
         else:
             record_stock_movement(
                 company=company, product=product, warehouse=warehouse,
-                quantity=-Decimal(l["quantity"]), reason="sale", reference=invoice.invoice_number,
+                quantity=-l["stock_qty"], reason="sale", reference=invoice.invoice_number,
             )
 
     accounts = {a.code: a for a in Account.objects.for_company(company).filter(
@@ -512,7 +536,8 @@ def process_return(*, company, user, invoice, date, lines, warehouse, reason="",
     net_total = sum((Decimal(l["quantity"]) * Decimal(l["unit_price"]) for l in lines), Decimal("0"))
     return_taxes = []
     for l in lines:
-        original = invoice.lines.filter(product=l["product"]).first()
+        original = invoice.lines.filter(product=l["product"], unit_factor=Decimal(l.get("unit_factor") or 1)).first() \
+            or invoice.lines.filter(product=l["product"]).first()
         per_unit_tax = (original.tax_amount / original.quantity) if original and original.quantity else Decimal("0")
         return_taxes.append((per_unit_tax * Decimal(l["quantity"])).quantize(MONEY))
     tax_total = sum(return_taxes, Decimal("0"))
@@ -540,6 +565,7 @@ def process_return(*, company, user, invoice, date, lines, warehouse, reason="",
             unit_price=l["unit_price"], line_total=Decimal(l["quantity"]) * Decimal(l["unit_price"]),
             batch=batch, serial=serial,
             tax_amount=return_taxes[index],
+            unit_name=l.get("unit_name", ""), unit_factor=Decimal(l.get("unit_factor") or 1),
         )
         for index, (l, batch, serial) in enumerate(resolved)
     ])
@@ -556,8 +582,8 @@ def process_return(*, company, user, invoice, date, lines, warehouse, reason="",
         else:
             record_stock_movement(
                 company=company, product=product, warehouse=warehouse,
-                quantity=Decimal(l["quantity"]), reason="sales_return", reference=f"RET#{sales_return.id}",
-                batch=batch,
+                quantity=Decimal(l["quantity"]) * Decimal(l.get("unit_factor") or 1), reason="sales_return",
+                reference=f"RET#{sales_return.id}", batch=batch,
             )
 
     accounts = {a.code: a for a in Account.objects.for_company(company).filter(code__in=["1000", "1100", "2100", "4000"])}

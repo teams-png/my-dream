@@ -6051,6 +6051,58 @@ msgstr "Detalles del producto"
 msgid "Shown on the POS, invoices and your website."
 msgstr "Se muestra en el POS, las facturas y tu sitio web."
 
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Cartons, boxes & strips"
+msgstr "Cajas, paquetes y blísteres"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid ""
+"Buy or sell this item in bigger packs. Stock is always counted in single "
+"pieces — selling 1 carton of 24 takes 24 pieces out."
+msgstr ""
+"Compra o vende este artículo en paquetes más grandes. El stock siempre se "
+"cuenta en unidades — vender 1 caja de 24 descuenta 24 unidades."
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack"
+msgstr "Paquete"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces"
+msgstr "Piezas"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Barcode"
+msgstr "Código de barras"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Selling price"
+msgstr "Precio de venta"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Remove this pack?"
+msgstr "¿Quitar este paquete?"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack name"
+msgstr "Nombre del paquete"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Carton / Box / Strip"
+msgstr "Caja / Paquete / Blíster"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces in it"
+msgstr "Unidades dentro"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack barcode"
+msgstr "Código de barras del paquete"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Add pack"
+msgstr "Añadir paquete"
+
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Repair"
 msgstr "Reparación"
@@ -6922,6 +6974,10 @@ msgid "Select IMEI"
 msgstr "Elegir IMEI"
 
 #: templates/webapp/pos.html
+msgid "Sell as"
+msgstr "Vender como"
+
+#: templates/webapp/pos.html
 msgid "Weight (kg)"
 msgstr "Peso (kg)"
 
@@ -6976,6 +7032,14 @@ msgstr "Código de barras / SKU no encontrado."
 #: templates/webapp/pos.html
 msgid "is out of stock."
 msgstr "está agotado."
+
+#: templates/webapp/pos.html
+msgid "Single piece"
+msgstr "Unidad suelta"
+
+#: templates/webapp/pos.html
+msgid "pieces"
+msgstr "unidades"
 
 #: templates/webapp/pos.html
 msgid "No IMEI unit is available for this handset."
@@ -11444,10 +11508,6 @@ msgid "Delivery date"
 msgstr "Fecha de entrega"
 
 #: templates/webapp/sports_shop/team_order_detail.html
-msgid "Pieces"
-msgstr "Piezas"
-
-#: templates/webapp/sports_shop/team_order_detail.html
 msgid "Sizes"
 msgstr "Tallas"
 
@@ -13694,10 +13754,6 @@ msgid "Cost price"
 msgstr "Precio de costo"
 
 #: apps/webapp/forms.py
-msgid "Selling price"
-msgstr "Precio de venta"
-
-#: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "Punto de pedido"
 
@@ -13735,6 +13791,22 @@ msgstr "…o nombre del cliente nuevo"
 #: apps/webapp/forms.py
 msgid "New client phone"
 msgstr "Teléfono del cliente nuevo"
+
+#: apps/webapp/forms.py
+msgid "Bought as"
+msgstr "Comprado como"
+
+#: apps/webapp/forms.py
+msgid "Single pieces"
+msgstr "Unidades sueltas"
+
+#: apps/webapp/forms.py
+msgid "Cost of one piece, or of one pack when bought as a pack."
+msgstr "Coste de una unidad, o de un paquete si se compra por paquetes."
+
+#: apps/webapp/forms.py
+msgid "That pack belongs to another item."
+msgstr "Ese paquete es de otro artículo."
 
 #: apps/webapp/forms.py
 msgid ""
@@ -15451,12 +15523,12 @@ msgid "Last 30 days"
 msgstr "Últimos 30 días"
 
 #: apps/webapp/sales_docs_views.py
-msgid "Quantities and prices must be numbers."
-msgstr "Las cantidades y precios deben ser números."
-
-#: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."
 msgstr "Elige un artículo en cada línea."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quantities and prices must be numbers."
+msgstr "Las cantidades y precios deben ser números."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Quantity must be more than zero."
@@ -15898,6 +15970,30 @@ msgstr "Estado actualizado."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "Pedidos y mesas"
+
+#: apps/webapp/views.py
+msgid "Pack removed."
+msgstr "Paquete quitado."
+
+#: apps/webapp/views.py
+msgid "Enter numbers for pieces and prices."
+msgstr "Introduce números para unidades y precios."
+
+#: apps/webapp/views.py
+msgid "Give the pack a name (e.g. Carton) and more than 1 piece in it."
+msgstr "Pon un nombre al paquete (p. ej. Caja) y más de 1 unidad dentro."
+
+#: apps/webapp/views.py
+msgid "Packs are for stock items that are not serial-numbered."
+msgstr "Los paquetes son para artículos de stock sin número de serie."
+
+#: apps/webapp/views.py
+msgid "That barcode is already used by another item."
+msgstr "Ese código de barras ya lo usa otro artículo."
+
+#: apps/webapp/views.py
+msgid "%(name)s saved: %(n)s pieces."
+msgstr "%(name)s guardado: %(n)s unidades."
 
 #: apps/webapp/views.py
 msgid ""

@@ -6012,6 +6012,58 @@ msgstr "उत्पाद विवरण"
 msgid "Shown on the POS, invoices and your website."
 msgstr "POS, इनवॉइस और आपकी वेबसाइट पर दिखता है।"
 
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Cartons, boxes & strips"
+msgstr "कार्टन, डिब्बे और स्ट्रिप"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid ""
+"Buy or sell this item in bigger packs. Stock is always counted in single "
+"pieces — selling 1 carton of 24 takes 24 pieces out."
+msgstr ""
+"इस आइटम को बड़े पैक में खरीदें या बेचें। स्टॉक हमेशा एक-एक पीस में गिना जाता"
+" है — 24 का 1 कार्टन बेचने पर 24 पीस घटते हैं।"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack"
+msgstr "पैक"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces"
+msgstr "पीस"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Barcode"
+msgstr "बारकोड"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Selling price"
+msgstr "विक्रय मूल्य"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Remove this pack?"
+msgstr "यह पैक हटाएँ?"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack name"
+msgstr "पैक का नाम"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Carton / Box / Strip"
+msgstr "कार्टन / डिब्बा / स्ट्रिप"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces in it"
+msgstr "इसमें पीस"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack barcode"
+msgstr "पैक बारकोड"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Add pack"
+msgstr "पैक जोड़ें"
+
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Repair"
 msgstr "मरम्मत"
@@ -6868,6 +6920,10 @@ msgid "Select IMEI"
 msgstr "IMEI चुनें"
 
 #: templates/webapp/pos.html
+msgid "Sell as"
+msgstr "किस रूप में बेचें"
+
+#: templates/webapp/pos.html
 msgid "Weight (kg)"
 msgstr "वज़न (kg)"
 
@@ -6922,6 +6978,14 @@ msgstr "बारकोड / SKU नहीं मिला।"
 #: templates/webapp/pos.html
 msgid "is out of stock."
 msgstr "स्टॉक में नहीं है।"
+
+#: templates/webapp/pos.html
+msgid "Single piece"
+msgstr "एक पीस"
+
+#: templates/webapp/pos.html
+msgid "pieces"
+msgstr "पीस"
 
 #: templates/webapp/pos.html
 msgid "No IMEI unit is available for this handset."
@@ -11349,10 +11413,6 @@ msgid "Delivery date"
 msgstr "डिलीवरी की तारीख"
 
 #: templates/webapp/sports_shop/team_order_detail.html
-msgid "Pieces"
-msgstr "पीस"
-
-#: templates/webapp/sports_shop/team_order_detail.html
 msgid "Sizes"
 msgstr "साइज़"
 
@@ -13570,10 +13630,6 @@ msgid "Cost price"
 msgstr "लागत मूल्य"
 
 #: apps/webapp/forms.py
-msgid "Selling price"
-msgstr "विक्रय मूल्य"
-
-#: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "पुनः ऑर्डर स्तर"
 
@@ -13609,6 +13665,22 @@ msgstr "…या नए क्लाइंट का नाम"
 #: apps/webapp/forms.py
 msgid "New client phone"
 msgstr "नए क्लाइंट का फ़ोन"
+
+#: apps/webapp/forms.py
+msgid "Bought as"
+msgstr "किस रूप में खरीदा"
+
+#: apps/webapp/forms.py
+msgid "Single pieces"
+msgstr "एक-एक पीस"
+
+#: apps/webapp/forms.py
+msgid "Cost of one piece, or of one pack when bought as a pack."
+msgstr "एक पीस की लागत, या पैक में खरीदा हो तो एक पैक की लागत।"
+
+#: apps/webapp/forms.py
+msgid "That pack belongs to another item."
+msgstr "वह पैक किसी दूसरे आइटम का है।"
 
 #: apps/webapp/forms.py
 msgid ""
@@ -15304,12 +15376,12 @@ msgid "Last 30 days"
 msgstr "पिछले 30 दिन"
 
 #: apps/webapp/sales_docs_views.py
-msgid "Quantities and prices must be numbers."
-msgstr "मात्राएँ और कीमतें संख्या होनी चाहिए।"
-
-#: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."
 msgstr "हर पंक्ति में एक आइटम चुनें।"
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quantities and prices must be numbers."
+msgstr "मात्राएँ और कीमतें संख्या होनी चाहिए।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Quantity must be more than zero."
@@ -15744,6 +15816,30 @@ msgstr "स्टेटस अपडेट हुआ।"
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "ऑर्डर और टेबल"
+
+#: apps/webapp/views.py
+msgid "Pack removed."
+msgstr "पैक हटाया गया।"
+
+#: apps/webapp/views.py
+msgid "Enter numbers for pieces and prices."
+msgstr "पीस और कीमतों के लिए संख्याएँ दर्ज करें।"
+
+#: apps/webapp/views.py
+msgid "Give the pack a name (e.g. Carton) and more than 1 piece in it."
+msgstr "पैक को नाम दें (जैसे कार्टन) और उसमें 1 से ज़्यादा पीस हों।"
+
+#: apps/webapp/views.py
+msgid "Packs are for stock items that are not serial-numbered."
+msgstr "पैक सिर्फ़ उन स्टॉक आइटम के लिए हैं जिनमें सीरियल नंबर नहीं है।"
+
+#: apps/webapp/views.py
+msgid "That barcode is already used by another item."
+msgstr "वह बारकोड किसी दूसरे आइटम में इस्तेमाल हो चुका है।"
+
+#: apps/webapp/views.py
+msgid "%(name)s saved: %(n)s pieces."
+msgstr "%(name)s सेव हुआ: %(n)s पीस।"
 
 #: apps/webapp/views.py
 msgid ""

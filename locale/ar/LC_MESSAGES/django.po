@@ -5981,6 +5981,58 @@ msgstr "تفاصيل المنتج"
 msgid "Shown on the POS, invoices and your website."
 msgstr "يظهر في نقطة البيع والفواتير وموقعك."
 
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Cartons, boxes & strips"
+msgstr "الكراتين والعلب والشرائط"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid ""
+"Buy or sell this item in bigger packs. Stock is always counted in single "
+"pieces — selling 1 carton of 24 takes 24 pieces out."
+msgstr ""
+"اشترِ أو بِع هذا الصنف في عبوات أكبر. يُحسب المخزون دائماً بالقطعة — بيع "
+"كرتونة واحدة من 24 يُخرج 24 قطعة."
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack"
+msgstr "العبوة"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces"
+msgstr "القطع"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Barcode"
+msgstr "الباركود"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Selling price"
+msgstr "سعر البيع"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Remove this pack?"
+msgstr "حذف هذه العبوة؟"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack name"
+msgstr "اسم العبوة"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Carton / Box / Strip"
+msgstr "كرتونة / علبة / شريط"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces in it"
+msgstr "عدد القطع فيها"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack barcode"
+msgstr "باركود العبوة"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Add pack"
+msgstr "إضافة عبوة"
+
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Repair"
 msgstr "إصلاح"
@@ -6833,6 +6885,10 @@ msgid "Select IMEI"
 msgstr "اختر رقم IMEI"
 
 #: templates/webapp/pos.html
+msgid "Sell as"
+msgstr "البيع كـ"
+
+#: templates/webapp/pos.html
 msgid "Weight (kg)"
 msgstr "الوزن (كغ)"
 
@@ -6887,6 +6943,14 @@ msgstr "الباركود / رمز الصنف غير موجود."
 #: templates/webapp/pos.html
 msgid "is out of stock."
 msgstr "نفد من المخزون."
+
+#: templates/webapp/pos.html
+msgid "Single piece"
+msgstr "قطعة واحدة"
+
+#: templates/webapp/pos.html
+msgid "pieces"
+msgstr "قطع"
 
 #: templates/webapp/pos.html
 msgid "No IMEI unit is available for this handset."
@@ -11298,10 +11362,6 @@ msgid "Delivery date"
 msgstr "تاريخ التسليم"
 
 #: templates/webapp/sports_shop/team_order_detail.html
-msgid "Pieces"
-msgstr "القطع"
-
-#: templates/webapp/sports_shop/team_order_detail.html
 msgid "Sizes"
 msgstr "المقاسات"
 
@@ -13500,10 +13560,6 @@ msgid "Cost price"
 msgstr "سعر التكلفة"
 
 #: apps/webapp/forms.py
-msgid "Selling price"
-msgstr "سعر البيع"
-
-#: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "حد إعادة الطلب"
 
@@ -13539,6 +13595,22 @@ msgstr "…أو اسم عميل جديد"
 #: apps/webapp/forms.py
 msgid "New client phone"
 msgstr "هاتف العميل الجديد"
+
+#: apps/webapp/forms.py
+msgid "Bought as"
+msgstr "تم الشراء كـ"
+
+#: apps/webapp/forms.py
+msgid "Single pieces"
+msgstr "قطع منفردة"
+
+#: apps/webapp/forms.py
+msgid "Cost of one piece, or of one pack when bought as a pack."
+msgstr "سعر القطعة الواحدة، أو سعر العبوة الواحدة إذا اشتريت كعبوة."
+
+#: apps/webapp/forms.py
+msgid "That pack belongs to another item."
+msgstr "هذه العبوة تخص صنفاً آخر."
 
 #: apps/webapp/forms.py
 msgid ""
@@ -15227,12 +15299,12 @@ msgid "Last 30 days"
 msgstr "آخر 30 يوماً"
 
 #: apps/webapp/sales_docs_views.py
-msgid "Quantities and prices must be numbers."
-msgstr "يجب أن تكون الكميات والأسعار أرقاماً."
-
-#: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."
 msgstr "اختر صنفاً في كل سطر."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quantities and prices must be numbers."
+msgstr "يجب أن تكون الكميات والأسعار أرقاماً."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Quantity must be more than zero."
@@ -15665,6 +15737,30 @@ msgstr "تم تحديث الحالة."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "الطلبات والطاولات"
+
+#: apps/webapp/views.py
+msgid "Pack removed."
+msgstr "تم حذف العبوة."
+
+#: apps/webapp/views.py
+msgid "Enter numbers for pieces and prices."
+msgstr "أدخل أرقاماً للقطع والأسعار."
+
+#: apps/webapp/views.py
+msgid "Give the pack a name (e.g. Carton) and more than 1 piece in it."
+msgstr "أعطِ العبوة اسماً (مثل كرتونة) وأكثر من قطعة واحدة فيها."
+
+#: apps/webapp/views.py
+msgid "Packs are for stock items that are not serial-numbered."
+msgstr "العبوات لأصناف المخزون غير المرقّمة تسلسلياً."
+
+#: apps/webapp/views.py
+msgid "That barcode is already used by another item."
+msgstr "هذا الباركود مستخدم لصنف آخر."
+
+#: apps/webapp/views.py
+msgid "%(name)s saved: %(n)s pieces."
+msgstr "تم حفظ %(name)s: %(n)s قطعة."
 
 #: apps/webapp/views.py
 msgid ""

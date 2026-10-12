@@ -100,7 +100,16 @@ def checkout(*, company, user, payload, sale_date=None):
                 if unit.status != "in_stock":
                     raise PosError(f"IMEI {unit.imei} is no longer in stock.")
                 units.append((unit, unit_price))
-            lines.append({"product": product, "quantity": quantity, "unit_price": unit_price})
+            line = {"product": product, "quantity": quantity, "unit_price": unit_price}
+            pack_id = item.get("pack_id")
+            if pack_id:
+                from apps.inventory.models import ProductPack
+                pack = ProductPack.objects.for_company(company).filter(
+                    id=pack_id if str(pack_id).isdigit() else 0, product=product).first()
+                if pack is None:
+                    raise PosError(f"The pack chosen for {product.name} no longer exists.")
+                line["pack"] = pack
+            lines.append(line)
 
         subtotal = sum((line["quantity"] * line["unit_price"] for line in lines), Decimal("0"))
         coupon_code = (payload.get("coupon_code") or "").strip()

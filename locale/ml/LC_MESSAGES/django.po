@@ -6052,6 +6052,58 @@ msgstr "ഉൽപ്പന്ന വിവരങ്ങൾ"
 msgid "Shown on the POS, invoices and your website."
 msgstr "POS, ഇൻവോയ്സുകൾ, നിങ്ങളുടെ വെബ്സൈറ്റ് എന്നിവയിൽ കാണിക്കും."
 
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Cartons, boxes & strips"
+msgstr "കാർട്ടൺ, ബോക്സ്, സ്ട്രിപ്പ്"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid ""
+"Buy or sell this item in bigger packs. Stock is always counted in single "
+"pieces — selling 1 carton of 24 takes 24 pieces out."
+msgstr ""
+"ഈ ഐറ്റം വലിയ പാക്കുകളായി വാങ്ങാനും വിൽക്കാനും. സ്റ്റോക്ക് എപ്പോഴും ഒറ്റ "
+"പീസായാണ് എണ്ണുന്നത് — 24-ന്റെ 1 കാർട്ടൺ വിറ്റാൽ 24 പീസ് കുറയും."
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack"
+msgstr "പാക്ക്"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces"
+msgstr "എണ്ണം"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Barcode"
+msgstr "ബാർകോഡ്"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Selling price"
+msgstr "വിൽപ്പന വില"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Remove this pack?"
+msgstr "ഈ പാക്ക് ഒഴിവാക്കണോ?"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack name"
+msgstr "പാക്കിന്റെ പേര്"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Carton / Box / Strip"
+msgstr "കാർട്ടൺ / ബോക്സ് / സ്ട്രിപ്പ്"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces in it"
+msgstr "അതിലുള്ള പീസുകൾ"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack barcode"
+msgstr "പാക്ക് ബാർകോഡ്"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Add pack"
+msgstr "പാക്ക് ചേർക്കുക"
+
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Repair"
 msgstr "റിപ്പയർ"
@@ -6922,6 +6974,10 @@ msgid "Select IMEI"
 msgstr "IMEI തിരഞ്ഞെടുക്കുക"
 
 #: templates/webapp/pos.html
+msgid "Sell as"
+msgstr "എങ്ങനെ വിൽക്കണം"
+
+#: templates/webapp/pos.html
 msgid "Weight (kg)"
 msgstr "തൂക്കം (കിലോ)"
 
@@ -6977,6 +7033,14 @@ msgstr "ബാർകോഡ് / SKU കണ്ടെത്തിയില്ല."
 #: templates/webapp/pos.html
 msgid "is out of stock."
 msgstr "സ്റ്റോക്കില്ല."
+
+#: templates/webapp/pos.html
+msgid "Single piece"
+msgstr "ഒറ്റ പീസ്"
+
+#: templates/webapp/pos.html
+msgid "pieces"
+msgstr "പീസുകൾ"
 
 #: templates/webapp/pos.html
 msgid "No IMEI unit is available for this handset."
@@ -11444,10 +11508,6 @@ msgid "Delivery date"
 msgstr "ഡെലിവറി തീയതി"
 
 #: templates/webapp/sports_shop/team_order_detail.html
-msgid "Pieces"
-msgstr "എണ്ണം"
-
-#: templates/webapp/sports_shop/team_order_detail.html
 msgid "Sizes"
 msgstr "സൈസുകൾ"
 
@@ -13691,10 +13751,6 @@ msgid "Cost price"
 msgstr "വാങ്ങിയ വില"
 
 #: apps/webapp/forms.py
-msgid "Selling price"
-msgstr "വിൽപ്പന വില"
-
-#: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "റീഓർഡർ നില"
 
@@ -13732,6 +13788,23 @@ msgstr "…അല്ലെങ്കിൽ പുതിയ ക്ലയന്റ�
 #: apps/webapp/forms.py
 msgid "New client phone"
 msgstr "പുതിയ ക്ലയന്റിന്റെ ഫോൺ"
+
+#: apps/webapp/forms.py
+msgid "Bought as"
+msgstr "വാങ്ങിയത്"
+
+#: apps/webapp/forms.py
+msgid "Single pieces"
+msgstr "ഒറ്റ പീസുകളായി"
+
+#: apps/webapp/forms.py
+msgid "Cost of one piece, or of one pack when bought as a pack."
+msgstr ""
+"ഒരു പീസിന്റെ വില, അല്ലെങ്കിൽ പാക്കായി വാങ്ങിയെങ്കിൽ ഒരു പാക്കിന്റെ വില."
+
+#: apps/webapp/forms.py
+msgid "That pack belongs to another item."
+msgstr "ആ പാക്ക് മറ്റൊരു ഐറ്റത്തിന്റേതാണ്."
 
 #: apps/webapp/forms.py
 msgid ""
@@ -15447,12 +15520,12 @@ msgid "Last 30 days"
 msgstr "കഴിഞ്ഞ 30 ദിവസം"
 
 #: apps/webapp/sales_docs_views.py
-msgid "Quantities and prices must be numbers."
-msgstr "എണ്ണവും വിലയും സംഖ്യകളായിരിക്കണം."
-
-#: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."
 msgstr "ഓരോ വരിയിലും ഐറ്റം തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quantities and prices must be numbers."
+msgstr "എണ്ണവും വിലയും സംഖ്യകളായിരിക്കണം."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Quantity must be more than zero."
@@ -15896,6 +15969,30 @@ msgstr "സ്റ്റാറ്റസ് മാറ്റി."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "ഓർഡറുകളും ടേബിളുകളും"
+
+#: apps/webapp/views.py
+msgid "Pack removed."
+msgstr "പാക്ക് ഒഴിവാക്കി."
+
+#: apps/webapp/views.py
+msgid "Enter numbers for pieces and prices."
+msgstr "പീസിനും വിലയ്ക്കും നമ്പറുകൾ നൽകുക."
+
+#: apps/webapp/views.py
+msgid "Give the pack a name (e.g. Carton) and more than 1 piece in it."
+msgstr "പാക്കിന് ഒരു പേര് (ഉദാ. കാർട്ടൺ) നൽകുക, അതിൽ 1-ൽ കൂടുതൽ പീസ് വേണം."
+
+#: apps/webapp/views.py
+msgid "Packs are for stock items that are not serial-numbered."
+msgstr "സീരിയൽ നമ്പർ ഇല്ലാത്ത സ്റ്റോക്ക് ഐറ്റങ്ങൾക്ക് മാത്രമാണ് പാക്കുകൾ."
+
+#: apps/webapp/views.py
+msgid "That barcode is already used by another item."
+msgstr "ആ ബാർകോഡ് മറ്റൊരു ഐറ്റത്തിന് ഉപയോഗിച്ചിട്ടുണ്ട്."
+
+#: apps/webapp/views.py
+msgid "%(name)s saved: %(n)s pieces."
+msgstr "%(name)s സേവ് ചെയ്തു: %(n)s പീസ്."
 
 #: apps/webapp/views.py
 msgid ""

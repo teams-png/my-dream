@@ -18,4 +18,29 @@
     <a class="btn btn-secondary" href="{% url 'webapp:product_list' %}">{% translate "Cancel" %}</a>
   </div>
 </form>
+{% if packs is not None %}
+<section class="card" id="packs" style="margin-top:18px;max-width:900px">
+  <h3 style="margin:0 0 4px">📦 {% translate "Cartons, boxes & strips" %}</h3>
+  <p style="margin:0 0 10px;color:var(--ink-soft);font-size:14px">{% translate "Buy or sell this item in bigger packs. Stock is always counted in single pieces — selling 1 carton of 24 takes 24 pieces out." %}</p>
+  {% if packs %}
+  <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse">
+    <tr><th style="text-align:start">{% translate "Pack" %}</th><th style="text-align:start">{% translate "Pieces" %}</th><th style="text-align:start">{% translate "Barcode" %}</th><th style="text-align:start">{% translate "Selling price" %}</th><th style="text-align:start">{% translate "Cost" %}</th><th></th></tr>
+    {% for k in packs %}
+    <tr style="border-top:1px solid var(--line)"><td><b>{{ k.name }}</b></td><td>{{ k.factor|floatformat:"-3" }}</td><td>{{ k.barcode|default:"—" }}</td><td>{{ currency }} {{ k.price|floatformat:2 }}{% if not k.selling_price %} <small>({% translate "auto" %})</small>{% endif %}</td><td>{{ k.cost|floatformat:2 }}</td>
+      <td><form method="post" action="{% url 'webapp:product_pack_action' product.id %}" style="margin:0">{% csrf_token %}<input type="hidden" name="pack_id" value="{{ k.id }}"><button class="btn btn-secondary" name="do" value="delete" onclick="return confirm('{% translate "Remove this pack?" %}')">✕</button></form></td></tr>
+    {% endfor %}
+  </table></div>
+  {% endif %}
+  <form method="post" action="{% url 'webapp:product_pack_action' product.id %}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;align-items:end;margin-top:12px">{% csrf_token %}
+    <input type="hidden" name="do" value="save">
+    <label style="display:grid;gap:4px;font-weight:700;font-size:13px">{% translate "Pack name" %}<input name="name" maxlength="40" required placeholder="{% translate 'Carton / Box / Strip' %}" list="packNames"></label>
+    <datalist id="packNames"><option value="Carton"><option value="Box"><option value="Pack"><option value="Strip"><option value="Dozen"><option value="Bag"><option value="Case"></datalist>
+    <label style="display:grid;gap:4px;font-weight:700;font-size:13px">{% translate "Pieces in it" %}<input name="factor" inputmode="decimal" required placeholder="24"></label>
+    <label style="display:grid;gap:4px;font-weight:700;font-size:13px">{% translate "Pack barcode" %}<input name="barcode" maxlength="64"></label>
+    <label style="display:grid;gap:4px;font-weight:700;font-size:13px">{% translate "Selling price" %}<input name="selling_price" inputmode="decimal" placeholder="{% translate 'auto' %}"></label>
+    <label style="display:grid;gap:4px;font-weight:700;font-size:13px">{% translate "Cost" %}<input name="cost_price" inputmode="decimal" placeholder="{% translate 'auto' %}"></label>
+    <button class="btn">＋ {% translate "Add pack" %}</button>
+  </form>
+</section>
+{% endif %}
 {% endblock %}

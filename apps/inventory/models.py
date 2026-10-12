@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.db import models
 
 from apps.common.validators import validate_upload_file
@@ -112,6 +113,32 @@ class Product(TenantScopedModel):
         if self.parent_id and not self.variant_label:
             self.variant_label = " / ".join(v for v in (self.colour, self.size) if v)
         super().save(*args, **kwargs)
+
+
+class ProductPack(TenantScopedModel):
+    """A bigger unit of a product: buy a Carton of 24, sell a Strip of 10 tablets, a Dozen…
+    Stock is always kept in the product's own unit (the piece); a pack moves ``factor`` pieces."""
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="packs")
+    name = models.CharField(max_length=40, help_text="e.g. Carton, Box, Strip, Dozen")
+    factor = models.DecimalField(max_digits=12, decimal_places=3, help_text="How many pieces are in one")
+    barcode = models.CharField(max_length=64, blank=True)
+    selling_price = models.DecimalField(max_digits=12, decimal_places=2, default=0, help_text="0 = pieces × piece price")
+    cost_price = models.DecimalField(max_digits=12, decimal_places=2, default=0, help_text="0 = pieces × piece cost")
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["factor", "id"]
+
+    def __str__(self):
+        return f"{self.name} ({self.factor.normalize():f})"
+
+    @property
+    def price(self):
+        return self.selling_price or (self.factor * self.product.selling_price).quantize(Decimal("0.01"))
+
+    @property
+    def cost(self):
+        return self.cost_price or (self.factor * self.product.cost_price).quantize(Decimal("0.01"))
 
 
 class ProductBatch(TenantScopedModel):

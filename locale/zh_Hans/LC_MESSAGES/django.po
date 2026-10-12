@@ -5902,6 +5902,56 @@ msgstr "商品详情"
 msgid "Shown on the POS, invoices and your website."
 msgstr "显示在收银、发票和您的网站上。"
 
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Cartons, boxes & strips"
+msgstr "整箱、盒装与板装"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid ""
+"Buy or sell this item in bigger packs. Stock is always counted in single "
+"pieces — selling 1 carton of 24 takes 24 pieces out."
+msgstr "以更大的包装买卖此商品。库存始终按单件计算 — 卖出 1 箱 24 件会扣减 24 件。"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack"
+msgstr "包装"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces"
+msgstr "件数"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Barcode"
+msgstr "条码"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Selling price"
+msgstr "售价"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Remove this pack?"
+msgstr "删除此包装？"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack name"
+msgstr "包装名称"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Carton / Box / Strip"
+msgstr "箱 / 盒 / 板"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces in it"
+msgstr "内含件数"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack barcode"
+msgstr "包装条码"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Add pack"
+msgstr "添加包装"
+
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Repair"
 msgstr "维修"
@@ -6733,6 +6783,10 @@ msgid "Select IMEI"
 msgstr "选择 IMEI"
 
 #: templates/webapp/pos.html
+msgid "Sell as"
+msgstr "销售方式"
+
+#: templates/webapp/pos.html
 msgid "Weight (kg)"
 msgstr "重量（kg）"
 
@@ -6787,6 +6841,14 @@ msgstr "未找到条码 / SKU。"
 #: templates/webapp/pos.html
 msgid "is out of stock."
 msgstr "已无库存。"
+
+#: templates/webapp/pos.html
+msgid "Single piece"
+msgstr "单件"
+
+#: templates/webapp/pos.html
+msgid "pieces"
+msgstr "件"
 
 #: templates/webapp/pos.html
 msgid "No IMEI unit is available for this handset."
@@ -11113,10 +11175,6 @@ msgid "Delivery date"
 msgstr "交付日期"
 
 #: templates/webapp/sports_shop/team_order_detail.html
-msgid "Pieces"
-msgstr "件数"
-
-#: templates/webapp/sports_shop/team_order_detail.html
 msgid "Sizes"
 msgstr "尺码"
 
@@ -13276,10 +13334,6 @@ msgid "Cost price"
 msgstr "成本价"
 
 #: apps/webapp/forms.py
-msgid "Selling price"
-msgstr "售价"
-
-#: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "补货点"
 
@@ -13315,6 +13369,22 @@ msgstr "…或新客户名称"
 #: apps/webapp/forms.py
 msgid "New client phone"
 msgstr "新客户电话"
+
+#: apps/webapp/forms.py
+msgid "Bought as"
+msgstr "采购方式"
+
+#: apps/webapp/forms.py
+msgid "Single pieces"
+msgstr "单件"
+
+#: apps/webapp/forms.py
+msgid "Cost of one piece, or of one pack when bought as a pack."
+msgstr "一件的成本；如按包装采购则为一包的成本。"
+
+#: apps/webapp/forms.py
+msgid "That pack belongs to another item."
+msgstr "该包装属于其他商品。"
 
 #: apps/webapp/forms.py
 msgid ""
@@ -14996,12 +15066,12 @@ msgid "Last 30 days"
 msgstr "最近 30 天"
 
 #: apps/webapp/sales_docs_views.py
-msgid "Quantities and prices must be numbers."
-msgstr "数量和价格必须是数字。"
-
-#: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."
 msgstr "请为每一行选择商品。"
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quantities and prices must be numbers."
+msgstr "数量和价格必须是数字。"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Quantity must be more than zero."
@@ -15429,6 +15499,30 @@ msgstr "状态已更新。"
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "订单与餐桌"
+
+#: apps/webapp/views.py
+msgid "Pack removed."
+msgstr "包装已删除。"
+
+#: apps/webapp/views.py
+msgid "Enter numbers for pieces and prices."
+msgstr "请为件数和价格输入数字。"
+
+#: apps/webapp/views.py
+msgid "Give the pack a name (e.g. Carton) and more than 1 piece in it."
+msgstr "请给包装命名（如“箱”），且内含超过 1 件。"
+
+#: apps/webapp/views.py
+msgid "Packs are for stock items that are not serial-numbered."
+msgstr "包装仅适用于无序列号的库存商品。"
+
+#: apps/webapp/views.py
+msgid "That barcode is already used by another item."
+msgstr "该条码已被其他商品使用。"
+
+#: apps/webapp/views.py
+msgid "%(name)s saved: %(n)s pieces."
+msgstr "%(name)s 已保存：%(n)s 件。"
 
 #: apps/webapp/views.py
 msgid ""

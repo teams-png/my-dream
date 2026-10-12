@@ -1216,6 +1216,8 @@ class PurchaseForm(forms.Form):
     supplier = forms.ModelChoiceField(queryset=Supplier.objects.none())
     product = forms.ModelChoiceField(queryset=Product.objects.none())
     warehouse = forms.ModelChoiceField(queryset=Warehouse.objects.none(), label="Branch/Warehouse", required=False)
+    pack = forms.ModelChoiceField(queryset=None, required=False, label=_l("Bought as"),
+                                  empty_label=_l("Single pieces"))
     quantity = forms.DecimalField(max_digits=12, decimal_places=3, initial=1)
     unit_cost = forms.DecimalField(max_digits=12, decimal_places=2)
     bill_number = forms.CharField(max_length=30, required=False)
@@ -1223,10 +1225,21 @@ class PurchaseForm(forms.Form):
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
+        from apps.inventory.models import ProductPack
+        self.fields["pack"].queryset = ProductPack.objects.none()
         if company is not None:
             self.fields["supplier"].queryset = Supplier.objects.for_company(company).filter(is_active=True)
             self.fields["product"].queryset = Product.objects.for_company(company)
             self.fields["warehouse"].queryset = branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True))
+            self.fields["pack"].queryset = ProductPack.objects.for_company(company).filter(is_active=True).select_related("product")
+            self.fields["pack"].label_from_instance = lambda k: f"{k.product.name} — {k.name} ({k.factor.normalize():f})"
+        self.fields["unit_cost"].help_text = _l("Cost of one piece, or of one pack when bought as a pack.")
+
+    def clean(self):
+        data = super().clean()
+        if data.get("pack") and data.get("product") and data["pack"].product_id != data["product"].id:
+            self.add_error("pack", _l("That pack belongs to another item."))
+        return data
 
 
 class SupplierPaymentForm(forms.Form):

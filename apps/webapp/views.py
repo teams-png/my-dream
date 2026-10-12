@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db import transaction
 from django.db.models import Sum, Count, Q, F, DecimalField
 from django.utils.translation import gettext as _
+from django.views.decorators.http import require_POST
 from django.utils.translation import gettext_lazy as _l
 from django.views.decorators.cache import never_cache
 from django.db.models.deletion import ProtectedError
@@ -609,7 +610,51 @@ def product_edit(request, product_id):
             return redirect("webapp:product_list")
     else:
         form = form_class(instance=obj, company=company)
-    return render(request, "webapp/mobile_shop/product_form.html", {"form": form, "editing": True})
+    packs = obj.packs.all() if obj.is_stock_tracked and obj.tracking_type != "serial" else None
+    return render(request, "webapp/mobile_shop/product_form.html", {"form": form, "editing": True, "product": obj,
+                                                                     "packs": packs, "currency": company.default_currency})
+
+
+@login_required
+@require_POST
+def product_pack_action(request, product_id):
+    """Add, change or remove a carton / box / strip of a product."""
+    from apps.inventory.models import ProductPack
+    company = request.company
+    product = get_object_or_404(Product.objects.for_company(company), id=product_id)
+    what = request.POST.get("do")
+    back = reverse("webapp:product_edit", args=[product.id]) + "#packs"
+    if what == "delete":
+        ProductPack.objects.for_company(company).filter(product=product, id=request.POST.get("pack_id") or 0).delete()
+        messages.success(request, _("Pack removed."))
+        return redirect(back)
+    name = (request.POST.get("name") or "").strip()[:40]
+    barcode = (request.POST.get("barcode") or "").strip()[:64]
+    try:
+        factor = Decimal(request.POST.get("factor") or "0")
+        price = Decimal(request.POST.get("selling_price") or "0")
+        cost = Decimal(request.POST.get("cost_price") or "0")
+    except Exception:
+        messages.error(request, _("Enter numbers for pieces and prices."))
+        return redirect(back)
+    if len(name) < 2 or factor <= 1 or factor > 100000 or price < 0 or cost < 0:
+        messages.error(request, _("Give the pack a name (e.g. Carton) and more than 1 piece in it."))
+        return redirect(back)
+    if product.tracking_type == "serial" or not product.is_stock_tracked:
+        messages.error(request, _("Packs are for stock items that are not serial-numbered."))
+        return redirect(back)
+    if barcode and (ProductPack.objects.for_company(company).filter(barcode=barcode).exclude(product=product, name=name).exists()
+                    or Product.objects.for_company(company).filter(sku=barcode).exists()):
+        messages.error(request, _("That barcode is already used by another item."))
+        return redirect(back)
+    pack_id = request.POST.get("pack_id")
+    pack = ProductPack.objects.for_company(company).filter(product=product, id=pack_id).first() if str(pack_id or "").isdigit() else None
+    pack = pack or ProductPack(company=company, product=product)
+    pack.name, pack.factor, pack.barcode = name, factor.quantize(Decimal("0.001")), barcode
+    pack.selling_price, pack.cost_price = price.quantize(Decimal("0.01")), cost.quantize(Decimal("0.01"))
+    pack.save()
+    messages.success(request, _("%(name)s saved: %(n)s pieces.") % {"name": pack.name, "n": f"{pack.factor.normalize():f}"})
+    return redirect(back)
 
 
 @login_required
@@ -3879,7 +3924,8 @@ def purchase_add(request):
                 purchase_services.create_purchase(
                     company=company, user=request.user, supplier=d["supplier"], date=d["date"],
                     warehouse=d["warehouse"] or _default_warehouse(company), bill_number=d["bill_number"],
-                    lines=[{"product": d["product"], "quantity": d["quantity"], "unit_cost": d["unit_cost"]}],
+                    lines=[{"product": d["product"], "quantity": d["quantity"], "unit_cost": d["unit_cost"],
+                            **({"pack": d["pack"]} if d.get("pack") else {})}],
                 )
                 messages.success(request, "Purchase recorded and stock updated.")
                 return redirect("webapp:purchase_list")
@@ -3980,7 +4026,7 @@ def _pos_catalog(company):
     # a product sold in sizes / colours is billed as one of its variants, never as the group itself
     products = list(Product.objects.for_company(company).filter(is_active=True)
                     .exclude(variants__isnull=False).distinct()
-                    .select_related("category").order_by("name"))
+                    .select_related("category").prefetch_related("packs").order_by("name"))
     stock = dict(StockMovement.objects.for_company(company).filter(product__in=products)
                  .values("product").annotate(total=Sum("quantity")).values_list("product", "total"))
     is_mobile_shop = company.business_type.code == "mobile_shop"
@@ -4011,6 +4057,8 @@ def _pos_catalog(company):
             "unit": "ml" if (p.attributes or {}).get("sold_by_ml") else "kg",
             "plu": str((p.attributes or {}).get("scale_code") or ""),
             "img": picture_url(p, company.business_type.code),
+            "packs": [{"id": k.id, "name": k.name, "factor": f"{k.factor.normalize():f}", "price": f"{k.price:.2f}",
+                       "barcode": k.barcode} for k in p.packs.all() if k.is_active],
         })
         list_price, offer = offers(p)
         if list_price is not None and list_price != p.selling_price:
@@ -4204,11 +4252,11 @@ def sales_return_add(request, invoice_id):
     lines = SalesInvoiceLine.objects.filter(invoice=invoice).select_related("product")
 
     already_returned = {}
-    for rl in SalesReturnLine.objects.filter(sales_return__invoice=invoice).values("product_id").annotate(q=Sum("quantity")):
-        already_returned[rl["product_id"]] = rl["q"]
+    for rl in SalesReturnLine.objects.filter(sales_return__invoice=invoice).values("product_id", "unit_factor").annotate(q=Sum("quantity")):
+        already_returned[(rl["product_id"], rl["unit_factor"])] = rl["q"]
 
     for line in lines:
-        line.already_returned_qty = already_returned.get(line.product_id, Decimal("0"))
+        line.already_returned_qty = already_returned.get((line.product_id, line.unit_factor), Decimal("0"))
         line.max_returnable = line.quantity - line.already_returned_qty
 
     if request.method == "POST":
@@ -4222,13 +4270,14 @@ def sales_return_add(request, invoice_id):
                 except Exception:
                     qty = Decimal("0")
                 if qty > 0:
-                    max_returnable = line.quantity - already_returned.get(line.product_id, Decimal("0"))
+                    max_returnable = line.quantity - already_returned.get((line.product_id, line.unit_factor), Decimal("0"))
                     if qty > max_returnable:
                         messages.error(request, f"Can't return more than {max_returnable} of {line.product.name}.")
                         return render(request, "webapp/returns/return_form.html", {
                             "form": form, "invoice": invoice, "lines": lines, "already_returned": already_returned,
                         })
-                    return_lines.append({"product": line.product, "quantity": qty, "unit_price": line.unit_price})
+                    return_lines.append({"product": line.product, "quantity": qty, "unit_price": line.unit_price,
+                                         "unit_name": line.unit_name, "unit_factor": line.unit_factor})
 
             if not return_lines:
                 messages.error(request, "Enter a quantity to return for at least one item.")

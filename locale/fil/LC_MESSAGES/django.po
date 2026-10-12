@@ -6065,6 +6065,59 @@ msgstr "Detalye ng produkto"
 msgid "Shown on the POS, invoices and your website."
 msgstr "Ipinapakita sa POS, invoice at iyong website."
 
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Cartons, boxes & strips"
+msgstr "Mga karton, kahon at strip"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid ""
+"Buy or sell this item in bigger packs. Stock is always counted in single "
+"pieces — selling 1 carton of 24 takes 24 pieces out."
+msgstr ""
+"Bilhin o ibenta ang item na ito sa mas malalaking pakete. Laging binibilang "
+"ang stock bawat piraso — ang pagbenta ng 1 karton na may 24 ay magbabawas ng"
+" 24 na piraso."
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack"
+msgstr "Pakete"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces"
+msgstr "Piraso"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Barcode"
+msgstr "Barcode"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Selling price"
+msgstr "Presyo ng benta"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Remove this pack?"
+msgstr "Alisin ang paketeng ito?"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack name"
+msgstr "Pangalan ng pakete"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Carton / Box / Strip"
+msgstr "Karton / Kahon / Strip"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces in it"
+msgstr "Mga piraso sa loob"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack barcode"
+msgstr "Barcode ng pakete"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Add pack"
+msgstr "Magdagdag ng pakete"
+
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Repair"
 msgstr "Pagkukumpuni"
@@ -6929,6 +6982,10 @@ msgid "Select IMEI"
 msgstr "Pumili ng IMEI"
 
 #: templates/webapp/pos.html
+msgid "Sell as"
+msgstr "Ibenta bilang"
+
+#: templates/webapp/pos.html
 msgid "Weight (kg)"
 msgstr "Timbang (kg)"
 
@@ -6983,6 +7040,14 @@ msgstr "Hindi nakita ang barcode / SKU."
 #: templates/webapp/pos.html
 msgid "is out of stock."
 msgstr "ay out of stock."
+
+#: templates/webapp/pos.html
+msgid "Single piece"
+msgstr "Isang piraso"
+
+#: templates/webapp/pos.html
+msgid "pieces"
+msgstr "piraso"
 
 #: templates/webapp/pos.html
 msgid "No IMEI unit is available for this handset."
@@ -11459,10 +11524,6 @@ msgid "Delivery date"
 msgstr "Petsa ng delivery"
 
 #: templates/webapp/sports_shop/team_order_detail.html
-msgid "Pieces"
-msgstr "Piraso"
-
-#: templates/webapp/sports_shop/team_order_detail.html
 msgid "Sizes"
 msgstr "Mga sukat"
 
@@ -13714,10 +13775,6 @@ msgid "Cost price"
 msgstr "Cost price"
 
 #: apps/webapp/forms.py
-msgid "Selling price"
-msgstr "Presyo ng benta"
-
-#: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "Reorder level"
 
@@ -13755,6 +13812,22 @@ msgstr "…o pangalan ng bagong kliyente"
 #: apps/webapp/forms.py
 msgid "New client phone"
 msgstr "Telepono ng bagong kliyente"
+
+#: apps/webapp/forms.py
+msgid "Bought as"
+msgstr "Binili bilang"
+
+#: apps/webapp/forms.py
+msgid "Single pieces"
+msgstr "Isa-isang piraso"
+
+#: apps/webapp/forms.py
+msgid "Cost of one piece, or of one pack when bought as a pack."
+msgstr "Halaga ng isang piraso, o ng isang pakete kung binili nang pakete."
+
+#: apps/webapp/forms.py
+msgid "That pack belongs to another item."
+msgstr "Ang paketeng iyon ay sa ibang item."
 
 #: apps/webapp/forms.py
 msgid ""
@@ -15474,12 +15547,12 @@ msgid "Last 30 days"
 msgstr "Nakaraang 30 araw"
 
 #: apps/webapp/sales_docs_views.py
-msgid "Quantities and prices must be numbers."
-msgstr "Dapat numero ang dami at presyo."
-
-#: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."
 msgstr "Pumili ng item sa bawat linya."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quantities and prices must be numbers."
+msgstr "Dapat numero ang dami at presyo."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Quantity must be more than zero."
@@ -15925,6 +15998,31 @@ msgstr "Na-update ang status."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "Mga order at mesa"
+
+#: apps/webapp/views.py
+msgid "Pack removed."
+msgstr "Inalis ang pakete."
+
+#: apps/webapp/views.py
+msgid "Enter numbers for pieces and prices."
+msgstr "Maglagay ng numero para sa piraso at presyo."
+
+#: apps/webapp/views.py
+msgid "Give the pack a name (e.g. Carton) and more than 1 piece in it."
+msgstr ""
+"Bigyan ng pangalan ang pakete (hal. Karton) at higit sa 1 piraso sa loob."
+
+#: apps/webapp/views.py
+msgid "Packs are for stock items that are not serial-numbered."
+msgstr "Para lang sa mga stock item na walang serial number ang mga pakete."
+
+#: apps/webapp/views.py
+msgid "That barcode is already used by another item."
+msgstr "Ginagamit na ng ibang item ang barcode na iyon."
+
+#: apps/webapp/views.py
+msgid "%(name)s saved: %(n)s pieces."
+msgstr "Na-save ang %(name)s: %(n)s piraso."
 
 #: apps/webapp/views.py
 msgid ""

@@ -6077,6 +6077,59 @@ msgstr "பொருள் விவரங்கள்"
 msgid "Shown on the POS, invoices and your website."
 msgstr "POS, இன்வாய்ஸ்கள் மற்றும் உங்கள் இணையதளத்தில் காட்டப்படும்."
 
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Cartons, boxes & strips"
+msgstr "அட்டைப்பெட்டிகள், பெட்டிகள் & ஸ்ட்ரிப்கள்"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid ""
+"Buy or sell this item in bigger packs. Stock is always counted in single "
+"pieces — selling 1 carton of 24 takes 24 pieces out."
+msgstr ""
+"இந்தப் பொருளைப் பெரிய பேக்குகளாக வாங்கவும் விற்கவும். ஸ்டாக் எப்போதும் தனித்"
+" துண்டுகளாகவே எண்ணப்படும் — 24 கொண்ட 1 அட்டைப்பெட்டி விற்றால் 24 துண்டுகள் "
+"குறையும்."
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack"
+msgstr "பேக்"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces"
+msgstr "எண்ணிக்கை"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Barcode"
+msgstr "பார்கோடு"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Selling price"
+msgstr "விற்பனை விலை"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Remove this pack?"
+msgstr "இந்தப் பேக்கை நீக்கவா?"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack name"
+msgstr "பேக் பெயர்"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Carton / Box / Strip"
+msgstr "அட்டைப்பெட்டி / பெட்டி / ஸ்ட்ரிப்"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces in it"
+msgstr "உள்ளே உள்ள துண்டுகள்"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack barcode"
+msgstr "பேக் பார்கோடு"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Add pack"
+msgstr "பேக் சேர்"
+
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Repair"
 msgstr "பழுதுநீக்கம்"
@@ -6952,6 +7005,10 @@ msgid "Select IMEI"
 msgstr "IMEI ஐத் தேர்ந்தெடு"
 
 #: templates/webapp/pos.html
+msgid "Sell as"
+msgstr "எப்படி விற்பது"
+
+#: templates/webapp/pos.html
 msgid "Weight (kg)"
 msgstr "எடை (kg)"
 
@@ -7007,6 +7064,14 @@ msgstr "பார்கோடு / SKU கிடைக்கவில்லை."
 #: templates/webapp/pos.html
 msgid "is out of stock."
 msgstr "ஸ்டாக்கில் இல்லை."
+
+#: templates/webapp/pos.html
+msgid "Single piece"
+msgstr "ஒற்றைத் துண்டு"
+
+#: templates/webapp/pos.html
+msgid "pieces"
+msgstr "துண்டுகள்"
 
 #: templates/webapp/pos.html
 msgid "No IMEI unit is available for this handset."
@@ -11505,10 +11570,6 @@ msgid "Delivery date"
 msgstr "டெலிவரி தேதி"
 
 #: templates/webapp/sports_shop/team_order_detail.html
-msgid "Pieces"
-msgstr "எண்ணிக்கை"
-
-#: templates/webapp/sports_shop/team_order_detail.html
 msgid "Sizes"
 msgstr "அளவுகள்"
 
@@ -13782,10 +13843,6 @@ msgid "Cost price"
 msgstr "அடக்க விலை"
 
 #: apps/webapp/forms.py
-msgid "Selling price"
-msgstr "விற்பனை விலை"
-
-#: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "மறு ஆர்டர் நிலை"
 
@@ -13823,6 +13880,22 @@ msgstr "…அல்லது புதிய வாடிக்கையாள�
 #: apps/webapp/forms.py
 msgid "New client phone"
 msgstr "புதிய வாடிக்கையாளர் தொலைபேசி"
+
+#: apps/webapp/forms.py
+msgid "Bought as"
+msgstr "எப்படி வாங்கப்பட்டது"
+
+#: apps/webapp/forms.py
+msgid "Single pieces"
+msgstr "தனித் துண்டுகள்"
+
+#: apps/webapp/forms.py
+msgid "Cost of one piece, or of one pack when bought as a pack."
+msgstr "ஒரு துண்டின் விலை, அல்லது பேக்காக வாங்கியிருந்தால் ஒரு பேக்கின் விலை."
+
+#: apps/webapp/forms.py
+msgid "That pack belongs to another item."
+msgstr "அந்தப் பேக் வேறொரு பொருளுடையது."
 
 #: apps/webapp/forms.py
 msgid ""
@@ -15557,12 +15630,12 @@ msgid "Last 30 days"
 msgstr "கடந்த 30 நாட்கள்"
 
 #: apps/webapp/sales_docs_views.py
-msgid "Quantities and prices must be numbers."
-msgstr "அளவுகளும் விலைகளும் எண்களாக இருக்க வேண்டும்."
-
-#: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."
 msgstr "ஒவ்வொரு வரியிலும் ஒரு பொருளைத் தேர்ந்தெடுக்கவும்."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quantities and prices must be numbers."
+msgstr "அளவுகளும் விலைகளும் எண்களாக இருக்க வேண்டும்."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Quantity must be more than zero."
@@ -16018,6 +16091,32 @@ msgstr "நிலை புதுப்பிக்கப்பட்டது."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "ஆர்டர்களும் மேசைகளும்"
+
+#: apps/webapp/views.py
+msgid "Pack removed."
+msgstr "பேக் நீக்கப்பட்டது."
+
+#: apps/webapp/views.py
+msgid "Enter numbers for pieces and prices."
+msgstr "துண்டுகளுக்கும் விலைகளுக்கும் எண்களை உள்ளிடவும்."
+
+#: apps/webapp/views.py
+msgid "Give the pack a name (e.g. Carton) and more than 1 piece in it."
+msgstr ""
+"பேக்கிற்கு ஒரு பெயர் (எ.கா. அட்டைப்பெட்டி) கொடுத்து, உள்ளே 1-க்கு மேல் "
+"துண்டுகள் வைக்கவும்."
+
+#: apps/webapp/views.py
+msgid "Packs are for stock items that are not serial-numbered."
+msgstr "சீரியல் எண் இல்லாத ஸ்டாக் பொருட்களுக்கு மட்டுமே பேக்குகள்."
+
+#: apps/webapp/views.py
+msgid "That barcode is already used by another item."
+msgstr "அந்தப் பார்கோடு வேறொரு பொருளுக்குப் பயன்படுத்தப்பட்டுள்ளது."
+
+#: apps/webapp/views.py
+msgid "%(name)s saved: %(n)s pieces."
+msgstr "%(name)s சேமிக்கப்பட்டது: %(n)s துண்டுகள்."
 
 #: apps/webapp/views.py
 msgid ""

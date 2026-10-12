@@ -6027,6 +6027,58 @@ msgstr "Ürün ayrıntıları"
 msgid "Shown on the POS, invoices and your website."
 msgstr "POS’ta, faturalarda ve web sitenizde gösterilir."
 
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Cartons, boxes & strips"
+msgstr "Koliler, kutular ve şeritler"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid ""
+"Buy or sell this item in bigger packs. Stock is always counted in single "
+"pieces — selling 1 carton of 24 takes 24 pieces out."
+msgstr ""
+"Bu ürünü daha büyük paketlerle alın veya satın. Stok her zaman adet olarak "
+"sayılır — 24'lük 1 koli satmak 24 adet düşer."
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack"
+msgstr "Paket"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces"
+msgstr "Adet"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Barcode"
+msgstr "Barkod"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Selling price"
+msgstr "Satış fiyatı"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Remove this pack?"
+msgstr "Bu paket kaldırılsın mı?"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack name"
+msgstr "Paket adı"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Carton / Box / Strip"
+msgstr "Koli / Kutu / Şerit"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces in it"
+msgstr "İçindeki adet"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack barcode"
+msgstr "Paket barkodu"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Add pack"
+msgstr "Paket ekle"
+
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Repair"
 msgstr "Onarım"
@@ -6889,6 +6941,10 @@ msgid "Select IMEI"
 msgstr "IMEI seç"
 
 #: templates/webapp/pos.html
+msgid "Sell as"
+msgstr "Şu şekilde sat"
+
+#: templates/webapp/pos.html
 msgid "Weight (kg)"
 msgstr "Ağırlık (kg)"
 
@@ -6943,6 +6999,14 @@ msgstr "Barkod / SKU bulunamadı."
 #: templates/webapp/pos.html
 msgid "is out of stock."
 msgstr "stokta yok."
+
+#: templates/webapp/pos.html
+msgid "Single piece"
+msgstr "Tek adet"
+
+#: templates/webapp/pos.html
+msgid "pieces"
+msgstr "adet"
 
 #: templates/webapp/pos.html
 msgid "No IMEI unit is available for this handset."
@@ -11395,10 +11459,6 @@ msgid "Delivery date"
 msgstr "Teslim tarihi"
 
 #: templates/webapp/sports_shop/team_order_detail.html
-msgid "Pieces"
-msgstr "Adet"
-
-#: templates/webapp/sports_shop/team_order_detail.html
 msgid "Sizes"
 msgstr "Bedenler"
 
@@ -13629,10 +13689,6 @@ msgid "Cost price"
 msgstr "Maliyet fiyatı"
 
 #: apps/webapp/forms.py
-msgid "Selling price"
-msgstr "Satış fiyatı"
-
-#: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "Yeniden sipariş seviyesi"
 
@@ -13668,6 +13724,22 @@ msgstr "…veya yeni müşteri adı"
 #: apps/webapp/forms.py
 msgid "New client phone"
 msgstr "Yeni müşteri telefonu"
+
+#: apps/webapp/forms.py
+msgid "Bought as"
+msgstr "Şu şekilde alındı"
+
+#: apps/webapp/forms.py
+msgid "Single pieces"
+msgstr "Tek tek adet"
+
+#: apps/webapp/forms.py
+msgid "Cost of one piece, or of one pack when bought as a pack."
+msgstr "Bir adedin maliyeti veya paket olarak alındıysa bir paketin maliyeti."
+
+#: apps/webapp/forms.py
+msgid "That pack belongs to another item."
+msgstr "Bu paket başka bir ürüne ait."
 
 #: apps/webapp/forms.py
 msgid ""
@@ -15372,12 +15444,12 @@ msgid "Last 30 days"
 msgstr "Son 30 gün"
 
 #: apps/webapp/sales_docs_views.py
-msgid "Quantities and prices must be numbers."
-msgstr "Miktarlar ve fiyatlar sayı olmalıdır."
-
-#: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."
 msgstr "Her satırda bir ürün seçin."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quantities and prices must be numbers."
+msgstr "Miktarlar ve fiyatlar sayı olmalıdır."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Quantity must be more than zero."
@@ -15816,6 +15888,30 @@ msgstr "Durum güncellendi."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "Siparişler ve masalar"
+
+#: apps/webapp/views.py
+msgid "Pack removed."
+msgstr "Paket kaldırıldı."
+
+#: apps/webapp/views.py
+msgid "Enter numbers for pieces and prices."
+msgstr "Adet ve fiyatlar için sayı girin."
+
+#: apps/webapp/views.py
+msgid "Give the pack a name (e.g. Carton) and more than 1 piece in it."
+msgstr "Pakete bir ad verin (örn. Koli) ve içinde 1'den fazla adet olsun."
+
+#: apps/webapp/views.py
+msgid "Packs are for stock items that are not serial-numbered."
+msgstr "Paketler seri numarasız stok ürünleri içindir."
+
+#: apps/webapp/views.py
+msgid "That barcode is already used by another item."
+msgstr "Bu barkod başka bir üründe kullanılıyor."
+
+#: apps/webapp/views.py
+msgid "%(name)s saved: %(n)s pieces."
+msgstr "%(name)s kaydedildi: %(n)s adet."
 
 #: apps/webapp/views.py
 msgid ""

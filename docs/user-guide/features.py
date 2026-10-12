@@ -245,3 +245,16 @@ VERTICALS.append(dict(
  faq=[("I lost my phone with the authenticator.", "Sign in with one of your recovery codes, then set up two-step login again."),
       ("Does changing language change my data?", "No. Only the screens change; your products and customers stay as typed.")],
 ))
+
+# Cartons, boxes and strips (buy by the carton, sell by the piece)
+for _v in VERTICALS:
+    if _v.get("slug") == "stock":
+        _v["tasks"] = list(_v.get("tasks", [])) + [
+            ("Buy by the carton, sell by the piece",
+             ["Open the item in [[Products]] → edit it. Under <b>Cartons, boxes &amp; strips</b> add a pack: name (e.g. <i>Carton</i>), <b>pieces in it</b> (e.g. 24), its barcode and price (leave the price empty for pieces × piece price).",
+              "Stock is always counted in single pieces. Buying 2 cartons of 24 adds 48; selling 1 carton takes 24 out.",
+              "On a purchase or purchase order choose <b>Item — Carton (24)</b> and type the cost of one carton.",
+              "At the POS, scan the carton barcode, or tap the item and choose <b>Single piece</b> or the carton. Bills and receipts show <i>— Carton (24)</i>.",
+              "Returns give back the same pack: returning 1 carton puts 24 pieces back."],
+             dict(tip="Pharmacy: add a <i>Strip</i> of 10 to sell strips and loose tablets of the same medicine.")),
+        ]

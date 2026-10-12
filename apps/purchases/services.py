@@ -13,6 +13,23 @@ from .models import (
 )
 
 
+def _with_pack(line):
+    """A line may buy a pack (``"pack": ProductPack``): quantity and cost are per pack; stock moves
+    quantity × pieces-per-pack."""
+    line = dict(line)
+    pack = line.pop("pack", None)
+    if pack is not None:
+        if pack.product_id != line["product"].id:
+            raise ValidationError("That pack belongs to another product.")
+        line.setdefault("unit_name", pack.name)
+        line.setdefault("unit_factor", pack.factor)
+    line.setdefault("unit_name", "")
+    line["unit_factor"] = Decimal(line.get("unit_factor") or 1)
+    if line["unit_factor"] <= 0:
+        raise ValidationError("Pieces per pack must be more than 0.")
+    return line
+
+
 @transaction.atomic
 def create_purchase(*, company, user, supplier, date, lines, warehouse, bill_number="", tax_rate=Decimal("0"), due_date=None,
                     currency=None, exchange_rate=None):
@@ -33,6 +50,7 @@ def create_purchase(*, company, user, supplier, date, lines, warehouse, bill_num
     currency = (currency or company.default_currency).upper()
     rate = Decimal(exchange_rate) if exchange_rate is not None else exchange_rate_for(company=company, currency=currency, date=date)
     from apps.sales.services import calculate_tax
+    lines = [_with_pack(l) for l in lines]
     computed_lines = []
     uses_tax_codes = any(l.get("tax_code") is not None for l in lines)
     for line in lines:
@@ -63,6 +81,7 @@ def create_purchase(*, company, user, supplier, date, lines, warehouse, bill_num
             purchase=purchase, product=l["product"], quantity=l["quantity"],
             unit_cost=l["unit_cost"], line_total=Decimal(l["quantity"]) * Decimal(l["unit_cost"]),
             tax_code=l.get("tax_code"), taxable_amount=taxable, tax_amount=line_tax,
+            unit_name=l["unit_name"], unit_factor=l["unit_factor"],
         )
         for l, taxable, line_tax in computed_lines
     ])
@@ -70,7 +89,7 @@ def create_purchase(*, company, user, supplier, date, lines, warehouse, bill_num
     for l in lines:
         record_stock_movement(
             company=company, product=l["product"], warehouse=warehouse,
-            quantity=Decimal(l["quantity"]), reason="purchase", reference=bill_number or f"PUR#{purchase.id}",
+            quantity=Decimal(l["quantity"]) * l["unit_factor"], reason="purchase", reference=bill_number or f"PUR#{purchase.id}",
         )
 
     accounts = {a.code: a for a in Account.objects.for_company(company).filter(code__in=["1200", "2000", "2100"])}
@@ -130,6 +149,7 @@ def process_purchase_return(*, company, user, purchase, date, lines, warehouse, 
     if not lines:
         raise ValidationError("Purchase return must have at least one line.")
 
+    lines = [_with_pack(l) for l in lines]
     total = sum((Decimal(l["quantity"]) * Decimal(l["unit_cost"]) for l in lines), Decimal("0"))
 
     from apps.tenants.services import next_counter_value
@@ -141,6 +161,7 @@ def process_purchase_return(*, company, user, purchase, date, lines, warehouse, 
         PurchaseReturnLine(
             purchase_return=purchase_return, product=l["product"], quantity=l["quantity"],
             unit_cost=l["unit_cost"], line_total=Decimal(l["quantity"]) * Decimal(l["unit_cost"]),
+            unit_name=l["unit_name"], unit_factor=l["unit_factor"],
         )
         for l in lines
     ])
@@ -149,7 +170,8 @@ def process_purchase_return(*, company, user, purchase, date, lines, warehouse, 
         if l["product"].is_stock_tracked:
             record_stock_movement(
                 company=company, product=l["product"], warehouse=warehouse,
-                quantity=-Decimal(l["quantity"]), reason="purchase_return", reference=f"PRET#{purchase_return.id}",
+                quantity=-Decimal(l["quantity"]) * l["unit_factor"], reason="purchase_return",
+                reference=f"PRET#{purchase_return.id}",
             )
 
     accounts = {a.code: a for a in Account.objects.for_company(company).filter(code__in=["1000", "1200", "2000"])}
@@ -204,10 +226,12 @@ def create_purchase_order(*, company, user, supplier, date, lines, reference="",
         company=company, supplier=supplier, date=date, reference=reference, created_by=user,
         expected_date=expected_date, number=f"PO-{next_counter_value(company, 'purchase_order'):05d}",
     )
+    lines = [_with_pack(l) for l in lines]
     PurchaseOrderLine.objects.bulk_create([
         PurchaseOrderLine(
             purchase_order=po, product=l["product"], quantity=l["quantity"], unit_cost=l["unit_cost"],
             line_total=Decimal(l["quantity"]) * Decimal(l["unit_cost"]),
+            unit_name=l["unit_name"], unit_factor=l["unit_factor"],
         )
         for l in lines
     ])
@@ -317,7 +341,8 @@ def create_goods_receipt(*, company, user, purchase_order, warehouse, date, line
         if l["po_line"].product.is_stock_tracked:
             record_stock_movement(
                 company=company, product=l["po_line"].product, warehouse=warehouse,
-                quantity=Decimal(l["quantity"]), reason="goods_receipt", reference=f"GRN#{grn.id}",
+                quantity=Decimal(l["quantity"]) * l["po_line"].unit_factor, reason="goods_receipt",
+                reference=f"GRN#{grn.id}",
             )
 
     seed_chart_of_accounts(company)  # defensive — guarantees 2050 exists even for pre-Phase-32 companies
@@ -384,6 +409,7 @@ def create_bill_from_grn(*, company, user, purchase_order, lines, bill_number=""
         PurchaseLine(
             purchase=purchase, product=l["po_line"].product, quantity=l["quantity"], unit_cost=l["unit_cost"],
             line_total=l["quantity"] * l["unit_cost"], po_line=l["po_line"],
+            unit_name=l["po_line"].unit_name, unit_factor=l["po_line"].unit_factor,
         )
         for l in resolved
     ])

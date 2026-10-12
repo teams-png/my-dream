@@ -53,12 +53,24 @@ def _catalog(company):
             for p in Product.objects.for_company(company).filter(is_active=True).order_by("name")[:3000]]
 
 
-def _parse_lines(request, company):
-    """Reads product[] / qty[] / price[] from the editor. Returns (lines, errors)."""
+def _parse_lines(request, company, allow_packs=False):
+    """Reads product[] / qty[] / price[] from the editor. Returns (lines, errors).
+    With ``allow_packs`` an item may be "<product id>:<pack id>" (bought by the carton, box…)."""
+    from apps.inventory.models import ProductPack
+    values = request.POST.getlist("product")
     products = {str(p.id): p for p in Product.objects.for_company(company).filter(
-        id__in=[v for v in request.POST.getlist("product") if v.isdigit()])}
+        id__in=[v.split(":")[0] for v in values if v.split(":")[0].isdigit()])}
+    packs = {}
+    if allow_packs:
+        pack_ids = [v.split(":")[1] for v in values if ":" in v and v.split(":")[1].isdigit()]
+        packs = {str(k.id): k for k in ProductPack.objects.for_company(company).filter(id__in=pack_ids, is_active=True)}
     lines, errors = [], []
-    for pid, qty, price in zip(request.POST.getlist("product"), request.POST.getlist("qty"), request.POST.getlist("price")):
+    for raw, qty, price in zip(values, request.POST.getlist("qty"), request.POST.getlist("price")):
+        pid, _sep, pack_id = raw.partition(":")
+        pack = packs.get(pack_id) if pack_id else None
+        if pack_id and (pack is None or str(pack.product_id) != pid):
+            errors.append(_("Choose an item on every line."))
+            continue
         if not pid and not qty:
             continue
         try:
@@ -71,7 +83,10 @@ def _parse_lines(request, company):
         elif q <= 0 or p < 0:
             errors.append(_("Quantity must be more than zero."))
         else:
-            lines.append({"product": products[pid], "quantity": q.quantize(Decimal("0.001")), "unit_price": p.quantize(Decimal("0.01"))})
+            line = {"product": products[pid], "quantity": q.quantize(Decimal("0.001")), "unit_price": p.quantize(Decimal("0.01"))}
+            if pack is not None:
+                line["pack"] = pack
+            lines.append(line)
     if not lines and not errors:
         errors.append(_("Add at least one item."))
     return lines, list(dict.fromkeys(errors))

@@ -25,7 +25,13 @@
 <li><span class="ui">Serial numbers</span> → <span class="ui">Add serial numbers to stock</span> — one per line, or scan one after another.</li>
 </ol></div></details><details class="task" open><summary>Move stock between branches</summary><div class="body"><ol class="steps">
 <li><span class="ui">Transfer stock</span> → choose From and To, items and quantities → <span class="ui">Move stock</span>.</li>
-</ol></div></details></section>
+</ol></div></details><details class="task" open><summary>Buy by the carton, sell by the piece</summary><div class="body"><ol class="steps">
+<li>Open the item in <span class="ui">Products</span> → edit it. Under <b>Cartons, boxes &amp; strips</b> add a pack: name (e.g. <i>Carton</i>), <b>pieces in it</b> (e.g. 24), its barcode and price (leave the price empty for pieces × piece price).</li>
+<li>Stock is always counted in single pieces. Buying 2 cartons of 24 adds 48; selling 1 carton takes 24 out.</li>
+<li>On a purchase or purchase order choose <b>Item — Carton (24)</b> and type the cost of one carton.</li>
+<li>At the POS, scan the carton barcode, or tap the item and choose <b>Single piece</b> or the carton. Bills and receipts show <i>— Carton (24)</i>.</li>
+<li>Returns give back the same pack: returning 1 carton puts 24 pieces back.</li>
+</ol><div class="tip"><b>Tip:</b> Pharmacy: add a <i>Strip</i> of 10 to sell strips and loose tablets of the same medicine.</div></div></details></section>
 <section class="blk" id="auto"><h2><span class="n">⚙️</span>What the system does for you</h2><ul class="tick"><li>Every sale, purchase, return and transfer updates stock.</li><li>Low-stock and expiry reminders are created every day.</li></ul></section>
 <section class="blk" id="reports"><h2><span class="n">📈</span>Reports &amp; numbers</h2><div class="tw"><table><thead><tr><th>Report / number</th><th>What it tells you</th></tr></thead><tbody><tr><td>Stock value (cost)</td><td>What your stock is worth</td></tr><tr><td>Stock history</td><td>Every movement</td></tr><tr><td>Differences</td><td>Shortage and extra value from counts</td></tr></tbody></table></div><p>Also open <a href="getting-started.html#reports">Analytics</a> for sales, expenses and profit charts.</p></section>
 <section class="blk" id="status"><h2><span class="n">🏷️</span>Status guide</h2><div class="tw"><table><thead><tr><th>Status</th><th>Meaning</th></tr></thead><tbody><tr><td><span class="badge b-ok">In stock</span></td><td></td></tr><tr><td><span class="badge b-warn">Running low</span></td><td>At or below reorder level</td></tr><tr><td><span class="badge b-bad">Out of stock</span></td><td></td></tr><tr><td><span class="badge b-bad">Expired</span></td><td>Past expiry date</td></tr></tbody></table></div></section>

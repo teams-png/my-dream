@@ -370,6 +370,7 @@ urlpatterns = [
     path("mobile-shop/products/", views.product_list, name="product_list"),
     path("mobile-shop/products/add/", views.product_add, name="product_add"),
     path("mobile-shop/products/<int:product_id>/edit/", views.product_edit, name="product_edit"),
+    path("products/<int:product_id>/packs/", views.product_pack_action, name="product_pack_action"),
     path("mobile-shop/products/<int:product_id>/delete/", views.product_delete, name="product_delete"),
     path("mobile-shop/products/<int:product_id>/variants/add/", views.product_variant_add, name="product_variant_add"),
     path("mobile-shop/products/<int:product_id>/barcode/", views.product_barcode, name="product_barcode"),

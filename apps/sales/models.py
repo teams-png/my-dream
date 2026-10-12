@@ -229,6 +229,15 @@ class SalesInvoiceLine(models.Model):
     quantity = models.DecimalField(max_digits=12, decimal_places=3)
     unit_price = models.DecimalField(max_digits=12, decimal_places=2)
     line_total = models.DecimalField(max_digits=14, decimal_places=2)
+    unit_name = models.CharField(max_length=40, blank=True)  # pack sold / bought (empty = the product's own unit)
+    unit_factor = models.DecimalField(max_digits=12, decimal_places=3, default=1)  # pieces per that unit
+
+    @property
+    def unit_label(self):
+        """" — Carton (24)" when this line is a pack, else ""."""
+        if not self.unit_name:
+            return ""
+        return f" — {self.unit_name} ({self.unit_factor.normalize():f})"
     tax_code = models.ForeignKey(TaxCode, null=True, blank=True, on_delete=models.PROTECT)
     taxable_amount = models.DecimalField(max_digits=14, decimal_places=2, default=0)
     tax_amount = models.DecimalField(max_digits=14, decimal_places=2, default=0)
@@ -278,6 +287,15 @@ class SalesReturnLine(models.Model):
     quantity = models.DecimalField(max_digits=12, decimal_places=3)
     unit_price = models.DecimalField(max_digits=12, decimal_places=2)
     line_total = models.DecimalField(max_digits=14, decimal_places=2)
+    unit_name = models.CharField(max_length=40, blank=True)  # pack sold / bought (empty = the product's own unit)
+    unit_factor = models.DecimalField(max_digits=12, decimal_places=3, default=1)  # pieces per that unit
+
+    @property
+    def unit_label(self):
+        """" — Carton (24)" when this line is a pack, else ""."""
+        if not self.unit_name:
+            return ""
+        return f" — {self.unit_name} ({self.unit_factor.normalize():f})"
     tax_amount = models.DecimalField(max_digits=14, decimal_places=2, default=0)
     batch = models.ForeignKey("inventory.ProductBatch", null=True, blank=True, on_delete=models.PROTECT)
     serial = models.ForeignKey("inventory.ProductSerial", null=True, blank=True, on_delete=models.PROTECT)

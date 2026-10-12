@@ -37,6 +37,15 @@ class PurchaseOrderLine(models.Model):
     quantity = models.DecimalField(max_digits=12, decimal_places=3)
     unit_cost = models.DecimalField(max_digits=12, decimal_places=2)
     line_total = models.DecimalField(max_digits=14, decimal_places=2)
+    unit_name = models.CharField(max_length=40, blank=True)  # pack sold / bought (empty = the product's own unit)
+    unit_factor = models.DecimalField(max_digits=12, decimal_places=3, default=1)  # pieces per that unit
+
+    @property
+    def unit_label(self):
+        """" — Carton (24)" when this line is a pack, else ""."""
+        if not self.unit_name:
+            return ""
+        return f" — {self.unit_name} ({self.unit_factor.normalize():f})"
 
 
 class GoodsReceiptNote(TenantScopedModel):
@@ -96,6 +105,15 @@ class PurchaseLine(models.Model):
     quantity = models.DecimalField(max_digits=12, decimal_places=3)
     unit_cost = models.DecimalField(max_digits=12, decimal_places=2)
     line_total = models.DecimalField(max_digits=14, decimal_places=2)
+    unit_name = models.CharField(max_length=40, blank=True)  # pack sold / bought (empty = the product's own unit)
+    unit_factor = models.DecimalField(max_digits=12, decimal_places=3, default=1)  # pieces per that unit
+
+    @property
+    def unit_label(self):
+        """" — Carton (24)" when this line is a pack, else ""."""
+        if not self.unit_name:
+            return ""
+        return f" — {self.unit_name} ({self.unit_factor.normalize():f})"
     tax_code = models.ForeignKey("sales.TaxCode", null=True, blank=True, on_delete=models.PROTECT)
     taxable_amount = models.DecimalField(max_digits=14, decimal_places=2, default=0)
     tax_amount = models.DecimalField(max_digits=14, decimal_places=2, default=0)
@@ -144,3 +162,12 @@ class PurchaseReturnLine(models.Model):
     quantity = models.DecimalField(max_digits=12, decimal_places=3)
     unit_cost = models.DecimalField(max_digits=12, decimal_places=2)
     line_total = models.DecimalField(max_digits=14, decimal_places=2)
+    unit_name = models.CharField(max_length=40, blank=True)  # pack sold / bought (empty = the product's own unit)
+    unit_factor = models.DecimalField(max_digits=12, decimal_places=3, default=1)  # pieces per that unit
+
+    @property
+    def unit_label(self):
+        """" — Carton (24)" when this line is a pack, else ""."""
+        if not self.unit_name:
+            return ""
+        return f" — {self.unit_name} ({self.unit_factor.normalize():f})"

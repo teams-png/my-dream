@@ -6080,6 +6080,58 @@ msgstr "Détails du produit"
 msgid "Shown on the POS, invoices and your website."
 msgstr "Affiché en caisse, sur les factures et sur votre site."
 
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Cartons, boxes & strips"
+msgstr "Cartons, boîtes et plaquettes"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid ""
+"Buy or sell this item in bigger packs. Stock is always counted in single "
+"pieces — selling 1 carton of 24 takes 24 pieces out."
+msgstr ""
+"Achetez ou vendez cet article en conditionnements plus grands. Le stock est "
+"toujours compté à la pièce — vendre 1 carton de 24 retire 24 pièces."
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack"
+msgstr "Conditionnement"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces"
+msgstr "Pièces"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Barcode"
+msgstr "Code-barres"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Selling price"
+msgstr "Prix de vente"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Remove this pack?"
+msgstr "Supprimer ce conditionnement ?"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack name"
+msgstr "Nom du conditionnement"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Carton / Box / Strip"
+msgstr "Carton / Boîte / Plaquette"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pieces in it"
+msgstr "Pièces dedans"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Pack barcode"
+msgstr "Code-barres du conditionnement"
+
+#: templates/webapp/mobile_shop/product_form.html
+msgid "Add pack"
+msgstr "Ajouter un conditionnement"
+
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Repair"
 msgstr "Réparation"
@@ -6953,6 +7005,10 @@ msgid "Select IMEI"
 msgstr "Choisir l’IMEI"
 
 #: templates/webapp/pos.html
+msgid "Sell as"
+msgstr "Vendre en"
+
+#: templates/webapp/pos.html
 msgid "Weight (kg)"
 msgstr "Poids (kg)"
 
@@ -7007,6 +7063,14 @@ msgstr "Code-barres / référence introuvable."
 #: templates/webapp/pos.html
 msgid "is out of stock."
 msgstr "est en rupture de stock."
+
+#: templates/webapp/pos.html
+msgid "Single piece"
+msgstr "Pièce seule"
+
+#: templates/webapp/pos.html
+msgid "pieces"
+msgstr "pièces"
 
 #: templates/webapp/pos.html
 msgid "No IMEI unit is available for this handset."
@@ -11503,10 +11567,6 @@ msgid "Delivery date"
 msgstr "Date de livraison"
 
 #: templates/webapp/sports_shop/team_order_detail.html
-msgid "Pieces"
-msgstr "Pièces"
-
-#: templates/webapp/sports_shop/team_order_detail.html
 msgid "Sizes"
 msgstr "Tailles"
 
@@ -13759,10 +13819,6 @@ msgid "Cost price"
 msgstr "Prix de revient"
 
 #: apps/webapp/forms.py
-msgid "Selling price"
-msgstr "Prix de vente"
-
-#: apps/webapp/forms.py
 msgid "Reorder level"
 msgstr "Seuil de réapprovisionnement"
 
@@ -13800,6 +13856,22 @@ msgstr "…ou nom du nouveau client"
 #: apps/webapp/forms.py
 msgid "New client phone"
 msgstr "Téléphone du nouveau client"
+
+#: apps/webapp/forms.py
+msgid "Bought as"
+msgstr "Acheté en"
+
+#: apps/webapp/forms.py
+msgid "Single pieces"
+msgstr "Pièces seules"
+
+#: apps/webapp/forms.py
+msgid "Cost of one piece, or of one pack when bought as a pack."
+msgstr "Coût d'une pièce, ou d'un conditionnement si acheté ainsi."
+
+#: apps/webapp/forms.py
+msgid "That pack belongs to another item."
+msgstr "Ce conditionnement appartient à un autre article."
 
 #: apps/webapp/forms.py
 msgid ""
@@ -15526,12 +15598,12 @@ msgid "Last 30 days"
 msgstr "30 derniers jours"
 
 #: apps/webapp/sales_docs_views.py
-msgid "Quantities and prices must be numbers."
-msgstr "Les quantités et les prix doivent être des nombres."
-
-#: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."
 msgstr "Choisissez un article sur chaque ligne."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quantities and prices must be numbers."
+msgstr "Les quantités et les prix doivent être des nombres."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Quantity must be more than zero."
@@ -15979,6 +16051,31 @@ msgstr "Statut mis à jour."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "Commandes et tables"
+
+#: apps/webapp/views.py
+msgid "Pack removed."
+msgstr "Conditionnement supprimé."
+
+#: apps/webapp/views.py
+msgid "Enter numbers for pieces and prices."
+msgstr "Saisissez des nombres pour les pièces et les prix."
+
+#: apps/webapp/views.py
+msgid "Give the pack a name (e.g. Carton) and more than 1 piece in it."
+msgstr "Donnez un nom (ex. Carton) et plus d'une pièce dedans."
+
+#: apps/webapp/views.py
+msgid "Packs are for stock items that are not serial-numbered."
+msgstr ""
+"Les conditionnements sont pour les articles en stock sans numéro de série."
+
+#: apps/webapp/views.py
+msgid "That barcode is already used by another item."
+msgstr "Ce code-barres est déjà utilisé par un autre article."
+
+#: apps/webapp/views.py
+msgid "%(name)s saved: %(n)s pieces."
+msgstr "%(name)s enregistré : %(n)s pièces."
 
 #: apps/webapp/views.py
 msgid ""

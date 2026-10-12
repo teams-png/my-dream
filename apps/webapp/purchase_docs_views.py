@@ -39,8 +39,18 @@ def _supplier(request, company):
 
 
 def _cost_catalog(company):
-    return [{"id": p.id, "name": p.name, "sku": p.sku, "price": f"{p.cost_price:.2f}"}
-            for p in Product.objects.for_company(company).filter(is_active=True).order_by("name")[:3000]]
+    """Items for the purchase-order editor; a product bought by the carton / box also shows as its pack."""
+    from apps.inventory.models import ProductPack
+    out = []
+    packs = {}
+    for k in ProductPack.objects.for_company(company).filter(is_active=True).select_related("product"):
+        packs.setdefault(k.product_id, []).append(k)
+    for p in Product.objects.for_company(company).filter(is_active=True).order_by("name")[:3000]:
+        out.append({"id": p.id, "name": p.name, "sku": p.sku, "price": f"{p.cost_price:.2f}"})
+        for k in packs.get(p.id, []):
+            out.append({"id": f"{p.id}:{k.id}", "name": f"{p.name} — {k.name} ({k.factor.normalize():f})", "sku": k.barcode,
+                        "price": f"{k.cost:.2f}"})
+    return out
 
 
 def _po_share(company, po, lines, total):
@@ -80,7 +90,7 @@ def po_add(request):
     if company is None:
         return render(request, "webapp/no_company.html")
     if request.method == "POST":
-        lines, errors = _parse_lines(request, company)
+        lines, errors = _parse_lines(request, company, allow_packs=True)
         supplier = _supplier(request, company)
         if supplier is None:
             errors.append(_("Choose a supplier or type a new supplier's name."))
@@ -91,7 +101,8 @@ def po_add(request):
                         company=company, user=request.user, supplier=supplier, reference=(request.POST.get("reference") or "")[:50],
                         date=parse_date(request.POST.get("date") or "") or timezone.localdate(),
                         expected_date=parse_date(request.POST.get("expected_date") or "") or None,
-                        lines=[{"product": l["product"], "quantity": l["quantity"], "unit_cost": l["unit_price"]} for l in lines])
+                        lines=[{"product": l["product"], "quantity": l["quantity"], "unit_cost": l["unit_price"],
+                                **({"pack": l["pack"]} if l.get("pack") else {})} for l in lines])
                     purchases.confirm_purchase_order(company=company, purchase_order=po)
                 messages.success(request, _("Purchase order %(number)s created.") % {"number": po.number})
                 return redirect("webapp:po_detail", po.id)
@@ -200,12 +211,15 @@ def purchase_detail(request, purchase_id):
     returned = {}
     for ret in bill.returns.prefetch_related("lines"):
         for rl in ret.lines.all():
-            returned[rl.product_id] = returned.get(rl.product_id, ZERO) + rl.quantity
+            key = (rl.product_id, rl.unit_factor)
+            returned[key] = returned.get(key, ZERO) + rl.quantity
     purchased = {}
     for line in lines:
-        purchased[line.product_id] = purchased.get(line.product_id, ZERO) + line.quantity
+        key = (line.product_id, line.unit_factor)
+        purchased[key] = purchased.get(key, ZERO) + line.quantity
     for line in lines:
-        line.can_return = max(purchased[line.product_id] - returned.get(line.product_id, ZERO), ZERO)
+        key = (line.product_id, line.unit_factor)
+        line.can_return = max(purchased[key] - returned.get(key, ZERO), ZERO)
     if request.method == "POST" and request.POST.get("action") == "return":
         picked = []
         for line in lines:
@@ -218,7 +232,8 @@ def purchase_detail(request, purchase_id):
                     messages.error(request, _("You can return at most %(qty)s of %(item)s.") % {
                         "qty": line.can_return.normalize(), "item": line.product.name})
                     return redirect("webapp:purchase_detail", bill.id)
-                picked.append({"product": line.product, "quantity": qty, "unit_cost": line.unit_cost})
+                picked.append({"product": line.product, "quantity": qty, "unit_cost": line.unit_cost,
+                               "unit_name": line.unit_name, "unit_factor": line.unit_factor})
         method = request.POST.get("refund_method")
         if method not in dict(PurchaseReturn.REFUND_METHOD):
             method = "supplier_credit"

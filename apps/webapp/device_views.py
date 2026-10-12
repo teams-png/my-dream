@@ -70,7 +70,7 @@ def invoice_receipt_data(request, invoice_id):
         "company": _header(request.company),
         "title": invoice.invoice_number,
         "meta": [invoice.date.strftime("%d %b %Y"), str(invoice.customer)],
-        "lines": [{"qty": _qty(l.quantity), "name": l.product.name, "amount": _money(l.line_total), "extra": []} for l in lines],
+        "lines": [{"qty": _qty(l.quantity), "name": l.product.name + l.unit_label, "amount": _money(l.line_total), "extra": []} for l in lines],
         "totals": [["Subtotal", _money(invoice.subtotal)]]
                   + ([["Discount", "-" + _money(invoice.discount_amount)]] if invoice.discount_amount else [])
                   + ([["Tax", _money(invoice.tax_amount)]] if invoice.tax_amount else []),

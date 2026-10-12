@@ -148,6 +148,12 @@
     <div class="dlg-foot"><button class="rp-btn" type="button" data-close>{% translate "Cancel" %}</button></div>
   </dialog>
 
+  <dialog class="rp-dialog" id="packDialog" aria-labelledby="packTitle">
+    <div class="dlg-head"><h3 id="packTitle">{% translate "Sell as" %}</h3><p id="packProduct"></p><button class="dlg-close" type="button" data-close aria-label="{% translate 'Close' %}">✕</button></div>
+    <div class="dlg-body"><div class="pick-list" id="packList"></div></div>
+    <div class="dlg-foot"><button class="rp-btn" type="button" data-close>{% translate "Cancel" %}</button></div>
+  </dialog>
+
   <dialog class="rp-dialog" id="weighDialog" aria-labelledby="weighName">
     <form method="dialog" id="weighForm">
       <div class="dlg-head"><h3 id="weighName"></h3><p id="weighPrice"></p><button class="dlg-close" type="button" data-close aria-label="{% translate 'Close' %}">✕</button></div>
@@ -185,6 +191,7 @@ window.POS_CFG = {
     results: "{% if service_billing %}{% translate 'items' %}{% else %}{% translate 'products' %}{% endif %}", inStock: "{% translate 'in stock' %}", low: "{% translate 'Low' %}", out: "{% translate 'Sold out' %}",
     item: "{% translate 'item' %}", items: "{% translate 'items' %}", each: "{% translate 'each' %}", remove: "{% translate 'Remove' %}",
     added: "{% translate 'added' %}", notFound: "{% translate 'Barcode / SKU not found.' %}", outOfStock: "{% translate 'is out of stock.' %}",
+    piece: "{% translate 'Single piece' %}", pieces: "{% translate 'pieces' %}",
     noImei: "{% translate 'No IMEI unit is available for this handset.' %}", cartEmpty: "{% translate 'Cart is empty.' %}",
     processing: "{% translate 'Processing…' %}", error: "{% translate 'Something went wrong.' %}", exact: "{% translate 'Exact' %}",
     short: "{% translate 'Still to pay' %}", change: "{% translate 'Change due' %}", subtotal: "{% translate 'Subtotal' %}",

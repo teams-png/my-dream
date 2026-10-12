@@ -254,6 +254,14 @@ msgid "Menu & Ingredients"
 msgstr "菜单与原料"
 
 #: templates/base.html
+msgid "Job cards"
+msgstr "工单"
+
+#: templates/base.html
+msgid "Appointments calendar"
+msgstr "预约日历"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "套餐 / 课时"
 
@@ -4953,6 +4961,348 @@ msgstr "复制"
 msgid "Share…"
 msgstr "分享…"
 
+#: templates/webapp/jobs/board.html
+msgid "New job / appointment"
+msgstr "新工单 / 预约"
+
+#: templates/webapp/jobs/board.html
+msgid "Calendar"
+msgstr "日历"
+
+#: templates/webapp/jobs/board.html
+msgid "Search job no., name, phone, plate…"
+msgstr "搜索工单号、姓名、电话、车牌…"
+
+#: templates/webapp/jobs/board.html
+msgid "All staff"
+msgstr "全部员工"
+
+#: templates/webapp/jobs/board.html
+msgid "Find"
+msgstr "查找"
+
+#: templates/webapp/jobs/board.html
+msgid "All open"
+msgstr "全部未完成"
+
+#: templates/webapp/jobs/board.html
+msgid "Late"
+msgstr "已逾期"
+
+#: templates/webapp/jobs/board.html
+msgid "Urgent"
+msgstr "紧急"
+
+#: templates/webapp/jobs/board.html
+msgid "Nothing here."
+msgstr "这里什么都没有。"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Previous day"
+msgstr "前一天"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Next day"
+msgstr "后一天"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Day"
+msgstr "日期"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Go"
+msgstr "前往"
+
+#: templates/webapp/jobs/calendar.html
+msgid "New appointment"
+msgstr "新预约"
+
+#: templates/webapp/jobs/calendar.html
+msgid "appointments"
+msgstr "个预约"
+
+#: templates/webapp/jobs/calendar.html
+msgid "No staff yet"
+msgstr "尚无员工"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Free all day."
+msgstr "全天空闲。"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Add your staff under Staff & HR to plan appointments per person."
+msgstr "在“员工与人事”中添加员工，即可按人安排预约。"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Staff phone pages"
+msgstr "员工手机页面"
+
+#: templates/webapp/jobs/calendar.html
+msgid ""
+"Each staff member gets a private link (no login) showing only their jobs, "
+"with buttons to start, pause and mark ready."
+msgstr "每位员工都会获得一个私人链接（无需登录），只显示自己的工单，并有开始、暂停和标记完成的按钮。"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Send link"
+msgstr "发送链接"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Make a new private link? The old link stops working."
+msgstr "创建新的私人链接？旧链接将失效。"
+
+#: templates/webapp/jobs/calendar.html
+msgid "New link"
+msgstr "新链接"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Turn off"
+msgstr "关闭"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Make link"
+msgstr "生成链接"
+
+#: templates/webapp/jobs/detail.html
+msgid "Appointment"
+msgstr "预约"
+
+#: templates/webapp/jobs/detail.html
+msgid "min"
+msgstr "分钟"
+
+#: templates/webapp/jobs/detail.html
+msgid "Ready by"
+msgstr "预计完成日期"
+
+#: templates/webapp/jobs/detail.html
+msgid "Started"
+msgstr "开始时间"
+
+#: templates/webapp/jobs/detail.html
+msgid "Finished"
+msgstr "完成时间"
+
+#: templates/webapp/jobs/detail.html
+msgid "Bill"
+msgstr "账单"
+
+#: templates/webapp/jobs/detail.html
+msgid "Cancel this job?"
+msgstr "取消此工单？"
+
+#: templates/webapp/jobs/detail.html
+msgid "Booked / to start"
+msgstr "已预约 / 待开始"
+
+#: templates/webapp/jobs/detail.html
+msgid "Start work"
+msgstr "开始工作"
+
+#: templates/webapp/jobs/detail.html
+msgid "Waiting (parts / approval)"
+msgstr "等待中（配件 / 批准）"
+
+#: templates/webapp/jobs/detail.html
+msgid "Ready for the customer"
+msgstr "可交付给顾客"
+
+#: templates/webapp/jobs/detail.html
+msgid "Cancel job"
+msgstr "取消工单"
+
+#: templates/webapp/jobs/detail.html
+msgid "Parts and work"
+msgstr "配件与工时"
+
+#: templates/webapp/jobs/detail.html
+msgid "Item / work"
+msgstr "项目 / 工作"
+
+#: templates/webapp/jobs/detail.html
+msgid "Item / part from stock"
+msgstr "库存中的商品 / 配件"
+
+#: templates/webapp/jobs/detail.html
+msgid "— labour / service (type below) —"
+msgstr "— 工时 / 服务（在下方填写）—"
+
+#: templates/webapp/jobs/detail.html
+msgid "Description"
+msgstr "描述"
+
+#: templates/webapp/jobs/detail.html
+msgid "e.g. Labour 1 hour"
+msgstr "例如 工时 1 小时"
+
+#: templates/webapp/jobs/detail.html
+msgid "auto"
+msgstr "自动"
+
+#: templates/webapp/jobs/detail.html
+msgid "Payment"
+msgstr "付款"
+
+#: templates/webapp/jobs/detail.html
+msgid "Card"
+msgstr "刷卡"
+
+#: templates/webapp/jobs/detail.html
+msgid "Bank transfer"
+msgstr "银行转账"
+
+#: templates/webapp/jobs/detail.html
+msgid "Pay later (on account)"
+msgstr "稍后付款（记账）"
+
+#: templates/webapp/jobs/detail.html
+msgid "Make bill & close job"
+msgstr "开票并关闭工单"
+
+#: templates/webapp/jobs/detail.html
+msgid "Close this job without a bill (warranty, package, free)?"
+msgstr "不开票关闭此工单（保修、套餐、免费）？"
+
+#: templates/webapp/jobs/detail.html
+msgid "Close without a bill"
+msgstr "不开票关闭"
+
+#: templates/webapp/jobs/detail.html
+msgid "WhatsApp status"
+msgstr "WhatsApp 状态"
+
+#: templates/webapp/jobs/detail.html
+msgid "Print job card"
+msgstr "打印工单"
+
+#: templates/webapp/jobs/detail.html
+msgid "Customer's status page:"
+msgstr "顾客状态页面："
+
+#: templates/webapp/jobs/detail.html
+msgid "— no staff —"
+msgstr "— 无员工 —"
+
+#: templates/webapp/jobs/detail.html
+msgid "Type (diagnosis, update, advice…)"
+msgstr "类型（诊断、更新、建议…）"
+
+#: templates/webapp/jobs/detail.html
+msgid "What was found / done / advised"
+msgstr "发现了什么 / 做了什么 / 建议了什么"
+
+#: templates/webapp/jobs/detail.html
+msgid "Follow-up on"
+msgstr "回访日期"
+
+#: templates/webapp/jobs/detail.html
+msgid "Add note"
+msgstr "添加备注"
+
+#: templates/webapp/jobs/detail.html
+msgid "Follow-up"
+msgstr "回访"
+
+#: templates/webapp/jobs/new.html
+msgid "New job"
+msgstr "新工单"
+
+#: templates/webapp/jobs/new.html
+msgid "What is it about"
+msgstr "关于什么"
+
+#: templates/webapp/jobs/new.html
+msgid "Leave empty if it is the customer."
+msgstr "如果就是顾客本人请留空。"
+
+#: templates/webapp/jobs/new.html
+msgid "When and who"
+msgstr "时间和人员"
+
+#: templates/webapp/jobs/new.html
+msgid "Empty for a walk-in."
+msgstr "无预约到店请留空。"
+
+#: templates/webapp/jobs/new.html
+msgid "Save job"
+msgstr "保存工单"
+
+#: templates/webapp/jobs/print.html
+msgid "Job card"
+msgstr "工单"
+
+#: templates/webapp/jobs/print.html
+msgid "Job / complaint"
+msgstr "工作内容 / 故障"
+
+#: templates/webapp/jobs/print.html
+msgid "Work to be done / parts used:"
+msgstr "需完成的工作 / 使用的配件："
+
+#: templates/webapp/jobs/print.html
+msgid "Check your job status online:"
+msgstr "在线查看您的工单状态："
+
+#: templates/webapp/jobs/print.html
+msgid "Customer signature"
+msgstr "客户签名"
+
+#: templates/webapp/jobs/print.html
+msgid "Received by"
+msgstr "收货人"
+
+#: templates/webapp/jobs/status.html
+msgid "This job was cancelled."
+msgstr "此工单已取消。"
+
+#: templates/webapp/jobs/status.html
+msgid "Waiting for parts or your approval."
+msgstr "正在等待配件或您的批准。"
+
+#: templates/webapp/jobs/status.html
+msgid "Expected ready by"
+msgstr "预计完成时间"
+
+#: templates/webapp/jobs/status.html
+msgid "Ready — you can collect it now."
+msgstr "已完成 — 现在可以来取。"
+
+#: templates/webapp/jobs/status.html
+msgid "This page refreshes by itself."
+msgstr "此页面会自动刷新。"
+
+#: templates/webapp/jobs/technician.html
+msgid "My jobs"
+msgstr "我的工单"
+
+#: templates/webapp/jobs/technician.html
+msgid "Waiting"
+msgstr "等待中"
+
+#: templates/webapp/jobs/technician.html
+msgid "Ready"
+msgstr "已出餐"
+
+#: templates/webapp/jobs/technician.html
+msgid "Add a note"
+msgstr "添加备注"
+
+#: templates/webapp/jobs/technician.html
+msgid "What you found / did / need (parts…)"
+msgstr "你发现了什么 / 做了什么 / 需要什么（配件…）"
+
+#: templates/webapp/jobs/technician.html
+msgid "Save note"
+msgstr "保存记录"
+
+#: templates/webapp/jobs/technician.html
+msgid "No jobs for you right now. This page refreshes by itself."
+msgstr "你现在没有工单。此页面会自动刷新。"
+
+#: templates/webapp/jobs/technician.html
+msgid "Finished today"
+msgstr "今日完成"
+
 #: templates/webapp/login.html
 msgid "Sign in · Business Console"
 msgstr "登录 · 企业控制台"
@@ -5240,10 +5590,6 @@ msgid "No bills yet."
 msgstr "暂无账单。"
 
 #: templates/webapp/mess/member.html
-msgid "Bill"
-msgstr "账单"
-
-#: templates/webapp/mess/member.html
 msgid "Member"
 msgstr "会员"
 
@@ -5382,10 +5728,6 @@ msgid "Repair"
 msgstr "维修"
 
 #: templates/webapp/mobile_shop/repair_detail.html
-msgid "Print job card"
-msgstr "打印工单"
-
-#: templates/webapp/mobile_shop/repair_detail.html
 msgid "Send status on WhatsApp"
 msgstr "通过 WhatsApp 发送状态"
 
@@ -5408,10 +5750,6 @@ msgstr "设备"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Received"
 msgstr "收到"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Ready by"
-msgstr "预计完成日期"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Warranty repair"
@@ -5451,10 +5789,6 @@ msgid ""
 "for data on the device or for phones not collected within 30 days of the "
 "ready date."
 msgstr "取机时请携带此单。我们不对设备内的数据负责，也不对完成日期起 30 天内未取回的手机负责。"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Customer signature"
-msgstr "客户签名"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Shop"
@@ -5866,10 +6200,6 @@ msgstr "没有新的预订请求。"
 msgid "Put the booking form on your website →"
 msgstr "把预订表单放到您的网站 →"
 
-#: templates/webapp/online_booking/inbox.html
-msgid "Nothing here."
-msgstr "这里什么都没有。"
-
 #: templates/webapp/online_booking/settings.html
 msgid "On"
 msgstr "开"
@@ -6158,10 +6488,6 @@ msgid "Amount due"
 msgstr "应付金额"
 
 #: templates/webapp/pos.html
-msgid "Card"
-msgstr "刷卡"
-
-#: templates/webapp/pos.html
 msgid "Instalment"
 msgstr "分期"
 
@@ -6446,10 +6772,6 @@ msgstr "离线编号"
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "销售时间"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Payment"
-msgstr "付款"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Result"
@@ -7123,10 +7445,6 @@ msgstr "收货单"
 msgid "PO"
 msgstr "PO"
 
-#: templates/webapp/purchase_docs/grn.html
-msgid "Received by"
-msgstr "收货人"
-
 #: templates/webapp/purchase_docs/po_detail.html
 msgid "Purchase order"
 msgstr "采购订单"
@@ -7398,10 +7716,6 @@ msgstr "例如：承诺周四付款"
 #: templates/webapp/receivables/customer.html
 msgid "Follow up on"
 msgstr "跟进日期"
-
-#: templates/webapp/receivables/customer.html
-msgid "Save note"
-msgstr "保存记录"
 
 #: templates/webapp/receivables/customer.html
 msgid "follow up"
@@ -8259,10 +8573,6 @@ msgid "just now"
 msgstr "刚刚"
 
 #: templates/webapp/restaurant/dashboard.html
-msgid "min"
-msgstr "分钟"
-
-#: templates/webapp/restaurant/dashboard.html
 msgid "h"
 msgstr "时"
 
@@ -8307,10 +8617,6 @@ msgstr "在骑手手中"
 #: templates/webapp/restaurant/deliveries.html
 msgid "Collect"
 msgstr "应收"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "Late"
-msgstr "已逾期"
 
 #: templates/webapp/restaurant/deliveries.html
 msgid "delivered"
@@ -8382,20 +8688,8 @@ msgid "ID / licence no."
 msgstr "证件 / 驾照号"
 
 #: templates/webapp/restaurant/deliveries.html
-msgid "Turn off"
-msgstr "关闭"
-
-#: templates/webapp/restaurant/deliveries.html
 msgid "Turn on"
 msgstr "开启"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "Make a new private link? The old link stops working."
-msgstr "创建新的私人链接？旧链接将失效。"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "New link"
-msgstr "新链接"
 
 #: templates/webapp/restaurant/deliveries.html
 msgid "Add a rider"
@@ -8528,10 +8822,6 @@ msgstr "⛶ 全屏"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Filter kitchen orders"
 msgstr "筛选厨房订单"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "Waiting"
-msgstr "等待中"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Cooking"
@@ -9020,10 +9310,6 @@ msgstr "请保持此页面打开 — 每 20 秒检查一次新订单。"
 #: templates/webapp/restaurant/online_orders.html
 msgid "In the kitchen / ready"
 msgstr "厨房中 / 已出餐"
-
-#: templates/webapp/restaurant/online_orders.html
-msgid "Ready"
-msgstr "已出餐"
 
 #: templates/webapp/restaurant/online_orders.html
 msgid "Preparing"
@@ -11115,6 +11401,78 @@ msgstr ""
 msgid " for delivery"
 msgstr "并送货"
 
+#: apps/industry/jobs.py
+msgid "Enter a valid amount."
+msgstr "请输入有效金额。"
+
+#: apps/industry/jobs.py
+msgid "Say what the job is."
+msgstr "请说明工作内容。"
+
+#: apps/industry/jobs.py
+msgid "Choose your own staff member."
+msgstr "请选择你自己的员工。"
+
+#: apps/industry/jobs.py
+msgid "This job is closed."
+msgstr "此工单已关闭。"
+
+#: apps/industry/jobs.py
+msgid "Choose your own item."
+msgstr "请选择你自己的商品。"
+
+#: apps/industry/jobs.py
+msgid "Quantity must be more than 0."
+msgstr "数量必须大于 0。"
+
+#: apps/industry/jobs.py
+msgid "Describe the work or choose an item."
+msgstr "请描述工作或选择商品。"
+
+#: apps/industry/jobs.py
+msgid "Unknown status."
+msgstr "未知状态。"
+
+#: apps/industry/jobs.py
+msgid "Add the parts and work done first."
+msgstr "请先添加配件和已完成的工作。"
+
+#: apps/industry/jobs.py
+msgid "The discount is more than the bill."
+msgstr "折扣超过账单金额。"
+
+#: apps/industry/jobs.py
+msgid "Hello %(name)s,"
+msgstr "您好 %(name)s，"
+
+#: apps/industry/jobs.py
+msgid "Your appointment at %(shop)s is booked: %(what)s on %(when)s."
+msgstr "您在 %(shop)s 的预约已确认：%(what)s，%(when)s。"
+
+#: apps/industry/jobs.py
+msgid "Good news — %(what)s is ready at %(shop)s."
+msgstr "好消息 — %(what)s 已在 %(shop)s 完成。"
+
+#: apps/industry/jobs.py
+msgid "Amount: %(amount)s"
+msgstr "金额：%(amount)s"
+
+#: apps/industry/jobs.py
+msgid "%(what)s is waiting for parts / your approval. We will update you."
+msgstr "%(what)s 正在等待配件 / 您的批准。我们会及时通知您。"
+
+#: apps/industry/jobs.py
+msgid "Thank you for choosing %(shop)s. Job %(number)s is complete."
+msgstr "感谢您选择 %(shop)s。工单 %(number)s 已完成。"
+
+#: apps/industry/jobs.py
+msgid "We are working on %(what)s (job %(number)s)."
+msgstr "我们正在处理 %(what)s（工单 %(number)s）。"
+
+#: apps/industry/jobs.py
+msgid "Status: %(url)s"
+msgstr "状态：%(url)s"
+
 #: apps/industry/models.py
 msgid "Ready / on the way"
 msgstr "已备好 / 配送中"
@@ -11668,6 +12026,18 @@ msgstr "您购物车中的某件商品已不在菜单上。请刷新页面。"
 #: apps/verticals/restaurant/online_orders.py
 msgid "Sorry, %(item)s is not available online right now."
 msgstr "抱歉，%(item)s 目前不提供在线订购。"
+
+#: apps/verticals/saloon/models.py
+msgid "Normal"
+msgstr "普通"
+
+#: apps/verticals/saloon/models.py
+msgid "Part / item"
+msgstr "配件 / 商品"
+
+#: apps/verticals/saloon/models.py
+msgid "Labour / service"
+msgstr "工时 / 服务"
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -12331,10 +12701,6 @@ msgid "%(count)s prices set."
 msgstr "已设置 %(count)s 个价格。"
 
 #: apps/webapp/delivery_views.py
-msgid "Enter a valid amount."
-msgstr "请输入有效金额。"
-
-#: apps/webapp/delivery_views.py
 msgid "%(order)s → %(rider)s"
 msgstr "%(order)s → %(rider)s"
 
@@ -12602,10 +12968,6 @@ msgid "Dish name"
 msgstr "菜品名称"
 
 #: apps/webapp/forms.py
-msgid "Description"
-msgstr "描述"
-
-#: apps/webapp/forms.py
 msgid "Preparation time (minutes)"
 msgstr "准备时间（分钟）"
 
@@ -12837,6 +13199,103 @@ msgstr "人事设置已保存。"
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
 msgstr "此模块不属于您的业务类型。"
+
+#: apps/webapp/job_views.py
+msgid "Patient / person"
+msgstr "患者 / 个人"
+
+#: apps/webapp/job_views.py
+msgid "File no. / ID"
+msgstr "档案号 / ID"
+
+#: apps/webapp/job_views.py
+msgid "Student ID"
+msgstr "学号"
+
+#: apps/webapp/job_views.py
+msgid "Pet name"
+msgstr "宠物名字"
+
+#: apps/webapp/job_views.py
+msgid "Microchip / reg. no."
+msgstr "芯片 / 登记号"
+
+#: apps/webapp/job_views.py
+msgid "Plate / VIN"
+msgstr "车牌 / 车架号"
+
+#: apps/webapp/job_views.py
+msgid "Item (e.g. laptop, AC)"
+msgstr "物品（如笔记本电脑、空调）"
+
+#: apps/webapp/job_views.py
+msgid "Serial / model no."
+msgstr "序列号 / 型号"
+
+#: apps/webapp/job_views.py
+msgid "Site / item"
+msgstr "地点 / 物品"
+
+#: apps/webapp/job_views.py
+msgid "e.g. Oil change + brake check"
+msgstr "例如 换机油 + 检查刹车"
+
+#: apps/webapp/job_views.py
+msgid "Ready by (promised)"
+msgstr "承诺完成时间"
+
+#: apps/webapp/job_views.py
+msgid "Completed / cancelled"
+msgstr "已完成 / 已取消"
+
+#: apps/webapp/job_views.py
+msgid ""
+"%(name)s already has %(job)s at that time. Press Save again to book anyway."
+msgstr "%(name)s 在该时间已有 %(job)s。再次点击保存仍可预约。"
+
+#: apps/webapp/job_views.py
+msgid "Job %(number)s saved."
+msgstr "工单 %(number)s 已保存。"
+
+#: apps/webapp/job_views.py
+msgid "Status: %(status)s"
+msgstr "状态：%(status)s"
+
+#: apps/webapp/job_views.py
+msgid "Bill %(number)s made."
+msgstr "已开具账单 %(number)s。"
+
+#: apps/webapp/job_views.py
+msgid "Job closed without a bill."
+msgstr "工单已不开票关闭。"
+
+#: apps/webapp/job_views.py
+msgid "Write the note first."
+msgstr "请先填写备注。"
+
+#: apps/webapp/job_views.py
+msgid "Note added."
+msgstr "备注已添加。"
+
+#: apps/webapp/job_views.py
+msgid "Your jobs page (keep this link private): %(url)s"
+msgstr "你的工单页面（请勿分享此链接）：%(url)s"
+
+#: apps/webapp/job_views.py
+msgid "New link made for %(name)s — the old one no longer works."
+msgstr "已为 %(name)s 生成新链接 — 旧链接已失效。"
+
+#: apps/webapp/job_views.py
+msgid "Link turned off."
+msgstr "链接已关闭。"
+
+#: apps/webapp/job_views.py
+msgid "Link ready for %(name)s."
+msgstr "%(name)s 的链接已就绪。"
+
+#: apps/webapp/job_views.py
+msgid "From %(name)s"
+msgstr "来自 %(name)s"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -13201,6 +13660,10 @@ msgid "Booking confirmed. Send the confirmation on WhatsApp."
 msgstr "预订已确认。请通过 WhatsApp 发送确认。"
 
 #: apps/webapp/online_booking_views.py
+msgid "Job %(number)s booked. Choose the staff member on the job card."
+msgstr "工单 %(number)s 已预约。请在工单上选择员工。"
+
+#: apps/webapp/online_booking_views.py
 msgid "Choose the staff member and save to finish the appointment."
 msgstr "请选择员工并保存以完成预约。"
 
@@ -13227,10 +13690,6 @@ msgstr "可提前预订的天数"
 #: apps/webapp/online_booking_views.py
 msgid "Online booking settings saved."
 msgstr "在线预订设置已保存。"
-
-#: apps/webapp/online_booking_views.py
-msgid "Appointment"
-msgstr "预约"
 
 #: apps/webapp/online_booking_views.py
 msgid "Booking"
@@ -14139,10 +14598,6 @@ msgid "Any"
 msgstr "不限"
 
 #: apps/webapp/recruitment_views.py
-msgid "Bank transfer"
-msgstr "银行转账"
-
-#: apps/webapp/recruitment_views.py
 msgid "Free replacement period after joining."
 msgstr "入职后的免费替换期。"
 
@@ -14644,6 +15099,14 @@ msgid ""
 "Hi %(name)s, update on your %(device)s (job %(job)s) at %(shop)s: "
 "%(status)s."
 msgstr "%(name)s 您好，您在 %(shop)s 的 %(device)s（工单 %(job)s）最新进度：%(status)s。"
+
+#: apps/webapp/views.py
+msgid "Client record saved."
+msgstr "客户记录已保存。"
+
+#: apps/webapp/views.py
+msgid "Job saved."
+msgstr "工单已保存。"
 
 #: apps/webapp/views.py
 msgid "Fragrance family"

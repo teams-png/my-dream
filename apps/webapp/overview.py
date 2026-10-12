@@ -384,7 +384,7 @@ def _property(company, today, money):
 
 def _service(company, today, money):
     from apps.verticals.saloon.models import ServiceCase
-    cases = list(ServiceCase.objects.for_company(company).filter(status__in=["open", "in_progress", "waiting"])
+    cases = list(ServiceCase.objects.for_company(company).filter(status__in=["open", "in_progress", "waiting", "ready"])
                  .select_related("profile", "assigned_staff").order_by(F("due_date").asc(nulls_last=True), "opened_date"))
     overdue = sum(1 for c in cases if c.due_date and c.due_date < today)
     case_list = reverse("webapp:service_case_list")

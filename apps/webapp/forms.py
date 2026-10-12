@@ -959,8 +959,11 @@ class ServiceClientProfileForm(forms.ModelForm):
 class ServiceCaseForm(forms.ModelForm):
     class Meta:
         model = ServiceCase
-        fields = ["profile", "title", "case_type", "description", "assigned_staff", "status", "opened_date", "due_date", "closed_date"]
-        widgets = {"opened_date": forms.DateInput(attrs={"type": "date"}), "due_date": forms.DateInput(attrs={"type": "date"}), "closed_date": forms.DateInput(attrs={"type": "date"})}
+        fields = ["profile", "title", "case_type", "description", "assigned_staff", "scheduled_at", "duration_minutes",
+                  "ready_by", "priority", "opened_date", "due_date"]
+        widgets = {"opened_date": forms.DateInput(attrs={"type": "date"}), "due_date": forms.DateInput(attrs={"type": "date"}),
+                   "scheduled_at": forms.DateTimeInput(attrs={"type": "datetime-local"}, format="%Y-%m-%dT%H:%M"),
+                   "ready_by": forms.DateTimeInput(attrs={"type": "datetime-local"}, format="%Y-%m-%dT%H:%M")}
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
         from apps.modules.catalog import business_profile

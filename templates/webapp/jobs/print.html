@@ -1,0 +1,34 @@
+{% load i18n %}{% get_current_language as LANG %}{% get_current_language_bidi as RTL %}<!doctype html>
+<html lang="{{ LANG }}" dir="{% if RTL %}rtl{% else %}ltr{% endif %}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ job.number }} · {{ company.name }}</title>
+<style>
+body{font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;color:#111;margin:0;background:#fff}
+.pg{max-width:760px;margin:0 auto;padding:24px}
+.hd{display:flex;justify-content:space-between;gap:16px;border-bottom:2px solid #111;padding-bottom:10px}
+.hd h1{margin:0;font-size:20px}.hd .no{text-align:end}.hd .no b{font-size:20px}
+.kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 24px;margin:14px 0}.kv div{overflow-wrap:anywhere}.kv span{color:#555}
+table{width:100%;border-collapse:collapse;margin-top:10px}th,td{border-bottom:1px solid #ccc;padding:6px;text-align:start}td.n,th.n{text-align:end}
+.tot{display:flex;justify-content:flex-end;gap:20px;font-size:17px;font-weight:800;margin-top:8px}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:50px}.sig div{border-top:1px solid #111;padding-top:4px;color:#555}
+.bar{display:flex;gap:8px;margin-bottom:14px}.bar button,.bar a{padding:8px 14px;border-radius:8px;border:1px solid #ccc;background:#f8f8f8;font:inherit;cursor:pointer;color:#111;text-decoration:none}
+@media print{.bar{display:none}.pg{padding:0}}
+</style></head><body><div class="pg">
+<div class="bar"><a href="{% url 'webapp:service_case_detail' job.id %}">← {% translate "Back" %}</a><button onclick="print()">🖨 {% translate "Print" %}</button></div>
+<div class="hd"><div><h1>{{ company.name }}</h1>{% if company.phone %}<div>{{ company.phone }}</div>{% endif %}{% if company.address %}<div>{{ company.address }}</div>{% endif %}</div>
+<div class="no">{% translate "Job card" %}<br><b>{{ job.number }}</b><br>{{ job.created_at|default:job.opened_date|date:"j M Y H:i" }}</div></div>
+<div class="kv">
+  <div><span>{% translate "Customer" %}:</span> <b>{{ job.profile.customer.name }}</b> {{ job.profile.customer.phone }}</div>
+  <div><span>{{ labels.0 }}:</span> {{ job.profile.subject_name }}{% if job.profile.identifier %} · {{ job.profile.identifier }}{% endif %}</div>
+  <div><span>{% translate "Job / complaint" %}:</span> <b>{{ job.title }}</b></div>
+  <div><span>{% translate "Staff" %}:</span> {{ job.assigned_staff.name|default:"—" }}</div>
+  {% if job.scheduled_at %}<div><span>{% translate "Appointment" %}:</span> {{ job.scheduled_at|date:"j M Y H:i" }}</div>{% endif %}
+  {% if job.ready_by %}<div><span>{% translate "Ready by" %}:</span> {{ job.ready_by|date:"j M Y H:i" }}</div>{% endif %}
+</div>
+{% if job.description %}<p><span style="color:#555">{% translate "Details" %}:</span> {{ job.description|linebreaksbr }}</p>{% endif %}
+<table><tr><th>{% translate "Item / work" %}</th><th class="n">{% translate "Qty" %}</th><th class="n">{% translate "Price" %}</th><th class="n">{% translate "Total" %}</th></tr>
+{% for l in lines %}<tr><td>{{ l.description }}</td><td class="n">{{ l.quantity|floatformat:"-3" }}</td><td class="n">{{ l.unit_price|floatformat:2 }}</td><td class="n">{{ l.total|floatformat:2 }}</td></tr>
+{% empty %}<tr><td colspan="4" style="height:120px;vertical-align:top;color:#777">{% translate "Work to be done / parts used:" %}</td></tr>{% endfor %}</table>
+<div class="tot"><span>{% translate "Total" %}</span><span>{{ currency }} {{ amount|floatformat:2 }}</span></div>
+<p style="color:#555;font-size:12px">{% translate "Check your job status online:" %} {{ status_link }}</p>
+<div class="sig"><div>{% translate "Customer signature" %}</div><div>{% translate "Received by" %}</div></div>
+</div></body></html>

@@ -254,6 +254,14 @@ msgid "Menu & Ingredients"
 msgstr "മെനുവും ചേരുവകളും"
 
 #: templates/base.html
+msgid "Job cards"
+msgstr "ജോബ് കാർഡുകൾ"
+
+#: templates/base.html
+msgid "Appointments calendar"
+msgstr "അപ്പോയിന്റ്മെന്റ് കലണ്ടർ"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "പാക്കേജുകൾ / സെഷനുകൾ"
 
@@ -5083,6 +5091,352 @@ msgstr "കോപ്പി"
 msgid "Share…"
 msgstr "ഷെയർ…"
 
+#: templates/webapp/jobs/board.html
+msgid "New job / appointment"
+msgstr "പുതിയ ജോബ് / അപ്പോയിന്റ്മെന്റ്"
+
+#: templates/webapp/jobs/board.html
+msgid "Calendar"
+msgstr "കലണ്ടർ"
+
+#: templates/webapp/jobs/board.html
+msgid "Search job no., name, phone, plate…"
+msgstr "ജോബ് നമ്പർ, പേര്, ഫോൺ, പ്ലേറ്റ്… തിരയുക"
+
+#: templates/webapp/jobs/board.html
+msgid "All staff"
+msgstr "എല്ലാ സ്റ്റാഫും"
+
+#: templates/webapp/jobs/board.html
+msgid "Find"
+msgstr "തിരയുക"
+
+#: templates/webapp/jobs/board.html
+msgid "All open"
+msgstr "തുറന്നവ എല്ലാം"
+
+#: templates/webapp/jobs/board.html
+msgid "Late"
+msgstr "വൈകി"
+
+#: templates/webapp/jobs/board.html
+msgid "Urgent"
+msgstr "അടിയന്തരം"
+
+#: templates/webapp/jobs/board.html
+msgid "Nothing here."
+msgstr "ഇവിടെ ഒന്നുമില്ല."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Previous day"
+msgstr "മുൻ ദിവസം"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Next day"
+msgstr "അടുത്ത ദിവസം"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Day"
+msgstr "ദിവസം"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Go"
+msgstr "പോകുക"
+
+#: templates/webapp/jobs/calendar.html
+msgid "New appointment"
+msgstr "പുതിയ അപ്പോയിന്റ്മെന്റ്"
+
+#: templates/webapp/jobs/calendar.html
+msgid "appointments"
+msgstr "അപ്പോയിന്റ്മെന്റുകൾ"
+
+#: templates/webapp/jobs/calendar.html
+msgid "No staff yet"
+msgstr "ഇതുവരെ സ്റ്റാഫ് ഇല്ല"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Free all day."
+msgstr "ദിവസം മുഴുവൻ ഫ്രീ."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Add your staff under Staff & HR to plan appointments per person."
+msgstr ""
+"ഓരോരുത്തർക്കും അപ്പോയിന്റ്മെന്റ് പ്ലാൻ ചെയ്യാൻ Staff & HR-ൽ സ്റ്റാഫിനെ "
+"ചേർക്കുക."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Staff phone pages"
+msgstr "സ്റ്റാഫ് ഫോൺ പേജുകൾ"
+
+#: templates/webapp/jobs/calendar.html
+msgid ""
+"Each staff member gets a private link (no login) showing only their jobs, "
+"with buttons to start, pause and mark ready."
+msgstr ""
+"ഓരോ സ്റ്റാഫിനും ഒരു സ്വകാര്യ ലിങ്ക് (ലോഗിൻ വേണ്ട) കിട്ടും — അവരുടെ ജോലികൾ "
+"മാത്രം, തുടങ്ങാനും നിർത്താനും റെഡി ആക്കാനും ബട്ടണുകളോടെ."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Send link"
+msgstr "ലിങ്ക് അയക്കുക"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Make a new private link? The old link stops working."
+msgstr "പുതിയ സ്വകാര്യ ലിങ്ക് ഉണ്ടാക്കണോ? പഴയ ലിങ്ക് പ്രവർത്തിക്കില്ല."
+
+#: templates/webapp/jobs/calendar.html
+msgid "New link"
+msgstr "പുതിയ ലിങ്ക്"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Turn off"
+msgstr "ഓഫ് ചെയ്യുക"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Make link"
+msgstr "ലിങ്ക് ഉണ്ടാക്കുക"
+
+#: templates/webapp/jobs/detail.html
+msgid "Appointment"
+msgstr "അപ്പോയിന്റ്മെന്റ്"
+
+#: templates/webapp/jobs/detail.html
+msgid "min"
+msgstr "മി"
+
+#: templates/webapp/jobs/detail.html
+msgid "Ready by"
+msgstr "തയ്യാറാകുന്ന തീയതി"
+
+#: templates/webapp/jobs/detail.html
+msgid "Started"
+msgstr "തുടങ്ങിയത്"
+
+#: templates/webapp/jobs/detail.html
+msgid "Finished"
+msgstr "തീർന്നത്"
+
+#: templates/webapp/jobs/detail.html
+msgid "Bill"
+msgstr "ബിൽ"
+
+#: templates/webapp/jobs/detail.html
+msgid "Cancel this job?"
+msgstr "ഈ ജോബ് റദ്ദാക്കണോ?"
+
+#: templates/webapp/jobs/detail.html
+msgid "Booked / to start"
+msgstr "ബുക്ക് ചെയ്തു / തുടങ്ങാനുണ്ട്"
+
+#: templates/webapp/jobs/detail.html
+msgid "Start work"
+msgstr "ജോലി തുടങ്ങുക"
+
+#: templates/webapp/jobs/detail.html
+msgid "Waiting (parts / approval)"
+msgstr "കാത്തിരിക്കുന്നു (പാർട്സ് / അനുമതി)"
+
+#: templates/webapp/jobs/detail.html
+msgid "Ready for the customer"
+msgstr "കസ്റ്റമർക്ക് റെഡി"
+
+#: templates/webapp/jobs/detail.html
+msgid "Cancel job"
+msgstr "ജോബ് റദ്ദാക്കുക"
+
+#: templates/webapp/jobs/detail.html
+msgid "Parts and work"
+msgstr "പാർട്സും ജോലിയും"
+
+#: templates/webapp/jobs/detail.html
+msgid "Item / work"
+msgstr "ഐറ്റം / ജോലി"
+
+#: templates/webapp/jobs/detail.html
+msgid "Item / part from stock"
+msgstr "സ്റ്റോക്കിൽ നിന്നുള്ള ഐറ്റം / പാർട്ട്"
+
+#: templates/webapp/jobs/detail.html
+msgid "— labour / service (type below) —"
+msgstr "— ലേബർ / സർവീസ് (താഴെ ടൈപ്പ് ചെയ്യുക) —"
+
+#: templates/webapp/jobs/detail.html
+msgid "Description"
+msgstr "വിവരണം"
+
+#: templates/webapp/jobs/detail.html
+msgid "e.g. Labour 1 hour"
+msgstr "ഉദാ. ലേബർ 1 മണിക്കൂർ"
+
+#: templates/webapp/jobs/detail.html
+msgid "auto"
+msgstr "ഓട്ടോ"
+
+#: templates/webapp/jobs/detail.html
+msgid "Payment"
+msgstr "പേയ്മെന്റ്"
+
+#: templates/webapp/jobs/detail.html
+msgid "Card"
+msgstr "കാർഡ്"
+
+#: templates/webapp/jobs/detail.html
+msgid "Bank transfer"
+msgstr "ബാങ്ക് ട്രാൻസ്ഫർ"
+
+#: templates/webapp/jobs/detail.html
+msgid "Pay later (on account)"
+msgstr "പിന്നീട് അടയ്ക്കും (അക്കൗണ്ടിൽ)"
+
+#: templates/webapp/jobs/detail.html
+msgid "Make bill & close job"
+msgstr "ബിൽ ഉണ്ടാക്കി ജോബ് ക്ലോസ് ചെയ്യുക"
+
+#: templates/webapp/jobs/detail.html
+msgid "Close this job without a bill (warranty, package, free)?"
+msgstr "ബിൽ ഇല്ലാതെ ഈ ജോബ് ക്ലോസ് ചെയ്യണോ (വാറന്റി, പാക്കേജ്, ഫ്രീ)?"
+
+#: templates/webapp/jobs/detail.html
+msgid "Close without a bill"
+msgstr "ബിൽ ഇല്ലാതെ ക്ലോസ് ചെയ്യുക"
+
+#: templates/webapp/jobs/detail.html
+msgid "WhatsApp status"
+msgstr "വാട്സ്ആപ്പ് സ്റ്റാറ്റസ്"
+
+#: templates/webapp/jobs/detail.html
+msgid "Print job card"
+msgstr "ജോബ് കാർഡ് പ്രിന്റ് ചെയ്യുക"
+
+#: templates/webapp/jobs/detail.html
+msgid "Customer's status page:"
+msgstr "കസ്റ്റമറുടെ സ്റ്റാറ്റസ് പേജ്:"
+
+#: templates/webapp/jobs/detail.html
+msgid "— no staff —"
+msgstr "— സ്റ്റാഫ് ഇല്ല —"
+
+#: templates/webapp/jobs/detail.html
+msgid "Type (diagnosis, update, advice…)"
+msgstr "തരം (രോഗനിർണയം, അപ്ഡേറ്റ്, ഉപദേശം…)"
+
+#: templates/webapp/jobs/detail.html
+msgid "What was found / done / advised"
+msgstr "എന്ത് കണ്ടു / ചെയ്തു / നിർദ്ദേശിച്ചു"
+
+#: templates/webapp/jobs/detail.html
+msgid "Follow-up on"
+msgstr "ഫോളോ-അപ്പ് തീയതി"
+
+#: templates/webapp/jobs/detail.html
+msgid "Add note"
+msgstr "നോട്ട് ചേർക്കുക"
+
+#: templates/webapp/jobs/detail.html
+msgid "Follow-up"
+msgstr "ഫോളോ-അപ്പ്"
+
+#: templates/webapp/jobs/new.html
+msgid "New job"
+msgstr "പുതിയ ജോബ്"
+
+#: templates/webapp/jobs/new.html
+msgid "What is it about"
+msgstr "എന്തിനെക്കുറിച്ചാണ്"
+
+#: templates/webapp/jobs/new.html
+msgid "Leave empty if it is the customer."
+msgstr "കസ്റ്റമർ തന്നെയാണെങ്കിൽ ഒഴിച്ചിടുക."
+
+#: templates/webapp/jobs/new.html
+msgid "When and who"
+msgstr "എപ്പോൾ, ആര്"
+
+#: templates/webapp/jobs/new.html
+msgid "Empty for a walk-in."
+msgstr "വാക്ക്-ഇൻ ആണെങ്കിൽ ഒഴിച്ചിടുക."
+
+#: templates/webapp/jobs/new.html
+msgid "Save job"
+msgstr "ജോബ് സേവ് ചെയ്യുക"
+
+#: templates/webapp/jobs/print.html
+msgid "Job card"
+msgstr "ജോബ് കാർഡ്"
+
+#: templates/webapp/jobs/print.html
+msgid "Job / complaint"
+msgstr "ജോലി / പരാതി"
+
+#: templates/webapp/jobs/print.html
+msgid "Work to be done / parts used:"
+msgstr "ചെയ്യേണ്ട ജോലി / ഉപയോഗിച്ച പാർട്സ്:"
+
+#: templates/webapp/jobs/print.html
+msgid "Check your job status online:"
+msgstr "നിങ്ങളുടെ ജോബ് സ്റ്റാറ്റസ് ഓൺലൈനിൽ നോക്കാം:"
+
+#: templates/webapp/jobs/print.html
+msgid "Customer signature"
+msgstr "ഉപഭോക്താവിന്റെ ഒപ്പ്"
+
+#: templates/webapp/jobs/print.html
+msgid "Received by"
+msgstr "സ്വീകരിച്ചത്"
+
+#: templates/webapp/jobs/status.html
+msgid "This job was cancelled."
+msgstr "ഈ ജോബ് റദ്ദാക്കി."
+
+#: templates/webapp/jobs/status.html
+msgid "Waiting for parts or your approval."
+msgstr "പാർട്സിനോ നിങ്ങളുടെ അനുമതിക്കോ കാത്തിരിക്കുന്നു."
+
+#: templates/webapp/jobs/status.html
+msgid "Expected ready by"
+msgstr "റെഡിയാകുമെന്ന് പ്രതീക്ഷിക്കുന്നത്"
+
+#: templates/webapp/jobs/status.html
+msgid "Ready — you can collect it now."
+msgstr "റെഡി — ഇപ്പോൾ വന്ന് വാങ്ങാം."
+
+#: templates/webapp/jobs/status.html
+msgid "This page refreshes by itself."
+msgstr "ഈ പേജ് തനിയെ റിഫ്രഷ് ആകും."
+
+#: templates/webapp/jobs/technician.html
+msgid "My jobs"
+msgstr "എന്റെ ജോലികൾ"
+
+#: templates/webapp/jobs/technician.html
+msgid "Waiting"
+msgstr "കാത്തിരിക്കുന്നു"
+
+#: templates/webapp/jobs/technician.html
+msgid "Ready"
+msgstr "റെഡി"
+
+#: templates/webapp/jobs/technician.html
+msgid "Add a note"
+msgstr "ഒരു നോട്ട് ചേർക്കുക"
+
+#: templates/webapp/jobs/technician.html
+msgid "What you found / did / need (parts…)"
+msgstr "എന്ത് കണ്ടു / ചെയ്തു / എന്ത് വേണം (പാർട്സ്…)"
+
+#: templates/webapp/jobs/technician.html
+msgid "Save note"
+msgstr "കുറിപ്പ് സേവ് ചെയ്യുക"
+
+#: templates/webapp/jobs/technician.html
+msgid "No jobs for you right now. This page refreshes by itself."
+msgstr "ഇപ്പോൾ നിങ്ങൾക്ക് ജോലികളില്ല. ഈ പേജ് തനിയെ റിഫ്രഷ് ആകും."
+
+#: templates/webapp/jobs/technician.html
+msgid "Finished today"
+msgstr "ഇന്ന് തീർത്തത്"
+
 #: templates/webapp/login.html
 msgid "Sign in · Business Console"
 msgstr "ലോഗിൻ · ബിസിനസ് കൺസോൾ"
@@ -5378,10 +5732,6 @@ msgid "No bills yet."
 msgstr "ഇതുവരെ ബില്ലുകളില്ല."
 
 #: templates/webapp/mess/member.html
-msgid "Bill"
-msgstr "ബിൽ"
-
-#: templates/webapp/mess/member.html
 msgid "Member"
 msgstr "അംഗം"
 
@@ -5525,10 +5875,6 @@ msgid "Repair"
 msgstr "റിപ്പയർ"
 
 #: templates/webapp/mobile_shop/repair_detail.html
-msgid "Print job card"
-msgstr "ജോബ് കാർഡ് പ്രിന്റ് ചെയ്യുക"
-
-#: templates/webapp/mobile_shop/repair_detail.html
 msgid "Send status on WhatsApp"
 msgstr "സ്റ്റാറ്റസ് WhatsApp-ൽ അയക്കുക"
 
@@ -5551,10 +5897,6 @@ msgstr "ഉപകരണം"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Received"
 msgstr "ലഭിച്ചത്"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Ready by"
-msgstr "തയ്യാറാകുന്ന തീയതി"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Warranty repair"
@@ -5597,10 +5939,6 @@ msgstr ""
 "ഫോൺ തിരികെ വാങ്ങുമ്പോൾ ഈ കാർഡ് കൊണ്ടുവരിക. ഉപകരണത്തിലെ ഡാറ്റയ്ക്കോ, തയ്യാറായ"
 " തീയതി മുതൽ 30 ദിവസത്തിനുള്ളിൽ കൊണ്ടുപോകാത്ത ഫോണുകൾക്കോ ഞങ്ങൾ "
 "ഉത്തരവാദികളല്ല."
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Customer signature"
-msgstr "ഉപഭോക്താവിന്റെ ഒപ്പ്"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Shop"
@@ -6033,10 +6371,6 @@ msgstr "പുതിയ ബുക്കിംഗ് അഭ്യർത്ഥന�
 msgid "Put the booking form on your website →"
 msgstr "ബുക്കിംഗ് ഫോം നിങ്ങളുടെ വെബ്സൈറ്റിൽ ചേർക്കുക →"
 
-#: templates/webapp/online_booking/inbox.html
-msgid "Nothing here."
-msgstr "ഇവിടെ ഒന്നുമില്ല."
-
 #: templates/webapp/online_booking/settings.html
 msgid "On"
 msgstr "ഓൺ"
@@ -6337,10 +6671,6 @@ msgid "Amount due"
 msgstr "അടയ്ക്കേണ്ട തുക"
 
 #: templates/webapp/pos.html
-msgid "Card"
-msgstr "കാർഡ്"
-
-#: templates/webapp/pos.html
 msgid "Instalment"
 msgstr "ഗഡു"
 
@@ -6638,10 +6968,6 @@ msgstr "ഓഫ്‌ലൈൻ നമ്പർ"
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "വിറ്റ സമയം"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Payment"
-msgstr "പേയ്മെന്റ്"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Result"
@@ -7358,10 +7684,6 @@ msgstr "സാധനം ലഭിച്ച രസീത്"
 msgid "PO"
 msgstr "PO"
 
-#: templates/webapp/purchase_docs/grn.html
-msgid "Received by"
-msgstr "സ്വീകരിച്ചത്"
-
 #: templates/webapp/purchase_docs/po_detail.html
 msgid "Purchase order"
 msgstr "പർച്ചേസ് ഓർഡർ"
@@ -7637,10 +7959,6 @@ msgstr "ഉദാ. വ്യാഴാഴ്ച അടയ്ക്കാമെന
 #: templates/webapp/receivables/customer.html
 msgid "Follow up on"
 msgstr "ഫോളോ അപ്പ് തീയതി"
-
-#: templates/webapp/receivables/customer.html
-msgid "Save note"
-msgstr "കുറിപ്പ് സേവ് ചെയ്യുക"
 
 #: templates/webapp/receivables/customer.html
 msgid "follow up"
@@ -8514,10 +8832,6 @@ msgid "just now"
 msgstr "ഇപ്പോൾ"
 
 #: templates/webapp/restaurant/dashboard.html
-msgid "min"
-msgstr "മി"
-
-#: templates/webapp/restaurant/dashboard.html
 msgid "h"
 msgstr "മ"
 
@@ -8565,10 +8879,6 @@ msgstr "റൈഡറുടെ കൈയിൽ"
 #: templates/webapp/restaurant/deliveries.html
 msgid "Collect"
 msgstr "വാങ്ങേണ്ടത്"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "Late"
-msgstr "വൈകി"
 
 #: templates/webapp/restaurant/deliveries.html
 msgid "delivered"
@@ -8641,20 +8951,8 @@ msgid "ID / licence no."
 msgstr "ഐഡി / ലൈസൻസ് നമ്പർ"
 
 #: templates/webapp/restaurant/deliveries.html
-msgid "Turn off"
-msgstr "ഓഫ് ചെയ്യുക"
-
-#: templates/webapp/restaurant/deliveries.html
 msgid "Turn on"
 msgstr "ഓൺ ചെയ്യുക"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "Make a new private link? The old link stops working."
-msgstr "പുതിയ സ്വകാര്യ ലിങ്ക് ഉണ്ടാക്കണോ? പഴയ ലിങ്ക് പ്രവർത്തിക്കില്ല."
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "New link"
-msgstr "പുതിയ ലിങ്ക്"
 
 #: templates/webapp/restaurant/deliveries.html
 msgid "Add a rider"
@@ -8787,10 +9085,6 @@ msgstr "⛶ ഫുൾ സ്ക്രീൻ"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Filter kitchen orders"
 msgstr "കിച്ചൺ ഓർഡറുകൾ ഫിൽട്ടർ ചെയ്യുക"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "Waiting"
-msgstr "കാത്തിരിക്കുന്നു"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Cooking"
@@ -9289,10 +9583,6 @@ msgstr "ഈ പേജ് തുറന്നുവെക്കുക — ഓര�
 #: templates/webapp/restaurant/online_orders.html
 msgid "In the kitchen / ready"
 msgstr "കിച്ചണിൽ / റെഡി"
-
-#: templates/webapp/restaurant/online_orders.html
-msgid "Ready"
-msgstr "റെഡി"
 
 #: templates/webapp/restaurant/online_orders.html
 msgid "Preparing"
@@ -11455,6 +11745,80 @@ msgstr ""
 msgid " for delivery"
 msgstr "ഡെലിവറിക്ക്"
 
+#: apps/industry/jobs.py
+msgid "Enter a valid amount."
+msgstr "ശരിയായ തുക നൽകുക."
+
+#: apps/industry/jobs.py
+msgid "Say what the job is."
+msgstr "ജോലി എന്താണെന്ന് പറയുക."
+
+#: apps/industry/jobs.py
+msgid "Choose your own staff member."
+msgstr "നിങ്ങളുടെ സ്റ്റാഫിനെ തിരഞ്ഞെടുക്കുക."
+
+#: apps/industry/jobs.py
+msgid "This job is closed."
+msgstr "ഈ ജോബ് ക്ലോസ് ചെയ്തതാണ്."
+
+#: apps/industry/jobs.py
+msgid "Choose your own item."
+msgstr "നിങ്ങളുടെ ഐറ്റം തിരഞ്ഞെടുക്കുക."
+
+#: apps/industry/jobs.py
+msgid "Quantity must be more than 0."
+msgstr "എണ്ണം 0-ൽ കൂടുതലായിരിക്കണം."
+
+#: apps/industry/jobs.py
+msgid "Describe the work or choose an item."
+msgstr "ജോലി വിവരിക്കുക അല്ലെങ്കിൽ ഒരു ഐറ്റം തിരഞ്ഞെടുക്കുക."
+
+#: apps/industry/jobs.py
+msgid "Unknown status."
+msgstr "അറിയാത്ത സ്റ്റാറ്റസ്."
+
+#: apps/industry/jobs.py
+msgid "Add the parts and work done first."
+msgstr "ആദ്യം പാർട്സും ചെയ്ത ജോലിയും ചേർക്കുക."
+
+#: apps/industry/jobs.py
+msgid "The discount is more than the bill."
+msgstr "ഡിസ്കൗണ്ട് ബില്ലിനേക്കാൾ കൂടുതലാണ്."
+
+#: apps/industry/jobs.py
+msgid "Hello %(name)s,"
+msgstr "നമസ്കാരം %(name)s,"
+
+#: apps/industry/jobs.py
+msgid "Your appointment at %(shop)s is booked: %(what)s on %(when)s."
+msgstr ""
+"%(shop)s-ൽ നിങ്ങളുടെ അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്തു: %(what)s, %(when)s."
+
+#: apps/industry/jobs.py
+msgid "Good news — %(what)s is ready at %(shop)s."
+msgstr "സന്തോഷവാർത്ത — %(what)s %(shop)s-ൽ റെഡിയാണ്."
+
+#: apps/industry/jobs.py
+msgid "Amount: %(amount)s"
+msgstr "തുക: %(amount)s"
+
+#: apps/industry/jobs.py
+msgid "%(what)s is waiting for parts / your approval. We will update you."
+msgstr ""
+"%(what)s പാർട്സിനോ നിങ്ങളുടെ അനുമതിക്കോ കാത്തിരിക്കുന്നു. ഞങ്ങൾ അറിയിക്കാം."
+
+#: apps/industry/jobs.py
+msgid "Thank you for choosing %(shop)s. Job %(number)s is complete."
+msgstr "%(shop)s തിരഞ്ഞെടുത്തതിന് നന്ദി. ജോബ് %(number)s പൂർത്തിയായി."
+
+#: apps/industry/jobs.py
+msgid "We are working on %(what)s (job %(number)s)."
+msgstr "ഞങ്ങൾ %(what)s-ൽ ജോലി ചെയ്യുകയാണ് (ജോബ് %(number)s)."
+
+#: apps/industry/jobs.py
+msgid "Status: %(url)s"
+msgstr "സ്റ്റാറ്റസ്: %(url)s"
+
 #: apps/industry/models.py
 msgid "Ready / on the way"
 msgstr "തയ്യാർ / വഴിയിൽ"
@@ -12053,6 +12417,18 @@ msgstr "കാർട്ടിലെ ഒരു ഐറ്റം ഇപ്പോൾ
 #: apps/verticals/restaurant/online_orders.py
 msgid "Sorry, %(item)s is not available online right now."
 msgstr "ക്ഷമിക്കണം, %(item)s ഇപ്പോൾ ഓൺലൈനായി ലഭ്യമല്ല."
+
+#: apps/verticals/saloon/models.py
+msgid "Normal"
+msgstr "സാധാരണ"
+
+#: apps/verticals/saloon/models.py
+msgid "Part / item"
+msgstr "പാർട്ട് / ഐറ്റം"
+
+#: apps/verticals/saloon/models.py
+msgid "Labour / service"
+msgstr "ലേബർ / സർവീസ്"
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -12731,10 +13107,6 @@ msgid "%(count)s prices set."
 msgstr "%(count)s വിലകൾ സെറ്റ് ചെയ്തു."
 
 #: apps/webapp/delivery_views.py
-msgid "Enter a valid amount."
-msgstr "ശരിയായ തുക നൽകുക."
-
-#: apps/webapp/delivery_views.py
 msgid "%(order)s → %(rider)s"
 msgstr "%(order)s → %(rider)s"
 
@@ -13011,10 +13383,6 @@ msgid "Dish name"
 msgstr "വിഭവത്തിന്റെ പേര്"
 
 #: apps/webapp/forms.py
-msgid "Description"
-msgstr "വിവരണം"
-
-#: apps/webapp/forms.py
 msgid "Preparation time (minutes)"
 msgstr "തയ്യാറാക്കാനുള്ള സമയം (മിനിറ്റ്)"
 
@@ -13247,6 +13615,105 @@ msgstr "HR സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
 msgstr "ഈ മൊഡ്യൂൾ നിങ്ങളുടെ ബിസിനസ് തരത്തിൽ ഇല്ല."
+
+#: apps/webapp/job_views.py
+msgid "Patient / person"
+msgstr "രോഗി / വ്യക്തി"
+
+#: apps/webapp/job_views.py
+msgid "File no. / ID"
+msgstr "ഫയൽ നമ്പർ / ഐഡി"
+
+#: apps/webapp/job_views.py
+msgid "Student ID"
+msgstr "സ്റ്റുഡന്റ് ഐഡി"
+
+#: apps/webapp/job_views.py
+msgid "Pet name"
+msgstr "വളർത്തുമൃഗത്തിന്റെ പേര്"
+
+#: apps/webapp/job_views.py
+msgid "Microchip / reg. no."
+msgstr "മൈക്രോചിപ്പ് / റജി. നമ്പർ"
+
+#: apps/webapp/job_views.py
+msgid "Plate / VIN"
+msgstr "പ്ലേറ്റ് / VIN"
+
+#: apps/webapp/job_views.py
+msgid "Item (e.g. laptop, AC)"
+msgstr "ഐറ്റം (ഉദാ. ലാപ്ടോപ്പ്, എസി)"
+
+#: apps/webapp/job_views.py
+msgid "Serial / model no."
+msgstr "സീരിയൽ / മോഡൽ നമ്പർ"
+
+#: apps/webapp/job_views.py
+msgid "Site / item"
+msgstr "സൈറ്റ് / ഐറ്റം"
+
+#: apps/webapp/job_views.py
+msgid "e.g. Oil change + brake check"
+msgstr "ഉദാ. ഓയിൽ മാറ്റം + ബ്രേക്ക് ചെക്ക്"
+
+#: apps/webapp/job_views.py
+msgid "Ready by (promised)"
+msgstr "റെഡിയാക്കാമെന്ന് പറഞ്ഞ സമയം"
+
+#: apps/webapp/job_views.py
+msgid "Completed / cancelled"
+msgstr "പൂർത്തിയായവ / റദ്ദാക്കിയവ"
+
+#: apps/webapp/job_views.py
+msgid ""
+"%(name)s already has %(job)s at that time. Press Save again to book anyway."
+msgstr ""
+"%(name)s-ന് ആ സമയത്ത് %(job)s ഉണ്ട്. എന്നിട്ടും ബുക്ക് ചെയ്യാൻ വീണ്ടും Save "
+"അമർത്തുക."
+
+#: apps/webapp/job_views.py
+msgid "Job %(number)s saved."
+msgstr "ജോബ് %(number)s സേവ് ചെയ്തു."
+
+#: apps/webapp/job_views.py
+msgid "Status: %(status)s"
+msgstr "സ്റ്റാറ്റസ്: %(status)s"
+
+#: apps/webapp/job_views.py
+msgid "Bill %(number)s made."
+msgstr "ബിൽ %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/job_views.py
+msgid "Job closed without a bill."
+msgstr "ബിൽ ഇല്ലാതെ ജോബ് ക്ലോസ് ചെയ്തു."
+
+#: apps/webapp/job_views.py
+msgid "Write the note first."
+msgstr "ആദ്യം നോട്ട് എഴുതുക."
+
+#: apps/webapp/job_views.py
+msgid "Note added."
+msgstr "നോട്ട് ചേർത്തു."
+
+#: apps/webapp/job_views.py
+msgid "Your jobs page (keep this link private): %(url)s"
+msgstr "നിങ്ങളുടെ ജോലി പേജ് (ഈ ലിങ്ക് ആർക്കും കൊടുക്കരുത്): %(url)s"
+
+#: apps/webapp/job_views.py
+msgid "New link made for %(name)s — the old one no longer works."
+msgstr "%(name)s-ന് പുതിയ ലിങ്ക് ഉണ്ടാക്കി — പഴയത് ഇനി പ്രവർത്തിക്കില്ല."
+
+#: apps/webapp/job_views.py
+msgid "Link turned off."
+msgstr "ലിങ്ക് ഓഫ് ചെയ്തു."
+
+#: apps/webapp/job_views.py
+msgid "Link ready for %(name)s."
+msgstr "%(name)s-ന്റെ ലിങ്ക് റെഡി."
+
+#: apps/webapp/job_views.py
+msgid "From %(name)s"
+msgstr "%(name)s-ൽ നിന്ന്"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -13621,6 +14088,10 @@ msgid "Booking confirmed. Send the confirmation on WhatsApp."
 msgstr "ബുക്കിംഗ് സ്ഥിരീകരിച്ചു. സ്ഥിരീകരണം WhatsApp-ൽ അയയ്ക്കുക."
 
 #: apps/webapp/online_booking_views.py
+msgid "Job %(number)s booked. Choose the staff member on the job card."
+msgstr "ജോബ് %(number)s ബുക്ക് ചെയ്തു. ജോബ് കാർഡിൽ സ്റ്റാഫിനെ തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/online_booking_views.py
 msgid "Choose the staff member and save to finish the appointment."
 msgstr ""
 "അപ്പോയിന്റ്മെന്റ് പൂർത്തിയാക്കാൻ സ്റ്റാഫിനെ തിരഞ്ഞെടുത്ത് സേവ് ചെയ്യുക."
@@ -13648,10 +14119,6 @@ msgstr "എത്ര ദിവസം മുമ്പ് വരെ ബുക്�
 #: apps/webapp/online_booking_views.py
 msgid "Online booking settings saved."
 msgstr "ഓൺലൈൻ ബുക്കിംഗ് സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
-
-#: apps/webapp/online_booking_views.py
-msgid "Appointment"
-msgstr "അപ്പോയിന്റ്മെന്റ്"
 
 #: apps/webapp/online_booking_views.py
 msgid "Booking"
@@ -14577,10 +15044,6 @@ msgid "Any"
 msgstr "ഏതും"
 
 #: apps/webapp/recruitment_views.py
-msgid "Bank transfer"
-msgstr "ബാങ്ക് ട്രാൻസ്ഫർ"
-
-#: apps/webapp/recruitment_views.py
 msgid "Free replacement period after joining."
 msgstr "ജോയിൻ ചെയ്ത ശേഷമുള്ള സൗജന്യ റീപ്ലേസ്മെന്റ് കാലയളവ്."
 
@@ -15107,6 +15570,14 @@ msgid ""
 msgstr ""
 "ഹായ് %(name)s, %(shop)s-ലെ നിങ്ങളുടെ %(device)s (ജോബ് %(job)s) സംബന്ധിച്ച "
 "അപ്ഡേറ്റ്: %(status)s."
+
+#: apps/webapp/views.py
+msgid "Client record saved."
+msgstr "ക്ലയന്റ് റെക്കോർഡ് സേവ് ചെയ്തു."
+
+#: apps/webapp/views.py
+msgid "Job saved."
+msgstr "ജോബ് സേവ് ചെയ്തു."
 
 #: apps/webapp/views.py
 msgid "Fragrance family"

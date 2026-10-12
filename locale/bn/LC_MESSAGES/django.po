@@ -254,6 +254,14 @@ msgid "Menu & Ingredients"
 msgstr "মেনু ও উপকরণ"
 
 #: templates/base.html
+msgid "Job cards"
+msgstr "জব কার্ড"
+
+#: templates/base.html
+msgid "Appointments calendar"
+msgstr "অ্যাপয়েন্টমেন্ট ক্যালেন্ডার"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "প্যাকেজ / সেশন"
 
@@ -5042,6 +5050,351 @@ msgstr "কপি"
 msgid "Share…"
 msgstr "শেয়ার…"
 
+#: templates/webapp/jobs/board.html
+msgid "New job / appointment"
+msgstr "নতুন জব / অ্যাপয়েন্টমেন্ট"
+
+#: templates/webapp/jobs/board.html
+msgid "Calendar"
+msgstr "ক্যালেন্ডার"
+
+#: templates/webapp/jobs/board.html
+msgid "Search job no., name, phone, plate…"
+msgstr "জব নম্বর, নাম, ফোন, প্লেট… খুঁজুন"
+
+#: templates/webapp/jobs/board.html
+msgid "All staff"
+msgstr "সব স্টাফ"
+
+#: templates/webapp/jobs/board.html
+msgid "Find"
+msgstr "খুঁজুন"
+
+#: templates/webapp/jobs/board.html
+msgid "All open"
+msgstr "সব খোলা"
+
+#: templates/webapp/jobs/board.html
+msgid "Late"
+msgstr "দেরি"
+
+#: templates/webapp/jobs/board.html
+msgid "Urgent"
+msgstr "জরুরি"
+
+#: templates/webapp/jobs/board.html
+msgid "Nothing here."
+msgstr "এখানে কিছু নেই।"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Previous day"
+msgstr "আগের দিন"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Next day"
+msgstr "পরের দিন"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Day"
+msgstr "দিন"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Go"
+msgstr "যান"
+
+#: templates/webapp/jobs/calendar.html
+msgid "New appointment"
+msgstr "নতুন অ্যাপয়েন্টমেন্ট"
+
+#: templates/webapp/jobs/calendar.html
+msgid "appointments"
+msgstr "অ্যাপয়েন্টমেন্ট"
+
+#: templates/webapp/jobs/calendar.html
+msgid "No staff yet"
+msgstr "এখনও কোনো স্টাফ নেই"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Free all day."
+msgstr "সারাদিন ফাঁকা।"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Add your staff under Staff & HR to plan appointments per person."
+msgstr ""
+"প্রতিজনের অ্যাপয়েন্টমেন্ট পরিকল্পনা করতে Staff & HR-এ স্টাফ যোগ করুন।"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Staff phone pages"
+msgstr "স্টাফ ফোন পেজ"
+
+#: templates/webapp/jobs/calendar.html
+msgid ""
+"Each staff member gets a private link (no login) showing only their jobs, "
+"with buttons to start, pause and mark ready."
+msgstr ""
+"প্রত্যেক স্টাফ একটি ব্যক্তিগত লিংক (লগইন ছাড়া) পায় যেখানে শুধু তাদের জব "
+"থাকে, শুরু, বিরতি ও প্রস্তুত চিহ্নিত করার বোতাম সহ।"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Send link"
+msgstr "লিংক পাঠান"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Make a new private link? The old link stops working."
+msgstr "নতুন ব্যক্তিগত লিংক তৈরি করবেন? পুরোনো লিংক কাজ করবে না।"
+
+#: templates/webapp/jobs/calendar.html
+msgid "New link"
+msgstr "নতুন লিংক"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Turn off"
+msgstr "বন্ধ করুন"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Make link"
+msgstr "লিংক তৈরি করুন"
+
+#: templates/webapp/jobs/detail.html
+msgid "Appointment"
+msgstr "অ্যাপয়েন্টমেন্ট"
+
+#: templates/webapp/jobs/detail.html
+msgid "min"
+msgstr "মিনিট"
+
+#: templates/webapp/jobs/detail.html
+msgid "Ready by"
+msgstr "প্রস্তুত হওয়ার তারিখ"
+
+#: templates/webapp/jobs/detail.html
+msgid "Started"
+msgstr "শুরু হয়েছে"
+
+#: templates/webapp/jobs/detail.html
+msgid "Finished"
+msgstr "শেষ হয়েছে"
+
+#: templates/webapp/jobs/detail.html
+msgid "Bill"
+msgstr "বিল"
+
+#: templates/webapp/jobs/detail.html
+msgid "Cancel this job?"
+msgstr "এই জব বাতিল করবেন?"
+
+#: templates/webapp/jobs/detail.html
+msgid "Booked / to start"
+msgstr "বুক করা / শুরু করতে হবে"
+
+#: templates/webapp/jobs/detail.html
+msgid "Start work"
+msgstr "কাজ শুরু করুন"
+
+#: templates/webapp/jobs/detail.html
+msgid "Waiting (parts / approval)"
+msgstr "অপেক্ষায় (পার্টস / অনুমোদন)"
+
+#: templates/webapp/jobs/detail.html
+msgid "Ready for the customer"
+msgstr "গ্রাহকের জন্য প্রস্তুত"
+
+#: templates/webapp/jobs/detail.html
+msgid "Cancel job"
+msgstr "জব বাতিল করুন"
+
+#: templates/webapp/jobs/detail.html
+msgid "Parts and work"
+msgstr "পার্টস ও কাজ"
+
+#: templates/webapp/jobs/detail.html
+msgid "Item / work"
+msgstr "আইটেম / কাজ"
+
+#: templates/webapp/jobs/detail.html
+msgid "Item / part from stock"
+msgstr "স্টক থেকে আইটেম / পার্ট"
+
+#: templates/webapp/jobs/detail.html
+msgid "— labour / service (type below) —"
+msgstr "— শ্রম / সার্ভিস (নিচে লিখুন) —"
+
+#: templates/webapp/jobs/detail.html
+msgid "Description"
+msgstr "বিবরণ"
+
+#: templates/webapp/jobs/detail.html
+msgid "e.g. Labour 1 hour"
+msgstr "যেমন শ্রম ১ ঘণ্টা"
+
+#: templates/webapp/jobs/detail.html
+msgid "auto"
+msgstr "অটো"
+
+#: templates/webapp/jobs/detail.html
+msgid "Payment"
+msgstr "পেমেন্ট"
+
+#: templates/webapp/jobs/detail.html
+msgid "Card"
+msgstr "কার্ড"
+
+#: templates/webapp/jobs/detail.html
+msgid "Bank transfer"
+msgstr "ব্যাংক ট্রান্সফার"
+
+#: templates/webapp/jobs/detail.html
+msgid "Pay later (on account)"
+msgstr "পরে পরিশোধ (খাতায়)"
+
+#: templates/webapp/jobs/detail.html
+msgid "Make bill & close job"
+msgstr "বিল করুন ও জব বন্ধ করুন"
+
+#: templates/webapp/jobs/detail.html
+msgid "Close this job without a bill (warranty, package, free)?"
+msgstr "বিল ছাড়া এই জব বন্ধ করবেন (ওয়ারেন্টি, প্যাকেজ, ফ্রি)?"
+
+#: templates/webapp/jobs/detail.html
+msgid "Close without a bill"
+msgstr "বিল ছাড়া বন্ধ করুন"
+
+#: templates/webapp/jobs/detail.html
+msgid "WhatsApp status"
+msgstr "হোয়াটসঅ্যাপ স্ট্যাটাস"
+
+#: templates/webapp/jobs/detail.html
+msgid "Print job card"
+msgstr "জব কার্ড প্রিন্ট করুন"
+
+#: templates/webapp/jobs/detail.html
+msgid "Customer's status page:"
+msgstr "গ্রাহকের স্ট্যাটাস পেজ:"
+
+#: templates/webapp/jobs/detail.html
+msgid "— no staff —"
+msgstr "— কোনো স্টাফ নেই —"
+
+#: templates/webapp/jobs/detail.html
+msgid "Type (diagnosis, update, advice…)"
+msgstr "ধরন (রোগনির্ণয়, আপডেট, পরামর্শ…)"
+
+#: templates/webapp/jobs/detail.html
+msgid "What was found / done / advised"
+msgstr "কী পাওয়া গেছে / করা হয়েছে / পরামর্শ"
+
+#: templates/webapp/jobs/detail.html
+msgid "Follow-up on"
+msgstr "ফলো-আপের তারিখ"
+
+#: templates/webapp/jobs/detail.html
+msgid "Add note"
+msgstr "নোট যোগ করুন"
+
+#: templates/webapp/jobs/detail.html
+msgid "Follow-up"
+msgstr "ফলো-আপ"
+
+#: templates/webapp/jobs/new.html
+msgid "New job"
+msgstr "নতুন জব"
+
+#: templates/webapp/jobs/new.html
+msgid "What is it about"
+msgstr "কী বিষয়ে"
+
+#: templates/webapp/jobs/new.html
+msgid "Leave empty if it is the customer."
+msgstr "গ্রাহক নিজে হলে খালি রাখুন।"
+
+#: templates/webapp/jobs/new.html
+msgid "When and who"
+msgstr "কখন ও কে"
+
+#: templates/webapp/jobs/new.html
+msgid "Empty for a walk-in."
+msgstr "ওয়াক-ইনের জন্য খালি।"
+
+#: templates/webapp/jobs/new.html
+msgid "Save job"
+msgstr "জব সেভ করুন"
+
+#: templates/webapp/jobs/print.html
+msgid "Job card"
+msgstr "জব কার্ড"
+
+#: templates/webapp/jobs/print.html
+msgid "Job / complaint"
+msgstr "কাজ / অভিযোগ"
+
+#: templates/webapp/jobs/print.html
+msgid "Work to be done / parts used:"
+msgstr "করণীয় কাজ / ব্যবহৃত পার্টস:"
+
+#: templates/webapp/jobs/print.html
+msgid "Check your job status online:"
+msgstr "অনলাইনে আপনার জবের অবস্থা দেখুন:"
+
+#: templates/webapp/jobs/print.html
+msgid "Customer signature"
+msgstr "গ্রাহকের স্বাক্ষর"
+
+#: templates/webapp/jobs/print.html
+msgid "Received by"
+msgstr "প্রাপক"
+
+#: templates/webapp/jobs/status.html
+msgid "This job was cancelled."
+msgstr "এই জব বাতিল করা হয়েছে।"
+
+#: templates/webapp/jobs/status.html
+msgid "Waiting for parts or your approval."
+msgstr "পার্টস বা আপনার অনুমোদনের অপেক্ষায়।"
+
+#: templates/webapp/jobs/status.html
+msgid "Expected ready by"
+msgstr "প্রস্তুত হওয়ার সম্ভাব্য সময়"
+
+#: templates/webapp/jobs/status.html
+msgid "Ready — you can collect it now."
+msgstr "প্রস্তুত — এখন নিয়ে যেতে পারেন।"
+
+#: templates/webapp/jobs/status.html
+msgid "This page refreshes by itself."
+msgstr "এই পেজ নিজে থেকে রিফ্রেশ হয়।"
+
+#: templates/webapp/jobs/technician.html
+msgid "My jobs"
+msgstr "আমার জব"
+
+#: templates/webapp/jobs/technician.html
+msgid "Waiting"
+msgstr "অপেক্ষায়"
+
+#: templates/webapp/jobs/technician.html
+msgid "Ready"
+msgstr "প্রস্তুত"
+
+#: templates/webapp/jobs/technician.html
+msgid "Add a note"
+msgstr "নোট যোগ করুন"
+
+#: templates/webapp/jobs/technician.html
+msgid "What you found / did / need (parts…)"
+msgstr "কী পেয়েছেন / করেছেন / কী লাগবে (পার্টস…)"
+
+#: templates/webapp/jobs/technician.html
+msgid "Save note"
+msgstr "নোট সংরক্ষণ করুন"
+
+#: templates/webapp/jobs/technician.html
+msgid "No jobs for you right now. This page refreshes by itself."
+msgstr "এখন আপনার জন্য কোনো জব নেই। এই পেজ নিজে থেকে রিফ্রেশ হয়।"
+
+#: templates/webapp/jobs/technician.html
+msgid "Finished today"
+msgstr "আজ শেষ হয়েছে"
+
 #: templates/webapp/login.html
 msgid "Sign in · Business Console"
 msgstr "সাইন ইন · বিজনেস কনসোল"
@@ -5335,10 +5688,6 @@ msgid "No bills yet."
 msgstr "এখনো কোনো বিল নেই।"
 
 #: templates/webapp/mess/member.html
-msgid "Bill"
-msgstr "বিল"
-
-#: templates/webapp/mess/member.html
 msgid "Member"
 msgstr "সদস্য"
 
@@ -5481,10 +5830,6 @@ msgid "Repair"
 msgstr "মেরামত"
 
 #: templates/webapp/mobile_shop/repair_detail.html
-msgid "Print job card"
-msgstr "জব কার্ড প্রিন্ট করুন"
-
-#: templates/webapp/mobile_shop/repair_detail.html
 msgid "Send status on WhatsApp"
 msgstr "স্ট্যাটাস WhatsApp-এ পাঠান"
 
@@ -5507,10 +5852,6 @@ msgstr "ডিভাইস"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Received"
 msgstr "পাওয়া গেছে"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Ready by"
-msgstr "প্রস্তুত হওয়ার তারিখ"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Warranty repair"
@@ -5552,10 +5893,6 @@ msgid ""
 msgstr ""
 "ফোন নিতে আসার সময় এই কার্ডটি আনুন। ডিভাইসের ডেটা বা প্রস্তুতের তারিখ থেকে "
 "৩০ দিনের মধ্যে না নেওয়া ফোনের জন্য আমরা দায়ী নই।"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Customer signature"
-msgstr "গ্রাহকের স্বাক্ষর"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Shop"
@@ -5981,10 +6318,6 @@ msgstr "কোনো নতুন বুকিং অনুরোধ নেই�
 msgid "Put the booking form on your website →"
 msgstr "বুকিং ফর্ম আপনার ওয়েবসাইটে দিন →"
 
-#: templates/webapp/online_booking/inbox.html
-msgid "Nothing here."
-msgstr "এখানে কিছু নেই।"
-
 #: templates/webapp/online_booking/settings.html
 msgid "On"
 msgstr "চালু"
@@ -6279,10 +6612,6 @@ msgid "Amount due"
 msgstr "দেয় পরিমাণ"
 
 #: templates/webapp/pos.html
-msgid "Card"
-msgstr "কার্ড"
-
-#: templates/webapp/pos.html
 msgid "Instalment"
 msgstr "কিস্তি"
 
@@ -6574,10 +6903,6 @@ msgstr "অফলাইন নং"
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "বিক্রয়ের সময়"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Payment"
-msgstr "পেমেন্ট"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Result"
@@ -7284,10 +7609,6 @@ msgstr "মাল প্রাপ্তির নোট"
 msgid "PO"
 msgstr "PO"
 
-#: templates/webapp/purchase_docs/grn.html
-msgid "Received by"
-msgstr "প্রাপক"
-
 #: templates/webapp/purchase_docs/po_detail.html
 msgid "Purchase order"
 msgstr "ক্রয় অর্ডার"
@@ -7562,10 +7883,6 @@ msgstr "যেমন বৃহস্পতিবার পরিশোধের 
 #: templates/webapp/receivables/customer.html
 msgid "Follow up on"
 msgstr "ফলো-আপের তারিখ"
-
-#: templates/webapp/receivables/customer.html
-msgid "Save note"
-msgstr "নোট সংরক্ষণ করুন"
 
 #: templates/webapp/receivables/customer.html
 msgid "follow up"
@@ -8438,10 +8755,6 @@ msgid "just now"
 msgstr "এইমাত্র"
 
 #: templates/webapp/restaurant/dashboard.html
-msgid "min"
-msgstr "মিনিট"
-
-#: templates/webapp/restaurant/dashboard.html
 msgid "h"
 msgstr "ঘ"
 
@@ -8488,10 +8801,6 @@ msgstr "রাইডারের কাছে"
 #: templates/webapp/restaurant/deliveries.html
 msgid "Collect"
 msgstr "আদায় করুন"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "Late"
-msgstr "দেরি"
 
 #: templates/webapp/restaurant/deliveries.html
 msgid "delivered"
@@ -8563,20 +8872,8 @@ msgid "ID / licence no."
 msgstr "আইডি / লাইসেন্স নম্বর"
 
 #: templates/webapp/restaurant/deliveries.html
-msgid "Turn off"
-msgstr "বন্ধ করুন"
-
-#: templates/webapp/restaurant/deliveries.html
 msgid "Turn on"
 msgstr "চালু করুন"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "Make a new private link? The old link stops working."
-msgstr "নতুন ব্যক্তিগত লিংক তৈরি করবেন? পুরোনো লিংক কাজ করবে না।"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "New link"
-msgstr "নতুন লিংক"
 
 #: templates/webapp/restaurant/deliveries.html
 msgid "Add a rider"
@@ -8709,10 +9006,6 @@ msgstr "⛶ পূর্ণ স্ক্রিন"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Filter kitchen orders"
 msgstr "রান্নাঘরের অর্ডার ফিল্টার করুন"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "Waiting"
-msgstr "অপেক্ষায়"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Cooking"
@@ -9208,10 +9501,6 @@ msgstr "এই পৃষ্ঠা খোলা রাখুন — প্রত�
 #: templates/webapp/restaurant/online_orders.html
 msgid "In the kitchen / ready"
 msgstr "রান্নাঘরে / প্রস্তুত"
-
-#: templates/webapp/restaurant/online_orders.html
-msgid "Ready"
-msgstr "প্রস্তুত"
 
 #: templates/webapp/restaurant/online_orders.html
 msgid "Preparing"
@@ -11350,6 +11639,78 @@ msgstr ""
 msgid " for delivery"
 msgstr "ডেলিভারির জন্য"
 
+#: apps/industry/jobs.py
+msgid "Enter a valid amount."
+msgstr "সঠিক পরিমাণ লিখুন।"
+
+#: apps/industry/jobs.py
+msgid "Say what the job is."
+msgstr "জবটি কী তা বলুন।"
+
+#: apps/industry/jobs.py
+msgid "Choose your own staff member."
+msgstr "আপনার নিজের স্টাফ বেছে নিন।"
+
+#: apps/industry/jobs.py
+msgid "This job is closed."
+msgstr "এই জব বন্ধ।"
+
+#: apps/industry/jobs.py
+msgid "Choose your own item."
+msgstr "আপনার নিজের আইটেম বেছে নিন।"
+
+#: apps/industry/jobs.py
+msgid "Quantity must be more than 0."
+msgstr "পরিমাণ ০-এর বেশি হতে হবে।"
+
+#: apps/industry/jobs.py
+msgid "Describe the work or choose an item."
+msgstr "কাজের বর্ণনা দিন বা আইটেম বেছে নিন।"
+
+#: apps/industry/jobs.py
+msgid "Unknown status."
+msgstr "অজানা অবস্থা।"
+
+#: apps/industry/jobs.py
+msgid "Add the parts and work done first."
+msgstr "আগে পার্টস ও করা কাজ যোগ করুন।"
+
+#: apps/industry/jobs.py
+msgid "The discount is more than the bill."
+msgstr "ছাড় বিলের চেয়ে বেশি।"
+
+#: apps/industry/jobs.py
+msgid "Hello %(name)s,"
+msgstr "নমস্কার %(name)s,"
+
+#: apps/industry/jobs.py
+msgid "Your appointment at %(shop)s is booked: %(what)s on %(when)s."
+msgstr "%(shop)s-এ আপনার অ্যাপয়েন্টমেন্ট বুক হয়েছে: %(what)s, %(when)s।"
+
+#: apps/industry/jobs.py
+msgid "Good news — %(what)s is ready at %(shop)s."
+msgstr "সুখবর — %(what)s %(shop)s-এ প্রস্তুত।"
+
+#: apps/industry/jobs.py
+msgid "Amount: %(amount)s"
+msgstr "পরিমাণ: %(amount)s"
+
+#: apps/industry/jobs.py
+msgid "%(what)s is waiting for parts / your approval. We will update you."
+msgstr "%(what)s পার্টস / আপনার অনুমোদনের অপেক্ষায়। আমরা আপনাকে জানাব।"
+
+#: apps/industry/jobs.py
+msgid "Thank you for choosing %(shop)s. Job %(number)s is complete."
+msgstr "%(shop)s বেছে নেওয়ার জন্য ধন্যবাদ। জব %(number)s সম্পন্ন।"
+
+#: apps/industry/jobs.py
+msgid "We are working on %(what)s (job %(number)s)."
+msgstr "আমরা %(what)s-এর কাজ করছি (জব %(number)s)।"
+
+#: apps/industry/jobs.py
+msgid "Status: %(url)s"
+msgstr "স্ট্যাটাস: %(url)s"
+
 #: apps/industry/models.py
 msgid "Ready / on the way"
 msgstr "প্রস্তুত / পথে"
@@ -11940,6 +12301,18 @@ msgstr "আপনার কার্টের একটি আইটেম আ�
 #: apps/verticals/restaurant/online_orders.py
 msgid "Sorry, %(item)s is not available online right now."
 msgstr "দুঃখিত, %(item)s এখন অনলাইনে পাওয়া যাচ্ছে না।"
+
+#: apps/verticals/saloon/models.py
+msgid "Normal"
+msgstr "সাধারণ"
+
+#: apps/verticals/saloon/models.py
+msgid "Part / item"
+msgstr "পার্ট / আইটেম"
+
+#: apps/verticals/saloon/models.py
+msgid "Labour / service"
+msgstr "শ্রম / সার্ভিস"
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -12615,10 +12988,6 @@ msgid "%(count)s prices set."
 msgstr "%(count)sটি দাম নির্ধারণ করা হয়েছে।"
 
 #: apps/webapp/delivery_views.py
-msgid "Enter a valid amount."
-msgstr "সঠিক পরিমাণ লিখুন।"
-
-#: apps/webapp/delivery_views.py
 msgid "%(order)s → %(rider)s"
 msgstr "%(order)s → %(rider)s"
 
@@ -12893,10 +13262,6 @@ msgid "Dish name"
 msgstr "খাবারের নাম"
 
 #: apps/webapp/forms.py
-msgid "Description"
-msgstr "বিবরণ"
-
-#: apps/webapp/forms.py
 msgid "Preparation time (minutes)"
 msgstr "প্রস্তুতির সময় (মিনিট)"
 
@@ -13129,6 +13494,103 @@ msgstr "HR সেটিংস সংরক্ষিত হয়েছে।"
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
 msgstr "এই মডিউলটি আপনার ব্যবসার ধরনের অংশ নয়।"
+
+#: apps/webapp/job_views.py
+msgid "Patient / person"
+msgstr "রোগী / ব্যক্তি"
+
+#: apps/webapp/job_views.py
+msgid "File no. / ID"
+msgstr "ফাইল নম্বর / আইডি"
+
+#: apps/webapp/job_views.py
+msgid "Student ID"
+msgstr "শিক্ষার্থী আইডি"
+
+#: apps/webapp/job_views.py
+msgid "Pet name"
+msgstr "পোষা প্রাণীর নাম"
+
+#: apps/webapp/job_views.py
+msgid "Microchip / reg. no."
+msgstr "মাইক্রোচিপ / রেজি. নম্বর"
+
+#: apps/webapp/job_views.py
+msgid "Plate / VIN"
+msgstr "প্লেট / VIN"
+
+#: apps/webapp/job_views.py
+msgid "Item (e.g. laptop, AC)"
+msgstr "আইটেম (যেমন ল্যাপটপ, এসি)"
+
+#: apps/webapp/job_views.py
+msgid "Serial / model no."
+msgstr "সিরিয়াল / মডেল নম্বর"
+
+#: apps/webapp/job_views.py
+msgid "Site / item"
+msgstr "স্থান / আইটেম"
+
+#: apps/webapp/job_views.py
+msgid "e.g. Oil change + brake check"
+msgstr "যেমন অয়েল চেঞ্জ + ব্রেক চেক"
+
+#: apps/webapp/job_views.py
+msgid "Ready by (promised)"
+msgstr "প্রস্তুতের প্রতিশ্রুত সময়"
+
+#: apps/webapp/job_views.py
+msgid "Completed / cancelled"
+msgstr "সম্পন্ন / বাতিল"
+
+#: apps/webapp/job_views.py
+msgid ""
+"%(name)s already has %(job)s at that time. Press Save again to book anyway."
+msgstr "%(name)s-এর ওই সময়ে %(job)s আছে। তবুও বুক করতে আবার Save চাপুন।"
+
+#: apps/webapp/job_views.py
+msgid "Job %(number)s saved."
+msgstr "জব %(number)s সেভ হয়েছে।"
+
+#: apps/webapp/job_views.py
+msgid "Status: %(status)s"
+msgstr "স্ট্যাটাস: %(status)s"
+
+#: apps/webapp/job_views.py
+msgid "Bill %(number)s made."
+msgstr "বিল %(number)s তৈরি হয়েছে।"
+
+#: apps/webapp/job_views.py
+msgid "Job closed without a bill."
+msgstr "বিল ছাড়া জব বন্ধ হয়েছে।"
+
+#: apps/webapp/job_views.py
+msgid "Write the note first."
+msgstr "আগে নোট লিখুন।"
+
+#: apps/webapp/job_views.py
+msgid "Note added."
+msgstr "নোট যোগ হয়েছে।"
+
+#: apps/webapp/job_views.py
+msgid "Your jobs page (keep this link private): %(url)s"
+msgstr "আপনার জব পেজ (এই লিংক কাউকে দেবেন না): %(url)s"
+
+#: apps/webapp/job_views.py
+msgid "New link made for %(name)s — the old one no longer works."
+msgstr "%(name)s-এর জন্য নতুন লিংক তৈরি হয়েছে — পুরোনোটি আর কাজ করবে না।"
+
+#: apps/webapp/job_views.py
+msgid "Link turned off."
+msgstr "লিংক বন্ধ করা হয়েছে।"
+
+#: apps/webapp/job_views.py
+msgid "Link ready for %(name)s."
+msgstr "%(name)s-এর লিংক প্রস্তুত।"
+
+#: apps/webapp/job_views.py
+msgid "From %(name)s"
+msgstr "%(name)s-এর পক্ষ থেকে"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -13495,6 +13957,10 @@ msgid "Booking confirmed. Send the confirmation on WhatsApp."
 msgstr "বুকিং নিশ্চিত হয়েছে। WhatsApp-এ নিশ্চিতকরণ পাঠান।"
 
 #: apps/webapp/online_booking_views.py
+msgid "Job %(number)s booked. Choose the staff member on the job card."
+msgstr "জব %(number)s বুক হয়েছে। জব কার্ডে স্টাফ বেছে নিন।"
+
+#: apps/webapp/online_booking_views.py
 msgid "Choose the staff member and save to finish the appointment."
 msgstr "অ্যাপয়েন্টমেন্ট শেষ করতে কর্মী বেছে নিয়ে সংরক্ষণ করুন।"
 
@@ -13521,10 +13987,6 @@ msgstr "কত দিন আগে পর্যন্ত বুক করা য
 #: apps/webapp/online_booking_views.py
 msgid "Online booking settings saved."
 msgstr "অনলাইন বুকিং সেটিংস সংরক্ষিত হয়েছে।"
-
-#: apps/webapp/online_booking_views.py
-msgid "Appointment"
-msgstr "অ্যাপয়েন্টমেন্ট"
 
 #: apps/webapp/online_booking_views.py
 msgid "Booking"
@@ -14446,10 +14908,6 @@ msgid "Any"
 msgstr "যেকোনো"
 
 #: apps/webapp/recruitment_views.py
-msgid "Bank transfer"
-msgstr "ব্যাংক ট্রান্সফার"
-
-#: apps/webapp/recruitment_views.py
 msgid "Free replacement period after joining."
 msgstr "যোগদানের পর বিনামূল্যে প্রতিস্থাপনের সময়কাল।"
 
@@ -14966,6 +15424,14 @@ msgid ""
 msgstr ""
 "হাই %(name)s, %(shop)s-এ আপনার %(device)s (কাজ %(job)s)-এর আপডেট: "
 "%(status)s।"
+
+#: apps/webapp/views.py
+msgid "Client record saved."
+msgstr "ক্লায়েন্ট রেকর্ড সেভ হয়েছে।"
+
+#: apps/webapp/views.py
+msgid "Job saved."
+msgstr "জব সেভ হয়েছে।"
 
 #: apps/webapp/views.py
 msgid "Fragrance family"

@@ -66,6 +66,29 @@ svc = appt_business("service-appointments","Clinics, Studios &amp; Appointment S
    form_note="On the booking form the staff field is labelled <b>Stylist</b> and the commission field <b>Stylist commission %</b>. Simply choose your doctor, technician, trainer or photographer there.",
    staff_role="Doctor / Technician / Instructor",
    extra_faq=[("Why does the form say “Stylist”?","The same booking screen is shared with salons. Choose whoever performs the service — the label does not change how it works.")])
+svc["chips"] = ["Job cards", "Appointments calendar", "Parts &amp; labour bill", "Staff phone page"] + svc["chips"][:2]
+svc["menu"] = ["🧰 Job cards", "📅 Appointments calendar"] + svc["menu"]
+svc["tasks"] = [
+ ("Open a job card (walk-in or appointment)",
+  ["Open [[🧰 Job cards]] → [[+ New job / appointment]]. Choose the customer or type a new name and WhatsApp number.",
+   "Fill <b>what it is about</b> (patient, car with plate, laptop with serial…) and the <b>job / complaint</b>.",
+   "Choose the <b>staff</b>. For an appointment pick the date and time; leave it empty for a walk-in. Add <b>Ready by</b> if you promised a time.",
+   "If that staff member is already busy at that time you are warned first — press Save again to book anyway."],
+  dict(tip="Online booking requests become job cards by themselves when you confirm them.")),
+ ("Add parts and work, then bill",
+  ["On the job card add each <b>part</b> from stock (its price fills in) or type the <b>labour / service</b> with a price.",
+   "Move the job along: [[Start work]] → [[Waiting (parts / approval)]] → [[Ready for the customer]]. Late jobs turn red.",
+   "Press [[WhatsApp status]] to send the customer the update with their status link.",
+   "When the customer pays press [[Make bill &amp; close job]] (cash, card, bank or pay later). Parts come out of stock and one bill is made."],
+  dict(note="Warranty or package work? Use [[Close without a bill]].")),
+ ("Plan the day on the calendar",
+  ["Open [[📅 Appointments calendar]]: one column per staff member with their appointments for the day.",
+   "Tap a free time under a name to book straight into that slot. Use ← → to change the day."]),
+ ("Give each staff member their phone page",
+  ["At the bottom of the calendar press [[Make link]] for a staff member, then [[Send link]] to WhatsApp it.",
+   "On their phone they see only their jobs and press [[Start work]], [[Waiting]] or [[Ready]], and can add notes. No login and no prices.",
+   "Phone lost? Press [[New link]] — the old link stops working."]),
+] + svc["tasks"]
 VERTICALS.append(svc)
 
 AGENCY_COVERS = ["Advertising Agency","Digital Marketing Agency","Web Development","IT Services","Software Company","Accounting / Audit","Security Services","Event Management","Cleaning Company","Maintenance Company","Landscaping Company","Logistics / Transport Company","Courier / Delivery Company","Interior Design Company","Facility Management"]

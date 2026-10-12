@@ -1,4 +1,7 @@
+from decimal import Decimal
+import uuid
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from apps.tenants.models import TenantScopedModel
 
 
@@ -79,8 +82,20 @@ class ServiceClientProfile(TenantScopedModel):
 
 
 class ServiceCase(TenantScopedModel):
-    STATUS = [("open", "Open"), ("in_progress", "In Progress"), ("waiting", "Waiting"),
-              ("completed", "Completed"), ("cancelled", "Cancelled")]
+    """A job card / appointment: booked or walked in → in progress → (waiting) → ready → completed (billed)."""
+    STATUS = [("open", _("Booked / to start")), ("in_progress", _("In progress")), ("waiting", _("Waiting")),
+              ("ready", _("Ready")), ("completed", _("Completed")), ("cancelled", _("Cancelled"))]
+    PRIORITY = [("normal", _("Normal")), ("urgent", _("Urgent"))]
+    number = models.CharField(max_length=20, blank=True)
+    scheduled_at = models.DateTimeField(null=True, blank=True, db_index=True, help_text="Appointment time")
+    duration_minutes = models.PositiveSmallIntegerField(default=30)
+    ready_by = models.DateTimeField(null=True, blank=True, help_text="Promised to the customer")
+    priority = models.CharField(max_length=10, choices=PRIORITY, default="normal")
+    token = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    started_at = models.DateTimeField(null=True, blank=True)
+    finished_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
     profile = models.ForeignKey(ServiceClientProfile, on_delete=models.PROTECT, related_name="cases")
     title = models.CharField(max_length=200)
     case_type = models.CharField(max_length=100, blank=True)
@@ -100,3 +115,30 @@ class ServiceCaseNote(TenantScopedModel):
     outcome = models.TextField(blank=True)
     next_follow_up = models.DateField(null=True, blank=True)
     created_by = models.ForeignKey("accounts.User", null=True, blank=True, on_delete=models.SET_NULL)
+
+
+class ServiceCaseLine(TenantScopedModel):
+    """A part or a labour/service charge on a job card. Billed together when the job is done."""
+    KINDS = [("part", _("Part / item")), ("labour", _("Labour / service"))]
+    case = models.ForeignKey(ServiceCase, on_delete=models.CASCADE, related_name="lines")
+    kind = models.CharField(max_length=10, choices=KINDS, default="labour")
+    product = models.ForeignKey("inventory.Product", null=True, blank=True, on_delete=models.PROTECT, related_name="+")
+    description = models.CharField(max_length=200)
+    quantity = models.DecimalField(max_digits=10, decimal_places=3, default=1)
+    unit_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["id"]
+
+    @property
+    def total(self):
+        return (self.quantity * self.unit_price).quantize(Decimal("0.01"))
+
+
+class TechnicianLink(TenantScopedModel):
+    """A staff member's private phone page for their jobs (no login)."""
+    employee = models.OneToOneField("employees.Employee", on_delete=models.CASCADE, related_name="technician_link")
+    token = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)

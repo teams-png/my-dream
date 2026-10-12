@@ -21,7 +21,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from apps.industry import online_booking as svc
 from apps.industry.models import BookableResource, BookingSite, OnlineBooking
-from apps.modules.catalog import BOOKING_TERMS
+from apps.modules.catalog import BOOKING_TERMS, business_group
 
 RATE_LIMIT = 10
 
@@ -263,6 +263,11 @@ def ob_detail(request, request_id):
                 svc.confirm(req, request.user, table=table, resource=resource)
                 req.refresh_from_db()
                 messages.success(request, _("Booking confirmed. Send the confirmation on WhatsApp."))
+                if req.kind == "appointment" and business_group(company.business_type.code) == "service":
+                    from .job_views import from_online_booking
+                    job = from_online_booking(req, request.user)
+                    messages.info(request, _("Job %(number)s booked. Choose the staff member on the job card.") % {"number": job.number})
+                    return redirect("webapp:service_case_detail", case_id=job.id)
                 if req.kind == "appointment":
                     code = company.business_type.code
                     url = reverse(APPOINTMENT_FORMS.get(code, "webapp:saloon_appointment_book"))
@@ -306,6 +311,8 @@ def _linked_url(req):
         return reverse("webapp:booking_detail", args=[int(pk)])
     if kind == "reservation":
         return reverse("webapp:restaurant_reservations")
+    if kind == "job" and pk:
+        return reverse("webapp:service_case_detail", args=[int(pk)])
     return ""
 
 

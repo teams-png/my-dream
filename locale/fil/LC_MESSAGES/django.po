@@ -254,6 +254,14 @@ msgid "Menu & Ingredients"
 msgstr "Menu at sangkap"
 
 #: templates/base.html
+msgid "Job cards"
+msgstr "Mga job card"
+
+#: templates/base.html
+msgid "Appointments calendar"
+msgstr "Kalendaryo ng appointment"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "Mga package / session"
 
@@ -5089,6 +5097,352 @@ msgstr "Kopyahin"
 msgid "Share…"
 msgstr "Ibahagi…"
 
+#: templates/webapp/jobs/board.html
+msgid "New job / appointment"
+msgstr "Bagong trabaho / appointment"
+
+#: templates/webapp/jobs/board.html
+msgid "Calendar"
+msgstr "Kalendaryo"
+
+#: templates/webapp/jobs/board.html
+msgid "Search job no., name, phone, plate…"
+msgstr "Hanapin ang job no., pangalan, phone, plaka…"
+
+#: templates/webapp/jobs/board.html
+msgid "All staff"
+msgstr "Lahat ng staff"
+
+#: templates/webapp/jobs/board.html
+msgid "Find"
+msgstr "Hanapin"
+
+#: templates/webapp/jobs/board.html
+msgid "All open"
+msgstr "Lahat ng bukas"
+
+#: templates/webapp/jobs/board.html
+msgid "Late"
+msgstr "Huli"
+
+#: templates/webapp/jobs/board.html
+msgid "Urgent"
+msgstr "Agaran"
+
+#: templates/webapp/jobs/board.html
+msgid "Nothing here."
+msgstr "Wala rito."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Previous day"
+msgstr "Nakaraang araw"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Next day"
+msgstr "Susunod na araw"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Day"
+msgstr "Araw"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Go"
+msgstr "Pumunta"
+
+#: templates/webapp/jobs/calendar.html
+msgid "New appointment"
+msgstr "Bagong appointment"
+
+#: templates/webapp/jobs/calendar.html
+msgid "appointments"
+msgstr "mga appointment"
+
+#: templates/webapp/jobs/calendar.html
+msgid "No staff yet"
+msgstr "Wala pang staff"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Free all day."
+msgstr "Bakante buong araw."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Add your staff under Staff & HR to plan appointments per person."
+msgstr ""
+"Idagdag ang iyong staff sa Staff & HR para magplano ng appointment bawat "
+"tao."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Staff phone pages"
+msgstr "Mga phone page ng staff"
+
+#: templates/webapp/jobs/calendar.html
+msgid ""
+"Each staff member gets a private link (no login) showing only their jobs, "
+"with buttons to start, pause and mark ready."
+msgstr ""
+"Bawat staff ay may pribadong link (walang login) na nagpapakita lang ng "
+"kanilang trabaho, may mga button para simulan, i-pause at markahang handa."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Send link"
+msgstr "Ipadala ang link"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Make a new private link? The old link stops working."
+msgstr "Gumawa ng bagong pribadong link? Hindi na gagana ang lumang link."
+
+#: templates/webapp/jobs/calendar.html
+msgid "New link"
+msgstr "Bagong link"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Turn off"
+msgstr "I-off"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Make link"
+msgstr "Gumawa ng link"
+
+#: templates/webapp/jobs/detail.html
+msgid "Appointment"
+msgstr "Appointment"
+
+#: templates/webapp/jobs/detail.html
+msgid "min"
+msgstr "min"
+
+#: templates/webapp/jobs/detail.html
+msgid "Ready by"
+msgstr "Handa sa petsang"
+
+#: templates/webapp/jobs/detail.html
+msgid "Started"
+msgstr "Sinimulan"
+
+#: templates/webapp/jobs/detail.html
+msgid "Finished"
+msgstr "Natapos"
+
+#: templates/webapp/jobs/detail.html
+msgid "Bill"
+msgstr "Bill"
+
+#: templates/webapp/jobs/detail.html
+msgid "Cancel this job?"
+msgstr "Kanselahin ang trabahong ito?"
+
+#: templates/webapp/jobs/detail.html
+msgid "Booked / to start"
+msgstr "Naka-book / sisimulan"
+
+#: templates/webapp/jobs/detail.html
+msgid "Start work"
+msgstr "Simulan ang trabaho"
+
+#: templates/webapp/jobs/detail.html
+msgid "Waiting (parts / approval)"
+msgstr "Naghihintay (piyesa / pag-apruba)"
+
+#: templates/webapp/jobs/detail.html
+msgid "Ready for the customer"
+msgstr "Handa na para sa customer"
+
+#: templates/webapp/jobs/detail.html
+msgid "Cancel job"
+msgstr "Kanselahin ang trabaho"
+
+#: templates/webapp/jobs/detail.html
+msgid "Parts and work"
+msgstr "Mga piyesa at trabaho"
+
+#: templates/webapp/jobs/detail.html
+msgid "Item / work"
+msgstr "Item / trabaho"
+
+#: templates/webapp/jobs/detail.html
+msgid "Item / part from stock"
+msgstr "Item / piyesa mula sa stock"
+
+#: templates/webapp/jobs/detail.html
+msgid "— labour / service (type below) —"
+msgstr "— labor / serbisyo (i-type sa ibaba) —"
+
+#: templates/webapp/jobs/detail.html
+msgid "Description"
+msgstr "Paglalarawan"
+
+#: templates/webapp/jobs/detail.html
+msgid "e.g. Labour 1 hour"
+msgstr "hal. Labor 1 oras"
+
+#: templates/webapp/jobs/detail.html
+msgid "auto"
+msgstr "auto"
+
+#: templates/webapp/jobs/detail.html
+msgid "Payment"
+msgstr "Bayad"
+
+#: templates/webapp/jobs/detail.html
+msgid "Card"
+msgstr "Card"
+
+#: templates/webapp/jobs/detail.html
+msgid "Bank transfer"
+msgstr "Bank transfer"
+
+#: templates/webapp/jobs/detail.html
+msgid "Pay later (on account)"
+msgstr "Babayaran mamaya (sa account)"
+
+#: templates/webapp/jobs/detail.html
+msgid "Make bill & close job"
+msgstr "Gumawa ng bill at isara ang trabaho"
+
+#: templates/webapp/jobs/detail.html
+msgid "Close this job without a bill (warranty, package, free)?"
+msgstr "Isara ang trabahong ito nang walang bill (warranty, package, libre)?"
+
+#: templates/webapp/jobs/detail.html
+msgid "Close without a bill"
+msgstr "Isara nang walang bill"
+
+#: templates/webapp/jobs/detail.html
+msgid "WhatsApp status"
+msgstr "Status sa WhatsApp"
+
+#: templates/webapp/jobs/detail.html
+msgid "Print job card"
+msgstr "I-print ang job card"
+
+#: templates/webapp/jobs/detail.html
+msgid "Customer's status page:"
+msgstr "Status page ng customer:"
+
+#: templates/webapp/jobs/detail.html
+msgid "— no staff —"
+msgstr "— walang staff —"
+
+#: templates/webapp/jobs/detail.html
+msgid "Type (diagnosis, update, advice…)"
+msgstr "Uri (diagnosis, update, payo…)"
+
+#: templates/webapp/jobs/detail.html
+msgid "What was found / done / advised"
+msgstr "Ano ang nakita / ginawa / ipinayo"
+
+#: templates/webapp/jobs/detail.html
+msgid "Follow-up on"
+msgstr "Follow-up sa"
+
+#: templates/webapp/jobs/detail.html
+msgid "Add note"
+msgstr "Magdagdag ng tala"
+
+#: templates/webapp/jobs/detail.html
+msgid "Follow-up"
+msgstr "Follow-up"
+
+#: templates/webapp/jobs/new.html
+msgid "New job"
+msgstr "Bagong trabaho"
+
+#: templates/webapp/jobs/new.html
+msgid "What is it about"
+msgstr "Tungkol saan"
+
+#: templates/webapp/jobs/new.html
+msgid "Leave empty if it is the customer."
+msgstr "Iwanang blangko kung ang customer mismo."
+
+#: templates/webapp/jobs/new.html
+msgid "When and who"
+msgstr "Kailan at sino"
+
+#: templates/webapp/jobs/new.html
+msgid "Empty for a walk-in."
+msgstr "Blangko kung walk-in."
+
+#: templates/webapp/jobs/new.html
+msgid "Save job"
+msgstr "I-save ang trabaho"
+
+#: templates/webapp/jobs/print.html
+msgid "Job card"
+msgstr "Job card"
+
+#: templates/webapp/jobs/print.html
+msgid "Job / complaint"
+msgstr "Trabaho / reklamo"
+
+#: templates/webapp/jobs/print.html
+msgid "Work to be done / parts used:"
+msgstr "Trabahong gagawin / piyesang ginamit:"
+
+#: templates/webapp/jobs/print.html
+msgid "Check your job status online:"
+msgstr "Tingnan online ang status ng iyong trabaho:"
+
+#: templates/webapp/jobs/print.html
+msgid "Customer signature"
+msgstr "Pirma ng customer"
+
+#: templates/webapp/jobs/print.html
+msgid "Received by"
+msgstr "Tinanggap ni"
+
+#: templates/webapp/jobs/status.html
+msgid "This job was cancelled."
+msgstr "Kinansela ang trabahong ito."
+
+#: templates/webapp/jobs/status.html
+msgid "Waiting for parts or your approval."
+msgstr "Naghihintay ng piyesa o ng iyong pag-apruba."
+
+#: templates/webapp/jobs/status.html
+msgid "Expected ready by"
+msgstr "Inaasahang handa sa"
+
+#: templates/webapp/jobs/status.html
+msgid "Ready — you can collect it now."
+msgstr "Handa na — maaari mo nang kunin."
+
+#: templates/webapp/jobs/status.html
+msgid "This page refreshes by itself."
+msgstr "Kusang nagre-refresh ang page na ito."
+
+#: templates/webapp/jobs/technician.html
+msgid "My jobs"
+msgstr "Aking mga trabaho"
+
+#: templates/webapp/jobs/technician.html
+msgid "Waiting"
+msgstr "Naghihintay"
+
+#: templates/webapp/jobs/technician.html
+msgid "Ready"
+msgstr "Handa"
+
+#: templates/webapp/jobs/technician.html
+msgid "Add a note"
+msgstr "Magdagdag ng tala"
+
+#: templates/webapp/jobs/technician.html
+msgid "What you found / did / need (parts…)"
+msgstr "Ano ang nakita / ginawa / kailangan mo (piyesa…)"
+
+#: templates/webapp/jobs/technician.html
+msgid "Save note"
+msgstr "I-save ang tala"
+
+#: templates/webapp/jobs/technician.html
+msgid "No jobs for you right now. This page refreshes by itself."
+msgstr "Wala kang trabaho ngayon. Kusang nagre-refresh ang page na ito."
+
+#: templates/webapp/jobs/technician.html
+msgid "Finished today"
+msgstr "Natapos ngayong araw"
+
 #: templates/webapp/login.html
 msgid "Sign in · Business Console"
 msgstr "Mag-sign in · Business Console"
@@ -5387,10 +5741,6 @@ msgid "No bills yet."
 msgstr "Wala pang bill."
 
 #: templates/webapp/mess/member.html
-msgid "Bill"
-msgstr "Bill"
-
-#: templates/webapp/mess/member.html
 msgid "Member"
 msgstr "Miyembro"
 
@@ -5537,10 +5887,6 @@ msgid "Repair"
 msgstr "Pagkukumpuni"
 
 #: templates/webapp/mobile_shop/repair_detail.html
-msgid "Print job card"
-msgstr "I-print ang job card"
-
-#: templates/webapp/mobile_shop/repair_detail.html
 msgid "Send status on WhatsApp"
 msgstr "Ipadala ang status sa WhatsApp"
 
@@ -5563,10 +5909,6 @@ msgstr "Device"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Received"
 msgstr "Natanggap"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Ready by"
-msgstr "Handa sa petsang"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Warranty repair"
@@ -5609,10 +5951,6 @@ msgstr ""
 "Pakidala ang card na ito pagkuha ng telepono. Hindi kami mananagot sa data "
 "sa device o sa mga teleponong hindi nakuha sa loob ng 30 araw mula sa "
 "petsang handa."
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Customer signature"
-msgstr "Pirma ng customer"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Shop"
@@ -6043,10 +6381,6 @@ msgstr "Walang bagong kahilingan sa booking."
 msgid "Put the booking form on your website →"
 msgstr "Ilagay ang booking form sa iyong website →"
 
-#: templates/webapp/online_booking/inbox.html
-msgid "Nothing here."
-msgstr "Wala rito."
-
 #: templates/webapp/online_booking/settings.html
 msgid "On"
 msgstr "On"
@@ -6344,10 +6678,6 @@ msgid "Amount due"
 msgstr "Halagang babayaran"
 
 #: templates/webapp/pos.html
-msgid "Card"
-msgstr "Card"
-
-#: templates/webapp/pos.html
 msgid "Instalment"
 msgstr "Hulugan"
 
@@ -6642,10 +6972,6 @@ msgstr "Offline no."
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "Nabenta noong"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Payment"
-msgstr "Bayad"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Result"
@@ -7358,10 +7684,6 @@ msgstr "GOODS RECEIPT NOTE"
 msgid "PO"
 msgstr "PO"
 
-#: templates/webapp/purchase_docs/grn.html
-msgid "Received by"
-msgstr "Tinanggap ni"
-
 #: templates/webapp/purchase_docs/po_detail.html
 msgid "Purchase order"
 msgstr "Purchase order"
@@ -7638,10 +7960,6 @@ msgstr "hal. Nangakong magbabayad sa Huwebes"
 #: templates/webapp/receivables/customer.html
 msgid "Follow up on"
 msgstr "Follow up sa"
-
-#: templates/webapp/receivables/customer.html
-msgid "Save note"
-msgstr "I-save ang tala"
 
 #: templates/webapp/receivables/customer.html
 msgid "follow up"
@@ -8519,10 +8837,6 @@ msgid "just now"
 msgstr "ngayon lang"
 
 #: templates/webapp/restaurant/dashboard.html
-msgid "min"
-msgstr "min"
-
-#: templates/webapp/restaurant/dashboard.html
 msgid "h"
 msgstr "o"
 
@@ -8570,10 +8884,6 @@ msgstr "Hawak ng rider"
 #: templates/webapp/restaurant/deliveries.html
 msgid "Collect"
 msgstr "Singilin"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "Late"
-msgstr "Huli"
 
 #: templates/webapp/restaurant/deliveries.html
 msgid "delivered"
@@ -8647,20 +8957,8 @@ msgid "ID / licence no."
 msgstr "ID / numero ng lisensya"
 
 #: templates/webapp/restaurant/deliveries.html
-msgid "Turn off"
-msgstr "I-off"
-
-#: templates/webapp/restaurant/deliveries.html
 msgid "Turn on"
 msgstr "I-on"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "Make a new private link? The old link stops working."
-msgstr "Gumawa ng bagong pribadong link? Hindi na gagana ang lumang link."
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "New link"
-msgstr "Bagong link"
 
 #: templates/webapp/restaurant/deliveries.html
 msgid "Add a rider"
@@ -8794,10 +9092,6 @@ msgstr "⛶ Full screen"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Filter kitchen orders"
 msgstr "I-filter ang order sa kusina"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "Waiting"
-msgstr "Naghihintay"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Cooking"
@@ -9300,10 +9594,6 @@ msgstr ""
 #: templates/webapp/restaurant/online_orders.html
 msgid "In the kitchen / ready"
 msgstr "Sa kusina / handa"
-
-#: templates/webapp/restaurant/online_orders.html
-msgid "Ready"
-msgstr "Handa"
 
 #: templates/webapp/restaurant/online_orders.html
 msgid "Preparing"
@@ -11471,6 +11761,79 @@ msgstr ""
 msgid " for delivery"
 msgstr "para sa delivery"
 
+#: apps/industry/jobs.py
+msgid "Enter a valid amount."
+msgstr "Maglagay ng tamang halaga."
+
+#: apps/industry/jobs.py
+msgid "Say what the job is."
+msgstr "Sabihin kung ano ang trabaho."
+
+#: apps/industry/jobs.py
+msgid "Choose your own staff member."
+msgstr "Pumili ng sarili mong staff."
+
+#: apps/industry/jobs.py
+msgid "This job is closed."
+msgstr "Sarado na ang trabahong ito."
+
+#: apps/industry/jobs.py
+msgid "Choose your own item."
+msgstr "Pumili ng sarili mong item."
+
+#: apps/industry/jobs.py
+msgid "Quantity must be more than 0."
+msgstr "Dapat higit sa 0 ang dami."
+
+#: apps/industry/jobs.py
+msgid "Describe the work or choose an item."
+msgstr "Ilarawan ang trabaho o pumili ng item."
+
+#: apps/industry/jobs.py
+msgid "Unknown status."
+msgstr "Hindi kilalang status."
+
+#: apps/industry/jobs.py
+msgid "Add the parts and work done first."
+msgstr "Idagdag muna ang mga piyesa at trabahong ginawa."
+
+#: apps/industry/jobs.py
+msgid "The discount is more than the bill."
+msgstr "Mas malaki ang diskwento kaysa sa bill."
+
+#: apps/industry/jobs.py
+msgid "Hello %(name)s,"
+msgstr "Kumusta %(name)s,"
+
+#: apps/industry/jobs.py
+msgid "Your appointment at %(shop)s is booked: %(what)s on %(when)s."
+msgstr "Naka-book ang iyong appointment sa %(shop)s: %(what)s sa %(when)s."
+
+#: apps/industry/jobs.py
+msgid "Good news — %(what)s is ready at %(shop)s."
+msgstr "Magandang balita — handa na ang %(what)s sa %(shop)s."
+
+#: apps/industry/jobs.py
+msgid "Amount: %(amount)s"
+msgstr "Halaga: %(amount)s"
+
+#: apps/industry/jobs.py
+msgid "%(what)s is waiting for parts / your approval. We will update you."
+msgstr ""
+"Naghihintay ang %(what)s ng piyesa / iyong pag-apruba. Babalitaan ka namin."
+
+#: apps/industry/jobs.py
+msgid "Thank you for choosing %(shop)s. Job %(number)s is complete."
+msgstr "Salamat sa pagpili sa %(shop)s. Tapos na ang trabaho %(number)s."
+
+#: apps/industry/jobs.py
+msgid "We are working on %(what)s (job %(number)s)."
+msgstr "Ginagawa namin ang %(what)s (trabaho %(number)s)."
+
+#: apps/industry/jobs.py
+msgid "Status: %(url)s"
+msgstr "Status: %(url)s"
+
 #: apps/industry/models.py
 msgid "Ready / on the way"
 msgstr "Handa / papunta na"
@@ -12072,6 +12435,18 @@ msgstr "Wala na sa menu ang isang item sa cart mo. Paki-refresh ang pahina."
 #: apps/verticals/restaurant/online_orders.py
 msgid "Sorry, %(item)s is not available online right now."
 msgstr "Paumanhin, hindi available online ang %(item)s ngayon."
+
+#: apps/verticals/saloon/models.py
+msgid "Normal"
+msgstr "Normal"
+
+#: apps/verticals/saloon/models.py
+msgid "Part / item"
+msgstr "Piyesa / item"
+
+#: apps/verticals/saloon/models.py
+msgid "Labour / service"
+msgstr "Labor / serbisyo"
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -12751,10 +13126,6 @@ msgid "%(count)s prices set."
 msgstr "Naitakda ang %(count)s presyo."
 
 #: apps/webapp/delivery_views.py
-msgid "Enter a valid amount."
-msgstr "Maglagay ng tamang halaga."
-
-#: apps/webapp/delivery_views.py
 msgid "%(order)s → %(rider)s"
 msgstr "%(order)s → %(rider)s"
 
@@ -13033,10 +13404,6 @@ msgid "Dish name"
 msgstr "Pangalan ng ulam"
 
 #: apps/webapp/forms.py
-msgid "Description"
-msgstr "Paglalarawan"
-
-#: apps/webapp/forms.py
 msgid "Preparation time (minutes)"
 msgstr "Oras ng paghahanda (minuto)"
 
@@ -13268,6 +13635,105 @@ msgstr "Na-save ang HR settings."
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
 msgstr "Hindi bahagi ng uri ng negosyo mo ang module na ito."
+
+#: apps/webapp/job_views.py
+msgid "Patient / person"
+msgstr "Pasyente / tao"
+
+#: apps/webapp/job_views.py
+msgid "File no. / ID"
+msgstr "File no. / ID"
+
+#: apps/webapp/job_views.py
+msgid "Student ID"
+msgstr "Student ID"
+
+#: apps/webapp/job_views.py
+msgid "Pet name"
+msgstr "Pangalan ng alaga"
+
+#: apps/webapp/job_views.py
+msgid "Microchip / reg. no."
+msgstr "Microchip / reg. no."
+
+#: apps/webapp/job_views.py
+msgid "Plate / VIN"
+msgstr "Plaka / VIN"
+
+#: apps/webapp/job_views.py
+msgid "Item (e.g. laptop, AC)"
+msgstr "Item (hal. laptop, AC)"
+
+#: apps/webapp/job_views.py
+msgid "Serial / model no."
+msgstr "Serial / model no."
+
+#: apps/webapp/job_views.py
+msgid "Site / item"
+msgstr "Lugar / item"
+
+#: apps/webapp/job_views.py
+msgid "e.g. Oil change + brake check"
+msgstr "hal. Palit-langis + tingin sa preno"
+
+#: apps/webapp/job_views.py
+msgid "Ready by (promised)"
+msgstr "Handa sa (ipinangako)"
+
+#: apps/webapp/job_views.py
+msgid "Completed / cancelled"
+msgstr "Tapos / kinansela"
+
+#: apps/webapp/job_views.py
+msgid ""
+"%(name)s already has %(job)s at that time. Press Save again to book anyway."
+msgstr ""
+"May %(job)s na si %(name)s sa oras na iyon. Pindutin muli ang Save para "
+"i-book pa rin."
+
+#: apps/webapp/job_views.py
+msgid "Job %(number)s saved."
+msgstr "Na-save ang trabaho %(number)s."
+
+#: apps/webapp/job_views.py
+msgid "Status: %(status)s"
+msgstr "Status: %(status)s"
+
+#: apps/webapp/job_views.py
+msgid "Bill %(number)s made."
+msgstr "Nagawa ang bill %(number)s."
+
+#: apps/webapp/job_views.py
+msgid "Job closed without a bill."
+msgstr "Isinara ang trabaho nang walang bill."
+
+#: apps/webapp/job_views.py
+msgid "Write the note first."
+msgstr "Isulat muna ang tala."
+
+#: apps/webapp/job_views.py
+msgid "Note added."
+msgstr "Naidagdag ang tala."
+
+#: apps/webapp/job_views.py
+msgid "Your jobs page (keep this link private): %(url)s"
+msgstr "Ang iyong page ng trabaho (huwag ibahagi ang link na ito): %(url)s"
+
+#: apps/webapp/job_views.py
+msgid "New link made for %(name)s — the old one no longer works."
+msgstr "Gumawa ng bagong link para kay %(name)s — hindi na gumagana ang luma."
+
+#: apps/webapp/job_views.py
+msgid "Link turned off."
+msgstr "Pinatay ang link."
+
+#: apps/webapp/job_views.py
+msgid "Link ready for %(name)s."
+msgstr "Handa na ang link para kay %(name)s."
+
+#: apps/webapp/job_views.py
+msgid "From %(name)s"
+msgstr "Mula kay %(name)s"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -13642,6 +14108,10 @@ msgid "Booking confirmed. Send the confirmation on WhatsApp."
 msgstr "Kumpirmado ang booking. Ipadala ang kumpirmasyon sa WhatsApp."
 
 #: apps/webapp/online_booking_views.py
+msgid "Job %(number)s booked. Choose the staff member on the job card."
+msgstr "Na-book ang trabaho %(number)s. Piliin ang staff sa job card."
+
+#: apps/webapp/online_booking_views.py
 msgid "Choose the staff member and save to finish the appointment."
 msgstr "Piliin ang staff at i-save para tapusin ang appointment."
 
@@ -13668,10 +14138,6 @@ msgstr "Ilang araw nang maaga puwedeng mag-book"
 #: apps/webapp/online_booking_views.py
 msgid "Online booking settings saved."
 msgstr "Na-save ang setting ng online booking."
-
-#: apps/webapp/online_booking_views.py
-msgid "Appointment"
-msgstr "Appointment"
 
 #: apps/webapp/online_booking_views.py
 msgid "Booking"
@@ -14604,10 +15070,6 @@ msgid "Any"
 msgstr "Kahit ano"
 
 #: apps/webapp/recruitment_views.py
-msgid "Bank transfer"
-msgstr "Bank transfer"
-
-#: apps/webapp/recruitment_views.py
 msgid "Free replacement period after joining."
 msgstr "Libreng replacement period pagkatapos sumali."
 
@@ -15134,6 +15596,14 @@ msgid ""
 "%(status)s."
 msgstr ""
 "Hi %(name)s, update sa %(device)s mo (job %(job)s) sa %(shop)s: %(status)s."
+
+#: apps/webapp/views.py
+msgid "Client record saved."
+msgstr "Na-save ang record ng kliyente."
+
+#: apps/webapp/views.py
+msgid "Job saved."
+msgstr "Na-save ang trabaho."
 
 #: apps/webapp/views.py
 msgid "Fragrance family"

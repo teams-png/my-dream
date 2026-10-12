@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Appointments calendar" %}{% endblock %}
+{% block heading %}📅 {% translate "Appointments calendar" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.jc-nav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}.jc-nav form{display:flex;gap:6px;margin:0}
+.jc-nav h2{margin:0 8px;font-size:18px}
+.jc-grid{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);gap:10px;overflow-x:auto;padding-bottom:6px}
+.jc-col{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:10px;min-width:0}
+.jc-col h3{margin:0 0 8px;font-size:15px;display:flex;gap:6px;align-items:center}.jc-col h3 a{margin-inline-start:auto;font-size:13px}
+.jc-job{display:block;border:1px solid var(--line);border-inline-start:4px solid #0ea5e9;border-radius:12px;background:var(--panel);padding:8px 10px;margin-bottom:8px;text-decoration:none;color:inherit}
+.jc-job.in_progress{border-inline-start-color:#f59e0b}.jc-job.ready{border-inline-start-color:#16a34a}.jc-job.completed{border-inline-start-color:#7c3aed;opacity:.75}.jc-job.waiting{border-inline-start-color:#eab308}
+.jc-job b{display:block}.jc-job small{color:var(--ink-soft);overflow-wrap:anywhere}
+.jc-free{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}.jc-free a{font-size:12px;padding:3px 8px;border:1px dashed var(--line);border-radius:99px;text-decoration:none;color:var(--ink-soft)}
+.jc-links{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:12px 14px;margin-top:18px}
+.jc-links table{width:100%;border-collapse:collapse}.jc-links td{padding:8px 6px;border-top:1px solid var(--line);vertical-align:middle}
+.jc-links form{display:inline;margin:0}
+</style>
+<div class="ix">
+  <div class="jc-nav">
+    <a class="btn btn-secondary" href="?day={{ prev|date:'Y-m-d' }}" aria-label="{% translate 'Previous day' %}">←</a>
+    <h2>{{ day|date:"l, j M Y" }}</h2>
+    <a class="btn btn-secondary" href="?day={{ next|date:'Y-m-d' }}" aria-label="{% translate 'Next day' %}">→</a>
+    {% if day != today %}<a class="btn btn-secondary" href="?">{% translate "Today" %}</a>{% endif %}
+    <form method="get"><input type="date" name="day" value="{{ day|date:'Y-m-d' }}" aria-label="{% translate 'Day' %}"><button class="btn btn-secondary">{% translate "Go" %}</button></form>
+    <a class="btn" href="{% url 'webapp:service_case_add' %}?at={{ day|date:'Y-m-d' }}T09:00">＋ {% translate "New appointment" %}</a>
+    <span><b>{{ count }}</b> {% translate "appointments" %}</span>
+  </div>
+  <div class="jc-grid">
+    {% for col in columns %}
+    <section class="jc-col">
+      <h3>{% if col.staff %}🧑‍🔧 {{ col.staff.name }}<a href="{% url 'webapp:service_case_add' %}?staff={{ col.staff.id }}&amp;at={{ day|date:'Y-m-d' }}T09:00">＋</a>{% else %}❔ {% translate "No staff yet" %}{% endif %}</h3>
+      {% for j in col.jobs %}
+      <a class="jc-job {{ j.status }}" href="{% url 'webapp:service_case_detail' j.id %}">
+        <b>{{ j.scheduled_at|time:"H:i" }}–{{ j.ends_at|time:"H:i" }} · {{ j.title }}</b>
+        <small>{{ j.profile.customer.name }}{% if j.profile.subject_name != j.profile.customer.name %} · {{ j.profile.subject_name }}{% endif %} · {{ j.get_status_display }}</small>
+      </a>
+      {% empty %}<small>{% translate "Free all day." %}</small>{% endfor %}
+      {% if col.staff %}<div class="jc-free">{% for h in hours %}<a href="{% url 'webapp:service_case_add' %}?staff={{ col.staff.id }}&amp;at={{ day|date:'Y-m-d' }}T{{ h }}">{{ h }}</a>{% endfor %}</div>{% endif %}
+    </section>
+    {% empty %}
+    <section class="jc-col">{% translate "Add your staff under Staff & HR to plan appointments per person." %}</section>
+    {% endfor %}
+  </div>
+
+  <section class="jc-links" id="links">
+    <h3 style="margin:0 0 6px">📱 {% translate "Staff phone pages" %}</h3>
+    <p style="margin:0 0 8px"><small>{% translate "Each staff member gets a private link (no login) showing only their jobs, with buttons to start, pause and mark ready." %}</small></p>
+    <div style="overflow-x:auto"><table>
+      {% for l in links %}
+      <tr><td><b>{{ l.emp.name }}</b><br><small>{{ l.emp.phone }}</small></td>
+        <td>{% if l.url %}
+          {% if l.wa %}<a class="btn" href="{{ l.wa }}" target="_blank" rel="noopener">💬 {% translate "Send link" %}</a>{% endif %}
+          <a class="btn btn-secondary" href="{{ l.url }}" target="_blank" rel="noopener">📱 {% translate "Open" %}</a>
+          <form method="post" action="{% url 'webapp:technician_link_action' l.emp.id %}">{% csrf_token %}<button class="btn btn-secondary" name="do" value="new" onclick="return confirm('{% translate "Make a new private link? The old link stops working." %}')">🔑 {% translate "New link" %}</button><button class="btn btn-secondary" name="do" value="off">{% translate "Turn off" %}</button></form>
+        {% else %}
+          <form method="post" action="{% url 'webapp:technician_link_action' l.emp.id %}">{% csrf_token %}<button class="btn" name="do" value="make">＋ {% translate "Make link" %}</button></form>
+        {% endif %}</td></tr>
+      {% empty %}<tr><td>{% translate "No staff yet." %}</td></tr>{% endfor %}
+    </table></div>
+  </section>
+</div>
+{% endblock %}

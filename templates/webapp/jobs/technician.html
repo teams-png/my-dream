@@ -1,0 +1,56 @@
+{% load i18n %}{% get_current_language as LANG %}{% get_current_language_bidi as RTL %}<!doctype html>
+<html lang="{{ LANG }}" dir="{% if RTL %}rtl{% else %}ltr{% endif %}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>{% translate "My jobs" %} · {{ company.name }}</title>
+<style>
+:root{--ink:#172033;--soft:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--card:#fff;--go:#16a34a}
+@media(prefers-color-scheme:dark){:root{--ink:#e2e8f0;--soft:#94a3b8;--line:#334155;--bg:#0f172a;--card:#1e293b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;gap:10px;align-items:center;z-index:2}
+header b{font-size:17px}header small{display:block;color:var(--soft)}
+main{max-width:640px;margin:0 auto;padding:12px 16px 40px}
+.msg{padding:10px 14px;border-radius:12px;margin:8px 0;background:#dcfce7;color:#166534;font-weight:700}.msg.error{background:#fee2e2;color:#991b1b}
+h2{font-size:16px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.card.in_progress{border:2px solid #f59e0b}.card.ready{border:2px solid var(--go)}.card.late{box-shadow:0 0 0 2px #dc2626}
+.top{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.top b{font-size:17px}.top small{color:var(--soft)}
+.st{display:inline-block;margin-top:4px;padding:3px 10px;border-radius:99px;font-weight:800;font-size:13px;background:#e0f2fe;color:#075985}
+.t{font-weight:800;margin:6px 0;overflow-wrap:anywhere}.d{color:var(--soft);font-size:14.5px;overflow-wrap:anywhere}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;min-height:48px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:800;text-decoration:none;cursor:pointer;width:100%}
+.btn.go{background:var(--go);border-color:var(--go);color:#fff}
+form{margin:0}textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px;font:inherit;background:var(--card);color:var(--ink)}
+details{margin-top:8px}summary{cursor:pointer;font-weight:700;color:var(--soft)}
+.done{display:flex;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.empty{text-align:center;color:var(--soft);padding:30px 0}
+</style></head>
+<body>
+<header><span style="font-size:26px">🧑‍🔧</span><span><b>{{ emp.name }}</b><small>{{ company.name }}</small></span></header>
+<main>
+  {% for m in messages %}<div class="msg {{ m.tags }}">{{ m }}</div>{% endfor %}
+  <h2>{% translate "My jobs" %} ({{ open|length }})</h2>
+  {% for j in open %}
+  <div class="card {{ j.status }}{% if j.late %} late{% endif %}">
+    <div class="top"><b>{{ j.number }}</b>{% if j.scheduled_at %}<small>📅 {{ j.scheduled_at|date:"D j M H:i" }}</small>{% endif %}{% if j.priority == "urgent" %}<small>⚡ {% translate "Urgent" %}</small>{% endif %}</div>
+    <span class="st">{{ j.get_status_display }}</span>{% if j.ready_by %} <small>⏰ {% translate "Ready by" %} {{ j.ready_by|date:"j M H:i" }}</small>{% endif %}
+    <div class="t">{{ j.title }}</div>
+    <div class="d">👤 {{ j.profile.customer.name }}{% if j.profile.subject_name != j.profile.customer.name %} · {{ j.profile.subject_name }}{% endif %}{% if j.profile.identifier %} · {{ j.profile.identifier }}{% endif %}</div>
+    {% if j.description %}<div class="d" style="margin-top:4px">{{ j.description|linebreaksbr }}</div>{% endif %}
+    <div class="acts">
+      {% if j.profile.customer.phone %}<a class="btn" href="tel:{{ j.profile.customer.phone }}">📞 {% translate "Call" %}</a>{% endif %}
+      {% if j.status != "in_progress" %}<form method="post">{% csrf_token %}<input type="hidden" name="job_id" value="{{ j.id }}"><button class="btn {% if j.status == 'open' %}go{% endif %}" name="do" value="in_progress">▶ {% translate "Start work" %}</button></form>{% endif %}
+      {% if j.status != "waiting" %}<form method="post">{% csrf_token %}<input type="hidden" name="job_id" value="{{ j.id }}"><button class="btn" name="do" value="waiting">⏸ {% translate "Waiting" %}</button></form>{% endif %}
+      {% if j.status != "ready" %}<form method="post">{% csrf_token %}<input type="hidden" name="job_id" value="{{ j.id }}"><button class="btn {% if j.status == 'in_progress' %}go{% endif %}" name="do" value="ready">✅ {% translate "Ready" %}</button></form>{% endif %}
+    </div>
+    <details><summary>📝 {% translate "Add a note" %}</summary>
+      <form method="post" style="display:grid;gap:8px;margin-top:8px">{% csrf_token %}<input type="hidden" name="job_id" value="{{ j.id }}"><input type="hidden" name="do" value="note">
+        <textarea name="notes" rows="3" required placeholder="{% translate 'What you found / did / need (parts…)' %}"></textarea>
+        <button class="btn">{% translate "Save note" %}</button></form>
+    </details>
+  </div>
+  {% empty %}<div class="empty">{% translate "No jobs for you right now. This page refreshes by itself." %}</div>{% endfor %}
+  {% if done %}<h2>{% translate "Finished today" %} ({{ done|length }})</h2>
+  <div class="card">{% for j in done %}<div class="done"><b>{{ j.number }}</b><span>{{ j.title }}</span></div>{% endfor %}</div>{% endif %}
+</main>
+<script>setTimeout(function(){if(!document.querySelector("textarea:focus"))location.reload()},60000)</script>
+</body></html>

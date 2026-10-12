@@ -254,6 +254,14 @@ msgid "Menu & Ingredients"
 msgstr "மெனு & பொருட்கள்"
 
 #: templates/base.html
+msgid "Job cards"
+msgstr "ஜாப் கார்டுகள்"
+
+#: templates/base.html
+msgid "Appointments calendar"
+msgstr "அப்பாயிண்ட்மென்ட் நாள்காட்டி"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "தொகுப்புகள் / அமர்வுகள்"
 
@@ -5100,6 +5108,354 @@ msgstr "நகலெடு"
 msgid "Share…"
 msgstr "பகிர்…"
 
+#: templates/webapp/jobs/board.html
+msgid "New job / appointment"
+msgstr "புதிய ஜாப் / அப்பாயிண்ட்மென்ட்"
+
+#: templates/webapp/jobs/board.html
+msgid "Calendar"
+msgstr "நாள்காட்டி"
+
+#: templates/webapp/jobs/board.html
+msgid "Search job no., name, phone, plate…"
+msgstr "ஜாப் எண், பெயர், போன், பதிவெண்… தேடு"
+
+#: templates/webapp/jobs/board.html
+msgid "All staff"
+msgstr "அனைத்து ஊழியர்கள்"
+
+#: templates/webapp/jobs/board.html
+msgid "Find"
+msgstr "தேடு"
+
+#: templates/webapp/jobs/board.html
+msgid "All open"
+msgstr "அனைத்து திறந்தவை"
+
+#: templates/webapp/jobs/board.html
+msgid "Late"
+msgstr "தாமதம்"
+
+#: templates/webapp/jobs/board.html
+msgid "Urgent"
+msgstr "அவசரம்"
+
+#: templates/webapp/jobs/board.html
+msgid "Nothing here."
+msgstr "இங்கே எதுவும் இல்லை."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Previous day"
+msgstr "முந்தைய நாள்"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Next day"
+msgstr "அடுத்த நாள்"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Day"
+msgstr "நாள்"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Go"
+msgstr "செல்"
+
+#: templates/webapp/jobs/calendar.html
+msgid "New appointment"
+msgstr "புதிய அப்பாயிண்ட்மென்ட்"
+
+#: templates/webapp/jobs/calendar.html
+msgid "appointments"
+msgstr "அப்பாயிண்ட்மென்ட்கள்"
+
+#: templates/webapp/jobs/calendar.html
+msgid "No staff yet"
+msgstr "இன்னும் ஊழியர் இல்லை"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Free all day."
+msgstr "நாள் முழுவதும் காலி."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Add your staff under Staff & HR to plan appointments per person."
+msgstr ""
+"ஒவ்வொருவருக்கும் அப்பாயிண்ட்மென்ட் திட்டமிட Staff & HR-இல் ஊழியர்களைச் "
+"சேர்க்கவும்."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Staff phone pages"
+msgstr "ஊழியர் போன் பக்கங்கள்"
+
+#: templates/webapp/jobs/calendar.html
+msgid ""
+"Each staff member gets a private link (no login) showing only their jobs, "
+"with buttons to start, pause and mark ready."
+msgstr ""
+"ஒவ்வொரு ஊழியருக்கும் தங்கள் வேலைகளை மட்டும் காட்டும் தனிப்பட்ட இணைப்பு "
+"(உள்நுழைவு தேவையில்லை) கிடைக்கும் — தொடங்க, நிறுத்த, தயார் எனக் குறிக்க "
+"பொத்தான்களுடன்."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Send link"
+msgstr "இணைப்பை அனுப்பு"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Make a new private link? The old link stops working."
+msgstr "புதிய தனிப்பட்ட இணைப்பை உருவாக்கவா? பழைய இணைப்பு வேலை செய்யாது."
+
+#: templates/webapp/jobs/calendar.html
+msgid "New link"
+msgstr "புதிய இணைப்பு"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Turn off"
+msgstr "அணை"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Make link"
+msgstr "இணைப்பை உருவாக்கு"
+
+#: templates/webapp/jobs/detail.html
+msgid "Appointment"
+msgstr "சந்திப்பு"
+
+#: templates/webapp/jobs/detail.html
+msgid "min"
+msgstr "நிமி"
+
+#: templates/webapp/jobs/detail.html
+msgid "Ready by"
+msgstr "தயாராகும் தேதி"
+
+#: templates/webapp/jobs/detail.html
+msgid "Started"
+msgstr "தொடங்கியது"
+
+#: templates/webapp/jobs/detail.html
+msgid "Finished"
+msgstr "முடிந்தது"
+
+#: templates/webapp/jobs/detail.html
+msgid "Bill"
+msgstr "பில்"
+
+#: templates/webapp/jobs/detail.html
+msgid "Cancel this job?"
+msgstr "இந்த ஜாபை ரத்து செய்யவா?"
+
+#: templates/webapp/jobs/detail.html
+msgid "Booked / to start"
+msgstr "பதிவு செய்யப்பட்டது / தொடங்க வேண்டும்"
+
+#: templates/webapp/jobs/detail.html
+msgid "Start work"
+msgstr "வேலையைத் தொடங்கு"
+
+#: templates/webapp/jobs/detail.html
+msgid "Waiting (parts / approval)"
+msgstr "காத்திருக்கிறது (பாகங்கள் / ஒப்புதல்)"
+
+#: templates/webapp/jobs/detail.html
+msgid "Ready for the customer"
+msgstr "வாடிக்கையாளருக்குத் தயார்"
+
+#: templates/webapp/jobs/detail.html
+msgid "Cancel job"
+msgstr "ஜாபை ரத்து செய்"
+
+#: templates/webapp/jobs/detail.html
+msgid "Parts and work"
+msgstr "பாகங்கள் மற்றும் வேலை"
+
+#: templates/webapp/jobs/detail.html
+msgid "Item / work"
+msgstr "பொருள் / வேலை"
+
+#: templates/webapp/jobs/detail.html
+msgid "Item / part from stock"
+msgstr "ஸ்டாக்கிலிருந்து பொருள் / பாகம்"
+
+#: templates/webapp/jobs/detail.html
+msgid "— labour / service (type below) —"
+msgstr "— கூலி / சேவை (கீழே தட்டச்சு செய்யவும்) —"
+
+#: templates/webapp/jobs/detail.html
+msgid "Description"
+msgstr "விளக்கம்"
+
+#: templates/webapp/jobs/detail.html
+msgid "e.g. Labour 1 hour"
+msgstr "எ.கா. கூலி 1 மணி நேரம்"
+
+#: templates/webapp/jobs/detail.html
+msgid "auto"
+msgstr "தானியங்கு"
+
+#: templates/webapp/jobs/detail.html
+msgid "Payment"
+msgstr "கட்டணம்"
+
+#: templates/webapp/jobs/detail.html
+msgid "Card"
+msgstr "கார்டு"
+
+#: templates/webapp/jobs/detail.html
+msgid "Bank transfer"
+msgstr "வங்கிப் பரிமாற்றம்"
+
+#: templates/webapp/jobs/detail.html
+msgid "Pay later (on account)"
+msgstr "பின்னர் செலுத்துதல் (கணக்கில்)"
+
+#: templates/webapp/jobs/detail.html
+msgid "Make bill & close job"
+msgstr "பில் செய்து ஜாபை மூடு"
+
+#: templates/webapp/jobs/detail.html
+msgid "Close this job without a bill (warranty, package, free)?"
+msgstr "பில் இல்லாமல் இந்த ஜாபை மூடவா (உத்தரவாதம், பேக்கேஜ், இலவசம்)?"
+
+#: templates/webapp/jobs/detail.html
+msgid "Close without a bill"
+msgstr "பில் இல்லாமல் மூடு"
+
+#: templates/webapp/jobs/detail.html
+msgid "WhatsApp status"
+msgstr "வாட்ஸ்அப் நிலை"
+
+#: templates/webapp/jobs/detail.html
+msgid "Print job card"
+msgstr "வேலை அட்டையை அச்சிடு"
+
+#: templates/webapp/jobs/detail.html
+msgid "Customer's status page:"
+msgstr "வாடிக்கையாளரின் நிலை பக்கம்:"
+
+#: templates/webapp/jobs/detail.html
+msgid "— no staff —"
+msgstr "— ஊழியர் இல்லை —"
+
+#: templates/webapp/jobs/detail.html
+msgid "Type (diagnosis, update, advice…)"
+msgstr "வகை (நோயறிதல், புதுப்பிப்பு, ஆலோசனை…)"
+
+#: templates/webapp/jobs/detail.html
+msgid "What was found / done / advised"
+msgstr "என்ன கண்டறியப்பட்டது / செய்யப்பட்டது / அறிவுறுத்தப்பட்டது"
+
+#: templates/webapp/jobs/detail.html
+msgid "Follow-up on"
+msgstr "பின்தொடர்வு தேதி"
+
+#: templates/webapp/jobs/detail.html
+msgid "Add note"
+msgstr "குறிப்பைச் சேர்"
+
+#: templates/webapp/jobs/detail.html
+msgid "Follow-up"
+msgstr "பின்தொடர்வு"
+
+#: templates/webapp/jobs/new.html
+msgid "New job"
+msgstr "புதிய ஜாப்"
+
+#: templates/webapp/jobs/new.html
+msgid "What is it about"
+msgstr "எதைப் பற்றியது"
+
+#: templates/webapp/jobs/new.html
+msgid "Leave empty if it is the customer."
+msgstr "வாடிக்கையாளரே என்றால் காலியாக விடவும்."
+
+#: templates/webapp/jobs/new.html
+msgid "When and who"
+msgstr "எப்போது, யார்"
+
+#: templates/webapp/jobs/new.html
+msgid "Empty for a walk-in."
+msgstr "நேரில் வருபவருக்குக் காலியாக விடவும்."
+
+#: templates/webapp/jobs/new.html
+msgid "Save job"
+msgstr "ஜாபைச் சேமி"
+
+#: templates/webapp/jobs/print.html
+msgid "Job card"
+msgstr "ஜாப் கார்டு"
+
+#: templates/webapp/jobs/print.html
+msgid "Job / complaint"
+msgstr "வேலை / புகார்"
+
+#: templates/webapp/jobs/print.html
+msgid "Work to be done / parts used:"
+msgstr "செய்ய வேண்டிய வேலை / பயன்படுத்திய பாகங்கள்:"
+
+#: templates/webapp/jobs/print.html
+msgid "Check your job status online:"
+msgstr "உங்கள் ஜாபின் நிலையை ஆன்லைனில் பாருங்கள்:"
+
+#: templates/webapp/jobs/print.html
+msgid "Customer signature"
+msgstr "வாடிக்கையாளர் கையொப்பம்"
+
+#: templates/webapp/jobs/print.html
+msgid "Received by"
+msgstr "பெற்றவர்"
+
+#: templates/webapp/jobs/status.html
+msgid "This job was cancelled."
+msgstr "இந்த ஜாப் ரத்து செய்யப்பட்டது."
+
+#: templates/webapp/jobs/status.html
+msgid "Waiting for parts or your approval."
+msgstr "பாகங்கள் அல்லது உங்கள் ஒப்புதலுக்காகக் காத்திருக்கிறது."
+
+#: templates/webapp/jobs/status.html
+msgid "Expected ready by"
+msgstr "தயாராகும் எதிர்பார்ப்பு நேரம்"
+
+#: templates/webapp/jobs/status.html
+msgid "Ready — you can collect it now."
+msgstr "தயார் — இப்போது பெற்றுக்கொள்ளலாம்."
+
+#: templates/webapp/jobs/status.html
+msgid "This page refreshes by itself."
+msgstr "இந்தப் பக்கம் தானாகப் புதுப்பிக்கப்படும்."
+
+#: templates/webapp/jobs/technician.html
+msgid "My jobs"
+msgstr "என் வேலைகள்"
+
+#: templates/webapp/jobs/technician.html
+msgid "Waiting"
+msgstr "காத்திருக்கிறது"
+
+#: templates/webapp/jobs/technician.html
+msgid "Ready"
+msgstr "தயார்"
+
+#: templates/webapp/jobs/technician.html
+msgid "Add a note"
+msgstr "குறிப்பைச் சேர்"
+
+#: templates/webapp/jobs/technician.html
+msgid "What you found / did / need (parts…)"
+msgstr "என்ன கண்டீர்கள் / செய்தீர்கள் / என்ன தேவை (பாகங்கள்…)"
+
+#: templates/webapp/jobs/technician.html
+msgid "Save note"
+msgstr "குறிப்பைச் சேமி"
+
+#: templates/webapp/jobs/technician.html
+msgid "No jobs for you right now. This page refreshes by itself."
+msgstr ""
+"இப்போது உங்களுக்கு வேலைகள் இல்லை. இந்தப் பக்கம் தானாகப் புதுப்பிக்கப்படும்."
+
+#: templates/webapp/jobs/technician.html
+msgid "Finished today"
+msgstr "இன்று முடிந்தவை"
+
 #: templates/webapp/login.html
 msgid "Sign in · Business Console"
 msgstr "உள்நுழை · வணிகக் கன்சோல்"
@@ -5398,10 +5754,6 @@ msgid "No bills yet."
 msgstr "இன்னும் பில்கள் இல்லை."
 
 #: templates/webapp/mess/member.html
-msgid "Bill"
-msgstr "பில்"
-
-#: templates/webapp/mess/member.html
 msgid "Member"
 msgstr "உறுப்பினர்"
 
@@ -5547,10 +5899,6 @@ msgid "Repair"
 msgstr "பழுதுநீக்கம்"
 
 #: templates/webapp/mobile_shop/repair_detail.html
-msgid "Print job card"
-msgstr "வேலை அட்டையை அச்சிடு"
-
-#: templates/webapp/mobile_shop/repair_detail.html
 msgid "Send status on WhatsApp"
 msgstr "நிலையை WhatsApp-ல் அனுப்பு"
 
@@ -5573,10 +5921,6 @@ msgstr "சாதனம்"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Received"
 msgstr "பெறப்பட்டது"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Ready by"
-msgstr "தயாராகும் தேதி"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Warranty repair"
@@ -5619,10 +5963,6 @@ msgstr ""
 "தொலைபேசியைப் பெற வரும்போது இந்த அட்டையைக் கொண்டு வாருங்கள். சாதனத்தில் உள்ள "
 "தரவுக்கோ, தயாரான தேதியிலிருந்து 30 நாட்களுக்குள் பெறப்படாத தொலைபேசிகளுக்கோ "
 "நாங்கள் பொறுப்பல்ல."
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Customer signature"
-msgstr "வாடிக்கையாளர் கையொப்பம்"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Shop"
@@ -6057,10 +6397,6 @@ msgstr "புதிய முன்பதிவு கோரிக்கைக�
 msgid "Put the booking form on your website →"
 msgstr "முன்பதிவுப் படிவத்தை உங்கள் இணையதளத்தில் வையுங்கள் →"
 
-#: templates/webapp/online_booking/inbox.html
-msgid "Nothing here."
-msgstr "இங்கே எதுவும் இல்லை."
-
 #: templates/webapp/online_booking/settings.html
 msgid "On"
 msgstr "இயக்கம்"
@@ -6364,10 +6700,6 @@ msgid "Amount due"
 msgstr "செலுத்த வேண்டிய தொகை"
 
 #: templates/webapp/pos.html
-msgid "Card"
-msgstr "கார்டு"
-
-#: templates/webapp/pos.html
 msgid "Instalment"
 msgstr "தவணை"
 
@@ -6665,10 +6997,6 @@ msgstr "ஆஃப்லைன் எண்"
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "விற்ற நேரம்"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Payment"
-msgstr "கட்டணம்"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Result"
@@ -7389,10 +7717,6 @@ msgstr "பொருள் பெறுதல் குறிப்பு"
 msgid "PO"
 msgstr "PO"
 
-#: templates/webapp/purchase_docs/grn.html
-msgid "Received by"
-msgstr "பெற்றவர்"
-
 #: templates/webapp/purchase_docs/po_detail.html
 msgid "Purchase order"
 msgstr "கொள்முதல் ஆர்டர்"
@@ -7669,10 +7993,6 @@ msgstr "எ.கா. வியாழன் அன்று செலுத்த�
 #: templates/webapp/receivables/customer.html
 msgid "Follow up on"
 msgstr "பின்தொடர வேண்டிய நாள்"
-
-#: templates/webapp/receivables/customer.html
-msgid "Save note"
-msgstr "குறிப்பைச் சேமி"
 
 #: templates/webapp/receivables/customer.html
 msgid "follow up"
@@ -8553,10 +8873,6 @@ msgid "just now"
 msgstr "இப்போது தான்"
 
 #: templates/webapp/restaurant/dashboard.html
-msgid "min"
-msgstr "நிமி"
-
-#: templates/webapp/restaurant/dashboard.html
 msgid "h"
 msgstr "ம"
 
@@ -8604,10 +8920,6 @@ msgstr "ரைடரிடம்"
 #: templates/webapp/restaurant/deliveries.html
 msgid "Collect"
 msgstr "வசூலிக்கவும்"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "Late"
-msgstr "தாமதம்"
 
 #: templates/webapp/restaurant/deliveries.html
 msgid "delivered"
@@ -8681,20 +8993,8 @@ msgid "ID / licence no."
 msgstr "அடையாள / உரிம எண்"
 
 #: templates/webapp/restaurant/deliveries.html
-msgid "Turn off"
-msgstr "அணை"
-
-#: templates/webapp/restaurant/deliveries.html
 msgid "Turn on"
 msgstr "இயக்கு"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "Make a new private link? The old link stops working."
-msgstr "புதிய தனிப்பட்ட இணைப்பை உருவாக்கவா? பழைய இணைப்பு வேலை செய்யாது."
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "New link"
-msgstr "புதிய இணைப்பு"
 
 #: templates/webapp/restaurant/deliveries.html
 msgid "Add a rider"
@@ -8829,10 +9129,6 @@ msgstr "⛶ முழுத் திரை"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Filter kitchen orders"
 msgstr "சமையலறை ஆர்டர்களை வடிகட்டு"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "Waiting"
-msgstr "காத்திருக்கிறது"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Cooking"
@@ -9335,10 +9631,6 @@ msgstr ""
 #: templates/webapp/restaurant/online_orders.html
 msgid "In the kitchen / ready"
 msgstr "சமையலறையில் / தயார்"
-
-#: templates/webapp/restaurant/online_orders.html
-msgid "Ready"
-msgstr "தயார்"
 
 #: templates/webapp/restaurant/online_orders.html
 msgid "Preparing"
@@ -11516,6 +11808,80 @@ msgstr ""
 msgid " for delivery"
 msgstr "டெலிவரிக்கு"
 
+#: apps/industry/jobs.py
+msgid "Enter a valid amount."
+msgstr "சரியான தொகையை உள்ளிடவும்."
+
+#: apps/industry/jobs.py
+msgid "Say what the job is."
+msgstr "வேலை என்ன என்று சொல்லுங்கள்."
+
+#: apps/industry/jobs.py
+msgid "Choose your own staff member."
+msgstr "உங்கள் சொந்த ஊழியரைத் தேர்ந்தெடுக்கவும்."
+
+#: apps/industry/jobs.py
+msgid "This job is closed."
+msgstr "இந்த ஜாப் மூடப்பட்டது."
+
+#: apps/industry/jobs.py
+msgid "Choose your own item."
+msgstr "உங்கள் சொந்தப் பொருளைத் தேர்ந்தெடுக்கவும்."
+
+#: apps/industry/jobs.py
+msgid "Quantity must be more than 0."
+msgstr "அளவு 0-ஐ விட அதிகமாக இருக்க வேண்டும்."
+
+#: apps/industry/jobs.py
+msgid "Describe the work or choose an item."
+msgstr "வேலையை விவரிக்கவும் அல்லது ஒரு பொருளைத் தேர்ந்தெடுக்கவும்."
+
+#: apps/industry/jobs.py
+msgid "Unknown status."
+msgstr "தெரியாத நிலை."
+
+#: apps/industry/jobs.py
+msgid "Add the parts and work done first."
+msgstr "முதலில் பாகங்களையும் செய்த வேலையையும் சேர்க்கவும்."
+
+#: apps/industry/jobs.py
+msgid "The discount is more than the bill."
+msgstr "தள்ளுபடி பில்லை விட அதிகம்."
+
+#: apps/industry/jobs.py
+msgid "Hello %(name)s,"
+msgstr "வணக்கம் %(name)s,"
+
+#: apps/industry/jobs.py
+msgid "Your appointment at %(shop)s is booked: %(what)s on %(when)s."
+msgstr "%(shop)s-இல் உங்கள் அப்பாயிண்ட்மென்ட் பதிவாகியது: %(what)s, %(when)s."
+
+#: apps/industry/jobs.py
+msgid "Good news — %(what)s is ready at %(shop)s."
+msgstr "நல்ல செய்தி — %(what)s %(shop)s-இல் தயார்."
+
+#: apps/industry/jobs.py
+msgid "Amount: %(amount)s"
+msgstr "தொகை: %(amount)s"
+
+#: apps/industry/jobs.py
+msgid "%(what)s is waiting for parts / your approval. We will update you."
+msgstr ""
+"%(what)s பாகங்கள் / உங்கள் ஒப்புதலுக்காகக் காத்திருக்கிறது. நாங்கள் "
+"தெரிவிப்போம்."
+
+#: apps/industry/jobs.py
+msgid "Thank you for choosing %(shop)s. Job %(number)s is complete."
+msgstr "%(shop)s-ஐத் தேர்ந்தெடுத்ததற்கு நன்றி. ஜாப் %(number)s முடிந்தது."
+
+#: apps/industry/jobs.py
+msgid "We are working on %(what)s (job %(number)s)."
+msgstr "நாங்கள் %(what)s-இல் வேலை செய்கிறோம் (ஜாப் %(number)s)."
+
+#: apps/industry/jobs.py
+msgid "Status: %(url)s"
+msgstr "நிலை: %(url)s"
+
 #: apps/industry/models.py
 msgid "Ready / on the way"
 msgstr "தயார் / வழியில்"
@@ -12122,6 +12488,18 @@ msgstr ""
 #: apps/verticals/restaurant/online_orders.py
 msgid "Sorry, %(item)s is not available online right now."
 msgstr "மன்னிக்கவும், %(item)s இப்போது ஆன்லைனில் கிடைக்கவில்லை."
+
+#: apps/verticals/saloon/models.py
+msgid "Normal"
+msgstr "சாதாரண"
+
+#: apps/verticals/saloon/models.py
+msgid "Part / item"
+msgstr "பாகம் / பொருள்"
+
+#: apps/verticals/saloon/models.py
+msgid "Labour / service"
+msgstr "கூலி / சேவை"
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -12812,10 +13190,6 @@ msgid "%(count)s prices set."
 msgstr "%(count)s விலைகள் அமைக்கப்பட்டன."
 
 #: apps/webapp/delivery_views.py
-msgid "Enter a valid amount."
-msgstr "சரியான தொகையை உள்ளிடவும்."
-
-#: apps/webapp/delivery_views.py
 msgid "%(order)s → %(rider)s"
 msgstr "%(order)s → %(rider)s"
 
@@ -13097,10 +13471,6 @@ msgid "Dish name"
 msgstr "உணவின் பெயர்"
 
 #: apps/webapp/forms.py
-msgid "Description"
-msgstr "விளக்கம்"
-
-#: apps/webapp/forms.py
 msgid "Preparation time (minutes)"
 msgstr "தயாரிப்பு நேரம் (நிமிடங்கள்)"
 
@@ -13337,6 +13707,106 @@ msgstr "HR அமைப்புகள் சேமிக்கப்பட்�
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
 msgstr "இந்தத் தொகுதி உங்கள் வணிக வகையின் பகுதி அல்ல."
+
+#: apps/webapp/job_views.py
+msgid "Patient / person"
+msgstr "நோயாளி / நபர்"
+
+#: apps/webapp/job_views.py
+msgid "File no. / ID"
+msgstr "கோப்பு எண் / ஐடி"
+
+#: apps/webapp/job_views.py
+msgid "Student ID"
+msgstr "மாணவர் ஐடி"
+
+#: apps/webapp/job_views.py
+msgid "Pet name"
+msgstr "செல்லப்பிராணியின் பெயர்"
+
+#: apps/webapp/job_views.py
+msgid "Microchip / reg. no."
+msgstr "மைக்ரோசிப் / பதிவு எண்"
+
+#: apps/webapp/job_views.py
+msgid "Plate / VIN"
+msgstr "பதிவெண் / VIN"
+
+#: apps/webapp/job_views.py
+msgid "Item (e.g. laptop, AC)"
+msgstr "பொருள் (எ.கா. லேப்டாப், ஏசி)"
+
+#: apps/webapp/job_views.py
+msgid "Serial / model no."
+msgstr "சீரியல் / மாடல் எண்"
+
+#: apps/webapp/job_views.py
+msgid "Site / item"
+msgstr "இடம் / பொருள்"
+
+#: apps/webapp/job_views.py
+msgid "e.g. Oil change + brake check"
+msgstr "எ.கா. ஆயில் மாற்றம் + பிரேக் சோதனை"
+
+#: apps/webapp/job_views.py
+msgid "Ready by (promised)"
+msgstr "தயாராகும் என உறுதியளித்த நேரம்"
+
+#: apps/webapp/job_views.py
+msgid "Completed / cancelled"
+msgstr "முடிந்தவை / ரத்து செய்யப்பட்டவை"
+
+#: apps/webapp/job_views.py
+msgid ""
+"%(name)s already has %(job)s at that time. Press Save again to book anyway."
+msgstr ""
+"%(name)s-க்கு அந்த நேரத்தில் %(job)s உள்ளது. இருந்தாலும் பதிவு செய்ய "
+"மீண்டும் Save அழுத்தவும்."
+
+#: apps/webapp/job_views.py
+msgid "Job %(number)s saved."
+msgstr "ஜாப் %(number)s சேமிக்கப்பட்டது."
+
+#: apps/webapp/job_views.py
+msgid "Status: %(status)s"
+msgstr "நிலை: %(status)s"
+
+#: apps/webapp/job_views.py
+msgid "Bill %(number)s made."
+msgstr "பில் %(number)s உருவாக்கப்பட்டது."
+
+#: apps/webapp/job_views.py
+msgid "Job closed without a bill."
+msgstr "பில் இல்லாமல் ஜாப் மூடப்பட்டது."
+
+#: apps/webapp/job_views.py
+msgid "Write the note first."
+msgstr "முதலில் குறிப்பை எழுதவும்."
+
+#: apps/webapp/job_views.py
+msgid "Note added."
+msgstr "குறிப்பு சேர்க்கப்பட்டது."
+
+#: apps/webapp/job_views.py
+msgid "Your jobs page (keep this link private): %(url)s"
+msgstr "உங்கள் வேலைப் பக்கம் (இந்த இணைப்பை யாருக்கும் தர வேண்டாம்): %(url)s"
+
+#: apps/webapp/job_views.py
+msgid "New link made for %(name)s — the old one no longer works."
+msgstr ""
+"%(name)s-க்கு புதிய இணைப்பு உருவாக்கப்பட்டது — பழையது இனி வேலை செய்யாது."
+
+#: apps/webapp/job_views.py
+msgid "Link turned off."
+msgstr "இணைப்பு அணைக்கப்பட்டது."
+
+#: apps/webapp/job_views.py
+msgid "Link ready for %(name)s."
+msgstr "%(name)s-க்கான இணைப்பு தயார்."
+
+#: apps/webapp/job_views.py
+msgid "From %(name)s"
+msgstr "%(name)s-இடமிருந்து"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -13713,6 +14183,10 @@ msgstr ""
 "முன்பதிவு உறுதிசெய்யப்பட்டது. WhatsApp-இல் உறுதிப்படுத்தலை அனுப்பவும்."
 
 #: apps/webapp/online_booking_views.py
+msgid "Job %(number)s booked. Choose the staff member on the job card."
+msgstr "ஜாப் %(number)s பதிவாகியது. ஜாப் கார்டில் ஊழியரைத் தேர்ந்தெடுக்கவும்."
+
+#: apps/webapp/online_booking_views.py
 msgid "Choose the staff member and save to finish the appointment."
 msgstr "சந்திப்பை முடிக்க ஊழியரைத் தேர்ந்தெடுத்து சேமிக்கவும்."
 
@@ -13740,10 +14214,6 @@ msgstr "எத்தனை நாட்கள் முன்னதாக மு
 #: apps/webapp/online_booking_views.py
 msgid "Online booking settings saved."
 msgstr "ஆன்லைன் முன்பதிவு அமைப்புகள் சேமிக்கப்பட்டன."
-
-#: apps/webapp/online_booking_views.py
-msgid "Appointment"
-msgstr "சந்திப்பு"
 
 #: apps/webapp/online_booking_views.py
 msgid "Booking"
@@ -14680,10 +15150,6 @@ msgid "Any"
 msgstr "ஏதேனும்"
 
 #: apps/webapp/recruitment_views.py
-msgid "Bank transfer"
-msgstr "வங்கிப் பரிமாற்றம்"
-
-#: apps/webapp/recruitment_views.py
 msgid "Free replacement period after joining."
 msgstr "சேர்ந்த பிறகு இலவச மாற்றுக் காலம்."
 
@@ -15223,6 +15689,14 @@ msgid ""
 msgstr ""
 "வணக்கம் %(name)s, %(shop)s-இல் உங்கள் %(device)s (வேலை %(job)s) பற்றிய "
 "புதுப்பிப்பு: %(status)s."
+
+#: apps/webapp/views.py
+msgid "Client record saved."
+msgstr "வாடிக்கையாளர் பதிவு சேமிக்கப்பட்டது."
+
+#: apps/webapp/views.py
+msgid "Job saved."
+msgstr "ஜாப் சேமிக்கப்பட்டது."
 
 #: apps/webapp/views.py
 msgid "Fragrance family"

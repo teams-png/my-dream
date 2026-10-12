@@ -2368,8 +2368,12 @@ def service_profile_form(request, profile_id=None):
     profile = get_object_or_404(ServiceClientProfile.objects.for_company(company), id=profile_id) if profile_id else None
     form = ServiceClientProfileForm(request.POST or None, instance=profile, company=company)
     if request.method == "POST" and form.is_valid():
-        obj = form.save(commit=False); obj.company = company; obj.save()
-        messages.success(request, "Client record saved.")
+        obj = form.save(commit=False); obj.company = company
+        if not obj.reference_code:
+            from apps.industry.jobs import next_reference
+            obj.reference_code = next_reference(company)
+        obj.save()
+        messages.success(request, _("Client record saved."))
         return redirect("webapp:service_profile_list")
     return render(request, "webapp/mobile_shop/form.html", {"form": form, "heading": "Client / subject record", "cancel_url": "webapp:service_profile_list"})
 
@@ -2389,8 +2393,7 @@ def service_case_form(request, case_id=None):
     form = ServiceCaseForm(request.POST or None, instance=case, company=company, initial={"opened_date": tz.now().date()})
     if request.method == "POST" and form.is_valid():
         obj = form.save(commit=False); obj.company = company
-        if obj.status == "completed" and not obj.closed_date: obj.closed_date = tz.now().date()
-        obj.save(); messages.success(request, "Case / work order saved.")
+        obj.save(); messages.success(request, _("Job saved."))
         return redirect("webapp:service_case_detail", case_id=obj.id)
     return render(request, "webapp/mobile_shop/form.html", {"form": form, "heading": "Case / work order", "cancel_url": "webapp:service_case_list"})
 

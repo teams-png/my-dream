@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ job.number }} · {{ job.title }}{% endblock %}
+{% block heading %}🧰 {{ job.number }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.jd{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px;align-items:start}@media(max-width:900px){.jd{grid-template-columns:minmax(0,1fr)}}
+.jd-box{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px 16px;margin-bottom:14px;min-width:0}
+.jd-box h3{margin:0 0 10px;font-size:16px}
+.jd-head{display:flex;gap:10px;flex-wrap:wrap;align-items:baseline}.jd-head h2{margin:0;font-size:20px;overflow-wrap:anywhere}
+.jd-st{padding:4px 12px;border-radius:99px;font-weight:800;font-size:13px;background:#e0f2fe;color:#075985}
+.jd-st.ready{background:#dcfce7;color:#166534}.jd-st.waiting{background:#fef3c7;color:#92400e}.jd-st.completed{background:#ede9fe;color:#5b21b6}.jd-st.cancelled{background:#fee2e2;color:#991b1b}
+.jd-kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 14px;margin:10px 0 0}.jd-kv dt{color:var(--ink-soft)}.jd-kv dd{margin:0;overflow-wrap:anywhere}
+.jd-steps{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.jd-steps form{margin:0}
+.jd-t{width:100%;border-collapse:collapse}.jd-t th,.jd-t td{padding:8px 6px;border-top:1px solid var(--line);text-align:start;vertical-align:top}.jd-t td.n{text-align:end;white-space:nowrap}
+.jd-add{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1.4fr) 80px 110px auto;gap:8px;align-items:end;margin-top:10px}
+@media(max-width:700px){.jd-add{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.jd-add label,.jd-bill label{display:grid;gap:4px;font-size:13px;font-weight:700;min-width:0}
+.jd-add input,.jd-add select,.jd-bill input,.jd-bill select{min-width:0;width:100%;box-sizing:border-box}
+.jd-total{display:flex;justify-content:space-between;font-size:18px;font-weight:900;margin-top:8px}
+.jd-bill{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;align-items:end}
+.jd-note{border-top:1px solid var(--line);padding:8px 0}.jd-note small{color:var(--ink-soft)}
+.jd-late{color:#b91c1c;font-weight:800}
+</style>
+<div class="ix">
+  <p style="margin:0 0 10px"><a href="{% url 'webapp:service_case_list' %}">← {% translate "Job cards" %}</a></p>
+  <div class="jd">
+    <div>
+      <section class="jd-box">
+        <div class="jd-head"><h2>{{ job.title }}</h2><span class="jd-st {{ job.status }}">{{ job.get_status_display }}</span>{% if job.priority == "urgent" %}<span class="jd-st waiting">{% translate "Urgent" %}</span>{% endif %}{% if late %}<span class="jd-late">⏰ {% translate "Late" %}</span>{% endif %}</div>
+        <dl class="jd-kv">
+          <dt>{% translate "Customer" %}</dt><dd><b>{{ job.profile.customer.name }}</b>{% if job.profile.customer.phone %} · <a href="tel:{{ job.profile.customer.phone }}">{{ job.profile.customer.phone }}</a>{% endif %}</dd>
+          <dt>{{ labels.0 }}</dt><dd>{{ job.profile.subject_name }}{% if job.profile.identifier %} · {{ labels.1 }}: {{ job.profile.identifier }}{% endif %}</dd>
+          {% if job.scheduled_at %}<dt>{% translate "Appointment" %}</dt><dd>{{ job.scheduled_at|date:"D j M Y, H:i" }} · {{ job.duration_minutes }} {% translate "min" %}</dd>{% endif %}
+          {% if job.ready_by %}<dt>{% translate "Ready by" %}</dt><dd>{{ job.ready_by|date:"D j M, H:i" }}</dd>{% endif %}
+          {% if job.started_at %}<dt>{% translate "Started" %}</dt><dd>{{ job.started_at|date:"j M H:i" }}</dd>{% endif %}
+          {% if job.finished_at %}<dt>{% translate "Finished" %}</dt><dd>{{ job.finished_at|date:"j M H:i" }}</dd>{% endif %}
+          {% if job.description %}<dt>{% translate "Details" %}</dt><dd>{{ job.description|linebreaksbr }}</dd>{% endif %}
+          {% if job.invoice %}<dt>{% translate "Bill" %}</dt><dd><a href="{% url 'webapp:invoice_pdf' job.invoice.id %}" target="_blank">{{ job.invoice.invoice_number }}</a></dd>{% endif %}
+        </dl>
+        {% if not closed %}
+        <div class="jd-steps">
+          {% for value, label in job.STATUS %}{% if value != "completed" and value != job.status %}
+          <form method="post" action="{% url 'webapp:job_action' job.id %}">{% csrf_token %}<input type="hidden" name="do" value="status"><input type="hidden" name="status" value="{{ value }}">
+            <button class="btn {% if value == 'ready' or value == 'in_progress' and job.status == 'open' %}{% else %}btn-secondary{% endif %}"{% if value == "cancelled" %} onclick="return confirm('{% translate "Cancel this job?" %}')"{% endif %}>{% if value == "open" %}↩ {% translate "Booked / to start" %}{% elif value == "in_progress" %}▶ {% translate "Start work" %}{% elif value == "waiting" %}⏸ {% translate "Waiting (parts / approval)" %}{% elif value == "ready" %}✅ {% translate "Ready for the customer" %}{% else %}✕ {% translate "Cancel job" %}{% endif %}</button>
+          </form>
+          {% endif %}{% endfor %}
+        </div>
+        {% endif %}
+      </section>
+
+      <section class="jd-box">
+        <h3>🔩 {% translate "Parts and work" %}</h3>
+        <div style="overflow-x:auto"><table class="jd-t">
+          <tr><th>{% translate "Item / work" %}</th><th class="n">{% translate "Qty" %}</th><th class="n">{% translate "Price" %}</th><th class="n">{% translate "Total" %}</th><th></th></tr>
+          {% for l in lines %}
+          <tr><td>{% if l.kind == "part" %}🔩{% else %}🛠{% endif %} {{ l.description }}</td><td class="n">{{ l.quantity|floatformat:"-3" }}</td><td class="n">{{ l.unit_price|floatformat:2 }}</td><td class="n">{{ l.total|floatformat:2 }}</td>
+            <td>{% if not closed %}<form method="post" action="{% url 'webapp:job_action' job.id %}" style="margin:0">{% csrf_token %}<input type="hidden" name="do" value="remove_line"><input type="hidden" name="line_id" value="{{ l.id }}"><button class="btn btn-secondary" aria-label="{% translate 'Remove' %}">✕</button></form>{% endif %}</td></tr>
+          {% empty %}<tr><td colspan="5"><small>{% translate "Nothing added yet." %}</small></td></tr>{% endfor %}
+        </table></div>
+        <div class="jd-total"><span>{% translate "Total" %}</span><span>{{ currency }} {{ amount|floatformat:2 }}</span></div>
+        {% if not closed %}
+        <form method="post" action="{% url 'webapp:job_action' job.id %}" class="jd-add">{% csrf_token %}<input type="hidden" name="do" value="line">
+          <label>{% translate "Item / part from stock" %}<select name="product_id"><option value="">{% translate "— labour / service (type below) —" %}</option>{% for p in products %}<option value="{{ p.id }}">{{ p.name }} · {{ p.selling_price|floatformat:2 }}</option>{% endfor %}</select></label>
+          <label>{% translate "Description" %}<input name="description" maxlength="200" placeholder="{% translate 'e.g. Labour 1 hour' %}"></label>
+          <label>{% translate "Qty" %}<input name="quantity" value="1" inputmode="decimal"></label>
+          <label>{% translate "Price" %}<input name="unit_price" inputmode="decimal" placeholder="{% translate 'auto' %}"></label>
+          <button class="btn">＋ {% translate "Add" %}</button>
+        </form>
+        {% endif %}
+      </section>
+
+      {% if not closed %}
+      <section class="jd-box">
+        <h3>💳 {% translate "Bill" %}</h3>
+        <form method="post" action="{% url 'webapp:job_action' job.id %}" class="jd-bill">{% csrf_token %}<input type="hidden" name="do" value="bill">
+          <label>{% translate "Payment" %}<select name="method"><option value="cash">{% translate "Cash" %}</option><option value="card">{% translate "Card" %}</option><option value="bank">{% translate "Bank transfer" %}</option><option value="">{% translate "Pay later (on account)" %}</option></select></label>
+          <label>{% translate "Discount" %}<input name="discount" value="0" inputmode="decimal"></label>
+          <button class="btn"{% if not lines %} disabled{% endif %}>🧾 {% translate "Make bill & close job" %}</button>
+        </form>
+        <form method="post" action="{% url 'webapp:job_action' job.id %}" style="margin-top:8px">{% csrf_token %}<input type="hidden" name="do" value="close_free">
+          <button class="btn btn-secondary" onclick="return confirm('{% translate "Close this job without a bill (warranty, package, free)?" %}')">{% translate "Close without a bill" %}</button>
+        </form>
+      </section>
+      {% endif %}
+    </div>
+
+    <div>
+      <section class="jd-box">
+        <h3>📣 {% translate "Customer" %}</h3>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          {% if whatsapp %}<a class="btn" href="{{ whatsapp }}" target="_blank" rel="noopener">💬 {% translate "WhatsApp status" %}</a>{% endif %}
+          <a class="btn btn-secondary" href="{% url 'webapp:job_print' job.id %}" target="_blank">🖨 {% translate "Print job card" %}</a>
+          <a class="btn btn-secondary" href="{% url 'webapp:service_case_edit' job.id %}">✎ {% translate "Edit" %}</a>
+        </div>
+        <p style="margin:10px 0 0"><small>{% translate "Customer's status page:" %}</small><br><input readonly value="{{ status_link }}" onclick="this.select()" style="width:100%"></p>
+      </section>
+      <section class="jd-box">
+        <h3>🧑‍🔧 {% translate "Staff" %}</h3>
+        <form method="post" action="{% url 'webapp:job_action' job.id %}" style="display:flex;gap:8px;margin:0">{% csrf_token %}<input type="hidden" name="do" value="staff">
+          <select name="staff_id" style="flex:1;min-width:0"{% if closed %} disabled{% endif %}><option value="">{% translate "— no staff —" %}</option>{% for s in staff %}<option value="{{ s.id }}"{% if s.id == job.assigned_staff_id %} selected{% endif %}>{{ s.name }}</option>{% endfor %}</select>
+          {% if not closed %}<button class="btn btn-secondary">{% translate "Save" %}</button>{% endif %}
+        </form>
+      </section>
+      <section class="jd-box">
+        <h3>📝 {% translate "Notes" %}</h3>
+        <form method="post" action="{% url 'webapp:job_action' job.id %}" style="display:grid;gap:6px">{% csrf_token %}<input type="hidden" name="do" value="note">
+          <input name="note_type" maxlength="50" placeholder="{% translate 'Type (diagnosis, update, advice…)' %}">
+          <textarea name="notes" rows="2" required placeholder="{% translate 'What was found / done / advised' %}"></textarea>
+          <label style="font-size:13px;font-weight:700">{% translate "Follow-up on" %} <input type="date" name="next_follow_up"></label>
+          <button class="btn btn-secondary">{% translate "Add note" %}</button>
+        </form>
+        {% for n in notes %}<div class="jd-note"><small>{{ n.date|date:"j M Y" }}{% if n.note_type %} · {{ n.note_type }}{% endif %}{% if n.created_by %} · {{ n.created_by.get_full_name|default:n.created_by.email }}{% endif %}</small><div>{{ n.notes|linebreaksbr }}</div>{% if n.next_follow_up %}<small>↻ {% translate "Follow-up" %}: {{ n.next_follow_up|date:"j M Y" }}</small>{% endif %}</div>{% endfor %}
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}

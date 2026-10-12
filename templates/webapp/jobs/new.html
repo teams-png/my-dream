@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "New job" %}{% endblock %}
+{% block heading %}🧰 {% translate "New job / appointment" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.jn{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 16px;max-width:900px}
+.jn .wide{grid-column:1/-1}.jn label{display:grid;gap:5px;font-weight:700;font-size:14px;min-width:0}.jn input,.jn select,.jn textarea{min-width:0;width:100%;box-sizing:border-box}.jn .err{color:#b91c1c;font-size:13px}
+.jn fieldset{grid-column:1/-1;border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 14px;min-width:0}
+.jn legend{font-weight:800;padding:0 6px}
+</style>
+<div class="ix">
+  <form method="post" class="jn">{% csrf_token %}
+    {% if form.non_field_errors %}<div class="wide err">{{ form.non_field_errors|join:" " }}</div>{% endif %}
+    <fieldset><legend>👤 {% translate "Customer" %}</legend>
+      <label>{{ form.customer.label }} {{ form.customer }}<span class="err">{{ form.customer.errors|join:" " }}</span></label>
+      <label>{{ form.new_name.label }} {{ form.new_name }}</label>
+      <label>{{ form.new_phone.label }} {{ form.new_phone }}</label>
+    </fieldset>
+    <fieldset><legend>🔖 {% translate "What is it about" %}</legend>
+      <label>{{ form.subject_name.label }} {{ form.subject_name }}<small>{% translate "Leave empty if it is the customer." %}</small></label>
+      <label>{{ form.identifier.label }} {{ form.identifier }}</label>
+      <label class="wide">{{ form.title.label }} {{ form.title }}<span class="err">{{ form.title.errors|join:" " }}</span></label>
+      <label class="wide">{{ form.description.label }} {{ form.description }}</label>
+    </fieldset>
+    <fieldset><legend>📅 {% translate "When and who" %}</legend>
+      <label>{{ form.staff.label }} {{ form.staff }}</label>
+      <label>{{ form.scheduled_at.label }} {{ form.scheduled_at }}<small>{% translate "Empty for a walk-in." %}</small></label>
+      <label>{{ form.duration.label }} {{ form.duration }}</label>
+      <label>{{ form.ready_by.label }} {{ form.ready_by }}</label>
+      <label>{{ form.priority.label }} {{ form.priority }}</label>
+    </fieldset>
+    {% if clash %}<input type="hidden" name="confirm_clash" value="1">{% endif %}
+    <div class="wide" style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn">{% translate "Save job" %}</button>
+      <a class="btn btn-secondary" href="{% url 'webapp:service_case_list' %}">{% translate "Cancel" %}</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

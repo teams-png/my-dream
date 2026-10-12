@@ -254,6 +254,14 @@ msgid "Menu & Ingredients"
 msgstr "Menü ve malzemeler"
 
 #: templates/base.html
+msgid "Job cards"
+msgstr "İş kartları"
+
+#: templates/base.html
+msgid "Appointments calendar"
+msgstr "Randevu takvimi"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "Paketler / seanslar"
 
@@ -5060,6 +5068,351 @@ msgstr "Kopyala"
 msgid "Share…"
 msgstr "Paylaş…"
 
+#: templates/webapp/jobs/board.html
+msgid "New job / appointment"
+msgstr "Yeni iş / randevu"
+
+#: templates/webapp/jobs/board.html
+msgid "Calendar"
+msgstr "Takvim"
+
+#: templates/webapp/jobs/board.html
+msgid "Search job no., name, phone, plate…"
+msgstr "İş no, ad, telefon, plaka ara…"
+
+#: templates/webapp/jobs/board.html
+msgid "All staff"
+msgstr "Tüm personel"
+
+#: templates/webapp/jobs/board.html
+msgid "Find"
+msgstr "Bul"
+
+#: templates/webapp/jobs/board.html
+msgid "All open"
+msgstr "Tüm açık"
+
+#: templates/webapp/jobs/board.html
+msgid "Late"
+msgstr "Gecikmeli"
+
+#: templates/webapp/jobs/board.html
+msgid "Urgent"
+msgstr "Acil"
+
+#: templates/webapp/jobs/board.html
+msgid "Nothing here."
+msgstr "Burada bir şey yok."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Previous day"
+msgstr "Önceki gün"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Next day"
+msgstr "Sonraki gün"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Day"
+msgstr "Gün"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Go"
+msgstr "Git"
+
+#: templates/webapp/jobs/calendar.html
+msgid "New appointment"
+msgstr "Yeni randevu"
+
+#: templates/webapp/jobs/calendar.html
+msgid "appointments"
+msgstr "randevu"
+
+#: templates/webapp/jobs/calendar.html
+msgid "No staff yet"
+msgstr "Henüz personel yok"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Free all day."
+msgstr "Tüm gün boş."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Add your staff under Staff & HR to plan appointments per person."
+msgstr ""
+"Kişi başı randevu planlamak için Personel ve İK bölümünden personel ekleyin."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Staff phone pages"
+msgstr "Personel telefon sayfaları"
+
+#: templates/webapp/jobs/calendar.html
+msgid ""
+"Each staff member gets a private link (no login) showing only their jobs, "
+"with buttons to start, pause and mark ready."
+msgstr ""
+"Her personel yalnızca kendi işlerini gösteren, başlatma, duraklatma ve hazır"
+" işaretleme düğmeleri olan özel bir bağlantı (giriş gerekmez) alır."
+
+#: templates/webapp/jobs/calendar.html
+msgid "Send link"
+msgstr "Bağlantı gönder"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Make a new private link? The old link stops working."
+msgstr "Yeni özel bağlantı oluşturulsun mu? Eski bağlantı çalışmayı durdurur."
+
+#: templates/webapp/jobs/calendar.html
+msgid "New link"
+msgstr "Yeni bağlantı"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Turn off"
+msgstr "Kapat"
+
+#: templates/webapp/jobs/calendar.html
+msgid "Make link"
+msgstr "Bağlantı oluştur"
+
+#: templates/webapp/jobs/detail.html
+msgid "Appointment"
+msgstr "Randevu"
+
+#: templates/webapp/jobs/detail.html
+msgid "min"
+msgstr "dk"
+
+#: templates/webapp/jobs/detail.html
+msgid "Ready by"
+msgstr "Hazır olma tarihi"
+
+#: templates/webapp/jobs/detail.html
+msgid "Started"
+msgstr "Başladı"
+
+#: templates/webapp/jobs/detail.html
+msgid "Finished"
+msgstr "Bitti"
+
+#: templates/webapp/jobs/detail.html
+msgid "Bill"
+msgstr "Fatura"
+
+#: templates/webapp/jobs/detail.html
+msgid "Cancel this job?"
+msgstr "Bu iş iptal edilsin mi?"
+
+#: templates/webapp/jobs/detail.html
+msgid "Booked / to start"
+msgstr "Randevulu / başlanacak"
+
+#: templates/webapp/jobs/detail.html
+msgid "Start work"
+msgstr "İşe başla"
+
+#: templates/webapp/jobs/detail.html
+msgid "Waiting (parts / approval)"
+msgstr "Bekliyor (parça / onay)"
+
+#: templates/webapp/jobs/detail.html
+msgid "Ready for the customer"
+msgstr "Müşteri için hazır"
+
+#: templates/webapp/jobs/detail.html
+msgid "Cancel job"
+msgstr "İşi iptal et"
+
+#: templates/webapp/jobs/detail.html
+msgid "Parts and work"
+msgstr "Parçalar ve işçilik"
+
+#: templates/webapp/jobs/detail.html
+msgid "Item / work"
+msgstr "Ürün / iş"
+
+#: templates/webapp/jobs/detail.html
+msgid "Item / part from stock"
+msgstr "Stoktan ürün / parça"
+
+#: templates/webapp/jobs/detail.html
+msgid "— labour / service (type below) —"
+msgstr "— işçilik / hizmet (aşağıya yazın) —"
+
+#: templates/webapp/jobs/detail.html
+msgid "Description"
+msgstr "Açıklama"
+
+#: templates/webapp/jobs/detail.html
+msgid "e.g. Labour 1 hour"
+msgstr "örn. İşçilik 1 saat"
+
+#: templates/webapp/jobs/detail.html
+msgid "auto"
+msgstr "otomatik"
+
+#: templates/webapp/jobs/detail.html
+msgid "Payment"
+msgstr "Ödeme"
+
+#: templates/webapp/jobs/detail.html
+msgid "Card"
+msgstr "Kart"
+
+#: templates/webapp/jobs/detail.html
+msgid "Bank transfer"
+msgstr "Havale"
+
+#: templates/webapp/jobs/detail.html
+msgid "Pay later (on account)"
+msgstr "Sonra öde (cari hesaba)"
+
+#: templates/webapp/jobs/detail.html
+msgid "Make bill & close job"
+msgstr "Fatura kes ve işi kapat"
+
+#: templates/webapp/jobs/detail.html
+msgid "Close this job without a bill (warranty, package, free)?"
+msgstr "Bu iş faturasız kapatılsın mı (garanti, paket, ücretsiz)?"
+
+#: templates/webapp/jobs/detail.html
+msgid "Close without a bill"
+msgstr "Faturasız kapat"
+
+#: templates/webapp/jobs/detail.html
+msgid "WhatsApp status"
+msgstr "WhatsApp durumu"
+
+#: templates/webapp/jobs/detail.html
+msgid "Print job card"
+msgstr "İş kartını yazdır"
+
+#: templates/webapp/jobs/detail.html
+msgid "Customer's status page:"
+msgstr "Müşterinin durum sayfası:"
+
+#: templates/webapp/jobs/detail.html
+msgid "— no staff —"
+msgstr "— personel yok —"
+
+#: templates/webapp/jobs/detail.html
+msgid "Type (diagnosis, update, advice…)"
+msgstr "Tür (teşhis, güncelleme, öneri…)"
+
+#: templates/webapp/jobs/detail.html
+msgid "What was found / done / advised"
+msgstr "Ne bulundu / yapıldı / önerildi"
+
+#: templates/webapp/jobs/detail.html
+msgid "Follow-up on"
+msgstr "Takip tarihi"
+
+#: templates/webapp/jobs/detail.html
+msgid "Add note"
+msgstr "Not ekle"
+
+#: templates/webapp/jobs/detail.html
+msgid "Follow-up"
+msgstr "Takip"
+
+#: templates/webapp/jobs/new.html
+msgid "New job"
+msgstr "Yeni iş"
+
+#: templates/webapp/jobs/new.html
+msgid "What is it about"
+msgstr "Ne hakkında"
+
+#: templates/webapp/jobs/new.html
+msgid "Leave empty if it is the customer."
+msgstr "Müşterinin kendisiyse boş bırakın."
+
+#: templates/webapp/jobs/new.html
+msgid "When and who"
+msgstr "Ne zaman ve kim"
+
+#: templates/webapp/jobs/new.html
+msgid "Empty for a walk-in."
+msgstr "Randevusuz gelişte boş."
+
+#: templates/webapp/jobs/new.html
+msgid "Save job"
+msgstr "İşi kaydet"
+
+#: templates/webapp/jobs/print.html
+msgid "Job card"
+msgstr "İş kartı"
+
+#: templates/webapp/jobs/print.html
+msgid "Job / complaint"
+msgstr "İş / şikâyet"
+
+#: templates/webapp/jobs/print.html
+msgid "Work to be done / parts used:"
+msgstr "Yapılacak iş / kullanılan parçalar:"
+
+#: templates/webapp/jobs/print.html
+msgid "Check your job status online:"
+msgstr "İşinizin durumunu çevrimiçi takip edin:"
+
+#: templates/webapp/jobs/print.html
+msgid "Customer signature"
+msgstr "Müşteri imzası"
+
+#: templates/webapp/jobs/print.html
+msgid "Received by"
+msgstr "Teslim alan"
+
+#: templates/webapp/jobs/status.html
+msgid "This job was cancelled."
+msgstr "Bu iş iptal edildi."
+
+#: templates/webapp/jobs/status.html
+msgid "Waiting for parts or your approval."
+msgstr "Parça veya onayınız bekleniyor."
+
+#: templates/webapp/jobs/status.html
+msgid "Expected ready by"
+msgstr "Tahmini hazır olma"
+
+#: templates/webapp/jobs/status.html
+msgid "Ready — you can collect it now."
+msgstr "Hazır — şimdi teslim alabilirsiniz."
+
+#: templates/webapp/jobs/status.html
+msgid "This page refreshes by itself."
+msgstr "Bu sayfa kendiliğinden yenilenir."
+
+#: templates/webapp/jobs/technician.html
+msgid "My jobs"
+msgstr "İşlerim"
+
+#: templates/webapp/jobs/technician.html
+msgid "Waiting"
+msgstr "Bekliyor"
+
+#: templates/webapp/jobs/technician.html
+msgid "Ready"
+msgstr "Hazır"
+
+#: templates/webapp/jobs/technician.html
+msgid "Add a note"
+msgstr "Not ekle"
+
+#: templates/webapp/jobs/technician.html
+msgid "What you found / did / need (parts…)"
+msgstr "Ne buldunuz / yaptınız / neye ihtiyacınız var (parça…)"
+
+#: templates/webapp/jobs/technician.html
+msgid "Save note"
+msgstr "Notu kaydet"
+
+#: templates/webapp/jobs/technician.html
+msgid "No jobs for you right now. This page refreshes by itself."
+msgstr "Şu an size ait iş yok. Bu sayfa kendiliğinden yenilenir."
+
+#: templates/webapp/jobs/technician.html
+msgid "Finished today"
+msgstr "Bugün bitenler"
+
 #: templates/webapp/login.html
 msgid "Sign in · Business Console"
 msgstr "Giriş · İşletme Konsolu"
@@ -5354,10 +5707,6 @@ msgid "No bills yet."
 msgstr "Henüz fatura yok."
 
 #: templates/webapp/mess/member.html
-msgid "Bill"
-msgstr "Fatura"
-
-#: templates/webapp/mess/member.html
 msgid "Member"
 msgstr "Üye"
 
@@ -5501,10 +5850,6 @@ msgid "Repair"
 msgstr "Onarım"
 
 #: templates/webapp/mobile_shop/repair_detail.html
-msgid "Print job card"
-msgstr "İş kartını yazdır"
-
-#: templates/webapp/mobile_shop/repair_detail.html
 msgid "Send status on WhatsApp"
 msgstr "Durumu WhatsApp ile gönder"
 
@@ -5527,10 +5872,6 @@ msgstr "Cihaz"
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Received"
 msgstr "Alındı"
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Ready by"
-msgstr "Hazır olma tarihi"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Warranty repair"
@@ -5573,10 +5914,6 @@ msgstr ""
 "Telefonu teslim alırken lütfen bu kartı getirin. Cihazdaki verilerden veya "
 "hazır olma tarihinden itibaren 30 gün içinde alınmayan telefonlardan sorumlu"
 " değiliz."
-
-#: templates/webapp/mobile_shop/repair_detail.html
-msgid "Customer signature"
-msgstr "Müşteri imzası"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Shop"
@@ -6006,10 +6343,6 @@ msgstr "Yeni rezervasyon talebi yok."
 msgid "Put the booking form on your website →"
 msgstr "Rezervasyon formunu sitenize ekleyin →"
 
-#: templates/webapp/online_booking/inbox.html
-msgid "Nothing here."
-msgstr "Burada bir şey yok."
-
 #: templates/webapp/online_booking/settings.html
 msgid "On"
 msgstr "Açık"
@@ -6306,10 +6639,6 @@ msgid "Amount due"
 msgstr "Ödenecek tutar"
 
 #: templates/webapp/pos.html
-msgid "Card"
-msgstr "Kart"
-
-#: templates/webapp/pos.html
 msgid "Instalment"
 msgstr "Taksit"
 
@@ -6602,10 +6931,6 @@ msgstr "Çevrimdışı no."
 #: templates/webapp/pos_offline_sales.html
 msgid "Sold at"
 msgstr "Satış zamanı"
-
-#: templates/webapp/pos_offline_sales.html
-msgid "Payment"
-msgstr "Ödeme"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Result"
@@ -7318,10 +7643,6 @@ msgstr "MAL KABUL BELGESİ"
 msgid "PO"
 msgstr "SA"
 
-#: templates/webapp/purchase_docs/grn.html
-msgid "Received by"
-msgstr "Teslim alan"
-
 #: templates/webapp/purchase_docs/po_detail.html
 msgid "Purchase order"
 msgstr "Satın alma siparişi"
@@ -7597,10 +7918,6 @@ msgstr "örn. Perşembe ödeyeceğini söyledi"
 #: templates/webapp/receivables/customer.html
 msgid "Follow up on"
 msgstr "Takip tarihi"
-
-#: templates/webapp/receivables/customer.html
-msgid "Save note"
-msgstr "Notu kaydet"
 
 #: templates/webapp/receivables/customer.html
 msgid "follow up"
@@ -8474,10 +8791,6 @@ msgid "just now"
 msgstr "az önce"
 
 #: templates/webapp/restaurant/dashboard.html
-msgid "min"
-msgstr "dk"
-
-#: templates/webapp/restaurant/dashboard.html
 msgid "h"
 msgstr "sa"
 
@@ -8524,10 +8837,6 @@ msgstr "Kuryede"
 #: templates/webapp/restaurant/deliveries.html
 msgid "Collect"
 msgstr "Tahsil et"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "Late"
-msgstr "Gecikmeli"
 
 #: templates/webapp/restaurant/deliveries.html
 msgid "delivered"
@@ -8600,20 +8909,8 @@ msgid "ID / licence no."
 msgstr "Kimlik / ehliyet no."
 
 #: templates/webapp/restaurant/deliveries.html
-msgid "Turn off"
-msgstr "Kapat"
-
-#: templates/webapp/restaurant/deliveries.html
 msgid "Turn on"
 msgstr "Aç"
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "Make a new private link? The old link stops working."
-msgstr "Yeni özel bağlantı oluşturulsun mu? Eski bağlantı çalışmayı durdurur."
-
-#: templates/webapp/restaurant/deliveries.html
-msgid "New link"
-msgstr "Yeni bağlantı"
 
 #: templates/webapp/restaurant/deliveries.html
 msgid "Add a rider"
@@ -8746,10 +9043,6 @@ msgstr "⛶ Tam ekran"
 #: templates/webapp/restaurant/kitchen.html
 msgid "Filter kitchen orders"
 msgstr "Mutfak siparişlerini filtrele"
-
-#: templates/webapp/restaurant/kitchen.html
-msgid "Waiting"
-msgstr "Bekliyor"
 
 #: templates/webapp/restaurant/kitchen.html
 msgid "Cooking"
@@ -9249,10 +9542,6 @@ msgstr ""
 #: templates/webapp/restaurant/online_orders.html
 msgid "In the kitchen / ready"
 msgstr "Mutfakta / hazır"
-
-#: templates/webapp/restaurant/online_orders.html
-msgid "Ready"
-msgstr "Hazır"
 
 #: templates/webapp/restaurant/online_orders.html
 msgid "Preparing"
@@ -11401,6 +11690,79 @@ msgstr ""
 msgid " for delivery"
 msgstr "teslimat için"
 
+#: apps/industry/jobs.py
+msgid "Enter a valid amount."
+msgstr "Geçerli bir tutar girin."
+
+#: apps/industry/jobs.py
+msgid "Say what the job is."
+msgstr "İşin ne olduğunu yazın."
+
+#: apps/industry/jobs.py
+msgid "Choose your own staff member."
+msgstr "Kendi personelinizden birini seçin."
+
+#: apps/industry/jobs.py
+msgid "This job is closed."
+msgstr "Bu iş kapalı."
+
+#: apps/industry/jobs.py
+msgid "Choose your own item."
+msgstr "Kendi ürünlerinizden birini seçin."
+
+#: apps/industry/jobs.py
+msgid "Quantity must be more than 0."
+msgstr "Miktar 0'dan büyük olmalı."
+
+#: apps/industry/jobs.py
+msgid "Describe the work or choose an item."
+msgstr "İşi tanımlayın veya bir ürün seçin."
+
+#: apps/industry/jobs.py
+msgid "Unknown status."
+msgstr "Bilinmeyen durum."
+
+#: apps/industry/jobs.py
+msgid "Add the parts and work done first."
+msgstr "Önce parçaları ve yapılan işi ekleyin."
+
+#: apps/industry/jobs.py
+msgid "The discount is more than the bill."
+msgstr "İndirim faturadan fazla."
+
+#: apps/industry/jobs.py
+msgid "Hello %(name)s,"
+msgstr "Merhaba %(name)s,"
+
+#: apps/industry/jobs.py
+msgid "Your appointment at %(shop)s is booked: %(what)s on %(when)s."
+msgstr "%(shop)s randevunuz alındı: %(what)s, %(when)s."
+
+#: apps/industry/jobs.py
+msgid "Good news — %(what)s is ready at %(shop)s."
+msgstr "Müjde — %(what)s %(shop)s'ta hazır."
+
+#: apps/industry/jobs.py
+msgid "Amount: %(amount)s"
+msgstr "Tutar: %(amount)s"
+
+#: apps/industry/jobs.py
+msgid "%(what)s is waiting for parts / your approval. We will update you."
+msgstr "%(what)s parça / onayınızı bekliyor. Sizi bilgilendireceğiz."
+
+#: apps/industry/jobs.py
+msgid "Thank you for choosing %(shop)s. Job %(number)s is complete."
+msgstr ""
+"%(shop)s'u seçtiğiniz için teşekkürler. %(number)s numaralı iş tamamlandı."
+
+#: apps/industry/jobs.py
+msgid "We are working on %(what)s (job %(number)s)."
+msgstr "%(what)s üzerinde çalışıyoruz (iş %(number)s)."
+
+#: apps/industry/jobs.py
+msgid "Status: %(url)s"
+msgstr "Durum: %(url)s"
+
 #: apps/industry/models.py
 msgid "Ready / on the way"
 msgstr "Hazır / yolda"
@@ -11999,6 +12361,18 @@ msgstr "Sepetinizdeki bir ürün artık menüde yok. Lütfen sayfayı yenileyin.
 #: apps/verticals/restaurant/online_orders.py
 msgid "Sorry, %(item)s is not available online right now."
 msgstr "Üzgünüz, %(item)s şu anda online olarak mevcut değil."
+
+#: apps/verticals/saloon/models.py
+msgid "Normal"
+msgstr "Normal"
+
+#: apps/verticals/saloon/models.py
+msgid "Part / item"
+msgstr "Parça / ürün"
+
+#: apps/verticals/saloon/models.py
+msgid "Labour / service"
+msgstr "İşçilik / hizmet"
 
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
@@ -12673,10 +13047,6 @@ msgid "%(count)s prices set."
 msgstr "%(count)s fiyat belirlendi."
 
 #: apps/webapp/delivery_views.py
-msgid "Enter a valid amount."
-msgstr "Geçerli bir tutar girin."
-
-#: apps/webapp/delivery_views.py
 msgid "%(order)s → %(rider)s"
 msgstr "%(order)s → %(rider)s"
 
@@ -12949,10 +13319,6 @@ msgid "Dish name"
 msgstr "Yemek adı"
 
 #: apps/webapp/forms.py
-msgid "Description"
-msgstr "Açıklama"
-
-#: apps/webapp/forms.py
 msgid "Preparation time (minutes)"
 msgstr "Hazırlama süresi (dakika)"
 
@@ -13184,6 +13550,105 @@ msgstr "İK ayarları kaydedildi."
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
 msgstr "Bu modül işletme türünüzün parçası değil."
+
+#: apps/webapp/job_views.py
+msgid "Patient / person"
+msgstr "Hasta / kişi"
+
+#: apps/webapp/job_views.py
+msgid "File no. / ID"
+msgstr "Dosya no / kimlik"
+
+#: apps/webapp/job_views.py
+msgid "Student ID"
+msgstr "Öğrenci no"
+
+#: apps/webapp/job_views.py
+msgid "Pet name"
+msgstr "Evcil hayvan adı"
+
+#: apps/webapp/job_views.py
+msgid "Microchip / reg. no."
+msgstr "Mikroçip / kayıt no"
+
+#: apps/webapp/job_views.py
+msgid "Plate / VIN"
+msgstr "Plaka / şasi no"
+
+#: apps/webapp/job_views.py
+msgid "Item (e.g. laptop, AC)"
+msgstr "Ürün (örn. dizüstü, klima)"
+
+#: apps/webapp/job_views.py
+msgid "Serial / model no."
+msgstr "Seri / model no"
+
+#: apps/webapp/job_views.py
+msgid "Site / item"
+msgstr "Yer / ürün"
+
+#: apps/webapp/job_views.py
+msgid "e.g. Oil change + brake check"
+msgstr "örn. Yağ değişimi + fren kontrolü"
+
+#: apps/webapp/job_views.py
+msgid "Ready by (promised)"
+msgstr "Hazır olacak (söz verilen)"
+
+#: apps/webapp/job_views.py
+msgid "Completed / cancelled"
+msgstr "Tamamlanan / iptal edilen"
+
+#: apps/webapp/job_views.py
+msgid ""
+"%(name)s already has %(job)s at that time. Press Save again to book anyway."
+msgstr ""
+"%(name)s o saatte zaten %(job)s işine sahip. Yine de randevu vermek için "
+"tekrar Kaydet'e basın."
+
+#: apps/webapp/job_views.py
+msgid "Job %(number)s saved."
+msgstr "%(number)s numaralı iş kaydedildi."
+
+#: apps/webapp/job_views.py
+msgid "Status: %(status)s"
+msgstr "Durum: %(status)s"
+
+#: apps/webapp/job_views.py
+msgid "Bill %(number)s made."
+msgstr "%(number)s numaralı fatura kesildi."
+
+#: apps/webapp/job_views.py
+msgid "Job closed without a bill."
+msgstr "İş faturasız kapatıldı."
+
+#: apps/webapp/job_views.py
+msgid "Write the note first."
+msgstr "Önce notu yazın."
+
+#: apps/webapp/job_views.py
+msgid "Note added."
+msgstr "Not eklendi."
+
+#: apps/webapp/job_views.py
+msgid "Your jobs page (keep this link private): %(url)s"
+msgstr "İş sayfanız (bu bağlantıyı kimseyle paylaşmayın): %(url)s"
+
+#: apps/webapp/job_views.py
+msgid "New link made for %(name)s — the old one no longer works."
+msgstr "%(name)s için yeni bağlantı oluşturuldu — eskisi artık çalışmıyor."
+
+#: apps/webapp/job_views.py
+msgid "Link turned off."
+msgstr "Bağlantı kapatıldı."
+
+#: apps/webapp/job_views.py
+msgid "Link ready for %(name)s."
+msgstr "%(name)s için bağlantı hazır."
+
+#: apps/webapp/job_views.py
+msgid "From %(name)s"
+msgstr "%(name)s'den"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -13551,6 +14016,10 @@ msgid "Booking confirmed. Send the confirmation on WhatsApp."
 msgstr "Rezervasyon onaylandı. Onayı WhatsApp’tan gönderin."
 
 #: apps/webapp/online_booking_views.py
+msgid "Job %(number)s booked. Choose the staff member on the job card."
+msgstr "%(number)s numaralı iş randevusu alındı. İş kartında personeli seçin."
+
+#: apps/webapp/online_booking_views.py
 msgid "Choose the staff member and save to finish the appointment."
 msgstr "Randevuyu tamamlamak için personeli seçip kaydedin."
 
@@ -13577,10 +14046,6 @@ msgstr "Kaç gün öncesinden rezervasyon yapılabilir"
 #: apps/webapp/online_booking_views.py
 msgid "Online booking settings saved."
 msgstr "Online rezervasyon ayarları kaydedildi."
-
-#: apps/webapp/online_booking_views.py
-msgid "Appointment"
-msgstr "Randevu"
 
 #: apps/webapp/online_booking_views.py
 msgid "Booking"
@@ -14505,10 +14970,6 @@ msgid "Any"
 msgstr "Fark etmez"
 
 #: apps/webapp/recruitment_views.py
-msgid "Bank transfer"
-msgstr "Havale"
-
-#: apps/webapp/recruitment_views.py
 msgid "Free replacement period after joining."
 msgstr "İşe başladıktan sonra ücretsiz değişim süresi."
 
@@ -15029,6 +15490,14 @@ msgid ""
 msgstr ""
 "Merhaba %(name)s, %(shop)s'taki %(device)s cihazınızla (iş %(job)s) ilgili "
 "güncelleme: %(status)s."
+
+#: apps/webapp/views.py
+msgid "Client record saved."
+msgstr "Müşteri kaydı kaydedildi."
+
+#: apps/webapp/views.py
+msgid "Job saved."
+msgstr "İş kaydedildi."
 
 #: apps/webapp/views.py
 msgid "Fragrance family"

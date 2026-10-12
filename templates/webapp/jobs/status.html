@@ -1,0 +1,32 @@
+{% load i18n %}{% get_current_language as LANG %}{% get_current_language_bidi as RTL %}<!doctype html>
+<html lang="{{ LANG }}" dir="{% if RTL %}rtl{% else %}ltr{% endif %}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="120">
+<title>{{ job.number }} · {{ company.name }}</title>
+<style>
+:root{--ink:#172033;--soft:#64748b;--line:#e2e8f0;--bg:#f8fafc;--card:#fff;--go:#16a34a}
+@media(prefers-color-scheme:dark){:root{--ink:#e2e8f0;--soft:#94a3b8;--line:#334155;--bg:#0f172a;--card:#1e293b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;display:grid;place-items:center;padding:16px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;width:min(480px,100%);text-align:center}
+h1{margin:6px 0 2px;font-size:20px}.shop{color:var(--soft)}
+.what{font-weight:800;font-size:18px;margin:14px 0 4px;overflow-wrap:anywhere}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:22px 0}
+.steps div{padding:10px 4px;border-radius:12px;background:var(--bg);color:var(--soft);font-size:13px;font-weight:700}
+.steps div.on{background:#dcfce7;color:#166534}
+.big{font-size:44px}.cancel{color:#b91c1c;font-weight:800}
+.amt{font-size:18px;font-weight:800}
+</style></head><body><main class="box">
+  <div class="big">{% if job.status == "ready" %}✅{% elif job.status == "completed" %}🎉{% elif job.status == "cancelled" %}✕{% elif job.status == "waiting" %}⏳{% else %}🛠{% endif %}</div>
+  <h1>{{ job.number }}</h1><div class="shop">{{ company.name }}</div>
+  <div class="what">{{ job.title }}</div>
+  {% if job.profile.subject_name != job.profile.customer.name %}<div class="shop">{{ job.profile.subject_name }}</div>{% endif %}
+  {% if job.status == "cancelled" %}<p class="cancel">{% translate "This job was cancelled." %}</p>
+  {% else %}
+  <div class="steps">{% for key, label in steps %}<div class="{% if forloop.counter0 <= at %}on{% endif %}">{{ label }}</div>{% endfor %}</div>
+  {% if job.status == "waiting" %}<p>{% translate "Waiting for parts or your approval." %}</p>{% endif %}
+  {% if job.scheduled_at and job.status == "open" %}<p>📅 {{ job.scheduled_at|date:"D j M Y, H:i" }}</p>{% endif %}
+  {% if job.ready_by and job.status != "completed" and job.status != "ready" %}<p>⏰ {% translate "Expected ready by" %} {{ job.ready_by|date:"D j M, H:i" }}</p>{% endif %}
+  {% if job.status == "ready" %}<p><b>{% translate "Ready — you can collect it now." %}</b></p>{% if amount %}<p class="amt">{{ currency }} {{ amount|floatformat:2 }}</p>{% endif %}{% endif %}
+  {% endif %}
+  {% if company.phone %}<p><a href="tel:{{ company.phone }}">📞 {{ company.phone }}</a></p>{% endif %}
+  <p class="shop"><small>{% translate "This page refreshes by itself." %}</small></p>
+</main></body></html>

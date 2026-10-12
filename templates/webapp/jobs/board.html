@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Job cards" %}{% endblock %}
+{% block heading %}🧰 {% translate "Job cards" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.jb-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.jb-top form{display:flex;flex-wrap:wrap;gap:8px;margin:0;flex:1 1 320px}.jb-top input[name=q]{flex:1 1 160px;min-width:0}
+.jb-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.jb-tabs a{padding:7px 14px;border-radius:99px;border:1px solid var(--line);background:var(--panel);font-weight:700;text-decoration:none;color:inherit}.jb-tabs a.on{background:var(--brand,#b82318);border-color:transparent;color:#fff}
+.jb-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:start}
+@media(max-width:1100px){.jb-cols{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){.jb-cols{grid-template-columns:minmax(0,1fr)}}
+.jb-cols.one{grid-template-columns:minmax(0,1fr)}
+.jb-col{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:10px;min-width:0}
+.jb-col h3{margin:2px 4px 10px;font-size:15px;display:flex;gap:8px}.jb-col h3 .n{margin-inline-start:auto;background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:0 9px;font-size:13px}
+.jb-card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:10px;color:inherit;text-decoration:none;min-width:0}
+.jb-card:hover{border-color:var(--brand,#b82318)}.jb-card.late{border:2px solid #dc2626}.jb-card.urgent{box-shadow:inset 4px 0 0 #f59e0b}
+.jb-card .r1{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.jb-card .r1 b{font-size:14px}.jb-card .r1 .amt{margin-inline-start:auto;font-weight:800}
+.jb-card .t{font-weight:700;margin:4px 0;overflow-wrap:anywhere}.jb-card small{color:var(--ink-soft);overflow-wrap:anywhere}
+.jb-pill{display:inline-block;font-size:12px;font-weight:800;padding:2px 8px;border-radius:99px;background:#e0f2fe;color:#075985;margin-top:4px}
+.jb-pill.late{background:#fee2e2;color:#991b1b}.jb-pill.urgent{background:#fef3c7;color:#92400e}
+</style>
+<div class="ix">
+  <div class="jb-top">
+    <a class="btn" href="{% url 'webapp:service_case_add' %}">＋ {% translate "New job / appointment" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:job_calendar' %}">📅 {% translate "Calendar" %}</a>
+    <form method="get">
+      <input type="hidden" name="show" value="{{ show }}">
+      <input name="q" value="{{ q }}" placeholder="{% translate 'Search job no., name, phone, plate…' %}" aria-label="{% translate 'Search' %}">
+      <select name="staff" aria-label="{% translate 'Staff' %}"><option value="">{% translate "All staff" %}</option>{% for s in staff %}<option value="{{ s.id }}"{% if s.id == staff_id %} selected{% endif %}>{{ s.name }}</option>{% endfor %}</select>
+      <button class="btn btn-secondary">{% translate "Find" %}</button>
+    </form>
+  </div>
+  <nav class="jb-tabs">
+    <a href="?show=today" class="{% if show == 'today' %}on{% endif %}">{% translate "Today" %}</a>
+    <a href="?show=open" class="{% if show == 'open' %}on{% endif %}">{% translate "All open" %}</a>
+    <a href="?show=done" class="{% if show == 'done' %}on{% endif %}">{% translate "Completed" %}</a>
+  </nav>
+  <div class="jb-cols{% if columns|length == 1 %} one{% endif %}">
+    {% for key, title, items in columns %}
+    <section class="jb-col">
+      <h3>{{ title }} <span class="n">{{ items|length }}</span></h3>
+      {% for j in items %}
+      <a class="jb-card{% if j.late %} late{% endif %}{% if j.priority == 'urgent' %} urgent{% endif %}" href="{% url 'webapp:service_case_detail' j.id %}">
+        <div class="r1"><b>{{ j.number|default:"—" }}</b>{% if j.scheduled_at %}<small>📅 {{ j.scheduled_at|date:"j M H:i" }}</small>{% endif %}<span class="amt">{% if j.amount %}{{ currency }} {{ j.amount|floatformat:2 }}{% endif %}</span></div>
+        <div class="t">{{ j.title }}</div>
+        <small>👤 {{ j.profile.customer.name }}{% if j.profile.subject_name != j.profile.customer.name %} · {{ j.profile.subject_name }}{% endif %}{% if j.profile.identifier %} · {{ j.profile.identifier }}{% endif %}</small><br>
+        <small>🧑‍🔧 {{ j.assigned_staff.name|default:_("No staff yet") }}{% if j.ready_by %} · ⏰ {{ j.ready_by|date:"j M H:i" }}{% endif %}</small>
+        {% if j.late %}<span class="jb-pill late">{% translate "Late" %}</span>{% endif %}{% if j.priority == "urgent" %} <span class="jb-pill urgent">{% translate "Urgent" %}</span>{% endif %}{% if key == "done" %} <span class="jb-pill">{{ j.get_status_display }}</span>{% endif %}
+      </a>
+      {% empty %}<small style="display:block;padding:6px">{% translate "Nothing here." %}</small>{% endfor %}
+    </section>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

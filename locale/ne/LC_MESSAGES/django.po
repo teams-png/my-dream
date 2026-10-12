@@ -262,6 +262,10 @@ msgid "Appointments calendar"
 msgstr "अपोइन्टमेन्ट क्यालेन्डर"
 
 #: templates/base.html
+msgid "Service contracts (AMC)"
+msgstr "सेवा सम्झौता (AMC)"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "प्याकेज / सत्र"
 
@@ -2379,6 +2383,219 @@ msgstr "तपाईंको सन्दर्भ"
 msgid "See more jobs"
 msgstr "थप जागिर हेर्नुहोस्"
 
+#: templates/webapp/contracts/detail.html
+msgid "Ended"
+msgstr "सकियो"
+
+#: templates/webapp/contracts/detail.html
+msgid "Customer"
+msgstr "ग्राहक"
+
+#: templates/webapp/contracts/detail.html
+msgid "Site / equipment"
+msgstr "स्थान / उपकरण"
+
+#: templates/webapp/contracts/detail.html
+msgid "Address"
+msgstr "ठेगाना"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visit"
+msgstr "भ्रमण"
+
+#: templates/webapp/contracts/detail.html
+msgid "min"
+msgstr "मिनेट"
+
+#: templates/webapp/contracts/detail.html
+msgid "Every visit"
+msgstr "हरेक भ्रमणमा"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewal of"
+msgstr "नवीकरण गरिएको"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewed as"
+msgstr "नवीकरण भयो"
+
+#: templates/webapp/contracts/detail.html
+msgid "Notes"
+msgstr "नोटहरू"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits"
+msgstr "भ्रमणहरू"
+
+#: templates/webapp/contracts/detail.html
+msgid "done"
+msgstr "सकियो"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits appear here a week before they are due."
+msgstr "भ्रमणहरू मितिभन्दा एक हप्ता अघि यहाँ देखिन्छन्।"
+
+#: templates/webapp/contracts/detail.html
+msgid "planned"
+msgstr "योजना गरिएको"
+
+#: templates/webapp/contracts/detail.html
+msgid "How far ahead"
+msgstr "कति अगाडि"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 7 days"
+msgstr "अर्को ७ दिन"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next month"
+msgstr "अर्को महिना"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 3 months"
+msgstr "अर्को ३ महिना"
+
+#: templates/webapp/contracts/detail.html
+msgid "Make visit job cards now"
+msgstr "भ्रमणका जब कार्ड अहिले बनाउनुहोस्"
+
+#: templates/webapp/contracts/detail.html
+msgid "Money"
+msgstr "पैसा"
+
+#: templates/webapp/contracts/detail.html
+msgid "Contract value"
+msgstr "सम्झौता रकम"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bill"
+msgstr "बिल"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bills made"
+msgstr "बनेका बिलहरू"
+
+#: templates/webapp/contracts/detail.html
+msgid "next"
+msgstr "अर्को"
+
+#: templates/webapp/contracts/detail.html
+msgid "Actions"
+msgstr "कार्यहरू"
+
+#: templates/webapp/contracts/detail.html
+msgid "New contract value"
+msgstr "नयाँ सम्झौता रकम"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renew"
+msgstr "नवीकरण गर्नुहोस्"
+
+#: templates/webapp/contracts/detail.html
+msgid "Ask to renew"
+msgstr "नवीकरणका लागि सोध्नुहोस्"
+
+#: templates/webapp/contracts/detail.html
+msgid "Pause"
+msgstr "रोक्नुहोस्"
+
+#: templates/webapp/contracts/detail.html
+msgid "Resume"
+msgstr "फेरि सुरु गर्नुहोस्"
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel this contract? Future visits and bills stop."
+msgstr "यो सम्झौता रद्द गर्ने? आगामी भ्रमण र बिलहरू रोकिन्छन्।"
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel contract"
+msgstr "सम्झौता रद्द गर्नुहोस्"
+
+#: templates/webapp/contracts/list.html
+msgid "Active contracts"
+msgstr "सक्रिय सम्झौताहरू"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending in 30 days"
+msgstr "३० दिनभित्र सकिने"
+
+#: templates/webapp/contracts/list.html
+msgid "Value of active contracts"
+msgstr "सक्रिय सम्झौताको मूल्य"
+
+#: templates/webapp/contracts/list.html
+msgid "Visits in the next 7 days"
+msgstr "अर्को ७ दिनका भ्रमणहरू"
+
+#: templates/webapp/contracts/list.html
+msgid "New contract"
+msgstr "नयाँ सम्झौता"
+
+#: templates/webapp/contracts/list.html
+msgid "Search contract no., name, customer, phone…"
+msgstr "सम्झौता नम्बर, नाम, ग्राहक, फोन… खोज्नुहोस्"
+
+#: templates/webapp/contracts/list.html
+msgid "Find"
+msgstr "खोज्नुहोस्"
+
+#: templates/webapp/contracts/list.html
+msgid "Active"
+msgstr "सक्रिय"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending soon"
+msgstr "चाँडै सकिने"
+
+#: templates/webapp/contracts/list.html
+msgid "Ended / cancelled"
+msgstr "सकिएका / रद्द"
+
+#: templates/webapp/contracts/list.html
+msgid "Next visit"
+msgstr "अर्को भ्रमण"
+
+#: templates/webapp/contracts/list.html
+msgid "Ends"
+msgstr "अन्त्य"
+
+#: templates/webapp/contracts/list.html
+msgid "Value"
+msgstr "मूल्य"
+
+#: templates/webapp/contracts/list.html
+msgid "No contracts here yet."
+msgstr "यहाँ अहिलेसम्म सम्झौता छैन।"
+
+#: templates/webapp/contracts/new.html
+msgid "New service contract"
+msgstr "नयाँ सेवा सम्झौता"
+
+#: templates/webapp/contracts/new.html
+msgid "What is covered"
+msgstr "के समेटिएको छ"
+
+#: templates/webapp/contracts/new.html
+msgid "Empty = the start date."
+msgstr "खाली = सुरु मिति।"
+
+#: templates/webapp/contracts/new.html
+msgid ""
+"Up front: one bill now. Every month / 3 months / year: bills are made by "
+"themselves on those dates. Per visit: the amount is put on each visit's job "
+"card."
+msgstr ""
+"अग्रिम: अहिले एउटा बिल। हरेक महिना / ३ महिना / वर्ष: ती मितिमा बिल आफैं "
+"बन्छन्। प्रति भ्रमण: रकम हरेक भ्रमणको जब कार्डमा थपिन्छ।"
+
+#: templates/webapp/contracts/new.html
+msgid "Save contract"
+msgstr "सम्झौता सेभ गर्नुहोस्"
+
+#: templates/webapp/contracts/new.html
+msgid "visits"
+msgstr "भ्रमणहरू"
+
 #: templates/webapp/crm/_tabs.html
 msgid "Pipeline"
 msgstr "पाइपलाइन"
@@ -2538,14 +2755,6 @@ msgstr "डिल"
 #: templates/webapp/crm/pipeline.html
 msgid "e.g. Office fit-out, 20 laptops"
 msgstr "जस्तै अफिस सजावट, 20 ल्यापटप"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Customer"
-msgstr "ग्राहक"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Value"
-msgstr "मूल्य"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Expected close"
@@ -3319,10 +3528,6 @@ msgstr "खरिद मिति"
 msgid "Paid from"
 msgstr "कहाँबाट तिरिएको"
 
-#: templates/webapp/finance/assets.html
-msgid "Notes"
-msgstr "नोटहरू"
-
 #: templates/webapp/finance/cheques.html
 msgid "Post-dated cheques"
 msgstr "पछिल्लो मितिका चेक"
@@ -3460,14 +3665,6 @@ msgstr "रोकिएको"
 #: templates/webapp/finance/recurring.html
 msgid "Run now"
 msgstr "अहिले चलाउनुहोस्"
-
-#: templates/webapp/finance/recurring.html
-msgid "Pause"
-msgstr "रोक्नुहोस्"
-
-#: templates/webapp/finance/recurring.html
-msgid "Resume"
-msgstr "फेरि सुरु गर्नुहोस्"
 
 #: templates/webapp/finance/recurring.html
 msgid ""
@@ -4474,10 +4671,6 @@ msgid "fees"
 msgstr "शुल्कहरू"
 
 #: templates/webapp/industry/education_home.html
-msgid "Active"
-msgstr "सक्रिय"
-
-#: templates/webapp/industry/education_home.html
 msgid "Billed this month"
 msgstr "यो महिना बिल गरिएको"
 
@@ -5072,10 +5265,6 @@ msgid "All staff"
 msgstr "सबै कर्मचारी"
 
 #: templates/webapp/jobs/board.html
-msgid "Find"
-msgstr "खोज्नुहोस्"
-
-#: templates/webapp/jobs/board.html
 msgid "All open"
 msgstr "सबै खुला"
 
@@ -5165,10 +5354,6 @@ msgid "Appointment"
 msgstr "भेटघाट"
 
 #: templates/webapp/jobs/detail.html
-msgid "min"
-msgstr "मिनेट"
-
-#: templates/webapp/jobs/detail.html
 msgid "Ready by"
 msgstr "तयार हुने मिति"
 
@@ -5181,8 +5366,8 @@ msgid "Finished"
 msgstr "सकियो"
 
 #: templates/webapp/jobs/detail.html
-msgid "Bill"
-msgstr "बिल"
+msgid "visit"
+msgstr "भ्रमण"
 
 #: templates/webapp/jobs/detail.html
 msgid "Cancel this job?"
@@ -5708,10 +5893,6 @@ msgid "Delivery address"
 msgstr "डेलिभरी ठेगाना"
 
 #: templates/webapp/mess/member.html
-msgid "Ended"
-msgstr "सकियो"
-
-#: templates/webapp/mess/member.html
 msgid "Contact"
 msgstr "सम्पर्क"
 
@@ -6042,10 +6223,6 @@ msgstr "व्यवसायको नाम"
 #: templates/webapp/onboarding/wizard.html
 msgid "Logo (optional)"
 msgstr "लोगो (ऐच्छिक)"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Address"
-msgstr "ठेगाना"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "VAT / tax number (optional)"
@@ -11621,6 +11798,70 @@ msgstr "उधारोमा (आपूर्तिकर्ता)"
 msgid "Already owned (no payment now)"
 msgstr "पहिल्यै स्वामित्वमा (अहिले भुक्तानी छैन)"
 
+#: apps/industry/contracts.py
+msgid "Give the contract a name, e.g. AC maintenance – 4 units."
+msgstr "सम्झौताको नाम दिनुहोस्, जस्तै एसी मर्मत – ४ युनिट।"
+
+#: apps/industry/contracts.py
+msgid "The end date must be after the start date."
+msgstr "अन्त्य मिति सुरु मितिपछि हुनुपर्छ।"
+
+#: apps/industry/contracts.py
+msgid "Choose how often to visit and how to bill."
+msgstr "भ्रमण कति पटक र बिल कसरी, छान्नुहोस्।"
+
+#: apps/industry/contracts.py
+msgid "Choose your own staff member."
+msgstr "आफ्नै कर्मचारी छान्नुहोस्।"
+
+#: apps/industry/contracts.py
+msgid "The first visit must be inside the contract dates."
+msgstr "पहिलो भ्रमण सम्झौताको मितिभित्र हुनुपर्छ।"
+
+#: apps/industry/contracts.py
+msgid "Enter a valid amount."
+msgstr "सही रकम लेख्नुहोस्।"
+
+#: apps/industry/contracts.py
+msgid "%(title)s — visit %(n)s"
+msgstr "%(title)s — भ्रमण %(n)s"
+
+#: apps/industry/contracts.py
+msgid "Contract visit %(n)s (%(number)s)"
+msgstr "सम्झौता भ्रमण %(n)s (%(number)s)"
+
+#: apps/industry/contracts.py
+msgid "Only an active contract can be paused."
+msgstr "सक्रिय सम्झौता मात्र रोक्न सकिन्छ।"
+
+#: apps/industry/contracts.py
+msgid "This contract is not paused."
+msgstr "यो सम्झौता रोकिएको छैन।"
+
+#: apps/industry/contracts.py
+msgid "This contract is already closed."
+msgstr "यो सम्झौता पहिल्यै बन्द छ।"
+
+#: apps/industry/contracts.py
+msgid "This contract was already renewed."
+msgstr "यो सम्झौता पहिल्यै नवीकरण भइसकेको छ।"
+
+#: apps/industry/contracts.py
+msgid ""
+"Hello %(name)s, your maintenance contract %(number)s (%(title)s) with "
+"%(shop)s ends on %(date)s. Shall we renew it for you?"
+msgstr ""
+"नमस्ते %(name)s, %(shop)s सँगको तपाईंको मर्मत सम्झौता %(number)s (%(title)s)"
+" %(date)s मा सकिँदैछ। हामी तपाईंका लागि नवीकरण गरौं?"
+
+#: apps/industry/contracts.py
+msgid "Contract %(number)s ends on %(date)s"
+msgstr "सम्झौता %(number)s %(date)s मा सकिन्छ"
+
+#: apps/industry/contracts.py
+msgid "%(customer)s — %(title)s. Renew it from Service contracts."
+msgstr "%(customer)s — %(title)s। सेवा सम्झौताबाट नवीकरण गर्नुहोस्।"
+
 #: apps/industry/demo_guard.py
 msgid ""
 "That is switched off in the demo. Start your free trial to use it with your "
@@ -11646,16 +11887,8 @@ msgid " for delivery"
 msgstr "डेलिभरीका लागि"
 
 #: apps/industry/jobs.py
-msgid "Enter a valid amount."
-msgstr "सही रकम लेख्नुहोस्।"
-
-#: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "जब के हो भन्नुहोस्।"
-
-#: apps/industry/jobs.py
-msgid "Choose your own staff member."
-msgstr "आफ्नै कर्मचारी छान्नुहोस्।"
 
 #: apps/industry/jobs.py
 msgid "This job is closed."
@@ -12327,6 +12560,58 @@ msgstr "पार्ट / सामान"
 msgid "Labour / service"
 msgstr "श्रम / सेवा"
 
+#: apps/verticals/saloon/models.py
+msgid "Every week"
+msgstr "हरेक हप्ता"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 weeks"
+msgstr "हरेक २ हप्ता"
+
+#: apps/verticals/saloon/models.py
+msgid "Every month"
+msgstr "हरेक महिना"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 months"
+msgstr "हरेक २ महिना"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 4 months"
+msgstr "हरेक ४ महिना"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 6 months"
+msgstr "हरेक ६ महिना"
+
+#: apps/verticals/saloon/models.py
+msgid "Once a year"
+msgstr "वर्षमा एक पटक"
+
+#: apps/verticals/saloon/models.py
+msgid "Full amount up front"
+msgstr "पूरा रकम अग्रिम"
+
+#: apps/verticals/saloon/models.py
+msgid "Every year"
+msgstr "हरेक वर्ष"
+
+#: apps/verticals/saloon/models.py
+msgid "Per visit"
+msgstr "प्रति भ्रमण"
+
+#: apps/verticals/saloon/models.py
+msgid "No bill from here"
+msgstr "यहाँबाट बिल छैन"
+
+#: apps/verticals/saloon/models.py
+msgid "What to do on every visit (checklist)"
+msgstr "हरेक भ्रमणमा गर्ने काम (चेकलिस्ट)"
+
+#: apps/verticals/saloon/models.py
+msgid "Per bill (or per visit)"
+msgstr "प्रति बिल (वा प्रति भ्रमण)"
+
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
 msgstr "ग्राहक भुक्तानी"
@@ -12939,6 +13224,86 @@ msgstr "WhatsApp मा रसिद पठाउनुहोस्"
 #: apps/webapp/checklist.py
 msgid "Publish your website"
 msgstr "आफ्नो वेबसाइट प्रकाशित गर्नुहोस्"
+
+#: apps/webapp/contract_views.py
+msgid "Contract name"
+msgstr "सम्झौताको नाम"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. AC maintenance – 4 split units"
+msgstr "जस्तै एसी मर्मत – ४ स्प्लिट युनिट"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. Villa 12 / Office 3rd floor"
+msgstr "जस्तै भिला १२ / कार्यालय तेस्रो तला"
+
+#: apps/webapp/contract_views.py
+msgid "Reference / serial no."
+msgstr "सन्दर्भ / सिरियल नम्बर"
+
+#: apps/webapp/contract_views.py
+msgid "Starts"
+msgstr "सुरु"
+
+#: apps/webapp/contract_views.py
+msgid "First visit"
+msgstr "पहिलो भ्रमण"
+
+#: apps/webapp/contract_views.py
+msgid "Usual time"
+msgstr "सामान्य समय"
+
+#: apps/webapp/contract_views.py
+msgid "Minutes per visit"
+msgstr "प्रति भ्रमण मिनेट"
+
+#: apps/webapp/contract_views.py
+msgid "Usual staff"
+msgstr "सामान्य कर्मचारी"
+
+#: apps/webapp/contract_views.py
+msgid "What to do on every visit"
+msgstr "हरेक भ्रमणमा गर्ने काम"
+
+#: apps/webapp/contract_views.py
+msgid "Clean filters, check gas, test cooling…"
+msgstr "फिल्टर सफा, ग्यास जाँच, कुलिङ परीक्षण…"
+
+#: apps/webapp/contract_views.py
+msgid "Contract value (total)"
+msgstr "सम्झौता रकम (जम्मा)"
+
+#: apps/webapp/contract_views.py
+msgid "Amount per bill / visit"
+msgstr "प्रति बिल / भ्रमण रकम"
+
+#: apps/webapp/contract_views.py
+msgid "Leave empty to split the contract value."
+msgstr "सम्झौता रकम बाँड्न खाली छोड्नुहोस्।"
+
+#: apps/webapp/contract_views.py
+msgid "Contract %(number)s saved. Visits are planned by themselves."
+msgstr "सम्झौता %(number)s सेभ भयो। भ्रमणहरू आफैं योजना हुन्छन्।"
+
+#: apps/webapp/contract_views.py
+msgid "%(n)s visit(s) added to the job cards."
+msgstr "%(n)s भ्रमण जब कार्डमा थपियो।"
+
+#: apps/webapp/contract_views.py
+msgid "Contract paused — no visits or bills until you resume it."
+msgstr "सम्झौता रोकियो — फेरि सुरु नगरेसम्म भ्रमण वा बिल छैन।"
+
+#: apps/webapp/contract_views.py
+msgid "Contract resumed."
+msgstr "सम्झौता फेरि सुरु भयो।"
+
+#: apps/webapp/contract_views.py
+msgid "Contract cancelled. Future visits were cancelled too."
+msgstr "सम्झौता रद्द भयो। आगामी भ्रमणहरू पनि रद्द भए।"
+
+#: apps/webapp/contract_views.py
+msgid "Renewed as %(number)s."
+msgstr "%(number)s को रूपमा नवीकरण भयो।"
 
 #: apps/webapp/crm_views.py
 msgid "Enter what the deal is about."
@@ -13850,10 +14215,6 @@ msgid "Event date"
 msgstr "कार्यक्रम मिति"
 
 #: apps/webapp/online_booking_views.py
-msgid "Ends"
-msgstr "अन्त्य"
-
-#: apps/webapp/online_booking_views.py
 msgid "Membership / trial"
 msgstr "सदस्यता / परीक्षण"
 
@@ -14028,10 +14389,6 @@ msgstr "के बुक गर्ने हो छान्नुहोस्�
 #: apps/webapp/online_booking_views.py
 msgid "Choose the check-out / return date."
 msgstr "चेक-आउट / फिर्ता मिति छान्नुहोस्।"
-
-#: apps/webapp/online_booking_views.py
-msgid "The end date must be after the start date."
-msgstr "अन्त्य मिति सुरु मितिपछि हुनुपर्छ।"
 
 #: apps/webapp/online_booking_views.py
 msgid "Online booking is not available."

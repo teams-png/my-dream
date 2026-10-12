@@ -137,3 +137,16 @@ VERTICALS.append(dict(
  faq=[("What should I use “Contractors” for?","Any outside person or supplier of services on a project — freelancers, subcontractors, vendors."),
       ("Can I invoice my client?","Yes, through the Sales section. Ask us if you want a set-up for milestone/stage invoices.")],
 ))
+
+# Maintenance / service contracts (AMC) — service businesses and field-service companies
+AMC_TASK = ("Run maintenance contracts (AMC)",
+  ["Open [[📑 Service contracts (AMC)]] → [[+ New contract]]. Choose the customer, give it a name (e.g. <i>AC maintenance – 4 units</i>), the site and the start and end dates.",
+   "Choose how often to visit (every month, 3 months, 6 months…), the usual time, staff and what to do on every visit.",
+   "Enter the contract value and how to bill: <b>full amount up front</b>, <b>every month / 3 months / year</b> (bills are made by themselves) or <b>per visit</b> (added to each visit's job card).",
+   "Each visit becomes a job card a week before it is due — it shows on the calendar and the staff phone page.",
+   "Contracts ending in 30 days are listed under <b>Ending soon</b>: press [[Ask to renew]] to WhatsApp the customer, then [[Renew]]. You can also [[Pause]] or [[Cancel contract]]."],
+  dict(tip="A contract entered late does not create job cards for visits that are already past."))
+svc["tasks"].insert(4, AMC_TASK)
+for _v in VERTICALS:
+    if _v.get("slug") == "project-agency":
+        _v["tasks"] = [AMC_TASK] + list(_v.get("tasks", []))

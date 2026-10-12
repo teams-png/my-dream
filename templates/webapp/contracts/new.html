@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "New contract" %}{% endblock %}
+{% block heading %}📑 {% translate "New service contract" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.cn{display:grid;gap:12px;max-width:940px}
+.cn fieldset{border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 14px;min-width:0}
+.cn legend{font-weight:800;padding:0 6px}.cn .wide{grid-column:1/-1}
+.cn label{display:grid;gap:5px;font-weight:700;font-size:14px;min-width:0}.cn input,.cn select,.cn textarea{min-width:0;width:100%;box-sizing:border-box}
+.cn small{font-weight:400;color:var(--ink-soft)}.cn .err{color:#b91c1c;font-size:13px}
+#billHint{font-weight:800}
+</style>
+<div class="ix">
+  <form method="post" class="cn">{% csrf_token %}
+    {% if form.non_field_errors %}<div class="err">{{ form.non_field_errors|join:" " }}</div>{% endif %}
+    <fieldset><legend>👤 {% translate "Customer" %}</legend>
+      <label>{{ form.customer.label }} {{ form.customer }}</label>
+      <label>{{ form.new_name.label }} {{ form.new_name }}</label>
+      <label>{{ form.new_phone.label }} {{ form.new_phone }}</label>
+    </fieldset>
+    <fieldset><legend>🏢 {% translate "What is covered" %}</legend>
+      <label class="wide">{{ form.title.label }} {{ form.title }}<span class="err">{{ form.title.errors|join:" " }}</span></label>
+      <label>{{ form.site_name.label }} {{ form.site_name }}</label>
+      <label>{{ form.identifier.label }} {{ form.identifier }}</label>
+      <label class="wide">{{ form.site_address.label }} {{ form.site_address }}</label>
+    </fieldset>
+    <fieldset><legend>📅 {% translate "Visits" %}</legend>
+      <label>{{ form.start_date.label }} {{ form.start_date }}<span class="err">{{ form.start_date.errors|join:" " }}</span></label>
+      <label>{{ form.end_date.label }} {{ form.end_date }}<span class="err">{{ form.end_date.errors|join:" " }}</span></label>
+      <label>{{ form.visit_every.label }} {{ form.visit_every }}</label>
+      <label>{{ form.first_visit.label }} {{ form.first_visit }}<small>{% translate "Empty = the start date." %}</small></label>
+      <label>{{ form.preferred_time.label }} {{ form.preferred_time }}</label>
+      <label>{{ form.visit_minutes.label }} {{ form.visit_minutes }}</label>
+      <label>{{ form.staff.label }} {{ form.staff }}</label>
+      <label class="wide">{{ form.visit_task.label }} {{ form.visit_task }}</label>
+    </fieldset>
+    <fieldset><legend>💰 {% translate "Money" %}</legend>
+      <label>{{ form.contract_value.label }} {{ form.contract_value }}<span class="err">{{ form.contract_value.errors|join:" " }}</span></label>
+      <label>{{ form.billing.label }} {{ form.billing }}</label>
+      <label>{{ form.bill_amount.label }} {{ form.bill_amount }}<small>{{ form.bill_amount.help_text }}</small></label>
+      <div class="wide"><small>{% translate "Up front: one bill now. Every month / 3 months / year: bills are made by themselves on those dates. Per visit: the amount is put on each visit's job card." %}</small><br><span id="billHint"></span></div>
+      <label class="wide">{{ form.notes.label }} {{ form.notes }}</label>
+    </fieldset>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn">{% translate "Save contract" %}</button>
+      <a class="btn btn-secondary" href="{% url 'webapp:contract_list' %}">{% translate "Cancel" %}</a>
+    </div>
+  </form>
+</div>
+<script>
+(function(){
+  var f=document.querySelector(".cn"),hint=document.getElementById("billHint");
+  var stepM={monthly:1,bimonthly:2,quarterly:3,four_monthly:4,half_yearly:6,yearly:12},stepD={weekly:7,fortnightly:14},billM={monthly:1,quarterly:3,yearly:12};
+  function d(n){var v=f.elements[n].value;return v?new Date(v+"T00:00:00"):null}
+  function calc(){
+    var s=d("start_date"),e=d("end_date"),val=parseFloat(f.elements["contract_value"].value||"0"),b=f.elements["billing"].value,ev=f.elements["visit_every"].value;
+    if(!s||!e||e<=s||!(val>0)){hint.textContent="";return}
+    var months=(e.getFullYear()-s.getFullYear())*12+e.getMonth()-s.getMonth()+(e.getDate()>=s.getDate()?1:0);months=Math.max(1,months);
+    var visits=0,x=new Date(s);while(x<=e&&visits<400){visits++;if(stepD[ev])x.setDate(x.getDate()+stepD[ev]);else x.setMonth(x.getMonth()+stepM[ev])}
+    var per="";
+    if(b==="upfront")per=val.toFixed(2);
+    else if(b==="per_visit")per=(val/visits).toFixed(2)+" × "+visits;
+    else if(billM[b])per=(val/Math.max(1,Math.ceil(months/billM[b]))).toFixed(2)+" × "+Math.max(1,Math.ceil(months/billM[b]));
+    hint.textContent=visits+" {% translate 'visits' %}"+(per?" · "+per:"");
+  }
+  f.addEventListener("input",calc);f.addEventListener("change",calc);calc();
+})();
+</script>
+{% endblock %}

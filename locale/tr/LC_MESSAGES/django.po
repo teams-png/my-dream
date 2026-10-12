@@ -262,6 +262,10 @@ msgid "Appointments calendar"
 msgstr "Randevu takvimi"
 
 #: templates/base.html
+msgid "Service contracts (AMC)"
+msgstr "Servis sözleşmeleri (bakım)"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "Paketler / seanslar"
 
@@ -2386,6 +2390,220 @@ msgstr "Referansınız"
 msgid "See more jobs"
 msgstr "Daha fazla iş gör"
 
+#: templates/webapp/contracts/detail.html
+msgid "Ended"
+msgstr "Sona erdi"
+
+#: templates/webapp/contracts/detail.html
+msgid "Customer"
+msgstr "Müşteri"
+
+#: templates/webapp/contracts/detail.html
+msgid "Site / equipment"
+msgstr "Yer / ekipman"
+
+#: templates/webapp/contracts/detail.html
+msgid "Address"
+msgstr "Adres"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visit"
+msgstr "Ziyaret"
+
+#: templates/webapp/contracts/detail.html
+msgid "min"
+msgstr "dk"
+
+#: templates/webapp/contracts/detail.html
+msgid "Every visit"
+msgstr "Her ziyarette"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewal of"
+msgstr "Yenilenen sözleşme"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewed as"
+msgstr "Yenilendi"
+
+#: templates/webapp/contracts/detail.html
+msgid "Notes"
+msgstr "Notlar"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits"
+msgstr "Ziyaretler"
+
+#: templates/webapp/contracts/detail.html
+msgid "done"
+msgstr "tamam"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits appear here a week before they are due."
+msgstr "Ziyaretler tarihinden bir hafta önce burada görünür."
+
+#: templates/webapp/contracts/detail.html
+msgid "planned"
+msgstr "planlandı"
+
+#: templates/webapp/contracts/detail.html
+msgid "How far ahead"
+msgstr "Ne kadar ileri"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 7 days"
+msgstr "Sonraki 7 gün"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next month"
+msgstr "Gelecek ay"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 3 months"
+msgstr "Sonraki 3 ay"
+
+#: templates/webapp/contracts/detail.html
+msgid "Make visit job cards now"
+msgstr "Ziyaret iş kartlarını şimdi oluştur"
+
+#: templates/webapp/contracts/detail.html
+msgid "Money"
+msgstr "Para"
+
+#: templates/webapp/contracts/detail.html
+msgid "Contract value"
+msgstr "Sözleşme bedeli"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bill"
+msgstr "Fatura"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bills made"
+msgstr "Kesilen faturalar"
+
+#: templates/webapp/contracts/detail.html
+msgid "next"
+msgstr "sonraki"
+
+#: templates/webapp/contracts/detail.html
+msgid "Actions"
+msgstr "İşlemler"
+
+#: templates/webapp/contracts/detail.html
+msgid "New contract value"
+msgstr "Yeni sözleşme bedeli"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renew"
+msgstr "Yenile"
+
+#: templates/webapp/contracts/detail.html
+msgid "Ask to renew"
+msgstr "Yenilemeyi sor"
+
+#: templates/webapp/contracts/detail.html
+msgid "Pause"
+msgstr "Duraklat"
+
+#: templates/webapp/contracts/detail.html
+msgid "Resume"
+msgstr "Devam et"
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel this contract? Future visits and bills stop."
+msgstr "Bu sözleşme iptal edilsin mi? Gelecek ziyaretler ve faturalar durur."
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel contract"
+msgstr "Sözleşmeyi iptal et"
+
+#: templates/webapp/contracts/list.html
+msgid "Active contracts"
+msgstr "Aktif sözleşmeler"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending in 30 days"
+msgstr "30 gün içinde bitenler"
+
+#: templates/webapp/contracts/list.html
+msgid "Value of active contracts"
+msgstr "Aktif sözleşmelerin değeri"
+
+#: templates/webapp/contracts/list.html
+msgid "Visits in the next 7 days"
+msgstr "Sonraki 7 gündeki ziyaretler"
+
+#: templates/webapp/contracts/list.html
+msgid "New contract"
+msgstr "Yeni sözleşme"
+
+#: templates/webapp/contracts/list.html
+msgid "Search contract no., name, customer, phone…"
+msgstr "Sözleşme no, ad, müşteri, telefon ara…"
+
+#: templates/webapp/contracts/list.html
+msgid "Find"
+msgstr "Bul"
+
+#: templates/webapp/contracts/list.html
+msgid "Active"
+msgstr "Aktif"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending soon"
+msgstr "Yakında bitenler"
+
+#: templates/webapp/contracts/list.html
+msgid "Ended / cancelled"
+msgstr "Biten / iptal edilen"
+
+#: templates/webapp/contracts/list.html
+msgid "Next visit"
+msgstr "Sonraki ziyaret"
+
+#: templates/webapp/contracts/list.html
+msgid "Ends"
+msgstr "Bitiş"
+
+#: templates/webapp/contracts/list.html
+msgid "Value"
+msgstr "Değer"
+
+#: templates/webapp/contracts/list.html
+msgid "No contracts here yet."
+msgstr "Burada henüz sözleşme yok."
+
+#: templates/webapp/contracts/new.html
+msgid "New service contract"
+msgstr "Yeni servis sözleşmesi"
+
+#: templates/webapp/contracts/new.html
+msgid "What is covered"
+msgstr "Kapsam"
+
+#: templates/webapp/contracts/new.html
+msgid "Empty = the start date."
+msgstr "Boş = başlangıç tarihi."
+
+#: templates/webapp/contracts/new.html
+msgid ""
+"Up front: one bill now. Every month / 3 months / year: bills are made by "
+"themselves on those dates. Per visit: the amount is put on each visit's job "
+"card."
+msgstr ""
+"Peşin: şimdi tek fatura. Her ay / 3 ay / yıl: faturalar o tarihlerde "
+"kendiliğinden kesilir. Ziyaret başına: tutar her ziyaretin iş kartına "
+"eklenir."
+
+#: templates/webapp/contracts/new.html
+msgid "Save contract"
+msgstr "Sözleşmeyi kaydet"
+
+#: templates/webapp/contracts/new.html
+msgid "visits"
+msgstr "ziyaret"
+
 #: templates/webapp/crm/_tabs.html
 msgid "Pipeline"
 msgstr "Süreç"
@@ -2545,14 +2763,6 @@ msgstr "Fırsat"
 #: templates/webapp/crm/pipeline.html
 msgid "e.g. Office fit-out, 20 laptops"
 msgstr "örn. Ofis donanımı, 20 dizüstü bilgisayar"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Customer"
-msgstr "Müşteri"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Value"
-msgstr "Değer"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Expected close"
@@ -3323,10 +3533,6 @@ msgstr "Satın alma tarihi"
 msgid "Paid from"
 msgstr "Ödeme kaynağı"
 
-#: templates/webapp/finance/assets.html
-msgid "Notes"
-msgstr "Notlar"
-
 #: templates/webapp/finance/cheques.html
 msgid "Post-dated cheques"
 msgstr "İleri tarihli çekler"
@@ -3466,14 +3672,6 @@ msgstr "Durduruldu"
 #: templates/webapp/finance/recurring.html
 msgid "Run now"
 msgstr "Şimdi çalıştır"
-
-#: templates/webapp/finance/recurring.html
-msgid "Pause"
-msgstr "Duraklat"
-
-#: templates/webapp/finance/recurring.html
-msgid "Resume"
-msgstr "Devam et"
 
 #: templates/webapp/finance/recurring.html
 msgid ""
@@ -4485,10 +4683,6 @@ msgid "fees"
 msgstr "ücret"
 
 #: templates/webapp/industry/education_home.html
-msgid "Active"
-msgstr "Aktif"
-
-#: templates/webapp/industry/education_home.html
 msgid "Billed this month"
 msgstr "Bu ay faturalanan"
 
@@ -5085,10 +5279,6 @@ msgid "All staff"
 msgstr "Tüm personel"
 
 #: templates/webapp/jobs/board.html
-msgid "Find"
-msgstr "Bul"
-
-#: templates/webapp/jobs/board.html
 msgid "All open"
 msgstr "Tüm açık"
 
@@ -5178,10 +5368,6 @@ msgid "Appointment"
 msgstr "Randevu"
 
 #: templates/webapp/jobs/detail.html
-msgid "min"
-msgstr "dk"
-
-#: templates/webapp/jobs/detail.html
 msgid "Ready by"
 msgstr "Hazır olma tarihi"
 
@@ -5194,8 +5380,8 @@ msgid "Finished"
 msgstr "Bitti"
 
 #: templates/webapp/jobs/detail.html
-msgid "Bill"
-msgstr "Fatura"
+msgid "visit"
+msgstr "ziyaret"
 
 #: templates/webapp/jobs/detail.html
 msgid "Cancel this job?"
@@ -5723,10 +5909,6 @@ msgid "Delivery address"
 msgstr "Teslimat adresi"
 
 #: templates/webapp/mess/member.html
-msgid "Ended"
-msgstr "Sona erdi"
-
-#: templates/webapp/mess/member.html
 msgid "Contact"
 msgstr "İletişim"
 
@@ -6058,10 +6240,6 @@ msgstr "İşletme adı"
 #: templates/webapp/onboarding/wizard.html
 msgid "Logo (optional)"
 msgstr "Logo (isteğe bağlı)"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Address"
-msgstr "Adres"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "VAT / tax number (optional)"
@@ -11666,6 +11844,70 @@ msgstr "Veresiye (tedarikçi)"
 msgid "Already owned (no payment now)"
 msgstr "Zaten sahip olunan (şimdi ödeme yok)"
 
+#: apps/industry/contracts.py
+msgid "Give the contract a name, e.g. AC maintenance – 4 units."
+msgstr "Sözleşmeye bir ad verin, örn. Klima bakımı – 4 ünite."
+
+#: apps/industry/contracts.py
+msgid "The end date must be after the start date."
+msgstr "Bitiş tarihi başlangıç tarihinden sonra olmalıdır."
+
+#: apps/industry/contracts.py
+msgid "Choose how often to visit and how to bill."
+msgstr "Ziyaret sıklığını ve faturalamayı seçin."
+
+#: apps/industry/contracts.py
+msgid "Choose your own staff member."
+msgstr "Kendi personelinizden birini seçin."
+
+#: apps/industry/contracts.py
+msgid "The first visit must be inside the contract dates."
+msgstr "İlk ziyaret sözleşme tarihleri içinde olmalı."
+
+#: apps/industry/contracts.py
+msgid "Enter a valid amount."
+msgstr "Geçerli bir tutar girin."
+
+#: apps/industry/contracts.py
+msgid "%(title)s — visit %(n)s"
+msgstr "%(title)s — ziyaret %(n)s"
+
+#: apps/industry/contracts.py
+msgid "Contract visit %(n)s (%(number)s)"
+msgstr "Sözleşme ziyareti %(n)s (%(number)s)"
+
+#: apps/industry/contracts.py
+msgid "Only an active contract can be paused."
+msgstr "Yalnızca aktif bir sözleşme duraklatılabilir."
+
+#: apps/industry/contracts.py
+msgid "This contract is not paused."
+msgstr "Bu sözleşme duraklatılmış değil."
+
+#: apps/industry/contracts.py
+msgid "This contract is already closed."
+msgstr "Bu sözleşme zaten kapalı."
+
+#: apps/industry/contracts.py
+msgid "This contract was already renewed."
+msgstr "Bu sözleşme zaten yenilendi."
+
+#: apps/industry/contracts.py
+msgid ""
+"Hello %(name)s, your maintenance contract %(number)s (%(title)s) with "
+"%(shop)s ends on %(date)s. Shall we renew it for you?"
+msgstr ""
+"Merhaba %(name)s, %(shop)s ile olan %(number)s (%(title)s) bakım sözleşmeniz"
+" %(date)s tarihinde bitiyor. Sizin için yenileyelim mi?"
+
+#: apps/industry/contracts.py
+msgid "Contract %(number)s ends on %(date)s"
+msgstr "%(number)s sözleşmesi %(date)s tarihinde bitiyor"
+
+#: apps/industry/contracts.py
+msgid "%(customer)s — %(title)s. Renew it from Service contracts."
+msgstr "%(customer)s — %(title)s. Servis sözleşmelerinden yenileyin."
+
 #: apps/industry/demo_guard.py
 msgid ""
 "That is switched off in the demo. Start your free trial to use it with your "
@@ -11691,16 +11933,8 @@ msgid " for delivery"
 msgstr "teslimat için"
 
 #: apps/industry/jobs.py
-msgid "Enter a valid amount."
-msgstr "Geçerli bir tutar girin."
-
-#: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "İşin ne olduğunu yazın."
-
-#: apps/industry/jobs.py
-msgid "Choose your own staff member."
-msgstr "Kendi personelinizden birini seçin."
 
 #: apps/industry/jobs.py
 msgid "This job is closed."
@@ -12374,6 +12608,58 @@ msgstr "Parça / ürün"
 msgid "Labour / service"
 msgstr "İşçilik / hizmet"
 
+#: apps/verticals/saloon/models.py
+msgid "Every week"
+msgstr "Her hafta"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 weeks"
+msgstr "2 haftada bir"
+
+#: apps/verticals/saloon/models.py
+msgid "Every month"
+msgstr "Her ay"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 months"
+msgstr "2 ayda bir"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 4 months"
+msgstr "4 ayda bir"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 6 months"
+msgstr "6 ayda bir"
+
+#: apps/verticals/saloon/models.py
+msgid "Once a year"
+msgstr "Yılda bir"
+
+#: apps/verticals/saloon/models.py
+msgid "Full amount up front"
+msgstr "Tutarın tamamı peşin"
+
+#: apps/verticals/saloon/models.py
+msgid "Every year"
+msgstr "Her yıl"
+
+#: apps/verticals/saloon/models.py
+msgid "Per visit"
+msgstr "Ziyaret başına"
+
+#: apps/verticals/saloon/models.py
+msgid "No bill from here"
+msgstr "Buradan fatura yok"
+
+#: apps/verticals/saloon/models.py
+msgid "What to do on every visit (checklist)"
+msgstr "Her ziyarette yapılacaklar (kontrol listesi)"
+
+#: apps/verticals/saloon/models.py
+msgid "Per bill (or per visit)"
+msgstr "Fatura başına (veya ziyaret başına)"
+
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
 msgstr "Müşteri ödemeleri"
@@ -12989,6 +13275,86 @@ msgstr "WhatsApp'tan fiş gönderin"
 #: apps/webapp/checklist.py
 msgid "Publish your website"
 msgstr "Web sitenizi yayınlayın"
+
+#: apps/webapp/contract_views.py
+msgid "Contract name"
+msgstr "Sözleşme adı"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. AC maintenance – 4 split units"
+msgstr "örn. Klima bakımı – 4 split ünite"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. Villa 12 / Office 3rd floor"
+msgstr "örn. Villa 12 / Ofis 3. kat"
+
+#: apps/webapp/contract_views.py
+msgid "Reference / serial no."
+msgstr "Referans / seri no"
+
+#: apps/webapp/contract_views.py
+msgid "Starts"
+msgstr "Başlangıç"
+
+#: apps/webapp/contract_views.py
+msgid "First visit"
+msgstr "İlk ziyaret"
+
+#: apps/webapp/contract_views.py
+msgid "Usual time"
+msgstr "Olağan saat"
+
+#: apps/webapp/contract_views.py
+msgid "Minutes per visit"
+msgstr "Ziyaret başına dakika"
+
+#: apps/webapp/contract_views.py
+msgid "Usual staff"
+msgstr "Olağan personel"
+
+#: apps/webapp/contract_views.py
+msgid "What to do on every visit"
+msgstr "Her ziyarette yapılacaklar"
+
+#: apps/webapp/contract_views.py
+msgid "Clean filters, check gas, test cooling…"
+msgstr "Filtreleri temizle, gazı kontrol et, soğutmayı test et…"
+
+#: apps/webapp/contract_views.py
+msgid "Contract value (total)"
+msgstr "Sözleşme bedeli (toplam)"
+
+#: apps/webapp/contract_views.py
+msgid "Amount per bill / visit"
+msgstr "Fatura / ziyaret başına tutar"
+
+#: apps/webapp/contract_views.py
+msgid "Leave empty to split the contract value."
+msgstr "Sözleşme bedelini bölmek için boş bırakın."
+
+#: apps/webapp/contract_views.py
+msgid "Contract %(number)s saved. Visits are planned by themselves."
+msgstr "%(number)s sözleşmesi kaydedildi. Ziyaretler kendiliğinden planlanır."
+
+#: apps/webapp/contract_views.py
+msgid "%(n)s visit(s) added to the job cards."
+msgstr "%(n)s ziyaret iş kartlarına eklendi."
+
+#: apps/webapp/contract_views.py
+msgid "Contract paused — no visits or bills until you resume it."
+msgstr "Sözleşme duraklatıldı — devam ettirene kadar ziyaret veya fatura yok."
+
+#: apps/webapp/contract_views.py
+msgid "Contract resumed."
+msgstr "Sözleşme devam ettirildi."
+
+#: apps/webapp/contract_views.py
+msgid "Contract cancelled. Future visits were cancelled too."
+msgstr "Sözleşme iptal edildi. Gelecek ziyaretler de iptal edildi."
+
+#: apps/webapp/contract_views.py
+msgid "Renewed as %(number)s."
+msgstr "%(number)s olarak yenilendi."
 
 #: apps/webapp/crm_views.py
 msgid "Enter what the deal is about."
@@ -13903,10 +14269,6 @@ msgid "Event date"
 msgstr "Etkinlik tarihi"
 
 #: apps/webapp/online_booking_views.py
-msgid "Ends"
-msgstr "Bitiş"
-
-#: apps/webapp/online_booking_views.py
 msgid "Membership / trial"
 msgstr "Üyelik / deneme"
 
@@ -14082,10 +14444,6 @@ msgstr "Ne ayırtmak istediğinizi seçin."
 #: apps/webapp/online_booking_views.py
 msgid "Choose the check-out / return date."
 msgstr "Çıkış / iade tarihini seçin."
-
-#: apps/webapp/online_booking_views.py
-msgid "The end date must be after the start date."
-msgstr "Bitiş tarihi başlangıç tarihinden sonra olmalıdır."
 
 #: apps/webapp/online_booking_views.py
 msgid "Online booking is not available."

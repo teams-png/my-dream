@@ -262,6 +262,10 @@ msgid "Appointments calendar"
 msgstr "تقويم المواعيد"
 
 #: templates/base.html
+msgid "Service contracts (AMC)"
+msgstr "عقود الخدمة (الصيانة السنوية)"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "الباقات / الجلسات"
 
@@ -2363,6 +2367,219 @@ msgstr "رقمك المرجعي"
 msgid "See more jobs"
 msgstr "عرض المزيد من الوظائف"
 
+#: templates/webapp/contracts/detail.html
+msgid "Ended"
+msgstr "منتهي"
+
+#: templates/webapp/contracts/detail.html
+msgid "Customer"
+msgstr "العميل"
+
+#: templates/webapp/contracts/detail.html
+msgid "Site / equipment"
+msgstr "الموقع / المعدات"
+
+#: templates/webapp/contracts/detail.html
+msgid "Address"
+msgstr "العنوان"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visit"
+msgstr "الزيارة"
+
+#: templates/webapp/contracts/detail.html
+msgid "min"
+msgstr "د"
+
+#: templates/webapp/contracts/detail.html
+msgid "Every visit"
+msgstr "في كل زيارة"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewal of"
+msgstr "تجديد لـ"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewed as"
+msgstr "تم التجديد باسم"
+
+#: templates/webapp/contracts/detail.html
+msgid "Notes"
+msgstr "ملاحظات"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits"
+msgstr "الزيارات"
+
+#: templates/webapp/contracts/detail.html
+msgid "done"
+msgstr "منجزة"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits appear here a week before they are due."
+msgstr "تظهر الزيارات هنا قبل موعدها بأسبوع."
+
+#: templates/webapp/contracts/detail.html
+msgid "planned"
+msgstr "مخطط لها"
+
+#: templates/webapp/contracts/detail.html
+msgid "How far ahead"
+msgstr "إلى أي مدى"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 7 days"
+msgstr "الأيام السبعة القادمة"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next month"
+msgstr "الشهر القادم"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 3 months"
+msgstr "الأشهر الثلاثة القادمة"
+
+#: templates/webapp/contracts/detail.html
+msgid "Make visit job cards now"
+msgstr "إنشاء بطاقات عمل الزيارات الآن"
+
+#: templates/webapp/contracts/detail.html
+msgid "Money"
+msgstr "المال"
+
+#: templates/webapp/contracts/detail.html
+msgid "Contract value"
+msgstr "قيمة العقد"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bill"
+msgstr "فاتورة"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bills made"
+msgstr "الفواتير الصادرة"
+
+#: templates/webapp/contracts/detail.html
+msgid "next"
+msgstr "التالي"
+
+#: templates/webapp/contracts/detail.html
+msgid "Actions"
+msgstr "الإجراءات"
+
+#: templates/webapp/contracts/detail.html
+msgid "New contract value"
+msgstr "قيمة العقد الجديد"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renew"
+msgstr "تجديد"
+
+#: templates/webapp/contracts/detail.html
+msgid "Ask to renew"
+msgstr "طلب التجديد"
+
+#: templates/webapp/contracts/detail.html
+msgid "Pause"
+msgstr "إيقاف مؤقت"
+
+#: templates/webapp/contracts/detail.html
+msgid "Resume"
+msgstr "استئناف"
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel this contract? Future visits and bills stop."
+msgstr "إلغاء هذا العقد؟ ستتوقف الزيارات والفواتير المستقبلية."
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel contract"
+msgstr "إلغاء العقد"
+
+#: templates/webapp/contracts/list.html
+msgid "Active contracts"
+msgstr "العقود النشطة"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending in 30 days"
+msgstr "تنتهي خلال 30 يوماً"
+
+#: templates/webapp/contracts/list.html
+msgid "Value of active contracts"
+msgstr "قيمة العقود النشطة"
+
+#: templates/webapp/contracts/list.html
+msgid "Visits in the next 7 days"
+msgstr "الزيارات في الأيام السبعة القادمة"
+
+#: templates/webapp/contracts/list.html
+msgid "New contract"
+msgstr "عقد جديد"
+
+#: templates/webapp/contracts/list.html
+msgid "Search contract no., name, customer, phone…"
+msgstr "ابحث برقم العقد، الاسم، العميل، الهاتف…"
+
+#: templates/webapp/contracts/list.html
+msgid "Find"
+msgstr "بحث"
+
+#: templates/webapp/contracts/list.html
+msgid "Active"
+msgstr "نشط"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending soon"
+msgstr "تنتهي قريباً"
+
+#: templates/webapp/contracts/list.html
+msgid "Ended / cancelled"
+msgstr "منتهية / ملغاة"
+
+#: templates/webapp/contracts/list.html
+msgid "Next visit"
+msgstr "الزيارة التالية"
+
+#: templates/webapp/contracts/list.html
+msgid "Ends"
+msgstr "ينتهي"
+
+#: templates/webapp/contracts/list.html
+msgid "Value"
+msgstr "القيمة"
+
+#: templates/webapp/contracts/list.html
+msgid "No contracts here yet."
+msgstr "لا توجد عقود هنا بعد."
+
+#: templates/webapp/contracts/new.html
+msgid "New service contract"
+msgstr "عقد خدمة جديد"
+
+#: templates/webapp/contracts/new.html
+msgid "What is covered"
+msgstr "ما الذي يشمله"
+
+#: templates/webapp/contracts/new.html
+msgid "Empty = the start date."
+msgstr "فارغ = تاريخ البدء."
+
+#: templates/webapp/contracts/new.html
+msgid ""
+"Up front: one bill now. Every month / 3 months / year: bills are made by "
+"themselves on those dates. Per visit: the amount is put on each visit's job "
+"card."
+msgstr ""
+"مقدماً: فاتورة واحدة الآن. كل شهر / 3 أشهر / سنة: تُصدر الفواتير تلقائياً في"
+" تلك التواريخ. لكل زيارة: يُضاف المبلغ إلى بطاقة عمل كل زيارة."
+
+#: templates/webapp/contracts/new.html
+msgid "Save contract"
+msgstr "حفظ العقد"
+
+#: templates/webapp/contracts/new.html
+msgid "visits"
+msgstr "زيارات"
+
 #: templates/webapp/crm/_tabs.html
 msgid "Pipeline"
 msgstr "مسار المبيعات"
@@ -2522,14 +2739,6 @@ msgstr "الصفقة"
 #: templates/webapp/crm/pipeline.html
 msgid "e.g. Office fit-out, 20 laptops"
 msgstr "مثلاً تجهيز مكتب، 20 حاسوباً"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Customer"
-msgstr "العميل"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Value"
-msgstr "القيمة"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Expected close"
@@ -3299,10 +3508,6 @@ msgstr "تاريخ الشراء"
 msgid "Paid from"
 msgstr "مدفوع من"
 
-#: templates/webapp/finance/assets.html
-msgid "Notes"
-msgstr "ملاحظات"
-
 #: templates/webapp/finance/cheques.html
 msgid "Post-dated cheques"
 msgstr "الشيكات المؤجلة"
@@ -3440,14 +3645,6 @@ msgstr "متوقفة"
 #: templates/webapp/finance/recurring.html
 msgid "Run now"
 msgstr "تشغيل الآن"
-
-#: templates/webapp/finance/recurring.html
-msgid "Pause"
-msgstr "إيقاف مؤقت"
-
-#: templates/webapp/finance/recurring.html
-msgid "Resume"
-msgstr "استئناف"
 
 #: templates/webapp/finance/recurring.html
 msgid ""
@@ -4451,10 +4648,6 @@ msgid "fees"
 msgstr "رسوم"
 
 #: templates/webapp/industry/education_home.html
-msgid "Active"
-msgstr "نشط"
-
-#: templates/webapp/industry/education_home.html
 msgid "Billed this month"
 msgstr "المفوتر هذا الشهر"
 
@@ -5045,10 +5238,6 @@ msgid "All staff"
 msgstr "كل الموظفين"
 
 #: templates/webapp/jobs/board.html
-msgid "Find"
-msgstr "بحث"
-
-#: templates/webapp/jobs/board.html
 msgid "All open"
 msgstr "كل المفتوحة"
 
@@ -5137,10 +5326,6 @@ msgid "Appointment"
 msgstr "موعد"
 
 #: templates/webapp/jobs/detail.html
-msgid "min"
-msgstr "د"
-
-#: templates/webapp/jobs/detail.html
 msgid "Ready by"
 msgstr "جاهز بتاريخ"
 
@@ -5153,8 +5338,8 @@ msgid "Finished"
 msgstr "انتهى"
 
 #: templates/webapp/jobs/detail.html
-msgid "Bill"
-msgstr "فاتورة"
+msgid "visit"
+msgstr "زيارة"
 
 #: templates/webapp/jobs/detail.html
 msgid "Cancel this job?"
@@ -5679,10 +5864,6 @@ msgid "Delivery address"
 msgstr "عنوان التوصيل"
 
 #: templates/webapp/mess/member.html
-msgid "Ended"
-msgstr "منتهي"
-
-#: templates/webapp/mess/member.html
 msgid "Contact"
 msgstr "تواصل"
 
@@ -6012,10 +6193,6 @@ msgstr "اسم النشاط التجاري"
 #: templates/webapp/onboarding/wizard.html
 msgid "Logo (optional)"
 msgstr "الشعار (اختياري)"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Address"
-msgstr "العنوان"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "VAT / tax number (optional)"
@@ -11567,6 +11744,70 @@ msgstr "آجل (مورد)"
 msgid "Already owned (no payment now)"
 msgstr "مملوك مسبقًا (بدون دفع الآن)"
 
+#: apps/industry/contracts.py
+msgid "Give the contract a name, e.g. AC maintenance – 4 units."
+msgstr "أعطِ العقد اسماً، مثل: صيانة مكيفات – 4 وحدات."
+
+#: apps/industry/contracts.py
+msgid "The end date must be after the start date."
+msgstr "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء."
+
+#: apps/industry/contracts.py
+msgid "Choose how often to visit and how to bill."
+msgstr "اختر عدد مرات الزيارة وطريقة الفوترة."
+
+#: apps/industry/contracts.py
+msgid "Choose your own staff member."
+msgstr "اختر أحد موظفيك."
+
+#: apps/industry/contracts.py
+msgid "The first visit must be inside the contract dates."
+msgstr "يجب أن تكون الزيارة الأولى ضمن تواريخ العقد."
+
+#: apps/industry/contracts.py
+msgid "Enter a valid amount."
+msgstr "أدخل مبلغاً صحيحاً."
+
+#: apps/industry/contracts.py
+msgid "%(title)s — visit %(n)s"
+msgstr "%(title)s — الزيارة %(n)s"
+
+#: apps/industry/contracts.py
+msgid "Contract visit %(n)s (%(number)s)"
+msgstr "زيارة العقد %(n)s (%(number)s)"
+
+#: apps/industry/contracts.py
+msgid "Only an active contract can be paused."
+msgstr "يمكن إيقاف العقد النشط فقط مؤقتاً."
+
+#: apps/industry/contracts.py
+msgid "This contract is not paused."
+msgstr "هذا العقد غير متوقف."
+
+#: apps/industry/contracts.py
+msgid "This contract is already closed."
+msgstr "هذا العقد مغلق بالفعل."
+
+#: apps/industry/contracts.py
+msgid "This contract was already renewed."
+msgstr "تم تجديد هذا العقد بالفعل."
+
+#: apps/industry/contracts.py
+msgid ""
+"Hello %(name)s, your maintenance contract %(number)s (%(title)s) with "
+"%(shop)s ends on %(date)s. Shall we renew it for you?"
+msgstr ""
+"مرحباً %(name)s، عقد الصيانة %(number)s (%(title)s) لدى %(shop)s ينتهي في "
+"%(date)s. هل نجدده لك؟"
+
+#: apps/industry/contracts.py
+msgid "Contract %(number)s ends on %(date)s"
+msgstr "العقد %(number)s ينتهي في %(date)s"
+
+#: apps/industry/contracts.py
+msgid "%(customer)s — %(title)s. Renew it from Service contracts."
+msgstr "%(customer)s — %(title)s. جدده من عقود الخدمة."
+
 #: apps/industry/demo_guard.py
 msgid ""
 "That is switched off in the demo. Start your free trial to use it with your "
@@ -11592,16 +11833,8 @@ msgid " for delivery"
 msgstr "للتوصيل"
 
 #: apps/industry/jobs.py
-msgid "Enter a valid amount."
-msgstr "أدخل مبلغاً صحيحاً."
-
-#: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "اذكر ما هو العمل."
-
-#: apps/industry/jobs.py
-msgid "Choose your own staff member."
-msgstr "اختر أحد موظفيك."
 
 #: apps/industry/jobs.py
 msgid "This job is closed."
@@ -12256,6 +12489,58 @@ msgstr "قطعة / صنف"
 msgid "Labour / service"
 msgstr "عمالة / خدمة"
 
+#: apps/verticals/saloon/models.py
+msgid "Every week"
+msgstr "كل أسبوع"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 weeks"
+msgstr "كل أسبوعين"
+
+#: apps/verticals/saloon/models.py
+msgid "Every month"
+msgstr "كل شهر"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 months"
+msgstr "كل شهرين"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 4 months"
+msgstr "كل 4 أشهر"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 6 months"
+msgstr "كل 6 أشهر"
+
+#: apps/verticals/saloon/models.py
+msgid "Once a year"
+msgstr "مرة في السنة"
+
+#: apps/verticals/saloon/models.py
+msgid "Full amount up front"
+msgstr "المبلغ كاملاً مقدماً"
+
+#: apps/verticals/saloon/models.py
+msgid "Every year"
+msgstr "كل سنة"
+
+#: apps/verticals/saloon/models.py
+msgid "Per visit"
+msgstr "لكل زيارة"
+
+#: apps/verticals/saloon/models.py
+msgid "No bill from here"
+msgstr "بدون فاتورة من هنا"
+
+#: apps/verticals/saloon/models.py
+msgid "What to do on every visit (checklist)"
+msgstr "ما يجب عمله في كل زيارة (قائمة تحقق)"
+
+#: apps/verticals/saloon/models.py
+msgid "Per bill (or per visit)"
+msgstr "لكل فاتورة (أو لكل زيارة)"
+
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
 msgstr "مدفوعات العملاء"
@@ -12862,6 +13147,86 @@ msgstr "أرسل إيصالًا عبر واتساب"
 #: apps/webapp/checklist.py
 msgid "Publish your website"
 msgstr "انشر موقعك الإلكتروني"
+
+#: apps/webapp/contract_views.py
+msgid "Contract name"
+msgstr "اسم العقد"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. AC maintenance – 4 split units"
+msgstr "مثال: صيانة مكيفات – 4 وحدات سبليت"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. Villa 12 / Office 3rd floor"
+msgstr "مثال: فيلا 12 / المكتب الطابق الثالث"
+
+#: apps/webapp/contract_views.py
+msgid "Reference / serial no."
+msgstr "المرجع / الرقم التسلسلي"
+
+#: apps/webapp/contract_views.py
+msgid "Starts"
+msgstr "يبدأ"
+
+#: apps/webapp/contract_views.py
+msgid "First visit"
+msgstr "الزيارة الأولى"
+
+#: apps/webapp/contract_views.py
+msgid "Usual time"
+msgstr "الوقت المعتاد"
+
+#: apps/webapp/contract_views.py
+msgid "Minutes per visit"
+msgstr "دقائق لكل زيارة"
+
+#: apps/webapp/contract_views.py
+msgid "Usual staff"
+msgstr "الموظف المعتاد"
+
+#: apps/webapp/contract_views.py
+msgid "What to do on every visit"
+msgstr "ما يجب عمله في كل زيارة"
+
+#: apps/webapp/contract_views.py
+msgid "Clean filters, check gas, test cooling…"
+msgstr "تنظيف الفلاتر، فحص الغاز، اختبار التبريد…"
+
+#: apps/webapp/contract_views.py
+msgid "Contract value (total)"
+msgstr "قيمة العقد (الإجمالي)"
+
+#: apps/webapp/contract_views.py
+msgid "Amount per bill / visit"
+msgstr "المبلغ لكل فاتورة / زيارة"
+
+#: apps/webapp/contract_views.py
+msgid "Leave empty to split the contract value."
+msgstr "اتركه فارغاً لتقسيم قيمة العقد."
+
+#: apps/webapp/contract_views.py
+msgid "Contract %(number)s saved. Visits are planned by themselves."
+msgstr "تم حفظ العقد %(number)s. تُخطط الزيارات تلقائياً."
+
+#: apps/webapp/contract_views.py
+msgid "%(n)s visit(s) added to the job cards."
+msgstr "تمت إضافة %(n)s زيارة إلى بطاقات العمل."
+
+#: apps/webapp/contract_views.py
+msgid "Contract paused — no visits or bills until you resume it."
+msgstr "تم إيقاف العقد مؤقتاً — لا زيارات ولا فواتير حتى تستأنفه."
+
+#: apps/webapp/contract_views.py
+msgid "Contract resumed."
+msgstr "تم استئناف العقد."
+
+#: apps/webapp/contract_views.py
+msgid "Contract cancelled. Future visits were cancelled too."
+msgstr "تم إلغاء العقد. وأُلغيت الزيارات المستقبلية أيضاً."
+
+#: apps/webapp/contract_views.py
+msgid "Renewed as %(number)s."
+msgstr "تم التجديد باسم %(number)s."
 
 #: apps/webapp/crm_views.py
 msgid "Enter what the deal is about."
@@ -13771,10 +14136,6 @@ msgid "Event date"
 msgstr "تاريخ المناسبة"
 
 #: apps/webapp/online_booking_views.py
-msgid "Ends"
-msgstr "ينتهي"
-
-#: apps/webapp/online_booking_views.py
 msgid "Membership / trial"
 msgstr "الاشتراك / تجربة"
 
@@ -13949,10 +14310,6 @@ msgstr "اختر ما تريد حجزه."
 #: apps/webapp/online_booking_views.py
 msgid "Choose the check-out / return date."
 msgstr "اختر تاريخ المغادرة / الإرجاع."
-
-#: apps/webapp/online_booking_views.py
-msgid "The end date must be after the start date."
-msgstr "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء."
 
 #: apps/webapp/online_booking_views.py
 msgid "Online booking is not available."

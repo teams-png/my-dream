@@ -96,6 +96,8 @@ class ServiceCase(TenantScopedModel):
     started_at = models.DateTimeField(null=True, blank=True)
     finished_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
+    contract = models.ForeignKey("ServiceContract", null=True, blank=True, on_delete=models.SET_NULL, related_name="visits")
+    visit_no = models.PositiveSmallIntegerField(default=0)
     profile = models.ForeignKey(ServiceClientProfile, on_delete=models.PROTECT, related_name="cases")
     title = models.CharField(max_length=200)
     case_type = models.CharField(max_length=100, blank=True)
@@ -142,3 +144,44 @@ class TechnicianLink(TenantScopedModel):
     token = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class ServiceContract(TenantScopedModel):
+    """A maintenance / service contract (AMC): visits are planned by themselves as job cards, and it is billed
+    up front, every month / 3 months / year (as a recurring invoice) or per visit."""
+    EVERY = [("weekly", _("Every week")), ("fortnightly", _("Every 2 weeks")), ("monthly", _("Every month")),
+             ("bimonthly", _("Every 2 months")), ("quarterly", _("Every 3 months")), ("four_monthly", _("Every 4 months")),
+             ("half_yearly", _("Every 6 months")), ("yearly", _("Once a year"))]
+    BILLING = [("upfront", _("Full amount up front")), ("monthly", _("Every month")), ("quarterly", _("Every 3 months")),
+               ("yearly", _("Every year")), ("per_visit", _("Per visit")), ("none", _("No bill from here"))]
+    STATUS = [("active", _("Active")), ("paused", _("Paused")), ("ended", _("Ended")), ("cancelled", _("Cancelled"))]
+    number = models.CharField(max_length=20, blank=True)
+    customer = models.ForeignKey("customers.Customer", on_delete=models.PROTECT, related_name="service_contracts")
+    profile = models.ForeignKey(ServiceClientProfile, null=True, blank=True, on_delete=models.SET_NULL, related_name="contracts")
+    title = models.CharField(max_length=200)
+    site_address = models.TextField(blank=True)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    visit_every = models.CharField(max_length=15, choices=EVERY, default="quarterly")
+    next_visit_date = models.DateField(null=True, blank=True)
+    preferred_time = models.TimeField(null=True, blank=True)
+    visit_minutes = models.PositiveSmallIntegerField(default=60)
+    staff = models.ForeignKey("employees.Employee", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    visit_task = models.TextField(blank=True, help_text=_("What to do on every visit (checklist)"))
+    contract_value = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    billing = models.CharField(max_length=10, choices=BILLING, default="upfront")
+    bill_amount = models.DecimalField(max_digits=12, decimal_places=2, default=0,
+                                      help_text=_("Per bill (or per visit)"))
+    recurring = models.ForeignKey("finance.RecurringInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    upfront_invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    status = models.CharField(max_length=10, choices=STATUS, default="active", db_index=True)
+    renewed_from = models.ForeignKey("self", null=True, blank=True, on_delete=models.SET_NULL, related_name="renewals")
+    notes = models.TextField(blank=True)
+    created_by = models.ForeignKey("accounts.User", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["end_date", "id"]
+
+    def __str__(self):
+        return f"{self.number} {self.title}"

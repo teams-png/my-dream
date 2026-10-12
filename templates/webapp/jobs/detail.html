@@ -36,6 +36,7 @@
           {% if job.ready_by %}<dt>{% translate "Ready by" %}</dt><dd>{{ job.ready_by|date:"D j M, H:i" }}</dd>{% endif %}
           {% if job.started_at %}<dt>{% translate "Started" %}</dt><dd>{{ job.started_at|date:"j M H:i" }}</dd>{% endif %}
           {% if job.finished_at %}<dt>{% translate "Finished" %}</dt><dd>{{ job.finished_at|date:"j M H:i" }}</dd>{% endif %}
+          {% if job.contract %}<dt>{% translate "Contract" %}</dt><dd><a href="{% url 'webapp:contract_detail' job.contract.id %}">{{ job.contract.number }}</a> · {% translate "visit" %} {{ job.visit_no }}</dd>{% endif %}
           {% if job.description %}<dt>{% translate "Details" %}</dt><dd>{{ job.description|linebreaksbr }}</dd>{% endif %}
           {% if job.invoice %}<dt>{% translate "Bill" %}</dt><dd><a href="{% url 'webapp:invoice_pdf' job.invoice.id %}" target="_blank">{{ job.invoice.invoice_number }}</a></dd>{% endif %}
         </dl>

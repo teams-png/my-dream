@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Service contracts (AMC)" %}{% endblock %}
+{% block heading %}📑 {% translate "Service contracts (AMC)" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.ct-k{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.ct-k a,.ct-k div{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:10px 14px;color:inherit;text-decoration:none}.ct-k b{display:block;font-size:20px}.ct-k small{color:var(--ink-soft)}
+.ct-k .warn{border-color:#f59e0b}
+.ct-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}.ct-top form{display:flex;gap:8px;margin:0;flex:1 1 260px}.ct-top input{flex:1;min-width:0}
+.ct-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.ct-tabs a{padding:7px 14px;border-radius:99px;border:1px solid var(--line);background:var(--panel);font-weight:700;text-decoration:none;color:inherit}.ct-tabs a.on{background:var(--brand,#b82318);border-color:transparent;color:#fff}
+.ct-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.ct-t{width:100%;border-collapse:collapse}.ct-t th,.ct-t td{padding:10px 8px;border-top:1px solid var(--line);text-align:start;vertical-align:top}.ct-t th{border-top:0;color:var(--ink-soft);font-size:13px}
+.ct-pill{display:inline-block;font-size:12px;font-weight:800;padding:2px 8px;border-radius:99px;background:#dcfce7;color:#166534}
+.ct-pill.paused{background:#fef3c7;color:#92400e}.ct-pill.ended,.ct-pill.cancelled{background:#e5e7eb;color:#374151}.ct-pill.soon{background:#fee2e2;color:#991b1b}
+</style>
+<div class="ix">
+  <div class="ct-k">
+    <div><b>{{ stats.active }}</b><small>{% translate "Active contracts" %}</small></div>
+    <a href="?show=ending" class="{% if stats.ending %}warn{% endif %}"><b>{{ stats.ending }}</b><small>{% translate "Ending in 30 days" %}</small></a>
+    <div><b>{{ currency }} {{ stats.value|floatformat:0 }}</b><small>{% translate "Value of active contracts" %}</small></div>
+    <a href="{% url 'webapp:job_calendar' %}"><b>{{ stats.visits_week }}</b><small>{% translate "Visits in the next 7 days" %}</small></a>
+  </div>
+  <div class="ct-top">
+    <a class="btn" href="{% url 'webapp:contract_new' %}">＋ {% translate "New contract" %}</a>
+    <form method="get"><input type="hidden" name="show" value="{{ show }}"><input name="q" value="{{ q }}" placeholder="{% translate 'Search contract no., name, customer, phone…' %}" aria-label="{% translate 'Search' %}"><button class="btn btn-secondary">{% translate "Find" %}</button></form>
+  </div>
+  <nav class="ct-tabs">
+    <a href="?show=active" class="{% if show == 'active' %}on{% endif %}">{% translate "Active" %}</a>
+    <a href="?show=ending" class="{% if show == 'ending' %}on{% endif %}">{% translate "Ending soon" %}</a>
+    <a href="?show=closed" class="{% if show == 'closed' %}on{% endif %}">{% translate "Ended / cancelled" %}</a>
+  </nav>
+  <div class="ct-wrap"><table class="ct-t">
+    <tr><th>{% translate "Contract" %}</th><th>{% translate "Customer" %}</th><th>{% translate "Visits" %}</th><th>{% translate "Next visit" %}</th><th>{% translate "Ends" %}</th><th>{% translate "Value" %}</th></tr>
+    {% for c in rows %}
+    <tr>
+      <td><a href="{% url 'webapp:contract_detail' c.id %}"><b>{{ c.number }}</b></a><br>{{ c.title }}<br><span class="ct-pill {{ c.status }}">{{ c.get_status_display }}</span></td>
+      <td>{{ c.customer.name }}<br><small>{{ c.customer.phone }}</small></td>
+      <td>{{ c.done_count }} / {{ c.visit_count }}<br><small>{{ c.get_visit_every_display }}</small></td>
+      <td>{% if c.next_visit_date %}{{ c.next_visit_date|date:"j M Y" }}{% else %}—{% endif %}<br><small>{{ c.staff.name|default:"" }}</small></td>
+      <td>{{ c.end_date|date:"j M Y" }}{% if c.status == "active" and c.days_left <= 30 %}<br><span class="ct-pill soon">{% if c.days_left >= 0 %}{{ c.days_left }} {% translate "days left" %}{% else %}{% translate "Ended" %}{% endif %}</span>{% endif %}</td>
+      <td>{{ currency }} {{ c.contract_value|floatformat:2 }}<br><small>{{ c.get_billing_display }}</small></td>
+    </tr>
+    {% empty %}<tr><td colspan="6">{% translate "No contracts here yet." %}</td></tr>{% endfor %}
+  </table></div>
+</div>
+{% endblock %}

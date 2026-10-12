@@ -31,7 +31,7 @@ SUBJECT_LABELS = {"person": (_l("Patient / person"), _l("File no. / ID")), "stud
 
 
 def staff_view(view):
-    return login_required(require_business_group("service", "saloon")(view))
+    return login_required(require_business_group("service", "saloon", "project")(view))
 
 
 def _pk(value):

@@ -262,6 +262,10 @@ msgid "Appointments calendar"
 msgstr "预约日历"
 
 #: templates/base.html
+msgid "Service contracts (AMC)"
+msgstr "服务合同（年度维护）"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "套餐 / 课时"
 
@@ -2330,6 +2334,217 @@ msgstr "您的参考号"
 msgid "See more jobs"
 msgstr "查看更多职位"
 
+#: templates/webapp/contracts/detail.html
+msgid "Ended"
+msgstr "已结束"
+
+#: templates/webapp/contracts/detail.html
+msgid "Customer"
+msgstr "客户"
+
+#: templates/webapp/contracts/detail.html
+msgid "Site / equipment"
+msgstr "地点 / 设备"
+
+#: templates/webapp/contracts/detail.html
+msgid "Address"
+msgstr "地址"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visit"
+msgstr "上门"
+
+#: templates/webapp/contracts/detail.html
+msgid "min"
+msgstr "分钟"
+
+#: templates/webapp/contracts/detail.html
+msgid "Every visit"
+msgstr "每次上门"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewal of"
+msgstr "续约自"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewed as"
+msgstr "已续约为"
+
+#: templates/webapp/contracts/detail.html
+msgid "Notes"
+msgstr "备注"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits"
+msgstr "上门记录"
+
+#: templates/webapp/contracts/detail.html
+msgid "done"
+msgstr "已完成"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits appear here a week before they are due."
+msgstr "上门会在到期前一周出现在这里。"
+
+#: templates/webapp/contracts/detail.html
+msgid "planned"
+msgstr "已计划"
+
+#: templates/webapp/contracts/detail.html
+msgid "How far ahead"
+msgstr "提前多久"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 7 days"
+msgstr "未来 7 天"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next month"
+msgstr "下个月"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 3 months"
+msgstr "未来 3 个月"
+
+#: templates/webapp/contracts/detail.html
+msgid "Make visit job cards now"
+msgstr "立即生成上门工单"
+
+#: templates/webapp/contracts/detail.html
+msgid "Money"
+msgstr "金额"
+
+#: templates/webapp/contracts/detail.html
+msgid "Contract value"
+msgstr "合同金额"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bill"
+msgstr "账单"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bills made"
+msgstr "已开账单"
+
+#: templates/webapp/contracts/detail.html
+msgid "next"
+msgstr "下次"
+
+#: templates/webapp/contracts/detail.html
+msgid "Actions"
+msgstr "操作"
+
+#: templates/webapp/contracts/detail.html
+msgid "New contract value"
+msgstr "新合同金额"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renew"
+msgstr "续约"
+
+#: templates/webapp/contracts/detail.html
+msgid "Ask to renew"
+msgstr "询问是否续约"
+
+#: templates/webapp/contracts/detail.html
+msgid "Pause"
+msgstr "暂停"
+
+#: templates/webapp/contracts/detail.html
+msgid "Resume"
+msgstr "继续"
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel this contract? Future visits and bills stop."
+msgstr "取消此合同？之后的上门和账单都会停止。"
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel contract"
+msgstr "取消合同"
+
+#: templates/webapp/contracts/list.html
+msgid "Active contracts"
+msgstr "有效合同"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending in 30 days"
+msgstr "30 天内到期"
+
+#: templates/webapp/contracts/list.html
+msgid "Value of active contracts"
+msgstr "有效合同总值"
+
+#: templates/webapp/contracts/list.html
+msgid "Visits in the next 7 days"
+msgstr "未来 7 天的上门"
+
+#: templates/webapp/contracts/list.html
+msgid "New contract"
+msgstr "新合同"
+
+#: templates/webapp/contracts/list.html
+msgid "Search contract no., name, customer, phone…"
+msgstr "搜索合同号、名称、客户、电话…"
+
+#: templates/webapp/contracts/list.html
+msgid "Find"
+msgstr "查找"
+
+#: templates/webapp/contracts/list.html
+msgid "Active"
+msgstr "进行中"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending soon"
+msgstr "即将到期"
+
+#: templates/webapp/contracts/list.html
+msgid "Ended / cancelled"
+msgstr "已结束 / 已取消"
+
+#: templates/webapp/contracts/list.html
+msgid "Next visit"
+msgstr "下次上门"
+
+#: templates/webapp/contracts/list.html
+msgid "Ends"
+msgstr "结束"
+
+#: templates/webapp/contracts/list.html
+msgid "Value"
+msgstr "金额"
+
+#: templates/webapp/contracts/list.html
+msgid "No contracts here yet."
+msgstr "这里还没有合同。"
+
+#: templates/webapp/contracts/new.html
+msgid "New service contract"
+msgstr "新服务合同"
+
+#: templates/webapp/contracts/new.html
+msgid "What is covered"
+msgstr "服务范围"
+
+#: templates/webapp/contracts/new.html
+msgid "Empty = the start date."
+msgstr "留空 = 开始日期。"
+
+#: templates/webapp/contracts/new.html
+msgid ""
+"Up front: one bill now. Every month / 3 months / year: bills are made by "
+"themselves on those dates. Per visit: the amount is put on each visit's job "
+"card."
+msgstr "预付：现在开一张账单。每月 / 每 3 个月 / 每年：在这些日期自动开账单。按次：金额加到每次上门的工单上。"
+
+#: templates/webapp/contracts/new.html
+msgid "Save contract"
+msgstr "保存合同"
+
+#: templates/webapp/contracts/new.html
+msgid "visits"
+msgstr "次上门"
+
 #: templates/webapp/crm/_tabs.html
 msgid "Pipeline"
 msgstr "流程"
@@ -2489,14 +2704,6 @@ msgstr "商机"
 #: templates/webapp/crm/pipeline.html
 msgid "e.g. Office fit-out, 20 laptops"
 msgstr "例如：办公室装修、20 台笔记本电脑"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Customer"
-msgstr "客户"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Value"
-msgstr "金额"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Expected close"
@@ -3260,10 +3467,6 @@ msgstr "购买日期"
 msgid "Paid from"
 msgstr "付款账户"
 
-#: templates/webapp/finance/assets.html
-msgid "Notes"
-msgstr "备注"
-
 #: templates/webapp/finance/cheques.html
 msgid "Post-dated cheques"
 msgstr "远期支票"
@@ -3401,14 +3604,6 @@ msgstr "已停止"
 #: templates/webapp/finance/recurring.html
 msgid "Run now"
 msgstr "立即运行"
-
-#: templates/webapp/finance/recurring.html
-msgid "Pause"
-msgstr "暂停"
-
-#: templates/webapp/finance/recurring.html
-msgid "Resume"
-msgstr "继续"
 
 #: templates/webapp/finance/recurring.html
 msgid ""
@@ -4393,10 +4588,6 @@ msgid "fees"
 msgstr "费用"
 
 #: templates/webapp/industry/education_home.html
-msgid "Active"
-msgstr "进行中"
-
-#: templates/webapp/industry/education_home.html
 msgid "Billed this month"
 msgstr "本月已开票"
 
@@ -4978,10 +5169,6 @@ msgid "All staff"
 msgstr "全部员工"
 
 #: templates/webapp/jobs/board.html
-msgid "Find"
-msgstr "查找"
-
-#: templates/webapp/jobs/board.html
 msgid "All open"
 msgstr "全部未完成"
 
@@ -5068,10 +5255,6 @@ msgid "Appointment"
 msgstr "预约"
 
 #: templates/webapp/jobs/detail.html
-msgid "min"
-msgstr "分钟"
-
-#: templates/webapp/jobs/detail.html
 msgid "Ready by"
 msgstr "预计完成日期"
 
@@ -5084,8 +5267,8 @@ msgid "Finished"
 msgstr "完成时间"
 
 #: templates/webapp/jobs/detail.html
-msgid "Bill"
-msgstr "账单"
+msgid "visit"
+msgstr "上门"
 
 #: templates/webapp/jobs/detail.html
 msgid "Cancel this job?"
@@ -5606,10 +5789,6 @@ msgid "Delivery address"
 msgstr "外送地址"
 
 #: templates/webapp/mess/member.html
-msgid "Ended"
-msgstr "已结束"
-
-#: templates/webapp/mess/member.html
 msgid "Contact"
 msgstr "联系"
 
@@ -5929,10 +6108,6 @@ msgstr "企业名称"
 #: templates/webapp/onboarding/wizard.html
 msgid "Logo (optional)"
 msgstr "标志（可选）"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Address"
-msgstr "地址"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "VAT / tax number (optional)"
@@ -11379,6 +11554,69 @@ msgstr "赊购（供应商）"
 msgid "Already owned (no payment now)"
 msgstr "已拥有（暂不付款）"
 
+#: apps/industry/contracts.py
+msgid "Give the contract a name, e.g. AC maintenance – 4 units."
+msgstr "给合同起个名字，例如 空调保养 – 4 台。"
+
+#: apps/industry/contracts.py
+msgid "The end date must be after the start date."
+msgstr "结束日期必须晚于开始日期。"
+
+#: apps/industry/contracts.py
+msgid "Choose how often to visit and how to bill."
+msgstr "请选择上门频率和计费方式。"
+
+#: apps/industry/contracts.py
+msgid "Choose your own staff member."
+msgstr "请选择你自己的员工。"
+
+#: apps/industry/contracts.py
+msgid "The first visit must be inside the contract dates."
+msgstr "首次上门必须在合同日期内。"
+
+#: apps/industry/contracts.py
+msgid "Enter a valid amount."
+msgstr "请输入有效金额。"
+
+#: apps/industry/contracts.py
+msgid "%(title)s — visit %(n)s"
+msgstr "%(title)s — 第 %(n)s 次上门"
+
+#: apps/industry/contracts.py
+msgid "Contract visit %(n)s (%(number)s)"
+msgstr "合同上门 %(n)s（%(number)s）"
+
+#: apps/industry/contracts.py
+msgid "Only an active contract can be paused."
+msgstr "只有有效合同可以暂停。"
+
+#: apps/industry/contracts.py
+msgid "This contract is not paused."
+msgstr "此合同未暂停。"
+
+#: apps/industry/contracts.py
+msgid "This contract is already closed."
+msgstr "此合同已关闭。"
+
+#: apps/industry/contracts.py
+msgid "This contract was already renewed."
+msgstr "此合同已续约。"
+
+#: apps/industry/contracts.py
+msgid ""
+"Hello %(name)s, your maintenance contract %(number)s (%(title)s) with "
+"%(shop)s ends on %(date)s. Shall we renew it for you?"
+msgstr ""
+"您好 %(name)s，您在 %(shop)s 的维护合同 %(number)s（%(title)s）将于 %(date)s 到期。需要我们为您续约吗？"
+
+#: apps/industry/contracts.py
+msgid "Contract %(number)s ends on %(date)s"
+msgstr "合同 %(number)s 将于 %(date)s 到期"
+
+#: apps/industry/contracts.py
+msgid "%(customer)s — %(title)s. Renew it from Service contracts."
+msgstr "%(customer)s — %(title)s。请在服务合同中续约。"
+
 #: apps/industry/demo_guard.py
 msgid ""
 "That is switched off in the demo. Start your free trial to use it with your "
@@ -11402,16 +11640,8 @@ msgid " for delivery"
 msgstr "并送货"
 
 #: apps/industry/jobs.py
-msgid "Enter a valid amount."
-msgstr "请输入有效金额。"
-
-#: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "请说明工作内容。"
-
-#: apps/industry/jobs.py
-msgid "Choose your own staff member."
-msgstr "请选择你自己的员工。"
 
 #: apps/industry/jobs.py
 msgid "This job is closed."
@@ -12039,6 +12269,58 @@ msgstr "配件 / 商品"
 msgid "Labour / service"
 msgstr "工时 / 服务"
 
+#: apps/verticals/saloon/models.py
+msgid "Every week"
+msgstr "每周"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 weeks"
+msgstr "每 2 周"
+
+#: apps/verticals/saloon/models.py
+msgid "Every month"
+msgstr "每月"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 months"
+msgstr "每 2 个月"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 4 months"
+msgstr "每 4 个月"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 6 months"
+msgstr "每 6 个月"
+
+#: apps/verticals/saloon/models.py
+msgid "Once a year"
+msgstr "每年一次"
+
+#: apps/verticals/saloon/models.py
+msgid "Full amount up front"
+msgstr "全额预付"
+
+#: apps/verticals/saloon/models.py
+msgid "Every year"
+msgstr "每年"
+
+#: apps/verticals/saloon/models.py
+msgid "Per visit"
+msgstr "按次"
+
+#: apps/verticals/saloon/models.py
+msgid "No bill from here"
+msgstr "不在这里开账单"
+
+#: apps/verticals/saloon/models.py
+msgid "What to do on every visit (checklist)"
+msgstr "每次上门要做的事（清单）"
+
+#: apps/verticals/saloon/models.py
+msgid "Per bill (or per visit)"
+msgstr "每张账单（或每次上门）"
+
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
 msgstr "客户付款"
@@ -12645,6 +12927,86 @@ msgstr "通过 WhatsApp 发送收据"
 #: apps/webapp/checklist.py
 msgid "Publish your website"
 msgstr "发布您的网站"
+
+#: apps/webapp/contract_views.py
+msgid "Contract name"
+msgstr "合同名称"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. AC maintenance – 4 split units"
+msgstr "例如 空调保养 – 4 台分体机"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. Villa 12 / Office 3rd floor"
+msgstr "例如 12 号别墅 / 办公室 3 楼"
+
+#: apps/webapp/contract_views.py
+msgid "Reference / serial no."
+msgstr "参考号 / 序列号"
+
+#: apps/webapp/contract_views.py
+msgid "Starts"
+msgstr "开始"
+
+#: apps/webapp/contract_views.py
+msgid "First visit"
+msgstr "首次上门"
+
+#: apps/webapp/contract_views.py
+msgid "Usual time"
+msgstr "常用时间"
+
+#: apps/webapp/contract_views.py
+msgid "Minutes per visit"
+msgstr "每次上门分钟数"
+
+#: apps/webapp/contract_views.py
+msgid "Usual staff"
+msgstr "常用员工"
+
+#: apps/webapp/contract_views.py
+msgid "What to do on every visit"
+msgstr "每次上门要做的事"
+
+#: apps/webapp/contract_views.py
+msgid "Clean filters, check gas, test cooling…"
+msgstr "清洗滤网、检查冷媒、测试制冷…"
+
+#: apps/webapp/contract_views.py
+msgid "Contract value (total)"
+msgstr "合同金额（总计）"
+
+#: apps/webapp/contract_views.py
+msgid "Amount per bill / visit"
+msgstr "每张账单 / 每次上门金额"
+
+#: apps/webapp/contract_views.py
+msgid "Leave empty to split the contract value."
+msgstr "留空即按合同金额平均分配。"
+
+#: apps/webapp/contract_views.py
+msgid "Contract %(number)s saved. Visits are planned by themselves."
+msgstr "合同 %(number)s 已保存。上门会自动安排。"
+
+#: apps/webapp/contract_views.py
+msgid "%(n)s visit(s) added to the job cards."
+msgstr "已将 %(n)s 次上门加入工单。"
+
+#: apps/webapp/contract_views.py
+msgid "Contract paused — no visits or bills until you resume it."
+msgstr "合同已暂停 — 恢复前不会有上门或账单。"
+
+#: apps/webapp/contract_views.py
+msgid "Contract resumed."
+msgstr "合同已恢复。"
+
+#: apps/webapp/contract_views.py
+msgid "Contract cancelled. Future visits were cancelled too."
+msgstr "合同已取消。之后的上门也已取消。"
+
+#: apps/webapp/contract_views.py
+msgid "Renewed as %(number)s."
+msgstr "已续约为 %(number)s。"
 
 #: apps/webapp/crm_views.py
 msgid "Enter what the deal is about."
@@ -13548,10 +13910,6 @@ msgid "Event date"
 msgstr "活动日期"
 
 #: apps/webapp/online_booking_views.py
-msgid "Ends"
-msgstr "结束"
-
-#: apps/webapp/online_booking_views.py
 msgid "Membership / trial"
 msgstr "会员 / 试用"
 
@@ -13726,10 +14084,6 @@ msgstr "请选择您要预订的项目。"
 #: apps/webapp/online_booking_views.py
 msgid "Choose the check-out / return date."
 msgstr "请选择退房 / 归还日期。"
-
-#: apps/webapp/online_booking_views.py
-msgid "The end date must be after the start date."
-msgstr "结束日期必须晚于开始日期。"
 
 #: apps/webapp/online_booking_views.py
 msgid "Online booking is not available."

@@ -262,6 +262,10 @@ msgid "Appointments calendar"
 msgstr "Kalendaryo ng appointment"
 
 #: templates/base.html
+msgid "Service contracts (AMC)"
+msgstr "Mga kontrata sa serbisyo (AMC)"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "Mga package / session"
 
@@ -2398,6 +2402,221 @@ msgstr "Iyong reference"
 msgid "See more jobs"
 msgstr "Tumingin ng iba pang trabaho"
 
+#: templates/webapp/contracts/detail.html
+msgid "Ended"
+msgstr "Natapos"
+
+#: templates/webapp/contracts/detail.html
+msgid "Customer"
+msgstr "Customer"
+
+#: templates/webapp/contracts/detail.html
+msgid "Site / equipment"
+msgstr "Lugar / kagamitan"
+
+#: templates/webapp/contracts/detail.html
+msgid "Address"
+msgstr "Address"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visit"
+msgstr "Bisita"
+
+#: templates/webapp/contracts/detail.html
+msgid "min"
+msgstr "min"
+
+#: templates/webapp/contracts/detail.html
+msgid "Every visit"
+msgstr "Sa bawat bisita"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewal of"
+msgstr "Renewal ng"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewed as"
+msgstr "Ni-renew bilang"
+
+#: templates/webapp/contracts/detail.html
+msgid "Notes"
+msgstr "Mga tala"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits"
+msgstr "Mga bisita"
+
+#: templates/webapp/contracts/detail.html
+msgid "done"
+msgstr "tapos"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits appear here a week before they are due."
+msgstr "Lumalabas dito ang mga bisita isang linggo bago ang petsa."
+
+#: templates/webapp/contracts/detail.html
+msgid "planned"
+msgstr "nakaplano"
+
+#: templates/webapp/contracts/detail.html
+msgid "How far ahead"
+msgstr "Gaano kalayo"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 7 days"
+msgstr "Susunod na 7 araw"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next month"
+msgstr "Susunod na buwan"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 3 months"
+msgstr "Susunod na 3 buwan"
+
+#: templates/webapp/contracts/detail.html
+msgid "Make visit job cards now"
+msgstr "Gawin na ngayon ang job card ng mga bisita"
+
+#: templates/webapp/contracts/detail.html
+msgid "Money"
+msgstr "Pera"
+
+#: templates/webapp/contracts/detail.html
+msgid "Contract value"
+msgstr "Halaga ng kontrata"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bill"
+msgstr "Bill"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bills made"
+msgstr "Mga nagawang bill"
+
+#: templates/webapp/contracts/detail.html
+msgid "next"
+msgstr "susunod"
+
+#: templates/webapp/contracts/detail.html
+msgid "Actions"
+msgstr "Mga aksyon"
+
+#: templates/webapp/contracts/detail.html
+msgid "New contract value"
+msgstr "Bagong halaga ng kontrata"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renew"
+msgstr "I-renew"
+
+#: templates/webapp/contracts/detail.html
+msgid "Ask to renew"
+msgstr "Itanong kung ire-renew"
+
+#: templates/webapp/contracts/detail.html
+msgid "Pause"
+msgstr "I-pause"
+
+#: templates/webapp/contracts/detail.html
+msgid "Resume"
+msgstr "Ituloy"
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel this contract? Future visits and bills stop."
+msgstr ""
+"Kanselahin ang kontratang ito? Titigil ang mga susunod na bisita at bill."
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel contract"
+msgstr "Kanselahin ang kontrata"
+
+#: templates/webapp/contracts/list.html
+msgid "Active contracts"
+msgstr "Mga aktibong kontrata"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending in 30 days"
+msgstr "Matatapos sa loob ng 30 araw"
+
+#: templates/webapp/contracts/list.html
+msgid "Value of active contracts"
+msgstr "Halaga ng mga aktibong kontrata"
+
+#: templates/webapp/contracts/list.html
+msgid "Visits in the next 7 days"
+msgstr "Mga bisita sa susunod na 7 araw"
+
+#: templates/webapp/contracts/list.html
+msgid "New contract"
+msgstr "Bagong kontrata"
+
+#: templates/webapp/contracts/list.html
+msgid "Search contract no., name, customer, phone…"
+msgstr "Hanapin ang contract no., pangalan, customer, phone…"
+
+#: templates/webapp/contracts/list.html
+msgid "Find"
+msgstr "Hanapin"
+
+#: templates/webapp/contracts/list.html
+msgid "Active"
+msgstr "Aktibo"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending soon"
+msgstr "Malapit nang matapos"
+
+#: templates/webapp/contracts/list.html
+msgid "Ended / cancelled"
+msgstr "Tapos / kinansela"
+
+#: templates/webapp/contracts/list.html
+msgid "Next visit"
+msgstr "Susunod na bisita"
+
+#: templates/webapp/contracts/list.html
+msgid "Ends"
+msgstr "Matatapos"
+
+#: templates/webapp/contracts/list.html
+msgid "Value"
+msgstr "Halaga"
+
+#: templates/webapp/contracts/list.html
+msgid "No contracts here yet."
+msgstr "Wala pang kontrata rito."
+
+#: templates/webapp/contracts/new.html
+msgid "New service contract"
+msgstr "Bagong kontrata sa serbisyo"
+
+#: templates/webapp/contracts/new.html
+msgid "What is covered"
+msgstr "Ano ang sakop"
+
+#: templates/webapp/contracts/new.html
+msgid "Empty = the start date."
+msgstr "Blangko = ang petsa ng simula."
+
+#: templates/webapp/contracts/new.html
+msgid ""
+"Up front: one bill now. Every month / 3 months / year: bills are made by "
+"themselves on those dates. Per visit: the amount is put on each visit's job "
+"card."
+msgstr ""
+"Bayad nang buo: isang bill ngayon. Bawat buwan / 3 buwan / taon: kusang "
+"gagawin ang mga bill sa mga petsang iyon. Bawat bisita: ilalagay ang halaga "
+"sa job card ng bawat bisita."
+
+#: templates/webapp/contracts/new.html
+msgid "Save contract"
+msgstr "I-save ang kontrata"
+
+#: templates/webapp/contracts/new.html
+msgid "visits"
+msgstr "mga bisita"
+
 #: templates/webapp/crm/_tabs.html
 msgid "Pipeline"
 msgstr "Pipeline"
@@ -2557,14 +2776,6 @@ msgstr "Deal"
 #: templates/webapp/crm/pipeline.html
 msgid "e.g. Office fit-out, 20 laptops"
 msgstr "hal. Pag-aayos ng opisina, 20 laptop"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Customer"
-msgstr "Customer"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Value"
-msgstr "Halaga"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Expected close"
@@ -3345,10 +3556,6 @@ msgstr "Petsa ng pagbili"
 msgid "Paid from"
 msgstr "Binayaran mula sa"
 
-#: templates/webapp/finance/assets.html
-msgid "Notes"
-msgstr "Mga tala"
-
 #: templates/webapp/finance/cheques.html
 msgid "Post-dated cheques"
 msgstr "Post-dated na tseke"
@@ -3487,14 +3694,6 @@ msgstr "Itinigil"
 #: templates/webapp/finance/recurring.html
 msgid "Run now"
 msgstr "Patakbuhin ngayon"
-
-#: templates/webapp/finance/recurring.html
-msgid "Pause"
-msgstr "I-pause"
-
-#: templates/webapp/finance/recurring.html
-msgid "Resume"
-msgstr "Ituloy"
 
 #: templates/webapp/finance/recurring.html
 msgid ""
@@ -4510,10 +4709,6 @@ msgid "fees"
 msgstr "mga bayarin"
 
 #: templates/webapp/industry/education_home.html
-msgid "Active"
-msgstr "Aktibo"
-
-#: templates/webapp/industry/education_home.html
 msgid "Billed this month"
 msgstr "Siningil ngayong buwan"
 
@@ -5114,10 +5309,6 @@ msgid "All staff"
 msgstr "Lahat ng staff"
 
 #: templates/webapp/jobs/board.html
-msgid "Find"
-msgstr "Hanapin"
-
-#: templates/webapp/jobs/board.html
 msgid "All open"
 msgstr "Lahat ng bukas"
 
@@ -5208,10 +5399,6 @@ msgid "Appointment"
 msgstr "Appointment"
 
 #: templates/webapp/jobs/detail.html
-msgid "min"
-msgstr "min"
-
-#: templates/webapp/jobs/detail.html
 msgid "Ready by"
 msgstr "Handa sa petsang"
 
@@ -5224,8 +5411,8 @@ msgid "Finished"
 msgstr "Natapos"
 
 #: templates/webapp/jobs/detail.html
-msgid "Bill"
-msgstr "Bill"
+msgid "visit"
+msgstr "bisita"
 
 #: templates/webapp/jobs/detail.html
 msgid "Cancel this job?"
@@ -5757,10 +5944,6 @@ msgid "Delivery address"
 msgstr "Address para sa delivery"
 
 #: templates/webapp/mess/member.html
-msgid "Ended"
-msgstr "Natapos"
-
-#: templates/webapp/mess/member.html
 msgid "Contact"
 msgstr "Kontak"
 
@@ -6095,10 +6278,6 @@ msgstr "Pangalan ng negosyo"
 #: templates/webapp/onboarding/wizard.html
 msgid "Logo (optional)"
 msgstr "Logo (opsyonal)"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Address"
-msgstr "Address"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "VAT / tax number (optional)"
@@ -11737,6 +11916,71 @@ msgstr "Utang (supplier)"
 msgid "Already owned (no payment now)"
 msgstr "Pag-aari na (walang bayad ngayon)"
 
+#: apps/industry/contracts.py
+msgid "Give the contract a name, e.g. AC maintenance – 4 units."
+msgstr "Bigyan ng pangalan ang kontrata, hal. AC maintenance – 4 na unit."
+
+#: apps/industry/contracts.py
+msgid "The end date must be after the start date."
+msgstr "Dapat pagkatapos ng simula ang petsa ng pagtatapos."
+
+#: apps/industry/contracts.py
+msgid "Choose how often to visit and how to bill."
+msgstr "Piliin kung gaano kadalas bibisita at paano magbi-bill."
+
+#: apps/industry/contracts.py
+msgid "Choose your own staff member."
+msgstr "Pumili ng sarili mong staff."
+
+#: apps/industry/contracts.py
+msgid "The first visit must be inside the contract dates."
+msgstr "Dapat nasa loob ng petsa ng kontrata ang unang bisita."
+
+#: apps/industry/contracts.py
+msgid "Enter a valid amount."
+msgstr "Maglagay ng tamang halaga."
+
+#: apps/industry/contracts.py
+msgid "%(title)s — visit %(n)s"
+msgstr "%(title)s — bisita %(n)s"
+
+#: apps/industry/contracts.py
+msgid "Contract visit %(n)s (%(number)s)"
+msgstr "Bisita ng kontrata %(n)s (%(number)s)"
+
+#: apps/industry/contracts.py
+msgid "Only an active contract can be paused."
+msgstr "Aktibong kontrata lang ang maaaring i-pause."
+
+#: apps/industry/contracts.py
+msgid "This contract is not paused."
+msgstr "Hindi naka-pause ang kontratang ito."
+
+#: apps/industry/contracts.py
+msgid "This contract is already closed."
+msgstr "Sarado na ang kontratang ito."
+
+#: apps/industry/contracts.py
+msgid "This contract was already renewed."
+msgstr "Na-renew na ang kontratang ito."
+
+#: apps/industry/contracts.py
+msgid ""
+"Hello %(name)s, your maintenance contract %(number)s (%(title)s) with "
+"%(shop)s ends on %(date)s. Shall we renew it for you?"
+msgstr ""
+"Kumusta %(name)s, ang iyong maintenance contract %(number)s (%(title)s) sa "
+"%(shop)s ay matatapos sa %(date)s. Ire-renew ba namin para sa iyo?"
+
+#: apps/industry/contracts.py
+msgid "Contract %(number)s ends on %(date)s"
+msgstr "Matatapos ang kontrata %(number)s sa %(date)s"
+
+#: apps/industry/contracts.py
+msgid "%(customer)s — %(title)s. Renew it from Service contracts."
+msgstr ""
+"%(customer)s — %(title)s. I-renew ito mula sa Mga kontrata sa serbisyo."
+
 #: apps/industry/demo_guard.py
 msgid ""
 "That is switched off in the demo. Start your free trial to use it with your "
@@ -11762,16 +12006,8 @@ msgid " for delivery"
 msgstr "para sa delivery"
 
 #: apps/industry/jobs.py
-msgid "Enter a valid amount."
-msgstr "Maglagay ng tamang halaga."
-
-#: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "Sabihin kung ano ang trabaho."
-
-#: apps/industry/jobs.py
-msgid "Choose your own staff member."
-msgstr "Pumili ng sarili mong staff."
 
 #: apps/industry/jobs.py
 msgid "This job is closed."
@@ -12448,6 +12684,58 @@ msgstr "Piyesa / item"
 msgid "Labour / service"
 msgstr "Labor / serbisyo"
 
+#: apps/verticals/saloon/models.py
+msgid "Every week"
+msgstr "Bawat linggo"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 weeks"
+msgstr "Bawat 2 linggo"
+
+#: apps/verticals/saloon/models.py
+msgid "Every month"
+msgstr "Bawat buwan"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 months"
+msgstr "Bawat 2 buwan"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 4 months"
+msgstr "Bawat 4 na buwan"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 6 months"
+msgstr "Bawat 6 na buwan"
+
+#: apps/verticals/saloon/models.py
+msgid "Once a year"
+msgstr "Isang beses sa isang taon"
+
+#: apps/verticals/saloon/models.py
+msgid "Full amount up front"
+msgstr "Buong halaga nang pauna"
+
+#: apps/verticals/saloon/models.py
+msgid "Every year"
+msgstr "Bawat taon"
+
+#: apps/verticals/saloon/models.py
+msgid "Per visit"
+msgstr "Bawat bisita"
+
+#: apps/verticals/saloon/models.py
+msgid "No bill from here"
+msgstr "Walang bill mula rito"
+
+#: apps/verticals/saloon/models.py
+msgid "What to do on every visit (checklist)"
+msgstr "Gagawin sa bawat bisita (checklist)"
+
+#: apps/verticals/saloon/models.py
+msgid "Per bill (or per visit)"
+msgstr "Bawat bill (o bawat bisita)"
+
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
 msgstr "Bayad ng customer"
@@ -13067,6 +13355,86 @@ msgstr "Magpadala ng resibo sa WhatsApp"
 #: apps/webapp/checklist.py
 msgid "Publish your website"
 msgstr "I-publish ang website mo"
+
+#: apps/webapp/contract_views.py
+msgid "Contract name"
+msgstr "Pangalan ng kontrata"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. AC maintenance – 4 split units"
+msgstr "hal. AC maintenance – 4 na split unit"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. Villa 12 / Office 3rd floor"
+msgstr "hal. Villa 12 / Opisina 3rd floor"
+
+#: apps/webapp/contract_views.py
+msgid "Reference / serial no."
+msgstr "Reference / serial no."
+
+#: apps/webapp/contract_views.py
+msgid "Starts"
+msgstr "Magsisimula"
+
+#: apps/webapp/contract_views.py
+msgid "First visit"
+msgstr "Unang bisita"
+
+#: apps/webapp/contract_views.py
+msgid "Usual time"
+msgstr "Karaniwang oras"
+
+#: apps/webapp/contract_views.py
+msgid "Minutes per visit"
+msgstr "Minuto bawat bisita"
+
+#: apps/webapp/contract_views.py
+msgid "Usual staff"
+msgstr "Karaniwang staff"
+
+#: apps/webapp/contract_views.py
+msgid "What to do on every visit"
+msgstr "Gagawin sa bawat bisita"
+
+#: apps/webapp/contract_views.py
+msgid "Clean filters, check gas, test cooling…"
+msgstr "Linisin ang filter, tingnan ang gas, subukan ang paglamig…"
+
+#: apps/webapp/contract_views.py
+msgid "Contract value (total)"
+msgstr "Halaga ng kontrata (kabuuan)"
+
+#: apps/webapp/contract_views.py
+msgid "Amount per bill / visit"
+msgstr "Halaga bawat bill / bisita"
+
+#: apps/webapp/contract_views.py
+msgid "Leave empty to split the contract value."
+msgstr "Iwanang blangko para hatiin ang halaga ng kontrata."
+
+#: apps/webapp/contract_views.py
+msgid "Contract %(number)s saved. Visits are planned by themselves."
+msgstr "Na-save ang kontrata %(number)s. Kusang naplaplano ang mga bisita."
+
+#: apps/webapp/contract_views.py
+msgid "%(n)s visit(s) added to the job cards."
+msgstr "%(n)s bisita ang naidagdag sa mga job card."
+
+#: apps/webapp/contract_views.py
+msgid "Contract paused — no visits or bills until you resume it."
+msgstr "Naka-pause ang kontrata — walang bisita o bill hanggang ituloy mo."
+
+#: apps/webapp/contract_views.py
+msgid "Contract resumed."
+msgstr "Itinuloy ang kontrata."
+
+#: apps/webapp/contract_views.py
+msgid "Contract cancelled. Future visits were cancelled too."
+msgstr "Kinansela ang kontrata. Kinansela rin ang mga susunod na bisita."
+
+#: apps/webapp/contract_views.py
+msgid "Renewed as %(number)s."
+msgstr "Ni-renew bilang %(number)s."
 
 #: apps/webapp/crm_views.py
 msgid "Enter what the deal is about."
@@ -13993,10 +14361,6 @@ msgid "Event date"
 msgstr "Petsa ng event"
 
 #: apps/webapp/online_booking_views.py
-msgid "Ends"
-msgstr "Matatapos"
-
-#: apps/webapp/online_booking_views.py
 msgid "Membership / trial"
 msgstr "Membership / trial"
 
@@ -14174,10 +14538,6 @@ msgstr "Piliin ang gusto mong i-book."
 #: apps/webapp/online_booking_views.py
 msgid "Choose the check-out / return date."
 msgstr "Piliin ang petsa ng check-out / pagbalik."
-
-#: apps/webapp/online_booking_views.py
-msgid "The end date must be after the start date."
-msgstr "Dapat pagkatapos ng simula ang petsa ng pagtatapos."
 
 #: apps/webapp/online_booking_views.py
 msgid "Online booking is not available."

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{{ c.number }} · {{ c.title }}{% endblock %}
+{% block heading %}📑 {{ c.number }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>
+.cd{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px;align-items:start}@media(max-width:900px){.cd{grid-template-columns:minmax(0,1fr)}}
+.cd-box{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px 16px;margin-bottom:14px;min-width:0}
+.cd-box h3{margin:0 0 10px;font-size:16px}
+.cd-head{display:flex;gap:10px;flex-wrap:wrap;align-items:baseline}.cd-head h2{margin:0;font-size:20px;overflow-wrap:anywhere}
+.cd-st{padding:4px 12px;border-radius:99px;font-weight:800;font-size:13px;background:#dcfce7;color:#166534}.cd-st.paused{background:#fef3c7;color:#92400e}.cd-st.ended,.cd-st.cancelled{background:#e5e7eb;color:#374151}
+.cd-kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 14px;margin:10px 0 0}.cd-kv dt{color:var(--ink-soft)}.cd-kv dd{margin:0;overflow-wrap:anywhere}
+.cd-bar{height:10px;border-radius:99px;background:var(--paper);overflow:hidden;margin:6px 0}.cd-bar i{display:block;height:100%;background:#16a34a}
+.cd-t{width:100%;border-collapse:collapse}.cd-t td,.cd-t th{padding:8px 6px;border-top:1px solid var(--line);text-align:start}
+.cd-pill{font-size:12px;font-weight:800;padding:2px 8px;border-radius:99px;background:#e0f2fe;color:#075985}.cd-pill.completed{background:#ede9fe;color:#5b21b6}.cd-pill.cancelled{background:#e5e7eb;color:#374151}.cd-pill.ready{background:#dcfce7;color:#166534}
+.cd-acts{display:flex;flex-wrap:wrap;gap:8px}.cd-acts form{margin:0;display:flex;gap:6px;flex-wrap:wrap}
+.cd-soon{color:#b91c1c;font-weight:800}
+</style>
+<div class="ix">
+  <p style="margin:0 0 10px"><a href="{% url 'webapp:contract_list' %}">← {% translate "Service contracts (AMC)" %}</a></p>
+  <div class="cd">
+    <div>
+      <section class="cd-box">
+        <div class="cd-head"><h2>{{ c.title }}</h2><span class="cd-st {{ c.status }}">{{ c.get_status_display }}</span>{% if c.status == "active" and days_left <= 30 %}<span class="cd-soon">⏰ {% if days_left >= 0 %}{{ days_left }} {% translate "days left" %}{% else %}{% translate "Ended" %}{% endif %}</span>{% endif %}</div>
+        <dl class="cd-kv">
+          <dt>{% translate "Customer" %}</dt><dd><b>{{ c.customer.name }}</b>{% if c.customer.phone %} · <a href="tel:{{ c.customer.phone }}">{{ c.customer.phone }}</a>{% endif %}</dd>
+          {% if c.profile %}<dt>{% translate "Site / equipment" %}</dt><dd>{{ c.profile.subject_name }}{% if c.profile.identifier %} · {{ c.profile.identifier }}{% endif %}</dd>{% endif %}
+          {% if c.site_address %}<dt>{% translate "Address" %}</dt><dd>{{ c.site_address|linebreaksbr }}</dd>{% endif %}
+          <dt>{% translate "Period" %}</dt><dd>{{ c.start_date|date:"j M Y" }} → {{ c.end_date|date:"j M Y" }}</dd>
+          <dt>{% translate "Visit" %}</dt><dd>{{ c.get_visit_every_display }}{% if c.preferred_time %} · {{ c.preferred_time|time:"H:i" }}{% endif %} · {{ c.visit_minutes }} {% translate "min" %}{% if c.staff %} · {{ c.staff.name }}{% endif %}</dd>
+          {% if c.visit_task %}<dt>{% translate "Every visit" %}</dt><dd>{{ c.visit_task|linebreaksbr }}</dd>{% endif %}
+          {% if c.renewed_from %}<dt>{% translate "Renewal of" %}</dt><dd><a href="{% url 'webapp:contract_detail' c.renewed_from.id %}">{{ c.renewed_from.number }}</a></dd>{% endif %}
+          {% if renewal %}<dt>{% translate "Renewed as" %}</dt><dd><a href="{% url 'webapp:contract_detail' renewal.id %}">{{ renewal.number }}</a></dd>{% endif %}
+          {% if c.notes %}<dt>{% translate "Notes" %}</dt><dd>{{ c.notes|linebreaksbr }}</dd>{% endif %}
+        </dl>
+      </section>
+      <section class="cd-box">
+        <h3>🧰 {% translate "Visits" %} · {{ done }} / {{ total_visits }} {% translate "done" %}</h3>
+        <div class="cd-bar"><i style="width:{% widthratio done total_visits|default:1 100 %}%"></i></div>
+        <div style="overflow-x:auto"><table class="cd-t">
+          {% for v in visits %}
+          <tr><td>{{ v.visit_no }}</td><td><a href="{% url 'webapp:service_case_detail' v.id %}">{{ v.number }}</a></td><td>{{ v.scheduled_at|date:"D j M Y H:i" }}</td><td>{{ v.assigned_staff.name|default:"—" }}</td><td><span class="cd-pill {{ v.status }}">{{ v.get_status_display }}</span></td></tr>
+          {% empty %}<tr><td colspan="5"><small>{% translate "Visits appear here a week before they are due." %}</small></td></tr>{% endfor %}
+          {% for d in upcoming %}<tr style="color:var(--ink-soft)"><td></td><td>{% translate "planned" %}</td><td>{{ d|date:"D j M Y" }}</td><td colspan="2"></td></tr>{% endfor %}
+        </table></div>
+        {% if c.status == "active" and c.next_visit_date %}
+        <form method="post" action="{% url 'webapp:contract_action' c.id %}" style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">{% csrf_token %}<input type="hidden" name="do" value="plan">
+          <select name="days" aria-label="{% translate 'How far ahead' %}"><option value="7">{% translate "Next 7 days" %}</option><option value="31">{% translate "Next month" %}</option><option value="92">{% translate "Next 3 months" %}</option></select>
+          <button class="btn btn-secondary">{% translate "Make visit job cards now" %}</button></form>
+        {% endif %}
+      </section>
+    </div>
+    <div>
+      <section class="cd-box">
+        <h3>💰 {% translate "Money" %}</h3>
+        <dl class="cd-kv">
+          <dt>{% translate "Contract value" %}</dt><dd><b>{{ currency }} {{ c.contract_value|floatformat:2 }}</b></dd>
+          <dt>{% translate "Billing" %}</dt><dd>{{ c.get_billing_display }}{% if c.bill_amount and c.billing != "none" %} · {{ currency }} {{ c.bill_amount|floatformat:2 }}{% endif %}</dd>
+          {% if c.upfront_invoice %}<dt>{% translate "Bill" %}</dt><dd><a href="{% url 'webapp:invoice_pdf' c.upfront_invoice.id %}" target="_blank">{{ c.upfront_invoice.invoice_number }}</a></dd>{% endif %}
+          {% if c.recurring %}<dt>{% translate "Bills made" %}</dt><dd>{{ c.recurring.invoices_created }}{% if c.recurring.is_active %} · {% translate "next" %} {{ c.recurring.next_run_date|date:"j M Y" }}{% endif %}</dd>{% endif %}
+        </dl>
+      </section>
+      <section class="cd-box">
+        <h3>⚙️ {% translate "Actions" %}</h3>
+        <div class="cd-acts">
+          {% if not renewal and c.status != "cancelled" %}
+          <form method="post" action="{% url 'webapp:contract_action' c.id %}">{% csrf_token %}<input type="hidden" name="do" value="renew">
+            <input name="contract_value" inputmode="decimal" value="{{ c.contract_value|floatformat:2 }}" aria-label="{% translate 'New contract value' %}" style="max-width:130px">
+            <button class="btn">↻ {% translate "Renew" %}</button></form>
+          {% if wa_renew %}<a class="btn btn-secondary" href="{{ wa_renew }}" target="_blank" rel="noopener">💬 {% translate "Ask to renew" %}</a>{% endif %}
+          {% endif %}
+          {% if c.status == "active" %}<form method="post" action="{% url 'webapp:contract_action' c.id %}">{% csrf_token %}<button class="btn btn-secondary" name="do" value="pause">⏸ {% translate "Pause" %}</button></form>{% endif %}
+          {% if c.status == "paused" %}<form method="post" action="{% url 'webapp:contract_action' c.id %}">{% csrf_token %}<button class="btn" name="do" value="resume">▶ {% translate "Resume" %}</button></form>{% endif %}
+          {% if c.status == "active" or c.status == "paused" %}<form method="post" action="{% url 'webapp:contract_action' c.id %}">{% csrf_token %}<button class="btn btn-secondary" name="do" value="cancel" onclick="return confirm('{% translate "Cancel this contract? Future visits and bills stop." %}')">✕ {% translate "Cancel contract" %}</button></form>{% endif %}
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -131,6 +131,11 @@ INDUSTRY_FEATURES = {
     "recruitment": {"recruitment_agency"},
     # monthly meal packages ("mess"): members, daily meal tick, mess cut and monthly bills
     "mess": {"restaurant", "cafe_juice_shop", "catering_company"},
+    # yearly maintenance / service contracts (AMC) with visits planned by themselves and contract billing
+    "contracts": {"ac_maintenance", "pest_control", "home_services", "repair_services", "cleaning_equipment_service",
+                  "electronics_repair", "computer_repair", "security_services", "cleaning_company",
+                  "maintenance_company", "landscaping_company", "facility_management", "it_services",
+                  "property_management"},
 }
 
 # (resource, resource plural, booking, default rate unit) for the bookings module

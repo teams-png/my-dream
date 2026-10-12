@@ -262,6 +262,10 @@ msgid "Appointments calendar"
 msgstr "اپوائنٹمنٹ کیلنڈر"
 
 #: templates/base.html
+msgid "Service contracts (AMC)"
+msgstr "سروس کنٹریکٹس (AMC)"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "پیکجز / سیشنز"
 
@@ -2377,6 +2381,219 @@ msgstr "آپ کا حوالہ"
 msgid "See more jobs"
 msgstr "مزید نوکریاں دیکھیں"
 
+#: templates/webapp/contracts/detail.html
+msgid "Ended"
+msgstr "ختم"
+
+#: templates/webapp/contracts/detail.html
+msgid "Customer"
+msgstr "گاہک"
+
+#: templates/webapp/contracts/detail.html
+msgid "Site / equipment"
+msgstr "جگہ / آلات"
+
+#: templates/webapp/contracts/detail.html
+msgid "Address"
+msgstr "پتہ"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visit"
+msgstr "وزٹ"
+
+#: templates/webapp/contracts/detail.html
+msgid "min"
+msgstr "منٹ"
+
+#: templates/webapp/contracts/detail.html
+msgid "Every visit"
+msgstr "ہر وزٹ میں"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewal of"
+msgstr "اس کی تجدید"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewed as"
+msgstr "تجدید شدہ"
+
+#: templates/webapp/contracts/detail.html
+msgid "Notes"
+msgstr "نوٹس"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits"
+msgstr "وزٹس"
+
+#: templates/webapp/contracts/detail.html
+msgid "done"
+msgstr "مکمل"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits appear here a week before they are due."
+msgstr "وزٹس اپنی تاریخ سے ایک ہفتہ پہلے یہاں نظر آتے ہیں۔"
+
+#: templates/webapp/contracts/detail.html
+msgid "planned"
+msgstr "منصوبہ بند"
+
+#: templates/webapp/contracts/detail.html
+msgid "How far ahead"
+msgstr "کتنا آگے"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 7 days"
+msgstr "اگلے 7 دن"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next month"
+msgstr "اگلا مہینہ"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 3 months"
+msgstr "اگلے 3 مہینے"
+
+#: templates/webapp/contracts/detail.html
+msgid "Make visit job cards now"
+msgstr "وزٹ جاب کارڈز ابھی بنائیں"
+
+#: templates/webapp/contracts/detail.html
+msgid "Money"
+msgstr "رقم"
+
+#: templates/webapp/contracts/detail.html
+msgid "Contract value"
+msgstr "کنٹریکٹ کی رقم"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bill"
+msgstr "بل"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bills made"
+msgstr "بنے ہوئے بل"
+
+#: templates/webapp/contracts/detail.html
+msgid "next"
+msgstr "اگلا"
+
+#: templates/webapp/contracts/detail.html
+msgid "Actions"
+msgstr "کارروائیاں"
+
+#: templates/webapp/contracts/detail.html
+msgid "New contract value"
+msgstr "نئی کنٹریکٹ رقم"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renew"
+msgstr "تجدید کریں"
+
+#: templates/webapp/contracts/detail.html
+msgid "Ask to renew"
+msgstr "تجدید کے لیے پوچھیں"
+
+#: templates/webapp/contracts/detail.html
+msgid "Pause"
+msgstr "روکیں"
+
+#: templates/webapp/contracts/detail.html
+msgid "Resume"
+msgstr "دوبارہ شروع کریں"
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel this contract? Future visits and bills stop."
+msgstr "یہ کنٹریکٹ منسوخ کریں؟ آئندہ وزٹس اور بل رک جائیں گے۔"
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel contract"
+msgstr "کنٹریکٹ منسوخ کریں"
+
+#: templates/webapp/contracts/list.html
+msgid "Active contracts"
+msgstr "فعال کنٹریکٹس"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending in 30 days"
+msgstr "30 دن میں ختم"
+
+#: templates/webapp/contracts/list.html
+msgid "Value of active contracts"
+msgstr "فعال کنٹریکٹس کی مالیت"
+
+#: templates/webapp/contracts/list.html
+msgid "Visits in the next 7 days"
+msgstr "اگلے 7 دنوں کے وزٹس"
+
+#: templates/webapp/contracts/list.html
+msgid "New contract"
+msgstr "نیا کنٹریکٹ"
+
+#: templates/webapp/contracts/list.html
+msgid "Search contract no., name, customer, phone…"
+msgstr "کنٹریکٹ نمبر، نام، گاہک، فون… تلاش کریں"
+
+#: templates/webapp/contracts/list.html
+msgid "Find"
+msgstr "تلاش"
+
+#: templates/webapp/contracts/list.html
+msgid "Active"
+msgstr "فعال"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending soon"
+msgstr "جلد ختم"
+
+#: templates/webapp/contracts/list.html
+msgid "Ended / cancelled"
+msgstr "ختم / منسوخ"
+
+#: templates/webapp/contracts/list.html
+msgid "Next visit"
+msgstr "اگلا وزٹ"
+
+#: templates/webapp/contracts/list.html
+msgid "Ends"
+msgstr "اختتام"
+
+#: templates/webapp/contracts/list.html
+msgid "Value"
+msgstr "مالیت"
+
+#: templates/webapp/contracts/list.html
+msgid "No contracts here yet."
+msgstr "ابھی یہاں کوئی کنٹریکٹ نہیں۔"
+
+#: templates/webapp/contracts/new.html
+msgid "New service contract"
+msgstr "نیا سروس کنٹریکٹ"
+
+#: templates/webapp/contracts/new.html
+msgid "What is covered"
+msgstr "کیا شامل ہے"
+
+#: templates/webapp/contracts/new.html
+msgid "Empty = the start date."
+msgstr "خالی = شروع ہونے کی تاریخ۔"
+
+#: templates/webapp/contracts/new.html
+msgid ""
+"Up front: one bill now. Every month / 3 months / year: bills are made by "
+"themselves on those dates. Per visit: the amount is put on each visit's job "
+"card."
+msgstr ""
+"پیشگی: ابھی ایک بل۔ ہر مہینے / 3 مہینے / سال: ان تاریخوں پر بل خود بنیں گے۔ "
+"فی وزٹ: رقم ہر وزٹ کے جاب کارڈ پر لگے گی۔"
+
+#: templates/webapp/contracts/new.html
+msgid "Save contract"
+msgstr "کنٹریکٹ محفوظ کریں"
+
+#: templates/webapp/contracts/new.html
+msgid "visits"
+msgstr "وزٹس"
+
 #: templates/webapp/crm/_tabs.html
 msgid "Pipeline"
 msgstr "پائپ لائن"
@@ -2536,14 +2753,6 @@ msgstr "سودا"
 #: templates/webapp/crm/pipeline.html
 msgid "e.g. Office fit-out, 20 laptops"
 msgstr "مثلاً دفتر کی تزئین، 20 لیپ ٹاپ"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Customer"
-msgstr "گاہک"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Value"
-msgstr "مالیت"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Expected close"
@@ -3314,10 +3523,6 @@ msgstr "خریداری کی تاریخ"
 msgid "Paid from"
 msgstr "ادائیگی کا ذریعہ"
 
-#: templates/webapp/finance/assets.html
-msgid "Notes"
-msgstr "نوٹس"
-
 #: templates/webapp/finance/cheques.html
 msgid "Post-dated cheques"
 msgstr "پوسٹ ڈیٹڈ چیک"
@@ -3456,14 +3661,6 @@ msgstr "روکا گیا"
 #: templates/webapp/finance/recurring.html
 msgid "Run now"
 msgstr "ابھی چلائیں"
-
-#: templates/webapp/finance/recurring.html
-msgid "Pause"
-msgstr "روکیں"
-
-#: templates/webapp/finance/recurring.html
-msgid "Resume"
-msgstr "دوبارہ شروع کریں"
 
 #: templates/webapp/finance/recurring.html
 msgid ""
@@ -4474,10 +4671,6 @@ msgid "fees"
 msgstr "فیسیں"
 
 #: templates/webapp/industry/education_home.html
-msgid "Active"
-msgstr "فعال"
-
-#: templates/webapp/industry/education_home.html
 msgid "Billed this month"
 msgstr "اس مہینے بل"
 
@@ -5075,10 +5268,6 @@ msgid "All staff"
 msgstr "تمام اسٹاف"
 
 #: templates/webapp/jobs/board.html
-msgid "Find"
-msgstr "تلاش"
-
-#: templates/webapp/jobs/board.html
 msgid "All open"
 msgstr "تمام کھلے"
 
@@ -5168,10 +5357,6 @@ msgid "Appointment"
 msgstr "اپائنٹمنٹ"
 
 #: templates/webapp/jobs/detail.html
-msgid "min"
-msgstr "منٹ"
-
-#: templates/webapp/jobs/detail.html
 msgid "Ready by"
 msgstr "تیار ہونے کی تاریخ"
 
@@ -5184,8 +5369,8 @@ msgid "Finished"
 msgstr "مکمل ہوا"
 
 #: templates/webapp/jobs/detail.html
-msgid "Bill"
-msgstr "بل"
+msgid "visit"
+msgstr "وزٹ"
 
 #: templates/webapp/jobs/detail.html
 msgid "Cancel this job?"
@@ -5712,10 +5897,6 @@ msgid "Delivery address"
 msgstr "ڈیلیوری کا پتہ"
 
 #: templates/webapp/mess/member.html
-msgid "Ended"
-msgstr "ختم"
-
-#: templates/webapp/mess/member.html
 msgid "Contact"
 msgstr "رابطہ"
 
@@ -6047,10 +6228,6 @@ msgstr "کاروبار کا نام"
 #: templates/webapp/onboarding/wizard.html
 msgid "Logo (optional)"
 msgstr "لوگو (اختیاری)"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Address"
-msgstr "پتہ"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "VAT / tax number (optional)"
@@ -11635,6 +11812,70 @@ msgstr "ادھار پر (سپلائر)"
 msgid "Already owned (no payment now)"
 msgstr "پہلے سے ملکیت (ابھی ادائیگی نہیں)"
 
+#: apps/industry/contracts.py
+msgid "Give the contract a name, e.g. AC maintenance – 4 units."
+msgstr "کنٹریکٹ کا نام دیں، مثلاً اے سی مینٹیننس – 4 یونٹ۔"
+
+#: apps/industry/contracts.py
+msgid "The end date must be after the start date."
+msgstr "اختتامی تاریخ آغاز کی تاریخ کے بعد ہونی چاہیے۔"
+
+#: apps/industry/contracts.py
+msgid "Choose how often to visit and how to bill."
+msgstr "وزٹ کتنی بار اور بل کیسے، منتخب کریں۔"
+
+#: apps/industry/contracts.py
+msgid "Choose your own staff member."
+msgstr "اپنا اسٹاف منتخب کریں۔"
+
+#: apps/industry/contracts.py
+msgid "The first visit must be inside the contract dates."
+msgstr "پہلا وزٹ کنٹریکٹ کی تاریخوں کے اندر ہونا چاہیے۔"
+
+#: apps/industry/contracts.py
+msgid "Enter a valid amount."
+msgstr "درست رقم درج کریں۔"
+
+#: apps/industry/contracts.py
+msgid "%(title)s — visit %(n)s"
+msgstr "%(title)s — وزٹ %(n)s"
+
+#: apps/industry/contracts.py
+msgid "Contract visit %(n)s (%(number)s)"
+msgstr "کنٹریکٹ وزٹ %(n)s (%(number)s)"
+
+#: apps/industry/contracts.py
+msgid "Only an active contract can be paused."
+msgstr "صرف فعال کنٹریکٹ روکا جا سکتا ہے۔"
+
+#: apps/industry/contracts.py
+msgid "This contract is not paused."
+msgstr "یہ کنٹریکٹ رکا ہوا نہیں ہے۔"
+
+#: apps/industry/contracts.py
+msgid "This contract is already closed."
+msgstr "یہ کنٹریکٹ پہلے ہی بند ہے۔"
+
+#: apps/industry/contracts.py
+msgid "This contract was already renewed."
+msgstr "اس کنٹریکٹ کی پہلے ہی تجدید ہو چکی ہے۔"
+
+#: apps/industry/contracts.py
+msgid ""
+"Hello %(name)s, your maintenance contract %(number)s (%(title)s) with "
+"%(shop)s ends on %(date)s. Shall we renew it for you?"
+msgstr ""
+"السلام علیکم %(name)s، %(shop)s کے ساتھ آپ کا مینٹیننس کنٹریکٹ %(number)s "
+"(%(title)s) %(date)s کو ختم ہو رہا ہے۔ کیا ہم آپ کے لیے اس کی تجدید کر دیں؟"
+
+#: apps/industry/contracts.py
+msgid "Contract %(number)s ends on %(date)s"
+msgstr "کنٹریکٹ %(number)s %(date)s کو ختم ہو گا"
+
+#: apps/industry/contracts.py
+msgid "%(customer)s — %(title)s. Renew it from Service contracts."
+msgstr "%(customer)s — %(title)s۔ سروس کنٹریکٹس سے تجدید کریں۔"
+
 #: apps/industry/demo_guard.py
 msgid ""
 "That is switched off in the demo. Start your free trial to use it with your "
@@ -11659,16 +11900,8 @@ msgid " for delivery"
 msgstr "ڈیلیوری کے لیے"
 
 #: apps/industry/jobs.py
-msgid "Enter a valid amount."
-msgstr "درست رقم درج کریں۔"
-
-#: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "بتائیں جاب کیا ہے۔"
-
-#: apps/industry/jobs.py
-msgid "Choose your own staff member."
-msgstr "اپنا اسٹاف منتخب کریں۔"
 
 #: apps/industry/jobs.py
 msgid "This job is closed."
@@ -12334,6 +12567,58 @@ msgstr "پرزہ / آئٹم"
 msgid "Labour / service"
 msgstr "لیبر / سروس"
 
+#: apps/verticals/saloon/models.py
+msgid "Every week"
+msgstr "ہر ہفتے"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 weeks"
+msgstr "ہر 2 ہفتے"
+
+#: apps/verticals/saloon/models.py
+msgid "Every month"
+msgstr "ہر مہینے"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 months"
+msgstr "ہر 2 مہینے"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 4 months"
+msgstr "ہر 4 مہینے"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 6 months"
+msgstr "ہر 6 مہینے"
+
+#: apps/verticals/saloon/models.py
+msgid "Once a year"
+msgstr "سال میں ایک بار"
+
+#: apps/verticals/saloon/models.py
+msgid "Full amount up front"
+msgstr "پوری رقم پیشگی"
+
+#: apps/verticals/saloon/models.py
+msgid "Every year"
+msgstr "ہر سال"
+
+#: apps/verticals/saloon/models.py
+msgid "Per visit"
+msgstr "فی وزٹ"
+
+#: apps/verticals/saloon/models.py
+msgid "No bill from here"
+msgstr "یہاں سے کوئی بل نہیں"
+
+#: apps/verticals/saloon/models.py
+msgid "What to do on every visit (checklist)"
+msgstr "ہر وزٹ میں کیا کرنا ہے (چیک لسٹ)"
+
+#: apps/verticals/saloon/models.py
+msgid "Per bill (or per visit)"
+msgstr "فی بل (یا فی وزٹ)"
+
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
 msgstr "گاہکوں کی ادائیگیاں"
@@ -12951,6 +13236,86 @@ msgstr "WhatsApp پر رسید بھیجیں"
 #: apps/webapp/checklist.py
 msgid "Publish your website"
 msgstr "اپنی ویب سائٹ شائع کریں"
+
+#: apps/webapp/contract_views.py
+msgid "Contract name"
+msgstr "کنٹریکٹ کا نام"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. AC maintenance – 4 split units"
+msgstr "مثلاً اے سی مینٹیننس – 4 اسپلٹ یونٹ"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. Villa 12 / Office 3rd floor"
+msgstr "مثلاً ولا 12 / دفتر تیسری منزل"
+
+#: apps/webapp/contract_views.py
+msgid "Reference / serial no."
+msgstr "ریفرنس / سیریل نمبر"
+
+#: apps/webapp/contract_views.py
+msgid "Starts"
+msgstr "شروع"
+
+#: apps/webapp/contract_views.py
+msgid "First visit"
+msgstr "پہلا وزٹ"
+
+#: apps/webapp/contract_views.py
+msgid "Usual time"
+msgstr "معمول کا وقت"
+
+#: apps/webapp/contract_views.py
+msgid "Minutes per visit"
+msgstr "فی وزٹ منٹ"
+
+#: apps/webapp/contract_views.py
+msgid "Usual staff"
+msgstr "معمول کا اسٹاف"
+
+#: apps/webapp/contract_views.py
+msgid "What to do on every visit"
+msgstr "ہر وزٹ میں کیا کرنا ہے"
+
+#: apps/webapp/contract_views.py
+msgid "Clean filters, check gas, test cooling…"
+msgstr "فلٹر صاف کریں، گیس چیک کریں، کولنگ ٹیسٹ کریں…"
+
+#: apps/webapp/contract_views.py
+msgid "Contract value (total)"
+msgstr "کنٹریکٹ کی رقم (کل)"
+
+#: apps/webapp/contract_views.py
+msgid "Amount per bill / visit"
+msgstr "فی بل / وزٹ رقم"
+
+#: apps/webapp/contract_views.py
+msgid "Leave empty to split the contract value."
+msgstr "کنٹریکٹ کی رقم تقسیم کرنے کے لیے خالی چھوڑیں۔"
+
+#: apps/webapp/contract_views.py
+msgid "Contract %(number)s saved. Visits are planned by themselves."
+msgstr "کنٹریکٹ %(number)s محفوظ ہو گیا۔ وزٹس خود منصوبہ بند ہوں گے۔"
+
+#: apps/webapp/contract_views.py
+msgid "%(n)s visit(s) added to the job cards."
+msgstr "%(n)s وزٹ جاب کارڈز میں شامل کیے گئے۔"
+
+#: apps/webapp/contract_views.py
+msgid "Contract paused — no visits or bills until you resume it."
+msgstr "کنٹریکٹ روک دیا گیا — دوبارہ شروع کرنے تک کوئی وزٹ یا بل نہیں۔"
+
+#: apps/webapp/contract_views.py
+msgid "Contract resumed."
+msgstr "کنٹریکٹ دوبارہ شروع ہو گیا۔"
+
+#: apps/webapp/contract_views.py
+msgid "Contract cancelled. Future visits were cancelled too."
+msgstr "کنٹریکٹ منسوخ ہو گیا۔ آئندہ وزٹس بھی منسوخ ہو گئے۔"
+
+#: apps/webapp/contract_views.py
+msgid "Renewed as %(number)s."
+msgstr "%(number)s کے طور پر تجدید ہو گئی۔"
 
 #: apps/webapp/crm_views.py
 msgid "Enter what the deal is about."
@@ -13867,10 +14232,6 @@ msgid "Event date"
 msgstr "تقریب کی تاریخ"
 
 #: apps/webapp/online_booking_views.py
-msgid "Ends"
-msgstr "اختتام"
-
-#: apps/webapp/online_booking_views.py
 msgid "Membership / trial"
 msgstr "رکنیت / ٹرائل"
 
@@ -14045,10 +14406,6 @@ msgstr "منتخب کریں کہ آپ کیا بک کرنا چاہتے ہیں۔"
 #: apps/webapp/online_booking_views.py
 msgid "Choose the check-out / return date."
 msgstr "چیک آؤٹ / واپسی کی تاریخ منتخب کریں۔"
-
-#: apps/webapp/online_booking_views.py
-msgid "The end date must be after the start date."
-msgstr "اختتامی تاریخ آغاز کی تاریخ کے بعد ہونی چاہیے۔"
 
 #: apps/webapp/online_booking_views.py
 msgid "Online booking is not available."

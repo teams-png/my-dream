@@ -262,6 +262,10 @@ msgid "Appointments calendar"
 msgstr "അപ്പോയിന്റ്മെന്റ് കലണ്ടർ"
 
 #: templates/base.html
+msgid "Service contracts (AMC)"
+msgstr "സർവീസ് കരാറുകൾ (AMC)"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "പാക്കേജുകൾ / സെഷനുകൾ"
 
@@ -2394,6 +2398,220 @@ msgstr "നിങ്ങളുടെ റഫറൻസ്"
 msgid "See more jobs"
 msgstr "കൂടുതൽ ജോലികൾ കാണുക"
 
+#: templates/webapp/contracts/detail.html
+msgid "Ended"
+msgstr "അവസാനിച്ചു"
+
+#: templates/webapp/contracts/detail.html
+msgid "Customer"
+msgstr "കസ്റ്റമർ"
+
+#: templates/webapp/contracts/detail.html
+msgid "Site / equipment"
+msgstr "സൈറ്റ് / ഉപകരണം"
+
+#: templates/webapp/contracts/detail.html
+msgid "Address"
+msgstr "വിലാസം"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visit"
+msgstr "വിസിറ്റ്"
+
+#: templates/webapp/contracts/detail.html
+msgid "min"
+msgstr "മി"
+
+#: templates/webapp/contracts/detail.html
+msgid "Every visit"
+msgstr "ഓരോ വിസിറ്റിലും"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewal of"
+msgstr "പുതുക്കിയത് ഇതിന്റെ"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewed as"
+msgstr "പുതുക്കിയത്"
+
+#: templates/webapp/contracts/detail.html
+msgid "Notes"
+msgstr "കുറിപ്പുകൾ"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits"
+msgstr "വിസിറ്റുകൾ"
+
+#: templates/webapp/contracts/detail.html
+msgid "done"
+msgstr "കഴിഞ്ഞു"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits appear here a week before they are due."
+msgstr "വിസിറ്റുകൾ സമയമാകുന്നതിന് ഒരാഴ്ച മുമ്പ് ഇവിടെ വരും."
+
+#: templates/webapp/contracts/detail.html
+msgid "planned"
+msgstr "പ്ലാൻ ചെയ്തത്"
+
+#: templates/webapp/contracts/detail.html
+msgid "How far ahead"
+msgstr "എത്ര മുന്നോട്ട്"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 7 days"
+msgstr "അടുത്ത 7 ദിവസം"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next month"
+msgstr "അടുത്ത മാസം"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 3 months"
+msgstr "അടുത്ത 3 മാസം"
+
+#: templates/webapp/contracts/detail.html
+msgid "Make visit job cards now"
+msgstr "വിസിറ്റ് ജോബ് കാർഡുകൾ ഇപ്പോൾ ഉണ്ടാക്കുക"
+
+#: templates/webapp/contracts/detail.html
+msgid "Money"
+msgstr "പണം"
+
+#: templates/webapp/contracts/detail.html
+msgid "Contract value"
+msgstr "കരാർ തുക"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bill"
+msgstr "ബിൽ"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bills made"
+msgstr "ഉണ്ടാക്കിയ ബില്ലുകൾ"
+
+#: templates/webapp/contracts/detail.html
+msgid "next"
+msgstr "അടുത്തത്"
+
+#: templates/webapp/contracts/detail.html
+msgid "Actions"
+msgstr "പ്രവർത്തനങ്ങൾ"
+
+#: templates/webapp/contracts/detail.html
+msgid "New contract value"
+msgstr "പുതിയ കരാർ തുക"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renew"
+msgstr "പുതുക്കുക"
+
+#: templates/webapp/contracts/detail.html
+msgid "Ask to renew"
+msgstr "പുതുക്കാൻ ചോദിക്കുക"
+
+#: templates/webapp/contracts/detail.html
+msgid "Pause"
+msgstr "താൽക്കാലികമായി നിർത്തുക"
+
+#: templates/webapp/contracts/detail.html
+msgid "Resume"
+msgstr "തുടരുക"
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel this contract? Future visits and bills stop."
+msgstr "ഈ കരാർ റദ്ദാക്കണോ? ഭാവിയിലെ വിസിറ്റുകളും ബില്ലുകളും നിൽക്കും."
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel contract"
+msgstr "കരാർ റദ്ദാക്കുക"
+
+#: templates/webapp/contracts/list.html
+msgid "Active contracts"
+msgstr "ആക്റ്റീവ് കരാറുകൾ"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending in 30 days"
+msgstr "30 ദിവസത്തിനുള്ളിൽ തീരുന്നവ"
+
+#: templates/webapp/contracts/list.html
+msgid "Value of active contracts"
+msgstr "ആക്റ്റീവ് കരാറുകളുടെ മൂല്യം"
+
+#: templates/webapp/contracts/list.html
+msgid "Visits in the next 7 days"
+msgstr "അടുത്ത 7 ദിവസത്തെ വിസിറ്റുകൾ"
+
+#: templates/webapp/contracts/list.html
+msgid "New contract"
+msgstr "പുതിയ കരാർ"
+
+#: templates/webapp/contracts/list.html
+msgid "Search contract no., name, customer, phone…"
+msgstr "കരാർ നമ്പർ, പേര്, കസ്റ്റമർ, ഫോൺ… തിരയുക"
+
+#: templates/webapp/contracts/list.html
+msgid "Find"
+msgstr "തിരയുക"
+
+#: templates/webapp/contracts/list.html
+msgid "Active"
+msgstr "സജീവം"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending soon"
+msgstr "ഉടൻ തീരുന്നവ"
+
+#: templates/webapp/contracts/list.html
+msgid "Ended / cancelled"
+msgstr "തീർന്നവ / റദ്ദാക്കിയവ"
+
+#: templates/webapp/contracts/list.html
+msgid "Next visit"
+msgstr "അടുത്ത വിസിറ്റ്"
+
+#: templates/webapp/contracts/list.html
+msgid "Ends"
+msgstr "അവസാനിക്കുന്നത്"
+
+#: templates/webapp/contracts/list.html
+msgid "Value"
+msgstr "മൂല്യം"
+
+#: templates/webapp/contracts/list.html
+msgid "No contracts here yet."
+msgstr "ഇവിടെ ഇതുവരെ കരാറുകളില്ല."
+
+#: templates/webapp/contracts/new.html
+msgid "New service contract"
+msgstr "പുതിയ സർവീസ് കരാർ"
+
+#: templates/webapp/contracts/new.html
+msgid "What is covered"
+msgstr "എന്തൊക്കെ ഉൾപ്പെടുന്നു"
+
+#: templates/webapp/contracts/new.html
+msgid "Empty = the start date."
+msgstr "ഒഴിച്ചിട്ടാൽ = തുടങ്ങുന്ന തീയതി."
+
+#: templates/webapp/contracts/new.html
+msgid ""
+"Up front: one bill now. Every month / 3 months / year: bills are made by "
+"themselves on those dates. Per visit: the amount is put on each visit's job "
+"card."
+msgstr ""
+"മുൻകൂർ: ഇപ്പോൾ ഒരു ബിൽ. മാസം / 3 മാസം / വർഷം തോറും: ആ തീയതികളിൽ ബില്ലുകൾ "
+"തനിയെ ഉണ്ടാകും. ഓരോ വിസിറ്റിനും: ഓരോ വിസിറ്റിന്റെയും ജോബ് കാർഡിൽ തുക "
+"ചേർക്കും."
+
+#: templates/webapp/contracts/new.html
+msgid "Save contract"
+msgstr "കരാർ സേവ് ചെയ്യുക"
+
+#: templates/webapp/contracts/new.html
+msgid "visits"
+msgstr "വിസിറ്റുകൾ"
+
 #: templates/webapp/crm/_tabs.html
 msgid "Pipeline"
 msgstr "പൈപ്പ്‌ലൈൻ"
@@ -2553,14 +2771,6 @@ msgstr "ഡീൽ"
 #: templates/webapp/crm/pipeline.html
 msgid "e.g. Office fit-out, 20 laptops"
 msgstr "ഉദാ. ഓഫീസ് ഫിറ്റ്-ഔട്ട്, 20 ലാപ്‌ടോപ്പുകൾ"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Customer"
-msgstr "കസ്റ്റമർ"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Value"
-msgstr "മൂല്യം"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Expected close"
@@ -3339,10 +3549,6 @@ msgstr "വാങ്ങിയ തീയതി"
 msgid "Paid from"
 msgstr "പണം നൽകിയത്"
 
-#: templates/webapp/finance/assets.html
-msgid "Notes"
-msgstr "കുറിപ്പുകൾ"
-
 #: templates/webapp/finance/cheques.html
 msgid "Post-dated cheques"
 msgstr "പോസ്റ്റ്-ഡേറ്റഡ് ചെക്കുകൾ"
@@ -3481,14 +3687,6 @@ msgstr "നിർത്തി"
 #: templates/webapp/finance/recurring.html
 msgid "Run now"
 msgstr "ഇപ്പോൾ റൺ ചെയ്യുക"
-
-#: templates/webapp/finance/recurring.html
-msgid "Pause"
-msgstr "താൽക്കാലികമായി നിർത്തുക"
-
-#: templates/webapp/finance/recurring.html
-msgid "Resume"
-msgstr "തുടരുക"
 
 #: templates/webapp/finance/recurring.html
 msgid ""
@@ -4505,10 +4703,6 @@ msgid "fees"
 msgstr "ഫീസ്"
 
 #: templates/webapp/industry/education_home.html
-msgid "Active"
-msgstr "സജീവം"
-
-#: templates/webapp/industry/education_home.html
 msgid "Billed this month"
 msgstr "ഈ മാസം ബിൽ ചെയ്തത്"
 
@@ -5108,10 +5302,6 @@ msgid "All staff"
 msgstr "എല്ലാ സ്റ്റാഫും"
 
 #: templates/webapp/jobs/board.html
-msgid "Find"
-msgstr "തിരയുക"
-
-#: templates/webapp/jobs/board.html
 msgid "All open"
 msgstr "തുറന്നവ എല്ലാം"
 
@@ -5202,10 +5392,6 @@ msgid "Appointment"
 msgstr "അപ്പോയിന്റ്മെന്റ്"
 
 #: templates/webapp/jobs/detail.html
-msgid "min"
-msgstr "മി"
-
-#: templates/webapp/jobs/detail.html
 msgid "Ready by"
 msgstr "തയ്യാറാകുന്ന തീയതി"
 
@@ -5218,8 +5404,8 @@ msgid "Finished"
 msgstr "തീർന്നത്"
 
 #: templates/webapp/jobs/detail.html
-msgid "Bill"
-msgstr "ബിൽ"
+msgid "visit"
+msgstr "വിസിറ്റ്"
 
 #: templates/webapp/jobs/detail.html
 msgid "Cancel this job?"
@@ -5748,10 +5934,6 @@ msgid "Delivery address"
 msgstr "ഡെലിവറി വിലാസം"
 
 #: templates/webapp/mess/member.html
-msgid "Ended"
-msgstr "അവസാനിച്ചു"
-
-#: templates/webapp/mess/member.html
 msgid "Contact"
 msgstr "ബന്ധപ്പെടുക"
 
@@ -6083,10 +6265,6 @@ msgstr "ബിസിനസിന്റെ പേര്"
 #: templates/webapp/onboarding/wizard.html
 msgid "Logo (optional)"
 msgstr "ലോഗോ (ഓപ്ഷണൽ)"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Address"
-msgstr "വിലാസം"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "VAT / tax number (optional)"
@@ -11723,6 +11901,70 @@ msgstr "ക്രെഡിറ്റ് (സപ്ലയർ)"
 msgid "Already owned (no payment now)"
 msgstr "നേരത്തെ ഉള്ളത് (ഇപ്പോൾ പണം നൽകുന്നില്ല)"
 
+#: apps/industry/contracts.py
+msgid "Give the contract a name, e.g. AC maintenance – 4 units."
+msgstr "കരാറിന് ഒരു പേര് നൽകുക, ഉദാ. എസി മെയിന്റനൻസ് – 4 യൂണിറ്റ്."
+
+#: apps/industry/contracts.py
+msgid "The end date must be after the start date."
+msgstr "അവസാന തീയതി തുടക്ക തീയതിക്ക് ശേഷമായിരിക്കണം."
+
+#: apps/industry/contracts.py
+msgid "Choose how often to visit and how to bill."
+msgstr "എത്ര ഇടവിട്ട് വിസിറ്റ്, എങ്ങനെ ബിൽ എന്നിവ തിരഞ്ഞെടുക്കുക."
+
+#: apps/industry/contracts.py
+msgid "Choose your own staff member."
+msgstr "നിങ്ങളുടെ സ്റ്റാഫിനെ തിരഞ്ഞെടുക്കുക."
+
+#: apps/industry/contracts.py
+msgid "The first visit must be inside the contract dates."
+msgstr "ആദ്യ വിസിറ്റ് കരാർ തീയതികൾക്കുള്ളിൽ ആയിരിക്കണം."
+
+#: apps/industry/contracts.py
+msgid "Enter a valid amount."
+msgstr "ശരിയായ തുക നൽകുക."
+
+#: apps/industry/contracts.py
+msgid "%(title)s — visit %(n)s"
+msgstr "%(title)s — വിസിറ്റ് %(n)s"
+
+#: apps/industry/contracts.py
+msgid "Contract visit %(n)s (%(number)s)"
+msgstr "കരാർ വിസിറ്റ് %(n)s (%(number)s)"
+
+#: apps/industry/contracts.py
+msgid "Only an active contract can be paused."
+msgstr "ആക്റ്റീവ് കരാർ മാത്രമേ നിർത്തിവയ്ക്കാൻ പറ്റൂ."
+
+#: apps/industry/contracts.py
+msgid "This contract is not paused."
+msgstr "ഈ കരാർ നിർത്തിവച്ചിട്ടില്ല."
+
+#: apps/industry/contracts.py
+msgid "This contract is already closed."
+msgstr "ഈ കരാർ നേരത്തെ ക്ലോസ് ചെയ്തതാണ്."
+
+#: apps/industry/contracts.py
+msgid "This contract was already renewed."
+msgstr "ഈ കരാർ നേരത്തെ പുതുക്കിയതാണ്."
+
+#: apps/industry/contracts.py
+msgid ""
+"Hello %(name)s, your maintenance contract %(number)s (%(title)s) with "
+"%(shop)s ends on %(date)s. Shall we renew it for you?"
+msgstr ""
+"നമസ്കാരം %(name)s, %(shop)s-ലെ നിങ്ങളുടെ മെയിന്റനൻസ് കരാർ %(number)s "
+"(%(title)s) %(date)s-ന് തീരും. ഞങ്ങൾ പുതുക്കട്ടെ?"
+
+#: apps/industry/contracts.py
+msgid "Contract %(number)s ends on %(date)s"
+msgstr "കരാർ %(number)s %(date)s-ന് തീരും"
+
+#: apps/industry/contracts.py
+msgid "%(customer)s — %(title)s. Renew it from Service contracts."
+msgstr "%(customer)s — %(title)s. സർവീസ് കരാറുകളിൽ നിന്ന് പുതുക്കുക."
+
 #: apps/industry/demo_guard.py
 msgid ""
 "That is switched off in the demo. Start your free trial to use it with your "
@@ -11746,16 +11988,8 @@ msgid " for delivery"
 msgstr "ഡെലിവറിക്ക്"
 
 #: apps/industry/jobs.py
-msgid "Enter a valid amount."
-msgstr "ശരിയായ തുക നൽകുക."
-
-#: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "ജോലി എന്താണെന്ന് പറയുക."
-
-#: apps/industry/jobs.py
-msgid "Choose your own staff member."
-msgstr "നിങ്ങളുടെ സ്റ്റാഫിനെ തിരഞ്ഞെടുക്കുക."
 
 #: apps/industry/jobs.py
 msgid "This job is closed."
@@ -12430,6 +12664,58 @@ msgstr "പാർട്ട് / ഐറ്റം"
 msgid "Labour / service"
 msgstr "ലേബർ / സർവീസ്"
 
+#: apps/verticals/saloon/models.py
+msgid "Every week"
+msgstr "എല്ലാ ആഴ്ചയും"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 weeks"
+msgstr "2 ആഴ്ച കൂടുമ്പോൾ"
+
+#: apps/verticals/saloon/models.py
+msgid "Every month"
+msgstr "എല്ലാ മാസവും"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 months"
+msgstr "2 മാസം കൂടുമ്പോൾ"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 4 months"
+msgstr "4 മാസം കൂടുമ്പോൾ"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 6 months"
+msgstr "6 മാസം കൂടുമ്പോൾ"
+
+#: apps/verticals/saloon/models.py
+msgid "Once a year"
+msgstr "വർഷത്തിൽ ഒരിക്കൽ"
+
+#: apps/verticals/saloon/models.py
+msgid "Full amount up front"
+msgstr "മുഴുവൻ തുക മുൻകൂർ"
+
+#: apps/verticals/saloon/models.py
+msgid "Every year"
+msgstr "എല്ലാ വർഷവും"
+
+#: apps/verticals/saloon/models.py
+msgid "Per visit"
+msgstr "ഓരോ വിസിറ്റിനും"
+
+#: apps/verticals/saloon/models.py
+msgid "No bill from here"
+msgstr "ഇവിടെ നിന്ന് ബിൽ വേണ്ട"
+
+#: apps/verticals/saloon/models.py
+msgid "What to do on every visit (checklist)"
+msgstr "ഓരോ വിസിറ്റിലും ചെയ്യേണ്ടത് (ചെക്ക്‌ലിസ്റ്റ്)"
+
+#: apps/verticals/saloon/models.py
+msgid "Per bill (or per visit)"
+msgstr "ഓരോ ബില്ലിനും (അല്ലെങ്കിൽ ഓരോ വിസിറ്റിനും)"
+
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
 msgstr "ഉപഭോക്തൃ പേയ്‌മെന്റുകൾ"
@@ -13049,6 +13335,86 @@ msgstr "WhatsApp-ൽ ഒരു രസീത് അയക്കുക"
 #: apps/webapp/checklist.py
 msgid "Publish your website"
 msgstr "നിങ്ങളുടെ വെബ്സൈറ്റ് പബ്ലിഷ് ചെയ്യുക"
+
+#: apps/webapp/contract_views.py
+msgid "Contract name"
+msgstr "കരാറിന്റെ പേര്"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. AC maintenance – 4 split units"
+msgstr "ഉദാ. എസി മെയിന്റനൻസ് – 4 സ്പ്ലിറ്റ് യൂണിറ്റ്"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. Villa 12 / Office 3rd floor"
+msgstr "ഉദാ. വില്ല 12 / ഓഫീസ് 3-ാം നില"
+
+#: apps/webapp/contract_views.py
+msgid "Reference / serial no."
+msgstr "റഫറൻസ് / സീരിയൽ നമ്പർ"
+
+#: apps/webapp/contract_views.py
+msgid "Starts"
+msgstr "തുടങ്ങുന്നത്"
+
+#: apps/webapp/contract_views.py
+msgid "First visit"
+msgstr "ആദ്യ വിസിറ്റ്"
+
+#: apps/webapp/contract_views.py
+msgid "Usual time"
+msgstr "സാധാരണ സമയം"
+
+#: apps/webapp/contract_views.py
+msgid "Minutes per visit"
+msgstr "ഒരു വിസിറ്റിന്റെ മിനിറ്റ്"
+
+#: apps/webapp/contract_views.py
+msgid "Usual staff"
+msgstr "സാധാരണ സ്റ്റാഫ്"
+
+#: apps/webapp/contract_views.py
+msgid "What to do on every visit"
+msgstr "ഓരോ വിസിറ്റിലും ചെയ്യേണ്ടത്"
+
+#: apps/webapp/contract_views.py
+msgid "Clean filters, check gas, test cooling…"
+msgstr "ഫിൽട്ടർ ക്ലീൻ ചെയ്യുക, ഗ്യാസ് പരിശോധിക്കുക, കൂളിംഗ് ടെസ്റ്റ് ചെയ്യുക…"
+
+#: apps/webapp/contract_views.py
+msgid "Contract value (total)"
+msgstr "കരാർ തുക (ആകെ)"
+
+#: apps/webapp/contract_views.py
+msgid "Amount per bill / visit"
+msgstr "ഓരോ ബില്ലിനും / വിസിറ്റിനും തുക"
+
+#: apps/webapp/contract_views.py
+msgid "Leave empty to split the contract value."
+msgstr "കരാർ തുക വിഭജിക്കാൻ ഒഴിച്ചിടുക."
+
+#: apps/webapp/contract_views.py
+msgid "Contract %(number)s saved. Visits are planned by themselves."
+msgstr "കരാർ %(number)s സേവ് ചെയ്തു. വിസിറ്റുകൾ തനിയെ പ്ലാൻ ആകും."
+
+#: apps/webapp/contract_views.py
+msgid "%(n)s visit(s) added to the job cards."
+msgstr "%(n)s വിസിറ്റ് ജോബ് കാർഡുകളിൽ ചേർത്തു."
+
+#: apps/webapp/contract_views.py
+msgid "Contract paused — no visits or bills until you resume it."
+msgstr "കരാർ നിർത്തിവച്ചു — വീണ്ടും തുടങ്ങുന്നതുവരെ വിസിറ്റോ ബില്ലോ ഇല്ല."
+
+#: apps/webapp/contract_views.py
+msgid "Contract resumed."
+msgstr "കരാർ വീണ്ടും തുടങ്ങി."
+
+#: apps/webapp/contract_views.py
+msgid "Contract cancelled. Future visits were cancelled too."
+msgstr "കരാർ റദ്ദാക്കി. ഭാവിയിലെ വിസിറ്റുകളും റദ്ദാക്കി."
+
+#: apps/webapp/contract_views.py
+msgid "Renewed as %(number)s."
+msgstr "%(number)s ആയി പുതുക്കി."
 
 #: apps/webapp/crm_views.py
 msgid "Enter what the deal is about."
@@ -13974,10 +14340,6 @@ msgid "Event date"
 msgstr "പരിപാടി തീയതി"
 
 #: apps/webapp/online_booking_views.py
-msgid "Ends"
-msgstr "അവസാനിക്കുന്നത്"
-
-#: apps/webapp/online_booking_views.py
 msgid "Membership / trial"
 msgstr "മെമ്പർഷിപ്പ് / ട്രയൽ"
 
@@ -14155,10 +14517,6 @@ msgstr "എന്താണ് ബുക്ക് ചെയ്യേണ്ടത�
 #: apps/webapp/online_booking_views.py
 msgid "Choose the check-out / return date."
 msgstr "ചെക്ക്-ഔട്ട് / തിരികെ നൽകുന്ന തീയതി തിരഞ്ഞെടുക്കുക."
-
-#: apps/webapp/online_booking_views.py
-msgid "The end date must be after the start date."
-msgstr "അവസാന തീയതി തുടക്ക തീയതിക്ക് ശേഷമായിരിക്കണം."
 
 #: apps/webapp/online_booking_views.py
 msgid "Online booking is not available."

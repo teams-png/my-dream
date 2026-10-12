@@ -262,6 +262,10 @@ msgid "Appointments calendar"
 msgstr "Calendario de citas"
 
 #: templates/base.html
+msgid "Service contracts (AMC)"
+msgstr "Contratos de servicio (mantenimiento)"
+
+#: templates/base.html
 msgid "Packages / Sessions"
 msgstr "Paquetes / sesiones"
 
@@ -2394,6 +2398,220 @@ msgstr "Tu referencia"
 msgid "See more jobs"
 msgstr "Ver más empleos"
 
+#: templates/webapp/contracts/detail.html
+msgid "Ended"
+msgstr "Finalizado"
+
+#: templates/webapp/contracts/detail.html
+msgid "Customer"
+msgstr "Cliente"
+
+#: templates/webapp/contracts/detail.html
+msgid "Site / equipment"
+msgstr "Lugar / equipo"
+
+#: templates/webapp/contracts/detail.html
+msgid "Address"
+msgstr "Dirección"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visit"
+msgstr "Visita"
+
+#: templates/webapp/contracts/detail.html
+msgid "min"
+msgstr "min"
+
+#: templates/webapp/contracts/detail.html
+msgid "Every visit"
+msgstr "En cada visita"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewal of"
+msgstr "Renovación de"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renewed as"
+msgstr "Renovado como"
+
+#: templates/webapp/contracts/detail.html
+msgid "Notes"
+msgstr "Notas"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits"
+msgstr "Visitas"
+
+#: templates/webapp/contracts/detail.html
+msgid "done"
+msgstr "hechas"
+
+#: templates/webapp/contracts/detail.html
+msgid "Visits appear here a week before they are due."
+msgstr "Las visitas aparecen aquí una semana antes de su fecha."
+
+#: templates/webapp/contracts/detail.html
+msgid "planned"
+msgstr "planificada"
+
+#: templates/webapp/contracts/detail.html
+msgid "How far ahead"
+msgstr "Con cuánta antelación"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 7 days"
+msgstr "Próximos 7 días"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next month"
+msgstr "Próximo mes"
+
+#: templates/webapp/contracts/detail.html
+msgid "Next 3 months"
+msgstr "Próximos 3 meses"
+
+#: templates/webapp/contracts/detail.html
+msgid "Make visit job cards now"
+msgstr "Crear ya las órdenes de las visitas"
+
+#: templates/webapp/contracts/detail.html
+msgid "Money"
+msgstr "Dinero"
+
+#: templates/webapp/contracts/detail.html
+msgid "Contract value"
+msgstr "Valor del contrato"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bill"
+msgstr "Factura"
+
+#: templates/webapp/contracts/detail.html
+msgid "Bills made"
+msgstr "Facturas emitidas"
+
+#: templates/webapp/contracts/detail.html
+msgid "next"
+msgstr "próxima"
+
+#: templates/webapp/contracts/detail.html
+msgid "Actions"
+msgstr "Acciones"
+
+#: templates/webapp/contracts/detail.html
+msgid "New contract value"
+msgstr "Nuevo valor del contrato"
+
+#: templates/webapp/contracts/detail.html
+msgid "Renew"
+msgstr "Renovar"
+
+#: templates/webapp/contracts/detail.html
+msgid "Ask to renew"
+msgstr "Pedir renovación"
+
+#: templates/webapp/contracts/detail.html
+msgid "Pause"
+msgstr "Pausar"
+
+#: templates/webapp/contracts/detail.html
+msgid "Resume"
+msgstr "Reanudar"
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel this contract? Future visits and bills stop."
+msgstr "¿Cancelar este contrato? Se detienen las visitas y facturas futuras."
+
+#: templates/webapp/contracts/detail.html
+msgid "Cancel contract"
+msgstr "Cancelar contrato"
+
+#: templates/webapp/contracts/list.html
+msgid "Active contracts"
+msgstr "Contratos activos"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending in 30 days"
+msgstr "Terminan en 30 días"
+
+#: templates/webapp/contracts/list.html
+msgid "Value of active contracts"
+msgstr "Valor de los contratos activos"
+
+#: templates/webapp/contracts/list.html
+msgid "Visits in the next 7 days"
+msgstr "Visitas en los próximos 7 días"
+
+#: templates/webapp/contracts/list.html
+msgid "New contract"
+msgstr "Nuevo contrato"
+
+#: templates/webapp/contracts/list.html
+msgid "Search contract no., name, customer, phone…"
+msgstr "Buscar n.º de contrato, nombre, cliente, teléfono…"
+
+#: templates/webapp/contracts/list.html
+msgid "Find"
+msgstr "Buscar"
+
+#: templates/webapp/contracts/list.html
+msgid "Active"
+msgstr "Activo"
+
+#: templates/webapp/contracts/list.html
+msgid "Ending soon"
+msgstr "Terminan pronto"
+
+#: templates/webapp/contracts/list.html
+msgid "Ended / cancelled"
+msgstr "Terminados / cancelados"
+
+#: templates/webapp/contracts/list.html
+msgid "Next visit"
+msgstr "Próxima visita"
+
+#: templates/webapp/contracts/list.html
+msgid "Ends"
+msgstr "Termina"
+
+#: templates/webapp/contracts/list.html
+msgid "Value"
+msgstr "Valor"
+
+#: templates/webapp/contracts/list.html
+msgid "No contracts here yet."
+msgstr "Aún no hay contratos aquí."
+
+#: templates/webapp/contracts/new.html
+msgid "New service contract"
+msgstr "Nuevo contrato de servicio"
+
+#: templates/webapp/contracts/new.html
+msgid "What is covered"
+msgstr "Qué cubre"
+
+#: templates/webapp/contracts/new.html
+msgid "Empty = the start date."
+msgstr "Vacío = la fecha de inicio."
+
+#: templates/webapp/contracts/new.html
+msgid ""
+"Up front: one bill now. Every month / 3 months / year: bills are made by "
+"themselves on those dates. Per visit: the amount is put on each visit's job "
+"card."
+msgstr ""
+"Por adelantado: una factura ahora. Cada mes / 3 meses / año: las facturas se"
+" crean solas en esas fechas. Por visita: el importe va en la orden de "
+"trabajo de cada visita."
+
+#: templates/webapp/contracts/new.html
+msgid "Save contract"
+msgstr "Guardar contrato"
+
+#: templates/webapp/contracts/new.html
+msgid "visits"
+msgstr "visitas"
+
 #: templates/webapp/crm/_tabs.html
 msgid "Pipeline"
 msgstr "Embudo"
@@ -2553,14 +2771,6 @@ msgstr "Negocio"
 #: templates/webapp/crm/pipeline.html
 msgid "e.g. Office fit-out, 20 laptops"
 msgstr "p. ej. Equipamiento de oficina, 20 portátiles"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Customer"
-msgstr "Cliente"
-
-#: templates/webapp/crm/pipeline.html
-msgid "Value"
-msgstr "Valor"
 
 #: templates/webapp/crm/pipeline.html
 msgid "Expected close"
@@ -3337,10 +3547,6 @@ msgstr "Fecha de compra"
 msgid "Paid from"
 msgstr "Pagado desde"
 
-#: templates/webapp/finance/assets.html
-msgid "Notes"
-msgstr "Notas"
-
 #: templates/webapp/finance/cheques.html
 msgid "Post-dated cheques"
 msgstr "Cheques posfechados"
@@ -3480,14 +3686,6 @@ msgstr "Detenida"
 #: templates/webapp/finance/recurring.html
 msgid "Run now"
 msgstr "Ejecutar ahora"
-
-#: templates/webapp/finance/recurring.html
-msgid "Pause"
-msgstr "Pausar"
-
-#: templates/webapp/finance/recurring.html
-msgid "Resume"
-msgstr "Reanudar"
 
 #: templates/webapp/finance/recurring.html
 msgid ""
@@ -4502,10 +4700,6 @@ msgid "fees"
 msgstr "cuotas"
 
 #: templates/webapp/industry/education_home.html
-msgid "Active"
-msgstr "Activo"
-
-#: templates/webapp/industry/education_home.html
 msgid "Billed this month"
 msgstr "Facturado este mes"
 
@@ -5104,10 +5298,6 @@ msgid "All staff"
 msgstr "Todo el personal"
 
 #: templates/webapp/jobs/board.html
-msgid "Find"
-msgstr "Buscar"
-
-#: templates/webapp/jobs/board.html
 msgid "All open"
 msgstr "Todos los abiertos"
 
@@ -5198,10 +5388,6 @@ msgid "Appointment"
 msgstr "Cita"
 
 #: templates/webapp/jobs/detail.html
-msgid "min"
-msgstr "min"
-
-#: templates/webapp/jobs/detail.html
 msgid "Ready by"
 msgstr "Listo para"
 
@@ -5214,8 +5400,8 @@ msgid "Finished"
 msgstr "Terminado"
 
 #: templates/webapp/jobs/detail.html
-msgid "Bill"
-msgstr "Factura"
+msgid "visit"
+msgstr "visita"
 
 #: templates/webapp/jobs/detail.html
 msgid "Cancel this job?"
@@ -5746,10 +5932,6 @@ msgid "Delivery address"
 msgstr "Dirección de entrega"
 
 #: templates/webapp/mess/member.html
-msgid "Ended"
-msgstr "Finalizado"
-
-#: templates/webapp/mess/member.html
 msgid "Contact"
 msgstr "Contacto"
 
@@ -6082,10 +6264,6 @@ msgstr "Nombre del negocio"
 #: templates/webapp/onboarding/wizard.html
 msgid "Logo (optional)"
 msgstr "Logotipo (opcional)"
-
-#: templates/webapp/onboarding/wizard.html
-msgid "Address"
-msgstr "Dirección"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "VAT / tax number (optional)"
@@ -11724,6 +11902,72 @@ msgstr "A crédito (proveedor)"
 msgid "Already owned (no payment now)"
 msgstr "Ya en propiedad (sin pago ahora)"
 
+#: apps/industry/contracts.py
+msgid "Give the contract a name, e.g. AC maintenance – 4 units."
+msgstr ""
+"Ponle un nombre al contrato, p. ej. Mantenimiento de aire acondicionado – 4 "
+"unidades."
+
+#: apps/industry/contracts.py
+msgid "The end date must be after the start date."
+msgstr "La fecha de fin debe ser posterior a la de inicio."
+
+#: apps/industry/contracts.py
+msgid "Choose how often to visit and how to bill."
+msgstr "Elige cada cuánto visitar y cómo facturar."
+
+#: apps/industry/contracts.py
+msgid "Choose your own staff member."
+msgstr "Elige a alguien de tu personal."
+
+#: apps/industry/contracts.py
+msgid "The first visit must be inside the contract dates."
+msgstr "La primera visita debe estar dentro de las fechas del contrato."
+
+#: apps/industry/contracts.py
+msgid "Enter a valid amount."
+msgstr "Introduce un importe válido."
+
+#: apps/industry/contracts.py
+msgid "%(title)s — visit %(n)s"
+msgstr "%(title)s — visita %(n)s"
+
+#: apps/industry/contracts.py
+msgid "Contract visit %(n)s (%(number)s)"
+msgstr "Visita del contrato %(n)s (%(number)s)"
+
+#: apps/industry/contracts.py
+msgid "Only an active contract can be paused."
+msgstr "Solo un contrato activo puede pausarse."
+
+#: apps/industry/contracts.py
+msgid "This contract is not paused."
+msgstr "Este contrato no está en pausa."
+
+#: apps/industry/contracts.py
+msgid "This contract is already closed."
+msgstr "Este contrato ya está cerrado."
+
+#: apps/industry/contracts.py
+msgid "This contract was already renewed."
+msgstr "Este contrato ya fue renovado."
+
+#: apps/industry/contracts.py
+msgid ""
+"Hello %(name)s, your maintenance contract %(number)s (%(title)s) with "
+"%(shop)s ends on %(date)s. Shall we renew it for you?"
+msgstr ""
+"Hola %(name)s, tu contrato de mantenimiento %(number)s (%(title)s) con "
+"%(shop)s termina el %(date)s. ¿Lo renovamos?"
+
+#: apps/industry/contracts.py
+msgid "Contract %(number)s ends on %(date)s"
+msgstr "El contrato %(number)s termina el %(date)s"
+
+#: apps/industry/contracts.py
+msgid "%(customer)s — %(title)s. Renew it from Service contracts."
+msgstr "%(customer)s — %(title)s. Renuévalo desde Contratos de servicio."
+
 #: apps/industry/demo_guard.py
 msgid ""
 "That is switched off in the demo. Start your free trial to use it with your "
@@ -11749,16 +11993,8 @@ msgid " for delivery"
 msgstr "para entrega"
 
 #: apps/industry/jobs.py
-msgid "Enter a valid amount."
-msgstr "Introduce un importe válido."
-
-#: apps/industry/jobs.py
 msgid "Say what the job is."
 msgstr "Indica cuál es el trabajo."
-
-#: apps/industry/jobs.py
-msgid "Choose your own staff member."
-msgstr "Elige a alguien de tu personal."
 
 #: apps/industry/jobs.py
 msgid "This job is closed."
@@ -12430,6 +12666,58 @@ msgstr "Pieza / artículo"
 msgid "Labour / service"
 msgstr "Mano de obra / servicio"
 
+#: apps/verticals/saloon/models.py
+msgid "Every week"
+msgstr "Cada semana"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 weeks"
+msgstr "Cada 2 semanas"
+
+#: apps/verticals/saloon/models.py
+msgid "Every month"
+msgstr "Cada mes"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 2 months"
+msgstr "Cada 2 meses"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 4 months"
+msgstr "Cada 4 meses"
+
+#: apps/verticals/saloon/models.py
+msgid "Every 6 months"
+msgstr "Cada 6 meses"
+
+#: apps/verticals/saloon/models.py
+msgid "Once a year"
+msgstr "Una vez al año"
+
+#: apps/verticals/saloon/models.py
+msgid "Full amount up front"
+msgstr "Importe total por adelantado"
+
+#: apps/verticals/saloon/models.py
+msgid "Every year"
+msgstr "Cada año"
+
+#: apps/verticals/saloon/models.py
+msgid "Per visit"
+msgstr "Por visita"
+
+#: apps/verticals/saloon/models.py
+msgid "No bill from here"
+msgstr "Sin factura desde aquí"
+
+#: apps/verticals/saloon/models.py
+msgid "What to do on every visit (checklist)"
+msgstr "Qué hacer en cada visita (lista)"
+
+#: apps/verticals/saloon/models.py
+msgid "Per bill (or per visit)"
+msgstr "Por factura (o por visita)"
+
 #: apps/webapp/accounts_views.py
 msgid "Customer payments"
 msgstr "Pagos de clientes"
@@ -13049,6 +13337,86 @@ msgstr "Envía un recibo por WhatsApp"
 #: apps/webapp/checklist.py
 msgid "Publish your website"
 msgstr "Publica tu sitio web"
+
+#: apps/webapp/contract_views.py
+msgid "Contract name"
+msgstr "Nombre del contrato"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. AC maintenance – 4 split units"
+msgstr "p. ej. Mantenimiento de aire acondicionado – 4 splits"
+
+#: apps/webapp/contract_views.py
+msgid "e.g. Villa 12 / Office 3rd floor"
+msgstr "p. ej. Villa 12 / Oficina 3.ª planta"
+
+#: apps/webapp/contract_views.py
+msgid "Reference / serial no."
+msgstr "Referencia / n.º de serie"
+
+#: apps/webapp/contract_views.py
+msgid "Starts"
+msgstr "Empieza"
+
+#: apps/webapp/contract_views.py
+msgid "First visit"
+msgstr "Primera visita"
+
+#: apps/webapp/contract_views.py
+msgid "Usual time"
+msgstr "Hora habitual"
+
+#: apps/webapp/contract_views.py
+msgid "Minutes per visit"
+msgstr "Minutos por visita"
+
+#: apps/webapp/contract_views.py
+msgid "Usual staff"
+msgstr "Personal habitual"
+
+#: apps/webapp/contract_views.py
+msgid "What to do on every visit"
+msgstr "Qué hacer en cada visita"
+
+#: apps/webapp/contract_views.py
+msgid "Clean filters, check gas, test cooling…"
+msgstr "Limpiar filtros, revisar gas, probar refrigeración…"
+
+#: apps/webapp/contract_views.py
+msgid "Contract value (total)"
+msgstr "Valor del contrato (total)"
+
+#: apps/webapp/contract_views.py
+msgid "Amount per bill / visit"
+msgstr "Importe por factura / visita"
+
+#: apps/webapp/contract_views.py
+msgid "Leave empty to split the contract value."
+msgstr "Déjalo vacío para repartir el valor del contrato."
+
+#: apps/webapp/contract_views.py
+msgid "Contract %(number)s saved. Visits are planned by themselves."
+msgstr "Contrato %(number)s guardado. Las visitas se planifican solas."
+
+#: apps/webapp/contract_views.py
+msgid "%(n)s visit(s) added to the job cards."
+msgstr "%(n)s visita(s) añadida(s) a las órdenes de trabajo."
+
+#: apps/webapp/contract_views.py
+msgid "Contract paused — no visits or bills until you resume it."
+msgstr "Contrato en pausa — sin visitas ni facturas hasta que lo reanudes."
+
+#: apps/webapp/contract_views.py
+msgid "Contract resumed."
+msgstr "Contrato reanudado."
+
+#: apps/webapp/contract_views.py
+msgid "Contract cancelled. Future visits were cancelled too."
+msgstr "Contrato cancelado. También se cancelaron las visitas futuras."
+
+#: apps/webapp/contract_views.py
+msgid "Renewed as %(number)s."
+msgstr "Renovado como %(number)s."
 
 #: apps/webapp/crm_views.py
 msgid "Enter what the deal is about."
@@ -13974,10 +14342,6 @@ msgid "Event date"
 msgstr "Fecha del evento"
 
 #: apps/webapp/online_booking_views.py
-msgid "Ends"
-msgstr "Termina"
-
-#: apps/webapp/online_booking_views.py
 msgid "Membership / trial"
 msgstr "Membresía / prueba"
 
@@ -14155,10 +14519,6 @@ msgstr "Elige qué quieres reservar."
 #: apps/webapp/online_booking_views.py
 msgid "Choose the check-out / return date."
 msgstr "Elige la fecha de salida / devolución."
-
-#: apps/webapp/online_booking_views.py
-msgid "The end date must be after the start date."
-msgstr "La fecha de fin debe ser posterior a la de inicio."
 
 #: apps/webapp/online_booking_views.py
 msgid "Online booking is not available."

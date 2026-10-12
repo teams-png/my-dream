@@ -250,7 +250,8 @@ def renewal_whatsapp(contract):
     number = normalise_phone(contract.customer.phone, contract.company.country)
     if not number:
         return ""
-    text = _("Hello %(name)s, your maintenance contract %(number)s (%(title)s) with %(shop)s ends on %(date)s. Shall we renew it for you?") % {  # noqa: E501"name": contract.customer.name, "number": contract.number,
+    text = _("Hello %(name)s, your maintenance contract %(number)s (%(title)s) with %(shop)s ends on %(date)s. Shall we renew it for you?") % {  # noqa: E501
+        "name": contract.customer.name, "number": contract.number,
                                                "title": contract.title, "shop": contract.company.name,
                                                "date": contract.end_date.strftime("%d %b %Y")}
     return f"https://wa.me/{number}?text={quote(text)}"

@@ -8,8 +8,13 @@
 # Monthly cost at these plans (check render.com/pricing): web Starter, Postgres Basic-256MB,
 # Key Value Starter, Cron Job (billed per minute it runs — a few cents). Move the web service to
 # Standard (2 GB) when you have many shops online at once, and raise WEB_CONCURRENCY to 4.
+#
+# Region: Frankfurt is the closest Render region to the Gulf (about 3x less delay per page than the
+# US default). Every service and the database must be in the same region. A region cannot be changed
+# later — moving means new services in the new region and copying the database over.
 databases:
   - name: bookpilot-db
+    region: frankfurt
     plan: basic-256mb        # paid Postgres: kept forever, daily backups (the free one is deleted after 30 days)
     databaseName: bookpilot
     user: bookpilot
@@ -17,6 +22,7 @@ databases:
 services:
   - type: web
     name: bookpilot-web
+    region: frankfurt
     runtime: python
     plan: starter            # always on (the free plan sleeps and loses uploads)
     buildCommand: "./build.sh"
@@ -108,6 +114,7 @@ services:
 
   - type: keyvalue
     name: bookpilot-redis
+    region: frankfurt
     plan: starter            # paid: data is kept on restart (cache, rate limits, kitchen-screen updates)
     maxmemoryPolicy: allkeys-lru
     ipAllowList: []          # only reachable from your Render services
@@ -117,6 +124,7 @@ services:
   # the jobs run only once per day).
   - type: cron
     name: bookpilot-daily
+    region: frankfurt
     runtime: python
     plan: starter
     schedule: "30 20 * * *"  # 20:30 UTC = 23:30 Qatar / 02:00 India

@@ -9,6 +9,12 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".onrender.com"])
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=["https://*.onrender.com"])
 
 DATABASES["default"] = env.db("DATABASE_URL")
+# Keep database connections open and share them (psycopg pool): without it every request opens a new connection.
+# Django's persistent connections (CONN_MAX_AGE) are not safe under ASGI, a pool is.
+if env.bool("DB_POOL", default=True):
+    DATABASES["default"]["CONN_MAX_AGE"] = 0
+    DATABASES["default"].setdefault("OPTIONS", {})["pool"] = {
+        "min_size": 1, "max_size": env.int("DB_POOL_SIZE", default=8), "timeout": 20, "max_idle": 300}
 
 # WhiteNoise for static files on Render (Phase 0 Section 12)
 MIDDLEWARE.insert(MIDDLEWARE.index("django.middleware.security.SecurityMiddleware") + 1, "whitenoise.middleware.WhiteNoiseMiddleware")

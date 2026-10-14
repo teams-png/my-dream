@@ -9,9 +9,9 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".onrender.com"])
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=["https://*.onrender.com"])
 
 DATABASES["default"] = env.db("DATABASE_URL")
-# Keep database connections open and share them (psycopg pool): without it every request opens a new connection.
-# Django's persistent connections (CONN_MAX_AGE) are not safe under ASGI, a pool is.
-if env.bool("DB_POOL", default=True):
+# Optional: keep database connections open and share them (psycopg pool). Off by default — turn on with DB_POOL=1
+# only after checking it on this server (it was turned off after pages failed right after enabling it).
+if env.bool("DB_POOL", default=False):
     DATABASES["default"]["CONN_MAX_AGE"] = 0
     DATABASES["default"].setdefault("OPTIONS", {})["pool"] = {
         "min_size": 1, "max_size": env.int("DB_POOL_SIZE", default=8), "timeout": 20, "max_idle": 300}

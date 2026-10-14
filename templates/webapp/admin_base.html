@@ -176,9 +176,12 @@
   const url="{% url 'webapp:platform_support_unread' %}", badges=document.querySelectorAll('[data-help-count]'), title=document.title;
   let known=null;
   function beep(){try{const c=new (window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.frequency.value=880;g.gain.value=.08;o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.18)}catch(e){}}
+  let timer=null;
   async function check(){
     try{
-      const r=await fetch(url,{headers:{'x-requested-with':'fetch'}});if(!r.ok)return;
+      const r=await fetch(url,{headers:{'x-requested-with':'fetch'}});
+      if(r.status===401||r.status===403){clearInterval(timer);return}  // signed out: stop asking
+      if(!r.ok)return;
       const d=await r.json();
       badges.forEach(b=>{b.textContent=d.unread;b.hidden=!d.unread});
       document.title=(d.unread?'('+d.unread+') ':'')+title;
@@ -194,7 +197,7 @@
   }
   const btn=document.querySelector('[data-enable-alerts]');
   if(btn&&window.Notification&&Notification.permission==='default'){btn.hidden=false;btn.onclick=()=>Notification.requestPermission().then(()=>{btn.hidden=true})}
-  check();setInterval(check,30000);
+  timer=setInterval(check,30000);check();
 })();
 </script>
 <script>(function(){const shell=document.getElementById('appShell');document.addEventListener('click',e=>{if(e.target.closest('[data-nav-toggle]'))shell.classList.toggle('nav-open');else if(e.target.closest('[data-nav-close]'))shell.classList.remove('nav-open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')shell.classList.remove('nav-open')})})();</script>

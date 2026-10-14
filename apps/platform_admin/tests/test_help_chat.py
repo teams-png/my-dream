@@ -74,7 +74,7 @@ def test_client_pages(tenant_a, tenant_a_owner, tenant_b, tenant_b_owner):
     assert "Hello support" not in other.get(reverse("webapp:help")).content.decode()
     # staff can't open the admin inbox
     assert c.get(reverse("webapp:platform_support_list")).status_code == 302
-    assert c.get(reverse("webapp:platform_support_unread")).status_code == 302
+    assert c.get(reverse("webapp:platform_support_unread")).status_code == 401  # JSON, not a login redirect
 
 
 def test_expired_client_can_still_ask_for_help(tenant_a, tenant_a_owner):
@@ -86,6 +86,8 @@ def test_expired_client_can_still_ask_for_help(tenant_a, tenant_a_owner):
     c = _login(tenant_a_owner)
     assert c.get(reverse("webapp:dashboard")).status_code == 302
     assert c.get(reverse("webapp:help")).status_code == 200
+    # the installed app's files still load (a redirect here breaks the offline cache)
+    assert c.get("/service-worker.js").status_code == 200 and c.get("/manifest.webmanifest").status_code == 200
 
 
 def test_admin_inbox(tenant_a, tenant_a_owner, tenant_b, admin_user):

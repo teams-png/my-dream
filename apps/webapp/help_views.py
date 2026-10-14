@@ -174,10 +174,11 @@ def platform_support_start(request, company_id):
         "company": company, "d": support.client_details(company)})
 
 
-@login_required
-@superuser_required
 @require_GET
 def platform_support_unread(request):
+    # polled every 30 s by open admin tabs: answer JSON, never a redirect to the login page
+    if not (request.user.is_authenticated and request.user.is_active and request.user.is_platform_admin):
+        return JsonResponse({"detail": "Sign in as a platform admin."}, status=401)
     latest = (SupportTicket.objects.filter(admin_unread__gt=0).select_related("company")
               .order_by("-last_message_at").first())
     return JsonResponse({

@@ -70,5 +70,11 @@ if SENTRY_DSN:  # optional error alerts: set SENTRY_DSN in Render's environment
 # One cache shared by every web worker (rate limits, client-domain lookups, cached website pages).
 # Render Key Value (Redis) is already in the blueprint for Channels; without it each worker keeps its own cache.
 if env("REDIS_URL", default=""):
-    CACHES = {"default": {"BACKEND": "django.core.cache.backends.redis.RedisCache", "LOCATION": env("REDIS_URL"),
-                          "KEY_PREFIX": "bp", "TIMEOUT": 300}}
+    # One shared pool per process with a fixed number of connections (Django's own RedisCache opens a new
+    # pool on every ASGI request and Redis fills up: "max number of clients reached"); Redis trouble = cache miss.
+    CACHES = {"default": {"BACKEND": "apps.common.redis_cache.SafeRedisCache", "LOCATION": env("REDIS_URL"),
+                          "KEY_PREFIX": "bp", "TIMEOUT": 300,
+                          "OPTIONS": {"pool_class": "apps.common.redis_cache.SharedConnectionPool",
+                                      "max_connections": env.int("REDIS_CACHE_CONNECTIONS", default=10),
+                                      "timeout": 3, "socket_connect_timeout": 3, "socket_timeout": 3,
+                                      "health_check_interval": 30}}}

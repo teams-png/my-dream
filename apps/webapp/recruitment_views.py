@@ -14,13 +14,13 @@ from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy as _l
 
 from apps.customers.models import Customer
-from apps.industry import recruitment as svc
+from apps.industry import matching, recruitment as svc
 from apps.industry.models import Candidate, JobOrder, Placement, PlacementCost
 from apps.industry.common import PAYMENT_METHODS
 from apps.suppliers.models import Supplier
 
 from . import xlsx
-from .industry_access import require_industry
+from .industry_access import company_features, require_industry
 from apps.common.ids import pick_id
 
 recruitment_view = require_industry("recruitment")
@@ -53,7 +53,8 @@ class JobOrderForm(forms.ModelForm):
     class Meta:
         model = JobOrder
         fields = ["client", "position", "vacancies", "work_location", "nationality", "gender", "salary", "benefits",
-                  "contract_months", "fee_per_placement", "guarantee_days", "deadline", "requirements", "publish_online",
+                  "contract_months", "fee_per_placement", "guarantee_days", "deadline", "requirements", "skills",
+                  "min_experience", "max_age", "publish_online",
                   "public_summary", "status"]
         labels = {"client": _l("Client"), "position": _l("Position / job title"), "vacancies": _l("Number of people"),
                   "work_location": _l("Work location"), "nationality": _l("Preferred nationality"),
@@ -61,6 +62,8 @@ class JobOrderForm(forms.ModelForm):
                   "contract_months": _l("Contract (months)"), "fee_per_placement": _l("Our fee per person (charged to client)"),
                   "guarantee_days": _l("Replacement guarantee (days)"), "deadline": _l("Needed by"),
                   "requirements": _l("Requirements"), "gender": _l("Gender"), "status": _l("Status"),
+                  "skills": _l("Skills needed (comma separated)"), "min_experience": _l("Minimum experience (years)"),
+                  "max_age": _l("Maximum age"),
                   "publish_online": _l("Show on our careers website"), "public_summary": _l("Job description for the website")}
         widgets = {"deadline": DATE, "requirements": forms.Textarea(attrs={"rows": 3}),
                    "public_summary": forms.Textarea(attrs={"rows": 3})}
@@ -82,11 +85,11 @@ class JobOrderForm(forms.ModelForm):
 class CandidateForm(forms.ModelForm):
     class Meta:
         model = Candidate
-        fields = ["name", "phone", "email", "trade", "nationality", "gender", "date_of_birth", "passport_no",
+        fields = ["name", "phone", "email", "trade", "skills", "nationality", "gender", "date_of_birth", "passport_no",
                   "passport_expiry", "experience_years", "gulf_experience", "current_location", "expected_salary",
                   "languages", "education", "agent", "cv", "notes", "status"]
         labels = {"name": _l("Full name"), "phone": _l("Phone / WhatsApp"), "trade": _l("Position / skill"),
-                  "nationality": _l("Nationality"), "gender": _l("Gender"), "date_of_birth": _l("Date of birth"),
+                  "skills": _l("Skills (comma separated)"), "nationality": _l("Nationality"), "gender": _l("Gender"), "date_of_birth": _l("Date of birth"),
                   "passport_no": _l("Passport number"), "passport_expiry": _l("Passport expiry"),
                   "experience_years": _l("Experience (years)"), "gulf_experience": _l("Has Gulf experience"),
                   "current_location": _l("Current location"), "expected_salary": _l("Expected salary"),
@@ -258,15 +261,10 @@ def rec_job_detail(request, job_id):
                for code, label in Placement.STAGES if code not in ("rejected", "withdrawn")]
     dropped = [p for p in placements if p.stage in ("rejected", "withdrawn")]
     in_job = {p.candidate_id for p in placements}
-    suggest = Candidate.objects.for_company(company).filter(status__in=["available", "in_process"]).exclude(id__in=in_job)
-    if request.GET.get("all") != "1":
-        terms = [w for w in job.position.split() if len(w) > 2]
-        if terms:
-            match = Q()
-            for w in terms:
-                match |= Q(trade__icontains=w)
-            matched = suggest.filter(match)
-            suggest = matched if matched.exists() else suggest
+    pool = Candidate.objects.for_company(company).filter(status__in=["available", "in_process"]).exclude(id__in=in_job)
+    ranked = matching.rank(job, pool.order_by("-created_at")[:2000])
+    show_all = request.GET.get("all") == "1"
+    suggest = ranked if show_all else ([c for c in ranked if c.match >= 40 and not c.blocked] or ranked)
     share = [f"*{_('Job opening')}: {job.position}*", f"{_('Location')}: {job.work_location or '—'}",
              f"{_('Vacancies')}: {job.vacancies}"]
     if job.salary:
@@ -278,7 +276,7 @@ def rec_job_detail(request, job_id):
     share.append(f"{company.name} {company.phone or ''}".strip())
     return render(request, "webapp/recruitment/job_detail.html", {
         "job": job, "columns": columns, "dropped": dropped, "deployed": svc.deployed_count(job),
-        "suggest": suggest.order_by("name")[:200], "stages": Placement.STAGES,
+        "suggest": suggest, "show_all": show_all, "stages": Placement.STAGES,
         "share": f"https://wa.me/?text={quote(chr(10).join(share))}",
         "client_update": _wa(job.client.phone, _client_update(job, placements))})
 
@@ -306,7 +304,7 @@ def rec_candidates(request):
     query = (request.GET.get("q") or "").strip()
     if query:
         qs = qs.filter(Q(name__icontains=query) | Q(phone__icontains=query) | Q(passport_no__icontains=query)
-                       | Q(trade__icontains=query) | Q(nationality__icontains=query) | Q(number__icontains=query))
+                       | Q(trade__icontains=query) | Q(skills__icontains=query) | Q(nationality__icontains=query) | Q(number__icontains=query))
     if xlsx.wants(request):
         data = [[_("Number"), _("Name"), _("Position / skill"), _("Nationality"), _("Phone"), _("Passport number"),
                  _("Passport expiry"), _("Experience (years)"), _("Expected salary"), _("Sub-agent"), _("Status")]]
@@ -378,6 +376,8 @@ def rec_candidate_detail(request, candidate_id):
         "passport_note": _("Passport expires in %(d)s days.") % {"d": days} if days is not None else "",
         "open_jobs": JobOrder.objects.for_company(company).filter(status="open").exclude(placements__candidate=candidate)
         .select_related("client").order_by("-created_at")[:100],
+        "fit_jobs": matching.jobs_for(candidate, JobOrder.objects.for_company(company).filter(status="open")
+                                      .exclude(placements__candidate=candidate).select_related("client")[:300], today),
         "whatsapp": _wa(candidate.phone, _("Hello %(name)s, this is %(company)s.") % {"name": candidate.name, "company": company.name})})
 
 
@@ -451,6 +451,16 @@ def rec_placement(request, placement_id):
                              amount=request.POST.get("amount"), paid_to=request.POST.get("paid_to") or "",
                              payment_method="bank" if method == "bank" else method)
                 messages.success(request, _("Cost recorded in expenses."))
+            elif action == "make_worker" and "manpower" in company_features(company):
+                from apps.employees import site_workers as sw
+                from apps.employees.models import WorkSite
+                if placement.stage != "deployed":
+                    raise ValidationError(_("Mark the candidate as joined first."))
+                site = WorkSite.objects.for_company(company).filter(id=pick_id(request.POST.get("site"))).first()
+                worker, made = sw.worker_from_candidate(placement, site)
+                if made:
+                    messages.success(request, _("%(name)s is now a site worker.") % {"name": worker.name})
+                return redirect("webapp:staff_detail", worker.id)
         except ValidationError as exc:
             _err(request, exc)
         return redirect("webapp:rec_placement", placement.id)
@@ -474,7 +484,16 @@ def rec_placement(request, placement_id):
         "cost_types": PlacementCost.TYPES, "methods": PAYMENT_METHODS,
         "wa": {k: _wa(c.phone, v) for k, v in texts.items()},
         "wa_client": _wa(job.client.phone, f"{job.number} {job.position}: {c.name} — {placement.get_stage_display()}"),
+        **_manpower(company, c),
     })
+
+
+def _manpower(company, candidate):
+    if "manpower" not in company_features(company):
+        return {}
+    from apps.employees.models import Employee, WorkSite
+    return {"manpower": True, "sites": WorkSite.objects.for_company(company).filter(is_active=True),
+            "worker": Employee.objects.for_company(company).filter(candidate=candidate).select_related("site").first()}
 
 
 def _msgids():  # choice labels shown with {% translate %}, for the translation catalogue

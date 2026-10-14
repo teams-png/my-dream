@@ -139,6 +139,9 @@ INDUSTRY_FEATURES = {
     "eye_test": {"optical_shop"},
     # garment tags and tag slips for every piece on the job card
     "laundry": {"laundry_dry_cleaning"},
+    # site workers (manpower supply): workers at clients' sites, ID / passport expiry, site timesheet, monthly client bill
+    "manpower": {"recruitment_agency", "security_services", "cleaning_company", "maintenance_company",
+                 "landscaping_company", "facility_management"},
     # yearly maintenance / service contracts (AMC) with visits planned by themselves and contract billing
     "contracts": {"ac_maintenance", "pest_control", "home_services", "repair_services", "cleaning_equipment_service",
                   "electronics_repair", "computer_repair", "security_services", "cleaning_company",

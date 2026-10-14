@@ -34,6 +34,14 @@
     <div class="ix-card"><h3>{% translate "Jobs" %}</h3>
       <div class="ix-list">{% for p in placements %}<a class="ix-row" href="{% url 'webapp:rec_placement' p.id %}"><span class="grow"><b>{{ p.job_order.position }}</b><small>{{ p.job_order.number }} · {{ p.job_order.client.name }}</small></span><span class="ix-chip {{ p.stage }}">{{ p.get_stage_display }}</span></a>
       {% empty %}<div class="ix-empty">{% translate "Not put forward for any job yet." %}</div>{% endfor %}</div>
+      {% if fit_jobs and c.status != "not_suitable" %}
+      <h4 style="margin:16px 0 6px">🎯 {% translate "Best-fitting open jobs" %}</h4>
+      <div class="ix-list">{% for j in fit_jobs %}<form method="post" class="ix-row" style="align-items:center">{% csrf_token %}<input type="hidden" name="action" value="submit"><input type="hidden" name="job" value="{{ j.id }}">
+        <span class="rc-m {% if j.match >= 70 %}hi{% elif j.match >= 40 %}mid{% endif %}">{{ j.match }}%</span>
+        <span class="grow"><a href="{% url 'webapp:rec_job_detail' j.id %}"><b>{{ j.position }}</b></a><small>{{ j.number }} · {{ j.client.name }}</small>
+          <span class="rc-why">{% for ok, text in j.reasons %}<i class="{% if ok %}y{% else %}n{% endif %}">{% if ok %}✓{% else %}✗{% endif %} {{ text }}</i>{% endfor %}</span></span>
+        <button class="btn btn-secondary" type="submit">{% translate "Add" %}</button></form>{% endfor %}</div>
+      {% endif %}
       {% if open_jobs and c.status != "not_suitable" %}
       <form method="post" class="rc-inline" style="margin-top:14px">{% csrf_token %}<input type="hidden" name="action" value="submit">
         <div><label>{% translate "Put forward for" %}</label><select name="job">{% for j in open_jobs %}<option value="{{ j.id }}">{{ j.number }} · {{ j.position }} · {{ j.client.name }}</option>{% endfor %}</select></div>

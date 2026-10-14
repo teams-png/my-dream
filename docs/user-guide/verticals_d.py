@@ -268,7 +268,7 @@ VERTICALS.append(dict(
  tag="Clients' job orders, candidates, the placement pipeline and a careers website",
  covers=["Recruitment Agency"],
  lead="Take job orders from employers, add candidates with CV and passport details, move them through interview, medical, visa and ticket to joining — then bill the client and track your profit per job. Publish open jobs on your own careers website.",
- chips=["Job orders", "Candidates &amp; CVs", "Pipeline to joining", "Careers website", "Fees &amp; profit"],
+ chips=["Job orders", "Candidates &amp; CVs", "Skill match", "Pipeline to joining", "Site workers &amp; ID expiry", "Careers website", "Fees &amp; profit"],
  menu_title="Recruitment",
  menu=["Overview", "Clients", "Job orders", "Candidates", "Careers website"],
  flow=[("Client", "employer"), ("Job order", "position + people needed"), ("Candidates", "CV + passport"), ("Pipeline", "interview → visa → ticket"), ("Bill", "fee + costs = profit")],
@@ -285,8 +285,10 @@ VERTICALS.append(dict(
  tasks=[
   ("Add a candidate",
    ["Open [[Candidates]] → [[New candidate]]: name, phone/WhatsApp, passport number and expiry, position/skill, experience and CV."]),
-  ("Put candidates forward for a job",
-   ["Open the job order → <b>Add candidates to this job</b> — matching available candidates are suggested."]),
+  ("Put candidates forward for a job (skill match)",
+   ["On the job order fill <b>Skills needed</b> (e.g. <i>MEP, AutoCAD, Gulf licence</i>), <b>Minimum experience</b> and <b>Maximum age</b>; give each candidate their <b>Skills</b>.",
+    "Open the job order → <b>Add candidates to this job</b>: candidates are listed best match first with a <b>%</b> and ✓ / ✗ for each skill, experience, nationality, age, salary and passport.",
+    "On a candidate's page, <b>Best-fitting open jobs</b> shows the jobs they suit — press [[Add]]."]),
   ("Move a candidate through the stages",
    ["On the job, change the <b>Stage</b>. Use <b>Send interview details</b>, <b>Tell candidate: selected</b> and <b>Send travel date</b> to message them on WhatsApp."]),
   ("Bill and see profit",
@@ -300,3 +302,9 @@ VERTICALS.append(dict(
  faq=[("The client's name is on the website?", "No. Job seekers never see the client's name."),
       ("Can my existing website show the jobs?", "Yes — use the WordPress plugin or the job-list link on the Careers website page.")],
 ))
+
+from verticals_c import MANPOWER_TASKS  # noqa: E402
+for _v in VERTICALS:
+    if _v.get("slug") == "recruitment":
+        _v["tasks"] = list(_v["tasks"]) + MANPOWER_TASKS
+        _v["menu"] = list(_v["menu"]) + ["Workers &amp; ID expiry", "Sites", "Site attendance", "Client billing"]

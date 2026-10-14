@@ -690,6 +690,26 @@ msgid "Careers website"
 msgstr "Kariyer sitesi"
 
 #: templates/webapp/_industry_nav.html
+msgid "Site workers"
+msgstr "Saha çalışanları"
+
+#: templates/webapp/_industry_nav.html
+msgid "Workers & ID expiry"
+msgstr "Çalışanlar ve kimlik bitiş tarihleri"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sites"
+msgstr "Sahalar"
+
+#: templates/webapp/_industry_nav.html
+msgid "Site attendance"
+msgstr "Saha yoklaması"
+
+#: templates/webapp/_industry_nav.html
+msgid "Client billing"
+msgstr "Müşteri faturalandırma"
+
+#: templates/webapp/_industry_nav.html
 msgid "Gold"
 msgstr "Altın"
 
@@ -4206,6 +4226,14 @@ msgid "Login"
 msgstr "Giriş"
 
 #: templates/webapp/hr/staff_detail.html
+msgid "Site worker"
+msgstr "Saha çalışanı"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Not on any site"
+msgstr "Hiçbir sahada değil"
+
+#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "aylık"
 
@@ -5826,6 +5854,194 @@ msgstr "Yeni misiniz?"
 #: templates/webapp/login.html
 msgid "Start a free trial"
 msgstr "Ücretsiz denemeyi başlat"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Add a site first."
+msgstr "Önce bir saha ekleyin."
+
+#: templates/webapp/manpower/attendance.html
+msgid "New site"
+msgstr "Yeni saha"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Normal hours per day"
+msgstr "Günlük normal saat"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Marked at another site"
+msgstr "Başka sahada işaretli"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Hours"
+msgstr "Saat"
+
+#: templates/webapp/manpower/attendance.html
+msgid "OT hours"
+msgstr "Fazla mesai saati"
+
+#: templates/webapp/manpower/attendance.html
+msgid "No workers at this site yet."
+msgstr "Bu sahada henüz çalışan yok."
+
+#: templates/webapp/manpower/attendance.html
+msgid "Move workers to this site"
+msgstr "Çalışanları bu sahaya taşı"
+
+#: templates/webapp/manpower/billing.html
+msgid "Still to bill this month"
+msgstr "Bu ay faturalanacak"
+
+#: templates/webapp/manpower/billing.html
+msgid ""
+"From the site attendance: hours, days or a monthly rate per worker × the "
+"rate, plus overtime. One invoice per site per month."
+msgstr ""
+"Saha yoklamasından: saat, gün veya çalışan başına aylık ücret × ücret, artı "
+"fazla mesai. Her saha için ayda bir fatura."
+
+#: templates/webapp/manpower/billing.html
+msgid "No attendance this month."
+msgstr "Bu ay yoklama yok."
+
+#: templates/webapp/manpower/billing.html
+msgid "Open invoice"
+msgstr "Faturayı aç"
+
+#: templates/webapp/manpower/billing.html
+msgid "Make the invoice for this site and month?"
+msgstr "Bu saha ve ay için fatura oluşturulsun mu?"
+
+#: templates/webapp/manpower/billing.html
+msgid "Make invoice"
+msgstr "Fatura oluştur"
+
+#: templates/webapp/manpower/billing.html
+msgid "Choose the client for this site first."
+msgstr "Önce bu sahanın müşterisini seçin."
+
+#: templates/webapp/manpower/home.html
+msgid "Active sites"
+msgstr "Aktif sahalar"
+
+#: templates/webapp/manpower/home.html
+msgid "Documents expired"
+msgstr "Süresi dolan belgeler"
+
+#: templates/webapp/manpower/home.html
+msgid "Add site worker"
+msgstr "Saha çalışanı ekle"
+
+#: templates/webapp/manpower/home.html
+msgid "Name, phone, trade or ID number"
+msgstr "Ad, telefon, meslek veya kimlik numarası"
+
+#: templates/webapp/manpower/home.html
+msgid "All sites"
+msgstr "Tüm sahalar"
+
+#: templates/webapp/manpower/home.html
+msgid "Site"
+msgstr "Saha"
+
+#: templates/webapp/manpower/home.html
+msgid "No site workers yet."
+msgstr "Henüz saha çalışanı yok."
+
+#: templates/webapp/manpower/home.html
+msgid "Documents expired or expiring in 60 days"
+msgstr "Süresi dolmuş veya 60 gün içinde dolacak belgeler"
+
+#: templates/webapp/manpower/home.html
+msgid "Document"
+msgstr "Belge"
+
+#: templates/webapp/manpower/home.html
+msgid "Expiry"
+msgstr "Bitiş"
+
+#: templates/webapp/manpower/home.html
+msgid "Nothing expiring. 👍"
+msgstr "Süresi dolan bir şey yok. 👍"
+
+#: templates/webapp/manpower/site.html
+msgid "Client"
+msgstr "Müşteri"
+
+#: templates/webapp/manpower/site.html
+msgid "Workers here"
+msgstr "Buradaki çalışanlar"
+
+#: templates/webapp/manpower/site.html
+msgid "Rate per worker"
+msgstr "Çalışan başına ücret"
+
+#: templates/webapp/manpower/site.html
+msgid "Site supervisor"
+msgstr "Saha sorumlusu"
+
+#: templates/webapp/manpower/site.html
+msgid "Today's attendance"
+msgstr "Bugünün yoklaması"
+
+#: templates/webapp/manpower/site.html
+msgid "Workers at this site"
+msgstr "Bu sahadaki çalışanlar"
+
+#: templates/webapp/manpower/site.html
+msgid "Take off this site"
+msgstr "Bu sahadan çıkar"
+
+#: templates/webapp/manpower/site.html
+msgid "Move here"
+msgstr "Buraya taşı"
+
+#: templates/webapp/manpower/site.html
+msgid "This month so far"
+msgstr "Bu ay şimdiye kadar"
+
+#: templates/webapp/manpower/site.html
+msgid "To bill"
+msgstr "Faturalanacak"
+
+#: templates/webapp/manpower/site.html
+msgid "No attendance this month yet."
+msgstr "Bu ay henüz yoklama yok."
+
+#: templates/webapp/manpower/site.html
+msgid "Site details & rates"
+msgstr "Saha bilgileri ve ücretler"
+
+#: templates/webapp/manpower/sites.html
+msgid "Closed sites"
+msgstr "Kapalı sahalar"
+
+#: templates/webapp/manpower/sites.html
+msgid "No sites yet. Add the first client site below."
+msgstr "Henüz saha yok. İlk müşteri sahasını aşağıdan ekleyin."
+
+#: templates/webapp/manpower/worker_form.html
+msgid "Edit site worker"
+msgstr "Saha çalışanını düzenle"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "Worker"
+msgstr "Çalışan"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "ID & documents"
+msgstr "Kimlik ve belgeler"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "you are warned 30 and 7 days before expiry"
+msgstr "bitişten 30 ve 7 gün önce uyarılırsınız"
+
+#: templates/webapp/manpower/worker_form.html
+msgid ""
+"Per day / per hour: payroll pays for the days or hours marked on the site "
+"attendance. Overtime hours from the site attendance are added too."
+msgstr ""
+"Günlük / saatlik: bordro, saha yoklamasında işaretlenen gün veya saatleri "
+"öder. Saha yoklamasındaki fazla mesai saatleri de eklenir."
 
 #: templates/webapp/mess/bills.html
 msgid "Mess bills"
@@ -8470,6 +8686,10 @@ msgid "Not put forward for any job yet."
 msgstr "Henüz bir işe önerilmedi."
 
 #: templates/webapp/recruitment/candidate_detail.html
+msgid "Best-fitting open jobs"
+msgstr "En uygun açık işler"
+
+#: templates/webapp/recruitment/candidate_detail.html
 msgid "Put forward for"
 msgstr "Önerildiği iş"
 
@@ -8606,10 +8826,6 @@ msgid "Update client"
 msgstr "Müşteriyi güncelle"
 
 #: templates/webapp/recruitment/job_detail.html
-msgid "Client"
-msgstr "Müşteri"
-
-#: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
 msgstr "Başlayan / gereken"
 
@@ -8634,8 +8850,13 @@ msgid "Add candidates to this job"
 msgstr "Bu işe aday ekle"
 
 #: templates/webapp/recruitment/job_detail.html
-msgid "Matching available candidates"
-msgstr "Eşleşen uygun adaylar"
+msgid ""
+"Best matches first (skills, experience, nationality, age, salary, passport)"
+msgstr "En iyi eşleşmeler önce (beceri, deneyim, uyruk, yaş, maaş, pasaport)"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "only good matches"
+msgstr "yalnızca iyi eşleşmeler"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "show all"
@@ -8768,6 +8989,30 @@ msgstr "Aday işlem ücreti (isteğe bağlı)"
 #: templates/webapp/recruitment/placement.html
 msgid "Bill candidate"
 msgstr "Adayı faturala"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Our site worker"
+msgstr "Saha çalışanımız"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Already a site worker"
+msgstr "Zaten saha çalışanı"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Working at site"
+msgstr "Çalıştığı saha"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Make site worker"
+msgstr "Saha çalışanı yap"
+
+#: templates/webapp/recruitment/placement.html
+msgid ""
+"For workers on our own payroll who work at the client's site. Passport and "
+"visa are copied."
+msgstr ""
+"Bordromuzda olup müşterinin sahasında çalışanlar için. Pasaport ve vize "
+"kopyalanır."
 
 #: templates/webapp/recruitment/placement.html
 msgid "Costs (medical, visa, ticket, agent…)"
@@ -12056,6 +12301,30 @@ msgstr "%(label)s seçin"
 msgid "Select…"
 msgstr "Seçin…"
 
+#: apps/employees/site_workers.py
+msgid "Choose a site."
+msgstr "Bir saha seçin."
+
+#: apps/employees/site_workers.py
+msgid "Hours must be between 0 and 24."
+msgstr "Saat 0 ile 24 arasında olmalıdır."
+
+#: apps/employees/site_workers.py
+msgid "You cannot mark attendance for a future date."
+msgstr "Gelecek bir tarih için yoklama işaretleyemezsiniz."
+
+#: apps/employees/site_workers.py
+msgid "This month has not started yet."
+msgstr "Bu ay henüz başlamadı."
+
+#: apps/employees/site_workers.py
+msgid "This site is already billed for %(month)s."
+msgstr "Bu saha %(month)s için zaten faturalandı."
+
+#: apps/employees/site_workers.py
+msgid "Nothing to bill: no attendance or no rate for %(month)s."
+msgstr "Faturalanacak bir şey yok: %(month)s için yoklama veya ücret yok."
+
 #: apps/finance/models.py
 msgid "Received from customer"
 msgstr "Müşteriden alındı"
@@ -12264,6 +12533,34 @@ msgstr "%(what)s üzerinde çalışıyoruz (iş %(number)s)."
 #: apps/industry/jobs.py
 msgid "Status: %(url)s"
 msgstr "Durum: %(url)s"
+
+#: apps/industry/matching.py
+msgid "No position / skill"
+msgstr "Pozisyon / beceri yok"
+
+#: apps/industry/matching.py
+msgid "%(have)s of %(need)s yrs experience"
+msgstr "%(need)s yılın %(have)s yılı deneyim"
+
+#: apps/industry/matching.py
+msgid "Nationality not given"
+msgstr "Uyruk girilmemiş"
+
+#: apps/industry/matching.py
+msgid "Age %(age)s"
+msgstr "Yaş %(age)s"
+
+#: apps/industry/matching.py
+msgid "Expects %(amount)s"
+msgstr "Beklenti %(amount)s"
+
+#: apps/industry/matching.py
+msgid "Passport valid"
+msgstr "Pasaport geçerli"
+
+#: apps/industry/matching.py
+msgid "Passport expires %(date)s"
+msgstr "Pasaport %(date)s tarihinde bitiyor"
 
 #: apps/industry/models.py
 msgid "Ready / on the way"
@@ -14085,10 +14382,6 @@ msgid "Leave type"
 msgstr "İzin türü"
 
 #: apps/webapp/hr_views.py
-msgid "Document"
-msgstr "Belge"
-
-#: apps/webapp/hr_views.py
 msgid "%(name)s removed."
 msgstr "%(name)s kaldırıldı."
 
@@ -14299,6 +14592,138 @@ msgstr "%(name)s için bağlantı hazır."
 #: apps/webapp/job_views.py
 msgid "From %(name)s"
 msgstr "%(name)s'den"
+
+#: apps/webapp/manpower_views.py
+msgid "Salary / pay rate"
+msgstr "Maaş / ücret oranı"
+
+#: apps/webapp/manpower_views.py
+msgid "Per month, per day or per hour — as chosen in “How we pay”."
+msgstr "Aylık, günlük veya saatlik — “Nasıl ödüyoruz” seçimine göre."
+
+#: apps/webapp/manpower_views.py
+msgid "Allowances per month (food, transport…)"
+msgstr "Aylık yardımlar (yemek, ulaşım…)"
+
+#: apps/webapp/manpower_views.py
+msgid "Fixed deductions per month"
+msgstr "Aylık sabit kesintiler"
+
+#: apps/webapp/manpower_views.py
+msgid "Overtime pay per hour"
+msgstr "Saatlik fazla mesai ücreti"
+
+#: apps/webapp/manpower_views.py
+msgid "Trade / skill"
+msgstr "Meslek / beceri"
+
+#: apps/webapp/manpower_views.py
+msgid "Accommodation / camp"
+msgstr "Konaklama / kamp"
+
+#: apps/webapp/manpower_views.py
+msgid "Joined on"
+msgstr "İşe başlama tarihi"
+
+#: apps/webapp/manpower_views.py
+msgid "How we pay"
+msgstr "Nasıl ödüyoruz"
+
+#: apps/webapp/manpower_views.py
+msgid "Client rate for this worker (optional)"
+msgstr "Bu çalışan için müşteri ücreti (isteğe bağlı)"
+
+#: apps/webapp/manpower_views.py
+msgid "Leave empty to use the site's rate."
+msgstr "Sahanın ücretini kullanmak için boş bırakın."
+
+#: apps/webapp/manpower_views.py
+msgid "e.g. Electrician, Cleaner, Security guard"
+msgstr "ör. Elektrikçi, Temizlikçi, Güvenlik görevlisi"
+
+#: apps/webapp/manpower_views.py
+msgid "%(doc)s number"
+msgstr "%(doc)s numarası"
+
+#: apps/webapp/manpower_views.py
+msgid "%(doc)s expiry"
+msgstr "%(doc)s bitişi"
+
+#: apps/webapp/manpower_views.py
+msgid "Site name"
+msgstr "Saha adı"
+
+#: apps/webapp/manpower_views.py
+msgid "Supervisor phone"
+msgstr "Sorumlu telefonu"
+
+#: apps/webapp/manpower_views.py
+msgid "Site is active"
+msgstr "Saha aktif"
+
+#: apps/webapp/manpower_views.py
+msgid "e.g. Al Wakra Mall – cleaning"
+msgstr "ör. Al Wakra Mall – temizlik"
+
+#: apps/webapp/manpower_views.py
+msgid "expired %(n)s days ago"
+msgstr "%(n)s gün önce süresi doldu"
+
+#: apps/webapp/manpower_views.py
+msgid "%(n)s days left"
+msgstr "%(n)s gün kaldı"
+
+#: apps/webapp/manpower_views.py
+msgid ""
+"Hello %(name)s, your %(doc)s expires on %(date)s. Please bring it for "
+"renewal."
+msgstr ""
+"Merhaba %(name)s, %(doc)s belgenizin süresi %(date)s tarihinde doluyor. "
+"Yenileme için lütfen getirin."
+
+#: apps/webapp/manpower_views.py
+msgid "%(count)s workers moved."
+msgstr "%(count)s çalışan taşındı."
+
+#: apps/webapp/manpower_views.py
+msgid "Invoice %(number)s made for %(site)s."
+msgstr "%(site)s için %(number)s faturası oluşturuldu."
+
+#: apps/webapp/manpower_views.py
+msgid "Per hour"
+msgstr "Saatlik"
+
+#: apps/webapp/manpower_views.py
+msgid "Per month"
+msgstr "Aylık"
+
+#: apps/webapp/manpower_views.py
+msgid "Monthly salary"
+msgstr "Aylık maaş"
+
+#: apps/webapp/manpower_views.py
+msgid "Per day worked"
+msgstr "Çalışılan gün başına"
+
+#: apps/webapp/manpower_views.py
+msgid "Per hour worked"
+msgstr "Çalışılan saat başına"
+
+#: apps/webapp/manpower_views.py
+msgid "ID / residence card"
+msgstr "Kimlik / ikamet kartı"
+
+#: apps/webapp/manpower_views.py
+msgid "Health card"
+msgstr "Sağlık kartı"
+
+#: apps/webapp/manpower_views.py
+msgid "Work visa"
+msgstr "Çalışma vizesi"
+
+#: apps/webapp/manpower_views.py
+msgid "Office staff"
+msgstr "Ofis personeli"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15409,6 +15834,18 @@ msgid "Replacement guarantee (days)"
 msgstr "Yerine aday garantisi (gün)"
 
 #: apps/webapp/recruitment_views.py
+msgid "Skills needed (comma separated)"
+msgstr "Gerekli beceriler (virgülle ayrılmış)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Minimum experience (years)"
+msgstr "Minimum deneyim (yıl)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Maximum age"
+msgstr "Maksimum yaş"
+
+#: apps/webapp/recruitment_views.py
 msgid "Show on our careers website"
 msgstr "Kariyer sitemizde göster"
 
@@ -15419,6 +15856,10 @@ msgstr "Web sitesi için iş tanımı"
 #: apps/webapp/recruitment_views.py
 msgid "Choose a client or type a new client's name."
 msgstr "Bir müşteri seçin veya yeni müşterinin adını yazın."
+
+#: apps/webapp/recruitment_views.py
+msgid "Skills (comma separated)"
+msgstr "Beceriler (virgülle ayrılmış)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Passport expiry"
@@ -15507,6 +15948,14 @@ msgstr "Aday için %(number)s faturası oluşturuldu."
 #: apps/webapp/recruitment_views.py
 msgid "Cost recorded in expenses."
 msgstr "Maliyet giderlere kaydedildi."
+
+#: apps/webapp/recruitment_views.py
+msgid "Mark the candidate as joined first."
+msgstr "Önce adayı işe başladı olarak işaretleyin."
+
+#: apps/webapp/recruitment_views.py
+msgid "%(name)s is now a site worker."
+msgstr "%(name)s artık saha çalışanı."
 
 #: apps/webapp/recruitment_views.py
 msgid ""

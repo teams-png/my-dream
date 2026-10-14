@@ -97,7 +97,8 @@ def check_document_expiry_and_notify(*, company, today=None, thresholds=(30, 7, 
     from apps.notifications.services import notify
     today = today or timezone.localdate()
     created = 0
-    for document in EmployeeDocument.objects.for_company(company).filter(expiry_date__isnull=False).select_related("employee"):
+    for document in EmployeeDocument.objects.for_company(company).filter(
+            expiry_date__isnull=False, employee__is_active=True).select_related("employee"):
         days = (document.expiry_date - today).days
         applicable = [threshold for threshold in thresholds if days <= threshold]
         if not applicable:
@@ -172,14 +173,27 @@ def create_payroll_run(*, company, user, period):
         )
         allowances = _money_total(structure.allowances)
         deductions = _money_total(structure.deductions)
+        # site timesheets: overtime hours entered with the day's attendance
+        site_ot = Attendance.objects.for_company(company).filter(
+            employee=structure.employee, date__range=(period.start_date, period.end_date),
+        ).aggregate(total=models.Sum("ot_hours"))["total"] or Decimal("0")
+        if site_ot:
+            overtime_hours += site_ot
+            overtime_amount += (site_ot * structure.overtime_hourly_rate).quantize(CENT)
+        basic_pay = structure.basic_pay
         absence_days = absence_deduction = Decimal("0")
-        if settings.deduct_absence:
+        if structure.employee.pay_basis in ("daily", "hourly"):
+            # paid for the days / hours actually worked, so no absence deduction
+            days, hours = worked_time(company=company, employee=structure.employee,
+                                      start=period.start_date, end=period.end_date)
+            basic_pay = (structure.basic_pay * (days if structure.employee.pay_basis == "daily" else hours)).quantize(CENT)
+        elif settings.deduct_absence:
             absence_days = unpaid_absence_days(company=company, employee=structure.employee,
                                                start=period.start_date, end=period.end_date)
             if absence_days:
                 daily = (structure.basic_pay + allowances) / period_days
                 absence_deduction = min((daily * absence_days).quantize(CENT), structure.basic_pay + allowances)
-        gross = structure.basic_pay + allowances + overtime_amount - absence_deduction
+        gross = basic_pay + allowances + overtime_amount - absence_deduction
         net = gross - deductions
         if net < 0:
             raise ValidationError(f"Net pay cannot be negative for {structure.employee.name}.")
@@ -187,7 +201,7 @@ def create_payroll_run(*, company, user, period):
         net -= advance
         PayrollLine.objects.create(
             company=company, payroll_run=payroll_run, employee=structure.employee,
-            basic_pay=structure.basic_pay, allowances=allowances,
+            basic_pay=basic_pay, allowances=allowances,
             overtime_hours=overtime_hours, overtime_amount=overtime_amount,
             deductions=deductions, gross_pay=gross, net_pay=net,
             absence_days=absence_days, absence_deduction=absence_deduction, advance_deduction=advance,
@@ -286,6 +300,17 @@ def mark_payroll_paid(*, company, payroll_line):
 # ---------------------------------------------------------------------------
 # Absence, salary advances, month payroll and salary payment (web HR screens)
 # ---------------------------------------------------------------------------
+
+def worked_time(*, company, employee, start, end, hours_per_day=Decimal("8")):
+    """(days, hours) worked: present = 1 day, half day = 0.5; hours as entered, else a full / half day's hours."""
+    days = hours = Decimal("0")
+    for status, entered in Attendance.objects.for_company(company).filter(
+            employee=employee, date__range=(start, end), status__in=["present", "half_day"]).values_list("status", "hours"):
+        part = Decimal("1") if status == "present" else Decimal("0.5")
+        days += part
+        hours += entered if entered is not None else hours_per_day * part
+    return days, hours
+
 
 def unpaid_absence_days(*, company, employee, start, end):
     """Absent = 1 day, half day = 0.5, plus approved leave of unpaid leave types in the period."""
@@ -429,3 +454,13 @@ def pay_payslip(*, company, user, payroll_line, method="cash", date=None):
     payroll_line.payment_method = method
     payroll_line.save(update_fields=["payment_status", "paid_at", "payment_method"])
     return payroll_line
+
+
+def run_daily_document_alerts():
+    """Daily job: staff / worker documents (ID, passport, health card…) expiring in 30 / 7 / 0 days."""
+    from apps.tenants.models import Company
+    count = 0
+    for company in Company.objects.filter(is_active=True):
+        if EmployeeDocument.objects.for_company(company).filter(expiry_date__isnull=False).exists():
+            count += check_document_expiry_and_notify(company=company)
+    return count

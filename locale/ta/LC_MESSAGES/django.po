@@ -693,6 +693,26 @@ msgid "Careers website"
 msgstr "வேலைவாய்ப்பு இணையதளம்"
 
 #: templates/webapp/_industry_nav.html
+msgid "Site workers"
+msgstr "தள பணியாளர்கள்"
+
+#: templates/webapp/_industry_nav.html
+msgid "Workers & ID expiry"
+msgstr "பணியாளர்கள் & ஐடி காலாவதி"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sites"
+msgstr "தளங்கள்"
+
+#: templates/webapp/_industry_nav.html
+msgid "Site attendance"
+msgstr "தள வருகை"
+
+#: templates/webapp/_industry_nav.html
+msgid "Client billing"
+msgstr "வாடிக்கையாளர் பில்லிங்"
+
+#: templates/webapp/_industry_nav.html
 msgid "Gold"
 msgstr "தங்கம்"
 
@@ -4240,6 +4260,14 @@ msgid "Login"
 msgstr "உள்நுழைவு"
 
 #: templates/webapp/hr/staff_detail.html
+msgid "Site worker"
+msgstr "தள பணியாளர்"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Not on any site"
+msgstr "எந்தத் தளத்திலும் இல்லை"
+
+#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "மாதத்திற்கு"
 
@@ -5870,6 +5898,195 @@ msgstr "புதியவரா?"
 #: templates/webapp/login.html
 msgid "Start a free trial"
 msgstr "இலவச சோதனையைத் தொடங்கு"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Add a site first."
+msgstr "முதலில் ஒரு தளத்தைச் சேர்க்கவும்."
+
+#: templates/webapp/manpower/attendance.html
+msgid "New site"
+msgstr "புதிய தளம்"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Normal hours per day"
+msgstr "ஒரு நாளின் சாதாரண மணி நேரம்"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Marked at another site"
+msgstr "வேறு தளத்தில் பதிவு"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Hours"
+msgstr "மணி நேரம்"
+
+#: templates/webapp/manpower/attendance.html
+msgid "OT hours"
+msgstr "கூடுதல் நேரம்"
+
+#: templates/webapp/manpower/attendance.html
+msgid "No workers at this site yet."
+msgstr "இந்தத் தளத்தில் இன்னும் பணியாளர்கள் இல்லை."
+
+#: templates/webapp/manpower/attendance.html
+msgid "Move workers to this site"
+msgstr "பணியாளர்களை இந்தத் தளத்திற்கு மாற்றவும்"
+
+#: templates/webapp/manpower/billing.html
+msgid "Still to bill this month"
+msgstr "இந்த மாதம் பில் செய்ய வேண்டியது"
+
+#: templates/webapp/manpower/billing.html
+msgid ""
+"From the site attendance: hours, days or a monthly rate per worker × the "
+"rate, plus overtime. One invoice per site per month."
+msgstr ""
+"தள வருகையிலிருந்து: மணி நேரம், நாட்கள் அல்லது ஒரு பணியாளருக்கான மாத விகிதம் "
+"× விகிதம், கூடுதல் நேரத்துடன். ஒரு தளத்திற்கு மாதம் ஒரு இன்வாய்ஸ்."
+
+#: templates/webapp/manpower/billing.html
+msgid "No attendance this month."
+msgstr "இந்த மாதம் வருகை இல்லை."
+
+#: templates/webapp/manpower/billing.html
+msgid "Open invoice"
+msgstr "இன்வாய்ஸைத் திற"
+
+#: templates/webapp/manpower/billing.html
+msgid "Make the invoice for this site and month?"
+msgstr "இந்தத் தளம் மற்றும் மாதத்திற்கான இன்வாய்ஸை உருவாக்கவா?"
+
+#: templates/webapp/manpower/billing.html
+msgid "Make invoice"
+msgstr "இன்வாய்ஸ் உருவாக்கு"
+
+#: templates/webapp/manpower/billing.html
+msgid "Choose the client for this site first."
+msgstr "முதலில் இந்தத் தளத்தின் வாடிக்கையாளரைத் தேர்ந்தெடுக்கவும்."
+
+#: templates/webapp/manpower/home.html
+msgid "Active sites"
+msgstr "செயலில் உள்ள தளங்கள்"
+
+#: templates/webapp/manpower/home.html
+msgid "Documents expired"
+msgstr "காலாவதியான ஆவணங்கள்"
+
+#: templates/webapp/manpower/home.html
+msgid "Add site worker"
+msgstr "தள பணியாளரைச் சேர்"
+
+#: templates/webapp/manpower/home.html
+msgid "Name, phone, trade or ID number"
+msgstr "பெயர், தொலைபேசி, தொழில் அல்லது ஐடி எண்"
+
+#: templates/webapp/manpower/home.html
+msgid "All sites"
+msgstr "அனைத்து தளங்களும்"
+
+#: templates/webapp/manpower/home.html
+msgid "Site"
+msgstr "தளம்"
+
+#: templates/webapp/manpower/home.html
+msgid "No site workers yet."
+msgstr "இன்னும் தள பணியாளர்கள் இல்லை."
+
+#: templates/webapp/manpower/home.html
+msgid "Documents expired or expiring in 60 days"
+msgstr "காலாவதியான அல்லது 60 நாட்களில் காலாவதியாகும் ஆவணங்கள்"
+
+#: templates/webapp/manpower/home.html
+msgid "Document"
+msgstr "ஆவணம்"
+
+#: templates/webapp/manpower/home.html
+msgid "Expiry"
+msgstr "காலாவதி"
+
+#: templates/webapp/manpower/home.html
+msgid "Nothing expiring. 👍"
+msgstr "எதுவும் காலாவதியாகவில்லை. 👍"
+
+#: templates/webapp/manpower/site.html
+msgid "Client"
+msgstr "வாடிக்கையாளர்"
+
+#: templates/webapp/manpower/site.html
+msgid "Workers here"
+msgstr "இங்குள்ள பணியாளர்கள்"
+
+#: templates/webapp/manpower/site.html
+msgid "Rate per worker"
+msgstr "ஒரு பணியாளருக்கான விகிதம்"
+
+#: templates/webapp/manpower/site.html
+msgid "Site supervisor"
+msgstr "தள மேற்பார்வையாளர்"
+
+#: templates/webapp/manpower/site.html
+msgid "Today's attendance"
+msgstr "இன்றைய வருகை"
+
+#: templates/webapp/manpower/site.html
+msgid "Workers at this site"
+msgstr "இந்தத் தளத்தின் பணியாளர்கள்"
+
+#: templates/webapp/manpower/site.html
+msgid "Take off this site"
+msgstr "இந்தத் தளத்திலிருந்து நீக்கு"
+
+#: templates/webapp/manpower/site.html
+msgid "Move here"
+msgstr "இங்கே மாற்று"
+
+#: templates/webapp/manpower/site.html
+msgid "This month so far"
+msgstr "இந்த மாதம் இதுவரை"
+
+#: templates/webapp/manpower/site.html
+msgid "To bill"
+msgstr "பில் செய்ய"
+
+#: templates/webapp/manpower/site.html
+msgid "No attendance this month yet."
+msgstr "இந்த மாதம் இன்னும் வருகை இல்லை."
+
+#: templates/webapp/manpower/site.html
+msgid "Site details & rates"
+msgstr "தள விவரங்கள் & விகிதங்கள்"
+
+#: templates/webapp/manpower/sites.html
+msgid "Closed sites"
+msgstr "மூடப்பட்ட தளங்கள்"
+
+#: templates/webapp/manpower/sites.html
+msgid "No sites yet. Add the first client site below."
+msgstr "இன்னும் தளங்கள் இல்லை. முதல் வாடிக்கையாளர் தளத்தைக் கீழே சேர்க்கவும்."
+
+#: templates/webapp/manpower/worker_form.html
+msgid "Edit site worker"
+msgstr "தள பணியாளரைத் திருத்து"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "Worker"
+msgstr "பணியாளர்"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "ID & documents"
+msgstr "ஐடி & ஆவணங்கள்"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "you are warned 30 and 7 days before expiry"
+msgstr "காலாவதிக்கு 30 மற்றும் 7 நாட்கள் முன் எச்சரிக்கை வரும்"
+
+#: templates/webapp/manpower/worker_form.html
+msgid ""
+"Per day / per hour: payroll pays for the days or hours marked on the site "
+"attendance. Overtime hours from the site attendance are added too."
+msgstr ""
+"நாள் / மணி நேர அடிப்படை: தள வருகையில் குறிக்கப்பட்ட நாட்கள் அல்லது மணி "
+"நேரங்களுக்கு சம்பளப் பட்டியல் செலுத்தும். தள வருகையின் கூடுதல் நேரமும் "
+"சேர்க்கப்படும்."
 
 #: templates/webapp/mess/bills.html
 msgid "Mess bills"
@@ -8547,6 +8764,10 @@ msgid "Not put forward for any job yet."
 msgstr "இன்னும் எந்த வேலைக்கும் பரிந்துரைக்கப்படவில்லை."
 
 #: templates/webapp/recruitment/candidate_detail.html
+msgid "Best-fitting open jobs"
+msgstr "மிகப் பொருத்தமான திறந்த வேலைகள்"
+
+#: templates/webapp/recruitment/candidate_detail.html
 msgid "Put forward for"
 msgstr "இதற்குப் பரிந்துரைக்கப்பட்டது"
 
@@ -8686,10 +8907,6 @@ msgid "Update client"
 msgstr "வாடிக்கையாளரைப் புதுப்பி"
 
 #: templates/webapp/recruitment/job_detail.html
-msgid "Client"
-msgstr "வாடிக்கையாளர்"
-
-#: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
 msgstr "சேர்ந்தவர் / தேவை"
 
@@ -8714,8 +8931,15 @@ msgid "Add candidates to this job"
 msgstr "இந்த வேலைக்கு விண்ணப்பதாரர்களைச் சேர்"
 
 #: templates/webapp/recruitment/job_detail.html
-msgid "Matching available candidates"
-msgstr "பொருந்தும் கிடைக்கும் விண்ணப்பதாரர்கள்"
+msgid ""
+"Best matches first (skills, experience, nationality, age, salary, passport)"
+msgstr ""
+"சிறந்த பொருத்தம் முதலில் (திறன்கள், அனுபவம், நாட்டினம், வயது, சம்பளம், "
+"பாஸ்போர்ட்)"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "only good matches"
+msgstr "நல்ல பொருத்தங்கள் மட்டும்"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "show all"
@@ -8848,6 +9072,30 @@ msgstr "விண்ணப்பதாரர் செயலாக்கக் �
 #: templates/webapp/recruitment/placement.html
 msgid "Bill candidate"
 msgstr "விண்ணப்பதாரருக்கு பில் செய்"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Our site worker"
+msgstr "எங்கள் தள பணியாளர்"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Already a site worker"
+msgstr "ஏற்கனவே தள பணியாளர்"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Working at site"
+msgstr "பணிபுரியும் தளம்"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Make site worker"
+msgstr "தள பணியாளராக்கு"
+
+#: templates/webapp/recruitment/placement.html
+msgid ""
+"For workers on our own payroll who work at the client's site. Passport and "
+"visa are copied."
+msgstr ""
+"எங்கள் சம்பளப் பட்டியலில் உள்ள, வாடிக்கையாளர் தளத்தில் பணிபுரியும் "
+"பணியாளர்களுக்கு. பாஸ்போர்ட் மற்றும் விசா நகலெடுக்கப்படும்."
 
 #: templates/webapp/recruitment/placement.html
 msgid "Costs (medical, visa, ticket, agent…)"
@@ -12176,6 +12424,30 @@ msgstr "%(label)s தேர்ந்தெடு"
 msgid "Select…"
 msgstr "தேர்ந்தெடு…"
 
+#: apps/employees/site_workers.py
+msgid "Choose a site."
+msgstr "ஒரு தளத்தைத் தேர்ந்தெடுக்கவும்."
+
+#: apps/employees/site_workers.py
+msgid "Hours must be between 0 and 24."
+msgstr "மணி நேரம் 0 முதல் 24 வரை இருக்க வேண்டும்."
+
+#: apps/employees/site_workers.py
+msgid "You cannot mark attendance for a future date."
+msgstr "எதிர்கால தேதிக்கு வருகையைப் பதிவு செய்ய முடியாது."
+
+#: apps/employees/site_workers.py
+msgid "This month has not started yet."
+msgstr "இந்த மாதம் இன்னும் தொடங்கவில்லை."
+
+#: apps/employees/site_workers.py
+msgid "This site is already billed for %(month)s."
+msgstr "இந்தத் தளத்திற்கு %(month)s ஏற்கனவே பில் செய்யப்பட்டது."
+
+#: apps/employees/site_workers.py
+msgid "Nothing to bill: no attendance or no rate for %(month)s."
+msgstr "பில் செய்ய எதுவும் இல்லை: %(month)s இல் வருகை அல்லது விகிதம் இல்லை."
+
 #: apps/finance/models.py
 msgid "Received from customer"
 msgstr "வாடிக்கையாளரிடமிருந்து பெறப்பட்டது"
@@ -12385,6 +12657,34 @@ msgstr "நாங்கள் %(what)s-இல் வேலை செய்கி
 #: apps/industry/jobs.py
 msgid "Status: %(url)s"
 msgstr "நிலை: %(url)s"
+
+#: apps/industry/matching.py
+msgid "No position / skill"
+msgstr "பதவி / திறன் இல்லை"
+
+#: apps/industry/matching.py
+msgid "%(have)s of %(need)s yrs experience"
+msgstr "%(need)s இல் %(have)s ஆண்டு அனுபவம்"
+
+#: apps/industry/matching.py
+msgid "Nationality not given"
+msgstr "நாட்டினம் கொடுக்கப்படவில்லை"
+
+#: apps/industry/matching.py
+msgid "Age %(age)s"
+msgstr "வயது %(age)s"
+
+#: apps/industry/matching.py
+msgid "Expects %(amount)s"
+msgstr "எதிர்பார்ப்பு %(amount)s"
+
+#: apps/industry/matching.py
+msgid "Passport valid"
+msgstr "பாஸ்போர்ட் செல்லுபடியானது"
+
+#: apps/industry/matching.py
+msgid "Passport expires %(date)s"
+msgstr "பாஸ்போர்ட் %(date)s அன்று காலாவதி"
 
 #: apps/industry/models.py
 msgid "Ready / on the way"
@@ -14243,10 +14543,6 @@ msgid "Leave type"
 msgstr "விடுப்பு வகை"
 
 #: apps/webapp/hr_views.py
-msgid "Document"
-msgstr "ஆவணம்"
-
-#: apps/webapp/hr_views.py
 msgid "%(name)s removed."
 msgstr "%(name)s நீக்கப்பட்டது."
 
@@ -14461,6 +14757,139 @@ msgstr "%(name)s-க்கான இணைப்பு தயார்."
 #: apps/webapp/job_views.py
 msgid "From %(name)s"
 msgstr "%(name)s-இடமிருந்து"
+
+#: apps/webapp/manpower_views.py
+msgid "Salary / pay rate"
+msgstr "சம்பளம் / கூலி விகிதம்"
+
+#: apps/webapp/manpower_views.py
+msgid "Per month, per day or per hour — as chosen in “How we pay”."
+msgstr ""
+"மாதம், நாள் அல்லது மணி நேரத்திற்கு — «எப்படி சம்பளம்» இல் தேர்ந்தெடுத்தபடி."
+
+#: apps/webapp/manpower_views.py
+msgid "Allowances per month (food, transport…)"
+msgstr "மாத படிகள் (உணவு, போக்குவரத்து…)"
+
+#: apps/webapp/manpower_views.py
+msgid "Fixed deductions per month"
+msgstr "மாத நிலையான பிடித்தங்கள்"
+
+#: apps/webapp/manpower_views.py
+msgid "Overtime pay per hour"
+msgstr "ஒரு மணி நேர கூடுதல் நேர ஊதியம்"
+
+#: apps/webapp/manpower_views.py
+msgid "Trade / skill"
+msgstr "தொழில் / திறன்"
+
+#: apps/webapp/manpower_views.py
+msgid "Accommodation / camp"
+msgstr "தங்குமிடம் / முகாம்"
+
+#: apps/webapp/manpower_views.py
+msgid "Joined on"
+msgstr "சேர்ந்த தேதி"
+
+#: apps/webapp/manpower_views.py
+msgid "How we pay"
+msgstr "எப்படி சம்பளம்"
+
+#: apps/webapp/manpower_views.py
+msgid "Client rate for this worker (optional)"
+msgstr "இந்தப் பணியாளருக்கான வாடிக்கையாளர் விகிதம் (விருப்பம்)"
+
+#: apps/webapp/manpower_views.py
+msgid "Leave empty to use the site's rate."
+msgstr "தளத்தின் விகிதத்தைப் பயன்படுத்த காலியாக விடவும்."
+
+#: apps/webapp/manpower_views.py
+msgid "e.g. Electrician, Cleaner, Security guard"
+msgstr "எ.கா. மின்பணியாளர், துப்புரவாளர், பாதுகாவலர்"
+
+#: apps/webapp/manpower_views.py
+msgid "%(doc)s number"
+msgstr "%(doc)s எண்"
+
+#: apps/webapp/manpower_views.py
+msgid "%(doc)s expiry"
+msgstr "%(doc)s காலாவதி"
+
+#: apps/webapp/manpower_views.py
+msgid "Site name"
+msgstr "தளத்தின் பெயர்"
+
+#: apps/webapp/manpower_views.py
+msgid "Supervisor phone"
+msgstr "மேற்பார்வையாளர் தொலைபேசி"
+
+#: apps/webapp/manpower_views.py
+msgid "Site is active"
+msgstr "தளம் செயலில் உள்ளது"
+
+#: apps/webapp/manpower_views.py
+msgid "e.g. Al Wakra Mall – cleaning"
+msgstr "எ.கா. அல் வக்ரா மால் – சுத்தம்"
+
+#: apps/webapp/manpower_views.py
+msgid "expired %(n)s days ago"
+msgstr "%(n)s நாட்களுக்கு முன் காலாவதியானது"
+
+#: apps/webapp/manpower_views.py
+msgid "%(n)s days left"
+msgstr "%(n)s நாட்கள் மீதம்"
+
+#: apps/webapp/manpower_views.py
+msgid ""
+"Hello %(name)s, your %(doc)s expires on %(date)s. Please bring it for "
+"renewal."
+msgstr ""
+"வணக்கம் %(name)s, உங்கள் %(doc)s %(date)s அன்று காலாவதியாகிறது. புதுப்பிக்க "
+"தயவுசெய்து கொண்டு வாருங்கள்."
+
+#: apps/webapp/manpower_views.py
+msgid "%(count)s workers moved."
+msgstr "%(count)s பணியாளர்கள் மாற்றப்பட்டனர்."
+
+#: apps/webapp/manpower_views.py
+msgid "Invoice %(number)s made for %(site)s."
+msgstr "%(site)s க்கு இன்வாய்ஸ் %(number)s உருவாக்கப்பட்டது."
+
+#: apps/webapp/manpower_views.py
+msgid "Per hour"
+msgstr "மணி நேரத்திற்கு"
+
+#: apps/webapp/manpower_views.py
+msgid "Per month"
+msgstr "மாதத்திற்கு"
+
+#: apps/webapp/manpower_views.py
+msgid "Monthly salary"
+msgstr "மாத சம்பளம்"
+
+#: apps/webapp/manpower_views.py
+msgid "Per day worked"
+msgstr "வேலை செய்த நாளுக்கு"
+
+#: apps/webapp/manpower_views.py
+msgid "Per hour worked"
+msgstr "வேலை செய்த மணி நேரத்திற்கு"
+
+#: apps/webapp/manpower_views.py
+msgid "ID / residence card"
+msgstr "ஐடி / குடியிருப்பு அட்டை"
+
+#: apps/webapp/manpower_views.py
+msgid "Health card"
+msgstr "சுகாதார அட்டை"
+
+#: apps/webapp/manpower_views.py
+msgid "Work visa"
+msgstr "வேலை விசா"
+
+#: apps/webapp/manpower_views.py
+msgid "Office staff"
+msgstr "அலுவலக ஊழியர்கள்"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15590,6 +16019,18 @@ msgid "Replacement guarantee (days)"
 msgstr "மாற்று உத்தரவாதம் (நாட்கள்)"
 
 #: apps/webapp/recruitment_views.py
+msgid "Skills needed (comma separated)"
+msgstr "தேவையான திறன்கள் (காற்புள்ளியால் பிரிக்கவும்)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Minimum experience (years)"
+msgstr "குறைந்தபட்ச அனுபவம் (ஆண்டுகள்)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Maximum age"
+msgstr "அதிகபட்ச வயது"
+
+#: apps/webapp/recruitment_views.py
 msgid "Show on our careers website"
 msgstr "எங்கள் தொழில் இணையதளத்தில் காட்டு"
 
@@ -15602,6 +16043,10 @@ msgid "Choose a client or type a new client's name."
 msgstr ""
 "வாடிக்கையாளரைத் தேர்ந்தெடுக்கவும் அல்லது புதிய வாடிக்கையாளர் பெயரை "
 "உள்ளிடவும்."
+
+#: apps/webapp/recruitment_views.py
+msgid "Skills (comma separated)"
+msgstr "திறன்கள் (காற்புள்ளியால் பிரிக்கவும்)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Passport expiry"
@@ -15691,6 +16136,14 @@ msgstr "வேட்பாளருக்கு விலைப்பட்ட�
 #: apps/webapp/recruitment_views.py
 msgid "Cost recorded in expenses."
 msgstr "செலவு செலவுகளில் பதிவு செய்யப்பட்டது."
+
+#: apps/webapp/recruitment_views.py
+msgid "Mark the candidate as joined first."
+msgstr "முதலில் வேட்பாளரைச் சேர்ந்தவராகக் குறிக்கவும்."
+
+#: apps/webapp/recruitment_views.py
+msgid "%(name)s is now a site worker."
+msgstr "%(name)s இப்போது தள பணியாளர்."
 
 #: apps/webapp/recruitment_views.py
 msgid ""

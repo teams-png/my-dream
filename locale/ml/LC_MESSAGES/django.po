@@ -692,6 +692,26 @@ msgid "Careers website"
 msgstr "കരിയേഴ്സ് വെബ്സൈറ്റ്"
 
 #: templates/webapp/_industry_nav.html
+msgid "Site workers"
+msgstr "സൈറ്റ് ജോലിക്കാർ"
+
+#: templates/webapp/_industry_nav.html
+msgid "Workers & ID expiry"
+msgstr "ജോലിക്കാർ & ഐഡി കാലാവധി"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sites"
+msgstr "സൈറ്റുകൾ"
+
+#: templates/webapp/_industry_nav.html
+msgid "Site attendance"
+msgstr "സൈറ്റ് ഹാജർ"
+
+#: templates/webapp/_industry_nav.html
+msgid "Client billing"
+msgstr "ക്ലയന്റ് ബില്ലിംഗ്"
+
+#: templates/webapp/_industry_nav.html
 msgid "Gold"
 msgstr "സ്വർണം"
 
@@ -4224,6 +4244,14 @@ msgid "Login"
 msgstr "ലോഗിൻ"
 
 #: templates/webapp/hr/staff_detail.html
+msgid "Site worker"
+msgstr "സൈറ്റ് ജോലിക്കാരൻ"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Not on any site"
+msgstr "ഒരു സൈറ്റിലും ഇല്ല"
+
+#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "മാസത്തിൽ"
 
@@ -5850,6 +5878,195 @@ msgstr "പുതിയ ആളാണോ?"
 #: templates/webapp/login.html
 msgid "Start a free trial"
 msgstr "സൗജന്യ ട്രയൽ തുടങ്ങുക"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Add a site first."
+msgstr "ആദ്യം ഒരു സൈറ്റ് ചേർക്കൂ."
+
+#: templates/webapp/manpower/attendance.html
+msgid "New site"
+msgstr "പുതിയ സൈറ്റ്"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Normal hours per day"
+msgstr "ഒരു ദിവസത്തെ സാധാരണ മണിക്കൂർ"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Marked at another site"
+msgstr "മറ്റൊരു സൈറ്റിൽ മാർക്ക് ചെയ്തു"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Hours"
+msgstr "മണിക്കൂർ"
+
+#: templates/webapp/manpower/attendance.html
+msgid "OT hours"
+msgstr "OT മണിക്കൂർ"
+
+#: templates/webapp/manpower/attendance.html
+msgid "No workers at this site yet."
+msgstr "ഈ സൈറ്റിൽ ഇതുവരെ ജോലിക്കാർ ഇല്ല."
+
+#: templates/webapp/manpower/attendance.html
+msgid "Move workers to this site"
+msgstr "ജോലിക്കാരെ ഈ സൈറ്റിലേക്ക് മാറ്റൂ"
+
+#: templates/webapp/manpower/billing.html
+msgid "Still to bill this month"
+msgstr "ഈ മാസം ബിൽ ചെയ്യാനുള്ളത്"
+
+#: templates/webapp/manpower/billing.html
+msgid ""
+"From the site attendance: hours, days or a monthly rate per worker × the "
+"rate, plus overtime. One invoice per site per month."
+msgstr ""
+"സൈറ്റ് ഹാജരിൽ നിന്ന്: മണിക്കൂർ, ദിവസം അല്ലെങ്കിൽ ഓരോ ജോലിക്കാരന്റെയും മാസ "
+"റേറ്റ് × റേറ്റ്, കൂടെ ഓവർടൈം. ഒരു സൈറ്റിന് ഒരു മാസം ഒരു ഇൻവോയ്സ്."
+
+#: templates/webapp/manpower/billing.html
+msgid "No attendance this month."
+msgstr "ഈ മാസം ഹാജർ ഇല്ല."
+
+#: templates/webapp/manpower/billing.html
+msgid "Open invoice"
+msgstr "ഇൻവോയ്സ് തുറക്കൂ"
+
+#: templates/webapp/manpower/billing.html
+msgid "Make the invoice for this site and month?"
+msgstr "ഈ സൈറ്റിനും മാസത്തിനും ഇൻവോയ്സ് ഉണ്ടാക്കട്ടെ?"
+
+#: templates/webapp/manpower/billing.html
+msgid "Make invoice"
+msgstr "ഇൻവോയ്സ് ഉണ്ടാക്കൂ"
+
+#: templates/webapp/manpower/billing.html
+msgid "Choose the client for this site first."
+msgstr "ആദ്യം ഈ സൈറ്റിന്റെ ക്ലയന്റിനെ തിരഞ്ഞെടുക്കൂ."
+
+#: templates/webapp/manpower/home.html
+msgid "Active sites"
+msgstr "സജീവ സൈറ്റുകൾ"
+
+#: templates/webapp/manpower/home.html
+msgid "Documents expired"
+msgstr "കാലാവധി കഴിഞ്ഞ രേഖകൾ"
+
+#: templates/webapp/manpower/home.html
+msgid "Add site worker"
+msgstr "സൈറ്റ് ജോലിക്കാരനെ ചേർക്കൂ"
+
+#: templates/webapp/manpower/home.html
+msgid "Name, phone, trade or ID number"
+msgstr "പേര്, ഫോൺ, ട്രേഡ് അല്ലെങ്കിൽ ഐഡി നമ്പർ"
+
+#: templates/webapp/manpower/home.html
+msgid "All sites"
+msgstr "എല്ലാ സൈറ്റുകളും"
+
+#: templates/webapp/manpower/home.html
+msgid "Site"
+msgstr "സൈറ്റ്"
+
+#: templates/webapp/manpower/home.html
+msgid "No site workers yet."
+msgstr "ഇതുവരെ സൈറ്റ് ജോലിക്കാർ ഇല്ല."
+
+#: templates/webapp/manpower/home.html
+msgid "Documents expired or expiring in 60 days"
+msgstr "കാലാവധി കഴിഞ്ഞതോ 60 ദിവസത്തിനുള്ളിൽ തീരുന്നതോ ആയ രേഖകൾ"
+
+#: templates/webapp/manpower/home.html
+msgid "Document"
+msgstr "രേഖ"
+
+#: templates/webapp/manpower/home.html
+msgid "Expiry"
+msgstr "കാലാവധി"
+
+#: templates/webapp/manpower/home.html
+msgid "Nothing expiring. 👍"
+msgstr "ഒന്നും കാലാവധി തീരാനില്ല. 👍"
+
+#: templates/webapp/manpower/site.html
+msgid "Client"
+msgstr "ക്ലയന്റ്"
+
+#: templates/webapp/manpower/site.html
+msgid "Workers here"
+msgstr "ഇവിടെയുള്ള ജോലിക്കാർ"
+
+#: templates/webapp/manpower/site.html
+msgid "Rate per worker"
+msgstr "ഒരു ജോലിക്കാരന്റെ റേറ്റ്"
+
+#: templates/webapp/manpower/site.html
+msgid "Site supervisor"
+msgstr "സൈറ്റ് സൂപ്പർവൈസർ"
+
+#: templates/webapp/manpower/site.html
+msgid "Today's attendance"
+msgstr "ഇന്നത്തെ ഹാജർ"
+
+#: templates/webapp/manpower/site.html
+msgid "Workers at this site"
+msgstr "ഈ സൈറ്റിലെ ജോലിക്കാർ"
+
+#: templates/webapp/manpower/site.html
+msgid "Take off this site"
+msgstr "ഈ സൈറ്റിൽ നിന്ന് മാറ്റൂ"
+
+#: templates/webapp/manpower/site.html
+msgid "Move here"
+msgstr "ഇവിടേക്ക് മാറ്റൂ"
+
+#: templates/webapp/manpower/site.html
+msgid "This month so far"
+msgstr "ഈ മാസം ഇതുവരെ"
+
+#: templates/webapp/manpower/site.html
+msgid "To bill"
+msgstr "ബിൽ ചെയ്യാൻ"
+
+#: templates/webapp/manpower/site.html
+msgid "No attendance this month yet."
+msgstr "ഈ മാസം ഇതുവരെ ഹാജർ ഇല്ല."
+
+#: templates/webapp/manpower/site.html
+msgid "Site details & rates"
+msgstr "സൈറ്റ് വിവരങ്ങളും റേറ്റും"
+
+#: templates/webapp/manpower/sites.html
+msgid "Closed sites"
+msgstr "അടച്ച സൈറ്റുകൾ"
+
+#: templates/webapp/manpower/sites.html
+msgid "No sites yet. Add the first client site below."
+msgstr "ഇതുവരെ സൈറ്റുകൾ ഇല്ല. ആദ്യത്തെ ക്ലയന്റ് സൈറ്റ് താഴെ ചേർക്കൂ."
+
+#: templates/webapp/manpower/worker_form.html
+msgid "Edit site worker"
+msgstr "സൈറ്റ് ജോലിക്കാരനെ എഡിറ്റ് ചെയ്യൂ"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "Worker"
+msgstr "ജോലിക്കാരൻ"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "ID & documents"
+msgstr "ഐഡിയും രേഖകളും"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "you are warned 30 and 7 days before expiry"
+msgstr "കാലാവധി തീരുന്നതിന് 30, 7 ദിവസം മുമ്പ് മുന്നറിയിപ്പ് കിട്ടും"
+
+#: templates/webapp/manpower/worker_form.html
+msgid ""
+"Per day / per hour: payroll pays for the days or hours marked on the site "
+"attendance. Overtime hours from the site attendance are added too."
+msgstr ""
+"ദിവസം / മണിക്കൂർ അടിസ്ഥാനത്തിൽ: സൈറ്റ് ഹാജരിൽ മാർക്ക് ചെയ്ത ദിവസങ്ങൾക്കോ "
+"മണിക്കൂറുകൾക്കോ പേറോൾ ശമ്പളം നൽകും. സൈറ്റ് ഹാജരിലെ ഓവർടൈം മണിക്കൂറും "
+"ചേർക്കും."
 
 #: templates/webapp/mess/bills.html
 msgid "Mess bills"
@@ -8511,6 +8728,10 @@ msgid "Not put forward for any job yet."
 msgstr "ഇതുവരെ ഒരു ജോലിക്കും നിർദ്ദേശിച്ചിട്ടില്ല."
 
 #: templates/webapp/recruitment/candidate_detail.html
+msgid "Best-fitting open jobs"
+msgstr "ഏറ്റവും യോജിക്കുന്ന ഓപ്പൺ ജോലികൾ"
+
+#: templates/webapp/recruitment/candidate_detail.html
 msgid "Put forward for"
 msgstr "ഈ ജോലിക്ക് നിർദ്ദേശിക്കുക"
 
@@ -8647,10 +8868,6 @@ msgid "Update client"
 msgstr "ക്ലയന്റിനെ അറിയിക്കുക"
 
 #: templates/webapp/recruitment/job_detail.html
-msgid "Client"
-msgstr "ക്ലയന്റ്"
-
-#: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
 msgstr "ജോയിൻ ചെയ്തവർ / വേണ്ടത്"
 
@@ -8675,8 +8892,15 @@ msgid "Add candidates to this job"
 msgstr "ഈ ജോലിക്ക് ഉദ്യോഗാർത്ഥികളെ ചേർക്കുക"
 
 #: templates/webapp/recruitment/job_detail.html
-msgid "Matching available candidates"
-msgstr "യോജിക്കുന്ന ലഭ്യമായ ഉദ്യോഗാർത്ഥികൾ"
+msgid ""
+"Best matches first (skills, experience, nationality, age, salary, passport)"
+msgstr ""
+"ഏറ്റവും നല്ല മാച്ച് ആദ്യം (സ്കിൽ, പരിചയം, രാജ്യം, പ്രായം, ശമ്പളം, "
+"പാസ്പോർട്ട്)"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "only good matches"
+msgstr "നല്ല മാച്ചുകൾ മാത്രം"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "show all"
@@ -8809,6 +9033,30 @@ msgstr "ഉദ്യോഗാർത്ഥിയുടെ പ്രോസസി�
 #: templates/webapp/recruitment/placement.html
 msgid "Bill candidate"
 msgstr "ഉദ്യോഗാർത്ഥിക്ക് ബിൽ ചെയ്യുക"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Our site worker"
+msgstr "ഞങ്ങളുടെ സൈറ്റ് ജോലിക്കാരൻ"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Already a site worker"
+msgstr "ഇതിനകം സൈറ്റ് ജോലിക്കാരനാണ്"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Working at site"
+msgstr "ജോലി ചെയ്യുന്ന സൈറ്റ്"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Make site worker"
+msgstr "സൈറ്റ് ജോലിക്കാരനാക്കൂ"
+
+#: templates/webapp/recruitment/placement.html
+msgid ""
+"For workers on our own payroll who work at the client's site. Passport and "
+"visa are copied."
+msgstr ""
+"ഞങ്ങളുടെ പേറോളിലുള്ള, ക്ലയന്റിന്റെ സൈറ്റിൽ ജോലി ചെയ്യുന്നവർക്ക്. "
+"പാസ്പോർട്ടും വിസയും കോപ്പി ചെയ്യും."
 
 #: templates/webapp/recruitment/placement.html
 msgid "Costs (medical, visa, ticket, agent…)"
@@ -12113,6 +12361,30 @@ msgstr "%(label)s തിരഞ്ഞെടുക്കുക"
 msgid "Select…"
 msgstr "തിരഞ്ഞെടുക്കുക…"
 
+#: apps/employees/site_workers.py
+msgid "Choose a site."
+msgstr "ഒരു സൈറ്റ് തിരഞ്ഞെടുക്കൂ."
+
+#: apps/employees/site_workers.py
+msgid "Hours must be between 0 and 24."
+msgstr "മണിക്കൂർ 0-നും 24-നും ഇടയിലായിരിക്കണം."
+
+#: apps/employees/site_workers.py
+msgid "You cannot mark attendance for a future date."
+msgstr "ഭാവിയിലെ തീയതിക്ക് ഹാജർ മാർക്ക് ചെയ്യാൻ പറ്റില്ല."
+
+#: apps/employees/site_workers.py
+msgid "This month has not started yet."
+msgstr "ഈ മാസം തുടങ്ങിയിട്ടില്ല."
+
+#: apps/employees/site_workers.py
+msgid "This site is already billed for %(month)s."
+msgstr "ഈ സൈറ്റിന് %(month)s ബിൽ ചെയ്തു കഴിഞ്ഞു."
+
+#: apps/employees/site_workers.py
+msgid "Nothing to bill: no attendance or no rate for %(month)s."
+msgstr "ബിൽ ചെയ്യാൻ ഒന്നുമില്ല: %(month)s-ൽ ഹാജരോ റേറ്റോ ഇല്ല."
+
 #: apps/finance/models.py
 msgid "Received from customer"
 msgstr "കസ്റ്റമറിൽ നിന്ന് ലഭിച്ചത്"
@@ -12320,6 +12592,34 @@ msgstr "ഞങ്ങൾ %(what)s-ൽ ജോലി ചെയ്യുകയാണ
 #: apps/industry/jobs.py
 msgid "Status: %(url)s"
 msgstr "സ്റ്റാറ്റസ്: %(url)s"
+
+#: apps/industry/matching.py
+msgid "No position / skill"
+msgstr "പൊസിഷൻ / സ്കിൽ ഇല്ല"
+
+#: apps/industry/matching.py
+msgid "%(have)s of %(need)s yrs experience"
+msgstr "%(need)s-ൽ %(have)s വർഷം പരിചയം"
+
+#: apps/industry/matching.py
+msgid "Nationality not given"
+msgstr "രാജ്യം നൽകിയിട്ടില്ല"
+
+#: apps/industry/matching.py
+msgid "Age %(age)s"
+msgstr "പ്രായം %(age)s"
+
+#: apps/industry/matching.py
+msgid "Expects %(amount)s"
+msgstr "പ്രതീക്ഷിക്കുന്നത് %(amount)s"
+
+#: apps/industry/matching.py
+msgid "Passport valid"
+msgstr "പാസ്പോർട്ട് സാധുവാണ്"
+
+#: apps/industry/matching.py
+msgid "Passport expires %(date)s"
+msgstr "പാസ്പോർട്ട് %(date)s-ന് തീരും"
 
 #: apps/industry/models.py
 msgid "Ready / on the way"
@@ -14150,10 +14450,6 @@ msgid "Leave type"
 msgstr "ലീവ് തരം"
 
 #: apps/webapp/hr_views.py
-msgid "Document"
-msgstr "രേഖ"
-
-#: apps/webapp/hr_views.py
 msgid "%(name)s removed."
 msgstr "%(name)s നീക്കം ചെയ്തു."
 
@@ -14365,6 +14661,140 @@ msgstr "%(name)s-ന്റെ ലിങ്ക് റെഡി."
 #: apps/webapp/job_views.py
 msgid "From %(name)s"
 msgstr "%(name)s-ൽ നിന്ന്"
+
+#: apps/webapp/manpower_views.py
+msgid "Salary / pay rate"
+msgstr "ശമ്പളം / കൂലി നിരക്ക്"
+
+#: apps/webapp/manpower_views.py
+msgid "Per month, per day or per hour — as chosen in “How we pay”."
+msgstr ""
+"മാസം, ദിവസം അല്ലെങ്കിൽ മണിക്കൂർ — “എങ്ങനെ ശമ്പളം നൽകുന്നു” എന്നതിൽ "
+"തിരഞ്ഞെടുത്തത് പോലെ."
+
+#: apps/webapp/manpower_views.py
+msgid "Allowances per month (food, transport…)"
+msgstr "മാസ അലവൻസുകൾ (ഭക്ഷണം, യാത്ര…)"
+
+#: apps/webapp/manpower_views.py
+msgid "Fixed deductions per month"
+msgstr "മാസ സ്ഥിര കിഴിവുകൾ"
+
+#: apps/webapp/manpower_views.py
+msgid "Overtime pay per hour"
+msgstr "ഒരു മണിക്കൂർ ഓവർടൈം കൂലി"
+
+#: apps/webapp/manpower_views.py
+msgid "Trade / skill"
+msgstr "ട്രേഡ് / സ്കിൽ"
+
+#: apps/webapp/manpower_views.py
+msgid "Accommodation / camp"
+msgstr "താമസം / ക്യാമ്പ്"
+
+#: apps/webapp/manpower_views.py
+msgid "Joined on"
+msgstr "ജോയിൻ ചെയ്ത തീയതി"
+
+#: apps/webapp/manpower_views.py
+msgid "How we pay"
+msgstr "എങ്ങനെ ശമ്പളം നൽകുന്നു"
+
+#: apps/webapp/manpower_views.py
+msgid "Client rate for this worker (optional)"
+msgstr "ഈ ജോലിക്കാരന് ക്ലയന്റ് റേറ്റ് (ഓപ്ഷണൽ)"
+
+#: apps/webapp/manpower_views.py
+msgid "Leave empty to use the site's rate."
+msgstr "സൈറ്റിന്റെ റേറ്റ് ഉപയോഗിക്കാൻ ഒഴിച്ചിടൂ."
+
+#: apps/webapp/manpower_views.py
+msgid "e.g. Electrician, Cleaner, Security guard"
+msgstr "ഉദാ. ഇലക്ട്രീഷ്യൻ, ക്ലീനർ, സെക്യൂരിറ്റി ഗാർഡ്"
+
+#: apps/webapp/manpower_views.py
+msgid "%(doc)s number"
+msgstr "%(doc)s നമ്പർ"
+
+#: apps/webapp/manpower_views.py
+msgid "%(doc)s expiry"
+msgstr "%(doc)s കാലാവധി"
+
+#: apps/webapp/manpower_views.py
+msgid "Site name"
+msgstr "സൈറ്റിന്റെ പേര്"
+
+#: apps/webapp/manpower_views.py
+msgid "Supervisor phone"
+msgstr "സൂപ്പർവൈസറുടെ ഫോൺ"
+
+#: apps/webapp/manpower_views.py
+msgid "Site is active"
+msgstr "സൈറ്റ് സജീവമാണ്"
+
+#: apps/webapp/manpower_views.py
+msgid "e.g. Al Wakra Mall – cleaning"
+msgstr "ഉദാ. അൽ വക്ര മാൾ – ക്ലീനിംഗ്"
+
+#: apps/webapp/manpower_views.py
+msgid "expired %(n)s days ago"
+msgstr "%(n)s ദിവസം മുമ്പ് കാലാവധി കഴിഞ്ഞു"
+
+#: apps/webapp/manpower_views.py
+msgid "%(n)s days left"
+msgstr "%(n)s ദിവസം ബാക്കി"
+
+#: apps/webapp/manpower_views.py
+msgid ""
+"Hello %(name)s, your %(doc)s expires on %(date)s. Please bring it for "
+"renewal."
+msgstr ""
+"ഹലോ %(name)s, നിങ്ങളുടെ %(doc)s %(date)s-ന് കാലാവധി തീരും. പുതുക്കാൻ ദയവായി "
+"കൊണ്ടുവരൂ."
+
+#: apps/webapp/manpower_views.py
+msgid "%(count)s workers moved."
+msgstr "%(count)s ജോലിക്കാരെ മാറ്റി."
+
+#: apps/webapp/manpower_views.py
+msgid "Invoice %(number)s made for %(site)s."
+msgstr "%(site)s-ന് ഇൻവോയ്സ് %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/manpower_views.py
+msgid "Per hour"
+msgstr "മണിക്കൂറിന്"
+
+#: apps/webapp/manpower_views.py
+msgid "Per month"
+msgstr "മാസത്തിന്"
+
+#: apps/webapp/manpower_views.py
+msgid "Monthly salary"
+msgstr "മാസ ശമ്പളം"
+
+#: apps/webapp/manpower_views.py
+msgid "Per day worked"
+msgstr "ജോലി ചെയ്ത ദിവസത്തിന്"
+
+#: apps/webapp/manpower_views.py
+msgid "Per hour worked"
+msgstr "ജോലി ചെയ്ത മണിക്കൂറിന്"
+
+#: apps/webapp/manpower_views.py
+msgid "ID / residence card"
+msgstr "ഐഡി / റെസിഡൻസ് കാർഡ് (QID)"
+
+#: apps/webapp/manpower_views.py
+msgid "Health card"
+msgstr "ഹെൽത്ത് കാർഡ്"
+
+#: apps/webapp/manpower_views.py
+msgid "Work visa"
+msgstr "വർക്ക് വിസ"
+
+#: apps/webapp/manpower_views.py
+msgid "Office staff"
+msgstr "ഓഫീസ് സ്റ്റാഫ്"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15485,6 +15915,18 @@ msgid "Replacement guarantee (days)"
 msgstr "റീപ്ലേസ്മെന്റ് ഗ്യാരണ്ടി (ദിവസം)"
 
 #: apps/webapp/recruitment_views.py
+msgid "Skills needed (comma separated)"
+msgstr "ആവശ്യമായ സ്കില്ലുകൾ (കോമ ഇട്ട് വേർതിരിക്കൂ)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Minimum experience (years)"
+msgstr "കുറഞ്ഞ പരിചയം (വർഷം)"
+
+#: apps/webapp/recruitment_views.py
+msgid "Maximum age"
+msgstr "പരമാവധി പ്രായം"
+
+#: apps/webapp/recruitment_views.py
 msgid "Show on our careers website"
 msgstr "ഞങ്ങളുടെ കരിയേഴ്സ് വെബ്സൈറ്റിൽ കാണിക്കുക"
 
@@ -15495,6 +15937,10 @@ msgstr "വെബ്സൈറ്റിനുള്ള ജോലി വിവര�
 #: apps/webapp/recruitment_views.py
 msgid "Choose a client or type a new client's name."
 msgstr "ക്ലയന്റിനെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ പേര് ടൈപ്പ് ചെയ്യുക."
+
+#: apps/webapp/recruitment_views.py
+msgid "Skills (comma separated)"
+msgstr "സ്കില്ലുകൾ (കോമ ഇട്ട് വേർതിരിക്കൂ)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Passport expiry"
@@ -15583,6 +16029,14 @@ msgstr "ഉദ്യോഗാർത്ഥിക്കായി ഇൻവോയ�
 #: apps/webapp/recruitment_views.py
 msgid "Cost recorded in expenses."
 msgstr "ചെലവ് എക്സ്പെൻസിൽ രേഖപ്പെടുത്തി."
+
+#: apps/webapp/recruitment_views.py
+msgid "Mark the candidate as joined first."
+msgstr "ആദ്യം കാൻഡിഡേറ്റിനെ ജോയിൻ ചെയ്തതായി മാർക്ക് ചെയ്യൂ."
+
+#: apps/webapp/recruitment_views.py
+msgid "%(name)s is now a site worker."
+msgstr "%(name)s ഇപ്പോൾ സൈറ്റ് ജോലിക്കാരനാണ്."
 
 #: apps/webapp/recruitment_views.py
 msgid ""

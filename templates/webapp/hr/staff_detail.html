@@ -12,15 +12,23 @@
     <div style="color:var(--hr-soft);margin-top:3px">{{ employee.role_title|default:"—" }}{% if employee.phone %} · <a href="tel:{{ employee.phone }}">{{ employee.phone }}</a>{% endif %}{% if employee.joined_date %} · {% translate "Joined" %} {{ employee.joined_date|date:"j M Y" }}{% endif %}{% if employee.user %} · {% translate "Login" %}: {{ employee.user.email|default:employee.user.username }}{% endif %}</div>
   </div>
   <div class="hr-actions">
-    <a class="btn btn-secondary" href="{% url 'webapp:staff_edit' employee.id %}">✏️ {% translate "Edit" %}</a>
+    <a class="btn btn-secondary" href="{% if employee.worker_type == "site" %}{% url 'webapp:mp_worker_edit' employee.id %}{% else %}{% url 'webapp:staff_edit' employee.id %}{% endif %}">✏️ {% translate "Edit" %}</a>
     <a class="btn btn-secondary" href="{% url 'webapp:hr_advances' %}?employee={{ employee.id }}">💵 {% translate "Give advance" %}</a>
     <a class="btn btn-secondary" href="{% url 'webapp:staff_delete' employee.id %}">🗑 {% translate "Remove" %}</a>
   </div>
 </div>
 
+{% if employee.worker_type == "site" %}<div class="hr-card" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+  <span>👷 <b>{% translate "Site worker" %}</b></span>
+  {% if employee.trade %}<span class="hr-chip blue">{{ employee.trade }}</span>{% endif %}
+  {% if employee.nationality %}<span class="hr-chip">{{ employee.nationality }}</span>{% endif %}
+  <span>🏗️ {% if employee.site %}<b>{{ employee.site.name }}</b>{% if employee.site.client %} · {{ employee.site.client.name }}{% endif %}{% else %}{% translate "Not on any site" %}{% endif %}</span>
+  {% if employee.accommodation %}<span>🛏️ {{ employee.accommodation }}</span>{% endif %}
+  <span class="hr-chip">{% translate employee.get_pay_basis_display %}</span>
+</div>{% endif %}
 <div class="hr-grid2">
 <div>
-  <div class="hr-card"><h3>💰 {% translate "Salary" %} <small>{% translate "per month" %}</small></h3>
+  <div class="hr-card"><h3>💰 {% translate "Salary" %} <small>{% if employee.pay_basis == "monthly" %}{% translate "per month" %}{% else %}{% translate employee.get_pay_basis_display %}{% endif %}</small></h3>
     <table class="hr-money">
       <tr><td>{% translate "Basic salary" %}</td><td>{{ structure.basic_pay|default:employee.salary|floatformat:2 }}</td></tr>
       <tr><td>{% translate "Allowances" %}</td><td>{{ allowances|floatformat:2 }}</td></tr>

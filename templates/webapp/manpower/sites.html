@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Sites" %}{% endblock %}
+{% block heading %}{% translate "Sites" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/manpower/_tabs.html" %}
+<div class="hr-actions" style="margin-bottom:14px">
+  {% if show == "closed" %}<a class="btn btn-secondary" href="?">{% translate "Active sites" %}</a>{% else %}<a class="btn btn-secondary" href="?show=closed">{% translate "Closed sites" %}</a>{% endif %}
+</div>
+{% if sites %}
+<div class="hr-list">{% for s in sites %}
+  <a class="hr-row" href="{% url 'webapp:mp_site' s.id %}"><span class="grow"><b>{{ s.name }}</b><small>{{ s.client.name|default:"—" }}{% if s.location %} · {{ s.location }}{% endif %}</small></span>
+    <span class="hr-chip blue">👷 {{ s.count }}</span>
+    <span class="hr-chip">{{ s.bill_rate|floatformat:2 }} · {% translate s.get_bill_basis_display %}</span></a>
+{% endfor %}</div>
+{% else %}<div class="hr-card hr-empty">{% translate "No sites yet. Add the first client site below." %}</div>{% endif %}
+
+<form method="post" class="hr-card" style="max-width:900px;margin-top:16px">{% csrf_token %}
+  <h3>＋ {% translate "New site" %}</h3>
+  {% if form.non_field_errors %}<div style="color:var(--hr-bad)">{{ form.non_field_errors }}</div>{% endif %}
+  <div class="hr-form">{% for f in form %}{% include "webapp/hr/_field.html" with f=f %}{% endfor %}</div>
+  <div class="hr-actions" style="margin-top:12px"><button class="btn" type="submit">{% translate "Save" %}</button></div>
+</form>
+</div>
+{% endblock %}

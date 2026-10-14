@@ -1,0 +1,16 @@
+{% load i18n static %}<link rel="stylesheet" href="{% static 'css/hr.css' %}">
+<style>
+.mp-exp{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--paper);color:var(--ink-soft);white-space:nowrap}
+.mp-exp.expired{background:#fee2e2;color:#b91c1c}.mp-exp.soon{background:#fef3c7;color:#92400e}.mp-exp.ok{background:#dcfce7;color:#166534}
+.mp-docs{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.mp-num{width:78px!important;min-width:0}
+</style>
+{% with u=request.resolver_match.url_name %}
+<nav class="hr-tabs" aria-label="{% translate 'Site workers' %}">
+  <a class="{% if u == 'mp_home' or u == 'mp_worker_add' or u == 'mp_worker_edit' %}on{% endif %}" href="{% url 'webapp:mp_home' %}">👷 {% translate "Site workers" %}</a>
+  <a class="{% if u == 'mp_sites' or u == 'mp_site' %}on{% endif %}" href="{% url 'webapp:mp_sites' %}">🏗️ {% translate "Sites" %}</a>
+  <a class="{% if u == 'mp_attendance' %}on{% endif %}" href="{% url 'webapp:mp_attendance' %}">🗓️ {% translate "Site attendance" %}</a>
+  <a class="{% if u == 'mp_billing' %}on{% endif %}" href="{% url 'webapp:mp_billing' %}">🧾 {% translate "Client billing" %}</a>
+  <a href="{% url 'webapp:hr_payroll' %}">💰 {% translate "Payroll" %}</a>
+</nav>
+{% endwith %}

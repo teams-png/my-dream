@@ -35,6 +35,15 @@
       {% if request.role.name == "Owner" %}<a class="nav-link {% if request.resolver_match.url_name == 'rec_website' %}active{% endif %}" href="{% url 'webapp:rec_website' %}"><span>🌐 {% translate "Careers website" %}</span></a>{% endif %}
       </details>
 {% endif %}
+{% if "manpower" in f %}
+      <details class="nav-section" open>
+        <summary>👷 {% translate "Site workers" %}</summary>
+      <a class="nav-link {% if request.resolver_match.url_name == 'mp_home' or request.resolver_match.url_name == 'mp_worker_add' or request.resolver_match.url_name == 'mp_worker_edit' %}active{% endif %}" href="{% url 'webapp:mp_home' %}"><span>{% translate "Workers & ID expiry" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'mp_sites' or request.resolver_match.url_name == 'mp_site' %}active{% endif %}" href="{% url 'webapp:mp_sites' %}"><span>{% translate "Sites" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'mp_attendance' %}active{% endif %}" href="{% url 'webapp:mp_attendance' %}"><span>{% translate "Site attendance" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'mp_billing' %}active{% endif %}" href="{% url 'webapp:mp_billing' %}"><span>{% translate "Client billing" %}</span></a>
+      </details>
+{% endif %}
 {% if "gold" in f %}
       <details class="nav-section" open>
         <summary>🪙 {% translate "Gold" %}</summary>

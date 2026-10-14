@@ -44,6 +44,13 @@
         {% if not p.invoice %}<form method="post" class="rc-inline" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="bill_client"><div><label>{% translate "Bill the client" %}</label><input name="amount" inputmode="decimal" value="{{ p.fee|floatformat:2 }}"></div><button class="btn" type="submit">🧾 {% translate "Create invoice" %}</button></form>{% endif %}
         {% if not p.candidate_invoice %}<form method="post" class="rc-inline" style="margin-top:10px">{% csrf_token %}<input type="hidden" name="action" value="bill_candidate"><div><label>{% translate "Candidate processing fee (optional)" %}</label><input name="amount" inputmode="decimal" placeholder="0.00"></div><button class="btn btn-secondary" type="submit">🧾 {% translate "Bill candidate" %}</button></form>{% endif %}
       </div>
+      {% if manpower and p.stage == "deployed" %}<div class="ix-card"><h3>👷 {% translate "Our site worker" %}</h3>
+        {% if worker %}<p style="margin:0 0 8px">{% translate "Already a site worker" %}: <a href="{% url 'webapp:staff_detail' worker.id %}"><b>{{ worker.name }}</b></a>{% if worker.site %} · {{ worker.site.name }}{% endif %}</p>
+        {% else %}<form method="post" class="rc-inline">{% csrf_token %}<input type="hidden" name="action" value="make_worker">
+          <div><label>{% translate "Working at site" %}</label><select name="site"><option value="">—</option>{% for s in sites %}<option value="{{ s.id }}">{{ s.name }}</option>{% endfor %}</select></div>
+          <button class="btn" type="submit">＋ {% translate "Make site worker" %}</button></form>
+        <small style="color:var(--ink-soft)">{% translate "For workers on our own payroll who work at the client's site. Passport and visa are copied." %}</small>{% endif %}
+      </div>{% endif %}
       <div class="ix-card"><h3>🧾 {% translate "Costs (medical, visa, ticket, agent…)" %}</h3>
         <div class="ix-list">{% for x in costs %}<div class="ix-row"><span class="grow"><b>{{ x.get_cost_type_display }}</b><small>{{ x.date|date:"j M Y" }}{% if x.paid_to %} · {{ x.paid_to }}{% endif %}</small></span><b>{{ x.amount|floatformat:2 }}</b></div>{% empty %}<div class="ix-empty">{% translate "No costs yet." %}</div>{% endfor %}</div>
         <form method="post" class="rc-inline" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="cost">

@@ -688,6 +688,26 @@ msgid "Careers website"
 msgstr "招聘网站"
 
 #: templates/webapp/_industry_nav.html
+msgid "Site workers"
+msgstr "现场工人"
+
+#: templates/webapp/_industry_nav.html
+msgid "Workers & ID expiry"
+msgstr "工人与证件到期"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sites"
+msgstr "工地"
+
+#: templates/webapp/_industry_nav.html
+msgid "Site attendance"
+msgstr "工地考勤"
+
+#: templates/webapp/_industry_nav.html
+msgid "Client billing"
+msgstr "客户账单"
+
+#: templates/webapp/_industry_nav.html
 msgid "Gold"
 msgstr "黄金"
 
@@ -4122,6 +4142,14 @@ msgid "Login"
 msgstr "登录"
 
 #: templates/webapp/hr/staff_detail.html
+msgid "Site worker"
+msgstr "现场工人"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Not on any site"
+msgstr "未分配工地"
+
+#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "每月"
 
@@ -5711,6 +5739,190 @@ msgstr "新用户？"
 #: templates/webapp/login.html
 msgid "Start a free trial"
 msgstr "开始免费试用"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Add a site first."
+msgstr "请先添加工地。"
+
+#: templates/webapp/manpower/attendance.html
+msgid "New site"
+msgstr "新工地"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Normal hours per day"
+msgstr "每天正常工时"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Marked at another site"
+msgstr "已在其他工地登记"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Hours"
+msgstr "小时"
+
+#: templates/webapp/manpower/attendance.html
+msgid "OT hours"
+msgstr "加班小时"
+
+#: templates/webapp/manpower/attendance.html
+msgid "No workers at this site yet."
+msgstr "该工地还没有工人。"
+
+#: templates/webapp/manpower/attendance.html
+msgid "Move workers to this site"
+msgstr "将工人调到此工地"
+
+#: templates/webapp/manpower/billing.html
+msgid "Still to bill this month"
+msgstr "本月待开票"
+
+#: templates/webapp/manpower/billing.html
+msgid ""
+"From the site attendance: hours, days or a monthly rate per worker × the "
+"rate, plus overtime. One invoice per site per month."
+msgstr "根据工地考勤：小时、天数或每名工人的月费率 × 费率，另加加班。每个工地每月一张发票。"
+
+#: templates/webapp/manpower/billing.html
+msgid "No attendance this month."
+msgstr "本月没有考勤。"
+
+#: templates/webapp/manpower/billing.html
+msgid "Open invoice"
+msgstr "打开发票"
+
+#: templates/webapp/manpower/billing.html
+msgid "Make the invoice for this site and month?"
+msgstr "为此工地和月份开具发票？"
+
+#: templates/webapp/manpower/billing.html
+msgid "Make invoice"
+msgstr "开具发票"
+
+#: templates/webapp/manpower/billing.html
+msgid "Choose the client for this site first."
+msgstr "请先选择此工地的客户。"
+
+#: templates/webapp/manpower/home.html
+msgid "Active sites"
+msgstr "在用工地"
+
+#: templates/webapp/manpower/home.html
+msgid "Documents expired"
+msgstr "已过期证件"
+
+#: templates/webapp/manpower/home.html
+msgid "Add site worker"
+msgstr "添加现场工人"
+
+#: templates/webapp/manpower/home.html
+msgid "Name, phone, trade or ID number"
+msgstr "姓名、电话、工种或证件号"
+
+#: templates/webapp/manpower/home.html
+msgid "All sites"
+msgstr "所有工地"
+
+#: templates/webapp/manpower/home.html
+msgid "Site"
+msgstr "工地"
+
+#: templates/webapp/manpower/home.html
+msgid "No site workers yet."
+msgstr "还没有现场工人。"
+
+#: templates/webapp/manpower/home.html
+msgid "Documents expired or expiring in 60 days"
+msgstr "已过期或60天内到期的证件"
+
+#: templates/webapp/manpower/home.html
+msgid "Document"
+msgstr "文件"
+
+#: templates/webapp/manpower/home.html
+msgid "Expiry"
+msgstr "到期"
+
+#: templates/webapp/manpower/home.html
+msgid "Nothing expiring. 👍"
+msgstr "没有即将到期的证件。👍"
+
+#: templates/webapp/manpower/site.html
+msgid "Client"
+msgstr "客户"
+
+#: templates/webapp/manpower/site.html
+msgid "Workers here"
+msgstr "此处工人"
+
+#: templates/webapp/manpower/site.html
+msgid "Rate per worker"
+msgstr "每名工人费率"
+
+#: templates/webapp/manpower/site.html
+msgid "Site supervisor"
+msgstr "工地主管"
+
+#: templates/webapp/manpower/site.html
+msgid "Today's attendance"
+msgstr "今日考勤"
+
+#: templates/webapp/manpower/site.html
+msgid "Workers at this site"
+msgstr "此工地的工人"
+
+#: templates/webapp/manpower/site.html
+msgid "Take off this site"
+msgstr "从此工地移出"
+
+#: templates/webapp/manpower/site.html
+msgid "Move here"
+msgstr "调到这里"
+
+#: templates/webapp/manpower/site.html
+msgid "This month so far"
+msgstr "本月至今"
+
+#: templates/webapp/manpower/site.html
+msgid "To bill"
+msgstr "待开票"
+
+#: templates/webapp/manpower/site.html
+msgid "No attendance this month yet."
+msgstr "本月还没有考勤。"
+
+#: templates/webapp/manpower/site.html
+msgid "Site details & rates"
+msgstr "工地信息与费率"
+
+#: templates/webapp/manpower/sites.html
+msgid "Closed sites"
+msgstr "已关闭工地"
+
+#: templates/webapp/manpower/sites.html
+msgid "No sites yet. Add the first client site below."
+msgstr "还没有工地。请在下方添加第一个客户工地。"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "Edit site worker"
+msgstr "编辑现场工人"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "Worker"
+msgstr "工人"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "ID & documents"
+msgstr "证件与文件"
+
+#: templates/webapp/manpower/worker_form.html
+msgid "you are warned 30 and 7 days before expiry"
+msgstr "到期前30天和7天会提醒您"
+
+#: templates/webapp/manpower/worker_form.html
+msgid ""
+"Per day / per hour: payroll pays for the days or hours marked on the site "
+"attendance. Overtime hours from the site attendance are added too."
+msgstr "按天 / 按小时：工资按工地考勤中记录的天数或小时支付。工地考勤中的加班小时也会计入。"
 
 #: templates/webapp/mess/bills.html
 msgid "Mess bills"
@@ -8261,6 +8473,10 @@ msgid "Not put forward for any job yet."
 msgstr "尚未推荐任何职位。"
 
 #: templates/webapp/recruitment/candidate_detail.html
+msgid "Best-fitting open jobs"
+msgstr "最合适的空缺职位"
+
+#: templates/webapp/recruitment/candidate_detail.html
 msgid "Put forward for"
 msgstr "已推荐至"
 
@@ -8397,10 +8613,6 @@ msgid "Update client"
 msgstr "更新客户"
 
 #: templates/webapp/recruitment/job_detail.html
-msgid "Client"
-msgstr "客户"
-
-#: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
 msgstr "已入职 / 所需"
 
@@ -8425,8 +8637,13 @@ msgid "Add candidates to this job"
 msgstr "为此职位添加候选人"
 
 #: templates/webapp/recruitment/job_detail.html
-msgid "Matching available candidates"
-msgstr "匹配的可用候选人"
+msgid ""
+"Best matches first (skills, experience, nationality, age, salary, passport)"
+msgstr "最佳匹配优先（技能、经验、国籍、年龄、薪资、护照）"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "only good matches"
+msgstr "仅显示良好匹配"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "show all"
@@ -8559,6 +8776,28 @@ msgstr "候选人手续费（可选）"
 #: templates/webapp/recruitment/placement.html
 msgid "Bill candidate"
 msgstr "向候选人开票"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Our site worker"
+msgstr "我们的现场工人"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Already a site worker"
+msgstr "已是现场工人"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Working at site"
+msgstr "所在工地"
+
+#: templates/webapp/recruitment/placement.html
+msgid "Make site worker"
+msgstr "设为现场工人"
+
+#: templates/webapp/recruitment/placement.html
+msgid ""
+"For workers on our own payroll who work at the client's site. Passport and "
+"visa are copied."
+msgstr "适用于在我们工资单上、在客户工地工作的工人。护照和签证会被复制。"
 
 #: templates/webapp/recruitment/placement.html
 msgid "Costs (medical, visa, ticket, agent…)"
@@ -11762,6 +12001,30 @@ msgstr "选择%(label)s"
 msgid "Select…"
 msgstr "选择…"
 
+#: apps/employees/site_workers.py
+msgid "Choose a site."
+msgstr "请选择工地。"
+
+#: apps/employees/site_workers.py
+msgid "Hours must be between 0 and 24."
+msgstr "小时数必须在0到24之间。"
+
+#: apps/employees/site_workers.py
+msgid "You cannot mark attendance for a future date."
+msgstr "不能为未来日期登记考勤。"
+
+#: apps/employees/site_workers.py
+msgid "This month has not started yet."
+msgstr "本月尚未开始。"
+
+#: apps/employees/site_workers.py
+msgid "This site is already billed for %(month)s."
+msgstr "此工地%(month)s已开过发票。"
+
+#: apps/employees/site_workers.py
+msgid "Nothing to bill: no attendance or no rate for %(month)s."
+msgstr "没有可开票内容：%(month)s没有考勤或费率。"
+
 #: apps/finance/models.py
 msgid "Received from customer"
 msgstr "从客户处收到"
@@ -11966,6 +12229,34 @@ msgstr "我们正在处理 %(what)s（工单 %(number)s）。"
 #: apps/industry/jobs.py
 msgid "Status: %(url)s"
 msgstr "状态：%(url)s"
+
+#: apps/industry/matching.py
+msgid "No position / skill"
+msgstr "无职位 / 技能"
+
+#: apps/industry/matching.py
+msgid "%(have)s of %(need)s yrs experience"
+msgstr "经验 %(have)s / %(need)s 年"
+
+#: apps/industry/matching.py
+msgid "Nationality not given"
+msgstr "未填写国籍"
+
+#: apps/industry/matching.py
+msgid "Age %(age)s"
+msgstr "年龄 %(age)s"
+
+#: apps/industry/matching.py
+msgid "Expects %(amount)s"
+msgstr "期望 %(amount)s"
+
+#: apps/industry/matching.py
+msgid "Passport valid"
+msgstr "护照有效"
+
+#: apps/industry/matching.py
+msgid "Passport expires %(date)s"
+msgstr "护照于 %(date)s 到期"
 
 #: apps/industry/models.py
 msgid "Ready / on the way"
@@ -13726,10 +14017,6 @@ msgid "Leave type"
 msgstr "假期类型"
 
 #: apps/webapp/hr_views.py
-msgid "Document"
-msgstr "文件"
-
-#: apps/webapp/hr_views.py
 msgid "%(name)s removed."
 msgstr "已移除 %(name)s。"
 
@@ -13938,6 +14225,136 @@ msgstr "%(name)s 的链接已就绪。"
 #: apps/webapp/job_views.py
 msgid "From %(name)s"
 msgstr "来自 %(name)s"
+
+#: apps/webapp/manpower_views.py
+msgid "Salary / pay rate"
+msgstr "工资 / 计酬标准"
+
+#: apps/webapp/manpower_views.py
+msgid "Per month, per day or per hour — as chosen in “How we pay”."
+msgstr "按月、按天或按小时——依“计薪方式”中的选择。"
+
+#: apps/webapp/manpower_views.py
+msgid "Allowances per month (food, transport…)"
+msgstr "每月津贴（餐费、交通…）"
+
+#: apps/webapp/manpower_views.py
+msgid "Fixed deductions per month"
+msgstr "每月固定扣款"
+
+#: apps/webapp/manpower_views.py
+msgid "Overtime pay per hour"
+msgstr "每小时加班工资"
+
+#: apps/webapp/manpower_views.py
+msgid "Trade / skill"
+msgstr "工种 / 技能"
+
+#: apps/webapp/manpower_views.py
+msgid "Accommodation / camp"
+msgstr "住宿 / 营地"
+
+#: apps/webapp/manpower_views.py
+msgid "Joined on"
+msgstr "入职日期"
+
+#: apps/webapp/manpower_views.py
+msgid "How we pay"
+msgstr "计薪方式"
+
+#: apps/webapp/manpower_views.py
+msgid "Client rate for this worker (optional)"
+msgstr "此工人的客户费率（可选）"
+
+#: apps/webapp/manpower_views.py
+msgid "Leave empty to use the site's rate."
+msgstr "留空则使用工地费率。"
+
+#: apps/webapp/manpower_views.py
+msgid "e.g. Electrician, Cleaner, Security guard"
+msgstr "例如：电工、清洁工、保安"
+
+#: apps/webapp/manpower_views.py
+msgid "%(doc)s number"
+msgstr "%(doc)s号码"
+
+#: apps/webapp/manpower_views.py
+msgid "%(doc)s expiry"
+msgstr "%(doc)s到期日"
+
+#: apps/webapp/manpower_views.py
+msgid "Site name"
+msgstr "工地名称"
+
+#: apps/webapp/manpower_views.py
+msgid "Supervisor phone"
+msgstr "主管电话"
+
+#: apps/webapp/manpower_views.py
+msgid "Site is active"
+msgstr "工地启用中"
+
+#: apps/webapp/manpower_views.py
+msgid "e.g. Al Wakra Mall – cleaning"
+msgstr "例如：Al Wakra 商场 – 清洁"
+
+#: apps/webapp/manpower_views.py
+msgid "expired %(n)s days ago"
+msgstr "已过期 %(n)s 天"
+
+#: apps/webapp/manpower_views.py
+msgid "%(n)s days left"
+msgstr "还剩 %(n)s 天"
+
+#: apps/webapp/manpower_views.py
+msgid ""
+"Hello %(name)s, your %(doc)s expires on %(date)s. Please bring it for "
+"renewal."
+msgstr "您好 %(name)s，您的%(doc)s将于 %(date)s 到期。请带来办理续期。"
+
+#: apps/webapp/manpower_views.py
+msgid "%(count)s workers moved."
+msgstr "已调动 %(count)s 名工人。"
+
+#: apps/webapp/manpower_views.py
+msgid "Invoice %(number)s made for %(site)s."
+msgstr "已为 %(site)s 开具发票 %(number)s。"
+
+#: apps/webapp/manpower_views.py
+msgid "Per hour"
+msgstr "按小时"
+
+#: apps/webapp/manpower_views.py
+msgid "Per month"
+msgstr "按月"
+
+#: apps/webapp/manpower_views.py
+msgid "Monthly salary"
+msgstr "月薪"
+
+#: apps/webapp/manpower_views.py
+msgid "Per day worked"
+msgstr "按工作日"
+
+#: apps/webapp/manpower_views.py
+msgid "Per hour worked"
+msgstr "按工作小时"
+
+#: apps/webapp/manpower_views.py
+msgid "ID / residence card"
+msgstr "身份证 / 居留卡"
+
+#: apps/webapp/manpower_views.py
+msgid "Health card"
+msgstr "健康卡"
+
+#: apps/webapp/manpower_views.py
+msgid "Work visa"
+msgstr "工作签证"
+
+#: apps/webapp/manpower_views.py
+msgid "Office staff"
+msgstr "办公室员工"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15035,6 +15452,18 @@ msgid "Replacement guarantee (days)"
 msgstr "替换保证（天）"
 
 #: apps/webapp/recruitment_views.py
+msgid "Skills needed (comma separated)"
+msgstr "所需技能（用逗号分隔）"
+
+#: apps/webapp/recruitment_views.py
+msgid "Minimum experience (years)"
+msgstr "最少经验（年）"
+
+#: apps/webapp/recruitment_views.py
+msgid "Maximum age"
+msgstr "最大年龄"
+
+#: apps/webapp/recruitment_views.py
 msgid "Show on our careers website"
 msgstr "在我们的招聘网站上显示"
 
@@ -15045,6 +15474,10 @@ msgstr "网站上的职位描述"
 #: apps/webapp/recruitment_views.py
 msgid "Choose a client or type a new client's name."
 msgstr "请选择客户或输入新客户名称。"
+
+#: apps/webapp/recruitment_views.py
+msgid "Skills (comma separated)"
+msgstr "技能（用逗号分隔）"
 
 #: apps/webapp/recruitment_views.py
 msgid "Passport expiry"
@@ -15133,6 +15566,14 @@ msgstr "已为候选人创建发票 %(number)s。"
 #: apps/webapp/recruitment_views.py
 msgid "Cost recorded in expenses."
 msgstr "费用已记入支出。"
+
+#: apps/webapp/recruitment_views.py
+msgid "Mark the candidate as joined first."
+msgstr "请先将候选人标记为已入职。"
+
+#: apps/webapp/recruitment_views.py
+msgid "%(name)s is now a site worker."
+msgstr "%(name)s 现在是现场工人。"
 
 #: apps/webapp/recruitment_views.py
 msgid ""

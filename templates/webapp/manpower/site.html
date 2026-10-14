@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ site.name }}{% endblock %}
+{% block heading %}🏗️ {{ site.name }}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/manpower/_tabs.html" %}
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Client" %}</small><b style="font-size:16px">{{ site.client.name|default:"—" }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Workers here" %}</small><b>{{ workers|length }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Rate per worker" %}</small><b>{{ site.bill_rate|floatformat:2 }} <small>· {% translate site.get_bill_basis_display %}</small></b></div>
+  {% if site.supervisor %}<div class="hr-kpi"><small>{% translate "Site supervisor" %}</small><b style="font-size:16px">{{ site.supervisor }}</b>{% if supervisor_wa %}<a href="{{ supervisor_wa }}" target="_blank" rel="noopener">WhatsApp</a>{% endif %}</div>{% endif %}
+</div>
+<div class="hr-actions" style="margin-bottom:14px">
+  <a class="btn" href="{% url 'webapp:mp_attendance' %}?site={{ site.id }}">🗓️ {% translate "Today's attendance" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:mp_worker_add' %}?site={{ site.id }}">＋ {% translate "Add site worker" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:mp_billing' %}">🧾 {% translate "Client billing" %}</a>
+</div>
+
+<div class="hr-card"><h3>👷 {% translate "Workers at this site" %}</h3>
+{% if workers %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="remove">
+  <div class="hr-list">{% for w in workers %}<label class="hr-row"><input type="checkbox" name="worker" value="{{ w.id }}"><span class="grow"><b>{{ w.name }}</b><small>{{ w.trade|default:"—" }}{% if w.phone %} · {{ w.phone }}{% endif %}</small></span><a href="{% url 'webapp:staff_detail' w.id %}">{% translate "Open" %}</a></label>{% endfor %}</div>
+  <div class="hr-actions" style="margin-top:10px"><button class="btn btn-secondary" type="submit">{% translate "Take off this site" %}</button></div>
+</form>{% else %}<p class="hr-empty">{% translate "No workers at this site yet." %}</p>{% endif %}
+{% if others %}<form method="post" style="margin-top:14px">{% csrf_token %}<input type="hidden" name="action" value="assign">
+  <label style="font-weight:700;font-size:13px">{% translate "Move workers to this site" %}</label>
+  <select class="hr-in" name="worker" multiple size="6">{% for w in others %}<option value="{{ w.id }}">{{ w.name }}{% if w.trade %} · {{ w.trade }}{% endif %}{% if w.site %} ({{ w.site.name }}){% endif %}</option>{% endfor %}</select>
+  <div class="hr-actions" style="margin-top:8px"><button class="btn" type="submit">{% translate "Move here" %}</button></div>
+</form>{% endif %}
+</div>
+
+<div class="hr-card"><h3>📊 {% translate "This month so far" %} <small>{{ month_start|date:"F Y" }}</small></h3>
+{% if month %}<div class="hr-table"><table><tr><th>{% translate "Name" %}</th><th class="hr-num">{% translate "Days" %}</th><th class="hr-num">{% translate "Hours" %}</th><th class="hr-num">{% translate "OT hours" %}</th><th class="hr-num">{% translate "To bill" %}</th></tr>
+{% for r in month %}<tr><td>{{ r.employee.name }}</td><td class="hr-num">{{ r.days|floatformat:"-1" }}</td><td class="hr-num">{{ r.hours|floatformat:"-2" }}</td><td class="hr-num">{{ r.ot|floatformat:"-2" }}</td><td class="hr-num">{{ r.amount|floatformat:2 }}</td></tr>{% endfor %}
+</table></div>{% else %}<p class="hr-empty">{% translate "No attendance this month yet." %}</p>{% endif %}
+</div>
+
+<form method="post" class="hr-card" style="max-width:900px">{% csrf_token %}<input type="hidden" name="action" value="save">
+  <h3>⚙️ {% translate "Site details & rates" %}</h3>
+  {% if form.non_field_errors %}<div style="color:var(--hr-bad)">{{ form.non_field_errors }}</div>{% endif %}
+  <div class="hr-form">{% for f in form %}{% include "webapp/hr/_field.html" with f=f %}{% endfor %}</div>
+  <div class="hr-actions" style="margin-top:12px"><button class="btn" type="submit">{% translate "Save" %}</button></div>
+</form>
+</div>
+{% endblock %}

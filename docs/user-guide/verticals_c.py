@@ -158,3 +158,27 @@ svc["tasks"].insert(2, ("Clinic, lab, optical &amp; laundry records",
 for _v in VERTICALS:
     if _v.get("slug") == "project-agency":
         _v["tasks"] = [AMC_TASK] + list(_v.get("tasks", []))
+
+# Site workers (manpower supply) — recruitment agencies and security / cleaning / maintenance / facility companies
+MANPOWER_TASKS = [
+ ("Keep site workers with their ID and passport expiry",
+  ["Open [[Workers &amp; ID expiry]] → [[＋ Add site worker]]: name, trade (e.g. <i>Cleaner</i>), nationality, the site they work at and the camp.",
+   "Fill <b>ID / residence card</b>, <b>Passport</b>, <b>Health card</b> and <b>Driving licence</b> numbers with their expiry dates.",
+   "Choose <b>How we pay</b>: monthly salary, per day worked or per hour worked, and the overtime pay per hour.",
+   "Expired documents turn red, ones ending in 30 days turn yellow. You get a notice 30 and 7 days before and on the day — press [[WhatsApp]] to remind the worker."],
+  dict(tip="A candidate who has joined can be made a site worker from the placement page with [[＋ Make site worker]] — passport and visa are copied.")),
+ ("Add client sites and move workers",
+  ["Open [[Sites]]: site name, client, location, supervisor, and how you bill the client — <b>per hour</b>, <b>per day</b> or <b>per month</b> per worker — with the rate and the overtime rate.",
+   "On the site page choose workers and press [[Move here]]; [[Take off this site]] removes them."]),
+ ("Take attendance at each site",
+  ["Open [[Site attendance]], choose the site and the day, press [[✓ Mark all present]] and change the few who were absent or half day.",
+   "Leave <b>Hours</b> empty for a normal day, or type the hours worked. Add <b>OT hours</b> for overtime."],
+  dict(note="Payroll pays per-day and per-hour workers for the days / hours marked here, and adds the overtime hours for everyone.")),
+ ("Bill each client every month",
+  ["Open [[Client billing]] and choose the month: each site shows every worker's days, hours, overtime and amount.",
+   "Press [[🧾 Make invoice]] — one invoice per site per month goes to the client (a line per trade plus overtime). A month cannot be billed twice."]),
+]
+for _v in VERTICALS:
+    if _v.get("slug") == "project-agency":
+        _v["tasks"] = list(_v.get("tasks", [])) + MANPOWER_TASKS
+        _v["chips"] = list(_v.get("chips", [])) + ["Site workers &amp; ID expiry"]

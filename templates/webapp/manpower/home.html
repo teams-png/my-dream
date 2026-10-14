@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Site workers" %}{% endblock %}
+{% block heading %}{% translate "Site workers" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/manpower/_tabs.html" %}
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Site workers" %}</small><b>{{ stats.workers }}</b></div>
+  <a class="hr-kpi" href="{% url 'webapp:mp_sites' %}"><small>{% translate "Active sites" %}</small><b>{{ stats.sites }}</b></a>
+  <a class="hr-kpi" href="{% url 'webapp:mp_attendance' %}"><small>{% translate "Present today" %}</small><b>{{ stats.present }} / {{ stats.workers }}</b></a>
+  {% if stats.unassigned %}<a class="hr-kpi warn" href="?site=none"><small>{% translate "Not on any site" %}</small><b>{{ stats.unassigned }}</b></a>{% endif %}
+  <a class="hr-kpi {% if stats.expired %}warn{% endif %}" href="#expiry"><small>{% translate "Documents expired" %}</small><b>{{ stats.expired }}</b></a>
+  <a class="hr-kpi {% if stats.soon %}warn{% endif %}" href="#expiry"><small>{% translate "Expiring in 30 days" %}</small><b>{{ stats.soon }}</b></a>
+</div>
+<div class="hr-actions" style="margin-bottom:14px">
+  <a class="btn" href="{% url 'webapp:mp_worker_add' %}">＋ {% translate "Add site worker" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:mp_attendance' %}">🗓️ {% translate "Site attendance" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:mp_billing' %}">🧾 {% translate "Client billing" %}</a>
+</div>
+<form method="get" class="hr-actions" style="margin-bottom:14px">
+  <input class="hr-in" style="flex:1 1 220px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Name, phone, trade or ID number' %}">
+  <select class="hr-in" style="width:auto" name="site" onchange="this.form.submit()"><option value="">{% translate "All sites" %}</option><option value="none" {% if site_id == "none" %}selected{% endif %}>{% translate "Not on any site" %}</option>{% for s in sites %}<option value="{{ s.id }}" {% if site_id == s.id|stringformat:"s" %}selected{% endif %}>{{ s.name }}</option>{% endfor %}</select>
+  <button class="btn btn-secondary" type="submit">{% translate "Search" %}</button>
+</form>
+{% if workers %}
+<div class="hr-card hr-table" style="padding:0"><table>
+  <tr><th>{% translate "Name" %}</th><th>{% translate "Site" %}</th>{% for h in doc_heads %}<th>{{ h }}</th>{% endfor %}<th>{% translate "Today" %}</th><th></th></tr>
+  {% for w in workers %}<tr>
+    <td><a href="{% url 'webapp:staff_detail' w.id %}"><b>{{ w.name }}</b></a><br><small style="color:var(--hr-soft)">{{ w.trade|default:"—" }}{% if w.nationality %} · {{ w.nationality }}{% endif %}</small></td>
+    <td>{% if w.site %}<a href="{% url 'webapp:mp_site' w.site.id %}">{{ w.site.name }}</a>{% else %}<span class="hr-chip warn">{% translate "None" %}</span>{% endif %}</td>
+    {% for d in w.docs %}<td>{% if d.date %}<span class="mp-exp {{ d.state }}">{{ d.date|date:"j M Y" }}</span>{% else %}<span class="mp-exp">—</span>{% endif %}</td>{% endfor %}
+    <td>{% if w.today %}<span class="hr-chip {{ w.today }}">{% if w.today == "present" %}{% translate "Present" %}{% elif w.today == "absent" %}{% translate "Absent" %}{% elif w.today == "half_day" %}{% translate "Half day" %}{% elif w.today == "leave" %}{% translate "Leave" %}{% else %}{% translate "Holiday" %}{% endif %}</span>{% else %}—{% endif %}</td>
+    <td><a class="btn btn-secondary" href="{% url 'webapp:mp_worker_edit' w.id %}">{% translate "Edit" %}</a></td>
+  </tr>{% endfor %}
+</table></div>
+{% else %}
+<div class="hr-card hr-empty">{% translate "No site workers yet." %} <a href="{% url 'webapp:mp_worker_add' %}">＋ {% translate "Add site worker" %}</a></div>
+{% endif %}
+
+<div class="hr-card" id="expiry"><h3>⏰ {% translate "Documents expired or expiring in 60 days" %}</h3>
+{% if expiring %}<div class="hr-table"><table>
+  <tr><th>{% translate "Name" %}</th><th>{% translate "Document" %}</th><th>{% translate "Number" %}</th><th>{% translate "Expiry" %}</th><th></th></tr>
+  {% for d in expiring %}<tr><td><a href="{% url 'webapp:staff_detail' d.employee.id %}">{{ d.employee.name }}</a>{% if d.employee.site %}<br><small style="color:var(--hr-soft)">{{ d.employee.site.name }}</small>{% endif %}</td>
+    <td>{% translate d.document_type %}</td><td>{{ d.document_number|default:"—" }}</td>
+    <td><span class="mp-exp {{ d.state }}">{{ d.expiry_date|date:"j M Y" }} · {{ d.when }}</span></td>
+    <td>{% if d.employee.phone %}<a class="btn btn-secondary" href="{{ d.whatsapp }}" target="_blank" rel="noopener">WhatsApp</a>{% endif %}</td></tr>{% endfor %}
+</table></div>{% else %}<p class="hr-empty">{% translate "Nothing expiring. 👍" %}</p>{% endif %}
+</div>
+</div>
+{% endblock %}

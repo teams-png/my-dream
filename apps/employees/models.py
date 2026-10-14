@@ -15,9 +15,56 @@ class Employee(TenantScopedModel):
     employment_status = models.CharField(max_length=20, choices=[("active", "Active"), ("probation", "Probation"), ("inactive", "Inactive"), ("terminated", "Terminated")], default="active")
     leaving_date = models.DateField(null=True, blank=True)
     shift = models.ForeignKey("WorkShift", null=True, blank=True, on_delete=models.SET_NULL)
+    # site workers (manpower supply): people who work at a client's site, not in the office
+    WORKER_TYPES = [("office", "Office staff"), ("site", "Site worker")]
+    PAY_BASIS = [("monthly", "Monthly salary"), ("daily", "Per day worked"), ("hourly", "Per hour worked")]
+    worker_type = models.CharField(max_length=10, choices=WORKER_TYPES, default="office")
+    site = models.ForeignKey("WorkSite", null=True, blank=True, on_delete=models.SET_NULL, related_name="workers")
+    trade = models.CharField(max_length=100, blank=True)
+    nationality = models.CharField(max_length=60, blank=True)
+    pay_basis = models.CharField(max_length=10, choices=PAY_BASIS, default="monthly")
+    bill_rate = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True,
+                                    help_text="What the client pays for this worker (empty = the site's rate).")
+    accommodation = models.CharField(max_length=120, blank=True)
+    candidate = models.ForeignKey("industry.Candidate", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
 
     def __str__(self):
         return self.name
+
+
+class WorkSite(TenantScopedModel):
+    """A client's site where our workers are placed (manpower supply)."""
+    BILL_BASIS = [("hour", "Per hour"), ("day", "Per day"), ("month", "Per month")]
+    name = models.CharField(max_length=150)
+    client = models.ForeignKey("customers.Customer", null=True, blank=True, on_delete=models.PROTECT, related_name="work_sites")
+    location = models.CharField(max_length=200, blank=True)
+    supervisor = models.CharField(max_length=120, blank=True)
+    supervisor_phone = models.CharField(max_length=30, blank=True)
+    bill_basis = models.CharField(max_length=10, choices=BILL_BASIS, default="hour")
+    bill_rate = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    ot_bill_rate = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    hours_per_day = models.DecimalField(max_digits=4, decimal_places=1, default=8)
+    is_active = models.BooleanField(default=True)
+    notes = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
+
+class SiteInvoice(TenantScopedModel):
+    """One client bill per site per month, so a month is never billed twice."""
+    site = models.ForeignKey(WorkSite, on_delete=models.CASCADE, related_name="invoices")
+    month = models.DateField()  # first day of the month
+    invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    amount = models.DecimalField(max_digits=14, decimal_places=2, default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["site", "month"], name="one_bill_per_site_month")]
 
 
 class Commission(TenantScopedModel):
@@ -66,6 +113,9 @@ class Attendance(TenantScopedModel):
     check_in = models.TimeField(null=True, blank=True)
     check_out = models.TimeField(null=True, blank=True)
     notes = models.CharField(max_length=255, blank=True)
+    site = models.ForeignKey("WorkSite", null=True, blank=True, on_delete=models.SET_NULL, related_name="attendance")
+    hours = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    ot_hours = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     class Meta:
         unique_together = ("company", "employee", "date")
 

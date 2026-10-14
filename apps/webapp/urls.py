@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import team_order_views
-from . import contract_views, delivery_views, job_views, sports_extra_views, refill_views, shop_order_views, billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
+from . import manpower_views, contract_views, delivery_views, job_views, sports_extra_views, refill_views, shop_order_views, billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -245,6 +245,13 @@ urlpatterns = [
     path("careers/<slug:slug>/connect.js", careers_views.careers_connect_js, name="careers_connect_js"),
     path("careers/<slug:slug>/form.js", careers_views.careers_form_js, name="careers_form_js"),
     path("recruitment/website/wordpress-plugin.zip", careers_views.rec_wp_plugin, name="rec_wp_plugin"),
+    path("manpower/", manpower_views.mp_home, name="mp_home"),
+    path("manpower/workers/new/", manpower_views.mp_worker_add, name="mp_worker_add"),
+    path("manpower/workers/<int:staff_id>/edit/", manpower_views.mp_worker_edit, name="mp_worker_edit"),
+    path("manpower/sites/", manpower_views.mp_sites, name="mp_sites"),
+    path("manpower/sites/<int:site_id>/", manpower_views.mp_site, name="mp_site"),
+    path("manpower/attendance/", manpower_views.mp_attendance, name="mp_attendance"),
+    path("manpower/billing/", manpower_views.mp_billing, name="mp_billing"),
     path("recruitment/", recruitment_views.rec_home, name="rec_home"),
     path("recruitment/clients/", recruitment_views.rec_clients, name="rec_clients"),
     path("recruitment/jobs/", recruitment_views.rec_jobs, name="rec_jobs"),

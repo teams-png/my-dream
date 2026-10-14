@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Client billing" %}{% endblock %}
+{% block heading %}{% translate "Client billing" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/manpower/_tabs.html" %}
+<div class="hr-month">
+  <a class="btn btn-secondary" href="?m={{ prev|date:'Y-m' }}">‹</a>
+  <b>{{ month|date:"F Y" }}</b>
+  <a class="btn btn-secondary" href="?m={{ next|date:'Y-m' }}">›</a>
+</div>
+<div class="hr-kpis"><div class="hr-kpi"><small>{% translate "Still to bill this month" %}</small><b>{{ active_company.default_currency }} {{ grand|floatformat:2 }}</b></div></div>
+<p style="color:var(--hr-soft);font-size:13px">{% translate "From the site attendance: hours, days or a monthly rate per worker × the rate, plus overtime. One invoice per site per month." %}</p>
+{% for s in sites %}
+<div class="hr-card">
+  <h3>🏗️ <a href="{% url 'webapp:mp_site' s.id %}">{{ s.name }}</a> <small>{{ s.client.name|default:"—" }} · {{ s.bill_rate|floatformat:2 }} · {% translate s.get_bill_basis_display %}</small></h3>
+  {% if s.rows %}<div class="hr-table"><table>
+    <tr><th>{% translate "Name" %}</th><th class="hr-num">{% translate "Days" %}</th><th class="hr-num">{% translate "Hours" %}</th><th class="hr-num">{% translate "OT hours" %}</th><th class="hr-num">{% translate "Rate" %}</th><th class="hr-num">{% translate "Amount" %}</th></tr>
+    {% for r in s.rows %}<tr><td>{{ r.employee.name }}<br><small style="color:var(--hr-soft)">{{ r.employee.trade }}</small></td><td class="hr-num">{{ r.days|floatformat:"-1" }}</td><td class="hr-num">{{ r.hours|floatformat:"-2" }}</td><td class="hr-num">{{ r.ot|floatformat:"-2" }}</td><td class="hr-num">{{ r.rate|floatformat:2 }}</td><td class="hr-num">{{ r.amount|floatformat:2 }}</td></tr>{% endfor %}
+    <tr><td colspan="5"><b>{% translate "Total" %}</b></td><td class="hr-num"><b>{{ s.total|floatformat:2 }}</b></td></tr>
+  </table></div>{% else %}<p class="hr-empty">{% translate "No attendance this month." %}</p>{% endif %}
+  <div class="hr-actions" style="margin-top:10px">
+  {% if s.bill %}<span class="hr-chip ok">✓ {% translate "Billed" %} {% if s.bill.invoice %}{{ s.bill.invoice.invoice_number }}{% endif %} · {{ s.bill.amount|floatformat:2 }}</span>{% if s.bill.invoice %}<a class="btn btn-secondary" href="{% url 'webapp:invoice_share' s.bill.invoice.id %}">{% translate "Open invoice" %}</a>{% endif %}
+  {% elif s.rows and not is_future %}
+    {% if s.client %}<form method="post" onsubmit="return confirm('{% translate "Make the invoice for this site and month?" %}')">{% csrf_token %}<input type="hidden" name="site" value="{{ s.id }}"><input type="hidden" name="m" value="{{ month|date:'Y-m' }}"><button class="btn" type="submit">🧾 {% translate "Make invoice" %} ({{ s.total|floatformat:2 }})</button></form>
+    {% else %}<a class="btn btn-secondary" href="{% url 'webapp:mp_site' s.id %}">{% translate "Choose the client for this site first." %}</a>{% endif %}
+  {% endif %}
+  </div>
+</div>
+{% empty %}
+<div class="hr-card hr-empty">{% translate "Add a site first." %} <a href="{% url 'webapp:mp_sites' %}">＋ {% translate "New site" %}</a></div>
+{% endfor %}
+</div>
+{% endblock %}

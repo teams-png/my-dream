@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% if worker %}{{ worker.name }}{% else %}{% translate "Add site worker" %}{% endif %}{% endblock %}
+{% block heading %}{% if worker %}{% translate "Edit site worker" %}{% else %}{% translate "Add site worker" %}{% endif %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/manpower/_tabs.html" %}
+<form method="post" style="max-width:900px">{% csrf_token %}
+  {% if form.non_field_errors %}<div class="hr-card" style="color:var(--hr-bad)">{{ form.non_field_errors }}</div>{% endif %}
+  <div class="hr-card"><h3>👷 {% translate "Worker" %}</h3>
+    <div class="hr-form">
+      {% include "webapp/hr/_field.html" with f=form.name %}
+      {% include "webapp/hr/_field.html" with f=form.phone %}
+      {% include "webapp/hr/_field.html" with f=form.trade %}
+      {% include "webapp/hr/_field.html" with f=form.nationality %}
+      {% include "webapp/hr/_field.html" with f=form.site %}
+      {% include "webapp/hr/_field.html" with f=form.accommodation %}
+      {% include "webapp/hr/_field.html" with f=form.joined_date %}
+      {% include "webapp/hr/_field.html" with f=form.employment_status %}
+    </div>
+  </div>
+  <div class="hr-card"><h3>🪪 {% translate "ID & documents" %} <small>{% translate "you are warned 30 and 7 days before expiry" %}</small></h3>
+    <div class="hr-form">
+      {% for label, num, exp in form.doc_fields %}
+        {% include "webapp/hr/_field.html" with f=num %}
+        {% include "webapp/hr/_field.html" with f=exp %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="hr-card"><h3>💰 {% translate "Pay" %}</h3>
+    <div class="hr-form">
+      {% include "webapp/hr/_field.html" with f=form.pay_basis %}
+      {% include "webapp/hr/_field.html" with f=form.basic_pay %}
+      {% include "webapp/hr/_field.html" with f=form.allowance %}
+      {% include "webapp/hr/_field.html" with f=form.deduction %}
+      {% include "webapp/hr/_field.html" with f=form.overtime_rate %}
+      {% include "webapp/hr/_field.html" with f=form.bill_rate %}
+    </div>
+    <p class="help" style="color:var(--hr-soft);margin:12px 0 0;font-size:13px">{% translate "Per day / per hour: payroll pays for the days or hours marked on the site attendance. Overtime hours from the site attendance are added too." %}</p>
+  </div>
+  <div class="hr-actions">
+    <button class="btn" type="submit">{% translate "Save" %}</button>
+    <a class="btn btn-secondary" href="{% if worker %}{% url 'webapp:staff_detail' worker.id %}{% else %}{% url 'webapp:mp_home' %}{% endif %}">{% translate "Cancel" %}</a>
+  </div>
+</form>
+</div>
+{% endblock %}

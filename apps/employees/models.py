@@ -27,6 +27,8 @@ class Employee(TenantScopedModel):
                                     help_text="What the client pays for this worker (empty = the site's rate).")
     accommodation = models.CharField(max_length=120, blank=True)
     candidate = models.ForeignKey("industry.Candidate", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    duty_shift = models.ForeignKey("SiteShift", null=True, blank=True, on_delete=models.SET_NULL, related_name="workers")
+    weekly_off = models.PositiveSmallIntegerField(null=True, blank=True)  # Python weekday, Mon=0; empty = company's off days
 
     def __str__(self):
         return self.name
@@ -53,6 +55,31 @@ class WorkSite(TenantScopedModel):
 
     def __str__(self):
         return self.name
+
+
+class SiteShift(TenantScopedModel):
+    """A duty shift at a site (Day 6am–6pm, Night…) and how many workers it needs."""
+    site = models.ForeignKey(WorkSite, on_delete=models.CASCADE, related_name="shifts")
+    name = models.CharField(max_length=60)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    needed = models.PositiveSmallIntegerField(default=1)
+
+    class Meta:
+        ordering = ["start_time", "name"]
+
+    def __str__(self):
+        return f"{self.name} {self.start_time:%H:%M}–{self.end_time:%H:%M}"
+
+    @property
+    def hours(self):
+        from datetime import datetime, timedelta
+        from decimal import Decimal
+        start = datetime.combine(datetime.min, self.start_time)
+        end = datetime.combine(datetime.min, self.end_time)
+        if end <= start:
+            end += timedelta(days=1)  # a night shift ends the next morning
+        return Decimal(str(round((end - start).seconds / 3600, 2)))
 
 
 class SiteInvoice(TenantScopedModel):

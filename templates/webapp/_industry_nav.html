@@ -40,8 +40,10 @@
         <summary>👷 {% translate "Site workers" %}</summary>
       <a class="nav-link {% if request.resolver_match.url_name == 'mp_home' or request.resolver_match.url_name == 'mp_worker_add' or request.resolver_match.url_name == 'mp_worker_edit' %}active{% endif %}" href="{% url 'webapp:mp_home' %}"><span>{% translate "Workers & ID expiry" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'mp_sites' or request.resolver_match.url_name == 'mp_site' %}active{% endif %}" href="{% url 'webapp:mp_sites' %}"><span>{% translate "Sites" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'mp_duty' %}active{% endif %}" href="{% url 'webapp:mp_duty' %}"><span>{% translate "Duty roster" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'mp_attendance' %}active{% endif %}" href="{% url 'webapp:mp_attendance' %}"><span>{% translate "Site attendance" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'mp_billing' %}active{% endif %}" href="{% url 'webapp:mp_billing' %}"><span>{% translate "Client billing" %}</span></a>
+      <a class="nav-link {% if request.resolver_match.url_name == 'mp_profit' %}active{% endif %}" href="{% url 'webapp:mp_profit' %}"><span>{% translate "Site profit" %}</span></a>
       </details>
 {% endif %}
 {% if "gold" in f %}

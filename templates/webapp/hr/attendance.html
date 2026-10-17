@@ -15,6 +15,7 @@
 </div>
 {% if holiday %}<div class="hr-card" style="background:var(--hr-blue-bg)">🎉 {% translate "Holiday" %}: <b>{{ holiday.name }}</b></div>{% elif is_off %}<div class="hr-card" style="background:var(--hr-blue-bg)">{% translate "This is a weekly off day." %}</div>{% endif %}
 
+{% if site_workers %}<div class="hr-card" style="background:var(--hr-blue-bg)">🏢 {% translate "Office staff only here." %} <a href="{% url 'webapp:mp_attendance' %}">👷 {% translate "Site attendance" %} ({{ site_workers }}) →</a></div>{% endif %}
 {% if staff %}
 <form method="post">{% csrf_token %}<input type="hidden" name="date" value="{{ day|date:'Y-m-d' }}">
 <div class="hr-actions" style="margin-bottom:10px">

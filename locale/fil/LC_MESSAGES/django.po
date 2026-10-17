@@ -703,12 +703,20 @@ msgid "Sites"
 msgstr "Mga site"
 
 #: templates/webapp/_industry_nav.html
+msgid "Duty roster"
+msgstr "Duty roster"
+
+#: templates/webapp/_industry_nav.html
 msgid "Site attendance"
 msgstr "Attendance sa site"
 
 #: templates/webapp/_industry_nav.html
 msgid "Client billing"
 msgstr "Pagsingil sa kliyente"
+
+#: templates/webapp/_industry_nav.html
+msgid "Site profit"
+msgstr "Kita sa site"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3888,6 +3896,10 @@ msgid "This is a weekly off day."
 msgstr "Lingguhang day off ito."
 
 #: templates/webapp/hr/attendance.html
+msgid "Office staff only here."
+msgstr "Staff sa opisina lang dito."
+
+#: templates/webapp/hr/attendance.html
 msgid "Mark all present"
 msgstr "Markahang present lahat"
 
@@ -4258,6 +4270,46 @@ msgid "Not on any site"
 msgstr "Wala sa anumang site"
 
 #: templates/webapp/hr/staff_detail.html
+msgid "Sites this month"
+msgstr "Mga site ngayong buwan"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Site"
+msgstr "Site"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Days"
+msgstr "Araw"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Hours"
+msgstr "Oras"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "OT hours"
+msgstr "OT na oras"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Overtime pay"
+msgstr "Bayad sa overtime"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Billed to client"
+msgstr "Siningil sa kliyente"
+
+#: templates/webapp/hr/staff_detail.html
+msgid ""
+"Pay is for the days / hours at the sites so far this month; the payslip "
+"comes from the payroll run."
+msgstr ""
+"Ang bayad ay para sa mga araw / oras sa mga site ngayong buwan hanggang "
+"ngayon; ang payslip ay mula sa payroll run."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No site attendance this month yet."
+msgstr "Wala pang attendance sa site ngayong buwan."
+
+#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "bawat buwan"
 
@@ -4362,6 +4414,10 @@ msgid "Run payroll"
 msgstr "Patakbuhin ang payroll"
 
 #: templates/webapp/hr/staff_list.html
+msgid "Office staff"
+msgstr "Staff sa opisina"
+
+#: templates/webapp/hr/staff_list.html
 msgid "Name, phone or job title"
 msgstr "Pangalan, telepono o posisyon"
 
@@ -4380,6 +4436,10 @@ msgstr "Hindi namarkahan"
 #: templates/webapp/hr/staff_list.html
 msgid "Former"
 msgstr "Dati"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Office"
+msgstr "Opisina"
 
 #: templates/webapp/hr/staff_list.html
 msgid "No staff match your search."
@@ -5369,10 +5429,6 @@ msgid "How often"
 msgstr "Gaano kadalas"
 
 #: templates/webapp/jobs/_record.html
-msgid "Days"
-msgstr "Araw"
-
-#: templates/webapp/jobs/_record.html
 msgid "e.g. Paracetamol 500 mg"
 msgstr "hal. Paracetamol 500 mg"
 
@@ -5899,16 +5955,12 @@ msgid "Normal hours per day"
 msgstr "Karaniwang oras bawat araw"
 
 #: templates/webapp/manpower/attendance.html
+msgid "Weekly off"
+msgstr "Lingguhang day off"
+
+#: templates/webapp/manpower/attendance.html
 msgid "Marked at another site"
 msgstr "Naka-mark sa ibang site"
-
-#: templates/webapp/manpower/attendance.html
-msgid "Hours"
-msgstr "Oras"
-
-#: templates/webapp/manpower/attendance.html
-msgid "OT hours"
-msgstr "OT na oras"
 
 #: templates/webapp/manpower/attendance.html
 msgid "No workers at this site yet."
@@ -5935,6 +5987,10 @@ msgid "No attendance this month."
 msgstr "Walang attendance ngayong buwan."
 
 #: templates/webapp/manpower/billing.html
+msgid "Timesheet"
+msgstr "Timesheet"
+
+#: templates/webapp/manpower/billing.html
 msgid "Open invoice"
 msgstr "Buksan ang invoice"
 
@@ -5950,9 +6006,81 @@ msgstr "Gumawa ng invoice"
 msgid "Choose the client for this site first."
 msgstr "Piliin muna ang kliyente ng site na ito."
 
-#: templates/webapp/manpower/home.html
+#: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "Mga aktibong site"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers short on shifts"
+msgstr "Kulang na manggagawa sa mga shift"
+
+#: templates/webapp/manpower/duty.html
+msgid "Print duty list"
+msgstr "I-print ang duty list"
+
+#: templates/webapp/manpower/duty.html
+msgid "Site supervisor"
+msgstr "Supervisor ng site"
+
+#: templates/webapp/manpower/duty.html
+msgid "hrs"
+msgstr "oras"
+
+#: templates/webapp/manpower/duty.html
+msgid "short"
+msgstr "kulang"
+
+#: templates/webapp/manpower/duty.html
+msgid "Take off this shift"
+msgstr "Alisin sa shift na ito"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add workers"
+msgstr "Magdagdag ng manggagawa"
+
+#: templates/webapp/manpower/duty.html
+msgid "Keep as is"
+msgstr "Panatilihin"
+
+#: templates/webapp/manpower/duty.html
+msgid "Company's off days"
+msgstr "Mga day off ng kumpanya"
+
+#: templates/webapp/manpower/duty.html
+msgid "Put on this shift"
+msgstr "Ilagay sa shift na ito"
+
+#: templates/webapp/manpower/duty.html
+msgid "Edit shift"
+msgstr "I-edit ang shift"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers needed"
+msgstr "Kailangang manggagawa"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove this shift?"
+msgstr "Alisin ang shift na ito?"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove shift"
+msgstr "Alisin ang shift"
+
+#: templates/webapp/manpower/duty.html
+msgid "At this site without a shift"
+msgstr "Nasa site na ito nang walang shift"
+
+#: templates/webapp/manpower/duty.html
+msgid "New shift"
+msgstr "Bagong shift"
+
+#: templates/webapp/manpower/duty.html
+msgid "e.g. Day, Night"
+msgstr "hal. Day, Night"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add shift"
+msgstr "Magdagdag ng shift"
 
 #: templates/webapp/manpower/home.html
 msgid "Documents expired"
@@ -5969,10 +6097,6 @@ msgstr "Pangalan, telepono, trade o ID number"
 #: templates/webapp/manpower/home.html
 msgid "All sites"
 msgstr "Lahat ng site"
-
-#: templates/webapp/manpower/home.html
-msgid "Site"
-msgstr "Site"
 
 #: templates/webapp/manpower/home.html
 msgid "No site workers yet."
@@ -5994,6 +6118,28 @@ msgstr "Expiry"
 msgid "Nothing expiring. 👍"
 msgstr "Walang mag-e-expire. 👍"
 
+#: templates/webapp/manpower/profit.html
+msgid "Billed to clients"
+msgstr "Siningil sa mga kliyente"
+
+#: templates/webapp/manpower/profit.html
+msgid "Workers' pay (with overtime)"
+msgstr "Sahod ng mga manggagawa (kasama ang overtime)"
+
+#: templates/webapp/manpower/profit.html
+msgid "Profit"
+msgstr "Kita"
+
+#: templates/webapp/manpower/profit.html
+msgid ""
+"From the site attendance: what each client is billed (rate × hours / days, "
+"plus overtime) against what we pay the worker for that time (salary for the "
+"days, or day / hour rate, plus overtime pay)."
+msgstr ""
+"Mula sa attendance sa site: ang siningil sa bawat kliyente (rate × oras / "
+"araw, kasama ang overtime) laban sa ibinabayad namin sa manggagawa sa oras "
+"na iyon (sahod sa mga araw, o rate kada araw / oras, kasama ang overtime)."
+
 #: templates/webapp/manpower/site.html
 msgid "Client"
 msgstr "Kliyente"
@@ -6005,10 +6151,6 @@ msgstr "Mga manggagawa rito"
 #: templates/webapp/manpower/site.html
 msgid "Rate per worker"
 msgstr "Rate bawat manggagawa"
-
-#: templates/webapp/manpower/site.html
-msgid "Site supervisor"
-msgstr "Supervisor ng site"
 
 #: templates/webapp/manpower/site.html
 msgid "Today's attendance"
@@ -6049,6 +6191,18 @@ msgstr "Mga saradong site"
 #: templates/webapp/manpower/sites.html
 msgid "No sites yet. Add the first client site below."
 msgstr "Wala pang site. Idagdag sa ibaba ang unang site ng kliyente."
+
+#: templates/webapp/manpower/timesheet.html
+msgid "OT"
+msgstr "OT"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "small numbers: hours worked, +overtime hours"
+msgstr "maliliit na numero: oras na pinasukan, +oras ng overtime"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "Client signature & stamp"
+msgstr "Pirma at tatak ng kliyente"
 
 #: templates/webapp/manpower/worker_form.html
 msgid "Edit site worker"
@@ -8942,6 +9096,62 @@ msgstr "sumali"
 msgid "No job orders here."
 msgstr "Walang job order dito."
 
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Offer letter"
+msgstr "Offer letter"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Show the employer's name"
+msgstr "Ipakita ang pangalan ng employer"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Hide the employer's name"
+msgstr "Itago ang pangalan ng employer"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "We are pleased to offer you the following position:"
+msgstr "Ikinagagalak naming ialok sa iyo ang sumusunod na posisyon:"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Position / job title"
+msgstr "Posisyon / job title"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Employer"
+msgstr "Employer"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Work location"
+msgstr "Lugar ng trabaho"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Salary (per month)"
+msgstr "Sahod (kada buwan)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Contract (months)"
+msgstr "Kontrata (buwan)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Joining date"
+msgstr "Petsa ng pagsisimula"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid ""
+"Please sign below to accept this offer and return a copy to us with your "
+"passport copy."
+msgstr ""
+"Pumirma sa ibaba para tanggapin ang alok na ito at ibalik sa amin ang isang "
+"kopya kasama ang kopya ng iyong pasaporte."
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Authorised signature"
+msgstr "Awtorisadong pirma"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "I accept this offer"
+msgstr "Tinatanggap ko ang alok na ito"
+
 #: templates/webapp/recruitment/placement.html
 msgid "Candidate"
 msgstr "Kandidato"
@@ -8991,10 +9201,6 @@ msgid "Travel / ticket date"
 msgstr "Petsa ng biyahe / ticket"
 
 #: templates/webapp/recruitment/placement.html
-msgid "Joining date"
-msgstr "Petsa ng pagsisimula"
-
-#: templates/webapp/recruitment/placement.html
 msgid "Replacement guarantee until"
 msgstr "Garantiya ng kapalit hanggang"
 
@@ -9017,10 +9223,6 @@ msgstr "Bayad ng kandidato"
 #: templates/webapp/recruitment/placement.html
 msgid "Our costs"
 msgstr "Aming gastos"
-
-#: templates/webapp/recruitment/placement.html
-msgid "Profit"
-msgstr "Kita"
 
 #: templates/webapp/recruitment/placement.html
 msgid "Bill the client"
@@ -12390,6 +12592,14 @@ msgid "You cannot mark attendance for a future date."
 msgstr "Hindi ka maaaring mag-mark ng attendance para sa petsang darating pa."
 
 #: apps/employees/site_workers.py
+msgid "Enter the shift name and its start and end time."
+msgstr "Ilagay ang pangalan ng shift at ang oras ng simula at tapos."
+
+#: apps/employees/site_workers.py
+msgid "Choose a shift."
+msgstr "Pumili ng shift."
+
+#: apps/employees/site_workers.py
 msgid "This month has not started yet."
 msgstr "Hindi pa nagsisimula ang buwang ito."
 
@@ -13862,10 +14072,6 @@ msgid "Applied online"
 msgstr "Nag-apply online"
 
 #: apps/webapp/careers_views.py
-msgid "Office"
-msgstr "Opisina"
-
-#: apps/webapp/careers_views.py
 msgid "Referral"
 msgstr "Referral"
 
@@ -14815,8 +15021,16 @@ msgid "Work visa"
 msgstr "Work visa"
 
 #: apps/webapp/manpower_views.py
-msgid "Office staff"
-msgstr "Staff sa opisina"
+msgid "Shift saved."
+msgstr "Na-save ang shift."
+
+#: apps/webapp/manpower_views.py
+msgid "Shift removed."
+msgstr "Inalis ang shift."
+
+#: apps/webapp/manpower_views.py
+msgid "Trade"
+msgstr "Trade"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15915,24 +16129,8 @@ msgid "Address & contact person"
 msgstr "Address at contact person"
 
 #: apps/webapp/recruitment_views.py
-msgid "Position / job title"
-msgstr "Posisyon / job title"
-
-#: apps/webapp/recruitment_views.py
-msgid "Work location"
-msgstr "Lugar ng trabaho"
-
-#: apps/webapp/recruitment_views.py
 msgid "Preferred nationality"
 msgstr "Gustong nasyonalidad"
-
-#: apps/webapp/recruitment_views.py
-msgid "Salary (per month)"
-msgstr "Sahod (kada buwan)"
-
-#: apps/webapp/recruitment_views.py
-msgid "Contract (months)"
-msgstr "Kontrata (buwan)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Our fee per person (charged to client)"

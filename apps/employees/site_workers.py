@@ -18,7 +18,8 @@ from django.db import IntegrityError, transaction
 from django.utils import timezone
 from django.utils.translation import gettext as _
 
-from .models import Attendance, Employee, EmployeeDocument, HRSettings, SalaryStructure, SiteInvoice, WorkSite
+from .models import (Attendance, Employee, EmployeeDocument, HRSettings, SalaryStructure, SiteInvoice, SiteShift,
+                     WorkSite)
 
 CENT = Decimal("0.01")
 ZERO = Decimal("0")
@@ -157,10 +158,11 @@ def save_day(company, site, day, rows):
         if status not in valid:
             continue
         hours = _num(hours) if hours not in (None, "") else None
+        normal = day_hours(employee, site)
         if status == "present" and hours is None:
-            hours = site.hours_per_day
+            hours = normal
         elif status == "half_day" and hours is None:
-            hours = (site.hours_per_day / 2).quantize(CENT)
+            hours = (normal / 2).quantize(CENT)
         elif status not in ("present", "half_day"):
             hours = None
         ot = _num(ot, ZERO) if ot not in (None, "") else ZERO
@@ -170,6 +172,173 @@ def save_day(company, site, day, rows):
             "status": status, "site": site, "hours": hours, "ot_hours": ot})
         saved += 1
     return saved
+
+
+def day_hours(employee, site):
+    """A normal day for this worker here: their shift's hours, else the site's."""
+    shift = employee.duty_shift if employee.duty_shift_id else None
+    if shift is not None and shift.site_id == site.id:
+        return shift.hours
+    return site.hours_per_day
+
+
+def is_off(employee, day, company_off=()):
+    if employee.weekly_off is not None:
+        return day.weekday() == employee.weekly_off
+    return day.weekday() in company_off
+
+
+# ------------------------------------------------------------------ duty roster
+
+def save_shift(site, name, start_time, end_time, needed, shift=None):
+    name = (name or "").strip()[:60]
+    if not name or start_time is None or end_time is None:
+        raise ValidationError(_("Enter the shift name and its start and end time."))
+    shift = shift or SiteShift(company=site.company, site=site)
+    shift.name, shift.start_time, shift.end_time = name, start_time, end_time
+    shift.needed = max(0, min(int(needed or 0), 999))
+    shift.save()
+    return shift
+
+
+@transaction.atomic
+def assign_duty(company, employees, shift, weekly_off=None):
+    """Put workers on a shift (and so at its site); shift None takes them off their shift."""
+    if shift is not None and shift.company_id != company.id:
+        raise ValidationError(_("Choose a shift."))
+    count = 0
+    for worker in employees:
+        if worker.company_id != company.id:
+            continue
+        worker.duty_shift = shift
+        fields = ["duty_shift"]
+        if shift is not None:
+            worker.site, worker.worker_type = shift.site, "site"
+            fields += ["site", "worker_type"]
+        if weekly_off != "":
+            worker.weekly_off = None if weekly_off in (None, "none") else int(weekly_off) % 7
+            fields.append("weekly_off")
+        worker.save(update_fields=fields)
+        count += 1
+    return count
+
+
+def duty_board(company):
+    """Sites with their shifts, who is on each and how many are short."""
+    sites = list(WorkSite.objects.for_company(company).filter(is_active=True).prefetch_related("shifts"))
+    staff = list(workers(company).select_related("duty_shift"))
+    by_shift = {}
+    for w in staff:
+        if w.duty_shift_id:
+            by_shift.setdefault(w.duty_shift_id, []).append(w)
+    for site in sites:
+        site.shift_rows = []
+        for shift in site.shifts.all():
+            people = by_shift.get(shift.id, [])
+            site.shift_rows.append({"shift": shift, "workers": people, "short": max(0, shift.needed - len(people))})
+        site.no_shift = [w for w in staff if w.site_id == site.id and not w.duty_shift_id]
+        site.short = sum(r["short"] for r in site.shift_rows)
+    return sites, [w for w in staff if not w.site_id]
+
+
+# ------------------------------------------------------------------ cost and profit
+
+def structure_of(employee):
+    return getattr(employee, "salary_structure", None)
+
+
+def pay_cost(employee, days, hours, ot, month_days):
+    """What the worker costs us for this time: their pay for the days / hours (monthly salary pro rata)
+    plus overtime at their overtime rate."""
+    from .services import _money_total
+    st = structure_of(employee)
+    basic = st.basic_pay if st else (employee.salary or ZERO)
+    allowances = _money_total(st.allowances) if st else ZERO
+    ot_rate = st.overtime_hourly_rate if st else ZERO
+    if employee.pay_basis == "daily":
+        normal = basic * days
+    elif employee.pay_basis == "hourly":
+        normal = basic * hours
+    else:
+        normal = (basic + allowances) * min(Decimal("1"), days / Decimal(month_days or 1))
+    ot_pay = (ot or ZERO) * ot_rate
+    return normal.quantize(CENT), ot_pay.quantize(CENT)
+
+
+def site_profit(site, start):
+    """site_month with what each worker costs and the profit on them."""
+    rows = site_month(site, start)
+    month_days = working_days(site.company, start)
+    for row in rows:
+        normal, ot_pay = pay_cost(row["employee"], row["days"], row["hours"], row["ot"], month_days)
+        row.update(pay=normal, ot_pay=ot_pay, cost=normal + ot_pay)
+        row["profit"] = row["amount"] - row["cost"]
+    return rows
+
+
+def profit_report(company, start):
+    sites = []
+    for site in WorkSite.objects.for_company(company).select_related("client"):
+        rows = site_profit(site, start)
+        if not rows:
+            continue
+        billed = sum((r["amount"] for r in rows), ZERO)
+        cost = sum((r["cost"] for r in rows), ZERO)
+        site.rows, site.billed, site.cost, site.profit = rows, billed, cost, billed - cost
+        site.margin = round(100 * (billed - cost) / billed) if billed else 0
+        sites.append(site)
+    billed = sum((s.billed for s in sites), ZERO)
+    cost = sum((s.cost for s in sites), ZERO)
+    return sites, {"billed": billed, "cost": cost, "profit": billed - cost,
+                   "margin": round(100 * (billed - cost) / billed) if billed else 0,
+                   "ot": sum((r["ot"] for s in sites for r in s.rows), ZERO),
+                   "ot_pay": sum((r["ot_pay"] for s in sites for r in s.rows), ZERO)}
+
+
+def worker_month(employee, start):
+    """This worker's month, site by site: days, hours, overtime, what we pay and what the client is billed."""
+    end = month_end(start)
+    site_ids = set(Attendance.objects.for_company(employee.company).filter(
+        employee=employee, date__range=(start, end), site__isnull=False).values_list("site_id", flat=True))
+    rows = []
+    for site in WorkSite.objects.for_company(employee.company).filter(id__in=site_ids):
+        for row in site_profit(site, start):
+            if row["employee"].pk == employee.pk:
+                row["site"] = site
+                rows.append(row)
+    keys = ("days", "hours", "ot", "pay", "ot_pay", "cost", "amount", "profit")
+    total = {k: sum((r[k] for r in rows), ZERO) for k in keys}
+    return rows, total
+
+
+# ------------------------------------------------------------------ timesheet
+
+CODES = {"present": "P", "absent": "A", "half_day": "½", "leave": "L", "holiday": "H"}
+
+
+def timesheet(site, start):
+    """Worker × day grid for the month at this site (for the client to sign)."""
+    end = month_end(start)
+    days = [start + timedelta(days=n) for n in range((end - start).days + 1)]
+    marks = {}
+    for m in Attendance.objects.for_company(site.company).filter(site=site, date__range=(start, end)):
+        marks[(m.employee_id, m.date)] = m
+    totals = {r["employee"].pk: r for r in site_month(site, start)}
+    people = {w.pk: w for w in workers(site.company, site)}
+    for pk in totals:
+        people.setdefault(pk, totals[pk]["employee"])
+    rows = []
+    for w in sorted(people.values(), key=lambda e: e.name.lower()):
+        cells = []
+        for d in days:
+            m = marks.get((w.pk, d))
+            if m is None:
+                cells.append({"code": "", "hours": None, "ot": None})
+            else:
+                cells.append({"code": CODES.get(m.status, ""), "hours": m.hours, "ot": m.ot_hours or None})
+        t = totals.get(w.pk, {"days": ZERO, "hours": ZERO, "ot": ZERO})
+        rows.append({"employee": w, "cells": cells, "days": t["days"], "hours": t["hours"], "ot": t["ot"]})
+    return days, rows
 
 
 # ------------------------------------------------------------------ client billing

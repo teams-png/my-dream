@@ -1,0 +1,25 @@
+{% load i18n %}<!doctype html><html lang="{{ LANGUAGE_CODE|default:'en' }}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% translate "Timesheet" %} · {{ site.name }} · {{ month|date:"F Y" }}</title>
+<style>
+body{font:12px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;color:#111;margin:0;background:#fff}
+.pg{padding:16px}
+.hd{display:flex;justify-content:space-between;gap:16px;border-bottom:2px solid #111;padding-bottom:8px;margin-bottom:10px;flex-wrap:wrap}.hd h1{margin:0;font-size:18px}
+.wrap{overflow-x:auto}table{border-collapse:collapse;width:100%}th,td{border:1px solid #bbb;padding:3px 4px;text-align:center;white-space:nowrap}
+th.n,td.n{text-align:start}td small{display:block;color:#555;font-size:10px}.off{background:#f3f4f6}.A{color:#b91c1c;font-weight:700}.ot{color:#1d4ed8}
+.sig{display:flex;justify-content:space-between;gap:24px;margin-top:40px}.sig div{border-top:1px solid #111;padding-top:4px;min-width:200px;text-align:center;color:#555}
+.bar{display:flex;gap:8px;margin-bottom:12px}.bar a,.bar button{padding:7px 12px;border-radius:8px;border:1px solid #ccc;background:#f8f8f8;font:inherit;cursor:pointer;color:#111;text-decoration:none}
+@page{size:A4 landscape;margin:8mm}@media print{.bar{display:none}.pg{padding:0}}
+</style></head><body><div class="pg">
+<div class="bar"><a href="{% url 'webapp:mp_site' site.id %}">← {% translate "Back" %}</a><button onclick="print()">🖨 {% translate "Print" %}</button><a href="?m={{ month|date:'Y-m' }}&format=xlsx">⬇ Excel</a></div>
+<div class="hd"><div><h1>{{ company.name }}</h1>{{ company.phone }}</div>
+  <div><b>{% translate "Timesheet" %} — {{ month|date:"F Y" }}</b><br>{% translate "Site" %}: <b>{{ site.name }}</b>{% if site.location %}, {{ site.location }}{% endif %}<br>{% translate "Client" %}: {{ site.client.name|default:"—" }}</div></div>
+<div class="wrap"><table>
+  <tr><th class="n">{% translate "Name" %}</th>{% for d in days %}<th class="{% if d.weekday in off_days %}off{% endif %}">{{ d.day }}<br><small>{{ d|date:"D"|slice:":2" }}</small></th>{% endfor %}<th>{% translate "Days" %}</th><th>{% translate "Hours" %}</th><th>{% translate "OT" %}</th></tr>
+  {% for r in rows %}<tr><td class="n"><b>{{ r.employee.name }}</b><small>{{ r.employee.trade }}</small></td>
+    {% for c in r.cells %}<td class="{{ c.code }}">{{ c.code }}{% if c.hours is not None and c.code != "A" %}<small>{{ c.hours|floatformat:"-2" }}</small>{% endif %}{% if c.ot %}<small class="ot">+{{ c.ot|floatformat:"-2" }}</small>{% endif %}</td>{% endfor %}
+    <td><b>{{ r.days|floatformat:"-1" }}</b></td><td><b>{{ r.hours|floatformat:"-2" }}</b></td><td><b>{{ r.ot|floatformat:"-2" }}</b></td></tr>{% endfor %}
+  <tr><td class="n"><b>{% translate "Total" %}</b></td>{% for d in days %}<td></td>{% endfor %}<td><b>{{ totals.days|floatformat:"-1" }}</b></td><td><b>{{ totals.hours|floatformat:"-2" }}</b></td><td><b>{{ totals.ot|floatformat:"-2" }}</b></td></tr>
+</table></div>
+<p style="color:#555;font-size:11px">{% translate "P = Present · A = Absent · ½ = Half day · L = Leave · H = Holiday" %} · {% translate "small numbers: hours worked, +overtime hours" %}</p>
+<div class="sig"><div>{% translate "Site supervisor" %}{% if site.supervisor %}<br>{{ site.supervisor }}{% endif %}</div><div>{% translate "Client signature & stamp" %}</div><div>{{ company.name }}</div></div>
+</div></body></html>

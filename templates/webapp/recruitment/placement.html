@@ -34,6 +34,7 @@
     </form>
 
     <div>
+      <div class="ix-card"><a class="btn btn-secondary" href="{% url 'webapp:rec_offer_letter' p.id %}" target="_blank">📄 {% translate "Offer letter" %}</a></div>
       <div class="ix-card"><h3>💵 {% translate "Fees & profit" %}</h3>
         <dl class="ix-kv">
           <dt>{% translate "Client fee" %}</dt><dd>{% if p.invoice %}<a href="{% url 'webapp:invoice_share' p.invoice.id %}">{{ p.invoice.invoice_number }}</a> · {{ p.fee|floatformat:2 }} <span class="ix-chip {{ p.invoice.status }}">{{ p.invoice.get_status_display }}</span>{% else %}{{ p.fee|floatformat:2 }} — {% translate "not billed" %}{% endif %}</dd>

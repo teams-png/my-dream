@@ -21,7 +21,12 @@
   <a class="btn btn-secondary" href="{% url 'webapp:hr_payroll' %}">💰 {% translate "Run payroll" %}</a>
 </div>
 
-<form method="get" class="hr-actions" style="margin-bottom:14px">
+{% if site_count %}<div class="hr-actions" style="margin-bottom:10px">
+  <a class="btn {% if not kind %}{% else %}btn-secondary{% endif %}" href="?show={{ show }}">{% translate "All" %} ({{ office_count|add:site_count }})</a>
+  <a class="btn {% if kind == 'office' %}{% else %}btn-secondary{% endif %}" href="?show={{ show }}&kind=office">🏢 {% translate "Office staff" %} ({{ office_count }})</a>
+  <a class="btn {% if kind == 'site' %}{% else %}btn-secondary{% endif %}" href="?show={{ show }}&kind=site">👷 {% translate "Site workers" %} ({{ site_count }})</a>
+</div>{% endif %}
+<form method="get" class="hr-actions" style="margin-bottom:14px"><input type="hidden" name="kind" value="{{ kind }}">
   <input class="hr-in" style="flex:1 1 220px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Name, phone or job title' %}">
   <input type="hidden" name="show" value="{{ show }}">
   <button class="btn btn-secondary" type="submit">{% translate "Search" %}</button>
@@ -38,6 +43,7 @@
       <small>{{ p.role_title|default:"—" }}{% if p.phone %} · {{ p.phone }}{% endif %}</small>
       <span class="meta">
         {% if p.is_active %}{% if p.today %}<span class="hr-chip {{ p.today }}">{% if p.today == "present" %}{% translate "Present" %}{% elif p.today == "absent" %}{% translate "Absent" %}{% elif p.today == "half_day" %}{% translate "Half day" %}{% elif p.today == "leave" %}{% translate "Leave" %}{% else %}{% translate "Holiday" %}{% endif %}</span>{% else %}<span class="hr-chip">{% translate "Not marked" %}</span>{% endif %}{% else %}<span class="hr-chip terminated">{% translate "Former" %}</span>{% endif %}
+        {% if p.worker_type == "site" %}<span class="hr-chip blue">👷 {% if p.site %}{{ p.site.name }}{% else %}{% translate "Not on any site" %}{% endif %}</span>{% elif site_count %}<span class="hr-chip">🏢 {% translate "Office" %}</span>{% endif %}
         <span class="hr-chip">{{ active_company.default_currency }} {{ p.monthly|floatformat:2 }}</span>
         {% if p.advance_balance %}<span class="hr-chip warn">{% translate "Advance" %} {{ p.advance_balance|floatformat:2 }}</span>{% endif %}
       </span>

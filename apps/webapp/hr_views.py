@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.db import transaction
-from django.db.models import ProtectedError, Q, Sum
+from django.db.models import Count, ProtectedError, Q, Sum
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.utils.dateparse import parse_date
@@ -179,8 +179,11 @@ def staff_list(request):
         return render(request, "webapp/no_company.html")
     today = timezone.localdate()
     show = request.GET.get("show", "active")
-    staff = Employee.objects.for_company(company).select_related("salary_structure").order_by("name")
+    kind = request.GET.get("kind", "")
+    staff = Employee.objects.for_company(company).select_related("salary_structure", "site").order_by("name")
     staff = staff.filter(is_active=(show != "former"))
+    if kind in ("office", "site"):
+        staff = staff.filter(worker_type=kind)
     query = (request.GET.get("q") or "").strip()
     if query:
         staff = staff.filter(Q(name__icontains=query) | Q(phone__icontains=query) | Q(role_title__icontains=query))
@@ -196,8 +199,10 @@ def staff_list(request):
         person.advance_balance = advances.get(person.id, Decimal("0"))
     active = _staff(company)
     soon = today + timedelta(days=30)
+    counts = dict(_staff(company).order_by().values_list("worker_type").annotate(n=Count("id")))
     return render(request, "webapp/hr/staff_list.html", {
-        "staff": staff, "show": show, "q": query, "today": today,
+        "staff": staff, "show": show, "q": query, "today": today, "kind": kind,
+        "office_count": counts.get("office", 0), "site_count": counts.get("site", 0),
         "stats": {
             "count": active.count(),
             "present": Attendance.objects.for_company(company).filter(date=today, status__in=["present", "half_day"],
@@ -286,7 +291,16 @@ def staff_detail(request, staff_id):
         .order_by("expiry_date"), "today": timezone.localdate(),
         "allowances": hr._money_total(structure.allowances) if structure else Decimal("0"),
         "deductions": hr._money_total(structure.deductions) if structure else Decimal("0"),
+        **_site_month(employee, start),
     })
+
+
+def _site_month(employee, start):
+    if employee.worker_type != "site":
+        return {}
+    from apps.employees import site_workers as sw
+    rows, total = sw.worker_month(employee, start)
+    return {"site_rows": rows, "site_total": total}
 
 
 # ------------------------------------------------------------------ attendance
@@ -298,7 +312,8 @@ def attendance(request):
     if company is None:
         return render(request, "webapp/no_company.html")
     day = parse_date(request.GET.get("date") or request.POST.get("date") or "") or timezone.localdate()
-    staff = list(_staff(company))
+    site_workers = _staff(company).filter(worker_type="site").count()
+    staff = list(_staff(company).exclude(worker_type="site"))  # site workers are marked on the site attendance
     if request.method == "POST":
         valid = dict(Attendance.STATUS)
         saved = 0
@@ -326,7 +341,7 @@ def attendance(request):
     return render(request, "webapp/hr/attendance.html", {
         "staff": staff, "day": day, "prev": day - timedelta(days=1), "next": day + timedelta(days=1),
         "statuses": Attendance.STATUS, "is_off": day.weekday() in (settings.weekly_off_days or []),
-        "holiday": holiday, "today": timezone.localdate(),
+        "holiday": holiday, "today": timezone.localdate(), "site_workers": site_workers,
     })
 
 

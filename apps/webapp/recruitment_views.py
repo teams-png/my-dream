@@ -504,3 +504,15 @@ def _msgids():  # choice labels shown with {% translate %}, for the translation 
             _("Female"), _("Cash"), _("Card"), _("Bank transfer"),
             _("Free replacement period after joining."), _("Preferred nationality, if any."),
             _("Accommodation, food, transport…")]
+
+
+@recruitment_view
+def rec_offer_letter(request, placement_id):
+    """A printable offer for the candidate: position, employer, place, salary, benefits, contract and joining."""
+    company = request.company
+    p = get_object_or_404(Placement.objects.for_company(company).select_related("job_order__client", "candidate"),
+                          id=placement_id)
+    job = p.job_order
+    return render(request, "webapp/recruitment/offer_letter.html", {
+        "p": p, "c": p.candidate, "job": job, "company": company, "today": timezone.localdate(),
+        "salary": p.offered_salary or job.salary, "hide_client": request.GET.get("client") == "0"})

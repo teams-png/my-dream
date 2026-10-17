@@ -705,12 +705,20 @@ msgid "Sites"
 msgstr "தளங்கள்"
 
 #: templates/webapp/_industry_nav.html
+msgid "Duty roster"
+msgstr "பணி அட்டவணை"
+
+#: templates/webapp/_industry_nav.html
 msgid "Site attendance"
 msgstr "தள வருகை"
 
 #: templates/webapp/_industry_nav.html
 msgid "Client billing"
 msgstr "வாடிக்கையாளர் பில்லிங்"
+
+#: templates/webapp/_industry_nav.html
+msgid "Site profit"
+msgstr "தள லாபம்"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3899,6 +3907,10 @@ msgid "This is a weekly off day."
 msgstr "இது வாராந்திர விடுமுறை நாள்."
 
 #: templates/webapp/hr/attendance.html
+msgid "Office staff only here."
+msgstr "இங்கு அலுவலக ஊழியர்கள் மட்டும்."
+
+#: templates/webapp/hr/attendance.html
 msgid "Mark all present"
 msgstr "அனைவரையும் வருகை எனக் குறி"
 
@@ -4268,6 +4280,46 @@ msgid "Not on any site"
 msgstr "எந்தத் தளத்திலும் இல்லை"
 
 #: templates/webapp/hr/staff_detail.html
+msgid "Sites this month"
+msgstr "இந்த மாத தளங்கள்"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Site"
+msgstr "தளம்"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Days"
+msgstr "நாட்கள்"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Hours"
+msgstr "மணி நேரம்"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "OT hours"
+msgstr "கூடுதல் நேரம்"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Overtime pay"
+msgstr "கூடுதல் நேர ஊதியம்"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Billed to client"
+msgstr "வாடிக்கையாளருக்கு பில் செய்தது"
+
+#: templates/webapp/hr/staff_detail.html
+msgid ""
+"Pay is for the days / hours at the sites so far this month; the payslip "
+"comes from the payroll run."
+msgstr ""
+"இந்த மாதம் இதுவரை தளங்களில் நாட்கள் / மணி நேரங்களுக்கான ஊதியம்; சம்பளச் "
+"சீட்டு சம்பள ஓட்டத்திலிருந்து வரும்."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No site attendance this month yet."
+msgstr "இந்த மாதம் இன்னும் தள வருகை இல்லை."
+
+#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "மாதத்திற்கு"
 
@@ -4372,6 +4424,10 @@ msgid "Run payroll"
 msgstr "சம்பளப் பட்டியலை இயக்கு"
 
 #: templates/webapp/hr/staff_list.html
+msgid "Office staff"
+msgstr "அலுவலக ஊழியர்கள்"
+
+#: templates/webapp/hr/staff_list.html
 msgid "Name, phone or job title"
 msgstr "பெயர், ஃபோன் அல்லது பதவி"
 
@@ -4390,6 +4446,10 @@ msgstr "குறிக்கப்படவில்லை"
 #: templates/webapp/hr/staff_list.html
 msgid "Former"
 msgstr "முன்னாள்"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Office"
+msgstr "அலுவலகம்"
 
 #: templates/webapp/hr/staff_list.html
 msgid "No staff match your search."
@@ -5380,10 +5440,6 @@ msgid "How often"
 msgstr "எத்தனை முறை"
 
 #: templates/webapp/jobs/_record.html
-msgid "Days"
-msgstr "நாட்கள்"
-
-#: templates/webapp/jobs/_record.html
 msgid "e.g. Paracetamol 500 mg"
 msgstr "எ.கா. பாராசிட்டமால் 500 mg"
 
@@ -5912,16 +5968,12 @@ msgid "Normal hours per day"
 msgstr "ஒரு நாளின் சாதாரண மணி நேரம்"
 
 #: templates/webapp/manpower/attendance.html
+msgid "Weekly off"
+msgstr "வார விடுமுறை"
+
+#: templates/webapp/manpower/attendance.html
 msgid "Marked at another site"
 msgstr "வேறு தளத்தில் பதிவு"
-
-#: templates/webapp/manpower/attendance.html
-msgid "Hours"
-msgstr "மணி நேரம்"
-
-#: templates/webapp/manpower/attendance.html
-msgid "OT hours"
-msgstr "கூடுதல் நேரம்"
 
 #: templates/webapp/manpower/attendance.html
 msgid "No workers at this site yet."
@@ -5948,6 +6000,10 @@ msgid "No attendance this month."
 msgstr "இந்த மாதம் வருகை இல்லை."
 
 #: templates/webapp/manpower/billing.html
+msgid "Timesheet"
+msgstr "நேரத்தாள்"
+
+#: templates/webapp/manpower/billing.html
 msgid "Open invoice"
 msgstr "இன்வாய்ஸைத் திற"
 
@@ -5963,9 +6019,81 @@ msgstr "இன்வாய்ஸ் உருவாக்கு"
 msgid "Choose the client for this site first."
 msgstr "முதலில் இந்தத் தளத்தின் வாடிக்கையாளரைத் தேர்ந்தெடுக்கவும்."
 
-#: templates/webapp/manpower/home.html
+#: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "செயலில் உள்ள தளங்கள்"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers short on shifts"
+msgstr "ஷிஃப்டுகளில் குறைவான பணியாளர்கள்"
+
+#: templates/webapp/manpower/duty.html
+msgid "Print duty list"
+msgstr "பணிப் பட்டியலை அச்சிடு"
+
+#: templates/webapp/manpower/duty.html
+msgid "Site supervisor"
+msgstr "தள மேற்பார்வையாளர்"
+
+#: templates/webapp/manpower/duty.html
+msgid "hrs"
+msgstr "மணி"
+
+#: templates/webapp/manpower/duty.html
+msgid "short"
+msgstr "குறைவு"
+
+#: templates/webapp/manpower/duty.html
+msgid "Take off this shift"
+msgstr "இந்த ஷிஃப்டிலிருந்து நீக்கு"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add workers"
+msgstr "பணியாளர்களைச் சேர்"
+
+#: templates/webapp/manpower/duty.html
+msgid "Keep as is"
+msgstr "அப்படியே"
+
+#: templates/webapp/manpower/duty.html
+msgid "Company's off days"
+msgstr "நிறுவன விடுமுறை நாட்கள்"
+
+#: templates/webapp/manpower/duty.html
+msgid "Put on this shift"
+msgstr "இந்த ஷிஃப்டில் வை"
+
+#: templates/webapp/manpower/duty.html
+msgid "Edit shift"
+msgstr "ஷிஃப்டைத் திருத்து"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers needed"
+msgstr "தேவையான பணியாளர்கள்"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove this shift?"
+msgstr "இந்த ஷிஃப்டை நீக்கவா?"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove shift"
+msgstr "ஷிஃப்டை நீக்கு"
+
+#: templates/webapp/manpower/duty.html
+msgid "At this site without a shift"
+msgstr "ஷிஃப்ட் இல்லாமல் இந்தத் தளத்தில்"
+
+#: templates/webapp/manpower/duty.html
+msgid "New shift"
+msgstr "புதிய ஷிஃப்ட்"
+
+#: templates/webapp/manpower/duty.html
+msgid "e.g. Day, Night"
+msgstr "எ.கா. பகல், இரவு"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add shift"
+msgstr "ஷிஃப்டைச் சேர்"
 
 #: templates/webapp/manpower/home.html
 msgid "Documents expired"
@@ -5982,10 +6110,6 @@ msgstr "பெயர், தொலைபேசி, தொழில் அல்�
 #: templates/webapp/manpower/home.html
 msgid "All sites"
 msgstr "அனைத்து தளங்களும்"
-
-#: templates/webapp/manpower/home.html
-msgid "Site"
-msgstr "தளம்"
 
 #: templates/webapp/manpower/home.html
 msgid "No site workers yet."
@@ -6007,6 +6131,29 @@ msgstr "காலாவதி"
 msgid "Nothing expiring. 👍"
 msgstr "எதுவும் காலாவதியாகவில்லை. 👍"
 
+#: templates/webapp/manpower/profit.html
+msgid "Billed to clients"
+msgstr "வாடிக்கையாளர்களுக்கு பில் செய்தது"
+
+#: templates/webapp/manpower/profit.html
+msgid "Workers' pay (with overtime)"
+msgstr "பணியாளர் ஊதியம் (கூடுதல் நேரம் உட்பட)"
+
+#: templates/webapp/manpower/profit.html
+msgid "Profit"
+msgstr "லாபம்"
+
+#: templates/webapp/manpower/profit.html
+msgid ""
+"From the site attendance: what each client is billed (rate × hours / days, "
+"plus overtime) against what we pay the worker for that time (salary for the "
+"days, or day / hour rate, plus overtime pay)."
+msgstr ""
+"தள வருகையிலிருந்து: ஒவ்வொரு வாடிக்கையாளருக்கும் பில் செய்தது (விகிதம் × மணி "
+"/ நாட்கள், கூடுதல் நேரத்துடன்) அந்த நேரத்திற்கு பணியாளருக்கு நாம் "
+"செலுத்துவதுடன் (நாட்களுக்கான சம்பளம், அல்லது நாள் / மணி விகிதம், கூடுதல் "
+"நேரத்துடன்) ஒப்பீடு."
+
 #: templates/webapp/manpower/site.html
 msgid "Client"
 msgstr "வாடிக்கையாளர்"
@@ -6018,10 +6165,6 @@ msgstr "இங்குள்ள பணியாளர்கள்"
 #: templates/webapp/manpower/site.html
 msgid "Rate per worker"
 msgstr "ஒரு பணியாளருக்கான விகிதம்"
-
-#: templates/webapp/manpower/site.html
-msgid "Site supervisor"
-msgstr "தள மேற்பார்வையாளர்"
 
 #: templates/webapp/manpower/site.html
 msgid "Today's attendance"
@@ -6062,6 +6205,18 @@ msgstr "மூடப்பட்ட தளங்கள்"
 #: templates/webapp/manpower/sites.html
 msgid "No sites yet. Add the first client site below."
 msgstr "இன்னும் தளங்கள் இல்லை. முதல் வாடிக்கையாளர் தளத்தைக் கீழே சேர்க்கவும்."
+
+#: templates/webapp/manpower/timesheet.html
+msgid "OT"
+msgstr "OT"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "small numbers: hours worked, +overtime hours"
+msgstr "சிறிய எண்கள்: வேலை செய்த மணி, +கூடுதல் மணி"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "Client signature & stamp"
+msgstr "வாடிக்கையாளர் கையொப்பம் & முத்திரை"
 
 #: templates/webapp/manpower/worker_form.html
 msgid "Edit site worker"
@@ -8977,6 +9132,62 @@ msgstr "சேர்ந்தனர்"
 msgid "No job orders here."
 msgstr "இங்கே வேலை ஆர்டர்கள் இல்லை."
 
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Offer letter"
+msgstr "சலுகைக் கடிதம்"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Show the employer's name"
+msgstr "முதலாளியின் பெயரைக் காட்டு"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Hide the employer's name"
+msgstr "முதலாளியின் பெயரை மறை"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "We are pleased to offer you the following position:"
+msgstr "பின்வரும் பதவியை உங்களுக்கு வழங்குவதில் மகிழ்ச்சி அடைகிறோம்:"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Position / job title"
+msgstr "பதவி / வேலைப் பெயர்"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Employer"
+msgstr "முதலாளி"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Work location"
+msgstr "பணியிடம்"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Salary (per month)"
+msgstr "சம்பளம் (மாதத்திற்கு)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Contract (months)"
+msgstr "ஒப்பந்தம் (மாதங்கள்)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Joining date"
+msgstr "சேரும் தேதி"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid ""
+"Please sign below to accept this offer and return a copy to us with your "
+"passport copy."
+msgstr ""
+"இந்தச் சலுகையை ஏற்க கீழே கையொப்பமிட்டு, பாஸ்போர்ட் நகலுடன் ஒரு நகலை "
+"எங்களிடம் திருப்பித் தாருங்கள்."
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Authorised signature"
+msgstr "அங்கீகரிக்கப்பட்ட கையொப்பம்"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "I accept this offer"
+msgstr "இந்தச் சலுகையை ஏற்கிறேன்"
+
 #: templates/webapp/recruitment/placement.html
 msgid "Candidate"
 msgstr "விண்ணப்பதாரர்"
@@ -9026,10 +9237,6 @@ msgid "Travel / ticket date"
 msgstr "பயணம் / டிக்கெட் தேதி"
 
 #: templates/webapp/recruitment/placement.html
-msgid "Joining date"
-msgstr "சேரும் தேதி"
-
-#: templates/webapp/recruitment/placement.html
 msgid "Replacement guarantee until"
 msgstr "மாற்று உத்தரவாதம் வரை"
 
@@ -9052,10 +9259,6 @@ msgstr "விண்ணப்பதாரர் கட்டணம்"
 #: templates/webapp/recruitment/placement.html
 msgid "Our costs"
 msgstr "எங்கள் செலவுகள்"
-
-#: templates/webapp/recruitment/placement.html
-msgid "Profit"
-msgstr "லாபம்"
 
 #: templates/webapp/recruitment/placement.html
 msgid "Bill the client"
@@ -12437,6 +12640,14 @@ msgid "You cannot mark attendance for a future date."
 msgstr "எதிர்கால தேதிக்கு வருகையைப் பதிவு செய்ய முடியாது."
 
 #: apps/employees/site_workers.py
+msgid "Enter the shift name and its start and end time."
+msgstr "ஷிஃப்டின் பெயர், தொடக்க மற்றும் முடிவு நேரத்தை உள்ளிடவும்."
+
+#: apps/employees/site_workers.py
+msgid "Choose a shift."
+msgstr "ஒரு ஷிஃப்டைத் தேர்ந்தெடுக்கவும்."
+
+#: apps/employees/site_workers.py
 msgid "This month has not started yet."
 msgstr "இந்த மாதம் இன்னும் தொடங்கவில்லை."
 
@@ -13923,10 +14134,6 @@ msgid "Applied online"
 msgstr "ஆன்லைனில் விண்ணப்பித்தது"
 
 #: apps/webapp/careers_views.py
-msgid "Office"
-msgstr "அலுவலகம்"
-
-#: apps/webapp/careers_views.py
 msgid "Referral"
 msgstr "பரிந்துரை"
 
@@ -14888,8 +15095,16 @@ msgid "Work visa"
 msgstr "வேலை விசா"
 
 #: apps/webapp/manpower_views.py
-msgid "Office staff"
-msgstr "அலுவலக ஊழியர்கள்"
+msgid "Shift saved."
+msgstr "ஷிஃப்ட் சேமிக்கப்பட்டது."
+
+#: apps/webapp/manpower_views.py
+msgid "Shift removed."
+msgstr "ஷிஃப்ட் நீக்கப்பட்டது."
+
+#: apps/webapp/manpower_views.py
+msgid "Trade"
+msgstr "தொழில்"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15991,24 +16206,8 @@ msgid "Address & contact person"
 msgstr "முகவரி & தொடர்பு நபர்"
 
 #: apps/webapp/recruitment_views.py
-msgid "Position / job title"
-msgstr "பதவி / வேலைப் பெயர்"
-
-#: apps/webapp/recruitment_views.py
-msgid "Work location"
-msgstr "பணியிடம்"
-
-#: apps/webapp/recruitment_views.py
 msgid "Preferred nationality"
 msgstr "விரும்பும் தேசியம்"
-
-#: apps/webapp/recruitment_views.py
-msgid "Salary (per month)"
-msgstr "சம்பளம் (மாதத்திற்கு)"
-
-#: apps/webapp/recruitment_views.py
-msgid "Contract (months)"
-msgstr "ஒப்பந்தம் (மாதங்கள்)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Our fee per person (charged to client)"

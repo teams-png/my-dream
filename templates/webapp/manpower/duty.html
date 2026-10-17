@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Duty roster" %}{% endblock %}
+{% block heading %}{% translate "Duty roster" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/manpower/_tabs.html" %}{% if print %}<style>.hr-tabs,.no-print,.mp-assign,.sidebar,header,nav{display:none!important}</style>{% endif %}
+<style>
+.mp-shift{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0}
+.mp-shift h4{margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.mp-shift .short{color:#b91c1c;font-weight:800}.mp-shift .full{color:#166534;font-weight:800}
+.mp-people{display:flex;flex-wrap:wrap;gap:6px}.mp-people label{display:inline-flex;gap:5px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:13px}
+.mp-inline{display:flex;flex-wrap:wrap;gap:8px;align-items:end}.mp-inline label{display:grid;gap:3px;font-size:12px;font-weight:700}
+.mp-inline input,.mp-inline select{min-width:0}
+@media print{body{background:#fff}.mp-shift{break-inside:avoid}}
+</style>
+<div class="hr-kpis no-print">
+  <div class="hr-kpi"><small>{% translate "Active sites" %}</small><b>{{ sites|length }}</b></div>
+  <div class="hr-kpi {% if short %}warn{% endif %}"><small>{% translate "Workers short on shifts" %}</small><b>{{ short }}</b></div>
+  {% if unassigned %}<div class="hr-kpi warn"><small>{% translate "Not on any site" %}</small><b>{{ unassigned|length }}</b></div>{% endif %}
+</div>
+<div class="hr-actions no-print" style="margin-bottom:12px"><a class="btn btn-secondary" href="?print=1" target="_blank">🖨 {% translate "Print duty list" %}</a></div>
+
+{% for site in sites %}
+<div class="hr-card" id="site-{{ site.id }}">
+  <h3>🏗️ <a href="{% url 'webapp:mp_site' site.id %}">{{ site.name }}</a> <small>{{ site.client.name|default:"" }}{% if site.supervisor %} · {% translate "Site supervisor" %}: {{ site.supervisor }} {{ site.supervisor_phone }}{% endif %}</small></h3>
+  {% for r in site.shift_rows %}
+  <div class="mp-shift">
+    <h4>🕒 {{ r.shift.name }} <small>{{ r.shift.start_time|time:"H:i" }}–{{ r.shift.end_time|time:"H:i" }} · {{ r.shift.hours|floatformat:"-2" }} {% translate "hrs" %}</small>
+      <span class="{% if r.short %}short{% else %}full{% endif %}">{{ r.workers|length }}/{{ r.shift.needed }}{% if r.short %} · {{ r.short }} {% translate "short" %}{% endif %}</span></h4>
+    {% if r.workers %}<form method="post" class="mp-people">{% csrf_token %}<input type="hidden" name="action" value="unassign"><input type="hidden" name="site" value="{{ site.id }}">
+      {% for w in r.workers %}<label><input class="no-print" type="checkbox" name="worker" value="{{ w.id }}"> {{ w.name }}{% if w.trade %} <small>· {{ w.trade }}</small>{% endif %}{% if w.off_name %} <small>· {% translate "Weekly off" %}: {{ w.off_name }}</small>{% endif %}</label>{% endfor %}
+      <button class="btn btn-secondary no-print" style="padding:3px 10px" type="submit">{% translate "Take off this shift" %}</button></form>{% endif %}
+    <form method="post" class="mp-inline mp-assign" style="margin-top:8px">{% csrf_token %}<input type="hidden" name="action" value="assign"><input type="hidden" name="site" value="{{ site.id }}"><input type="hidden" name="shift" value="{{ r.shift.id }}">
+      <label>{% translate "Add workers" %}<select name="worker" multiple size="3">{% for w in all_workers %}{% if w.duty_shift_id != r.shift.id %}<option value="{{ w.id }}">{{ w.name }}{% if w.trade %} · {{ w.trade }}{% endif %}{% if w.site %} ({{ w.site.name }}){% endif %}</option>{% endif %}{% endfor %}</select></label>
+      <label>{% translate "Weekly off" %}<select name="weekly_off"><option value="">{% translate "Keep as is" %}</option><option value="none">{% translate "Company's off days" %}</option>{% for n, d in weekdays %}<option value="{{ n }}">{{ d }}</option>{% endfor %}</select></label>
+      <button class="btn" type="submit">{% translate "Put on this shift" %}</button>
+    </form>
+    <details class="mp-assign"><summary style="font-size:12px;cursor:pointer">{% translate "Edit shift" %}</summary>
+      <form method="post" class="mp-inline" style="margin-top:6px">{% csrf_token %}<input type="hidden" name="action" value="shift"><input type="hidden" name="site" value="{{ site.id }}"><input type="hidden" name="shift" value="{{ r.shift.id }}">
+        <label>{% translate "Name" %}<input name="name" value="{{ r.shift.name }}" style="width:110px"></label>
+        <label>{% translate "From" %}<input type="time" name="start" value="{{ r.shift.start_time|time:'H:i' }}"></label>
+        <label>{% translate "To" %}<input type="time" name="end" value="{{ r.shift.end_time|time:'H:i' }}"></label>
+        <label>{% translate "Workers needed" %}<input type="number" min="0" name="needed" value="{{ r.shift.needed }}" style="width:80px"></label>
+        <button class="btn btn-secondary" type="submit">{% translate "Save" %}</button>
+      </form>
+      <form method="post" style="margin-top:6px" onsubmit="return confirm('{% translate "Remove this shift?" %}')">{% csrf_token %}<input type="hidden" name="action" value="delete_shift"><input type="hidden" name="shift" value="{{ r.shift.id }}"><button class="btn btn-secondary" type="submit">🗑 {% translate "Remove shift" %}</button></form>
+    </details>
+  </div>
+  {% endfor %}
+  {% if site.no_shift %}<p style="font-size:13px;margin:8px 0 0"><b>{% translate "At this site without a shift" %}:</b> {% for w in site.no_shift %}{{ w.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+  <form method="post" class="mp-inline mp-assign" style="margin-top:10px">{% csrf_token %}<input type="hidden" name="action" value="shift"><input type="hidden" name="site" value="{{ site.id }}">
+    <label>{% translate "New shift" %}<input name="name" placeholder="{% translate 'e.g. Day, Night' %}" style="width:120px"></label>
+    <label>{% translate "From" %}<input type="time" name="start" value="06:00"></label>
+    <label>{% translate "To" %}<input type="time" name="end" value="18:00"></label>
+    <label>{% translate "Workers needed" %}<input type="number" min="0" name="needed" value="1" style="width:80px"></label>
+    <button class="btn btn-secondary" type="submit">＋ {% translate "Add shift" %}</button>
+  </form>
+</div>
+{% empty %}
+<div class="hr-card hr-empty">{% translate "Add a site first." %} <a href="{% url 'webapp:mp_sites' %}">＋ {% translate "New site" %}</a></div>
+{% endfor %}
+{% if unassigned %}<div class="hr-card"><h3>{% translate "Not on any site" %}</h3><p>{% for w in unassigned %}<a href="{% url 'webapp:staff_detail' w.id %}">{{ w.name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p></div>{% endif %}
+</div>
+{% if print %}<script>window.addEventListener('load',()=>setTimeout(()=>print(),300))</script>{% endif %}
+{% endblock %}

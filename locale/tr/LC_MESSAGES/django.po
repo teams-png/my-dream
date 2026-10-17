@@ -702,12 +702,20 @@ msgid "Sites"
 msgstr "Sahalar"
 
 #: templates/webapp/_industry_nav.html
+msgid "Duty roster"
+msgstr "Vardiya çizelgesi"
+
+#: templates/webapp/_industry_nav.html
 msgid "Site attendance"
 msgstr "Saha yoklaması"
 
 #: templates/webapp/_industry_nav.html
 msgid "Client billing"
 msgstr "Müşteri faturalandırma"
+
+#: templates/webapp/_industry_nav.html
+msgid "Site profit"
+msgstr "Saha kârı"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3866,6 +3874,10 @@ msgid "This is a weekly off day."
 msgstr "Bu haftalık izin günü."
 
 #: templates/webapp/hr/attendance.html
+msgid "Office staff only here."
+msgstr "Burada yalnızca ofis personeli."
+
+#: templates/webapp/hr/attendance.html
 msgid "Mark all present"
 msgstr "Hepsini geldi işaretle"
 
@@ -4234,6 +4246,46 @@ msgid "Not on any site"
 msgstr "Hiçbir sahada değil"
 
 #: templates/webapp/hr/staff_detail.html
+msgid "Sites this month"
+msgstr "Bu ayki sahalar"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Site"
+msgstr "Saha"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Days"
+msgstr "Gün"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Hours"
+msgstr "Saat"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "OT hours"
+msgstr "Fazla mesai saati"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Overtime pay"
+msgstr "Fazla mesai ücreti"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Billed to client"
+msgstr "Müşteriye faturalanan"
+
+#: templates/webapp/hr/staff_detail.html
+msgid ""
+"Pay is for the days / hours at the sites so far this month; the payslip "
+"comes from the payroll run."
+msgstr ""
+"Ücret bu ay şimdiye kadar sahalardaki günler / saatler içindir; maaş "
+"bordrosu bordro çalıştırmasından gelir."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No site attendance this month yet."
+msgstr "Bu ay henüz saha yoklaması yok."
+
+#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "aylık"
 
@@ -4338,6 +4390,10 @@ msgid "Run payroll"
 msgstr "Bordro çalıştır"
 
 #: templates/webapp/hr/staff_list.html
+msgid "Office staff"
+msgstr "Ofis personeli"
+
+#: templates/webapp/hr/staff_list.html
 msgid "Name, phone or job title"
 msgstr "Ad, telefon veya unvan"
 
@@ -4356,6 +4412,10 @@ msgstr "İşaretlenmedi"
 #: templates/webapp/hr/staff_list.html
 msgid "Former"
 msgstr "Eski"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Office"
+msgstr "Ofis"
 
 #: templates/webapp/hr/staff_list.html
 msgid "No staff match your search."
@@ -5339,10 +5399,6 @@ msgid "How often"
 msgstr "Sıklık"
 
 #: templates/webapp/jobs/_record.html
-msgid "Days"
-msgstr "Gün"
-
-#: templates/webapp/jobs/_record.html
 msgid "e.g. Paracetamol 500 mg"
 msgstr "örn. Parasetamol 500 mg"
 
@@ -5868,16 +5924,12 @@ msgid "Normal hours per day"
 msgstr "Günlük normal saat"
 
 #: templates/webapp/manpower/attendance.html
+msgid "Weekly off"
+msgstr "Haftalık izin"
+
+#: templates/webapp/manpower/attendance.html
 msgid "Marked at another site"
 msgstr "Başka sahada işaretli"
-
-#: templates/webapp/manpower/attendance.html
-msgid "Hours"
-msgstr "Saat"
-
-#: templates/webapp/manpower/attendance.html
-msgid "OT hours"
-msgstr "Fazla mesai saati"
 
 #: templates/webapp/manpower/attendance.html
 msgid "No workers at this site yet."
@@ -5904,6 +5956,10 @@ msgid "No attendance this month."
 msgstr "Bu ay yoklama yok."
 
 #: templates/webapp/manpower/billing.html
+msgid "Timesheet"
+msgstr "Puantaj"
+
+#: templates/webapp/manpower/billing.html
 msgid "Open invoice"
 msgstr "Faturayı aç"
 
@@ -5919,9 +5975,81 @@ msgstr "Fatura oluştur"
 msgid "Choose the client for this site first."
 msgstr "Önce bu sahanın müşterisini seçin."
 
-#: templates/webapp/manpower/home.html
+#: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "Aktif sahalar"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers short on shifts"
+msgstr "Vardiyalarda eksik çalışan"
+
+#: templates/webapp/manpower/duty.html
+msgid "Print duty list"
+msgstr "Vardiya listesini yazdır"
+
+#: templates/webapp/manpower/duty.html
+msgid "Site supervisor"
+msgstr "Saha sorumlusu"
+
+#: templates/webapp/manpower/duty.html
+msgid "hrs"
+msgstr "saat"
+
+#: templates/webapp/manpower/duty.html
+msgid "short"
+msgstr "eksik"
+
+#: templates/webapp/manpower/duty.html
+msgid "Take off this shift"
+msgstr "Bu vardiyadan çıkar"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add workers"
+msgstr "Çalışan ekle"
+
+#: templates/webapp/manpower/duty.html
+msgid "Keep as is"
+msgstr "Olduğu gibi"
+
+#: templates/webapp/manpower/duty.html
+msgid "Company's off days"
+msgstr "Şirketin izin günleri"
+
+#: templates/webapp/manpower/duty.html
+msgid "Put on this shift"
+msgstr "Bu vardiyaya koy"
+
+#: templates/webapp/manpower/duty.html
+msgid "Edit shift"
+msgstr "Vardiyayı düzenle"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers needed"
+msgstr "Gereken çalışan"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove this shift?"
+msgstr "Bu vardiya kaldırılsın mı?"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove shift"
+msgstr "Vardiyayı kaldır"
+
+#: templates/webapp/manpower/duty.html
+msgid "At this site without a shift"
+msgstr "Bu sahada vardiyasız"
+
+#: templates/webapp/manpower/duty.html
+msgid "New shift"
+msgstr "Yeni vardiya"
+
+#: templates/webapp/manpower/duty.html
+msgid "e.g. Day, Night"
+msgstr "ör. Gündüz, Gece"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add shift"
+msgstr "Vardiya ekle"
 
 #: templates/webapp/manpower/home.html
 msgid "Documents expired"
@@ -5938,10 +6066,6 @@ msgstr "Ad, telefon, meslek veya kimlik numarası"
 #: templates/webapp/manpower/home.html
 msgid "All sites"
 msgstr "Tüm sahalar"
-
-#: templates/webapp/manpower/home.html
-msgid "Site"
-msgstr "Saha"
 
 #: templates/webapp/manpower/home.html
 msgid "No site workers yet."
@@ -5963,6 +6087,28 @@ msgstr "Bitiş"
 msgid "Nothing expiring. 👍"
 msgstr "Süresi dolan bir şey yok. 👍"
 
+#: templates/webapp/manpower/profit.html
+msgid "Billed to clients"
+msgstr "Müşterilere faturalanan"
+
+#: templates/webapp/manpower/profit.html
+msgid "Workers' pay (with overtime)"
+msgstr "Çalışan ücretleri (fazla mesai dahil)"
+
+#: templates/webapp/manpower/profit.html
+msgid "Profit"
+msgstr "Kâr"
+
+#: templates/webapp/manpower/profit.html
+msgid ""
+"From the site attendance: what each client is billed (rate × hours / days, "
+"plus overtime) against what we pay the worker for that time (salary for the "
+"days, or day / hour rate, plus overtime pay)."
+msgstr ""
+"Saha yoklamasından: her müşteriye faturalanan (ücret × saat / gün, artı "
+"fazla mesai) ile o süre için çalışana ödediğimiz (günlerin maaşı veya gün / "
+"saat ücreti, artı fazla mesai) karşılaştırması."
+
 #: templates/webapp/manpower/site.html
 msgid "Client"
 msgstr "Müşteri"
@@ -5974,10 +6120,6 @@ msgstr "Buradaki çalışanlar"
 #: templates/webapp/manpower/site.html
 msgid "Rate per worker"
 msgstr "Çalışan başına ücret"
-
-#: templates/webapp/manpower/site.html
-msgid "Site supervisor"
-msgstr "Saha sorumlusu"
 
 #: templates/webapp/manpower/site.html
 msgid "Today's attendance"
@@ -6018,6 +6160,18 @@ msgstr "Kapalı sahalar"
 #: templates/webapp/manpower/sites.html
 msgid "No sites yet. Add the first client site below."
 msgstr "Henüz saha yok. İlk müşteri sahasını aşağıdan ekleyin."
+
+#: templates/webapp/manpower/timesheet.html
+msgid "OT"
+msgstr "FM"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "small numbers: hours worked, +overtime hours"
+msgstr "küçük sayılar: çalışılan saat, +fazla mesai saati"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "Client signature & stamp"
+msgstr "Müşteri imzası ve kaşesi"
 
 #: templates/webapp/manpower/worker_form.html
 msgid "Edit site worker"
@@ -8894,6 +9048,62 @@ msgstr "başladı"
 msgid "No job orders here."
 msgstr "Burada iş talebi yok."
 
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Offer letter"
+msgstr "Teklif mektubu"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Show the employer's name"
+msgstr "İşverenin adını göster"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Hide the employer's name"
+msgstr "İşverenin adını gizle"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "We are pleased to offer you the following position:"
+msgstr "Size aşağıdaki pozisyonu teklif etmekten memnuniyet duyarız:"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Position / job title"
+msgstr "Pozisyon / unvan"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Employer"
+msgstr "İşveren"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Work location"
+msgstr "Çalışma yeri"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Salary (per month)"
+msgstr "Maaş (aylık)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Contract (months)"
+msgstr "Sözleşme (ay)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Joining date"
+msgstr "İşe başlama tarihi"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid ""
+"Please sign below to accept this offer and return a copy to us with your "
+"passport copy."
+msgstr ""
+"Bu teklifi kabul etmek için aşağıyı imzalayın ve pasaport kopyanızla "
+"birlikte bir kopyasını bize geri verin."
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Authorised signature"
+msgstr "Yetkili imza"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "I accept this offer"
+msgstr "Bu teklifi kabul ediyorum"
+
 #: templates/webapp/recruitment/placement.html
 msgid "Candidate"
 msgstr "Aday"
@@ -8943,10 +9153,6 @@ msgid "Travel / ticket date"
 msgstr "Seyahat / bilet tarihi"
 
 #: templates/webapp/recruitment/placement.html
-msgid "Joining date"
-msgstr "İşe başlama tarihi"
-
-#: templates/webapp/recruitment/placement.html
 msgid "Replacement guarantee until"
 msgstr "Değişim garantisi bitişi"
 
@@ -8969,10 +9175,6 @@ msgstr "Aday ücreti"
 #: templates/webapp/recruitment/placement.html
 msgid "Our costs"
 msgstr "Maliyetlerimiz"
-
-#: templates/webapp/recruitment/placement.html
-msgid "Profit"
-msgstr "Kâr"
 
 #: templates/webapp/recruitment/placement.html
 msgid "Bill the client"
@@ -12314,6 +12516,14 @@ msgid "You cannot mark attendance for a future date."
 msgstr "Gelecek bir tarih için yoklama işaretleyemezsiniz."
 
 #: apps/employees/site_workers.py
+msgid "Enter the shift name and its start and end time."
+msgstr "Vardiya adını ve başlangıç ile bitiş saatini girin."
+
+#: apps/employees/site_workers.py
+msgid "Choose a shift."
+msgstr "Bir vardiya seçin."
+
+#: apps/employees/site_workers.py
 msgid "This month has not started yet."
 msgstr "Bu ay henüz başlamadı."
 
@@ -13780,10 +13990,6 @@ msgid "Applied online"
 msgstr "Online başvurdu"
 
 #: apps/webapp/careers_views.py
-msgid "Office"
-msgstr "Ofis"
-
-#: apps/webapp/careers_views.py
 msgid "Referral"
 msgstr "Tavsiye"
 
@@ -14722,8 +14928,16 @@ msgid "Work visa"
 msgstr "Çalışma vizesi"
 
 #: apps/webapp/manpower_views.py
-msgid "Office staff"
-msgstr "Ofis personeli"
+msgid "Shift saved."
+msgstr "Vardiya kaydedildi."
+
+#: apps/webapp/manpower_views.py
+msgid "Shift removed."
+msgstr "Vardiya kaldırıldı."
+
+#: apps/webapp/manpower_views.py
+msgid "Trade"
+msgstr "Meslek"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15806,24 +16020,8 @@ msgid "Address & contact person"
 msgstr "Adres ve yetkili kişi"
 
 #: apps/webapp/recruitment_views.py
-msgid "Position / job title"
-msgstr "Pozisyon / unvan"
-
-#: apps/webapp/recruitment_views.py
-msgid "Work location"
-msgstr "Çalışma yeri"
-
-#: apps/webapp/recruitment_views.py
 msgid "Preferred nationality"
 msgstr "Tercih edilen uyruk"
-
-#: apps/webapp/recruitment_views.py
-msgid "Salary (per month)"
-msgstr "Maaş (aylık)"
-
-#: apps/webapp/recruitment_views.py
-msgid "Contract (months)"
-msgstr "Sözleşme (ay)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Our fee per person (charged to client)"

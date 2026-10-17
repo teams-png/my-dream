@@ -702,12 +702,20 @@ msgid "Sites"
 msgstr "সাইট"
 
 #: templates/webapp/_industry_nav.html
+msgid "Duty roster"
+msgstr "ডিউটি রোস্টার"
+
+#: templates/webapp/_industry_nav.html
 msgid "Site attendance"
 msgstr "সাইট উপস্থিতি"
 
 #: templates/webapp/_industry_nav.html
 msgid "Client billing"
 msgstr "ক্লায়েন্ট বিলিং"
+
+#: templates/webapp/_industry_nav.html
+msgid "Site profit"
+msgstr "সাইট লাভ"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3854,6 +3862,10 @@ msgid "This is a weekly off day."
 msgstr "এটি সাপ্তাহিক ছুটির দিন।"
 
 #: templates/webapp/hr/attendance.html
+msgid "Office staff only here."
+msgstr "এখানে শুধু অফিস কর্মী।"
+
+#: templates/webapp/hr/attendance.html
 msgid "Mark all present"
 msgstr "সবাইকে উপস্থিত চিহ্নিত করুন"
 
@@ -4220,6 +4232,45 @@ msgid "Not on any site"
 msgstr "কোনো সাইটে নেই"
 
 #: templates/webapp/hr/staff_detail.html
+msgid "Sites this month"
+msgstr "এই মাসের সাইট"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Site"
+msgstr "সাইট"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Days"
+msgstr "দিন"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Hours"
+msgstr "ঘণ্টা"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "OT hours"
+msgstr "ওভারটাইম ঘণ্টা"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Overtime pay"
+msgstr "ওভারটাইম বেতন"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Billed to client"
+msgstr "ক্লায়েন্টকে বিল করা হয়েছে"
+
+#: templates/webapp/hr/staff_detail.html
+msgid ""
+"Pay is for the days / hours at the sites so far this month; the payslip "
+"comes from the payroll run."
+msgstr ""
+"এই মাসে এখন পর্যন্ত সাইটে দিন / ঘণ্টার বেতন; পেস্লিপ পেরোল রান থেকে আসে।"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No site attendance this month yet."
+msgstr "এই মাসে এখনও সাইট উপস্থিতি নেই।"
+
+#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "প্রতি মাসে"
 
@@ -4324,6 +4375,10 @@ msgid "Run payroll"
 msgstr "বেতন তালিকা চালান"
 
 #: templates/webapp/hr/staff_list.html
+msgid "Office staff"
+msgstr "অফিস কর্মী"
+
+#: templates/webapp/hr/staff_list.html
 msgid "Name, phone or job title"
 msgstr "নাম, ফোন বা পদ"
 
@@ -4342,6 +4397,10 @@ msgstr "চিহ্নিত নয়"
 #: templates/webapp/hr/staff_list.html
 msgid "Former"
 msgstr "প্রাক্তন"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Office"
+msgstr "অফিস"
 
 #: templates/webapp/hr/staff_list.html
 msgid "No staff match your search."
@@ -5320,10 +5379,6 @@ msgid "How often"
 msgstr "কতবার"
 
 #: templates/webapp/jobs/_record.html
-msgid "Days"
-msgstr "দিন"
-
-#: templates/webapp/jobs/_record.html
 msgid "e.g. Paracetamol 500 mg"
 msgstr "যেমন প্যারাসিটামল 500 mg"
 
@@ -5849,16 +5904,12 @@ msgid "Normal hours per day"
 msgstr "দিনে স্বাভাবিক ঘণ্টা"
 
 #: templates/webapp/manpower/attendance.html
+msgid "Weekly off"
+msgstr "সাপ্তাহিক ছুটি"
+
+#: templates/webapp/manpower/attendance.html
 msgid "Marked at another site"
 msgstr "অন্য সাইটে চিহ্নিত"
-
-#: templates/webapp/manpower/attendance.html
-msgid "Hours"
-msgstr "ঘণ্টা"
-
-#: templates/webapp/manpower/attendance.html
-msgid "OT hours"
-msgstr "ওভারটাইম ঘণ্টা"
 
 #: templates/webapp/manpower/attendance.html
 msgid "No workers at this site yet."
@@ -5885,6 +5936,10 @@ msgid "No attendance this month."
 msgstr "এই মাসে কোনো উপস্থিতি নেই।"
 
 #: templates/webapp/manpower/billing.html
+msgid "Timesheet"
+msgstr "টাইমশিট"
+
+#: templates/webapp/manpower/billing.html
 msgid "Open invoice"
 msgstr "ইনভয়েস খুলুন"
 
@@ -5900,9 +5955,81 @@ msgstr "ইনভয়েস তৈরি করুন"
 msgid "Choose the client for this site first."
 msgstr "আগে এই সাইটের ক্লায়েন্ট বেছে নিন।"
 
-#: templates/webapp/manpower/home.html
+#: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "সক্রিয় সাইট"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers short on shifts"
+msgstr "শিফটে কম কর্মী"
+
+#: templates/webapp/manpower/duty.html
+msgid "Print duty list"
+msgstr "ডিউটি তালিকা প্রিন্ট করুন"
+
+#: templates/webapp/manpower/duty.html
+msgid "Site supervisor"
+msgstr "সাইট সুপারভাইজার"
+
+#: templates/webapp/manpower/duty.html
+msgid "hrs"
+msgstr "ঘণ্টা"
+
+#: templates/webapp/manpower/duty.html
+msgid "short"
+msgstr "কম"
+
+#: templates/webapp/manpower/duty.html
+msgid "Take off this shift"
+msgstr "এই শিফট থেকে সরান"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add workers"
+msgstr "কর্মী যোগ করুন"
+
+#: templates/webapp/manpower/duty.html
+msgid "Keep as is"
+msgstr "যেমন আছে"
+
+#: templates/webapp/manpower/duty.html
+msgid "Company's off days"
+msgstr "কোম্পানির ছুটির দিন"
+
+#: templates/webapp/manpower/duty.html
+msgid "Put on this shift"
+msgstr "এই শিফটে দিন"
+
+#: templates/webapp/manpower/duty.html
+msgid "Edit shift"
+msgstr "শিফট সম্পাদনা"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers needed"
+msgstr "প্রয়োজনীয় কর্মী"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove this shift?"
+msgstr "এই শিফট সরাবেন?"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove shift"
+msgstr "শিফট সরান"
+
+#: templates/webapp/manpower/duty.html
+msgid "At this site without a shift"
+msgstr "এই সাইটে শিফট ছাড়া"
+
+#: templates/webapp/manpower/duty.html
+msgid "New shift"
+msgstr "নতুন শিফট"
+
+#: templates/webapp/manpower/duty.html
+msgid "e.g. Day, Night"
+msgstr "যেমন ডে, নাইট"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add shift"
+msgstr "শিফট যোগ করুন"
 
 #: templates/webapp/manpower/home.html
 msgid "Documents expired"
@@ -5919,10 +6046,6 @@ msgstr "নাম, ফোন, ট্রেড বা আইডি নম্ব�
 #: templates/webapp/manpower/home.html
 msgid "All sites"
 msgstr "সব সাইট"
-
-#: templates/webapp/manpower/home.html
-msgid "Site"
-msgstr "সাইট"
 
 #: templates/webapp/manpower/home.html
 msgid "No site workers yet."
@@ -5944,6 +6067,28 @@ msgstr "মেয়াদ"
 msgid "Nothing expiring. 👍"
 msgstr "কিছুই মেয়াদ শেষ হচ্ছে না। 👍"
 
+#: templates/webapp/manpower/profit.html
+msgid "Billed to clients"
+msgstr "ক্লায়েন্টদের বিল করা হয়েছে"
+
+#: templates/webapp/manpower/profit.html
+msgid "Workers' pay (with overtime)"
+msgstr "কর্মীদের বেতন (ওভারটাইম সহ)"
+
+#: templates/webapp/manpower/profit.html
+msgid "Profit"
+msgstr "লাভ"
+
+#: templates/webapp/manpower/profit.html
+msgid ""
+"From the site attendance: what each client is billed (rate × hours / days, "
+"plus overtime) against what we pay the worker for that time (salary for the "
+"days, or day / hour rate, plus overtime pay)."
+msgstr ""
+"সাইট উপস্থিতি থেকে: প্রতিটি ক্লায়েন্টকে কত বিল হয়েছে (রেট × ঘণ্টা / দিন, "
+"সাথে ওভারটাইম) বনাম সেই সময়ের জন্য কর্মীকে আমরা কত দিই (দিনের বেতন, বা দিন "
+"/ ঘণ্টার রেট, সাথে ওভারটাইম)।"
+
 #: templates/webapp/manpower/site.html
 msgid "Client"
 msgstr "ক্লায়েন্ট"
@@ -5955,10 +6100,6 @@ msgstr "এখানকার কর্মী"
 #: templates/webapp/manpower/site.html
 msgid "Rate per worker"
 msgstr "প্রতি কর্মীর রেট"
-
-#: templates/webapp/manpower/site.html
-msgid "Site supervisor"
-msgstr "সাইট সুপারভাইজার"
 
 #: templates/webapp/manpower/site.html
 msgid "Today's attendance"
@@ -5999,6 +6140,18 @@ msgstr "বন্ধ সাইট"
 #: templates/webapp/manpower/sites.html
 msgid "No sites yet. Add the first client site below."
 msgstr "এখনও কোনো সাইট নেই। নিচে প্রথম ক্লায়েন্ট সাইট যোগ করুন।"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "OT"
+msgstr "OT"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "small numbers: hours worked, +overtime hours"
+msgstr "ছোট সংখ্যা: কাজের ঘণ্টা, +ওভারটাইম ঘণ্টা"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "Client signature & stamp"
+msgstr "ক্লায়েন্টের স্বাক্ষর ও সিল"
 
 #: templates/webapp/manpower/worker_form.html
 msgid "Edit site worker"
@@ -8858,6 +9011,62 @@ msgstr "যোগ দিয়েছে"
 msgid "No job orders here."
 msgstr "এখানে কোনো জব অর্ডার নেই।"
 
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Offer letter"
+msgstr "অফার লেটার"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Show the employer's name"
+msgstr "নিয়োগকর্তার নাম দেখান"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Hide the employer's name"
+msgstr "নিয়োগকর্তার নাম লুকান"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "We are pleased to offer you the following position:"
+msgstr "আমরা আনন্দের সাথে আপনাকে নিচের পদটি প্রস্তাব করছি:"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Position / job title"
+msgstr "পদ / চাকরির পদবি"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Employer"
+msgstr "নিয়োগকর্তা"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Work location"
+msgstr "কাজের স্থান"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Salary (per month)"
+msgstr "বেতন (মাসিক)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Contract (months)"
+msgstr "চুক্তি (মাস)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Joining date"
+msgstr "যোগদানের তারিখ"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid ""
+"Please sign below to accept this offer and return a copy to us with your "
+"passport copy."
+msgstr ""
+"এই প্রস্তাব গ্রহণ করতে নিচে স্বাক্ষর করুন এবং পাসপোর্টের কপিসহ একটি কপি "
+"আমাদের ফেরত দিন।"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Authorised signature"
+msgstr "অনুমোদিত স্বাক্ষর"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "I accept this offer"
+msgstr "আমি এই প্রস্তাব গ্রহণ করছি"
+
 #: templates/webapp/recruitment/placement.html
 msgid "Candidate"
 msgstr "প্রার্থী"
@@ -8907,10 +9116,6 @@ msgid "Travel / ticket date"
 msgstr "ভ্রমণ / টিকিটের তারিখ"
 
 #: templates/webapp/recruitment/placement.html
-msgid "Joining date"
-msgstr "যোগদানের তারিখ"
-
-#: templates/webapp/recruitment/placement.html
 msgid "Replacement guarantee until"
 msgstr "প্রতিস্থাপন গ্যারান্টি পর্যন্ত"
 
@@ -8933,10 +9138,6 @@ msgstr "প্রার্থী ফি"
 #: templates/webapp/recruitment/placement.html
 msgid "Our costs"
 msgstr "আমাদের খরচ"
-
-#: templates/webapp/recruitment/placement.html
-msgid "Profit"
-msgstr "লাভ"
 
 #: templates/webapp/recruitment/placement.html
 msgid "Bill the client"
@@ -12264,6 +12465,14 @@ msgid "You cannot mark attendance for a future date."
 msgstr "ভবিষ্যতের তারিখে উপস্থিতি দেওয়া যাবে না।"
 
 #: apps/employees/site_workers.py
+msgid "Enter the shift name and its start and end time."
+msgstr "শিফটের নাম এবং শুরু ও শেষের সময় দিন।"
+
+#: apps/employees/site_workers.py
+msgid "Choose a shift."
+msgstr "একটি শিফট বেছে নিন।"
+
+#: apps/employees/site_workers.py
 msgid "This month has not started yet."
 msgstr "এই মাস এখনও শুরু হয়নি।"
 
@@ -13720,10 +13929,6 @@ msgid "Applied online"
 msgstr "অনলাইনে আবেদন"
 
 #: apps/webapp/careers_views.py
-msgid "Office"
-msgstr "অফিস"
-
-#: apps/webapp/careers_views.py
 msgid "Referral"
 msgstr "রেফারেল"
 
@@ -14663,8 +14868,16 @@ msgid "Work visa"
 msgstr "ওয়ার্ক ভিসা"
 
 #: apps/webapp/manpower_views.py
-msgid "Office staff"
-msgstr "অফিস কর্মী"
+msgid "Shift saved."
+msgstr "শিফট সংরক্ষিত।"
+
+#: apps/webapp/manpower_views.py
+msgid "Shift removed."
+msgstr "শিফট সরানো হয়েছে।"
+
+#: apps/webapp/manpower_views.py
+msgid "Trade"
+msgstr "ট্রেড"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15744,24 +15957,8 @@ msgid "Address & contact person"
 msgstr "ঠিকানা ও যোগাযোগকারী ব্যক্তি"
 
 #: apps/webapp/recruitment_views.py
-msgid "Position / job title"
-msgstr "পদ / চাকরির পদবি"
-
-#: apps/webapp/recruitment_views.py
-msgid "Work location"
-msgstr "কাজের স্থান"
-
-#: apps/webapp/recruitment_views.py
 msgid "Preferred nationality"
 msgstr "পছন্দের জাতীয়তা"
-
-#: apps/webapp/recruitment_views.py
-msgid "Salary (per month)"
-msgstr "বেতন (মাসিক)"
-
-#: apps/webapp/recruitment_views.py
-msgid "Contract (months)"
-msgstr "চুক্তি (মাস)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Our fee per person (charged to client)"

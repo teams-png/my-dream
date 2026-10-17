@@ -23,8 +23,18 @@
   {% if employee.trade %}<span class="hr-chip blue">{{ employee.trade }}</span>{% endif %}
   {% if employee.nationality %}<span class="hr-chip">{{ employee.nationality }}</span>{% endif %}
   <span>🏗️ {% if employee.site %}<b>{{ employee.site.name }}</b>{% if employee.site.client %} · {{ employee.site.client.name }}{% endif %}{% else %}{% translate "Not on any site" %}{% endif %}</span>
+  {% if employee.duty_shift %}<span>🕒 {{ employee.duty_shift.name }} {{ employee.duty_shift.start_time|time:"H:i" }}–{{ employee.duty_shift.end_time|time:"H:i" }}</span>{% endif %}
   {% if employee.accommodation %}<span>🛏️ {{ employee.accommodation }}</span>{% endif %}
   <span class="hr-chip">{% translate employee.get_pay_basis_display %}</span>
+</div>{% endif %}
+{% if employee.worker_type == "site" %}<div class="hr-card"><h3>📊 {% translate "Sites this month" %} <small>{{ month|date:"F Y" }}</small></h3>
+  {% if site_rows %}<div class="hr-table"><table>
+    <tr><th>{% translate "Site" %}</th><th class="hr-num">{% translate "Days" %}</th><th class="hr-num">{% translate "Hours" %}</th><th class="hr-num">{% translate "OT hours" %}</th><th class="hr-num">{% translate "Pay" %}</th><th class="hr-num">{% translate "Overtime pay" %}</th><th class="hr-num">{% translate "Billed to client" %}</th></tr>
+    {% for r in site_rows %}<tr><td><a href="{% url 'webapp:mp_site' r.site.id %}">{{ r.site.name }}</a></td><td class="hr-num">{{ r.days|floatformat:"-1" }}</td><td class="hr-num">{{ r.hours|floatformat:"-2" }}</td><td class="hr-num">{{ r.ot|floatformat:"-2" }}</td><td class="hr-num">{{ r.pay|floatformat:2 }}</td><td class="hr-num">{{ r.ot_pay|floatformat:2 }}</td><td class="hr-num">{{ r.amount|floatformat:2 }}</td></tr>{% endfor %}
+    {% if site_rows|length > 1 %}<tr><td><b>{% translate "Total" %}</b></td><td class="hr-num"><b>{{ site_total.days|floatformat:"-1" }}</b></td><td class="hr-num"><b>{{ site_total.hours|floatformat:"-2" }}</b></td><td class="hr-num"><b>{{ site_total.ot|floatformat:"-2" }}</b></td><td class="hr-num"><b>{{ site_total.pay|floatformat:2 }}</b></td><td class="hr-num"><b>{{ site_total.ot_pay|floatformat:2 }}</b></td><td class="hr-num"><b>{{ site_total.amount|floatformat:2 }}</b></td></tr>{% endif %}
+  </table></div>
+  <p style="font-size:12px;color:var(--hr-soft);margin:6px 0 0">{% translate "Pay is for the days / hours at the sites so far this month; the payslip comes from the payroll run." %}</p>
+  {% else %}<p class="hr-empty">{% translate "No site attendance this month yet." %}</p>{% endif %}
 </div>{% endif %}
 <div class="hr-grid2">
 <div>

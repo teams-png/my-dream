@@ -19,9 +19,10 @@ from django.utils.translation import gettext_lazy as _l
 from apps.customers.models import Customer
 from apps.employees import services as hr
 from apps.employees import site_workers as sw
-from apps.employees.models import Attendance, Employee, SalaryStructure, SiteInvoice, WorkSite
+from apps.employees.models import Attendance, Employee, HRSettings, SalaryStructure, SiteInvoice, SiteShift, WorkSite
 from apps.common.ids import pick_id
 
+from . import xlsx
 from .industry_access import require_industry
 from .views import require_permission
 
@@ -282,7 +283,7 @@ def mp_attendance(request):
     day = parse_date(request.GET.get("date") or request.POST.get("date") or "") or timezone.localdate()
     if site is None:
         return render(request, "webapp/manpower/attendance.html", {"sites": sites, "site": None, "day": day})
-    people = list(sw.workers(company, site))
+    people = list(sw.workers(company, site).select_related("duty_shift"))
     marks = {a.employee_id: a for a in Attendance.objects.for_company(company).filter(date=day, employee__in=people)}
     if request.method == "POST":
         rows = []
@@ -297,9 +298,12 @@ def mp_attendance(request):
         except ValidationError as exc:
             _err(request, exc)
         return redirect(f"{request.path}?site={site.id}&date={day.isoformat()}")
+    company_off = HRSettings.load(company).weekly_off_days or []
     for w in people:
         w.mark = marks.get(w.id)
         w.elsewhere = w.mark and w.mark.site_id not in (None, site.id)
+        w.normal_hours = sw.day_hours(w, site)
+        w.off_today = sw.is_off(w, day, company_off)
     return render(request, "webapp/manpower/attendance.html", {
         "sites": sites, "site": site, "day": day, "workers": people, "today": timezone.localdate(),
         "prev": day - timedelta(days=1), "next": day + timedelta(days=1), "statuses": Attendance.STATUS})
@@ -340,3 +344,98 @@ def _msgids():  # choice and document names shown with {% translate %}, for the 
     return [_("Per hour"), _("Per day"), _("Per month"), _("Monthly salary"), _("Per day worked"), _("Per hour worked"),
             _("ID / residence card"), _("Passport"), _("Health card"), _("Driving licence"), _("Work visa"),
             _("Office staff"), _("Site worker")]
+
+
+# ------------------------------------------------------------------ duty roster
+
+def _time(value):
+    from django.utils.dateparse import parse_time
+    return parse_time(value or "")
+
+
+@manpower_view
+def mp_duty(request):
+    company = request.company
+    if request.method == "POST":
+        action = request.POST.get("action")
+        try:
+            if action == "shift":
+                site = get_object_or_404(WorkSite.objects.for_company(company), id=pick_id(request.POST.get("site")))
+                shift = None
+                if request.POST.get("shift"):
+                    shift = get_object_or_404(SiteShift.objects.for_company(company), id=pick_id(request.POST.get("shift")), site=site)
+                sw.save_shift(site, request.POST.get("name"), _time(request.POST.get("start")), _time(request.POST.get("end")),
+                              request.POST.get("needed") or 1, shift=shift)
+                messages.success(request, _("Shift saved."))
+            elif action == "delete_shift":
+                SiteShift.objects.for_company(company).filter(id=pick_id(request.POST.get("shift"))).delete()
+                messages.success(request, _("Shift removed."))
+            elif action in ("assign", "unassign"):
+                ids = [i for i in (pick_id(x) for x in request.POST.getlist("worker")) if i]
+                picked = list(Employee.objects.for_company(company).filter(id__in=ids))
+                shift = None
+                if action == "assign":
+                    shift = get_object_or_404(SiteShift.objects.for_company(company), id=pick_id(request.POST.get("shift")))
+                count = sw.assign_duty(company, picked, shift, request.POST.get("weekly_off", ""))
+                messages.success(request, _("%(count)s workers moved.") % {"count": count})
+        except ValidationError as exc:
+            _err(request, exc)
+        return redirect(request.path + (f"#site-{request.POST.get('site')}" if request.POST.get("site") else ""))
+    sites, unassigned = sw.duty_board(company)
+    from .hr_views import WEEKDAYS
+    names = dict(WEEKDAYS)
+    for site in sites:
+        for r in site.shift_rows:
+            for w in r["workers"]:
+                w.off_name = names.get(w.weekly_off, "") if w.weekly_off is not None else ""
+    return render(request, "webapp/manpower/duty.html", {
+        "sites": sites, "unassigned": unassigned, "weekdays": WEEKDAYS,
+        "all_workers": sw.workers(company).select_related("duty_shift", "site"),
+        "short": sum(s.short for s in sites), "print": request.GET.get("print") == "1"})
+
+
+# ------------------------------------------------------------------ profit
+
+@manpower_view
+def mp_profit(request):
+    company = request.company
+    start = sw.parse_month(request.GET.get("m"))
+    sites, total = sw.profit_report(company, start)
+    if xlsx.wants(request):
+        data = [[_("Site"), _("Name"), _("Trade"), _("Days"), _("Hours"), _("OT hours"), _("Billed to client"),
+                 _("Pay"), _("Overtime pay"), _("Cost"), _("Profit")]]
+        for s in sites:
+            for r in s.rows:
+                data.append([s.name, r["employee"].name, r["employee"].trade, r["days"], r["hours"], r["ot"], r["amount"],
+                             r["pay"], r["ot_pay"], r["cost"], r["profit"]])
+        data.append([xlsx.Bold(_("Total")), "", "", "", "", total["ot"], total["billed"], "", total["ot_pay"],
+                     total["cost"], total["profit"]])
+        return xlsx.response(f"site-profit-{start:%Y-%m}", [(_("Site profit") + f" {start:%Y-%m}", data)])
+    return render(request, "webapp/manpower/profit.html", {
+        "sites": sites, "total": total, "month": start,
+        "prev": (start - timedelta(days=1)).replace(day=1),
+        "next": start.replace(day=calendar.monthrange(start.year, start.month)[1]) + timedelta(days=1)})
+
+
+# ------------------------------------------------------------------ timesheet
+
+@manpower_view
+def mp_timesheet(request, site_id):
+    company = request.company
+    site = get_object_or_404(WorkSite.objects.for_company(company).select_related("client"), id=site_id)
+    start = sw.parse_month(request.GET.get("m"))
+    days, rows = sw.timesheet(site, start)
+    if xlsx.wants(request):
+        head = [_("Name"), _("Trade")] + [d.day for d in days] + [_("Days"), _("Hours"), _("OT hours")]
+        data = [head]
+        for r in rows:
+            cells = [(f"{c['code']} {c['hours']:g}" if c["hours"] is not None else c["code"]) +
+                     (f" +{c['ot']:g}" if c["ot"] else "") for c in r["cells"]]
+            data.append([r["employee"].name, r["employee"].trade, *cells, r["days"], r["hours"], r["ot"]])
+        return xlsx.response(f"timesheet-{site.name[:20]}-{start:%Y-%m}", [(f"{start:%Y-%m}", data)])
+    return render(request, "webapp/manpower/timesheet.html", {
+        "site": site, "month": start, "days": days, "rows": rows, "company": company,
+        "off_days": HRSettings.load(company).weekly_off_days or [],
+        "totals": {"days": sum((r["days"] for r in rows), Decimal("0")),
+                   "hours": sum((r["hours"] for r in rows), Decimal("0")),
+                   "ot": sum((r["ot"] for r in rows), Decimal("0"))}})

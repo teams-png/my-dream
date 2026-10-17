@@ -21,6 +21,7 @@
     <tr><td colspan="5"><b>{% translate "Total" %}</b></td><td class="hr-num"><b>{{ s.total|floatformat:2 }}</b></td></tr>
   </table></div>{% else %}<p class="hr-empty">{% translate "No attendance this month." %}</p>{% endif %}
   <div class="hr-actions" style="margin-top:10px">
+  <a class="btn btn-secondary" href="{% url 'webapp:mp_timesheet' s.id %}?m={{ month|date:'Y-m' }}">📋 {% translate "Timesheet" %}</a>
   {% if s.bill %}<span class="hr-chip ok">✓ {% translate "Billed" %} {% if s.bill.invoice %}{{ s.bill.invoice.invoice_number }}{% endif %} · {{ s.bill.amount|floatformat:2 }}</span>{% if s.bill.invoice %}<a class="btn btn-secondary" href="{% url 'webapp:invoice_share' s.bill.invoice.id %}">{% translate "Open invoice" %}</a>{% endif %}
   {% elif s.rows and not is_future %}
     {% if s.client %}<form method="post" onsubmit="return confirm('{% translate "Make the invoice for this site and month?" %}')">{% csrf_token %}<input type="hidden" name="site" value="{{ s.id }}"><input type="hidden" name="m" value="{{ month|date:'Y-m' }}"><button class="btn" type="submit">🧾 {% translate "Make invoice" %} ({{ s.total|floatformat:2 }})</button></form>

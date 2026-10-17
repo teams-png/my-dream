@@ -15,6 +15,8 @@
   <a class="btn" href="{% url 'webapp:mp_attendance' %}?site={{ site.id }}">🗓️ {% translate "Today's attendance" %}</a>
   <a class="btn btn-secondary" href="{% url 'webapp:mp_worker_add' %}?site={{ site.id }}">＋ {% translate "Add site worker" %}</a>
   <a class="btn btn-secondary" href="{% url 'webapp:mp_billing' %}">🧾 {% translate "Client billing" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:mp_timesheet' site.id %}">📋 {% translate "Timesheet" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:mp_duty' %}#site-{{ site.id }}">🕒 {% translate "Duty roster" %}</a>
 </div>
 
 <div class="hr-card"><h3>👷 {% translate "Workers at this site" %}</h3>

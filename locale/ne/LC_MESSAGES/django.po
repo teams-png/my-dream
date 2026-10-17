@@ -702,12 +702,20 @@ msgid "Sites"
 msgstr "साइटहरू"
 
 #: templates/webapp/_industry_nav.html
+msgid "Duty roster"
+msgstr "ड्युटी रोस्टर"
+
+#: templates/webapp/_industry_nav.html
 msgid "Site attendance"
 msgstr "साइट हाजिरी"
 
 #: templates/webapp/_industry_nav.html
 msgid "Client billing"
 msgstr "क्लाइन्ट बिलिङ"
+
+#: templates/webapp/_industry_nav.html
+msgid "Site profit"
+msgstr "साइट नाफा"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3859,6 +3867,10 @@ msgid "This is a weekly off day."
 msgstr "यो साप्ताहिक बिदाको दिन हो।"
 
 #: templates/webapp/hr/attendance.html
+msgid "Office staff only here."
+msgstr "यहाँ अफिस कर्मचारी मात्र।"
+
+#: templates/webapp/hr/attendance.html
 msgid "Mark all present"
 msgstr "सबैलाई उपस्थित चिन्ह लगाउनुहोस्"
 
@@ -4226,6 +4238,45 @@ msgid "Not on any site"
 msgstr "कुनै साइटमा छैन"
 
 #: templates/webapp/hr/staff_detail.html
+msgid "Sites this month"
+msgstr "यो महिनाका साइटहरू"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Site"
+msgstr "साइट"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Days"
+msgstr "दिन"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Hours"
+msgstr "घण्टा"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "OT hours"
+msgstr "ओभरटाइम घण्टा"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Overtime pay"
+msgstr "ओभरटाइम ज्याला"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Billed to client"
+msgstr "क्लाइन्टलाई बिल गरिएको"
+
+#: templates/webapp/hr/staff_detail.html
+msgid ""
+"Pay is for the days / hours at the sites so far this month; the payslip "
+"comes from the payroll run."
+msgstr ""
+"यो महिना अहिलेसम्म साइटमा दिन / घण्टाको ज्याला; पेस्लिप पेरोल रनबाट आउँछ।"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No site attendance this month yet."
+msgstr "यो महिना अझै साइट हाजिरी छैन।"
+
+#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "प्रति महिना"
 
@@ -4328,6 +4379,10 @@ msgid "Run payroll"
 msgstr "तलब चलाउनुहोस्"
 
 #: templates/webapp/hr/staff_list.html
+msgid "Office staff"
+msgstr "अफिस कर्मचारी"
+
+#: templates/webapp/hr/staff_list.html
 msgid "Name, phone or job title"
 msgstr "नाम, फोन वा पद"
 
@@ -4346,6 +4401,10 @@ msgstr "चिन्ह नलगाइएको"
 #: templates/webapp/hr/staff_list.html
 msgid "Former"
 msgstr "पूर्व"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Office"
+msgstr "कार्यालय"
 
 #: templates/webapp/hr/staff_list.html
 msgid "No staff match your search."
@@ -5325,10 +5384,6 @@ msgid "How often"
 msgstr "कति पटक"
 
 #: templates/webapp/jobs/_record.html
-msgid "Days"
-msgstr "दिन"
-
-#: templates/webapp/jobs/_record.html
 msgid "e.g. Paracetamol 500 mg"
 msgstr "जस्तै पारासिटामोल 500 mg"
 
@@ -5854,16 +5909,12 @@ msgid "Normal hours per day"
 msgstr "दिनको सामान्य घण्टा"
 
 #: templates/webapp/manpower/attendance.html
+msgid "Weekly off"
+msgstr "साप्ताहिक बिदा"
+
+#: templates/webapp/manpower/attendance.html
 msgid "Marked at another site"
 msgstr "अर्को साइटमा दर्ता"
-
-#: templates/webapp/manpower/attendance.html
-msgid "Hours"
-msgstr "घण्टा"
-
-#: templates/webapp/manpower/attendance.html
-msgid "OT hours"
-msgstr "ओभरटाइम घण्टा"
 
 #: templates/webapp/manpower/attendance.html
 msgid "No workers at this site yet."
@@ -5890,6 +5941,10 @@ msgid "No attendance this month."
 msgstr "यो महिना कुनै हाजिरी छैन।"
 
 #: templates/webapp/manpower/billing.html
+msgid "Timesheet"
+msgstr "टाइमसिट"
+
+#: templates/webapp/manpower/billing.html
 msgid "Open invoice"
 msgstr "इनभ्वाइस खोल्नुहोस्"
 
@@ -5905,9 +5960,81 @@ msgstr "इनभ्वाइस बनाउनुहोस्"
 msgid "Choose the client for this site first."
 msgstr "पहिले यो साइटको क्लाइन्ट छान्नुहोस्।"
 
-#: templates/webapp/manpower/home.html
+#: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "सक्रिय साइटहरू"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers short on shifts"
+msgstr "सिफ्टमा कम कामदार"
+
+#: templates/webapp/manpower/duty.html
+msgid "Print duty list"
+msgstr "ड्युटी सूची प्रिन्ट गर्नुहोस्"
+
+#: templates/webapp/manpower/duty.html
+msgid "Site supervisor"
+msgstr "साइट सुपरभाइजर"
+
+#: templates/webapp/manpower/duty.html
+msgid "hrs"
+msgstr "घण्टा"
+
+#: templates/webapp/manpower/duty.html
+msgid "short"
+msgstr "कम"
+
+#: templates/webapp/manpower/duty.html
+msgid "Take off this shift"
+msgstr "यो सिफ्टबाट हटाउनुहोस्"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add workers"
+msgstr "कामदार थप्नुहोस्"
+
+#: templates/webapp/manpower/duty.html
+msgid "Keep as is"
+msgstr "जस्तो छ"
+
+#: templates/webapp/manpower/duty.html
+msgid "Company's off days"
+msgstr "कम्पनीका बिदाका दिन"
+
+#: templates/webapp/manpower/duty.html
+msgid "Put on this shift"
+msgstr "यो सिफ्टमा राख्नुहोस्"
+
+#: templates/webapp/manpower/duty.html
+msgid "Edit shift"
+msgstr "सिफ्ट सम्पादन"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers needed"
+msgstr "आवश्यक कामदार"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove this shift?"
+msgstr "यो सिफ्ट हटाउने?"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove shift"
+msgstr "सिफ्ट हटाउनुहोस्"
+
+#: templates/webapp/manpower/duty.html
+msgid "At this site without a shift"
+msgstr "यो साइटमा सिफ्टबिना"
+
+#: templates/webapp/manpower/duty.html
+msgid "New shift"
+msgstr "नयाँ सिफ्ट"
+
+#: templates/webapp/manpower/duty.html
+msgid "e.g. Day, Night"
+msgstr "जस्तै डे, नाइट"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add shift"
+msgstr "सिफ्ट थप्नुहोस्"
 
 #: templates/webapp/manpower/home.html
 msgid "Documents expired"
@@ -5924,10 +6051,6 @@ msgstr "नाम, फोन, ट्रेड वा आईडी नम्ब�
 #: templates/webapp/manpower/home.html
 msgid "All sites"
 msgstr "सबै साइटहरू"
-
-#: templates/webapp/manpower/home.html
-msgid "Site"
-msgstr "साइट"
 
 #: templates/webapp/manpower/home.html
 msgid "No site workers yet."
@@ -5949,6 +6072,28 @@ msgstr "म्याद"
 msgid "Nothing expiring. 👍"
 msgstr "केही पनि म्याद सकिँदैन। 👍"
 
+#: templates/webapp/manpower/profit.html
+msgid "Billed to clients"
+msgstr "क्लाइन्टहरूलाई बिल गरिएको"
+
+#: templates/webapp/manpower/profit.html
+msgid "Workers' pay (with overtime)"
+msgstr "कामदारको ज्याला (ओभरटाइमसहित)"
+
+#: templates/webapp/manpower/profit.html
+msgid "Profit"
+msgstr "नाफा"
+
+#: templates/webapp/manpower/profit.html
+msgid ""
+"From the site attendance: what each client is billed (rate × hours / days, "
+"plus overtime) against what we pay the worker for that time (salary for the "
+"days, or day / hour rate, plus overtime pay)."
+msgstr ""
+"साइट हाजिरीबाट: हरेक क्लाइन्टलाई कति बिल भयो (दर × घण्टा / दिन, साथमा "
+"ओभरटाइम) र त्यो समयका लागि कामदारलाई हामी कति दिन्छौँ (दिनको तलब, वा दिन / "
+"घण्टाको दर, साथमा ओभरटाइम)।"
+
 #: templates/webapp/manpower/site.html
 msgid "Client"
 msgstr "क्लाइन्ट"
@@ -5960,10 +6105,6 @@ msgstr "यहाँका कामदार"
 #: templates/webapp/manpower/site.html
 msgid "Rate per worker"
 msgstr "प्रति कामदार दर"
-
-#: templates/webapp/manpower/site.html
-msgid "Site supervisor"
-msgstr "साइट सुपरभाइजर"
 
 #: templates/webapp/manpower/site.html
 msgid "Today's attendance"
@@ -6004,6 +6145,18 @@ msgstr "बन्द साइटहरू"
 #: templates/webapp/manpower/sites.html
 msgid "No sites yet. Add the first client site below."
 msgstr "अझै कुनै साइट छैन। तल पहिलो क्लाइन्ट साइट थप्नुहोस्।"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "OT"
+msgstr "OT"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "small numbers: hours worked, +overtime hours"
+msgstr "साना अङ्क: काम गरेको घण्टा, +ओभरटाइम घण्टा"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "Client signature & stamp"
+msgstr "क्लाइन्टको हस्ताक्षर र छाप"
 
 #: templates/webapp/manpower/worker_form.html
 msgid "Edit site worker"
@@ -8867,6 +9020,62 @@ msgstr "सामेल"
 msgid "No job orders here."
 msgstr "यहाँ कुनै जब अर्डर छैन।"
 
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Offer letter"
+msgstr "अफर लेटर"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Show the employer's name"
+msgstr "रोजगारदाताको नाम देखाउनुहोस्"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Hide the employer's name"
+msgstr "रोजगारदाताको नाम लुकाउनुहोस्"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "We are pleased to offer you the following position:"
+msgstr "तपाईंलाई निम्न पद प्रस्ताव गर्न पाउँदा हामी खुसी छौँ:"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Position / job title"
+msgstr "पद / जागिरको शीर्षक"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Employer"
+msgstr "रोजगारदाता"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Work location"
+msgstr "काम गर्ने ठाउँ"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Salary (per month)"
+msgstr "तलब (मासिक)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Contract (months)"
+msgstr "सम्झौता (महिना)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Joining date"
+msgstr "सामेल हुने मिति"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid ""
+"Please sign below to accept this offer and return a copy to us with your "
+"passport copy."
+msgstr ""
+"यो प्रस्ताव स्वीकार गर्न तल हस्ताक्षर गर्नुहोस् र राहदानीको प्रतिलिपिसहित एक"
+" प्रति हामीलाई फिर्ता दिनुहोस्।"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Authorised signature"
+msgstr "अधिकृत हस्ताक्षर"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "I accept this offer"
+msgstr "म यो प्रस्ताव स्वीकार गर्छु"
+
 #: templates/webapp/recruitment/placement.html
 msgid "Candidate"
 msgstr "उम्मेदवार"
@@ -8916,10 +9125,6 @@ msgid "Travel / ticket date"
 msgstr "यात्रा / टिकट मिति"
 
 #: templates/webapp/recruitment/placement.html
-msgid "Joining date"
-msgstr "सामेल हुने मिति"
-
-#: templates/webapp/recruitment/placement.html
 msgid "Replacement guarantee until"
 msgstr "प्रतिस्थापन ग्यारेन्टी सम्म"
 
@@ -8942,10 +9147,6 @@ msgstr "उम्मेदवार शुल्क"
 #: templates/webapp/recruitment/placement.html
 msgid "Our costs"
 msgstr "हाम्रो लागत"
-
-#: templates/webapp/recruitment/placement.html
-msgid "Profit"
-msgstr "नाफा"
 
 #: templates/webapp/recruitment/placement.html
 msgid "Bill the client"
@@ -12268,6 +12469,14 @@ msgid "You cannot mark attendance for a future date."
 msgstr "भविष्यको मितिमा हाजिरी दर्ता गर्न सकिँदैन।"
 
 #: apps/employees/site_workers.py
+msgid "Enter the shift name and its start and end time."
+msgstr "सिफ्टको नाम र सुरु र अन्त्यको समय लेख्नुहोस्।"
+
+#: apps/employees/site_workers.py
+msgid "Choose a shift."
+msgstr "एउटा सिफ्ट छान्नुहोस्।"
+
+#: apps/employees/site_workers.py
 msgid "This month has not started yet."
 msgstr "यो महिना अझै सुरु भएको छैन।"
 
@@ -13731,10 +13940,6 @@ msgid "Applied online"
 msgstr "अनलाइन आवेदन"
 
 #: apps/webapp/careers_views.py
-msgid "Office"
-msgstr "कार्यालय"
-
-#: apps/webapp/careers_views.py
 msgid "Referral"
 msgstr "सिफारिस"
 
@@ -14670,8 +14875,16 @@ msgid "Work visa"
 msgstr "वर्क भिसा"
 
 #: apps/webapp/manpower_views.py
-msgid "Office staff"
-msgstr "अफिस कर्मचारी"
+msgid "Shift saved."
+msgstr "सिफ्ट सुरक्षित भयो।"
+
+#: apps/webapp/manpower_views.py
+msgid "Shift removed."
+msgstr "सिफ्ट हटाइयो।"
+
+#: apps/webapp/manpower_views.py
+msgid "Trade"
+msgstr "ट्रेड"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15751,24 +15964,8 @@ msgid "Address & contact person"
 msgstr "ठेगाना र सम्पर्क व्यक्ति"
 
 #: apps/webapp/recruitment_views.py
-msgid "Position / job title"
-msgstr "पद / जागिरको शीर्षक"
-
-#: apps/webapp/recruitment_views.py
-msgid "Work location"
-msgstr "काम गर्ने ठाउँ"
-
-#: apps/webapp/recruitment_views.py
 msgid "Preferred nationality"
 msgstr "रुचाइएको राष्ट्रियता"
-
-#: apps/webapp/recruitment_views.py
-msgid "Salary (per month)"
-msgstr "तलब (मासिक)"
-
-#: apps/webapp/recruitment_views.py
-msgid "Contract (months)"
-msgstr "सम्झौता (महिना)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Our fee per person (charged to client)"

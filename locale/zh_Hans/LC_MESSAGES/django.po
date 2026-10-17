@@ -700,12 +700,20 @@ msgid "Sites"
 msgstr "工地"
 
 #: templates/webapp/_industry_nav.html
+msgid "Duty roster"
+msgstr "排班表"
+
+#: templates/webapp/_industry_nav.html
 msgid "Site attendance"
 msgstr "工地考勤"
 
 #: templates/webapp/_industry_nav.html
 msgid "Client billing"
 msgstr "客户账单"
+
+#: templates/webapp/_industry_nav.html
+msgid "Site profit"
+msgstr "工地利润"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3790,6 +3798,10 @@ msgid "This is a weekly off day."
 msgstr "这是每周休息日。"
 
 #: templates/webapp/hr/attendance.html
+msgid "Office staff only here."
+msgstr "这里只有办公室员工。"
+
+#: templates/webapp/hr/attendance.html
 msgid "Mark all present"
 msgstr "全部标记为出勤"
 
@@ -4150,6 +4162,44 @@ msgid "Not on any site"
 msgstr "未分配工地"
 
 #: templates/webapp/hr/staff_detail.html
+msgid "Sites this month"
+msgstr "本月工地"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Site"
+msgstr "工地"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Days"
+msgstr "天数"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Hours"
+msgstr "小时"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "OT hours"
+msgstr "加班小时"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Overtime pay"
+msgstr "加班工资"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Billed to client"
+msgstr "向客户收费"
+
+#: templates/webapp/hr/staff_detail.html
+msgid ""
+"Pay is for the days / hours at the sites so far this month; the payslip "
+"comes from the payroll run."
+msgstr "工资为本月至今在工地的天数 / 小时；工资单来自工资核算。"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No site attendance this month yet."
+msgstr "本月还没有工地考勤。"
+
+#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "每月"
 
@@ -4252,6 +4302,10 @@ msgid "Run payroll"
 msgstr "计算工资"
 
 #: templates/webapp/hr/staff_list.html
+msgid "Office staff"
+msgstr "办公室员工"
+
+#: templates/webapp/hr/staff_list.html
 msgid "Name, phone or job title"
 msgstr "姓名、电话或职位"
 
@@ -4270,6 +4324,10 @@ msgstr "未标记"
 #: templates/webapp/hr/staff_list.html
 msgid "Former"
 msgstr "离职"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Office"
+msgstr "办公室"
 
 #: templates/webapp/hr/staff_list.html
 msgid "No staff match your search."
@@ -5229,10 +5287,6 @@ msgid "How often"
 msgstr "次数"
 
 #: templates/webapp/jobs/_record.html
-msgid "Days"
-msgstr "天数"
-
-#: templates/webapp/jobs/_record.html
 msgid "e.g. Paracetamol 500 mg"
 msgstr "例如 对乙酰氨基酚 500 mg"
 
@@ -5753,16 +5807,12 @@ msgid "Normal hours per day"
 msgstr "每天正常工时"
 
 #: templates/webapp/manpower/attendance.html
+msgid "Weekly off"
+msgstr "每周休息日"
+
+#: templates/webapp/manpower/attendance.html
 msgid "Marked at another site"
 msgstr "已在其他工地登记"
-
-#: templates/webapp/manpower/attendance.html
-msgid "Hours"
-msgstr "小时"
-
-#: templates/webapp/manpower/attendance.html
-msgid "OT hours"
-msgstr "加班小时"
 
 #: templates/webapp/manpower/attendance.html
 msgid "No workers at this site yet."
@@ -5787,6 +5837,10 @@ msgid "No attendance this month."
 msgstr "本月没有考勤。"
 
 #: templates/webapp/manpower/billing.html
+msgid "Timesheet"
+msgstr "考勤表"
+
+#: templates/webapp/manpower/billing.html
 msgid "Open invoice"
 msgstr "打开发票"
 
@@ -5802,9 +5856,81 @@ msgstr "开具发票"
 msgid "Choose the client for this site first."
 msgstr "请先选择此工地的客户。"
 
-#: templates/webapp/manpower/home.html
+#: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "在用工地"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers short on shifts"
+msgstr "班次缺少的工人"
+
+#: templates/webapp/manpower/duty.html
+msgid "Print duty list"
+msgstr "打印排班表"
+
+#: templates/webapp/manpower/duty.html
+msgid "Site supervisor"
+msgstr "工地主管"
+
+#: templates/webapp/manpower/duty.html
+msgid "hrs"
+msgstr "小时"
+
+#: templates/webapp/manpower/duty.html
+msgid "short"
+msgstr "缺"
+
+#: templates/webapp/manpower/duty.html
+msgid "Take off this shift"
+msgstr "从此班次移出"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add workers"
+msgstr "添加工人"
+
+#: templates/webapp/manpower/duty.html
+msgid "Keep as is"
+msgstr "保持不变"
+
+#: templates/webapp/manpower/duty.html
+msgid "Company's off days"
+msgstr "公司休息日"
+
+#: templates/webapp/manpower/duty.html
+msgid "Put on this shift"
+msgstr "安排到此班次"
+
+#: templates/webapp/manpower/duty.html
+msgid "Edit shift"
+msgstr "编辑班次"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers needed"
+msgstr "所需工人"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove this shift?"
+msgstr "删除此班次？"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove shift"
+msgstr "删除班次"
+
+#: templates/webapp/manpower/duty.html
+msgid "At this site without a shift"
+msgstr "在此工地但没有班次"
+
+#: templates/webapp/manpower/duty.html
+msgid "New shift"
+msgstr "新班次"
+
+#: templates/webapp/manpower/duty.html
+msgid "e.g. Day, Night"
+msgstr "例如：白班、夜班"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add shift"
+msgstr "添加班次"
 
 #: templates/webapp/manpower/home.html
 msgid "Documents expired"
@@ -5821,10 +5947,6 @@ msgstr "姓名、电话、工种或证件号"
 #: templates/webapp/manpower/home.html
 msgid "All sites"
 msgstr "所有工地"
-
-#: templates/webapp/manpower/home.html
-msgid "Site"
-msgstr "工地"
 
 #: templates/webapp/manpower/home.html
 msgid "No site workers yet."
@@ -5846,6 +5968,26 @@ msgstr "到期"
 msgid "Nothing expiring. 👍"
 msgstr "没有即将到期的证件。👍"
 
+#: templates/webapp/manpower/profit.html
+msgid "Billed to clients"
+msgstr "向客户收费"
+
+#: templates/webapp/manpower/profit.html
+msgid "Workers' pay (with overtime)"
+msgstr "工人工资（含加班）"
+
+#: templates/webapp/manpower/profit.html
+msgid "Profit"
+msgstr "利润"
+
+#: templates/webapp/manpower/profit.html
+msgid ""
+"From the site attendance: what each client is billed (rate × hours / days, "
+"plus overtime) against what we pay the worker for that time (salary for the "
+"days, or day / hour rate, plus overtime pay)."
+msgstr ""
+"根据工地考勤：向每个客户收取的费用（费率 × 小时 / 天，另加加班）与我们为这段时间支付给工人的工资（按天的工资，或日 / 时薪，另加加班）对比。"
+
 #: templates/webapp/manpower/site.html
 msgid "Client"
 msgstr "客户"
@@ -5857,10 +5999,6 @@ msgstr "此处工人"
 #: templates/webapp/manpower/site.html
 msgid "Rate per worker"
 msgstr "每名工人费率"
-
-#: templates/webapp/manpower/site.html
-msgid "Site supervisor"
-msgstr "工地主管"
 
 #: templates/webapp/manpower/site.html
 msgid "Today's attendance"
@@ -5901,6 +6039,18 @@ msgstr "已关闭工地"
 #: templates/webapp/manpower/sites.html
 msgid "No sites yet. Add the first client site below."
 msgstr "还没有工地。请在下方添加第一个客户工地。"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "OT"
+msgstr "加班"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "small numbers: hours worked, +overtime hours"
+msgstr "小数字：工作小时，+加班小时"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "Client signature & stamp"
+msgstr "客户签名及盖章"
 
 #: templates/webapp/manpower/worker_form.html
 msgid "Edit site worker"
@@ -8681,6 +8831,60 @@ msgstr "已入职"
 msgid "No job orders here."
 msgstr "这里没有招聘需求。"
 
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Offer letter"
+msgstr "录用通知书"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Show the employer's name"
+msgstr "显示雇主名称"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Hide the employer's name"
+msgstr "隐藏雇主名称"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "We are pleased to offer you the following position:"
+msgstr "我们很高兴向您提供以下职位："
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Position / job title"
+msgstr "职位 / 职称"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Employer"
+msgstr "雇主"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Work location"
+msgstr "工作地点"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Salary (per month)"
+msgstr "薪资（每月）"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Contract (months)"
+msgstr "合同（月）"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Joining date"
+msgstr "入职日期"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid ""
+"Please sign below to accept this offer and return a copy to us with your "
+"passport copy."
+msgstr "请在下方签字接受此录用，并连同护照复印件将一份交回给我们。"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Authorised signature"
+msgstr "授权签字"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "I accept this offer"
+msgstr "我接受此录用"
+
 #: templates/webapp/recruitment/placement.html
 msgid "Candidate"
 msgstr "候选人"
@@ -8730,10 +8934,6 @@ msgid "Travel / ticket date"
 msgstr "出行 / 机票日期"
 
 #: templates/webapp/recruitment/placement.html
-msgid "Joining date"
-msgstr "入职日期"
-
-#: templates/webapp/recruitment/placement.html
 msgid "Replacement guarantee until"
 msgstr "替换保证截止"
 
@@ -8756,10 +8956,6 @@ msgstr "候选人费用"
 #: templates/webapp/recruitment/placement.html
 msgid "Our costs"
 msgstr "我们的成本"
-
-#: templates/webapp/recruitment/placement.html
-msgid "Profit"
-msgstr "利润"
 
 #: templates/webapp/recruitment/placement.html
 msgid "Bill the client"
@@ -12014,6 +12210,14 @@ msgid "You cannot mark attendance for a future date."
 msgstr "不能为未来日期登记考勤。"
 
 #: apps/employees/site_workers.py
+msgid "Enter the shift name and its start and end time."
+msgstr "请输入班次名称及开始和结束时间。"
+
+#: apps/employees/site_workers.py
+msgid "Choose a shift."
+msgstr "请选择班次。"
+
+#: apps/employees/site_workers.py
 msgid "This month has not started yet."
 msgstr "本月尚未开始。"
 
@@ -13424,10 +13628,6 @@ msgid "Applied online"
 msgstr "在线申请"
 
 #: apps/webapp/careers_views.py
-msgid "Office"
-msgstr "办公室"
-
-#: apps/webapp/careers_views.py
 msgid "Referral"
 msgstr "推荐"
 
@@ -14353,8 +14553,16 @@ msgid "Work visa"
 msgstr "工作签证"
 
 #: apps/webapp/manpower_views.py
-msgid "Office staff"
-msgstr "办公室员工"
+msgid "Shift saved."
+msgstr "班次已保存。"
+
+#: apps/webapp/manpower_views.py
+msgid "Shift removed."
+msgstr "班次已删除。"
+
+#: apps/webapp/manpower_views.py
+msgid "Trade"
+msgstr "工种"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15424,24 +15632,8 @@ msgid "Address & contact person"
 msgstr "地址和联系人"
 
 #: apps/webapp/recruitment_views.py
-msgid "Position / job title"
-msgstr "职位 / 职称"
-
-#: apps/webapp/recruitment_views.py
-msgid "Work location"
-msgstr "工作地点"
-
-#: apps/webapp/recruitment_views.py
 msgid "Preferred nationality"
 msgstr "首选国籍"
-
-#: apps/webapp/recruitment_views.py
-msgid "Salary (per month)"
-msgstr "薪资（每月）"
-
-#: apps/webapp/recruitment_views.py
-msgid "Contract (months)"
-msgstr "合同（月）"
 
 #: apps/webapp/recruitment_views.py
 msgid "Our fee per person (charged to client)"

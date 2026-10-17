@@ -704,12 +704,20 @@ msgid "Sites"
 msgstr "സൈറ്റുകൾ"
 
 #: templates/webapp/_industry_nav.html
+msgid "Duty roster"
+msgstr "ഡ്യൂട്ടി റോസ്റ്റർ"
+
+#: templates/webapp/_industry_nav.html
 msgid "Site attendance"
 msgstr "സൈറ്റ് ഹാജർ"
 
 #: templates/webapp/_industry_nav.html
 msgid "Client billing"
 msgstr "ക്ലയന്റ് ബില്ലിംഗ്"
+
+#: templates/webapp/_industry_nav.html
+msgid "Site profit"
+msgstr "സൈറ്റ് ലാഭം"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3881,6 +3889,10 @@ msgid "This is a weekly off day."
 msgstr "ഇത് ആഴ്ചയിലെ അവധി ദിവസമാണ്."
 
 #: templates/webapp/hr/attendance.html
+msgid "Office staff only here."
+msgstr "ഇവിടെ ഓഫീസ് സ്റ്റാഫ് മാത്രം."
+
+#: templates/webapp/hr/attendance.html
 msgid "Mark all present"
 msgstr "എല്ലാവരും ഹാജർ"
 
@@ -4252,6 +4264,46 @@ msgid "Not on any site"
 msgstr "ഒരു സൈറ്റിലും ഇല്ല"
 
 #: templates/webapp/hr/staff_detail.html
+msgid "Sites this month"
+msgstr "ഈ മാസത്തെ സൈറ്റുകൾ"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Site"
+msgstr "സൈറ്റ്"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Days"
+msgstr "ദിവസം"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Hours"
+msgstr "മണിക്കൂർ"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "OT hours"
+msgstr "OT മണിക്കൂർ"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Overtime pay"
+msgstr "ഓവർടൈം കൂലി"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Billed to client"
+msgstr "ക്ലയന്റിന് ബിൽ ചെയ്തത്"
+
+#: templates/webapp/hr/staff_detail.html
+msgid ""
+"Pay is for the days / hours at the sites so far this month; the payslip "
+"comes from the payroll run."
+msgstr ""
+"ഈ മാസം ഇതുവരെ സൈറ്റുകളിലെ ദിവസങ്ങൾക്കും മണിക്കൂറുകൾക്കുമുള്ള കൂലി; "
+"പേസ്ലിപ്പ് പേറോൾ റണ്ണിൽ നിന്നാണ്."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No site attendance this month yet."
+msgstr "ഈ മാസം ഇതുവരെ സൈറ്റ് ഹാജർ ഇല്ല."
+
+#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "മാസത്തിൽ"
 
@@ -4356,6 +4408,10 @@ msgid "Run payroll"
 msgstr "ശമ്പളം കണക്കാക്കുക"
 
 #: templates/webapp/hr/staff_list.html
+msgid "Office staff"
+msgstr "ഓഫീസ് സ്റ്റാഫ്"
+
+#: templates/webapp/hr/staff_list.html
 msgid "Name, phone or job title"
 msgstr "പേര്, ഫോൺ അല്ലെങ്കിൽ ജോലി"
 
@@ -4374,6 +4430,10 @@ msgstr "രേഖപ്പെടുത്തിയിട്ടില്ല"
 #: templates/webapp/hr/staff_list.html
 msgid "Former"
 msgstr "മുൻ"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Office"
+msgstr "ഓഫീസ്"
 
 #: templates/webapp/hr/staff_list.html
 msgid "No staff match your search."
@@ -5362,10 +5422,6 @@ msgid "How often"
 msgstr "എത്ര തവണ"
 
 #: templates/webapp/jobs/_record.html
-msgid "Days"
-msgstr "ദിവസം"
-
-#: templates/webapp/jobs/_record.html
 msgid "e.g. Paracetamol 500 mg"
 msgstr "ഉദാ. പാരസെറ്റമോൾ 500 mg"
 
@@ -5892,16 +5948,12 @@ msgid "Normal hours per day"
 msgstr "ഒരു ദിവസത്തെ സാധാരണ മണിക്കൂർ"
 
 #: templates/webapp/manpower/attendance.html
+msgid "Weekly off"
+msgstr "ആഴ്ചയിലെ അവധി"
+
+#: templates/webapp/manpower/attendance.html
 msgid "Marked at another site"
 msgstr "മറ്റൊരു സൈറ്റിൽ മാർക്ക് ചെയ്തു"
-
-#: templates/webapp/manpower/attendance.html
-msgid "Hours"
-msgstr "മണിക്കൂർ"
-
-#: templates/webapp/manpower/attendance.html
-msgid "OT hours"
-msgstr "OT മണിക്കൂർ"
 
 #: templates/webapp/manpower/attendance.html
 msgid "No workers at this site yet."
@@ -5928,6 +5980,10 @@ msgid "No attendance this month."
 msgstr "ഈ മാസം ഹാജർ ഇല്ല."
 
 #: templates/webapp/manpower/billing.html
+msgid "Timesheet"
+msgstr "ടൈംഷീറ്റ്"
+
+#: templates/webapp/manpower/billing.html
 msgid "Open invoice"
 msgstr "ഇൻവോയ്സ് തുറക്കൂ"
 
@@ -5943,9 +5999,81 @@ msgstr "ഇൻവോയ്സ് ഉണ്ടാക്കൂ"
 msgid "Choose the client for this site first."
 msgstr "ആദ്യം ഈ സൈറ്റിന്റെ ക്ലയന്റിനെ തിരഞ്ഞെടുക്കൂ."
 
-#: templates/webapp/manpower/home.html
+#: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "സജീവ സൈറ്റുകൾ"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers short on shifts"
+msgstr "ഷിഫ്റ്റുകളിൽ കുറവുള്ള ജോലിക്കാർ"
+
+#: templates/webapp/manpower/duty.html
+msgid "Print duty list"
+msgstr "ഡ്യൂട്ടി ലിസ്റ്റ് പ്രിന്റ് ചെയ്യൂ"
+
+#: templates/webapp/manpower/duty.html
+msgid "Site supervisor"
+msgstr "സൈറ്റ് സൂപ്പർവൈസർ"
+
+#: templates/webapp/manpower/duty.html
+msgid "hrs"
+msgstr "മണിക്കൂർ"
+
+#: templates/webapp/manpower/duty.html
+msgid "short"
+msgstr "കുറവ്"
+
+#: templates/webapp/manpower/duty.html
+msgid "Take off this shift"
+msgstr "ഈ ഷിഫ്റ്റിൽ നിന്ന് മാറ്റൂ"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add workers"
+msgstr "ജോലിക്കാരെ ചേർക്കൂ"
+
+#: templates/webapp/manpower/duty.html
+msgid "Keep as is"
+msgstr "മാറ്റമില്ലാതെ"
+
+#: templates/webapp/manpower/duty.html
+msgid "Company's off days"
+msgstr "കമ്പനിയുടെ അവധി ദിവസങ്ങൾ"
+
+#: templates/webapp/manpower/duty.html
+msgid "Put on this shift"
+msgstr "ഈ ഷിഫ്റ്റിൽ ഇടൂ"
+
+#: templates/webapp/manpower/duty.html
+msgid "Edit shift"
+msgstr "ഷിഫ്റ്റ് എഡിറ്റ് ചെയ്യൂ"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers needed"
+msgstr "ആവശ്യമായ ജോലിക്കാർ"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove this shift?"
+msgstr "ഈ ഷിഫ്റ്റ് നീക്കം ചെയ്യട്ടെ?"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove shift"
+msgstr "ഷിഫ്റ്റ് നീക്കം ചെയ്യൂ"
+
+#: templates/webapp/manpower/duty.html
+msgid "At this site without a shift"
+msgstr "ഷിഫ്റ്റില്ലാതെ ഈ സൈറ്റിൽ"
+
+#: templates/webapp/manpower/duty.html
+msgid "New shift"
+msgstr "പുതിയ ഷിഫ്റ്റ്"
+
+#: templates/webapp/manpower/duty.html
+msgid "e.g. Day, Night"
+msgstr "ഉദാ. ഡേ, നൈറ്റ്"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add shift"
+msgstr "ഷിഫ്റ്റ് ചേർക്കൂ"
 
 #: templates/webapp/manpower/home.html
 msgid "Documents expired"
@@ -5962,10 +6090,6 @@ msgstr "പേര്, ഫോൺ, ട്രേഡ് അല്ലെങ്കി�
 #: templates/webapp/manpower/home.html
 msgid "All sites"
 msgstr "എല്ലാ സൈറ്റുകളും"
-
-#: templates/webapp/manpower/home.html
-msgid "Site"
-msgstr "സൈറ്റ്"
 
 #: templates/webapp/manpower/home.html
 msgid "No site workers yet."
@@ -5987,6 +6111,28 @@ msgstr "കാലാവധി"
 msgid "Nothing expiring. 👍"
 msgstr "ഒന്നും കാലാവധി തീരാനില്ല. 👍"
 
+#: templates/webapp/manpower/profit.html
+msgid "Billed to clients"
+msgstr "ക്ലയന്റുകൾക്ക് ബിൽ ചെയ്തത്"
+
+#: templates/webapp/manpower/profit.html
+msgid "Workers' pay (with overtime)"
+msgstr "ജോലിക്കാരുടെ കൂലി (ഓവർടൈം ഉൾപ്പെടെ)"
+
+#: templates/webapp/manpower/profit.html
+msgid "Profit"
+msgstr "ലാഭം"
+
+#: templates/webapp/manpower/profit.html
+msgid ""
+"From the site attendance: what each client is billed (rate × hours / days, "
+"plus overtime) against what we pay the worker for that time (salary for the "
+"days, or day / hour rate, plus overtime pay)."
+msgstr ""
+"സൈറ്റ് ഹാജരിൽ നിന്ന്: ഓരോ ക്ലയന്റിനും ബിൽ ചെയ്യുന്നത് (റേറ്റ് × മണിക്കൂർ / "
+"ദിവസം, കൂടെ ഓവർടൈം) ആ സമയത്തിന് ജോലിക്കാരന് നൽകുന്നതുമായി (ദിവസങ്ങളുടെ "
+"ശമ്പളം, അല്ലെങ്കിൽ ദിവസ / മണിക്കൂർ കൂലി, കൂടെ ഓവർടൈം) താരതമ്യം."
+
 #: templates/webapp/manpower/site.html
 msgid "Client"
 msgstr "ക്ലയന്റ്"
@@ -5998,10 +6144,6 @@ msgstr "ഇവിടെയുള്ള ജോലിക്കാർ"
 #: templates/webapp/manpower/site.html
 msgid "Rate per worker"
 msgstr "ഒരു ജോലിക്കാരന്റെ റേറ്റ്"
-
-#: templates/webapp/manpower/site.html
-msgid "Site supervisor"
-msgstr "സൈറ്റ് സൂപ്പർവൈസർ"
 
 #: templates/webapp/manpower/site.html
 msgid "Today's attendance"
@@ -6042,6 +6184,18 @@ msgstr "അടച്ച സൈറ്റുകൾ"
 #: templates/webapp/manpower/sites.html
 msgid "No sites yet. Add the first client site below."
 msgstr "ഇതുവരെ സൈറ്റുകൾ ഇല്ല. ആദ്യത്തെ ക്ലയന്റ് സൈറ്റ് താഴെ ചേർക്കൂ."
+
+#: templates/webapp/manpower/timesheet.html
+msgid "OT"
+msgstr "OT"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "small numbers: hours worked, +overtime hours"
+msgstr "ചെറിയ അക്കങ്ങൾ: ജോലി ചെയ്ത മണിക്കൂർ, +ഓവർടൈം മണിക്കൂർ"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "Client signature & stamp"
+msgstr "ക്ലയന്റിന്റെ ഒപ്പ് & സീൽ"
 
 #: templates/webapp/manpower/worker_form.html
 msgid "Edit site worker"
@@ -8938,6 +9092,62 @@ msgstr "ജോയിൻ ചെയ്തു"
 msgid "No job orders here."
 msgstr "ഇവിടെ ജോബ് ഓർഡറുകളില്ല."
 
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Offer letter"
+msgstr "ഓഫർ ലെറ്റർ"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Show the employer's name"
+msgstr "തൊഴിലുടമയുടെ പേര് കാണിക്കൂ"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Hide the employer's name"
+msgstr "തൊഴിലുടമയുടെ പേര് മറയ്ക്കൂ"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "We are pleased to offer you the following position:"
+msgstr "താഴെ പറയുന്ന ജോലി നിങ്ങൾക്ക് നൽകുന്നതിൽ ഞങ്ങൾക്ക് സന്തോഷമുണ്ട്:"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Position / job title"
+msgstr "തസ്തിക / ജോലിയുടെ പേര്"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Employer"
+msgstr "തൊഴിലുടമ"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Work location"
+msgstr "ജോലി സ്ഥലം"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Salary (per month)"
+msgstr "ശമ്പളം (മാസം)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Contract (months)"
+msgstr "കരാർ (മാസങ്ങൾ)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Joining date"
+msgstr "ജോയിനിംഗ് തീയതി"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid ""
+"Please sign below to accept this offer and return a copy to us with your "
+"passport copy."
+msgstr ""
+"ഈ ഓഫർ സ്വീകരിക്കാൻ താഴെ ഒപ്പിട്ട്, പാസ്പോർട്ട് കോപ്പി സഹിതം ഒരു കോപ്പി "
+"ഞങ്ങൾക്ക് തിരികെ നൽകൂ."
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Authorised signature"
+msgstr "അധികാരപ്പെട്ട ഒപ്പ്"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "I accept this offer"
+msgstr "ഞാൻ ഈ ഓഫർ സ്വീകരിക്കുന്നു"
+
 #: templates/webapp/recruitment/placement.html
 msgid "Candidate"
 msgstr "ഉദ്യോഗാർത്ഥി"
@@ -8987,10 +9197,6 @@ msgid "Travel / ticket date"
 msgstr "യാത്ര / ടിക്കറ്റ് തീയതി"
 
 #: templates/webapp/recruitment/placement.html
-msgid "Joining date"
-msgstr "ജോയിനിംഗ് തീയതി"
-
-#: templates/webapp/recruitment/placement.html
 msgid "Replacement guarantee until"
 msgstr "റീപ്ലേസ്മെന്റ് ഗ്യാരണ്ടി വരെ"
 
@@ -9013,10 +9219,6 @@ msgstr "ഉദ്യോഗാർത്ഥിയുടെ ഫീസ്"
 #: templates/webapp/recruitment/placement.html
 msgid "Our costs"
 msgstr "ഞങ്ങളുടെ ചെലവുകൾ"
-
-#: templates/webapp/recruitment/placement.html
-msgid "Profit"
-msgstr "ലാഭം"
 
 #: templates/webapp/recruitment/placement.html
 msgid "Bill the client"
@@ -12374,6 +12576,14 @@ msgid "You cannot mark attendance for a future date."
 msgstr "ഭാവിയിലെ തീയതിക്ക് ഹാജർ മാർക്ക് ചെയ്യാൻ പറ്റില്ല."
 
 #: apps/employees/site_workers.py
+msgid "Enter the shift name and its start and end time."
+msgstr "ഷിഫ്റ്റിന്റെ പേരും തുടങ്ങുന്നതും തീരുന്നതുമായ സമയവും നൽകൂ."
+
+#: apps/employees/site_workers.py
+msgid "Choose a shift."
+msgstr "ഒരു ഷിഫ്റ്റ് തിരഞ്ഞെടുക്കൂ."
+
+#: apps/employees/site_workers.py
 msgid "This month has not started yet."
 msgstr "ഈ മാസം തുടങ്ങിയിട്ടില്ല."
 
@@ -13844,10 +14054,6 @@ msgid "Applied online"
 msgstr "ഓൺലൈനായി അപേക്ഷിച്ചു"
 
 #: apps/webapp/careers_views.py
-msgid "Office"
-msgstr "ഓഫീസ്"
-
-#: apps/webapp/careers_views.py
 msgid "Referral"
 msgstr "റഫറൽ"
 
@@ -14793,8 +14999,16 @@ msgid "Work visa"
 msgstr "വർക്ക് വിസ"
 
 #: apps/webapp/manpower_views.py
-msgid "Office staff"
-msgstr "ഓഫീസ് സ്റ്റാഫ്"
+msgid "Shift saved."
+msgstr "ഷിഫ്റ്റ് സേവ് ചെയ്തു."
+
+#: apps/webapp/manpower_views.py
+msgid "Shift removed."
+msgstr "ഷിഫ്റ്റ് നീക്കം ചെയ്തു."
+
+#: apps/webapp/manpower_views.py
+msgid "Trade"
+msgstr "ട്രേഡ്"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15887,24 +16101,8 @@ msgid "Address & contact person"
 msgstr "വിലാസവും ബന്ധപ്പെടേണ്ട ആളും"
 
 #: apps/webapp/recruitment_views.py
-msgid "Position / job title"
-msgstr "തസ്തിക / ജോലിയുടെ പേര്"
-
-#: apps/webapp/recruitment_views.py
-msgid "Work location"
-msgstr "ജോലി സ്ഥലം"
-
-#: apps/webapp/recruitment_views.py
 msgid "Preferred nationality"
 msgstr "ഇഷ്ടപ്പെട്ട നാഷണാലിറ്റി"
-
-#: apps/webapp/recruitment_views.py
-msgid "Salary (per month)"
-msgstr "ശമ്പളം (മാസം)"
-
-#: apps/webapp/recruitment_views.py
-msgid "Contract (months)"
-msgstr "കരാർ (മാസങ്ങൾ)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Our fee per person (charged to client)"

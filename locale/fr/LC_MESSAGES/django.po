@@ -703,12 +703,20 @@ msgid "Sites"
 msgstr "Sites"
 
 #: templates/webapp/_industry_nav.html
+msgid "Duty roster"
+msgstr "Planning des postes"
+
+#: templates/webapp/_industry_nav.html
 msgid "Site attendance"
 msgstr "Présence sur site"
 
 #: templates/webapp/_industry_nav.html
 msgid "Client billing"
 msgstr "Facturation clients"
+
+#: templates/webapp/_industry_nav.html
+msgid "Site profit"
+msgstr "Marge par site"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3897,6 +3905,10 @@ msgid "This is a weekly off day."
 msgstr "C’est un jour de repos hebdomadaire."
 
 #: templates/webapp/hr/attendance.html
+msgid "Office staff only here."
+msgstr "Personnel de bureau uniquement ici."
+
+#: templates/webapp/hr/attendance.html
 msgid "Mark all present"
 msgstr "Tous présents"
 
@@ -4267,6 +4279,46 @@ msgid "Not on any site"
 msgstr "Sur aucun site"
 
 #: templates/webapp/hr/staff_detail.html
+msgid "Sites this month"
+msgstr "Sites ce mois-ci"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Site"
+msgstr "Site"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Days"
+msgstr "Jours"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Hours"
+msgstr "Heures"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "OT hours"
+msgstr "Heures sup."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Overtime pay"
+msgstr "Paie des heures sup."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "Billed to client"
+msgstr "Facturé au client"
+
+#: templates/webapp/hr/staff_detail.html
+msgid ""
+"Pay is for the days / hours at the sites so far this month; the payslip "
+"comes from the payroll run."
+msgstr ""
+"La paie porte sur les jours / heures sur les sites ce mois-ci jusqu'à "
+"présent ; la fiche de paie vient du traitement de la paie."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "No site attendance this month yet."
+msgstr "Aucune présence sur site ce mois-ci pour l'instant."
+
+#: templates/webapp/hr/staff_detail.html
 msgid "per month"
 msgstr "par mois"
 
@@ -4371,6 +4423,10 @@ msgid "Run payroll"
 msgstr "Lancer la paie"
 
 #: templates/webapp/hr/staff_list.html
+msgid "Office staff"
+msgstr "Personnel de bureau"
+
+#: templates/webapp/hr/staff_list.html
 msgid "Name, phone or job title"
 msgstr "Nom, téléphone ou poste"
 
@@ -4389,6 +4445,10 @@ msgstr "Non marqué"
 #: templates/webapp/hr/staff_list.html
 msgid "Former"
 msgstr "Ancien"
+
+#: templates/webapp/hr/staff_list.html
+msgid "Office"
+msgstr "Bureau"
 
 #: templates/webapp/hr/staff_list.html
 msgid "No staff match your search."
@@ -5378,10 +5438,6 @@ msgid "How often"
 msgstr "Fréquence"
 
 #: templates/webapp/jobs/_record.html
-msgid "Days"
-msgstr "Jours"
-
-#: templates/webapp/jobs/_record.html
 msgid "e.g. Paracetamol 500 mg"
 msgstr "ex. Paracétamol 500 mg"
 
@@ -5911,16 +5967,12 @@ msgid "Normal hours per day"
 msgstr "Heures normales par jour"
 
 #: templates/webapp/manpower/attendance.html
+msgid "Weekly off"
+msgstr "Repos hebdomadaire"
+
+#: templates/webapp/manpower/attendance.html
 msgid "Marked at another site"
 msgstr "Pointé sur un autre site"
-
-#: templates/webapp/manpower/attendance.html
-msgid "Hours"
-msgstr "Heures"
-
-#: templates/webapp/manpower/attendance.html
-msgid "OT hours"
-msgstr "Heures sup."
 
 #: templates/webapp/manpower/attendance.html
 msgid "No workers at this site yet."
@@ -5947,6 +5999,10 @@ msgid "No attendance this month."
 msgstr "Aucune présence ce mois-ci."
 
 #: templates/webapp/manpower/billing.html
+msgid "Timesheet"
+msgstr "Feuille de temps"
+
+#: templates/webapp/manpower/billing.html
 msgid "Open invoice"
 msgstr "Ouvrir la facture"
 
@@ -5962,9 +6018,81 @@ msgstr "Créer la facture"
 msgid "Choose the client for this site first."
 msgstr "Choisissez d'abord le client de ce site."
 
-#: templates/webapp/manpower/home.html
+#: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "Sites actifs"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers short on shifts"
+msgstr "Ouvriers manquants sur les postes"
+
+#: templates/webapp/manpower/duty.html
+msgid "Print duty list"
+msgstr "Imprimer le planning"
+
+#: templates/webapp/manpower/duty.html
+msgid "Site supervisor"
+msgstr "Chef de site"
+
+#: templates/webapp/manpower/duty.html
+msgid "hrs"
+msgstr "h"
+
+#: templates/webapp/manpower/duty.html
+msgid "short"
+msgstr "manquant(s)"
+
+#: templates/webapp/manpower/duty.html
+msgid "Take off this shift"
+msgstr "Retirer de ce poste"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add workers"
+msgstr "Ajouter des ouvriers"
+
+#: templates/webapp/manpower/duty.html
+msgid "Keep as is"
+msgstr "Inchangé"
+
+#: templates/webapp/manpower/duty.html
+msgid "Company's off days"
+msgstr "Jours de repos de l'entreprise"
+
+#: templates/webapp/manpower/duty.html
+msgid "Put on this shift"
+msgstr "Affecter à ce poste"
+
+#: templates/webapp/manpower/duty.html
+msgid "Edit shift"
+msgstr "Modifier le poste"
+
+#: templates/webapp/manpower/duty.html
+msgid "Workers needed"
+msgstr "Ouvriers nécessaires"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove this shift?"
+msgstr "Supprimer ce poste ?"
+
+#: templates/webapp/manpower/duty.html
+msgid "Remove shift"
+msgstr "Supprimer le poste"
+
+#: templates/webapp/manpower/duty.html
+msgid "At this site without a shift"
+msgstr "Sur ce site sans poste"
+
+#: templates/webapp/manpower/duty.html
+msgid "New shift"
+msgstr "Nouveau poste"
+
+#: templates/webapp/manpower/duty.html
+msgid "e.g. Day, Night"
+msgstr "ex. Jour, Nuit"
+
+#: templates/webapp/manpower/duty.html
+msgid "Add shift"
+msgstr "Ajouter un poste"
 
 #: templates/webapp/manpower/home.html
 msgid "Documents expired"
@@ -5981,10 +6109,6 @@ msgstr "Nom, téléphone, métier ou numéro d'identité"
 #: templates/webapp/manpower/home.html
 msgid "All sites"
 msgstr "Tous les sites"
-
-#: templates/webapp/manpower/home.html
-msgid "Site"
-msgstr "Site"
 
 #: templates/webapp/manpower/home.html
 msgid "No site workers yet."
@@ -6006,6 +6130,29 @@ msgstr "Expiration"
 msgid "Nothing expiring. 👍"
 msgstr "Rien n'expire. 👍"
 
+#: templates/webapp/manpower/profit.html
+msgid "Billed to clients"
+msgstr "Facturé aux clients"
+
+#: templates/webapp/manpower/profit.html
+msgid "Workers' pay (with overtime)"
+msgstr "Paie des ouvriers (heures sup. comprises)"
+
+#: templates/webapp/manpower/profit.html
+msgid "Profit"
+msgstr "Bénéfice"
+
+#: templates/webapp/manpower/profit.html
+msgid ""
+"From the site attendance: what each client is billed (rate × hours / days, "
+"plus overtime) against what we pay the worker for that time (salary for the "
+"days, or day / hour rate, plus overtime pay)."
+msgstr ""
+"À partir de la présence sur site : ce qui est facturé à chaque client (tarif"
+" × heures / jours, plus heures sup.) comparé à ce que nous payons à "
+"l'ouvrier pour ce temps (salaire des jours, ou tarif jour / heure, plus "
+"heures sup.)."
+
 #: templates/webapp/manpower/site.html
 msgid "Client"
 msgstr "Client"
@@ -6017,10 +6164,6 @@ msgstr "Ouvriers ici"
 #: templates/webapp/manpower/site.html
 msgid "Rate per worker"
 msgstr "Tarif par ouvrier"
-
-#: templates/webapp/manpower/site.html
-msgid "Site supervisor"
-msgstr "Chef de site"
 
 #: templates/webapp/manpower/site.html
 msgid "Today's attendance"
@@ -6061,6 +6204,18 @@ msgstr "Sites fermés"
 #: templates/webapp/manpower/sites.html
 msgid "No sites yet. Add the first client site below."
 msgstr "Aucun site pour l'instant. Ajoutez ci-dessous le premier site client."
+
+#: templates/webapp/manpower/timesheet.html
+msgid "OT"
+msgstr "HS"
+
+#: templates/webapp/manpower/timesheet.html
+msgid "small numbers: hours worked, +overtime hours"
+msgstr "petits chiffres : heures travaillées, +heures sup."
+
+#: templates/webapp/manpower/timesheet.html
+msgid "Client signature & stamp"
+msgstr "Signature et cachet du client"
 
 #: templates/webapp/manpower/worker_form.html
 msgid "Edit site worker"
@@ -8973,6 +9128,62 @@ msgstr "arrivés"
 msgid "No job orders here."
 msgstr "Aucune offre ici."
 
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Offer letter"
+msgstr "Lettre d'offre"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Show the employer's name"
+msgstr "Afficher le nom de l'employeur"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Hide the employer's name"
+msgstr "Masquer le nom de l'employeur"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "We are pleased to offer you the following position:"
+msgstr "Nous avons le plaisir de vous proposer le poste suivant :"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Position / job title"
+msgstr "Poste / intitulé"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Employer"
+msgstr "Employeur"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Work location"
+msgstr "Lieu de travail"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Salary (per month)"
+msgstr "Salaire (par mois)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Contract (months)"
+msgstr "Contrat (mois)"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Joining date"
+msgstr "Date d’arrivée"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid ""
+"Please sign below to accept this offer and return a copy to us with your "
+"passport copy."
+msgstr ""
+"Merci de signer ci-dessous pour accepter cette offre et de nous en retourner"
+" une copie avec la copie de votre passeport."
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "Authorised signature"
+msgstr "Signature autorisée"
+
+#: templates/webapp/recruitment/offer_letter.html
+msgid "I accept this offer"
+msgstr "J'accepte cette offre"
+
 #: templates/webapp/recruitment/placement.html
 msgid "Candidate"
 msgstr "Candidat"
@@ -9022,10 +9233,6 @@ msgid "Travel / ticket date"
 msgstr "Date de voyage / billet"
 
 #: templates/webapp/recruitment/placement.html
-msgid "Joining date"
-msgstr "Date d’arrivée"
-
-#: templates/webapp/recruitment/placement.html
 msgid "Replacement guarantee until"
 msgstr "Garantie de remplacement jusqu’au"
 
@@ -9048,10 +9255,6 @@ msgstr "Frais candidat"
 #: templates/webapp/recruitment/placement.html
 msgid "Our costs"
 msgstr "Nos coûts"
-
-#: templates/webapp/recruitment/placement.html
-msgid "Profit"
-msgstr "Bénéfice"
 
 #: templates/webapp/recruitment/placement.html
 msgid "Bill the client"
@@ -12431,6 +12634,14 @@ msgid "You cannot mark attendance for a future date."
 msgstr "Vous ne pouvez pas pointer la présence pour une date future."
 
 #: apps/employees/site_workers.py
+msgid "Enter the shift name and its start and end time."
+msgstr "Saisissez le nom du poste et ses heures de début et de fin."
+
+#: apps/employees/site_workers.py
+msgid "Choose a shift."
+msgstr "Choisissez un poste."
+
+#: apps/employees/site_workers.py
 msgid "This month has not started yet."
 msgstr "Ce mois n'a pas encore commencé."
 
@@ -13908,10 +14119,6 @@ msgid "Applied online"
 msgstr "Candidature en ligne"
 
 #: apps/webapp/careers_views.py
-msgid "Office"
-msgstr "Bureau"
-
-#: apps/webapp/careers_views.py
 msgid "Referral"
 msgstr "Recommandation"
 
@@ -14861,8 +15068,16 @@ msgid "Work visa"
 msgstr "Visa de travail"
 
 #: apps/webapp/manpower_views.py
-msgid "Office staff"
-msgstr "Personnel de bureau"
+msgid "Shift saved."
+msgstr "Poste enregistré."
+
+#: apps/webapp/manpower_views.py
+msgid "Shift removed."
+msgstr "Poste supprimé."
+
+#: apps/webapp/manpower_views.py
+msgid "Trade"
+msgstr "Métier"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15964,24 +16179,8 @@ msgid "Address & contact person"
 msgstr "Adresse et personne à contacter"
 
 #: apps/webapp/recruitment_views.py
-msgid "Position / job title"
-msgstr "Poste / intitulé"
-
-#: apps/webapp/recruitment_views.py
-msgid "Work location"
-msgstr "Lieu de travail"
-
-#: apps/webapp/recruitment_views.py
 msgid "Preferred nationality"
 msgstr "Nationalité souhaitée"
-
-#: apps/webapp/recruitment_views.py
-msgid "Salary (per month)"
-msgstr "Salaire (par mois)"
-
-#: apps/webapp/recruitment_views.py
-msgid "Contract (months)"
-msgstr "Contrat (mois)"
 
 #: apps/webapp/recruitment_views.py
 msgid "Our fee per person (charged to client)"

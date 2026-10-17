@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Site profit" %}{% endblock %}
+{% block heading %}{% translate "Site profit" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/manpower/_tabs.html" %}
+<div class="hr-month">
+  <a class="btn btn-secondary" href="?m={{ prev|date:'Y-m' }}">‹</a><b>{{ month|date:"F Y" }}</b><a class="btn btn-secondary" href="?m={{ next|date:'Y-m' }}">›</a>
+  <a class="btn btn-secondary" href="?m={{ month|date:'Y-m' }}&format=xlsx">⬇ Excel</a>
+</div>
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "Billed to clients" %}</small><b>{{ total.billed|floatformat:2 }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Workers' pay (with overtime)" %}</small><b>{{ total.cost|floatformat:2 }}</b></div>
+  <div class="hr-kpi {% if total.profit < 0 %}warn{% endif %}"><small>{% translate "Profit" %}</small><b>{{ total.profit|floatformat:2 }} <small>({{ total.margin }}%)</small></b></div>
+  <div class="hr-kpi"><small>{% translate "Overtime" %}</small><b>{{ total.ot|floatformat:"-2" }} {% translate "hrs" %} <small>· {{ total.ot_pay|floatformat:2 }}</small></b></div>
+</div>
+<p style="color:var(--hr-soft);font-size:13px">{% translate "From the site attendance: what each client is billed (rate × hours / days, plus overtime) against what we pay the worker for that time (salary for the days, or day / hour rate, plus overtime pay)." %}</p>
+{% for s in sites %}
+<div class="hr-card">
+  <h3>🏗️ <a href="{% url 'webapp:mp_site' s.id %}">{{ s.name }}</a> <small>{{ s.client.name|default:"" }} · {% translate "Profit" %} {{ s.profit|floatformat:2 }} ({{ s.margin }}%)</small></h3>
+  <div class="hr-table"><table>
+    <tr><th>{% translate "Name" %}</th><th class="hr-num">{% translate "Days" %}</th><th class="hr-num">{% translate "Hours" %}</th><th class="hr-num">{% translate "OT hours" %}</th><th class="hr-num">{% translate "Billed to client" %}</th><th class="hr-num">{% translate "Pay" %}</th><th class="hr-num">{% translate "Overtime pay" %}</th><th class="hr-num">{% translate "Profit" %}</th></tr>
+    {% for r in s.rows %}<tr><td><a href="{% url 'webapp:staff_detail' r.employee.id %}">{{ r.employee.name }}</a><br><small style="color:var(--hr-soft)">{{ r.employee.trade }} · {% translate r.employee.get_pay_basis_display %}</small></td>
+      <td class="hr-num">{{ r.days|floatformat:"-1" }}</td><td class="hr-num">{{ r.hours|floatformat:"-2" }}</td><td class="hr-num">{{ r.ot|floatformat:"-2" }}</td>
+      <td class="hr-num">{{ r.amount|floatformat:2 }}</td><td class="hr-num">{{ r.pay|floatformat:2 }}</td><td class="hr-num">{{ r.ot_pay|floatformat:2 }}</td>
+      <td class="hr-num" style="font-weight:800;color:{% if r.profit < 0 %}#b91c1c{% else %}#166534{% endif %}">{{ r.profit|floatformat:2 }}</td></tr>{% endfor %}
+    <tr><td><b>{% translate "Total" %}</b></td><td></td><td></td><td></td><td class="hr-num"><b>{{ s.billed|floatformat:2 }}</b></td><td></td><td></td><td class="hr-num"><b>{{ s.profit|floatformat:2 }}</b></td></tr>
+  </table></div>
+  <div class="hr-actions" style="margin-top:8px"><a class="btn btn-secondary" href="{% url 'webapp:mp_timesheet' s.id %}?m={{ month|date:'Y-m' }}">📋 {% translate "Timesheet" %}</a></div>
+</div>
+{% empty %}
+<div class="hr-card hr-empty">{% translate "No attendance this month." %}</div>
+{% endfor %}
+</div>
+{% endblock %}

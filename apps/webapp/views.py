@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db import transaction
 from django.db.models import Sum, Count, Q, F, DecimalField
 from django.utils.translation import gettext as _
+from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.http import require_POST
 from django.utils.translation import gettext_lazy as _l
 from django.views.decorators.cache import never_cache
@@ -3683,6 +3684,7 @@ def restaurant_reports(request):
     return render(request, "webapp/restaurant/reports.html", {"start": start, "end": end, "revenue": revenue, "food_cost": food_cost, "gross_margin": revenue-food_cost, "waste_cost": waste_cost, "order_count": orders.count(), "channel_sales": channel_sales, "top_items": top_items})
 
 
+@xframe_options_sameorigin  # printed from a hidden frame on the till (devices.js)
 @login_required
 @require_business_group("restaurant")
 @require_permission("restaurant.manage")
@@ -3691,6 +3693,7 @@ def restaurant_receipt_print(request, order_id):
     return render(request, "webapp/restaurant/receipt_print.html", {"order": order})
 
 
+@xframe_options_sameorigin  # printed from a hidden frame on the till (devices.js)
 @login_required
 @require_business_group("restaurant")
 @require_permission("restaurant.manage")
@@ -3800,6 +3803,7 @@ def restaurant_z_report(request, shift_id):
 
 # ================= INVOICE PDF (shared across verticals) =================
 
+@xframe_options_sameorigin  # printed from a hidden frame on the till (devices.js)
 @login_required
 def invoice_pdf(request, invoice_id):
     from django.template.loader import render_to_string

@@ -185,7 +185,12 @@
       frame.src = url;
       frame.onload = () => {
         try { frame.contentWindow.focus(); frame.contentWindow.print(); resolve(); }
-        catch (e) { window.open(url, "_blank"); resolve(); }
+        catch (e) {
+          // the page could not be printed from the frame: open it (a blocked pop-up is reported, not silent)
+          frame.remove();
+          if (!window.open(url, "_blank")) return reject(new Error("Allow pop-ups for this site, or open the bill and press Print."));
+          return resolve();
+        }
         setTimeout(() => frame.remove(), 60000);
       };
       frame.onerror = () => reject(new Error("Could not load the print page."));
@@ -313,12 +318,9 @@
         .line("BookPilot device check").line(new Date().toLocaleString()).rule()
         .align("left").pair("Paper width", w + " chars").pair("Role", role)
         .rule().align("center").line("If you can read this, printing works!").cut();
-      if (modeOf(role) === "browser" && desktopPrinter(role)) {
-        return browserPrintHtml(paperHtml('<div class="c"><h1>TEST PRINT</h1>BookPilot desktop<br>' + esc(new Date().toLocaleString()) + '<div class="l"></div>If you can read this, printing works!</div>', w), role);
-      }
       if (modeOf(role) === "browser") {
-        const html = "data:text/html," + encodeURIComponent('<pre style="font:14px monospace">TEST PRINT\nBookPilot device check\n' + new Date().toLocaleString() + "</pre><script>print()<\/script>");
-        window.open(html, "_blank"); return;
+        // a hidden frame, like real receipts (Chrome blocks opening data: pages in a new tab)
+        return browserPrintHtml(paperHtml('<div class="c"><h1>TEST PRINT</h1>BookPilot device check<br>' + esc(new Date().toLocaleString()) + '<div class="l"></div>If you can read this, printing works!</div>', w), role);
       }
       return sendRaw(role, e.build());
     },

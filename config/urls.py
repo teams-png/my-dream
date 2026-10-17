@@ -3,13 +3,14 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from apps.common.views import health, readiness, pwa_manifest, service_worker
+from apps.common.views import favicon, health, readiness, pwa_manifest, service_worker
 
 urlpatterns = [
     path("health/", health, name="health"),
     path("ready/", readiness, name="readiness"),
     path("manifest.webmanifest", pwa_manifest, name="pwa-manifest"),
     path("service-worker.js", service_worker, name="service-worker"),
+    path("favicon.ico", favicon, name="favicon"),
     path("admin/", admin.site.urls),
     path("i18n/", include("django.conf.urls.i18n")),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),

@@ -11,7 +11,7 @@ WEBAPP_ALLOWED_PREFIXES = (
     "/billing", "/login", "/logout", "/password-reset", "/reset/", "/platform", "/admin-console",
     "/guide", "/terms", "/privacy", "/refund-policy", "/help", "/account/export", "/account/password",
     # app shell files: redirecting these breaks the installed app / offline cache, they hold no business data
-    "/service-worker.js", "/manifest.webmanifest", "/health/", "/ready/", "/i18n/",
+    "/service-worker.js", "/manifest.webmanifest", "/favicon.ico", "/health/", "/ready/", "/i18n/",
 )
 
 

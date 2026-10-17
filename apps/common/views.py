@@ -75,3 +75,10 @@ function offline(){return caches.open(POS).then(c=>Promise.all([c.match(SHOP),c.
     response["Service-Worker-Allowed"] = "/"
     response["Cache-Control"] = "no-cache"
     return response
+
+
+def favicon(request):
+    """Browsers ask for /favicon.ico on every site (pages without an icon link, bookmarks)."""
+    from django.http import HttpResponsePermanentRedirect
+    from django.templatetags.static import static
+    return HttpResponsePermanentRedirect(static("icons/favicon.ico"))

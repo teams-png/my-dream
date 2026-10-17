@@ -62,4 +62,20 @@ def test_receipt_and_kot_print_in_chromium(live_server):
         page.evaluate(f"async () => {{ await Devices.printKot({{htmlUrl: '{kot}', dataUrl: ''}}); }}")
         page.wait_for_function("window.__printed.length >= 2", timeout=10000)
         assert ticket.ticket_number in page.evaluate("window.__printed")[1]
+        # the "Test print" button on the Devices page (browser printer)
+        page.goto(live_server.url + reverse("webapp:devices"))
+        page.evaluate("async () => { window.__printed=[]; await Devices.testPrint('receipt'); }")
+        page.wait_for_function("window.__printed.length >= 1", timeout=10000)
+        assert len(ctx.pages) == 1  # no blank tab opened
+        # charts work without an outside CDN
+        errors = []
+        page.on("pageerror", lambda e: errors.append(str(e)))
+        page.goto(live_server.url + reverse("webapp:analytics"))
+        assert page.evaluate("typeof Chart") == "function" and not errors, errors
         browser.close()
+
+
+def test_favicon_and_chart_library_are_served_locally(client):
+    assert client.get("/favicon.ico").status_code == 301
+    from django.contrib.staticfiles import finders
+    assert finders.find("vendor/chart.umd.min.js") and finders.find("icons/favicon.ico")

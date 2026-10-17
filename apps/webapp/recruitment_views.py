@@ -1,5 +1,6 @@
 """Recruitment / manpower agency: clients, job orders, candidates and the placement pipeline."""
 import mimetypes
+from decimal import Decimal
 from urllib.parse import quote
 
 from django import forms
@@ -15,7 +16,7 @@ from django.utils.translation import gettext_lazy as _l
 
 from apps.customers.models import Customer
 from apps.industry import matching, recruitment as svc
-from apps.industry.models import Candidate, JobOrder, Placement, PlacementCost
+from apps.industry.models import Candidate, JobOrder, Placement, PlacementCost, VisaQuota
 from apps.industry.common import PAYMENT_METHODS
 from apps.suppliers.models import Supplier
 
@@ -451,6 +452,20 @@ def rec_placement(request, placement_id):
                              amount=request.POST.get("amount"), paid_to=request.POST.get("paid_to") or "",
                              payment_method="bank" if method == "bank" else method)
                 messages.success(request, _("Cost recorded in expenses."))
+            elif action == "extras":
+                fields = []
+                if "visa_quota" in request.POST:
+                    placement.visa_quota = VisaQuota.objects.for_company(company).filter(
+                        id=pick_id(request.POST.get("visa_quota"))).first()
+                    fields.append("visa_quota")
+                if "agent_commission" in request.POST:
+                    try:
+                        placement.agent_commission = max(Decimal("0"), Decimal(request.POST.get("agent_commission") or "0"))
+                        fields.append("agent_commission")
+                    except Exception:
+                        raise ValidationError(_("Enter an amount."))
+                placement.save(update_fields=fields)
+                messages.success(request, _("Saved."))
             elif action == "make_worker" and "manpower" in company_features(company):
                 from apps.employees import site_workers as sw
                 from apps.employees.models import WorkSite
@@ -484,8 +499,17 @@ def rec_placement(request, placement_id):
         "cost_types": PlacementCost.TYPES, "methods": PAYMENT_METHODS,
         "wa": {k: _wa(c.phone, v) for k, v in texts.items()},
         "wa_client": _wa(job.client.phone, f"{job.number} {job.position}: {c.name} — {placement.get_stage_display()}"),
-        **_manpower(company, c),
+        **_manpower(company, c), **_placement_extras(company),
     })
+
+
+def _placement_extras(company):
+    from apps.employees import advanced
+    on = advanced.enabled(company)
+    out = {"agent_on": "sub_agents" in on}
+    if "visa_quota" in on:
+        out["quotas"] = [q for q in advanced.visa_quotas(company) if not q.expired]
+    return out
 
 
 def _manpower(company, candidate):
@@ -516,3 +540,64 @@ def rec_offer_letter(request, placement_id):
     return render(request, "webapp/recruitment/offer_letter.html", {
         "p": p, "c": p.candidate, "job": job, "company": company, "today": timezone.localdate(),
         "salary": p.offered_salary or job.salary, "hide_client": request.GET.get("client") == "0"})
+
+
+# ------------------------------------------------------------------ advanced: visa quota, sub-agents
+
+class VisaQuotaForm(forms.ModelForm):
+    class Meta:
+        model = VisaQuota
+        fields = ["reference", "profession", "nationality", "gender", "total", "expiry_date", "notes"]
+        labels = {"reference": _l("Approval / block visa number"), "profession": _l("Profession"),
+                  "nationality": _l("Nationality"), "gender": _l("Gender"), "total": _l("Visas approved"),
+                  "expiry_date": _l("Valid until"), "notes": _l("Notes")}
+        widgets = {"expiry_date": DATE}
+
+
+def _extra_on(request, code, label):
+    from apps.employees import advanced
+    if advanced.enabled(request.company, code):
+        return True
+    messages.info(request, _("Switch on “%(name)s” in HR settings → Advanced features.") % {"name": label})
+    return False
+
+
+@recruitment_view
+def rec_visa_quotas(request):
+    company = request.company
+    if not _extra_on(request, "visa_quota", _("Visa quota")):
+        return redirect("webapp:hr_settings")
+    from apps.employees import advanced
+    edit = None
+    if request.GET.get("edit") or request.POST.get("quota"):
+        edit = get_object_or_404(VisaQuota.objects.for_company(company), id=pick_id(request.GET.get("edit") or request.POST.get("quota")))
+    form = VisaQuotaForm(request.POST if request.POST.get("action") == "save" else None, instance=edit)
+    if request.method == "POST":
+        if request.POST.get("action") == "save" and form.is_valid():
+            q = form.save(commit=False)
+            q.company = company
+            q.save()
+            messages.success(request, _("Saved."))
+            return redirect("webapp:rec_visa_quotas")
+        if request.POST.get("action") == "delete" and edit is not None:
+            if edit.placements.exists():
+                messages.error(request, _("This quota is used by placements."))
+            else:
+                edit.delete()
+            return redirect("webapp:rec_visa_quotas")
+    quotas = advanced.visa_quotas(company)
+    return render(request, "webapp/recruitment/visa_quotas.html", {
+        "quotas": quotas, "form": form, "edit": edit,
+        "totals": {"total": sum(q.total for q in quotas), "used": sum(q.used for q in quotas),
+                   "left": sum(q.left for q in quotas if not q.expired)}})
+
+
+@recruitment_view
+def rec_agents(request):
+    if not _extra_on(request, "sub_agents", _("Sub-agent commission")):
+        return redirect("webapp:hr_settings")
+    from apps.employees import advanced
+    rows = advanced.agent_statement(request.company)
+    return render(request, "webapp/recruitment/agents.html", {
+        "rows": rows, "total": {"owed": sum((r["owed"] for r in rows), 0), "paid": sum((r["paid"] for r in rows), 0),
+                                "balance": sum((r["balance"] for r in rows), 0)}})

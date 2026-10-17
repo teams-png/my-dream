@@ -28,6 +28,10 @@ class Employee(TenantScopedModel):
     accommodation = models.CharField(max_length=120, blank=True)
     candidate = models.ForeignKey("industry.Candidate", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
     duty_shift = models.ForeignKey("SiteShift", null=True, blank=True, on_delete=models.SET_NULL, related_name="workers")
+    camp = models.ForeignKey("Camp", null=True, blank=True, on_delete=models.SET_NULL, related_name="residents")
+    bank_short_name = models.CharField(max_length=10, blank=True)  # for the WPS salary file, e.g. QNB, CBQ
+    iban = models.CharField(max_length=34, blank=True)
+    visa_id = models.CharField(max_length=30, blank=True)
     weekly_off = models.PositiveSmallIntegerField(null=True, blank=True)  # Python weekday, Mon=0; empty = company's off days
 
     def __str__(self):
@@ -280,6 +284,18 @@ class HRSettings(TenantScopedModel):
     weekly_off_days = models.JSONField(default=list, blank=True)
     deduct_absence = models.BooleanField(default=True)
     currency_note = models.CharField(max_length=80, blank=True)
+    # advanced features switched on by the owner (see apps.employees.advanced.EXTRAS); all off by default
+    extras = models.JSONField(default=list, blank=True)
+    # WPS (Qatar Wage Protection System) salary file
+    wps_employer_eid = models.CharField(max_length=20, blank=True)
+    wps_payer_eid = models.CharField(max_length=20, blank=True)
+    wps_payer_qid = models.CharField(max_length=20, blank=True)
+    wps_payer_bank = models.CharField(max_length=10, blank=True)
+    wps_payer_iban = models.CharField(max_length=34, blank=True)
+    # end of service and vacation rules
+    gratuity_days_per_year = models.DecimalField(max_digits=5, decimal_places=2, default=21)
+    vacation_days_per_year = models.DecimalField(max_digits=5, decimal_places=2, default=21)
+    ticket_every_months = models.PositiveSmallIntegerField(default=24)
 
     GULF = {"qatar", "united arab emirates", "uae", "saudi arabia", "kuwait", "bahrain", "oman"}
 
@@ -331,3 +347,72 @@ class AdvanceRecovery(TenantScopedModel):
     amount = models.DecimalField(max_digits=14, decimal_places=2)
     source = models.CharField(max_length=10, choices=SOURCES, default="payroll")
     journal_entry = models.OneToOneField("accounting.JournalEntry", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+
+
+class FinalSettlement(TenantScopedModel):
+    """End of service: gratuity, unpaid salary, leave pay and ticket, less advances — then paid and recorded."""
+    REASONS = [("resigned", "Resigned"), ("terminated", "Terminated"), ("contract_end", "Contract ended"),
+               ("other", "Other")]
+    STATUS = [("draft", "Draft"), ("paid", "Paid")]
+    employee = models.ForeignKey(Employee, on_delete=models.PROTECT, related_name="settlements")
+    last_day = models.DateField()
+    reason = models.CharField(max_length=15, choices=REASONS, default="resigned")
+    years = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    basic = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    gratuity = models.DecimalField(max_digits=14, decimal_places=2, default=0)
+    salary_days = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    salary_amount = models.DecimalField(max_digits=14, decimal_places=2, default=0)
+    leave_days = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    leave_amount = models.DecimalField(max_digits=14, decimal_places=2, default=0)
+    ticket_amount = models.DecimalField(max_digits=14, decimal_places=2, default=0)
+    other_additions = models.DecimalField(max_digits=14, decimal_places=2, default=0)
+    advance_deduction = models.DecimalField(max_digits=14, decimal_places=2, default=0)
+    other_deductions = models.DecimalField(max_digits=14, decimal_places=2, default=0)
+    net = models.DecimalField(max_digits=14, decimal_places=2, default=0)
+    notes = models.TextField(blank=True)
+    status = models.CharField(max_length=10, choices=STATUS, default="draft")
+    method = models.CharField(max_length=10, blank=True)
+    paid_at = models.DateTimeField(null=True, blank=True)
+    journal_entry = models.OneToOneField("accounting.JournalEntry", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+
+class Vacation(TenantScopedModel):
+    """Annual vacation (home leave) with the air ticket: planned → on vacation → back."""
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="vacations")
+    start_date = models.DateField()
+    end_date = models.DateField(help_text="Expected back at work.")
+    returned_on = models.DateField(null=True, blank=True)
+    ticket_given = models.BooleanField(default=False)
+    ticket_amount = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    notes = models.CharField(max_length=255, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-start_date"]
+
+    @property
+    def days(self):
+        return (self.end_date - self.start_date).days + 1
+
+
+class Camp(TenantScopedModel):
+    """Staff accommodation (labour camp / flat) and what it costs a month."""
+    name = models.CharField(max_length=120)
+    location = models.CharField(max_length=200, blank=True)
+    capacity = models.PositiveIntegerField(default=0)
+    monthly_cost = models.DecimalField(max_digits=12, decimal_places=2, default=0,
+                                       help_text="Rent, electricity, water… for the whole camp a month.")
+    food_per_head = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    transport_per_head = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    is_active = models.BooleanField(default=True)
+    notes = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name

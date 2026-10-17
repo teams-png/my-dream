@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Final settlement" %} · {{ s.employee.name }}{% endblock %}
+{% block heading %}{% translate "Final settlement" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% if print %}<style>.sidebar,header,nav,.hr-tabs,.no-print{display:none!important}main{padding:0!important}</style>{% else %}{% include "webapp/hr/_tabs.html" %}{% endif %}
+<div class="hr-card" style="max-width:760px">
+  <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--line);padding-bottom:8px;margin-bottom:10px">
+    <div><b style="font-size:18px">{{ company.name }}</b><br>{{ company.address }}</div>
+    <div style="text-align:end"><b>{% translate "Final settlement" %}</b><br>{{ s.created_at|date:"j M Y" }}<br><span class="hr-chip {% if s.status == 'paid' %}paid{% else %}draft{% endif %}">{% if s.status == 'paid' %}{% translate "Paid" %}{% else %}{% translate "Draft" %}{% endif %}</span></div>
+  </div>
+  <p><b>{{ s.employee.name }}</b>{% if s.employee.trade or s.employee.role_title %} · {{ s.employee.trade|default:s.employee.role_title }}{% endif %}<br>
+    {% translate "Joined" %} {{ s.employee.joined_date|date:"j M Y" }} · {% translate "Last working day" %} {{ s.last_day|date:"j M Y" }} · {% translate s.get_reason_display %}<br>
+    {% translate "Basic salary" %} {{ s.basic|floatformat:2 }} · {{ s.years }} {% translate "years of service" %}</p>
+  <table class="hr-money">
+    <tr><td>{% translate "Gratuity" %}</td><td>{{ s.gratuity|floatformat:2 }}</td></tr>
+    <tr><td>{% translate "Unpaid salary" %} ({{ s.salary_days|floatformat:"-2" }} {% translate "days" %})</td><td>{{ s.salary_amount|floatformat:2 }}</td></tr>
+    <tr><td>{% translate "Leave not taken" %} ({{ s.leave_days|floatformat:"-1" }} {% translate "days" %})</td><td>{{ s.leave_amount|floatformat:2 }}</td></tr>
+    {% if s.ticket_amount %}<tr><td>{% translate "Air ticket" %}</td><td>{{ s.ticket_amount|floatformat:2 }}</td></tr>{% endif %}
+    {% if s.other_additions %}<tr><td>{% translate "Other payments" %}</td><td>{{ s.other_additions|floatformat:2 }}</td></tr>{% endif %}
+    {% if s.advance_deduction %}<tr class="minus"><td>{% translate "Salary advance to recover" %}</td><td>− {{ s.advance_deduction|floatformat:2 }}</td></tr>{% endif %}
+    {% if s.other_deductions %}<tr class="minus"><td>{% translate "Other deductions" %}</td><td>− {{ s.other_deductions|floatformat:2 }}</td></tr>{% endif %}
+    <tr class="total"><td>{% translate "Net to pay" %}</td><td>{{ company.default_currency }} {{ s.net|floatformat:2 }}</td></tr>
+  </table>
+  {% if s.notes %}<p>{{ s.notes|linebreaksbr }}</p>{% endif %}
+  {% if print %}<div style="display:flex;justify-content:space-between;gap:24px;margin-top:56px"><div style="border-top:1px solid #111;min-width:200px;text-align:center">{{ company.name }}</div><div style="border-top:1px solid #111;min-width:200px;text-align:center">{% translate "Received in full and final settlement" %}<br>{{ s.employee.name }}</div></div>{% endif %}
+  <div class="hr-actions no-print" style="margin-top:14px">
+    <a class="btn btn-secondary" href="?print=1" target="_blank">🖨 {% translate "Print" %}</a>
+    {% if s.status == "draft" %}
+      <form method="post" class="hr-actions" onsubmit="return confirm('{% translate "Pay this settlement? It is recorded in the accounts and the staff member is marked as left." %}')">{% csrf_token %}<input type="hidden" name="action" value="pay"><select class="hr-in" name="method" style="width:auto">{% for k, l in methods %}<option value="{{ k }}">{{ l }}</option>{% endfor %}</select><button class="btn" type="submit">💵 {% translate "Pay & close" %}</button></form>
+      <form method="post">{% csrf_token %}<input type="hidden" name="action" value="delete"><button class="btn btn-secondary" type="submit">🗑 {% translate "Remove draft" %}</button></form>
+    {% endif %}
+    <a class="btn btn-secondary" href="{% url 'webapp:staff_detail' s.employee.id %}">← {{ s.employee.name }}</a>
+  </div>
+</div>
+</div>
+{% if print %}<script>window.addEventListener('load',()=>setTimeout(()=>print(),300))</script>{% endif %}
+{% endblock %}

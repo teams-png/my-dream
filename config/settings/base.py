@@ -125,6 +125,7 @@ TEMPLATES = [
                 "apps.webapp.context_processors.form_samples",
                 "apps.webapp.context_processors.support_badges",
                 "apps.webapp.context_processors.website_shop",
+                "apps.webapp.context_processors.hr_extras",
             ],
         },
     },

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Visa quota" %}{% endblock %}
+{% block heading %}{% translate "Visa quota" %}{% endblock %}
+{% block content %}
+{% include "webapp/recruitment/_head.html" %}
+<div class="ix-card">
+  <p><b>{{ totals.total }}</b> {% translate "approved" %} · <b>{{ totals.used }}</b> {% translate "used" %} · <b>{{ totals.left }}</b> {% translate "left" %}</p>
+  <div class="ix-list">{% for q in quotas %}<a class="ix-row" href="?edit={{ q.id }}"><span class="grow"><b>{{ q.profession }}</b> <small>{{ q.reference }}{% if q.nationality %} · {{ q.nationality }}{% endif %}{% if q.gender != "any" %} · {% translate q.get_gender_display %}{% endif %}{% if q.expiry_date %} · {% translate "Valid until" %} {{ q.expiry_date|date:"j M Y" }}{% endif %}</small></span>
+    <span class="ix-chip {% if q.expired %}rejected{% elif q.expiring %}interview{% elif q.left %}deployed{% endif %}">{% if q.expired %}{% translate "Expired" %}{% else %}{{ q.used }}/{{ q.total }} · {{ q.left }} {% translate "left" %}{% endif %}</span></a>{% empty %}<div class="ix-empty">{% translate "No visa quotas yet." %}</div>{% endfor %}</div>
+</div>
+<form method="post" class="ix ix-form ix-card">{% csrf_token %}<input type="hidden" name="action" value="save">{% if edit %}<input type="hidden" name="quota" value="{{ edit.id }}">{% endif %}
+  <h3>{% if edit %}✏️ {{ edit.reference }}{% else %}＋ {% translate "New visa quota" %}{% endif %}</h3>
+  <div class="fields">{% for f in form %}<div><label for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}{{ f.errors }}</div>{% endfor %}</div>
+  <div class="ix-toolbar" style="margin-top:14px"><button class="btn" type="submit">{% translate "Save" %}</button>{% if edit %}<a class="btn btn-secondary" href="?">{% translate "Cancel" %}</a>{% endif %}</div>
+</form>
+{% if edit %}<form method="post" style="margin-top:8px">{% csrf_token %}<input type="hidden" name="action" value="delete"><input type="hidden" name="quota" value="{{ edit.id }}"><button class="btn btn-secondary" type="submit">🗑 {% translate "Remove" %}</button></form>{% endif %}
+<p style="color:var(--ink-soft);font-size:13px">{% translate "Choose the quota on each placement; it then counts as used (rejected and withdrawn placements do not count)." %}</p>
+{% endblock %}

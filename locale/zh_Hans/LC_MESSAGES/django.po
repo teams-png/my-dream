@@ -684,6 +684,14 @@ msgid "Candidates"
 msgstr "候选人"
 
 #: templates/webapp/_industry_nav.html
+msgid "Visa quota"
+msgstr "签证配额"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sub-agent commission"
+msgstr "分代理佣金"
+
+#: templates/webapp/_industry_nav.html
 msgid "Careers website"
 msgstr "招聘网站"
 
@@ -714,6 +722,10 @@ msgstr "客户账单"
 #: templates/webapp/_industry_nav.html
 msgid "Site profit"
 msgstr "工地利润"
+
+#: templates/webapp/_industry_nav.html
+msgid "Camps"
+msgstr "营地"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3732,6 +3744,10 @@ msgid "Documents"
 msgstr "证件"
 
 #: templates/webapp/hr/_tabs.html
+msgid "Vacations"
+msgstr "休假"
+
+#: templates/webapp/hr/_tabs.html
 msgid "HR settings"
 msgstr "人事设置"
 
@@ -3990,6 +4006,10 @@ msgid "Add holiday"
 msgstr "添加节假日"
 
 #: templates/webapp/hr/payroll.html
+msgid "WPS salary file"
+msgstr "WPS 工资文件"
+
+#: templates/webapp/hr/payroll.html
 msgid "Draft — check and approve"
 msgstr "草稿 — 请检查并批准"
 
@@ -4145,9 +4165,140 @@ msgstr "从工资中扣除缺勤、半天和无薪假"
 msgid "Daily rate = (basic + allowances) ÷ days in the month."
 msgstr "日薪 = （基本工资 + 津贴）÷ 当月天数。"
 
-#: templates/webapp/hr/staff_detail.html
+#: templates/webapp/hr/settings.html
+msgid "Advanced features"
+msgstr "高级功能"
+
+#: templates/webapp/hr/settings.html
+msgid ""
+"Switch on only what you use — the menus show only the features that are on."
+msgstr "只开启您使用的功能——菜单只显示已开启的功能。"
+
+#: templates/webapp/hr/settings.html
+msgid "Employer ID (establishment)"
+msgstr "雇主编号（机构）"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer ID (if different)"
+msgstr "付款方编号（如不同）"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer QID (if the payer is a person)"
+msgstr "付款方 QID（如付款方为个人）"
+
+#: templates/webapp/hr/settings.html
+msgid "Our bank (short name, e.g. QNB)"
+msgstr "我们的银行（简称，如 QNB）"
+
+#: templates/webapp/hr/settings.html
+msgid "Our IBAN"
+msgstr "我们的 IBAN"
+
+#: templates/webapp/hr/settings.html
+msgid "Rules"
+msgstr "规则"
+
+#: templates/webapp/hr/settings.html
+msgid "Gratuity: days of basic pay per year of service"
+msgstr "服务金：每服务一年的基本工资天数"
+
+#: templates/webapp/hr/settings.html
+msgid "Qatar: at least 21 days (3 weeks), after one year of service."
+msgstr "卡塔尔：服务满一年后至少 21 天（3 周）。"
+
+#: templates/webapp/hr/settings.html
+msgid "Vacation days per year"
+msgstr "每年休假天数"
+
+#: templates/webapp/hr/settings.html
+msgid "Air ticket every (months)"
+msgstr "每隔多少个月一张机票"
+
+#: templates/webapp/hr/settlement.html
+msgid "Final settlement"
+msgstr "最终结算"
+
+#: templates/webapp/hr/settlement.html
+msgid "Draft"
+msgstr "草稿"
+
+#: templates/webapp/hr/settlement.html
 msgid "Joined"
 msgstr "入职"
+
+#: templates/webapp/hr/settlement.html
+msgid "Last working day"
+msgstr "最后工作日"
+
+#: templates/webapp/hr/settlement.html
+msgid "years of service"
+msgstr "服务年数"
+
+#: templates/webapp/hr/settlement.html
+msgid "Gratuity"
+msgstr "服务金"
+
+#: templates/webapp/hr/settlement.html
+msgid "Unpaid salary"
+msgstr "未付工资"
+
+#: templates/webapp/hr/settlement.html
+msgid "Leave not taken"
+msgstr "未休假期"
+
+#: templates/webapp/hr/settlement.html
+msgid "Air ticket"
+msgstr "机票"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other payments"
+msgstr "其他付款"
+
+#: templates/webapp/hr/settlement.html
+msgid "Salary advance to recover"
+msgstr "待收回的工资预支"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other deductions"
+msgstr "其他扣款"
+
+#: templates/webapp/hr/settlement.html
+msgid "Received in full and final settlement"
+msgstr "已收到全部及最终结算款项"
+
+#: templates/webapp/hr/settlement.html
+msgid ""
+"Pay this settlement? It is recorded in the accounts and the staff member is "
+"marked as left."
+msgstr "支付此结算？将记入账目，并将该员工标记为已离职。"
+
+#: templates/webapp/hr/settlement.html
+msgid "Pay & close"
+msgstr "支付并关闭"
+
+#: templates/webapp/hr/settlement.html
+msgid "Remove draft"
+msgstr "删除草稿"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Reason"
+msgstr "原因"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Air ticket amount"
+msgstr "机票金额"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Other payments (bonus…)"
+msgstr "其他付款（奖金…）"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "less than one year: none"
+msgstr "不满一年：无"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Save settlement"
+msgstr "保存结算"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "Login"
@@ -4198,6 +4349,10 @@ msgstr "工资为本月至今在工地的天数 / 小时；工资单来自工资
 #: templates/webapp/hr/staff_detail.html
 msgid "No site attendance this month yet."
 msgstr "本月还没有工地考勤。"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "months since the last ticket"
+msgstr "距上次机票的月数"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "per month"
@@ -4266,6 +4421,10 @@ msgstr "没有证件。"
 #: templates/webapp/hr/staff_form.html
 msgid "Edit staff"
 msgstr "编辑员工"
+
+#: templates/webapp/hr/staff_form.html
+msgid "Bank (WPS)"
+msgstr "银行（WPS）"
 
 #: templates/webapp/hr/staff_form.html
 msgid ""
@@ -4340,6 +4499,96 @@ msgstr "没有离职员工。"
 #: templates/webapp/hr/staff_list.html
 msgid "No staff yet. Add your first staff member with their salary."
 msgstr "暂无员工。添加第一位员工及其工资。"
+
+#: templates/webapp/hr/vacations.html
+msgid "On vacation now"
+msgstr "正在休假"
+
+#: templates/webapp/hr/vacations.html
+msgid "Late back"
+msgstr "逾期未归"
+
+#: templates/webapp/hr/vacations.html
+msgid "Leaving in 30 days"
+msgstr "30 天内离开"
+
+#: templates/webapp/hr/vacations.html
+msgid "Due an air ticket"
+msgstr "应发机票"
+
+#: templates/webapp/hr/vacations.html
+msgid "was due back"
+msgstr "应返回日期"
+
+#: templates/webapp/hr/vacations.html
+msgid "days late"
+msgstr "天逾期"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work"
+msgstr "已返岗"
+
+#: templates/webapp/hr/vacations.html
+msgid "ticket"
+msgstr "机票"
+
+#: templates/webapp/hr/vacations.html
+msgid "Nobody is on vacation."
+msgstr "没有人在休假。"
+
+#: templates/webapp/hr/vacations.html
+msgid "leave balance"
+msgstr "假期余额"
+
+#: templates/webapp/hr/vacations.html
+msgid "Plan a vacation"
+msgstr "安排休假"
+
+#: templates/webapp/hr/vacations.html
+msgid "Staff member"
+msgstr "员工"
+
+#: templates/webapp/hr/vacations.html
+msgid "First day of vacation"
+msgstr "休假第一天"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work on"
+msgstr "返岗日期"
+
+#: templates/webapp/hr/vacations.html
+msgid "Air ticket given"
+msgstr "已发机票"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket amount"
+msgstr "机票金额"
+
+#: templates/webapp/hr/vacations.html
+msgid "Recent vacations"
+msgstr "近期休假"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back on"
+msgstr "返回日期"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket"
+msgstr "机票"
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Fix these before sending the file to the bank"
+msgstr "在将文件发送给银行前请先修正以下问题"
+
+#: templates/webapp/hr/wps_problems.html
+msgid ""
+"The QID comes from the staff member's ID / residence card document; the bank"
+" and IBAN are on the staff form."
+msgstr "QID 来自员工的身份证 / 居留卡文件；银行和 IBAN 在员工表单中。"
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Download anyway"
+msgstr "仍然下载"
 
 #: templates/webapp/import_export/product_import.html
 msgid "Import products"
@@ -5856,6 +6105,43 @@ msgstr "开具发票"
 msgid "Choose the client for this site first."
 msgstr "请先选择此工地的客户。"
 
+#: templates/webapp/manpower/camps.html
+msgid "Camps & accommodation"
+msgstr "营地与住宿"
+
+#: templates/webapp/manpower/camps.html
+msgid "beds"
+msgstr "床位"
+
+#: templates/webapp/manpower/camps.html
+msgid "per person a month"
+msgstr "每人每月"
+
+#: templates/webapp/manpower/camps.html
+msgid "Move out"
+msgstr "迁出"
+
+#: templates/webapp/manpower/camps.html
+msgid "Nobody lives here yet."
+msgstr "这里还没有人居住。"
+
+#: templates/webapp/manpower/camps.html
+msgid "Move in"
+msgstr "迁入"
+
+#: templates/webapp/manpower/camps.html
+msgid "No camps yet. Add one below."
+msgstr "还没有营地。请在下方添加。"
+
+#: templates/webapp/manpower/camps.html
+msgid "New camp"
+msgstr "新营地"
+
+#: templates/webapp/manpower/camps.html
+msgid ""
+"The camp's cost per person is added to each worker's cost in Site profit."
+msgstr "营地的人均成本会计入\"工地利润\"中每位工人的成本。"
+
 #: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "在用工地"
@@ -5987,6 +6273,10 @@ msgid ""
 "days, or day / hour rate, plus overtime pay)."
 msgstr ""
 "根据工地考勤：向每个客户收取的费用（费率 × 小时 / 天，另加加班）与我们为这段时间支付给工人的工资（按天的工资，或日 / 时薪，另加加班）对比。"
+
+#: templates/webapp/manpower/profit.html
+msgid "Camp"
+msgstr "营地"
 
 #: templates/webapp/manpower/site.html
 msgid "Client"
@@ -6926,10 +7216,6 @@ msgstr "打开预订"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "需要"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Reason"
-msgstr "原因"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Confirm"
@@ -8559,12 +8845,36 @@ msgid "oldest"
 msgstr "最早"
 
 #: templates/webapp/receivables/home.html
-msgid "days late"
-msgstr "天逾期"
-
-#: templates/webapp/receivables/home.html
 msgid "Nobody owes you money."
 msgstr "没有人欠您钱。"
+
+#: templates/webapp/recruitment/agents.html
+msgid "Owed"
+msgstr "应付"
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"Commission is owed for candidates who joined (set it on the placement). "
+"Payments are the “Agent commission” costs recorded on placements."
+msgstr "已入职的候选人才产生佣金（在安置记录中设置）。付款为安置记录中登记的\"代理佣金\"费用。"
+
+#: templates/webapp/recruitment/agents.html
+msgid "candidates sent"
+msgstr "已推荐候选人"
+
+#: templates/webapp/recruitment/agents.html
+msgid "joined"
+msgstr "已入职"
+
+#: templates/webapp/recruitment/agents.html
+msgid "Nobody joined yet."
+msgstr "还没有人入职。"
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"No candidates from sub-agents yet. Choose the sub-agent on the candidate "
+"form."
+msgstr "还没有来自分代理的候选人。请在候选人表单中选择分代理。"
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "View CV"
@@ -8824,10 +9134,6 @@ msgid "Position, number or client"
 msgstr "职位、编号或客户"
 
 #: templates/webapp/recruitment/jobs.html
-msgid "joined"
-msgstr "已入职"
-
-#: templates/webapp/recruitment/jobs.html
 msgid "No job orders here."
 msgstr "这里没有招聘需求。"
 
@@ -8938,6 +9244,10 @@ msgid "Replacement guarantee until"
 msgstr "替换保证截止"
 
 #: templates/webapp/recruitment/placement.html
+msgid "Commission for"
+msgstr "佣金："
+
+#: templates/webapp/recruitment/placement.html
 msgid "Fees & profit"
 msgstr "费用与利润"
 
@@ -9014,6 +9324,32 @@ msgstr "支付给"
 #: templates/webapp/recruitment/placement.html
 msgid "Add cost"
 msgstr "添加成本"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "approved"
+msgstr "已批准"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "used"
+msgstr "已使用"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "Valid until"
+msgstr "有效期至"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "No visa quotas yet."
+msgstr "还没有签证配额。"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "New visa quota"
+msgstr "新签证配额"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid ""
+"Choose the quota on each placement; it then counts as used (rejected and "
+"withdrawn placements do not count)."
+msgstr "在每个安置记录中选择配额，即计为已使用（被拒绝和已撤回的安置不计入）。"
 
 #: templates/webapp/refills/list.html
 msgid "Refill subscriptions"
@@ -10678,10 +11014,6 @@ msgstr "今日已送达"
 msgid "Product"
 msgstr "商品"
 
-#: templates/webapp/sales_docs/_doc_head.html
-msgid "Valid until"
-msgstr "有效期至"
-
 #: templates/webapp/sales_docs/_tabs.html
 msgid "Sales documents"
 msgstr "销售单据"
@@ -12197,6 +12529,89 @@ msgstr "选择%(label)s"
 msgid "Select…"
 msgstr "选择…"
 
+#: apps/employees/advanced.py
+msgid "Download the bank's WPS salary file (SIF) from an approved payroll."
+msgstr "从已批准的工资单下载银行 WPS 工资文件（SIF）。"
+
+#: apps/employees/advanced.py
+msgid "Gratuity & final settlement"
+msgstr "服务金与最终结算"
+
+#: apps/employees/advanced.py
+msgid ""
+"End-of-service gratuity and the final settlement when someone leaves, "
+"recorded in the accounts."
+msgstr "员工离职时的服务终止金与最终结算，并记入账目。"
+
+#: apps/employees/advanced.py
+msgid "Vacation & air ticket"
+msgstr "休假与机票"
+
+#: apps/employees/advanced.py
+msgid "Annual home leave with the air ticket: who is away, due or late back."
+msgstr "含机票的年度回国假：谁在休假、谁应得、谁逾期未归。"
+
+#: apps/employees/advanced.py
+msgid "Camps & accommodation cost"
+msgstr "营地与住宿成本"
+
+#: apps/employees/advanced.py
+msgid "Staff camps with their monthly cost per head, counted in site profit."
+msgstr "员工营地及其人均月成本，计入工地利润。"
+
+#: apps/employees/advanced.py
+msgid "Visa quotas approved for the company: used and left."
+msgstr "公司获批的签证配额：已使用与剩余。"
+
+#: apps/employees/advanced.py
+msgid ""
+"What each sub-agent is owed for the candidates they sent, and what is paid."
+msgstr "每个分代理所推荐候选人的应付金额及已付金额。"
+
+#: apps/employees/advanced.py
+msgid "Fill the employer ID, bank and IBAN in HR settings."
+msgstr "请在人事设置中填写雇主编号、银行和 IBAN。"
+
+#: apps/employees/advanced.py
+msgid "QID"
+msgstr "QID"
+
+#: apps/employees/advanced.py
+msgid "bank"
+msgstr "银行"
+
+#: apps/employees/advanced.py
+msgid "IBAN"
+msgstr "IBAN"
+
+#: apps/employees/advanced.py
+msgid "%(name)s: no %(what)s"
+msgstr "%(name)s：缺少 %(what)s"
+
+#: apps/employees/advanced.py
+msgid "Enter the joining date on the staff record first."
+msgstr "请先在员工记录中填写入职日期。"
+
+#: apps/employees/advanced.py
+msgid "The last day is before the joining date."
+msgstr "最后一天早于入职日期。"
+
+#: apps/employees/advanced.py
+msgid "This settlement is already paid."
+msgstr "此结算已支付。"
+
+#: apps/employees/advanced.py
+msgid "The deductions are more than the amount due."
+msgstr "扣款超过应付金额。"
+
+#: apps/employees/advanced.py
+msgid "Choose the first day and the day back at work."
+msgstr "请选择第一天和返岗日期。"
+
+#: apps/employees/advanced.py
+msgid "%(name)s already has a vacation in these dates."
+msgstr "%(name)s 在这些日期已有休假。"
+
 #: apps/employees/site_workers.py
 msgid "Choose a site."
 msgstr "请选择工地。"
@@ -12958,10 +13373,6 @@ msgstr "无区域"
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "已入座"
-
-#: apps/verticals/restaurant/models.py
-msgid "Draft"
-msgstr "草稿"
 
 #: apps/verticals/restaurant/models.py
 msgid "Served"
@@ -14189,12 +14600,20 @@ msgid "Login (optional)"
 msgstr "登录账号（可选）"
 
 #: apps/webapp/hr_views.py
-msgid "This login is already linked to another staff member."
-msgstr "此登录账号已关联到另一名员工。"
+msgid "Bank (short name, e.g. QNB)"
+msgstr "银行（简称，如 QNB）"
 
 #: apps/webapp/hr_views.py
-msgid "Staff member"
-msgstr "员工"
+msgid "IBAN / account number"
+msgstr "IBAN / 账号"
+
+#: apps/webapp/hr_views.py
+msgid "Visa ID (optional)"
+msgstr "签证编号（可选）"
+
+#: apps/webapp/hr_views.py
+msgid "This login is already linked to another staff member."
+msgstr "此登录账号已关联到另一名员工。"
 
 #: apps/webapp/hr_views.py
 msgid "Advance amount"
@@ -14320,6 +14739,30 @@ msgstr "文件已保存。"
 #: apps/webapp/hr_views.py
 msgid "HR settings saved."
 msgstr "人事设置已保存。"
+
+#: apps/webapp/hr_views.py
+msgid "Approve the payroll first."
+msgstr "请先批准工资单。"
+
+#: apps/webapp/hr_views.py
+msgid "Final settlement saved for %(name)s."
+msgstr "已为 %(name)s 保存最终结算。"
+
+#: apps/webapp/hr_views.py
+msgid "Settlement paid and recorded in the accounts."
+msgstr "结算已支付并记入账目。"
+
+#: apps/webapp/hr_views.py
+msgid "Draft removed."
+msgstr "草稿已删除。"
+
+#: apps/webapp/hr_views.py
+msgid "Vacation saved."
+msgstr "休假已保存。"
+
+#: apps/webapp/hr_views.py
+msgid "%(name)s is back at work."
+msgstr "%(name)s 已返岗。"
 
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
@@ -14563,6 +15006,31 @@ msgstr "班次已删除。"
 #: apps/webapp/manpower_views.py
 msgid "Trade"
 msgstr "工种"
+
+#: apps/webapp/manpower_views.py
+msgid "Camp / building name"
+msgstr "营地 / 楼名"
+
+#: apps/webapp/manpower_views.py
+msgid "Beds"
+msgstr "床位"
+
+#: apps/webapp/manpower_views.py
+msgid "Monthly cost (rent, electricity, water…)"
+msgstr "月成本（房租、电费、水费…）"
+
+#: apps/webapp/manpower_views.py
+msgid "Food per person a month"
+msgstr "每人每月伙食"
+
+#: apps/webapp/manpower_views.py
+msgid "Transport per person a month"
+msgstr "每人每月交通"
+
+#: apps/webapp/manpower_views.py
+msgid ""
+"Switch on “Camps & accommodation cost” in HR settings → Advanced features."
+msgstr "请在人事设置 → 高级功能中开启\"营地与住宿成本\"。"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -15825,10 +16293,6 @@ msgid "Visa"
 msgstr "签证"
 
 #: apps/webapp/recruitment_views.py
-msgid "Ticket"
-msgstr "机票"
-
-#: apps/webapp/recruitment_views.py
 msgid "Joined / deployed"
 msgstr "已入职 / 已派遣"
 
@@ -15843,10 +16307,6 @@ msgstr "合格"
 #: apps/webapp/recruitment_views.py
 msgid "Unfit"
 msgstr "不合格"
-
-#: apps/webapp/recruitment_views.py
-msgid "Air ticket"
-msgstr "机票"
 
 #: apps/webapp/recruitment_views.py
 msgid "Agent commission"
@@ -15875,6 +16335,26 @@ msgstr "首选国籍（如有）。"
 #: apps/webapp/recruitment_views.py
 msgid "Accommodation, food, transport…"
 msgstr "住宿、餐食、交通…"
+
+#: apps/webapp/recruitment_views.py
+msgid "Approval / block visa number"
+msgstr "批准 / 整批签证编号"
+
+#: apps/webapp/recruitment_views.py
+msgid "Profession"
+msgstr "职业"
+
+#: apps/webapp/recruitment_views.py
+msgid "Visas approved"
+msgstr "获批签证数"
+
+#: apps/webapp/recruitment_views.py
+msgid "Switch on “%(name)s” in HR settings → Advanced features."
+msgstr "请在人事设置 → 高级功能中开启\"%(name)s\"。"
+
+#: apps/webapp/recruitment_views.py
+msgid "This quota is used by placements."
+msgstr "此配额已被安置记录使用。"
 
 #: apps/webapp/refill_views.py
 msgid "Choose the customer and the item, and enter how often."

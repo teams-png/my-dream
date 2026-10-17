@@ -686,6 +686,14 @@ msgid "Candidates"
 msgstr "المرشحون"
 
 #: templates/webapp/_industry_nav.html
+msgid "Visa quota"
+msgstr "حصة التأشيرات"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sub-agent commission"
+msgstr "عمولة الوكلاء الفرعيين"
+
+#: templates/webapp/_industry_nav.html
 msgid "Careers website"
 msgstr "موقع الوظائف"
 
@@ -716,6 +724,10 @@ msgstr "فوترة العملاء"
 #: templates/webapp/_industry_nav.html
 msgid "Site profit"
 msgstr "ربح المواقع"
+
+#: templates/webapp/_industry_nav.html
+msgid "Camps"
+msgstr "المعسكرات"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3778,6 +3790,10 @@ msgid "Documents"
 msgstr "المستندات"
 
 #: templates/webapp/hr/_tabs.html
+msgid "Vacations"
+msgstr "الإجازات"
+
+#: templates/webapp/hr/_tabs.html
 msgid "HR settings"
 msgstr "إعدادات الموارد البشرية"
 
@@ -4042,6 +4058,10 @@ msgid "Add holiday"
 msgstr "إضافة عطلة"
 
 #: templates/webapp/hr/payroll.html
+msgid "WPS salary file"
+msgstr "ملف رواتب WPS"
+
+#: templates/webapp/hr/payroll.html
 msgid "Draft — check and approve"
 msgstr "مسودة — راجع واعتمد"
 
@@ -4199,9 +4219,140 @@ msgstr "خصم أيام الغياب وأنصاف الأيام والإجازة 
 msgid "Daily rate = (basic + allowances) ÷ days in the month."
 msgstr "الأجر اليومي = (الأساسي + البدلات) ÷ أيام الشهر."
 
-#: templates/webapp/hr/staff_detail.html
+#: templates/webapp/hr/settings.html
+msgid "Advanced features"
+msgstr "ميزات متقدمة"
+
+#: templates/webapp/hr/settings.html
+msgid ""
+"Switch on only what you use — the menus show only the features that are on."
+msgstr "فعّل فقط ما تستخدمه — تظهر في القوائم الميزات المفعّلة فقط."
+
+#: templates/webapp/hr/settings.html
+msgid "Employer ID (establishment)"
+msgstr "رقم صاحب العمل (المنشأة)"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer ID (if different)"
+msgstr "رقم الدافع (إن اختلف)"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer QID (if the payer is a person)"
+msgstr "الرقم الشخصي للدافع (إن كان فردًا)"
+
+#: templates/webapp/hr/settings.html
+msgid "Our bank (short name, e.g. QNB)"
+msgstr "بنكنا (الاسم المختصر، مثل QNB)"
+
+#: templates/webapp/hr/settings.html
+msgid "Our IBAN"
+msgstr "رقم IBAN الخاص بنا"
+
+#: templates/webapp/hr/settings.html
+msgid "Rules"
+msgstr "القواعد"
+
+#: templates/webapp/hr/settings.html
+msgid "Gratuity: days of basic pay per year of service"
+msgstr "مكافأة نهاية الخدمة: أيام من الراتب الأساسي عن كل سنة خدمة"
+
+#: templates/webapp/hr/settings.html
+msgid "Qatar: at least 21 days (3 weeks), after one year of service."
+msgstr "قطر: 21 يومًا على الأقل (3 أسابيع)، بعد سنة من الخدمة."
+
+#: templates/webapp/hr/settings.html
+msgid "Vacation days per year"
+msgstr "أيام الإجازة في السنة"
+
+#: templates/webapp/hr/settings.html
+msgid "Air ticket every (months)"
+msgstr "تذكرة سفر كل (أشهر)"
+
+#: templates/webapp/hr/settlement.html
+msgid "Final settlement"
+msgstr "التسوية النهائية"
+
+#: templates/webapp/hr/settlement.html
+msgid "Draft"
+msgstr "مسودة"
+
+#: templates/webapp/hr/settlement.html
 msgid "Joined"
 msgstr "تاريخ الالتحاق"
+
+#: templates/webapp/hr/settlement.html
+msgid "Last working day"
+msgstr "آخر يوم عمل"
+
+#: templates/webapp/hr/settlement.html
+msgid "years of service"
+msgstr "سنوات الخدمة"
+
+#: templates/webapp/hr/settlement.html
+msgid "Gratuity"
+msgstr "مكافأة نهاية الخدمة"
+
+#: templates/webapp/hr/settlement.html
+msgid "Unpaid salary"
+msgstr "راتب غير مدفوع"
+
+#: templates/webapp/hr/settlement.html
+msgid "Leave not taken"
+msgstr "إجازة غير مستخدمة"
+
+#: templates/webapp/hr/settlement.html
+msgid "Air ticket"
+msgstr "تذكرة طيران"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other payments"
+msgstr "مدفوعات أخرى"
+
+#: templates/webapp/hr/settlement.html
+msgid "Salary advance to recover"
+msgstr "سلفة راتب للاسترداد"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other deductions"
+msgstr "خصومات أخرى"
+
+#: templates/webapp/hr/settlement.html
+msgid "Received in full and final settlement"
+msgstr "استلمت كتسوية كاملة ونهائية"
+
+#: templates/webapp/hr/settlement.html
+msgid ""
+"Pay this settlement? It is recorded in the accounts and the staff member is "
+"marked as left."
+msgstr "دفع هذه التسوية؟ ستُسجّل في الحسابات ويُعتبر الموظف قد غادر."
+
+#: templates/webapp/hr/settlement.html
+msgid "Pay & close"
+msgstr "ادفع وأغلق"
+
+#: templates/webapp/hr/settlement.html
+msgid "Remove draft"
+msgstr "حذف المسودة"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Reason"
+msgstr "السبب"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Air ticket amount"
+msgstr "مبلغ تذكرة السفر"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Other payments (bonus…)"
+msgstr "مدفوعات أخرى (مكافأة…)"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "less than one year: none"
+msgstr "أقل من سنة: لا شيء"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Save settlement"
+msgstr "حفظ التسوية"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "Login"
@@ -4254,6 +4405,10 @@ msgstr ""
 #: templates/webapp/hr/staff_detail.html
 msgid "No site attendance this month yet."
 msgstr "لا يوجد حضور في المواقع هذا الشهر بعد."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "months since the last ticket"
+msgstr "أشهر منذ آخر تذكرة"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "per month"
@@ -4322,6 +4477,10 @@ msgstr "لا مستندات."
 #: templates/webapp/hr/staff_form.html
 msgid "Edit staff"
 msgstr "تعديل الموظف"
+
+#: templates/webapp/hr/staff_form.html
+msgid "Bank (WPS)"
+msgstr "البنك (WPS)"
 
 #: templates/webapp/hr/staff_form.html
 msgid ""
@@ -4397,6 +4556,98 @@ msgstr "لا موظفين سابقين."
 #: templates/webapp/hr/staff_list.html
 msgid "No staff yet. Add your first staff member with their salary."
 msgstr "لا موظفين بعد. أضف أول موظف مع راتبه."
+
+#: templates/webapp/hr/vacations.html
+msgid "On vacation now"
+msgstr "في إجازة الآن"
+
+#: templates/webapp/hr/vacations.html
+msgid "Late back"
+msgstr "متأخر في العودة"
+
+#: templates/webapp/hr/vacations.html
+msgid "Leaving in 30 days"
+msgstr "يغادرون خلال 30 يومًا"
+
+#: templates/webapp/hr/vacations.html
+msgid "Due an air ticket"
+msgstr "مستحقون لتذكرة سفر"
+
+#: templates/webapp/hr/vacations.html
+msgid "was due back"
+msgstr "كان يجب أن يعود في"
+
+#: templates/webapp/hr/vacations.html
+msgid "days late"
+msgstr "يوم تأخير"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work"
+msgstr "عاد إلى العمل"
+
+#: templates/webapp/hr/vacations.html
+msgid "ticket"
+msgstr "تذكرة"
+
+#: templates/webapp/hr/vacations.html
+msgid "Nobody is on vacation."
+msgstr "لا أحد في إجازة."
+
+#: templates/webapp/hr/vacations.html
+msgid "leave balance"
+msgstr "رصيد الإجازة"
+
+#: templates/webapp/hr/vacations.html
+msgid "Plan a vacation"
+msgstr "تخطيط إجازة"
+
+#: templates/webapp/hr/vacations.html
+msgid "Staff member"
+msgstr "الموظف"
+
+#: templates/webapp/hr/vacations.html
+msgid "First day of vacation"
+msgstr "أول يوم من الإجازة"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work on"
+msgstr "يعود إلى العمل في"
+
+#: templates/webapp/hr/vacations.html
+msgid "Air ticket given"
+msgstr "تم منح تذكرة السفر"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket amount"
+msgstr "مبلغ التذكرة"
+
+#: templates/webapp/hr/vacations.html
+msgid "Recent vacations"
+msgstr "الإجازات الأخيرة"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back on"
+msgstr "عاد في"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket"
+msgstr "التذكرة"
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Fix these before sending the file to the bank"
+msgstr "أصلح هذه قبل إرسال الملف إلى البنك"
+
+#: templates/webapp/hr/wps_problems.html
+msgid ""
+"The QID comes from the staff member's ID / residence card document; the bank"
+" and IBAN are on the staff form."
+msgstr ""
+"الرقم الشخصي يؤخذ من وثيقة الهوية / بطاقة الإقامة للموظف؛ البنك ورقم IBAN في"
+" نموذج الموظف."
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Download anyway"
+msgstr "تنزيل على أي حال"
 
 #: templates/webapp/import_export/product_import.html
 msgid "Import products"
@@ -5933,6 +6184,43 @@ msgstr "إنشاء فاتورة"
 msgid "Choose the client for this site first."
 msgstr "اختر عميل هذا الموقع أولًا."
 
+#: templates/webapp/manpower/camps.html
+msgid "Camps & accommodation"
+msgstr "المعسكرات والسكن"
+
+#: templates/webapp/manpower/camps.html
+msgid "beds"
+msgstr "أسرّة"
+
+#: templates/webapp/manpower/camps.html
+msgid "per person a month"
+msgstr "للشخص شهريًا"
+
+#: templates/webapp/manpower/camps.html
+msgid "Move out"
+msgstr "إخراج"
+
+#: templates/webapp/manpower/camps.html
+msgid "Nobody lives here yet."
+msgstr "لا أحد يسكن هنا بعد."
+
+#: templates/webapp/manpower/camps.html
+msgid "Move in"
+msgstr "إسكان"
+
+#: templates/webapp/manpower/camps.html
+msgid "No camps yet. Add one below."
+msgstr "لا توجد معسكرات بعد. أضف واحدًا أدناه."
+
+#: templates/webapp/manpower/camps.html
+msgid "New camp"
+msgstr "معسكر جديد"
+
+#: templates/webapp/manpower/camps.html
+msgid ""
+"The camp's cost per person is added to each worker's cost in Site profit."
+msgstr "تُضاف تكلفة الشخص في المعسكر إلى تكلفة كل عامل في ربح المواقع."
+
 #: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "المواقع النشطة"
@@ -6066,6 +6354,10 @@ msgstr ""
 "من حضور الموقع: ما يُفوتر لكل عميل (السعر × الساعات / الأيام، مع العمل "
 "الإضافي) مقابل ما ندفعه للعامل عن ذلك الوقت (راتب الأيام، أو أجر اليوم / "
 "الساعة، مع أجر العمل الإضافي)."
+
+#: templates/webapp/manpower/profit.html
+msgid "Camp"
+msgstr "المعسكر"
 
 #: templates/webapp/manpower/site.html
 msgid "Client"
@@ -7032,10 +7324,6 @@ msgstr "فتح الحجز"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "المطلوب"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Reason"
-msgstr "السبب"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Confirm"
@@ -8708,12 +8996,39 @@ msgid "oldest"
 msgstr "الأقدم"
 
 #: templates/webapp/receivables/home.html
-msgid "days late"
-msgstr "يوم تأخير"
-
-#: templates/webapp/receivables/home.html
 msgid "Nobody owes you money."
 msgstr "لا أحد مدين لك."
+
+#: templates/webapp/recruitment/agents.html
+msgid "Owed"
+msgstr "المستحق"
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"Commission is owed for candidates who joined (set it on the placement). "
+"Payments are the “Agent commission” costs recorded on placements."
+msgstr ""
+"العمولة مستحقة عن المرشحين الذين التحقوا (حددها في التوظيف). المدفوعات هي "
+"تكاليف «عمولة الوكيل» المسجلة في التوظيفات."
+
+#: templates/webapp/recruitment/agents.html
+msgid "candidates sent"
+msgstr "مرشحون مرسلون"
+
+#: templates/webapp/recruitment/agents.html
+msgid "joined"
+msgstr "التحقوا"
+
+#: templates/webapp/recruitment/agents.html
+msgid "Nobody joined yet."
+msgstr "لم يلتحق أحد بعد."
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"No candidates from sub-agents yet. Choose the sub-agent on the candidate "
+"form."
+msgstr ""
+"لا يوجد مرشحون من وكلاء فرعيين بعد. اختر الوكيل الفرعي في نموذج المرشح."
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "View CV"
@@ -8973,10 +9288,6 @@ msgid "Position, number or client"
 msgstr "الوظيفة أو الرقم أو العميل"
 
 #: templates/webapp/recruitment/jobs.html
-msgid "joined"
-msgstr "التحقوا"
-
-#: templates/webapp/recruitment/jobs.html
 msgid "No job orders here."
 msgstr "لا توجد طلبات هنا."
 
@@ -9088,6 +9399,10 @@ msgid "Replacement guarantee until"
 msgstr "ضمان الاستبدال حتى"
 
 #: templates/webapp/recruitment/placement.html
+msgid "Commission for"
+msgstr "عمولة لـ"
+
+#: templates/webapp/recruitment/placement.html
 msgid "Fees & profit"
 msgstr "الرسوم والربح"
 
@@ -9166,6 +9481,34 @@ msgstr "مدفوع إلى"
 #: templates/webapp/recruitment/placement.html
 msgid "Add cost"
 msgstr "إضافة تكلفة"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "approved"
+msgstr "معتمدة"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "used"
+msgstr "مستخدمة"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "Valid until"
+msgstr "صالح حتى"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "No visa quotas yet."
+msgstr "لا توجد حصص تأشيرات بعد."
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "New visa quota"
+msgstr "حصة تأشيرات جديدة"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid ""
+"Choose the quota on each placement; it then counts as used (rejected and "
+"withdrawn placements do not count)."
+msgstr ""
+"اختر الحصة في كل توظيف؛ عندها تُحسب مستخدمة (لا تُحسب التوظيفات المرفوضة أو "
+"المسحوبة)."
 
 #: templates/webapp/refills/list.html
 msgid "Refill subscriptions"
@@ -10852,10 +11195,6 @@ msgstr "تم التسليم اليوم"
 msgid "Product"
 msgstr "المنتج"
 
-#: templates/webapp/sales_docs/_doc_head.html
-msgid "Valid until"
-msgstr "صالح حتى"
-
 #: templates/webapp/sales_docs/_tabs.html
 msgid "Sales documents"
 msgstr "مستندات المبيعات"
@@ -12402,6 +12741,91 @@ msgstr "اختر %(label)s"
 msgid "Select…"
 msgstr "اختر…"
 
+#: apps/employees/advanced.py
+msgid "Download the bank's WPS salary file (SIF) from an approved payroll."
+msgstr "نزّل ملف رواتب WPS (SIF) للبنك من كشف رواتب معتمد."
+
+#: apps/employees/advanced.py
+msgid "Gratuity & final settlement"
+msgstr "مكافأة نهاية الخدمة والتسوية النهائية"
+
+#: apps/employees/advanced.py
+msgid ""
+"End-of-service gratuity and the final settlement when someone leaves, "
+"recorded in the accounts."
+msgstr ""
+"مكافأة نهاية الخدمة والتسوية النهائية عند مغادرة شخص، مسجلة في الحسابات."
+
+#: apps/employees/advanced.py
+msgid "Vacation & air ticket"
+msgstr "الإجازة وتذكرة السفر"
+
+#: apps/employees/advanced.py
+msgid "Annual home leave with the air ticket: who is away, due or late back."
+msgstr ""
+"الإجازة السنوية مع تذكرة السفر: من هو غائب، ومن يستحق، ومن تأخر في العودة."
+
+#: apps/employees/advanced.py
+msgid "Camps & accommodation cost"
+msgstr "تكلفة المعسكرات والسكن"
+
+#: apps/employees/advanced.py
+msgid "Staff camps with their monthly cost per head, counted in site profit."
+msgstr "معسكرات الموظفين وتكلفتها الشهرية للفرد، محسوبة في ربح المواقع."
+
+#: apps/employees/advanced.py
+msgid "Visa quotas approved for the company: used and left."
+msgstr "حصص التأشيرات المعتمدة للشركة: المستخدم والمتبقي."
+
+#: apps/employees/advanced.py
+msgid ""
+"What each sub-agent is owed for the candidates they sent, and what is paid."
+msgstr "ما يستحقه كل وكيل فرعي عن المرشحين الذين أرسلهم، وما تم دفعه."
+
+#: apps/employees/advanced.py
+msgid "Fill the employer ID, bank and IBAN in HR settings."
+msgstr "أدخل رقم صاحب العمل والبنك ورقم IBAN في إعدادات الموارد البشرية."
+
+#: apps/employees/advanced.py
+msgid "QID"
+msgstr "الرقم الشخصي"
+
+#: apps/employees/advanced.py
+msgid "bank"
+msgstr "البنك"
+
+#: apps/employees/advanced.py
+msgid "IBAN"
+msgstr "IBAN"
+
+#: apps/employees/advanced.py
+msgid "%(name)s: no %(what)s"
+msgstr "%(name)s: لا يوجد %(what)s"
+
+#: apps/employees/advanced.py
+msgid "Enter the joining date on the staff record first."
+msgstr "أدخل تاريخ الالتحاق في سجل الموظف أولًا."
+
+#: apps/employees/advanced.py
+msgid "The last day is before the joining date."
+msgstr "آخر يوم قبل تاريخ الالتحاق."
+
+#: apps/employees/advanced.py
+msgid "This settlement is already paid."
+msgstr "هذه التسوية مدفوعة بالفعل."
+
+#: apps/employees/advanced.py
+msgid "The deductions are more than the amount due."
+msgstr "الخصومات أكثر من المبلغ المستحق."
+
+#: apps/employees/advanced.py
+msgid "Choose the first day and the day back at work."
+msgstr "اختر أول يوم ويوم العودة إلى العمل."
+
+#: apps/employees/advanced.py
+msgid "%(name)s already has a vacation in these dates."
+msgstr "لدى %(name)s إجازة بالفعل في هذه التواريخ."
+
 #: apps/employees/site_workers.py
 msgid "Choose a site."
 msgstr "اختر موقعًا."
@@ -13193,10 +13617,6 @@ msgstr "بدون منطقة"
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "جالس"
-
-#: apps/verticals/restaurant/models.py
-msgid "Draft"
-msgstr "مسودة"
 
 #: apps/verticals/restaurant/models.py
 msgid "Served"
@@ -14428,12 +14848,20 @@ msgid "Login (optional)"
 msgstr "الدخول (اختياري)"
 
 #: apps/webapp/hr_views.py
-msgid "This login is already linked to another staff member."
-msgstr "هذا الدخول مرتبط بموظف آخر."
+msgid "Bank (short name, e.g. QNB)"
+msgstr "البنك (الاسم المختصر، مثل QNB)"
 
 #: apps/webapp/hr_views.py
-msgid "Staff member"
-msgstr "الموظف"
+msgid "IBAN / account number"
+msgstr "IBAN / رقم الحساب"
+
+#: apps/webapp/hr_views.py
+msgid "Visa ID (optional)"
+msgstr "رقم التأشيرة (اختياري)"
+
+#: apps/webapp/hr_views.py
+msgid "This login is already linked to another staff member."
+msgstr "هذا الدخول مرتبط بموظف آخر."
 
 #: apps/webapp/hr_views.py
 msgid "Advance amount"
@@ -14559,6 +14987,30 @@ msgstr "تم حفظ المستند."
 #: apps/webapp/hr_views.py
 msgid "HR settings saved."
 msgstr "تم حفظ إعدادات الموارد البشرية."
+
+#: apps/webapp/hr_views.py
+msgid "Approve the payroll first."
+msgstr "اعتمد كشف الرواتب أولًا."
+
+#: apps/webapp/hr_views.py
+msgid "Final settlement saved for %(name)s."
+msgstr "تم حفظ التسوية النهائية لـ %(name)s."
+
+#: apps/webapp/hr_views.py
+msgid "Settlement paid and recorded in the accounts."
+msgstr "تم دفع التسوية وتسجيلها في الحسابات."
+
+#: apps/webapp/hr_views.py
+msgid "Draft removed."
+msgstr "تم حذف المسودة."
+
+#: apps/webapp/hr_views.py
+msgid "Vacation saved."
+msgstr "تم حفظ الإجازة."
+
+#: apps/webapp/hr_views.py
+msgid "%(name)s is back at work."
+msgstr "عاد %(name)s إلى العمل."
 
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
@@ -14804,6 +15256,32 @@ msgstr "تمت إزالة المناوبة."
 #: apps/webapp/manpower_views.py
 msgid "Trade"
 msgstr "المهنة"
+
+#: apps/webapp/manpower_views.py
+msgid "Camp / building name"
+msgstr "اسم المعسكر / المبنى"
+
+#: apps/webapp/manpower_views.py
+msgid "Beds"
+msgstr "الأسرّة"
+
+#: apps/webapp/manpower_views.py
+msgid "Monthly cost (rent, electricity, water…)"
+msgstr "التكلفة الشهرية (إيجار، كهرباء، ماء…)"
+
+#: apps/webapp/manpower_views.py
+msgid "Food per person a month"
+msgstr "الطعام للشخص شهريًا"
+
+#: apps/webapp/manpower_views.py
+msgid "Transport per person a month"
+msgstr "المواصلات للشخص شهريًا"
+
+#: apps/webapp/manpower_views.py
+msgid ""
+"Switch on “Camps & accommodation cost” in HR settings → Advanced features."
+msgstr ""
+"فعّل «تكلفة المعسكرات والسكن» في إعدادات الموارد البشرية ← ميزات متقدمة."
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -16072,10 +16550,6 @@ msgid "Visa"
 msgstr "التأشيرة"
 
 #: apps/webapp/recruitment_views.py
-msgid "Ticket"
-msgstr "التذكرة"
-
-#: apps/webapp/recruitment_views.py
 msgid "Joined / deployed"
 msgstr "التحق بالعمل"
 
@@ -16090,10 +16564,6 @@ msgstr "لائق"
 #: apps/webapp/recruitment_views.py
 msgid "Unfit"
 msgstr "غير لائق"
-
-#: apps/webapp/recruitment_views.py
-msgid "Air ticket"
-msgstr "تذكرة طيران"
 
 #: apps/webapp/recruitment_views.py
 msgid "Agent commission"
@@ -16122,6 +16592,26 @@ msgstr "الجنسية المفضلة إن وجدت."
 #: apps/webapp/recruitment_views.py
 msgid "Accommodation, food, transport…"
 msgstr "السكن، الطعام، المواصلات…"
+
+#: apps/webapp/recruitment_views.py
+msgid "Approval / block visa number"
+msgstr "رقم الموافقة / التأشيرة المجمعة"
+
+#: apps/webapp/recruitment_views.py
+msgid "Profession"
+msgstr "المهنة"
+
+#: apps/webapp/recruitment_views.py
+msgid "Visas approved"
+msgstr "التأشيرات المعتمدة"
+
+#: apps/webapp/recruitment_views.py
+msgid "Switch on “%(name)s” in HR settings → Advanced features."
+msgstr "فعّل «%(name)s» في إعدادات الموارد البشرية ← ميزات متقدمة."
+
+#: apps/webapp/recruitment_views.py
+msgid "This quota is used by placements."
+msgstr "هذه الحصة مستخدمة في توظيفات."
 
 #: apps/webapp/refill_views.py
 msgid "Choose the customer and the item, and enter how often."

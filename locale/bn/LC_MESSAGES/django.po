@@ -686,6 +686,14 @@ msgid "Candidates"
 msgstr "প্রার্থী"
 
 #: templates/webapp/_industry_nav.html
+msgid "Visa quota"
+msgstr "ভিসা কোটা"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sub-agent commission"
+msgstr "সাব-এজেন্ট কমিশন"
+
+#: templates/webapp/_industry_nav.html
 msgid "Careers website"
 msgstr "ক্যারিয়ার ওয়েবসাইট"
 
@@ -716,6 +724,10 @@ msgstr "ক্লায়েন্ট বিলিং"
 #: templates/webapp/_industry_nav.html
 msgid "Site profit"
 msgstr "সাইট লাভ"
+
+#: templates/webapp/_industry_nav.html
+msgid "Camps"
+msgstr "ক্যাম্প"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3794,6 +3806,10 @@ msgid "Documents"
 msgstr "নথি"
 
 #: templates/webapp/hr/_tabs.html
+msgid "Vacations"
+msgstr "ছুটি"
+
+#: templates/webapp/hr/_tabs.html
 msgid "HR settings"
 msgstr "HR সেটিংস"
 
@@ -4058,6 +4074,10 @@ msgid "Add holiday"
 msgstr "ছুটির দিন যোগ করুন"
 
 #: templates/webapp/hr/payroll.html
+msgid "WPS salary file"
+msgstr "WPS বেতন ফাইল"
+
+#: templates/webapp/hr/payroll.html
 msgid "Draft — check and approve"
 msgstr "খসড়া — যাচাই করে অনুমোদন করুন"
 
@@ -4215,9 +4235,143 @@ msgstr "অনুপস্থিত দিন, অর্ধদিবস ও ব�
 msgid "Daily rate = (basic + allowances) ÷ days in the month."
 msgstr "দৈনিক হার = (মূল + ভাতা) ÷ মাসের দিন।"
 
-#: templates/webapp/hr/staff_detail.html
+#: templates/webapp/hr/settings.html
+msgid "Advanced features"
+msgstr "উন্নত সুবিধা"
+
+#: templates/webapp/hr/settings.html
+msgid ""
+"Switch on only what you use — the menus show only the features that are on."
+msgstr ""
+"শুধু যা ব্যবহার করেন তা চালু করুন — মেনুতে শুধু চালু সুবিধাগুলো দেখায়।"
+
+#: templates/webapp/hr/settings.html
+msgid "Employer ID (establishment)"
+msgstr "নিয়োগকর্তা আইডি (প্রতিষ্ঠান)"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer ID (if different)"
+msgstr "প্রদানকারী আইডি (ভিন্ন হলে)"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer QID (if the payer is a person)"
+msgstr "প্রদানকারী QID (প্রদানকারী ব্যক্তি হলে)"
+
+#: templates/webapp/hr/settings.html
+msgid "Our bank (short name, e.g. QNB)"
+msgstr "আমাদের ব্যাংক (সংক্ষিপ্ত নাম, যেমন QNB)"
+
+#: templates/webapp/hr/settings.html
+msgid "Our IBAN"
+msgstr "আমাদের IBAN"
+
+#: templates/webapp/hr/settings.html
+msgid "Rules"
+msgstr "নিয়ম"
+
+#: templates/webapp/hr/settings.html
+msgid "Gratuity: days of basic pay per year of service"
+msgstr "গ্র্যাচুইটি: প্রতি বছরের চাকরির জন্য মূল বেতনের দিন"
+
+#: templates/webapp/hr/settings.html
+msgid "Qatar: at least 21 days (3 weeks), after one year of service."
+msgstr "কাতার: এক বছর চাকরির পর অন্তত ২১ দিন (৩ সপ্তাহ)।"
+
+#: templates/webapp/hr/settings.html
+msgid "Vacation days per year"
+msgstr "বছরে ছুটির দিন"
+
+#: templates/webapp/hr/settings.html
+msgid "Air ticket every (months)"
+msgstr "বিমান টিকিট প্রতি (মাস)"
+
+#: templates/webapp/hr/settlement.html
+msgid "Final settlement"
+msgstr "চূড়ান্ত নিষ্পত্তি"
+
+#: templates/webapp/hr/settlement.html
+msgid "Draft"
+msgstr "খসড়া"
+
+#: templates/webapp/hr/settlement.html
 msgid "Joined"
 msgstr "যোগদান"
+
+#: templates/webapp/hr/settlement.html
+msgid "Last working day"
+msgstr "শেষ কর্মদিবস"
+
+#: templates/webapp/hr/settlement.html
+msgid "years of service"
+msgstr "চাকরির বছর"
+
+#: templates/webapp/hr/settlement.html
+msgid "Gratuity"
+msgstr "গ্র্যাচুইটি"
+
+#: templates/webapp/hr/settlement.html
+msgid "Unpaid salary"
+msgstr "বকেয়া বেতন"
+
+#: templates/webapp/hr/settlement.html
+msgid "Leave not taken"
+msgstr "না নেওয়া ছুটি"
+
+#: templates/webapp/hr/settlement.html
+msgid "Air ticket"
+msgstr "বিমান টিকিট"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other payments"
+msgstr "অন্যান্য প্রদান"
+
+#: templates/webapp/hr/settlement.html
+msgid "Salary advance to recover"
+msgstr "ফেরত নেওয়ার বেতন অগ্রিম"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other deductions"
+msgstr "অন্যান্য কর্তন"
+
+#: templates/webapp/hr/settlement.html
+msgid "Received in full and final settlement"
+msgstr "সম্পূর্ণ ও চূড়ান্ত নিষ্পত্তি হিসেবে গ্রহণ করলাম"
+
+#: templates/webapp/hr/settlement.html
+msgid ""
+"Pay this settlement? It is recorded in the accounts and the staff member is "
+"marked as left."
+msgstr ""
+"এই নিষ্পত্তি প্রদান করবেন? এটি হিসাবে লেখা হবে এবং কর্মীকে চলে যাওয়া হিসেবে"
+" চিহ্নিত করা হবে।"
+
+#: templates/webapp/hr/settlement.html
+msgid "Pay & close"
+msgstr "প্রদান করে বন্ধ করুন"
+
+#: templates/webapp/hr/settlement.html
+msgid "Remove draft"
+msgstr "খসড়া সরান"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Reason"
+msgstr "কারণ"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Air ticket amount"
+msgstr "বিমান টিকিটের পরিমাণ"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Other payments (bonus…)"
+msgstr "অন্যান্য প্রদান (বোনাস…)"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "less than one year: none"
+msgstr "এক বছরের কম: কিছু নয়"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Save settlement"
+msgstr "নিষ্পত্তি সংরক্ষণ করুন"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "Login"
@@ -4269,6 +4423,10 @@ msgstr ""
 #: templates/webapp/hr/staff_detail.html
 msgid "No site attendance this month yet."
 msgstr "এই মাসে এখনও সাইট উপস্থিতি নেই।"
+
+#: templates/webapp/hr/staff_detail.html
+msgid "months since the last ticket"
+msgstr "শেষ টিকিটের পর মাস"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "per month"
@@ -4337,6 +4495,10 @@ msgstr "কোনো নথি নেই।"
 #: templates/webapp/hr/staff_form.html
 msgid "Edit staff"
 msgstr "কর্মী সম্পাদনা"
+
+#: templates/webapp/hr/staff_form.html
+msgid "Bank (WPS)"
+msgstr "ব্যাংক (WPS)"
 
 #: templates/webapp/hr/staff_form.html
 msgid ""
@@ -4413,6 +4575,98 @@ msgstr "কোনো প্রাক্তন কর্মী নেই।"
 #: templates/webapp/hr/staff_list.html
 msgid "No staff yet. Add your first staff member with their salary."
 msgstr "এখনো কোনো কর্মী নেই। বেতনসহ আপনার প্রথম কর্মী যোগ করুন।"
+
+#: templates/webapp/hr/vacations.html
+msgid "On vacation now"
+msgstr "এখন ছুটিতে"
+
+#: templates/webapp/hr/vacations.html
+msgid "Late back"
+msgstr "ফিরতে দেরি"
+
+#: templates/webapp/hr/vacations.html
+msgid "Leaving in 30 days"
+msgstr "৩০ দিনের মধ্যে যাচ্ছেন"
+
+#: templates/webapp/hr/vacations.html
+msgid "Due an air ticket"
+msgstr "বিমান টিকিটের যোগ্য"
+
+#: templates/webapp/hr/vacations.html
+msgid "was due back"
+msgstr "ফেরার কথা ছিল"
+
+#: templates/webapp/hr/vacations.html
+msgid "days late"
+msgstr "দিন দেরি"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work"
+msgstr "কাজে ফিরেছেন"
+
+#: templates/webapp/hr/vacations.html
+msgid "ticket"
+msgstr "টিকিট"
+
+#: templates/webapp/hr/vacations.html
+msgid "Nobody is on vacation."
+msgstr "কেউ ছুটিতে নেই।"
+
+#: templates/webapp/hr/vacations.html
+msgid "leave balance"
+msgstr "ছুটির ব্যালান্স"
+
+#: templates/webapp/hr/vacations.html
+msgid "Plan a vacation"
+msgstr "ছুটি পরিকল্পনা"
+
+#: templates/webapp/hr/vacations.html
+msgid "Staff member"
+msgstr "কর্মী"
+
+#: templates/webapp/hr/vacations.html
+msgid "First day of vacation"
+msgstr "ছুটির প্রথম দিন"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work on"
+msgstr "কাজে ফেরার দিন"
+
+#: templates/webapp/hr/vacations.html
+msgid "Air ticket given"
+msgstr "বিমান টিকিট দেওয়া হয়েছে"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket amount"
+msgstr "টিকিটের পরিমাণ"
+
+#: templates/webapp/hr/vacations.html
+msgid "Recent vacations"
+msgstr "সাম্প্রতিক ছুটি"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back on"
+msgstr "ফিরেছেন"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket"
+msgstr "টিকিট"
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Fix these before sending the file to the bank"
+msgstr "ব্যাংকে ফাইল পাঠানোর আগে এগুলো ঠিক করুন"
+
+#: templates/webapp/hr/wps_problems.html
+msgid ""
+"The QID comes from the staff member's ID / residence card document; the bank"
+" and IBAN are on the staff form."
+msgstr ""
+"QID কর্মীর আইডি / রেসিডেন্স কার্ড নথি থেকে আসে; ব্যাংক ও IBAN কর্মী ফর্মে "
+"থাকে।"
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Download anyway"
+msgstr "তবুও ডাউনলোড করুন"
 
 #: templates/webapp/import_export/product_import.html
 msgid "Import products"
@@ -5955,6 +6209,43 @@ msgstr "ইনভয়েস তৈরি করুন"
 msgid "Choose the client for this site first."
 msgstr "আগে এই সাইটের ক্লায়েন্ট বেছে নিন।"
 
+#: templates/webapp/manpower/camps.html
+msgid "Camps & accommodation"
+msgstr "ক্যাম্প ও থাকার ব্যবস্থা"
+
+#: templates/webapp/manpower/camps.html
+msgid "beds"
+msgstr "বেড"
+
+#: templates/webapp/manpower/camps.html
+msgid "per person a month"
+msgstr "জনপ্রতি মাসে"
+
+#: templates/webapp/manpower/camps.html
+msgid "Move out"
+msgstr "বের করুন"
+
+#: templates/webapp/manpower/camps.html
+msgid "Nobody lives here yet."
+msgstr "এখানে এখনও কেউ থাকে না।"
+
+#: templates/webapp/manpower/camps.html
+msgid "Move in"
+msgstr "থাকতে দিন"
+
+#: templates/webapp/manpower/camps.html
+msgid "No camps yet. Add one below."
+msgstr "এখনও কোনো ক্যাম্প নেই। নিচে একটি যোগ করুন।"
+
+#: templates/webapp/manpower/camps.html
+msgid "New camp"
+msgstr "নতুন ক্যাম্প"
+
+#: templates/webapp/manpower/camps.html
+msgid ""
+"The camp's cost per person is added to each worker's cost in Site profit."
+msgstr "ক্যাম্পের জনপ্রতি খরচ সাইট লাভে প্রতিটি কর্মীর খরচে যোগ হয়।"
+
 #: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "সক্রিয় সাইট"
@@ -6088,6 +6379,10 @@ msgstr ""
 "সাইট উপস্থিতি থেকে: প্রতিটি ক্লায়েন্টকে কত বিল হয়েছে (রেট × ঘণ্টা / দিন, "
 "সাথে ওভারটাইম) বনাম সেই সময়ের জন্য কর্মীকে আমরা কত দিই (দিনের বেতন, বা দিন "
 "/ ঘণ্টার রেট, সাথে ওভারটাইম)।"
+
+#: templates/webapp/manpower/profit.html
+msgid "Camp"
+msgstr "ক্যাম্প"
 
 #: templates/webapp/manpower/site.html
 msgid "Client"
@@ -7056,10 +7351,6 @@ msgstr "বুকিং খুলুন"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "চান"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Reason"
-msgstr "কারণ"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Confirm"
@@ -8739,12 +9030,39 @@ msgid "oldest"
 msgstr "সবচেয়ে পুরনো"
 
 #: templates/webapp/receivables/home.html
-msgid "days late"
-msgstr "দিন দেরি"
-
-#: templates/webapp/receivables/home.html
 msgid "Nobody owes you money."
 msgstr "কেউ আপনার কাছে টাকা বাকি রাখেনি।"
+
+#: templates/webapp/recruitment/agents.html
+msgid "Owed"
+msgstr "পাওনা"
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"Commission is owed for candidates who joined (set it on the placement). "
+"Payments are the “Agent commission” costs recorded on placements."
+msgstr ""
+"কমিশন পাওনা যারা যোগ দিয়েছেন সেই প্রার্থীদের জন্য (প্লেসমেন্টে দিন)। "
+"প্রদানগুলো প্লেসমেন্টে লেখা «এজেন্ট কমিশন» খরচ।"
+
+#: templates/webapp/recruitment/agents.html
+msgid "candidates sent"
+msgstr "পাঠানো প্রার্থী"
+
+#: templates/webapp/recruitment/agents.html
+msgid "joined"
+msgstr "যোগ দিয়েছে"
+
+#: templates/webapp/recruitment/agents.html
+msgid "Nobody joined yet."
+msgstr "এখনও কেউ যোগ দেয়নি।"
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"No candidates from sub-agents yet. Choose the sub-agent on the candidate "
+"form."
+msgstr ""
+"এখনও সাব-এজেন্ট থেকে কোনো প্রার্থী নেই। প্রার্থী ফর্মে সাব-এজেন্ট বেছে নিন।"
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "View CV"
@@ -9004,10 +9322,6 @@ msgid "Position, number or client"
 msgstr "পদ, নম্বর বা ক্লায়েন্ট"
 
 #: templates/webapp/recruitment/jobs.html
-msgid "joined"
-msgstr "যোগ দিয়েছে"
-
-#: templates/webapp/recruitment/jobs.html
 msgid "No job orders here."
 msgstr "এখানে কোনো জব অর্ডার নেই।"
 
@@ -9120,6 +9434,10 @@ msgid "Replacement guarantee until"
 msgstr "প্রতিস্থাপন গ্যারান্টি পর্যন্ত"
 
 #: templates/webapp/recruitment/placement.html
+msgid "Commission for"
+msgstr "কমিশন:"
+
+#: templates/webapp/recruitment/placement.html
 msgid "Fees & profit"
 msgstr "ফি ও লাভ"
 
@@ -9198,6 +9516,34 @@ msgstr "যাকে দেওয়া"
 #: templates/webapp/recruitment/placement.html
 msgid "Add cost"
 msgstr "খরচ যোগ করুন"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "approved"
+msgstr "অনুমোদিত"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "used"
+msgstr "ব্যবহৃত"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "Valid until"
+msgstr "বৈধ পর্যন্ত"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "No visa quotas yet."
+msgstr "এখনও কোনো ভিসা কোটা নেই।"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "New visa quota"
+msgstr "নতুন ভিসা কোটা"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid ""
+"Choose the quota on each placement; it then counts as used (rejected and "
+"withdrawn placements do not count)."
+msgstr ""
+"প্রতিটি প্লেসমেন্টে কোটা বেছে নিন; তখন তা ব্যবহৃত হিসেবে গণ্য হয় "
+"(প্রত্যাখ্যাত ও প্রত্যাহৃত গণ্য হয় না)।"
 
 #: templates/webapp/refills/list.html
 msgid "Refill subscriptions"
@@ -10890,10 +11236,6 @@ msgstr "আজ ডেলিভারড"
 msgid "Product"
 msgstr "পণ্য"
 
-#: templates/webapp/sales_docs/_doc_head.html
-msgid "Valid until"
-msgstr "বৈধ পর্যন্ত"
-
 #: templates/webapp/sales_docs/_tabs.html
 msgid "Sales documents"
 msgstr "বিক্রয় নথি"
@@ -12452,6 +12794,91 @@ msgstr "%(label)s নির্বাচন করুন"
 msgid "Select…"
 msgstr "নির্বাচন করুন…"
 
+#: apps/employees/advanced.py
+msgid "Download the bank's WPS salary file (SIF) from an approved payroll."
+msgstr "অনুমোদিত পেরোল থেকে ব্যাংকের WPS বেতন ফাইল (SIF) ডাউনলোড করুন।"
+
+#: apps/employees/advanced.py
+msgid "Gratuity & final settlement"
+msgstr "গ্র্যাচুইটি ও চূড়ান্ত নিষ্পত্তি"
+
+#: apps/employees/advanced.py
+msgid ""
+"End-of-service gratuity and the final settlement when someone leaves, "
+"recorded in the accounts."
+msgstr ""
+"কেউ চলে গেলে চাকরি শেষের গ্র্যাচুইটি ও চূড়ান্ত নিষ্পত্তি, হিসাবে লেখা।"
+
+#: apps/employees/advanced.py
+msgid "Vacation & air ticket"
+msgstr "ছুটি ও বিমান টিকিট"
+
+#: apps/employees/advanced.py
+msgid "Annual home leave with the air ticket: who is away, due or late back."
+msgstr "বিমান টিকিটসহ বার্ষিক ছুটি: কে নেই, কে যোগ্য, কে দেরিতে ফিরেছে।"
+
+#: apps/employees/advanced.py
+msgid "Camps & accommodation cost"
+msgstr "ক্যাম্প ও থাকার খরচ"
+
+#: apps/employees/advanced.py
+msgid "Staff camps with their monthly cost per head, counted in site profit."
+msgstr "কর্মী ক্যাম্প ও জনপ্রতি মাসিক খরচ, সাইট লাভে গণনা।"
+
+#: apps/employees/advanced.py
+msgid "Visa quotas approved for the company: used and left."
+msgstr "কোম্পানির অনুমোদিত ভিসা কোটা: ব্যবহৃত ও বাকি।"
+
+#: apps/employees/advanced.py
+msgid ""
+"What each sub-agent is owed for the candidates they sent, and what is paid."
+msgstr ""
+"প্রতিটি সাব-এজেন্ট পাঠানো প্রার্থীদের জন্য কত পাবে, আর কত দেওয়া হয়েছে।"
+
+#: apps/employees/advanced.py
+msgid "Fill the employer ID, bank and IBAN in HR settings."
+msgstr "HR সেটিংসে নিয়োগকর্তা আইডি, ব্যাংক ও IBAN দিন।"
+
+#: apps/employees/advanced.py
+msgid "QID"
+msgstr "QID"
+
+#: apps/employees/advanced.py
+msgid "bank"
+msgstr "ব্যাংক"
+
+#: apps/employees/advanced.py
+msgid "IBAN"
+msgstr "IBAN"
+
+#: apps/employees/advanced.py
+msgid "%(name)s: no %(what)s"
+msgstr "%(name)s: %(what)s নেই"
+
+#: apps/employees/advanced.py
+msgid "Enter the joining date on the staff record first."
+msgstr "আগে কর্মীর রেকর্ডে যোগদানের তারিখ দিন।"
+
+#: apps/employees/advanced.py
+msgid "The last day is before the joining date."
+msgstr "শেষ দিন যোগদানের তারিখের আগে।"
+
+#: apps/employees/advanced.py
+msgid "This settlement is already paid."
+msgstr "এই নিষ্পত্তি ইতিমধ্যে প্রদান করা হয়েছে।"
+
+#: apps/employees/advanced.py
+msgid "The deductions are more than the amount due."
+msgstr "কর্তন পাওনার চেয়ে বেশি।"
+
+#: apps/employees/advanced.py
+msgid "Choose the first day and the day back at work."
+msgstr "প্রথম দিন ও কাজে ফেরার দিন বেছে নিন।"
+
+#: apps/employees/advanced.py
+msgid "%(name)s already has a vacation in these dates."
+msgstr "%(name)s-এর এই তারিখগুলোতে ইতিমধ্যে ছুটি আছে।"
+
 #: apps/employees/site_workers.py
 msgid "Choose a site."
 msgstr "একটি সাইট বেছে নিন।"
@@ -13251,10 +13678,6 @@ msgstr "এলাকা নেই"
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "বসে আছেন"
-
-#: apps/verticals/restaurant/models.py
-msgid "Draft"
-msgstr "খসড়া"
 
 #: apps/verticals/restaurant/models.py
 msgid "Served"
@@ -14501,12 +14924,20 @@ msgid "Login (optional)"
 msgstr "লগইন (ঐচ্ছিক)"
 
 #: apps/webapp/hr_views.py
-msgid "This login is already linked to another staff member."
-msgstr "এই লগইন ইতিমধ্যে অন্য একজন কর্মীর সাথে যুক্ত।"
+msgid "Bank (short name, e.g. QNB)"
+msgstr "ব্যাংক (সংক্ষিপ্ত নাম, যেমন QNB)"
 
 #: apps/webapp/hr_views.py
-msgid "Staff member"
-msgstr "কর্মী"
+msgid "IBAN / account number"
+msgstr "IBAN / অ্যাকাউন্ট নম্বর"
+
+#: apps/webapp/hr_views.py
+msgid "Visa ID (optional)"
+msgstr "ভিসা আইডি (ঐচ্ছিক)"
+
+#: apps/webapp/hr_views.py
+msgid "This login is already linked to another staff member."
+msgstr "এই লগইন ইতিমধ্যে অন্য একজন কর্মীর সাথে যুক্ত।"
 
 #: apps/webapp/hr_views.py
 msgid "Advance amount"
@@ -14633,6 +15064,30 @@ msgstr "নথি সংরক্ষিত হয়েছে।"
 #: apps/webapp/hr_views.py
 msgid "HR settings saved."
 msgstr "HR সেটিংস সংরক্ষিত হয়েছে।"
+
+#: apps/webapp/hr_views.py
+msgid "Approve the payroll first."
+msgstr "আগে পেরোল অনুমোদন করুন।"
+
+#: apps/webapp/hr_views.py
+msgid "Final settlement saved for %(name)s."
+msgstr "%(name)s-এর চূড়ান্ত নিষ্পত্তি সংরক্ষিত।"
+
+#: apps/webapp/hr_views.py
+msgid "Settlement paid and recorded in the accounts."
+msgstr "নিষ্পত্তি প্রদান করা হয়েছে ও হিসাবে লেখা হয়েছে।"
+
+#: apps/webapp/hr_views.py
+msgid "Draft removed."
+msgstr "খসড়া সরানো হয়েছে।"
+
+#: apps/webapp/hr_views.py
+msgid "Vacation saved."
+msgstr "ছুটি সংরক্ষিত।"
+
+#: apps/webapp/hr_views.py
+msgid "%(name)s is back at work."
+msgstr "%(name)s কাজে ফিরেছেন।"
 
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
@@ -14878,6 +15333,31 @@ msgstr "শিফট সরানো হয়েছে।"
 #: apps/webapp/manpower_views.py
 msgid "Trade"
 msgstr "ট্রেড"
+
+#: apps/webapp/manpower_views.py
+msgid "Camp / building name"
+msgstr "ক্যাম্প / ভবনের নাম"
+
+#: apps/webapp/manpower_views.py
+msgid "Beds"
+msgstr "বেড"
+
+#: apps/webapp/manpower_views.py
+msgid "Monthly cost (rent, electricity, water…)"
+msgstr "মাসিক খরচ (ভাড়া, বিদ্যুৎ, পানি…)"
+
+#: apps/webapp/manpower_views.py
+msgid "Food per person a month"
+msgstr "জনপ্রতি মাসিক খাবার"
+
+#: apps/webapp/manpower_views.py
+msgid "Transport per person a month"
+msgstr "জনপ্রতি মাসিক যাতায়াত"
+
+#: apps/webapp/manpower_views.py
+msgid ""
+"Switch on “Camps & accommodation cost” in HR settings → Advanced features."
+msgstr "HR সেটিংস → উন্নত সুবিধায় «ক্যাম্প ও থাকার খরচ» চালু করুন।"
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -16155,10 +16635,6 @@ msgid "Visa"
 msgstr "ভিসা"
 
 #: apps/webapp/recruitment_views.py
-msgid "Ticket"
-msgstr "টিকিট"
-
-#: apps/webapp/recruitment_views.py
 msgid "Joined / deployed"
 msgstr "যোগ দিয়েছেন / পাঠানো হয়েছে"
 
@@ -16173,10 +16649,6 @@ msgstr "ফিট"
 #: apps/webapp/recruitment_views.py
 msgid "Unfit"
 msgstr "আনফিট"
-
-#: apps/webapp/recruitment_views.py
-msgid "Air ticket"
-msgstr "বিমান টিকিট"
 
 #: apps/webapp/recruitment_views.py
 msgid "Agent commission"
@@ -16205,6 +16677,26 @@ msgstr "পছন্দের জাতীয়তা, যদি থাকে�
 #: apps/webapp/recruitment_views.py
 msgid "Accommodation, food, transport…"
 msgstr "থাকা, খাওয়া, যাতায়াত…"
+
+#: apps/webapp/recruitment_views.py
+msgid "Approval / block visa number"
+msgstr "অনুমোদন / ব্লক ভিসা নম্বর"
+
+#: apps/webapp/recruitment_views.py
+msgid "Profession"
+msgstr "পেশা"
+
+#: apps/webapp/recruitment_views.py
+msgid "Visas approved"
+msgstr "অনুমোদিত ভিসা"
+
+#: apps/webapp/recruitment_views.py
+msgid "Switch on “%(name)s” in HR settings → Advanced features."
+msgstr "HR সেটিংস → উন্নত সুবিধায় «%(name)s» চালু করুন।"
+
+#: apps/webapp/recruitment_views.py
+msgid "This quota is used by placements."
+msgstr "এই কোটা প্লেসমেন্টে ব্যবহৃত হচ্ছে।"
 
 #: apps/webapp/refill_views.py
 msgid "Choose the customer and the item, and enter how often."

@@ -686,6 +686,14 @@ msgid "Candidates"
 msgstr "Adaylar"
 
 #: templates/webapp/_industry_nav.html
+msgid "Visa quota"
+msgstr "Vize kotası"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sub-agent commission"
+msgstr "Alt acente komisyonu"
+
+#: templates/webapp/_industry_nav.html
 msgid "Careers website"
 msgstr "Kariyer sitesi"
 
@@ -716,6 +724,10 @@ msgstr "Müşteri faturalandırma"
 #: templates/webapp/_industry_nav.html
 msgid "Site profit"
 msgstr "Saha kârı"
+
+#: templates/webapp/_industry_nav.html
+msgid "Camps"
+msgstr "Kamplar"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3806,6 +3818,10 @@ msgid "Documents"
 msgstr "Belgeler"
 
 #: templates/webapp/hr/_tabs.html
+msgid "Vacations"
+msgstr "Tatiller"
+
+#: templates/webapp/hr/_tabs.html
 msgid "HR settings"
 msgstr "İK ayarları"
 
@@ -4070,6 +4086,10 @@ msgid "Add holiday"
 msgstr "Tatil ekle"
 
 #: templates/webapp/hr/payroll.html
+msgid "WPS salary file"
+msgstr "WPS maaş dosyası"
+
+#: templates/webapp/hr/payroll.html
 msgid "Draft — check and approve"
 msgstr "Taslak — kontrol edip onaylayın"
 
@@ -4229,9 +4249,144 @@ msgstr "Devamsızlık, yarım gün ve ücretsiz izni maaştan düş"
 msgid "Daily rate = (basic + allowances) ÷ days in the month."
 msgstr "Günlük ücret = (temel + yan ödemeler) ÷ ayın gün sayısı."
 
-#: templates/webapp/hr/staff_detail.html
+#: templates/webapp/hr/settings.html
+msgid "Advanced features"
+msgstr "Gelişmiş özellikler"
+
+#: templates/webapp/hr/settings.html
+msgid ""
+"Switch on only what you use — the menus show only the features that are on."
+msgstr ""
+"Yalnızca kullandıklarınızı açın — menüler yalnızca açık olan özellikleri "
+"gösterir."
+
+#: templates/webapp/hr/settings.html
+msgid "Employer ID (establishment)"
+msgstr "İşveren kimliği (kuruluş)"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer ID (if different)"
+msgstr "Ödeyen kimliği (farklıysa)"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer QID (if the payer is a person)"
+msgstr "Ödeyen QID (ödeyen bir kişiyse)"
+
+#: templates/webapp/hr/settings.html
+msgid "Our bank (short name, e.g. QNB)"
+msgstr "Bankamız (kısa ad, ör. QNB)"
+
+#: templates/webapp/hr/settings.html
+msgid "Our IBAN"
+msgstr "IBAN'ımız"
+
+#: templates/webapp/hr/settings.html
+msgid "Rules"
+msgstr "Kurallar"
+
+#: templates/webapp/hr/settings.html
+msgid "Gratuity: days of basic pay per year of service"
+msgstr "Kıdem tazminatı: hizmet yılı başına temel maaş günü"
+
+#: templates/webapp/hr/settings.html
+msgid "Qatar: at least 21 days (3 weeks), after one year of service."
+msgstr "Katar: bir yıllık hizmetten sonra en az 21 gün (3 hafta)."
+
+#: templates/webapp/hr/settings.html
+msgid "Vacation days per year"
+msgstr "Yıllık izin günü"
+
+#: templates/webapp/hr/settings.html
+msgid "Air ticket every (months)"
+msgstr "Uçak bileti her (ay)"
+
+#: templates/webapp/hr/settlement.html
+msgid "Final settlement"
+msgstr "Nihai hesaplaşma"
+
+#: templates/webapp/hr/settlement.html
+msgid "Draft"
+msgstr "Taslak"
+
+#: templates/webapp/hr/settlement.html
 msgid "Joined"
 msgstr "İşe giriş"
+
+#: templates/webapp/hr/settlement.html
+msgid "Last working day"
+msgstr "Son çalışma günü"
+
+#: templates/webapp/hr/settlement.html
+msgid "years of service"
+msgstr "hizmet yılı"
+
+#: templates/webapp/hr/settlement.html
+msgid "Gratuity"
+msgstr "Kıdem tazminatı"
+
+#: templates/webapp/hr/settlement.html
+msgid "Unpaid salary"
+msgstr "Ödenmemiş maaş"
+
+#: templates/webapp/hr/settlement.html
+msgid "Leave not taken"
+msgstr "Kullanılmayan izin"
+
+#: templates/webapp/hr/settlement.html
+msgid "Air ticket"
+msgstr "Uçak bileti"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other payments"
+msgstr "Diğer ödemeler"
+
+#: templates/webapp/hr/settlement.html
+msgid "Salary advance to recover"
+msgstr "Geri alınacak maaş avansı"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other deductions"
+msgstr "Diğer kesintiler"
+
+#: templates/webapp/hr/settlement.html
+msgid "Received in full and final settlement"
+msgstr "Tam ve nihai hesaplaşma olarak teslim alındı"
+
+#: templates/webapp/hr/settlement.html
+msgid ""
+"Pay this settlement? It is recorded in the accounts and the staff member is "
+"marked as left."
+msgstr ""
+"Bu hesaplaşma ödensin mi? Muhasebeye kaydedilir ve personel ayrılmış olarak "
+"işaretlenir."
+
+#: templates/webapp/hr/settlement.html
+msgid "Pay & close"
+msgstr "Öde ve kapat"
+
+#: templates/webapp/hr/settlement.html
+msgid "Remove draft"
+msgstr "Taslağı kaldır"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Reason"
+msgstr "Neden"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Air ticket amount"
+msgstr "Uçak bileti tutarı"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Other payments (bonus…)"
+msgstr "Diğer ödemeler (prim…)"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "less than one year: none"
+msgstr "bir yıldan az: yok"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Save settlement"
+msgstr "Hesaplaşmayı kaydet"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "Login"
@@ -4284,6 +4439,10 @@ msgstr ""
 #: templates/webapp/hr/staff_detail.html
 msgid "No site attendance this month yet."
 msgstr "Bu ay henüz saha yoklaması yok."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "months since the last ticket"
+msgstr "son biletten bu yana geçen ay"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "per month"
@@ -4352,6 +4511,10 @@ msgstr "Belge yok."
 #: templates/webapp/hr/staff_form.html
 msgid "Edit staff"
 msgstr "Personeli düzenle"
+
+#: templates/webapp/hr/staff_form.html
+msgid "Bank (WPS)"
+msgstr "Banka (WPS)"
 
 #: templates/webapp/hr/staff_form.html
 msgid ""
@@ -4428,6 +4591,98 @@ msgstr "Eski personel yok."
 #: templates/webapp/hr/staff_list.html
 msgid "No staff yet. Add your first staff member with their salary."
 msgstr "Henüz personel yok. İlk personelinizi maaşıyla ekleyin."
+
+#: templates/webapp/hr/vacations.html
+msgid "On vacation now"
+msgstr "Şu an tatilde"
+
+#: templates/webapp/hr/vacations.html
+msgid "Late back"
+msgstr "Geç döndü"
+
+#: templates/webapp/hr/vacations.html
+msgid "Leaving in 30 days"
+msgstr "30 gün içinde ayrılıyor"
+
+#: templates/webapp/hr/vacations.html
+msgid "Due an air ticket"
+msgstr "Uçak bileti hakkı var"
+
+#: templates/webapp/hr/vacations.html
+msgid "was due back"
+msgstr "dönmesi gereken tarih"
+
+#: templates/webapp/hr/vacations.html
+msgid "days late"
+msgstr "gün gecikmeli"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work"
+msgstr "İşe döndü"
+
+#: templates/webapp/hr/vacations.html
+msgid "ticket"
+msgstr "bilet"
+
+#: templates/webapp/hr/vacations.html
+msgid "Nobody is on vacation."
+msgstr "Tatilde kimse yok."
+
+#: templates/webapp/hr/vacations.html
+msgid "leave balance"
+msgstr "izin bakiyesi"
+
+#: templates/webapp/hr/vacations.html
+msgid "Plan a vacation"
+msgstr "Tatil planla"
+
+#: templates/webapp/hr/vacations.html
+msgid "Staff member"
+msgstr "Personel"
+
+#: templates/webapp/hr/vacations.html
+msgid "First day of vacation"
+msgstr "Tatilin ilk günü"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work on"
+msgstr "İşe dönüş tarihi"
+
+#: templates/webapp/hr/vacations.html
+msgid "Air ticket given"
+msgstr "Uçak bileti verildi"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket amount"
+msgstr "Bilet tutarı"
+
+#: templates/webapp/hr/vacations.html
+msgid "Recent vacations"
+msgstr "Son tatiller"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back on"
+msgstr "Dönüş"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket"
+msgstr "Bilet"
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Fix these before sending the file to the bank"
+msgstr "Dosyayı bankaya göndermeden önce bunları düzeltin"
+
+#: templates/webapp/hr/wps_problems.html
+msgid ""
+"The QID comes from the staff member's ID / residence card document; the bank"
+" and IBAN are on the staff form."
+msgstr ""
+"QID, personelin kimlik / oturma kartı belgesinden alınır; banka ve IBAN "
+"personel formundadır."
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Download anyway"
+msgstr "Yine de indir"
 
 #: templates/webapp/import_export/product_import.html
 msgid "Import products"
@@ -5975,6 +6230,44 @@ msgstr "Fatura oluştur"
 msgid "Choose the client for this site first."
 msgstr "Önce bu sahanın müşterisini seçin."
 
+#: templates/webapp/manpower/camps.html
+msgid "Camps & accommodation"
+msgstr "Kamplar ve konaklama"
+
+#: templates/webapp/manpower/camps.html
+msgid "beds"
+msgstr "yatak"
+
+#: templates/webapp/manpower/camps.html
+msgid "per person a month"
+msgstr "kişi başı aylık"
+
+#: templates/webapp/manpower/camps.html
+msgid "Move out"
+msgstr "Çıkar"
+
+#: templates/webapp/manpower/camps.html
+msgid "Nobody lives here yet."
+msgstr "Burada henüz kimse kalmıyor."
+
+#: templates/webapp/manpower/camps.html
+msgid "Move in"
+msgstr "Yerleştir"
+
+#: templates/webapp/manpower/camps.html
+msgid "No camps yet. Add one below."
+msgstr "Henüz kamp yok. Aşağıdan ekleyin."
+
+#: templates/webapp/manpower/camps.html
+msgid "New camp"
+msgstr "Yeni kamp"
+
+#: templates/webapp/manpower/camps.html
+msgid ""
+"The camp's cost per person is added to each worker's cost in Site profit."
+msgstr ""
+"Kampın kişi başı maliyeti, Saha kârında her işçinin maliyetine eklenir."
+
 #: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "Aktif sahalar"
@@ -6108,6 +6401,10 @@ msgstr ""
 "Saha yoklamasından: her müşteriye faturalanan (ücret × saat / gün, artı "
 "fazla mesai) ile o süre için çalışana ödediğimiz (günlerin maaşı veya gün / "
 "saat ücreti, artı fazla mesai) karşılaştırması."
+
+#: templates/webapp/manpower/profit.html
+msgid "Camp"
+msgstr "Kamp"
 
 #: templates/webapp/manpower/site.html
 msgid "Client"
@@ -7083,10 +7380,6 @@ msgstr "Rezervasyonu aç"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "İstediği"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Reason"
-msgstr "Neden"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Confirm"
@@ -8776,12 +9069,38 @@ msgid "oldest"
 msgstr "en eski"
 
 #: templates/webapp/receivables/home.html
-msgid "days late"
-msgstr "gün gecikmeli"
-
-#: templates/webapp/receivables/home.html
 msgid "Nobody owes you money."
 msgstr "Kimsenin size borcu yok."
+
+#: templates/webapp/recruitment/agents.html
+msgid "Owed"
+msgstr "Borç"
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"Commission is owed for candidates who joined (set it on the placement). "
+"Payments are the “Agent commission” costs recorded on placements."
+msgstr ""
+"Komisyon, işe başlayan adaylar için borçlanılır (yerleştirmede belirleyin). "
+"Ödemeler, yerleştirmelerde kaydedilen “Acente komisyonu” maliyetleridir."
+
+#: templates/webapp/recruitment/agents.html
+msgid "candidates sent"
+msgstr "gönderilen aday"
+
+#: templates/webapp/recruitment/agents.html
+msgid "joined"
+msgstr "başladı"
+
+#: templates/webapp/recruitment/agents.html
+msgid "Nobody joined yet."
+msgstr "Henüz kimse işe başlamadı."
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"No candidates from sub-agents yet. Choose the sub-agent on the candidate "
+"form."
+msgstr "Henüz alt acentelerden aday yok. Aday formunda alt acenteyi seçin."
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "View CV"
@@ -9041,10 +9360,6 @@ msgid "Position, number or client"
 msgstr "Pozisyon, numara veya müşteri"
 
 #: templates/webapp/recruitment/jobs.html
-msgid "joined"
-msgstr "başladı"
-
-#: templates/webapp/recruitment/jobs.html
 msgid "No job orders here."
 msgstr "Burada iş talebi yok."
 
@@ -9157,6 +9472,10 @@ msgid "Replacement guarantee until"
 msgstr "Değişim garantisi bitişi"
 
 #: templates/webapp/recruitment/placement.html
+msgid "Commission for"
+msgstr "Komisyon:"
+
+#: templates/webapp/recruitment/placement.html
 msgid "Fees & profit"
 msgstr "Ücretler ve kâr"
 
@@ -9235,6 +9554,34 @@ msgstr "Ödenen"
 #: templates/webapp/recruitment/placement.html
 msgid "Add cost"
 msgstr "Maliyet ekle"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "approved"
+msgstr "onaylı"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "used"
+msgstr "kullanılan"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "Valid until"
+msgstr "Geçerlilik"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "No visa quotas yet."
+msgstr "Henüz vize kotası yok."
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "New visa quota"
+msgstr "Yeni vize kotası"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid ""
+"Choose the quota on each placement; it then counts as used (rejected and "
+"withdrawn placements do not count)."
+msgstr ""
+"Her yerleştirmede kotayı seçin; o zaman kullanılmış sayılır (reddedilen ve "
+"geri çekilen yerleştirmeler sayılmaz)."
 
 #: templates/webapp/refills/list.html
 msgid "Refill subscriptions"
@@ -10935,10 +11282,6 @@ msgstr "Bugün teslim edilenler"
 msgid "Product"
 msgstr "Ürün"
 
-#: templates/webapp/sales_docs/_doc_head.html
-msgid "Valid until"
-msgstr "Geçerlilik"
-
 #: templates/webapp/sales_docs/_tabs.html
 msgid "Sales documents"
 msgstr "Satış belgeleri"
@@ -12503,6 +12846,94 @@ msgstr "%(label)s seçin"
 msgid "Select…"
 msgstr "Seçin…"
 
+#: apps/employees/advanced.py
+msgid "Download the bank's WPS salary file (SIF) from an approved payroll."
+msgstr "Onaylı bir bordrodan bankanın WPS maaş dosyasını (SIF) indirin."
+
+#: apps/employees/advanced.py
+msgid "Gratuity & final settlement"
+msgstr "Kıdem tazminatı ve nihai hesaplaşma"
+
+#: apps/employees/advanced.py
+msgid ""
+"End-of-service gratuity and the final settlement when someone leaves, "
+"recorded in the accounts."
+msgstr ""
+"Biri ayrıldığında hizmet sonu tazminatı ve nihai hesaplaşma, muhasebeye "
+"kaydedilir."
+
+#: apps/employees/advanced.py
+msgid "Vacation & air ticket"
+msgstr "Tatil ve uçak bileti"
+
+#: apps/employees/advanced.py
+msgid "Annual home leave with the air ticket: who is away, due or late back."
+msgstr ""
+"Uçak biletli yıllık memleket izni: kim uzakta, kimin hakkı var, kim geç "
+"döndü."
+
+#: apps/employees/advanced.py
+msgid "Camps & accommodation cost"
+msgstr "Kamp ve konaklama maliyeti"
+
+#: apps/employees/advanced.py
+msgid "Staff camps with their monthly cost per head, counted in site profit."
+msgstr ""
+"Kişi başı aylık maliyetiyle personel kampları, saha kârına dahil edilir."
+
+#: apps/employees/advanced.py
+msgid "Visa quotas approved for the company: used and left."
+msgstr "Şirkete onaylanan vize kotaları: kullanılan ve kalan."
+
+#: apps/employees/advanced.py
+msgid ""
+"What each sub-agent is owed for the candidates they sent, and what is paid."
+msgstr "Her alt acentenin gönderdiği adaylar için alacağı ve ödenen tutar."
+
+#: apps/employees/advanced.py
+msgid "Fill the employer ID, bank and IBAN in HR settings."
+msgstr "İK ayarlarında işveren kimliğini, bankayı ve IBAN'ı doldurun."
+
+#: apps/employees/advanced.py
+msgid "QID"
+msgstr "QID"
+
+#: apps/employees/advanced.py
+msgid "bank"
+msgstr "banka"
+
+#: apps/employees/advanced.py
+msgid "IBAN"
+msgstr "IBAN"
+
+#: apps/employees/advanced.py
+msgid "%(name)s: no %(what)s"
+msgstr "%(name)s: %(what)s yok"
+
+#: apps/employees/advanced.py
+msgid "Enter the joining date on the staff record first."
+msgstr "Önce personel kaydına işe giriş tarihini girin."
+
+#: apps/employees/advanced.py
+msgid "The last day is before the joining date."
+msgstr "Son gün, işe giriş tarihinden önce."
+
+#: apps/employees/advanced.py
+msgid "This settlement is already paid."
+msgstr "Bu hesaplaşma zaten ödendi."
+
+#: apps/employees/advanced.py
+msgid "The deductions are more than the amount due."
+msgstr "Kesintiler ödenecek tutardan fazla."
+
+#: apps/employees/advanced.py
+msgid "Choose the first day and the day back at work."
+msgstr "İlk günü ve işe dönüş gününü seçin."
+
+#: apps/employees/advanced.py
+msgid "%(name)s already has a vacation in these dates."
+msgstr "%(name)s için bu tarihlerde zaten bir tatil var."
+
 #: apps/employees/site_workers.py
 msgid "Choose a site."
 msgstr "Bir saha seçin."
@@ -13313,10 +13744,6 @@ msgstr "Bölge yok"
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "Oturdu"
-
-#: apps/verticals/restaurant/models.py
-msgid "Draft"
-msgstr "Taslak"
 
 #: apps/verticals/restaurant/models.py
 msgid "Served"
@@ -14560,12 +14987,20 @@ msgid "Login (optional)"
 msgstr "Giriş (isteğe bağlı)"
 
 #: apps/webapp/hr_views.py
-msgid "This login is already linked to another staff member."
-msgstr "Bu giriş zaten başka bir personele bağlı."
+msgid "Bank (short name, e.g. QNB)"
+msgstr "Banka (kısa ad, ör. QNB)"
 
 #: apps/webapp/hr_views.py
-msgid "Staff member"
-msgstr "Personel"
+msgid "IBAN / account number"
+msgstr "IBAN / hesap numarası"
+
+#: apps/webapp/hr_views.py
+msgid "Visa ID (optional)"
+msgstr "Vize no (isteğe bağlı)"
+
+#: apps/webapp/hr_views.py
+msgid "This login is already linked to another staff member."
+msgstr "Bu giriş zaten başka bir personele bağlı."
 
 #: apps/webapp/hr_views.py
 msgid "Advance amount"
@@ -14691,6 +15126,30 @@ msgstr "Belge kaydedildi."
 #: apps/webapp/hr_views.py
 msgid "HR settings saved."
 msgstr "İK ayarları kaydedildi."
+
+#: apps/webapp/hr_views.py
+msgid "Approve the payroll first."
+msgstr "Önce bordroyu onaylayın."
+
+#: apps/webapp/hr_views.py
+msgid "Final settlement saved for %(name)s."
+msgstr "%(name)s için nihai hesaplaşma kaydedildi."
+
+#: apps/webapp/hr_views.py
+msgid "Settlement paid and recorded in the accounts."
+msgstr "Hesaplaşma ödendi ve muhasebeye kaydedildi."
+
+#: apps/webapp/hr_views.py
+msgid "Draft removed."
+msgstr "Taslak kaldırıldı."
+
+#: apps/webapp/hr_views.py
+msgid "Vacation saved."
+msgstr "Tatil kaydedildi."
+
+#: apps/webapp/hr_views.py
+msgid "%(name)s is back at work."
+msgstr "%(name)s işe döndü."
 
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
@@ -14938,6 +15397,33 @@ msgstr "Vardiya kaldırıldı."
 #: apps/webapp/manpower_views.py
 msgid "Trade"
 msgstr "Meslek"
+
+#: apps/webapp/manpower_views.py
+msgid "Camp / building name"
+msgstr "Kamp / bina adı"
+
+#: apps/webapp/manpower_views.py
+msgid "Beds"
+msgstr "Yatak"
+
+#: apps/webapp/manpower_views.py
+msgid "Monthly cost (rent, electricity, water…)"
+msgstr "Aylık maliyet (kira, elektrik, su…)"
+
+#: apps/webapp/manpower_views.py
+msgid "Food per person a month"
+msgstr "Kişi başı aylık yemek"
+
+#: apps/webapp/manpower_views.py
+msgid "Transport per person a month"
+msgstr "Kişi başı aylık ulaşım"
+
+#: apps/webapp/manpower_views.py
+msgid ""
+"Switch on “Camps & accommodation cost” in HR settings → Advanced features."
+msgstr ""
+"İK ayarları → Gelişmiş özellikler bölümünden “Kamp ve konaklama maliyeti”ni "
+"açın."
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -16219,10 +16705,6 @@ msgid "Visa"
 msgstr "Vize"
 
 #: apps/webapp/recruitment_views.py
-msgid "Ticket"
-msgstr "Bilet"
-
-#: apps/webapp/recruitment_views.py
 msgid "Joined / deployed"
 msgstr "Başladı / gönderildi"
 
@@ -16237,10 +16719,6 @@ msgstr "Uygun"
 #: apps/webapp/recruitment_views.py
 msgid "Unfit"
 msgstr "Uygun değil (sağlık)"
-
-#: apps/webapp/recruitment_views.py
-msgid "Air ticket"
-msgstr "Uçak bileti"
 
 #: apps/webapp/recruitment_views.py
 msgid "Agent commission"
@@ -16269,6 +16747,27 @@ msgstr "Tercih edilen uyruk, varsa."
 #: apps/webapp/recruitment_views.py
 msgid "Accommodation, food, transport…"
 msgstr "Konaklama, yemek, ulaşım…"
+
+#: apps/webapp/recruitment_views.py
+msgid "Approval / block visa number"
+msgstr "Onay / blok vize numarası"
+
+#: apps/webapp/recruitment_views.py
+msgid "Profession"
+msgstr "Meslek"
+
+#: apps/webapp/recruitment_views.py
+msgid "Visas approved"
+msgstr "Onaylanan vize"
+
+#: apps/webapp/recruitment_views.py
+msgid "Switch on “%(name)s” in HR settings → Advanced features."
+msgstr ""
+"İK ayarları → Gelişmiş özellikler bölümünden “%(name)s” özelliğini açın."
+
+#: apps/webapp/recruitment_views.py
+msgid "This quota is used by placements."
+msgstr "Bu kota yerleştirmelerde kullanılıyor."
 
 #: apps/webapp/refill_views.py
 msgid "Choose the customer and the item, and enter how often."

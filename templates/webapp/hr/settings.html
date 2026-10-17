@@ -11,6 +11,25 @@
   <div class="hr-actions">{% for num, label in weekdays %}<label class="hr-chip" style="font-size:13.5px;padding:8px 12px;cursor:pointer"><input type="checkbox" name="off" value="{{ num }}" {% if num in settings.weekly_off_days %}checked{% endif %}> {{ label }}</label>{% endfor %}</div>
   <h3 style="margin-top:20px">➖ {% translate "Absence" %}</h3>
   <label style="display:flex;gap:10px;align-items:flex-start"><input type="checkbox" name="deduct_absence" {% if settings.deduct_absence %}checked{% endif %} style="margin-top:4px"> <span>{% translate "Deduct absent days, half days and unpaid leave from salary" %}<br><small style="color:var(--hr-soft)">{% translate "Daily rate = (basic + allowances) ÷ days in the month." %}</small></span></label>
+  <input type="hidden" name="advanced" value="1">
+  <h3 style="margin-top:22px">⚙️ {% translate "Advanced features" %}</h3>
+  <p style="color:var(--hr-soft);margin-top:-6px">{% translate "Switch on only what you use — the menus show only the features that are on." %}</p>
+  <div style="display:grid;gap:8px">{% for code, label, help, on in extras %}
+    <label style="display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer"><input type="checkbox" name="extra" value="{{ code }}" {% if on %}checked{% endif %} style="margin-top:4px"> <span><b>{{ label }}</b><br><small style="color:var(--hr-soft)">{{ help }}</small></span></label>{% endfor %}</div>
+  {% if "wps" in hr_extras %}<h3 style="margin-top:20px">🏦 {% translate "WPS salary file" %}</h3>
+  <div class="hr-form">
+    <label>{% translate "Employer ID (establishment)" %}<input name="wps_employer_eid" value="{{ settings.wps_employer_eid }}"></label>
+    <label>{% translate "Payer ID (if different)" %}<input name="wps_payer_eid" value="{{ settings.wps_payer_eid }}"></label>
+    <label>{% translate "Payer QID (if the payer is a person)" %}<input name="wps_payer_qid" value="{{ settings.wps_payer_qid }}"></label>
+    <label>{% translate "Our bank (short name, e.g. QNB)" %}<input name="wps_payer_bank" value="{{ settings.wps_payer_bank }}"></label>
+    <label class="wide">{% translate "Our IBAN" %}<input name="wps_payer_iban" value="{{ settings.wps_payer_iban }}"></label>
+  </div>{% endif %}
+  {% if "settlement" in hr_extras or "vacation" in hr_extras %}<h3 style="margin-top:20px">📐 {% translate "Rules" %}</h3>
+  <div class="hr-form">
+    {% if "settlement" in hr_extras %}<label>{% translate "Gratuity: days of basic pay per year of service" %}<input type="number" step="0.5" min="0" name="gratuity_days_per_year" value="{{ settings.gratuity_days_per_year|floatformat:'-2' }}"><span class="help">{% translate "Qatar: at least 21 days (3 weeks), after one year of service." %}</span></label>{% endif %}
+    {% if "vacation" in hr_extras %}<label>{% translate "Vacation days per year" %}<input type="number" step="0.5" min="0" name="vacation_days_per_year" value="{{ settings.vacation_days_per_year|floatformat:'-2' }}"></label>
+    <label>{% translate "Air ticket every (months)" %}<input type="number" min="1" name="ticket_every_months" value="{{ settings.ticket_every_months }}"></label>{% endif %}
+  </div>{% endif %}
   <div style="margin-top:18px"><button class="btn" type="submit">{% translate "Save" %}</button></div>
 </form>
 </div>

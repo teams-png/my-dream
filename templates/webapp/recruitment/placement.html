@@ -35,6 +35,10 @@
 
     <div>
       <div class="ix-card"><a class="btn btn-secondary" href="{% url 'webapp:rec_offer_letter' p.id %}" target="_blank">📄 {% translate "Offer letter" %}</a></div>
+      {% if quotas is not None or agent_on %}<form method="post" class="ix-card rc-inline">{% csrf_token %}<input type="hidden" name="action" value="extras">
+        {% if quotas is not None %}<div><label>{% translate "Visa quota" %}</label><select name="visa_quota"><option value="">—</option>{% for q in quotas %}<option value="{{ q.id }}" {% if p.visa_quota_id == q.id %}selected{% endif %}>{{ q.reference }} · {{ q.profession }} ({{ q.left }} {% translate "left" %})</option>{% endfor %}</select></div>{% endif %}
+        {% if agent_on and c.agent %}<div><label>{% translate "Commission for" %} {{ c.agent.name }}</label><input name="agent_commission" inputmode="decimal" value="{{ p.agent_commission|floatformat:2 }}"></div>{% endif %}
+        <button class="btn btn-secondary" type="submit">{% translate "Save" %}</button></form>{% endif %}
       <div class="ix-card"><h3>💵 {% translate "Fees & profit" %}</h3>
         <dl class="ix-kv">
           <dt>{% translate "Client fee" %}</dt><dd>{% if p.invoice %}<a href="{% url 'webapp:invoice_share' p.invoice.id %}">{{ p.invoice.invoice_number }}</a> · {{ p.fee|floatformat:2 }} <span class="ix-chip {{ p.invoice.status }}">{{ p.invoice.get_status_display }}</span>{% else %}{{ p.fee|floatformat:2 }} — {% translate "not billed" %}{% endif %}</dd>

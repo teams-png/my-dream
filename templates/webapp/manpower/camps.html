@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Camps" %}{% endblock %}
+{% block heading %}{% translate "Camps & accommodation" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/manpower/_tabs.html" %}
+{% for camp in camps %}
+<div class="hr-card">
+  <h3>🛏️ {{ camp.name }} <small>{{ camp.location }} · {{ camp.people }}{% if camp.capacity %}/{{ camp.capacity }} {% translate "beds" %}{% endif %} · {% translate "per person a month" %} {{ camp.per_head|floatformat:2 }}</small> <a style="font-size:13px" href="?edit={{ camp.id }}">✏️</a></h3>
+  {% if camp.people_list %}<form method="post" class="hr-actions" style="flex-wrap:wrap">{% csrf_token %}<input type="hidden" name="action" value="move_out"><input type="hidden" name="camp" value="{{ camp.id }}">
+    {% for w in camp.people_list %}<label class="hr-chip"><input type="checkbox" name="worker" value="{{ w.id }}"> {{ w.name }}</label>{% endfor %}
+    <button class="btn btn-secondary" type="submit">{% translate "Move out" %}</button></form>{% else %}<p class="hr-empty">{% translate "Nobody lives here yet." %}</p>{% endif %}
+  {% if homeless %}<form method="post" class="hr-actions" style="margin-top:8px">{% csrf_token %}<input type="hidden" name="action" value="move_in"><input type="hidden" name="camp" value="{{ camp.id }}">
+    <select class="hr-in" name="worker" multiple size="3" style="width:auto;min-width:220px">{% for w in homeless %}<option value="{{ w.id }}">{{ w.name }}{% if w.trade %} · {{ w.trade }}{% endif %}</option>{% endfor %}</select>
+    <button class="btn" type="submit">{% translate "Move in" %}</button></form>{% endif %}
+</div>
+{% empty %}<div class="hr-card hr-empty">{% translate "No camps yet. Add one below." %}</div>{% endfor %}
+<form method="post" class="hr-card" style="max-width:820px">{% csrf_token %}<input type="hidden" name="action" value="save">{% if edit %}<input type="hidden" name="camp" value="{{ edit.id }}">{% endif %}
+  <h3>{% if edit %}✏️ {{ edit.name }}{% else %}＋ {% translate "New camp" %}{% endif %}</h3>
+  <div class="hr-form">{% for f in form %}{% include "webapp/hr/_field.html" with f=f %}{% endfor %}</div>
+  <p style="color:var(--hr-soft);font-size:13px">{% translate "The camp's cost per person is added to each worker's cost in Site profit." %}</p>
+  <div class="hr-actions"><button class="btn" type="submit">{% translate "Save" %}</button>{% if edit %}<a class="btn btn-secondary" href="?">{% translate "Cancel" %}</a>{% endif %}</div>
+</form>
+</div>
+{% endblock %}

@@ -10,14 +10,17 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.db.models import Count, ProtectedError, Q, Sum
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.utils.dateparse import parse_date
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
 
+from apps.employees import advanced
 from apps.employees import services as hr
-from apps.employees.models import (AdvanceRecovery, Attendance, Employee, EmployeeDocument, Holiday, HRSettings,
+from apps.employees.models import (AdvanceRecovery, Attendance, Employee, EmployeeDocument, FinalSettlement, Holiday,
+                                   HRSettings, Vacation,
                                    LeaveBalance, LeaveRequest, LeaveType, PayrollLine, PayrollRun, SalaryAdvance,
                                    SalaryStructure)
 
@@ -83,9 +86,11 @@ class StaffForm(forms.ModelForm):
 
     class Meta:
         model = Employee
-        fields = ["name", "phone", "role_title", "joined_date", "employment_status", "user"]
+        fields = ["name", "phone", "role_title", "joined_date", "employment_status", "user", "bank_short_name", "iban",
+                  "visa_id"]
         labels = {"role_title": gettext_lazy("Job title"), "user": gettext_lazy("Login (optional)"),
-                  "employment_status": gettext_lazy("Status")}
+                  "employment_status": gettext_lazy("Status"), "bank_short_name": gettext_lazy("Bank (short name, e.g. QNB)"),
+                  "iban": gettext_lazy("IBAN / account number"), "visa_id": gettext_lazy("Visa ID (optional)")}
         widgets = {"joined_date": forms.DateInput(attrs={"type": "date"})}
 
     def __init__(self, *args, company=None, **kwargs):
@@ -292,6 +297,9 @@ def staff_detail(request, staff_id):
         "allowances": hr._money_total(structure.allowances) if structure else Decimal("0"),
         "deductions": hr._money_total(structure.deductions) if structure else Decimal("0"),
         **_site_month(employee, start),
+        "settlements": FinalSettlement.objects.for_company(company).filter(employee=employee)
+        if advanced.enabled(company, "settlement") else [],
+        "vacation": advanced.vacation_balance(employee) if advanced.enabled(company, "vacation") and employee.joined_date else None,
     })
 
 
@@ -613,7 +621,134 @@ def hr_settings(request):
     if request.method == "POST":
         settings.weekly_off_days = sorted({int(d) for d in request.POST.getlist("off") if d.isdigit() and int(d) < 7})
         settings.deduct_absence = bool(request.POST.get("deduct_absence"))
-        settings.save(update_fields=["weekly_off_days", "deduct_absence"])
+        fields = ["weekly_off_days", "deduct_absence"]
+        if request.POST.get("advanced") == "1":
+            advanced.save_extras(company, request.POST.getlist("extra"))
+            for f, n in (("wps_employer_eid", 20), ("wps_payer_eid", 20), ("wps_payer_qid", 20), ("wps_payer_bank", 10),
+                         ("wps_payer_iban", 34)):
+                setattr(settings, f, (request.POST.get(f) or "").strip().upper()[:n])
+                fields.append(f)
+            for f in ("gratuity_days_per_year", "vacation_days_per_year"):
+                try:
+                    value = Decimal(request.POST.get(f) or "")
+                    if Decimal("0") <= value <= Decimal("90"):
+                        setattr(settings, f, value)
+                        fields.append(f)
+                except Exception:
+                    pass
+            if (request.POST.get("ticket_every_months") or "").isdigit():
+                settings.ticket_every_months = max(1, min(int(request.POST["ticket_every_months"]), 120))
+                fields.append("ticket_every_months")
+        settings.save(update_fields=fields)
         messages.success(request, _("HR settings saved."))
         return redirect("webapp:hr_settings")
-    return render(request, "webapp/hr/settings.html", {"settings": settings, "weekdays": WEEKDAYS})
+    on = advanced.enabled(company)
+    return render(request, "webapp/hr/settings.html", {"settings": settings, "weekdays": WEEKDAYS,
+                                                       "extras": [(c, l, h, c in on) for c, l, h in advanced.available(company)]})
+
+
+
+# ------------------------------------------------------------------ advanced: WPS, final settlement, vacation
+
+def _extra_or_404(company, code):
+    if not advanced.enabled(company, code):
+        raise Http404("Switch this on in HR settings → Advanced features.")
+
+
+@login_required
+@require_permission(PAYROLL)
+def wps_download(request, run_id):
+    company = request.company
+    _extra_or_404(company, "wps")
+    run = get_object_or_404(PayrollRun.objects.for_company(company).select_related("period"), id=run_id)
+    if run.status != "posted":
+        messages.error(request, _("Approve the payroll first."))
+        return redirect("webapp:hr_payroll")
+    name, text, problems = advanced.wps_file(company, run)
+    if problems and request.GET.get("force") != "1":
+        return render(request, "webapp/hr/wps_problems.html", {"run": run, "problems": problems})
+    response = HttpResponse(text, content_type="text/csv; charset=utf-8")
+    response["Content-Disposition"] = f'attachment; filename="{name}"'
+    return response
+
+
+@login_required
+@require_permission(PAYROLL)
+def settlement_new(request, staff_id):
+    company = request.company
+    _extra_or_404(company, "settlement")
+    employee = get_object_or_404(Employee.objects.for_company(company).select_related("salary_structure"), id=staff_id)
+    data = request.POST if request.method == "POST" else request.GET
+    last_day = parse_date(data.get("last_day") or "") or timezone.localdate()
+    draft, error = None, ""
+    try:
+        draft = advanced.draft_settlement(
+            employee, last_day, reason=data.get("reason") if data.get("reason") in dict(FinalSettlement.REASONS) else "resigned",
+            other_additions=_amount(data.get("other_additions")), other_deductions=_amount(data.get("other_deductions")),
+            ticket_amount=_amount(data.get("ticket_amount")), notes=(data.get("notes") or "")[:1000])
+    except ValidationError as exc:
+        error = "; ".join(exc.messages)
+    if request.method == "POST" and draft is not None and request.POST.get("save") == "1":
+        draft.save()
+        messages.success(request, _("Final settlement saved for %(name)s.") % {"name": employee.name})
+        return redirect("webapp:settlement_detail", draft.pk)
+    return render(request, "webapp/hr/settlement_form.html", {
+        "employee": employee, "s": draft, "error": error, "last_day": last_day, "reasons": FinalSettlement.REASONS,
+        "data": data})
+
+
+def _amount(value):
+    try:
+        return max(Decimal("0"), Decimal(str(value or "0")))
+    except Exception:
+        return Decimal("0")
+
+
+@login_required
+@require_permission(PAYROLL)
+def settlement_detail(request, settlement_id):
+    company = request.company
+    _extra_or_404(company, "settlement")
+    s = get_object_or_404(FinalSettlement.objects.for_company(company).select_related("employee"), id=settlement_id)
+    if request.method == "POST":
+        try:
+            if request.POST.get("action") == "pay":
+                advanced.pay_settlement(s, request.user, method="bank" if request.POST.get("method") == "bank" else "cash")
+                messages.success(request, _("Settlement paid and recorded in the accounts."))
+            elif request.POST.get("action") == "delete" and s.status == "draft":
+                s.delete()
+                messages.success(request, _("Draft removed."))
+                return redirect("webapp:staff_detail", s.employee_id)
+        except ValidationError as exc:
+            messages.error(request, "; ".join(exc.messages))
+        return redirect("webapp:settlement_detail", s.pk)
+    return render(request, "webapp/hr/settlement.html", {"s": s, "methods": METHODS, "company": company,
+                                                         "print": request.GET.get("print") == "1"})
+
+
+@login_required
+@require_permission(MANAGE)
+def vacations(request):
+    company = request.company
+    _extra_or_404(company, "vacation")
+    if request.method == "POST":
+        action = request.POST.get("action")
+        try:
+            if action == "add":
+                emp = get_object_or_404(Employee.objects.for_company(company), id=pick_id(request.POST.get("employee")))
+                advanced.add_vacation(emp, parse_date(request.POST.get("start") or ""), parse_date(request.POST.get("end") or ""),
+                                      ticket_given=request.POST.get("ticket") == "on",
+                                      ticket_amount=_amount(request.POST.get("ticket_amount")), notes=request.POST.get("notes"))
+                messages.success(request, _("Vacation saved."))
+            elif action == "returned":
+                v = get_object_or_404(Vacation.objects.for_company(company), id=pick_id(request.POST.get("vacation")))
+                v.returned_on = parse_date(request.POST.get("date") or "") or timezone.localdate()
+                v.save(update_fields=["returned_on"])
+                messages.success(request, _("%(name)s is back at work.") % {"name": v.employee.name})
+        except ValidationError as exc:
+            messages.error(request, "; ".join(exc.messages))
+        return redirect("webapp:hr_vacations")
+    board = advanced.vacation_board(company)
+    recent = Vacation.objects.for_company(company).select_related("employee")[:50]
+    return render(request, "webapp/hr/vacations.html", {"board": board, "recent": recent, "staff": _staff(company),
+                                                        "today": timezone.localdate()})

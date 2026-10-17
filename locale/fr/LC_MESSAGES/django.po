@@ -687,6 +687,14 @@ msgid "Candidates"
 msgstr "Candidats"
 
 #: templates/webapp/_industry_nav.html
+msgid "Visa quota"
+msgstr "Quota de visas"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sub-agent commission"
+msgstr "Commission des sous-agents"
+
+#: templates/webapp/_industry_nav.html
 msgid "Careers website"
 msgstr "Site carrières"
 
@@ -717,6 +725,10 @@ msgstr "Facturation clients"
 #: templates/webapp/_industry_nav.html
 msgid "Site profit"
 msgstr "Marge par site"
+
+#: templates/webapp/_industry_nav.html
+msgid "Camps"
+msgstr "Camps"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3837,6 +3849,10 @@ msgid "Documents"
 msgstr "Documents"
 
 #: templates/webapp/hr/_tabs.html
+msgid "Vacations"
+msgstr "Congés"
+
+#: templates/webapp/hr/_tabs.html
 msgid "HR settings"
 msgstr "Paramètres RH"
 
@@ -4103,6 +4119,10 @@ msgid "Add holiday"
 msgstr "Ajouter un jour férié"
 
 #: templates/webapp/hr/payroll.html
+msgid "WPS salary file"
+msgstr "Fichier de paie WPS"
+
+#: templates/webapp/hr/payroll.html
 msgid "Draft — check and approve"
 msgstr "Brouillon — vérifier et approuver"
 
@@ -4262,9 +4282,145 @@ msgstr "Déduire du salaire les absences, demi-journées et congés sans solde"
 msgid "Daily rate = (basic + allowances) ÷ days in the month."
 msgstr "Taux journalier = (base + indemnités) ÷ jours du mois."
 
-#: templates/webapp/hr/staff_detail.html
+#: templates/webapp/hr/settings.html
+msgid "Advanced features"
+msgstr "Fonctions avancées"
+
+#: templates/webapp/hr/settings.html
+msgid ""
+"Switch on only what you use — the menus show only the features that are on."
+msgstr ""
+"N'activez que ce que vous utilisez : les menus n'affichent que les fonctions"
+" activées."
+
+#: templates/webapp/hr/settings.html
+msgid "Employer ID (establishment)"
+msgstr "ID employeur (établissement)"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer ID (if different)"
+msgstr "ID payeur (s'il est différent)"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer QID (if the payer is a person)"
+msgstr "QID du payeur (si c'est une personne)"
+
+#: templates/webapp/hr/settings.html
+msgid "Our bank (short name, e.g. QNB)"
+msgstr "Notre banque (nom court, ex. QNB)"
+
+#: templates/webapp/hr/settings.html
+msgid "Our IBAN"
+msgstr "Notre IBAN"
+
+#: templates/webapp/hr/settings.html
+msgid "Rules"
+msgstr "Règles"
+
+#: templates/webapp/hr/settings.html
+msgid "Gratuity: days of basic pay per year of service"
+msgstr ""
+"Indemnité de fin de service : jours de salaire de base par année de service"
+
+#: templates/webapp/hr/settings.html
+msgid "Qatar: at least 21 days (3 weeks), after one year of service."
+msgstr "Qatar : au moins 21 jours (3 semaines), après un an de service."
+
+#: templates/webapp/hr/settings.html
+msgid "Vacation days per year"
+msgstr "Jours de congé par an"
+
+#: templates/webapp/hr/settings.html
+msgid "Air ticket every (months)"
+msgstr "Billet d'avion tous les (mois)"
+
+#: templates/webapp/hr/settlement.html
+msgid "Final settlement"
+msgstr "Solde de tout compte"
+
+#: templates/webapp/hr/settlement.html
+msgid "Draft"
+msgstr "Brouillon"
+
+#: templates/webapp/hr/settlement.html
 msgid "Joined"
 msgstr "Embauché le"
+
+#: templates/webapp/hr/settlement.html
+msgid "Last working day"
+msgstr "Dernier jour de travail"
+
+#: templates/webapp/hr/settlement.html
+msgid "years of service"
+msgstr "années de service"
+
+#: templates/webapp/hr/settlement.html
+msgid "Gratuity"
+msgstr "Indemnité de fin de service"
+
+#: templates/webapp/hr/settlement.html
+msgid "Unpaid salary"
+msgstr "Salaire impayé"
+
+#: templates/webapp/hr/settlement.html
+msgid "Leave not taken"
+msgstr "Congés non pris"
+
+#: templates/webapp/hr/settlement.html
+msgid "Air ticket"
+msgstr "Billet d’avion"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other payments"
+msgstr "Autres paiements"
+
+#: templates/webapp/hr/settlement.html
+msgid "Salary advance to recover"
+msgstr "Avance sur salaire à récupérer"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other deductions"
+msgstr "Autres retenues"
+
+#: templates/webapp/hr/settlement.html
+msgid "Received in full and final settlement"
+msgstr "Reçu pour solde de tout compte"
+
+#: templates/webapp/hr/settlement.html
+msgid ""
+"Pay this settlement? It is recorded in the accounts and the staff member is "
+"marked as left."
+msgstr ""
+"Payer ce solde ? Il est enregistré en comptabilité et le salarié est marqué "
+"comme parti."
+
+#: templates/webapp/hr/settlement.html
+msgid "Pay & close"
+msgstr "Payer et clôturer"
+
+#: templates/webapp/hr/settlement.html
+msgid "Remove draft"
+msgstr "Supprimer le brouillon"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Reason"
+msgstr "Motif"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Air ticket amount"
+msgstr "Montant du billet d'avion"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Other payments (bonus…)"
+msgstr "Autres paiements (prime…)"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "less than one year: none"
+msgstr "moins d'un an : rien"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Save settlement"
+msgstr "Enregistrer le solde"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "Login"
@@ -4317,6 +4473,10 @@ msgstr ""
 #: templates/webapp/hr/staff_detail.html
 msgid "No site attendance this month yet."
 msgstr "Aucune présence sur site ce mois-ci pour l'instant."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "months since the last ticket"
+msgstr "mois depuis le dernier billet"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "per month"
@@ -4385,6 +4545,10 @@ msgstr "Aucun document."
 #: templates/webapp/hr/staff_form.html
 msgid "Edit staff"
 msgstr "Modifier l’employé"
+
+#: templates/webapp/hr/staff_form.html
+msgid "Bank (WPS)"
+msgstr "Banque (WPS)"
 
 #: templates/webapp/hr/staff_form.html
 msgid ""
@@ -4461,6 +4625,98 @@ msgstr "Aucun ancien employé."
 #: templates/webapp/hr/staff_list.html
 msgid "No staff yet. Add your first staff member with their salary."
 msgstr "Aucun employé. Ajoutez votre premier employé avec son salaire."
+
+#: templates/webapp/hr/vacations.html
+msgid "On vacation now"
+msgstr "En congé maintenant"
+
+#: templates/webapp/hr/vacations.html
+msgid "Late back"
+msgstr "Retour en retard"
+
+#: templates/webapp/hr/vacations.html
+msgid "Leaving in 30 days"
+msgstr "Partent dans 30 jours"
+
+#: templates/webapp/hr/vacations.html
+msgid "Due an air ticket"
+msgstr "Ont droit à un billet d'avion"
+
+#: templates/webapp/hr/vacations.html
+msgid "was due back"
+msgstr "devait revenir le"
+
+#: templates/webapp/hr/vacations.html
+msgid "days late"
+msgstr "jours de retard"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work"
+msgstr "De retour au travail"
+
+#: templates/webapp/hr/vacations.html
+msgid "ticket"
+msgstr "billet"
+
+#: templates/webapp/hr/vacations.html
+msgid "Nobody is on vacation."
+msgstr "Personne n'est en congé."
+
+#: templates/webapp/hr/vacations.html
+msgid "leave balance"
+msgstr "solde de congés"
+
+#: templates/webapp/hr/vacations.html
+msgid "Plan a vacation"
+msgstr "Planifier un congé"
+
+#: templates/webapp/hr/vacations.html
+msgid "Staff member"
+msgstr "Membre du personnel"
+
+#: templates/webapp/hr/vacations.html
+msgid "First day of vacation"
+msgstr "Premier jour de congé"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work on"
+msgstr "De retour au travail le"
+
+#: templates/webapp/hr/vacations.html
+msgid "Air ticket given"
+msgstr "Billet d'avion remis"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket amount"
+msgstr "Montant du billet"
+
+#: templates/webapp/hr/vacations.html
+msgid "Recent vacations"
+msgstr "Congés récents"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back on"
+msgstr "Revenu le"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket"
+msgstr "Billet"
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Fix these before sending the file to the bank"
+msgstr "Corrigez ceci avant d'envoyer le fichier à la banque"
+
+#: templates/webapp/hr/wps_problems.html
+msgid ""
+"The QID comes from the staff member's ID / residence card document; the bank"
+" and IBAN are on the staff form."
+msgstr ""
+"Le QID vient du document d'identité / carte de résident du salarié ; la "
+"banque et l'IBAN sont sur la fiche du salarié."
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Download anyway"
+msgstr "Télécharger quand même"
 
 #: templates/webapp/import_export/product_import.html
 msgid "Import products"
@@ -6018,6 +6274,45 @@ msgstr "Créer la facture"
 msgid "Choose the client for this site first."
 msgstr "Choisissez d'abord le client de ce site."
 
+#: templates/webapp/manpower/camps.html
+msgid "Camps & accommodation"
+msgstr "Camps et logement"
+
+#: templates/webapp/manpower/camps.html
+msgid "beds"
+msgstr "lits"
+
+#: templates/webapp/manpower/camps.html
+msgid "per person a month"
+msgstr "par personne et par mois"
+
+#: templates/webapp/manpower/camps.html
+msgid "Move out"
+msgstr "Faire sortir"
+
+#: templates/webapp/manpower/camps.html
+msgid "Nobody lives here yet."
+msgstr "Personne n'habite encore ici."
+
+#: templates/webapp/manpower/camps.html
+msgid "Move in"
+msgstr "Loger"
+
+#: templates/webapp/manpower/camps.html
+msgid "No camps yet. Add one below."
+msgstr "Aucun camp pour l'instant. Ajoutez-en un ci-dessous."
+
+#: templates/webapp/manpower/camps.html
+msgid "New camp"
+msgstr "Nouveau camp"
+
+#: templates/webapp/manpower/camps.html
+msgid ""
+"The camp's cost per person is added to each worker's cost in Site profit."
+msgstr ""
+"Le coût par personne du camp est ajouté au coût de chaque ouvrier dans la "
+"marge par site."
+
 #: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "Sites actifs"
@@ -6152,6 +6447,10 @@ msgstr ""
 " × heures / jours, plus heures sup.) comparé à ce que nous payons à "
 "l'ouvrier pour ce temps (salaire des jours, ou tarif jour / heure, plus "
 "heures sup.)."
+
+#: templates/webapp/manpower/profit.html
+msgid "Camp"
+msgstr "Camp"
 
 #: templates/webapp/manpower/site.html
 msgid "Client"
@@ -7143,10 +7442,6 @@ msgstr "Ouvrir la réservation"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "Souhaite"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Reason"
-msgstr "Motif"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Confirm"
@@ -8854,12 +9149,41 @@ msgid "oldest"
 msgstr "la plus ancienne"
 
 #: templates/webapp/receivables/home.html
-msgid "days late"
-msgstr "jours de retard"
-
-#: templates/webapp/receivables/home.html
 msgid "Nobody owes you money."
 msgstr "Personne ne vous doit d’argent."
+
+#: templates/webapp/recruitment/agents.html
+msgid "Owed"
+msgstr "Dû"
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"Commission is owed for candidates who joined (set it on the placement). "
+"Payments are the “Agent commission” costs recorded on placements."
+msgstr ""
+"La commission est due pour les candidats arrivés (à saisir sur le "
+"placement). Les paiements sont les coûts « Commission d'agent » enregistrés "
+"sur les placements."
+
+#: templates/webapp/recruitment/agents.html
+msgid "candidates sent"
+msgstr "candidats envoyés"
+
+#: templates/webapp/recruitment/agents.html
+msgid "joined"
+msgstr "arrivés"
+
+#: templates/webapp/recruitment/agents.html
+msgid "Nobody joined yet."
+msgstr "Personne n'est encore arrivé."
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"No candidates from sub-agents yet. Choose the sub-agent on the candidate "
+"form."
+msgstr ""
+"Pas encore de candidats de sous-agents. Choisissez le sous-agent sur la "
+"fiche du candidat."
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "View CV"
@@ -9121,10 +9445,6 @@ msgid "Position, number or client"
 msgstr "Poste, numéro ou client"
 
 #: templates/webapp/recruitment/jobs.html
-msgid "joined"
-msgstr "arrivés"
-
-#: templates/webapp/recruitment/jobs.html
 msgid "No job orders here."
 msgstr "Aucune offre ici."
 
@@ -9237,6 +9557,10 @@ msgid "Replacement guarantee until"
 msgstr "Garantie de remplacement jusqu’au"
 
 #: templates/webapp/recruitment/placement.html
+msgid "Commission for"
+msgstr "Commission pour"
+
+#: templates/webapp/recruitment/placement.html
 msgid "Fees & profit"
 msgstr "Honoraires et bénéfice"
 
@@ -9315,6 +9639,34 @@ msgstr "Payé à"
 #: templates/webapp/recruitment/placement.html
 msgid "Add cost"
 msgstr "Ajouter un coût"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "approved"
+msgstr "approuvés"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "used"
+msgstr "utilisés"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "Valid until"
+msgstr "Valable jusqu’au"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "No visa quotas yet."
+msgstr "Aucun quota de visas pour l'instant."
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "New visa quota"
+msgstr "Nouveau quota de visas"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid ""
+"Choose the quota on each placement; it then counts as used (rejected and "
+"withdrawn placements do not count)."
+msgstr ""
+"Choisissez le quota sur chaque placement ; il compte alors comme utilisé "
+"(les placements refusés ou retirés ne comptent pas)."
 
 #: templates/webapp/refills/list.html
 msgid "Refill subscriptions"
@@ -11036,10 +11388,6 @@ msgstr "Livrées aujourd'hui"
 msgid "Product"
 msgstr "Produit"
 
-#: templates/webapp/sales_docs/_doc_head.html
-msgid "Valid until"
-msgstr "Valable jusqu’au"
-
 #: templates/webapp/sales_docs/_tabs.html
 msgid "Sales documents"
 msgstr "Documents de vente"
@@ -12621,6 +12969,100 @@ msgstr "Sélectionner %(label)s"
 msgid "Select…"
 msgstr "Sélectionner…"
 
+#: apps/employees/advanced.py
+msgid "Download the bank's WPS salary file (SIF) from an approved payroll."
+msgstr ""
+"Téléchargez le fichier de paie WPS (SIF) de la banque depuis une paie "
+"approuvée."
+
+#: apps/employees/advanced.py
+msgid "Gratuity & final settlement"
+msgstr "Indemnité et solde de tout compte"
+
+#: apps/employees/advanced.py
+msgid ""
+"End-of-service gratuity and the final settlement when someone leaves, "
+"recorded in the accounts."
+msgstr ""
+"Indemnité de fin de service et solde de tout compte au départ d'une "
+"personne, enregistrés en comptabilité."
+
+#: apps/employees/advanced.py
+msgid "Vacation & air ticket"
+msgstr "Congés et billet d'avion"
+
+#: apps/employees/advanced.py
+msgid "Annual home leave with the air ticket: who is away, due or late back."
+msgstr ""
+"Congé annuel avec billet d'avion : qui est absent, qui y a droit, qui rentre"
+" en retard."
+
+#: apps/employees/advanced.py
+msgid "Camps & accommodation cost"
+msgstr "Coût des camps et du logement"
+
+#: apps/employees/advanced.py
+msgid "Staff camps with their monthly cost per head, counted in site profit."
+msgstr ""
+"Camps du personnel et leur coût mensuel par personne, comptés dans la marge "
+"par site."
+
+#: apps/employees/advanced.py
+msgid "Visa quotas approved for the company: used and left."
+msgstr "Quotas de visas approuvés pour l'entreprise : utilisés et restants."
+
+#: apps/employees/advanced.py
+msgid ""
+"What each sub-agent is owed for the candidates they sent, and what is paid."
+msgstr ""
+"Ce qui est dû à chaque sous-agent pour les candidats envoyés, et ce qui est "
+"payé."
+
+#: apps/employees/advanced.py
+msgid "Fill the employer ID, bank and IBAN in HR settings."
+msgstr ""
+"Renseignez l'ID employeur, la banque et l'IBAN dans les paramètres RH."
+
+#: apps/employees/advanced.py
+msgid "QID"
+msgstr "QID"
+
+#: apps/employees/advanced.py
+msgid "bank"
+msgstr "banque"
+
+#: apps/employees/advanced.py
+msgid "IBAN"
+msgstr "IBAN"
+
+#: apps/employees/advanced.py
+msgid "%(name)s: no %(what)s"
+msgstr "%(name)s : pas de %(what)s"
+
+#: apps/employees/advanced.py
+msgid "Enter the joining date on the staff record first."
+msgstr "Saisissez d'abord la date d'entrée sur la fiche du salarié."
+
+#: apps/employees/advanced.py
+msgid "The last day is before the joining date."
+msgstr "Le dernier jour est avant la date d'entrée."
+
+#: apps/employees/advanced.py
+msgid "This settlement is already paid."
+msgstr "Ce solde est déjà payé."
+
+#: apps/employees/advanced.py
+msgid "The deductions are more than the amount due."
+msgstr "Les retenues dépassent le montant dû."
+
+#: apps/employees/advanced.py
+msgid "Choose the first day and the day back at work."
+msgstr "Choisissez le premier jour et le jour de retour au travail."
+
+#: apps/employees/advanced.py
+msgid "%(name)s already has a vacation in these dates."
+msgstr "%(name)s a déjà un congé à ces dates."
+
 #: apps/employees/site_workers.py
 msgid "Choose a site."
 msgstr "Choisissez un site."
@@ -13436,10 +13878,6 @@ msgstr "Sans zone"
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "Installés"
-
-#: apps/verticals/restaurant/models.py
-msgid "Draft"
-msgstr "Brouillon"
 
 #: apps/verticals/restaurant/models.py
 msgid "Served"
@@ -14696,12 +15134,20 @@ msgid "Login (optional)"
 msgstr "Identifiant (facultatif)"
 
 #: apps/webapp/hr_views.py
-msgid "This login is already linked to another staff member."
-msgstr "Cet identifiant est déjà lié à un autre membre du personnel."
+msgid "Bank (short name, e.g. QNB)"
+msgstr "Banque (nom court, ex. QNB)"
 
 #: apps/webapp/hr_views.py
-msgid "Staff member"
-msgstr "Membre du personnel"
+msgid "IBAN / account number"
+msgstr "IBAN / numéro de compte"
+
+#: apps/webapp/hr_views.py
+msgid "Visa ID (optional)"
+msgstr "ID de visa (facultatif)"
+
+#: apps/webapp/hr_views.py
+msgid "This login is already linked to another staff member."
+msgstr "Cet identifiant est déjà lié à un autre membre du personnel."
 
 #: apps/webapp/hr_views.py
 msgid "Advance amount"
@@ -14830,6 +15276,30 @@ msgstr "Document enregistré."
 #: apps/webapp/hr_views.py
 msgid "HR settings saved."
 msgstr "Paramètres RH enregistrés."
+
+#: apps/webapp/hr_views.py
+msgid "Approve the payroll first."
+msgstr "Approuvez d'abord la paie."
+
+#: apps/webapp/hr_views.py
+msgid "Final settlement saved for %(name)s."
+msgstr "Solde de tout compte enregistré pour %(name)s."
+
+#: apps/webapp/hr_views.py
+msgid "Settlement paid and recorded in the accounts."
+msgstr "Solde payé et enregistré en comptabilité."
+
+#: apps/webapp/hr_views.py
+msgid "Draft removed."
+msgstr "Brouillon supprimé."
+
+#: apps/webapp/hr_views.py
+msgid "Vacation saved."
+msgstr "Congé enregistré."
+
+#: apps/webapp/hr_views.py
+msgid "%(name)s is back at work."
+msgstr "%(name)s est de retour au travail."
 
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
@@ -15078,6 +15548,33 @@ msgstr "Poste supprimé."
 #: apps/webapp/manpower_views.py
 msgid "Trade"
 msgstr "Métier"
+
+#: apps/webapp/manpower_views.py
+msgid "Camp / building name"
+msgstr "Nom du camp / bâtiment"
+
+#: apps/webapp/manpower_views.py
+msgid "Beds"
+msgstr "Lits"
+
+#: apps/webapp/manpower_views.py
+msgid "Monthly cost (rent, electricity, water…)"
+msgstr "Coût mensuel (loyer, électricité, eau…)"
+
+#: apps/webapp/manpower_views.py
+msgid "Food per person a month"
+msgstr "Repas par personne et par mois"
+
+#: apps/webapp/manpower_views.py
+msgid "Transport per person a month"
+msgstr "Transport par personne et par mois"
+
+#: apps/webapp/manpower_views.py
+msgid ""
+"Switch on “Camps & accommodation cost” in HR settings → Advanced features."
+msgstr ""
+"Activez « Coût des camps et du logement » dans Paramètres RH → Fonctions "
+"avancées."
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -16378,10 +16875,6 @@ msgid "Visa"
 msgstr "Visa"
 
 #: apps/webapp/recruitment_views.py
-msgid "Ticket"
-msgstr "Billet"
-
-#: apps/webapp/recruitment_views.py
 msgid "Joined / deployed"
 msgstr "A rejoint / déployé"
 
@@ -16396,10 +16889,6 @@ msgstr "Apte"
 #: apps/webapp/recruitment_views.py
 msgid "Unfit"
 msgstr "Inapte"
-
-#: apps/webapp/recruitment_views.py
-msgid "Air ticket"
-msgstr "Billet d’avion"
 
 #: apps/webapp/recruitment_views.py
 msgid "Agent commission"
@@ -16428,6 +16917,26 @@ msgstr "Nationalité souhaitée, le cas échéant."
 #: apps/webapp/recruitment_views.py
 msgid "Accommodation, food, transport…"
 msgstr "Logement, repas, transport…"
+
+#: apps/webapp/recruitment_views.py
+msgid "Approval / block visa number"
+msgstr "Numéro d'approbation / visa groupé"
+
+#: apps/webapp/recruitment_views.py
+msgid "Profession"
+msgstr "Profession"
+
+#: apps/webapp/recruitment_views.py
+msgid "Visas approved"
+msgstr "Visas approuvés"
+
+#: apps/webapp/recruitment_views.py
+msgid "Switch on “%(name)s” in HR settings → Advanced features."
+msgstr "Activez « %(name)s » dans Paramètres RH → Fonctions avancées."
+
+#: apps/webapp/recruitment_views.py
+msgid "This quota is used by placements."
+msgstr "Ce quota est utilisé par des placements."
 
 #: apps/webapp/refill_views.py
 msgid "Choose the customer and the item, and enter how often."

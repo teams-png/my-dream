@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Sub-agent commission" %}{% endblock %}
+{% block heading %}{% translate "Sub-agent commission" %}{% endblock %}
+{% block content %}
+{% include "webapp/recruitment/_head.html" %}
+<div class="ix-card"><p>{% translate "Owed" %} <b>{{ total.owed|floatformat:2 }}</b> · {% translate "Paid" %} <b>{{ total.paid|floatformat:2 }}</b> · {% translate "Balance" %} <b>{{ total.balance|floatformat:2 }}</b></p>
+<p style="color:var(--ink-soft);font-size:13px">{% translate "Commission is owed for candidates who joined (set it on the placement). Payments are the “Agent commission” costs recorded on placements." %}</p></div>
+{% for r in rows %}
+<div class="ix-card"><h3>🤝 {{ r.agent.name }} <small>{{ r.agent.phone }} · {{ r.sent }} {% translate "candidates sent" %} · {{ r.joined|length }} {% translate "joined" %}</small></h3>
+  <div class="ix-list">{% for p in r.joined %}<a class="ix-row" href="{% url 'webapp:rec_placement' p.id %}"><span class="grow"><b>{{ p.candidate.name }}</b><small>{{ p.job_order.number }} · {{ p.job_order.position }}{% if p.joining_date %} · {{ p.joining_date|date:"j M Y" }}{% endif %}</small></span><b>{{ p.agent_commission|floatformat:2 }}</b></a>{% empty %}<div class="ix-empty">{% translate "Nobody joined yet." %}</div>{% endfor %}</div>
+  <p style="margin:10px 0 0">{% translate "Owed" %} <b>{{ r.owed|floatformat:2 }}</b> · {% translate "Paid" %} <b>{{ r.paid|floatformat:2 }}</b> · {% translate "Balance" %} <b style="color:{% if r.balance > 0 %}#b91c1c{% else %}#166534{% endif %}">{{ r.balance|floatformat:2 }}</b></p>
+</div>
+{% empty %}<div class="ix-card ix-empty">{% translate "No candidates from sub-agents yet. Choose the sub-agent on the candidate form." %}</div>{% endfor %}
+{% endblock %}

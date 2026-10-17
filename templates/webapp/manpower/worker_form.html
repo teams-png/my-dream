@@ -27,6 +27,12 @@
       {% endfor %}
     </div>
   </div>
+  {% if "wps" in hr_extras %}<div class="hr-card"><h3>🏦 {% translate "Bank (WPS)" %}</h3>
+    <div class="hr-form">
+      {% include "webapp/hr/_field.html" with f=form.bank_short_name %}
+      {% include "webapp/hr/_field.html" with f=form.iban %}
+      {% include "webapp/hr/_field.html" with f=form.visa_id %}
+    </div></div>{% endif %}
   <div class="hr-card"><h3>💰 {% translate "Pay" %}</h3>
     <div class="hr-form">
       {% include "webapp/hr/_field.html" with f=form.pay_basis %}

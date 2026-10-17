@@ -687,6 +687,14 @@ msgid "Candidates"
 msgstr "Mga kandidato"
 
 #: templates/webapp/_industry_nav.html
+msgid "Visa quota"
+msgstr "Visa quota"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sub-agent commission"
+msgstr "Komisyon ng sub-agent"
+
+#: templates/webapp/_industry_nav.html
 msgid "Careers website"
 msgstr "Careers website"
 
@@ -717,6 +725,10 @@ msgstr "Pagsingil sa kliyente"
 #: templates/webapp/_industry_nav.html
 msgid "Site profit"
 msgstr "Kita sa site"
+
+#: templates/webapp/_industry_nav.html
+msgid "Camps"
+msgstr "Mga kampo"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3828,6 +3840,10 @@ msgid "Documents"
 msgstr "Mga dokumento"
 
 #: templates/webapp/hr/_tabs.html
+msgid "Vacations"
+msgstr "Mga bakasyon"
+
+#: templates/webapp/hr/_tabs.html
 msgid "HR settings"
 msgstr "Mga setting ng HR"
 
@@ -4094,6 +4110,10 @@ msgid "Add holiday"
 msgstr "Magdagdag ng holiday"
 
 #: templates/webapp/hr/payroll.html
+msgid "WPS salary file"
+msgstr "WPS salary file"
+
+#: templates/webapp/hr/payroll.html
 msgid "Draft — check and approve"
 msgstr "Draft — suriin at aprubahan"
 
@@ -4253,9 +4273,145 @@ msgstr "Ibawas sa sahod ang absent, kalahating araw at unpaid leave"
 msgid "Daily rate = (basic + allowances) ÷ days in the month."
 msgstr "Arawang rate = (basic + allowance) ÷ bilang ng araw sa buwan."
 
-#: templates/webapp/hr/staff_detail.html
+#: templates/webapp/hr/settings.html
+msgid "Advanced features"
+msgstr "Mga advanced na feature"
+
+#: templates/webapp/hr/settings.html
+msgid ""
+"Switch on only what you use — the menus show only the features that are on."
+msgstr ""
+"I-on lang ang ginagamit mo — ang mga naka-on lang ang lalabas sa menu."
+
+#: templates/webapp/hr/settings.html
+msgid "Employer ID (establishment)"
+msgstr "Employer ID (establisimyento)"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer ID (if different)"
+msgstr "Payer ID (kung iba)"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer QID (if the payer is a person)"
+msgstr "Payer QID (kung tao ang nagbabayad)"
+
+#: templates/webapp/hr/settings.html
+msgid "Our bank (short name, e.g. QNB)"
+msgstr "Aming bangko (maikling pangalan, hal. QNB)"
+
+#: templates/webapp/hr/settings.html
+msgid "Our IBAN"
+msgstr "Aming IBAN"
+
+#: templates/webapp/hr/settings.html
+msgid "Rules"
+msgstr "Mga patakaran"
+
+#: templates/webapp/hr/settings.html
+msgid "Gratuity: days of basic pay per year of service"
+msgstr "Gratuity: mga araw ng basic pay bawat taon ng serbisyo"
+
+#: templates/webapp/hr/settings.html
+msgid "Qatar: at least 21 days (3 weeks), after one year of service."
+msgstr ""
+"Qatar: hindi bababa sa 21 araw (3 linggo), pagkatapos ng isang taon ng "
+"serbisyo."
+
+#: templates/webapp/hr/settings.html
+msgid "Vacation days per year"
+msgstr "Mga araw ng bakasyon bawat taon"
+
+#: templates/webapp/hr/settings.html
+msgid "Air ticket every (months)"
+msgstr "Air ticket bawat (buwan)"
+
+#: templates/webapp/hr/settlement.html
+msgid "Final settlement"
+msgstr "Final settlement"
+
+#: templates/webapp/hr/settlement.html
+msgid "Draft"
+msgstr "Draft"
+
+#: templates/webapp/hr/settlement.html
 msgid "Joined"
 msgstr "Sumali"
+
+#: templates/webapp/hr/settlement.html
+msgid "Last working day"
+msgstr "Huling araw ng trabaho"
+
+#: templates/webapp/hr/settlement.html
+msgid "years of service"
+msgstr "taon ng serbisyo"
+
+#: templates/webapp/hr/settlement.html
+msgid "Gratuity"
+msgstr "Gratuity"
+
+#: templates/webapp/hr/settlement.html
+msgid "Unpaid salary"
+msgstr "Hindi pa bayad na sahod"
+
+#: templates/webapp/hr/settlement.html
+msgid "Leave not taken"
+msgstr "Hindi nagamit na leave"
+
+#: templates/webapp/hr/settlement.html
+msgid "Air ticket"
+msgstr "Air ticket"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other payments"
+msgstr "Iba pang bayad"
+
+#: templates/webapp/hr/settlement.html
+msgid "Salary advance to recover"
+msgstr "Salary advance na babawiin"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other deductions"
+msgstr "Iba pang kaltas"
+
+#: templates/webapp/hr/settlement.html
+msgid "Received in full and final settlement"
+msgstr "Natanggap bilang buo at huling settlement"
+
+#: templates/webapp/hr/settlement.html
+msgid ""
+"Pay this settlement? It is recorded in the accounts and the staff member is "
+"marked as left."
+msgstr ""
+"Bayaran ang settlement na ito? Itatala ito sa mga account at mamarkahang "
+"umalis na ang staff."
+
+#: templates/webapp/hr/settlement.html
+msgid "Pay & close"
+msgstr "Bayaran at isara"
+
+#: templates/webapp/hr/settlement.html
+msgid "Remove draft"
+msgstr "Alisin ang draft"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Reason"
+msgstr "Dahilan"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Air ticket amount"
+msgstr "Halaga ng air ticket"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Other payments (bonus…)"
+msgstr "Iba pang bayad (bonus…)"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "less than one year: none"
+msgstr "wala pang isang taon: wala"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Save settlement"
+msgstr "I-save ang settlement"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "Login"
@@ -4308,6 +4464,10 @@ msgstr ""
 #: templates/webapp/hr/staff_detail.html
 msgid "No site attendance this month yet."
 msgstr "Wala pang attendance sa site ngayong buwan."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "months since the last ticket"
+msgstr "buwan mula sa huling ticket"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "per month"
@@ -4376,6 +4536,10 @@ msgstr "Walang dokumento."
 #: templates/webapp/hr/staff_form.html
 msgid "Edit staff"
 msgstr "I-edit ang staff"
+
+#: templates/webapp/hr/staff_form.html
+msgid "Bank (WPS)"
+msgstr "Bangko (WPS)"
 
 #: templates/webapp/hr/staff_form.html
 msgid ""
@@ -4452,6 +4616,98 @@ msgstr "Walang dating staff."
 #: templates/webapp/hr/staff_list.html
 msgid "No staff yet. Add your first staff member with their salary."
 msgstr "Wala pang staff. Idagdag ang unang staff kasama ang kanyang sahod."
+
+#: templates/webapp/hr/vacations.html
+msgid "On vacation now"
+msgstr "Nasa bakasyon ngayon"
+
+#: templates/webapp/hr/vacations.html
+msgid "Late back"
+msgstr "Huli ang balik"
+
+#: templates/webapp/hr/vacations.html
+msgid "Leaving in 30 days"
+msgstr "Aalis sa loob ng 30 araw"
+
+#: templates/webapp/hr/vacations.html
+msgid "Due an air ticket"
+msgstr "Dapat nang bigyan ng air ticket"
+
+#: templates/webapp/hr/vacations.html
+msgid "was due back"
+msgstr "dapat bumalik noong"
+
+#: templates/webapp/hr/vacations.html
+msgid "days late"
+msgstr "araw na huli"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work"
+msgstr "Balik sa trabaho"
+
+#: templates/webapp/hr/vacations.html
+msgid "ticket"
+msgstr "ticket"
+
+#: templates/webapp/hr/vacations.html
+msgid "Nobody is on vacation."
+msgstr "Walang nasa bakasyon."
+
+#: templates/webapp/hr/vacations.html
+msgid "leave balance"
+msgstr "natitirang leave"
+
+#: templates/webapp/hr/vacations.html
+msgid "Plan a vacation"
+msgstr "Magplano ng bakasyon"
+
+#: templates/webapp/hr/vacations.html
+msgid "Staff member"
+msgstr "Staff"
+
+#: templates/webapp/hr/vacations.html
+msgid "First day of vacation"
+msgstr "Unang araw ng bakasyon"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work on"
+msgstr "Balik sa trabaho sa"
+
+#: templates/webapp/hr/vacations.html
+msgid "Air ticket given"
+msgstr "Nabigyan ng air ticket"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket amount"
+msgstr "Halaga ng ticket"
+
+#: templates/webapp/hr/vacations.html
+msgid "Recent vacations"
+msgstr "Mga kamakailang bakasyon"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back on"
+msgstr "Bumalik noong"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket"
+msgstr "Ticket"
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Fix these before sending the file to the bank"
+msgstr "Ayusin ang mga ito bago ipadala ang file sa bangko"
+
+#: templates/webapp/hr/wps_problems.html
+msgid ""
+"The QID comes from the staff member's ID / residence card document; the bank"
+" and IBAN are on the staff form."
+msgstr ""
+"Ang QID ay mula sa dokumentong ID / residence card ng staff; ang bangko at "
+"IBAN ay nasa form ng staff."
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Download anyway"
+msgstr "I-download pa rin"
 
 #: templates/webapp/import_export/product_import.html
 msgid "Import products"
@@ -6006,6 +6262,45 @@ msgstr "Gumawa ng invoice"
 msgid "Choose the client for this site first."
 msgstr "Piliin muna ang kliyente ng site na ito."
 
+#: templates/webapp/manpower/camps.html
+msgid "Camps & accommodation"
+msgstr "Mga kampo at tirahan"
+
+#: templates/webapp/manpower/camps.html
+msgid "beds"
+msgstr "kama"
+
+#: templates/webapp/manpower/camps.html
+msgid "per person a month"
+msgstr "bawat tao kada buwan"
+
+#: templates/webapp/manpower/camps.html
+msgid "Move out"
+msgstr "Ilipat palabas"
+
+#: templates/webapp/manpower/camps.html
+msgid "Nobody lives here yet."
+msgstr "Wala pang nakatira rito."
+
+#: templates/webapp/manpower/camps.html
+msgid "Move in"
+msgstr "Ilipat papasok"
+
+#: templates/webapp/manpower/camps.html
+msgid "No camps yet. Add one below."
+msgstr "Wala pang kampo. Magdagdag sa ibaba."
+
+#: templates/webapp/manpower/camps.html
+msgid "New camp"
+msgstr "Bagong kampo"
+
+#: templates/webapp/manpower/camps.html
+msgid ""
+"The camp's cost per person is added to each worker's cost in Site profit."
+msgstr ""
+"Ang gastos ng kampo bawat tao ay idinadagdag sa gastos ng bawat manggagawa "
+"sa Kita sa site."
+
 #: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "Mga aktibong site"
@@ -6139,6 +6434,10 @@ msgstr ""
 "Mula sa attendance sa site: ang siningil sa bawat kliyente (rate × oras / "
 "araw, kasama ang overtime) laban sa ibinabayad namin sa manggagawa sa oras "
 "na iyon (sahod sa mga araw, o rate kada araw / oras, kasama ang overtime)."
+
+#: templates/webapp/manpower/profit.html
+msgid "Camp"
+msgstr "Kampo"
 
 #: templates/webapp/manpower/site.html
 msgid "Client"
@@ -7124,10 +7423,6 @@ msgstr "Buksan ang booking"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "Gusto"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Reason"
-msgstr "Dahilan"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Confirm"
@@ -8821,12 +9116,41 @@ msgid "oldest"
 msgstr "pinakaluma"
 
 #: templates/webapp/receivables/home.html
-msgid "days late"
-msgstr "araw na huli"
-
-#: templates/webapp/receivables/home.html
 msgid "Nobody owes you money."
 msgstr "Walang may utang sa iyo."
+
+#: templates/webapp/recruitment/agents.html
+msgid "Owed"
+msgstr "Utang"
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"Commission is owed for candidates who joined (set it on the placement). "
+"Payments are the “Agent commission” costs recorded on placements."
+msgstr ""
+"May komisyon para sa mga kandidatong pumasok na (itakda ito sa placement). "
+"Ang mga bayad ay ang mga gastos na “Agent commission” na nakatala sa mga "
+"placement."
+
+#: templates/webapp/recruitment/agents.html
+msgid "candidates sent"
+msgstr "kandidatong ipinadala"
+
+#: templates/webapp/recruitment/agents.html
+msgid "joined"
+msgstr "sumali"
+
+#: templates/webapp/recruitment/agents.html
+msgid "Nobody joined yet."
+msgstr "Wala pang pumasok."
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"No candidates from sub-agents yet. Choose the sub-agent on the candidate "
+"form."
+msgstr ""
+"Wala pang kandidato mula sa mga sub-agent. Piliin ang sub-agent sa form ng "
+"kandidato."
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "View CV"
@@ -9089,10 +9413,6 @@ msgid "Position, number or client"
 msgstr "Posisyon, numero o kliyente"
 
 #: templates/webapp/recruitment/jobs.html
-msgid "joined"
-msgstr "sumali"
-
-#: templates/webapp/recruitment/jobs.html
 msgid "No job orders here."
 msgstr "Walang job order dito."
 
@@ -9205,6 +9525,10 @@ msgid "Replacement guarantee until"
 msgstr "Garantiya ng kapalit hanggang"
 
 #: templates/webapp/recruitment/placement.html
+msgid "Commission for"
+msgstr "Komisyon para kay"
+
+#: templates/webapp/recruitment/placement.html
 msgid "Fees & profit"
 msgstr "Bayarin at kita"
 
@@ -9283,6 +9607,34 @@ msgstr "Binayaran kay"
 #: templates/webapp/recruitment/placement.html
 msgid "Add cost"
 msgstr "Magdagdag ng gastos"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "approved"
+msgstr "inaprubahan"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "used"
+msgstr "nagamit"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "Valid until"
+msgstr "Valid hanggang"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "No visa quotas yet."
+msgstr "Wala pang visa quota."
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "New visa quota"
+msgstr "Bagong visa quota"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid ""
+"Choose the quota on each placement; it then counts as used (rejected and "
+"withdrawn placements do not count)."
+msgstr ""
+"Piliin ang quota sa bawat placement; saka ito mabibilang na nagamit (hindi "
+"kasama ang mga tinanggihan at binawi)."
 
 #: templates/webapp/refills/list.html
 msgid "Refill subscriptions"
@@ -10995,10 +11347,6 @@ msgstr "Naihatid ngayong araw"
 msgid "Product"
 msgstr "Produkto"
 
-#: templates/webapp/sales_docs/_doc_head.html
-msgid "Valid until"
-msgstr "Valid hanggang"
-
 #: templates/webapp/sales_docs/_tabs.html
 msgid "Sales documents"
 msgstr "Mga dokumento ng benta"
@@ -12579,6 +12927,98 @@ msgstr "Pumili ng %(label)s"
 msgid "Select…"
 msgstr "Pumili…"
 
+#: apps/employees/advanced.py
+msgid "Download the bank's WPS salary file (SIF) from an approved payroll."
+msgstr ""
+"I-download ang WPS salary file (SIF) ng bangko mula sa isang inaprubahang "
+"payroll."
+
+#: apps/employees/advanced.py
+msgid "Gratuity & final settlement"
+msgstr "Gratuity at final settlement"
+
+#: apps/employees/advanced.py
+msgid ""
+"End-of-service gratuity and the final settlement when someone leaves, "
+"recorded in the accounts."
+msgstr ""
+"End-of-service gratuity at final settlement kapag may umalis, nakatala sa "
+"mga account."
+
+#: apps/employees/advanced.py
+msgid "Vacation & air ticket"
+msgstr "Bakasyon at air ticket"
+
+#: apps/employees/advanced.py
+msgid "Annual home leave with the air ticket: who is away, due or late back."
+msgstr ""
+"Taunang bakasyon pauwi kasama ang air ticket: sino ang wala, sino ang dapat "
+"na, sino ang huli bumalik."
+
+#: apps/employees/advanced.py
+msgid "Camps & accommodation cost"
+msgstr "Gastos sa kampo at tirahan"
+
+#: apps/employees/advanced.py
+msgid "Staff camps with their monthly cost per head, counted in site profit."
+msgstr ""
+"Mga kampo ng staff at buwanang gastos bawat tao, kasama sa kita sa site."
+
+#: apps/employees/advanced.py
+msgid "Visa quotas approved for the company: used and left."
+msgstr "Mga visa quota na inaprubahan para sa kumpanya: nagamit at natitira."
+
+#: apps/employees/advanced.py
+msgid ""
+"What each sub-agent is owed for the candidates they sent, and what is paid."
+msgstr ""
+"Ang utang sa bawat sub-agent para sa mga kandidatong ipinadala nila, at ang "
+"nabayaran."
+
+#: apps/employees/advanced.py
+msgid "Fill the employer ID, bank and IBAN in HR settings."
+msgstr "Ilagay ang employer ID, bangko at IBAN sa HR settings."
+
+#: apps/employees/advanced.py
+msgid "QID"
+msgstr "QID"
+
+#: apps/employees/advanced.py
+msgid "bank"
+msgstr "bangko"
+
+#: apps/employees/advanced.py
+msgid "IBAN"
+msgstr "IBAN"
+
+#: apps/employees/advanced.py
+msgid "%(name)s: no %(what)s"
+msgstr "%(name)s: walang %(what)s"
+
+#: apps/employees/advanced.py
+msgid "Enter the joining date on the staff record first."
+msgstr "Ilagay muna ang petsa ng pagpasok sa record ng staff."
+
+#: apps/employees/advanced.py
+msgid "The last day is before the joining date."
+msgstr "Ang huling araw ay bago ang petsa ng pagpasok."
+
+#: apps/employees/advanced.py
+msgid "This settlement is already paid."
+msgstr "Bayad na ang settlement na ito."
+
+#: apps/employees/advanced.py
+msgid "The deductions are more than the amount due."
+msgstr "Mas malaki ang mga kaltas kaysa sa dapat bayaran."
+
+#: apps/employees/advanced.py
+msgid "Choose the first day and the day back at work."
+msgstr "Piliin ang unang araw at ang araw ng balik sa trabaho."
+
+#: apps/employees/advanced.py
+msgid "%(name)s already has a vacation in these dates."
+msgstr "May bakasyon na si %(name)s sa mga petsang ito."
+
 #: apps/employees/site_workers.py
 msgid "Choose a site."
 msgstr "Pumili ng site."
@@ -13393,10 +13833,6 @@ msgstr "Walang area"
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "Nakaupo"
-
-#: apps/verticals/restaurant/models.py
-msgid "Draft"
-msgstr "Draft"
 
 #: apps/verticals/restaurant/models.py
 msgid "Served"
@@ -14651,12 +15087,20 @@ msgid "Login (optional)"
 msgstr "Login (opsyonal)"
 
 #: apps/webapp/hr_views.py
-msgid "This login is already linked to another staff member."
-msgstr "Naka-link na ang login na ito sa ibang staff."
+msgid "Bank (short name, e.g. QNB)"
+msgstr "Bangko (maikling pangalan, hal. QNB)"
 
 #: apps/webapp/hr_views.py
-msgid "Staff member"
-msgstr "Staff"
+msgid "IBAN / account number"
+msgstr "IBAN / numero ng account"
+
+#: apps/webapp/hr_views.py
+msgid "Visa ID (optional)"
+msgstr "Visa ID (opsyonal)"
+
+#: apps/webapp/hr_views.py
+msgid "This login is already linked to another staff member."
+msgstr "Naka-link na ang login na ito sa ibang staff."
 
 #: apps/webapp/hr_views.py
 msgid "Advance amount"
@@ -14782,6 +15226,30 @@ msgstr "Na-save ang dokumento."
 #: apps/webapp/hr_views.py
 msgid "HR settings saved."
 msgstr "Na-save ang HR settings."
+
+#: apps/webapp/hr_views.py
+msgid "Approve the payroll first."
+msgstr "Aprubahan muna ang payroll."
+
+#: apps/webapp/hr_views.py
+msgid "Final settlement saved for %(name)s."
+msgstr "Na-save ang final settlement ni %(name)s."
+
+#: apps/webapp/hr_views.py
+msgid "Settlement paid and recorded in the accounts."
+msgstr "Nabayaran ang settlement at naitala sa mga account."
+
+#: apps/webapp/hr_views.py
+msgid "Draft removed."
+msgstr "Naalis ang draft."
+
+#: apps/webapp/hr_views.py
+msgid "Vacation saved."
+msgstr "Na-save ang bakasyon."
+
+#: apps/webapp/hr_views.py
+msgid "%(name)s is back at work."
+msgstr "Balik na sa trabaho si %(name)s."
 
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
@@ -15031,6 +15499,33 @@ msgstr "Inalis ang shift."
 #: apps/webapp/manpower_views.py
 msgid "Trade"
 msgstr "Trade"
+
+#: apps/webapp/manpower_views.py
+msgid "Camp / building name"
+msgstr "Pangalan ng kampo / gusali"
+
+#: apps/webapp/manpower_views.py
+msgid "Beds"
+msgstr "Mga kama"
+
+#: apps/webapp/manpower_views.py
+msgid "Monthly cost (rent, electricity, water…)"
+msgstr "Buwanang gastos (upa, kuryente, tubig…)"
+
+#: apps/webapp/manpower_views.py
+msgid "Food per person a month"
+msgstr "Pagkain bawat tao kada buwan"
+
+#: apps/webapp/manpower_views.py
+msgid "Transport per person a month"
+msgstr "Transportasyon bawat tao kada buwan"
+
+#: apps/webapp/manpower_views.py
+msgid ""
+"Switch on “Camps & accommodation cost” in HR settings → Advanced features."
+msgstr ""
+"I-on ang “Gastos sa kampo at tirahan” sa HR settings → Mga advanced na "
+"feature."
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -16327,10 +16822,6 @@ msgid "Visa"
 msgstr "Visa"
 
 #: apps/webapp/recruitment_views.py
-msgid "Ticket"
-msgstr "Ticket"
-
-#: apps/webapp/recruitment_views.py
 msgid "Joined / deployed"
 msgstr "Nakasali / na-deploy"
 
@@ -16345,10 +16836,6 @@ msgstr "Fit"
 #: apps/webapp/recruitment_views.py
 msgid "Unfit"
 msgstr "Unfit"
-
-#: apps/webapp/recruitment_views.py
-msgid "Air ticket"
-msgstr "Air ticket"
 
 #: apps/webapp/recruitment_views.py
 msgid "Agent commission"
@@ -16377,6 +16864,26 @@ msgstr "Gustong nasyonalidad, kung mayroon."
 #: apps/webapp/recruitment_views.py
 msgid "Accommodation, food, transport…"
 msgstr "Tirahan, pagkain, transportasyon…"
+
+#: apps/webapp/recruitment_views.py
+msgid "Approval / block visa number"
+msgstr "Numero ng approval / block visa"
+
+#: apps/webapp/recruitment_views.py
+msgid "Profession"
+msgstr "Propesyon"
+
+#: apps/webapp/recruitment_views.py
+msgid "Visas approved"
+msgstr "Mga visa na inaprubahan"
+
+#: apps/webapp/recruitment_views.py
+msgid "Switch on “%(name)s” in HR settings → Advanced features."
+msgstr "I-on ang “%(name)s” sa HR settings → Mga advanced na feature."
+
+#: apps/webapp/recruitment_views.py
+msgid "This quota is used by placements."
+msgstr "Ginagamit ng mga placement ang quota na ito."
 
 #: apps/webapp/refill_views.py
 msgid "Choose the customer and the item, and enter how often."

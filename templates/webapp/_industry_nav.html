@@ -32,6 +32,8 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'rec_clients' %}active{% endif %}" href="{% url 'webapp:rec_clients' %}"><span>{% translate "Clients" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name|slice:':7' == 'rec_job' %}active{% endif %}" href="{% url 'webapp:rec_jobs' %}"><span>{% translate "Job orders" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name|slice:':13' == 'rec_candidate' or request.resolver_match.url_name == 'rec_placement' %}active{% endif %}" href="{% url 'webapp:rec_candidates' %}"><span>{% translate "Candidates" %}</span></a>
+      {% if "visa_quota" in hr_extras %}<a class="nav-link {% if request.resolver_match.url_name == 'rec_visa_quotas' %}active{% endif %}" href="{% url 'webapp:rec_visa_quotas' %}"><span>{% translate "Visa quota" %}</span></a>{% endif %}
+      {% if "sub_agents" in hr_extras %}<a class="nav-link {% if request.resolver_match.url_name == 'rec_agents' %}active{% endif %}" href="{% url 'webapp:rec_agents' %}"><span>{% translate "Sub-agent commission" %}</span></a>{% endif %}
       {% if request.role.name == "Owner" %}<a class="nav-link {% if request.resolver_match.url_name == 'rec_website' %}active{% endif %}" href="{% url 'webapp:rec_website' %}"><span>🌐 {% translate "Careers website" %}</span></a>{% endif %}
       </details>
 {% endif %}
@@ -44,6 +46,7 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'mp_attendance' %}active{% endif %}" href="{% url 'webapp:mp_attendance' %}"><span>{% translate "Site attendance" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'mp_billing' %}active{% endif %}" href="{% url 'webapp:mp_billing' %}"><span>{% translate "Client billing" %}</span></a>
       <a class="nav-link {% if request.resolver_match.url_name == 'mp_profit' %}active{% endif %}" href="{% url 'webapp:mp_profit' %}"><span>{% translate "Site profit" %}</span></a>
+      {% if "camps" in hr_extras %}<a class="nav-link {% if request.resolver_match.url_name == 'mp_camps' %}active{% endif %}" href="{% url 'webapp:mp_camps' %}"><span>{% translate "Camps" %}</span></a>{% endif %}
       </details>
 {% endif %}
 {% if "gold" in f %}

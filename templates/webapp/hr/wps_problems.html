@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "WPS salary file" %}{% endblock %}
+{% block heading %}{% translate "WPS salary file" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/hr/_tabs.html" %}
+<div class="hr-card" style="max-width:760px">
+  <h3>⚠️ {% translate "Fix these before sending the file to the bank" %}</h3>
+  <ul>{% for p in problems %}<li>{{ p }}</li>{% endfor %}</ul>
+  <p style="color:var(--hr-soft);font-size:13px">{% translate "The QID comes from the staff member's ID / residence card document; the bank and IBAN are on the staff form." %}</p>
+  <div class="hr-actions"><a class="btn btn-secondary" href="{% url 'webapp:hr_settings' %}">⚙️ {% translate "HR settings" %}</a><a class="btn btn-secondary" href="{% url 'webapp:staff_list' %}">👥 {% translate "Staff" %}</a><a class="btn" href="?force=1">⬇ {% translate "Download anyway" %}</a></div>
+</div>
+</div>
+{% endblock %}

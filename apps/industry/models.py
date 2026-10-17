@@ -363,6 +363,8 @@ class Placement(TenantScopedModel):
     invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
     candidate_fee = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     candidate_invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    visa_quota = models.ForeignKey("VisaQuota", null=True, blank=True, on_delete=models.SET_NULL, related_name="placements")
+    agent_commission = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     notes = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -374,6 +376,24 @@ class Placement(TenantScopedModel):
     @property
     def is_active(self):
         return self.stage in self.ACTIVE
+
+
+class VisaQuota(TenantScopedModel):
+    """Work visas approved for the company (or a client) by profession and nationality."""
+    reference = models.CharField(max_length=60, help_text="Approval / block visa number.")
+    profession = models.CharField(max_length=120)
+    nationality = models.CharField(max_length=80, blank=True)
+    gender = models.CharField(max_length=10, choices=JobOrder.GENDER, default="any")
+    total = models.PositiveIntegerField(default=1)
+    expiry_date = models.DateField(null=True, blank=True)
+    notes = models.CharField(max_length=255, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["expiry_date", "profession"]
+
+    def __str__(self):
+        return f"{self.reference} · {self.profession}"
 
 
 class PlacementCost(TenantScopedModel):

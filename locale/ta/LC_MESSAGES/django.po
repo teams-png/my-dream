@@ -689,6 +689,14 @@ msgid "Candidates"
 msgstr "விண்ணப்பதாரர்கள்"
 
 #: templates/webapp/_industry_nav.html
+msgid "Visa quota"
+msgstr "விசா ஒதுக்கீடு"
+
+#: templates/webapp/_industry_nav.html
+msgid "Sub-agent commission"
+msgstr "துணை முகவர் கமிஷன்"
+
+#: templates/webapp/_industry_nav.html
 msgid "Careers website"
 msgstr "வேலைவாய்ப்பு இணையதளம்"
 
@@ -719,6 +727,10 @@ msgstr "வாடிக்கையாளர் பில்லிங்"
 #: templates/webapp/_industry_nav.html
 msgid "Site profit"
 msgstr "தள லாபம்"
+
+#: templates/webapp/_industry_nav.html
+msgid "Camps"
+msgstr "முகாம்கள்"
 
 #: templates/webapp/_industry_nav.html
 msgid "Gold"
@@ -3839,6 +3851,10 @@ msgid "Documents"
 msgstr "ஆவணங்கள்"
 
 #: templates/webapp/hr/_tabs.html
+msgid "Vacations"
+msgstr "விடுமுறைகள்"
+
+#: templates/webapp/hr/_tabs.html
 msgid "HR settings"
 msgstr "HR அமைப்புகள்"
 
@@ -4104,6 +4120,10 @@ msgid "Add holiday"
 msgstr "விடுமுறையைச் சேர்"
 
 #: templates/webapp/hr/payroll.html
+msgid "WPS salary file"
+msgstr "WPS சம்பளக் கோப்பு"
+
+#: templates/webapp/hr/payroll.html
 msgid "Draft — check and approve"
 msgstr "வரைவு — சரிபார்த்து அங்கீகரிக்கவும்"
 
@@ -4263,9 +4283,145 @@ msgstr "வராத நாட்கள், அரை நாட்கள் ம�
 msgid "Daily rate = (basic + allowances) ÷ days in the month."
 msgstr "தினசரி விகிதம் = (அடிப்படை + படிகள்) ÷ மாதத்தின் நாட்கள்."
 
-#: templates/webapp/hr/staff_detail.html
+#: templates/webapp/hr/settings.html
+msgid "Advanced features"
+msgstr "மேம்பட்ட அம்சங்கள்"
+
+#: templates/webapp/hr/settings.html
+msgid ""
+"Switch on only what you use — the menus show only the features that are on."
+msgstr ""
+"நீங்கள் பயன்படுத்துவதை மட்டும் இயக்குங்கள் — இயக்கிய அம்சங்கள் மட்டுமே "
+"மெனுவில் தெரியும்."
+
+#: templates/webapp/hr/settings.html
+msgid "Employer ID (establishment)"
+msgstr "முதலாளி ஐடி (நிறுவனம்)"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer ID (if different)"
+msgstr "செலுத்துபவர் ஐடி (வேறுபட்டால்)"
+
+#: templates/webapp/hr/settings.html
+msgid "Payer QID (if the payer is a person)"
+msgstr "செலுத்துபவர் QID (தனிநபர் என்றால்)"
+
+#: templates/webapp/hr/settings.html
+msgid "Our bank (short name, e.g. QNB)"
+msgstr "எங்கள் வங்கி (சுருக்கப் பெயர், எ.கா. QNB)"
+
+#: templates/webapp/hr/settings.html
+msgid "Our IBAN"
+msgstr "எங்கள் IBAN"
+
+#: templates/webapp/hr/settings.html
+msgid "Rules"
+msgstr "விதிகள்"
+
+#: templates/webapp/hr/settings.html
+msgid "Gratuity: days of basic pay per year of service"
+msgstr "பணிக்கொடை: ஒவ்வொரு சேவை ஆண்டுக்கும் அடிப்படைச் சம்பள நாட்கள்"
+
+#: templates/webapp/hr/settings.html
+msgid "Qatar: at least 21 days (3 weeks), after one year of service."
+msgstr ""
+"கத்தார்: ஒரு ஆண்டு சேவைக்குப் பிறகு குறைந்தது 21 நாட்கள் (3 வாரங்கள்)."
+
+#: templates/webapp/hr/settings.html
+msgid "Vacation days per year"
+msgstr "ஆண்டுக்கு விடுமுறை நாட்கள்"
+
+#: templates/webapp/hr/settings.html
+msgid "Air ticket every (months)"
+msgstr "விமான டிக்கெட் ஒவ்வொரு (மாதங்கள்)"
+
+#: templates/webapp/hr/settlement.html
+msgid "Final settlement"
+msgstr "இறுதித் தீர்வு"
+
+#: templates/webapp/hr/settlement.html
+msgid "Draft"
+msgstr "வரைவு"
+
+#: templates/webapp/hr/settlement.html
 msgid "Joined"
 msgstr "சேர்ந்த தேதி"
+
+#: templates/webapp/hr/settlement.html
+msgid "Last working day"
+msgstr "கடைசி வேலை நாள்"
+
+#: templates/webapp/hr/settlement.html
+msgid "years of service"
+msgstr "சேவை ஆண்டுகள்"
+
+#: templates/webapp/hr/settlement.html
+msgid "Gratuity"
+msgstr "பணிக்கொடை"
+
+#: templates/webapp/hr/settlement.html
+msgid "Unpaid salary"
+msgstr "செலுத்தப்படாத சம்பளம்"
+
+#: templates/webapp/hr/settlement.html
+msgid "Leave not taken"
+msgstr "எடுக்காத விடுப்பு"
+
+#: templates/webapp/hr/settlement.html
+msgid "Air ticket"
+msgstr "விமான டிக்கெட்"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other payments"
+msgstr "பிற தொகைகள்"
+
+#: templates/webapp/hr/settlement.html
+msgid "Salary advance to recover"
+msgstr "திரும்பப் பெற வேண்டிய சம்பள முன்பணம்"
+
+#: templates/webapp/hr/settlement.html
+msgid "Other deductions"
+msgstr "பிற பிடித்தங்கள்"
+
+#: templates/webapp/hr/settlement.html
+msgid "Received in full and final settlement"
+msgstr "முழு மற்றும் இறுதித் தீர்வாகப் பெற்றேன்"
+
+#: templates/webapp/hr/settlement.html
+msgid ""
+"Pay this settlement? It is recorded in the accounts and the staff member is "
+"marked as left."
+msgstr ""
+"இந்தத் தீர்வைச் செலுத்தவா? கணக்கில் பதிவாகும், ஊழியர் விலகியதாகக் "
+"குறிக்கப்படும்."
+
+#: templates/webapp/hr/settlement.html
+msgid "Pay & close"
+msgstr "செலுத்தி மூடு"
+
+#: templates/webapp/hr/settlement.html
+msgid "Remove draft"
+msgstr "வரைவை நீக்கு"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Reason"
+msgstr "காரணம்"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Air ticket amount"
+msgstr "விமான டிக்கெட் தொகை"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Other payments (bonus…)"
+msgstr "பிற தொகைகள் (போனஸ்…)"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "less than one year: none"
+msgstr "ஒரு வருடத்திற்கும் குறைவு: இல்லை"
+
+#: templates/webapp/hr/settlement_form.html
+msgid "Save settlement"
+msgstr "தீர்வைச் சேமி"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "Login"
@@ -4318,6 +4474,10 @@ msgstr ""
 #: templates/webapp/hr/staff_detail.html
 msgid "No site attendance this month yet."
 msgstr "இந்த மாதம் இன்னும் தள வருகை இல்லை."
+
+#: templates/webapp/hr/staff_detail.html
+msgid "months since the last ticket"
+msgstr "கடைசி டிக்கெட்டிலிருந்து மாதங்கள்"
 
 #: templates/webapp/hr/staff_detail.html
 msgid "per month"
@@ -4386,6 +4546,10 @@ msgstr "ஆவணங்கள் இல்லை."
 #: templates/webapp/hr/staff_form.html
 msgid "Edit staff"
 msgstr "ஊழியரைத் திருத்து"
+
+#: templates/webapp/hr/staff_form.html
+msgid "Bank (WPS)"
+msgstr "வங்கி (WPS)"
 
 #: templates/webapp/hr/staff_form.html
 msgid ""
@@ -4463,6 +4627,98 @@ msgstr "முன்னாள் ஊழியர்கள் இல்லை."
 msgid "No staff yet. Add your first staff member with their salary."
 msgstr ""
 "இன்னும் ஊழியர்கள் இல்லை. உங்கள் முதல் ஊழியரை அவரது சம்பளத்துடன் சேர்க்கவும்."
+
+#: templates/webapp/hr/vacations.html
+msgid "On vacation now"
+msgstr "இப்போது விடுமுறையில்"
+
+#: templates/webapp/hr/vacations.html
+msgid "Late back"
+msgstr "திரும்ப தாமதம்"
+
+#: templates/webapp/hr/vacations.html
+msgid "Leaving in 30 days"
+msgstr "30 நாட்களில் செல்பவர்கள்"
+
+#: templates/webapp/hr/vacations.html
+msgid "Due an air ticket"
+msgstr "விமான டிக்கெட்டுக்குத் தகுதியானவர்கள்"
+
+#: templates/webapp/hr/vacations.html
+msgid "was due back"
+msgstr "திரும்ப வேண்டியது"
+
+#: templates/webapp/hr/vacations.html
+msgid "days late"
+msgstr "நாட்கள் தாமதம்"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work"
+msgstr "வேலைக்குத் திரும்பினார்"
+
+#: templates/webapp/hr/vacations.html
+msgid "ticket"
+msgstr "டிக்கெட்"
+
+#: templates/webapp/hr/vacations.html
+msgid "Nobody is on vacation."
+msgstr "யாரும் விடுமுறையில் இல்லை."
+
+#: templates/webapp/hr/vacations.html
+msgid "leave balance"
+msgstr "விடுப்பு இருப்பு"
+
+#: templates/webapp/hr/vacations.html
+msgid "Plan a vacation"
+msgstr "விடுமுறையைத் திட்டமிடு"
+
+#: templates/webapp/hr/vacations.html
+msgid "Staff member"
+msgstr "ஊழியர்"
+
+#: templates/webapp/hr/vacations.html
+msgid "First day of vacation"
+msgstr "விடுமுறையின் முதல் நாள்"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back at work on"
+msgstr "வேலைக்குத் திரும்பும் நாள்"
+
+#: templates/webapp/hr/vacations.html
+msgid "Air ticket given"
+msgstr "விமான டிக்கெட் வழங்கப்பட்டது"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket amount"
+msgstr "டிக்கெட் தொகை"
+
+#: templates/webapp/hr/vacations.html
+msgid "Recent vacations"
+msgstr "சமீபத்திய விடுமுறைகள்"
+
+#: templates/webapp/hr/vacations.html
+msgid "Back on"
+msgstr "திரும்பியது"
+
+#: templates/webapp/hr/vacations.html
+msgid "Ticket"
+msgstr "டிக்கெட்"
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Fix these before sending the file to the bank"
+msgstr "வங்கிக்குக் கோப்பை அனுப்பும் முன் இவற்றைச் சரிசெய்யவும்"
+
+#: templates/webapp/hr/wps_problems.html
+msgid ""
+"The QID comes from the staff member's ID / residence card document; the bank"
+" and IBAN are on the staff form."
+msgstr ""
+"QID ஊழியரின் ஐடி / குடியிருப்பு அட்டை ஆவணத்திலிருந்து வருகிறது; வங்கியும் "
+"IBAN-உம் ஊழியர் படிவத்தில் உள்ளன."
+
+#: templates/webapp/hr/wps_problems.html
+msgid "Download anyway"
+msgstr "எப்படியும் பதிவிறக்கு"
 
 #: templates/webapp/import_export/product_import.html
 msgid "Import products"
@@ -6019,6 +6275,45 @@ msgstr "இன்வாய்ஸ் உருவாக்கு"
 msgid "Choose the client for this site first."
 msgstr "முதலில் இந்தத் தளத்தின் வாடிக்கையாளரைத் தேர்ந்தெடுக்கவும்."
 
+#: templates/webapp/manpower/camps.html
+msgid "Camps & accommodation"
+msgstr "முகாம்கள் & தங்குமிடம்"
+
+#: templates/webapp/manpower/camps.html
+msgid "beds"
+msgstr "படுக்கைகள்"
+
+#: templates/webapp/manpower/camps.html
+msgid "per person a month"
+msgstr "ஒருவருக்கு மாதம்"
+
+#: templates/webapp/manpower/camps.html
+msgid "Move out"
+msgstr "வெளியேற்று"
+
+#: templates/webapp/manpower/camps.html
+msgid "Nobody lives here yet."
+msgstr "இங்கு இன்னும் யாரும் தங்கவில்லை."
+
+#: templates/webapp/manpower/camps.html
+msgid "Move in"
+msgstr "தங்க வை"
+
+#: templates/webapp/manpower/camps.html
+msgid "No camps yet. Add one below."
+msgstr "இன்னும் முகாம்கள் இல்லை. கீழே ஒன்றைச் சேர்க்கவும்."
+
+#: templates/webapp/manpower/camps.html
+msgid "New camp"
+msgstr "புதிய முகாம்"
+
+#: templates/webapp/manpower/camps.html
+msgid ""
+"The camp's cost per person is added to each worker's cost in Site profit."
+msgstr ""
+"முகாமின் ஒருவருக்கான செலவு தள லாபத்தில் ஒவ்வொரு பணியாளரின் செலவிலும் "
+"சேர்க்கப்படும்."
+
 #: templates/webapp/manpower/duty.html
 msgid "Active sites"
 msgstr "செயலில் உள்ள தளங்கள்"
@@ -6153,6 +6448,10 @@ msgstr ""
 "/ நாட்கள், கூடுதல் நேரத்துடன்) அந்த நேரத்திற்கு பணியாளருக்கு நாம் "
 "செலுத்துவதுடன் (நாட்களுக்கான சம்பளம், அல்லது நாள் / மணி விகிதம், கூடுதல் "
 "நேரத்துடன்) ஒப்பீடு."
+
+#: templates/webapp/manpower/profit.html
+msgid "Camp"
+msgstr "முகாம்"
 
 #: templates/webapp/manpower/site.html
 msgid "Client"
@@ -7140,10 +7439,6 @@ msgstr "முன்பதிவைத் திற"
 #: templates/webapp/online_booking/detail.html
 msgid "Wants"
 msgstr "விரும்புவது"
-
-#: templates/webapp/online_booking/detail.html
-msgid "Reason"
-msgstr "காரணம்"
 
 #: templates/webapp/online_booking/detail.html
 msgid "Confirm"
@@ -8855,12 +9150,40 @@ msgid "oldest"
 msgstr "பழமையானது"
 
 #: templates/webapp/receivables/home.html
-msgid "days late"
-msgstr "நாட்கள் தாமதம்"
-
-#: templates/webapp/receivables/home.html
 msgid "Nobody owes you money."
 msgstr "யாரும் உங்களுக்குப் பணம் தர வேண்டியதில்லை."
+
+#: templates/webapp/recruitment/agents.html
+msgid "Owed"
+msgstr "செலுத்த வேண்டியது"
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"Commission is owed for candidates who joined (set it on the placement). "
+"Payments are the “Agent commission” costs recorded on placements."
+msgstr ""
+"சேர்ந்த வேட்பாளர்களுக்கு கமிஷன் செலுத்த வேண்டும் (பணியமர்த்தலில் "
+"அமைக்கவும்). பணியமர்த்தல்களில் பதிவான «முகவர் கமிஷன்» செலவுகளே செலுத்தியவை."
+
+#: templates/webapp/recruitment/agents.html
+msgid "candidates sent"
+msgstr "அனுப்பிய வேட்பாளர்கள்"
+
+#: templates/webapp/recruitment/agents.html
+msgid "joined"
+msgstr "சேர்ந்தனர்"
+
+#: templates/webapp/recruitment/agents.html
+msgid "Nobody joined yet."
+msgstr "இன்னும் யாரும் சேரவில்லை."
+
+#: templates/webapp/recruitment/agents.html
+msgid ""
+"No candidates from sub-agents yet. Choose the sub-agent on the candidate "
+"form."
+msgstr ""
+"இன்னும் துணை முகவர்களிடமிருந்து வேட்பாளர்கள் இல்லை. வேட்பாளர் படிவத்தில் "
+"துணை முகவரைத் தேர்ந்தெடுக்கவும்."
 
 #: templates/webapp/recruitment/candidate_detail.html
 msgid "View CV"
@@ -9125,10 +9448,6 @@ msgid "Position, number or client"
 msgstr "பதவி, எண் அல்லது வாடிக்கையாளர்"
 
 #: templates/webapp/recruitment/jobs.html
-msgid "joined"
-msgstr "சேர்ந்தனர்"
-
-#: templates/webapp/recruitment/jobs.html
 msgid "No job orders here."
 msgstr "இங்கே வேலை ஆர்டர்கள் இல்லை."
 
@@ -9241,6 +9560,10 @@ msgid "Replacement guarantee until"
 msgstr "மாற்று உத்தரவாதம் வரை"
 
 #: templates/webapp/recruitment/placement.html
+msgid "Commission for"
+msgstr "கமிஷன்:"
+
+#: templates/webapp/recruitment/placement.html
 msgid "Fees & profit"
 msgstr "கட்டணங்கள் & லாபம்"
 
@@ -9319,6 +9642,35 @@ msgstr "செலுத்தியது"
 #: templates/webapp/recruitment/placement.html
 msgid "Add cost"
 msgstr "செலவைச் சேர்"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "approved"
+msgstr "அங்கீகரிக்கப்பட்டது"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "used"
+msgstr "பயன்படுத்தியது"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "Valid until"
+msgstr "செல்லுபடியாகும் வரை"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "No visa quotas yet."
+msgstr "இன்னும் விசா ஒதுக்கீடுகள் இல்லை."
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid "New visa quota"
+msgstr "புதிய விசா ஒதுக்கீடு"
+
+#: templates/webapp/recruitment/visa_quotas.html
+msgid ""
+"Choose the quota on each placement; it then counts as used (rejected and "
+"withdrawn placements do not count)."
+msgstr ""
+"ஒவ்வொரு பணியமர்த்தலிலும் ஒதுக்கீட்டைத் தேர்ந்தெடுக்கவும்; பின்னர் அது "
+"பயன்படுத்தியதாகக் கணக்கிடப்படும் (நிராகரிக்கப்பட்டவை, திரும்பப் பெற்றவை "
+"கணக்கில் இல்லை)."
 
 #: templates/webapp/refills/list.html
 msgid "Refill subscriptions"
@@ -11034,10 +11386,6 @@ msgstr "இன்று டெலிவர் ஆனவை"
 msgid "Product"
 msgstr "பொருள்"
 
-#: templates/webapp/sales_docs/_doc_head.html
-msgid "Valid until"
-msgstr "செல்லுபடியாகும் வரை"
-
 #: templates/webapp/sales_docs/_tabs.html
 msgid "Sales documents"
 msgstr "விற்பனை ஆவணங்கள்"
@@ -12627,6 +12975,101 @@ msgstr "%(label)s தேர்ந்தெடு"
 msgid "Select…"
 msgstr "தேர்ந்தெடு…"
 
+#: apps/employees/advanced.py
+msgid "Download the bank's WPS salary file (SIF) from an approved payroll."
+msgstr ""
+"அங்கீகரிக்கப்பட்ட சம்பளப் பட்டியலிலிருந்து வங்கியின் WPS சம்பளக் கோப்பை "
+"(SIF) பதிவிறக்கவும்."
+
+#: apps/employees/advanced.py
+msgid "Gratuity & final settlement"
+msgstr "பணிக்கொடை & இறுதித் தீர்வு"
+
+#: apps/employees/advanced.py
+msgid ""
+"End-of-service gratuity and the final settlement when someone leaves, "
+"recorded in the accounts."
+msgstr ""
+"ஒருவர் விலகும்போது சேவை முடிவு பணிக்கொடை மற்றும் இறுதித் தீர்வு, கணக்கில் "
+"பதிவாகும்."
+
+#: apps/employees/advanced.py
+msgid "Vacation & air ticket"
+msgstr "விடுமுறை & விமான டிக்கெட்"
+
+#: apps/employees/advanced.py
+msgid "Annual home leave with the air ticket: who is away, due or late back."
+msgstr ""
+"விமான டிக்கெட்டுடன் ஆண்டு விடுமுறை: யார் இல்லை, யாருக்குத் தகுதி, யார் "
+"தாமதம்."
+
+#: apps/employees/advanced.py
+msgid "Camps & accommodation cost"
+msgstr "முகாம்கள் & தங்குமிடச் செலவு"
+
+#: apps/employees/advanced.py
+msgid "Staff camps with their monthly cost per head, counted in site profit."
+msgstr ""
+"ஊழியர் முகாம்கள் மற்றும் ஒருவருக்கான மாதச் செலவு, தள லாபத்தில் "
+"கணக்கிடப்படும்."
+
+#: apps/employees/advanced.py
+msgid "Visa quotas approved for the company: used and left."
+msgstr ""
+"நிறுவனத்திற்கு அங்கீகரிக்கப்பட்ட விசா ஒதுக்கீடுகள்: பயன்படுத்தியவை மற்றும் "
+"மீதம்."
+
+#: apps/employees/advanced.py
+msgid ""
+"What each sub-agent is owed for the candidates they sent, and what is paid."
+msgstr ""
+"ஒவ்வொரு துணை முகவருக்கும் அனுப்பிய வேட்பாளர்களுக்குச் செலுத்த வேண்டியதும் "
+"செலுத்தியதும்."
+
+#: apps/employees/advanced.py
+msgid "Fill the employer ID, bank and IBAN in HR settings."
+msgstr "HR அமைப்புகளில் முதலாளி ஐடி, வங்கி, IBAN-ஐ நிரப்பவும்."
+
+#: apps/employees/advanced.py
+msgid "QID"
+msgstr "QID"
+
+#: apps/employees/advanced.py
+msgid "bank"
+msgstr "வங்கி"
+
+#: apps/employees/advanced.py
+msgid "IBAN"
+msgstr "IBAN"
+
+#: apps/employees/advanced.py
+msgid "%(name)s: no %(what)s"
+msgstr "%(name)s: %(what)s இல்லை"
+
+#: apps/employees/advanced.py
+msgid "Enter the joining date on the staff record first."
+msgstr "முதலில் ஊழியர் பதிவில் சேர்ந்த தேதியை உள்ளிடவும்."
+
+#: apps/employees/advanced.py
+msgid "The last day is before the joining date."
+msgstr "கடைசி நாள் சேர்ந்த தேதிக்கு முன் உள்ளது."
+
+#: apps/employees/advanced.py
+msgid "This settlement is already paid."
+msgstr "இந்தத் தீர்வு ஏற்கனவே செலுத்தப்பட்டது."
+
+#: apps/employees/advanced.py
+msgid "The deductions are more than the amount due."
+msgstr "பிடித்தங்கள் செலுத்த வேண்டிய தொகையை விட அதிகம்."
+
+#: apps/employees/advanced.py
+msgid "Choose the first day and the day back at work."
+msgstr "முதல் நாளையும் வேலைக்குத் திரும்பும் நாளையும் தேர்ந்தெடுக்கவும்."
+
+#: apps/employees/advanced.py
+msgid "%(name)s already has a vacation in these dates."
+msgstr "%(name)s-க்கு இந்தத் தேதிகளில் ஏற்கனவே விடுமுறை உள்ளது."
+
 #: apps/employees/site_workers.py
 msgid "Choose a site."
 msgstr "ஒரு தளத்தைத் தேர்ந்தெடுக்கவும்."
@@ -13444,10 +13887,6 @@ msgstr "பகுதி இல்லை"
 #: apps/verticals/restaurant/models.py
 msgid "Seated"
 msgstr "அமர்ந்துள்ளனர்"
-
-#: apps/verticals/restaurant/models.py
-msgid "Draft"
-msgstr "வரைவு"
 
 #: apps/verticals/restaurant/models.py
 msgid "Served"
@@ -14722,12 +15161,20 @@ msgid "Login (optional)"
 msgstr "உள்நுழைவு (விருப்பம்)"
 
 #: apps/webapp/hr_views.py
-msgid "This login is already linked to another staff member."
-msgstr "இந்த உள்நுழைவு ஏற்கனவே மற்றொரு ஊழியருடன் இணைக்கப்பட்டுள்ளது."
+msgid "Bank (short name, e.g. QNB)"
+msgstr "வங்கி (சுருக்கப் பெயர், எ.கா. QNB)"
 
 #: apps/webapp/hr_views.py
-msgid "Staff member"
-msgstr "ஊழியர்"
+msgid "IBAN / account number"
+msgstr "IBAN / கணக்கு எண்"
+
+#: apps/webapp/hr_views.py
+msgid "Visa ID (optional)"
+msgstr "விசா ஐடி (விருப்பம்)"
+
+#: apps/webapp/hr_views.py
+msgid "This login is already linked to another staff member."
+msgstr "இந்த உள்நுழைவு ஏற்கனவே மற்றொரு ஊழியருடன் இணைக்கப்பட்டுள்ளது."
 
 #: apps/webapp/hr_views.py
 msgid "Advance amount"
@@ -14856,6 +15303,30 @@ msgstr "ஆவணம் சேமிக்கப்பட்டது."
 #: apps/webapp/hr_views.py
 msgid "HR settings saved."
 msgstr "HR அமைப்புகள் சேமிக்கப்பட்டன."
+
+#: apps/webapp/hr_views.py
+msgid "Approve the payroll first."
+msgstr "முதலில் சம்பளப் பட்டியலை அங்கீகரிக்கவும்."
+
+#: apps/webapp/hr_views.py
+msgid "Final settlement saved for %(name)s."
+msgstr "%(name)s-இன் இறுதித் தீர்வு சேமிக்கப்பட்டது."
+
+#: apps/webapp/hr_views.py
+msgid "Settlement paid and recorded in the accounts."
+msgstr "தீர்வு செலுத்தப்பட்டு கணக்கில் பதிவானது."
+
+#: apps/webapp/hr_views.py
+msgid "Draft removed."
+msgstr "வரைவு நீக்கப்பட்டது."
+
+#: apps/webapp/hr_views.py
+msgid "Vacation saved."
+msgstr "விடுமுறை சேமிக்கப்பட்டது."
+
+#: apps/webapp/hr_views.py
+msgid "%(name)s is back at work."
+msgstr "%(name)s வேலைக்குத் திரும்பினார்."
 
 #: apps/webapp/industry_access.py
 msgid "This module isn't part of your business type."
@@ -15105,6 +15576,33 @@ msgstr "ஷிஃப்ட் நீக்கப்பட்டது."
 #: apps/webapp/manpower_views.py
 msgid "Trade"
 msgstr "தொழில்"
+
+#: apps/webapp/manpower_views.py
+msgid "Camp / building name"
+msgstr "முகாம் / கட்டடத்தின் பெயர்"
+
+#: apps/webapp/manpower_views.py
+msgid "Beds"
+msgstr "படுக்கைகள்"
+
+#: apps/webapp/manpower_views.py
+msgid "Monthly cost (rent, electricity, water…)"
+msgstr "மாதச் செலவு (வாடகை, மின்சாரம், நீர்…)"
+
+#: apps/webapp/manpower_views.py
+msgid "Food per person a month"
+msgstr "ஒருவருக்கு மாத உணவு"
+
+#: apps/webapp/manpower_views.py
+msgid "Transport per person a month"
+msgstr "ஒருவருக்கு மாதப் போக்குவரத்து"
+
+#: apps/webapp/manpower_views.py
+msgid ""
+"Switch on “Camps & accommodation cost” in HR settings → Advanced features."
+msgstr ""
+"HR அமைப்புகள் → மேம்பட்ட அம்சங்களில் «முகாம்கள் & தங்குமிடச் செலவு» "
+"இயக்கவும்."
 
 #: apps/webapp/mess_views.py
 msgid "Numbers, spaces, + and - only."
@@ -16408,10 +16906,6 @@ msgid "Visa"
 msgstr "விசா"
 
 #: apps/webapp/recruitment_views.py
-msgid "Ticket"
-msgstr "டிக்கெட்"
-
-#: apps/webapp/recruitment_views.py
 msgid "Joined / deployed"
 msgstr "சேர்ந்தார் / அனுப்பப்பட்டார்"
 
@@ -16426,10 +16920,6 @@ msgstr "தகுதி"
 #: apps/webapp/recruitment_views.py
 msgid "Unfit"
 msgstr "தகுதியின்மை"
-
-#: apps/webapp/recruitment_views.py
-msgid "Air ticket"
-msgstr "விமான டிக்கெட்"
 
 #: apps/webapp/recruitment_views.py
 msgid "Agent commission"
@@ -16458,6 +16948,26 @@ msgstr "விரும்பும் தேசியம், இருந்த
 #: apps/webapp/recruitment_views.py
 msgid "Accommodation, food, transport…"
 msgstr "தங்குமிடம், உணவு, போக்குவரத்து…"
+
+#: apps/webapp/recruitment_views.py
+msgid "Approval / block visa number"
+msgstr "அனுமதி / பிளாக் விசா எண்"
+
+#: apps/webapp/recruitment_views.py
+msgid "Profession"
+msgstr "தொழில்"
+
+#: apps/webapp/recruitment_views.py
+msgid "Visas approved"
+msgstr "அங்கீகரிக்கப்பட்ட விசாக்கள்"
+
+#: apps/webapp/recruitment_views.py
+msgid "Switch on “%(name)s” in HR settings → Advanced features."
+msgstr "HR அமைப்புகள் → மேம்பட்ட அம்சங்களில் «%(name)s» இயக்கவும்."
+
+#: apps/webapp/recruitment_views.py
+msgid "This quota is used by placements."
+msgstr "இந்த ஒதுக்கீடு பணியமர்த்தல்களில் பயன்படுத்தப்படுகிறது."
 
 #: apps/webapp/refill_views.py
 msgid "Choose the customer and the item, and enter how often."

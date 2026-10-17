@@ -265,21 +265,28 @@ def pay_cost(employee, days, hours, ot, month_days):
     return normal.quantize(CENT), ot_pay.quantize(CENT)
 
 
-def site_profit(site, start):
-    """site_month with what each worker costs and the profit on them."""
+def site_profit(site, start, camp_costs=None):
+    """site_month with what each worker costs and the profit on them. With the camps feature on, the worker's
+    camp cost (share of the camp, food, transport) for the days at this site is part of the cost too."""
+    from . import advanced
+    if camp_costs is None:
+        camp_costs = advanced.camp_costs(site.company) if advanced.enabled(site.company, "camps") else {}
     rows = site_month(site, start)
     month_days = working_days(site.company, start)
     for row in rows:
         normal, ot_pay = pay_cost(row["employee"], row["days"], row["hours"], row["ot"], month_days)
-        row.update(pay=normal, ot_pay=ot_pay, cost=normal + ot_pay)
+        camp = (camp_costs.get(row["employee"].pk, ZERO) * min(Decimal("1"), row["days"] / Decimal(month_days or 1))).quantize(CENT)
+        row.update(pay=normal, ot_pay=ot_pay, camp=camp, cost=normal + ot_pay + camp)
         row["profit"] = row["amount"] - row["cost"]
     return rows
 
 
 def profit_report(company, start):
+    from . import advanced
+    camp_costs = advanced.camp_costs(company) if advanced.enabled(company, "camps") else {}
     sites = []
     for site in WorkSite.objects.for_company(company).select_related("client"):
-        rows = site_profit(site, start)
+        rows = site_profit(site, start, camp_costs)
         if not rows:
             continue
         billed = sum((r["amount"] for r in rows), ZERO)
@@ -292,7 +299,8 @@ def profit_report(company, start):
     return sites, {"billed": billed, "cost": cost, "profit": billed - cost,
                    "margin": round(100 * (billed - cost) / billed) if billed else 0,
                    "ot": sum((r["ot"] for s in sites for r in s.rows), ZERO),
-                   "ot_pay": sum((r["ot_pay"] for s in sites for r in s.rows), ZERO)}
+                   "ot_pay": sum((r["ot_pay"] for s in sites for r in s.rows), ZERO),
+                   "camp": sum((r["camp"] for s in sites for r in s.rows), ZERO)}
 
 
 def worker_month(employee, start):
@@ -306,7 +314,7 @@ def worker_month(employee, start):
             if row["employee"].pk == employee.pk:
                 row["site"] = site
                 rows.append(row)
-    keys = ("days", "hours", "ot", "pay", "ot_pay", "cost", "amount", "profit")
+    keys = ("days", "hours", "ot", "pay", "ot_pay", "camp", "cost", "amount", "profit")
     total = {k: sum((r[k] for r in rows), ZERO) for k in keys}
     return rows, total
 

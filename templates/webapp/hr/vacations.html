@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Vacations" %}{% endblock %}
+{% block heading %}{% translate "Vacations" %}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/hr/_tabs.html" %}
+<div class="hr-kpis">
+  <div class="hr-kpi"><small>{% translate "On vacation now" %}</small><b>{{ board.away|length }}</b></div>
+  <div class="hr-kpi {% if board.late %}warn{% endif %}"><small>{% translate "Late back" %}</small><b>{{ board.late|length }}</b></div>
+  <div class="hr-kpi"><small>{% translate "Leaving in 30 days" %}</small><b>{{ board.upcoming|length }}</b></div>
+  <div class="hr-kpi {% if board.due %}warn{% endif %}"><small>{% translate "Due an air ticket" %}</small><b>{{ board.due|length }}</b></div>
+</div>
+{% if board.late %}<div class="hr-card"><h3>⏰ {% translate "Late back" %}</h3><div class="hr-list">{% for v in board.late %}
+  <form method="post" class="hr-row">{% csrf_token %}<input type="hidden" name="action" value="returned"><input type="hidden" name="vacation" value="{{ v.id }}"><span class="grow"><b>{{ v.employee.name }}</b><small>{% translate "was due back" %} {{ v.end_date|date:"j M Y" }} · {{ v.days_late }} {% translate "days late" %}</small></span><input class="hr-in" type="date" name="date" value="{{ today|date:'Y-m-d' }}" style="width:auto"><button class="btn btn-secondary" type="submit">✓ {% translate "Back at work" %}</button></form>{% endfor %}</div></div>{% endif %}
+<div class="hr-card"><h3>✈️ {% translate "On vacation now" %}</h3>{% if board.away %}<div class="hr-list">{% for v in board.away %}
+  <form method="post" class="hr-row">{% csrf_token %}<input type="hidden" name="action" value="returned"><input type="hidden" name="vacation" value="{{ v.id }}"><span class="grow"><b>{{ v.employee.name }}</b><small>{{ v.start_date|date:"j M" }} → {{ v.end_date|date:"j M Y" }}{% if v.ticket_given %} · ✈️ {% translate "ticket" %}{% endif %}</small></span><input class="hr-in" type="date" name="date" value="{{ today|date:'Y-m-d' }}" style="width:auto"><button class="btn btn-secondary" type="submit">✓ {% translate "Back at work" %}</button></form>{% endfor %}</div>{% else %}<p class="hr-empty">{% translate "Nobody is on vacation." %}</p>{% endif %}</div>
+{% if board.due %}<div class="hr-card"><h3>🎫 {% translate "Due an air ticket" %}</h3><div class="hr-list">{% for e in board.due %}<a class="hr-row" href="{% url 'webapp:staff_detail' e.id %}"><span class="grow"><b>{{ e.name }}</b><small>{{ e.balance.months_since_ticket }} {% translate "months since the last ticket" %} · {% translate "leave balance" %} {{ e.balance.balance|floatformat:"-1" }} {% translate "days" %}</small></span></a>{% endfor %}</div></div>{% endif %}
+<form method="post" class="hr-card" style="max-width:820px">{% csrf_token %}<input type="hidden" name="action" value="add">
+  <h3>＋ {% translate "Plan a vacation" %}</h3>
+  <div class="hr-form">
+    <label>{% translate "Staff member" %}<select name="employee">{% for p in staff %}<option value="{{ p.id }}">{{ p.name }}</option>{% endfor %}</select></label>
+    <label>{% translate "First day of vacation" %}<input type="date" name="start" required></label>
+    <label>{% translate "Back at work on" %}<input type="date" name="end" required></label>
+    <label class="check"><input type="checkbox" name="ticket"> {% translate "Air ticket given" %}</label>
+    <label>{% translate "Ticket amount" %}<input inputmode="decimal" name="ticket_amount" placeholder="0.00"></label>
+    <label class="wide">{% translate "Notes" %}<input name="notes"></label>
+  </div>
+  <div class="hr-actions" style="margin-top:12px"><button class="btn" type="submit">{% translate "Save" %}</button></div>
+</form>
+<div class="hr-card"><h3>{% translate "Recent vacations" %}</h3><div class="hr-table"><table>
+  <tr><th>{% translate "Name" %}</th><th>{% translate "From" %}</th><th>{% translate "To" %}</th><th>{% translate "Back on" %}</th><th>{% translate "Ticket" %}</th></tr>
+  {% for v in recent %}<tr><td>{{ v.employee.name }}</td><td>{{ v.start_date|date:"j M Y" }}</td><td>{{ v.end_date|date:"j M Y" }}</td><td>{{ v.returned_on|date:"j M Y"|default:"—" }}</td><td>{% if v.ticket_given %}✈️ {{ v.ticket_amount|floatformat:2 }}{% else %}—{% endif %}</td></tr>{% empty %}<tr><td colspan="5">—</td></tr>{% endfor %}
+</table></div></div>
+</div>
+{% endblock %}

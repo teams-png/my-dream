@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Final settlement" %} · {{ employee.name }}{% endblock %}
+{% block heading %}{% translate "Final settlement" %} · {{ employee.name }}{% endblock %}
+{% block content %}
+<div class="hr">
+{% include "webapp/hr/_tabs.html" %}
+<form method="post" class="hr-card" style="max-width:820px">{% csrf_token %}
+  <div class="hr-form">
+    <label>{% translate "Last working day" %}<input type="date" name="last_day" value="{{ last_day|date:'Y-m-d' }}" onchange="this.form.save.value='';this.form.submit()"></label>
+    <label>{% translate "Reason" %}<select name="reason">{% for k, v in reasons %}<option value="{{ k }}" {% if data.reason == k %}selected{% endif %}>{% translate v %}</option>{% endfor %}</select></label>
+    <label>{% translate "Air ticket amount" %}<input inputmode="decimal" name="ticket_amount" value="{{ data.ticket_amount|default:'' }}" placeholder="0.00"></label>
+    <label>{% translate "Other payments (bonus…)" %}<input inputmode="decimal" name="other_additions" value="{{ data.other_additions|default:'' }}" placeholder="0.00"></label>
+    <label>{% translate "Other deductions" %}<input inputmode="decimal" name="other_deductions" value="{{ data.other_deductions|default:'' }}" placeholder="0.00"></label>
+    <label class="wide">{% translate "Notes" %}<textarea name="notes" rows="2">{{ data.notes|default:'' }}</textarea></label>
+  </div>
+  {% if error %}<p style="color:var(--hr-bad)">{{ error }}</p>{% endif %}
+  {% if s %}
+  <table class="hr-money" style="margin-top:14px">
+    <tr><td>{% translate "Joined" %} {{ employee.joined_date|date:"j M Y" }} · {% translate "years of service" %}</td><td>{{ s.years }}</td></tr>
+    <tr><td>{% translate "Gratuity" %}{% if s.years < 1 %} <small>({% translate "less than one year: none" %})</small>{% endif %}</td><td>{{ s.gratuity|floatformat:2 }}</td></tr>
+    <tr><td>{% translate "Unpaid salary" %} ({{ s.salary_days|floatformat:"-2" }} {% translate "days" %})</td><td>{{ s.salary_amount|floatformat:2 }}</td></tr>
+    <tr><td>{% translate "Leave not taken" %} ({{ s.leave_days|floatformat:"-1" }} {% translate "days" %})</td><td>{{ s.leave_amount|floatformat:2 }}</td></tr>
+    {% if s.ticket_amount %}<tr><td>{% translate "Air ticket" %}</td><td>{{ s.ticket_amount|floatformat:2 }}</td></tr>{% endif %}
+    {% if s.other_additions %}<tr><td>{% translate "Other payments" %}</td><td>{{ s.other_additions|floatformat:2 }}</td></tr>{% endif %}
+    {% if s.advance_deduction %}<tr class="minus"><td>{% translate "Salary advance to recover" %}</td><td>− {{ s.advance_deduction|floatformat:2 }}</td></tr>{% endif %}
+    {% if s.other_deductions %}<tr class="minus"><td>{% translate "Other deductions" %}</td><td>− {{ s.other_deductions|floatformat:2 }}</td></tr>{% endif %}
+    <tr class="total"><td>{% translate "Net to pay" %}</td><td>{{ active_company.default_currency }} {{ s.net|floatformat:2 }}</td></tr>
+  </table>
+  {% endif %}
+  <input type="hidden" name="save" value="1">
+  <div class="hr-actions" style="margin-top:14px">
+    <button class="btn btn-secondary" type="submit" onclick="this.form.save.value=''">↻ {% translate "Recalculate" %}</button>
+    {% if s %}<button class="btn" type="submit">💾 {% translate "Save settlement" %}</button>{% endif %}
+    <a class="btn btn-secondary" href="{% url 'webapp:staff_detail' employee.id %}">{% translate "Cancel" %}</a>
+  </div>
+</form>
+</div>
+{% endblock %}

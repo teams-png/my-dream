@@ -189,6 +189,10 @@ MANPOWER_TASKS = [
  ("Bill each client every month",
   ["Open [[Client billing]] and choose the month: each site shows every worker's days, hours, overtime and amount.",
    "Press [[🧾 Make invoice]] — one invoice per site per month goes to the client (a line per trade plus overtime). A month cannot be billed twice."]),
+ ("Run camps and count their cost (advanced)",
+  ["Switch on <b>Camps &amp; accommodation cost</b> in [[HR settings]] → <b>Advanced features</b>.",
+   "Open [[Camps]]: add each camp with its beds, monthly cost (rent, electricity, water…), and food and transport per person. Choose workers and press [[Move in]].",
+   "The cost per person is added to each worker's cost in [[Site profit]], so the profit shown is the real profit."]),
 ]
 for _v in VERTICALS:
     if _v.get("slug") == "project-agency":

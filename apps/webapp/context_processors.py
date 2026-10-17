@@ -71,3 +71,11 @@ def website_shop(request):
         from apps.industry.shop_orders import applies
         return applies(company) and SiteDesign.objects.filter(company=company, package="shop").exists()
     return {"shop_orders_on": on}
+
+
+def hr_extras(request):
+    """Advanced HR features the business switched on (HR settings) — menus show only these."""
+    from django.utils.functional import SimpleLazyObject
+    from apps.employees import advanced
+    company = getattr(request, "company", None)
+    return {"hr_extras": SimpleLazyObject(lambda: advanced.enabled(company) if company is not None else set())}

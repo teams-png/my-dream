@@ -14,6 +14,7 @@
   <div class="hr-actions">
     <a class="btn btn-secondary" href="{% if employee.worker_type == "site" %}{% url 'webapp:mp_worker_edit' employee.id %}{% else %}{% url 'webapp:staff_edit' employee.id %}{% endif %}">✏️ {% translate "Edit" %}</a>
     <a class="btn btn-secondary" href="{% url 'webapp:hr_advances' %}?employee={{ employee.id }}">💵 {% translate "Give advance" %}</a>
+    {% if "settlement" in hr_extras and employee.is_active %}<a class="btn btn-secondary" href="{% url 'webapp:settlement_new' employee.id %}">🧾 {% translate "Final settlement" %}</a>{% endif %}
     <a class="btn btn-secondary" href="{% url 'webapp:staff_delete' employee.id %}">🗑 {% translate "Remove" %}</a>
   </div>
 </div>
@@ -35,6 +36,11 @@
   </table></div>
   <p style="font-size:12px;color:var(--hr-soft);margin:6px 0 0">{% translate "Pay is for the days / hours at the sites so far this month; the payslip comes from the payroll run." %}</p>
   {% else %}<p class="hr-empty">{% translate "No site attendance this month yet." %}</p>{% endif %}
+</div>{% endif %}
+{% if settlements or vacation %}<div class="hr-card" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+  {% if vacation %}<span>✈️ {% translate "Leave balance" %}: <b>{{ vacation.balance|floatformat:"-1" }}</b> {% translate "days" %}</span>
+  <span class="hr-chip {% if vacation.ticket_due %}warn{% endif %}">🎫 {{ vacation.months_since_ticket }} {% translate "months since the last ticket" %}</span>{% endif %}
+  {% for st in settlements %}<a class="hr-chip {% if st.status == 'paid' %}paid{% else %}draft{% endif %}" href="{% url 'webapp:settlement_detail' st.id %}">🧾 {% translate "Final settlement" %} · {{ st.net|floatformat:2 }}</a>{% endfor %}
 </div>{% endif %}
 <div class="hr-grid2">
 <div>

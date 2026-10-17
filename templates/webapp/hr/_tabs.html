@@ -7,6 +7,7 @@
   <a class="{% if u == 'hr_advances' %}on{% endif %}" href="{% url 'webapp:hr_advances' %}">💵 {% translate "Salary advances" %}</a>
   <a class="{% if u == 'hr_payroll' or u == 'hr_payslip' %}on{% endif %}" href="{% url 'webapp:hr_payroll' %}">💰 {% translate "Payroll" %}</a>
   <a class="{% if u == 'hr_documents' %}on{% endif %}" href="{% url 'webapp:hr_documents' %}">📄 {% translate "Documents" %}</a>
+  {% if "vacation" in hr_extras %}<a class="{% if u == 'hr_vacations' %}on{% endif %}" href="{% url 'webapp:hr_vacations' %}">✈️ {% translate "Vacations" %}</a>{% endif %}
   <a class="{% if u == 'hr_settings' %}on{% endif %}" href="{% url 'webapp:hr_settings' %}">⚙️ {% translate "HR settings" %}</a>
 </nav>
 {% endwith %}

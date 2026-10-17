@@ -19,7 +19,7 @@ from django.utils.translation import gettext_lazy as _l
 from apps.customers.models import Customer
 from apps.employees import services as hr
 from apps.employees import site_workers as sw
-from apps.employees.models import Attendance, Employee, HRSettings, SalaryStructure, SiteInvoice, SiteShift, WorkSite
+from apps.employees.models import Attendance, Camp, Employee, HRSettings, SalaryStructure, SiteInvoice, SiteShift, WorkSite
 from apps.common.ids import pick_id
 
 from . import xlsx
@@ -58,12 +58,14 @@ class WorkerForm(forms.ModelForm):
     class Meta:
         model = Employee
         fields = ["name", "phone", "trade", "nationality", "site", "accommodation", "joined_date", "employment_status",
-                  "pay_basis", "bill_rate"]
+                  "pay_basis", "bill_rate", "bank_short_name", "iban", "visa_id"]
         labels = {"name": _l("Full name"), "phone": _l("Phone / WhatsApp"), "trade": _l("Trade / skill"),
                   "nationality": _l("Nationality"), "site": _l("Working at site"),
                   "accommodation": _l("Accommodation / camp"), "joined_date": _l("Joined on"),
                   "employment_status": _l("Status"), "pay_basis": _l("How we pay"),
-                  "bill_rate": _l("Client rate for this worker (optional)")}
+                  "bill_rate": _l("Client rate for this worker (optional)"),
+                  "bank_short_name": _l("Bank (short name, e.g. QNB)"), "iban": _l("IBAN / account number"),
+                  "visa_id": _l("Visa ID (optional)")}
         help_texts = {"bill_rate": _l("Leave empty to use the site's rate.")}
         widgets = {"joined_date": DATE}
 
@@ -439,3 +441,52 @@ def mp_timesheet(request, site_id):
         "totals": {"days": sum((r["days"] for r in rows), Decimal("0")),
                    "hours": sum((r["hours"] for r in rows), Decimal("0")),
                    "ot": sum((r["ot"] for r in rows), Decimal("0"))}})
+
+
+# ------------------------------------------------------------------ camps (advanced feature)
+
+class CampForm(forms.ModelForm):
+    class Meta:
+        model = Camp
+        fields = ["name", "location", "capacity", "monthly_cost", "food_per_head", "transport_per_head", "notes"]
+        labels = {"name": _l("Camp / building name"), "location": _l("Location"), "capacity": _l("Beds"),
+                  "monthly_cost": _l("Monthly cost (rent, electricity, water…)"),
+                  "food_per_head": _l("Food per person a month"), "transport_per_head": _l("Transport per person a month"),
+                  "notes": _l("Notes")}
+        widgets = {"notes": forms.Textarea(attrs={"rows": 2})}
+
+
+@manpower_view
+def mp_camps(request):
+    from apps.employees import advanced
+    company = request.company
+    if not advanced.enabled(company, "camps"):
+        messages.info(request, _("Switch on “Camps & accommodation cost” in HR settings → Advanced features."))
+        return redirect("webapp:hr_settings")
+    edit = None
+    if request.GET.get("edit") or request.POST.get("camp"):
+        edit = get_object_or_404(Camp.objects.for_company(company), id=pick_id(request.GET.get("edit") or request.POST.get("camp")))
+    form = CampForm(request.POST if request.POST.get("action") == "save" else None, instance=edit)
+    if request.method == "POST":
+        action = request.POST.get("action")
+        if action == "save" and form.is_valid():
+            camp = form.save(commit=False)
+            camp.company = company
+            camp.save()
+            messages.success(request, _("%(name)s saved.") % {"name": camp.name})
+            return redirect("webapp:mp_camps")
+        if action in ("move_in", "move_out"):
+            ids = [i for i in (pick_id(x) for x in request.POST.getlist("worker")) if i]
+            camp = edit if action == "move_in" else None
+            n = Employee.objects.for_company(company).filter(id__in=ids).update(camp=camp)
+            messages.success(request, _("%(count)s workers moved.") % {"count": n})
+            return redirect("webapp:mp_camps")
+    rows = advanced.camps(company)
+    residents = {}
+    for e in Employee.objects.for_company(company).filter(is_active=True, camp__isnull=False).order_by("name"):
+        residents.setdefault(e.camp_id, []).append(e)
+    for camp in rows:
+        camp.people_list = residents.get(camp.id, [])
+    return render(request, "webapp/manpower/camps.html", {
+        "camps": rows, "form": form, "edit": edit,
+        "homeless": Employee.objects.for_company(company).filter(is_active=True, camp__isnull=True, worker_type="site").order_by("name")})

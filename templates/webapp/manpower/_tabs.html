@@ -13,6 +13,7 @@
   <a class="{% if u == 'mp_attendance' %}on{% endif %}" href="{% url 'webapp:mp_attendance' %}">🗓️ {% translate "Site attendance" %}</a>
   <a class="{% if u == 'mp_billing' %}on{% endif %}" href="{% url 'webapp:mp_billing' %}">🧾 {% translate "Client billing" %}</a>
   <a class="{% if u == 'mp_profit' %}on{% endif %}" href="{% url 'webapp:mp_profit' %}">📈 {% translate "Site profit" %}</a>
+  {% if "camps" in hr_extras %}<a class="{% if u == 'mp_camps' %}on{% endif %}" href="{% url 'webapp:mp_camps' %}">🛏️ {% translate "Camps" %}</a>{% endif %}
   <a href="{% url 'webapp:hr_payroll' %}">💰 {% translate "Payroll" %}</a>
 </nav>
 {% endwith %}

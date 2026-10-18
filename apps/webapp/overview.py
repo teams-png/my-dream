@@ -413,6 +413,21 @@ def _projects(company, today, money):
     return kpis, main, _recent_payments(company)
 
 
+def _recruitment_kpis(company, today, money):
+    """A recruitment agency sells no stock over a counter: fees this month, dues, interviews and expiring IDs."""
+    from datetime import timedelta
+    from apps.employees.models import EmployeeDocument
+    from apps.industry.models import Placement
+    interviews = Placement.objects.for_company(company).filter(
+        stage="interview", interview_at__date__gte=today, interview_at__date__lte=today + timedelta(days=7)).count()
+    expiring = (EmployeeDocument.objects.for_company(company)
+                .filter(employee__is_active=True, expiry_date__isnull=False, expiry_date__lte=today + timedelta(days=30))
+                .values("employee").distinct().count())
+    return [money["month"], money["dues"],
+            _kpi(_("Interviews (next 7 days)"), interviews, reverse("webapp:rec_home")),
+            _kpi(_("Documents expiring (30 days)"), expiring, reverse("webapp:mp_home"), tone="bad" if expiring else "")]
+
+
 def _recent_payments(company):
     paid = (_invoices(company).filter(amount_paid__gt=0).select_related("customer").order_by("-date", "-id")[:SHOW])
     return _panel(_("Recent payments"), reverse("webapp:sales_invoice_list"), _("All bills"),
@@ -446,8 +461,7 @@ def build(company):
     elif "leases" in features:
         parts = _property(company, today, money)
     elif code == "recruitment_agency":
-        return {"kpis": [money["today"], money["month"], money["dues"], money["low"]], "main": None, "side": None,
-                "own_layout": False}
+        return {"kpis": _recruitment_kpis(company, today, money), "main": None, "side": None, "own_layout": False}
     elif group == "service":
         parts = _service(company, today, money)
     elif group == "project" or code == "construction":

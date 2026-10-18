@@ -1,0 +1,79 @@
+{% load i18n %}{% with u=request.resolver_match.url_name %}
+      {# Recruitment agencies: their own short menu in work order — retail tools (POS, stock, coupons…) are left out #}
+      <a class="nav-link nav-bill {% if u == 'rec_candidate_add' %}active{% endif %}" href="{% url 'webapp:rec_candidate_add' %}" style="background:var(--accent);color:#fff;font-weight:700;margin:6px 0"><span>＋ {% translate "New candidate" %}</span></a>
+      <details class="nav-section" open>
+        <summary>🧑‍💼 {% translate "Recruitment" %}</summary>
+      <a class="nav-link {% if u == 'rec_home' %}active{% endif %}" href="{% url 'webapp:rec_home' %}"><span>{% translate "Overview" %}</span></a>
+      <a class="nav-link {% if u == 'rec_clients' %}active{% endif %}" href="{% url 'webapp:rec_clients' %}"><span>{% translate "Clients" %}</span></a>
+      <a class="nav-link {% if u|slice:':7' == 'rec_job' %}active{% endif %}" href="{% url 'webapp:rec_jobs' %}"><span>{% translate "Job orders" %}</span></a>
+      <a class="nav-link {% if u|slice:':13' == 'rec_candidate' or u == 'rec_placement' or u == 'rec_offer_letter' %}active{% endif %}" href="{% url 'webapp:rec_candidates' %}"><span>{% translate "Candidates" %}</span></a>
+      {% if "visa_quota" in hr_extras %}<a class="nav-link {% if u == 'rec_visa_quotas' %}active{% endif %}" href="{% url 'webapp:rec_visa_quotas' %}"><span>{% translate "Visa quota" %}</span></a>{% endif %}
+      {% if "sub_agents" in hr_extras %}<a class="nav-link {% if u == 'rec_agents' %}active{% endif %}" href="{% url 'webapp:rec_agents' %}"><span>{% translate "Sub-agent commission" %}</span></a>{% endif %}
+      </details>
+      {% if "manpower" in active_business_profile.features %}
+      <details class="nav-section" open>
+        <summary>👷 {% translate "Site workers" %}</summary>
+      <a class="nav-link {% if u == 'mp_home' or u == 'mp_worker_add' or u == 'mp_worker_edit' %}active{% endif %}" href="{% url 'webapp:mp_home' %}"><span>{% translate "Workers & ID expiry" %}</span></a>
+      <a class="nav-link {% if u == 'mp_sites' or u == 'mp_site' or u == 'mp_timesheet' %}active{% endif %}" href="{% url 'webapp:mp_sites' %}"><span>{% translate "Sites" %}</span></a>
+      <a class="nav-link {% if u == 'mp_duty' %}active{% endif %}" href="{% url 'webapp:mp_duty' %}"><span>{% translate "Duty roster" %}</span></a>
+      <a class="nav-link {% if u == 'mp_attendance' %}active{% endif %}" href="{% url 'webapp:mp_attendance' %}"><span>{% translate "Site attendance" %}</span></a>
+      <a class="nav-link {% if u == 'mp_billing' %}active{% endif %}" href="{% url 'webapp:mp_billing' %}"><span>{% translate "Client billing" %}</span></a>
+      <a class="nav-link {% if u == 'mp_profit' %}active{% endif %}" href="{% url 'webapp:mp_profit' %}"><span>{% translate "Site profit" %}</span></a>
+      {% if "camps" in hr_extras %}<a class="nav-link {% if u == 'mp_camps' %}active{% endif %}" href="{% url 'webapp:mp_camps' %}"><span>{% translate "Camps" %}</span></a>{% endif %}
+      </details>
+      {% endif %}
+      <details class="nav-section" {% if u in "staff_list,staff_detail,staff_add,staff_edit,hr_leave,hr_documents,hr_settings,hr_attendance,hr_attendance_month,hr_payroll,hr_payslip,hr_advances,hr_vacations,hr_wps,settlement_new,settlement_detail,staff_members_list,role_list" %}open{% endif %}>
+        <summary>🧑‍💻 {% translate "Office staff" %}</summary>
+      <a class="nav-link {% if u in 'staff_list,staff_detail,staff_add,staff_edit,hr_leave,hr_documents,hr_settings,settlement_new,settlement_detail' %}active{% endif %}" href="{% url 'webapp:staff_list' %}"><span>{% translate "Staff & HR" %}</span></a>
+      <a class="nav-link {% if u == 'hr_attendance' or u == 'hr_attendance_month' %}active{% endif %}" href="{% url 'webapp:hr_attendance' %}"><span>{% translate "Attendance" %}</span></a>
+      <a class="nav-link {% if u == 'hr_payroll' or u == 'hr_payslip' or u == 'hr_advances' or u == 'hr_wps' %}active{% endif %}" href="{% url 'webapp:hr_payroll' %}"><span>{% translate "Payroll & advances" %}</span></a>
+      {% if "vacation" in hr_extras %}<a class="nav-link {% if u == 'hr_vacations' %}active{% endif %}" href="{% url 'webapp:hr_vacations' %}"><span>{% translate "Vacations" %}</span></a>{% endif %}
+      <a class="nav-link {% if u == 'staff_members_list' or u == 'role_list' %}active{% endif %}" href="{% url 'webapp:staff_members_list' %}"><span>{% translate "Team" %}</span></a>
+      </details>
+      <details class="nav-section" {% if u in "sales_invoice_list,receivables,customer_account,quotation_list,quotation_add,quotation_detail,expense_list,bank_home,bank_account,cheque_list,daily_report,finance_home,recurring_list,budgets,asset_list,online_payment_settings,billing" or u|slice:':4' == 'acc_' %}open{% endif %}>
+        <summary>💰 {% translate "Money" %}</summary>
+      <a class="nav-link {% if u == 'sales_invoice_list' %}active{% endif %}" href="{% url 'webapp:sales_invoice_list' %}"><span>{% translate "Invoices" %}</span></a>
+      <a class="nav-link {% if u == 'receivables' or u == 'customer_account' %}active{% endif %}" href="{% url 'webapp:receivables' %}"><span>{% translate "Money to collect" %}</span></a>
+      <a class="nav-link {% if u in 'quotation_list,quotation_add,quotation_detail' %}active{% endif %}" href="{% url 'webapp:quotation_list' %}"><span>{% translate "Quotations" %}</span></a>
+      <a class="nav-link {% if u == 'expense_list' %}active{% endif %}" href="{% url 'webapp:expense_list' %}"><span>{% translate "Expenses" %}</span></a>
+      <a class="nav-link {% if u == 'bank_home' or u == 'bank_account' %}active{% endif %}" href="{% url 'webapp:bank_home' %}"><span>{% translate "Bank & cash" %}</span></a>
+      <a class="nav-link {% if u == 'cheque_list' %}active{% endif %}" href="{% url 'webapp:cheque_list' %}"><span>{% translate "Cheques (PDC)" %}</span></a>
+      <a class="nav-link {% if u|slice:':4' == 'acc_' %}active{% endif %}" href="{% url 'webapp:acc_home' %}"><span>{% translate "Accounts & reports" %}</span></a>
+      <a class="nav-link {% if u == 'daily_report' %}active{% endif %}" href="{% url 'webapp:daily_report' %}"><span>{% translate "Daily report" %}</span></a>
+      <a class="nav-link {% if u == 'finance_home' %}active{% endif %}" href="{% url 'webapp:finance_home' %}"><span>{% translate "Finance overview" %}</span></a>
+      <a class="nav-link {% if u == 'recurring_list' %}active{% endif %}" href="{% url 'webapp:recurring_list' %}"><span>{% translate "Recurring invoices" %}</span></a>
+      <a class="nav-link {% if u == 'budgets' %}active{% endif %}" href="{% url 'webapp:budgets' %}"><span>{% translate "Budgets" %}</span></a>
+      <a class="nav-link {% if u == 'asset_list' %}active{% endif %}" href="{% url 'webapp:asset_list' %}"><span>{% translate "Fixed assets" %}</span></a>
+      <a class="nav-link {% if u == 'online_payment_settings' %}active{% endif %}" href="{% url 'webapp:online_payment_settings' %}"><span>{% translate "Online payments" %}</span></a>
+      {% if request.role.name == "Owner" or request.user.is_platform_admin %}<a class="nav-link {% if u == 'billing' %}active{% endif %}" href="{% url 'webapp:billing' %}"><span>{% translate "Billing" %}</span></a>{% endif %}
+      </details>
+      <details class="nav-section" {% if u in "crm_pipeline,lead_list,lead_detail,customer_list,reminders,supplier_list,supplier_detail,purchase_list,purchase_detail,analytics,branch_list" %}open{% endif %}>
+        <summary>➕ {% translate "More" %}</summary>
+      <a class="nav-link {% if u in 'crm_pipeline,lead_list,lead_detail' %}active{% endif %}" href="{% url 'webapp:crm_pipeline' %}"><span>{% translate "Leads & pipeline" %}</span></a>
+      <a class="nav-link {% if u == 'customer_list' %}active{% endif %}" href="{% url 'webapp:customer_list' %}"><span>{% translate "Customers" %}</span></a>
+      <a class="nav-link {% if u == 'reminders' %}active{% endif %}" href="{% url 'webapp:reminders' %}"><span>{% translate "Customer reminders" %}</span></a>
+      <a class="nav-link {% if u == 'supplier_list' or u == 'supplier_detail' %}active{% endif %}" href="{% url 'webapp:supplier_list' %}"><span>{% translate "Suppliers" %}</span></a>
+      <a class="nav-link {% if u == 'purchase_list' or u == 'purchase_detail' %}active{% endif %}" href="{% url 'webapp:purchase_list' %}"><span>{% translate "Purchases" %}</span></a>
+      <a class="nav-link {% if u == 'analytics' %}active{% endif %}" href="{% url 'webapp:analytics' %}"><span>{% translate "Analytics" %}</span></a>
+      <a class="nav-link {% if u == 'branch_list' %}active{% endif %}" href="{% url 'webapp:branch_list' %}"><span>{% translate "Branches" %}</span></a>
+      </details>
+      <details class="nav-section" {% if u in "notification_list,company_settings,tax_currency,company_audit_log,reminder_settings,security_settings,backups,help" %}open{% endif %}>
+        <summary>⚙️ {% translate "Settings" %}</summary>
+      <a class="nav-link {% if u == 'company_settings' %}active{% endif %}" href="{% url 'webapp:company_settings' %}"><span>{% translate "Settings" %}</span></a>
+      <a class="nav-link {% if u == 'reminder_settings' %}active{% endif %}" href="{% url 'webapp:reminder_settings' %}"><span>{% translate "Reminders & alerts" %}</span></a>
+      <a class="nav-link {% if u == 'tax_currency' %}active{% endif %}" href="{% url 'webapp:tax_currency' %}"><span>{% translate "Tax & currency" %}</span></a>
+      <a class="nav-link {% if u == 'notification_list' %}active{% endif %}" href="{% url 'webapp:notification_list' %}"><span>{% translate "Notifications" %}</span></a>
+      <a class="nav-link {% if u == 'company_audit_log' %}active{% endif %}" href="{% url 'webapp:company_audit_log' %}"><span>{% translate "Activity log" %}</span></a>
+      <a class="nav-link {% if u == 'security_settings' %}active{% endif %}" href="{% url 'webapp:security_settings' %}"><span>{% translate "Security & 2FA" %}</span></a>
+      {% if request.role.name == "Owner" %}<a class="nav-link {% if u == 'backups' %}active{% endif %}" href="{% url 'webapp:backups' %}"><span>🛟 {% translate "Backups" %}</span></a>{% endif %}
+      <a class="nav-link {% if u == 'help' %}active{% endif %}" href="{% url 'webapp:help' %}"><span>💬 {% translate "Help & support" %}</span></a>
+      <a class="nav-link" href="{% url 'webapp:guide' %}" target="_blank" rel="noopener"><span>📘 {% translate "User guide" %}</span></a>
+      </details>
+      {% if request.role.name == "Owner" %}
+      <details class="nav-section" {% if u == 'rec_website' or u == 'site_editor' %}open{% endif %}>
+        <summary>🌐 {% translate "Website" %}</summary>
+      <a class="nav-link {% if u == 'rec_website' %}active{% endif %}" href="{% url 'webapp:rec_website' %}"><span>{% translate "Careers website" %}</span></a>
+      <a class="nav-link {% if u == 'site_editor' %}active{% endif %}" href="{% url 'webapp:site_editor' %}"><span>{% translate "My website" %}</span></a>
+      </details>
+      {% endif %}
+{% endwith %}

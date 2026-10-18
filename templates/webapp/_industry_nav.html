@@ -84,7 +84,4 @@
       <a class="nav-link {% if request.resolver_match.url_name == 'shop_orders' %}active{% endif %}" href="{% url 'webapp:shop_orders' %}"><span>🛒 {% translate "Website orders" %}</span><b id="bpShopBadge" hidden style="margin-inline-start:auto;min-width:20px;padding:0 6px;border-radius:99px;background:#dc2626;color:#fff;font-size:12px;text-align:center"></b></a>
       <script>(function(){var b=document.getElementById("bpShopBadge"),last=-1;function tick(){fetch("{% url 'webapp:shop_orders_waiting' %}",{credentials:"same-origin"}).then(function(r){return r.ok?r.json():null}).then(function(d){if(!d){return}b.hidden=!d.count;b.textContent=d.count;if(last>=0&&d.count>last){try{var a=new(window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator();o.frequency.value=880;o.connect(a.destination);o.start();o.stop(a.currentTime+.3)}catch(e){}}last=d.count;setTimeout(tick,60000)}).catch(function(){setTimeout(tick,120000)})}setTimeout(tick,1500)})();</script>
 {% endif %}
-{% if request.role.name == "Owner" %}
-      <a class="nav-link {% if request.resolver_match.url_name == 'site_editor' %}active{% endif %}" href="{% url 'webapp:site_editor' %}"><span>🌐 {% translate "My website" %}</span></a>
-{% endif %}
 {% endwith %}

@@ -41,3 +41,15 @@ def test_change_password(tenant_a_owner):
 
     anon = Client()
     assert anon.get(url).status_code == 302
+
+
+def test_sidebar_website_comes_last(tenant_a_owner):
+    """The business's own lists first, then Sales … Settings; the website is at the bottom."""
+    import re
+    c = Client()
+    c.force_login(tenant_a_owner)
+    html = c.get(reverse("webapp:dashboard")).content.decode()
+    nav = html[html.index('<nav class="sidebar"'):html.index("</nav>")]
+    sections = re.findall(r"<summary>([^<]*)</summary>", nav)
+    assert sections[-7:] == ["Sales", "Purchases", "Finance", "People", "Business", "Settings", "🌐 Website"]
+    assert nav.index(reverse("webapp:site_editor")) > nav.index(reverse("webapp:company_settings"))

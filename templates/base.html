@@ -454,6 +454,12 @@
         <a class="nav-link" href="{% url 'webapp:guide' %}" target="_blank" rel="noopener"><span>📘 {% translate "User guide" %}</span></a>
         <a class="nav-link" href="/api/docs/" target="_blank"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"></path></svg><span>{% translate "API docs" %}</span></a>
       </details>
+      {% if request.role.name == "Owner" %}
+      <details class="nav-section" {% if request.resolver_match.url_name == 'site_editor' %}open{% endif %}>
+        <summary>🌐 {% translate "Website" %}</summary>
+        <a class="nav-link {% if request.resolver_match.url_name == 'site_editor' %}active{% endif %}" href="{% url 'webapp:site_editor' %}"><span>{% translate "My website" %}</span></a>
+      </details>
+      {% endif %}
       {% endif %}
       {% if request.user.is_superuser %}
       <a class="nav-link" href="{% url 'webapp:platform_admin_dashboard' %}" style="color:var(--accent); font-weight:600;">{% translate "⚙ Platform Admin" %}</a>

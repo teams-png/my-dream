@@ -81,7 +81,7 @@
 @keyframes ixBar{from{opacity:0;transform:scaleX(.6)}to{opacity:1;transform:none}}
 @media(max-width:700px){.ix-form .fields{grid-template-columns:1fr}.bk-head,.bk-row{grid-template-columns:130px 1fr}}
 @media(prefers-reduced-motion:reduce){.ix *{animation:none!important}}
-html[data-theme=dark] .ix-chip.completed,html[data-theme=dark] .ix-chip.paid,html[data-theme=dark] .ix-chip.vacant{background:#14532d;color:#bbf7d0}
+html[data-theme=dark] .ix-chip.completed,html[data-theme=dark] .ix-chip.paid,html[data-theme=dark] .ix-chip.vacant{background:#1a5fd0;color:#bbf7d0}
 html[data-theme=dark] .ix-chip.reserved,html[data-theme=dark] .ix-chip.active{background:#1e3a8a;color:#dbeafe}
 html[data-theme=dark] .ix-chip.checked_in,html[data-theme=dark] .ix-chip.occupied{background:#78350f;color:#fef3c7}
 html[data-theme=dark] .at-grid label:has(input:checked){background:#052e16}

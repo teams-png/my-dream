@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg: #f4f6fb;
+  --bg: #f5f7fa;
   --surface: #ffffff;
-  --border: #e7e9f2;
-  --text-primary: #12162b;
+  --border: #e3e8ef;
+  --text-primary: #1d2939;
   --text-secondary: #6b7280;
   --text-muted: #9aa0b4;
-  --accent: #14532d;
-  --accent-light: #e6f2ea;
+  --accent: #1a5fd0;
+  --accent-light: #eaf1fd;
   --violet: #7b5cff;
   --success: #0f9d58;
   --success-bg: #e6f7ed;
@@ -23,7 +23,7 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  font-family: 'Source Sans 3', -apple-system, 'Segoe UI', sans-serif;
   font-size: 15px;
   color: var(--text-primary);
   background: var(--bg);
@@ -149,7 +149,7 @@ tbody tr:hover td { background: #fafbff; }
 
 /* Stepper (repair job card) */
 .stepper { display: flex; gap: 10px; margin-bottom: 24px; }
-.step { flex: 1; text-align: center; padding: 11px 6px; border-radius: 10px; background: #f4f6fb; color: var(--text-secondary); font-size: 13.5px; font-weight: 600; }
+.step { flex: 1; text-align: center; padding: 11px 6px; border-radius: 10px; background: #f5f7fa; color: var(--text-secondary); font-size: 13.5px; font-weight: 600; }
 .step.done { background: var(--success-bg); color: var(--success); }
 .step.active { background: var(--accent-light); color: var(--accent); }
 

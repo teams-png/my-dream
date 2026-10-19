@@ -12,15 +12,15 @@
   background-repeat:no-repeat;background-position:right 14px center}
 [dir=rtl] :where(.main) :where(select:not([multiple]):not([class]):not([style])){background-position:left 14px center}
 :where(.main) :where(input,select,textarea)::placeholder{color:#94a3b8;opacity:1}
-:where(.main) :where(input,select,textarea):where(:not([class])):hover{border-color:color-mix(in srgb,var(--accent,#14532d) 35%,var(--line,#e2e8f0))}
-:where(.main) :where(input,select,textarea):where(:not([class])):focus{outline:none;border-color:var(--accent,#14532d);
-  box-shadow:0 0 0 3.5px color-mix(in srgb,var(--accent,#14532d) 16%,transparent)}
-:where(.main) :where(input[type=checkbox],input[type=radio]){accent-color:var(--accent,#14532d);width:18px;height:18px}
+:where(.main) :where(input,select,textarea):where(:not([class])):hover{border-color:color-mix(in srgb,var(--accent,#1a5fd0) 35%,var(--line,#e2e8f0))}
+:where(.main) :where(input,select,textarea):where(:not([class])):focus{outline:none;border-color:var(--accent,#1a5fd0);
+  box-shadow:0 0 0 3.5px color-mix(in srgb,var(--accent,#1a5fd0) 16%,transparent)}
+:where(.main) :where(input[type=checkbox],input[type=radio]){accent-color:var(--accent,#1a5fd0);width:18px;height:18px}
 :where(.main) :where(input[type=file]:not([class])){box-sizing:border-box;width:100%;padding:12px;border:1.5px dashed var(--line,#cbd5e1);
   border-radius:12px;background:var(--paper,#f8fafc);color:var(--ink-soft,#64748b);font:inherit;font-size:13.5px;cursor:pointer}
 :where(.main) :where(input[type=file])::file-selector-button{margin-inline-end:12px;padding:8px 14px;border:1px solid var(--line,#e2e8f0);
   border-radius:9px;background:var(--panel,#fff);color:var(--ink,#0f172a);font:inherit;font-weight:700;font-size:13.5px;cursor:pointer}
-:where(.main) :where(input[type=file]):hover{border-color:var(--accent,#14532d)}
+:where(.main) :where(input[type=file]):hover{border-color:var(--accent,#1a5fd0)}
 
 /* {{ form.as_p }} — label above, full-width control, help and errors underneath */
 :where(.main form) :where(p:has(> label)){margin:0 0 14px}
@@ -34,22 +34,22 @@
 :where(.main form) :where(p:has(> label + input[type=checkbox])){display:flex;align-items:center;justify-content:space-between;gap:12px;
   min-height:48px;padding:10px 14px;border:1.5px solid var(--line,#e2e8f0);border-radius:12px;background:var(--panel,#fff);cursor:pointer}
 :where(.main form) :where(p:has(> label + input[type=checkbox]) > label){margin:0;cursor:pointer}
-:where(.main form) :where(p:has(> label + input[type=checkbox]:checked)){border-color:color-mix(in srgb,var(--accent,#14532d) 45%,var(--line,#e2e8f0));
-  background:color-mix(in srgb,var(--accent,#14532d) 6%,var(--panel,#fff))}
+:where(.main form) :where(p:has(> label + input[type=checkbox]:checked)){border-color:color-mix(in srgb,var(--accent,#1a5fd0) 45%,var(--line,#e2e8f0));
+  background:color-mix(in srgb,var(--accent,#1a5fd0) 6%,var(--panel,#fff))}
 :where(.main form) :where(p > label + input[type=checkbox]){appearance:none;-webkit-appearance:none;flex:0 0 auto;position:relative;
   width:42px;height:24px;margin:0;border-radius:999px;background:#cbd5e1;cursor:pointer;transition:background .15s}
 :where(.main form) :where(p > label + input[type=checkbox])::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:18px;height:18px;
   border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .15s}
-:where(.main form) :where(p > label + input[type=checkbox]:checked){background:var(--accent,#14532d)}
+:where(.main form) :where(p > label + input[type=checkbox]:checked){background:var(--accent,#1a5fd0)}
 :where(.main form) :where(p > label + input[type=checkbox]:checked)::after{transform:translateX(18px)}
 [dir=rtl] :where(.main form) :where(p > label + input[type=checkbox]:checked)::after{transform:translateX(-18px)}
-:where(.main form) :where(p > label + input[type=checkbox]:focus-visible){outline:2px solid var(--accent,#14532d);outline-offset:2px}
+:where(.main form) :where(p > label + input[type=checkbox]:focus-visible){outline:2px solid var(--accent,#1a5fd0);outline-offset:2px}
 /* multi-select checkboxes become chips */
 :where(.main form) :where(p > div[id]:has(input[type=checkbox])){display:flex;flex-wrap:wrap;gap:8px}
 :where(.main form) :where(p > div[id] > div > label){display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border:1.5px solid var(--line,#e2e8f0);
   border-radius:999px;background:var(--panel,#fff);font-size:13.5px;font-weight:600;cursor:pointer}
-:where(.main form) :where(p > div[id] > div > label:has(:checked)){border-color:var(--accent,#14532d);
-  background:color-mix(in srgb,var(--accent,#14532d) 8%,var(--panel,#fff));color:var(--accent,#14532d)}
+:where(.main form) :where(p > div[id] > div > label:has(:checked)){border-color:var(--accent,#1a5fd0);
+  background:color-mix(in srgb,var(--accent,#1a5fd0) 8%,var(--panel,#fff));color:var(--accent,#1a5fd0)}
 :where(.main) :where(input,select,textarea):where(:not([class])){max-width:100%}
 :where(.main form.stacked) :where(textarea){width:100%}
 
@@ -60,7 +60,7 @@
 .fx-card{background:var(--panel,#fff);border:1px solid var(--line,#e2e8f0);border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(15,23,42,.05)}
 .fx-card + .fx-card{margin-top:18px}
 .fx-card h2{display:flex;align-items:center;gap:10px;margin:0 0 4px;font-size:17px}
-.fx-card h2 .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;background:var(--accent-soft,#e6f2ea);color:var(--accent,#14532d);font-size:13px}
+.fx-card h2 .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;background:var(--accent-soft,#eaf1fd);color:var(--accent,#1a5fd0);font-size:13px}
 .fx-card .sub{margin:0 0 16px;color:var(--ink-soft,#64748b);font-size:13.5px}
 .fx-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 16px}.fx-grid .fx-wide,.fx-grid p:has(> textarea){grid-column:1/-1}
 @media(max-width:600px){.fx-grid{grid-template-columns:1fr}.fx-card{padding:16px}}
@@ -74,11 +74,11 @@
 a.card.stat-link,a.ix-stat{display:block}
 a.stat-link,a.r-stat,a.ix-stat{position:relative;text-decoration:none;color:inherit;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
 a.r-stat{display:flex}
-a.stat-link:hover,a.r-stat:hover,a.ix-stat:hover{transform:translateY(-2px);border-color:var(--accent,#14532d);box-shadow:0 10px 24px rgba(15,23,42,.08)}
+a.stat-link:hover,a.r-stat:hover,a.ix-stat:hover{transform:translateY(-2px);border-color:var(--accent,#1a5fd0);box-shadow:0 10px 24px rgba(15,23,42,.08)}
 a.stat-link::after,a.r-stat::after,a.ix-stat::after{content:"→";position:absolute;top:12px;inset-inline-end:14px;color:var(--ink-soft,#94a3b8);font-weight:700;opacity:.55;transition:opacity .15s,transform .15s}
-a.stat-link:hover::after,a.r-stat:hover::after,a.ix-stat:hover::after{opacity:1;transform:translateX(2px);color:var(--accent,#14532d)}
+a.stat-link:hover::after,a.r-stat:hover::after,a.ix-stat:hover::after{opacity:1;transform:translateX(2px);color:var(--accent,#1a5fd0)}
 [dir=rtl] a.stat-link::after,[dir=rtl] a.r-stat::after,[dir=rtl] a.ix-stat::after{content:"←"}
-a.stat-link:focus-visible,a.r-stat:focus-visible,a.ix-stat:focus-visible{outline:2px solid var(--accent,#14532d);outline-offset:2px}
+a.stat-link:focus-visible,a.r-stat:focus-visible,a.ix-stat:focus-visible{outline:2px solid var(--accent,#1a5fd0);outline-offset:2px}
 
 /* default product pictures (static/products/…) have no background: never crop them */
-img[src*="/static/products/"]{object-fit:contain!important;background:#f3f6f4}
+img[src*="/static/products/"]{object-fit:contain!important;background:#f2f5f9}

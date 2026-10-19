@@ -12,7 +12,7 @@
   <tr><th>{% translate "Name" %}</th><th>{% translate "Sport" %}</th><th>{% translate "Colour / size" %}</th><th>{% translate "Gender" %}</th><th>{% translate "Stock" %}</th><th>{% translate "Price" %}</th><th></th></tr>
   {% for p in products %}
   <tr>
-    <td style="display:flex;align-items:center;gap:10px">{% product_picture p as pic %}<img src="{{ pic }}" alt="" loading="lazy" style="width:40px;height:40px;border-radius:10px;object-fit:contain;background:#f3f6f4">{{ p.name }}</td>
+    <td style="display:flex;align-items:center;gap:10px">{% product_picture p as pic %}<img src="{{ pic }}" alt="" loading="lazy" style="width:40px;height:40px;border-radius:10px;object-fit:contain;background:#f2f5f9">{{ p.name }}</td>
     <td>{% if p.sports_detail %}{{ p.sports_detail.get_sport_category_display }}{% else %}—{% endif %}</td>
     <td>{{ p.variant_label|default:p.size|default:"—" }}</td>
     <td>{% if p.sports_detail %}{{ p.sports_detail.get_gender_display }}{% else %}—{% endif %}</td>

@@ -21,8 +21,8 @@ const config = {
   // app-bound domains let iOS run the service worker (offline POS)
   ios: { contentInset: "automatic", scrollEnabled: true, limitsNavigationsToAppBoundDomains: true },
   plugins: {
-    SplashScreen: { launchShowDuration: 900, backgroundColor: "#14532d", showSpinner: false },
-    StatusBar: { style: "DARK", backgroundColor: "#14532d", overlaysWebView: false },
+    SplashScreen: { launchShowDuration: 900, backgroundColor: "#1a5fd0", showSpinner: false },
+    StatusBar: { style: "DARK", backgroundColor: "#1a5fd0", overlaysWebView: false },
   },
 };
 fs.writeFileSync(path.join(__dirname, "..", "capacitor.config.json"), JSON.stringify(config, null, 2) + "\n");

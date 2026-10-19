@@ -1,5 +1,5 @@
 /* First-run setup wizard */
-.ob{max-width:860px; margin:0 auto; padding:8px 0 40px; --ob-brand:var(--accent,#14532d); --ob-ease:cubic-bezier(.2,.8,.2,1)}
+.ob{max-width:860px; margin:0 auto; padding:8px 0 40px; --ob-brand:var(--accent,#1a5fd0); --ob-ease:cubic-bezier(.2,.8,.2,1)}
 .ob-steps{display:flex; gap:8px; margin:0 0 22px; padding:0; list-style:none; counter-reset:s}
 .ob-steps li{flex:1; display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:14px; background:var(--panel,#fff); border:1px solid var(--line); color:var(--ink-soft); font-weight:700; font-size:14px; counter-increment:s}
 .ob-steps li::before{content:counter(s); width:28px; height:28px; flex-shrink:0; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--line); color:var(--ink); font-size:13px}
@@ -13,10 +13,10 @@
 .ob-grid .full{grid-column:1 / -1}
 .ob label{display:block; font-size:13px; font-weight:700; color:var(--ink-soft); margin-bottom:6px}
 .ob :is(input:not([type=checkbox]):not([type=file]),select,textarea){width:100%; padding:11px 13px; border:1.5px solid var(--line); border-radius:12px; font:inherit; font-size:15px; background:var(--panel,#fff); color:var(--ink); box-sizing:border-box}
-.ob :is(input,select,textarea):focus{outline:none; border-color:var(--ob-brand); box-shadow:0 0 0 4px rgba(20,83,45,.12)}
+.ob :is(input,select,textarea):focus{outline:none; border-color:var(--ob-brand); box-shadow:0 0 0 4px rgba(26,95,208,.12)}
 .ob .errorlist{color:var(--danger,#b42318); font-size:13px; margin:4px 0 0; padding:0; list-style:none}
 .ob-logo{display:flex; align-items:center; gap:16px}
-.ob-logo .pv{width:72px; height:72px; border-radius:18px; background:var(--paper,#f4f6fb); border:1.5px dashed var(--line); display:flex; align-items:center; justify-content:center; font-size:30px; overflow:hidden; flex-shrink:0}
+.ob-logo .pv{width:72px; height:72px; border-radius:18px; background:var(--paper,#f5f7fa); border:1.5px dashed var(--line); display:flex; align-items:center; justify-content:center; font-size:30px; overflow:hidden; flex-shrink:0}
 .ob-logo .pv img{width:100%; height:100%; object-fit:contain}
 .ob-foot{display:flex; align-items:center; gap:10px; margin-top:24px; flex-wrap:wrap}
 .ob-foot .grow{flex:1}
@@ -32,7 +32,7 @@
 .ob.g-restaurant .ob-row,.ob.g-service .ob-row,.ob.g-project .ob-row{grid-template-columns:2fr 1fr 1.4fr 36px}
 .ob.g-restaurant .c-stock,.ob.g-restaurant .c-code,.ob.g-service .c-stock,.ob.g-service .c-code,.ob.g-project .c-stock,.ob.g-project .c-code{display:none}
 .ob-tools{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
-.ob-chip{display:inline-flex; align-items:center; gap:6px; padding:8px 12px; border-radius:999px; background:var(--paper,#f4f6fb); border:1px solid var(--line); font-weight:700; font-size:13px; cursor:pointer; color:var(--ink)}
+.ob-chip{display:inline-flex; align-items:center; gap:6px; padding:8px 12px; border-radius:999px; background:var(--paper,#f5f7fa); border:1px solid var(--line); font-weight:700; font-size:13px; cursor:pointer; color:var(--ink)}
 .ob-have{margin:0 0 16px; padding:12px 14px; border-radius:14px; background:#ecfdf3; color:#166534; font-weight:700; font-size:14px}
 .ob-box{margin-top:18px; padding:16px; border-radius:16px; border:1.5px solid var(--line); display:flex; gap:14px; align-items:center; flex-wrap:wrap}
 .ob-box .ico{font-size:30px}

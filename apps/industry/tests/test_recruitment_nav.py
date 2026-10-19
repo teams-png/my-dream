@@ -21,3 +21,4 @@ def test_sidebar_in_work_order_and_overview_tiles(agency):
     page = html[html.index("</nav>"):]
     assert "Interviews (next 7 days)" in page and "Documents expiring (30 days)" in page
     assert "Low stock items" not in page and "Today&#x27;s sales" not in page
+    assert reverse("webapp:rec_job_add") in page and "🧾 New bill" not in page

@@ -6,29 +6,29 @@
 <title>{% translate "Invoice" %} {{ invoice.invoice_number }}</title>
 <style>
   @page { size: A4; margin: 28mm 20mm; }
-  body{ font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; color:#12162B; font-size:13px; }
+  body{ font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; color:#1d2939; font-size:13px; }
   .header{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
   .company-name{ font-size:20px; font-weight:700; margin:0 0 4px; }
-  .muted{ color:#5F6579; font-size:12px; line-height:1.5; }
+  .muted{ color:#667085; font-size:12px; line-height:1.5; }
   .invoice-title{ text-align:right; }
   .invoice-title h1{ font-size:22px; margin:0 0 6px; letter-spacing:0.5px; }
   table{ width:100%; border-collapse:collapse; margin-top:18px; }
-  th{ text-align:left; font-size:11px; text-transform:uppercase; color:#5F6579; border-bottom:1px solid #12162B; padding:8px 6px; }
-  td{ padding:9px 6px; border-bottom:1px solid #E7E9F2; }
+  th{ text-align:left; font-size:11px; text-transform:uppercase; color:#667085; border-bottom:1px solid #1d2939; padding:8px 6px; }
+  td{ padding:9px 6px; border-bottom:1px solid #e3e8ef; }
   .num{ text-align:right; }
   .totals{ width:260px; margin-left:auto; margin-top:18px; }
   .totals div{ display:flex; justify-content:space-between; padding:5px 0; }
-  .totals .grand{ font-weight:700; font-size:15px; border-top:1px solid #12162B; margin-top:6px; padding-top:8px; }
+  .totals .grand{ font-weight:700; font-size:15px; border-top:1px solid #1d2939; margin-top:6px; padding-top:8px; }
   .bill-to{ margin-top:6px; }
   .bill-to strong{ display:block; margin-bottom:2px; }
   .share-bar{display:flex;gap:8px;justify-content:flex-end;margin:-10px 0 18px}
-  .share-bar a,.share-bar button{font:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:9px;border:1px solid #d7dae4;background:#fff;color:#12162B;cursor:pointer;text-decoration:none}
-  .share-bar .primary{background:#12162B;color:#fff;border-color:#12162B}
+  .share-bar a,.share-bar button{font:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:9px;border:1px solid #d7dae4;background:#fff;color:#1d2939;cursor:pointer;text-decoration:none}
+  .share-bar .primary{background:#1d2939;color:#fff;border-color:#1d2939}
   .pay-box{border:1px solid #d7dae4;border-radius:12px;padding:14px 16px;margin:0 0 20px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
   .pay-box .due{font-size:15px;font-weight:700}
   .pay-box form{margin:0}
   .pay-box .pay-btn{font:inherit;font-size:15px;font-weight:700;padding:11px 22px;border-radius:10px;border:0;background:#0E9F6E;color:#fff;cursor:pointer}
-  .pay-box .note{flex-basis:100%;white-space:pre-line;color:#5F6579;font-size:12px}
+  .pay-box .note{flex-basis:100%;white-space:pre-line;color:#667085;font-size:12px}
   .pay-box.ok{border-color:#0E9F6E;background:#ECFDF5}.pay-box.warn{border-color:#d97706;background:#FFFBEB}
   @media print{.share-bar,.pay-box{display:none}}
   @media screen and (max-width:640px){body{margin:12px;font-size:12.5px}.header{flex-direction:column;gap:14px}.invoice-title{text-align:start}
@@ -39,9 +39,9 @@
   .lang-switch select{border:0;background:transparent;font:inherit;font-size:13px;font-weight:600;padding:7px 2px;cursor:pointer;color:inherit}
   .lang-switch select:focus{outline:none}
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  [dir=rtl] body{font-family:'Inter','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
-  html[lang=ml] body{font-family:'Inter','Noto Sans Malayalam','Nirmala UI',sans-serif}
-.zatca{float:left;width:150px;margin-top:18px;text-align:center;font-size:10px;color:#5F6579}.zatca-qr svg{width:130px;height:130px}[dir=rtl] .zatca{float:right}
+  [dir=rtl] body{font-family:'Source Sans 3','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
+  html[lang=ml] body{font-family:'Source Sans 3','Noto Sans Malayalam','Nirmala UI',sans-serif}
+.zatca{float:left;width:150px;margin-top:18px;text-align:center;font-size:10px;color:#667085}.zatca-qr svg{width:130px;height:130px}[dir=rtl] .zatca{float:right}
 </style>
 {% include "webapp/_lang_font.html" %}</head>
 <body>
@@ -99,7 +99,7 @@
   </table>
 
   {% if mobile_units %}
-  <div style="margin-top:18px;border:1px solid #E7E9F2;padding:12px;">
+  <div style="margin-top:18px;border:1px solid #e3e8ef;padding:12px;">
     <strong>{% translate "Handset IMEI & Warranty" %}</strong>
     {% for unit in mobile_units %}<p style="margin:7px 0 0;">{{ unit.product.name }} {% translate "— IMEI:" %} <b>{{ unit.imei }}</b>{% if unit.serial_number %} {% translate "· Serial:" %} {{ unit.serial_number }}{% endif %} {% translate "· Warranty:" %} {{ unit.warranty_months }} {% translate "months" %}{% if unit.warranty_expires %} {% translate "(until" %} {{ unit.warranty_expires }}){% endif %}</p>{% endfor %}
   </div>

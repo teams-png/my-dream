@@ -22,7 +22,7 @@ button.rp-chip{border:0; cursor:pointer; font-family:inherit}
 .rp-icon-btn .badge-n{display:inline-flex; min-width:20px; height:20px; padding:0 6px; align-items:center; justify-content:center; border-radius:999px; background:var(--r-brand); color:#fff; font-size:11.5px}
 
 .prod-card .prod-tile{position:relative; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; font-size:30px; font-weight:900; letter-spacing:-.03em; color:#fff; background:linear-gradient(145deg,hsl(var(--h) 70% 58%),hsl(calc(var(--h) + 35) 70% 46%))}
-.prod-card .prod-tile.has-img{background:#f3f6f4}
+.prod-card .prod-tile.has-img{background:#f2f5f9}
 .prod-card .prod-tile img{width:100%; height:100%; object-fit:cover; display:block}
 /* ready pictures have no background: show the whole object on a soft tile */
 .prod-card .prod-tile.has-img:has(img[src*="/static/products/"]){background:radial-gradient(circle at 50% 40%,#fff 0,#eef3f0 70%)}

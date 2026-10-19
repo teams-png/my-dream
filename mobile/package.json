@@ -9,7 +9,7 @@
     "sync": "npm run config && cap sync",
     "android": "npm run sync && cap open android",
     "ios": "npm run sync && cap open ios",
-    "assets": "capacitor-assets generate --assetPath assets --iconBackgroundColor '#14532d' --iconBackgroundColorDark '#08271a' --splashBackgroundColor '#14532d' --splashBackgroundColorDark '#08271a'"
+    "assets": "capacitor-assets generate --assetPath assets --iconBackgroundColor '#1a5fd0' --iconBackgroundColorDark '#0d2f6b' --splashBackgroundColor '#14532d' --splashBackgroundColorDark '#08271a'"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.2",

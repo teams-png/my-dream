@@ -6,21 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{% translate "Verify sign-in" %}</title>
 <style>
-  @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Regular.ttf" %}');font-weight:400}
-  @font-face{font-family:'Inter';src:url('{% static "fonts/Inter-Bold.ttf" %}');font-weight:700}
-  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif;background:radial-gradient(circle at 20% 10%,#e6f2ea,#f4f6fb 60%);color:#12162b;padding:16px;box-sizing:border-box}
-  .box{width:min(380px,100%);background:#fff;border:1px solid #e7e9f2;border-radius:22px;padding:32px;box-shadow:0 20px 50px rgba(18,22,43,.08);text-align:center;animation:in .45s cubic-bezier(.2,.8,.2,1) both}
+  @font-face{font-family:'Source Sans 3';src:url('{% static "fonts/SourceSans3-400.woff2" %}') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Source Sans 3';src:url('{% static "fonts/SourceSans3-500.woff2" %}') format('woff2');font-weight:500;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Source Sans 3';src:url('{% static "fonts/SourceSans3-600.woff2" %}') format('woff2');font-weight:600;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Source Sans 3';src:url('{% static "fonts/SourceSans3-700.woff2" %}') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Source Sans 3';src:url('{% static "fonts/SourceSans3-ext-400.woff2" %}') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0100-02AF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Source Sans 3';src:url('{% static "fonts/SourceSans3-ext-600.woff2" %}') format('woff2');font-weight:600;font-display:swap;unicode-range:U+0100-02AF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Source Sans 3';src:url('{% static "fonts/SourceSans3-ext-700.woff2" %}') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0100-02AF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Source Sans 3',system-ui,sans-serif;background:radial-gradient(circle at 20% 10%,#eaf1fd,#f5f7fa 60%);color:#1d2939;padding:16px;box-sizing:border-box}
+  .box{width:min(380px,100%);background:#fff;border:1px solid #e3e8ef;border-radius:22px;padding:32px;box-shadow:0 20px 50px rgba(18,22,43,.08);text-align:center;animation:in .45s cubic-bezier(.2,.8,.2,1) both}
   @keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  .ico{width:64px;height:64px;border-radius:20px;background:#e6f2ea;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px}
+  .ico{width:64px;height:64px;border-radius:20px;background:#eaf1fd;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px}
   h1{font-size:21px;margin:0 0 6px}
-  p{color:#5f6579;font-size:14px;margin:0 0 20px}
-  .code{width:100%;box-sizing:border-box;padding:14px;border:2px solid #e7e9f2;border-radius:14px;font:inherit;font-size:28px;letter-spacing:.35em;text-align:center;font-weight:700}
-  .code:focus{outline:none;border-color:#14532d;box-shadow:0 0 0 4px #14532d22}
-  button{width:100%;margin-top:14px;padding:13px;border:0;border-radius:12px;background:#14532d;color:#fff;font:inherit;font-weight:700;font-size:15px;cursor:pointer}
+  p{color:#667085;font-size:14px;margin:0 0 20px}
+  .code{width:100%;box-sizing:border-box;padding:14px;border:2px solid #e3e8ef;border-radius:14px;font:inherit;font-size:28px;letter-spacing:.35em;text-align:center;font-weight:700}
+  .code:focus{outline:none;border-color:#1a5fd0;box-shadow:0 0 0 4px #1a5fd022}
+  button{width:100%;margin-top:14px;padding:13px;border:0;border-radius:12px;background:#1a5fd0;color:#fff;font:inherit;font-weight:700;font-size:15px;cursor:pointer}
   .msg{padding:10px 12px;border-radius:10px;background:#fdeceb;color:#c0392b;font-size:13.5px;margin-bottom:14px;animation:shake .4s}
   @keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-  .alt{display:block;margin-top:16px;font-size:13px;color:#5f6579}
-  a{color:#14532d;font-weight:700}
+  .alt{display:block;margin-top:16px;font-size:13px;color:#667085}
+  a{color:#1a5fd0;font-weight:700}
   @media(prefers-reduced-motion:reduce){.box,.msg{animation:none}}
 
   .lang-switch{margin:0;display:inline-flex}
@@ -28,8 +27,8 @@
   .lang-switch select{border:0;background:transparent;font:inherit;font-size:13px;font-weight:600;padding:7px 2px;cursor:pointer;color:inherit}
   .lang-switch select:focus{outline:none}
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  [dir=rtl] body{font-family:'Inter','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
-  html[lang=ml] body{font-family:'Inter','Noto Sans Malayalam','Nirmala UI',sans-serif}
+  [dir=rtl] body{font-family:'Source Sans 3','Noto Sans Arabic','Segoe UI',Tahoma,sans-serif}
+  html[lang=ml] body{font-family:'Source Sans 3','Noto Sans Malayalam','Nirmala UI',sans-serif}
 </style>
 {% include "webapp/_lang_font.html" %}</head>
 <body>

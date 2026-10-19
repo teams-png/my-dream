@@ -49,6 +49,12 @@ def quick_actions(context):
         return [("🍽️", _("Orders & tables"), reverse("webapp:restaurant_dashboard"), True),
                 ("⚡", _("Quick sale"), reverse("webapp:restaurant_quick_sale"), False),
                 ("👨‍🍳", _("Kitchen screen"), reverse("webapp:restaurant_kitchen"), False)]
+    if "recruitment" in business_features(code):
+        actions = [("➕", _("New candidate"), reverse("webapp:rec_candidate_add"), True),
+                   ("📋", _("New job order"), reverse("webapp:rec_job_add"), False)]
+        if "manpower" in business_features(code):
+            actions.append(("🕒", _("Site attendance"), reverse("webapp:mp_attendance"), False))
+        return actions
     actions = [("🧾", _("New bill"), reverse("webapp:pos"), True)]
     if code in BOOK_URL:
         actions.append(("📅", _("Book appointment"), reverse(BOOK_URL[code]), False))

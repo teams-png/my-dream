@@ -7,14 +7,14 @@
   const css = `
   .bp-tour-bubble{position:fixed;inset:auto;margin:0;border:0;overflow:visible;z-index:2147483647;max-width:300px;background:#0f1a14;color:#fff;border-radius:14px;
     padding:14px 16px 12px;font:14px/1.45 Inter,system-ui,sans-serif;box-shadow:0 18px 40px rgba(0,0,0,.3)}
-  .bp-tour-bubble b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#c6f432;margin-bottom:4px}
+  .bp-tour-bubble b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#ffd166;margin-bottom:4px}
   .bp-tour-bubble .row{display:flex;justify-content:space-between;gap:8px;margin-top:10px}
   .bp-tour-bubble button{border:0;border-radius:9px;padding:7px 12px;font:inherit;font-weight:600;cursor:pointer}
   .bp-tour-bubble .skip{background:transparent;color:#b9c7be}
-  .bp-tour-bubble .next{background:#c6f432;color:#10240f}
+  .bp-tour-bubble .next{background:#ffd166;color:#3a2a00}
   .bp-tour-bubble:after{content:"";position:absolute;width:14px;height:14px;background:#0f1a14;transform:rotate(45deg);left:var(--ax,24px)}
   .bp-tour-bubble.below:after{top:-6px}.bp-tour-bubble.above:after{bottom:-6px}
-  .bp-tour-glow{outline:3px solid #c6f432!important;outline-offset:3px;border-radius:12px;animation:bpTourPulse 1.4s ease-in-out infinite}
+  .bp-tour-glow{outline:3px solid #ffd166!important;outline-offset:3px;border-radius:12px;animation:bpTourPulse 1.4s ease-in-out infinite}
   @keyframes bpTourPulse{50%{outline-color:rgba(198,244,50,.35)}}`;
 
   function start(steps, opts) {

@@ -1,0 +1,23 @@
+{% load i18n %}<div class="pv-head"><small>{% translate "Invoice" %}</small><h2>{{ inv.invoice_number }}</h2>
+<span class="hr-chip {% if inv.status == 'paid' %}ok{% elif inv.status == 'void' %}bad{% else %}warn{% endif %}">{% translate inv.get_status_display %}</span></div>
+<dl class="pv-facts">
+  <div><dt>{% translate "Customer" %}</dt><dd>{{ inv.customer.name }}{% if inv.customer.phone %}<br><small>{{ inv.customer.phone }}</small>{% endif %}</dd></div>
+  <div><dt>{% translate "Date" %}</dt><dd>{{ inv.date|date:"j M Y" }}{% if inv.due_date %}<br><small>{% translate "due" %} {{ inv.due_date|date:"j M Y" }}</small>{% endif %}</dd></div>
+</dl>
+<table class="pv-lines"><thead><tr><th>{% translate "Item" %}</th><th>{% translate "Qty" %}</th><th>{% translate "Amount" %}</th></tr></thead><tbody>
+{% for l in lines %}<tr><td>{{ l.product.name }}</td><td>{{ l.quantity|floatformat:"-3" }}{% if l.unit_name %} {{ l.unit_name }}{% endif %}</td><td>{{ l.line_total|floatformat:2 }}</td></tr>{% endfor %}
+{% if more %}<tr><td colspan="3"><small>+ {{ more }}</small></td></tr>{% endif %}
+</tbody></table>
+<dl class="pv-sum">
+  {% if inv.discount_amount %}<div><dt>{% translate "Discount" %}</dt><dd>-{{ inv.discount_amount|floatformat:2 }}</dd></div>{% endif %}
+  {% if inv.tax_amount %}<div><dt>{% translate "Tax" %}</dt><dd>{{ inv.tax_amount|floatformat:2 }}</dd></div>{% endif %}
+  <div class="big"><dt>{% translate "Total" %}</dt><dd>{{ inv.currency }} {{ inv.total|floatformat:2 }}</dd></div>
+  <div><dt>{% translate "Paid" %}</dt><dd>{{ inv.amount_paid|floatformat:2 }}</dd></div>
+  {% if due > 0 and inv.status != 'void' %}<div class="due"><dt>{% translate "Balance" %}</dt><dd>{{ due|floatformat:2 }}</dd></div>{% endif %}
+</dl>
+<div class="pv-actions">
+  <a class="btn" href="{% url 'webapp:invoice_pdf' inv.id %}" target="_blank" rel="noopener">🧾 {% translate "Open / print" %}</a>
+  {% if due > 0 and inv.status != 'void' %}<a class="btn btn-secondary" href="{% url 'webapp:customer_account' inv.customer_id %}">💵 {% translate "Receive" %}</a>{% endif %}
+  <a class="btn btn-secondary" href="{% url 'webapp:invoice_share' inv.id %}">📤 {% translate "Share" %}</a>
+  {% if whatsapp %}<a class="btn btn-secondary" href="{{ whatsapp }}" target="_blank" rel="noopener">💬 WhatsApp</a>{% endif %}
+</div>

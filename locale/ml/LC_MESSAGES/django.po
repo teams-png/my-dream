@@ -7226,6 +7226,50 @@ msgstr "ബ്രാഞ്ച്"
 msgid "Save job card"
 msgstr "ജോബ് കാർഡ് സേവ് ചെയ്യുക"
 
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Repairs"
+msgstr "റിപ്പയറുകൾ"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "New job card"
+msgstr "പുതിയ ജോബ് കാർഡ്"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "View"
+msgstr "കാണുക"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "List"
+msgstr "ലിസ്റ്റ്"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Board"
+msgstr "ബോർഡ്"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid ""
+"Drag a card to the next column to change its status. Finish and bill a "
+"repair from its job card."
+msgstr ""
+"സ്റ്റാറ്റസ് മാറ്റാൻ കാർഡ് അടുത്ത കോളത്തിലേക്ക് വലിച്ചിടുക. റിപ്പയർ "
+"പൂർത്തിയാക്കി ബിൽ ചെയ്യുന്നത് അതിന്റെ ജോബ് കാർഡിൽ നിന്നാണ്."
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Job"
+msgstr "ജോലി"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Customer / Device"
+msgstr "കസ്റ്റമർ / ഉപകരണം"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Estimate"
+msgstr "എസ്റ്റിമേറ്റ്"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "No repair jobs."
+msgstr "റിപ്പയർ ജോലികൾ ഇല്ല."
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "അനുമതി ഇല്ല"
@@ -8174,6 +8218,26 @@ msgstr "വീണ്ടും ശ്രമിക്കുക"
 #: templates/webapp/pos_offline_sales.html
 msgid "Mark handled"
 msgstr "കൈകാര്യം ചെയ്തതായി അടയാളപ്പെടുത്തുക"
+
+#: templates/webapp/previews/customer.html
+msgid "Recent invoices"
+msgstr "സമീപകാല ഇൻവോയ്സുകൾ"
+
+#: templates/webapp/previews/customer.html
+msgid "No invoices yet."
+msgstr "ഇതുവരെ ഇൻവോയ്സുകൾ ഇല്ല."
+
+#: templates/webapp/previews/customer.html
+msgid "Statement & payments"
+msgstr "സ്റ്റേറ്റ്മെന്റ് & പേയ്മെന്റുകൾ"
+
+#: templates/webapp/previews/invoice.html
+msgid "Open / print"
+msgstr "തുറക്കുക / പ്രിന്റ്"
+
+#: templates/webapp/previews/invoice.html
+msgid "Receive"
+msgstr "സ്വീകരിക്കുക"
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -9433,6 +9497,10 @@ msgstr "ജോലി വാട്സ്ആപ്പിൽ ഷെയർ ചെയ
 #: templates/webapp/recruitment/job_detail.html
 msgid "Update client"
 msgstr "ക്ലയന്റിനെ അറിയിക്കുക"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Duplicate"
+msgstr "ഡ്യൂപ്ലിക്കേറ്റ്"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
@@ -11309,10 +11377,6 @@ msgid "guests"
 msgstr "അതിഥികൾ"
 
 #: templates/webapp/restaurant/order_list.html
-msgid "View"
-msgstr "കാണുക"
-
-#: templates/webapp/restaurant/order_list.html
 msgid "No orders for this filter."
 msgstr "ഈ ഫിൽട്ടറിൽ ഓർഡറുകൾ ഇല്ല."
 
@@ -11488,10 +11552,6 @@ msgstr "അടയ്ക്കാത്തത് / ഭാഗികം"
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "Invoice no. or customer"
 msgstr "ഇൻവോയ്സ് നമ്പർ അല്ലെങ്കിൽ ഉപഭോക്താവ്"
-
-#: templates/webapp/sales_docs/invoice_list.html
-msgid "Receive"
-msgstr "സ്വീകരിക്കുക"
 
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "No invoices found."
@@ -15248,10 +15308,6 @@ msgid "Reversed payroll removed. You can calculate it again."
 msgstr "റിവേഴ്സ് ചെയ്ത ശമ്പളം നീക്കി. വീണ്ടും കണക്കാക്കാം."
 
 #: apps/webapp/hr_views.py
-msgid "Job"
-msgstr "ജോലി"
-
-#: apps/webapp/hr_views.py
 msgid "Overtime hours"
 msgstr "ഓവർടൈം മണിക്കൂർ"
 
@@ -15437,6 +15493,15 @@ msgstr "%(n)s ഉൽപ്പന്നങ്ങൾ ഇനി വിൽക്ക�
 #: apps/webapp/list_tools_views.py
 msgid "Choose what to do with the ticked products."
 msgstr "തിരഞ്ഞെടുത്ത ഉൽപ്പന്നങ്ങൾക്ക് എന്ത് ചെയ്യണമെന്ന് തിരഞ്ഞെടുക്കുക."
+
+#: apps/webapp/list_tools_views.py
+msgid "Invoice %(no)s: %(cur)s %(total)s"
+msgstr "ഇൻവോയ്സ് %(no)s: %(cur)s %(total)s"
+
+#: apps/webapp/list_tools_views.py
+msgid "Use the job card's Complete button to finish and bill a repair."
+msgstr ""
+"റിപ്പയർ പൂർത്തിയാക്കി ബിൽ ചെയ്യാൻ ജോബ് കാർഡിലെ Complete ബട്ടൺ ഉപയോഗിക്കുക."
 
 #: apps/webapp/manpower_views.py
 msgid "Salary / pay rate"
@@ -16785,6 +16850,10 @@ msgid "Already added or not suitable: %(names)s"
 msgstr "നേരത്തേ ചേർത്തവർ അല്ലെങ്കിൽ യോജിക്കാത്തവർ: %(names)s"
 
 #: apps/webapp/recruitment_views.py
+msgid "Job order %(number)s created as a copy."
+msgstr "ജോബ് ഓർഡർ %(number)s കോപ്പിയായി ഉണ്ടാക്കി."
+
+#: apps/webapp/recruitment_views.py
 msgid "Job opening"
 msgstr "ജോലി ഒഴിവ്"
 
@@ -17010,6 +17079,10 @@ msgstr "കുറഞ്ഞത് ഒരു ഐറ്റം ചേർക്കു
 #: apps/webapp/sales_docs_views.py
 msgid "Quotation %(number)s created."
 msgstr "ക്വട്ടേഷൻ %(number)s ഉണ്ടാക്കി."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quotation %(number)s created as a copy."
+msgstr "ക്വട്ടേഷൻ %(number)s കോപ്പിയായി ഉണ്ടാക്കി."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Sales order %(number)s created."

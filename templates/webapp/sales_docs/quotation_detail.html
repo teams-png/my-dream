@@ -20,6 +20,7 @@
     {% if doc.status == "draft" %}<button class="btn btn-secondary" name="action" value="send">📤 {% translate "Mark as sent" %}</button>{% endif %}
     {% if doc.status == "draft" or doc.status == "sent" %}<button class="btn btn-secondary" name="action" value="accept">✓ {% translate "Customer accepted" %}</button><button class="btn btn-secondary" name="action" value="reject">✕ {% translate "Customer rejected" %}</button>{% endif %}
     {% if doc.status != "rejected" and not orders %}<button class="btn" name="action" value="to_invoice" onclick="return confirm('{% translate "Create an invoice now? Stock will be reduced." %}')">🧾 {% translate "Convert to invoice" %}</button><button class="btn btn-secondary" name="action" value="to_order">📦 {% translate "Convert to sales order" %}</button>{% endif %}
+    <button class="btn btn-secondary" name="action" value="duplicate">⧉ {% translate "Duplicate" %}</button>
   </form>
 </div>
 {% if orders %}<div class="hr-card no-print" style="margin-top:14px"><h3>📦 {% translate "Sales orders" %}</h3><div class="hr-list">{% for o in orders %}<a class="hr-row" href="{% url 'webapp:sales_order_detail' o.id %}"><span class="grow"><b>{{ o.number }}</b></span><span class="hr-chip blue">{% translate o.get_status_display %}</span></a>{% endfor %}</div></div>{% endif %}

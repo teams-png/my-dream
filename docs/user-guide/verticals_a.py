@@ -40,6 +40,10 @@ VERTICALS.append(dict(
    dict(tip="Use [[Export CSV]] first to download your current list — edit it in Excel and import it back to change prices in bulk.")),
  ],
  tasks=[
+  ("Move repairs along on the board",
+   ["Open [[Repair Job Cards]] → [[▦ Board]]: one column per step — Received, Diagnosing, Waiting for parts, Ready.",
+    "Drag a card to the next column, or in the [[☰ List]] pick the new status in its row — it saves at once.",
+    "Finishing a repair bills it, so press [[Complete]] on the job card for that step."]),
   ("Add a phone unit (each handset with IMEI)",
    ["Open [[Phone Units]] → [[+ Add unit]].",
     "Choose the <b>Product</b> (model), type the <b>IMEI</b>, optional <b>Serial number</b>, pick <b>Condition</b> (New / Used / Refurbished), <b>Warranty (months)</b> and your <b>Purchase price</b>.",

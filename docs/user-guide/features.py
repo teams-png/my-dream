@@ -18,6 +18,8 @@ VERTICALS.append(dict(
          ("Price lists &amp; offers", "Special prices for a customer or a period are filled in automatically.")],
  setup=[("Check your products and customers", ["Products and customers must exist first — but you can also type a <b>New customer name</b> right on the quotation."])],
  tasks=[
+  ("Copy a quotation",
+   ["Open the quotation and press [[⧉ Duplicate]]: a new draft with the same customer, items, prices and notes opens, dated today — change what you need."]),
   ("Write a quotation", ["[[[Sales]]] → [[Quotations]] → [[New quotation]]. Choose the customer, [[Add item]] for each line, set <b>Valid until</b> and <b>Notes / terms</b>. Save.",
                          "Press [[Send on WhatsApp]] or [[Print / PDF]], then [[Mark as sent]]."]),
   ("Customer said yes", ["Open the quotation → [[Customer accepted]] → [[Convert to sales order]] (or [[Convert to invoice]] for a simple job)."]),
@@ -101,6 +103,9 @@ VERTICALS.append(dict(
          ("Customer portal", "A private link where the customer sees their bills and pays."), ("Credit limit", "Warns before selling to someone over their limit.")],
  setup=[("Switch on online payment (optional)", ["[[[Finance]]] → [[Online payments]] — connect your payment gateway so invoices get a <b>Pay now</b> button."])],
  tasks=[
+  ("See an invoice or customer without leaving the list",
+   ["In [[Invoices]] or [[Customers]] click a row: the details open on the right (from the bottom on a phone) — items, total, paid and balance, or a customer's balance and last invoices.",
+    "Act from there: [[Open / print]], [[Receive]], [[Share]], [[WhatsApp]] or [[Statement &amp; payments]]. Esc or ✕ closes it; Ctrl-click still opens the full page."]),
   ("Receive a payment", ["[[[People]]] → [[Money to collect]] → the customer → [[Receive payment]]. Enter the amount; it is applied to the oldest bills first. [[Save payment]]."]),
   ("Send a reminder", ["On the customer press [[Send reminder]] — a polite WhatsApp message with the amount due and pay link."]),
   ("Print a statement", ["Open the customer → [[Statement]] → [[Print statement]], or [[Copy customer portal link]]."]),

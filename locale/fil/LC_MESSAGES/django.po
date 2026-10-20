@@ -7242,6 +7242,50 @@ msgstr "Sangay"
 msgid "Save job card"
 msgstr "I-save ang job card"
 
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Repairs"
+msgstr "Mga repair"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "New job card"
+msgstr "Bagong job card"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "View"
+msgstr "Tingnan"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "List"
+msgstr "Listahan"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Board"
+msgstr "Board"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid ""
+"Drag a card to the next column to change its status. Finish and bill a "
+"repair from its job card."
+msgstr ""
+"I-drag ang card sa susunod na column para palitan ang status. Tapusin at "
+"i-bill ang repair mula sa job card nito."
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Job"
+msgstr "Trabaho"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Customer / Device"
+msgstr "Customer / Device"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Estimate"
+msgstr "Tantiya"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "No repair jobs."
+msgstr "Walang repair job."
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "Walang access"
@@ -8182,6 +8226,26 @@ msgstr "Subukan ulit"
 #: templates/webapp/pos_offline_sales.html
 msgid "Mark handled"
 msgstr "Markahang naasikaso"
+
+#: templates/webapp/previews/customer.html
+msgid "Recent invoices"
+msgstr "Mga bagong invoice"
+
+#: templates/webapp/previews/customer.html
+msgid "No invoices yet."
+msgstr "Wala pang invoice."
+
+#: templates/webapp/previews/customer.html
+msgid "Statement & payments"
+msgstr "Statement at bayad"
+
+#: templates/webapp/previews/invoice.html
+msgid "Open / print"
+msgstr "Buksan / i-print"
+
+#: templates/webapp/previews/invoice.html
+msgid "Receive"
+msgstr "Tanggapin"
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -9440,6 +9504,10 @@ msgstr "Ibahagi ang trabaho sa WhatsApp"
 #: templates/webapp/recruitment/job_detail.html
 msgid "Update client"
 msgstr "I-update ang kliyente"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Duplicate"
+msgstr "Kopyahin"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
@@ -11325,10 +11393,6 @@ msgid "guests"
 msgstr "bisita"
 
 #: templates/webapp/restaurant/order_list.html
-msgid "View"
-msgstr "Tingnan"
-
-#: templates/webapp/restaurant/order_list.html
 msgid "No orders for this filter."
 msgstr "Walang order para sa filter na ito."
 
@@ -11506,10 +11570,6 @@ msgstr "Hindi bayad / bahagyang bayad"
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "Invoice no. or customer"
 msgstr "Invoice no. o customer"
-
-#: templates/webapp/sales_docs/invoice_list.html
-msgid "Receive"
-msgstr "Tanggapin"
 
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "No invoices found."
@@ -15276,10 +15336,6 @@ msgid "Reversed payroll removed. You can calculate it again."
 msgstr "Inalis ang binawing payroll. Maaari mo itong kalkulahin ulit."
 
 #: apps/webapp/hr_views.py
-msgid "Job"
-msgstr "Trabaho"
-
-#: apps/webapp/hr_views.py
 msgid "Overtime hours"
 msgstr "Oras ng overtime"
 
@@ -15465,6 +15521,15 @@ msgstr "Hindi na ibebenta ang %(n)s produkto."
 #: apps/webapp/list_tools_views.py
 msgid "Choose what to do with the ticked products."
 msgstr "Piliin kung ano ang gagawin sa mga napiling produkto."
+
+#: apps/webapp/list_tools_views.py
+msgid "Invoice %(no)s: %(cur)s %(total)s"
+msgstr "Invoice %(no)s: %(cur)s %(total)s"
+
+#: apps/webapp/list_tools_views.py
+msgid "Use the job card's Complete button to finish and bill a repair."
+msgstr ""
+"Gamitin ang Complete button ng job card para tapusin at i-bill ang repair."
 
 #: apps/webapp/manpower_views.py
 msgid "Salary / pay rate"
@@ -16820,6 +16885,10 @@ msgid "Already added or not suitable: %(names)s"
 msgstr "Naidagdag na o hindi angkop: %(names)s"
 
 #: apps/webapp/recruitment_views.py
+msgid "Job order %(number)s created as a copy."
+msgstr "Ginawa ang job order %(number)s bilang kopya."
+
+#: apps/webapp/recruitment_views.py
 msgid "Job opening"
 msgstr "Bakanteng trabaho"
 
@@ -17044,6 +17113,10 @@ msgstr "Magdagdag ng kahit isang item."
 #: apps/webapp/sales_docs_views.py
 msgid "Quotation %(number)s created."
 msgstr "Nagawa ang quotation %(number)s."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quotation %(number)s created as a copy."
+msgstr "Ginawa ang quotation %(number)s bilang kopya."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Sales order %(number)s created."

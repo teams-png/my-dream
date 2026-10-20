@@ -227,6 +227,12 @@ def rec_job_edit(request, job_id):
     return render(request, "webapp/recruitment/job_form.html", {"form": form, "title": job.number, "job": job})
 
 
+# a copy keeps the client and the job's terms; it starts open, unpublished and with no deadline
+DUPLICATE_JOB_FIELDS = ("position", "vacancies", "work_location", "nationality", "gender", "salary", "benefits",
+                        "requirements", "skills", "min_experience", "max_age", "contract_months", "fee_per_placement",
+                        "guarantee_days", "public_summary")
+
+
 @recruitment_view
 def rec_job_detail(request, job_id):
     company = request.company
@@ -251,6 +257,12 @@ def rec_job_detail(request, job_id):
             elif action == "move":
                 placement = get_object_or_404(Placement.objects.for_company(company), id=pick_id(request.POST.get("placement")), job_order=job)
                 svc.move(placement, request.POST.get("stage") or "")
+            elif action == "duplicate":
+                copy = svc.create_job_order(
+                    company=company, user=request.user, client=job.client,
+                    **{f: getattr(job, f) for f in DUPLICATE_JOB_FIELDS})
+                messages.success(request, _("Job order %(number)s created as a copy.") % {"number": copy.number})
+                return redirect("webapp:rec_job_detail", copy.id)
             elif action in ("close", "reopen", "hold"):
                 job.status = {"close": "closed", "reopen": "open", "hold": "on_hold"}[action]
                 job.save(update_fields=["status"])

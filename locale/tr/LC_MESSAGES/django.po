@@ -7200,6 +7200,50 @@ msgstr "Şube"
 msgid "Save job card"
 msgstr "İş kartını kaydet"
 
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Repairs"
+msgstr "Onarımlar"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "New job card"
+msgstr "Yeni iş kartı"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "View"
+msgstr "Gör"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "List"
+msgstr "Liste"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Board"
+msgstr "Pano"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid ""
+"Drag a card to the next column to change its status. Finish and bill a "
+"repair from its job card."
+msgstr ""
+"Durumunu değiştirmek için kartı sonraki sütuna sürükleyin. Onarımı iş "
+"kartından tamamlayıp faturalayın."
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Job"
+msgstr "İş"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Customer / Device"
+msgstr "Müşteri / Cihaz"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Estimate"
+msgstr "Tahmini"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "No repair jobs."
+msgstr "Onarım işi yok."
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "Erişim yok"
@@ -8136,6 +8180,26 @@ msgstr "Yeniden dene"
 #: templates/webapp/pos_offline_sales.html
 msgid "Mark handled"
 msgstr "Çözüldü olarak işaretle"
+
+#: templates/webapp/previews/customer.html
+msgid "Recent invoices"
+msgstr "Son faturalar"
+
+#: templates/webapp/previews/customer.html
+msgid "No invoices yet."
+msgstr "Henüz fatura yok."
+
+#: templates/webapp/previews/customer.html
+msgid "Statement & payments"
+msgstr "Ekstre ve ödemeler"
+
+#: templates/webapp/previews/invoice.html
+msgid "Open / print"
+msgstr "Aç / yazdır"
+
+#: templates/webapp/previews/invoice.html
+msgid "Receive"
+msgstr "Tahsil et"
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -9389,6 +9453,10 @@ msgstr "İlanı WhatsApp’ta paylaş"
 #: templates/webapp/recruitment/job_detail.html
 msgid "Update client"
 msgstr "Müşteriyi güncelle"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Duplicate"
+msgstr "Kopyala"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
@@ -11262,10 +11330,6 @@ msgid "guests"
 msgstr "kişi"
 
 #: templates/webapp/restaurant/order_list.html
-msgid "View"
-msgstr "Gör"
-
-#: templates/webapp/restaurant/order_list.html
 msgid "No orders for this filter."
 msgstr "Bu filtrede sipariş yok."
 
@@ -11441,10 +11505,6 @@ msgstr "Ödenmemiş / kısmen ödenmiş"
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "Invoice no. or customer"
 msgstr "Fatura no. veya müşteri"
-
-#: templates/webapp/sales_docs/invoice_list.html
-msgid "Receive"
-msgstr "Tahsil et"
 
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "No invoices found."
@@ -15176,10 +15236,6 @@ msgid "Reversed payroll removed. You can calculate it again."
 msgstr "Geri alınan bordro kaldırıldı. Yeniden hesaplayabilirsiniz."
 
 #: apps/webapp/hr_views.py
-msgid "Job"
-msgstr "İş"
-
-#: apps/webapp/hr_views.py
 msgid "Overtime hours"
 msgstr "Fazla mesai saatleri"
 
@@ -15365,6 +15421,15 @@ msgstr "%(n)s ürün artık satılmayacak."
 #: apps/webapp/list_tools_views.py
 msgid "Choose what to do with the ticked products."
 msgstr "Seçili ürünlerle ne yapılacağını seçin."
+
+#: apps/webapp/list_tools_views.py
+msgid "Invoice %(no)s: %(cur)s %(total)s"
+msgstr "Fatura %(no)s: %(cur)s %(total)s"
+
+#: apps/webapp/list_tools_views.py
+msgid "Use the job card's Complete button to finish and bill a repair."
+msgstr ""
+"Onarımı bitirip faturalamak için iş kartındaki Tamamla düğmesini kullanın."
 
 #: apps/webapp/manpower_views.py
 msgid "Salary / pay rate"
@@ -16702,6 +16767,10 @@ msgid "Already added or not suitable: %(names)s"
 msgstr "Zaten eklenmiş veya uygun değil: %(names)s"
 
 #: apps/webapp/recruitment_views.py
+msgid "Job order %(number)s created as a copy."
+msgstr "%(number)s iş emri kopya olarak oluşturuldu."
+
+#: apps/webapp/recruitment_views.py
 msgid "Job opening"
 msgstr "Açık pozisyon"
 
@@ -16928,6 +16997,10 @@ msgstr "En az bir ürün ekleyin."
 #: apps/webapp/sales_docs_views.py
 msgid "Quotation %(number)s created."
 msgstr "%(number)s teklifi oluşturuldu."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quotation %(number)s created as a copy."
+msgstr "%(number)s teklif kopya olarak oluşturuldu."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Sales order %(number)s created."

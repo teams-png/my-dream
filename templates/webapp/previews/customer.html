@@ -1,0 +1,14 @@
+{% load i18n %}<div class="pv-head"><small>{% translate "Customer" %}</small><h2>{{ c.name }}</h2>
+{% if balance > 0 %}<span class="hr-chip warn">{% translate "Owes" %} {{ balance|floatformat:2 }}</span>{% elif balance < 0 %}<span class="hr-chip ok">{% translate "Credit" %} {{ balance|floatformat:2 }}</span>{% endif %}</div>
+<dl class="pv-facts">
+  {% if c.phone %}<div><dt>{% translate "Phone" %}</dt><dd><a href="tel:{{ c.phone }}">{{ c.phone }}</a></dd></div>{% endif %}
+  {% if c.email %}<div><dt>{% translate "Email" %}</dt><dd>{{ c.email }}</dd></div>{% endif %}
+  {% if c.address %}<div><dt>{% translate "Address" %}</dt><dd>{{ c.address|linebreaksbr }}</dd></div>{% endif %}
+</dl>
+<h3 class="pv-sub">{% translate "Recent invoices" %}</h3>
+<div class="pv-list">{% for i in invoices %}<a href="{% url 'webapp:invoice_pdf' i.id %}" target="_blank" rel="noopener"><span><b>{{ i.invoice_number }}</b><small>{{ i.date|date:"j M Y" }}</small></span><span>{{ i.total|floatformat:2 }}</span></a>{% empty %}<p class="pv-empty">{% translate "No invoices yet." %}</p>{% endfor %}</div>
+<div class="pv-actions">
+  <a class="btn" href="{% url 'webapp:customer_account' c.id %}">📒 {% translate "Statement & payments" %}</a>
+  {% if whatsapp %}<a class="btn btn-secondary" href="{{ whatsapp }}" target="_blank" rel="noopener">💬 WhatsApp</a>{% endif %}
+  <a class="btn btn-secondary" href="{% url 'webapp:customer_edit' c.id %}">{% translate "Edit" %}</a>
+</div>

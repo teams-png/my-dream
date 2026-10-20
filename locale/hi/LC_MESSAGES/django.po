@@ -7185,6 +7185,50 @@ msgstr "शाखा"
 msgid "Save job card"
 msgstr "जॉब कार्ड सहेजें"
 
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Repairs"
+msgstr "रिपेयर"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "New job card"
+msgstr "नया जॉब कार्ड"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "View"
+msgstr "देखें"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "List"
+msgstr "सूची"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Board"
+msgstr "बोर्ड"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid ""
+"Drag a card to the next column to change its status. Finish and bill a "
+"repair from its job card."
+msgstr ""
+"स्टेटस बदलने के लिए कार्ड को अगले कॉलम में खींचें। रिपेयर पूरा करके बिल जॉब "
+"कार्ड से बनाएँ।"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Job"
+msgstr "नौकरी"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Customer / Device"
+msgstr "ग्राहक / डिवाइस"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Estimate"
+msgstr "अनुमान"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "No repair jobs."
+msgstr "कोई रिपेयर जॉब नहीं।"
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "पहुँच नहीं"
@@ -8115,6 +8159,26 @@ msgstr "दोबारा कोशिश करें"
 #: templates/webapp/pos_offline_sales.html
 msgid "Mark handled"
 msgstr "निपटाया हुआ चिह्नित करें"
+
+#: templates/webapp/previews/customer.html
+msgid "Recent invoices"
+msgstr "हाल के इनवॉइस"
+
+#: templates/webapp/previews/customer.html
+msgid "No invoices yet."
+msgstr "अभी कोई इनवॉइस नहीं।"
+
+#: templates/webapp/previews/customer.html
+msgid "Statement & payments"
+msgstr "स्टेटमेंट और भुगतान"
+
+#: templates/webapp/previews/invoice.html
+msgid "Open / print"
+msgstr "खोलें / प्रिंट"
+
+#: templates/webapp/previews/invoice.html
+msgid "Receive"
+msgstr "प्राप्त करें"
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -9361,6 +9425,10 @@ msgstr "नौकरी WhatsApp पर शेयर करें"
 #: templates/webapp/recruitment/job_detail.html
 msgid "Update client"
 msgstr "क्लाइंट अपडेट करें"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Duplicate"
+msgstr "डुप्लिकेट"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
@@ -11224,10 +11292,6 @@ msgid "guests"
 msgstr "मेहमान"
 
 #: templates/webapp/restaurant/order_list.html
-msgid "View"
-msgstr "देखें"
-
-#: templates/webapp/restaurant/order_list.html
 msgid "No orders for this filter."
 msgstr "इस फ़िल्टर के लिए कोई ऑर्डर नहीं।"
 
@@ -11403,10 +11467,6 @@ msgstr "बिना भुगतान / आंशिक भुगतान"
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "Invoice no. or customer"
 msgstr "इनवॉइस नं. या ग्राहक"
-
-#: templates/webapp/sales_docs/invoice_list.html
-msgid "Receive"
-msgstr "प्राप्त करें"
 
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "No invoices found."
@@ -15119,10 +15179,6 @@ msgid "Reversed payroll removed. You can calculate it again."
 msgstr "उलटा गया पेरोल हटाया गया। आप इसे फिर से गणना कर सकते हैं।"
 
 #: apps/webapp/hr_views.py
-msgid "Job"
-msgstr "नौकरी"
-
-#: apps/webapp/hr_views.py
 msgid "Overtime hours"
 msgstr "ओवरटाइम घंटे"
 
@@ -15307,6 +15363,15 @@ msgstr "%(n)s प्रोडक्ट्स अब नहीं बेचे �
 #: apps/webapp/list_tools_views.py
 msgid "Choose what to do with the ticked products."
 msgstr "चुने गए प्रोडक्ट्स के साथ क्या करना है चुनें।"
+
+#: apps/webapp/list_tools_views.py
+msgid "Invoice %(no)s: %(cur)s %(total)s"
+msgstr "इनवॉइस %(no)s: %(cur)s %(total)s"
+
+#: apps/webapp/list_tools_views.py
+msgid "Use the job card's Complete button to finish and bill a repair."
+msgstr ""
+"रिपेयर पूरा करके बिल बनाने के लिए जॉब कार्ड का Complete बटन इस्तेमाल करें।"
 
 #: apps/webapp/manpower_views.py
 msgid "Salary / pay rate"
@@ -16636,6 +16701,10 @@ msgid "Already added or not suitable: %(names)s"
 msgstr "पहले से जोड़े गए या उपयुक्त नहीं: %(names)s"
 
 #: apps/webapp/recruitment_views.py
+msgid "Job order %(number)s created as a copy."
+msgstr "जॉब ऑर्डर %(number)s कॉपी के रूप में बनाया गया।"
+
+#: apps/webapp/recruitment_views.py
 msgid "Job opening"
 msgstr "नौकरी की रिक्ति"
 
@@ -16859,6 +16928,10 @@ msgstr "कम से कम एक आइटम जोड़ें।"
 #: apps/webapp/sales_docs_views.py
 msgid "Quotation %(number)s created."
 msgstr "कोटेशन %(number)s बनाया गया।"
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quotation %(number)s created as a copy."
+msgstr "कोटेशन %(number)s कॉपी के रूप में बनाया गया।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Sales order %(number)s created."

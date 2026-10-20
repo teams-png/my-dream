@@ -7185,6 +7185,50 @@ msgstr "شاخ"
 msgid "Save job card"
 msgstr "جاب کارڈ محفوظ کریں"
 
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Repairs"
+msgstr "مرمت"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "New job card"
+msgstr "نیا جاب کارڈ"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "View"
+msgstr "دیکھیں"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "List"
+msgstr "فہرست"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Board"
+msgstr "بورڈ"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid ""
+"Drag a card to the next column to change its status. Finish and bill a "
+"repair from its job card."
+msgstr ""
+"اسٹیٹس بدلنے کے لیے کارڈ کو اگلے کالم میں گھسیٹیں۔ مرمت مکمل کر کے بل جاب "
+"کارڈ سے بنائیں۔"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Job"
+msgstr "ملازمت"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Customer / Device"
+msgstr "گاہک / ڈیوائس"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Estimate"
+msgstr "تخمینہ"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "No repair jobs."
+msgstr "کوئی مرمت کا کام نہیں۔"
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "رسائی نہیں"
@@ -8118,6 +8162,26 @@ msgstr "دوبارہ کوشش"
 #: templates/webapp/pos_offline_sales.html
 msgid "Mark handled"
 msgstr "نمٹا ہوا نشان زد کریں"
+
+#: templates/webapp/previews/customer.html
+msgid "Recent invoices"
+msgstr "حالیہ انوائسز"
+
+#: templates/webapp/previews/customer.html
+msgid "No invoices yet."
+msgstr "ابھی کوئی انوائس نہیں۔"
+
+#: templates/webapp/previews/customer.html
+msgid "Statement & payments"
+msgstr "اسٹیٹمنٹ اور ادائیگیاں"
+
+#: templates/webapp/previews/invoice.html
+msgid "Open / print"
+msgstr "کھولیں / پرنٹ"
+
+#: templates/webapp/previews/invoice.html
+msgid "Receive"
+msgstr "وصول کریں"
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -9368,6 +9432,10 @@ msgstr "نوکری WhatsApp پر شیئر کریں"
 #: templates/webapp/recruitment/job_detail.html
 msgid "Update client"
 msgstr "کلائنٹ اپ ڈیٹ کریں"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Duplicate"
+msgstr "نقل بنائیں"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
@@ -11232,10 +11300,6 @@ msgid "guests"
 msgstr "مہمان"
 
 #: templates/webapp/restaurant/order_list.html
-msgid "View"
-msgstr "دیکھیں"
-
-#: templates/webapp/restaurant/order_list.html
 msgid "No orders for this filter."
 msgstr "اس فلٹر کے لیے کوئی آرڈر نہیں۔"
 
@@ -11411,10 +11475,6 @@ msgstr "غیر ادا / جزوی ادا"
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "Invoice no. or customer"
 msgstr "انوائس نمبر یا گاہک"
-
-#: templates/webapp/sales_docs/invoice_list.html
-msgid "Receive"
-msgstr "وصول کریں"
 
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "No invoices found."
@@ -15136,10 +15196,6 @@ msgid "Reversed payroll removed. You can calculate it again."
 msgstr "واپس لیا گیا پے رول ہٹا دیا گیا۔ آپ اسے دوبارہ حساب کر سکتے ہیں۔"
 
 #: apps/webapp/hr_views.py
-msgid "Job"
-msgstr "ملازمت"
-
-#: apps/webapp/hr_views.py
 msgid "Overtime hours"
 msgstr "اوور ٹائم گھنٹے"
 
@@ -15325,6 +15381,15 @@ msgstr "%(n)s پروڈکٹس اب فروخت نہیں ہوں گے۔"
 #: apps/webapp/list_tools_views.py
 msgid "Choose what to do with the ticked products."
 msgstr "منتخب پروڈکٹس کے ساتھ کیا کرنا ہے منتخب کریں۔"
+
+#: apps/webapp/list_tools_views.py
+msgid "Invoice %(no)s: %(cur)s %(total)s"
+msgstr "انوائس %(no)s: %(cur)s %(total)s"
+
+#: apps/webapp/list_tools_views.py
+msgid "Use the job card's Complete button to finish and bill a repair."
+msgstr ""
+"مرمت مکمل کر کے بل بنانے کے لیے جاب کارڈ کا Complete بٹن استعمال کریں۔"
 
 #: apps/webapp/manpower_views.py
 msgid "Salary / pay rate"
@@ -16656,6 +16721,10 @@ msgid "Already added or not suitable: %(names)s"
 msgstr "پہلے سے شامل یا موزوں نہیں: %(names)s"
 
 #: apps/webapp/recruitment_views.py
+msgid "Job order %(number)s created as a copy."
+msgstr "جاب آرڈر %(number)s نقل کے طور پر بنایا گیا۔"
+
+#: apps/webapp/recruitment_views.py
 msgid "Job opening"
 msgstr "ملازمت کی آسامی"
 
@@ -16880,6 +16949,10 @@ msgstr "کم از کم ایک آئٹم شامل کریں۔"
 #: apps/webapp/sales_docs_views.py
 msgid "Quotation %(number)s created."
 msgstr "کوٹیشن %(number)s بنایا گیا۔"
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quotation %(number)s created as a copy."
+msgstr "کوٹیشن %(number)s نقل کے طور پر بنایا گیا۔"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Sales order %(number)s created."

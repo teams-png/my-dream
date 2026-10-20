@@ -7180,6 +7180,50 @@ msgstr "शाखा"
 msgid "Save job card"
 msgstr "जब कार्ड सेभ गर्नुहोस्"
 
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Repairs"
+msgstr "मर्मत"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "New job card"
+msgstr "नयाँ जब कार्ड"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "View"
+msgstr "हेर्नुहोस्"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "List"
+msgstr "सूची"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Board"
+msgstr "बोर्ड"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid ""
+"Drag a card to the next column to change its status. Finish and bill a "
+"repair from its job card."
+msgstr ""
+"स्थिति बदल्न कार्डलाई अर्को स्तम्भमा तान्नुहोस्। मर्मत सकेर बिल जब कार्डबाट "
+"बनाउनुहोस्।"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Job"
+msgstr "जागिर"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Customer / Device"
+msgstr "ग्राहक / उपकरण"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Estimate"
+msgstr "अनुमान"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "No repair jobs."
+msgstr "कुनै मर्मत काम छैन।"
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "पहुँच छैन"
@@ -8115,6 +8159,26 @@ msgstr "फेरि प्रयास"
 #: templates/webapp/pos_offline_sales.html
 msgid "Mark handled"
 msgstr "समाधान भएको चिन्ह लगाउनुहोस्"
+
+#: templates/webapp/previews/customer.html
+msgid "Recent invoices"
+msgstr "हालका बिलहरू"
+
+#: templates/webapp/previews/customer.html
+msgid "No invoices yet."
+msgstr "अहिलेसम्म कुनै बिल छैन।"
+
+#: templates/webapp/previews/customer.html
+msgid "Statement & payments"
+msgstr "विवरण र भुक्तानी"
+
+#: templates/webapp/previews/invoice.html
+msgid "Open / print"
+msgstr "खोल्नुहोस् / प्रिन्ट"
+
+#: templates/webapp/previews/invoice.html
+msgid "Receive"
+msgstr "प्राप्त गर्नुहोस्"
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -9360,6 +9424,10 @@ msgstr "जागिर WhatsApp मा सेयर गर्नुहोस्
 #: templates/webapp/recruitment/job_detail.html
 msgid "Update client"
 msgstr "क्लाइन्ट अपडेट गर्नुहोस्"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Duplicate"
+msgstr "प्रतिलिपि"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
@@ -11224,10 +11292,6 @@ msgid "guests"
 msgstr "पाहुना"
 
 #: templates/webapp/restaurant/order_list.html
-msgid "View"
-msgstr "हेर्नुहोस्"
-
-#: templates/webapp/restaurant/order_list.html
 msgid "No orders for this filter."
 msgstr "यो फिल्टरका लागि कुनै अर्डर छैन।"
 
@@ -11403,10 +11467,6 @@ msgstr "नतिरिएको / आंशिक तिरिएको"
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "Invoice no. or customer"
 msgstr "इनभ्वाइस नं. वा ग्राहक"
-
-#: templates/webapp/sales_docs/invoice_list.html
-msgid "Receive"
-msgstr "प्राप्त गर्नुहोस्"
 
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "No invoices found."
@@ -15119,10 +15179,6 @@ msgid "Reversed payroll removed. You can calculate it again."
 msgstr "उल्टाइएको तलब हटाइयो। तपाईं फेरि गणना गर्न सक्नुहुन्छ।"
 
 #: apps/webapp/hr_views.py
-msgid "Job"
-msgstr "जागिर"
-
-#: apps/webapp/hr_views.py
 msgid "Overtime hours"
 msgstr "ओभरटाइम घण्टा"
 
@@ -15307,6 +15363,14 @@ msgstr "%(n)s सामान अब बिक्री हुने छैन�
 #: apps/webapp/list_tools_views.py
 msgid "Choose what to do with the ticked products."
 msgstr "छानिएका सामानलाई के गर्ने छान्नुहोस्।"
+
+#: apps/webapp/list_tools_views.py
+msgid "Invoice %(no)s: %(cur)s %(total)s"
+msgstr "बिल %(no)s: %(cur)s %(total)s"
+
+#: apps/webapp/list_tools_views.py
+msgid "Use the job card's Complete button to finish and bill a repair."
+msgstr "मर्मत सकेर बिल बनाउन जब कार्डको Complete बटन प्रयोग गर्नुहोस्।"
 
 #: apps/webapp/manpower_views.py
 msgid "Salary / pay rate"
@@ -16639,6 +16703,10 @@ msgid "Already added or not suitable: %(names)s"
 msgstr "पहिल्यै थपिएका वा उपयुक्त नभएका: %(names)s"
 
 #: apps/webapp/recruitment_views.py
+msgid "Job order %(number)s created as a copy."
+msgstr "जब अर्डर %(number)s प्रतिलिपिको रूपमा बनाइयो।"
+
+#: apps/webapp/recruitment_views.py
 msgid "Job opening"
 msgstr "जागिरको रिक्त पद"
 
@@ -16862,6 +16930,10 @@ msgstr "कम्तीमा एउटा सामान थप्नुहो
 #: apps/webapp/sales_docs_views.py
 msgid "Quotation %(number)s created."
 msgstr "कोटेसन %(number)s बनाइयो।"
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quotation %(number)s created as a copy."
+msgstr "कोटेसन %(number)s प्रतिलिपिको रूपमा बनाइयो।"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Sales order %(number)s created."

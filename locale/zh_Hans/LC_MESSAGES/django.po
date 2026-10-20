@@ -7053,6 +7053,48 @@ msgstr "分店"
 msgid "Save job card"
 msgstr "保存工单"
 
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Repairs"
+msgstr "维修"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "New job card"
+msgstr "新工单"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "View"
+msgstr "查看"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "List"
+msgstr "列表"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Board"
+msgstr "看板"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid ""
+"Drag a card to the next column to change its status. Finish and bill a "
+"repair from its job card."
+msgstr "将卡片拖到下一列即可更改状态。完成维修并开票请在工单中操作。"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Job"
+msgstr "职位"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Customer / Device"
+msgstr "客户 / 设备"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Estimate"
+msgstr "预估"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "No repair jobs."
+msgstr "没有维修工单。"
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "无权访问"
@@ -7955,6 +7997,26 @@ msgstr "重试"
 #: templates/webapp/pos_offline_sales.html
 msgid "Mark handled"
 msgstr "标记为已处理"
+
+#: templates/webapp/previews/customer.html
+msgid "Recent invoices"
+msgstr "最近发票"
+
+#: templates/webapp/previews/customer.html
+msgid "No invoices yet."
+msgstr "暂无发票。"
+
+#: templates/webapp/previews/customer.html
+msgid "Statement & payments"
+msgstr "对账单与收款"
+
+#: templates/webapp/previews/invoice.html
+msgid "Open / print"
+msgstr "打开 / 打印"
+
+#: templates/webapp/previews/invoice.html
+msgid "Receive"
+msgstr "收款"
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -9163,6 +9225,10 @@ msgstr "通过 WhatsApp 分享职位"
 #: templates/webapp/recruitment/job_detail.html
 msgid "Update client"
 msgstr "更新客户"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Duplicate"
+msgstr "复制"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
@@ -10994,10 +11060,6 @@ msgid "guests"
 msgstr "人"
 
 #: templates/webapp/restaurant/order_list.html
-msgid "View"
-msgstr "查看"
-
-#: templates/webapp/restaurant/order_list.html
 msgid "No orders for this filter."
 msgstr "此筛选条件下没有订单。"
 
@@ -11173,10 +11235,6 @@ msgstr "未付 / 部分已付"
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "Invoice no. or customer"
 msgstr "发票号或客户"
-
-#: templates/webapp/sales_docs/invoice_list.html
-msgid "Receive"
-msgstr "收款"
 
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "No invoices found."
@@ -14789,10 +14847,6 @@ msgid "Reversed payroll removed. You can calculate it again."
 msgstr "已删除冲回的工资单。您可以重新计算。"
 
 #: apps/webapp/hr_views.py
-msgid "Job"
-msgstr "职位"
-
-#: apps/webapp/hr_views.py
 msgid "Overtime hours"
 msgstr "加班小时"
 
@@ -14976,6 +15030,14 @@ msgstr "%(n)s 个产品将不再销售。"
 #: apps/webapp/list_tools_views.py
 msgid "Choose what to do with the ticked products."
 msgstr "请选择对勾选产品的操作。"
+
+#: apps/webapp/list_tools_views.py
+msgid "Invoice %(no)s: %(cur)s %(total)s"
+msgstr "发票 %(no)s：%(cur)s %(total)s"
+
+#: apps/webapp/list_tools_views.py
+msgid "Use the job card's Complete button to finish and bill a repair."
+msgstr "请使用工单上的“完成”按钮来完成维修并开票。"
 
 #: apps/webapp/manpower_views.py
 msgid "Salary / pay rate"
@@ -16296,6 +16358,10 @@ msgid "Already added or not suitable: %(names)s"
 msgstr "已添加或不合适：%(names)s"
 
 #: apps/webapp/recruitment_views.py
+msgid "Job order %(number)s created as a copy."
+msgstr "已复制创建工单 %(number)s。"
+
+#: apps/webapp/recruitment_views.py
 msgid "Job opening"
 msgstr "职位空缺"
 
@@ -16515,6 +16581,10 @@ msgstr "请至少添加一个商品。"
 #: apps/webapp/sales_docs_views.py
 msgid "Quotation %(number)s created."
 msgstr "已创建报价单 %(number)s。"
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quotation %(number)s created as a copy."
+msgstr "已复制创建报价单 %(number)s。"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Sales order %(number)s created."

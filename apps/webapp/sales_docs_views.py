@@ -184,6 +184,14 @@ def quotation_detail(request, quotation_id):
                     sales.accept_quotation(company=company, quotation=quotation)
                 elif action == "reject":
                     sales.reject_quotation(company=company, quotation=quotation)
+                elif action == "duplicate":
+                    copy = sales.create_quotation(
+                        company=company, user=request.user, customer=quotation.customer, date=timezone.localdate(),
+                        notes=quotation.notes,
+                        lines=[{"product": l.product, "quantity": l.quantity, "unit_price": l.unit_price}
+                               for l in quotation.lines.select_related("product")])
+                    messages.success(request, _("Quotation %(number)s created as a copy.") % {"number": copy.number})
+                    return redirect("webapp:quotation_detail", copy.id)
                 elif action == "to_order":
                     if quotation.status != "accepted":
                         sales.accept_quotation(company=company, quotation=quotation)

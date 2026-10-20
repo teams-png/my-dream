@@ -807,7 +807,16 @@ def mobile_bulk_imei_add(request):
 @login_required
 def mobile_repair_list(request):
     jobs = MobileRepairJob.objects.for_company(request.company).select_related("customer", "assigned_technician", "mobile_unit").prefetch_related("parts").order_by("-received_at")
-    return render(request, "webapp/mobile_shop/repair_list.html", {"jobs": jobs})
+    from .list_tools_views import REPAIR_QUICK_STATUSES
+    statuses = [(code, label) for code, label in MobileRepairJob.STATUS if code in REPAIR_QUICK_STATUSES]
+    board = request.GET.get("view") == "board"
+    columns = []
+    if board:
+        open_jobs = [j for j in jobs if j.status not in ("completed", "cancelled")]
+        columns = [{"code": code, "label": label, "items": [j for j in open_jobs if j.status == code]}
+                   for code, label in statuses if code != "cancelled"]
+    return render(request, "webapp/mobile_shop/repair_list.html", {
+        "jobs": jobs, "statuses": statuses, "board": board, "columns": columns})
 
 
 @login_required

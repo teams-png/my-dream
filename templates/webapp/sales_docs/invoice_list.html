@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static %}
 {% block title %}{% translate "Invoices" %}{% endblock %}
 {% block heading %}{% translate "Sales invoices" %}{% endblock %}
 {% block content %}
@@ -12,11 +12,12 @@
   <input class="hr-in" style="flex:1 1 180px;width:auto" type="search" name="q" value="{{ q }}" placeholder="{% translate 'Invoice no. or customer' %}"><button class="btn btn-secondary">{% translate "Search" %}</button>
 {% include "webapp/_excel_button.html" %}</form>
 <div class="hr-list">{% for i in page %}
-  <div class="hr-row"><a class="grow" href="{% url 'webapp:invoice_pdf' i.id %}" target="_blank"><b>{{ i.invoice_number }}</b> · {{ i.customer.name }}<small>{{ i.date|date:"j M Y" }}{% if i.due_date and i.status != 'paid' %} · {% translate "due" %} {{ i.due_date|date:"j M" }}{% endif %}</small></a>
+  <div class="hr-row"><a class="grow" href="{% url 'webapp:invoice_pdf' i.id %}" target="_blank" data-preview-url="{% url 'webapp:invoice_preview' i.id %}"><b>{{ i.invoice_number }}</b> · {{ i.customer.name }}<small>{{ i.date|date:"j M Y" }}{% if i.due_date and i.status != 'paid' %} · {% translate "due" %} {{ i.due_date|date:"j M" }}{% endif %}</small></a>
     <span class="hr-chip {% if i.status == 'paid' %}ok{% elif i.status == 'void' %}bad{% else %}warn{% endif %}">{% translate i.get_status_display %}</span><b>{{ i.currency }} {{ i.total|floatformat:2 }}</b>
     {% if i.status == 'unpaid' or i.status == 'partial' %}<a class="btn btn-secondary" href="{% url 'webapp:customer_account' i.customer_id %}">💵 {% translate "Receive" %}</a>{% endif %}
     <a class="btn btn-secondary" href="{% url 'webapp:invoice_share' i.id %}" aria-label="{% translate 'Share' %}">📤</a></div>
 {% empty %}<div class="hr-card hr-empty">{% translate "No invoices found." %}</div>{% endfor %}</div>
 {% if page.paginator.num_pages > 1 %}<div class="hr-actions" style="justify-content:center;margin-top:14px">{% if page.has_previous %}<a class="btn btn-secondary" href="?{{ page_query }}&page={{ page.previous_page_number }}">←</a>{% endif %}<span>{{ page.number }} / {{ page.paginator.num_pages }}</span>{% if page.has_next %}<a class="btn btn-secondary" href="?{{ page_query }}&page={{ page.next_page_number }}">→</a>{% endif %}</div>{% endif %}
 </div>
+<script src="{% static 'js/preview.js' %}" defer></script>
 {% endblock %}

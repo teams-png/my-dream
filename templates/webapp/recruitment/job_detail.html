@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static %}
 {% block title %}{{ job.number }} · {{ job.position }}{% endblock %}
 {% block heading %}{{ job.position }}{% endblock %}
 {% block content %}
@@ -12,7 +12,7 @@
     <a class="btn btn-secondary" href="{% url 'webapp:rec_job_edit' job.id %}">✏️ {% translate "Edit" %}</a>
     <a class="btn btn-secondary" href="{{ share }}" target="_blank" rel="noopener">📣 {% translate "Share job on WhatsApp" %}</a>
     {% if job.client.phone %}<a class="btn btn-secondary" href="{{ client_update }}" target="_blank" rel="noopener">💬 {% translate "Update client" %}</a>{% endif %}
-    <form method="post">{% csrf_token %}{% if job.status == "open" %}<button class="btn btn-secondary" name="action" value="hold">⏸ {% translate "Hold" %}</button><button class="btn btn-secondary" name="action" value="close">✓ {% translate "Close" %}</button>{% else %}<button class="btn" name="action" value="reopen">↺ {% translate "Reopen" %}</button>{% endif %}</form>
+    <form method="post">{% csrf_token %}{% if job.status == "open" %}<button class="btn btn-secondary" name="action" value="hold">⏸ {% translate "Hold" %}</button><button class="btn btn-secondary" name="action" value="close">✓ {% translate "Close" %}</button>{% else %}<button class="btn" name="action" value="reopen">↺ {% translate "Reopen" %}</button>{% endif %}<button class="btn btn-secondary" name="action" value="duplicate">⧉ {% translate "Duplicate" %}</button></form>
   </div>
   <div class="ix-stats">
     <div class="ix-stat"><small>{% translate "Client" %}</small><b style="font-size:17px">{{ job.client.name }}</b><small>{{ job.number }}</small></div>
@@ -26,9 +26,9 @@
   <div class="ix-card"><h3>{% translate "Pipeline" %}</h3>
     <div class="rc-board">
     {% for col in columns %}
-      <div class="rc-col"><h4><span>{% translate col.label %}</span><span>{{ col.items|length }}</span></h4>
+      <div class="rc-col" data-status="{{ col.code }}"><h4><span>{% translate col.label %}</span><span class="kb-n">{{ col.items|length }}</span></h4>
       {% for p in col.items %}
-        <div class="rc-card"><a href="{% url 'webapp:rec_placement' p.id %}" style="text-decoration:none;color:inherit"><b>{{ p.candidate.name }}</b><small>{{ p.candidate.trade|default:"" }}{% if p.candidate.nationality %} · {{ p.candidate.nationality }}{% endif %}</small>
+        <div class="rc-card"{% if p.stage != "deployed" %} draggable="true"{% endif %}><a href="{% url 'webapp:rec_placement' p.id %}" style="text-decoration:none;color:inherit"><b>{{ p.candidate.name }}</b><small>{{ p.candidate.trade|default:"" }}{% if p.candidate.nationality %} · {{ p.candidate.nationality }}{% endif %}</small>
           {% if p.interview_at and p.stage == "interview" %}<small>🗓 {{ p.interview_at|date:"j M H:i" }}</small>{% endif %}
           {% if p.stage == "deployed" %}<small>{% if p.invoice %}✓ {% translate "Billed" %} {{ p.invoice.invoice_number }}{% else %}⚠️ {% translate "Not billed yet" %}{% endif %}</small>{% endif %}</a>
           {% if p.stage != "deployed" %}<form method="post">{% csrf_token %}<input type="hidden" name="action" value="move"><input type="hidden" name="placement" value="{{ p.id }}">
@@ -53,4 +53,5 @@
   </form>
   {% endif %}
 </div>
+<script src="{% static 'js/kanban.js' %}" defer></script>
 {% endblock %}

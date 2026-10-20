@@ -1,4 +1,34 @@
-{% extends "base.html" %}{% block title %}Repairs{% endblock %}{% block heading %}Repair Job Cards{% endblock %}
-{% block content %}<p><a class="btn" href="{% url 'webapp:mobile_repair_add' %}">+ New job card</a></p>
-<table><tr><th>Job</th><th>Customer / Device</th><th>IMEI</th><th>Technician</th><th>Status</th><th>Estimate</th><th></th></tr>
-{% for j in jobs %}<tr><td>{{ j.job_number }}</td><td>{{ j.customer.name }}<br><small>{{ j.device_description }}</small></td><td>{{ j.imei|default:"—" }}</td><td>{{ j.assigned_technician|default:"—" }}</td><td>{{ j.get_status_display }}</td><td>{{ j.estimated_cost }}</td><td><a class="btn btn-secondary" href="{% url 'webapp:mobile_repair_detail' j.id %}">Open</a></td></tr>{% empty %}<tr><td colspan="7">No repair jobs.</td></tr>{% endfor %}</table>{% endblock %}
+{% extends "base.html" %}{% load i18n static %}{% block title %}{% translate "Repairs" %}{% endblock %}{% block heading %}{% translate "Repair Job Cards" %}{% endblock %}
+{% block content %}
+<div class="kb-top">
+  <a class="btn" href="{% url 'webapp:mobile_repair_add' %}" data-shortcut-new>+ {% translate "New job card" %}</a>
+  <div class="kb-switch" role="group" aria-label="{% translate 'View' %}">
+    <a class="btn {% if board %}btn-secondary{% endif %}" href="?view=list" {% if not board %}aria-current="page"{% endif %}>☰ {% translate "List" %}</a>
+    <a class="btn {% if not board %}btn-secondary{% endif %}" href="?view=board" {% if board %}aria-current="page"{% endif %}>▦ {% translate "Board" %}</a>
+  </div>
+</div>
+{% csrf_token %}
+{% if board %}
+<p class="list-tip">{% translate "Drag a card to the next column to change its status. Finish and bill a repair from its job card." %}</p>
+<div class="kb-board" data-kb-url-pattern="{% url 'webapp:mobile_repair_status' 0 %}">
+  {% for col in columns %}
+  <section class="kb-col" data-status="{{ col.code }}" aria-label="{% translate col.label %}">
+    <h4><span>{% translate col.label %}</span><span class="kb-n">{{ col.items|length }}</span></h4>
+    {% for j in col.items %}
+    <a class="kb-card" draggable="true" data-id="{{ j.id }}" href="{% url 'webapp:mobile_repair_detail' j.id %}">
+      <b>{{ j.job_number }} · {{ j.customer.name }}</b><small>{{ j.device_description }}</small>
+      {% if j.assigned_technician %}<small>👤 {{ j.assigned_technician }}</small>{% endif %}
+    </a>
+    {% endfor %}
+  </section>
+  {% endfor %}
+</div>
+<script src="{% static 'js/kanban.js' %}" defer></script>
+{% else %}
+<table><tr><th>{% translate "Job" %}</th><th>{% translate "Customer / Device" %}</th><th>IMEI</th><th>{% translate "Technician" %}</th><th>{% translate "Status" %}</th><th>{% translate "Estimate" %}</th><th></th></tr>
+{% for j in jobs %}<tr><td>{{ j.job_number }}</td><td>{{ j.customer.name }}<br><small>{{ j.device_description }}</small></td><td>{{ j.imei|default:"—" }}</td><td>{{ j.assigned_technician|default:"—" }}</td>
+<td>{% if j.status == "completed" %}{% translate j.get_status_display %}{% else %}<form method="post" action="{% url 'webapp:mobile_repair_status' j.id %}" class="status-form">{% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}"><select name="status" aria-label="{% translate 'Status' %}" data-autosubmit>{% for code, label in statuses %}<option value="{{ code }}" {% if code == j.status %}selected{% endif %}>{% translate label %}</option>{% endfor %}</select><noscript><button class="btn btn-secondary">✓</button></noscript></form>{% endif %}</td>
+<td>{{ j.estimated_cost }}</td><td><a class="btn btn-secondary" href="{% url 'webapp:mobile_repair_detail' j.id %}">{% translate "Open" %}</a></td></tr>{% empty %}<tr><td colspan="7">{% translate "No repair jobs." %}</td></tr>{% endfor %}</table>
+<script>document.querySelectorAll("select[data-autosubmit]").forEach(function(s){s.addEventListener("change",function(){s.form.submit()})});</script>
+{% endif %}
+{% endblock %}

@@ -7148,6 +7148,50 @@ msgstr "الفرع"
 msgid "Save job card"
 msgstr "حفظ بطاقة العمل"
 
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Repairs"
+msgstr "الإصلاحات"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "New job card"
+msgstr "بطاقة عمل جديدة"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "View"
+msgstr "عرض"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "List"
+msgstr "قائمة"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Board"
+msgstr "لوحة"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid ""
+"Drag a card to the next column to change its status. Finish and bill a "
+"repair from its job card."
+msgstr ""
+"اسحب البطاقة إلى العمود التالي لتغيير حالتها. أنهِ الإصلاح وأصدر فاتورته من "
+"بطاقة العمل."
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Job"
+msgstr "الوظيفة"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Customer / Device"
+msgstr "العميل / الجهاز"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Estimate"
+msgstr "التقدير"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "No repair jobs."
+msgstr "لا توجد أعمال إصلاح."
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "لا صلاحية"
@@ -8073,6 +8117,26 @@ msgstr "إعادة المحاولة"
 #: templates/webapp/pos_offline_sales.html
 msgid "Mark handled"
 msgstr "تعليم كمُعالج"
+
+#: templates/webapp/previews/customer.html
+msgid "Recent invoices"
+msgstr "أحدث الفواتير"
+
+#: templates/webapp/previews/customer.html
+msgid "No invoices yet."
+msgstr "لا توجد فواتير بعد."
+
+#: templates/webapp/previews/customer.html
+msgid "Statement & payments"
+msgstr "كشف الحساب والمدفوعات"
+
+#: templates/webapp/previews/invoice.html
+msgid "Open / print"
+msgstr "فتح / طباعة"
+
+#: templates/webapp/previews/invoice.html
+msgid "Receive"
+msgstr "استلام"
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -9317,6 +9381,10 @@ msgstr "مشاركة الوظيفة على واتساب"
 #: templates/webapp/recruitment/job_detail.html
 msgid "Update client"
 msgstr "تحديث العميل"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Duplicate"
+msgstr "نسخ"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
@@ -11175,10 +11243,6 @@ msgid "guests"
 msgstr "ضيوف"
 
 #: templates/webapp/restaurant/order_list.html
-msgid "View"
-msgstr "عرض"
-
-#: templates/webapp/restaurant/order_list.html
 msgid "No orders for this filter."
 msgstr "لا توجد طلبات لهذا الفلتر."
 
@@ -11354,10 +11418,6 @@ msgstr "غير مدفوعة / مدفوعة جزئياً"
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "Invoice no. or customer"
 msgstr "رقم الفاتورة أو العميل"
-
-#: templates/webapp/sales_docs/invoice_list.html
-msgid "Receive"
-msgstr "استلام"
 
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "No invoices found."
@@ -15037,10 +15097,6 @@ msgid "Reversed payroll removed. You can calculate it again."
 msgstr "تمت إزالة الرواتب المعكوسة. يمكنك احتسابها مجدداً."
 
 #: apps/webapp/hr_views.py
-msgid "Job"
-msgstr "الوظيفة"
-
-#: apps/webapp/hr_views.py
 msgid "Overtime hours"
 msgstr "ساعات العمل الإضافي"
 
@@ -15225,6 +15281,14 @@ msgstr "لن يتم بيع %(n)s منتجات بعد الآن."
 #: apps/webapp/list_tools_views.py
 msgid "Choose what to do with the ticked products."
 msgstr "اختر ما تريد فعله بالمنتجات المحددة."
+
+#: apps/webapp/list_tools_views.py
+msgid "Invoice %(no)s: %(cur)s %(total)s"
+msgstr "فاتورة %(no)s: %(cur)s %(total)s"
+
+#: apps/webapp/list_tools_views.py
+msgid "Use the job card's Complete button to finish and bill a repair."
+msgstr "استخدم زر الإكمال في بطاقة العمل لإنهاء الإصلاح وإصدار فاتورته."
 
 #: apps/webapp/manpower_views.py
 msgid "Salary / pay rate"
@@ -16551,6 +16615,10 @@ msgid "Already added or not suitable: %(names)s"
 msgstr "مضاف مسبقاً أو غير مناسب: %(names)s"
 
 #: apps/webapp/recruitment_views.py
+msgid "Job order %(number)s created as a copy."
+msgstr "تم إنشاء أمر العمل %(number)s كنسخة."
+
+#: apps/webapp/recruitment_views.py
 msgid "Job opening"
 msgstr "وظيفة شاغرة"
 
@@ -16772,6 +16840,10 @@ msgstr "أضف صنفاً واحداً على الأقل."
 #: apps/webapp/sales_docs_views.py
 msgid "Quotation %(number)s created."
 msgstr "تم إنشاء عرض السعر %(number)s."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quotation %(number)s created as a copy."
+msgstr "تم إنشاء عرض السعر %(number)s كنسخة."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Sales order %(number)s created."

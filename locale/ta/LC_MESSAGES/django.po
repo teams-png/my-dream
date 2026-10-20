@@ -7256,6 +7256,50 @@ msgstr "கிளை"
 msgid "Save job card"
 msgstr "வேலை அட்டையைச் சேமி"
 
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Repairs"
+msgstr "பழுதுபார்ப்புகள்"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "New job card"
+msgstr "புதிய வேலை அட்டை"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "View"
+msgstr "பார்"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "List"
+msgstr "பட்டியல்"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Board"
+msgstr "பலகை"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid ""
+"Drag a card to the next column to change its status. Finish and bill a "
+"repair from its job card."
+msgstr ""
+"நிலையை மாற்ற அட்டையை அடுத்த நெடுவரிசைக்கு இழுக்கவும். பழுதுபார்ப்பை முடித்து"
+" பில் போடுவது வேலை அட்டையில் இருந்து."
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Job"
+msgstr "வேலை"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Customer / Device"
+msgstr "வாடிக்கையாளர் / சாதனம்"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Estimate"
+msgstr "மதிப்பீடு"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "No repair jobs."
+msgstr "பழுதுபார்ப்பு வேலைகள் இல்லை."
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "அணுகல் இல்லை"
@@ -8209,6 +8253,26 @@ msgstr "மீண்டும் முயற்சி"
 #: templates/webapp/pos_offline_sales.html
 msgid "Mark handled"
 msgstr "கையாளப்பட்டது எனக் குறி"
+
+#: templates/webapp/previews/customer.html
+msgid "Recent invoices"
+msgstr "சமீபத்திய விலைப்பட்டியல்கள்"
+
+#: templates/webapp/previews/customer.html
+msgid "No invoices yet."
+msgstr "இன்னும் விலைப்பட்டியல்கள் இல்லை."
+
+#: templates/webapp/previews/customer.html
+msgid "Statement & payments"
+msgstr "அறிக்கை & கட்டணங்கள்"
+
+#: templates/webapp/previews/invoice.html
+msgid "Open / print"
+msgstr "திற / அச்சிடு"
+
+#: templates/webapp/previews/invoice.html
+msgid "Receive"
+msgstr "பெறு"
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -9476,6 +9540,10 @@ msgstr "வேலையை WhatsApp இல் பகிர்"
 #: templates/webapp/recruitment/job_detail.html
 msgid "Update client"
 msgstr "வாடிக்கையாளரைப் புதுப்பி"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Duplicate"
+msgstr "நகலெடு"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
@@ -11365,10 +11433,6 @@ msgid "guests"
 msgstr "விருந்தினர்"
 
 #: templates/webapp/restaurant/order_list.html
-msgid "View"
-msgstr "பார்"
-
-#: templates/webapp/restaurant/order_list.html
 msgid "No orders for this filter."
 msgstr "இந்த வடிகட்டிக்கு ஆர்டர்கள் இல்லை."
 
@@ -11546,10 +11610,6 @@ msgstr "செலுத்தாதவை / பகுதி செலுத்�
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "Invoice no. or customer"
 msgstr "இன்வாய்ஸ் எண் அல்லது வாடிக்கையாளர்"
-
-#: templates/webapp/sales_docs/invoice_list.html
-msgid "Receive"
-msgstr "பெறு"
 
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "No invoices found."
@@ -15354,10 +15414,6 @@ msgid "Reversed payroll removed. You can calculate it again."
 msgstr "திரும்பப் பெற்ற சம்பளப் பட்டியல் நீக்கப்பட்டது. மீண்டும் கணக்கிடலாம்."
 
 #: apps/webapp/hr_views.py
-msgid "Job"
-msgstr "வேலை"
-
-#: apps/webapp/hr_views.py
 msgid "Overtime hours"
 msgstr "கூடுதல் நேர மணிநேரங்கள்"
 
@@ -15544,6 +15600,16 @@ msgstr "%(n)s பொருட்கள் இனி விற்கப்பட�
 #: apps/webapp/list_tools_views.py
 msgid "Choose what to do with the ticked products."
 msgstr "தேர்ந்தெடுத்த பொருட்களுக்கு என்ன செய்வது என்பதைத் தேர்வு செய்யவும்."
+
+#: apps/webapp/list_tools_views.py
+msgid "Invoice %(no)s: %(cur)s %(total)s"
+msgstr "விலைப்பட்டியல் %(no)s: %(cur)s %(total)s"
+
+#: apps/webapp/list_tools_views.py
+msgid "Use the job card's Complete button to finish and bill a repair."
+msgstr ""
+"பழுதுபார்ப்பை முடித்து பில் போட வேலை அட்டையின் Complete பொத்தானைப் "
+"பயன்படுத்தவும்."
 
 #: apps/webapp/manpower_views.py
 msgid "Salary / pay rate"
@@ -16904,6 +16970,10 @@ msgid "Already added or not suitable: %(names)s"
 msgstr "ஏற்கனவே சேர்க்கப்பட்டவர்கள் அல்லது பொருத்தமற்றவர்கள்: %(names)s"
 
 #: apps/webapp/recruitment_views.py
+msgid "Job order %(number)s created as a copy."
+msgstr "வேலை ஆணை %(number)s நகலாக உருவாக்கப்பட்டது."
+
+#: apps/webapp/recruitment_views.py
 msgid "Job opening"
 msgstr "வேலை வாய்ப்பு"
 
@@ -17131,6 +17201,10 @@ msgstr "குறைந்தது ஒரு பொருளைச் சேர
 #: apps/webapp/sales_docs_views.py
 msgid "Quotation %(number)s created."
 msgstr "மேற்கோள் %(number)s உருவாக்கப்பட்டது."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quotation %(number)s created as a copy."
+msgstr "மேற்கோள் %(number)s நகலாக உருவாக்கப்பட்டது."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Sales order %(number)s created."

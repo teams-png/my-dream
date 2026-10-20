@@ -7257,6 +7257,50 @@ msgstr "Succursale"
 msgid "Save job card"
 msgstr "Enregistrer la fiche"
 
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Repairs"
+msgstr "Réparations"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "New job card"
+msgstr "Nouvelle fiche de travail"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "View"
+msgstr "Voir"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "List"
+msgstr "Liste"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Board"
+msgstr "Tableau"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid ""
+"Drag a card to the next column to change its status. Finish and bill a "
+"repair from its job card."
+msgstr ""
+"Faites glisser une carte vers la colonne suivante pour changer son statut. "
+"Terminez et facturez une réparation depuis sa fiche."
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Job"
+msgstr "Poste"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Customer / Device"
+msgstr "Client / Appareil"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "Estimate"
+msgstr "Devis"
+
+#: templates/webapp/mobile_shop/repair_list.html
+msgid "No repair jobs."
+msgstr "Aucune réparation."
+
 #: templates/webapp/no_access.html
 msgid "No access"
 msgstr "Accès refusé"
@@ -8207,6 +8251,26 @@ msgstr "Réessayer"
 #: templates/webapp/pos_offline_sales.html
 msgid "Mark handled"
 msgstr "Marquer comme traitée"
+
+#: templates/webapp/previews/customer.html
+msgid "Recent invoices"
+msgstr "Factures récentes"
+
+#: templates/webapp/previews/customer.html
+msgid "No invoices yet."
+msgstr "Aucune facture pour l’instant."
+
+#: templates/webapp/previews/customer.html
+msgid "Statement & payments"
+msgstr "Relevé et paiements"
+
+#: templates/webapp/previews/invoice.html
+msgid "Open / print"
+msgstr "Ouvrir / imprimer"
+
+#: templates/webapp/previews/invoice.html
+msgid "Receive"
+msgstr "Encaisser"
 
 #: templates/webapp/public/landing.html
 msgid "BookPilot · All-in-one business software"
@@ -9472,6 +9536,10 @@ msgstr "Partager l’offre sur WhatsApp"
 #: templates/webapp/recruitment/job_detail.html
 msgid "Update client"
 msgstr "Mettre à jour le client"
+
+#: templates/webapp/recruitment/job_detail.html
+msgid "Duplicate"
+msgstr "Dupliquer"
 
 #: templates/webapp/recruitment/job_detail.html
 msgid "Joined / needed"
@@ -11365,10 +11433,6 @@ msgid "guests"
 msgstr "couverts"
 
 #: templates/webapp/restaurant/order_list.html
-msgid "View"
-msgstr "Voir"
-
-#: templates/webapp/restaurant/order_list.html
 msgid "No orders for this filter."
 msgstr "Aucune commande pour ce filtre."
 
@@ -11547,10 +11611,6 @@ msgstr "Impayées / partiellement payées"
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "Invoice no. or customer"
 msgstr "N° de facture ou client"
-
-#: templates/webapp/sales_docs/invoice_list.html
-msgid "Receive"
-msgstr "Encaisser"
 
 #: templates/webapp/sales_docs/invoice_list.html
 msgid "No invoices found."
@@ -15326,10 +15386,6 @@ msgid "Reversed payroll removed. You can calculate it again."
 msgstr "Paie annulée supprimée. Vous pouvez la recalculer."
 
 #: apps/webapp/hr_views.py
-msgid "Job"
-msgstr "Poste"
-
-#: apps/webapp/hr_views.py
 msgid "Overtime hours"
 msgstr "Heures supplémentaires"
 
@@ -15515,6 +15571,16 @@ msgstr "%(n)s produits ne seront plus vendus."
 #: apps/webapp/list_tools_views.py
 msgid "Choose what to do with the ticked products."
 msgstr "Choisissez quoi faire des produits cochés."
+
+#: apps/webapp/list_tools_views.py
+msgid "Invoice %(no)s: %(cur)s %(total)s"
+msgstr "Facture %(no)s : %(cur)s %(total)s"
+
+#: apps/webapp/list_tools_views.py
+msgid "Use the job card's Complete button to finish and bill a repair."
+msgstr ""
+"Utilisez le bouton Terminer de la fiche pour clôturer et facturer une "
+"réparation."
 
 #: apps/webapp/manpower_views.py
 msgid "Salary / pay rate"
@@ -16872,6 +16938,10 @@ msgid "Already added or not suitable: %(names)s"
 msgstr "Déjà ajoutés ou non adaptés : %(names)s"
 
 #: apps/webapp/recruitment_views.py
+msgid "Job order %(number)s created as a copy."
+msgstr "Ordre de travail %(number)s créé en copie."
+
+#: apps/webapp/recruitment_views.py
 msgid "Job opening"
 msgstr "Poste à pourvoir"
 
@@ -17097,6 +17167,10 @@ msgstr "Ajoutez au moins un article."
 #: apps/webapp/sales_docs_views.py
 msgid "Quotation %(number)s created."
 msgstr "Devis %(number)s créé."
+
+#: apps/webapp/sales_docs_views.py
+msgid "Quotation %(number)s created as a copy."
+msgstr "Devis %(number)s créé en copie."
 
 #: apps/webapp/sales_docs_views.py
 msgid "Sales order %(number)s created."

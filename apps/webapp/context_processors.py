@@ -28,13 +28,43 @@ def enabled_features(request):
     return {"enabled_features": all_codes - disabled}
 
 
+# Business types whose own menu is a product catalogue: a second shop type added to one of these sells from the same
+# products, so it gets no menu section of its own (its industry modules still show).
+PRODUCT_MENUS = {"mobile_shop", "sports_shop", "cycle_shop", "medical_shop", "protein_shop", "textile"}
+
+
+def _menu_key(code, group):
+    return group if group in ("retail", "service", "project", "restaurant") else code
+
+
 def active_business_profile(request):
-    """Industry terminology for navigation and generic suite screens."""
+    """Industry terminology for navigation and generic suite screens. A platform admin can add more business suites
+    to one company (Platform admin → Business suites): their modules join the main type's, and each adds its own
+    menu section unless it would only repeat one already shown."""
     company = getattr(request, "company", None)
     if company is None or not getattr(company, "business_type_id", None):
-        return {"active_business_profile": {}}
-    from apps.modules.catalog import business_profile
-    return {"active_business_profile": business_profile(company.business_type.code)}
+        return {"active_business_profile": {}, "active_extra_suites": [], "active_suite_names": []}
+    from apps.modules.catalog import ALIASES, business_profile
+    from .industry_access import company_features
+    profile = business_profile(company.business_type.code)
+    suites = [(ALIASES.get(code, code), name) for code, name in company.business_suites.filter(is_active=True)
+              .exclude(business_type_id=company.business_type_id).order_by("business_type__name")
+              .values_list("business_type__code", "business_type__name")]
+    extras, names = [], []
+    if suites:
+        profile["features"] = sorted(company_features(company))
+        shown = {_menu_key(profile["code"], profile["group"])}
+        products = profile["group"] == "retail" or profile["code"] in PRODUCT_MENUS
+        for code, name in suites:
+            names.append(name)
+            extra = business_profile(code)
+            key = _menu_key(code, extra["group"])
+            repeats = key in shown or (key == "retail" and products and "eye_test" not in extra["features"])
+            if repeats:
+                continue
+            shown.add(key)
+            extras.append({**extra, "title": name})
+    return {"active_business_profile": profile, "active_extra_suites": extras, "active_suite_names": names}
 
 
 def form_samples(request):

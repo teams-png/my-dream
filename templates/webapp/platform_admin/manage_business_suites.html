@@ -1,17 +1,43 @@
 {% extends "webapp/admin_base.html" %}
-{% block title %}Business Suites · {{ company.name }}{% endblock %}
-{% block heading %}Business Suites · {{ company.name }}{% endblock %}
+{% block title %}Business types · {{ company.name }}{% endblock %}
+{% block heading %}Business types · {{ company.name }}{% endblock %}
 {% block content %}
-<div class="card" style="margin-bottom:18px;"><b>Multi-business account</b><p style="color:var(--ink-soft);margin-bottom:0">Select every operation this client runs. All selected suites stay inside the same company and consolidated accounting ledger. The primary business cannot be removed here.</p></div>
+<style>
+.bs-intro{margin-bottom:16px}
+.bs-intro p{color:var(--ink-soft);margin:6px 0 0}
+.bs-on{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.bs-on span{background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:4px 12px;font-weight:600;font-size:13px}
+.bs-search{width:100%;max-width:420px;padding:10px 12px;border:1px solid #d0d7e2;border-radius:6px;font:inherit;margin-bottom:14px}
+.bs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-bottom:20px}
+.bs-pick{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--panel);cursor:pointer}
+.bs-pick.on{border-color:var(--accent);background:var(--accent-soft)}
+.bs-pick input{margin-top:4px;width:18px;height:18px}
+.bs-pick small{display:block;color:var(--ink-soft);font-size:12px;text-transform:capitalize}
+.bs-bar{position:sticky;bottom:0;background:var(--paper);padding:12px 0;display:flex;gap:10px}
+</style>
+<div class="card bs-intro">
+  <b>Tick every business this client runs</b>
+  <p>For example a <i>Mobile Shop</i> that also sells laptops: tick <i>Computer Shop</i> too. Each ticked type adds its own menu and modules; products, customers, staff and accounts stay one shared company. Only a platform admin can change this.</p>
+  <div class="bs-on">{% for bt, enabled, primary, group in business_rows %}{% if enabled %}<span>{{ bt.name }}{% if primary %} · main{% endif %}</span>{% endif %}{% endfor %}</div>
+</div>
 <form method="post">{% csrf_token %}
-<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:20px;">
+<label for="bsSearch" style="position:absolute;left:-9999px">Search business types</label>
+<input id="bsSearch" class="bs-search" type="search" placeholder="Search: mobile, computer, salon…" autocomplete="off">
+<div class="bs-grid" id="bsGrid">
 {% for bt, enabled, primary, group in business_rows %}
-<label class="card" style="padding:15px;display:flex;gap:10px;align-items:flex-start;cursor:pointer;">
-<input type="checkbox" name="business_types" value="{{ bt.id }}" {% if enabled %}checked{% endif %} {% if primary %}disabled{% endif %} style="margin-top:5px;">
-<div><b>{{ bt.name }}</b><div style="font-size:12px;color:var(--ink-soft);text-transform:capitalize">{{ group }} suite {% if primary %}· Primary{% endif %}</div></div>
+<label class="bs-pick{% if enabled %} on{% endif %}" data-name="{{ bt.name|lower }} {{ bt.code }} {{ group }}">
+<input type="checkbox" name="business_types" value="{{ bt.id }}" {% if enabled %}checked{% endif %} {% if primary %}disabled{% endif %}>
+<span><b>{{ bt.name }}</b><small>{{ group }}{% if primary %} · main business (change it in Edit){% endif %}</small></span>
 </label>
 {% endfor %}
 </div>
-<button class="btn" type="submit">Save business suites</button> <a class="btn btn-secondary" href="{% url 'webapp:platform_admin_company_detail' company.id %}">Cancel</a>
+<div class="bs-bar"><button class="btn" type="submit">Save business types</button> <a class="btn btn-secondary" href="{% url 'webapp:platform_admin_company_detail' company.id %}">Cancel</a></div>
 </form>
+<script>
+(function(){
+  var q=document.getElementById("bsSearch"),cards=document.querySelectorAll("#bsGrid .bs-pick");
+  q.addEventListener("input",function(){var t=q.value.trim().toLowerCase();cards.forEach(function(c){c.hidden=t&&c.dataset.name.indexOf(t)<0})});
+  cards.forEach(function(c){var b=c.querySelector("input");b.addEventListener("change",function(){c.classList.toggle("on",b.checked)})});
+})();
+</script>
 {% endblock %}

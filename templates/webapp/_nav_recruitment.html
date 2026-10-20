@@ -22,6 +22,7 @@
       {% if "camps" in hr_extras %}<a class="nav-link {% if u == 'mp_camps' %}active{% endif %}" href="{% url 'webapp:mp_camps' %}"><span>{% translate "Camps" %}</span></a>{% endif %}
       </details>
       {% endif %}
+      {% for suite in active_extra_suites %}{% include "webapp/_nav_business.html" with bt_code=suite.code bt_group=suite.group bt_name=suite.title bt_profile=suite %}{% endfor %}
       <details class="nav-section" {% if u in "staff_list,staff_detail,staff_add,staff_edit,hr_leave,hr_documents,hr_settings,hr_attendance,hr_attendance_month,hr_payroll,hr_payslip,hr_advances,hr_vacations,hr_wps,settlement_new,settlement_detail,staff_members_list,role_list" %}open{% endif %}>
         <summary>🧑‍💻 {% translate "Office staff" %}</summary>
       <a class="nav-link {% if u in 'staff_list,staff_detail,staff_add,staff_edit,hr_leave,hr_documents,hr_settings,settlement_new,settlement_detail' %}active{% endif %}" href="{% url 'webapp:staff_list' %}"><span>{% translate "Staff & HR" %}</span></a>

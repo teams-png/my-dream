@@ -31,10 +31,10 @@ def test_every_registration_type_is_seeded_with_core_and_suite_modules():
 
 
 def test_boutique_and_general_retail_do_not_fall_back_to_mobile_menu():
-    source = get_template("base.html").template.source
-    assert '{% elif active_business_group == "retail" %}' in source
-    assert '{% elif active_business_group == "service" %}' in source
-    assert '{% elif active_business_group == "project" %}' in source
+    source = get_template("webapp/_nav_business.html").template.source
+    assert '{% elif bt_group == "retail" %}' in source
+    assert '{% elif bt_group == "service" %}' in source
+    assert '{% elif bt_group == "project" %}' in source
     fallback = source[source.rindex("{% else %}"):]
     assert "Phone Units" not in fallback
 

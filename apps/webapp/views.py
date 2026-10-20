@@ -5779,6 +5779,7 @@ def platform_admin_manage_business_suites(request, company_id):
     active_ids = set(company.business_suites.filter(is_active=True).values_list("business_type_id", flat=True))
     active_ids.add(company.business_type_id)
     rows = [(bt, bt.id in active_ids, bt.id == company.business_type_id, business_group(bt.code)) for bt in BusinessType.objects.all().order_by("name")]
+    rows.sort(key=lambda r: (not r[2], not r[1]))  # main business, then the ticked ones, then the rest A–Z
     return render(request, "webapp/platform_admin/manage_business_suites.html", {"company": company, "business_rows": rows})
 
 

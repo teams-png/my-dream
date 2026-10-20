@@ -1,0 +1,45 @@
+{% extends "webapp/admin_base.html" %}
+{% block title %}Delete permanently · {{ company.name }}{% endblock %}
+{% block heading %}Delete permanently · {{ company.name }}{% endblock %}
+{% block content %}
+<style>
+.purge{max-width:640px;border-left:4px solid var(--danger)}
+.purge h2{margin:0 0 8px;font-size:20px;color:var(--danger)}
+.purge ul{margin:10px 0 16px;padding-left:20px;color:var(--ink-soft);font-size:14px;line-height:1.6}
+.purge-counts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 18px}
+.purge-counts div{background:var(--danger-bg);border-radius:8px;padding:10px 12px}
+.purge-counts small{display:block;color:var(--ink-soft);font-size:12px}
+.purge-counts b{font-size:20px}
+.purge label{display:block;font-weight:600;margin-bottom:6px}
+.purge input[type=text]{width:100%;padding:10px 12px;border:1px solid #d0d7e2;border-radius:6px;font:inherit}
+.purge .err{background:var(--danger-bg);color:var(--danger);padding:10px 12px;border-radius:6px;margin-bottom:14px;font-weight:600}
+@media (max-width:600px){.purge-counts{grid-template-columns:repeat(2,1fr)}}
+</style>
+<div class="card purge">
+  <h2>⚠️ This cannot be undone</h2>
+  <p style="margin:0">Deleting <b>{{ company.name }}</b> removes it right now, without the usual waiting period:</p>
+  <ul>
+    <li>every customer, invoice, product, payment, staff record and report of this business</li>
+    <li>its saved backups on our server (a copy the owner saved to their own Google Drive stays theirs)</li>
+    <li>the logins of people who belong only to this business</li>
+  </ul>
+  <div class="purge-counts">{% for label, n in counts %}<div><small>{{ label }}</small><b>{{ n }}</b></div>{% endfor %}</div>
+  <p style="font-size:13.5px;color:var(--ink-soft)">Only the name, owner email and date are kept in the deleted-accounts log. If you may need the data later, <a href="{% url 'webapp:platform_admin_company_delete' company.id %}">archive the client</a> instead; archiving can be undone.</p>
+  {% if error %}<div class="err" role="alert">{{ error }}</div>{% endif %}
+  <form method="post">{% csrf_token %}
+    <label for="confirmName">Type <b>{{ company.name }}</b> to confirm</label>
+    <input id="confirmName" type="text" name="confirm_name" autocomplete="off" required data-name="{{ company.name }}">
+    <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+      <button class="btn" id="purgeBtn" type="submit" disabled style="background:var(--danger);border-color:var(--danger);color:#fff">Delete permanently</button>
+      <a class="btn btn-secondary" href="{% url 'webapp:platform_admin_company_detail' company.id %}">Cancel</a>
+    </div>
+  </form>
+</div>
+<script>
+(function(){
+  var i=document.getElementById("confirmName"),b=document.getElementById("purgeBtn");
+  function norm(s){return s.trim().replace(/\s+/g," ").toLowerCase()}
+  i.addEventListener("input",function(){b.disabled=norm(i.value)!==norm(i.dataset.name)});
+})();
+</script>
+{% endblock %}

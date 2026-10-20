@@ -5236,6 +5236,36 @@ def platform_admin_company_delete(request, company_id):
 
 @login_required
 @superuser_required
+def platform_admin_company_purge(request, company_id):
+    """Delete a client for good right now: all its data, backups and the logins that belonged only to it.
+    The platform admin must type the client's name to confirm; a short line stays in the deleted-accounts log."""
+    from apps.sales.models import SalesInvoice
+    from apps.inventory.models import Product
+    from apps.subscriptions import retention
+    company = get_object_or_404(Company._base_manager, id=company_id)
+    error = ""
+    if request.method == "POST":
+        typed = " ".join((request.POST.get("confirm_name") or "").split())
+        if typed.casefold() != " ".join(company.name.split()).casefold():
+            error = "The name you typed doesn't match. Nothing was deleted."
+        elif retention.purge(company, reason="Deleted by the platform admin"):
+            messages.success(request, f"{company.name} and all its data were deleted permanently.")
+            return redirect("webapp:platform_admin_company_list")
+        else:
+            error = "Some records could not be removed, so the client was not deleted completely. Please try again."
+    counts = [
+        ("Users", CompanyMembership.objects.filter(company=company).count()),
+        ("Customers", Customer.objects.for_company(company).count()),
+        ("Invoices", SalesInvoice.objects.for_company(company).count()),
+        ("Products", Product.objects.for_company(company).count()),
+    ]
+    return render(request, "webapp/platform_admin/company_purge.html", {
+        "company": company, "counts": counts, "error": error,
+    })
+
+
+@login_required
+@superuser_required
 def platform_admin_change_plan(request, company_id):
     company = get_object_or_404(Company, id=company_id)
     subscription = Subscription.objects.filter(company=company).first()

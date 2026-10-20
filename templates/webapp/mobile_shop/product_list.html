@@ -29,7 +29,7 @@
   {% for p in products %}
   <tr>
     <td><input type="checkbox" class="bulk-check" value="{{ p.id }}" aria-label="{{ p.name }}"></td>
-    <td>{{ p.sku }}</td><td>{% product_picture p as pic %}<img src="{{ pic }}" alt="" loading="lazy" style="width:38px;height:38px;border-radius:10px;object-fit:cover;vertical-align:middle;margin-inline-end:10px;float:inline-start">{{ p.name }}{% if p.attributes.model_number %}<br><small>{{ p.attributes.model_number }} · {{ p.attributes.ram }} / {{ p.attributes.storage }} · {{ p.attributes.network }}</small>{% endif %}</td><td>{{ p.category.name|default:"—" }}</td>
+    <td style="white-space:nowrap">{{ p.sku }}</td><td>{% product_picture p as pic %}<img src="{{ pic }}" alt="" loading="lazy" style="width:38px;height:38px;border-radius:10px;object-fit:cover;vertical-align:middle;margin-inline-end:10px;float:inline-start">{{ p.name }}{% if p.attributes.model_number %}<br><small>{{ p.attributes.model_number }} · {{ p.attributes.ram }} / {{ p.attributes.storage }} · {{ p.attributes.network }}</small>{% endif %}</td><td>{{ p.category.name|default:"—" }}</td>
     <td>{{ p.current_stock }}</td>
     <td data-inline-url="{% url 'webapp:product_quick_update' p.id %}" data-field="cost_price" data-label="{% translate 'Cost' %}">{{ p.cost_price }}</td><td data-inline-url="{% url 'webapp:product_quick_update' p.id %}" data-field="selling_price" data-label="{% translate 'Selling price' %}">{{ p.selling_price }}</td>
     <td>
@@ -50,7 +50,7 @@
   {% for v in p.variants.all %}
   <tr style="background:var(--paper);">
     <td><input type="checkbox" class="bulk-check" value="{{ v.id }}" aria-label="{{ v.sku }}"></td>
-    <td>{{ v.sku }}</td><td style="padding-left:24px;">↳ {{ v.colour|default:"—" }} / {{ v.size|default:"—" }}{% if v.material %} · {{ v.material }}{% endif %}{% if v.design %} · {{ v.design }}{% endif %}</td><td></td><td>{{ v.current_stock }}</td>
+    <td style="white-space:nowrap">{{ v.sku }}</td><td style="padding-left:24px;">↳ {{ v.colour|default:"—" }} / {{ v.size|default:"—" }}{% if v.material %} · {{ v.material }}{% endif %}{% if v.design %} · {{ v.design }}{% endif %}</td><td></td><td>{{ v.current_stock }}</td>
     <td data-inline-url="{% url 'webapp:product_quick_update' v.id %}" data-field="cost_price" data-label="{% translate 'Cost' %}">{{ v.cost_price }}</td><td data-inline-url="{% url 'webapp:product_quick_update' v.id %}" data-field="selling_price" data-label="{% translate 'Selling price' %}">{{ v.selling_price }}</td>
     <td>
       <a class="btn btn-secondary" href="{% url 'webapp:product_edit' v.id %}">Edit</a>

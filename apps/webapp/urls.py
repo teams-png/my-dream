@@ -42,6 +42,7 @@ urlpatterns = [
     path("platform/clients/<int:company_id>/", views.platform_admin_company_detail, name="platform_admin_company_detail"),
     path("platform/users/<int:user_id>/edit/", views.platform_admin_edit_user, name="platform_admin_edit_user"),
     path("platform/clients/<int:company_id>/delete/", views.platform_admin_company_delete, name="platform_admin_company_delete"),
+    path("platform/clients/<int:company_id>/delete-permanently/", views.platform_admin_company_purge, name="platform_admin_company_purge"),
     path("platform/clients/<int:company_id>/change-plan/", views.platform_admin_change_plan, name="platform_admin_change_plan"),
     path("platform/clients/<int:company_id>/record-payment/", views.platform_admin_record_payment, name="platform_admin_record_payment"),
     path("platform/clients/<int:company_id>/modules/", views.platform_admin_manage_modules, name="platform_admin_manage_modules"),

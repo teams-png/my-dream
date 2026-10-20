@@ -1,7 +1,7 @@
 /* Dark theme: switched on with the moon button (saved per browser). */
 html[data-theme=dark]{
   color-scheme:dark;
-  --ink:#e8ebf2; --ink-soft:#9aa3b6; --line:#2a3140; --paper:#0e1219; --panel:#161b25;
+  --ink:#eef1f6; --ink-soft:#b3bccd; --line:#2a3140; --paper:#0e1219; --panel:#161b25;
   --accent:#4c8df6; --accent-soft:#142640;
   --success:#4ade80; --success-bg:#13291c; --warning:#fbbf24; --warning-bg:#302612; --danger:#f87171; --danger-bg:#361615;
   /* restaurant module tokens */
@@ -52,7 +52,7 @@ html[data-theme=dark] .food-add:disabled{background:#3a3029}
 html[data-theme=dark] :is(.rp-btn.pay,.dlg-foot .rp-btn.go,.done-actions .rp-btn.go,.rp-icon-btn.primary){background:var(--r-brand);border-color:var(--r-brand);color:#fff}
 html[data-theme=dark] .retail .food-card{border-color:var(--r-line)}
 html[data-theme=dark] .retail .cart-item.is-new{animation:lineIn .35s var(--r-ease) both}
-html[data-theme=dark] .nav-link{color:var(--ink-soft)}
+html[data-theme=dark] .nav-link{color:#d5dbe6}
 html[data-theme=dark] .nav-link:hover{background:#1d2431;color:var(--ink)}
 html[data-theme=dark] .btn:hover{background:#3b7be8}
 html[data-theme=dark] th{background:#11161f}

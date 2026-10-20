@@ -927,6 +927,106 @@ msgstr "പണം"
 msgid "More"
 msgstr "കൂട്ടുക"
 
+#: templates/webapp/_overview_charts.html
+msgid "Business at a glance"
+msgstr "ബിസിനസ് ഒറ്റനോട്ടത്തിൽ"
+
+#: templates/webapp/_overview_charts.html
+msgid "Current"
+msgstr "നിലവിലുള്ളത്"
+
+#: templates/webapp/_overview_charts.html
+msgid "Overdue"
+msgstr "കാലാവധി കഴിഞ്ഞത്"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 12 months"
+msgstr "കഴിഞ്ഞ 12 മാസം"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 30 days"
+msgstr "കഴിഞ്ഞ 30 ദിവസം"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 12 months"
+msgstr "കഴിഞ്ഞ 12 മാസത്തെ ആകെ വിൽപ്പന"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 30 days"
+msgstr "കഴിഞ്ഞ 30 ദിവസത്തെ ആകെ വിൽപ്പന"
+
+#: templates/webapp/_overview_charts.html
+msgid "Sales chart"
+msgstr "വിൽപ്പന ചാർട്ട്"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top selling items"
+msgstr "കൂടുതൽ വിറ്റ ഇനങ്ങൾ"
+
+#: templates/webapp/_overview_charts.html
+msgid "This month"
+msgstr "ഈ മാസം"
+
+#: templates/webapp/_overview_charts.html
+msgid "sold"
+msgstr "വിറ്റു"
+
+#: templates/webapp/_overview_charts.html
+msgid "Nothing sold yet this month."
+msgstr "ഈ മാസം ഇതുവരെ ഒന്നും വിറ്റിട്ടില്ല."
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense"
+msgstr "വരവും ചെലവും"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income"
+msgstr "വരുമാനം"
+
+#: templates/webapp/_overview_charts.html
+msgid "Expense"
+msgstr "ചെലവ്"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense chart"
+msgstr "വരവ്-ചെലവ് ചാർട്ട്"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses"
+msgstr "പ്രധാന ചെലവുകൾ"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses chart"
+msgstr "പ്രധാന ചെലവുകളുടെ ചാർട്ട്"
+
+#: templates/webapp/_overview_charts.html
+msgid "No expenses recorded this month."
+msgstr "ഈ മാസം ചെലവുകളൊന്നും രേഖപ്പെടുത്തിയിട്ടില്ല."
+
+#: templates/webapp/_overview_charts.html
+msgid "How customers paid"
+msgstr "ഉപഭോക്താക്കൾ പണം നൽകിയ രീതി"
+
+#: templates/webapp/_overview_charts.html
+msgid "Payment methods chart"
+msgstr "പേയ്മെന്റ് രീതികളുടെ ചാർട്ട്"
+
+#: templates/webapp/_overview_charts.html
+msgid "Need more detail?"
+msgstr "കൂടുതൽ വിവരങ്ങൾ വേണോ?"
+
+#: templates/webapp/_overview_charts.html
+msgid ""
+"Analytics shows sales, profit and expenses for any period, by day, product "
+"and payment method."
+msgstr ""
+"ഏത് കാലയളവിലെയും വിൽപ്പന, ലാഭം, ചെലവ് എന്നിവ ദിവസം, ഉൽപ്പന്നം, പേയ്മെന്റ് "
+"രീതി അനുസരിച്ച് Analytics-ൽ കാണാം."
+
+#: templates/webapp/_overview_charts.html
+msgid "Open Analytics"
+msgstr "Analytics തുറക്കുക"
+
 #: templates/webapp/_overview_panel.html
 msgid "Target"
 msgstr "ലക്ഷ്യം"
@@ -1193,10 +1293,6 @@ msgstr "അടയ്ക്കാനുള്ള നികുതി"
 #: templates/webapp/accounts/home.html
 msgid "Last 6 months"
 msgstr "കഴിഞ്ഞ 6 മാസം"
-
-#: templates/webapp/accounts/home.html
-msgid "Income"
-msgstr "വരുമാനം"
 
 #: templates/webapp/accounts/home.html
 msgid "Income, costs and profit for any period"
@@ -4903,10 +4999,6 @@ msgstr "ഇന്നത്തെ വരവുകൾ"
 #: templates/webapp/industry/booking_board.html
 msgid "Due back / check-outs today"
 msgstr "ഇന്ന് തിരികെ / ചെക്ക്-ഔട്ട്"
-
-#: templates/webapp/industry/booking_board.html
-msgid "Overdue"
-msgstr "കാലാവധി കഴിഞ്ഞത്"
 
 #: templates/webapp/industry/booking_board.html
 msgid "Nothing to book yet."
@@ -14171,10 +14263,6 @@ msgid "POS sales"
 msgstr "POS വിൽപ്പന"
 
 #: apps/webapp/accounts_views.py
-msgid "This month"
-msgstr "ഈ മാസം"
-
-#: apps/webapp/accounts_views.py
 msgid "Last month"
 msgstr "കഴിഞ്ഞ മാസം"
 
@@ -16612,6 +16700,42 @@ msgstr "സമീപകാല പേയ്‌മെന്റുകൾ"
 msgid "All bills"
 msgstr "എല്ലാ ബില്ലുകളും"
 
+#: apps/webapp/overview_charts.py
+msgid "vs yesterday"
+msgstr "ഇന്നലെയുമായി താരതമ്യം"
+
+#: apps/webapp/overview_charts.py
+msgid "vs same days last month"
+msgstr "കഴിഞ്ഞ മാസത്തെ അതേ ദിവസങ്ങളുമായി"
+
+#: apps/webapp/overview_charts.py
+msgid "Spent this month"
+msgstr "ഈ മാസം ചെലവായത്"
+
+#: apps/webapp/overview_charts.py
+msgid "expenses and purchases"
+msgstr "ചെലവുകളും വാങ്ങലുകളും"
+
+#: apps/webapp/overview_charts.py
+msgid "Total receivables"
+msgstr "ആകെ കിട്ടാനുള്ളത്"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid invoices"
+msgstr "അടയ്ക്കാത്ത ഇൻവോയ്സുകൾ"
+
+#: apps/webapp/overview_charts.py
+msgid "Total payables"
+msgstr "ആകെ കൊടുക്കാനുള്ളത്"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid supplier bills"
+msgstr "അടയ്ക്കാത്ത സപ്ലയർ ബില്ലുകൾ"
+
+#: apps/webapp/overview_charts.py
+msgid "Record purchase"
+msgstr "വാങ്ങൽ രേഖപ്പെടുത്തുക"
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "പണം ലഭിച്ചു — നന്ദി!"
@@ -17162,10 +17286,6 @@ msgstr "ഇന്നലെ"
 #: apps/webapp/restaurant_order_views.py
 msgid "Last 7 days"
 msgstr "കഴിഞ്ഞ 7 ദിവസം"
-
-#: apps/webapp/restaurant_order_views.py
-msgid "Last 30 days"
-msgstr "കഴിഞ്ഞ 30 ദിവസം"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."

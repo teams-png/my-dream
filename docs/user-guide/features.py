@@ -137,6 +137,10 @@ VERTICALS.append(dict(
  setup=[("Add bank and cash accounts", ["[[[Finance]]] → [[Bank &amp; cash]] → [[Add account]] with the opening balance."]),
         ("Tax &amp; currency", ["[[[Settings]]] → [[Tax &amp; currency]]: tax registration number, tax codes and exchange rates."])],
  tasks=[
+  ("Read the charts on Overview",
+   ["Every business opens on [[Overview]]. Owners and accountants see, below the day's numbers: <b>Total receivables</b> and <b>Total payables</b> (current and overdue), sales for today, this month and last month with the change in %, and what was spent this month.",
+    "<b>Sales</b> shows the last 12 months as bars — switch to [[Last 30 days]] for a day-by-day line. <b>Income and expense</b> compares both, month by month. <b>Top selling items</b>, <b>Top expenses</b> and <b>How customers paid</b> cover this month.",
+    "Click any figure to open the bills behind it; [[Open Analytics]] gives any period in more detail. Cashiers and staff without the Reports permission don't see the money charts."]),
   ("Ask BookPilot a question",
    ["Open [[✨ Ask BookPilot]] (owners and accountants; an advanced add-on, not part of the plans — shown once BookPilot switches it on for your business) and type a question in any language — e.g. <i>How were my sales this month compared with last month?</i>, <i>Who owes me money?</i>, <i>What should I reorder?</i>",
     "Answers come only from this business's own figures (sales, top products and customers, money owed, low stock, expenses). Check important numbers in the reports before acting on them.",

@@ -925,6 +925,106 @@ msgstr "Para"
 msgid "More"
 msgstr "Çok"
 
+#: templates/webapp/_overview_charts.html
+msgid "Business at a glance"
+msgstr "İşletmeye genel bakış"
+
+#: templates/webapp/_overview_charts.html
+msgid "Current"
+msgstr "Güncel"
+
+#: templates/webapp/_overview_charts.html
+msgid "Overdue"
+msgstr "Gecikmiş"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 12 months"
+msgstr "Son 12 ay"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 30 days"
+msgstr "Son 30 gün"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 12 months"
+msgstr "Son 12 ayın toplam satışı"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 30 days"
+msgstr "Son 30 günün toplam satışı"
+
+#: templates/webapp/_overview_charts.html
+msgid "Sales chart"
+msgstr "Satış grafiği"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top selling items"
+msgstr "En çok satan ürünler"
+
+#: templates/webapp/_overview_charts.html
+msgid "This month"
+msgstr "Bu ay"
+
+#: templates/webapp/_overview_charts.html
+msgid "sold"
+msgstr "satıldı"
+
+#: templates/webapp/_overview_charts.html
+msgid "Nothing sold yet this month."
+msgstr "Bu ay henüz bir şey satılmadı."
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense"
+msgstr "Gelir ve gider"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income"
+msgstr "Gelir"
+
+#: templates/webapp/_overview_charts.html
+msgid "Expense"
+msgstr "Gider"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense chart"
+msgstr "Gelir ve gider grafiği"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses"
+msgstr "En büyük giderler"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses chart"
+msgstr "En büyük giderler grafiği"
+
+#: templates/webapp/_overview_charts.html
+msgid "No expenses recorded this month."
+msgstr "Bu ay kayıtlı gider yok."
+
+#: templates/webapp/_overview_charts.html
+msgid "How customers paid"
+msgstr "Müşteriler nasıl ödedi"
+
+#: templates/webapp/_overview_charts.html
+msgid "Payment methods chart"
+msgstr "Ödeme yöntemleri grafiği"
+
+#: templates/webapp/_overview_charts.html
+msgid "Need more detail?"
+msgstr "Daha fazla ayrıntı mı lazım?"
+
+#: templates/webapp/_overview_charts.html
+msgid ""
+"Analytics shows sales, profit and expenses for any period, by day, product "
+"and payment method."
+msgstr ""
+"Analytics herhangi bir dönemin satış, kâr ve giderlerini gün, ürün ve ödeme "
+"yöntemine göre gösterir."
+
+#: templates/webapp/_overview_charts.html
+msgid "Open Analytics"
+msgstr "Analytics'i aç"
+
 #: templates/webapp/_overview_panel.html
 msgid "Target"
 msgstr "Hedef"
@@ -1190,10 +1290,6 @@ msgstr "Ödenecek vergi"
 #: templates/webapp/accounts/home.html
 msgid "Last 6 months"
 msgstr "Son 6 ay"
-
-#: templates/webapp/accounts/home.html
-msgid "Income"
-msgstr "Gelir"
 
 #: templates/webapp/accounts/home.html
 msgid "Income, costs and profit for any period"
@@ -4885,10 +4981,6 @@ msgstr "Bugünkü girişler"
 #: templates/webapp/industry/booking_board.html
 msgid "Due back / check-outs today"
 msgstr "Bugün dönecek / çıkacaklar"
-
-#: templates/webapp/industry/booking_board.html
-msgid "Overdue"
-msgstr "Gecikmiş"
 
 #: templates/webapp/industry/booking_board.html
 msgid "Nothing to book yet."
@@ -14111,10 +14203,6 @@ msgid "POS sales"
 msgstr "POS satışları"
 
 #: apps/webapp/accounts_views.py
-msgid "This month"
-msgstr "Bu ay"
-
-#: apps/webapp/accounts_views.py
 msgid "Last month"
 msgstr "Geçen ay"
 
@@ -16533,6 +16621,42 @@ msgstr "Son ödemeler"
 msgid "All bills"
 msgstr "Tüm faturalar"
 
+#: apps/webapp/overview_charts.py
+msgid "vs yesterday"
+msgstr "düne göre"
+
+#: apps/webapp/overview_charts.py
+msgid "vs same days last month"
+msgstr "geçen ayın aynı günlerine göre"
+
+#: apps/webapp/overview_charts.py
+msgid "Spent this month"
+msgstr "Bu ay harcanan"
+
+#: apps/webapp/overview_charts.py
+msgid "expenses and purchases"
+msgstr "giderler ve alımlar"
+
+#: apps/webapp/overview_charts.py
+msgid "Total receivables"
+msgstr "Toplam alacaklar"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid invoices"
+msgstr "Ödenmemiş faturalar"
+
+#: apps/webapp/overview_charts.py
+msgid "Total payables"
+msgstr "Toplam borçlar"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid supplier bills"
+msgstr "Ödenmemiş tedarikçi faturaları"
+
+#: apps/webapp/overview_charts.py
+msgid "Record purchase"
+msgstr "Alım kaydet"
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "Ödeme alındı — teşekkürler!"
@@ -17081,10 +17205,6 @@ msgstr "Dün"
 #: apps/webapp/restaurant_order_views.py
 msgid "Last 7 days"
 msgstr "Son 7 gün"
-
-#: apps/webapp/restaurant_order_views.py
-msgid "Last 30 days"
-msgstr "Son 30 gün"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."

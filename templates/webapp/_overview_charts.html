@@ -1,0 +1,73 @@
+{% load i18n static %}
+{# Overview charts (apps/webapp/overview_charts.py): owners and accountants only. #}
+<section class="ovc" aria-label="{% translate 'Business at a glance' %}">
+  <div class="ovc-row ovc-2">
+    {% for title, sub, d, url, new_url, new_label in charts.dues_cards %}
+    <div class="card ovc-dues">
+      <div class="ovc-h"><b>{{ title }}</b>{% if new_url %}<a href="{{ new_url }}">+ {{ new_label }}</a>{% endif %}</div>
+      <div class="ovc-sub">{{ sub }} <b>{{ charts.currency }} {{ d.total|floatformat:"2g" }}</b></div>
+      <div class="ovc-bar" role="img" aria-label="{% translate 'Current' %} {{ d.current|floatformat:"2g" }}, {% translate 'Overdue' %} {{ d.overdue|floatformat:"2g" }}">
+        {% if d.total %}<span class="cur" style="flex-grow:{{ d.current|stringformat:'f' }}"></span><span class="over" style="flex-grow:{{ d.overdue|stringformat:'f' }}"></span>{% endif %}
+      </div>
+      <div class="ovc-split">
+        <a href="{{ url }}"><small class="cur">{% translate "Current" %}</small><b>{{ charts.currency }} {{ d.current|floatformat:"2g" }}</b></a>
+        <a href="{{ url }}"><small class="over">{% translate "Overdue" %}</small><b>{{ charts.currency }} {{ d.overdue|floatformat:"2g" }}</b></a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="ovc-sum">
+    {% for s in charts.summary %}
+    <a class="card" href="{{ s.url }}"><small>{{ s.label }}</small><b>{{ charts.currency }} {{ s.value|floatformat:"2g" }}</b>
+      {% if s.change is not None %}<span class="chg {% if s.change >= 0 %}up{% else %}down{% endif %}">{% if s.change >= 0 %}▲{% else %}▼{% endif %} {{ s.change }}%</span>{% endif %}
+      {% if s.vs %}<em>{{ s.vs }}</em>{% endif %}</a>
+    {% endfor %}
+  </div>
+
+  <div class="ovc-row ovc-wide">
+    <div class="card ovc-chart">
+      <div class="ovc-h"><b>{% translate "Sales" %}</b>
+        <div class="ovc-tabs" role="tablist"><button type="button" class="on" data-range="12">{% translate "Last 12 months" %}</button><button type="button" data-range="30">{% translate "Last 30 days" %}</button></div></div>
+      <div class="ovc-sub" data-range-sub="12">{% translate "Total sales in the last 12 months" %} <b>{{ charts.currency }} {{ charts.year_sales|floatformat:"2g" }}</b></div>
+      <div class="ovc-sub" data-range-sub="30" hidden>{% translate "Total sales in the last 30 days" %} <b>{{ charts.currency }} {{ charts.total30|floatformat:"2g" }}</b></div>
+      <div class="ovc-canvas"><canvas id="ovcSales" aria-label="{% translate 'Sales chart' %}" role="img"></canvas></div>
+    </div>
+    <div class="card ovc-chart">
+      <div class="ovc-h"><b>{% translate "Top selling items" %}</b><small>{% translate "This month" %}</small></div>
+      {% if charts.top_items %}<ol class="ovc-top">{% for t in charts.top_items %}<li><div><span>{{ t.name }}</span><b>{{ charts.currency }} {{ t.amount|floatformat:"2g" }}</b></div><i style="width:{{ t.pct }}%"></i><small>{{ t.qty|floatformat:"-2" }} {% translate "sold" %}</small></li>{% endfor %}</ol>
+      {% else %}<p class="ovc-empty">{% translate "Nothing sold yet this month." %}</p>{% endif %}
+    </div>
+  </div>
+
+  <div class="ovc-row ovc-wide">
+    <div class="card ovc-chart">
+      <div class="ovc-h"><b>{% translate "Income and expense" %}</b><small>{% translate "Last 12 months" %}</small></div>
+      <div class="ovc-legend"><span class="inc">{% translate "Income" %} <b>{{ charts.currency }} {{ charts.year_sales|floatformat:"2g" }}</b></span><span class="exp">{% translate "Expense" %} <b>{{ charts.currency }} {{ charts.year_spend|floatformat:"2g" }}</b></span></div>
+      <div class="ovc-canvas"><canvas id="ovcIncome" aria-label="{% translate 'Income and expense chart' %}" role="img"></canvas></div>
+    </div>
+    <div class="card ovc-chart">
+      <div class="ovc-h"><b>{% translate "Top expenses" %}</b><small>{% translate "This month" %}</small></div>
+      {% if charts.series.spendValues %}<div class="ovc-canvas ovc-donut"><canvas id="ovcSpend" aria-label="{% translate 'Top expenses chart' %}" role="img"></canvas></div>
+      {% else %}<p class="ovc-empty">{% translate "No expenses recorded this month." %}</p>{% endif %}
+    </div>
+  </div>
+
+  {% if charts.series.payValues %}
+  <div class="ovc-row ovc-2">
+    <div class="card ovc-chart">
+      <div class="ovc-h"><b>{% translate "How customers paid" %}</b><small>{% translate "This month" %}</small></div>
+      <div class="ovc-canvas ovc-donut"><canvas id="ovcPay" aria-label="{% translate 'Payment methods chart' %}" role="img"></canvas></div>
+    </div>
+    <div class="card ovc-chart ovc-note">
+      <div class="ovc-h"><b>{% translate "Need more detail?" %}</b></div>
+      <p>{% translate "Analytics shows sales, profit and expenses for any period, by day, product and payment method." %}</p>
+      <a class="btn btn-secondary" href="{% url 'webapp:analytics' %}">{% translate "Open Analytics" %} →</a>
+    </div>
+  </div>
+  {% endif %}
+</section>
+{{ charts.series|json_script:"ovcData" }}
+<span id="ovcLabels" hidden data-sales="{% translate 'Sales' %}" data-income="{% translate 'Income' %}" data-expense="{% translate 'Expense' %}" data-currency="{{ charts.currency }}"></span>
+<script src="{% static 'vendor/chart.umd.min.js' %}"></script>
+<script src="{% static 'js/overview-charts.js' %}"></script>

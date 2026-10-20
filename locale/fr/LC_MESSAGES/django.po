@@ -926,6 +926,106 @@ msgstr "Argent"
 msgid "More"
 msgstr "Plus"
 
+#: templates/webapp/_overview_charts.html
+msgid "Business at a glance"
+msgstr "L'entreprise en un coup d'œil"
+
+#: templates/webapp/_overview_charts.html
+msgid "Current"
+msgstr "En cours"
+
+#: templates/webapp/_overview_charts.html
+msgid "Overdue"
+msgstr "En retard"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 12 months"
+msgstr "12 derniers mois"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 30 days"
+msgstr "30 derniers jours"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 12 months"
+msgstr "Ventes totales des 12 derniers mois"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 30 days"
+msgstr "Ventes totales des 30 derniers jours"
+
+#: templates/webapp/_overview_charts.html
+msgid "Sales chart"
+msgstr "Graphique des ventes"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top selling items"
+msgstr "Articles les plus vendus"
+
+#: templates/webapp/_overview_charts.html
+msgid "This month"
+msgstr "Ce mois-ci"
+
+#: templates/webapp/_overview_charts.html
+msgid "sold"
+msgstr "vendus"
+
+#: templates/webapp/_overview_charts.html
+msgid "Nothing sold yet this month."
+msgstr "Rien de vendu ce mois-ci pour l'instant."
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense"
+msgstr "Revenus et dépenses"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income"
+msgstr "Produits"
+
+#: templates/webapp/_overview_charts.html
+msgid "Expense"
+msgstr "Dépenses"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense chart"
+msgstr "Graphique revenus et dépenses"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses"
+msgstr "Principales dépenses"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses chart"
+msgstr "Graphique des principales dépenses"
+
+#: templates/webapp/_overview_charts.html
+msgid "No expenses recorded this month."
+msgstr "Aucune dépense enregistrée ce mois-ci."
+
+#: templates/webapp/_overview_charts.html
+msgid "How customers paid"
+msgstr "Comment les clients ont payé"
+
+#: templates/webapp/_overview_charts.html
+msgid "Payment methods chart"
+msgstr "Graphique des modes de paiement"
+
+#: templates/webapp/_overview_charts.html
+msgid "Need more detail?"
+msgstr "Besoin de plus de détails ?"
+
+#: templates/webapp/_overview_charts.html
+msgid ""
+"Analytics shows sales, profit and expenses for any period, by day, product "
+"and payment method."
+msgstr ""
+"Analytics affiche les ventes, le bénéfice et les dépenses sur n'importe "
+"quelle période, par jour, produit et mode de paiement."
+
+#: templates/webapp/_overview_charts.html
+msgid "Open Analytics"
+msgstr "Ouvrir Analytics"
+
 #: templates/webapp/_overview_panel.html
 msgid "Target"
 msgstr "Objectif"
@@ -1193,10 +1293,6 @@ msgstr "Taxes à payer"
 #: templates/webapp/accounts/home.html
 msgid "Last 6 months"
 msgstr "6 derniers mois"
-
-#: templates/webapp/accounts/home.html
-msgid "Income"
-msgstr "Produits"
 
 #: templates/webapp/accounts/home.html
 msgid "Income, costs and profit for any period"
@@ -4921,10 +5017,6 @@ msgstr "Arrivées du jour"
 #: templates/webapp/industry/booking_board.html
 msgid "Due back / check-outs today"
 msgstr "Retours / départs du jour"
-
-#: templates/webapp/industry/booking_board.html
-msgid "Overdue"
-msgstr "En retard"
 
 #: templates/webapp/industry/booking_board.html
 msgid "Nothing to book yet."
@@ -14247,10 +14339,6 @@ msgid "POS sales"
 msgstr "Ventes POS"
 
 #: apps/webapp/accounts_views.py
-msgid "This month"
-msgstr "Ce mois-ci"
-
-#: apps/webapp/accounts_views.py
 msgid "Last month"
 msgstr "Le mois dernier"
 
@@ -16698,6 +16786,42 @@ msgstr "Paiements récents"
 msgid "All bills"
 msgstr "Toutes les factures"
 
+#: apps/webapp/overview_charts.py
+msgid "vs yesterday"
+msgstr "par rapport à hier"
+
+#: apps/webapp/overview_charts.py
+msgid "vs same days last month"
+msgstr "par rapport aux mêmes jours du mois dernier"
+
+#: apps/webapp/overview_charts.py
+msgid "Spent this month"
+msgstr "Dépensé ce mois-ci"
+
+#: apps/webapp/overview_charts.py
+msgid "expenses and purchases"
+msgstr "dépenses et achats"
+
+#: apps/webapp/overview_charts.py
+msgid "Total receivables"
+msgstr "Total des créances"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid invoices"
+msgstr "Factures impayées"
+
+#: apps/webapp/overview_charts.py
+msgid "Total payables"
+msgstr "Total des dettes"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid supplier bills"
+msgstr "Factures fournisseurs impayées"
+
+#: apps/webapp/overview_charts.py
+msgid "Record purchase"
+msgstr "Enregistrer un achat"
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "Paiement reçu — merci !"
@@ -17252,10 +17376,6 @@ msgstr "Hier"
 #: apps/webapp/restaurant_order_views.py
 msgid "Last 7 days"
 msgstr "7 derniers jours"
-
-#: apps/webapp/restaurant_order_views.py
-msgid "Last 30 days"
-msgstr "30 derniers jours"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."

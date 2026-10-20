@@ -38,6 +38,8 @@
   {% endif %}{% endfor %}
 </div>
 
+{% if charts %}{% include "webapp/_overview_charts.html" %}{% endif %}
+
 {% if suggestions %}<div class="card ov-suggest"><b>💡 {% translate "Suggestions for today" %}</b>{% for icon, text, url in suggestions %}<a href="{{ url }}"><span>{{ icon }}</span><span>{{ text }}</span><span aria-hidden="true">→</span></a>{% endfor %}</div>{% endif %}
 {% if main %}
 <div class="ov-panels{% if not side %} single{% endif %}">

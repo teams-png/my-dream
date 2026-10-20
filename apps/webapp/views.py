@@ -385,6 +385,10 @@ def dashboard(request):
     context.update(overview.limit_links(overview.build(company), request))
     from .today_views import suggestions
     context["suggestions"] = suggestions(company, request)
+    from .role_access import can_open
+    if can_open(request, "analytics"):  # sales and money charts: owners and accountants, not the cashier
+        from . import overview_charts
+        context["charts"] = overview_charts.build(company, today)
     context.update({
         "greeting": overview.greeting(), "today": today,
         "recent_invoices": SalesInvoice.objects.for_company(company).exclude(status="void")

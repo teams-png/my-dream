@@ -925,6 +925,106 @@ msgstr "المال"
 msgid "More"
 msgstr "المزيد"
 
+#: templates/webapp/_overview_charts.html
+msgid "Business at a glance"
+msgstr "نظرة سريعة على العمل"
+
+#: templates/webapp/_overview_charts.html
+msgid "Current"
+msgstr "حالي"
+
+#: templates/webapp/_overview_charts.html
+msgid "Overdue"
+msgstr "متأخر"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 12 months"
+msgstr "آخر 12 شهرًا"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 30 days"
+msgstr "آخر 30 يوماً"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 12 months"
+msgstr "إجمالي المبيعات في آخر 12 شهرًا"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 30 days"
+msgstr "إجمالي المبيعات في آخر 30 يومًا"
+
+#: templates/webapp/_overview_charts.html
+msgid "Sales chart"
+msgstr "مخطط المبيعات"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top selling items"
+msgstr "الأصناف الأكثر مبيعًا"
+
+#: templates/webapp/_overview_charts.html
+msgid "This month"
+msgstr "هذا الشهر"
+
+#: templates/webapp/_overview_charts.html
+msgid "sold"
+msgstr "مباع"
+
+#: templates/webapp/_overview_charts.html
+msgid "Nothing sold yet this month."
+msgstr "لم يُبع شيء هذا الشهر بعد."
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense"
+msgstr "الإيرادات والمصروفات"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income"
+msgstr "الإيرادات"
+
+#: templates/webapp/_overview_charts.html
+msgid "Expense"
+msgstr "المصروفات"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense chart"
+msgstr "مخطط الإيرادات والمصروفات"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses"
+msgstr "أكبر المصروفات"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses chart"
+msgstr "مخطط أكبر المصروفات"
+
+#: templates/webapp/_overview_charts.html
+msgid "No expenses recorded this month."
+msgstr "لا توجد مصروفات مسجلة هذا الشهر."
+
+#: templates/webapp/_overview_charts.html
+msgid "How customers paid"
+msgstr "طرق دفع العملاء"
+
+#: templates/webapp/_overview_charts.html
+msgid "Payment methods chart"
+msgstr "مخطط طرق الدفع"
+
+#: templates/webapp/_overview_charts.html
+msgid "Need more detail?"
+msgstr "تحتاج تفاصيل أكثر؟"
+
+#: templates/webapp/_overview_charts.html
+msgid ""
+"Analytics shows sales, profit and expenses for any period, by day, product "
+"and payment method."
+msgstr ""
+"تعرض التحليلات المبيعات والأرباح والمصروفات لأي فترة، حسب اليوم والمنتج "
+"وطريقة الدفع."
+
+#: templates/webapp/_overview_charts.html
+msgid "Open Analytics"
+msgstr "فتح التحليلات"
+
 #: templates/webapp/_overview_panel.html
 msgid "Target"
 msgstr "الهدف"
@@ -1188,10 +1288,6 @@ msgstr "الضريبة المستحقة"
 #: templates/webapp/accounts/home.html
 msgid "Last 6 months"
 msgstr "آخر 6 أشهر"
-
-#: templates/webapp/accounts/home.html
-msgid "Income"
-msgstr "الإيرادات"
 
 #: templates/webapp/accounts/home.html
 msgid "Income, costs and profit for any period"
@@ -4847,10 +4943,6 @@ msgstr "الوصول اليوم"
 #: templates/webapp/industry/booking_board.html
 msgid "Due back / check-outs today"
 msgstr "الإرجاع / المغادرة اليوم"
-
-#: templates/webapp/industry/booking_board.html
-msgid "Overdue"
-msgstr "متأخر"
 
 #: templates/webapp/industry/booking_board.html
 msgid "Nothing to book yet."
@@ -13981,10 +14073,6 @@ msgid "POS sales"
 msgstr "مبيعات نقطة البيع"
 
 #: apps/webapp/accounts_views.py
-msgid "This month"
-msgstr "هذا الشهر"
-
-#: apps/webapp/accounts_views.py
 msgid "Last month"
 msgstr "الشهر الماضي"
 
@@ -16381,6 +16469,42 @@ msgstr "المدفوعات الأخيرة"
 msgid "All bills"
 msgstr "كل الفواتير"
 
+#: apps/webapp/overview_charts.py
+msgid "vs yesterday"
+msgstr "مقارنة بالأمس"
+
+#: apps/webapp/overview_charts.py
+msgid "vs same days last month"
+msgstr "مقارنة بنفس الأيام من الشهر الماضي"
+
+#: apps/webapp/overview_charts.py
+msgid "Spent this month"
+msgstr "المصروف هذا الشهر"
+
+#: apps/webapp/overview_charts.py
+msgid "expenses and purchases"
+msgstr "المصروفات والمشتريات"
+
+#: apps/webapp/overview_charts.py
+msgid "Total receivables"
+msgstr "إجمالي المستحقات"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid invoices"
+msgstr "فواتير غير مدفوعة"
+
+#: apps/webapp/overview_charts.py
+msgid "Total payables"
+msgstr "إجمالي المدفوعات المستحقة"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid supplier bills"
+msgstr "فواتير موردين غير مدفوعة"
+
+#: apps/webapp/overview_charts.py
+msgid "Record purchase"
+msgstr "تسجيل مشتريات"
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "تم استلام الدفعة — شكراً لك!"
@@ -16921,10 +17045,6 @@ msgstr "أمس"
 #: apps/webapp/restaurant_order_views.py
 msgid "Last 7 days"
 msgstr "آخر 7 أيام"
-
-#: apps/webapp/restaurant_order_views.py
-msgid "Last 30 days"
-msgstr "آخر 30 يوماً"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."

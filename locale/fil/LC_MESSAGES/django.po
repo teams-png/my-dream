@@ -926,6 +926,106 @@ msgstr "Pera"
 msgid "More"
 msgstr "Higit pa"
 
+#: templates/webapp/_overview_charts.html
+msgid "Business at a glance"
+msgstr "Ang negosyo sa isang tingin"
+
+#: templates/webapp/_overview_charts.html
+msgid "Current"
+msgstr "Kasalukuyan"
+
+#: templates/webapp/_overview_charts.html
+msgid "Overdue"
+msgstr "Overdue"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 12 months"
+msgstr "Huling 12 buwan"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 30 days"
+msgstr "Nakaraang 30 araw"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 12 months"
+msgstr "Kabuuang benta sa huling 12 buwan"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 30 days"
+msgstr "Kabuuang benta sa huling 30 araw"
+
+#: templates/webapp/_overview_charts.html
+msgid "Sales chart"
+msgstr "Chart ng benta"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top selling items"
+msgstr "Pinakamabentang item"
+
+#: templates/webapp/_overview_charts.html
+msgid "This month"
+msgstr "Ngayong buwan"
+
+#: templates/webapp/_overview_charts.html
+msgid "sold"
+msgstr "nabenta"
+
+#: templates/webapp/_overview_charts.html
+msgid "Nothing sold yet this month."
+msgstr "Wala pang nabenta ngayong buwan."
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense"
+msgstr "Kita at gastos"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income"
+msgstr "Kita"
+
+#: templates/webapp/_overview_charts.html
+msgid "Expense"
+msgstr "Gastos"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense chart"
+msgstr "Chart ng kita at gastos"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses"
+msgstr "Pinakamalaking gastos"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses chart"
+msgstr "Chart ng pinakamalaking gastos"
+
+#: templates/webapp/_overview_charts.html
+msgid "No expenses recorded this month."
+msgstr "Walang naitalang gastos ngayong buwan."
+
+#: templates/webapp/_overview_charts.html
+msgid "How customers paid"
+msgstr "Paano nagbayad ang mga customer"
+
+#: templates/webapp/_overview_charts.html
+msgid "Payment methods chart"
+msgstr "Chart ng paraan ng bayad"
+
+#: templates/webapp/_overview_charts.html
+msgid "Need more detail?"
+msgstr "Kailangan ng mas detalye?"
+
+#: templates/webapp/_overview_charts.html
+msgid ""
+"Analytics shows sales, profit and expenses for any period, by day, product "
+"and payment method."
+msgstr ""
+"Ipinapakita ng Analytics ang benta, kita at gastos sa anumang panahon, ayon "
+"sa araw, produkto at paraan ng bayad."
+
+#: templates/webapp/_overview_charts.html
+msgid "Open Analytics"
+msgstr "Buksan ang Analytics"
+
 #: templates/webapp/_overview_panel.html
 msgid "Target"
 msgstr "Target"
@@ -1192,10 +1292,6 @@ msgstr "Buwis na babayaran"
 #: templates/webapp/accounts/home.html
 msgid "Last 6 months"
 msgstr "Huling 6 na buwan"
-
-#: templates/webapp/accounts/home.html
-msgid "Income"
-msgstr "Kita"
 
 #: templates/webapp/accounts/home.html
 msgid "Income, costs and profit for any period"
@@ -4911,10 +5007,6 @@ msgstr "Darating ngayon"
 #: templates/webapp/industry/booking_board.html
 msgid "Due back / check-outs today"
 msgstr "Babalik / magche-check-out ngayon"
-
-#: templates/webapp/industry/booking_board.html
-msgid "Overdue"
-msgstr "Overdue"
 
 #: templates/webapp/industry/booking_board.html
 msgid "Nothing to book yet."
@@ -14200,10 +14292,6 @@ msgid "POS sales"
 msgstr "POS sales"
 
 #: apps/webapp/accounts_views.py
-msgid "This month"
-msgstr "Ngayong buwan"
-
-#: apps/webapp/accounts_views.py
 msgid "Last month"
 msgstr "Nakaraang buwan"
 
@@ -16644,6 +16732,42 @@ msgstr "Mga kamakailang bayad"
 msgid "All bills"
 msgstr "Lahat ng bill"
 
+#: apps/webapp/overview_charts.py
+msgid "vs yesterday"
+msgstr "kumpara kahapon"
+
+#: apps/webapp/overview_charts.py
+msgid "vs same days last month"
+msgstr "kumpara sa parehong mga araw noong nakaraang buwan"
+
+#: apps/webapp/overview_charts.py
+msgid "Spent this month"
+msgstr "Nagastos ngayong buwan"
+
+#: apps/webapp/overview_charts.py
+msgid "expenses and purchases"
+msgstr "gastos at pagbili"
+
+#: apps/webapp/overview_charts.py
+msgid "Total receivables"
+msgstr "Kabuuang dapat singilin"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid invoices"
+msgstr "Mga hindi pa bayad na invoice"
+
+#: apps/webapp/overview_charts.py
+msgid "Total payables"
+msgstr "Kabuuang dapat bayaran"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid supplier bills"
+msgstr "Mga hindi pa bayad na bill ng supplier"
+
+#: apps/webapp/overview_charts.py
+msgid "Record purchase"
+msgstr "Itala ang pagbili"
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "Natanggap ang bayad — salamat!"
@@ -17197,10 +17321,6 @@ msgstr "Kahapon"
 #: apps/webapp/restaurant_order_views.py
 msgid "Last 7 days"
 msgstr "Nakaraang 7 araw"
-
-#: apps/webapp/restaurant_order_views.py
-msgid "Last 30 days"
-msgstr "Nakaraang 30 araw"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."

@@ -923,6 +923,104 @@ msgstr "金额"
 msgid "More"
 msgstr "多"
 
+#: templates/webapp/_overview_charts.html
+msgid "Business at a glance"
+msgstr "业务一览"
+
+#: templates/webapp/_overview_charts.html
+msgid "Current"
+msgstr "当前"
+
+#: templates/webapp/_overview_charts.html
+msgid "Overdue"
+msgstr "逾期"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 12 months"
+msgstr "最近 12 个月"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 30 days"
+msgstr "最近 30 天"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 12 months"
+msgstr "最近 12 个月总销售额"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 30 days"
+msgstr "最近 30 天总销售额"
+
+#: templates/webapp/_overview_charts.html
+msgid "Sales chart"
+msgstr "销售图表"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top selling items"
+msgstr "最畅销商品"
+
+#: templates/webapp/_overview_charts.html
+msgid "This month"
+msgstr "本月"
+
+#: templates/webapp/_overview_charts.html
+msgid "sold"
+msgstr "已售"
+
+#: templates/webapp/_overview_charts.html
+msgid "Nothing sold yet this month."
+msgstr "本月尚无销售。"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense"
+msgstr "收入与支出"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income"
+msgstr "收入"
+
+#: templates/webapp/_overview_charts.html
+msgid "Expense"
+msgstr "支出"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense chart"
+msgstr "收入与支出图表"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses"
+msgstr "主要支出"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses chart"
+msgstr "主要支出图表"
+
+#: templates/webapp/_overview_charts.html
+msgid "No expenses recorded this month."
+msgstr "本月没有记录支出。"
+
+#: templates/webapp/_overview_charts.html
+msgid "How customers paid"
+msgstr "客户付款方式"
+
+#: templates/webapp/_overview_charts.html
+msgid "Payment methods chart"
+msgstr "付款方式图表"
+
+#: templates/webapp/_overview_charts.html
+msgid "Need more detail?"
+msgstr "需要更多细节？"
+
+#: templates/webapp/_overview_charts.html
+msgid ""
+"Analytics shows sales, profit and expenses for any period, by day, product "
+"and payment method."
+msgstr "Analytics 可按日期、商品和付款方式查看任意期间的销售、利润和支出。"
+
+#: templates/webapp/_overview_charts.html
+msgid "Open Analytics"
+msgstr "打开 Analytics"
+
 #: templates/webapp/_overview_panel.html
 msgid "Target"
 msgstr "目标"
@@ -1183,10 +1281,6 @@ msgstr "应交税费"
 #: templates/webapp/accounts/home.html
 msgid "Last 6 months"
 msgstr "最近 6 个月"
-
-#: templates/webapp/accounts/home.html
-msgid "Income"
-msgstr "收入"
 
 #: templates/webapp/accounts/home.html
 msgid "Income, costs and profit for any period"
@@ -4782,10 +4876,6 @@ msgstr "今日到达"
 #: templates/webapp/industry/booking_board.html
 msgid "Due back / check-outs today"
 msgstr "今日归还 / 退房"
-
-#: templates/webapp/industry/booking_board.html
-msgid "Overdue"
-msgstr "逾期"
 
 #: templates/webapp/industry/booking_board.html
 msgid "Nothing to book yet."
@@ -13733,10 +13823,6 @@ msgid "POS sales"
 msgstr "POS 销售"
 
 #: apps/webapp/accounts_views.py
-msgid "This month"
-msgstr "本月"
-
-#: apps/webapp/accounts_views.py
 msgid "Last month"
 msgstr "上月"
 
@@ -16123,6 +16209,42 @@ msgstr "最近收款"
 msgid "All bills"
 msgstr "全部账单"
 
+#: apps/webapp/overview_charts.py
+msgid "vs yesterday"
+msgstr "与昨天相比"
+
+#: apps/webapp/overview_charts.py
+msgid "vs same days last month"
+msgstr "与上月同期相比"
+
+#: apps/webapp/overview_charts.py
+msgid "Spent this month"
+msgstr "本月支出"
+
+#: apps/webapp/overview_charts.py
+msgid "expenses and purchases"
+msgstr "支出与采购"
+
+#: apps/webapp/overview_charts.py
+msgid "Total receivables"
+msgstr "应收总额"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid invoices"
+msgstr "未付发票"
+
+#: apps/webapp/overview_charts.py
+msgid "Total payables"
+msgstr "应付总额"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid supplier bills"
+msgstr "未付供应商账单"
+
+#: apps/webapp/overview_charts.py
+msgid "Record purchase"
+msgstr "记录采购"
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "已收到付款 — 谢谢！"
@@ -16660,10 +16782,6 @@ msgstr "昨天"
 #: apps/webapp/restaurant_order_views.py
 msgid "Last 7 days"
 msgstr "最近 7 天"
-
-#: apps/webapp/restaurant_order_views.py
-msgid "Last 30 days"
-msgstr "最近 30 天"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."

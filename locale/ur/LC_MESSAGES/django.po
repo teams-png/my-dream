@@ -925,6 +925,106 @@ msgstr "رقم"
 msgid "More"
 msgstr "زیادہ"
 
+#: templates/webapp/_overview_charts.html
+msgid "Business at a glance"
+msgstr "کاروبار ایک نظر میں"
+
+#: templates/webapp/_overview_charts.html
+msgid "Current"
+msgstr "موجودہ"
+
+#: templates/webapp/_overview_charts.html
+msgid "Overdue"
+msgstr "تاخیر شدہ"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 12 months"
+msgstr "پچھلے 12 مہینے"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 30 days"
+msgstr "پچھلے 30 دن"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 12 months"
+msgstr "پچھلے 12 مہینوں کی کل فروخت"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 30 days"
+msgstr "پچھلے 30 دنوں کی کل فروخت"
+
+#: templates/webapp/_overview_charts.html
+msgid "Sales chart"
+msgstr "فروخت کا چارٹ"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top selling items"
+msgstr "سب سے زیادہ بکنے والی اشیاء"
+
+#: templates/webapp/_overview_charts.html
+msgid "This month"
+msgstr "اس مہینے"
+
+#: templates/webapp/_overview_charts.html
+msgid "sold"
+msgstr "فروخت"
+
+#: templates/webapp/_overview_charts.html
+msgid "Nothing sold yet this month."
+msgstr "اس مہینے ابھی تک کچھ نہیں بکا۔"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense"
+msgstr "آمدنی اور اخراجات"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income"
+msgstr "آمدنی"
+
+#: templates/webapp/_overview_charts.html
+msgid "Expense"
+msgstr "اخراجات"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense chart"
+msgstr "آمدنی اور اخراجات کا چارٹ"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses"
+msgstr "بڑے اخراجات"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses chart"
+msgstr "بڑے اخراجات کا چارٹ"
+
+#: templates/webapp/_overview_charts.html
+msgid "No expenses recorded this month."
+msgstr "اس مہینے کوئی خرچ درج نہیں۔"
+
+#: templates/webapp/_overview_charts.html
+msgid "How customers paid"
+msgstr "گاہکوں نے کیسے ادائیگی کی"
+
+#: templates/webapp/_overview_charts.html
+msgid "Payment methods chart"
+msgstr "ادائیگی کے طریقوں کا چارٹ"
+
+#: templates/webapp/_overview_charts.html
+msgid "Need more detail?"
+msgstr "مزید تفصیل چاہیے؟"
+
+#: templates/webapp/_overview_charts.html
+msgid ""
+"Analytics shows sales, profit and expenses for any period, by day, product "
+"and payment method."
+msgstr ""
+"Analytics میں کسی بھی مدت کی فروخت، منافع اور اخراجات دن، پروڈکٹ اور ادائیگی"
+" کے طریقے کے لحاظ سے نظر آتے ہیں۔"
+
+#: templates/webapp/_overview_charts.html
+msgid "Open Analytics"
+msgstr "Analytics کھولیں"
+
 #: templates/webapp/_overview_panel.html
 msgid "Target"
 msgstr "ہدف"
@@ -1188,10 +1288,6 @@ msgstr "قابل ادا ٹیکس"
 #: templates/webapp/accounts/home.html
 msgid "Last 6 months"
 msgstr "پچھلے 6 مہینے"
-
-#: templates/webapp/accounts/home.html
-msgid "Income"
-msgstr "آمدنی"
 
 #: templates/webapp/accounts/home.html
 msgid "Income, costs and profit for any period"
@@ -4872,10 +4968,6 @@ msgstr "آج کی آمد"
 #: templates/webapp/industry/booking_board.html
 msgid "Due back / check-outs today"
 msgstr "آج واپسی / چیک آؤٹ"
-
-#: templates/webapp/industry/booking_board.html
-msgid "Overdue"
-msgstr "تاخیر شدہ"
 
 #: templates/webapp/industry/booking_board.html
 msgid "Nothing to book yet."
@@ -14065,10 +14157,6 @@ msgid "POS sales"
 msgstr "POS فروخت"
 
 #: apps/webapp/accounts_views.py
-msgid "This month"
-msgstr "اس مہینے"
-
-#: apps/webapp/accounts_views.py
 msgid "Last month"
 msgstr "پچھلے مہینے"
 
@@ -16486,6 +16574,42 @@ msgstr "حالیہ ادائیگیاں"
 msgid "All bills"
 msgstr "تمام بل"
 
+#: apps/webapp/overview_charts.py
+msgid "vs yesterday"
+msgstr "کل کے مقابلے میں"
+
+#: apps/webapp/overview_charts.py
+msgid "vs same days last month"
+msgstr "پچھلے مہینے کے انہی دنوں کے مقابلے میں"
+
+#: apps/webapp/overview_charts.py
+msgid "Spent this month"
+msgstr "اس مہینے خرچ"
+
+#: apps/webapp/overview_charts.py
+msgid "expenses and purchases"
+msgstr "اخراجات اور خریداری"
+
+#: apps/webapp/overview_charts.py
+msgid "Total receivables"
+msgstr "کل وصولی"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid invoices"
+msgstr "غیر ادا شدہ انوائسز"
+
+#: apps/webapp/overview_charts.py
+msgid "Total payables"
+msgstr "کل ادائیگی"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid supplier bills"
+msgstr "غیر ادا شدہ سپلائر بل"
+
+#: apps/webapp/overview_charts.py
+msgid "Record purchase"
+msgstr "خریداری درج کریں"
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "ادائیگی موصول ہو گئی — شکریہ!"
@@ -17031,10 +17155,6 @@ msgstr "کل"
 #: apps/webapp/restaurant_order_views.py
 msgid "Last 7 days"
 msgstr "پچھلے 7 دن"
-
-#: apps/webapp/restaurant_order_views.py
-msgid "Last 30 days"
-msgstr "پچھلے 30 دن"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."

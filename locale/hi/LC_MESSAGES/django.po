@@ -925,6 +925,106 @@ msgstr "पैसा"
 msgid "More"
 msgstr "ज़्यादा"
 
+#: templates/webapp/_overview_charts.html
+msgid "Business at a glance"
+msgstr "व्यवसाय एक नज़र में"
+
+#: templates/webapp/_overview_charts.html
+msgid "Current"
+msgstr "वर्तमान"
+
+#: templates/webapp/_overview_charts.html
+msgid "Overdue"
+msgstr "अतिदेय"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 12 months"
+msgstr "पिछले 12 महीने"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 30 days"
+msgstr "पिछले 30 दिन"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 12 months"
+msgstr "पिछले 12 महीनों की कुल बिक्री"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 30 days"
+msgstr "पिछले 30 दिनों की कुल बिक्री"
+
+#: templates/webapp/_overview_charts.html
+msgid "Sales chart"
+msgstr "बिक्री चार्ट"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top selling items"
+msgstr "सबसे ज़्यादा बिकने वाले आइटम"
+
+#: templates/webapp/_overview_charts.html
+msgid "This month"
+msgstr "इस महीने"
+
+#: templates/webapp/_overview_charts.html
+msgid "sold"
+msgstr "बिके"
+
+#: templates/webapp/_overview_charts.html
+msgid "Nothing sold yet this month."
+msgstr "इस महीने अभी तक कुछ नहीं बिका।"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense"
+msgstr "आय और खर्च"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income"
+msgstr "आय"
+
+#: templates/webapp/_overview_charts.html
+msgid "Expense"
+msgstr "खर्च"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense chart"
+msgstr "आय और खर्च चार्ट"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses"
+msgstr "मुख्य खर्च"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses chart"
+msgstr "मुख्य खर्च चार्ट"
+
+#: templates/webapp/_overview_charts.html
+msgid "No expenses recorded this month."
+msgstr "इस महीने कोई खर्च दर्ज नहीं है।"
+
+#: templates/webapp/_overview_charts.html
+msgid "How customers paid"
+msgstr "ग्राहकों ने कैसे भुगतान किया"
+
+#: templates/webapp/_overview_charts.html
+msgid "Payment methods chart"
+msgstr "भुगतान तरीकों का चार्ट"
+
+#: templates/webapp/_overview_charts.html
+msgid "Need more detail?"
+msgstr "और जानकारी चाहिए?"
+
+#: templates/webapp/_overview_charts.html
+msgid ""
+"Analytics shows sales, profit and expenses for any period, by day, product "
+"and payment method."
+msgstr ""
+"Analytics में किसी भी अवधि की बिक्री, मुनाफ़ा और खर्च दिन, उत्पाद और भुगतान "
+"तरीके के हिसाब से दिखते हैं।"
+
+#: templates/webapp/_overview_charts.html
+msgid "Open Analytics"
+msgstr "Analytics खोलें"
+
 #: templates/webapp/_overview_panel.html
 msgid "Target"
 msgstr "लक्ष्य"
@@ -1188,10 +1288,6 @@ msgstr "देय टैक्स"
 #: templates/webapp/accounts/home.html
 msgid "Last 6 months"
 msgstr "पिछले 6 महीने"
-
-#: templates/webapp/accounts/home.html
-msgid "Income"
-msgstr "आय"
 
 #: templates/webapp/accounts/home.html
 msgid "Income, costs and profit for any period"
@@ -4869,10 +4965,6 @@ msgstr "आज के आगमन"
 #: templates/webapp/industry/booking_board.html
 msgid "Due back / check-outs today"
 msgstr "आज लौटने / चेक-आउट वाले"
-
-#: templates/webapp/industry/booking_board.html
-msgid "Overdue"
-msgstr "अतिदेय"
 
 #: templates/webapp/industry/booking_board.html
 msgid "Nothing to book yet."
@@ -14057,10 +14149,6 @@ msgid "POS sales"
 msgstr "POS बिक्री"
 
 #: apps/webapp/accounts_views.py
-msgid "This month"
-msgstr "इस महीने"
-
-#: apps/webapp/accounts_views.py
 msgid "Last month"
 msgstr "पिछले महीने"
 
@@ -16467,6 +16555,42 @@ msgstr "हाल के भुगतान"
 msgid "All bills"
 msgstr "सभी बिल"
 
+#: apps/webapp/overview_charts.py
+msgid "vs yesterday"
+msgstr "कल की तुलना में"
+
+#: apps/webapp/overview_charts.py
+msgid "vs same days last month"
+msgstr "पिछले महीने के इन्हीं दिनों की तुलना में"
+
+#: apps/webapp/overview_charts.py
+msgid "Spent this month"
+msgstr "इस महीने खर्च"
+
+#: apps/webapp/overview_charts.py
+msgid "expenses and purchases"
+msgstr "खर्च और खरीद"
+
+#: apps/webapp/overview_charts.py
+msgid "Total receivables"
+msgstr "कुल प्राप्य"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid invoices"
+msgstr "बकाया इनवॉइस"
+
+#: apps/webapp/overview_charts.py
+msgid "Total payables"
+msgstr "कुल देय"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid supplier bills"
+msgstr "बकाया सप्लायर बिल"
+
+#: apps/webapp/overview_charts.py
+msgid "Record purchase"
+msgstr "खरीद दर्ज करें"
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "भुगतान प्राप्त — धन्यवाद!"
@@ -17010,10 +17134,6 @@ msgstr "कल"
 #: apps/webapp/restaurant_order_views.py
 msgid "Last 7 days"
 msgstr "पिछले 7 दिन"
-
-#: apps/webapp/restaurant_order_views.py
-msgid "Last 30 days"
-msgstr "पिछले 30 दिन"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."

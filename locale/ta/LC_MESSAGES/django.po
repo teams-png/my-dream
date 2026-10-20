@@ -929,6 +929,106 @@ msgstr "பணம்"
 msgid "More"
 msgstr "அதிகம்"
 
+#: templates/webapp/_overview_charts.html
+msgid "Business at a glance"
+msgstr "வணிகம் ஒரே பார்வையில்"
+
+#: templates/webapp/_overview_charts.html
+msgid "Current"
+msgstr "தற்போதைய"
+
+#: templates/webapp/_overview_charts.html
+msgid "Overdue"
+msgstr "காலாவதியானது"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 12 months"
+msgstr "கடந்த 12 மாதங்கள்"
+
+#: templates/webapp/_overview_charts.html
+msgid "Last 30 days"
+msgstr "கடந்த 30 நாட்கள்"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 12 months"
+msgstr "கடந்த 12 மாதங்களின் மொத்த விற்பனை"
+
+#: templates/webapp/_overview_charts.html
+msgid "Total sales in the last 30 days"
+msgstr "கடந்த 30 நாட்களின் மொத்த விற்பனை"
+
+#: templates/webapp/_overview_charts.html
+msgid "Sales chart"
+msgstr "விற்பனை வரைபடம்"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top selling items"
+msgstr "அதிகம் விற்ற பொருட்கள்"
+
+#: templates/webapp/_overview_charts.html
+msgid "This month"
+msgstr "இந்த மாதம்"
+
+#: templates/webapp/_overview_charts.html
+msgid "sold"
+msgstr "விற்றது"
+
+#: templates/webapp/_overview_charts.html
+msgid "Nothing sold yet this month."
+msgstr "இந்த மாதம் இன்னும் எதுவும் விற்கவில்லை."
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense"
+msgstr "வருமானமும் செலவும்"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income"
+msgstr "வருமானம்"
+
+#: templates/webapp/_overview_charts.html
+msgid "Expense"
+msgstr "செலவு"
+
+#: templates/webapp/_overview_charts.html
+msgid "Income and expense chart"
+msgstr "வருமானம் மற்றும் செலவு வரைபடம்"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses"
+msgstr "முக்கிய செலவுகள்"
+
+#: templates/webapp/_overview_charts.html
+msgid "Top expenses chart"
+msgstr "முக்கிய செலவுகள் வரைபடம்"
+
+#: templates/webapp/_overview_charts.html
+msgid "No expenses recorded this month."
+msgstr "இந்த மாதம் செலவுகள் பதிவு செய்யப்படவில்லை."
+
+#: templates/webapp/_overview_charts.html
+msgid "How customers paid"
+msgstr "வாடிக்கையாளர்கள் எப்படி செலுத்தினர்"
+
+#: templates/webapp/_overview_charts.html
+msgid "Payment methods chart"
+msgstr "கட்டண முறைகள் வரைபடம்"
+
+#: templates/webapp/_overview_charts.html
+msgid "Need more detail?"
+msgstr "மேலும் விவரம் வேண்டுமா?"
+
+#: templates/webapp/_overview_charts.html
+msgid ""
+"Analytics shows sales, profit and expenses for any period, by day, product "
+"and payment method."
+msgstr ""
+"எந்த காலத்துக்கும் விற்பனை, லாபம், செலவுகளை நாள், பொருள், கட்டண முறை வாரியாக"
+" Analytics காட்டும்."
+
+#: templates/webapp/_overview_charts.html
+msgid "Open Analytics"
+msgstr "Analytics திற"
+
 #: templates/webapp/_overview_panel.html
 msgid "Target"
 msgstr "இலக்கு"
@@ -1195,10 +1295,6 @@ msgstr "செலுத்த வேண்டிய வரி"
 #: templates/webapp/accounts/home.html
 msgid "Last 6 months"
 msgstr "கடந்த 6 மாதங்கள்"
-
-#: templates/webapp/accounts/home.html
-msgid "Income"
-msgstr "வருமானம்"
 
 #: templates/webapp/accounts/home.html
 msgid "Income, costs and profit for any period"
@@ -4923,10 +5019,6 @@ msgstr "இன்றைய வருகைகள்"
 #: templates/webapp/industry/booking_board.html
 msgid "Due back / check-outs today"
 msgstr "இன்று திருப்ப / வெளியேற வேண்டியவை"
-
-#: templates/webapp/industry/booking_board.html
-msgid "Overdue"
-msgstr "காலாவதியானது"
 
 #: templates/webapp/industry/booking_board.html
 msgid "Nothing to book yet."
@@ -14255,10 +14347,6 @@ msgid "POS sales"
 msgstr "POS விற்பனை"
 
 #: apps/webapp/accounts_views.py
-msgid "This month"
-msgstr "இந்த மாதம்"
-
-#: apps/webapp/accounts_views.py
 msgid "Last month"
 msgstr "கடந்த மாதம்"
 
@@ -16725,6 +16813,42 @@ msgstr "சமீபத்திய கட்டணங்கள்"
 msgid "All bills"
 msgstr "அனைத்து பில்கள்"
 
+#: apps/webapp/overview_charts.py
+msgid "vs yesterday"
+msgstr "நேற்றுடன் ஒப்பிட"
+
+#: apps/webapp/overview_charts.py
+msgid "vs same days last month"
+msgstr "கடந்த மாத அதே நாட்களுடன் ஒப்பிட"
+
+#: apps/webapp/overview_charts.py
+msgid "Spent this month"
+msgstr "இந்த மாத செலவு"
+
+#: apps/webapp/overview_charts.py
+msgid "expenses and purchases"
+msgstr "செலவுகள் மற்றும் கொள்முதல்கள்"
+
+#: apps/webapp/overview_charts.py
+msgid "Total receivables"
+msgstr "மொத்த வரவேண்டியவை"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid invoices"
+msgstr "செலுத்தப்படாத விலைப்பட்டியல்கள்"
+
+#: apps/webapp/overview_charts.py
+msgid "Total payables"
+msgstr "மொத்த செலுத்தவேண்டியவை"
+
+#: apps/webapp/overview_charts.py
+msgid "Unpaid supplier bills"
+msgstr "செலுத்தப்படாத சப்ளையர் பில்கள்"
+
+#: apps/webapp/overview_charts.py
+msgid "Record purchase"
+msgstr "கொள்முதல் பதிவு"
+
 #: apps/webapp/pay_views.py
 msgid "Payment received — thank you!"
 msgstr "கட்டணம் பெறப்பட்டது — நன்றி!"
@@ -17284,10 +17408,6 @@ msgstr "நேற்று"
 #: apps/webapp/restaurant_order_views.py
 msgid "Last 7 days"
 msgstr "கடந்த 7 நாட்கள்"
-
-#: apps/webapp/restaurant_order_views.py
-msgid "Last 30 days"
-msgstr "கடந்த 30 நாட்கள்"
 
 #: apps/webapp/sales_docs_views.py
 msgid "Choose an item on every line."

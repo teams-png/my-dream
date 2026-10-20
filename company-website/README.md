@@ -1,26 +1,33 @@
 # MMM Technologie website
 
-A one-page Bootstrap 5 website for MMM Technologie: BookPilot, the industries it serves, IT services, how we work,
-FAQ and a contact form. No build step: upload the folder as it is to any web host.
+A five-page Bootstrap 5 website for MMM Technologie. No build step: upload the folder as it is to any web host.
 
-## Add your contact details
+| Page | What's on it |
+|---|---|
+| `index.html` | Home: animated network hero, typing terminal, tech marquee, counters, what we do, BookPilot spotlight, services, process |
+| `bookpilot.html` | BookPilot: features, screen tabs, 100+ industries with live demos, platforms & security, FAQ |
+| `services.html` | IT services: circuit-line hero with service orbit, 9 services, engineering, IT support plans |
+| `about.html` | About: story, mission & values, a timeline that fills as you scroll, why us |
+| `contact.html` | Contact: WhatsApp / call tiles, enquiry form that opens WhatsApp, map, quick answers |
 
-Open `config.js` and fill in `phone`, `whatsapp` (numbers only, with country code), `email` and `domain`.
-Every place on the page updates itself; anything left empty stays hidden. The enquiry form opens WhatsApp
-(or email when there is no WhatsApp number) with the visitor's message already written.
+## Your contact details
 
-`bookpilot_url` is where BookPilot runs. The "Try BookPilot free", "See plans", demo and "Sign in" buttons open it.
+Open `config.js`: phone, WhatsApp, email, domain, address and working hours live there. Every page updates itself;
+anything left empty stays hidden. The enquiry form opens WhatsApp with the visitor's message already written.
+
+`bookpilot_url` is where BookPilot runs. "Start free trial", "See plans", live demos and "Sign in" open it.
+
+## Menu and footer
+
+They are written once in `js/layout.js` and shared by every page.
+
+## Animations
+
+Network canvas (reacts to the mouse), typing terminal and word rotator, orbiting service icons, circuit lines,
+gradient-border cards, 3D tilt, counters, reveal on scroll, scroll progress bar and a short logo preloader
+(`js/main.js`, `css/style.css`). Visitors whose device asks for reduced motion get a calm, still version.
 
 ## Put it online
 
-- **Hostinger / cPanel:** File Manager → `public_html` → upload everything in this folder (`index.html` at the top).
+- **Hostinger / cPanel:** File Manager → `public_html` → upload everything in this folder.
 - **Netlify / Cloudflare Pages:** drag this folder onto the site, then add your domain.
-- **GitHub Pages:** publish this folder.
-
-## Files
-
-- `index.html`: the page
-- `config.js`: your phone, WhatsApp, email, domain, address, hours
-- `css/style.css`: colours from the logo (navy `#0b2a57`, teal `#0197ab`)
-- `js/main.js`: fills in the details, menu, scroll effects, enquiry form
-- `assets/`: logo (transparent PNG, white version for dark backgrounds), favicon and BookPilot screenshots

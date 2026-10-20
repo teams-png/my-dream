@@ -30,6 +30,10 @@ msgid "Overview"
 msgstr "Resumen"
 
 #: templates/base.html
+msgid "Today"
+msgstr "Hoy"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "Nueva cuenta"
 
@@ -316,6 +320,26 @@ msgstr "Nuevo cliente"
 #: templates/base.html
 msgid "New supplier"
 msgstr "Nuevo proveedor"
+
+#: templates/base.html
+msgid "No notifications yet."
+msgstr "Aún no hay notificaciones."
+
+#: templates/base.html
+msgid "See all"
+msgstr "Ver todo"
+
+#: templates/base.html
+msgid "Pinned"
+msgstr "Fijadas"
+
+#: templates/base.html
+msgid "Pin this page to the menu"
+msgstr "Fijar esta página en el menú"
+
+#: templates/base.html
+msgid "Remove from the menu"
+msgstr "Quitar del menú"
 
 #: templates/base.html
 msgid "Help"
@@ -3138,6 +3162,10 @@ msgid "New online booking requests"
 msgstr "Nuevas solicitudes de reserva en línea"
 
 #: templates/webapp/dashboard.html
+msgid "Suggestions for today"
+msgstr "Sugerencias para hoy"
+
+#: templates/webapp/dashboard.html
 msgid "Finish setting up your business"
 msgstr "Termina de configurar tu negocio"
 
@@ -3966,10 +3994,6 @@ msgid ""
 msgstr ""
 "El anticipo se registra en la contabilidad y se descuenta del sueldo en cada"
 " nómina, mes a mes, hasta saldarlo."
-
-#: templates/webapp/hr/attendance.html
-msgid "Today"
-msgstr "Hoy"
 
 #: templates/webapp/hr/attendance.html
 msgid "Month view"
@@ -13005,6 +13029,22 @@ msgstr "Aún no hay transferencias."
 msgid "Available"
 msgstr "Disponible"
 
+#: templates/webapp/today.html
+msgid "Send reminder on WhatsApp"
+msgstr "Enviar recordatorio por WhatsApp"
+
+#: templates/webapp/today.html
+msgid "Nobody is late with payment. 👍"
+msgstr "Nadie se ha retrasado en el pago. 👍"
+
+#: templates/webapp/today.html
+msgid "Expiring soon"
+msgstr "Vencen pronto"
+
+#: templates/webapp/today.html
+msgid "Nothing expiring in the next 30 days."
+msgstr "Nada vence en los próximos 30 días."
+
 #: apps/accounts/signup_otp.py
 msgid "Your BookPilot code: %(code)s"
 msgstr "Tu código de BookPilot: %(code)s"
@@ -16298,10 +16338,6 @@ msgid "%(n)s already expired"
 msgstr "%(n)s ya vencido(s)"
 
 #: apps/webapp/overview.py
-msgid "Expiring soon"
-msgstr "Vencen pronto"
-
-#: apps/webapp/overview.py
 msgid "Nothing expires in the next 60 days."
 msgstr "Nada vence en los próximos 60 días."
 
@@ -17519,6 +17555,27 @@ msgstr "Estado actualizado."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "Pedidos y mesas"
+
+#: apps/webapp/today_views.py
+msgid ""
+"Hello %(name)s, a friendly reminder from %(shop)s: invoice %(no)s of %(cur)s"
+" %(amount)s was due on %(date)s. Thank you!"
+msgstr ""
+"Hola %(name)s, un recordatorio amable de %(shop)s: la factura %(no)s de "
+"%(cur)s %(amount)s vencía el %(date)s. ¡Gracias!"
+
+#: apps/webapp/today_views.py
+msgid "Invoices past their due date: %(n)s — send reminders."
+msgstr "Facturas vencidas: %(n)s — envíe recordatorios."
+
+#: apps/webapp/today_views.py
+msgid "Customers who haven't bought in 2 months: %(n)s — send an offer?"
+msgstr ""
+"Clientes que no compran desde hace 2 meses: %(n)s — ¿enviar una oferta?"
+
+#: apps/webapp/today_views.py
+msgid "Products running low: %(n)s — time to reorder."
+msgstr "Productos con poco stock: %(n)s — hora de reponer."
 
 #: apps/webapp/views.py
 msgid "Pack removed."

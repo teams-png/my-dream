@@ -30,6 +30,10 @@ msgid "Overview"
 msgstr "അവലോകനം"
 
 #: templates/base.html
+msgid "Today"
+msgstr "ഇന്ന്"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "പുതിയ ബിൽ"
 
@@ -316,6 +320,26 @@ msgstr "പുതിയ കസ്റ്റമർ"
 #: templates/base.html
 msgid "New supplier"
 msgstr "പുതിയ സപ്ലയർ"
+
+#: templates/base.html
+msgid "No notifications yet."
+msgstr "ഇതുവരെ അറിയിപ്പുകൾ ഇല്ല."
+
+#: templates/base.html
+msgid "See all"
+msgstr "എല്ലാം കാണുക"
+
+#: templates/base.html
+msgid "Pinned"
+msgstr "പിൻ ചെയ്തവ"
+
+#: templates/base.html
+msgid "Pin this page to the menu"
+msgstr "ഈ പേജ് മെനുവിൽ പിൻ ചെയ്യുക"
+
+#: templates/base.html
+msgid "Remove from the menu"
+msgstr "മെനുവിൽ നിന്ന് മാറ്റുക"
 
 #: templates/base.html
 msgid "Help"
@@ -3137,6 +3161,10 @@ msgid "New online booking requests"
 msgstr "പുതിയ ഓൺലൈൻ ബുക്കിംഗ് അഭ്യർത്ഥനകൾ"
 
 #: templates/webapp/dashboard.html
+msgid "Suggestions for today"
+msgstr "ഇന്നത്തെ നിർദ്ദേശങ്ങൾ"
+
+#: templates/webapp/dashboard.html
 msgid "Finish setting up your business"
 msgstr "നിങ്ങളുടെ ബിസിനസ് സെറ്റപ്പ് പൂർത്തിയാക്കുക"
 
@@ -3967,10 +3995,6 @@ msgid ""
 msgstr ""
 "അഡ്വാൻസ് അക്കൗണ്ടിൽ രേഖപ്പെടുത്തും. ശമ്പളം കണക്കാക്കുമ്പോൾ തീരുന്നതുവരെ ഓരോ "
 "മാസവും ശമ്പളത്തിൽ നിന്ന് കുറയ്ക്കും."
-
-#: templates/webapp/hr/attendance.html
-msgid "Today"
-msgstr "ഇന്ന്"
 
 #: templates/webapp/hr/attendance.html
 msgid "Month view"
@@ -13005,6 +13029,22 @@ msgstr "ഇതുവരെ മാറ്റങ്ങൾ ഇല്ല."
 msgid "Available"
 msgstr "ലഭ്യം"
 
+#: templates/webapp/today.html
+msgid "Send reminder on WhatsApp"
+msgstr "WhatsApp-ൽ ഓർമ്മപ്പെടുത്തൽ അയയ്ക്കുക"
+
+#: templates/webapp/today.html
+msgid "Nobody is late with payment. 👍"
+msgstr "ആരും പണം നൽകാൻ വൈകിയിട്ടില്ല. 👍"
+
+#: templates/webapp/today.html
+msgid "Expiring soon"
+msgstr "ഉടൻ കാലാവധി തീരുന്നവ"
+
+#: templates/webapp/today.html
+msgid "Nothing expiring in the next 30 days."
+msgstr "അടുത്ത 30 ദിവസത്തിൽ ഒന്നും കാലാവധി തീരുന്നില്ല."
+
 #: apps/accounts/signup_otp.py
 msgid "Your BookPilot code: %(code)s"
 msgstr "നിങ്ങളുടെ BookPilot കോഡ്: %(code)s"
@@ -16290,10 +16330,6 @@ msgid "%(n)s already expired"
 msgstr "%(n)s ഇതിനകം കാലാവധി കഴിഞ്ഞു"
 
 #: apps/webapp/overview.py
-msgid "Expiring soon"
-msgstr "ഉടൻ കാലാവധി തീരുന്നവ"
-
-#: apps/webapp/overview.py
 msgid "Nothing expires in the next 60 days."
 msgstr "അടുത്ത 60 ദിവസത്തിനുള്ളിൽ ഒന്നും കാലാവധി തീരുന്നില്ല."
 
@@ -17514,6 +17550,26 @@ msgstr "സ്റ്റാറ്റസ് മാറ്റി."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "ഓർഡറുകളും ടേബിളുകളും"
+
+#: apps/webapp/today_views.py
+msgid ""
+"Hello %(name)s, a friendly reminder from %(shop)s: invoice %(no)s of %(cur)s"
+" %(amount)s was due on %(date)s. Thank you!"
+msgstr ""
+"നമസ്കാരം %(name)s, %(shop)s-ൽ നിന്നുള്ള ഒരു ഓർമ്മപ്പെടുത്തൽ: %(cur)s "
+"%(amount)s-ന്റെ ഇൻവോയ്സ് %(no)s %(date)s-ന് അടയ്ക്കേണ്ടതായിരുന്നു. നന്ദി!"
+
+#: apps/webapp/today_views.py
+msgid "Invoices past their due date: %(n)s — send reminders."
+msgstr "തീയതി കഴിഞ്ഞ ഇൻവോയ്സുകൾ: %(n)s — ഓർമ്മപ്പെടുത്തലുകൾ അയയ്ക്കുക."
+
+#: apps/webapp/today_views.py
+msgid "Customers who haven't bought in 2 months: %(n)s — send an offer?"
+msgstr "2 മാസമായി വാങ്ങാത്ത കസ്റ്റമർമാർ: %(n)s — ഓഫർ അയയ്ക്കണോ?"
+
+#: apps/webapp/today_views.py
+msgid "Products running low: %(n)s — time to reorder."
+msgstr "കുറഞ്ഞുവരുന്ന ഉൽപ്പന്നങ്ങൾ: %(n)s — വീണ്ടും ഓർഡർ ചെയ്യാൻ സമയമായി."
 
 #: apps/webapp/views.py
 msgid "Pack removed."

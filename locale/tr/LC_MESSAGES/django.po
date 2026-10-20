@@ -30,6 +30,10 @@ msgid "Overview"
 msgstr "Genel bakış"
 
 #: templates/base.html
+msgid "Today"
+msgstr "Bugün"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "Yeni hesap"
 
@@ -316,6 +320,26 @@ msgstr "Yeni müşteri"
 #: templates/base.html
 msgid "New supplier"
 msgstr "Yeni tedarikçi"
+
+#: templates/base.html
+msgid "No notifications yet."
+msgstr "Henüz bildirim yok."
+
+#: templates/base.html
+msgid "See all"
+msgstr "Tümünü gör"
+
+#: templates/base.html
+msgid "Pinned"
+msgstr "Sabitlenenler"
+
+#: templates/base.html
+msgid "Pin this page to the menu"
+msgstr "Bu sayfayı menüye sabitle"
+
+#: templates/base.html
+msgid "Remove from the menu"
+msgstr "Menüden kaldır"
 
 #: templates/base.html
 msgid "Help"
@@ -3129,6 +3153,10 @@ msgid "New online booking requests"
 msgstr "Yeni online rezervasyon talepleri"
 
 #: templates/webapp/dashboard.html
+msgid "Suggestions for today"
+msgstr "Bugün için öneriler"
+
+#: templates/webapp/dashboard.html
 msgid "Finish setting up your business"
 msgstr "İşletme kurulumunuzu tamamlayın"
 
@@ -3952,10 +3980,6 @@ msgid ""
 msgstr ""
 "Avans muhasebeye kaydedilir ve bordro çalıştırıldığında kapanana kadar her "
 "ay maaştan düşülür."
-
-#: templates/webapp/hr/attendance.html
-msgid "Today"
-msgstr "Bugün"
 
 #: templates/webapp/hr/attendance.html
 msgid "Month view"
@@ -12945,6 +12969,22 @@ msgstr "Henüz transfer yok."
 msgid "Available"
 msgstr "Mevcut"
 
+#: templates/webapp/today.html
+msgid "Send reminder on WhatsApp"
+msgstr "WhatsApp ile hatırlatma gönder"
+
+#: templates/webapp/today.html
+msgid "Nobody is late with payment. 👍"
+msgstr "Ödemesi geciken kimse yok. 👍"
+
+#: templates/webapp/today.html
+msgid "Expiring soon"
+msgstr "Yakında süresi dolacaklar"
+
+#: templates/webapp/today.html
+msgid "Nothing expiring in the next 30 days."
+msgstr "Önümüzdeki 30 günde süresi dolan bir şey yok."
+
 #: apps/accounts/signup_otp.py
 msgid "Your BookPilot code: %(code)s"
 msgstr "BookPilot kodunuz: %(code)s"
@@ -16210,10 +16250,6 @@ msgid "%(n)s already expired"
 msgstr "%(n)s zaten süresi doldu"
 
 #: apps/webapp/overview.py
-msgid "Expiring soon"
-msgstr "Yakında süresi dolacaklar"
-
-#: apps/webapp/overview.py
 msgid "Nothing expires in the next 60 days."
 msgstr "Önümüzdeki 60 günde süresi dolan bir şey yok."
 
@@ -17427,6 +17463,26 @@ msgstr "Durum güncellendi."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "Siparişler ve masalar"
+
+#: apps/webapp/today_views.py
+msgid ""
+"Hello %(name)s, a friendly reminder from %(shop)s: invoice %(no)s of %(cur)s"
+" %(amount)s was due on %(date)s. Thank you!"
+msgstr ""
+"Merhaba %(name)s, %(shop)s'tan nazik bir hatırlatma: %(cur)s %(amount)s "
+"tutarındaki %(no)s numaralı faturanın vadesi %(date)s idi. Teşekkürler!"
+
+#: apps/webapp/today_views.py
+msgid "Invoices past their due date: %(n)s — send reminders."
+msgstr "Vadesi geçmiş faturalar: %(n)s — hatırlatma gönderin."
+
+#: apps/webapp/today_views.py
+msgid "Customers who haven't bought in 2 months: %(n)s — send an offer?"
+msgstr "2 aydır alışveriş yapmayan müşteriler: %(n)s — teklif gönderilsin mi?"
+
+#: apps/webapp/today_views.py
+msgid "Products running low: %(n)s — time to reorder."
+msgstr "Azalan ürünler: %(n)s — yeniden sipariş zamanı."
 
 #: apps/webapp/views.py
 msgid "Pack removed."

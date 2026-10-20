@@ -1,63 +1,11 @@
 {% extends "base.html" %}
-{% load i18n role_access %}
+{% load i18n role_access static %}
 {% block title %}{% translate "Overview" %}{% endblock %}
 {% block heading %}{% translate "Overview" %}{% endblock %}
 {% block content %}
 {% can "setup" as can_setup %}{% can "analytics" as can_reports %}
 {% load sample_data %}{% quick_actions as actions %}
-<style>
-.ov-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-bottom:16px}
-.ov-hello{font-size:22px;font-weight:700;letter-spacing:-.01em}
-.ov-date{color:var(--ink-soft);font-size:14px;margin-top:2px}
-.ov-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;font-size:13.5px;font-weight:600;text-decoration:none;background:var(--accent-soft,#e9f5ec);color:var(--accent)}
-.ov-chip.bad{background:#fde8e8;color:var(--danger)}
-.ov-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
-.ov-actions .btn{font-size:16px;padding:13px 20px}
-.ov-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}
-.ov-kpi{display:block;text-decoration:none;color:inherit;border-top:3px solid var(--accent)}
-.ov-kpi .k-label{color:var(--ink-soft);font-size:13px;padding-inline-end:18px}
-.ov-kpi .k-value{font-size:26px;font-weight:700;margin-top:6px}
-.ov-kpi .k-note{color:var(--ink-soft);font-size:12.5px;margin-top:2px}
-.ov-kpi.warn{border-top-color:var(--warning)}.ov-kpi.warn .k-value{color:var(--warning)}
-.ov-kpi.bad{border-top-color:var(--danger)}.ov-kpi.bad .k-value{color:var(--danger)}
-.ov-panels{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px;margin-bottom:18px}
-.ov-panels.single{grid-template-columns:minmax(0,1fr)}
-.card.ov-panel{padding:0;overflow:hidden}
-.ov-panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
-.ov-panel-head h2{font-size:15px;margin:0}
-.ov-panel-head a{font-size:13.5px;color:var(--accent);text-decoration:none;font-weight:600}
-.ov-panel-head a.stat-link::after{content:none}.ov-panel-head a.stat-link:hover{transform:none;box-shadow:none;text-decoration:underline}
-.ov-row{display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid var(--line)}
-.ov-row:last-child{border-bottom:0}
-.ov-time{font-weight:700;min-width:52px;font-variant-numeric:tabular-nums}
-.ov-main{flex:1;min-width:0}
-.ov-main b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ov-main span{color:var(--ink-soft);font-size:13px}
-.ov-tag{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--paper);color:var(--ink-soft);white-space:nowrap}
-.ov-tag.ok{background:var(--accent-soft,#e9f5ec);color:var(--accent)}
-.ov-tag.warn{background:#fff4dc;color:#a15c00}
-.ov-tag.bad{background:#fde8e8;color:var(--danger)}
-.ov-link{cursor:pointer}.ov-link:hover{background:var(--paper)}
-.ov-timer{display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:74px}
-.ov-timer b{font-size:20px;font-variant-numeric:tabular-nums;letter-spacing:.02em;color:var(--accent)}
-.ov-timer>i{display:block;width:70px;height:5px;border-radius:9px;background:var(--line);overflow:hidden}
-.ov-timer>i>i{display:block;height:100%;width:0;background:var(--accent);transition:width 1s linear}
-.ov-timer.warn b{color:#c77700}.ov-timer.warn>i>i{background:#e69500}
-.ov-timer.late b{color:var(--danger);animation:ovBlink 1s steps(2) infinite}.ov-timer.late>i>i{background:var(--danger)}
-.ov-timer.stopped b{color:var(--ink-soft);animation:none}
-@keyframes ovBlink{50%{opacity:.45}}
-.ov-clock{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.ov-clock-face{display:flex;align-items:baseline;gap:0;padding:8px 16px;border-radius:14px;background:#10244d;color:#cfe0ff;font-variant-numeric:tabular-nums;box-shadow:inset 0 0 0 1px #26407a,0 6px 16px rgba(16,36,77,.18)}
-.ov-clock-face b{font-size:30px;font-weight:700;letter-spacing:.04em;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-.ov-clock-face small{font-size:15px;opacity:.75;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-.ov-clock-face em{font-style:normal;font-size:12px;opacity:.7;margin-inline-start:8px}
-.ov-row .btn{padding:6px 12px;font-size:13px}
-.ov-empty{padding:26px 18px;text-align:center;color:var(--ink-soft)}
-.ov-empty .btn{margin-top:10px}
-.ov-amount{font-weight:700;font-variant-numeric:tabular-nums}
-@media(max-width:900px){.ov-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.ov-panels{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:520px){.ov-timer~.ov-tag{display:none}.ov-clock{flex-direction:row;align-items:center;justify-content:space-between;width:100%}.ov-clock-face{padding:5px 10px;border-radius:10px;box-shadow:none}.ov-clock-face b{font-size:18px}.ov-clock-face small{font-size:11px}.ov-clock-face em{font-size:10px;margin-inline-start:5px}.ov-kpi .k-value{font-size:21px}.ov-actions .btn{flex:1 1 auto;justify-content:center}}
-</style>
+<link rel="stylesheet" href="{% static 'css/overview.css' %}">
 <div class="ov-head">
   <div><div class="ov-hello">{{ greeting }}{% if request.user.first_name %}, {{ request.user.first_name }}{% endif %} 👋</div>
     <div class="ov-date">{{ today|date:"l, j F Y" }} · {{ active_company.name }}</div></div>
@@ -90,6 +38,7 @@
   {% endif %}{% endfor %}
 </div>
 
+{% if suggestions %}<div class="card ov-suggest"><b>💡 {% translate "Suggestions for today" %}</b>{% for icon, text, url in suggestions %}<a href="{{ url }}"><span>{{ icon }}</span><span>{{ text }}</span><span aria-hidden="true">→</span></a>{% endfor %}</div>{% endif %}
 {% if main %}
 <div class="ov-panels{% if not side %} single{% endif %}">
   {% include "webapp/_overview_panel.html" with panel=main %}

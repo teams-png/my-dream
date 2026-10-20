@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Today" %}{% endblock %}
+{% block heading %}{% translate "Today" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/overview.css' %}">
+<style>
+.td-hi{margin:0 0 4px;font-size:22px}.td-date{color:var(--ink-soft);margin:0 0 16px}
+.td-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.td-kpi{display:block;padding:14px 16px;color:inherit}.td-kpi small{color:var(--ink-soft);font-size:13px}.td-kpi b{display:block;font-size:22px;margin-top:4px}
+.td-kpi.bad b{color:var(--danger)}
+.td-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:14px}
+.td-card h3{margin:0 0 10px;font-size:16px;display:flex;justify-content:space-between;align-items:center}
+.td-card h3 a{font-size:13px;color:var(--accent);font-weight:600}
+.td-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.td-row:first-of-type{border-top:0}
+.td-row .grow{flex:1;min-width:0}.td-row small{display:block;color:var(--ink-soft)}
+.td-late{color:var(--danger);font-weight:600}
+.td-empty{color:var(--ink-soft);margin:6px 0}
+@media(max-width:900px){.td-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.td-grid{grid-template-columns:minmax(0,1fr)}}
+</style>
+<h2 class="td-hi">{{ greeting }} 👋</h2>
+<p class="td-date">{{ today|date:"l, j F Y" }} · {{ active_company.name }}</p>
+
+<div class="td-kpis">
+  {% for k in kpis %}{% if k.url %}<a class="card td-kpi {{ k.tone }}" href="{{ k.url }}">{% else %}<div class="card td-kpi {{ k.tone }}">{% endif %}
+    <small>{{ k.label }}</small><b>{% if "money" in k.tone %}{{ k.value|floatformat:2 }}{% else %}{{ k.value }}{% endif %}</b>
+  {% if k.url %}</a>{% else %}</div>{% endif %}{% endfor %}
+</div>
+
+<div class="td-grid">
+  <section class="card td-card">
+    <h3>💵 {% translate "Money to collect" %}{% if overdue %}<a href="{% url 'webapp:receivables' %}">{% translate "All" %} →</a>{% endif %}</h3>
+    {% for o in overdue %}
+    <div class="td-row"><div class="grow"><b>{{ o.invoice.customer.name }}</b><small>{{ o.invoice.invoice_number }} · <span class="td-late">{{ o.late }}</span></small></div>
+      <b>{{ o.due|floatformat:2 }}</b>
+      {% if o.whatsapp %}<a class="btn btn-secondary" href="{{ o.whatsapp }}" target="_blank" rel="noopener" aria-label="{% translate 'Send reminder on WhatsApp' %}">💬</a>{% endif %}</div>
+    {% empty %}<p class="td-empty">{% translate "Nobody is late with payment. 👍" %}</p>{% endfor %}
+  </section>
+  <section class="card td-card">
+    <h3>📄 {% translate "Expiring soon" %}</h3>
+    {% for e in expiring %}
+    <div class="td-row"><div class="grow"><b>{{ e.who }}</b><small>{% translate e.what %}</small></div><span class="{% if e.late %}td-late{% endif %}">{{ e.date|date:"j M" }}</span></div>
+    {% empty %}<p class="td-empty">{% translate "Nothing expiring in the next 30 days." %}</p>{% endfor %}
+  </section>
+</div>
+
+{% if main %}<div class="td-grid">{% include "webapp/_overview_panel.html" with panel=main %}{% if side %}{% include "webapp/_overview_panel.html" with panel=side %}{% endif %}</div>{% endif %}
+<script>document.querySelectorAll(".ov-link").forEach(function(row){row.addEventListener("click",function(e){if(!e.target.closest("a,button"))location.href=row.dataset.href})});</script>
+{% endblock %}

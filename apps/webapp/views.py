@@ -383,6 +383,8 @@ def dashboard(request):
     from . import overview
     today = tz.localdate()
     context.update(overview.limit_links(overview.build(company), request))
+    from .today_views import suggestions
+    context["suggestions"] = suggestions(company, request)
     context.update({
         "greeting": overview.greeting(), "today": today,
         "recent_invoices": SalesInvoice.objects.for_company(company).exclude(status="void")

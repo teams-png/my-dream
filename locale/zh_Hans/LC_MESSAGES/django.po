@@ -30,6 +30,10 @@ msgid "Overview"
 msgstr "概览"
 
 #: templates/base.html
+msgid "Today"
+msgstr "今天"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "新账单"
 
@@ -316,6 +320,26 @@ msgstr "新客户"
 #: templates/base.html
 msgid "New supplier"
 msgstr "新供应商"
+
+#: templates/base.html
+msgid "No notifications yet."
+msgstr "暂无通知。"
+
+#: templates/base.html
+msgid "See all"
+msgstr "查看全部"
+
+#: templates/base.html
+msgid "Pinned"
+msgstr "已固定"
+
+#: templates/base.html
+msgid "Pin this page to the menu"
+msgstr "将此页面固定到菜单"
+
+#: templates/base.html
+msgid "Remove from the menu"
+msgstr "从菜单移除"
 
 #: templates/base.html
 msgid "Help"
@@ -3070,6 +3094,10 @@ msgid "New online booking requests"
 msgstr "新的在线预订请求"
 
 #: templates/webapp/dashboard.html
+msgid "Suggestions for today"
+msgstr "今日建议"
+
+#: templates/webapp/dashboard.html
 msgid "Finish setting up your business"
 msgstr "完成企业设置"
 
@@ -3876,10 +3904,6 @@ msgid ""
 "The advance is recorded in the accounts and deducted from the salary when "
 "you run payroll, month by month until it is cleared."
 msgstr "预支会记入账目，并在每月计算工资时从工资中扣除，直到还清。"
-
-#: templates/webapp/hr/attendance.html
-msgid "Today"
-msgstr "今天"
 
 #: templates/webapp/hr/attendance.html
 msgid "Month view"
@@ -12628,6 +12652,22 @@ msgstr "暂无调拨。"
 msgid "Available"
 msgstr "可用"
 
+#: templates/webapp/today.html
+msgid "Send reminder on WhatsApp"
+msgstr "通过 WhatsApp 发送提醒"
+
+#: templates/webapp/today.html
+msgid "Nobody is late with payment. 👍"
+msgstr "没有人逾期付款。👍"
+
+#: templates/webapp/today.html
+msgid "Expiring soon"
+msgstr "即将过期"
+
+#: templates/webapp/today.html
+msgid "Nothing expiring in the next 30 days."
+msgstr "未来 30 天内没有即将到期的项目。"
+
 #: apps/accounts/signup_otp.py
 msgid "Your BookPilot code: %(code)s"
 msgstr "您的 BookPilot 验证码：%(code)s"
@@ -15805,10 +15845,6 @@ msgid "%(n)s already expired"
 msgstr "%(n)s 已过期"
 
 #: apps/webapp/overview.py
-msgid "Expiring soon"
-msgstr "即将过期"
-
-#: apps/webapp/overview.py
 msgid "Nothing expires in the next 60 days."
 msgstr "未来 60 天内没有即将过期的商品。"
 
@@ -17000,6 +17036,26 @@ msgstr "状态已更新。"
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "订单与餐桌"
+
+#: apps/webapp/today_views.py
+msgid ""
+"Hello %(name)s, a friendly reminder from %(shop)s: invoice %(no)s of %(cur)s"
+" %(amount)s was due on %(date)s. Thank you!"
+msgstr ""
+"您好 %(name)s，来自 %(shop)s 的温馨提醒：发票 %(no)s 金额 %(cur)s %(amount)s 已于 %(date)s "
+"到期。谢谢！"
+
+#: apps/webapp/today_views.py
+msgid "Invoices past their due date: %(n)s — send reminders."
+msgstr "逾期发票：%(n)s 张 — 发送提醒。"
+
+#: apps/webapp/today_views.py
+msgid "Customers who haven't bought in 2 months: %(n)s — send an offer?"
+msgstr "2 个月未购买的客户：%(n)s 位 — 发送优惠？"
+
+#: apps/webapp/today_views.py
+msgid "Products running low: %(n)s — time to reorder."
+msgstr "库存不足的产品：%(n)s 个 — 该补货了。"
 
 #: apps/webapp/views.py
 msgid "Pack removed."

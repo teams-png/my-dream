@@ -30,6 +30,10 @@ msgid "Overview"
 msgstr "نظرة عامة"
 
 #: templates/base.html
+msgid "Today"
+msgstr "اليوم"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "فاتورة جديدة"
 
@@ -316,6 +320,26 @@ msgstr "عميل جديد"
 #: templates/base.html
 msgid "New supplier"
 msgstr "مورد جديد"
+
+#: templates/base.html
+msgid "No notifications yet."
+msgstr "لا توجد إشعارات بعد."
+
+#: templates/base.html
+msgid "See all"
+msgstr "عرض الكل"
+
+#: templates/base.html
+msgid "Pinned"
+msgstr "المثبتة"
+
+#: templates/base.html
+msgid "Pin this page to the menu"
+msgstr "تثبيت هذه الصفحة في القائمة"
+
+#: templates/base.html
+msgid "Remove from the menu"
+msgstr "إزالة من القائمة"
 
 #: templates/base.html
 msgid "Help"
@@ -3105,6 +3129,10 @@ msgid "New online booking requests"
 msgstr "طلبات حجز إلكترونية جديدة"
 
 #: templates/webapp/dashboard.html
+msgid "Suggestions for today"
+msgstr "اقتراحات لليوم"
+
+#: templates/webapp/dashboard.html
 msgid "Finish setting up your business"
 msgstr "أكمل إعداد نشاطك التجاري"
 
@@ -3924,10 +3952,6 @@ msgid ""
 msgstr ""
 "تُسجل السلفة في الحسابات وتُخصم من الراتب عند احتساب الرواتب شهرياً حتى "
 "تُسدد."
-
-#: templates/webapp/hr/attendance.html
-msgid "Today"
-msgstr "اليوم"
 
 #: templates/webapp/hr/attendance.html
 msgid "Month view"
@@ -12840,6 +12864,22 @@ msgstr "لا تحويلات بعد."
 msgid "Available"
 msgstr "متاحة"
 
+#: templates/webapp/today.html
+msgid "Send reminder on WhatsApp"
+msgstr "إرسال تذكير عبر واتساب"
+
+#: templates/webapp/today.html
+msgid "Nobody is late with payment. 👍"
+msgstr "لا أحد متأخر في الدفع. 👍"
+
+#: templates/webapp/today.html
+msgid "Expiring soon"
+msgstr "تنتهي صلاحيتها قريبًا"
+
+#: templates/webapp/today.html
+msgid "Nothing expiring in the next 30 days."
+msgstr "لا شيء ينتهي خلال 30 يومًا القادمة."
+
 #: apps/accounts/signup_otp.py
 msgid "Your BookPilot code: %(code)s"
 msgstr "رمز BookPilot الخاص بك: %(code)s"
@@ -16061,10 +16101,6 @@ msgid "%(n)s already expired"
 msgstr "%(n)s منتهية الصلاحية بالفعل"
 
 #: apps/webapp/overview.py
-msgid "Expiring soon"
-msgstr "تنتهي صلاحيتها قريبًا"
-
-#: apps/webapp/overview.py
 msgid "Nothing expires in the next 60 days."
 msgstr "لا شيء تنتهي صلاحيته خلال الـ 60 يومًا القادمة."
 
@@ -17264,6 +17300,26 @@ msgstr "تم تحديث الحالة."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "الطلبات والطاولات"
+
+#: apps/webapp/today_views.py
+msgid ""
+"Hello %(name)s, a friendly reminder from %(shop)s: invoice %(no)s of %(cur)s"
+" %(amount)s was due on %(date)s. Thank you!"
+msgstr ""
+"مرحبًا %(name)s، تذكير لطيف من %(shop)s: الفاتورة %(no)s بمبلغ %(cur)s "
+"%(amount)s كانت مستحقة في %(date)s. شكرًا لك!"
+
+#: apps/webapp/today_views.py
+msgid "Invoices past their due date: %(n)s — send reminders."
+msgstr "فواتير تجاوزت تاريخ الاستحقاق: %(n)s — أرسل تذكيرات."
+
+#: apps/webapp/today_views.py
+msgid "Customers who haven't bought in 2 months: %(n)s — send an offer?"
+msgstr "عملاء لم يشتروا منذ شهرين: %(n)s — هل ترسل عرضًا؟"
+
+#: apps/webapp/today_views.py
+msgid "Products running low: %(n)s — time to reorder."
+msgstr "منتجات على وشك النفاد: %(n)s — حان وقت إعادة الطلب."
 
 #: apps/webapp/views.py
 msgid "Pack removed."

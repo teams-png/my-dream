@@ -30,6 +30,10 @@ msgid "Overview"
 msgstr "மேலோட்டம்"
 
 #: templates/base.html
+msgid "Today"
+msgstr "இன்று"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "புதிய பில்"
 
@@ -317,6 +321,26 @@ msgstr "புதிய வாடிக்கையாளர்"
 #: templates/base.html
 msgid "New supplier"
 msgstr "புதிய சப்ளையர்"
+
+#: templates/base.html
+msgid "No notifications yet."
+msgstr "இன்னும் அறிவிப்புகள் இல்லை."
+
+#: templates/base.html
+msgid "See all"
+msgstr "அனைத்தையும் பார்"
+
+#: templates/base.html
+msgid "Pinned"
+msgstr "பின் செய்யப்பட்டவை"
+
+#: templates/base.html
+msgid "Pin this page to the menu"
+msgstr "இந்தப் பக்கத்தை மெனுவில் பின் செய்"
+
+#: templates/base.html
+msgid "Remove from the menu"
+msgstr "மெனுவிலிருந்து நீக்கு"
 
 #: templates/base.html
 msgid "Help"
@@ -3150,6 +3174,10 @@ msgid "New online booking requests"
 msgstr "புதிய ஆன்லைன் முன்பதிவு கோரிக்கைகள்"
 
 #: templates/webapp/dashboard.html
+msgid "Suggestions for today"
+msgstr "இன்றைய பரிந்துரைகள்"
+
+#: templates/webapp/dashboard.html
 msgid "Finish setting up your business"
 msgstr "உங்கள் வணிக அமைப்பை முடிக்கவும்"
 
@@ -3986,10 +4014,6 @@ msgid ""
 msgstr ""
 "முன்பணம் கணக்குகளில் பதிவாகும்; சம்பளப் பட்டியல் இயக்கும்போது தீரும் வரை "
 "மாதந்தோறும் சம்பளத்திலிருந்து கழிக்கப்படும்."
-
-#: templates/webapp/hr/attendance.html
-msgid "Today"
-msgstr "இன்று"
 
 #: templates/webapp/hr/attendance.html
 msgid "Month view"
@@ -13072,6 +13096,22 @@ msgstr "இன்னும் மாற்றங்கள் இல்லை."
 msgid "Available"
 msgstr "கிடைக்கிறது"
 
+#: templates/webapp/today.html
+msgid "Send reminder on WhatsApp"
+msgstr "WhatsApp-ல் நினைவூட்டல் அனுப்பு"
+
+#: templates/webapp/today.html
+msgid "Nobody is late with payment. 👍"
+msgstr "யாரும் பணம் செலுத்தத் தாமதிக்கவில்லை. 👍"
+
+#: templates/webapp/today.html
+msgid "Expiring soon"
+msgstr "விரைவில் காலாவதியாகும்"
+
+#: templates/webapp/today.html
+msgid "Nothing expiring in the next 30 days."
+msgstr "அடுத்த 30 நாட்களில் எதுவும் காலாவதியாகவில்லை."
+
 #: apps/accounts/signup_otp.py
 msgid "Your BookPilot code: %(code)s"
 msgstr "உங்கள் BookPilot குறியீடு: %(code)s"
@@ -16403,10 +16443,6 @@ msgid "%(n)s already expired"
 msgstr "%(n)s ஏற்கனவே காலாவதியானவை"
 
 #: apps/webapp/overview.py
-msgid "Expiring soon"
-msgstr "விரைவில் காலாவதியாகும்"
-
-#: apps/webapp/overview.py
 msgid "Nothing expires in the next 60 days."
 msgstr "அடுத்த 60 நாட்களில் எதுவும் காலாவதியாகவில்லை."
 
@@ -17648,6 +17684,27 @@ msgstr "நிலை புதுப்பிக்கப்பட்டது."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "ஆர்டர்களும் மேசைகளும்"
+
+#: apps/webapp/today_views.py
+msgid ""
+"Hello %(name)s, a friendly reminder from %(shop)s: invoice %(no)s of %(cur)s"
+" %(amount)s was due on %(date)s. Thank you!"
+msgstr ""
+"வணக்கம் %(name)s, %(shop)s-இலிருந்து ஒரு நினைவூட்டல்: %(cur)s %(amount)s "
+"விலைப்பட்டியல் %(no)s %(date)s அன்று செலுத்த வேண்டியது. நன்றி!"
+
+#: apps/webapp/today_views.py
+msgid "Invoices past their due date: %(n)s — send reminders."
+msgstr ""
+"காலக்கெடு தாண்டிய விலைப்பட்டியல்கள்: %(n)s — நினைவூட்டல்களை அனுப்பவும்."
+
+#: apps/webapp/today_views.py
+msgid "Customers who haven't bought in 2 months: %(n)s — send an offer?"
+msgstr "2 மாதங்களாக வாங்காத வாடிக்கையாளர்கள்: %(n)s — சலுகை அனுப்பலாமா?"
+
+#: apps/webapp/today_views.py
+msgid "Products running low: %(n)s — time to reorder."
+msgstr "குறைந்து வரும் பொருட்கள்: %(n)s — மீண்டும் ஆர்டர் செய்யும் நேரம்."
 
 #: apps/webapp/views.py
 msgid "Pack removed."

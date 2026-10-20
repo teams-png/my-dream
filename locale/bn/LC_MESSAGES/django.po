@@ -30,6 +30,10 @@ msgid "Overview"
 msgstr "ওভারভিউ"
 
 #: templates/base.html
+msgid "Today"
+msgstr "আজ"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "নতুন বিল"
 
@@ -316,6 +320,26 @@ msgstr "নতুন গ্রাহক"
 #: templates/base.html
 msgid "New supplier"
 msgstr "নতুন সরবরাহকারী"
+
+#: templates/base.html
+msgid "No notifications yet."
+msgstr "এখনও কোনো নোটিফিকেশন নেই।"
+
+#: templates/base.html
+msgid "See all"
+msgstr "সব দেখুন"
+
+#: templates/base.html
+msgid "Pinned"
+msgstr "পিন করা"
+
+#: templates/base.html
+msgid "Pin this page to the menu"
+msgstr "এই পেজটি মেনুতে পিন করুন"
+
+#: templates/base.html
+msgid "Remove from the menu"
+msgstr "মেনু থেকে সরান"
 
 #: templates/base.html
 msgid "Help"
@@ -3117,6 +3141,10 @@ msgid "New online booking requests"
 msgstr "নতুন অনলাইন বুকিং অনুরোধ"
 
 #: templates/webapp/dashboard.html
+msgid "Suggestions for today"
+msgstr "আজকের পরামর্শ"
+
+#: templates/webapp/dashboard.html
 msgid "Finish setting up your business"
 msgstr "আপনার ব্যবসার সেটআপ শেষ করুন"
 
@@ -3940,10 +3968,6 @@ msgid ""
 msgstr ""
 "অগ্রিম হিসাবে লেখা হয় এবং বেতন তালিকা চালানোর সময় শোধ না হওয়া পর্যন্ত "
 "প্রতি মাসে বেতন থেকে কাটা হয়।"
-
-#: templates/webapp/hr/attendance.html
-msgid "Today"
-msgstr "আজ"
 
 #: templates/webapp/hr/attendance.html
 msgid "Month view"
@@ -12893,6 +12917,22 @@ msgstr "এখনও কোনো স্থানান্তর নেই।"
 msgid "Available"
 msgstr "উপলব্ধ"
 
+#: templates/webapp/today.html
+msgid "Send reminder on WhatsApp"
+msgstr "WhatsApp-এ রিমাইন্ডার পাঠান"
+
+#: templates/webapp/today.html
+msgid "Nobody is late with payment. 👍"
+msgstr "কারও পেমেন্ট দেরি হয়নি। 👍"
+
+#: templates/webapp/today.html
+msgid "Expiring soon"
+msgstr "শীঘ্রই মেয়াদ শেষ"
+
+#: templates/webapp/today.html
+msgid "Nothing expiring in the next 30 days."
+msgstr "আগামী 30 দিনে কিছুর মেয়াদ শেষ হচ্ছে না।"
+
 #: apps/accounts/signup_otp.py
 msgid "Your BookPilot code: %(code)s"
 msgstr "আপনার BookPilot কোড: %(code)s"
@@ -16142,10 +16182,6 @@ msgid "%(n)s already expired"
 msgstr "%(n)s ইতিমধ্যে মেয়াদোত্তীর্ণ"
 
 #: apps/webapp/overview.py
-msgid "Expiring soon"
-msgstr "শীঘ্রই মেয়াদ শেষ"
-
-#: apps/webapp/overview.py
 msgid "Nothing expires in the next 60 days."
 msgstr "আগামী ৬০ দিনে কিছুরই মেয়াদ শেষ হচ্ছে না।"
 
@@ -17351,6 +17387,26 @@ msgstr "স্ট্যাটাস আপডেট হয়েছে।"
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "অর্ডার ও টেবিল"
+
+#: apps/webapp/today_views.py
+msgid ""
+"Hello %(name)s, a friendly reminder from %(shop)s: invoice %(no)s of %(cur)s"
+" %(amount)s was due on %(date)s. Thank you!"
+msgstr ""
+"হ্যালো %(name)s, %(shop)s থেকে একটি অনুস্মারক: %(cur)s %(amount)s-এর ইনভয়েস"
+" %(no)s %(date)s-এ পরিশোধযোগ্য ছিল। ধন্যবাদ!"
+
+#: apps/webapp/today_views.py
+msgid "Invoices past their due date: %(n)s — send reminders."
+msgstr "মেয়াদোত্তীর্ণ ইনভয়েস: %(n)s — রিমাইন্ডার পাঠান।"
+
+#: apps/webapp/today_views.py
+msgid "Customers who haven't bought in 2 months: %(n)s — send an offer?"
+msgstr "2 মাস ধরে কেনাকাটা করেননি এমন গ্রাহক: %(n)s — অফার পাঠাবেন?"
+
+#: apps/webapp/today_views.py
+msgid "Products running low: %(n)s — time to reorder."
+msgstr "কমে আসা পণ্য: %(n)s — আবার অর্ডার করার সময়।"
 
 #: apps/webapp/views.py
 msgid "Pack removed."

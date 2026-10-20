@@ -30,6 +30,10 @@ msgid "Overview"
 msgstr "ओभरभ्यू"
 
 #: templates/base.html
+msgid "Today"
+msgstr "आज"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "नयाँ बिल"
 
@@ -316,6 +320,26 @@ msgstr "नयाँ ग्राहक"
 #: templates/base.html
 msgid "New supplier"
 msgstr "नयाँ आपूर्तिकर्ता"
+
+#: templates/base.html
+msgid "No notifications yet."
+msgstr "अहिलेसम्म कुनै सूचना छैन।"
+
+#: templates/base.html
+msgid "See all"
+msgstr "सबै हेर्नुहोस्"
+
+#: templates/base.html
+msgid "Pinned"
+msgstr "पिन गरिएका"
+
+#: templates/base.html
+msgid "Pin this page to the menu"
+msgstr "यो पेज मेनुमा पिन गर्नुहोस्"
+
+#: templates/base.html
+msgid "Remove from the menu"
+msgstr "मेनुबाट हटाउनुहोस्"
 
 #: templates/base.html
 msgid "Help"
@@ -3121,6 +3145,10 @@ msgid "New online booking requests"
 msgstr "नयाँ अनलाइन बुकिङ अनुरोध"
 
 #: templates/webapp/dashboard.html
+msgid "Suggestions for today"
+msgstr "आजका सुझावहरू"
+
+#: templates/webapp/dashboard.html
 msgid "Finish setting up your business"
 msgstr "आफ्नो व्यवसायको सेटअप पूरा गर्नुहोस्"
 
@@ -3945,10 +3973,6 @@ msgid ""
 msgstr ""
 "पेस्की खातामा दर्ता हुन्छ र तलब चलाउँदा चुक्ता नभएसम्म हरेक महिना तलबबाट "
 "काटिन्छ।"
-
-#: templates/webapp/hr/attendance.html
-msgid "Today"
-msgstr "आज"
 
 #: templates/webapp/hr/attendance.html
 msgid "Month view"
@@ -12897,6 +12921,22 @@ msgstr "अझै कुनै स्थानान्तरण छैन।"
 msgid "Available"
 msgstr "उपलब्ध"
 
+#: templates/webapp/today.html
+msgid "Send reminder on WhatsApp"
+msgstr "WhatsApp मा सम्झना पठाउनुहोस्"
+
+#: templates/webapp/today.html
+msgid "Nobody is late with payment. 👍"
+msgstr "कसैको भुक्तानी ढिला छैन। 👍"
+
+#: templates/webapp/today.html
+msgid "Expiring soon"
+msgstr "चाँडै म्याद सकिने"
+
+#: templates/webapp/today.html
+msgid "Nothing expiring in the next 30 days."
+msgstr "आउँदो 30 दिनमा केही पनि म्याद सकिँदैन।"
+
 #: apps/accounts/signup_otp.py
 msgid "Your BookPilot code: %(code)s"
 msgstr "तपाईंको BookPilot कोड: %(code)s"
@@ -16146,10 +16186,6 @@ msgid "%(n)s already expired"
 msgstr "%(n)s पहिल्यै म्याद सकिएका"
 
 #: apps/webapp/overview.py
-msgid "Expiring soon"
-msgstr "चाँडै म्याद सकिने"
-
-#: apps/webapp/overview.py
 msgid "Nothing expires in the next 60 days."
 msgstr "आउँदो ६० दिनमा केही पनि म्याद सकिँदैन।"
 
@@ -17356,6 +17392,26 @@ msgstr "स्थिति अपडेट भयो।"
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "अर्डर र टेबल"
+
+#: apps/webapp/today_views.py
+msgid ""
+"Hello %(name)s, a friendly reminder from %(shop)s: invoice %(no)s of %(cur)s"
+" %(amount)s was due on %(date)s. Thank you!"
+msgstr ""
+"नमस्ते %(name)s, %(shop)s बाट सम्झना: %(cur)s %(amount)s को बिल %(no)s "
+"%(date)s मा तिर्नुपर्ने थियो। धन्यवाद!"
+
+#: apps/webapp/today_views.py
+msgid "Invoices past their due date: %(n)s — send reminders."
+msgstr "म्याद नाघेका बिलहरू: %(n)s — सम्झना पठाउनुहोस्।"
+
+#: apps/webapp/today_views.py
+msgid "Customers who haven't bought in 2 months: %(n)s — send an offer?"
+msgstr "२ महिनादेखि नकिनेका ग्राहक: %(n)s — अफर पठाउने?"
+
+#: apps/webapp/today_views.py
+msgid "Products running low: %(n)s — time to reorder."
+msgstr "कम हुँदै गएका सामान: %(n)s — फेरि अर्डर गर्ने बेला।"
 
 #: apps/webapp/views.py
 msgid "Pack removed."

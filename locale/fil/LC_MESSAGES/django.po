@@ -30,6 +30,10 @@ msgid "Overview"
 msgstr "Overview"
 
 #: templates/base.html
+msgid "Today"
+msgstr "Ngayon"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "Bagong bill"
 
@@ -316,6 +320,26 @@ msgstr "Bagong customer"
 #: templates/base.html
 msgid "New supplier"
 msgstr "Bagong supplier"
+
+#: templates/base.html
+msgid "No notifications yet."
+msgstr "Wala pang notification."
+
+#: templates/base.html
+msgid "See all"
+msgstr "Tingnan lahat"
+
+#: templates/base.html
+msgid "Pinned"
+msgstr "Naka-pin"
+
+#: templates/base.html
+msgid "Pin this page to the menu"
+msgstr "I-pin ang pahinang ito sa menu"
+
+#: templates/base.html
+msgid "Remove from the menu"
+msgstr "Alisin sa menu"
 
 #: templates/base.html
 msgid "Help"
@@ -3144,6 +3168,10 @@ msgid "New online booking requests"
 msgstr "Bagong online booking request"
 
 #: templates/webapp/dashboard.html
+msgid "Suggestions for today"
+msgstr "Mga mungkahi ngayon"
+
+#: templates/webapp/dashboard.html
 msgid "Finish setting up your business"
 msgstr "Tapusin ang setup ng iyong negosyo"
 
@@ -3974,10 +4002,6 @@ msgid ""
 msgstr ""
 "Naitatala sa account ang advance at ibinabawas sa sahod kapag pinatakbo ang "
 "payroll, buwan-buwan hanggang mabayaran."
-
-#: templates/webapp/hr/attendance.html
-msgid "Today"
-msgstr "Ngayon"
 
 #: templates/webapp/hr/attendance.html
 msgid "Month view"
@@ -13023,6 +13047,22 @@ msgstr "Wala pang paglipat."
 msgid "Available"
 msgstr "Available"
 
+#: templates/webapp/today.html
+msgid "Send reminder on WhatsApp"
+msgstr "Magpadala ng paalala sa WhatsApp"
+
+#: templates/webapp/today.html
+msgid "Nobody is late with payment. 👍"
+msgstr "Walang huli sa pagbabayad. 👍"
+
+#: templates/webapp/today.html
+msgid "Expiring soon"
+msgstr "Malapit nang mag-expire"
+
+#: templates/webapp/today.html
+msgid "Nothing expiring in the next 30 days."
+msgstr "Walang mag-e-expire sa susunod na 30 araw."
+
 #: apps/accounts/signup_otp.py
 msgid "Your BookPilot code: %(code)s"
 msgstr "Ang iyong BookPilot code: %(code)s"
@@ -16321,10 +16361,6 @@ msgid "%(n)s already expired"
 msgstr "%(n)s expired na"
 
 #: apps/webapp/overview.py
-msgid "Expiring soon"
-msgstr "Malapit nang mag-expire"
-
-#: apps/webapp/overview.py
 msgid "Nothing expires in the next 60 days."
 msgstr "Walang mag-e-expire sa susunod na 60 araw."
 
@@ -17550,6 +17586,27 @@ msgstr "Na-update ang status."
 #: apps/webapp/templatetags/sample_data.py
 msgid "Orders & tables"
 msgstr "Mga order at mesa"
+
+#: apps/webapp/today_views.py
+msgid ""
+"Hello %(name)s, a friendly reminder from %(shop)s: invoice %(no)s of %(cur)s"
+" %(amount)s was due on %(date)s. Thank you!"
+msgstr ""
+"Hello %(name)s, paalala mula sa %(shop)s: ang invoice %(no)s na %(cur)s "
+"%(amount)s ay dapat bayaran noong %(date)s. Salamat!"
+
+#: apps/webapp/today_views.py
+msgid "Invoices past their due date: %(n)s — send reminders."
+msgstr "Mga invoice na lampas na sa due date: %(n)s — magpadala ng paalala."
+
+#: apps/webapp/today_views.py
+msgid "Customers who haven't bought in 2 months: %(n)s — send an offer?"
+msgstr ""
+"Mga customer na 2 buwan nang hindi bumibili: %(n)s — magpadala ng alok?"
+
+#: apps/webapp/today_views.py
+msgid "Products running low: %(n)s — time to reorder."
+msgstr "Mga produktong paubos na: %(n)s — oras na para mag-order ulit."
 
 #: apps/webapp/views.py
 msgid "Pack removed."

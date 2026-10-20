@@ -116,11 +116,36 @@ def _pricing_data():
     }
 
 
+# Country headers a CDN or proxy in front of the site may add (Cloudflare, Vercel, CloudFront, Google LB…).
+COUNTRY_HEADERS = ("HTTP_CF_IPCOUNTRY", "HTTP_X_VERCEL_IP_COUNTRY", "HTTP_CLOUDFRONT_VIEWER_COUNTRY",
+                   "HTTP_X_APPENGINE_COUNTRY", "HTTP_X_COUNTRY_CODE")
+
+
+def visitor_country(request):
+    """Two-letter country of the visitor when a proxy in front of the site tells us, else ""."""
+    for header in COUNTRY_HEADERS:
+        code = (request.META.get(header) or "").strip().upper()
+        if len(code) == 2 and code.isalpha() and code not in ("XX", "T1"):
+            return code
+    return ""
+
+
 def landing(request):
+    # India prices are only for visitors from India. When the country is known and isn't India they are left out of
+    # the page; when it isn't known the browser decides from its time zone (India has one: Asia/Kolkata).
+    country = visitor_country(request)
+    pricing, plans = _pricing_data(), _plans()
+    if country and country != "IN":
+        pricing["plans"] = [p for p in pricing["plans"] if p["region"] != "India"]
+        pricing["website"] = {k: v for k, v in pricing["website"].items() if k != "India"}
+    if country != "IN":
+        plans = [p for p in plans if p.country != "India"]
+    pricing["visitor"] = country
+    from apps.modules.catalog import ADDON_MODULES
     return render(request, "webapp/public/landing.html", {
-        "plans": _plans(), "pricing": _pricing_data(), "popular_types": POPULAR_TYPES, "trial_days": TRIAL_DAYS,
+        "plans": plans, "pricing": pricing, "popular_types": POPULAR_TYPES, "trial_days": TRIAL_DAYS,
         "business_count": len(BUSINESS_TYPE_MAP), "signup_enabled": settings.PUBLIC_SIGNUP_ENABLED,
-        "module_count": Module.objects.count(), "support": support_details(),
+        "module_count": Module.objects.exclude(code__in=ADDON_MODULES).count(), "support": support_details(),
         "demos": __import__("apps.industry.demo", fromlist=["DEMOS"]).DEMOS,
     })
 

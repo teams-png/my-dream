@@ -67,7 +67,7 @@ from apps.expenses import services as expense_services
 from apps.tenants.models import Role, Permission, CompanyMembership, Company, CompanyBusinessType
 from apps.subscriptions.models import Subscription, SubscriptionPlan, SubscriptionPayment
 from apps.modules.models import Module, CompanyModule
-from apps.modules.catalog import business_group, billing_mode, BUSINESS_TYPE_MAP, BUSINESS_TYPE_CHOICES
+from apps.modules.catalog import ADDON_MODULES, business_group, billing_mode, BUSINESS_TYPE_MAP, BUSINESS_TYPE_CHOICES
 from .forms import WEB_FEATURES
 from apps.tenants import services as tenant_services
 from apps.sales.models import Coupon
@@ -5782,6 +5782,7 @@ def platform_admin_manage_modules(request, company_id):
         "module_rows": module_rows,
         "permission_groups": permission_groups,
         "web_feature_codes": {code for code, _ in WEB_FEATURES},
+        "addon_codes": set(ADDON_MODULES),
     })
 
 

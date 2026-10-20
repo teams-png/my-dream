@@ -138,7 +138,7 @@ VERTICALS.append(dict(
         ("Tax &amp; currency", ["[[[Settings]]] → [[Tax &amp; currency]]: tax registration number, tax codes and exchange rates."])],
  tasks=[
   ("Ask BookPilot a question",
-   ["Open [[✨ Ask BookPilot]] (owners and accountants; shown when the assistant is switched on for your account) and type a question in any language — e.g. <i>How were my sales this month compared with last month?</i>, <i>Who owes me money?</i>, <i>What should I reorder?</i>",
+   ["Open [[✨ Ask BookPilot]] (owners and accountants; an advanced add-on, not part of the plans — shown once BookPilot switches it on for your business) and type a question in any language — e.g. <i>How were my sales this month compared with last month?</i>, <i>Who owes me money?</i>, <i>What should I reorder?</i>",
     "Answers come only from this business's own figures (sales, top products and customers, money owed, low stock, expenses). Check important numbers in the reports before acting on them.",
     "Up to 40 questions a day per business; [[New conversation]] starts afresh."]),
   ("Record an expense", ["[[Expenses]] → [[+ Add expense]]: category, amount, date, paid from cash or bank."]),

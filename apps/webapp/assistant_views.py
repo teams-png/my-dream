@@ -17,7 +17,7 @@ ERRORS = {
 @login_required
 def ask(request):
     company = getattr(request, "company", None)
-    if company is None or not assistant.enabled():
+    if company is None or not assistant.enabled(company):
         raise Http404
     key = f"assistant_history_{company.id}"
     history = request.session.get(key, [])

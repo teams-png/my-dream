@@ -266,7 +266,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="center reveal"><span class="eyebrow">{% translate "Simple pricing" %}</span><h2>{% translate "Start free. Upgrade when you grow." %}</h2><p class="sub">{% translate "Every plan starts with a" %} {{ trial_days }}-day free trial. No card needed.</p></div>
   <div class="price-tools reveal">
     <div class="seg-tabs" id="tierTabs" role="tablist"><button type="button" class="on" data-tier="standard">🏢 {% translate "Business" %}</button><button type="button" data-tier="large">🛒 {% translate "Supermarket / Large shop" %}</button></div>
-    <div class="seg-tabs" id="regionTabs" role="tablist"><button type="button" class="on" data-region="Global">🌍 {% translate "International (QAR)" %}</button><button type="button" data-region="India">🇮🇳 {% translate "India (INR)" %}</button></div>
+    <div class="seg-tabs" id="regionTabs" role="tablist" hidden><button type="button" class="on" data-region="Global">🌍 {% translate "International (QAR)" %}</button><button type="button" data-region="India">🇮🇳 {% translate "India (INR)" %}</button></div>
     <label class="cur-pick">{% translate "Show in" %} <select id="curPick"><option value="">QAR</option>{% for code in pricing.fx %}{% if code != "QAR" %}<option value="{{ code }}">{{ code }}</option>{% endif %}{% endfor %}</select></label>
   </div>
   <div class="plans" id="planCards"></div>
@@ -311,10 +311,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     xSite:"{% translate 'Business website' %}",xSiteNote:"{% translate 'Your own website with pages, products and WhatsApp — on your own domain' %}",
     xShop:"{% translate 'E-commerce website' %}",xShopNote:"{% translate 'Everything in the website, plus cart, checkout and website orders in BookPilot' %}",
     perUser:"{% translate 'per extra user / year' %}",perBranch:"{% translate 'per extra branch / year' %}",
+    billedGlobal:"{% translate 'Prices are per year, billed in QAR. Other currencies are an estimate.' %}",
     india:"{% translate 'Prices are per year, billed in INR.' %}",approx:"{% translate 'approx.' %}"};
   let tier='standard',region='Global';
   try{const saved=localStorage.getItem('bp.cur');if(saved&&P.fx[saved])cur.value=saved}catch(_){}
-  if(!cur.value){const lang=(navigator.language||'').toLowerCase();if(lang.endsWith('-in')){region='India'}}
+  // India prices only for visitors in India: the server's country header when there is one, else the time zone.
+  let tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(_){}
+  const inIndia=P.visitor?P.visitor==='IN':/^Asia\/(Kolkata|Calcutta)$/.test(tz);
+  if(inIndia&&P.plans.some(p=>p.region==='India')){document.getElementById('regionTabs').hidden=false;if(!cur.value)region='India'}
   const fmt=n=>Number(n).toLocaleString(undefined,{maximumFractionDigits:n<100?1:0});
   function render(){
     document.querySelectorAll('#tierTabs button').forEach(b=>b.classList.toggle('on',b.dataset.tier===tier));
@@ -328,7 +332,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       ${c&&fx?`<div class="approx">≈ ${c} ${fmt(p.price*fx.rate)}${fx.exact?'':' ('+T.approx+')'}</div>`:''}
       <ul><li>${T.upTo} ${p.users} ${p.users>1?T.users:T.user} ${T.plusOwner}${p.extra_user?` · +${p.currency} ${fmt(p.extra_user)} ${T.perUser}`:''}</li><li>${T.branch1}${p.extra_branch?` · +${p.currency} ${fmt(p.extra_branch)} ${T.perBranch}`:''}</li>${T.feats.map(f=>`<li>${f}</li>`).join('')}<li>${T.all}</li></ul>
       ${signup?`<a class="btn ${i===1?'primary':'ghost'}" href="${signup}?plan=${p.id}">${T.start}</a>`:''}</div>`).join('');
-    note.textContent=region==='India'?T.india:T.billed;
+    note.textContent=region==='India'?T.india:(inIndia?T.billed:T.billedGlobal);
     const top=list[list.length-1],ab=document.getElementById('addonBox');
     const conv=v=>c&&fx?` <small>≈ ${c} ${fmt(v*fx.rate)}</small>`:'';
     const parts=[];

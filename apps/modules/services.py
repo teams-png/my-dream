@@ -44,7 +44,9 @@ def set_company_modules(*, company, module_codes):
         raise ValidationError(f"Unknown module codes: {', '.join(sorted(unknown))}")
     subscription = getattr(company, "subscription", None)
     plan_codes = set(subscription.plan.modules.values_list("code", flat=True)) if subscription else set()
-    disallowed = {m.code for m in modules if not m.is_core and plan_codes and m.code not in plan_codes}
+    from .catalog import ADDON_MODULES
+    disallowed = {m.code for m in modules
+                  if not m.is_core and plan_codes and m.code not in plan_codes and m.code not in ADDON_MODULES}
     if disallowed:
         raise ValidationError(f"Modules not included in the assigned plan: {', '.join(sorted(disallowed))}")
     for module in Module.objects.all():

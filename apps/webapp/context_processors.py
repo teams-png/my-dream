@@ -112,6 +112,8 @@ def hr_extras(request):
 
 
 def assistant_on(request):
-    """Whether "Ask BookPilot" is offered (the server has an Anthropic API key)."""
+    """Whether "Ask BookPilot" is offered: the server has an Anthropic API key and this client has the add-on."""
+    from django.utils.functional import SimpleLazyObject
     from .assistant import enabled
-    return {"assistant_on": enabled()}
+    company = getattr(request, "company", None)
+    return {"assistant_on": SimpleLazyObject(lambda: company is not None and enabled(company))}

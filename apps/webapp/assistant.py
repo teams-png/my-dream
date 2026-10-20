@@ -1,8 +1,9 @@
 """Ask BookPilot: questions about the business answered by Claude from a summary of the business's own figures.
 
 Claude never reaches the database: the view builds a small snapshot (sales by period, top products and customers,
-money owed, low stock, expenses) and the model answers only from it. On only when ANTHROPIC_API_KEY is set on the
-server (Render → Environment); each business may ask DAILY_LIMIT questions a day."""
+money owed, low stock, expenses) and the model answers only from it. An advanced add-on, not part of any plan: on
+for a business only when ANTHROPIC_API_KEY is set on the server (Render → Environment) and a platform admin has
+ticked "Ask BookPilot (AI)" in that client's modules. Each business may ask DAILY_LIMIT questions a day."""
 import json
 import os
 from datetime import timedelta
@@ -23,8 +24,17 @@ SYSTEM = (
 )
 
 
-def enabled():
-    return bool(os.environ.get("ANTHROPIC_API_KEY"))
+ADDON_CODE = "ai_assistant"
+
+
+def enabled(company=None):
+    """The server has a key and (when a company is given) the platform admin switched the add-on on for it."""
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        return False
+    if company is None:
+        return True
+    from apps.modules.models import CompanyModule
+    return CompanyModule.objects.filter(company=company, module__code=ADDON_CODE, is_active=True).exists()
 
 
 def _money(value):

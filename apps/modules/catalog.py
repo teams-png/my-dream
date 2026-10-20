@@ -235,3 +235,8 @@ def business_group(code):
 
 
 BUSINESS_PROFILES = {code: business_profile(code) for code in BUSINESS_TYPE_MAP}
+
+
+# Advanced add-ons: sold separately, never part of a subscription plan. Only a platform admin switches them on for a
+# client (Clients → Modules).
+ADDON_MODULES = {"ai_assistant": "Ask BookPilot (AI) · advanced add-on"}

@@ -14,7 +14,7 @@
       <label style="display:flex;gap:10px;align-items:flex-start;padding:11px;border:1px solid var(--line);border-radius:8px;">
         <input type="checkbox" name="modules" value="{{ module.id }}" {% if is_on %}checked{% endif %} {% if module.is_core %}disabled{% endif %} style="width:auto;margin-top:3px;">
         {% if module.is_core %}<input type="hidden" name="modules" value="{{ module.id }}">{% endif %}
-        <span><strong>{{ module.name }}</strong><br><small style="color:var(--ink-soft);">{{ module.code }}{% if module.is_core %} · Core / always on{% endif %}</small></span>
+        <span><strong>{{ module.name }}</strong><br><small style="color:var(--ink-soft);">{{ module.code }}{% if module.is_core %} · Core / always on{% endif %}{% if module.code in addon_codes %} · <b style="color:var(--accent)">Advanced add-on, not in any plan</b>{% if module.code == "ai_assistant" %}. Also needs ANTHROPIC_API_KEY in Render → Environment.{% endif %}{% endif %}</small></span>
       </label>
       {% empty %}<div>No modules registered yet.</div>{% endfor %}
     </div>

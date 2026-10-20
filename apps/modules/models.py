@@ -4,6 +4,8 @@ from django.db import models
 class BusinessType(models.Model):
     code = models.SlugField(unique=True)   # "gym", "textile", "general_retail", ...
     name = models.CharField(max_length=100)
+    # False = deleted by the platform admin: no longer offered to new clients; clients already on it keep working.
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name

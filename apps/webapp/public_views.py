@@ -15,7 +15,7 @@ from django.utils.translation import gettext as _
 from apps.accounts import signup_otp
 from apps.accounts import services as account_services
 from apps.accounts.models import LoginAttempt
-from apps.modules.catalog import BUSINESS_TYPE_MAP, business_group
+from apps.modules.catalog import BUSINESS_TYPE_MAP, business_group, hidden_business_codes, offered_business_choices
 from apps.modules.models import BusinessType, Module
 from apps.subscriptions.models import SubscriptionPlan
 from apps.subscriptions.pricing import CURRENCY_BY_COUNTRY, LARGE_BUSINESS_TYPES, fx_rates, is_exact, plans_for
@@ -40,7 +40,7 @@ def _business_choices():
     groups = {"restaurant": "Restaurant & food", "retail": "Shops & retail", "service": "Services",
               "project": "Projects & contracting"}
     grouped = {}
-    for code, name in sorted(BUSINESS_TYPE_MAP.items(), key=lambda kv: kv[1]):
+    for code, name in sorted(offered_business_choices(), key=lambda kv: kv[1]):
         group = business_group(code)
         grouped.setdefault(groups.get(group, "Specialised businesses"), []).append((code, name))
     return [(label, items) for label, items in grouped.items()]
@@ -142,11 +142,13 @@ def landing(request):
         plans = [p for p in plans if p.country != "India"]
     pricing["visitor"] = country
     from apps.modules.catalog import ADDON_MODULES
+    hidden = hidden_business_codes()
     return render(request, "webapp/public/landing.html", {
-        "plans": plans, "pricing": pricing, "popular_types": POPULAR_TYPES, "trial_days": TRIAL_DAYS,
-        "business_count": len(BUSINESS_TYPE_MAP), "signup_enabled": settings.PUBLIC_SIGNUP_ENABLED,
+        "plans": plans, "pricing": pricing, "popular_types": [t for t in POPULAR_TYPES if t[0] not in hidden],
+        "trial_days": TRIAL_DAYS, "business_count": len(set(BUSINESS_TYPE_MAP) - hidden),
+        "signup_enabled": settings.PUBLIC_SIGNUP_ENABLED,
         "module_count": Module.objects.exclude(code__in=ADDON_MODULES).count(), "support": support_details(),
-        "demos": __import__("apps.industry.demo", fromlist=["DEMOS"]).DEMOS,
+        "demos": [d for d in __import__("apps.industry.demo", fromlist=["DEMOS"]).DEMOS if d[0] not in hidden],
     })
 
 
@@ -335,7 +337,7 @@ def demo_open(request, code):
     from django.contrib.auth import logout
     from django.http import Http404
     from apps.industry import demo
-    if code not in demo.CODES:
+    if code not in demo.CODES or code in hidden_business_codes():
         raise Http404
     if request.user.is_authenticated:
         company = getattr(request, "company", None)

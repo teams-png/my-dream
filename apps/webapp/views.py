@@ -67,7 +67,7 @@ from apps.expenses import services as expense_services
 from apps.tenants.models import Role, Permission, CompanyMembership, Company, CompanyBusinessType
 from apps.subscriptions.models import Subscription, SubscriptionPlan, SubscriptionPayment
 from apps.modules.models import Module, CompanyModule
-from apps.modules.catalog import ADDON_MODULES, business_group, billing_mode, BUSINESS_TYPE_MAP, BUSINESS_TYPE_CHOICES
+from apps.modules.catalog import ADDON_MODULES, offered_business_choices, business_group, billing_mode, BUSINESS_TYPE_MAP, BUSINESS_TYPE_CHOICES
 from .forms import WEB_FEATURES
 from apps.tenants import services as tenant_services
 from apps.sales.models import Coupon
@@ -1558,7 +1558,7 @@ def register_client(request):
             primary_name = BUSINESS_TYPE_MAP.get(primary_code, primary_code.replace("_", " ").title())
             selected_suite_codes = set(request.POST.getlist("business_suites"))
             selected_suite_codes.add(primary_code)
-            valid_codes = set(BUSINESS_TYPE_MAP)
+            valid_codes = {code for code, _name in offered_business_choices()}
             selected_suite_codes &= valid_codes
 
             enabled_ids = {int(x) for x in request.POST.getlist("modules") if x.isdigit()}
@@ -1633,7 +1633,7 @@ def register_client(request):
         default_map[bt.code] = [row.module_id for row in bt.default_modules.all()]
 
     business_groups = {}
-    for code, name in BUSINESS_TYPE_CHOICES:
+    for code, name in offered_business_choices():
         business_groups.setdefault(business_group(code), []).append((code, name))
 
     return render(request, "webapp/register_client.html", {
@@ -5823,7 +5823,10 @@ def platform_admin_manage_business_suites(request, company_id):
     company = get_object_or_404(Company, id=company_id)
     if request.method == "POST":
         selected = {int(x) for x in request.POST.getlist("business_types") if x.isdigit()}
-        selected.add(company.business_type_id)
+        # a deleted business type can't be newly given to a client; one it already has stays
+        allowed = set(BusinessType.objects.filter(is_active=True).values_list("id", flat=True)) | set(
+            CompanyBusinessType.objects.filter(company=company, is_active=True).values_list("business_type_id", flat=True))
+        selected = (selected & allowed) | {company.business_type_id}
         for bt in BusinessType.objects.all():
             row, _ = CompanyBusinessType.objects.update_or_create(
                 company=company, business_type=bt,
@@ -5836,7 +5839,8 @@ def platform_admin_manage_business_suites(request, company_id):
         return redirect("webapp:platform_admin_company_detail", company_id=company.id)
     active_ids = set(company.business_suites.filter(is_active=True).values_list("business_type_id", flat=True))
     active_ids.add(company.business_type_id)
-    rows = [(bt, bt.id in active_ids, bt.id == company.business_type_id, business_group(bt.code)) for bt in BusinessType.objects.all().order_by("name")]
+    rows = [(bt, bt.id in active_ids, bt.id == company.business_type_id, business_group(bt.code))
+            for bt in BusinessType.objects.order_by("name") if bt.is_active or bt.id in active_ids]
     rows.sort(key=lambda r: (not r[2], not r[1]))  # main business, then the ticked ones, then the rest A–Z
     return render(request, "webapp/platform_admin/manage_business_suites.html", {"company": company, "business_rows": rows})
 
@@ -5913,7 +5917,8 @@ def platform_module_form(request, module_id=None):
 def platform_business_type_list(request):
     business_types = BusinessType.objects.prefetch_related("default_modules__module").order_by("name")
     return render(request, "webapp/platform_admin/business_type_list.html", {
-        "business_types": business_types,
+        "business_types": [b for b in business_types if b.is_active],
+        "deleted_types": [b for b in business_types if not b.is_active],
     })
 
 
@@ -5936,6 +5941,49 @@ def platform_business_type_form(request, business_type_id=None):
         "form": form, "form_title": "Edit business type" if business_type else "Add business type",
         "cancel_url": "webapp:platform_business_type_list",
     })
+
+
+@login_required
+@superuser_required
+def platform_business_type_delete(request, business_type_id):
+    """Delete a business type. One no client uses and that isn't in the built-in catalogue is removed for good;
+    otherwise it is hidden from sign-up, the landing page and new clients, and clients already on it keep working."""
+    from apps.modules.catalog import BUSINESS_TYPE_MAP
+    business_type = get_object_or_404(BusinessType, id=business_type_id)
+    main_clients = Company._base_manager.filter(business_type=business_type)
+    extra_clients = Company._base_manager.filter(business_suites__business_type=business_type,
+                                                 business_suites__is_active=True).exclude(business_type=business_type)
+    in_use = main_clients.count() + extra_clients.distinct().count()
+    removable = not in_use and business_type.code not in BUSINESS_TYPE_MAP
+    if request.method == "POST":
+        name = business_type.name
+        if removable:
+            CompanyBusinessType.objects.filter(business_type=business_type).delete()
+            business_type.delete()
+            messages.success(request, f"{name} was deleted.")
+        else:
+            business_type.is_active = False
+            business_type.save(update_fields=["is_active"])
+            messages.success(request, f"{name} was deleted: new clients can no longer choose it."
+                             + (f" The {in_use} client(s) already using it keep working." if in_use else ""))
+        return redirect("webapp:platform_business_type_list")
+    return render(request, "webapp/platform_admin/business_type_delete.html", {
+        "business_type": business_type, "main_clients": main_clients[:20], "extra_clients": extra_clients.distinct()[:20],
+        "in_use": in_use, "removable": removable,
+    })
+
+
+@login_required
+@superuser_required
+def platform_business_type_restore(request, business_type_id):
+    if request.method != "POST":
+        from django.http import HttpResponseNotAllowed
+        return HttpResponseNotAllowed(["POST"])
+    business_type = get_object_or_404(BusinessType, id=business_type_id)
+    business_type.is_active = True
+    business_type.save(update_fields=["is_active"])
+    messages.success(request, f"{business_type.name} is offered to clients again.")
+    return redirect("webapp:platform_business_type_list")
 
 
 @login_required

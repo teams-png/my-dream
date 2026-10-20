@@ -240,3 +240,14 @@ BUSINESS_PROFILES = {code: business_profile(code) for code in BUSINESS_TYPE_MAP}
 # Advanced add-ons: sold separately, never part of a subscription plan. Only a platform admin switches them on for a
 # client (Clients → Modules).
 ADDON_MODULES = {"ai_assistant": "Ask BookPilot (AI) · advanced add-on"}
+
+
+def hidden_business_codes():
+    """Business types the platform admin deleted: not offered at sign-up, on the landing page or for new clients."""
+    from apps.modules.models import BusinessType
+    return set(BusinessType.objects.filter(is_active=False).values_list("code", flat=True))
+
+
+def offered_business_choices():
+    hidden = hidden_business_codes()
+    return [(code, name) for code, name in BUSINESS_TYPE_CHOICES if code not in hidden]

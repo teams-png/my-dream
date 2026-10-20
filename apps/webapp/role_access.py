@@ -53,7 +53,7 @@ PAGE_PERMISSIONS = {
     ], PRODUCTS),
     # reports and exports (money figures for the whole business)
     **dict.fromkeys([
-        "analytics", "reports", "branch_stock_report", "restaurant_z_report", "acc_home",
+        "analytics", "reports", "assistant", "branch_stock_report", "restaurant_z_report", "acc_home",
         "product_export_csv", "customer_export_csv", "sales_export_csv",
     ], REPORTS),
     # suppliers and purchases

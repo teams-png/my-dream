@@ -34,6 +34,10 @@ msgid "Today"
 msgstr "今天"
 
 #: templates/base.html
+msgid "Ask BookPilot"
+msgstr "问问 BookPilot"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "新账单"
 
@@ -1429,6 +1433,29 @@ msgstr "+ 添加新客户"
 #: templates/webapp/admin_base.html
 msgid "🔐 Security & 2FA"
 msgstr "🔐 安全与双重验证"
+
+#: templates/webapp/assistant.html
+msgid ""
+"Ask about your sales, customers, money owed, stock or expenses — in any "
+"language. Answers come from this business's own figures; check important "
+"numbers in the reports."
+msgstr "可用任何语言询问销售、客户、应收款、库存或支出。答案来自本企业自己的数据；重要数字请在报表中核对。"
+
+#: templates/webapp/assistant.html
+msgid "Your question"
+msgstr "您的问题"
+
+#: templates/webapp/assistant.html
+msgid "e.g. Who owes me money?"
+msgstr "例如：谁欠我钱？"
+
+#: templates/webapp/assistant.html
+msgid "Ask"
+msgstr "提问"
+
+#: templates/webapp/assistant.html
+msgid "New conversation"
+msgstr "新对话"
 
 #: templates/webapp/auth/login_2fa.html
 msgid "Verify sign-in"
@@ -13792,6 +13819,42 @@ msgstr "借贷必须相等。"
 #: apps/webapp/accounts_views.py
 msgid "Journal entry saved."
 msgstr "日记账分录已保存。"
+
+#: apps/webapp/assistant_views.py
+msgid "Today's questions are used up. Ask again tomorrow."
+msgstr "今天的提问次数已用完，请明天再问。"
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant is busy right now. Please try again in a minute."
+msgstr "助手正忙，请一分钟后再试。"
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant can't answer that question."
+msgstr "助手无法回答这个问题。"
+
+#: apps/webapp/assistant_views.py
+msgid "Something went wrong. Please try again."
+msgstr "出错了，请重试。"
+
+#: apps/webapp/assistant_views.py
+msgid "Questions left today: %(n)s"
+msgstr "今天剩余提问：%(n)s"
+
+#: apps/webapp/assistant_views.py
+msgid "How were my sales this month compared with last month?"
+msgstr "本月销售与上月相比如何？"
+
+#: apps/webapp/assistant_views.py
+msgid "Who owes me money?"
+msgstr "谁欠我钱？"
+
+#: apps/webapp/assistant_views.py
+msgid "Which products sell best this month?"
+msgstr "本月哪些产品卖得最好？"
+
+#: apps/webapp/assistant_views.py
+msgid "What should I reorder?"
+msgstr "我应该补货哪些？"
 
 #: apps/webapp/automation_views.py
 msgid "Checks finished. New reminders are in Notifications."

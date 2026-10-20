@@ -34,6 +34,10 @@ msgid "Today"
 msgstr "آج"
 
 #: templates/base.html
+msgid "Ask BookPilot"
+msgstr "BookPilot سے پوچھیں"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "نیا بل"
 
@@ -1436,6 +1440,32 @@ msgstr "+ نیا کلائنٹ شامل کریں"
 #: templates/webapp/admin_base.html
 msgid "🔐 Security & 2FA"
 msgstr "🔐 سیکیورٹی اور 2FA"
+
+#: templates/webapp/assistant.html
+msgid ""
+"Ask about your sales, customers, money owed, stock or expenses — in any "
+"language. Answers come from this business's own figures; check important "
+"numbers in the reports."
+msgstr ""
+"فروخت، گاہکوں، واجب الادا رقم، اسٹاک یا اخراجات کے بارے میں کسی بھی زبان میں"
+" پوچھیں۔ جوابات اسی کاروبار کے اعداد و شمار سے ہیں؛ اہم اعداد رپورٹس میں "
+"دیکھ لیں۔"
+
+#: templates/webapp/assistant.html
+msgid "Your question"
+msgstr "آپ کا سوال"
+
+#: templates/webapp/assistant.html
+msgid "e.g. Who owes me money?"
+msgstr "مثلاً: کس پر میرے پیسے واجب ہیں؟"
+
+#: templates/webapp/assistant.html
+msgid "Ask"
+msgstr "پوچھیں"
+
+#: templates/webapp/assistant.html
+msgid "New conversation"
+msgstr "نئی گفتگو"
 
 #: templates/webapp/auth/login_2fa.html
 msgid "Verify sign-in"
@@ -14121,6 +14151,42 @@ msgstr "ڈیبٹ اور کریڈٹ برابر ہونے چاہئیں۔"
 #: apps/webapp/accounts_views.py
 msgid "Journal entry saved."
 msgstr "جرنل اندراج محفوظ ہو گیا۔"
+
+#: apps/webapp/assistant_views.py
+msgid "Today's questions are used up. Ask again tomorrow."
+msgstr "آج کے سوال ختم ہو گئے۔ کل دوبارہ پوچھیں۔"
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant is busy right now. Please try again in a minute."
+msgstr "اسسٹنٹ ابھی مصروف ہے۔ ایک منٹ بعد دوبارہ کوشش کریں۔"
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant can't answer that question."
+msgstr "اسسٹنٹ اس سوال کا جواب نہیں دے سکتا۔"
+
+#: apps/webapp/assistant_views.py
+msgid "Something went wrong. Please try again."
+msgstr "کچھ غلط ہو گیا۔ دوبارہ کوشش کریں۔"
+
+#: apps/webapp/assistant_views.py
+msgid "Questions left today: %(n)s"
+msgstr "آج باقی سوال: %(n)s"
+
+#: apps/webapp/assistant_views.py
+msgid "How were my sales this month compared with last month?"
+msgstr "پچھلے مہینے کے مقابلے میں اس مہینے میری فروخت کیسی رہی؟"
+
+#: apps/webapp/assistant_views.py
+msgid "Who owes me money?"
+msgstr "کس پر میرے پیسے واجب ہیں؟"
+
+#: apps/webapp/assistant_views.py
+msgid "Which products sell best this month?"
+msgstr "اس مہینے کون سی مصنوعات سب سے زیادہ بکیں؟"
+
+#: apps/webapp/assistant_views.py
+msgid "What should I reorder?"
+msgstr "مجھے کیا دوبارہ منگوانا چاہیے؟"
 
 #: apps/webapp/automation_views.py
 msgid "Checks finished. New reminders are in Notifications."

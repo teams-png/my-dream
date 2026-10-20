@@ -34,6 +34,10 @@ msgid "Today"
 msgstr "இன்று"
 
 #: templates/base.html
+msgid "Ask BookPilot"
+msgstr "BookPilot-இடம் கேளுங்கள்"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "புதிய பில்"
 
@@ -1444,6 +1448,32 @@ msgstr "+ புதிய வாடிக்கையாளரைச் சே�
 #: templates/webapp/admin_base.html
 msgid "🔐 Security & 2FA"
 msgstr "🔐 பாதுகாப்பு & 2FA"
+
+#: templates/webapp/assistant.html
+msgid ""
+"Ask about your sales, customers, money owed, stock or expenses — in any "
+"language. Answers come from this business's own figures; check important "
+"numbers in the reports."
+msgstr ""
+"விற்பனை, வாடிக்கையாளர்கள், வர வேண்டிய பணம், இருப்பு அல்லது செலவுகள் பற்றி "
+"எந்த மொழியிலும் கேளுங்கள். பதில்கள் இந்த வணிகத்தின் சொந்தக் "
+"கணக்குகளிலிருந்து வருகின்றன; முக்கிய எண்களை அறிக்கைகளில் சரிபார்க்கவும்."
+
+#: templates/webapp/assistant.html
+msgid "Your question"
+msgstr "உங்கள் கேள்வி"
+
+#: templates/webapp/assistant.html
+msgid "e.g. Who owes me money?"
+msgstr "எ.கா. யார் எனக்கு பணம் தர வேண்டும்?"
+
+#: templates/webapp/assistant.html
+msgid "Ask"
+msgstr "கேள்"
+
+#: templates/webapp/assistant.html
+msgid "New conversation"
+msgstr "புதிய உரையாடல்"
 
 #: templates/webapp/auth/login_2fa.html
 msgid "Verify sign-in"
@@ -14311,6 +14341,43 @@ msgstr "பற்றும் வரவும் சமமாக இருக்
 #: apps/webapp/accounts_views.py
 msgid "Journal entry saved."
 msgstr "ஜர்னல் பதிவு சேமிக்கப்பட்டது."
+
+#: apps/webapp/assistant_views.py
+msgid "Today's questions are used up. Ask again tomorrow."
+msgstr "இன்றைய கேள்விகள் தீர்ந்துவிட்டன. நாளை மீண்டும் கேளுங்கள்."
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant is busy right now. Please try again in a minute."
+msgstr ""
+"உதவியாளர் இப்போது பிஸியாக உள்ளது. ஒரு நிமிடம் கழித்து மீண்டும் முயலுங்கள்."
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant can't answer that question."
+msgstr "உதவியாளரால் இந்தக் கேள்விக்குப் பதில் அளிக்க முடியாது."
+
+#: apps/webapp/assistant_views.py
+msgid "Something went wrong. Please try again."
+msgstr "ஏதோ தவறு நடந்தது. மீண்டும் முயலுங்கள்."
+
+#: apps/webapp/assistant_views.py
+msgid "Questions left today: %(n)s"
+msgstr "இன்று மீதமுள்ள கேள்விகள்: %(n)s"
+
+#: apps/webapp/assistant_views.py
+msgid "How were my sales this month compared with last month?"
+msgstr "கடந்த மாதத்துடன் ஒப்பிடும்போது இந்த மாதம் என் விற்பனை எப்படி?"
+
+#: apps/webapp/assistant_views.py
+msgid "Who owes me money?"
+msgstr "யார் எனக்கு பணம் தர வேண்டும்?"
+
+#: apps/webapp/assistant_views.py
+msgid "Which products sell best this month?"
+msgstr "இந்த மாதம் அதிகம் விற்ற பொருட்கள் எவை?"
+
+#: apps/webapp/assistant_views.py
+msgid "What should I reorder?"
+msgstr "நான் எதை மீண்டும் ஆர்டர் செய்ய வேண்டும்?"
 
 #: apps/webapp/automation_views.py
 msgid "Checks finished. New reminders are in Notifications."

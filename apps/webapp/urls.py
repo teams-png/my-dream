@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import team_order_views
-from . import palette_views, list_tools_views, today_views
+from . import palette_views, list_tools_views, today_views, assistant_views
 from . import manpower_views, contract_views, delivery_views, job_views, sports_extra_views, refill_views, shop_order_views, billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
 
 app_name = "webapp"
@@ -154,6 +154,7 @@ urlpatterns = [
     path("customers/<int:customer_id>/receive/", receivables_views.receive_payment, name="receive_payment"),
     path("search/palette/", palette_views.palette_search, name="palette_search"),
     path("today/", today_views.today, name="today"),
+    path("ask/", assistant_views.ask, name="assistant"),
     path("notifications/feed/", today_views.notification_feed, name="notification_feed"),
     path("products/<int:product_id>/quick/", list_tools_views.product_quick_update, name="product_quick_update"),
     path("products/bulk/", list_tools_views.product_bulk, name="product_bulk"),

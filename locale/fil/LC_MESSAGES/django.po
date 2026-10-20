@@ -34,6 +34,10 @@ msgid "Today"
 msgstr "Ngayon"
 
 #: templates/base.html
+msgid "Ask BookPilot"
+msgstr "Magtanong sa BookPilot"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "Bagong bill"
 
@@ -1440,6 +1444,32 @@ msgstr "+ Magdagdag ng kliyente"
 #: templates/webapp/admin_base.html
 msgid "🔐 Security & 2FA"
 msgstr "🔐 Seguridad at 2FA"
+
+#: templates/webapp/assistant.html
+msgid ""
+"Ask about your sales, customers, money owed, stock or expenses — in any "
+"language. Answers come from this business's own figures; check important "
+"numbers in the reports."
+msgstr ""
+"Magtanong tungkol sa benta, customer, utang sa iyo, stock o gastos — sa "
+"anumang wika. Galing ang sagot sa sariling numero ng negosyong ito; i-check "
+"ang mahahalagang numero sa mga report."
+
+#: templates/webapp/assistant.html
+msgid "Your question"
+msgstr "Ang tanong mo"
+
+#: templates/webapp/assistant.html
+msgid "e.g. Who owes me money?"
+msgstr "hal. Sino ang may utang sa akin?"
+
+#: templates/webapp/assistant.html
+msgid "Ask"
+msgstr "Magtanong"
+
+#: templates/webapp/assistant.html
+msgid "New conversation"
+msgstr "Bagong usapan"
 
 #: templates/webapp/auth/login_2fa.html
 msgid "Verify sign-in"
@@ -14254,6 +14284,42 @@ msgstr "Dapat magkapantay ang debit at credit."
 #: apps/webapp/accounts_views.py
 msgid "Journal entry saved."
 msgstr "Na-save ang journal entry."
+
+#: apps/webapp/assistant_views.py
+msgid "Today's questions are used up. Ask again tomorrow."
+msgstr "Ubos na ang mga tanong ngayong araw. Magtanong ulit bukas."
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant is busy right now. Please try again in a minute."
+msgstr "Abala ang assistant ngayon. Subukan ulit pagkalipas ng isang minuto."
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant can't answer that question."
+msgstr "Hindi masagot ng assistant ang tanong na iyan."
+
+#: apps/webapp/assistant_views.py
+msgid "Something went wrong. Please try again."
+msgstr "May nangyaring mali. Subukan ulit."
+
+#: apps/webapp/assistant_views.py
+msgid "Questions left today: %(n)s"
+msgstr "Natitirang tanong ngayon: %(n)s"
+
+#: apps/webapp/assistant_views.py
+msgid "How were my sales this month compared with last month?"
+msgstr "Kumusta ang benta ko ngayong buwan kumpara noong nakaraang buwan?"
+
+#: apps/webapp/assistant_views.py
+msgid "Who owes me money?"
+msgstr "Sino ang may utang sa akin?"
+
+#: apps/webapp/assistant_views.py
+msgid "Which products sell best this month?"
+msgstr "Aling mga produkto ang pinakamabenta ngayong buwan?"
+
+#: apps/webapp/assistant_views.py
+msgid "What should I reorder?"
+msgstr "Ano ang dapat kong i-reorder?"
 
 #: apps/webapp/automation_views.py
 msgid "Checks finished. New reminders are in Notifications."

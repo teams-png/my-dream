@@ -34,6 +34,10 @@ msgid "Today"
 msgstr "Aujourd’hui"
 
 #: templates/base.html
+msgid "Ask BookPilot"
+msgstr "Demander à BookPilot"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "Nouvelle addition"
 
@@ -1441,6 +1445,33 @@ msgstr "+ Ajouter un client"
 #: templates/webapp/admin_base.html
 msgid "🔐 Security & 2FA"
 msgstr "🔐 Sécurité et 2FA"
+
+#: templates/webapp/assistant.html
+msgid ""
+"Ask about your sales, customers, money owed, stock or expenses — in any "
+"language. Answers come from this business's own figures; check important "
+"numbers in the reports."
+msgstr ""
+"Posez vos questions sur les ventes, les clients, l’argent dû, le stock ou "
+"les dépenses, dans n’importe quelle langue. Les réponses viennent des "
+"chiffres de cette entreprise ; vérifiez les montants importants dans les "
+"rapports."
+
+#: templates/webapp/assistant.html
+msgid "Your question"
+msgstr "Votre question"
+
+#: templates/webapp/assistant.html
+msgid "e.g. Who owes me money?"
+msgstr "ex. Qui me doit de l’argent ?"
+
+#: templates/webapp/assistant.html
+msgid "Ask"
+msgstr "Demander"
+
+#: templates/webapp/assistant.html
+msgid "New conversation"
+msgstr "Nouvelle conversation"
 
 #: templates/webapp/auth/login_2fa.html
 msgid "Verify sign-in"
@@ -14300,6 +14331,42 @@ msgstr "Les débits et crédits doivent être égaux."
 #: apps/webapp/accounts_views.py
 msgid "Journal entry saved."
 msgstr "Écriture de journal enregistrée."
+
+#: apps/webapp/assistant_views.py
+msgid "Today's questions are used up. Ask again tomorrow."
+msgstr "Les questions du jour sont épuisées. Revenez demain."
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant is busy right now. Please try again in a minute."
+msgstr "L’assistant est occupé. Réessayez dans une minute."
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant can't answer that question."
+msgstr "L’assistant ne peut pas répondre à cette question."
+
+#: apps/webapp/assistant_views.py
+msgid "Something went wrong. Please try again."
+msgstr "Une erreur s’est produite. Réessayez."
+
+#: apps/webapp/assistant_views.py
+msgid "Questions left today: %(n)s"
+msgstr "Questions restantes aujourd’hui : %(n)s"
+
+#: apps/webapp/assistant_views.py
+msgid "How were my sales this month compared with last month?"
+msgstr "Comment sont mes ventes ce mois-ci par rapport au mois dernier ?"
+
+#: apps/webapp/assistant_views.py
+msgid "Who owes me money?"
+msgstr "Qui me doit de l’argent ?"
+
+#: apps/webapp/assistant_views.py
+msgid "Which products sell best this month?"
+msgstr "Quels produits se vendent le mieux ce mois-ci ?"
+
+#: apps/webapp/assistant_views.py
+msgid "What should I reorder?"
+msgstr "Que dois-je recommander ?"
 
 #: apps/webapp/automation_views.py
 msgid "Checks finished. New reminders are in Notifications."

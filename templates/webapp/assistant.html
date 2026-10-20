@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Ask BookPilot" %}{% endblock %}
+{% block heading %}✨ {% translate "Ask BookPilot" %}{% endblock %}
+{% block content %}
+<style>
+.as-wrap{max-width:780px}
+.as-intro{color:var(--ink-soft);margin:0 0 14px}
+.as-q{display:flex;justify-content:flex-end;margin:14px 0 6px}.as-q span{background:var(--accent);color:#fff;border-radius:12px 12px 2px 12px;padding:10px 14px;max-width:85%}
+.as-a{background:var(--panel);border:1px solid var(--line);border-radius:12px 12px 12px 2px;padding:14px 16px;max-width:92%;line-height:1.6}
+.as-form{display:flex;gap:8px;margin-top:18px}.as-form textarea{flex:1;min-height:52px;padding:12px;border:1px solid #d0d7e2;border-radius:8px;font:inherit;resize:vertical}
+.as-ex{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.as-ex button{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:7px 12px;font:inherit;font-size:14px;cursor:pointer;color:var(--ink)}
+.as-ex button:hover{border-color:var(--accent);color:var(--accent)}
+.as-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;color:var(--ink-soft);font-size:13px}
+.as-err{background:var(--danger-bg);color:var(--danger);padding:10px 14px;border-radius:8px;margin-top:12px}
+</style>
+<div class="as-wrap">
+  <p class="as-intro">{% translate "Ask about your sales, customers, money owed, stock or expenses — in any language. Answers come from this business's own figures; check important numbers in the reports." %}</p>
+  {% for q, a in history %}
+  <div class="as-q"><span>{{ q }}</span></div>
+  <div class="as-a">{{ a|linebreaksbr }}</div>
+  {% endfor %}
+  {% if error %}<div class="as-err" role="alert">{{ error }}</div>{% endif %}
+  <form method="post" class="as-form" id="asForm">{% csrf_token %}
+    <label for="asQ" class="sr">{% translate "Your question" %}</label>
+    <textarea id="asQ" name="question" maxlength="500" required placeholder="{% translate 'e.g. Who owes me money?' %}"></textarea>
+    <button class="btn" type="submit">{% translate "Ask" %}</button>
+  </form>
+  {% if not history %}<div class="as-ex">{% for e in examples %}<button type="button" data-ask="{{ e }}">{{ e }}</button>{% endfor %}</div>{% endif %}
+  <div class="as-foot"><span>{{ left_text }}</span>
+    {% if history %}<form method="post">{% csrf_token %}<button class="btn btn-secondary" name="clear" value="1">{% translate "New conversation" %}</button></form>{% endif %}</div>
+</div>
+<script>
+document.querySelectorAll("[data-ask]").forEach(function(b){b.addEventListener("click",function(){var q=document.getElementById("asQ");q.value=b.dataset.ask;document.getElementById("asForm").requestSubmit()})});
+document.getElementById("asForm").addEventListener("submit",function(e){var b=e.target.querySelector("button[type=submit]");b.disabled=true;b.textContent="…"});
+</script>
+{% endblock %}

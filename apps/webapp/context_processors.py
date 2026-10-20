@@ -109,3 +109,9 @@ def hr_extras(request):
     from apps.employees import advanced
     company = getattr(request, "company", None)
     return {"hr_extras": SimpleLazyObject(lambda: advanced.enabled(company) if company is not None else set())}
+
+
+def assistant_on(request):
+    """Whether "Ask BookPilot" is offered (the server has an Anthropic API key)."""
+    from .assistant import enabled
+    return {"assistant_on": enabled()}

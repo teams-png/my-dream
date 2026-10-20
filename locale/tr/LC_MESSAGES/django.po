@@ -34,6 +34,10 @@ msgid "Today"
 msgstr "Bugün"
 
 #: templates/base.html
+msgid "Ask BookPilot"
+msgstr "BookPilot'a sor"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "Yeni hesap"
 
@@ -1438,6 +1442,32 @@ msgstr "+ Yeni müşteri ekle"
 #: templates/webapp/admin_base.html
 msgid "🔐 Security & 2FA"
 msgstr "🔐 Güvenlik ve 2FA"
+
+#: templates/webapp/assistant.html
+msgid ""
+"Ask about your sales, customers, money owed, stock or expenses — in any "
+"language. Answers come from this business's own figures; check important "
+"numbers in the reports."
+msgstr ""
+"Satışlar, müşteriler, alacaklar, stok veya giderler hakkında istediğiniz "
+"dilde sorun. Yanıtlar bu işletmenin kendi rakamlarından gelir; önemli "
+"rakamları raporlardan kontrol edin."
+
+#: templates/webapp/assistant.html
+msgid "Your question"
+msgstr "Sorunuz"
+
+#: templates/webapp/assistant.html
+msgid "e.g. Who owes me money?"
+msgstr "örn. Kimin bana borcu var?"
+
+#: templates/webapp/assistant.html
+msgid "Ask"
+msgstr "Sor"
+
+#: templates/webapp/assistant.html
+msgid "New conversation"
+msgstr "Yeni sohbet"
 
 #: templates/webapp/auth/login_2fa.html
 msgid "Verify sign-in"
@@ -14165,6 +14195,42 @@ msgstr "Borç ve alacak eşit olmalıdır."
 #: apps/webapp/accounts_views.py
 msgid "Journal entry saved."
 msgstr "Yevmiye kaydı kaydedildi."
+
+#: apps/webapp/assistant_views.py
+msgid "Today's questions are used up. Ask again tomorrow."
+msgstr "Bugünkü soru hakkı doldu. Yarın tekrar sorun."
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant is busy right now. Please try again in a minute."
+msgstr "Asistan şu an meşgul. Bir dakika sonra tekrar deneyin."
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant can't answer that question."
+msgstr "Asistan bu soruyu yanıtlayamıyor."
+
+#: apps/webapp/assistant_views.py
+msgid "Something went wrong. Please try again."
+msgstr "Bir şeyler ters gitti. Tekrar deneyin."
+
+#: apps/webapp/assistant_views.py
+msgid "Questions left today: %(n)s"
+msgstr "Bugün kalan soru: %(n)s"
+
+#: apps/webapp/assistant_views.py
+msgid "How were my sales this month compared with last month?"
+msgstr "Bu ayki satışlarım geçen aya göre nasıl?"
+
+#: apps/webapp/assistant_views.py
+msgid "Who owes me money?"
+msgstr "Kimin bana borcu var?"
+
+#: apps/webapp/assistant_views.py
+msgid "Which products sell best this month?"
+msgstr "Bu ay en çok hangi ürünler satıldı?"
+
+#: apps/webapp/assistant_views.py
+msgid "What should I reorder?"
+msgstr "Neyi yeniden sipariş etmeliyim?"
 
 #: apps/webapp/automation_views.py
 msgid "Checks finished. New reminders are in Notifications."

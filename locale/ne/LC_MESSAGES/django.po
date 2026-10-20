@@ -34,6 +34,10 @@ msgid "Today"
 msgstr "आज"
 
 #: templates/base.html
+msgid "Ask BookPilot"
+msgstr "BookPilot लाई सोध्नुहोस्"
+
+#: templates/base.html
 msgid "New bill"
 msgstr "नयाँ बिल"
 
@@ -1437,6 +1441,32 @@ msgstr "+ नयाँ क्लाइन्ट थप्नुहोस्"
 #: templates/webapp/admin_base.html
 msgid "🔐 Security & 2FA"
 msgstr "🔐 सुरक्षा र 2FA"
+
+#: templates/webapp/assistant.html
+msgid ""
+"Ask about your sales, customers, money owed, stock or expenses — in any "
+"language. Answers come from this business's own figures; check important "
+"numbers in the reports."
+msgstr ""
+"बिक्री, ग्राहक, उठ्न बाँकी रकम, स्टक वा खर्चबारे जुनसुकै भाषामा सोध्नुहोस्। "
+"जवाफ यही व्यवसायका आफ्नै तथ्याङ्कबाट आउँछ; महत्त्वपूर्ण अङ्क रिपोर्टमा "
+"जाँच्नुहोस्।"
+
+#: templates/webapp/assistant.html
+msgid "Your question"
+msgstr "तपाईंको प्रश्न"
+
+#: templates/webapp/assistant.html
+msgid "e.g. Who owes me money?"
+msgstr "जस्तै: कोसँग मेरो पैसा बाँकी छ?"
+
+#: templates/webapp/assistant.html
+msgid "Ask"
+msgstr "सोध्नुहोस्"
+
+#: templates/webapp/assistant.html
+msgid "New conversation"
+msgstr "नयाँ कुराकानी"
 
 #: templates/webapp/auth/login_2fa.html
 msgid "Verify sign-in"
@@ -14111,6 +14141,42 @@ msgstr "डेबिट र क्रेडिट बराबर हुनु�
 #: apps/webapp/accounts_views.py
 msgid "Journal entry saved."
 msgstr "जर्नल प्रविष्टि सुरक्षित गरियो।"
+
+#: apps/webapp/assistant_views.py
+msgid "Today's questions are used up. Ask again tomorrow."
+msgstr "आजका प्रश्न सकिए। भोलि फेरि सोध्नुहोस्।"
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant is busy right now. Please try again in a minute."
+msgstr "सहायक अहिले व्यस्त छ। एक मिनेटपछि फेरि प्रयास गर्नुहोस्।"
+
+#: apps/webapp/assistant_views.py
+msgid "The assistant can't answer that question."
+msgstr "सहायकले यो प्रश्नको जवाफ दिन सक्दैन।"
+
+#: apps/webapp/assistant_views.py
+msgid "Something went wrong. Please try again."
+msgstr "केही गडबड भयो। फेरि प्रयास गर्नुहोस्।"
+
+#: apps/webapp/assistant_views.py
+msgid "Questions left today: %(n)s"
+msgstr "आज बाँकी प्रश्न: %(n)s"
+
+#: apps/webapp/assistant_views.py
+msgid "How were my sales this month compared with last month?"
+msgstr "गत महिनाको तुलनामा यो महिना मेरो बिक्री कस्तो रह्यो?"
+
+#: apps/webapp/assistant_views.py
+msgid "Who owes me money?"
+msgstr "कोसँग मेरो पैसा बाँकी छ?"
+
+#: apps/webapp/assistant_views.py
+msgid "Which products sell best this month?"
+msgstr "यो महिना कुन सामान सबैभन्दा बढी बिक्यो?"
+
+#: apps/webapp/assistant_views.py
+msgid "What should I reorder?"
+msgstr "मैले के फेरि अर्डर गर्नुपर्छ?"
 
 #: apps/webapp/automation_views.py
 msgid "Checks finished. New reminders are in Notifications."

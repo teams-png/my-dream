@@ -56,7 +56,7 @@
 .ov-empty .btn{margin-top:10px}
 .ov-amount{font-weight:700;font-variant-numeric:tabular-nums}
 @media(max-width:900px){.ov-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.ov-panels{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:520px){.ov-timer~.ov-tag{display:none}.ov-clock{align-items:stretch;width:100%}.ov-clock-face{justify-content:center}.ov-kpi .k-value{font-size:21px}.ov-actions .btn{flex:1 1 auto;justify-content:center}}
+@media(max-width:520px){.ov-timer~.ov-tag{display:none}.ov-clock{flex-direction:row;align-items:center;justify-content:space-between;width:100%}.ov-clock-face{padding:5px 10px;border-radius:10px;box-shadow:none}.ov-clock-face b{font-size:18px}.ov-clock-face small{font-size:11px}.ov-clock-face em{font-size:10px;margin-inline-start:5px}.ov-kpi .k-value{font-size:21px}.ov-actions .btn{flex:1 1 auto;justify-content:center}}
 </style>
 <div class="ov-head">
   <div><div class="ov-hello">{{ greeting }}{% if request.user.first_name %}, {{ request.user.first_name }}{% endif %} 👋</div>

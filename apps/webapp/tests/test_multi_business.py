@@ -48,6 +48,9 @@ def test_platform_admin_ticks_extra_business_types(client, settings, tmp_path):
     assert reverse("webapp:saloon_appointment_list") in nav            # the salon's own menu joins
     assert after.count("Mobile Shop") == 1 and "Computer Shop" not in after  # same products: no repeated section
     assert client.get(reverse("webapp:saloon_appointment_list")).status_code == 200
+    assert '<details class="nav-section" >' in nav  # the extra suite's section starts folded to keep the menu short
+    assert 'class="nav-link nav-bill' not in nav       # the overview has its own big New bill button
+    assert 'class="nav-link nav-bill' in client.get(reverse("webapp:customer_list")).content.decode()
 
     # unticking removes the salon again
     pa.post(url, {"business_types": [ids[0]]})

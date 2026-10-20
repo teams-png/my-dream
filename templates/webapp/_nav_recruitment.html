@@ -1,6 +1,6 @@
 {% load i18n %}{% with u=request.resolver_match.url_name %}
       {# Recruitment agencies: their own short menu in work order — retail tools (POS, stock, coupons…) are left out #}
-      <a class="nav-link nav-bill {% if u == 'rec_candidate_add' %}active{% endif %}" href="{% url 'webapp:rec_candidate_add' %}" style="background:var(--accent);color:#fff;font-weight:700;margin:6px 0"><span>＋ {% translate "New candidate" %}</span></a>
+      {% if u != "dashboard" %}<a class="nav-link nav-bill {% if u == 'rec_candidate_add' %}active{% endif %}" href="{% url 'webapp:rec_candidate_add' %}" style="background:var(--accent);color:#fff;font-weight:700;margin:6px 0"><span>＋ {% translate "New candidate" %}</span></a>{% endif %}
       <details class="nav-section" open>
         <summary>🧑‍💼 {% translate "Recruitment" %}</summary>
       <a class="nav-link {% if u == 'rec_home' %}active{% endif %}" href="{% url 'webapp:rec_home' %}"><span>{% translate "Overview" %}</span></a>
@@ -22,7 +22,7 @@
       {% if "camps" in hr_extras %}<a class="nav-link {% if u == 'mp_camps' %}active{% endif %}" href="{% url 'webapp:mp_camps' %}"><span>{% translate "Camps" %}</span></a>{% endif %}
       </details>
       {% endif %}
-      {% for suite in active_extra_suites %}{% include "webapp/_nav_business.html" with bt_code=suite.code bt_group=suite.group bt_name=suite.title bt_profile=suite %}{% endfor %}
+      {% for suite in active_extra_suites %}{% include "webapp/_nav_business.html" with bt_code=suite.code bt_group=suite.group bt_name=suite.title bt_profile=suite bt_closed=True %}{% endfor %}
       <details class="nav-section" {% if u in "staff_list,staff_detail,staff_add,staff_edit,hr_leave,hr_documents,hr_settings,hr_attendance,hr_attendance_month,hr_payroll,hr_payslip,hr_advances,hr_vacations,hr_wps,settlement_new,settlement_detail,staff_members_list,role_list" %}open{% endif %}>
         <summary>🧑‍💻 {% translate "Office staff" %}</summary>
       <a class="nav-link {% if u in 'staff_list,staff_detail,staff_add,staff_edit,hr_leave,hr_documents,hr_settings,settlement_new,settlement_detail' %}active{% endif %}" href="{% url 'webapp:staff_list' %}"><span>{% translate "Staff & HR" %}</span></a>

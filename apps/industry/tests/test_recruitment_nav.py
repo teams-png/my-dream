@@ -15,7 +15,9 @@ def test_sidebar_in_work_order_and_overview_tiles(agency):
     nav = html[html.index('<nav class="sidebar"'):html.index("</nav>")]
     sections = [s.split(" ", 1)[1] for s in re.findall(r"<summary>([^<]*)</summary>", nav)]
     assert sections == ["Recruitment", "Site workers", "Office staff", "Money", "More", "Settings", "Website"]
-    assert reverse("webapp:rec_candidate_add") in nav and reverse("webapp:site_editor") in nav
+    assert reverse("webapp:site_editor") in nav
+    other = agency["client"].get(reverse("webapp:rec_jobs")).content.decode()  # the overview has its own big button
+    assert reverse("webapp:rec_candidate_add") in other[other.index('<nav class="sidebar"'):other.index("</nav>")]
     for retail in ("webapp:pos", "webapp:coupon_list", "webapp:loyalty_accounts_list", "webapp:stock_home"):
         assert f'href="{reverse(retail)}"' not in nav
     page = html[html.index("</nav>"):]

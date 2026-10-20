@@ -1,6 +1,6 @@
 {% load i18n %}{% load static %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"{% if request.GET.popup %} class="bp-popup"{% endif %}>
 <head>
 {% include "webapp/_app_head.html" %}
 <meta charset="UTF-8">
@@ -65,6 +65,52 @@
   .help-chip:hover,.help-chip.on{border-color:var(--accent);color:var(--accent)}
   .help-chip b{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:var(--danger,#c0392b);color:#fff;font-size:12px;display:inline-grid;place-items:center}
   @media(max-width:600px){.help-chip span{display:none}.help-chip{padding:8px 10px}}
+  .pal-chip{cursor:pointer;font:inherit;font-weight:600;font-size:14px;color:var(--ink-soft);min-width:200px}
+  .pal-chip kbd{margin-inline-start:auto;font:600 11px/1 inherit;padding:3px 6px;border:1px solid var(--line);border-radius:4px;color:var(--ink-soft);background:var(--paper)}
+  @media(max-width:900px){.pal-chip{min-width:0}.pal-chip kbd{display:none}}
+  .bp-pal{position:fixed;inset:0;z-index:200;background:rgba(16,24,40,.45);display:flex;justify-content:center;align-items:flex-start;padding:12vh 16px 16px}
+  .bp-pal[hidden]{display:none}
+  .bp-pal-card{width:min(640px,100%);background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 24px 60px rgba(16,24,40,.25);overflow:hidden;display:flex;flex-direction:column;max-height:70vh}
+  .bp-pal-in{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft)}
+  .bp-pal-in input{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:17px;color:var(--ink)}
+  .bp-pal-in kbd{font-size:11px;padding:3px 6px;border:1px solid var(--line);border-radius:4px}
+  .bp-pal-list{overflow-y:auto;padding:6px}
+  .bp-pal-group{font-size:12px;font-weight:600;color:var(--ink-soft);padding:10px 10px 4px}
+  .bp-pal-item{display:flex;flex-direction:column;padding:9px 12px;border-radius:6px;color:var(--ink)}
+  .bp-pal-item small{color:var(--ink-soft);font-size:13px}
+  .bp-pal-item.on{background:var(--accent-soft);color:var(--accent)}
+  .bp-pal-empty{padding:22px;text-align:center;color:var(--ink-soft)}
+  .bp-pal-foot{border-top:1px solid var(--line);padding:8px 14px;font-size:12px;color:var(--ink-soft)}
+  .bp-pal-open body{overflow:hidden}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .inline-edit{cursor:text;border-radius:4px;box-shadow:inset 0 -1px 0 transparent}
+  .inline-edit:hover,.inline-edit:focus{box-shadow:inset 0 -2px 0 var(--accent);outline:none;background:var(--accent-soft)}
+  .inline-edit.saving{opacity:.5}.inline-edit.saved{background:var(--success-bg)}.inline-edit.bad{background:var(--danger-bg)}
+  .inline-box{width:100%;min-width:80px;padding:6px 8px;border:1px solid var(--accent);border-radius:4px;font:inherit}
+  .bulk-bar{position:sticky;top:8px;z-index:20;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 16px;margin-bottom:12px;border-color:var(--accent)}
+  .bulk-bar[hidden]{display:none}
+  .bulk-bar select{min-width:220px}
+  .bulk-bar select,.bulk-bar input{padding:8px 10px;border:1px solid #d0d7e2;border-radius:6px;font:inherit}
+  .list-tip{color:var(--ink-soft);font-size:13px;margin:0 0 8px}
+  .bp-qa .bp-pal-card{max-height:86vh;width:min(560px,100%)}
+  .bp-qa-head{display:flex;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
+  .bp-qa-frame{border:0;width:100%;height:min(620px,74vh);background:var(--paper)}
+  .bp-qa-wrap{display:flex;gap:8px;align-items:stretch}
+  .bp-qa-wrap>select{flex:1;min-width:0}
+  .bp-qa-btn{white-space:nowrap;padding:8px 12px}
+  html.bp-popup .sidebar,html.bp-popup .topbar,html.bp-popup .general-back,html.bp-popup .nav-scrim,html.bp-popup .demo-strip{display:none!important}
+  html.bp-popup .main{padding:16px}
+  html.bp-popup .card{max-width:none!important}
+  .bp-keys{padding:20px 22px;gap:10px}
+  .bp-keys>div{display:flex;align-items:center;gap:14px}
+  .bp-keys kbd{min-width:64px;text-align:center;font:600 12px/1 inherit;padding:6px 8px;border:1px solid var(--line);border-radius:5px;background:var(--paper)}
+  .bp-load{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:300;opacity:0}
+  .bp-load.go{opacity:1;animation:bpLoad 8s cubic-bezier(.1,.7,.2,1) forwards}
+  @keyframes bpLoad{0%{width:0}10%{width:40%}100%{width:92%}}
+  .messages li{display:flex;align-items:center;gap:10px;transition:opacity .4s}
+  .messages li.bye{opacity:0}
+  .msg-x{margin-inline-start:auto;border:0;background:transparent;color:inherit;font-size:20px;line-height:1;cursor:pointer;padding:0 4px;opacity:.7}
+  @media(prefers-reduced-motion:reduce){.bp-load.go{animation:none;width:60%}}
   button.avatar{border:0;cursor:pointer;font-family:inherit;padding:0}
   button.avatar:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .nav-logout{margin-top:14px;border-top:1px solid var(--line);padding-top:14px!important;color:var(--danger,#c0392b)!important}
@@ -271,6 +317,8 @@
       </div>
       {% if request.user.is_authenticated %}
       <div class="user-chip">
+        {% if active_company %}<button type="button" class="help-chip pal-chip" data-palette-open title="{% translate 'Search' %} (Ctrl+K)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>{% translate "Search" %}</span><kbd>Ctrl K</kbd></button>
+        <span id="bpPalette" hidden data-url="{% url 'webapp:palette_search' %}" data-title="{% translate 'Search' %}" data-placeholder="{% translate 'Search pages, customers, invoices, products…' %}" data-pages="{% translate 'Pages' %}" data-empty="{% translate 'Nothing found.' %}" data-hint="{% translate 'Type a name, phone or number.' %}" data-foot="{% translate '↑ ↓ to move · Enter to open · Esc to close' %}" data-close="{% translate 'Close' %}" data-home="{% url 'webapp:dashboard' %}" data-keys-title="{% translate 'Keyboard shortcuts' %}" data-key-search="{% translate 'Search anything' %}" data-key-new="{% translate 'New bill (or the main button of the page)' %}" data-key-home="{% translate 'Go to the overview' %}" data-key-help="{% translate 'Show these shortcuts' %}" data-key-close="{% translate 'Close a popup' %}" data-add-new="{% translate 'New' %}" data-add-title="{% translate 'Add without leaving this page' %}" data-new-customer="{% translate 'New customer' %}" data-new-supplier="{% translate 'New supplier' %}" data-add-customer="{% url 'webapp:customer_add' %}" data-add-supplier="{% url 'webapp:supplier_add' %}"></span>{% endif %}
         {% if active_company %}{% with n=support_client_unread %}<a class="help-chip{% if request.resolver_match.url_name == 'help' %} on{% endif %}" href="{% url 'webapp:help' %}" title="{% translate 'Help & support' %}">💬 <span>{% translate "Help" %}</span>{% if n %}<b>{{ n }}</b>{% endif %}</a>{% endwith %}{% endif %}
         {% include "webapp/_account_menu.html" with show_install=True %}
       </div>
@@ -324,6 +372,7 @@
 window.bpMilestone=function(key){try{var f=new FormData();f.append("key",key);f.append("csrfmiddlewaretoken","{{ csrf_token }}");
 fetch("{% url 'webapp:milestone' %}",{method:"POST",body:f,credentials:"same-origin"});}catch(e){}};
 </script>{% endif %}
+{% if active_company %}<script src="{% static 'js/palette.js' %}" defer></script><script src="{% static 'js/shortcuts.js' %}" defer></script>{% endif %}<script src="{% static 'js/quick-add.js' %}" defer></script>
 <script>document.querySelectorAll(".sidebar .nav-link.active").forEach(function(a){var d=a.closest("details");if(d)d.open=true});</script>
 </body>
 </html>

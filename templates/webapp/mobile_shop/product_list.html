@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load sample_data %}
+{% load sample_data i18n static %}
 {% block title %}Products{% endblock %}
 {% block heading %}Products{% endblock %}
 {% block content %}
@@ -10,13 +10,28 @@
   <a class="btn btn-secondary" href="{% url 'webapp:product_export_csv' %}">Export CSV</a>
 </div>
 {% if products %}
+<form class="bulk-bar card" method="post" action="{% url 'webapp:product_bulk' %}" data-bulk-form hidden>{% csrf_token %}
+  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+  <b><span data-bulk-count>0</span> {% translate "ticked" %}</b>
+  <label for="bulkAction" class="sr">{% translate "What to do" %}</label>
+  <select id="bulkAction" name="action">
+    <option value="price_pct">{% translate "Change selling price by %" %}</option>
+    <option value="category">{% translate "Move to category" %}</option>
+    <option value="deactivate">{% translate "Stop selling" %}</option>
+  </select>
+  <span data-for-action="price_pct"><label for="bulkPct" class="sr">%</label><input id="bulkPct" name="pct" type="number" step="0.01" placeholder="{% translate 'e.g. 10 or -5' %}" style="width:130px"> %</span>
+  <span data-for-action="category"><label for="bulkCat" class="sr">{% translate "Category" %}</label><select id="bulkCat" name="category"><option value="">{% translate "No category" %}</option>{% for c in categories %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}</select></span>
+  <button class="btn" type="submit">{% translate "Apply" %}</button>
+</form>
+<p class="list-tip">{% translate "Tip: click a price to change it right here." %}</p>
 <table>
-  <tr><th>SKU</th><th>Name / Variant</th><th>Category</th><th>Stock</th><th>Cost</th><th>Selling price</th><th></th></tr>
+  <tr><th style="width:34px"><input type="checkbox" class="bulk-all" aria-label="{% translate 'Tick all' %}"></th><th>SKU</th><th>Name / Variant</th><th>Category</th><th>Stock</th><th>Cost</th><th>Selling price</th><th></th></tr>
   {% for p in products %}
   <tr>
+    <td><input type="checkbox" class="bulk-check" value="{{ p.id }}" aria-label="{{ p.name }}"></td>
     <td>{{ p.sku }}</td><td>{% product_picture p as pic %}<img src="{{ pic }}" alt="" loading="lazy" style="width:38px;height:38px;border-radius:10px;object-fit:cover;vertical-align:middle;margin-inline-end:10px;float:inline-start">{{ p.name }}{% if p.attributes.model_number %}<br><small>{{ p.attributes.model_number }} · {{ p.attributes.ram }} / {{ p.attributes.storage }} · {{ p.attributes.network }}</small>{% endif %}</td><td>{{ p.category.name|default:"—" }}</td>
     <td>{{ p.current_stock }}</td>
-    <td>{{ p.cost_price }}</td><td>{{ p.selling_price }}</td>
+    <td data-inline-url="{% url 'webapp:product_quick_update' p.id %}" data-field="cost_price" data-label="{% translate 'Cost' %}">{{ p.cost_price }}</td><td data-inline-url="{% url 'webapp:product_quick_update' p.id %}" data-field="selling_price" data-label="{% translate 'Selling price' %}">{{ p.selling_price }}</td>
     <td>
       <a class="btn btn-secondary" href="{% url 'webapp:product_edit' p.id %}">Edit</a>
       <a class="btn btn-secondary" href="{% url 'webapp:product_variant_add' p.id %}">+ Variant</a>
@@ -27,15 +42,16 @@
   {% if p.attributes %}
   <tr>
     <td></td>
-    <td colspan="6" style="font-size:12.5px; color:var(--ink-soft); border-top:none; padding-top:0;">
+    <td></td><td colspan="6" style="font-size:12.5px; color:var(--ink-soft); border-top:none; padding-top:0;">
       {% for k, v in p.attributes.items %}{{ k }}: {{ v }}{% if not forloop.last %} · {% endif %}{% endfor %}
     </td>
   </tr>
   {% endif %}
   {% for v in p.variants.all %}
   <tr style="background:var(--paper);">
+    <td><input type="checkbox" class="bulk-check" value="{{ v.id }}" aria-label="{{ v.sku }}"></td>
     <td>{{ v.sku }}</td><td style="padding-left:24px;">↳ {{ v.colour|default:"—" }} / {{ v.size|default:"—" }}{% if v.material %} · {{ v.material }}{% endif %}{% if v.design %} · {{ v.design }}{% endif %}</td><td></td><td>{{ v.current_stock }}</td>
-    <td>{{ v.cost_price }}</td><td>{{ v.selling_price }}</td>
+    <td data-inline-url="{% url 'webapp:product_quick_update' v.id %}" data-field="cost_price" data-label="{% translate 'Cost' %}">{{ v.cost_price }}</td><td data-inline-url="{% url 'webapp:product_quick_update' v.id %}" data-field="selling_price" data-label="{% translate 'Selling price' %}">{{ v.selling_price }}</td>
     <td>
       <a class="btn btn-secondary" href="{% url 'webapp:product_edit' v.id %}">Edit</a>
       <a class="btn btn-secondary" href="{% url 'webapp:product_barcode' v.id %}" target="_blank">Barcode</a>
@@ -45,6 +61,7 @@
   {% endfor %}
   {% endfor %}
 </table>
+<script src="{% static 'js/list-tools.js' %}" defer></script>
 {% else %}
 <div class="card empty">No products yet.</div>
 {% endif %}

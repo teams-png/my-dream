@@ -34,248 +34,8 @@ msgid "New bill"
 msgstr "Nouvelle addition"
 
 #: templates/base.html
-msgid "Gym"
-msgstr "Salle de sport"
-
-#: templates/base.html
-msgid "Members"
-msgstr "Membres"
-
-#: templates/base.html
-msgid "Membership Plans"
-msgstr "Formules d’abonnement"
-
-#: templates/base.html
-msgid "Attendance"
-msgstr "Présences"
-
-#: templates/base.html
-msgid "Reports"
-msgstr "Rapports"
-
-#: templates/base.html
-msgid "Spa"
-msgstr "Spa"
-
-#: templates/base.html
-msgid "Appointments"
-msgstr "Rendez-vous"
-
-#: templates/base.html
-msgid "Services"
-msgstr "Services"
-
-#: templates/base.html
-msgid "Mobile Shop"
-msgstr "Boutique mobile"
-
-#: templates/base.html
-msgid "Products & Accessories"
-msgstr "Produits et accessoires"
-
-#: templates/base.html
-msgid "IMEI Stock"
-msgstr "Stock IMEI"
-
-#: templates/base.html
-msgid "IMEI Purchase"
-msgstr "Achat IMEI"
-
-#: templates/base.html
-msgid "Brands"
-msgstr "Marques"
-
-#: templates/base.html
-msgid "Categories"
-msgstr "Catégories"
-
-#: templates/base.html
-msgid "Repair Job Cards"
-msgstr "Fiches de réparation"
-
-#: templates/base.html
-msgid "Warranty Claims"
-msgstr "Réclamations sous garantie"
-
-#: templates/base.html
-msgid "Trade-in / Exchange"
-msgstr "Reprise / échange"
-
-#: templates/base.html
-msgid "Dues & Instalments"
-msgstr "Impayés et échéances"
-
-#: templates/base.html
-msgid "Mobile Reports"
-msgstr "Rapports mobiles"
-
-#: templates/base.html
-msgid "Textile"
-msgstr "Textile"
-
-#: templates/base.html
-msgid "Orders"
-msgstr "Commandes"
-
-#: templates/base.html
-msgid "Fabrics"
-msgstr "Tissus"
-
-#: templates/base.html
-msgid "Products (other items)"
-msgstr "Produits (autres articles)"
-
-#: templates/base.html
-msgid "Units"
-msgstr "Unités"
-
-#: templates/base.html
-msgid "Print Barcodes"
-msgstr "Imprimer des codes-barres"
-
-#: templates/base.html
-msgid "Measurements"
-msgstr "Mesures"
-
-#: templates/base.html
-msgid "Vehicle Wash"
-msgstr "Lavage auto"
-
-#: templates/base.html
-msgid "Vehicles"
-msgstr "Véhicules"
-
-#: templates/base.html
-msgid "Packages"
-msgstr "Forfaits"
-
-#: templates/base.html
-msgid "Sports Shop"
-msgstr "Magasin de sport"
-
-#: templates/base.html
-msgid "Products"
-msgstr "Produits"
-
-#: templates/base.html
-msgid "Team orders"
-msgstr "Commandes d'équipe"
-
-#: templates/base.html
-msgid "Rentals"
-msgstr "Locations"
-
-#: templates/base.html
-msgid "Size charts"
-msgstr "Guides des tailles"
-
-#: templates/base.html
 msgid "Sales"
 msgstr "Ventes"
-
-#: templates/base.html
-msgid "Cycle Shop"
-msgstr "Magasin de vélos"
-
-#: templates/base.html
-msgid "Cycle Units"
-msgstr "Vélos en stock"
-
-#: templates/base.html
-msgid "Service Tickets"
-msgstr "Tickets de service"
-
-#: templates/base.html
-msgid "Saloon"
-msgstr "Salon de coiffure"
-
-#: templates/base.html
-msgid "Beauty Parlour"
-msgstr "Institut de beauté"
-
-#: templates/base.html
-msgid "Medical Shop"
-msgstr "Pharmacie"
-
-#: templates/base.html
-msgid "Batches & expiry"
-msgstr "Lots et péremption"
-
-#: templates/base.html
-msgid "Refills"
-msgstr "Réassorts"
-
-#: templates/base.html
-msgid "Protein Shop"
-msgstr "Boutique de protéines"
-
-#: templates/base.html
-msgid "Construction"
-msgstr "Construction"
-
-#: templates/base.html
-msgid "Projects"
-msgstr "Projets"
-
-#: templates/base.html
-msgid "Contractors"
-msgstr "Sous-traitants"
-
-#: templates/base.html
-msgid "Restaurant Dashboard"
-msgstr "Tableau de bord restaurant"
-
-#: templates/base.html
-msgid "New Order"
-msgstr "Nouvelle commande"
-
-#: templates/base.html
-msgid "Quick sale"
-msgstr "Vente rapide"
-
-#: templates/base.html
-msgid "Orders (bills)"
-msgstr "Commandes (additions)"
-
-#: templates/base.html
-msgid "Online orders"
-msgstr "Commandes en ligne"
-
-#: templates/base.html
-msgid "Deliveries"
-msgstr "Livraisons"
-
-#: templates/base.html
-msgid "Kitchen / KOT"
-msgstr "Cuisine / KOT"
-
-#: templates/base.html
-msgid "Menu & Ingredients"
-msgstr "Menu et ingrédients"
-
-#: templates/base.html
-msgid "Eye tests & orders"
-msgstr "Examens de vue et commandes"
-
-#: templates/base.html
-msgid "Appointments calendar"
-msgstr "Calendrier des rendez-vous"
-
-#: templates/base.html
-msgid "Job cards"
-msgstr "Fiches de travail"
-
-#: templates/base.html
-msgid "Service contracts (AMC)"
-msgstr "Contrats de service (maintenance)"
-
-#: templates/base.html
-msgid "Packages / Sessions"
-msgstr "Forfaits / séances"
-
-#: templates/base.html
-msgid "Service Reports"
-msgstr "Rapports de service"
 
 #: templates/base.html
 msgid "Leads & pipeline"
@@ -402,6 +162,10 @@ msgid "Staff & HR"
 msgstr "Personnel et RH"
 
 #: templates/base.html
+msgid "Attendance"
+msgstr "Présences"
+
+#: templates/base.html
 msgid "Payroll & advances"
 msgstr "Paie et avances"
 
@@ -466,6 +230,14 @@ msgid "API docs"
 msgstr "Documentation API"
 
 #: templates/base.html
+msgid "Website"
+msgstr "Site web"
+
+#: templates/base.html
+msgid "My website"
+msgstr "Mon site web"
+
+#: templates/base.html
 msgid "⚙ Platform Admin"
 msgstr "⚙ Admin plateforme"
 
@@ -476,6 +248,74 @@ msgstr "Se déconnecter"
 #: templates/base.html
 msgid "Open menu"
 msgstr "Ouvrir le menu"
+
+#: templates/base.html
+msgid "Search"
+msgstr "Rechercher"
+
+#: templates/base.html
+msgid "Search pages, customers, invoices, products…"
+msgstr "Rechercher pages, clients, factures, produits…"
+
+#: templates/base.html
+msgid "Pages"
+msgstr "Pages"
+
+#: templates/base.html
+msgid "Nothing found."
+msgstr "Aucun résultat."
+
+#: templates/base.html
+msgid "Type a name, phone or number."
+msgstr "Saisissez un nom, un téléphone ou un numéro."
+
+#: templates/base.html
+msgid "↑ ↓ to move · Enter to open · Esc to close"
+msgstr "↑ ↓ pour se déplacer · Entrée pour ouvrir · Échap pour fermer"
+
+#: templates/base.html
+msgid "Close"
+msgstr "Fermer"
+
+#: templates/base.html
+msgid "Keyboard shortcuts"
+msgstr "Raccourcis clavier"
+
+#: templates/base.html
+msgid "Search anything"
+msgstr "Tout rechercher"
+
+#: templates/base.html
+msgid "New bill (or the main button of the page)"
+msgstr "Nouvelle facture (ou le bouton principal de la page)"
+
+#: templates/base.html
+msgid "Go to the overview"
+msgstr "Aller à l’aperçu"
+
+#: templates/base.html
+msgid "Show these shortcuts"
+msgstr "Afficher ces raccourcis"
+
+#: templates/base.html
+msgid "Close a popup"
+msgstr "Fermer une fenêtre"
+
+#: templates/base.html
+msgid "New"
+msgstr "Nouveau"
+
+#: templates/base.html
+msgid "Add without leaving this page"
+msgstr "Ajouter sans quitter cette page"
+
+#: templates/base.html
+msgid "New customer"
+msgstr "Nouveau client"
+
+#: templates/base.html
+msgid "New supplier"
+msgstr "Nouveau fournisseur"
 
 #: templates/base.html
 msgid "Help"
@@ -512,6 +352,14 @@ msgstr "⌂ Aperçu"
 #: templates/base.html
 msgid "＋ New Order"
 msgstr "＋ Nouvelle commande"
+
+#: templates/base.html
+msgid "Quick sale"
+msgstr "Vente rapide"
+
+#: templates/base.html
+msgid "Orders"
+msgstr "Commandes"
 
 #: templates/base.html
 msgid "▣ Kitchen Display"
@@ -798,13 +646,257 @@ msgstr "Formules et menu"
 msgid "Website orders"
 msgstr "Commandes du site"
 
-#: templates/webapp/_industry_nav.html
-msgid "My website"
-msgstr "Mon site web"
-
 #: templates/webapp/_language_switcher.html
 msgid "Language"
 msgstr "Langue"
+
+#: templates/webapp/_nav_business.html
+msgid "Gym"
+msgstr "Salle de sport"
+
+#: templates/webapp/_nav_business.html
+msgid "Members"
+msgstr "Membres"
+
+#: templates/webapp/_nav_business.html
+msgid "Membership Plans"
+msgstr "Formules d’abonnement"
+
+#: templates/webapp/_nav_business.html
+msgid "Reports"
+msgstr "Rapports"
+
+#: templates/webapp/_nav_business.html
+msgid "Spa"
+msgstr "Spa"
+
+#: templates/webapp/_nav_business.html
+msgid "Appointments"
+msgstr "Rendez-vous"
+
+#: templates/webapp/_nav_business.html
+msgid "Services"
+msgstr "Services"
+
+#: templates/webapp/_nav_business.html
+msgid "Mobile Shop"
+msgstr "Boutique mobile"
+
+#: templates/webapp/_nav_business.html
+msgid "Products & Accessories"
+msgstr "Produits et accessoires"
+
+#: templates/webapp/_nav_business.html
+msgid "IMEI Stock"
+msgstr "Stock IMEI"
+
+#: templates/webapp/_nav_business.html
+msgid "IMEI Purchase"
+msgstr "Achat IMEI"
+
+#: templates/webapp/_nav_business.html
+msgid "Brands"
+msgstr "Marques"
+
+#: templates/webapp/_nav_business.html
+msgid "Categories"
+msgstr "Catégories"
+
+#: templates/webapp/_nav_business.html
+msgid "Repair Job Cards"
+msgstr "Fiches de réparation"
+
+#: templates/webapp/_nav_business.html
+msgid "Warranty Claims"
+msgstr "Réclamations sous garantie"
+
+#: templates/webapp/_nav_business.html
+msgid "Trade-in / Exchange"
+msgstr "Reprise / échange"
+
+#: templates/webapp/_nav_business.html
+msgid "Dues & Instalments"
+msgstr "Impayés et échéances"
+
+#: templates/webapp/_nav_business.html
+msgid "Mobile Reports"
+msgstr "Rapports mobiles"
+
+#: templates/webapp/_nav_business.html
+msgid "Textile"
+msgstr "Textile"
+
+#: templates/webapp/_nav_business.html
+msgid "Fabrics"
+msgstr "Tissus"
+
+#: templates/webapp/_nav_business.html
+msgid "Products (other items)"
+msgstr "Produits (autres articles)"
+
+#: templates/webapp/_nav_business.html
+msgid "Units"
+msgstr "Unités"
+
+#: templates/webapp/_nav_business.html
+msgid "Print Barcodes"
+msgstr "Imprimer des codes-barres"
+
+#: templates/webapp/_nav_business.html
+msgid "Measurements"
+msgstr "Mesures"
+
+#: templates/webapp/_nav_business.html
+msgid "Vehicle Wash"
+msgstr "Lavage auto"
+
+#: templates/webapp/_nav_business.html
+msgid "Vehicles"
+msgstr "Véhicules"
+
+#: templates/webapp/_nav_business.html
+msgid "Packages"
+msgstr "Forfaits"
+
+#: templates/webapp/_nav_business.html
+msgid "Sports Shop"
+msgstr "Magasin de sport"
+
+#: templates/webapp/_nav_business.html
+msgid "Products"
+msgstr "Produits"
+
+#: templates/webapp/_nav_business.html
+msgid "Team orders"
+msgstr "Commandes d'équipe"
+
+#: templates/webapp/_nav_business.html
+msgid "Rentals"
+msgstr "Locations"
+
+#: templates/webapp/_nav_business.html
+msgid "Size charts"
+msgstr "Guides des tailles"
+
+#: templates/webapp/_nav_business.html
+msgid "Cycle Shop"
+msgstr "Magasin de vélos"
+
+#: templates/webapp/_nav_business.html
+msgid "Cycle Units"
+msgstr "Vélos en stock"
+
+#: templates/webapp/_nav_business.html
+msgid "Service Tickets"
+msgstr "Tickets de service"
+
+#: templates/webapp/_nav_business.html
+msgid "Saloon"
+msgstr "Salon de coiffure"
+
+#: templates/webapp/_nav_business.html
+msgid "Beauty Parlour"
+msgstr "Institut de beauté"
+
+#: templates/webapp/_nav_business.html
+msgid "Medical Shop"
+msgstr "Pharmacie"
+
+#: templates/webapp/_nav_business.html
+msgid "Batches & expiry"
+msgstr "Lots et péremption"
+
+#: templates/webapp/_nav_business.html
+msgid "Refills"
+msgstr "Réassorts"
+
+#: templates/webapp/_nav_business.html
+msgid "Protein Shop"
+msgstr "Boutique de protéines"
+
+#: templates/webapp/_nav_business.html
+msgid "Construction"
+msgstr "Construction"
+
+#: templates/webapp/_nav_business.html
+msgid "Projects"
+msgstr "Projets"
+
+#: templates/webapp/_nav_business.html
+msgid "Contractors"
+msgstr "Sous-traitants"
+
+#: templates/webapp/_nav_business.html
+msgid "Restaurant Dashboard"
+msgstr "Tableau de bord restaurant"
+
+#: templates/webapp/_nav_business.html
+msgid "New Order"
+msgstr "Nouvelle commande"
+
+#: templates/webapp/_nav_business.html
+msgid "Orders (bills)"
+msgstr "Commandes (additions)"
+
+#: templates/webapp/_nav_business.html
+msgid "Online orders"
+msgstr "Commandes en ligne"
+
+#: templates/webapp/_nav_business.html
+msgid "Deliveries"
+msgstr "Livraisons"
+
+#: templates/webapp/_nav_business.html
+msgid "Kitchen / KOT"
+msgstr "Cuisine / KOT"
+
+#: templates/webapp/_nav_business.html
+msgid "Menu & Ingredients"
+msgstr "Menu et ingrédients"
+
+#: templates/webapp/_nav_business.html
+msgid "Eye tests & orders"
+msgstr "Examens de vue et commandes"
+
+#: templates/webapp/_nav_business.html
+msgid "Appointments calendar"
+msgstr "Calendrier des rendez-vous"
+
+#: templates/webapp/_nav_business.html
+msgid "Job cards"
+msgstr "Fiches de travail"
+
+#: templates/webapp/_nav_business.html
+msgid "Service contracts (AMC)"
+msgstr "Contrats de service (maintenance)"
+
+#: templates/webapp/_nav_business.html
+msgid "Packages / Sessions"
+msgstr "Forfaits / séances"
+
+#: templates/webapp/_nav_business.html
+msgid "Service Reports"
+msgstr "Rapports de service"
+
+#: templates/webapp/_nav_recruitment.html
+msgid "New candidate"
+msgstr "Nouveau candidat"
+
+#: templates/webapp/_nav_recruitment.html
+msgid "Office staff"
+msgstr "Personnel de bureau"
+
+#: templates/webapp/_nav_recruitment.html
+msgid "Vacations"
+msgstr "Congés"
+
+#: templates/webapp/_nav_recruitment.html
+msgid "Money"
+msgstr "Argent"
+
+#: templates/webapp/_nav_recruitment.html
+msgid "More"
+msgstr "Plus"
 
 #: templates/webapp/_overview_panel.html
 msgid "Target"
@@ -1181,10 +1273,6 @@ msgstr "Référence ou note"
 #: templates/webapp/accounts/journal_list.html
 msgid "All types"
 msgstr "Tous les types"
-
-#: templates/webapp/accounts/journal_list.html
-msgid "Search"
-msgstr "Rechercher"
 
 #: templates/webapp/accounts/journal_list.html
 msgid "No entries in this period."
@@ -2531,10 +2619,6 @@ msgid "Make visit job cards now"
 msgstr "Créer maintenant les fiches des visites"
 
 #: templates/webapp/contracts/detail.html
-msgid "Money"
-msgstr "Argent"
-
-#: templates/webapp/contracts/detail.html
 msgid "Contract value"
 msgstr "Valeur du contrat"
 
@@ -3849,10 +3933,6 @@ msgid "Documents"
 msgstr "Documents"
 
 #: templates/webapp/hr/_tabs.html
-msgid "Vacations"
-msgstr "Congés"
-
-#: templates/webapp/hr/_tabs.html
 msgid "HR settings"
 msgstr "Paramètres RH"
 
@@ -4587,10 +4667,6 @@ msgid "Run payroll"
 msgstr "Lancer la paie"
 
 #: templates/webapp/hr/staff_list.html
-msgid "Office staff"
-msgstr "Personnel de bureau"
-
-#: templates/webapp/hr/staff_list.html
 msgid "Name, phone or job title"
 msgstr "Nom, téléphone ou poste"
 
@@ -4936,10 +5012,6 @@ msgstr "Numéro"
 #: templates/webapp/industry/booking_form.html
 msgid "Change"
 msgstr "Changer"
-
-#: templates/webapp/industry/booking_form.html
-msgid "New"
-msgstr "Nouveau"
 
 #: templates/webapp/industry/booking_form.html
 msgid "or new customer"
@@ -6999,6 +7071,42 @@ msgstr "Code-barres du conditionnement"
 msgid "Add pack"
 msgstr "Ajouter un conditionnement"
 
+#: templates/webapp/mobile_shop/product_list.html
+msgid "ticked"
+msgstr "cochés"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "What to do"
+msgstr "Que faire"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "Change selling price by %"
+msgstr "Modifier le prix de vente de %"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "Move to category"
+msgstr "Déplacer vers une catégorie"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "Stop selling"
+msgstr "Arrêter la vente"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "e.g. 10 or -5"
+msgstr "ex. 10 ou -5"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "No category"
+msgstr "Sans catégorie"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "Tip: click a price to change it right here."
+msgstr "Astuce : cliquez sur un prix pour le modifier ici."
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "Tick all"
+msgstr "Tout cocher"
+
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Repair"
 msgstr "Réparation"
@@ -7168,10 +7276,6 @@ msgstr ""
 #: templates/webapp/no_access.html
 msgid "Your role"
 msgstr "Votre rôle"
-
-#: templates/webapp/no_access.html
-msgid "Go to the overview"
-msgstr "Aller à l’aperçu"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Set up your business"
@@ -7781,10 +7885,6 @@ msgstr "Vider"
 #: templates/webapp/pos.html
 msgid "Take payment"
 msgstr "Encaisser le paiement"
-
-#: templates/webapp/pos.html
-msgid "Close"
-msgstr "Fermer"
 
 #: templates/webapp/pos.html
 msgid "Amount due"
@@ -9262,16 +9362,8 @@ msgid "Name, passport, skill, nationality"
 msgstr "Nom, passeport, compétence, nationalité"
 
 #: templates/webapp/recruitment/candidates.html
-msgid "New candidate"
-msgstr "Nouveau candidat"
-
-#: templates/webapp/recruitment/candidates.html
 msgid "Passport expired"
 msgstr "Passeport expiré"
-
-#: templates/webapp/recruitment/candidates.html
-msgid "Website"
-msgstr "Site web"
 
 #: templates/webapp/recruitment/candidates.html
 msgid "No candidates yet."
@@ -11173,10 +11265,6 @@ msgid "Less"
 msgstr "Moins"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "More"
-msgstr "Plus"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Service + tip"
 msgstr "Service + pourboire"
 
@@ -12047,10 +12135,6 @@ msgstr ""
 "(principale), --a (accent)."
 
 #: templates/webapp/site/editor.html
-msgid "Pages"
-msgstr "Pages"
-
-#: templates/webapp/site/editor.html
 msgid ""
 "Add more pages to your website: About us, Warranty, Delivery & returns, "
 "Terms…"
@@ -12500,10 +12584,6 @@ msgstr ""
 "Un guide des tailles par catégorie (maillots, chaussures, gants…). Le "
 "personnel peut le montrer au comptoir, et votre site l'affiche sur chaque "
 "produit de cette catégorie."
-
-#: templates/webapp/sports_shop/size_charts.html
-msgid "No category"
-msgstr "Sans catégorie"
 
 #: templates/webapp/sports_shop/size_charts.html
 msgid "Delete this size chart?"
@@ -15407,6 +15487,34 @@ msgstr "Lien prêt pour %(name)s."
 #: apps/webapp/job_views.py
 msgid "From %(name)s"
 msgstr "De %(name)s"
+
+#: apps/webapp/list_tools_views.py
+msgid "Enter a price of 0 or more."
+msgstr "Saisissez un prix de 0 ou plus."
+
+#: apps/webapp/list_tools_views.py
+msgid "Tick at least one product first."
+msgstr "Cochez d’abord au moins un produit."
+
+#: apps/webapp/list_tools_views.py
+msgid "Enter a percent between -90 and 500."
+msgstr "Saisissez un pourcentage entre -90 et 500."
+
+#: apps/webapp/list_tools_views.py
+msgid "Selling price changed by %(pct)s%% for %(n)s products."
+msgstr "Prix de vente modifié de %(pct)s%% pour %(n)s produits."
+
+#: apps/webapp/list_tools_views.py
+msgid "%(n)s products moved."
+msgstr "%(n)s produits déplacés."
+
+#: apps/webapp/list_tools_views.py
+msgid "%(n)s products will no longer be sold."
+msgstr "%(n)s produits ne seront plus vendus."
+
+#: apps/webapp/list_tools_views.py
+msgid "Choose what to do with the ticked products."
+msgstr "Choisissez quoi faire des produits cochés."
 
 #: apps/webapp/manpower_views.py
 msgid "Salary / pay rate"

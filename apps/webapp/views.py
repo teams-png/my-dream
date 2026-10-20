@@ -543,7 +543,8 @@ def product_list(request):
         .order_by("name")
         if company else []
     )
-    return render(request, "webapp/mobile_shop/product_list.html", {"products": products})
+    categories = ProductCategory.objects.for_company(company).order_by("name") if company else []
+    return render(request, "webapp/mobile_shop/product_list.html", {"products": products, "categories": categories})
 
 
 def _sync_sports_detail(product):
@@ -990,7 +991,15 @@ def customer_list(request):
     return render(request, "webapp/customer_list.html", {"customers": customers, "q": query})
 
 
+def _popup_saved(request, kind, obj):
+    """Quick add from another form (static/js/quick-add.js): hand the new record back to the page that opened it."""
+    if request.GET.get("popup"):
+        return render(request, "webapp/popup_saved.html", {"kind": kind, "obj_id": obj.id, "obj_name": str(obj)})
+    return None
+
+
 @login_required
+@xframe_options_sameorigin  # opened in the quick-add popup
 def customer_add(request):
     company = request.company
     if request.method == "POST":
@@ -999,6 +1008,9 @@ def customer_add(request):
             obj = form.save(commit=False)
             obj.company = company
             obj.save()
+            done = _popup_saved(request, "customer", obj)
+            if done:
+                return done
             messages.success(request, "Customer added.")
             return redirect("webapp:customer_list")
     else:
@@ -3840,6 +3852,7 @@ def supplier_list(request):
 
 @login_required
 @require_permission("suppliers.manage")
+@xframe_options_sameorigin  # opened in the quick-add popup
 def supplier_add(request):
     company = request.company
     if request.method == "POST":
@@ -3848,6 +3861,9 @@ def supplier_add(request):
             obj = form.save(commit=False)
             obj.company = company
             obj.save()
+            done = _popup_saved(request, "supplier", obj)
+            if done:
+                return done
             messages.success(request, "Supplier added.")
             return redirect("webapp:supplier_list")
     else:

@@ -71,7 +71,7 @@
     {% endif %}
   </div>
 </div>
-{% if actions %}<div class="ov-actions">{% for icon, label, url, primary in actions %}<a class="btn{% if not primary %} btn-secondary{% endif %}" href="{{ url }}">{{ icon }} {{ label }}</a>{% endfor %}</div>{% endif %}
+{% if actions %}<div class="ov-actions">{% for icon, label, url, primary in actions %}<a class="btn{% if not primary %} btn-secondary{% endif %}" href="{{ url }}"{% if primary %} data-shortcut-new{% endif %}>{{ icon }} {{ label }}</a>{% endfor %}</div>{% endif %}
 
 {% if online_requests %}
 <a class="card" href="{% url 'webapp:ob_inbox' %}" style="display:block;text-decoration:none;color:inherit;margin-bottom:16px;border:2px solid var(--accent)">

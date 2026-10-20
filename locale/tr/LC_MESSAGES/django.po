@@ -34,248 +34,8 @@ msgid "New bill"
 msgstr "Yeni hesap"
 
 #: templates/base.html
-msgid "Gym"
-msgstr "Spor salonu"
-
-#: templates/base.html
-msgid "Members"
-msgstr "Üyeler"
-
-#: templates/base.html
-msgid "Membership Plans"
-msgstr "Üyelik planları"
-
-#: templates/base.html
-msgid "Attendance"
-msgstr "Devam"
-
-#: templates/base.html
-msgid "Reports"
-msgstr "Raporlar"
-
-#: templates/base.html
-msgid "Spa"
-msgstr "Spa"
-
-#: templates/base.html
-msgid "Appointments"
-msgstr "Randevular"
-
-#: templates/base.html
-msgid "Services"
-msgstr "Hizmetler"
-
-#: templates/base.html
-msgid "Mobile Shop"
-msgstr "Telefon mağazası"
-
-#: templates/base.html
-msgid "Products & Accessories"
-msgstr "Ürünler ve aksesuarlar"
-
-#: templates/base.html
-msgid "IMEI Stock"
-msgstr "IMEI stoku"
-
-#: templates/base.html
-msgid "IMEI Purchase"
-msgstr "IMEI alımı"
-
-#: templates/base.html
-msgid "Brands"
-msgstr "Markalar"
-
-#: templates/base.html
-msgid "Categories"
-msgstr "Kategoriler"
-
-#: templates/base.html
-msgid "Repair Job Cards"
-msgstr "Tamir iş kartları"
-
-#: templates/base.html
-msgid "Warranty Claims"
-msgstr "Garanti talepleri"
-
-#: templates/base.html
-msgid "Trade-in / Exchange"
-msgstr "Takas / değişim"
-
-#: templates/base.html
-msgid "Dues & Instalments"
-msgstr "Borçlar ve taksitler"
-
-#: templates/base.html
-msgid "Mobile Reports"
-msgstr "Telefon raporları"
-
-#: templates/base.html
-msgid "Textile"
-msgstr "Tekstil"
-
-#: templates/base.html
-msgid "Orders"
-msgstr "Siparişler"
-
-#: templates/base.html
-msgid "Fabrics"
-msgstr "Kumaşlar"
-
-#: templates/base.html
-msgid "Products (other items)"
-msgstr "Ürünler (diğer)"
-
-#: templates/base.html
-msgid "Units"
-msgstr "Birimler"
-
-#: templates/base.html
-msgid "Print Barcodes"
-msgstr "Barkod yazdır"
-
-#: templates/base.html
-msgid "Measurements"
-msgstr "Ölçüler"
-
-#: templates/base.html
-msgid "Vehicle Wash"
-msgstr "Oto yıkama"
-
-#: templates/base.html
-msgid "Vehicles"
-msgstr "Araçlar"
-
-#: templates/base.html
-msgid "Packages"
-msgstr "Paketler"
-
-#: templates/base.html
-msgid "Sports Shop"
-msgstr "Spor mağazası"
-
-#: templates/base.html
-msgid "Products"
-msgstr "Ürünler"
-
-#: templates/base.html
-msgid "Team orders"
-msgstr "Takım siparişleri"
-
-#: templates/base.html
-msgid "Rentals"
-msgstr "Kiralamalar"
-
-#: templates/base.html
-msgid "Size charts"
-msgstr "Beden tabloları"
-
-#: templates/base.html
 msgid "Sales"
 msgstr "Satışlar"
-
-#: templates/base.html
-msgid "Cycle Shop"
-msgstr "Bisiklet mağazası"
-
-#: templates/base.html
-msgid "Cycle Units"
-msgstr "Bisiklet birimleri"
-
-#: templates/base.html
-msgid "Service Tickets"
-msgstr "Servis fişleri"
-
-#: templates/base.html
-msgid "Saloon"
-msgstr "Kuaför"
-
-#: templates/base.html
-msgid "Beauty Parlour"
-msgstr "Güzellik salonu"
-
-#: templates/base.html
-msgid "Medical Shop"
-msgstr "Eczane"
-
-#: templates/base.html
-msgid "Batches & expiry"
-msgstr "Partiler ve son kullanma"
-
-#: templates/base.html
-msgid "Refills"
-msgstr "Yenilemeler"
-
-#: templates/base.html
-msgid "Protein Shop"
-msgstr "Protein mağazası"
-
-#: templates/base.html
-msgid "Construction"
-msgstr "İnşaat"
-
-#: templates/base.html
-msgid "Projects"
-msgstr "Projeler"
-
-#: templates/base.html
-msgid "Contractors"
-msgstr "Taşeronlar"
-
-#: templates/base.html
-msgid "Restaurant Dashboard"
-msgstr "Restoran panosu"
-
-#: templates/base.html
-msgid "New Order"
-msgstr "Yeni sipariş"
-
-#: templates/base.html
-msgid "Quick sale"
-msgstr "Hızlı satış"
-
-#: templates/base.html
-msgid "Orders (bills)"
-msgstr "Siparişler (hesaplar)"
-
-#: templates/base.html
-msgid "Online orders"
-msgstr "Online siparişler"
-
-#: templates/base.html
-msgid "Deliveries"
-msgstr "Teslimatlar"
-
-#: templates/base.html
-msgid "Kitchen / KOT"
-msgstr "Mutfak / KOT"
-
-#: templates/base.html
-msgid "Menu & Ingredients"
-msgstr "Menü ve malzemeler"
-
-#: templates/base.html
-msgid "Eye tests & orders"
-msgstr "Göz muayeneleri ve siparişler"
-
-#: templates/base.html
-msgid "Appointments calendar"
-msgstr "Randevu takvimi"
-
-#: templates/base.html
-msgid "Job cards"
-msgstr "İş kartları"
-
-#: templates/base.html
-msgid "Service contracts (AMC)"
-msgstr "Servis sözleşmeleri (bakım)"
-
-#: templates/base.html
-msgid "Packages / Sessions"
-msgstr "Paketler / seanslar"
-
-#: templates/base.html
-msgid "Service Reports"
-msgstr "Hizmet raporları"
 
 #: templates/base.html
 msgid "Leads & pipeline"
@@ -402,6 +162,10 @@ msgid "Staff & HR"
 msgstr "Personel ve İK"
 
 #: templates/base.html
+msgid "Attendance"
+msgstr "Devam"
+
+#: templates/base.html
 msgid "Payroll & advances"
 msgstr "Maaş ve avanslar"
 
@@ -466,6 +230,14 @@ msgid "API docs"
 msgstr "API belgeleri"
 
 #: templates/base.html
+msgid "Website"
+msgstr "Web sitesi"
+
+#: templates/base.html
+msgid "My website"
+msgstr "Web sitem"
+
+#: templates/base.html
 msgid "⚙ Platform Admin"
 msgstr "⚙ Platform yöneticisi"
 
@@ -476,6 +248,74 @@ msgstr "Çıkış yap"
 #: templates/base.html
 msgid "Open menu"
 msgstr "Menüyü aç"
+
+#: templates/base.html
+msgid "Search"
+msgstr "Ara"
+
+#: templates/base.html
+msgid "Search pages, customers, invoices, products…"
+msgstr "Sayfa, müşteri, fatura, ürün arayın…"
+
+#: templates/base.html
+msgid "Pages"
+msgstr "Sayfalar"
+
+#: templates/base.html
+msgid "Nothing found."
+msgstr "Hiçbir şey bulunamadı."
+
+#: templates/base.html
+msgid "Type a name, phone or number."
+msgstr "Bir ad, telefon veya numara yazın."
+
+#: templates/base.html
+msgid "↑ ↓ to move · Enter to open · Esc to close"
+msgstr "↑ ↓ gezinmek · Enter açmak · Esc kapatmak için"
+
+#: templates/base.html
+msgid "Close"
+msgstr "Kapat"
+
+#: templates/base.html
+msgid "Keyboard shortcuts"
+msgstr "Klavye kısayolları"
+
+#: templates/base.html
+msgid "Search anything"
+msgstr "Her şeyi arayın"
+
+#: templates/base.html
+msgid "New bill (or the main button of the page)"
+msgstr "Yeni fatura (veya sayfanın ana düğmesi)"
+
+#: templates/base.html
+msgid "Go to the overview"
+msgstr "Genel bakışa git"
+
+#: templates/base.html
+msgid "Show these shortcuts"
+msgstr "Bu kısayolları göster"
+
+#: templates/base.html
+msgid "Close a popup"
+msgstr "Açılır pencereyi kapat"
+
+#: templates/base.html
+msgid "New"
+msgstr "Yeni"
+
+#: templates/base.html
+msgid "Add without leaving this page"
+msgstr "Bu sayfadan ayrılmadan ekleyin"
+
+#: templates/base.html
+msgid "New customer"
+msgstr "Yeni müşteri"
+
+#: templates/base.html
+msgid "New supplier"
+msgstr "Yeni tedarikçi"
 
 #: templates/base.html
 msgid "Help"
@@ -512,6 +352,14 @@ msgstr "⌂ Genel bakış"
 #: templates/base.html
 msgid "＋ New Order"
 msgstr "＋ Yeni sipariş"
+
+#: templates/base.html
+msgid "Quick sale"
+msgstr "Hızlı satış"
+
+#: templates/base.html
+msgid "Orders"
+msgstr "Siparişler"
 
 #: templates/base.html
 msgid "▣ Kitchen Display"
@@ -797,13 +645,257 @@ msgstr "Planlar ve menü"
 msgid "Website orders"
 msgstr "Web sitesi siparişleri"
 
-#: templates/webapp/_industry_nav.html
-msgid "My website"
-msgstr "Web sitem"
-
 #: templates/webapp/_language_switcher.html
 msgid "Language"
 msgstr "Dil"
+
+#: templates/webapp/_nav_business.html
+msgid "Gym"
+msgstr "Spor salonu"
+
+#: templates/webapp/_nav_business.html
+msgid "Members"
+msgstr "Üyeler"
+
+#: templates/webapp/_nav_business.html
+msgid "Membership Plans"
+msgstr "Üyelik planları"
+
+#: templates/webapp/_nav_business.html
+msgid "Reports"
+msgstr "Raporlar"
+
+#: templates/webapp/_nav_business.html
+msgid "Spa"
+msgstr "Spa"
+
+#: templates/webapp/_nav_business.html
+msgid "Appointments"
+msgstr "Randevular"
+
+#: templates/webapp/_nav_business.html
+msgid "Services"
+msgstr "Hizmetler"
+
+#: templates/webapp/_nav_business.html
+msgid "Mobile Shop"
+msgstr "Telefon mağazası"
+
+#: templates/webapp/_nav_business.html
+msgid "Products & Accessories"
+msgstr "Ürünler ve aksesuarlar"
+
+#: templates/webapp/_nav_business.html
+msgid "IMEI Stock"
+msgstr "IMEI stoku"
+
+#: templates/webapp/_nav_business.html
+msgid "IMEI Purchase"
+msgstr "IMEI alımı"
+
+#: templates/webapp/_nav_business.html
+msgid "Brands"
+msgstr "Markalar"
+
+#: templates/webapp/_nav_business.html
+msgid "Categories"
+msgstr "Kategoriler"
+
+#: templates/webapp/_nav_business.html
+msgid "Repair Job Cards"
+msgstr "Tamir iş kartları"
+
+#: templates/webapp/_nav_business.html
+msgid "Warranty Claims"
+msgstr "Garanti talepleri"
+
+#: templates/webapp/_nav_business.html
+msgid "Trade-in / Exchange"
+msgstr "Takas / değişim"
+
+#: templates/webapp/_nav_business.html
+msgid "Dues & Instalments"
+msgstr "Borçlar ve taksitler"
+
+#: templates/webapp/_nav_business.html
+msgid "Mobile Reports"
+msgstr "Telefon raporları"
+
+#: templates/webapp/_nav_business.html
+msgid "Textile"
+msgstr "Tekstil"
+
+#: templates/webapp/_nav_business.html
+msgid "Fabrics"
+msgstr "Kumaşlar"
+
+#: templates/webapp/_nav_business.html
+msgid "Products (other items)"
+msgstr "Ürünler (diğer)"
+
+#: templates/webapp/_nav_business.html
+msgid "Units"
+msgstr "Birimler"
+
+#: templates/webapp/_nav_business.html
+msgid "Print Barcodes"
+msgstr "Barkod yazdır"
+
+#: templates/webapp/_nav_business.html
+msgid "Measurements"
+msgstr "Ölçüler"
+
+#: templates/webapp/_nav_business.html
+msgid "Vehicle Wash"
+msgstr "Oto yıkama"
+
+#: templates/webapp/_nav_business.html
+msgid "Vehicles"
+msgstr "Araçlar"
+
+#: templates/webapp/_nav_business.html
+msgid "Packages"
+msgstr "Paketler"
+
+#: templates/webapp/_nav_business.html
+msgid "Sports Shop"
+msgstr "Spor mağazası"
+
+#: templates/webapp/_nav_business.html
+msgid "Products"
+msgstr "Ürünler"
+
+#: templates/webapp/_nav_business.html
+msgid "Team orders"
+msgstr "Takım siparişleri"
+
+#: templates/webapp/_nav_business.html
+msgid "Rentals"
+msgstr "Kiralamalar"
+
+#: templates/webapp/_nav_business.html
+msgid "Size charts"
+msgstr "Beden tabloları"
+
+#: templates/webapp/_nav_business.html
+msgid "Cycle Shop"
+msgstr "Bisiklet mağazası"
+
+#: templates/webapp/_nav_business.html
+msgid "Cycle Units"
+msgstr "Bisiklet birimleri"
+
+#: templates/webapp/_nav_business.html
+msgid "Service Tickets"
+msgstr "Servis fişleri"
+
+#: templates/webapp/_nav_business.html
+msgid "Saloon"
+msgstr "Kuaför"
+
+#: templates/webapp/_nav_business.html
+msgid "Beauty Parlour"
+msgstr "Güzellik salonu"
+
+#: templates/webapp/_nav_business.html
+msgid "Medical Shop"
+msgstr "Eczane"
+
+#: templates/webapp/_nav_business.html
+msgid "Batches & expiry"
+msgstr "Partiler ve son kullanma"
+
+#: templates/webapp/_nav_business.html
+msgid "Refills"
+msgstr "Yenilemeler"
+
+#: templates/webapp/_nav_business.html
+msgid "Protein Shop"
+msgstr "Protein mağazası"
+
+#: templates/webapp/_nav_business.html
+msgid "Construction"
+msgstr "İnşaat"
+
+#: templates/webapp/_nav_business.html
+msgid "Projects"
+msgstr "Projeler"
+
+#: templates/webapp/_nav_business.html
+msgid "Contractors"
+msgstr "Taşeronlar"
+
+#: templates/webapp/_nav_business.html
+msgid "Restaurant Dashboard"
+msgstr "Restoran panosu"
+
+#: templates/webapp/_nav_business.html
+msgid "New Order"
+msgstr "Yeni sipariş"
+
+#: templates/webapp/_nav_business.html
+msgid "Orders (bills)"
+msgstr "Siparişler (hesaplar)"
+
+#: templates/webapp/_nav_business.html
+msgid "Online orders"
+msgstr "Online siparişler"
+
+#: templates/webapp/_nav_business.html
+msgid "Deliveries"
+msgstr "Teslimatlar"
+
+#: templates/webapp/_nav_business.html
+msgid "Kitchen / KOT"
+msgstr "Mutfak / KOT"
+
+#: templates/webapp/_nav_business.html
+msgid "Menu & Ingredients"
+msgstr "Menü ve malzemeler"
+
+#: templates/webapp/_nav_business.html
+msgid "Eye tests & orders"
+msgstr "Göz muayeneleri ve siparişler"
+
+#: templates/webapp/_nav_business.html
+msgid "Appointments calendar"
+msgstr "Randevu takvimi"
+
+#: templates/webapp/_nav_business.html
+msgid "Job cards"
+msgstr "İş kartları"
+
+#: templates/webapp/_nav_business.html
+msgid "Service contracts (AMC)"
+msgstr "Servis sözleşmeleri (bakım)"
+
+#: templates/webapp/_nav_business.html
+msgid "Packages / Sessions"
+msgstr "Paketler / seanslar"
+
+#: templates/webapp/_nav_business.html
+msgid "Service Reports"
+msgstr "Hizmet raporları"
+
+#: templates/webapp/_nav_recruitment.html
+msgid "New candidate"
+msgstr "Yeni aday"
+
+#: templates/webapp/_nav_recruitment.html
+msgid "Office staff"
+msgstr "Ofis personeli"
+
+#: templates/webapp/_nav_recruitment.html
+msgid "Vacations"
+msgstr "Tatiller"
+
+#: templates/webapp/_nav_recruitment.html
+msgid "Money"
+msgstr "Para"
+
+#: templates/webapp/_nav_recruitment.html
+msgid "More"
+msgstr "Çok"
 
 #: templates/webapp/_overview_panel.html
 msgid "Target"
@@ -1178,10 +1270,6 @@ msgstr "Referans veya not"
 #: templates/webapp/accounts/journal_list.html
 msgid "All types"
 msgstr "Tüm türler"
-
-#: templates/webapp/accounts/journal_list.html
-msgid "Search"
-msgstr "Ara"
 
 #: templates/webapp/accounts/journal_list.html
 msgid "No entries in this period."
@@ -2511,10 +2599,6 @@ msgid "Make visit job cards now"
 msgstr "Ziyaret iş kartlarını şimdi oluştur"
 
 #: templates/webapp/contracts/detail.html
-msgid "Money"
-msgstr "Para"
-
-#: templates/webapp/contracts/detail.html
 msgid "Contract value"
 msgstr "Sözleşme bedeli"
 
@@ -3818,10 +3902,6 @@ msgid "Documents"
 msgstr "Belgeler"
 
 #: templates/webapp/hr/_tabs.html
-msgid "Vacations"
-msgstr "Tatiller"
-
-#: templates/webapp/hr/_tabs.html
 msgid "HR settings"
 msgstr "İK ayarları"
 
@@ -4553,10 +4633,6 @@ msgid "Run payroll"
 msgstr "Bordro çalıştır"
 
 #: templates/webapp/hr/staff_list.html
-msgid "Office staff"
-msgstr "Ofis personeli"
-
-#: templates/webapp/hr/staff_list.html
 msgid "Name, phone or job title"
 msgstr "Ad, telefon veya unvan"
 
@@ -4900,10 +4976,6 @@ msgstr "Numara"
 #: templates/webapp/industry/booking_form.html
 msgid "Change"
 msgstr "Değiştir"
-
-#: templates/webapp/industry/booking_form.html
-msgid "New"
-msgstr "Yeni"
 
 #: templates/webapp/industry/booking_form.html
 msgid "or new customer"
@@ -6942,6 +7014,42 @@ msgstr "Paket barkodu"
 msgid "Add pack"
 msgstr "Paket ekle"
 
+#: templates/webapp/mobile_shop/product_list.html
+msgid "ticked"
+msgstr "seçili"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "What to do"
+msgstr "Ne yapılacak"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "Change selling price by %"
+msgstr "Satış fiyatını % değiştir"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "Move to category"
+msgstr "Kategoriye taşı"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "Stop selling"
+msgstr "Satışı durdur"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "e.g. 10 or -5"
+msgstr "örn. 10 veya -5"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "No category"
+msgstr "Kategori yok"
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "Tip: click a price to change it right here."
+msgstr "İpucu: değiştirmek için fiyata tıklayın."
+
+#: templates/webapp/mobile_shop/product_list.html
+msgid "Tick all"
+msgstr "Tümünü seç"
+
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Repair"
 msgstr "Onarım"
@@ -7111,10 +7219,6 @@ msgstr ""
 #: templates/webapp/no_access.html
 msgid "Your role"
 msgstr "Rolünüz"
-
-#: templates/webapp/no_access.html
-msgid "Go to the overview"
-msgstr "Genel bakışa git"
 
 #: templates/webapp/onboarding/wizard.html
 msgid "Set up your business"
@@ -7714,10 +7818,6 @@ msgstr "Temizle"
 #: templates/webapp/pos.html
 msgid "Take payment"
 msgstr "Ödeme al"
-
-#: templates/webapp/pos.html
-msgid "Close"
-msgstr "Kapat"
 
 #: templates/webapp/pos.html
 msgid "Amount due"
@@ -9179,16 +9279,8 @@ msgid "Name, passport, skill, nationality"
 msgstr "Ad, pasaport, beceri, uyruk"
 
 #: templates/webapp/recruitment/candidates.html
-msgid "New candidate"
-msgstr "Yeni aday"
-
-#: templates/webapp/recruitment/candidates.html
 msgid "Passport expired"
 msgstr "Pasaport süresi dolmuş"
-
-#: templates/webapp/recruitment/candidates.html
-msgid "Website"
-msgstr "Web sitesi"
 
 #: templates/webapp/recruitment/candidates.html
 msgid "No candidates yet."
@@ -11070,10 +11162,6 @@ msgid "Less"
 msgstr "Az"
 
 #: templates/webapp/restaurant/order_detail.html
-msgid "More"
-msgstr "Çok"
-
-#: templates/webapp/restaurant/order_detail.html
 msgid "Service + tip"
 msgstr "Servis + bahşiş"
 
@@ -11930,10 +12018,6 @@ msgstr ""
 "Renkler: --p (ana), --a (vurgu)."
 
 #: templates/webapp/site/editor.html
-msgid "Pages"
-msgstr "Sayfalar"
-
-#: templates/webapp/site/editor.html
 msgid ""
 "Add more pages to your website: About us, Warranty, Delivery & returns, "
 "Terms…"
@@ -12383,10 +12467,6 @@ msgstr ""
 "Her kategori için bir beden rehberi (formalar, ayakkabılar, eldivenler…). "
 "Personel tezgâhta gösterebilir, siteniz de o kategorideki her üründe "
 "gösterir."
-
-#: templates/webapp/sports_shop/size_charts.html
-msgid "No category"
-msgstr "Kategori yok"
 
 #: templates/webapp/sports_shop/size_charts.html
 msgid "Delete this size chart?"
@@ -15257,6 +15337,34 @@ msgstr "%(name)s için bağlantı hazır."
 #: apps/webapp/job_views.py
 msgid "From %(name)s"
 msgstr "%(name)s'den"
+
+#: apps/webapp/list_tools_views.py
+msgid "Enter a price of 0 or more."
+msgstr "0 veya daha yüksek bir fiyat girin."
+
+#: apps/webapp/list_tools_views.py
+msgid "Tick at least one product first."
+msgstr "Önce en az bir ürün seçin."
+
+#: apps/webapp/list_tools_views.py
+msgid "Enter a percent between -90 and 500."
+msgstr "-90 ile 500 arasında bir yüzde girin."
+
+#: apps/webapp/list_tools_views.py
+msgid "Selling price changed by %(pct)s%% for %(n)s products."
+msgstr "%(n)s ürünün satış fiyatı %%%(pct)s değiştirildi."
+
+#: apps/webapp/list_tools_views.py
+msgid "%(n)s products moved."
+msgstr "%(n)s ürün taşındı."
+
+#: apps/webapp/list_tools_views.py
+msgid "%(n)s products will no longer be sold."
+msgstr "%(n)s ürün artık satılmayacak."
+
+#: apps/webapp/list_tools_views.py
+msgid "Choose what to do with the ticked products."
+msgstr "Seçili ürünlerle ne yapılacağını seçin."
 
 #: apps/webapp/manpower_views.py
 msgid "Salary / pay rate"

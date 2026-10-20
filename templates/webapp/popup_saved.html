@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>Saved</title></head>
+<body>
+{{ obj_id|json_script:"bpQid" }}{{ obj_name|json_script:"bpQname" }}{{ kind|json_script:"bpQkind" }}
+<script>
+(function(){
+  var v=function(id){return JSON.parse(document.getElementById(id).textContent)};
+  window.parent.postMessage({type:"bp-quick-added",kind:v("bpQkind"),id:v("bpQid"),name:v("bpQname")},window.location.origin);
+})();
+</script>
+</body></html>

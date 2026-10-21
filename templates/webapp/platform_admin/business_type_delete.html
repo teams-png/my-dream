@@ -5,16 +5,17 @@
 <div class="card" style="max-width:640px;border-left:4px solid var(--danger)">
   {% if removable %}
   <p style="margin-top:0"><b>{{ business_type.name }}</b> (<code>{{ business_type.code }}</code>) is not used by any client. It will be deleted for good.</p>
+  <p style="color:var(--danger);font-weight:600;font-size:14px">This cannot be undone.</p>
   {% else %}
-  <p style="margin-top:0">After deleting, <b>{{ business_type.name }}</b> is no longer offered at sign-up, on the website, in the live demos or when you register or edit a client.</p>
+  <p style="margin-top:0"><b>{{ business_type.name }}</b> will be deleted for good: it is no longer offered at sign-up, on the website, in the live demos or when you register or edit a client, and it won't come back after a deploy.</p>
   {% if in_use %}
   <p><b>{{ in_use }} client{{ in_use|pluralize }}</b> already use{{ in_use|pluralize:"s," }} it. Their menus and data stay exactly as they are.</p>
   <ul style="color:var(--ink-soft);font-size:14px">{% for c in main_clients %}<li>{{ c.name }} · main business</li>{% endfor %}{% for c in extra_clients %}<li>{{ c.name }} · extra business type</li>{% endfor %}</ul>
   {% endif %}
-  <p style="color:var(--ink-soft);font-size:13.5px">You can restore it any time from the bottom of the Business Types page.</p>
+  <p style="color:var(--danger);font-weight:600;font-size:14px">This cannot be undone.</p>
   {% endif %}
   <form method="post" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">{% csrf_token %}
-    <button class="btn" type="submit" style="background:var(--danger);border-color:var(--danger);color:#fff">Delete {{ business_type.name }}</button>
+    <button class="btn" type="submit" style="background:var(--danger);border-color:var(--danger);color:#fff">Delete {{ business_type.name }} permanently</button>
     <a class="btn btn-secondary" href="{% url 'webapp:platform_business_type_list' %}">Cancel</a>
   </form>
 </div>

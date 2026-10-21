@@ -1,5 +1,5 @@
-"""Platform admin deletes a business type: it stops being offered to new clients, clients on it keep working,
-and an unused custom type goes for good."""
+"""Platform admin deletes a business type permanently: no restore, never offered again (not even after a deploy),
+clients already on it keep working, and an unused custom type is removed from the database."""
 import pytest
 from django.contrib.auth import get_user_model
 from django.test import Client
@@ -37,11 +37,12 @@ def test_unused_custom_type_is_deleted_for_good():
     assert not BusinessType.objects.filter(pk=bt.pk).exists()
 
 
-def test_catalogue_type_in_use_is_hidden_and_can_be_restored(tenant_a, tenant_a_owner):
+def test_catalogue_type_in_use_is_deleted_for_good(tenant_a, tenant_a_owner):
+    from django.core.management import call_command
     bt = tenant_a.business_type
     pa = _admin()
     page = pa.get(reverse("webapp:platform_business_type_delete", args=[bt.id])).content.decode()
-    assert tenant_a.name in page
+    assert tenant_a.name in page and "cannot be undone" in page and "restore" not in page.lower()
     pa.post(reverse("webapp:platform_business_type_delete", args=[bt.id]))
     bt.refresh_from_db()
     assert not bt.is_active
@@ -54,12 +55,12 @@ def test_catalogue_type_in_use_is_hidden_and_can_be_restored(tenant_a, tenant_a_
     owner = Client()
     owner.force_login(tenant_a_owner)
     assert owner.get(reverse("webapp:dashboard")).status_code == 200
-    # it shows under "Deleted business types" and comes back with Restore
-    assert "Deleted business types" in pa.get(reverse("webapp:platform_business_type_list")).content.decode()
-    pa.post(reverse("webapp:platform_business_type_restore", args=[bt.id]))
+    # gone from the admin list, no restore, and a deploy (seed_platform) does not bring it back
+    listing = pa.get(reverse("webapp:platform_business_type_list")).content.decode()
+    assert f"<code>{bt.code}</code>" not in listing and "Restore" not in listing
+    call_command("seed_platform")
     bt.refresh_from_db()
-    assert bt.is_active
-    assert f'value="{bt.code}"' in Client().get(reverse("webapp:signup")).content.decode()
+    assert not bt.is_active
 
 
 def test_deleted_type_cannot_be_ticked_for_another_client(tenant_a, tenant_b):

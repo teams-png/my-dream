@@ -5108,7 +5108,7 @@ def platform_admin_dashboard(request):
         "expired_count": expired_count,
         "recent_companies": recent_companies,
         "recent_payments": recent_payments,
-        "business_type_count": BusinessType.objects.count(),
+        "business_type_count": BusinessType.objects.filter(is_active=True).count(),
         "module_count": Module.objects.count(),
         "multi_business_count": Company.objects.filter(business_suites__is_active=True).annotate(suite_count=Count("business_suites")).filter(suite_count__gt=1).distinct().count(),
     }
@@ -5863,7 +5863,7 @@ def platform_setup(request):
     User = get_user_model()
     return render(request, "webapp/platform_admin/setup.html", {
         "module_count": Module.objects.count(),
-        "business_type_count": BusinessType.objects.count(),
+        "business_type_count": BusinessType.objects.filter(is_active=True).count(),
         "user_count": User.objects.count(),
         "open_ticket_count": SupportTicket.objects.exclude(status__in=["resolved", "closed"]).count(),
         "email_configured": bool(settings.EMAIL_HOST and settings.EMAIL_HOST_USER),
@@ -5927,8 +5927,7 @@ def platform_module_form(request, module_id=None):
 def platform_business_type_list(request):
     business_types = BusinessType.objects.prefetch_related("default_modules__module").order_by("name")
     return render(request, "webapp/platform_admin/business_type_list.html", {
-        "business_types": [b for b in business_types if b.is_active],
-        "deleted_types": [b for b in business_types if not b.is_active],
+        "business_types": [b for b in business_types if b.is_active],  # deleted types are gone for good
     })
 
 
@@ -5956,8 +5955,10 @@ def platform_business_type_form(request, business_type_id=None):
 @login_required
 @superuser_required
 def platform_business_type_delete(request, business_type_id):
-    """Delete a business type. One no client uses and that isn't in the built-in catalogue is removed for good;
-    otherwise it is hidden from sign-up, the landing page and new clients, and clients already on it keep working."""
+    """Delete a business type for good: it disappears from this admin, sign-up, the landing page and new clients, and
+    there is no restore. One no client uses and that isn't in the built-in catalogue is removed from the database; a
+    built-in or used one stays only as a hidden record (so the next deploy doesn't add it back and clients already on
+    it keep their data and keep working)."""
     from apps.modules.catalog import BUSINESS_TYPE_MAP
     business_type = get_object_or_404(BusinessType, id=business_type_id)
     main_clients = Company._base_manager.filter(business_type=business_type)
@@ -5970,30 +5971,16 @@ def platform_business_type_delete(request, business_type_id):
         if removable:
             CompanyBusinessType.objects.filter(business_type=business_type).delete()
             business_type.delete()
-            messages.success(request, f"{name} was deleted.")
         else:
             business_type.is_active = False
             business_type.save(update_fields=["is_active"])
-            messages.success(request, f"{name} was deleted: new clients can no longer choose it."
-                             + (f" The {in_use} client(s) already using it keep working." if in_use else ""))
+        messages.success(request, f"{name} was deleted permanently."
+                         + (f" The {in_use} client(s) already using it keep their data." if in_use else ""))
         return redirect("webapp:platform_business_type_list")
     return render(request, "webapp/platform_admin/business_type_delete.html", {
         "business_type": business_type, "main_clients": main_clients[:20], "extra_clients": extra_clients.distinct()[:20],
         "in_use": in_use, "removable": removable,
     })
-
-
-@login_required
-@superuser_required
-def platform_business_type_restore(request, business_type_id):
-    if request.method != "POST":
-        from django.http import HttpResponseNotAllowed
-        return HttpResponseNotAllowed(["POST"])
-    business_type = get_object_or_404(BusinessType, id=business_type_id)
-    business_type.is_active = True
-    business_type.save(update_fields=["is_active"])
-    messages.success(request, f"{business_type.name} is offered to clients again.")
-    return redirect("webapp:platform_business_type_list")
 
 
 @login_required
@@ -6022,7 +6009,7 @@ def platform_commercial_control(request):
         suites=list(c.business_suites.filter(is_active=True).select_related('business_type'))
         rows.append((c, profile, suites, c.active_modules().count()))
     return render(request,'webapp/platform_admin/commercial_control.html',{
-      'rows':rows,'module_count':Module.objects.count(),'business_type_count':BusinessType.objects.count(),
+      'rows':rows,'module_count':Module.objects.count(),'business_type_count':BusinessType.objects.filter(is_active=True).count(),
       'multi_business_count':CompanyBusinessType.objects.filter(is_active=True).values('company_id').annotate(n=Count('id')).filter(n__gt=1).count(),
       'plan_count':SubscriptionPlan.objects.filter(is_active=True).count(),
     })

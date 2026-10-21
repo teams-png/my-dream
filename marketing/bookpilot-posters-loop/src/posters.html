@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BookPilot posters · Loop Technologies</title>
+<!-- Two BookPilot feed posters (1080×1350, Instagram / Facebook) in Loop Technologies colours: purple + charcoal on white.
+     Open in a browser to see them; render.py saves each <section class="poster"> as a PNG. -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="vendor/bootstrap-icons.min.css" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#d9dbe3;font-family:"Plus Jakarta Sans",system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;gap:40px;padding:40px 0}
+.poster{--p:#4523bc;--p2:#7b5cf0;--ink:#262a30;--soft:#5d6470;position:relative;width:1080px;height:1350px;overflow:hidden;color:var(--ink);
+  padding:52px 64px 0;display:flex;flex-direction:column;background:#fbfaff;-webkit-font-smoothing:antialiased}
+.poster>*{position:relative;z-index:1}
+.bg{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(620px 480px at 100% 0%,rgba(69,35,188,.16),transparent 70%),
+             radial-gradient(560px 460px at 0% 78%,rgba(123,92,240,.13),transparent 70%)}
+.dots{position:absolute;inset:0;z-index:0;opacity:.55;background-image:radial-gradient(rgba(69,35,188,.16) 1.4px,transparent 1.6px);background-size:30px 30px;
+  mask-image:linear-gradient(180deg,#000,transparent 60%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 60%)}
+/* the Loop "L" ribbon shape behind the visual */
+.ribbon{position:absolute;z-index:0;right:-130px;top:575px;width:600px;height:600px;border-radius:120px 0 0 0;
+  background:linear-gradient(150deg,var(--p) 0%,#2b1683 100%);transform:rotate(-8deg);opacity:.96}
+.ribbon2{position:absolute;z-index:0;right:-70px;top:535px;width:290px;height:100px;border-radius:0 0 0 60px;background:var(--ink);transform:rotate(-8deg)}
+
+.top{display:flex;align-items:center;justify-content:space-between}
+.bp{display:flex;align-items:center;gap:14px}
+.bp svg{width:60px;height:60px;filter:drop-shadow(0 10px 20px rgba(69,35,188,.35))}
+.bp span{font-size:42px;font-weight:600;letter-spacing:-.03em}.bp b{font-weight:800;color:var(--p)}
+.by{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 20px 12px;border-radius:18px;background:#fff;box-shadow:0 12px 30px -14px rgba(38,42,48,.35);border:1px solid #ece9f8}
+.by small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--soft);line-height:1.25}
+.by img{height:66px;width:auto;display:block}
+
+.eyebrow{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;margin-top:40px;padding:9px 18px;border-radius:999px;font-size:18px;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--p);background:rgba(69,35,188,.08);border:1px solid rgba(69,35,188,.22)}
+.eyebrow i{font-size:18px}
+h1{margin-top:20px;font-size:78px;line-height:1.02;font-weight:800;letter-spacing:-.045em;max-width:960px}
+h1 em{font-style:normal;color:var(--p)}
+.sub{margin-top:16px;font-size:27px;line-height:1.42;color:var(--soft);max-width:880px}
+
+.visual{position:relative;flex:1;margin-top:30px;min-height:0}
+.browser{position:absolute;left:0;top:0;bottom:22px;width:790px;border-radius:18px;overflow:hidden;background:#fff;
+  box-shadow:0 46px 80px -30px rgba(26,14,80,.55),0 0 0 1px rgba(38,42,48,.08);transform:perspective(1800px) rotateY(-8deg) rotateX(2deg);transform-origin:left center}
+.browser .bar{display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;background:#f1f0f7;border-bottom:1px solid #e6e3f2}
+.browser .bar i{width:12px;height:12px;border-radius:50%}
+.browser .bar i:nth-child(1){background:#ff6159}.browser .bar i:nth-child(2){background:#ffbd2e}.browser .bar i:nth-child(3){background:#28c941}
+.browser .bar span{margin-left:12px;font-size:16px;font-weight:600;color:#6b7180}
+.browser img{display:block;width:100%;height:calc(100% - 40px);object-fit:cover;object-position:left top}
+.phone{position:absolute;right:0;bottom:40px;width:214px;border-radius:30px;border:8px solid var(--ink);background:#fff;box-shadow:0 36px 60px -20px rgba(26,14,80,.6)}
+.chip{position:absolute;display:flex;align-items:center;gap:14px;padding:13px 20px 13px 13px;border-radius:18px;background:#fff;
+  box-shadow:0 24px 44px -18px rgba(26,14,80,.45);border:1px solid #ece9f8}
+.chip i{display:grid;place-items:center;width:50px;height:50px;border-radius:14px;font-size:25px;color:#fff;background:linear-gradient(135deg,var(--p),var(--p2))}
+.chip b{display:block;font-size:20px;font-weight:800}.chip small{font-size:16px;color:var(--soft)}
+.c1{left:-22px;bottom:58px}.c2{right:22px;top:18px}
+
+.feats{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0 28px}
+.feats li{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:14px;font-size:20px;font-weight:700;background:#fff;
+  border:1px solid #ebe8f6;box-shadow:0 8px 20px -14px rgba(38,42,48,.3)}
+.feats i{font-size:24px;color:var(--p)}
+
+.foot{display:flex;align-items:center;justify-content:space-between;gap:24px;margin:0 -64px;padding:26px 64px 30px;background:var(--ink);color:#fff}
+.wa{display:flex;align-items:center;gap:20px}
+.wa i{display:grid;place-items:center;width:82px;height:82px;border-radius:50%;background:#25d366;font-size:42px;color:#fff;box-shadow:0 0 0 10px rgba(37,211,102,.2)}
+.wa small{display:block;font-size:21px;color:rgba(255,255,255,.72);font-weight:600}
+.wa b{display:block;font-size:50px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.qr{display:flex;align-items:center;gap:14px}
+.qr img{width:122px;height:122px;padding:10px;border-radius:16px;background:#fff}
+.qr small{font-size:18px;color:rgba(255,255,255,.72);font-weight:600;line-height:1.3}
+
+/* poster 2 */
+.types{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.type{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;height:108px;border-radius:20px;background:#fff;
+  border:1px solid #ebe8f6;box-shadow:0 12px 26px -18px rgba(38,42,48,.35)}
+.type i{display:grid;place-items:center;width:52px;height:52px;border-radius:15px;font-size:26px;color:var(--p);background:rgba(69,35,188,.09)}
+.type b{font-size:18px;font-weight:700}
+.hero2{display:flex;align-items:center;gap:26px;margin-top:24px;padding:22px 30px;border-radius:26px;color:#fff;
+  background:linear-gradient(120deg,var(--p) 0%,#2b1683 100%);box-shadow:0 30px 60px -28px rgba(69,35,188,.8)}
+.hero2 .num{font-size:110px;font-weight:800;letter-spacing:-.05em;line-height:.9}
+.hero2 .num small{font-size:64px;vertical-align:top}
+.hero2 p{font-size:26px;line-height:1.35;font-weight:600}.hero2 p span{display:block;font-size:20px;font-weight:500;opacity:.8;margin-top:6px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0 0;align-content:start}
+.steps+.foot{margin-top:auto}
+.step{padding:20px 20px 22px;border-radius:20px;background:#fff;border:1px solid #ebe8f6}
+.step em{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--ink);color:#fff;font-style:normal;font-weight:800;font-size:19px}
+.step b{display:block;margin-top:12px;font-size:22px;font-weight:800}
+.step span{display:block;margin-top:6px;font-size:17px;line-height:1.4;color:var(--soft)}
+</style>
+</head>
+<body>
+
+<!-- 1 · main product poster -->
+<section class="poster" id="01-bookpilot-loop-main">
+  <div class="bg"></div><div class="dots"></div><div class="ribbon"></div><div class="ribbon2"></div>
+  <div class="top">
+    <div class="bp"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b5cf0"/><stop offset="1" stop-color="#4523bc"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#g1)"/><path d="M32 9 L37 27 L55 32 L37 37 L32 55 L27 37 L9 32 L27 27 Z" fill="#fff"/></svg><span>Book<b>Pilot</b></span></div>
+    <div class="by"><small>A product of</small><img src="img/loop-logo.png" alt="Loop Technologies"></div>
+  </div>
+  <span class="eyebrow"><i class="bi bi-stars"></i>All-in-one business software</span>
+  <h1>Run your whole business from <em>one app.</em></h1>
+  <p class="sub">Billing, stock, staff, accounts and VAT for shops, restaurants, salons and service companies.</p>
+  <div class="visual">
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>BookPilot · Overview</span></div><img src="img/bookpilot-dash.webp" alt=""></div>
+    <img class="phone" src="img/bookpilot-phone.webp" alt="">
+    <div class="chip c1"><i class="bi bi-receipt"></i><div><b>Bill in seconds</b><small>POS · barcode · WhatsApp bill</small></div></div>
+    <div class="chip c2"><i class="bi bi-graph-up-arrow"></i><div><b>Live sales charts</b><small>Today · month · year</small></div></div>
+  </div>
+  <ul class="feats">
+    <li><i class="bi bi-upc-scan"></i>POS & billing</li><li><i class="bi bi-box-seam"></i>Stock & branches</li><li><i class="bi bi-calculator"></i>Accounts & VAT</li>
+    <li><i class="bi bi-person-badge"></i>Staff & payroll</li><li><i class="bi bi-wifi-off"></i>Works offline</li><li><i class="bi bi-translate"></i>Arabic & English</li>
+  </ul>
+  <div class="foot">
+    <div class="wa"><i class="bi bi-whatsapp"></i><div><small>Call or WhatsApp for a free demo</small><b dir="ltr">+91 98475 54224</b></div></div>
+    <div class="qr"><img src="img/qr-whatsapp.svg" alt="WhatsApp QR code"><small>Scan to<br>chat</small></div>
+  </div>
+</section>
+
+<!-- 2 · every business + free trial -->
+<section class="poster" id="02-bookpilot-loop-free-trial">
+  <div class="bg"></div><div class="dots"></div>
+  <div class="top">
+    <div class="bp"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b5cf0"/><stop offset="1" stop-color="#4523bc"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#g2)"/><path d="M32 9 L37 27 L55 32 L37 37 L32 55 L27 37 L9 32 L27 27 Z" fill="#fff"/></svg><span>Book<b>Pilot</b></span></div>
+    <div class="by"><small>A product of</small><img src="img/loop-logo.png" alt="Loop Technologies"></div>
+  </div>
+  <span class="eyebrow"><i class="bi bi-gift"></i>Free trial · Free demo</span>
+  <h1>One app. <em>Every kind</em> of business.</h1>
+  <p class="sub">BookPilot comes ready for your trade: the right menus, reports and sample items from day one.</p>
+  <div class="types">
+    <div class="type"><i class="bi bi-cup-hot"></i><b>Restaurants</b></div><div class="type"><i class="bi bi-basket2"></i><b>Supermarkets</b></div>
+    <div class="type"><i class="bi bi-phone"></i><b>Mobile shops</b></div><div class="type"><i class="bi bi-scissors"></i><b>Salons & spas</b></div>
+    <div class="type"><i class="bi bi-bag-heart"></i><b>Fashion</b></div><div class="type"><i class="bi bi-heart-pulse"></i><b>Clinics & pharmacy</b></div>
+    <div class="type"><i class="bi bi-car-front"></i><b>Garages</b></div><div class="type"><i class="bi bi-building"></i><b>Hotels & rentals</b></div>
+  </div>
+  <div class="hero2"><div class="num">100<small>+</small></div><p>business types ready to go<span>Web · Windows · Android · iPhone</span></p></div>
+  <div class="steps">
+    <div class="step"><em>1</em><b>Start free</b><span>3-day free trial. No card needed.</span></div>
+    <div class="step"><em>2</em><b>We set it up</b><span>Your items and customers moved in for you.</span></div>
+    <div class="step"><em>3</em><b>Start selling</b><span>Staff training and local support.</span></div>
+  </div>
+  <div class="foot">
+    <div class="wa"><i class="bi bi-whatsapp"></i><div><small>Book your free demo</small><b dir="ltr">+91 98475 54224</b></div></div>
+    <div class="qr"><img src="img/qr-whatsapp.svg" alt="WhatsApp QR code"><small>Scan to<br>chat</small></div>
+  </div>
+</section>
+
+</body>
+</html>

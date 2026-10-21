@@ -154,7 +154,7 @@ def test_website_packages_billing_and_cart_only_for_ecommerce(shop, admin_client
     company, owner, kit = shop
     sub = getattr(company, "subscription", None)
     if sub is not None:
-        assert addons(sub)["website_amount"] == 699
+        assert addons(sub)["website_amount"] == 799
     assert shop_orders.config(company) is not None
     _admin_save(admin_client, company, **{"a-package": "website"})
     cache.clear()
@@ -163,9 +163,9 @@ def test_website_packages_billing_and_cart_only_for_ecommerce(shop, admin_client
     assert "data-bp-add" not in home and "/shop/" in home  # products still shown, no cart
     assert "E-commerce website package" in owner.get(reverse("webapp:shop_orders")).content.decode()
     if sub is not None:
-        assert addons(sub)["website_amount"] == 399
+        assert addons(sub)["website_amount"] == 499
     landing = Client().get(reverse("webapp:landing")).content.decode()
-    assert "E-commerce website" in landing and '"shop": 699' in landing
+    assert "E-commerce website" in landing and '"shop": 799' in landing
 
 
 def test_offers_coupon_reviews_gallery_wishlist_and_online_pay(shop, monkeypatch):

@@ -171,6 +171,9 @@ are missing. It never overwrites a price edited later under
 |---|---|---|---|
 | Every business, every country | 699 QAR | 899 QAR | 999 QAR |
 
+- Add-ons per year: each user above 5 QAR 100, each branch above the first
+  QAR 300 (migration `subscriptions/0014`), business website QAR 499,
+  e-commerce website QAR 799 (`WEBSITE_PRICES`).
 - One price list in QAR for all countries. Migration `subscriptions/0013`
   set these prices on the existing plans once and switched off the India
   (INR) plans; a business already on an India plan keeps it until it

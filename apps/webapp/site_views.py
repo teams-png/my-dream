@@ -368,7 +368,7 @@ class AdminSiteForm(forms.ModelForm):
         fields = ["enabled", "package", "custom_domain", "domain_status", "custom_html", "custom_head", "custom_header",
                   "custom_footer", "custom_home"]
         labels = {"enabled": "Website add-on is on for this client", "domain_status": "Domain status",
-                  "package": "Package (billed yearly: Website QAR 399 · E-commerce QAR 699)",
+                  "package": "Package (billed yearly: Website QAR 499 · E-commerce QAR 799)",
                   "custom_head": "Custom <head> code", "custom_header": "Custom header", "custom_footer": "Custom footer",
                   "custom_home": "Custom home page",
                   "custom_html": "Custom HTML section"}

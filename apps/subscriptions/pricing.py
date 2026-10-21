@@ -25,9 +25,9 @@ PRICE_TABLE = {
 TIER_LABEL = {"standard": "Business", "large": "Large Shop"}
 
 # Yearly add-ons: each user above the biggest plan's users, and each branch above the first.
-ADDON_PRICES = {GLOBAL: {"user": 100, "branch": 100}}
+ADDON_PRICES = {GLOBAL: {"user": 100, "branch": 300}}
 # Yearly website add-ons: a website (pages, products, enquiries) or an e-commerce website (adds cart and orders).
-WEBSITE_PRICES = {GLOBAL: {"website": 399, "shop": 699}}
+WEBSITE_PRICES = {GLOBAL: {"website": 499, "shop": 799}}
 
 # How much of each currency one QAR buys, for display only. The GCC
 # currencies and USD are pegged, so these are exact; the others float and

@@ -36,8 +36,10 @@ def _invoices(company):
     return SalesInvoice.objects.for_company(company).exclude(status="void")
 
 
-def _kpi(label, value, url, *, tone="", note="", reports=False):
-    return {"label": label, "value": value, "url": url, "tone": tone, "note": note, "reports": reports}
+def _kpi(label, value, url, *, tone="", note="", reports=False, same_as_chart=False):
+    # same_as_chart: the overview charts already show this number (today's / this month's sales)
+    return {"label": label, "value": value, "url": url, "tone": tone, "note": note, "reports": reports,
+            "same_as_chart": same_as_chart}
 
 
 def _panel(title, url, link_label, rows, empty, empty_url="", empty_label=""):
@@ -58,11 +60,12 @@ def _money(company, today):
     dues = (totals["total"] or 0) - (totals["paid"] or 0)
     low = len(_low_stock(company))
     return {
-        "today": _kpi(_("Today's sales"), todays["t"] or 0, _bills_url(today, today), tone="money"),
+        "today": _kpi(_("Today's sales"), todays["t"] or 0, _bills_url(today, today), tone="money", same_as_chart=True),
         "bills": _kpi(_("Bills today"), todays["n"], _bills_url(today, today)),
         "month": _kpi(_("This month's revenue"), invoices.filter(date__gte=month_start).aggregate(t=Sum("total"))["t"] or 0,
-                      _bills_url(month_start, today), tone="money", reports=True),
-        "dues": _kpi(_("Outstanding dues"), dues, reverse("webapp:receivables"), tone="warn money" if dues > 0 else "money"),
+                      _bills_url(month_start, today), tone="money", reports=True, same_as_chart=True),
+        "dues": _kpi(_("Outstanding dues"), dues, reverse("webapp:receivables"), tone="warn money" if dues > 0 else "money",
+                     same_as_chart=True),
         "low": _kpi(_("Low stock items"), low, reverse("webapp:stock_home") + "?show=low", tone="bad" if low else ""),
     }
 

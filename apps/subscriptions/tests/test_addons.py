@@ -32,11 +32,7 @@ def _users(company, n, start=0):
 def test_new_plans_have_the_addon_prices(plans):
     assert plans[5].extra_user_price == Decimal("100") and plans[3].extra_user_price == 0
     assert all(p.extra_branch_price == Decimal("100") for p in plans.values())
-    from apps.subscriptions.pricing import plan_name
-    india5 = SubscriptionPlan.objects.get(country="India", currency="INR", tier="standard", name=plan_name("standard", 5))
-    india3 = SubscriptionPlan.objects.get(country="India", currency="INR", tier="standard", name=plan_name("standard", 3))
-    assert india5.extra_user_price == Decimal("1000") and india5.extra_branch_price == Decimal("1000")
-    assert india3.extra_user_price == 0 and india3.extra_branch_price == Decimal("1000")
+    assert not SubscriptionPlan.objects.filter(currency="INR").exists()  # no India price list any more
 
 
 def test_extra_users_and_branches_are_charged(tenant_a, plans):
@@ -50,7 +46,7 @@ def test_extra_users_and_branches_are_charged(tenant_a, plans):
     a = addons(sub)
     assert a["users"] == 7 and a["extra_users"] == 2  # the owner isn't counted and a["users_amount"] == Decimal("200")
     assert a["extra_branches"] == branches - 1 and a["branches_amount"] == Decimal(100 * (branches - 1))
-    assert amount_due(sub) == Decimal("899") + Decimal("200") + Decimal(100 * (branches - 1))
+    assert amount_due(sub) == Decimal("999") + Decimal("200") + Decimal(100 * (branches - 1))
 
 
 def test_three_user_plan_still_needs_an_upgrade(tenant_a, plans):

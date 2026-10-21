@@ -9,7 +9,7 @@
 .ov-suggest a{display:flex;gap:10px;align-items:center;padding:9px 4px;border-top:1px solid var(--line);color:var(--ink)}
 .ov-suggest a span:nth-child(2){flex:1}.ov-suggest a:hover{color:var(--accent)}
 .ov-actions .btn{font-size:16px;padding:13px 20px}
-.ov-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}
+.ov-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:18px}
 .ov-kpi{display:block;text-decoration:none;color:inherit;border-top:3px solid var(--accent)}
 .ov-kpi .k-label{color:var(--ink-soft);font-size:13px;padding-inline-end:18px}
 .ov-kpi .k-value{font-size:26px;font-weight:700;margin-top:6px}

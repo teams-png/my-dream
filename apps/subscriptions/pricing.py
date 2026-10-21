@@ -1,11 +1,8 @@
 """
 Subscription pricing.
 
-Two price lists only:
-  * India      -> INR prices
-  * everywhere else (Qatar, GCC, UK, USA, Europe, ...) -> QAR prices
-
-and two tiers per list: normal businesses, and supermarkets / large shops.
+One price list, in QAR, for every country (the old India / INR list was retired),
+with two tiers: normal businesses, and supermarkets / large shops (same prices for now).
 Customers outside Qatar are always charged the QAR price; `local_estimate`
 only *shows* roughly what that is in their own currency.
 """
@@ -20,19 +17,17 @@ USER_STEPS = (1, 3, 5)
 # Business types billed at the supermarket / large-shop price.
 LARGE_BUSINESS_TYPES = {"supermarket", "wholesale_business"}
 
+# Yearly plan prices in QAR by number of users.
 PRICE_TABLE = {
-    (GLOBAL, "standard"): {1: 399, 3: 699, 5: 899},
-    (GLOBAL, "large"): {1: 499, 3: 899, 5: 1199},
-    (INDIA, "standard"): {1: 3999, 3: 6999, 5: 8999},
-    (INDIA, "large"): {1: 5999, 3: 9999, 5: 13999},
+    (GLOBAL, "standard"): {1: 699, 3: 899, 5: 999},
+    (GLOBAL, "large"): {1: 699, 3: 899, 5: 999},
 }
 TIER_LABEL = {"standard": "Business", "large": "Large Shop"}
 
 # Yearly add-ons: each user above the biggest plan's users, and each branch above the first.
-# India follows the same ratio as its plan prices (QAR 899 plan = INR 8,999), so QAR 100 = INR 1,000.
-ADDON_PRICES = {GLOBAL: {"user": 100, "branch": 100}, INDIA: {"user": 1000, "branch": 1000}}
+ADDON_PRICES = {GLOBAL: {"user": 100, "branch": 100}}
 # Yearly website add-ons: a website (pages, products, enquiries) or an e-commerce website (adds cart and orders).
-WEBSITE_PRICES = {GLOBAL: {"website": 399, "shop": 699}, INDIA: {"website": 3999, "shop": 6999}}
+WEBSITE_PRICES = {GLOBAL: {"website": 399, "shop": 699}}
 
 # How much of each currency one QAR buys, for display only. The GCC
 # currencies and USD are pegged, so these are exact; the others float and
@@ -52,7 +47,8 @@ CURRENCY_BY_COUNTRY = {
 
 
 def region_for(country):
-    return INDIA if (country or "").strip().lower() == "india" else GLOBAL
+    """Every country uses the QAR price list (India included, since the INR list was retired)."""
+    return GLOBAL
 
 
 def tier_for(business_type_code):
@@ -72,7 +68,7 @@ def plans_for(country, business_type_code):
 
 def ensure_default_plans(modules=()):
     """
-    Creates the 12 standard plans if they are missing. Existing plans are
+    Creates the 6 standard plans if they are missing. Existing plans are
     never changed, so prices edited by the platform admin survive deploys.
     """
     from .models import SubscriptionPlan

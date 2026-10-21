@@ -95,9 +95,9 @@ def build(company, today=None):
     return {
         "currency": company.default_currency,
         "summary": [
-            {"label": _("Today"), "value": sales_today, "change": _change(sales_today, sales_yesterday),
+            {"label": _("Today's sales"), "value": sales_today, "change": _change(sales_today, sales_yesterday),
              "vs": _("vs yesterday"), "url": f"{reverse('webapp:sales_invoice_list')}?from={today:%Y-%m-%d}&to={today:%Y-%m-%d}"},
-            {"label": _("This month"), "value": sales_month, "change": _change(sales_month, sales_last_month_to_date),
+            {"label": _("This month's revenue"), "value": sales_month, "change": _change(sales_month, sales_last_month_to_date),
              "vs": _("vs same days last month"),
              "url": f"{reverse('webapp:sales_invoice_list')}?from={month_start:%Y-%m-%d}&to={today:%Y-%m-%d}"},
             {"label": _("Last month"), "value": sales_last_month, "change": None, "vs": "",

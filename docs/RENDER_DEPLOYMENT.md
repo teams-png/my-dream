@@ -169,14 +169,13 @@ are missing. It never overwrites a price edited later under
 
 | | 1 user | 3 users | 5 users |
 |---|---|---|---|
-| Normal business (all countries except India) | 399 QAR | 699 QAR | 899 QAR |
-| Supermarket / large shop (all countries except India) | 499 QAR | 899 QAR | 1,199 QAR |
-| Normal business (India) | ₹3,999 | ₹6,999 | ₹8,999 |
-| Supermarket / large shop (India) | ₹5,999 | ₹9,999 | ₹13,999 |
+| Every business, every country | 699 QAR | 899 QAR | 999 QAR |
 
-- The country chosen at sign-up picks the price list: India gets INR,
-  every other country gets QAR.
-- The business type picks the tier. "Large shop" pricing covers the
+- One price list in QAR for all countries. Migration `subscriptions/0013`
+  set these prices on the existing plans once and switched off the India
+  (INR) plans; a business already on an India plan keeps it until it
+  changes plan.
+- The business type picks the tier (both tiers have the same prices today). "Large shop" pricing covers the
   types in `LARGE_BUSINESS_TYPES` in `apps/subscriptions/pricing.py`
   (Supermarket and Wholesale business).
 - Visitors outside Qatar also see an **estimate** in their own currency,

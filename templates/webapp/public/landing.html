@@ -266,13 +266,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="center reveal"><span class="eyebrow">{% translate "Simple pricing" %}</span><h2>{% translate "Start free. Upgrade when you grow." %}</h2><p class="sub">{% translate "Every plan starts with a" %} {{ trial_days }}-day free trial. No card needed.</p></div>
   <div class="price-tools reveal">
     <div class="seg-tabs" id="tierTabs" role="tablist"><button type="button" class="on" data-tier="standard">🏢 {% translate "Business" %}</button><button type="button" data-tier="large">🛒 {% translate "Supermarket / Large shop" %}</button></div>
-    <div class="seg-tabs" id="regionTabs" role="tablist" hidden><button type="button" class="on" data-region="Global">🌍 {% translate "International (QAR)" %}</button><button type="button" data-region="India">🇮🇳 {% translate "India (INR)" %}</button></div>
     <label class="cur-pick">{% translate "Show in" %} <select id="curPick"><option value="">QAR</option>{% for code in pricing.fx %}{% if code != "QAR" %}<option value="{{ code }}">{{ code }}</option>{% endif %}{% endfor %}</select></label>
   </div>
   <div class="plans" id="planCards"></div>
   <div class="addons reveal" id="addonBox" hidden></div>
   <p class="sub" id="priceNote" style="font-size:14px;margin:18px auto 0;text-align:center"></p>
-  <noscript><div class="plans">{% for plan in plans %}<div class="plan"><h3>{{ plan.name }} ({{ plan.country }})</h3><div class="price">{{ plan.currency }} {{ plan.price|floatformat:"-2" }}</div></div>{% endfor %}</div></noscript>
+  <noscript><div class="plans">{% for plan in plans %}<div class="plan"><h3>{{ plan.name }}</h3><div class="price">{{ plan.currency }} {{ plan.price|floatformat:"-2" }}</div></div>{% endfor %}</div></noscript>
   </div>
 </div></section>
 
@@ -305,34 +304,31 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   const T={user:"{% translate 'user' %}",users:"{% translate 'users' %}",plusOwner:"{% translate '+ owner login free' %}",year:"{% translate 'year' %}",upTo:"{% translate 'Up to' %}",
     start:"{% translate 'Start free trial' %}",all:"{% translate 'All features for your business type' %}",
     feats:["{% translate 'POS, stock, accounts & reports' %}","{% translate 'WhatsApp bills & device support' %}","{% translate 'Unlimited invoices' %}"],
-    billed:"{% translate 'Prices are per year. Customers outside India are billed in QAR; other currencies are an estimate.' %}",
     branch1:"{% translate '1 branch included' %}",xUser:"{% translate 'Extra user' %}",xBranch:"{% translate 'Extra branch' %}",
     xUserNote:"{% translate 'for each user after' %}",xBranchNote:"{% translate 'for each branch after the first' %}",
     xSite:"{% translate 'Business website' %}",xSiteNote:"{% translate 'Your own website with pages, products and WhatsApp — on your own domain' %}",
     xShop:"{% translate 'E-commerce website' %}",xShopNote:"{% translate 'Everything in the website, plus cart, checkout and website orders in BookPilot' %}",
     perUser:"{% translate 'per extra user / year' %}",perBranch:"{% translate 'per extra branch / year' %}",
     billedGlobal:"{% translate 'Prices are per year, billed in QAR. Other currencies are an estimate.' %}",
-    india:"{% translate 'Prices are per year, billed in INR.' %}",approx:"{% translate 'approx.' %}"};
-  let tier='standard',region='Global';
+    approx:"{% translate 'approx.' %}"};
+  let tier='standard';
+  const region='Global';
   try{const saved=localStorage.getItem('bp.cur');if(saved&&P.fx[saved])cur.value=saved}catch(_){}
-  // India prices only for visitors in India: the server's country header when there is one, else the time zone.
-  let tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(_){}
-  const inIndia=P.visitor?P.visitor==='IN':/^Asia\/(Kolkata|Calcutta)$/.test(tz);
-  if(inIndia&&P.plans.some(p=>p.region==='India')){document.getElementById('regionTabs').hidden=false;if(!cur.value)region='India'}
+  // the Business / Large shop tabs only when the two price lists differ
+  const priceKey=t=>P.plans.filter(p=>p.region===region&&p.tier===t).sort((a,b)=>a.users-b.users).map(p=>p.users+':'+p.price).join();
+  if(priceKey('standard')===priceKey('large'))document.getElementById('tierTabs').hidden=true;
   const fmt=n=>Number(n).toLocaleString(undefined,{maximumFractionDigits:n<100?1:0});
   function render(){
     document.querySelectorAll('#tierTabs button').forEach(b=>b.classList.toggle('on',b.dataset.tier===tier));
-    document.querySelectorAll('#regionTabs button').forEach(b=>b.classList.toggle('on',b.dataset.region===region));
-    cur.parentElement.hidden=region==='India';
     const list=P.plans.filter(p=>p.region===region&&p.tier===tier).sort((a,b)=>a.users-b.users);
-    const c=region==='India'?'':cur.value,fx=P.fx[c];
+    const c=cur.value,fx=P.fx[c];
     box.innerHTML=list.map((p,i)=>`<div class="plan plan-swap${i===1?' hot':''}" style="animation-delay:${i*70}ms">
       <h3>${p.users} ${p.users>1?T.users:T.user}</h3>
       <div class="price">${p.currency} ${fmt(p.price)} <small>/ ${T.year}</small></div>
       ${c&&fx?`<div class="approx">≈ ${c} ${fmt(p.price*fx.rate)}${fx.exact?'':' ('+T.approx+')'}</div>`:''}
       <ul><li>${T.upTo} ${p.users} ${p.users>1?T.users:T.user} ${T.plusOwner}${p.extra_user?` · +${p.currency} ${fmt(p.extra_user)} ${T.perUser}`:''}</li><li>${T.branch1}${p.extra_branch?` · +${p.currency} ${fmt(p.extra_branch)} ${T.perBranch}`:''}</li>${T.feats.map(f=>`<li>${f}</li>`).join('')}<li>${T.all}</li></ul>
       ${signup?`<a class="btn ${i===1?'primary':'ghost'}" href="${signup}?plan=${p.id}">${T.start}</a>`:''}</div>`).join('');
-    note.textContent=region==='India'?T.india:(inIndia?T.billed:T.billedGlobal);
+    note.textContent=T.billedGlobal;
     const top=list[list.length-1],ab=document.getElementById('addonBox');
     const conv=v=>c&&fx?` <small>≈ ${c} ${fmt(v*fx.rate)}</small>`:'';
     const parts=[];
@@ -345,7 +341,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     ab.innerHTML=parts.join('');ab.hidden=!parts.length;
   }
   document.getElementById('tierTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){tier=b.dataset.tier;render()}});
-  document.getElementById('regionTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){region=b.dataset.region;render()}});
   cur.addEventListener('change',()=>{try{localStorage.setItem('bp.cur',cur.value)}catch(_){}render()});
   render();
 })();

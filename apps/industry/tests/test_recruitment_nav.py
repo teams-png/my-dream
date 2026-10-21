@@ -22,5 +22,6 @@ def test_sidebar_in_work_order_and_overview_tiles(agency):
         assert f'href="{reverse(retail)}"' not in nav
     page = html[html.index("</nav>"):]
     assert "Interviews (next 7 days)" in page and "Documents expiring (30 days)" in page
-    assert "Low stock items" not in page and "Today&#x27;s sales" not in page
+    tiles = [k["label"] for k in agency["client"].get(reverse("webapp:dashboard")).context["kpis"]]
+    assert "Low stock items" not in tiles and "Today's sales" not in tiles  # no shop tiles for an agency
     assert reverse("webapp:rec_job_add") in page and "🧾 New bill" not in page

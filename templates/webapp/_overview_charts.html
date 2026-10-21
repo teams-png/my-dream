@@ -1,6 +1,14 @@
 {% load i18n static %}
 {# Overview charts (apps/webapp/overview_charts.py): owners and accountants only. #}
 <section class="ovc" aria-label="{% translate 'Business at a glance' %}">
+  <div class="ovc-sum">
+    {% for s in charts.summary %}
+    <a class="card stat-link" href="{{ s.url }}"><small>{{ s.label }}</small><b>{{ charts.currency }} {{ s.value|floatformat:"2g" }}</b>
+      {% if s.change is not None %}<span class="chg {% if s.change >= 0 %}up{% else %}down{% endif %}">{% if s.change >= 0 %}▲{% else %}▼{% endif %} {{ s.change }}%</span>{% endif %}
+      {% if s.vs %}<em>{{ s.vs }}</em>{% endif %}</a>
+    {% endfor %}
+  </div>
+
   <div class="ovc-row ovc-2">
     {% for title, sub, d, url, new_url, new_label in charts.dues_cards %}
     <div class="card ovc-dues">
@@ -14,14 +22,6 @@
         <a href="{{ url }}"><small class="over">{% translate "Overdue" %}</small><b>{{ charts.currency }} {{ d.overdue|floatformat:"2g" }}</b></a>
       </div>
     </div>
-    {% endfor %}
-  </div>
-
-  <div class="ovc-sum">
-    {% for s in charts.summary %}
-    <a class="card" href="{{ s.url }}"><small>{{ s.label }}</small><b>{{ charts.currency }} {{ s.value|floatformat:"2g" }}</b>
-      {% if s.change is not None %}<span class="chg {% if s.change >= 0 %}up{% else %}down{% endif %}">{% if s.change >= 0 %}▲{% else %}▼{% endif %} {{ s.change }}%</span>{% endif %}
-      {% if s.vs %}<em>{{ s.vs }}</em>{% endif %}</a>
     {% endfor %}
   </div>
 

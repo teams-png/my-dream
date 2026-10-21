@@ -28,7 +28,7 @@
 </a>
 {% endif %}
 
-<div class="ov-kpis">
+{% if kpis %}<div class="ov-kpis">
   {% for k in kpis %}{% if not k.reports or can_reports %}
   {% if k.url %}<a class="card stat-link ov-kpi {{ k.tone }}" href="{{ k.url }}">{% else %}<div class="card ov-kpi {{ k.tone }}">{% endif %}
     <div class="k-label">{{ k.label }}</div>
@@ -36,7 +36,7 @@
     {% if k.note %}<div class="k-note">{{ k.note }}</div>{% endif %}
   {% if k.url %}</a>{% else %}</div>{% endif %}
   {% endif %}{% endfor %}
-</div>
+</div>{% endif %}
 
 {% if charts %}{% include "webapp/_overview_charts.html" %}{% endif %}
 

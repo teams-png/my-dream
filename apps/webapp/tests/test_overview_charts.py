@@ -38,7 +38,7 @@ def test_numbers_come_from_this_business_only(tenant_a, tenant_b):
 
     data = overview_charts.build(tenant_a, today)
     summary = {s["label"]: s for s in data["summary"]}
-    assert summary["Today"]["value"] == Decimal("130") and summary["Today"]["change"] == 160
+    assert summary["Today's sales"]["value"] == Decimal("130") and summary["Today's sales"]["change"] == 160
     receivables = data["dues_cards"][0][2]
     assert receivables["total"] == Decimal("110") and receivables["overdue"] == Decimal("80")
     assert receivables["current"] == Decimal("30")
@@ -65,3 +65,21 @@ def test_owner_sees_charts_cashier_does_not(tenant_a, tenant_a_owner, user_facto
     s.force_login(staff)
     page = s.get(reverse("webapp:dashboard")).content.decode()
     assert "Total receivables" not in page and 'id="ovcData"' not in page
+
+
+def test_each_number_shows_once(tenant_a, tenant_a_owner, user_factory):
+    """With the charts on, the tiles that repeat them (today's sales, this month, dues) are left out;
+    a cashier, who has no charts, still gets those tiles."""
+    from apps.tenants.models import Role
+    from apps.tenants.services import invite_member
+    c = Client()
+    c.force_login(tenant_a_owner)
+    labels = [k["label"] for k in c.get(reverse("webapp:dashboard")).context["kpis"]]
+    assert "Today's sales" not in labels and "This month's revenue" not in labels and "Outstanding dues" not in labels
+
+    staff = user_factory()
+    invite_member(company=tenant_a, user=staff, role=Role.objects.get(company=tenant_a, name="Staff"))
+    s = Client()
+    s.force_login(staff)
+    labels = [k["label"] for k in s.get(reverse("webapp:dashboard")).context["kpis"]]
+    assert "Today's sales" in labels

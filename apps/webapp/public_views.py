@@ -99,7 +99,9 @@ class SignupForm(forms.Form):
 
 
 def _plans():
-    return list(SubscriptionPlan.objects.filter(is_active=True).order_by("country", "tier", "max_users", "price"))
+    # one QAR price list for every country: India / INR plans are no longer offered
+    return list(SubscriptionPlan.objects.filter(is_active=True).exclude(country="India")
+                .order_by("country", "tier", "max_users", "price"))
 
 
 def _pricing_data():
@@ -131,16 +133,7 @@ def visitor_country(request):
 
 
 def landing(request):
-    # India prices are only for visitors from India. When the country is known and isn't India they are left out of
-    # the page; when it isn't known the browser decides from its time zone (India has one: Asia/Kolkata).
-    country = visitor_country(request)
     pricing, plans = _pricing_data(), _plans()
-    if country and country != "IN":
-        pricing["plans"] = [p for p in pricing["plans"] if p["region"] != "India"]
-        pricing["website"] = {k: v for k, v in pricing["website"].items() if k != "India"}
-    if country != "IN":
-        plans = [p for p in plans if p.country != "India"]
-    pricing["visitor"] = country
     from apps.modules.catalog import ADDON_MODULES
     hidden = hidden_business_codes()
     return render(request, "webapp/public/landing.html", {

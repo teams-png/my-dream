@@ -389,6 +389,8 @@ def dashboard(request):
     if can_open(request, "analytics"):  # sales and money charts: owners and accountants, not the cashier
         from . import overview_charts
         context["charts"] = overview_charts.build(company, today)
+        # the chart cards already show sales today / this month and dues: keep each number once
+        context["kpis"] = [k for k in context.get("kpis") or [] if not k.get("same_as_chart")]
     context.update({
         "greeting": overview.greeting(), "today": today,
         "recent_invoices": SalesInvoice.objects.for_company(company).exclude(status="void")
@@ -5416,7 +5418,9 @@ def billing_view(request):
         "subscription": subscription, "is_owner": is_owner, "days_left": days_left,
         "is_expired": is_expired, "payments": payments, "form": form,
         "is_gcc": _is_gcc_country(company.country),
-        "is_india": (company.country or "").strip() == "India",
+        # Razorpay only for the old India plans billed in INR; new plans are all QAR
+        "is_india": (company.country or "").strip() == "India" and bool(subscription)
+        and subscription.plan.currency == "INR",
         "stripe_configured": gateway.stripe_enabled,
         "razorpay_configured": gateway.razorpay_enabled,
         "razorpay_key_id": gateway.razorpay_key_id,
@@ -5661,6 +5665,8 @@ def billing_razorpay_order(request):
     subscription = Subscription.objects.filter(company=company).select_related("plan").first()
     if subscription is None:
         return JsonResponse({"error": "No subscription found."}, status=400)
+    if subscription.plan.currency != "INR":
+        return JsonResponse({"error": "Razorpay is only available for plans billed in INR."}, status=400)
 
     client = razorpay.Client(auth=(gateway.razorpay_key_id, gateway.razorpay_key_secret))
     from apps.subscriptions.pricing import amount_due

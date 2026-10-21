@@ -22,13 +22,12 @@ def _prices(country, business_type):
 
 
 def test_seeded_price_table():
-    assert _prices("Qatar", "restaurant") == [(1, "QAR", 399), (3, "QAR", 699), (5, "QAR", 899)]
-    assert _prices("Qatar", "supermarket") == [(1, "QAR", 499), (3, "QAR", 899), (5, "QAR", 1199)]
-    assert _prices("India", "clothing_store") == [(1, "INR", 3999), (3, "INR", 6999), (5, "INR", 8999)]
-    assert _prices("India", "wholesale_business") == [(1, "INR", 5999), (3, "INR", 9999), (5, "INR", 13999)]
-    # every other country uses the QAR (international) price list
-    for country in ("United Arab Emirates", "Saudi Arabia", "United Kingdom", "United States", "Germany", "Other"):
+    assert _prices("Qatar", "restaurant") == [(1, "QAR", 699), (3, "QAR", 899), (5, "QAR", 999)]
+    assert _prices("Qatar", "supermarket") == [(1, "QAR", 699), (3, "QAR", 899), (5, "QAR", 999)]
+    # every country, India included, uses the one QAR price list
+    for country in ("India", "United Arab Emirates", "Saudi Arabia", "United Kingdom", "United States", "Other"):
         assert _prices(country, "restaurant") == _prices("Qatar", "restaurant")
+    assert not SubscriptionPlan.objects.filter(currency="INR").exists()
     assert not SubscriptionPlan.objects.filter(name="Starter", is_active=True).exists()
 
 
@@ -37,7 +36,7 @@ def test_seeding_is_idempotent_and_keeps_admin_prices():
     plan.price = Decimal("350")
     plan.save()
     call_command("seed_platform")
-    assert SubscriptionPlan.objects.filter(is_active=True).count() == 12
+    assert SubscriptionPlan.objects.filter(is_active=True).count() == 6
     plan.refresh_from_db()
     assert plan.price == Decimal("350")
 
@@ -46,7 +45,7 @@ def test_old_free_starter_plan_is_not_reused():
     SubscriptionPlan.objects.all().delete()  # a database from before the price list
     SubscriptionPlan.objects.create(name="Starter", price=0, billing_period="yearly", max_users=5)
     call_command("seed_platform")
-    assert _prices("Qatar", "restaurant") == [(1, "QAR", 399), (3, "QAR", 699), (5, "QAR", 899)]
+    assert _prices("Qatar", "restaurant") == [(1, "QAR", 699), (3, "QAR", 899), (5, "QAR", 999)]
     assert not SubscriptionPlan.objects.get(name="Starter").is_active
 
 
@@ -70,15 +69,21 @@ def _signup(client, **over):
 def test_signup_gets_region_and_tier_plan(client):
     company = _signup(client)
     plan = company.subscription.plan
-    assert (plan.country, plan.tier, plan.max_users, plan.currency) == ("India", "large", 1, "INR")
+    # India businesses get the QAR plan; their own selling currency stays INR
+    assert (plan.country, plan.tier, plan.max_users, plan.currency) == ("Global", "large", 1, "QAR")
     assert company.default_currency == "INR"
 
 
+def _old_india_plan(users=3):
+    return SubscriptionPlan.objects.create(name=f"Old India {users}", country="India", currency="INR",
+                                           price=Decimal("6999"), max_users=users, billing_period="yearly")
+
+
 def test_signup_plan_from_other_region_is_swapped(client):
-    india_3 = pricing.plans_for("India", "restaurant").get(max_users=3)
+    india_3 = _old_india_plan()
     company = _signup(client, business_type="restaurant", country="United Kingdom", email="uk@shop.test", plan=india_3.id)
     plan = company.subscription.plan
-    assert (plan.country, plan.max_users, plan.currency, plan.price) == ("Global", 3, "QAR", 699)
+    assert (plan.country, plan.max_users, plan.currency, plan.price) == ("Global", 3, "QAR", 899)
     assert company.default_currency == "GBP"
 
 
@@ -87,7 +92,7 @@ def test_landing_and_signup_show_prices(client):
         page = client.get(url)
         assert page.status_code == 200
         data = page.context["pricing"]
-        assert len(data["plans"]) == 12 and "supermarket" in data["large_types"]
+        assert len(data["plans"]) == 6 and "supermarket" in data["large_types"]
 
 
 def test_owner_changes_plan_but_not_below_user_count(client):
@@ -108,7 +113,7 @@ def test_owner_changes_plan_but_not_below_user_count(client):
     company.subscription.refresh_from_db()
     assert company.subscription.plan == five  # owner + 2 staff can't fit a 1-user plan
 
-    india = pricing.plans_for("India", "restaurant").first()
+    india = _old_india_plan(5)
     client.post(reverse("webapp:billing"), {"change_plan": india.id})
     company.subscription.refresh_from_db()
     assert company.subscription.plan == five  # other region's price list is not selectable

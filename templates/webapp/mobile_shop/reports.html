@@ -16,8 +16,8 @@
     <div style="color:var(--ink-soft); font-size:13px;">Units in stock</div>
     <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ units_in_stock }}</div>
   </div>
-  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Gross profit</div><div style="font-size:26px;font-weight:600;">{{ gross_profit }}</div></div>
-  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Cost of goods</div><div style="font-size:26px;font-weight:600;">{{ cost_of_goods }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Gross profit</div><div style="font-size:26px;font-weight:600;">{{ gross_profit|floatformat:2 }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Cost of goods</div><div style="font-size:26px;font-weight:600;">{{ cost_of_goods|floatformat:2 }}</div></div>
   <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Stock value</div><div style="font-size:26px;font-weight:600;">{{ stock_value }}</div></div>
   <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Customer dues</div><div style="font-size:26px;font-weight:600;">{{ outstanding_dues }}</div></div>
   <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Handset sales</div><div style="font-size:22px;font-weight:600;">{{ handset_revenue }}</div></div>

@@ -91,7 +91,7 @@
     {% for line in lines %}
     <tr>
       <td>{{ line.product.name }}{{ line.unit_label }}</td>
-      <td class="num">{{ line.quantity }}</td>
+      <td class="num">{{ line.quantity|floatformat:"-3" }}</td>
       <td class="num">{{ line.unit_price }}</td>
       <td class="num">{{ line.line_total }}</td>
     </tr>
@@ -108,6 +108,7 @@
   {% if zatca_qr %}<div class="zatca"><div class="zatca-qr">{{ zatca_qr|safe }}</div><small>فاتورة ضريبية مبسطة · Simplified tax invoice</small></div>{% endif %}
   <div class="totals">
     <div><span>{% translate "Subtotal" %}</span><span>{{ invoice.subtotal }}</span></div>
+    {% if invoice.discount_amount %}<div><span>{% translate "Discount" %}{% if invoice.coupon_code %} ({{ invoice.coupon_code }}){% endif %}</span><span>-{{ invoice.discount_amount }}</span></div>{% endif %}
     {% if invoice.tax_amount %}<div><span>{% translate "Tax" %}</span><span>{{ invoice.tax_amount }}</span></div>{% endif %}
     <div class="grand"><span>Total ({{ company.default_currency }})</span><span>{{ invoice.total|floatformat:2 }}</span></div>
     {% if invoice.amount_paid %}<div><span>{% translate "Paid" %}</span><span>{{ invoice.amount_paid }}</span></div>{% endif %}

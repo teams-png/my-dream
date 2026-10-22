@@ -38,6 +38,9 @@ def test_perfume_decants_gift_wrap_pictures_and_reports():
     page = c.get(reverse("webapp:retail_reports") + "?period=all").content.decode()
     assert "Fragrance family" in page and "Oud / woody" in page and "Perfume oil" in page
     assert "Bottle size (ml)" in page and "Top colours" not in page
+    import re
+    for label in ("Cost of goods", "Gross profit"):   # money with 2 decimals, not 83308.20000
+        assert re.search(label + r"</div><div[^>]*>-?\d+\.\d{2}</div>", page), label
 
 
 def test_perfume_product_form_can_sell_by_the_ml():

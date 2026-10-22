@@ -26,6 +26,8 @@ def test_names_pick_sensible_pictures():
     assert pick("Fresh milk 1L") == "milk"
     assert pick("Swedish massage – 60 min") == "massage"
     assert pick("Room 101 – Deluxe") == "room"
+    assert pick("Anarkali churidar set") == "dress"            # a garment, not sewing thread
+    assert pick("Blouse stitching") == "fabric"
     assert pick("Something new", "Shoes") == "shoes"          # falls back to the category
     assert pick("Mystery item", "", "saloon") == "haircut"      # then the business type
     assert pick("Mystery item") == "box"

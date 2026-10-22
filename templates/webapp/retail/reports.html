@@ -23,8 +23,8 @@
     <div style="color:var(--ink-soft); font-size:13px;">Invoices</div>
     <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ invoice_count }}</div>
   </div>
-  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Cost of goods</div><div style="font-size:26px;font-weight:600;margin-top:6px;">{{ cost_of_goods }}</div></div>
-  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Gross profit</div><div style="font-size:26px;font-weight:600;margin-top:6px;">{{ gross_profit }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Cost of goods</div><div style="font-size:26px;font-weight:600;margin-top:6px;">{{ cost_of_goods|floatformat:2 }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px;">Gross profit</div><div style="font-size:26px;font-weight:600;margin-top:6px;">{{ gross_profit|floatformat:2 }}</div></div>
 </div>
 
 <h2 style="font-size:16px; margin-bottom:10px;">Top-selling products</h2>

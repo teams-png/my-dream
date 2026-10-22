@@ -162,3 +162,13 @@ def test_settings_page_owner_saves_and_secrets_are_encrypted(shop):
     assert config.secret == "s3cret"  # blank keeps the saved secret
     page = client.get(reverse("webapp:customer_account", args=[shop["ali"].id])).content.decode()
     assert "/c/" in page
+
+
+def test_shared_invoice_shows_coupon_discount_and_whole_quantities(shop):
+    inv = shop["new"]
+    inv.discount_amount, inv.coupon_code = Decimal("10.00"), "ONAM10"
+    inv.total = inv.subtotal - inv.discount_amount
+    inv.save(update_fields=["discount_amount", "coupon_code", "total"])
+    html = sharing.render_invoice_html(inv)
+    assert "Discount (ONAM10)" in html and "-10.00" in html
+    assert ">1</td>" in html and "1.000" not in html

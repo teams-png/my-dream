@@ -33,11 +33,11 @@ ART = [
     ("decant", "🧪", "decant decants tester vial"),
     # fashion
     ("shirt", "👔", "shirt formal kandura thobe coverall"), ("tshirt", "👕", "t-shirt tshirt jersey tee top football_jersey sports_jersey"),
-    ("dress", "👗", "dress gown kurti abaya frock boutique party_gown"), ("saree", "🥻", "saree sari silk"),
+    ("dress", "👗", "dress gown kurti churidar anarkali salwar lehenga abaya frock boutique party_gown"), ("saree", "🥻", "saree sari silk"),
     ("trousers", "👖", "pant pants jeans trouser"), ("kids_wear", "🧸", "romper kids wear baby"),
     ("shoes", "👟", "shoe shoes sneaker running footwear shoe_polish"), ("sandals", "👡", "sandal sandals heels slipper"),
     ("bag", "👜", "bag clutch handbag wallet"), ("scarf", "🧣", "scarf shawl hijab"), ("belt", "🪢", "belt tie"),
-    ("fabric", "🧵", "fabric cloth suiting shirting churidar stitching tailoring alteration blouse"),
+    ("fabric", "🧵", "fabric cloth suiting shirting stitching tailoring alteration blouse"),
     ("cap", "🧢", "cap hat"), ("glasses", "👓", "frame glasses spectacles lens lenses eye test optical"),
     ("sunglasses", "🕶️", "sunglasses aviator"), ("watch", "⌚", "watch chronograph strap smart_watch dress_watch"),
     ("ring", "💍", "ring diamond"), ("jewel", "📿", "bangle chain necklace gold jewellery jewelry earring"),

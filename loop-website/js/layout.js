@@ -57,6 +57,8 @@
     '<li><a href="ai.html">AI solutions</a></li><li><a href="services.html#marketing">Digital marketing</a></li></ul></div>' +
     '<div class="col-6 col-lg-2"><h4>Contact</h4><ul class="list-unstyled small">' +
     '<li data-needs="phone"><a data-site="phone" data-site-href="tel" href="#" dir="ltr"></a></li>' +
+    '<li data-needs="phone2"><a data-site="phone2" data-site-href="tel" data-tel-key="phone2" href="#" dir="ltr"></a></li>' +
+    '<li data-needs="phone3"><a data-site="phone3" data-site-href="tel" data-tel-key="phone3" href="#" dir="ltr"></a></li>' +
     '<li data-needs="email"><a data-site="email" data-site-href="mailto" href="#"></a></li>' +
     '<li data-needs="address"><span data-site="address"></span></li><li data-needs="hours"><span data-site="hours"></span></li></ul></div>' +
     '</div><hr><div class="d-flex flex-wrap justify-content-between gap-2 small">' +

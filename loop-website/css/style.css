@@ -400,3 +400,6 @@ a.cl-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color
 .case .tag{display:inline-block;font-size:.72rem;font-weight:700;color:var(--teal);background:var(--teal-soft);border-radius:999px;padding:3px 10px;margin-bottom:10px}
 .platform-light{background:#fff;border-color:var(--line);box-shadow:0 10px 30px -22px rgba(43,29,119,.4)}
 .platform-light i{color:var(--teal)}.platform-light b{color:var(--navy)}.platform-light small{color:var(--ink-soft)}
+.cl-logo{grid-template-rows:1fr auto;gap:8px;height:auto;min-height:120px}
+.cl-name{font-size:.78rem;font-weight:600;color:var(--ink-soft);text-align:center;line-height:1.2}
+.cl-card .cl-host{color:var(--teal);font-weight:600;font-size:.8rem}

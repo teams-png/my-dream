@@ -13,18 +13,25 @@
   var clients = (window.CLIENTS || []).filter(function (c) { return c && c.name; });
   function esc(s) { return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); }
   function initials(n) { return n.split(/\s+/).slice(0, 2).map(function (w) { return w[0]; }).join("").toUpperCase(); }
+  function host(u) { return String(u || "").replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/.*$/, ""); }
   $all("[data-clients]").forEach(function (box) {
     var kind = box.dataset.clients, list = clients.slice(0, parseInt(box.dataset.limit || "999", 10));
     $all("[data-clients-empty]", box.parentElement).forEach(function (e) { e.hidden = clients.length > 0; });
     box.hidden = !clients.length;
     box.innerHTML = list.map(function (c) {
-      var logo = c.logo ? '<img src="' + esc(c.logo) + '" alt="' + esc(c.name) + '" loading="lazy">' : '<span class="cl-ini">' + esc(initials(c.name)) + "</span>";
+      var ini = '<span class="cl-ini">' + esc(initials(c.name)) + "</span>";
+      var logo = c.logo ? '<img src="' + esc(c.logo) + '" alt="' + esc(c.name) + '" loading="lazy">' + ini.replace('class="cl-ini"', 'class="cl-ini" hidden') : ini;
       var tag = c.url ? "a" : "div", href = c.url ? ' href="' + esc(c.url) + '" target="_blank" rel="noopener"' : "";
-      if (kind === "wall") return "<" + tag + ' class="cl-logo"' + href + ' title="' + esc(c.name) + '">' + logo + "</" + tag + ">";
+      if (kind === "wall") return "<" + tag + ' class="cl-logo"' + href + ' title="' + esc(c.name) + '">' + logo + '<span class="cl-name">' + esc(c.name) + "</span></" + tag + ">";
       return '<div class="col-sm-6 col-lg-4"><' + tag + ' class="cl-card"' + href + ">" + '<div class="cl-mark">' + logo + "</div><div>" +
-        "<b>" + esc(c.name) + "</b>" + (c.place ? "<small>" + esc(c.place) + "</small>" : "") +
+        "<b>" + esc(c.name) + "</b>" + (c.url ? '<small class="cl-host">' + esc(host(c.url)) + "</small>" : "") + (c.place ? "<small>" + esc(c.place) + "</small>" : "") +
         (c.work ? '<span class="cl-work">' + esc(c.work) + "</span>" : "") + (c.url ? '<i class="bi bi-box-arrow-up-right"></i>' : "") + "</div></" + tag + "></div>";
     }).join("");
+    // a logo file that is not uploaded yet: show the initials instead of a broken image
+    $all("img", box).forEach(function (img) {
+      function fallback() { img.nextElementSibling.hidden = false; img.remove(); }
+      if (img.complete && !img.naturalWidth) fallback(); else img.addEventListener("error", fallback);
+    });
   });
   $all("[data-client-count]").forEach(function (el) { if (clients.length) el.dataset.count = clients.length; });
 
@@ -32,7 +39,8 @@
   $all("[data-site]").forEach(function (el) { el.textContent = S[el.dataset.site] || ""; });
   $all("[data-site-href]").forEach(function (el) {
     var kind = el.dataset.siteHref;
-    if (kind === "tel" && S.phone) el.href = "tel:" + S.phone.replace(/[^\d+]/g, "");
+    var num = S[el.dataset.telKey || "phone"];
+    if (kind === "tel" && num) el.href = "tel:" + num.replace(/[^\d+]/g, "");
     if (kind === "mailto" && S.email) el.href = "mailto:" + S.email;
     if (kind === "wa" && wa) el.href = "https://wa.me/" + wa + (el.dataset.waText ? "?text=" + encodeURIComponent(el.dataset.waText) : "");
     if (/^(instagram|facebook|linkedin)$/.test(kind) && S[kind]) el.href = S[kind];

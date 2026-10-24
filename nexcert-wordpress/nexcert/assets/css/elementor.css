@@ -1,0 +1,205 @@
+/* =====================================================================
+   NexCert Global — Elementor bridge
+   Pages are built from Elementor widgets so the client can edit them.
+   These rules make Elementor's wrappers render like the original design
+   in style.css. Every class here is prefixed "nx-" or is an original class
+   applied to a widget or section, never to a column (columns would
+   double up the original padding and borders).
+   ===================================================================== */
+
+/* ---------- Layout wrappers ---------- */
+.nx-page .elementor-section > .elementor-container{max-width:var(--wrap);padding-inline:calc(clamp(20px,5vw,40px) - 13px)}
+.nx-page .elementor-row{margin:0}
+.nx-page .elementor-column{padding-inline:13px}
+.nx-page .elementor-column > .elementor-widget-wrap{padding:0}
+.nx-page .elementor-widget{margin:0}
+.nx-page .elementor-widget:not(:last-child){margin-bottom:18px}
+.nx-page .nx-inner > .elementor-container{max-width:none;padding-inline:0}
+.nx-page .nx-inner .elementor-column{padding-inline:0}
+.nx-page .elementor-section.section{padding-block:clamp(64px,9vw,118px)}
+.nx-page .elementor-section.section--tight{padding-block:clamp(48px,6vw,80px)}
+.nx-page .elementor-section.page-hero{padding-block:clamp(70px,9vw,120px)}
+.nx-page .elementor-section.hero{padding-block:clamp(70px,11vw,140px)}
+.nx-page .elementor-section.trustbar{padding:0}
+.nx-page .elementor-column.nx-center{text-align:center}
+.nx-page .nx-center .lead{margin-inline:auto}
+.nx-page .nx-center .eyebrow{justify-content:center}
+.nx-page .elementor-section.cta-banner{padding-block:clamp(64px,9vw,118px)}
+
+/* Skyline accent (pseudo-element so it sits behind the content) */
+.nx-page .elementor-section.skyline-section::after{content:"";position:absolute;left:0;right:0;bottom:0;height:clamp(90px,12vw,150px);background:url("../img/skyline-ink.png") repeat-x bottom center;background-size:auto 100%;opacity:.05;pointer-events:none;z-index:1}
+.nx-page .elementor-section.hero.skyline-section::after{opacity:.06}
+.nx-page .elementor-section.skyline-section > .elementor-container{position:relative;z-index:2}
+
+/* ---------- Typography ---------- */
+.nx-page .elementor-widget-heading .elementor-heading-title{font-family:var(--font-display);line-height:1.06;letter-spacing:-.015em;color:var(--green-800);margin:0}
+.nx-page .elementor-widget-heading.h-xl .elementor-heading-title{font-family:var(--font-display);font-size:clamp(2.4rem,5.6vw,4.25rem);font-weight:800;line-height:1.02;letter-spacing:-.025em}
+.nx-page .elementor-widget-heading.h-lg .elementor-heading-title{font-size:clamp(2rem,3.8vw,3rem);color:var(--ink)}
+.nx-page .elementor-widget-heading.h-md .elementor-heading-title{font-size:clamp(1.5rem,2.6vw,2.1rem);color:var(--green-800)}
+.nx-page .elementor-widget-text-editor{font-family:var(--font-body);font-size:17px;line-height:1.7;color:var(--ink-soft)}
+.nx-page .elementor-widget-text-editor p{margin:0 0 1em}
+.nx-page .elementor-widget-text-editor p:last-child{margin-bottom:0}
+.nx-page .elementor-widget-text-editor.nx-muted{color:var(--muted)}
+.nx-page .elementor-widget-text-editor.lead{font-size:clamp(1.05rem,1.5vw,1.22rem);color:var(--muted);max-width:62ch}
+.nx-page .eyebrow p{margin:0}
+.nx-page .eyebrow{margin:0 0 18px}
+.nx-page .nx-on-dark .elementor-heading-title{color:#fff}
+.nx-page .page-hero p{margin:18px auto 0}
+.nx-page .page-hero .elementor-widget-text-editor{margin-inline:auto}
+.nx-page .cta-banner .elementor-widget-text-editor p{max-width:60ch;margin:0 auto}
+.nx-page .cta-banner .elementor-widget-heading.h-cta .elementor-heading-title{font-size:clamp(1.8rem,3.4vw,2.7rem);max-width:18ch;margin-inline:auto;color:var(--green-800)}
+.nx-page .cta-banner .elementor-widget-heading .elementor-heading-title{font-family:var(--font-display)}
+.nx-page .elementor-widget-text-editor.nx-hero-body{max-width:54ch;font-size:1.06rem}
+
+/* ---------- Buttons ---------- */
+.nx-page .nx-btn .elementor-button{display:inline-flex;align-items:center;justify-content:center;gap:.6em;font-family:var(--font-body);font-weight:700;font-size:.98rem;line-height:1;padding:16px 30px;border-radius:999px;border:1.5px solid transparent;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s,color .25s}
+.nx-page .nx-btn .elementor-button:hover{transform:translateY(-2px)}
+.nx-page .nx-btn--gold .elementor-button{background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--green-900);box-shadow:var(--shadow-gold)}
+.nx-page .nx-btn--ghost .elementor-button{background:transparent;border-color:rgba(242,220,160,.5);color:var(--gold-soft)}
+.nx-page .nx-btn--dark .elementor-button{background:var(--green-800);color:#fff}
+.nx-page .nx-btn--lg .elementor-button{padding:19px 38px;font-size:1.05rem}
+.nx-page .nx-btn-inline{display:inline-block !important;margin:0 14px 14px 0 !important}
+
+/* ---------- Media ---------- */
+.nx-page .nx-media img{width:100%;height:auto;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);border:1px solid var(--line)}
+.nx-page .nx-media-portrait img{aspect-ratio:4/5;object-fit:cover}
+.nx-page .nx-media-wide img{aspect-ratio:21/9;object-fit:cover}
+.nx-page .nx-hero-carousel img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);border:1px solid var(--line)}
+
+/* ---------- Seal rule and HTML fragments ---------- */
+.nx-page .nx-seal-rule{display:flex;align-items:center;gap:14px;margin:22px 0}
+.nx-page .nx-seal-rule.center{justify-content:center}
+.nx-page .nx-seal-rule i{display:block;width:2px;height:14px;background:var(--gold)}
+.nx-page .nx-seal-rule span{flex:0 0 auto;height:2px;width:84px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.nx-page .cta-meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:center;color:var(--gold-deep);font-weight:600;font-size:.95rem}
+.nx-page .cta-meta a{display:inline-flex;align-items:center;gap:8px}
+
+/* Icon badges (used inside HTML widgets) */
+.nx-page .adv-ico,
+.nx-page .std-ico{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,rgba(232,184,74,.16),rgba(15,59,45,.06));color:var(--gold-deep);margin-bottom:16px}
+.nx-page .std-ico{width:42px;height:42px;border-radius:11px;color:var(--green-800);margin-bottom:14px}
+.nx-page .std-ico svg{width:20px;height:20px}
+.nx-page .adv-ico svg{width:22px;height:22px}
+
+/* ---------- Hero ---------- */
+.nx-page .elementor-section.hero .elementor-widget-text-editor{max-width:54ch}
+.nx-page .elementor-section.hero .elementor-widget-heading .elementor-heading-title{color:var(--green-800)}
+
+/* ---------- Trust bar ---------- */
+.nx-page .nx-trust{border-right:1px solid var(--line-soft)}
+.nx-page .nx-trust.nx-last{border-right:0}
+.nx-page .nx-trust > .elementor-widget-wrap{padding:30px clamp(18px,3vw,34px)}
+.nx-page .nx-trust-ico .elementor-widget-container{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:rgba(201,162,39,.1);border:1px solid var(--line);color:var(--gold-deep)}
+.nx-page .nx-trust-ico svg{width:22px;height:22px}
+.nx-page .nx-trust-text{padding-left:16px}
+.nx-page .nx-trust-text p{margin:0}
+.nx-page .nx-trust-text .lab{font-family:var(--font-display);font-size:1.18rem;color:var(--green-800);font-weight:600;line-height:1.1}
+.nx-page .nx-trust-text .desc{font-size:.78rem;color:var(--muted);letter-spacing:.02em}
+
+/* ---------- Cards (media card, plain card) ---------- */
+.nx-page .nx-card{padding:13px 13px 26px}
+.nx-page .nx-card > .elementor-widget-wrap{background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;height:100%;padding:0 0 30px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.nx-page .nx-card:hover > .elementor-widget-wrap{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+.nx-page .nx-card .elementor-widget:not(.nx-media){padding:0 30px}
+.nx-page .nx-card .nx-media{padding:0}
+.nx-page .nx-card .nx-media img{border:0;border-radius:0;box-shadow:none;aspect-ratio:8/5;object-fit:cover}
+.nx-page .nx-card .elementor-heading-title{font-size:1.24rem;color:var(--green-800);margin-bottom:10px}
+.nx-page .nx-card .elementor-widget-text-editor{color:var(--muted);font-size:.96rem;line-height:1.6}
+.nx-page .nx-card .elementor-widget-text-editor p{margin:0}
+.nx-page .nx-card-ico{position:relative;margin-top:-54px}
+.nx-page .nx-card-ico .elementor-widget-container{display:grid;place-items:center;width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--green-900);border:3px solid var(--paper);box-shadow:var(--shadow-sm)}
+.nx-page .nx-card-ico svg{width:26px;height:26px}
+/* plain card: no photo, light icon badge, no overlap */
+.nx-page .nx-card--plain > .elementor-widget-wrap{padding:32px 0 0}
+.nx-page .nx-card--plain .nx-card-ico{margin-top:0}
+.nx-page .nx-card--plain .nx-card-ico .elementor-widget-container{background:linear-gradient(135deg,rgba(201,162,39,.16),rgba(201,162,39,.05));color:var(--gold-deep);border:1px solid var(--line);box-shadow:none}
+.nx-page .nx-card--plain .elementor-widget:last-child{padding-bottom:32px}
+
+/* ---------- Advantage tiles ---------- */
+.nx-page .nx-adv{padding:13px 13px 26px}
+.nx-page .nx-adv > .elementor-widget-wrap{background:#fff;border:1px solid var(--line-soft);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:30px 28px;height:100%}
+.nx-page .nx-adv .elementor-heading-title{font-size:1.1rem;color:var(--green-800);margin-bottom:8px}
+.nx-page .nx-adv .elementor-widget-text-editor{color:var(--ink-soft);font-size:.96rem}
+.nx-page .nx-adv .elementor-widget-text-editor p{margin:0}
+
+/* ---------- ISO standard tiles ---------- */
+.nx-page .nx-std{padding:13px 13px 26px}
+.nx-page .nx-std > .elementor-widget-wrap{background:var(--paper);border:1px solid var(--line-soft);border-left:4px solid var(--gold);border-radius:var(--radius);padding:32px;height:100%}
+.nx-page .nx-std .code{display:inline-block;font-family:var(--font-body);font-weight:800;font-size:.78rem;letter-spacing:.08em;color:var(--gold-deep);background:rgba(201,162,39,.1);padding:6px 12px;border-radius:6px;margin-bottom:14px}
+.nx-page .nx-std .elementor-heading-title{font-size:1.2rem;margin-bottom:8px}
+.nx-page .nx-std .std-desc{color:var(--muted);font-size:.95rem;margin:0}
+.nx-page .nx-std .elementor-widget-html .code{margin-top:0}
+
+/* ---------- Training programmes ---------- */
+.nx-page .nx-prog{padding:13px 13px 26px}
+.nx-page .nx-prog > .elementor-widget-wrap{background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px;height:100%}
+.nx-page .nx-prog .elementor-heading-title{font-size:1.12rem;margin-bottom:8px}
+.nx-page .nx-prog .elementor-widget-text-editor{color:var(--muted);font-size:.93rem}
+.nx-page .nx-prog .elementor-widget-text-editor p{margin:0}
+.nx-page .nx-prog .meta{display:flex;flex-wrap:wrap;gap:8px}
+.nx-page .nx-prog .meta span{font-size:.78rem;font-weight:600;color:var(--ink-soft);background:var(--cream);border:1px solid var(--line-soft);padding:5px 11px;border-radius:6px}
+
+/* ---------- Callouts (vision / mission) ---------- */
+.nx-page .nx-callout{padding:13px}
+.nx-page .nx-callout > .elementor-widget-wrap{background:linear-gradient(135deg,rgba(201,162,39,.1),rgba(201,162,39,.03));border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:var(--radius);padding:26px 30px;height:100%}
+.nx-page .nx-callout .elementor-widget-text-editor{color:var(--ink-soft)}
+
+/* ---------- Process steps ---------- */
+.nx-page .nx-step{padding:13px}
+.nx-page .nx-step > .elementor-widget-wrap{background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius);padding:30px;height:100%}
+.nx-page .nx-step .n{font-family:var(--font-display);font-size:2.4rem;color:var(--gold);line-height:1;font-weight:600;opacity:.85}
+.nx-page .nx-step .elementor-heading-title{font-size:1.12rem;margin:12px 0 8px}
+.nx-page .nx-step .elementor-widget-text-editor{font-size:.92rem;color:var(--muted)}
+.nx-page .nx-step .elementor-widget-text-editor p{margin:0}
+
+/* ---------- Contact ---------- */
+.nx-page .nx-form-col{padding-right:13px}
+.nx-page .nx-info-col{padding-left:13px}
+.nx-page .contact-aside .info-row{display:flex;gap:15px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--line-soft)}
+.nx-page .contact-aside .info-row:last-child{border-bottom:0}
+.nx-page .contact-aside .ir-ico{flex:0 0 auto;width:46px;height:46px;border-radius:12px;background:var(--green-800);color:var(--gold-bright);display:grid;place-items:center}
+.nx-page .contact-aside .ir-lab{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.nx-page .contact-aside .ir-val{font-weight:600;color:var(--ink);font-size:1.02rem}
+.nx-page .contact-aside .ir-val a{color:var(--green-700)}
+.nx-page .quickref{background:var(--green-800);border-radius:var(--radius);padding:28px;color:#dfe9e1;margin-top:26px}
+.nx-page .quickref h4{color:#fff;font-size:1.05rem;margin-bottom:14px;font-family:var(--font-display)}
+.nx-page .qchips{display:flex;flex-wrap:wrap;gap:8px}
+.nx-page .qchips span{font-size:.78rem;background:rgba(232,184,74,.12);border:1px solid rgba(232,184,74,.25);color:var(--gold-soft);padding:6px 11px;border-radius:6px;font-weight:600}
+
+/* Enquiry form (shortcode output) */
+.nx-page .form-card{background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius-lg);padding:clamp(26px,4vw,42px);box-shadow:var(--shadow-md)}
+.nx-page .form-card h2{font-family:var(--font-display);font-size:clamp(1.5rem,2.6vw,2.1rem);color:var(--green-800);margin:0 0 6px}
+.nx-page .form-card .form-lead{color:var(--muted);margin:0 0 24px}
+.nx-page .field{margin-bottom:18px}
+.nx-page .field label{display:block;font-weight:600;font-size:.85rem;color:var(--ink-soft);margin-bottom:7px;letter-spacing:.01em}
+.nx-page .field label .req{color:#b4451f}
+.nx-page .field input,.nx-page .field select,.nx-page .field textarea{width:100%;font-family:var(--font-body);font-size:1rem;color:var(--ink);padding:13px 15px;border:1.5px solid var(--line-soft);border-radius:10px;background:var(--cream);transition:.2s}
+.nx-page .field textarea{resize:vertical;min-height:120px}
+.nx-page .field input:focus,.nx-page .field select:focus,.nx-page .field textarea:focus{outline:none;border-color:var(--gold);background:#fff;box-shadow:0 0 0 4px rgba(201,162,39,.12)}
+.nx-page .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.nx-page .form-note{font-size:.82rem;color:var(--muted);margin-top:6px}
+.nx-page .alert{padding:16px 20px;border-radius:10px;margin-bottom:22px;font-weight:600;font-size:.95rem}
+.nx-page .alert--ok{background:rgba(26,94,68,.12);color:var(--green-700);border:1px solid rgba(26,94,68,.3)}
+.nx-page .alert--err{background:rgba(180,69,31,.1);color:#8a3314;border:1px solid rgba(180,69,31,.3)}
+.nx-page .nx-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.nx-page .form-card .btn{width:100%}
+
+/* ---------- Spacing helpers set on columns ---------- */
+.nx-page .nx-head{padding-bottom:clamp(30px,4vw,54px)}
+.nx-page .nx-more{padding-top:clamp(30px,4vw,40px)}
+.nx-page .nx-subhead{padding-bottom:24px}
+.nx-page .nx-card .nx-media{margin:0}
+.nx-page .elementor-section.page-hero .elementor-heading-title{font-family:var(--font-display);font-size:clamp(2.3rem,4.6vw,3.7rem);font-weight:800;color:var(--green-800)}
+
+/* ---------- Responsive: match the original breakpoints ---------- */
+@media(max-width:1040px){
+  .nx-page .nx-trust{border-right:0}
+}
+@media(max-width:860px){
+  .nx-page .nx-trust{border-right:0}
+}
+@media(max-width:560px){
+  .nx-page .elementor-section.section{padding-block:54px}
+  .nx-page .form-grid{grid-template-columns:1fr}
+  .nx-page .nx-info-col,.nx-page .nx-form-col{padding:0 13px}
+}

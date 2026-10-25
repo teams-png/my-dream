@@ -33,7 +33,7 @@
 <script src="{% static 'vendor/chart.umd.min.js' %}"></script>
 <script>
 if (window.Chart) {
-const accent = '#1a5fd0', line = '#e3e8ef';
+const accent = '#6d3b63', line = '#e3e8ef';
 
 new Chart(document.getElementById('revenueChart'), {
   type: 'line',
@@ -48,7 +48,7 @@ new Chart(document.getElementById('countryChart'), {
   type: 'doughnut',
   data: {
     labels: {{ country_labels|safe }},
-    datasets: [{ data: {{ country_values|safe }}, backgroundColor: ['#1a5fd0', '#667085', '#C0392B', '#C9A46A', '#4A7C9B', '#1a5fd0'] }]
+    datasets: [{ data: {{ country_values|safe }}, backgroundColor: ['#6d3b63', '#667085', '#C0392B', '#C9A46A', '#4A7C9B', '#6d3b63'] }]
   },
   options: { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } } }
 });

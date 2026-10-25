@@ -1,10 +1,10 @@
 /* Retail / shop POS: reuses the restaurant POS layout with its own colours. */
 .rpos.retail{
-  --r-brand:#2563eb; --r-brand-dark:#1d4ed8; --r-brand-soft:#eaf1ff; --r-gold:#ffbf2e;
-  --r-bg:#f3f5fa; --r-line:#e3e8f2; --r-soft:#5f6b80; --r-ink:#141b2d; --r-shadow:0 10px 30px rgba(20,40,90,.08);
+  --r-brand:#6d3b63; --r-brand-dark:#552d4d; --r-brand-soft:#f4ecf2; --r-gold:#ffbf2e;
+  --r-bg:#f6f4f6; --r-line:#e8e2e7; --r-soft:#6b6170; --r-ink:#251e28; --r-shadow:0 10px 30px rgba(109,59,99,.08);
 }
-html[data-theme=dark] .rpos.retail{--r-brand-soft:#16254a; --r-bg:#0d111b; --r-line:#252d40; --r-soft:#9aa6bd; --r-ink:#eef2fa; --r-card:#151b29}
-@media (prefers-color-scheme:dark){html:not([data-theme=light]) .rpos.retail{--r-brand-soft:#16254a}}
+html[data-theme=dark] .rpos.retail{--r-brand:#0f766e; --r-brand-dark:#115e59; --r-brand-soft:#123a3a; --r-bg:#0a0f1a; --r-line:#1f2a3d; --r-soft:#a3aec2; --r-ink:#f3f6fb; --r-card:#111827}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) .rpos.retail{--r-brand-soft:#123a3a}}
 .rpos [hidden]{display:none !important}
 .retail .rp-top,.retail .rp-rail,.retail .cart-panel{background:var(--r-card,#fff)}
 .retail .cart-foot{background:var(--r-card,#fff)}

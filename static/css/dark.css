@@ -1,8 +1,8 @@
-/* Dark theme: switched on with the moon button (saved per browser). */
+/* Dark theme (Ocean Dark: navy with a teal accent): switched on with the moon button (saved per browser). */
 html[data-theme=dark]{
   color-scheme:dark;
-  --ink:#eef1f6; --ink-soft:#b3bccd; --line:#2a3140; --paper:#0e1219; --panel:#161b25;
-  --accent:#4c8df6; --accent-soft:#142640;
+  --ink:#F3F6FB; --ink-soft:#A3AEC2; --line:#1F2A3D; --paper:#0A0F1A; --panel:#111827;
+  --accent:#2DD4BF; --accent-soft:#123A3A;
   --success:#4ade80; --success-bg:#13291c; --warning:#fbbf24; --warning-bg:#302612; --danger:#f87171; --danger-bg:#361615;
   /* restaurant module tokens */
   --r-ink:#f1ece8; --r-soft:#b3a79f; --r-line:#33291f; --r-bg:#120e0b; --r-card:#1c1612;
@@ -16,12 +16,12 @@ html[data-theme=dark] :is(.card,table,.btn-secondary,.general-back,.nav-toggle,.
   .kds-ticket,.quick-demo,.pos-no-match,.stepper button,.seg button.on,.quick-cash button,.theme-toggle){
   background:var(--panel);color:var(--ink);border-color:var(--line)
 }
-html[data-theme=dark] :is(input,select,textarea){background:#0f141d;color:var(--ink);border-color:var(--line)}
-html[data-theme=dark] th{background:#11161f;color:var(--ink-soft)}
-html[data-theme=dark] tbody tr:hover td,html[data-theme=dark] tr:hover td{background:#1a202b}
+html[data-theme=dark] :is(input,select,textarea){background:#0D1320;color:var(--ink);border-color:var(--line)}
+html[data-theme=dark] th{background:#0D1320;color:var(--ink-soft)}
+html[data-theme=dark] tbody tr:hover td,html[data-theme=dark] tr:hover td{background:#141C2C}
 html[data-theme=dark] td,html[data-theme=dark] th{border-color:var(--line)}
-html[data-theme=dark] .sidebar{background:var(--panel);border-color:var(--line)}
-html[data-theme=dark] .nav-section>summary:hover{background:#1c2230}
+html[data-theme=dark] .sidebar{background:#0D1320;border-color:var(--line)}
+html[data-theme=dark] .nav-section>summary:hover{background:#141C2C}
 html[data-theme=dark] .rp-rail,html[data-theme=dark] .cart-foot{background:#17120e}
 html[data-theme=dark] .rpos{background:var(--r-bg)}
 html[data-theme=dark] .food-image,html[data-theme=dark] .dlg-hero{background:linear-gradient(145deg,#3a2a1a,#2a1d12)}
@@ -37,7 +37,7 @@ html[data-theme=dark] .r-table.cleaning{background:#261f10}
 html[data-theme=dark] .messages .success{background:var(--success-bg)}
 html[data-theme=dark] .avatar{background:var(--accent-soft)}
 html[data-theme=dark] tr.due td{background:#2a2110}
-html[data-theme=dark] .dv-note,html[data-theme=dark] .secret,html[data-theme=dark] .codes code{background:#0f141d}
+html[data-theme=dark] .dv-note,html[data-theme=dark] .secret,html[data-theme=dark] .codes code{background:#0D1320}
 html[data-theme=dark] .modifier-choice{border-color:var(--r-line)}
 html[data-theme=dark] .kds-ticket .ticket-head{background:#2a2014}
 html[data-theme=dark] .kds-ticket .ticket-item{border-color:#33291f}
@@ -52,7 +52,13 @@ html[data-theme=dark] .food-add:disabled{background:#3a3029}
 html[data-theme=dark] :is(.rp-btn.pay,.dlg-foot .rp-btn.go,.done-actions .rp-btn.go,.rp-icon-btn.primary){background:var(--r-brand);border-color:var(--r-brand);color:#fff}
 html[data-theme=dark] .retail .food-card{border-color:var(--r-line)}
 html[data-theme=dark] .retail .cart-item.is-new{animation:lineIn .35s var(--r-ease) both}
-html[data-theme=dark] .nav-link{color:#d5dbe6}
-html[data-theme=dark] .nav-link:hover{background:#1d2431;color:var(--ink)}
-html[data-theme=dark] .btn:hover{background:#3b7be8}
-html[data-theme=dark] th{background:#11161f}
+html[data-theme=dark] .nav-link{color:#A3AEC2}
+html[data-theme=dark] .nav-link:hover{background:#141C2C;color:var(--ink)}
+html[data-theme=dark] .nav-link.active{background:#123A3A;color:#5EEAD4}
+html[data-theme=dark] .btn:hover{background:#5EEAD4}
+html[data-theme=dark] th{background:#0D1320}
+/* Ocean Dark: the top bar goes back to the panel colour, and teal buttons get dark text so they stay readable */
+html[data-theme=dark] .main:not(:has(.restaurant-route-nav)) > .topbar{background:#0D1320;border-bottom-color:var(--line)}
+html[data-theme=dark] :is(.btn:not(.btn-secondary):not(.btn-danger),.nav-bill){color:#04201C!important}
+html[data-theme=dark] :is(.ovc-bar .cur,.ovc-legend .inc::before){background:var(--accent)}
+html[data-theme=dark] .ovc-split small.cur{color:var(--accent)}

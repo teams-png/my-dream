@@ -6,7 +6,7 @@
   var d = JSON.parse(el.textContent), L = document.getElementById("ovcLabels").dataset;
   var dark = document.documentElement.getAttribute("data-theme") === "dark";
   var ink = dark ? "#b3bccd" : "#4b5565", grid = dark ? "rgba(255,255,255,.08)" : "rgba(16,24,40,.07)";
-  var BLUE = "#2f7bff", ORANGE = "#f59f00", PALETTE = ["#2f7bff", "#22b8cf", "#f59f00", "#7950f2", "#40c057", "#fa5252"];
+  var BLUE = "#6d3b63", ORANGE = "#f59f00", PALETTE = ["#6d3b63", "#22b8cf", "#f59f00", "#7950f2", "#40c057", "#fa5252"];
   Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
   Chart.defaults.color = ink;
   var money = function (v) { return L.currency + " " + Number(v).toLocaleString(undefined, { maximumFractionDigits: 2 }); };

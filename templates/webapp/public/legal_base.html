@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#134aa6">
+<meta name="theme-color" content="#552d4d">
 <title>{% block title %}{% endblock %} · BookPilot</title>
 <style>
 @font-face{font-family:'Plus Jakarta Sans';src:url('{% static "fonts/PlusJakartaSans-latin.woff2" %}') format('woff2');font-weight:400 800;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Plus Jakarta Sans';src:url('{% static "fonts/PlusJakartaSans-latin-ext.woff2" %}') format('woff2');font-weight:400 800;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
-  :root{--ink:#1d2939;--soft:#667085;--line:#e3e8ef;--bg:#f5f7fa;--brand:#1a5fd0;--brand-2:#3b7be8;--lime:#ffd166;--card:#fff}
+  :root{--ink:#1d2939;--soft:#667085;--line:#e3e8ef;--bg:#f5f7fa;--brand:#6d3b63;--brand-2:#8a5580;--lime:#ffd166;--card:#fff}
 *{box-sizing:border-box}
 body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65}
 a{color:var(--brand-2)}
@@ -32,11 +32,12 @@ footer a{color:var(--soft)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e8efe9;--soft:#a3b3a9;--line:#26332b;--bg:#0f1512;--card:#151d18}
 :root:not([data-theme="light"]) .nav{background:rgba(15,21,18,.95)} :root:not([data-theme="light"]) .box{background:#14251a;border-color:#24402d} :root:not([data-theme="light"]) a{color:#7fd39b}}
 @media print{.nav,footer{display:none}.doc{border:0;margin:0;padding:0}}
+.logo i.loop-mark{background:#fff;border:1px solid #E8E2E7;box-shadow:0 6px 16px rgba(109,59,99,.18)}.logo i.loop-mark img{width:72%;height:auto;display:block}
 </style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
-  <a class="logo" href="{% url 'webapp:landing' %}"><i>✦</i>BookPilot</a>
+  <a class="logo" href="{% url 'webapp:landing' %}"><i class="loop-mark"><img src="{% static 'img/loop-mark.png' %}" alt=""></i>BookPilot</a>
   <nav>
     <a href="/guide/">{% translate "User guide" %}</a>
     <a href="{% url 'webapp:terms' %}" {% if page == "terms" %}class="on"{% endif %}>{% translate "Terms" %}</a>

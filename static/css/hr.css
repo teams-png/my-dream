@@ -1,5 +1,5 @@
 /* Staff & HR screens */
-.hr{--hr-ink:var(--ink,#1d2939);--hr-soft:var(--ink-soft,#667085);--hr-line:var(--line,#e3e8ef);--hr-accent:var(--accent,#1a5fd0);--hr-accent-soft:var(--accent-soft,#eaf1fd);--hr-ok:#15935b;--hr-ok-bg:#e5f6ed;--hr-bad:#c0392b;--hr-bad-bg:#fdecec;--hr-warn:#8a5a00;--hr-warn-bg:#fff3d1;--hr-blue:#2459d6;--hr-blue-bg:#e6eeff}
+.hr{--hr-ink:var(--ink,#1d2939);--hr-soft:var(--ink-soft,#667085);--hr-line:var(--line,#e3e8ef);--hr-accent:var(--accent,#6d3b63);--hr-accent-soft:var(--accent-soft,#f4ecf2);--hr-ok:#15935b;--hr-ok-bg:#e5f6ed;--hr-bad:#c0392b;--hr-bad-bg:#fdecec;--hr-warn:#8a5a00;--hr-warn-bg:#fff3d1;--hr-blue:#2459d6;--hr-blue-bg:#e6eeff}
 .hr-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:4px;margin:-6px 0 18px;background:var(--panel,#fff);border:1px solid var(--hr-line);border-radius:14px}
 .hr-tabs::-webkit-scrollbar{display:none}
 .hr-tabs a{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;padding:8px 13px;border-radius:10px;font-weight:700;font-size:13.5px;color:var(--hr-soft)}

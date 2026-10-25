@@ -1,5 +1,5 @@
 /* First-run setup wizard */
-.ob{max-width:860px; margin:0 auto; padding:8px 0 40px; --ob-brand:var(--accent,#1a5fd0); --ob-ease:cubic-bezier(.2,.8,.2,1)}
+.ob{max-width:860px; margin:0 auto; padding:8px 0 40px; --ob-brand:var(--accent,#6d3b63); --ob-ease:cubic-bezier(.2,.8,.2,1)}
 .ob-steps{display:flex; gap:8px; margin:0 0 22px; padding:0; list-style:none; counter-reset:s}
 .ob-steps li{flex:1; display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:14px; background:var(--panel,#fff); border:1px solid var(--line); color:var(--ink-soft); font-weight:700; font-size:14px; counter-increment:s}
 .ob-steps li::before{content:counter(s); width:28px; height:28px; flex-shrink:0; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--line); color:var(--ink); font-size:13px}
@@ -13,7 +13,7 @@
 .ob-grid .full{grid-column:1 / -1}
 .ob label{display:block; font-size:13px; font-weight:700; color:var(--ink-soft); margin-bottom:6px}
 .ob :is(input:not([type=checkbox]):not([type=file]),select,textarea){width:100%; padding:11px 13px; border:1.5px solid var(--line); border-radius:12px; font:inherit; font-size:15px; background:var(--panel,#fff); color:var(--ink); box-sizing:border-box}
-.ob :is(input,select,textarea):focus{outline:none; border-color:var(--ob-brand); box-shadow:0 0 0 4px rgba(26,95,208,.12)}
+.ob :is(input,select,textarea):focus{outline:none; border-color:var(--ob-brand); box-shadow:0 0 0 4px rgba(109,59,99,.12)}
 .ob .errorlist{color:var(--danger,#b42318); font-size:13px; margin:4px 0 0; padding:0; list-style:none}
 .ob-logo{display:flex; align-items:center; gap:16px}
 .ob-logo .pv{width:72px; height:72px; border-radius:18px; background:var(--paper,#f5f7fa); border:1.5px dashed var(--line); display:flex; align-items:center; justify-content:center; font-size:30px; overflow:hidden; flex-shrink:0}

@@ -21,7 +21,7 @@
 .rp-chips{display:flex; gap:6px; flex-wrap:wrap; margin-top:3px}
 .rp-chip{display:inline-flex; align-items:center; gap:4px; font-size:12px; font-weight:700; padding:3px 9px; border-radius:999px; background:#f4eee6; color:var(--r-soft)}
 .rp-chip.status{background:var(--r-gold); color:#3b2408}
-.rp-chip.status.kitchen,.rp-chip.status.ready,.rp-chip.status.served{background:#dbeafe; color:#1e40af}
+.rp-chip.status.kitchen,.rp-chip.status.ready,.rp-chip.status.served{background:#eadce6; color:#1e40af}
 .rp-chip.status.paid{background:var(--r-green-soft); color:var(--r-green)}
 .rp-chip.status.cancelled{background:#fee4e2; color:#b42318}
 .rp-top-actions{display:flex; gap:8px; align-items:center}

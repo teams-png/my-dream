@@ -14,7 +14,7 @@
 .ix-card h3{margin:0 0 10px;font-size:16px}
 .ix-grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
 .ix-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;background:var(--paper);color:var(--ink-soft);white-space:nowrap}
-.ix-chip.reserved,.ix-chip.active,.ix-chip.draft{background:#dbeafe;color:#1e40af}
+.ix-chip.reserved,.ix-chip.active,.ix-chip.draft{background:#eadce6;color:#1e40af}
 .ix-chip.checked_in,.ix-chip.occupied{background:#fef3c7;color:#92400e}
 .ix-chip.completed,.ix-chip.paid,.ix-chip.vacant{background:#dcfce7;color:#166534}
 .ix-chip.cancelled,.ix-chip.no_show,.ix-chip.ended,.ix-chip.withdrawn,.ix-chip.terminated{background:#f3f4f6;color:#6b7280}
@@ -81,7 +81,7 @@
 @keyframes ixBar{from{opacity:0;transform:scaleX(.6)}to{opacity:1;transform:none}}
 @media(max-width:700px){.ix-form .fields{grid-template-columns:1fr}.bk-head,.bk-row{grid-template-columns:130px 1fr}}
 @media(prefers-reduced-motion:reduce){.ix *{animation:none!important}}
-html[data-theme=dark] .ix-chip.completed,html[data-theme=dark] .ix-chip.paid,html[data-theme=dark] .ix-chip.vacant{background:#1a5fd0;color:#bbf7d0}
-html[data-theme=dark] .ix-chip.reserved,html[data-theme=dark] .ix-chip.active{background:#1e3a8a;color:#dbeafe}
+html[data-theme=dark] .ix-chip.completed,html[data-theme=dark] .ix-chip.paid,html[data-theme=dark] .ix-chip.vacant{background:#6d3b63;color:#bbf7d0}
+html[data-theme=dark] .ix-chip.reserved,html[data-theme=dark] .ix-chip.active{background:#1e3a8a;color:#eadce6}
 html[data-theme=dark] .ix-chip.checked_in,html[data-theme=dark] .ix-chip.occupied{background:#78350f;color:#fef3c7}
 html[data-theme=dark] .at-grid label:has(input:checked){background:#052e16}

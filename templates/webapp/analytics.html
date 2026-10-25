@@ -47,7 +47,7 @@
 
 <script src="{% static 'vendor/chart.umd.min.js' %}"></script>
 <script>
-const ink = '#1d2939', accent = '#1a5fd0', line = '#e3e8ef';
+const ink = '#1d2939', accent = '#6d3b63', line = '#e3e8ef';
 
 new Chart(document.getElementById('salesChart'), {
   type: 'line',
@@ -62,7 +62,7 @@ new Chart(document.getElementById('methodChart'), {
   type: 'doughnut',
   data: {
     labels: {{ method_labels|safe }},
-    datasets: [{ data: {{ method_values|safe }}, backgroundColor: ['#1a5fd0', '#667085', '#C0392B', '#C9A46A', '#4A7C9B'] }]
+    datasets: [{ data: {{ method_values|safe }}, backgroundColor: ['#6d3b63', '#667085', '#C0392B', '#C9A46A', '#4A7C9B'] }]
   },
   options: { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } } }
 });

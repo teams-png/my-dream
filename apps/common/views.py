@@ -29,7 +29,7 @@ def pwa_manifest(request):
         "id": "/", "name": "BookPilot Business Suite", "short_name": "BookPilot",
         "description": "Accounting, POS and business management",
         "start_url": "/?source=app", "scope": "/", "display": "standalone", "display_override": ["standalone"],
-        "orientation": "any", "background_color": "#f5f7fa", "theme_color": "#1a5fd0",
+        "orientation": "any", "background_color": "#f5f7fa", "theme_color": "#6d3b63",
         "categories": ["business", "finance", "productivity"], "icons": icons,
         "shortcuts": [
             {"name": "Point of Sale", "short_name": "POS", "url": "/pos/", "icons": shortcut_icon},

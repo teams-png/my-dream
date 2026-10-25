@@ -316,7 +316,7 @@ SUPPORT_EMAIL = env("SUPPORT_EMAIL", default="")
 # Unpaid free trials: deleted this many days after the trial ends (warnings before), after a closed grace period.
 TRIAL_DELETE_AFTER_DAYS = env.int("TRIAL_DELETE_AFTER_DAYS", default=30)
 TRIAL_PURGE_GRACE_DAYS = env.int("TRIAL_PURGE_GRACE_DAYS", default=7)
-SUPPORT_WHATSAPP = env("SUPPORT_WHATSAPP", default="+91 98475 54224")  # WhatsApp and phone
+SUPPORT_WHATSAPP = env("SUPPORT_WHATSAPP", default="+974 3398 2304")  # WhatsApp and phone
 LEGAL_COMPANY_NAME = env("LEGAL_COMPANY_NAME", default="Ajwaaz")
 LEGAL_COMPANY_ADDRESS = env("LEGAL_COMPANY_ADDRESS", default="")
 LEGAL_CR_NUMBER = env("LEGAL_CR_NUMBER", default="")

@@ -18,11 +18,11 @@
     <div class="{% if grand.cash_short > 0 %}bad{% endif %}"><b>{{ currency }} {{ grand.cash_short|floatformat:2 }}</b><small>{% translate "Cash short" %}</small></div>
   </div>
   <div class="vn-box"><h3>{% translate "By driver" %}</h3><div class="vn-wrap"><table class="vn-t">
-    <tr><th>{% translate "Driver" %}</th><th class="n">{% translate "Trips" %}</th><th class="n">{% translate "Bills" %}</th><th class="n">{% translate "Sales" %}</th><th class="n">{% translate "Paid now" %}</th><th class="n">{% translate "Credit given" %}</th><th class="n">{% translate "Collected" %}</th><th class="n">{% translate "Cash due" %}</th><th class="n">{% translate "Cash handed" %}</th><th class="n">{% translate "Short" %}</th></tr>
+    <tr><th>{% translate "Driver" %}</th><th class="n">{% translate "Trips" %}</th><th class="n">{% translate "Bills" %}</th><th class="n">{% translate "Sales" %}</th><th class="n">{% translate "Paid now" %}</th><th class="n">{% translate "Credit given" %}</th><th class="n">{% translate "Collected" %}</th><th class="n">{% translate "Taken back" %}</th><th class="n">{% translate "Spent" %}</th><th class="n">{% translate "Cash due" %}</th><th class="n">{% translate "Cash handed" %}</th><th class="n">{% translate "Short" %}</th></tr>
     {% for d in drivers %}<tr><td><b>{{ d.name }}</b>{% if d.open %} <span class="vn-pill out">{{ d.open }} {% translate "open" %}</span>{% endif %}</td><td class="n">{{ d.trips }}</td><td class="n">{{ d.bills }}</td>
-      <td class="n">{{ d.sales|floatformat:2 }}</td><td class="n">{{ d.paid_cash|add:d.paid_bank|floatformat:2 }}</td><td class="n">{{ d.credit|floatformat:2 }}</td><td class="n">{{ d.collected|floatformat:2 }}</td>
+      <td class="n">{{ d.sales|floatformat:2 }}</td><td class="n">{{ d.paid_cash|add:d.paid_bank|floatformat:2 }}</td><td class="n">{{ d.credit|floatformat:2 }}</td><td class="n">{{ d.collected|floatformat:2 }}</td><td class="n">{{ d.returns|floatformat:2 }}</td><td class="n">{{ d.expenses|floatformat:2 }}</td>
       <td class="n">{{ d.expected_cash|floatformat:2 }}</td><td class="n">{{ d.handed|floatformat:2 }}</td><td class="n" {% if d.cash_short > 0 %}style="color:#b91c1c;font-weight:800"{% endif %}>{{ d.cash_short|floatformat:2 }}</td></tr>
-    {% empty %}<tr><td colspan="10" class="vn-muted">{% translate "No trips in this period." %}</td></tr>{% endfor %}
+    {% empty %}<tr><td colspan="12" class="vn-muted">{% translate "No trips in this period." %}</td></tr>{% endfor %}
   </table></div></div>
   {% if rows %}<div class="vn-box"><h3>{% translate "Trips" %}</h3><div class="vn-wrap"><table class="vn-t">
     <tr><th>{% translate "Date" %}</th><th>{% translate "Line" %}</th><th>{% translate "Driver" %}</th><th>{% translate "Status" %}</th><th class="n">{% translate "Sales" %}</th><th class="n">{% translate "Credit given" %}</th><th class="n">{% translate "Short" %}</th></tr>

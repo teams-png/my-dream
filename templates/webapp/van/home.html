@@ -35,7 +35,7 @@
   <div class="vn-wrap"><table class="vn-t">
     <tr><th>{% translate "Line" %}</th><th>{% translate "Driver" %}</th><th>{% translate "Status" %}</th><th class="n">{% translate "Bills" %}</th><th class="n">{% translate "Sales" %}</th><th class="n">{% translate "Credit given" %}</th><th class="n">{% translate "Collected" %}</th><th class="n">{% translate "Cash to hand over" %}</th></tr>
     {% for r in rows %}<tr>
-      <td><a href="{% url 'webapp:van_trip' r.trip.id %}"><b>{{ r.trip.route.name|default:_("Extra trip") }}</b></a>{% if not manager %}<br><small class="vn-muted">{{ r.trip.date|date:"D, d M" }}</small>{% endif %}</td>
+      <td><a href="{% if manager %}{% url 'webapp:van_trip' r.trip.id %}{% else %}{% url 'webapp:van_app' r.trip.id %}{% endif %}"><b>{{ r.trip.route.name|default:_("Extra trip") }}</b></a>{% if not manager %}<br><small class="vn-muted">{{ r.trip.date|date:"D, d M" }}</small>{% endif %}</td>
       <td>{{ r.trip.driver.get_full_name|default:r.trip.driver.username }}</td>
       <td><span class="vn-pill {{ r.trip.status }}">{{ r.trip.get_status_display }}</span></td>
       <td class="n">{{ r.money.bills }}</td><td class="n">{{ r.money.sales|floatformat:2 }}</td><td class="n">{{ r.money.credit|floatformat:2 }}</td>

@@ -45,7 +45,8 @@ def service_worker(request):
     # Static files: cache-first. The retail POS (/pos/) is saved on each
     # successful visit and served from the cache when the network is down
     # (so is the restaurant quick sale counter, /restaurant/quick/);
-    # the offline restaurant POS page, its menu data and menu photos are saved
+    # so is the driver's van app, /van/trips/<id>/app/; the offline restaurant POS page, its menu data and
+    # menu photos are saved
     # by that page itself (Cache API). Other pages show a plain offline
     # notice that links to whichever POS this device has; financial pages are
     # never cached.
@@ -59,7 +60,7 @@ self.addEventListener('fetch',e=>{
   if(u.pathname.startsWith('/static/')){e.respondWith(caches.match(e.request).then(hit=>hit||fetch(e.request).then(r=>{if(r.ok){const copy=r.clone();caches.open(CACHE).then(c=>c.put(e.request,copy))}return r})));return}
   if(u.pathname.startsWith('/media/')){e.respondWith(fetch(e.request).catch(()=>caches.match(e.request,{ignoreSearch:true}).then(hit=>hit||Response.error())));return}
   if(e.request.mode==='navigate'){
-    if(u.pathname===SHOP||u.pathname===QUICK){
+    if(u.pathname===SHOP||u.pathname===QUICK||/^\/van\/trips\/\d+\/app\/$/.test(u.pathname)){
       const key=u.pathname;
       e.respondWith(fetch(e.request).then(r=>{if(r.ok&&!r.redirected){const copy=r.clone();caches.open(POS).then(c=>c.put(key,copy))}return r}).catch(()=>caches.open(POS).then(c=>c.match(key)).then(hit=>hit||offline())));
       return;

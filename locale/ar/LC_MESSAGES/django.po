@@ -18322,3 +18322,247 @@ msgstr "المفترض"
 #: apps/modules/catalog.py
 msgid "…or new shop name"
 msgstr "…أو اسم محل جديد"
+
+#: apps/modules/catalog.py
+msgid "%(amount)s spent on %(what)s."
+msgstr "تم صرف %(amount)s على %(what)s."
+
+#: apps/modules/catalog.py
+msgid "%(days)s days overdue"
+msgstr "متأخر %(days)s يومًا"
+
+#: apps/modules/catalog.py
+msgid "%(name)s didn't buy that many %(item)s on one bill."
+msgstr "لم يشترِ %(name)s هذه الكمية من %(item)s في فاتورة واحدة."
+
+#: apps/modules/catalog.py
+msgid "%(qty)s %(item)s taken back from %(name)s."
+msgstr "تم استرجاع %(qty)s %(item)s من %(name)s."
+
+#: apps/modules/catalog.py
+msgid ""
+"0 = off. The due date of a bill comes from the shop's payment terms (days)."
+msgstr "0 = متوقف. تاريخ استحقاق الفاتورة يأتي من شروط الدفع للمحل (بالأيام)."
+
+#: apps/modules/catalog.py
+msgid "Bill photo"
+msgstr "صورة الإيصال"
+
+#: apps/modules/catalog.py
+msgid "Condition"
+msgstr "الحالة"
+
+#: apps/modules/catalog.py
+msgid "Credit limit crossed. Take more payment."
+msgstr "تم تجاوز حد الائتمان. خذ دفعة أكبر."
+
+#: apps/modules/catalog.py
+msgid "Damaged – write off"
+msgstr "تالف – شطب"
+
+#: apps/modules/catalog.py
+msgid "Driver app (works offline)"
+msgstr "تطبيق السائق (يعمل دون اتصال)"
+
+#: apps/modules/catalog.py
+msgid "Enter how many pieces came back."
+msgstr "أدخل عدد القطع المرتجعة."
+
+#: apps/modules/catalog.py
+msgid "Enter the amount spent."
+msgstr "أدخل المبلغ المصروف."
+
+#: apps/modules/catalog.py
+msgid "Enter the amount."
+msgstr "أدخل المبلغ."
+
+#: apps/modules/catalog.py
+msgid "Enter the quantity ordered."
+msgstr "أدخل الكمية المطلوبة."
+
+#: apps/modules/catalog.py
+msgid "Food"
+msgstr "طعام"
+
+#: apps/modules/catalog.py
+msgid "Fuel"
+msgstr "وقود"
+
+#: apps/modules/catalog.py
+msgid "Good"
+msgstr "سليم"
+
+#: apps/modules/catalog.py
+msgid "Good – back in the van"
+msgstr "سليم – يعود إلى السيارة"
+
+#: apps/modules/catalog.py
+msgid "Goods taken back"
+msgstr "البضائع المسترجعة"
+
+#: apps/modules/catalog.py
+msgid "Load the suggestion"
+msgstr "تحميل الاقتراح"
+
+#: apps/modules/catalog.py
+msgid ""
+"No more credit for %(name)s: bill %(no)s is %(days)s days overdue. Collect "
+"it first or take full payment."
+msgstr ""
+"لا مزيد من الآجل لـ %(name)s: الفاتورة %(no)s متأخرة %(days)s يومًا. حصّلها "
+"أولًا أو خذ المبلغ كاملًا."
+
+#: apps/modules/catalog.py
+msgid ""
+"No more credit: an old bill is overdue. Take full payment or collect first."
+msgstr ""
+"لا مزيد من الآجل: فاتورة قديمة متأخرة. خذ المبلغ كاملًا أو حصّل أولًا."
+
+#: apps/modules/catalog.py
+msgid "Not enough left in the van:"
+msgstr "لا يكفي المتبقي في السيارة:"
+
+#: apps/modules/catalog.py
+msgid "Not saved"
+msgstr "لم يُحفظ"
+
+#: apps/modules/catalog.py
+msgid "Nothing loaded: any item can be billed."
+msgstr "لم يُحمَّل شيء: يمكن فوترة أي صنف."
+
+#: apps/modules/catalog.py
+msgid "Offline – saved on this phone"
+msgstr "غير متصل – يُحفظ على هذا الهاتف"
+
+#: apps/modules/catalog.py
+msgid ""
+"Open orders from this line's shops and the average sold on its last 3 trips;"
+" the bigger one is suggested (in pieces)."
+msgstr ""
+"الطلبات المفتوحة لمحلات هذا الخط ومتوسط المبيع في آخر 3 رحلات؛ يُقترح الأكبر"
+" (بالقطع)."
+
+#: apps/modules/catalog.py
+msgid "Order noted for %(name)s."
+msgstr "تم تسجيل طلب %(name)s."
+
+#: apps/modules/catalog.py
+msgid "Orders taken on this trip"
+msgstr "الطلبات المأخوذة في هذه الرحلة"
+
+#: apps/modules/catalog.py
+msgid "Saved on the phone. It will be sent when there is a network."
+msgstr "تم الحفظ على الهاتف. سيُرسل عند توفر الشبكة."
+
+#: apps/modules/catalog.py
+msgid "Send now"
+msgstr "إرسال الآن"
+
+#: apps/modules/catalog.py
+msgid "Send summary on WhatsApp"
+msgstr "إرسال الملخص عبر واتساب"
+
+#: apps/modules/catalog.py
+msgid ""
+"Send the owner a summary when a trip is settled (notification and email)"
+msgstr "أرسل ملخصًا للمالك عند تسوية الرحلة (إشعار وبريد إلكتروني)"
+
+#: apps/modules/catalog.py
+msgid "Shops"
+msgstr "المحلات"
+
+#: apps/modules/catalog.py
+msgid "Spent on the line"
+msgstr "المصروف على الخط"
+
+#: apps/modules/catalog.py
+msgid "Stock short"
+msgstr "نقص المخزون"
+
+#: apps/modules/catalog.py
+msgid "Stop new credit when a shop has a bill overdue by more than (days)"
+msgstr "أوقف الآجل الجديد إذا تأخرت فاتورة المحل أكثر من (أيام)"
+
+#: apps/modules/catalog.py
+msgid "Suggested load"
+msgstr "الحمولة المقترحة"
+
+#: apps/modules/catalog.py
+msgid "Suggested load added."
+msgstr "تمت إضافة الحمولة المقترحة."
+
+#: apps/modules/catalog.py
+msgid "Summary"
+msgstr "الملخص"
+
+#: apps/modules/catalog.py
+msgid "Taken back"
+msgstr "المسترجع"
+
+#: apps/modules/catalog.py
+msgid "The photo could not be read."
+msgstr "تعذّرت قراءة الصورة."
+
+#: apps/modules/catalog.py
+msgid "This item was not found."
+msgstr "لم يُعثر على هذا الصنف."
+
+#: apps/modules/catalog.py
+msgid "This shop was not found."
+msgstr "لم يُعثر على هذا المحل."
+
+#: apps/modules/catalog.py
+msgid "Toll / parking"
+msgstr "رسوم طريق / موقف"
+
+#: apps/modules/catalog.py
+msgid "Unknown action."
+msgstr "إجراء غير معروف."
+
+#: apps/modules/catalog.py
+msgid "Usually sold"
+msgstr "المبيع المعتاد"
+
+#: apps/modules/catalog.py
+msgid "Value per piece"
+msgstr "القيمة للقطعة"
+
+#: apps/modules/catalog.py
+msgid "Van return – damaged"
+msgstr "مرتجع السيارة – تالف"
+
+#: apps/modules/catalog.py
+msgid "Van return – good"
+msgstr "مرتجع السيارة – سليم"
+
+#: apps/modules/catalog.py
+msgid "Van settings"
+msgstr "إعدادات السيارات"
+
+#: apps/modules/catalog.py
+msgid "Van settings saved."
+msgstr "تم حفظ إعدادات السيارات."
+
+#: apps/modules/catalog.py
+msgid "Van stock"
+msgstr "مخزون السيارة"
+
+#: apps/modules/catalog.py
+msgid "Van trip settled"
+msgstr "تمت تسوية رحلة السيارة"
+
+#: apps/modules/catalog.py
+msgid "Vehicle repair"
+msgstr "إصلاح المركبة"
+
+#: apps/modules/catalog.py
+msgid "What for"
+msgstr "لأجل ماذا"
+
+#: apps/modules/catalog.py
+msgid "WhatsApp"
+msgstr "واتساب"
+
+#: apps/modules/catalog.py
+msgid "waiting to send"
+msgstr "بانتظار الإرسال"

@@ -17,7 +17,7 @@ from django.views.decorators.http import require_POST
 
 from apps.customers.models import Customer
 from apps.industry import van_sales as svc
-from apps.industry.models import VanRoute, VanRouteStop, VanTrip
+from apps.industry.models import VanOrder, VanRoute, VanRouteStop, VanSettings, VanTrip
 from apps.inventory.models import Product, ProductPack, Warehouse
 from apps.sales import services as sales, sharing
 from apps.sales.models import SalesInvoiceLine
@@ -154,6 +154,10 @@ def van_trip(request, trip_id):
         row.credit = row.invoice.total - row.paid_now
     return render(request, "webapp/van/trip.html", {
         "trip": trip, "manager": manager, "stock": stock, "money": svc.totals(trip),
+        "suggestion": svc.load_suggestion(trip) if manager and trip.status != "closed" else [],
+        "expenses": trip.expenses.order_by("-id"), "returns": trip.returns.select_related("customer", "product").order_by("-id"),
+        "orders": VanOrder.objects.for_company(company).filter(trip=trip).select_related("customer", "product", "pack"),
+        "owner_whatsapp": svc.owner_whatsapp_link(trip) if manager and trip.status == "closed" else "",
         "stops": _stops(trip, balances), "shared": shared, "currency": company.default_currency,
         "sales": sales_rows,
         "collections": trip.collections.select_related("customer").order_by("-id"),
@@ -176,6 +180,12 @@ def van_trip_action(request, trip_id):
             _manager_only(request)
             product = get_object_or_404(Product.objects.for_company(request.company), id=request.POST.get("product") or 0)
             svc.set_load(trip, product, _num(request.POST.get("quantity")))
+        elif action == "suggest":
+            _manager_only(request)
+            for row in svc.load_suggestion(trip):
+                if row["suggested"] > row["loaded"]:
+                    svc.set_load(trip, row["product"], row["suggested"])
+            messages.success(request, _("Suggested load added."))
         elif action == "collect":
             customer = get_object_or_404(Customer.objects.for_company(request.company), id=request.POST.get("customer") or 0)
             row = svc.collect(trip=trip, user=request.user, customer=customer, amount=_num(request.POST.get("amount")),
@@ -294,6 +304,14 @@ def _route_from_post(route, request):
 def van_routes(request):
     _manager_only(request)
     company = request.company
+    settings = VanSettings.load(company)
+    if request.method == "POST" and request.POST.get("action") == "settings":
+        days = request.POST.get("block_overdue_days") or "0"
+        settings.block_overdue_days = min(int(days), 365) if days.isdigit() else 0
+        settings.notify_owner = bool(request.POST.get("notify_owner"))
+        settings.save()
+        messages.success(request, _("Van settings saved."))
+        return redirect("webapp:van_routes")
     if request.method == "POST":
         route = VanRoute(company=company)
         try:
@@ -306,7 +324,7 @@ def van_routes(request):
             return redirect("webapp:van_route", route_id=route.id)
     routes = VanRoute.objects.for_company(company).select_related("driver").order_by("-is_active", "name")
     return render(request, "webapp/van/routes.html", {"routes": routes, "drivers": _drivers(company),
-                                                      "days": VanRoute.DAYS})
+                                                      "days": VanRoute.DAYS, "settings": settings})
 
 
 @van_view
@@ -375,7 +393,8 @@ def van_report(request):
         start, end = end, start
     trips = (VanTrip.objects.for_company(company).filter(date__range=(start, end))
              .select_related("route", "driver").order_by("date", "id"))
-    keys = ("bills", "sales", "paid_cash", "paid_bank", "credit", "collected", "expected_cash", "cash_short")
+    keys = ("bills", "sales", "paid_cash", "paid_bank", "credit", "collected", "returns", "expenses", "expected_cash",
+            "cash_short")
     drivers, grand, rows = {}, dict.fromkeys(keys, ZERO), []
     for trip in trips:
         money = svc.totals(trip)

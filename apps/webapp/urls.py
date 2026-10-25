@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import team_order_views
 from . import palette_views, list_tools_views, today_views, assistant_views
-from . import van_views, manpower_views, contract_views, delivery_views, job_views, sports_extra_views, refill_views, shop_order_views, billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
+from . import van_app_views, van_views, manpower_views, contract_views, delivery_views, job_views, sports_extra_views, refill_views, shop_order_views, billing_admin_views, guide_views, help_views, online_order_views, backup_views, quick_sale_views, mess_views, site_views, website_kit_views, online_booking_views, careers_views, accounts_views, booking_views, receivables_views, sales_docs_views, purchase_docs_views, stock_views, banking_views, crm_views, automation_views, education_views, gold_views, hr_views, property_views, restaurant_order_views, scale_views, device_views, finance_views, offline_views, onboarding_views, pay_views, public_views, recruitment_views, reminder_views, sample_views, security_views, share_views, views
 
 app_name = "webapp"
 
@@ -542,6 +542,8 @@ urlpatterns = [
     path("van/trips/<int:trip_id>/", van_views.van_trip, name="van_trip"),
     path("van/trips/<int:trip_id>/action/", van_views.van_trip_action, name="van_trip_action"),
     path("van/trips/<int:trip_id>/bill/", van_views.van_sell, name="van_sell"),
+    path("van/trips/<int:trip_id>/app/", van_app_views.van_app, name="van_app"),
+    path("van/trips/<int:trip_id>/sync/", van_app_views.van_sync, name="van_sync"),
     path("van/lines/", van_views.van_routes, name="van_routes"),
     path("van/lines/<int:route_id>/", van_views.van_route, name="van_route"),
     path("van/report/", van_views.van_report, name="van_report"),

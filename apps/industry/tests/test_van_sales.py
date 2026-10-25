@@ -3,11 +3,14 @@ from decimal import Decimal
 
 import pytest
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.management import call_command
 from django.urls import reverse
+from django.utils import timezone
 
 from apps.customers.models import Customer
-from apps.industry.models import VanRoute, VanRouteStop, VanTrip
+from apps.industry import van_sales as svc
+from apps.industry.models import VanOrder, VanRoute, VanRouteStop, VanSettings, VanTrip
 from apps.inventory.models import Product, ProductPack, Unit, Warehouse
 from apps.inventory.services import record_stock_movement
 from apps.sales import services as sales
@@ -161,3 +164,119 @@ def test_lines_and_shops_setup(client, shop):
 def test_van_sales_only_for_its_business_types(client, tenant_a, tenant_a_owner):
     _login(client, tenant_a_owner, tenant_a)
     assert client.get(reverse("webapp:van_home")).status_code == 302
+
+
+# ---------------------------------------------------------------- driver app (offline sync) and the extras
+
+def _trip(shop, loaded=Decimal("50")):
+    trip = VanTrip.objects.create(company=shop["company"], route=shop["route"], driver=shop["drivers"][0],
+                                  date=timezone.localdate(), warehouse=shop["warehouse"])
+    trip.loads.create(product=shop["box"], loaded=loaded)
+    return trip
+
+
+def _sync(client, trip, *ops):
+    import json
+    r = client.post(reverse("webapp:van_sync", args=[trip.id]), data=json.dumps({"ops": list(ops)}),
+                    content_type="application/json")
+    assert r.status_code == 200
+    return r.json()
+
+
+def test_driver_app_syncs_each_action_once(client, shop):
+    company, box, a, b = shop["company"], shop["box"], shop["a"], shop["b"]
+    trip = _trip(shop)
+    _login(client, shop["drivers"][0], company)
+    page = client.get(reverse("webapp:van_app", args=[trip.id]))
+    assert page.status_code == 200 and b"van-app.js" in page.content
+    bill = {"id": "op-bill-0001", "type": "bill", "customer": a.id, "day": str(timezone.localdate()), "paid": "10",
+            "method": "cash", "lines": [{"product": box.id, "qty": "4", "unit": "", "price": "5"}]}
+    res = _sync(client, trip, bill)
+    assert res["results"][0]["ok"] and res["results"][0]["wa"].startswith("https://wa.me/")
+    res = _sync(client, trip, bill)  # the phone sends it again (it never got the answer)
+    assert res["results"][0]["ok"] and SalesInvoice.objects.filter(customer=a).count() == 1
+    too_much = {"id": "op-bill-0002", "type": "bill", "customer": a.id, "paid": "0", "method": "cash",
+                "lines": [{"product": box.id, "qty": "500", "unit": "", "price": "5"}]}
+    res = _sync(client, trip, too_much, {"id": "op-coll-0001", "type": "collect", "customer": a.id, "amount": "10", "method": "cash"})
+    assert not res["results"][0]["ok"] and "Not enough" in res["results"][0]["message"]
+    assert res["results"][1]["ok"]
+    shop_a = next(s for s in res["state"]["shops"] if s["id"] == a.id)
+    assert shop_a["due"] == "0.00" and res["state"]["items"][0]["left"] == "46"
+    # another driver's phone can't post to this trip
+    _login(client, shop["drivers"][1], company)
+    assert client.post(reverse("webapp:van_sync", args=[trip.id]), data="{}", content_type="application/json").status_code == 404
+
+
+def test_returns_expenses_and_cash_due(client, shop):
+    import base64
+    company, box, a = shop["company"], shop["box"], shop["a"]
+    trip = _trip(shop)
+    _login(client, shop["drivers"][0], company)
+    _sync(client, trip, {"id": "op-bill-a1", "type": "bill", "customer": a.id, "paid": "50", "method": "cash",
+                         "lines": [{"product": box.id, "qty": "10", "unit": "", "price": "5"}]})
+    res = _sync(client, trip,
+                {"id": "op-ret-a1", "type": "return", "customer": a.id, "product": box.id, "qty": "2", "good": True},
+                {"id": "op-ret-a2", "type": "return", "customer": a.id, "product": box.id, "qty": "1", "good": False},
+                {"id": "op-exp-a1", "type": "expense", "kind": "fuel", "amount": "15", "note": "diesel",
+                 "photo": "data:image/png;base64," + base64.b64encode(
+                     bytes.fromhex("89504e470d0a1a0a0000000d49484452000000010000000108060000001f15c4890000000d49444154789c6360000002000154a24f5d0000000049454e44ae426082")).decode()})
+    assert len(res["results"]) == 3 and all(r["ok"] for r in res["results"]), res["results"]
+    assert box.current_stock(shop["warehouse"]) == Decimal("92")  # 100 - 10 sold + 2 good back (the damaged one is written off)
+    left = svc.stock(trip)[0]
+    assert (left["sold"], left["taken_back"], left["left"]) == (Decimal("10"), Decimal("2"), Decimal("42"))
+    money = svc.totals(trip)
+    assert money["returns"] == Decimal("15.00") and money["expenses"] == Decimal("15.00")
+    assert money["expected_cash"] == Decimal("35.00")  # 50 cash in, 15 spent on fuel
+    expense = trip.expenses.get()
+    assert expense.photo and expense.expense.amount == Decimal("15.00")
+    from apps.webapp.receivables_views import _balances
+    assert _balances(company)[a.id] == Decimal("-15.00")  # 3 pieces back: credit on the shop's account
+
+
+def test_orders_feed_the_load_suggestion_and_close_on_billing(client, shop):
+    company, box, a = shop["company"], shop["box"], shop["a"]
+    past = _trip(shop, loaded=Decimal("30"))
+    svc.sell(trip=past, user=shop["owner"], customer=a, lines=[{"product": box, "quantity": Decimal("12"), "unit_price": Decimal("5")}], paid=Decimal("60"))
+    svc.close(trip=past, user=shop["owner"], returned={}, cash_handed="60")
+    trip = VanTrip.objects.create(company=company, route=shop["route"], driver=shop["drivers"][0],
+                                  date=timezone.localdate(), warehouse=shop["warehouse"])
+    _login(client, shop["drivers"][0], company)
+    _sync(client, trip, {"id": "op-order-a1", "type": "order", "customer": a.id, "product": box.id, "qty": "20", "unit": ""})
+    rows = svc.load_suggestion(trip)
+    assert [(r["ordered"], r["usual"], r["suggested"]) for r in rows] == [(Decimal("20"), Decimal("12"), Decimal("20"))]
+    _login(client, shop["owner"], company)
+    client.post(reverse("webapp:van_trip_action", args=[trip.id]), {"action": "suggest"})
+    assert trip.loads.get(product=box).loaded == Decimal("20")
+    svc.sell(trip=trip, user=shop["owner"], customer=a, lines=[{"product": box, "quantity": Decimal("20"), "unit_price": Decimal("5")}], paid=Decimal("100"))
+    assert VanOrder.objects.get(customer=a).status == "billed"
+
+
+def test_overdue_shop_gets_no_more_credit(client, shop):
+    from datetime import timedelta
+    company, box, b = shop["company"], shop["box"], shop["b"]
+    old = sales.create_invoice(company=company, user=shop["owner"], customer=b, date=timezone.localdate() - timedelta(days=60),
+                               lines=[{"product": box, "quantity": Decimal("2"), "unit_price": Decimal("5")}], warehouse=shop["warehouse"])
+    old.due_date = timezone.localdate() - timedelta(days=40)
+    old.save(update_fields=["due_date"])
+    VanSettings.objects.update_or_create(company=company, defaults={"block_overdue_days": 30})
+    trip = _trip(shop)
+    with pytest.raises(ValidationError):
+        svc.sell(trip=trip, user=shop["owner"], customer=b, lines=[{"product": box, "quantity": Decimal("1"), "unit_price": Decimal("5")}])
+    svc.sell(trip=trip, user=shop["owner"], customer=b, lines=[{"product": box, "quantity": Decimal("1"), "unit_price": Decimal("5")}], paid=Decimal("5"))
+    _login(client, shop["drivers"][0], company)
+    state = client.get(reverse("webapp:van_app", args=[trip.id])).context["state"]
+    assert next(s for s in state["shops"] if s["id"] == b.id)["late"] == 40
+
+
+def test_owner_gets_a_summary_when_a_trip_is_settled(client, shop, django_capture_on_commit_callbacks):
+    from apps.notifications.models import Notification
+    company, box, a = shop["company"], shop["box"], shop["a"]
+    trip = _trip(shop)
+    svc.sell(trip=trip, user=shop["owner"], customer=a, lines=[{"product": box, "quantity": Decimal("10"), "unit_price": Decimal("5")}], paid=Decimal("20"))
+    with django_capture_on_commit_callbacks(execute=True):
+        svc.close(trip=trip, user=shop["owner"], returned={box.id: Decimal("39")}, cash_handed="20")
+    note = Notification.objects.filter(company=company).latest("id")
+    assert "Monday line" in note.title and "Credit given" in note.message and "Stock short" in note.message
+    _login(client, shop["owner"], company)
+    page = client.get(reverse("webapp:van_trip", args=[trip.id]))
+    assert page.context["owner_whatsapp"].startswith("https://wa.me/")

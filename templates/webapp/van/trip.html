@@ -9,6 +9,7 @@
     <div class="grow" style="min-width:0"><h2 class="vn-title">{{ trip.route.name|default:_("Extra trip") }}</h2>
     <span class="vn-pill {{ trip.status }}">{{ trip.get_status_display }}</span>
     <span class="vn-muted">{{ trip.date|date:"D, d M Y" }} · {{ trip.driver.get_full_name|default:trip.driver.username }}{% if trip.warehouse %} · {{ trip.warehouse.name }}{% endif %}</span></div>
+    {% if trip.status != "closed" %}<a class="btn" href="{% url 'webapp:van_app' trip.id %}">📱 {% translate "Driver app (works offline)" %}</a>{% endif %}
     <a class="btn btn-secondary" href="{% url 'webapp:van_home' %}{% if manager %}?date={{ trip.date|date:'Y-m-d' }}{% endif %}">← {% translate "All trips" %}</a>
     {% if trip.status == "loading" %}<form method="post" action="{% url 'webapp:van_trip_action' trip.id %}" style="margin:0">{% csrf_token %}<input type="hidden" name="action" value="start"><button class="btn">▶ {% translate "Start trip" %}</button></form>{% endif %}
   </div>
@@ -21,11 +22,14 @@
   </div>
   {% endif %}
 
+  {% if owner_whatsapp %}<div class="vn-share"><b>✓ {% translate "Trip settled." %}</b><span class="grow"></span><a class="btn" href="{{ owner_whatsapp }}" target="_blank" rel="noopener">{% translate "Send summary on WhatsApp" %}</a></div>{% endif %}
   <div class="vn-k">
     <div><b>{{ money.bills }}</b><small>{% translate "Bills" %}</small></div>
     <div><b>{{ currency }} {{ money.sales|floatformat:2 }}</b><small>{% translate "Sales" %}</small></div>
     <div><b>{{ currency }} {{ money.credit|floatformat:2 }}</b><small>{% translate "Credit given" %}</small></div>
     <div><b>{{ currency }} {{ money.collected|floatformat:2 }}</b><small>{% translate "Old dues collected" %}</small></div>
+    {% if money.returns %}<div><b>{{ currency }} {{ money.returns|floatformat:2 }}</b><small>{% translate "Goods taken back" %}</small></div>{% endif %}
+    {% if money.expenses %}<div><b>{{ currency }} {{ money.expenses|floatformat:2 }}</b><small>{% translate "Spent on the line" %}</small></div>{% endif %}
     <div class="{% if trip.status == 'closed' and money.cash_short > 0 %}bad{% else %}warn{% endif %}"><b>{{ currency }} {{ money.expected_cash|floatformat:2 }}</b><small>{% if trip.status == "closed" %}{% translate "Cash handed" %}: {{ money.handed|floatformat:2 }}{% if money.cash_short > 0 %} · {% translate "short" %} {{ money.cash_short|floatformat:2 }}{% endif %}{% else %}{% translate "Cash to hand over" %}{% endif %}</small></div>
   </div>
 
@@ -68,9 +72,25 @@
         {% for c in collections %}<tr><td>{{ c.customer.name }}</td><td>💰 {% translate "Old dues" %}{% if c.receipts %} <small class="vn-muted">({{ c.receipts }})</small>{% endif %}</td><td class="n">—</td><td class="n">{{ c.amount|floatformat:2 }}{% if c.method != "cash" %} <small class="vn-muted">{% translate "bank" %}</small>{% endif %}</td><td class="n">—</td></tr>{% endfor %}
       </table></div></div>
       {% endif %}
+      {% if returns %}<div class="vn-box"><h3>↩ {% translate "Goods taken back" %}</h3><div class="vn-wrap"><table class="vn-t">
+        <tr><th>{% translate "Shop" %}</th><th>{% translate "Item" %}</th><th class="n">{% translate "Pieces" %}</th><th class="n">{% translate "Value" %}</th><th>{% translate "Condition" %}</th></tr>
+        {% for r in returns %}<tr><td>{{ r.customer.name }}</td><td>{{ r.product.name }}</td><td class="n">{{ r.quantity|floatformat:"-3" }}</td><td class="n">{{ r.unit_price|floatformat:2 }}</td><td>{% if r.good %}{% translate "Good" %}{% else %}<span style="color:#b91c1c">{% translate "Damaged" %}</span>{% endif %}</td></tr>{% endfor %}
+      </table></div></div>{% endif %}
+      {% if expenses %}<div class="vn-box"><h3>⛽ {% translate "Spent on the line" %}</h3><div class="vn-wrap"><table class="vn-t">
+        {% for e in expenses %}<tr><td>{{ e.get_kind_display }}{% if e.note %} · {{ e.note }}{% endif %}</td><td>{% if e.photo %}<a href="{{ e.photo.url }}" target="_blank" rel="noopener">📷 {% translate "Photo" %}</a>{% endif %}</td><td class="n">{{ e.amount|floatformat:2 }}</td></tr>{% endfor %}
+      </table></div></div>{% endif %}
+      {% if orders %}<div class="vn-box"><h3>📝 {% translate "Orders taken on this trip" %}</h3><div class="vn-wrap"><table class="vn-t">
+        {% for o in orders %}<tr><td>{{ o.customer.name }}</td><td>{{ o.product.name }}{% if o.note %} · <small class="vn-muted">{{ o.note }}</small>{% endif %}</td><td class="n">{{ o.quantity|floatformat:"-3" }} {% if o.pack %}{{ o.pack.name }}{% endif %}</td><td>{{ o.get_status_display }}</td></tr>{% endfor %}
+      </table></div></div>{% endif %}
     </div>
 
     <div>
+      {% if suggestion %}<form class="vn-box" method="post" action="{% url 'webapp:van_trip_action' trip.id %}">{% csrf_token %}<input type="hidden" name="action" value="suggest">
+        <h3>💡 {% translate "Suggested load" %}</h3><div class="vn-wrap"><table class="vn-t">
+        <tr><th>{% translate "Item" %}</th><th class="n">{% translate "Ordered" %}</th><th class="n">{% translate "Usually sold" %}</th><th class="n">{% translate "Load" %}</th></tr>
+        {% for r in suggestion %}<tr><td>{{ r.product.name }}</td><td class="n">{{ r.ordered|floatformat:"-3" }}</td><td class="n">{{ r.usual|floatformat:"-3" }}</td><td class="n"><b>{{ r.suggested|floatformat:"-3" }}</b>{% if r.loaded %} <small class="vn-muted">({{ r.loaded|floatformat:"-3" }})</small>{% endif %}</td></tr>{% endfor %}
+        </table></div><p class="vn-muted">{% translate "Open orders from this line's shops and the average sold on its last 3 trips; the bigger one is suggested (in pieces)." %}</p>
+        <button class="btn btn-secondary">＋ {% translate "Load the suggestion" %}</button></form>{% endif %}
       <div class="vn-box"><h3>📦 {% translate "Stock in the van" %}</h3>
         {% if stock %}<div class="vn-wrap"><table class="vn-t">
           <tr><th>{% translate "Item" %}</th><th class="n">{% translate "Loaded" %}</th><th class="n">{% translate "Sold" %}</th><th class="n">{% translate "Left" %}</th>{% if trip.status == "closed" %}<th class="n">{% translate "Returned" %}</th>{% endif %}</tr>

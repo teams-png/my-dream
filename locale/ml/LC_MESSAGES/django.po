@@ -18593,3 +18593,253 @@ msgstr "വേണ്ടത്"
 #: apps/modules/catalog.py
 msgid "…or new shop name"
 msgstr "…അല്ലെങ്കിൽ പുതിയ കടയുടെ പേര്"
+
+#: apps/modules/catalog.py
+msgid "%(amount)s spent on %(what)s."
+msgstr "%(what)s-ന് %(amount)s ചെലവാക്കി."
+
+#: apps/modules/catalog.py
+msgid "%(days)s days overdue"
+msgstr "%(days)s ദിവസം കുടിശ്ശിക"
+
+#: apps/modules/catalog.py
+msgid "%(name)s didn't buy that many %(item)s on one bill."
+msgstr "%(name)s ഒരു ബില്ലിൽ ഇത്രയും %(item)s വാങ്ങിയിട്ടില്ല."
+
+#: apps/modules/catalog.py
+msgid "%(qty)s %(item)s taken back from %(name)s."
+msgstr "%(name)s-ൽ നിന്ന് %(qty)s %(item)s തിരികെ എടുത്തു."
+
+#: apps/modules/catalog.py
+msgid ""
+"0 = off. The due date of a bill comes from the shop's payment terms (days)."
+msgstr ""
+"0 = ഓഫ്. ബില്ലിന്റെ അവസാന തീയതി കടയുടെ payment terms (ദിവസം) അനുസരിച്ചാണ്."
+
+#: apps/modules/catalog.py
+msgid "Bill photo"
+msgstr "ബില്ലിന്റെ ഫോട്ടോ"
+
+#: apps/modules/catalog.py
+msgid "Condition"
+msgstr "അവസ്ഥ"
+
+#: apps/modules/catalog.py
+msgid "Credit limit crossed. Take more payment."
+msgstr "ക്രെഡിറ്റ് പരിധി കടന്നു. കൂടുതൽ പണം വാങ്ങുക."
+
+#: apps/modules/catalog.py
+msgid "Damaged – write off"
+msgstr "കേടായത് – കുറയ്ക്കുക"
+
+#: apps/modules/catalog.py
+msgid "Driver app (works offline)"
+msgstr "ഡ്രൈവർ ആപ്പ് (നെറ്റ് ഇല്ലാതെയും)"
+
+#: apps/modules/catalog.py
+msgid "Enter how many pieces came back."
+msgstr "എത്ര പീസ് തിരികെ വന്നു എന്ന് നൽകുക."
+
+#: apps/modules/catalog.py
+msgid "Enter the amount spent."
+msgstr "ചെലവാക്കിയ തുക നൽകുക."
+
+#: apps/modules/catalog.py
+msgid "Enter the amount."
+msgstr "തുക നൽകുക."
+
+#: apps/modules/catalog.py
+msgid "Enter the quantity ordered."
+msgstr "ഓർഡർ ചെയ്ത എണ്ണം നൽകുക."
+
+#: apps/modules/catalog.py
+msgid "Food"
+msgstr "ഭക്ഷണം"
+
+#: apps/modules/catalog.py
+msgid "Fuel"
+msgstr "ഇന്ധനം"
+
+#: apps/modules/catalog.py
+msgid "Good"
+msgstr "നല്ലത്"
+
+#: apps/modules/catalog.py
+msgid "Good – back in the van"
+msgstr "നല്ലത് – വണ്ടിയിലേക്ക് തിരികെ"
+
+#: apps/modules/catalog.py
+msgid "Goods taken back"
+msgstr "തിരികെ എടുത്ത സാധനങ്ങൾ"
+
+#: apps/modules/catalog.py
+msgid "Load the suggestion"
+msgstr "നിർദ്ദേശിച്ചത് ലോഡ് ചെയ്യുക"
+
+#: apps/modules/catalog.py
+msgid ""
+"No more credit for %(name)s: bill %(no)s is %(days)s days overdue. Collect "
+"it first or take full payment."
+msgstr ""
+"%(name)s-ന് ഇനി കടം ഇല്ല: ബിൽ %(no)s %(days)s ദിവസം കുടിശ്ശികയാണ്. ആദ്യം അത്"
+" പിരിക്കുക അല്ലെങ്കിൽ മുഴുവൻ പണം വാങ്ങുക."
+
+#: apps/modules/catalog.py
+msgid ""
+"No more credit: an old bill is overdue. Take full payment or collect first."
+msgstr ""
+"ഇനി കടം ഇല്ല: പഴയ ബിൽ കുടിശ്ശികയാണ്. മുഴുവൻ പണം വാങ്ങുക അല്ലെങ്കിൽ ആദ്യം "
+"പിരിക്കുക."
+
+#: apps/modules/catalog.py
+msgid "Not enough left in the van:"
+msgstr "വണ്ടിയിൽ ആവശ്യത്തിന് ബാക്കിയില്ല:"
+
+#: apps/modules/catalog.py
+msgid "Not saved"
+msgstr "സേവ് ആയില്ല"
+
+#: apps/modules/catalog.py
+msgid "Nothing loaded: any item can be billed."
+msgstr "ഒന്നും ലോഡ് ചെയ്തിട്ടില്ല: ഏത് ഐറ്റവും ബിൽ ചെയ്യാം."
+
+#: apps/modules/catalog.py
+msgid "Offline – saved on this phone"
+msgstr "ഓഫ്‌ലൈൻ – ഈ ഫോണിൽ സേവ് ചെയ്യുന്നു"
+
+#: apps/modules/catalog.py
+msgid ""
+"Open orders from this line's shops and the average sold on its last 3 trips;"
+" the bigger one is suggested (in pieces)."
+msgstr ""
+"ഈ ലൈനിലെ കടകളുടെ തുറന്ന ഓർഡറുകളും കഴിഞ്ഞ 3 ട്രിപ്പുകളിലെ ശരാശരി വിൽപ്പനയും; "
+"വലുതാണ് നിർദ്ദേശിക്കുന്നത് (പീസിൽ)."
+
+#: apps/modules/catalog.py
+msgid "Order noted for %(name)s."
+msgstr "%(name)s-ന്റെ ഓർഡർ കുറിച്ചു."
+
+#: apps/modules/catalog.py
+msgid "Orders taken on this trip"
+msgstr "ഈ ട്രിപ്പിൽ എടുത്ത ഓർഡറുകൾ"
+
+#: apps/modules/catalog.py
+msgid "Saved on the phone. It will be sent when there is a network."
+msgstr "ഫോണിൽ സേവ് ചെയ്തു. നെറ്റ് കിട്ടുമ്പോൾ അയയ്ക്കും."
+
+#: apps/modules/catalog.py
+msgid "Send now"
+msgstr "ഇപ്പോൾ അയയ്ക്കുക"
+
+#: apps/modules/catalog.py
+msgid "Send summary on WhatsApp"
+msgstr "സംഗ്രഹം വാട്സ്ആപ്പിൽ അയയ്ക്കുക"
+
+#: apps/modules/catalog.py
+msgid ""
+"Send the owner a summary when a trip is settled (notification and email)"
+msgstr ""
+"ട്രിപ്പ് കണക്ക് തീർക്കുമ്പോൾ ഓണർക്ക് സംഗ്രഹം അയയ്ക്കുക (നോട്ടിഫിക്കേഷനും "
+"ഇമെയിലും)"
+
+#: apps/modules/catalog.py
+msgid "Shops"
+msgstr "കടകൾ"
+
+#: apps/modules/catalog.py
+msgid "Spent on the line"
+msgstr "ലൈനിൽ ചെലവാക്കിയത്"
+
+#: apps/modules/catalog.py
+msgid "Stock short"
+msgstr "സ്റ്റോക്ക് കുറവ്"
+
+#: apps/modules/catalog.py
+msgid "Stop new credit when a shop has a bill overdue by more than (days)"
+msgstr ""
+"ഒരു കടയുടെ ബിൽ ഇത്ര ദിവസത്തിൽ കൂടുതൽ കുടിശ്ശികയായാൽ പുതിയ കടം നിർത്തുക "
+"(ദിവസം)"
+
+#: apps/modules/catalog.py
+msgid "Suggested load"
+msgstr "നിർദ്ദേശിച്ച ലോഡ്"
+
+#: apps/modules/catalog.py
+msgid "Suggested load added."
+msgstr "നിർദ്ദേശിച്ച ലോഡ് ചേർത്തു."
+
+#: apps/modules/catalog.py
+msgid "Summary"
+msgstr "സംഗ്രഹം"
+
+#: apps/modules/catalog.py
+msgid "Taken back"
+msgstr "തിരികെ എടുത്തത്"
+
+#: apps/modules/catalog.py
+msgid "The photo could not be read."
+msgstr "ഫോട്ടോ വായിക്കാൻ പറ്റിയില്ല."
+
+#: apps/modules/catalog.py
+msgid "This item was not found."
+msgstr "ഈ ഐറ്റം കണ്ടെത്തിയില്ല."
+
+#: apps/modules/catalog.py
+msgid "This shop was not found."
+msgstr "ഈ കട കണ്ടെത്തിയില്ല."
+
+#: apps/modules/catalog.py
+msgid "Toll / parking"
+msgstr "ടോൾ / പാർക്കിംഗ്"
+
+#: apps/modules/catalog.py
+msgid "Unknown action."
+msgstr "അറിയാത്ത പ്രവർത്തനം."
+
+#: apps/modules/catalog.py
+msgid "Usually sold"
+msgstr "സാധാരണ വിൽക്കുന്നത്"
+
+#: apps/modules/catalog.py
+msgid "Value per piece"
+msgstr "ഒരു പീസിന്റെ വില"
+
+#: apps/modules/catalog.py
+msgid "Van return – damaged"
+msgstr "വാൻ റിട്ടേൺ – കേടായത്"
+
+#: apps/modules/catalog.py
+msgid "Van return – good"
+msgstr "വാൻ റിട്ടേൺ – നല്ലത്"
+
+#: apps/modules/catalog.py
+msgid "Van settings"
+msgstr "വാൻ സെറ്റിംഗ്സ്"
+
+#: apps/modules/catalog.py
+msgid "Van settings saved."
+msgstr "വാൻ സെറ്റിംഗ്സ് സേവ് ചെയ്തു."
+
+#: apps/modules/catalog.py
+msgid "Van stock"
+msgstr "വണ്ടിയിലെ സ്റ്റോക്ക്"
+
+#: apps/modules/catalog.py
+msgid "Van trip settled"
+msgstr "വാൻ ട്രിപ്പ് കണക്ക് തീർത്തു"
+
+#: apps/modules/catalog.py
+msgid "Vehicle repair"
+msgstr "വണ്ടി റിപ്പയർ"
+
+#: apps/modules/catalog.py
+msgid "What for"
+msgstr "എന്തിന്"
+
+#: apps/modules/catalog.py
+msgid "WhatsApp"
+msgstr "വാട്സ്ആപ്പ്"
+
+#: apps/modules/catalog.py
+msgid "waiting to send"
+msgstr "അയയ്ക്കാൻ കാത്തിരിക്കുന്നു"

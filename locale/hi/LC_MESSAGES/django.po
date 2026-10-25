@@ -18424,3 +18424,246 @@ msgstr "होना चाहिए"
 #: apps/modules/catalog.py
 msgid "…or new shop name"
 msgstr "…या नई दुकान का नाम"
+
+#: apps/modules/catalog.py
+msgid "%(amount)s spent on %(what)s."
+msgstr "%(what)s पर %(amount)s खर्च हुए।"
+
+#: apps/modules/catalog.py
+msgid "%(days)s days overdue"
+msgstr "%(days)s दिन से बकाया"
+
+#: apps/modules/catalog.py
+msgid "%(name)s didn't buy that many %(item)s on one bill."
+msgstr "%(name)s ने एक बिल में इतने %(item)s नहीं खरीदे।"
+
+#: apps/modules/catalog.py
+msgid "%(qty)s %(item)s taken back from %(name)s."
+msgstr "%(name)s से %(qty)s %(item)s वापस लिए।"
+
+#: apps/modules/catalog.py
+msgid ""
+"0 = off. The due date of a bill comes from the shop's payment terms (days)."
+msgstr "0 = बंद। बिल की नियत तारीख दुकान की भुगतान शर्तों (दिन) से आती है।"
+
+#: apps/modules/catalog.py
+msgid "Bill photo"
+msgstr "बिल की फ़ोटो"
+
+#: apps/modules/catalog.py
+msgid "Condition"
+msgstr "हालत"
+
+#: apps/modules/catalog.py
+msgid "Credit limit crossed. Take more payment."
+msgstr "उधार सीमा पार। ज़्यादा भुगतान लें।"
+
+#: apps/modules/catalog.py
+msgid "Damaged – write off"
+msgstr "खराब – बट्टे खाते"
+
+#: apps/modules/catalog.py
+msgid "Driver app (works offline)"
+msgstr "ड्राइवर ऐप (ऑफ़लाइन भी)"
+
+#: apps/modules/catalog.py
+msgid "Enter how many pieces came back."
+msgstr "कितने पीस वापस आए, डालें।"
+
+#: apps/modules/catalog.py
+msgid "Enter the amount spent."
+msgstr "खर्च की गई राशि डालें।"
+
+#: apps/modules/catalog.py
+msgid "Enter the amount."
+msgstr "राशि डालें।"
+
+#: apps/modules/catalog.py
+msgid "Enter the quantity ordered."
+msgstr "ऑर्डर की मात्रा डालें।"
+
+#: apps/modules/catalog.py
+msgid "Food"
+msgstr "खाना"
+
+#: apps/modules/catalog.py
+msgid "Fuel"
+msgstr "ईंधन"
+
+#: apps/modules/catalog.py
+msgid "Good"
+msgstr "अच्छा"
+
+#: apps/modules/catalog.py
+msgid "Good – back in the van"
+msgstr "अच्छा – वैन में वापस"
+
+#: apps/modules/catalog.py
+msgid "Goods taken back"
+msgstr "वापस लिया सामान"
+
+#: apps/modules/catalog.py
+msgid "Load the suggestion"
+msgstr "सुझाया हुआ लोड करें"
+
+#: apps/modules/catalog.py
+msgid ""
+"No more credit for %(name)s: bill %(no)s is %(days)s days overdue. Collect "
+"it first or take full payment."
+msgstr ""
+"%(name)s को और उधार नहीं: बिल %(no)s %(days)s दिन से बकाया है। पहले वसूलें "
+"या पूरा भुगतान लें।"
+
+#: apps/modules/catalog.py
+msgid ""
+"No more credit: an old bill is overdue. Take full payment or collect first."
+msgstr "और उधार नहीं: पुराना बिल बकाया है। पूरा भुगतान लें या पहले वसूलें।"
+
+#: apps/modules/catalog.py
+msgid "Not enough left in the van:"
+msgstr "वैन में पर्याप्त नहीं बचा:"
+
+#: apps/modules/catalog.py
+msgid "Not saved"
+msgstr "सेव नहीं हुआ"
+
+#: apps/modules/catalog.py
+msgid "Nothing loaded: any item can be billed."
+msgstr "कुछ लोड नहीं: कोई भी आइटम बिल हो सकता है।"
+
+#: apps/modules/catalog.py
+msgid "Offline – saved on this phone"
+msgstr "ऑफ़लाइन – इसी फ़ोन में सेव"
+
+#: apps/modules/catalog.py
+msgid ""
+"Open orders from this line's shops and the average sold on its last 3 trips;"
+" the bigger one is suggested (in pieces)."
+msgstr ""
+"इस लाइन की दुकानों के खुले ऑर्डर और पिछली 3 ट्रिप की औसत बिक्री; बड़ा वाला "
+"सुझाया जाता है (पीस में)।"
+
+#: apps/modules/catalog.py
+msgid "Order noted for %(name)s."
+msgstr "%(name)s का ऑर्डर नोट हुआ।"
+
+#: apps/modules/catalog.py
+msgid "Orders taken on this trip"
+msgstr "इस ट्रिप में लिए ऑर्डर"
+
+#: apps/modules/catalog.py
+msgid "Saved on the phone. It will be sent when there is a network."
+msgstr "फ़ोन में सेव हुआ। नेटवर्क मिलने पर भेजा जाएगा।"
+
+#: apps/modules/catalog.py
+msgid "Send now"
+msgstr "अभी भेजें"
+
+#: apps/modules/catalog.py
+msgid "Send summary on WhatsApp"
+msgstr "सारांश व्हाट्सऐप पर भेजें"
+
+#: apps/modules/catalog.py
+msgid ""
+"Send the owner a summary when a trip is settled (notification and email)"
+msgstr "ट्रिप का हिसाब होने पर मालिक को सारांश भेजें (सूचना और ईमेल)"
+
+#: apps/modules/catalog.py
+msgid "Shops"
+msgstr "दुकानें"
+
+#: apps/modules/catalog.py
+msgid "Spent on the line"
+msgstr "लाइन पर खर्च"
+
+#: apps/modules/catalog.py
+msgid "Stock short"
+msgstr "स्टॉक कमी"
+
+#: apps/modules/catalog.py
+msgid "Stop new credit when a shop has a bill overdue by more than (days)"
+msgstr "दुकान का बिल इतने दिन से ज़्यादा बकाया हो तो नया उधार रोकें (दिन)"
+
+#: apps/modules/catalog.py
+msgid "Suggested load"
+msgstr "सुझाया गया लोड"
+
+#: apps/modules/catalog.py
+msgid "Suggested load added."
+msgstr "सुझाया गया लोड जोड़ा गया।"
+
+#: apps/modules/catalog.py
+msgid "Summary"
+msgstr "सारांश"
+
+#: apps/modules/catalog.py
+msgid "Taken back"
+msgstr "वापस लिया"
+
+#: apps/modules/catalog.py
+msgid "The photo could not be read."
+msgstr "फ़ोटो पढ़ी नहीं जा सकी।"
+
+#: apps/modules/catalog.py
+msgid "This item was not found."
+msgstr "यह आइटम नहीं मिला।"
+
+#: apps/modules/catalog.py
+msgid "This shop was not found."
+msgstr "यह दुकान नहीं मिली।"
+
+#: apps/modules/catalog.py
+msgid "Toll / parking"
+msgstr "टोल / पार्किंग"
+
+#: apps/modules/catalog.py
+msgid "Unknown action."
+msgstr "अज्ञात कार्य।"
+
+#: apps/modules/catalog.py
+msgid "Usually sold"
+msgstr "आमतौर पर बिका"
+
+#: apps/modules/catalog.py
+msgid "Value per piece"
+msgstr "प्रति पीस मूल्य"
+
+#: apps/modules/catalog.py
+msgid "Van return – damaged"
+msgstr "वैन वापसी – खराब"
+
+#: apps/modules/catalog.py
+msgid "Van return – good"
+msgstr "वैन वापसी – अच्छा"
+
+#: apps/modules/catalog.py
+msgid "Van settings"
+msgstr "वैन सेटिंग्स"
+
+#: apps/modules/catalog.py
+msgid "Van settings saved."
+msgstr "वैन सेटिंग्स सेव हुईं।"
+
+#: apps/modules/catalog.py
+msgid "Van stock"
+msgstr "वैन स्टॉक"
+
+#: apps/modules/catalog.py
+msgid "Van trip settled"
+msgstr "वैन ट्रिप का हिसाब हुआ"
+
+#: apps/modules/catalog.py
+msgid "Vehicle repair"
+msgstr "वाहन मरम्मत"
+
+#: apps/modules/catalog.py
+msgid "What for"
+msgstr "किसलिए"
+
+#: apps/modules/catalog.py
+msgid "WhatsApp"
+msgstr "व्हाट्सऐप"
+
+#: apps/modules/catalog.py
+msgid "waiting to send"
+msgstr "भेजने का इंतज़ार"

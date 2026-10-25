@@ -22,5 +22,11 @@
       <button class="btn">{% translate "Add line" %}</button>
     </form>
   </div>
+  <form class="vn-box vn-form" method="post">{% csrf_token %}<input type="hidden" name="action" value="settings"><h3>⚙️ {% translate "Van settings" %}</h3>
+    <label>{% translate "Stop new credit when a shop has a bill overdue by more than (days)" %}<input type="number" name="block_overdue_days" min="0" max="365" value="{{ settings.block_overdue_days }}"></label>
+    <p class="vn-muted">{% translate "0 = off. The due date of a bill comes from the shop's payment terms (days)." %}</p>
+    <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="notify_owner" value="1" {% if settings.notify_owner %}checked{% endif %}>{% translate "Send the owner a summary when a trip is settled (notification and email)" %}</label>
+    <button class="btn">{% translate "Save" %}</button>
+  </form>
 </div>
 {% endblock %}

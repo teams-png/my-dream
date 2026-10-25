@@ -948,3 +948,74 @@ class VanTripCollection(models.Model):
     method = models.CharField(max_length=10, default="cash")
     receipts = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class VanSettings(TenantScopedModel):
+    block_overdue_days = models.PositiveSmallIntegerField(
+        default=0, help_text="Stop new credit for a shop with a bill overdue by more than this many days. 0 = off.")
+    notify_owner = models.BooleanField(default=True, help_text="Send the owner a summary when a trip is settled.")
+
+    class Meta:
+        unique_together = ("company",)
+
+    @classmethod
+    def load(cls, company):
+        return cls.objects.filter(company=company).first() or cls.objects.create(company=company)
+
+
+class VanTripExpense(models.Model):
+    """Money the driver spent on the line (fuel, food, toll…), paid from the cash collected."""
+    KINDS = [("fuel", _l("Fuel")), ("food", _l("Food")), ("toll", _l("Toll / parking")), ("repair", _l("Vehicle repair")),
+             ("other", _l("Other"))]
+    trip = models.ForeignKey(VanTrip, on_delete=models.CASCADE, related_name="expenses")
+    kind = models.CharField(max_length=10, choices=KINDS, default="fuel")
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    note = models.CharField(max_length=200, blank=True)
+    photo = models.ImageField(upload_to="van/expenses/%Y/%m/", blank=True, validators=[validate_upload_file])
+    expense = models.OneToOneField("expenses.Expense", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class VanTripReturn(models.Model):
+    """Goods a shop gave back on the line: good ones go back in the van, damaged ones are written off."""
+    trip = models.ForeignKey(VanTrip, on_delete=models.CASCADE, related_name="returns")
+    customer = models.ForeignKey("customers.Customer", on_delete=models.PROTECT, related_name="+")
+    product = models.ForeignKey("inventory.Product", on_delete=models.PROTECT, related_name="+")
+    quantity = models.DecimalField(max_digits=12, decimal_places=3, help_text="Pieces")
+    unit_price = models.DecimalField(max_digits=12, decimal_places=2)
+    good = models.BooleanField(default=True)
+    sales_return = models.ForeignKey("sales.SalesReturn", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class VanOrder(TenantScopedModel):
+    """What a shop wants on the next visit."""
+    STATUS = [("open", _l("Open")), ("billed", _l("Billed")), ("cancelled", _l("Cancelled"))]
+    customer = models.ForeignKey("customers.Customer", on_delete=models.CASCADE, related_name="+")
+    product = models.ForeignKey("inventory.Product", on_delete=models.CASCADE, related_name="+")
+    pack = models.ForeignKey("inventory.ProductPack", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    quantity = models.DecimalField(max_digits=12, decimal_places=3, help_text="In the pack's unit (or pieces).")
+    note = models.CharField(max_length=200, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS, default="open")
+    trip = models.ForeignKey(VanTrip, null=True, blank=True, on_delete=models.SET_NULL, related_name="orders_taken")
+    invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["created_at"]
+
+    @property
+    def pieces(self):
+        return self.quantity * (self.pack.factor if self.pack else 1)
+
+
+class VanSyncOp(models.Model):
+    """One action the driver's phone sent (maybe after being offline). The id comes from the phone, so sending
+    the same action twice never bills twice."""
+    trip = models.ForeignKey(VanTrip, on_delete=models.CASCADE, related_name="sync_ops")
+    uid = models.CharField(max_length=40, unique=True)
+    kind = models.CharField(max_length=12)
+    ok = models.BooleanField(default=False)
+    result = models.JSONField(default=dict, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)

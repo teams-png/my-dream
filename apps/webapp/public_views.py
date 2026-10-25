@@ -15,7 +15,7 @@ from django.utils.translation import gettext as _
 from apps.accounts import signup_otp
 from apps.accounts import services as account_services
 from apps.accounts.models import LoginAttempt
-from apps.modules.catalog import BUSINESS_TYPE_MAP, business_group, hidden_business_codes, offered_business_choices
+from apps.modules.catalog import BUSINESS_TYPE_MAP, business_group, categorized, hidden_business_codes, offered_business_choices
 from apps.modules.models import BusinessType, Module
 from apps.subscriptions.models import SubscriptionPlan
 from apps.subscriptions.pricing import (CURRENCY_BY_COUNTRY, INDIA, LARGE_BUSINESS_TYPES, REGION_CURRENCY, fx_rates,
@@ -38,13 +38,7 @@ COUNTRIES = ["Qatar", "United Arab Emirates", "Saudi Arabia", "Oman", "Kuwait", 
 
 
 def _business_choices():
-    groups = {"restaurant": "Restaurant & food", "retail": "Shops & retail", "service": "Services",
-              "project": "Projects & contracting"}
-    grouped = {}
-    for code, name in sorted(offered_business_choices(), key=lambda kv: kv[1]):
-        group = business_group(code)
-        grouped.setdefault(groups.get(group, "Specialised businesses"), []).append((code, name))
-    return [(label, items) for label, items in grouped.items()]
+    return categorized(offered_business_choices())
 
 
 class SignupForm(forms.Form):
@@ -140,6 +134,7 @@ def landing(request):
     hidden = hidden_business_codes()
     return render(request, "webapp/public/landing.html", {
         "plans": plans, "pricing": pricing, "popular_types": [t for t in POPULAR_TYPES if t[0] not in hidden],
+        "business_categories": categorized(offered_business_choices()),
         "trial_days": TRIAL_DAYS, "business_count": len(set(BUSINESS_TYPE_MAP) - hidden),
         "signup_enabled": settings.PUBLIC_SIGNUP_ENABLED,
         "module_count": Module.objects.exclude(code__in=ADDON_MODULES).count(), "support": support_details(),

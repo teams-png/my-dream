@@ -67,7 +67,7 @@ from apps.expenses import services as expense_services
 from apps.tenants.models import Role, Permission, CompanyMembership, Company, CompanyBusinessType
 from apps.subscriptions.models import Subscription, SubscriptionPlan, SubscriptionPayment
 from apps.modules.models import Module, CompanyModule
-from apps.modules.catalog import ADDON_MODULES, offered_business_choices, business_group, billing_mode, BUSINESS_TYPE_MAP, BUSINESS_TYPE_CHOICES
+from apps.modules.catalog import ADDON_MODULES, CATEGORY_ORDER, business_category, categorized, offered_business_choices, business_group, billing_mode, BUSINESS_TYPE_MAP, BUSINESS_TYPE_CHOICES
 from .forms import WEB_FEATURES
 from apps.tenants import services as tenant_services
 from apps.sales.models import Coupon
@@ -1638,9 +1638,7 @@ def register_client(request):
     for bt in BusinessType.objects.prefetch_related("default_modules__module"):
         default_map[bt.code] = [row.module_id for row in bt.default_modules.all()]
 
-    business_groups = {}
-    for code, name in offered_business_choices():
-        business_groups.setdefault(business_group(code), []).append((code, name))
+    business_groups = categorized(offered_business_choices())
 
     return render(request, "webapp/register_client.html", {
         "form": form,
@@ -5850,9 +5848,10 @@ def platform_admin_manage_business_suites(request, company_id):
         return redirect("webapp:platform_admin_company_detail", company_id=company.id)
     active_ids = set(company.business_suites.filter(is_active=True).values_list("business_type_id", flat=True))
     active_ids.add(company.business_type_id)
-    rows = [(bt, bt.id in active_ids, bt.id == company.business_type_id, business_group(bt.code))
+    rows = [(bt, bt.id in active_ids, bt.id == company.business_type_id, business_category(bt.code))
             for bt in BusinessType.objects.order_by("name") if bt.is_active or bt.id in active_ids]
-    rows.sort(key=lambda r: (not r[2], not r[1]))  # main business, then the ticked ones, then the rest A–Z
+    # main business, then the ticked ones, then the rest by category, A–Z inside each
+    rows.sort(key=lambda r: (not r[2], not r[1], CATEGORY_ORDER.get(r[0].code, 99)))
     return render(request, "webapp/platform_admin/manage_business_suites.html", {"company": company, "business_rows": rows})
 
 
@@ -5927,8 +5926,10 @@ def platform_module_form(request, module_id=None):
 @superuser_required
 def platform_business_type_list(request):
     business_types = BusinessType.objects.prefetch_related("default_modules__module").order_by("name")
+    active = [b for b in business_types if b.is_active]  # deleted types are gone for good
     return render(request, "webapp/platform_admin/business_type_list.html", {
-        "business_types": [b for b in business_types if b.is_active],  # deleted types are gone for good
+        "business_types": active,
+        "business_categories": categorized([(b.code, b) for b in active]),
     })
 
 

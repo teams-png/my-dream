@@ -103,6 +103,8 @@ h2{font-size:clamp(30px,3.6vw,44px);letter-spacing:-.035em;line-height:1.1;margi
 .biz a span{display:block;font-size:30px;margin-bottom:6px;transition:transform .35s var(--ease)}
 .biz a:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(15,26,20,.08);border-color:#bfe3cc}
 .biz a:hover span{transform:scale(1.2) rotate(-6deg)}
+.all-types{margin-top:18px}.all-types summary{list-style:none;cursor:pointer;text-align:center;color:var(--soft)}.all-types summary::-webkit-details-marker{display:none}.all-types summary b{color:var(--brand);margin-inline-start:6px;text-decoration:underline;text-underline-offset:3px}
+.cats{columns:4 230px;column-gap:18px;margin-top:22px}.cat{break-inside:avoid;margin-bottom:18px;background:var(--bg,#fff);border:1px solid var(--line);border-radius:14px;padding:14px 16px}.cat h3{font-size:14px;margin:0 0 8px;color:var(--brand)}.cat a{display:block;padding:4px 0;font-size:14px;color:inherit}.cat a:hover{color:var(--brand)}
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:10px}
 .stat{text-align:center;padding:24px;border-radius:22px;background:#fff;border:1px solid var(--line)}
@@ -243,7 +245,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="biz">
     {% for code, label, icon in popular_types %}<a class="reveal{% cycle '' ' d1' ' d2' %}" href="{% if signup_enabled %}{% url 'webapp:signup' %}?type={{ code }}{% else %}#pricing{% endif %}"><span>{{ icon }}</span>{{ label }}</a>{% endfor %}
   </div>
-  <p class="center" style="color:var(--soft);margin-top:18px">{% translate "…and" %} {{ business_count }} {% translate "business types in total." %}</p>
+  <details class="all-types"><summary>{% translate "…and" %} {{ business_count }} {% translate "business types in total." %} <b>{% translate "See all" %}</b></summary>
+    <div class="cats">{% for category, items in business_categories %}<div class="cat"><h3>{{ category }}</h3>{% for code, name in items %}<a href="{% if signup_enabled %}{% url 'webapp:signup' %}?type={{ code }}{% else %}#pricing{% endif %}">{{ name }}</a>{% endfor %}</div>{% endfor %}</div>
+  </details>
 </div></section>
 
 <section id="demo"><div class="wrap">

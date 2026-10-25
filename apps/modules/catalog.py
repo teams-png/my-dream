@@ -1,4 +1,5 @@
 """Canonical business-type catalogue used by registration, seeding and navigation."""
+from django.utils.translation import gettext_lazy as _l
 
 DEDICATED_TYPES = {
     "mobile_shop": "Mobile Shop", "gym": "Gym / Fitness Center", "spa": "Spa",
@@ -80,6 +81,62 @@ ALIASES = {
 
 BUSINESS_TYPE_MAP = {**DEDICATED_TYPES, **RETAIL_TYPES, **SERVICE_TYPES, **PROJECT_TYPES}
 BUSINESS_TYPE_CHOICES = list(BUSINESS_TYPE_MAP.items())
+
+# How business types are shown to people (sign-up, landing page, platform admin): every type sits in exactly one
+# category, in this order. The groups above (retail / service / project ...) decide the engine; these only organise.
+BUSINESS_CATEGORIES = [
+    (_l("Restaurants & food"), ["restaurant", "cafe_juice_shop", "bakery", "catering_company"]),
+    (_l("Supermarkets & grocery"), ["supermarket", "grocery_store", "fruits_vegetables_shop", "fish_meat_shop"]),
+    (_l("Fashion, jewellery & beauty products"), [
+        "ladies_fashion_boutique", "clothing_store", "textile", "footwear_store", "uniform_shop", "jewelry_shop",
+        "watch_shop", "perfume_shop", "cosmetics_store"]),
+    (_l("Mobile, computers & electronics"), [
+        "mobile_shop", "mobile_accessories_shop", "electronics_store", "computer_shop", "home_appliances_store"]),
+    (_l("Other shops"), [
+        "general_retail", "retail_shop", "ecommerce_store", "book_store", "toys_gift_shop", "baby_products_store",
+        "sports_shop", "cycle_shop", "protein_shop", "furniture_store", "kitchenware_store", "flower_shop", "pet_shop",
+        "musical_instruments_store", "printing_shop"]),
+    (_l("Pharmacy, clinics & health"), [
+        "medical_shop", "medical_equipment_store", "optical_shop", "medical_clinic", "dental_clinic",
+        "physiotherapy_center", "diagnostic_laboratory", "veterinary_clinic", "home_nursing"]),
+    (_l("Salon, spa & fitness"), ["saloon", "beauty_parlour", "spa", "gym"]),
+    (_l("Cars & vehicles"), [
+        "vehicle_wash", "auto_garage", "auto_spare_parts", "tyre_battery_shop", "car_showroom", "fuel_station"]),
+    (_l("Hotels, rentals & venues"), [
+        "hotel_apartment", "car_rental", "equipment_rental", "wedding_party_hall", "coworking_space",
+        "event_management"]),
+    (_l("Schools & training"), ["school_training_institute", "tuition_center", "nursery_daycare", "driving_school"]),
+    (_l("Repairs & home services"), [
+        "repair_services", "electronics_repair", "computer_repair", "ac_maintenance", "home_services",
+        "laundry_dry_cleaning", "pest_control", "moving_packing", "cleaning_equipment_service"]),
+    (_l("Construction & building"), [
+        "construction", "building_materials_store", "hardware_store", "electrical_plumbing_store", "interior_design",
+        "landscaping_company"]),
+    (_l("Manpower & facility services"), [
+        "recruitment_agency", "security_services", "cleaning_company", "maintenance_company", "facility_management"]),
+    (_l("Offices & professional services"), [
+        "consultancy", "accounting_audit", "law_firm", "insurance_brokerage", "travel_agency", "document_clearing",
+        "real_estate_brokerage", "property_management", "photography_studio", "advertising_agency",
+        "digital_marketing_agency"]),
+    (_l("IT & software"), ["it_services", "software_company", "web_development"]),
+    (_l("Trading, industry & logistics"), [
+        "trading_company", "wholesale_business", "import_export", "manufacturing", "industrial_services",
+        "agricultural_supplies_store", "logistics_transport", "courier_delivery"]),
+]
+CATEGORY_OF = {code: label for label, codes in BUSINESS_CATEGORIES for code in codes}
+CATEGORY_ORDER = {code: i for i, (_label, codes) in enumerate(BUSINESS_CATEGORIES) for code in codes}
+
+
+def business_category(code):
+    return CATEGORY_OF.get(ALIASES.get(code, code), _l("Other shops"))
+
+
+def categorized(choices):
+    """[(category, [(code, name), ...]), ...] in category order, A–Z inside each; empty categories left out."""
+    grouped = {}
+    for code, name in sorted(choices, key=lambda kv: (CATEGORY_ORDER.get(ALIASES.get(kv[0], kv[0]), 99), str(kv[1]))):
+        grouped.setdefault(business_category(code), []).append((code, name))
+    return list(grouped.items())
 
 # Adaptive labels/defaults used by the shared service and project engines.  Every
 # catalogue entry receives a profile below, so adding a business type without a

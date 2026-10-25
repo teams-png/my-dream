@@ -734,8 +734,8 @@ class RegisterClientForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["plan"].queryset = SubscriptionPlan.objects.filter(is_active=True).order_by("country", "price")
-        from apps.modules.catalog import offered_business_choices
-        self.fields["business_type"].choices = offered_business_choices()
+        from apps.modules.catalog import categorized, offered_business_choices
+        self.fields["business_type"].choices = categorized(offered_business_choices())
 
     def clean_owner_username(self):
         from django.contrib.auth import get_user_model

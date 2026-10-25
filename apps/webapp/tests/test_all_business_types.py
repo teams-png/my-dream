@@ -143,3 +143,29 @@ def test_project_milestone_task_and_timesheet(tenant_a, sales_fixtures_factory):
     task = ProjectTask.objects.create(company=tenant_a, project=project, milestone=milestone, title="Deploy", assigned_to=employee)
     sheet = ProjectTimesheet.objects.create(company=tenant_a, project=project, task=task, employee=employee, date="2026-01-02", hours=2, hourly_rate=50)
     assert sheet.cost == 100
+
+
+def test_every_business_type_sits_in_exactly_one_category():
+    from apps.modules.catalog import BUSINESS_CATEGORIES, categorized, BUSINESS_TYPE_CHOICES
+    codes = [code for _label, items in BUSINESS_CATEGORIES for code in items]
+    assert len(codes) == len(set(codes)) and set(codes) == set(BUSINESS_TYPE_MAP)
+    grouped = categorized(BUSINESS_TYPE_CHOICES)
+    assert [str(label) for label, _ in grouped] == [str(label) for label, _ in BUSINESS_CATEGORIES]
+    for _label, items in grouped:
+        assert [name for _c, name in items] == sorted(name for _c, name in items)
+
+
+def test_signup_landing_and_admin_show_types_by_category(client, django_user_model):
+    from apps.modules.catalog import business_category
+    call_command("seed_platform")
+    page = client.get("/signup/")
+    groups = page.context["form"].fields["business_type"].choices
+    assert str(groups[0][0]) == "Restaurants & food" and ("bakery", "Bakery") in groups[0][1]
+    assert str(business_category("gym")) == "Salon, spa & fitness"
+    landing = client.get("/")
+    assert b"Supermarkets &amp; grocery" in landing.content and b"?type=fuel_station" in landing.content
+    admin = django_user_model.objects.create_user("root", "root@t.test", "Root-Pass-2026!", is_platform_admin=True,
+                                                is_superuser=True, is_staff=True)
+    client.force_login(admin)
+    listing = client.get("/platform/setup/business-types/")
+    assert listing.status_code == 200 and b"Cars &amp; vehicles" in listing.content

@@ -1,10 +1,10 @@
 """
 Subscription pricing.
 
-One price list, in QAR, for every country (the old India / INR list was retired),
-with two tiers: normal businesses, and supermarkets / large shops (same prices for now).
-Customers outside Qatar are always charged the QAR price; `local_estimate`
-only *shows* roughly what that is in their own currency.
+Two price lists: India in INR and Global in QAR, each with two tiers (normal businesses, and supermarkets /
+large shops, same prices for now). The PRICING_REGION setting picks the one this site sells: every new
+sign-up gets that list whatever their country. On the QAR list, customers outside Qatar are charged the QAR
+price and `local_estimate` only *shows* roughly what that is in their own currency.
 """
 from decimal import ROUND_HALF_UP, Decimal
 
@@ -17,17 +17,19 @@ USER_STEPS = (1, 3, 5)
 # Business types billed at the supermarket / large-shop price.
 LARGE_BUSINESS_TYPES = {"supermarket", "wholesale_business"}
 
-# Yearly plan prices in QAR by number of users.
+# Yearly plan prices by number of users (QAR for Global, INR for India).
 PRICE_TABLE = {
     (GLOBAL, "standard"): {1: 699, 3: 899, 5: 999},
     (GLOBAL, "large"): {1: 699, 3: 899, 5: 999},
+    (INDIA, "standard"): {1: 3999, 3: 5999, 5: 6999},
+    (INDIA, "large"): {1: 3999, 3: 5999, 5: 6999},
 }
 TIER_LABEL = {"standard": "Business", "large": "Large Shop"}
 
 # Yearly add-ons: each user above the biggest plan's users, and each branch above the first.
-ADDON_PRICES = {GLOBAL: {"user": 100, "branch": 300}}
+ADDON_PRICES = {GLOBAL: {"user": 100, "branch": 300}, INDIA: {"user": 1000, "branch": 1000}}
 # Yearly website add-ons: a website (pages, products, enquiries) or an e-commerce website (adds cart and orders).
-WEBSITE_PRICES = {GLOBAL: {"website": 499, "shop": 799}}
+WEBSITE_PRICES = {GLOBAL: {"website": 499, "shop": 799}, INDIA: {"website": 3999, "shop": 6999}}
 
 # How much of each currency one QAR buys, for display only. The GCC
 # currencies and USD are pegged, so these are exact; the others float and
@@ -46,9 +48,15 @@ CURRENCY_BY_COUNTRY = {
 }
 
 
+def sales_region():
+    """The price list this site sells to new customers (the PRICING_REGION setting)."""
+    region = getattr(settings, "PRICING_REGION", GLOBAL)
+    return region if region in REGION_CURRENCY else GLOBAL
+
+
 def region_for(country):
-    """Every country uses the QAR price list (India included, since the INR list was retired)."""
-    return GLOBAL
+    """Every country gets the site's price list; the country only changes the currency shown as an estimate."""
+    return sales_region()
 
 
 def tier_for(business_type_code):
@@ -59,10 +67,11 @@ def plan_name(tier, users):
     return f"{TIER_LABEL[tier]} · {users} user{'s' if users > 1 else ''}"
 
 
-def plans_for(country, business_type_code):
+def plans_for(country, business_type_code, region=None):
+    """Active plans for a sign-up; `region` keeps an existing customer on the price list they already pay in."""
     from .models import SubscriptionPlan
     return SubscriptionPlan.objects.filter(
-        is_active=True, country=region_for(country), tier=tier_for(business_type_code),
+        is_active=True, country=region or region_for(country), tier=tier_for(business_type_code),
     ).order_by("max_users", "price")
 
 

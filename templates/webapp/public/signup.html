@@ -127,7 +127,7 @@ button[type=submit].busy{opacity:.7;pointer-events:none}
     charged:"{% translate 'Billed in' %}",later:"{% translate 'You can change the plan any time from Billing.' %}"};
   const fmt=n=>Number(n).toLocaleString(undefined,{maximumFractionDigits:0});
   function renderPlans(){
-    const region='Global';  // one QAR price list for every country
+    const region=P.region||'Global';  // the site's one price list, whatever the country
     const tier=P.large_types.includes(document.getElementById('id_business_type').value)?'large':'standard';
     const list=P.plans.filter(p=>p.region===region&&p.tier===tier).sort((a,b)=>a.users-b.users);
     const was=(pick.querySelector('input:checked')||{}).value||pick.dataset.selected;
@@ -138,7 +138,8 @@ button[type=submit].busy{opacity:.7;pointer-events:none}
       const est=(p.currency==='QAR'&&local&&local!=='QAR'&&fx)?`<small>≈ ${local} ${fmt(p.price*fx.rate)}</small>`:'';
       return `<label><input type="radio" name="plan" value="${p.id}" ${on?'checked':''}>${p.users} ${p.users>1?L.users:L.user} <small>${L.plusOwner}</small><b>${p.currency} ${fmt(p.price)}</b><small>/ ${L.year}</small>${est}</label>`;
     }).join('');
-    note.textContent=(local&&local!=='QAR'?`${L.charged} QAR · ${local} ${L.approx}`:'')+' '+L.later;
+    const billed=(list[0]||{}).currency||'QAR';
+    note.textContent=(billed==='QAR'&&local&&local!=='QAR'?`${L.charged} QAR · ${local} ${L.approx}`:(billed!=='QAR'?`${L.charged} ${billed}.`:''))+' '+L.later;
   }
   country.addEventListener('change',renderPlans);
   document.getElementById('id_business_type').addEventListener('change',renderPlans);

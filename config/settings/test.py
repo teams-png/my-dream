@@ -36,3 +36,4 @@ CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}
 RESTAURANT_STARTER_KIT = False
 SAMPLE_DATA_KIT = False  # the sample kit has its own tests
 SIGNUP_OTP = ""  # the sign-up code tests switch it on themselves
+PRICING_REGION = "Global"  # most tests price in QAR; the India list has its own tests (test_india_pricing)

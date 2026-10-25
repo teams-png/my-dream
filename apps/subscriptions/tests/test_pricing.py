@@ -24,10 +24,11 @@ def _prices(country, business_type):
 def test_seeded_price_table():
     assert _prices("Qatar", "restaurant") == [(1, "QAR", 699), (3, "QAR", 899), (5, "QAR", 999)]
     assert _prices("Qatar", "supermarket") == [(1, "QAR", 699), (3, "QAR", 899), (5, "QAR", 999)]
-    # every country, India included, uses the one QAR price list
+    # on this (Global) site every country, India included, gets the QAR price list
     for country in ("India", "United Arab Emirates", "Saudi Arabia", "United Kingdom", "United States", "Other"):
         assert _prices(country, "restaurant") == _prices("Qatar", "restaurant")
-    assert not SubscriptionPlan.objects.filter(currency="INR").exists()
+    india = pricing.plans_for("India", "restaurant", region="India")
+    assert [(p.max_users, p.currency, p.price) for p in india] == [(1, "INR", 3999), (3, "INR", 5999), (5, "INR", 6999)]
     assert not SubscriptionPlan.objects.filter(name="Starter", is_active=True).exists()
 
 
@@ -36,7 +37,7 @@ def test_seeding_is_idempotent_and_keeps_admin_prices():
     plan.price = Decimal("350")
     plan.save()
     call_command("seed_platform")
-    assert SubscriptionPlan.objects.filter(is_active=True).count() == 6
+    assert SubscriptionPlan.objects.filter(is_active=True).count() == 12  # 6 QAR + 6 INR
     plan.refresh_from_db()
     assert plan.price == Decimal("350")
 

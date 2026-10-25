@@ -18,7 +18,8 @@ from apps.accounts.models import LoginAttempt
 from apps.modules.catalog import BUSINESS_TYPE_MAP, business_group, hidden_business_codes, offered_business_choices
 from apps.modules.models import BusinessType, Module
 from apps.subscriptions.models import SubscriptionPlan
-from apps.subscriptions.pricing import CURRENCY_BY_COUNTRY, LARGE_BUSINESS_TYPES, fx_rates, is_exact, plans_for
+from apps.subscriptions.pricing import (CURRENCY_BY_COUNTRY, INDIA, LARGE_BUSINESS_TYPES, REGION_CURRENCY, fx_rates,
+                                       is_exact, plans_for, sales_region)
 from apps.subscriptions.services import TRIAL_DAYS
 from apps.tenants.models import Company, CompanyBusinessType
 from apps.webapp.guide_views import support_details
@@ -99,9 +100,9 @@ class SignupForm(forms.Form):
 
 
 def _plans():
-    # one QAR price list for every country: India / INR plans are no longer offered
-    return list(SubscriptionPlan.objects.filter(is_active=True).exclude(country="India")
-                .order_by("country", "tier", "max_users", "price"))
+    # the one price list this site sells (PRICING_REGION), for every country
+    return list(SubscriptionPlan.objects.filter(is_active=True, country=sales_region())
+                .order_by("tier", "max_users", "price"))
 
 
 def _pricing_data():
@@ -115,6 +116,7 @@ def _pricing_data():
         "website": __import__("apps.subscriptions.pricing", fromlist=["WEBSITE_PRICES"]).WEBSITE_PRICES,
         "fx": {code: {"rate": str(rate), "exact": is_exact(code)} for code, rate in fx_rates().items()},
         "country_currency": CURRENCY_BY_COUNTRY,
+        "region": sales_region(), "currency": REGION_CURRENCY[sales_region()],
     }
 
 
@@ -235,6 +237,7 @@ def signup(request):
         initial["plan"] = request.GET["plan"]
     if request.GET.get("type") in BUSINESS_TYPE_MAP:
         initial["business_type"] = request.GET["type"]
+    initial["country"] = "India" if sales_region() == INDIA else "Qatar"
     pending = request.session.get(PENDING)
     if pending and request.GET.get("edit"):  # "change number" from the code page: keep what was typed
         initial.update({k: v for k, v in pending.items() if k in SignupForm.base_fields and k != "password"})

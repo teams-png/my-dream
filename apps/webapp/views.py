@@ -5380,7 +5380,8 @@ def billing_view(request):
         messages.error(request, "Checkout was cancelled — no charge was made.")
 
     from apps.subscriptions.pricing import addons, amount_due, local_estimate, plans_for
-    available_plans = list(plans_for(company.country, company.business_type.code)) if subscription else []
+    available_plans = (list(plans_for(company.country, company.business_type.code, region=subscription.plan.country))
+                       if subscription else [])
 
     if request.method == "POST" and request.POST.get("change_plan"):
         from apps.subscriptions.pricing import seats_used

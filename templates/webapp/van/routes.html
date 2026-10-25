@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Lines & shops" %}{% endblock %}
+{% block heading %}🗺️ {% translate "Lines & shops" %}{% endblock %}
+{% block content %}
+{% include "webapp/van/_style.html" %}
+<div class="vn">
+  <div class="vn-top"><a class="btn btn-secondary" href="{% url 'webapp:van_home' %}">← {% translate "Van sales" %}</a></div>
+  <div class="vn-grid">
+    <div class="vn-box"><h3>{% translate "Lines" %}</h3>
+      {% for r in routes %}
+      <div class="vn-shop"><div class="who"><a href="{% url 'webapp:van_route' r.id %}"><b>{{ r.name }}</b></a>
+        <small>{{ r.stops.count }} {% translate "shops" %} · {{ r.driver.get_full_name|default:r.driver.username|default:_("No driver") }}{% if not r.is_active %} · {% translate "Off" %}{% endif %}</small></div>
+        <a class="btn btn-secondary" href="{% url 'webapp:van_route' r.id %}">{% translate "Open" %}</a></div>
+      {% empty %}<p class="vn-muted">{% translate "No lines yet. Add one for each daily route, e.g. “Monday – Thamarassery”." %}</p>{% endfor %}
+    </div>
+    <form class="vn-box vn-form" method="post">{% csrf_token %}<h3>＋ {% translate "New line" %}</h3>
+      <label>{% translate "Name" %}<input name="name" required maxlength="120" placeholder="{% translate 'e.g. Monday – Thamarassery' %}"></label>
+      <label>{% translate "Usual driver" %}<select name="driver"><option value="">—</option>{% for d in drivers %}<option value="{{ d.id }}">{{ d.get_full_name|default:d.username }}</option>{% endfor %}</select></label>
+      <label>{% translate "Runs on" %}</label><div class="vn-days">{% for code, name in days %}<label><input type="checkbox" name="days" value="{{ code }}">{{ name }}</label>{% endfor %}</div>
+      <p class="vn-muted">{% translate "Leave the days empty if it runs every day." %} {% translate "Each driver needs their own login: add them in Team / Users as Staff." %}</p>
+      <button class="btn">{% translate "Add line" %}</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

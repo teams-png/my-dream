@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ trip.route.name|default:_("Extra trip") }} · {{ trip.date|date:"d M" }}{% endblock %}
+{% block heading %}🚚 {% translate "Van sales" %}{% endblock %}
+{% block content %}
+{% include "webapp/van/_style.html" %}
+<div class="vn">
+  <div class="vn-top">
+    <div class="grow" style="min-width:0"><h2 class="vn-title">{{ trip.route.name|default:_("Extra trip") }}</h2>
+    <span class="vn-pill {{ trip.status }}">{{ trip.get_status_display }}</span>
+    <span class="vn-muted">{{ trip.date|date:"D, d M Y" }} · {{ trip.driver.get_full_name|default:trip.driver.username }}{% if trip.warehouse %} · {{ trip.warehouse.name }}{% endif %}</span></div>
+    <a class="btn btn-secondary" href="{% url 'webapp:van_home' %}{% if manager %}?date={{ trip.date|date:'Y-m-d' }}{% endif %}">← {% translate "All trips" %}</a>
+    {% if trip.status == "loading" %}<form method="post" action="{% url 'webapp:van_trip_action' trip.id %}" style="margin:0">{% csrf_token %}<input type="hidden" name="action" value="start"><button class="btn">▶ {% translate "Start trip" %}</button></form>{% endif %}
+  </div>
+
+  {% if shared %}
+  <div class="vn-share"><b>✓ {{ shared.invoice.invoice_number }} · {{ shared.invoice.customer.name }} · {{ currency }} {{ shared.invoice.total|floatformat:2 }}</b>
+    <span class="grow"></span>
+    <a class="btn" href="{{ shared.whatsapp }}" target="_blank" rel="noopener">{% translate "Send bill on WhatsApp" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:invoice_share' shared.invoice.id %}">{% translate "Print / share" %}</a>
+  </div>
+  {% endif %}
+
+  <div class="vn-k">
+    <div><b>{{ money.bills }}</b><small>{% translate "Bills" %}</small></div>
+    <div><b>{{ currency }} {{ money.sales|floatformat:2 }}</b><small>{% translate "Sales" %}</small></div>
+    <div><b>{{ currency }} {{ money.credit|floatformat:2 }}</b><small>{% translate "Credit given" %}</small></div>
+    <div><b>{{ currency }} {{ money.collected|floatformat:2 }}</b><small>{% translate "Old dues collected" %}</small></div>
+    <div class="{% if trip.status == 'closed' and money.cash_short > 0 %}bad{% else %}warn{% endif %}"><b>{{ currency }} {{ money.expected_cash|floatformat:2 }}</b><small>{% if trip.status == "closed" %}{% translate "Cash handed" %}: {{ money.handed|floatformat:2 }}{% if money.cash_short > 0 %} · {% translate "short" %} {{ money.cash_short|floatformat:2 }}{% endif %}{% else %}{% translate "Cash to hand over" %}{% endif %}</small></div>
+  </div>
+
+  <div class="vn-grid">
+    <div>
+      <div class="vn-box"><h3>🏪 {% translate "Shops on this line" %}</h3>
+        {% for s in stops %}
+        <div class="vn-shop">
+          <div class="who"><b>{{ forloop.counter }}. {{ s.customer.name }}</b>
+            <small>{% if s.customer.phone %}{{ s.customer.phone }} · {% endif %}{% translate "Owes" %} {{ currency }} {{ s.due|floatformat:2 }}</small>
+            {% if s.billed %}<span class="done">✓ {% translate "Billed" %} {{ s.billed|floatformat:2 }}</span>{% endif %}
+            {% if s.collected %}<span class="done">✓ {% translate "Collected" %} {{ s.collected|floatformat:2 }}</span>{% endif %}
+          </div>
+          {% if trip.status != "closed" %}
+          <a class="btn" href="{% url 'webapp:van_sell' trip.id %}?customer={{ s.customer.id }}">🧾 {% translate "Bill" %}</a>
+          {% if s.due > 0 %}
+          <form method="post" action="{% url 'webapp:van_trip_action' trip.id %}">{% csrf_token %}
+            <input type="hidden" name="action" value="collect"><input type="hidden" name="customer" value="{{ s.customer.id }}">
+            <input type="number" name="amount" step="0.01" min="0.01" max="{{ s.due|stringformat:'.2f' }}" placeholder="{% translate 'Amount' %}" aria-label="{% translate 'Amount received' %}" required>
+            <select name="method" aria-label="{% translate 'Paid by' %}"><option value="cash">{% translate "Cash" %}</option><option value="bank">{% translate "Bank / UPI" %}</option></select>
+            <button class="btn btn-secondary">💰 {% translate "Collect" %}</button>
+          </form>
+          {% endif %}{% endif %}
+        </div>
+        {% empty %}<p class="vn-muted">{% translate "This trip has no line. Pick any shop below to bill it." %}</p>{% endfor %}
+        {% if trip.status != "closed" %}
+        <form method="get" action="{% url 'webapp:van_sell' trip.id %}" class="vn-row" style="margin-top:12px">
+          <label>{% translate "Another shop" %}<select name="customer" required><option value="">—</option>{% for c in customers %}<option value="{{ c.id }}">{{ c.name }}{% if c.phone %} · {{ c.phone }}{% endif %}</option>{% endfor %}</select></label>
+          <button class="btn btn-secondary">🧾 {% translate "Bill" %}</button>
+        </form>
+        {% endif %}
+      </div>
+
+      {% if sales or collections %}
+      <div class="vn-box"><h3>{% translate "Today's bills & collections" %}</h3><div class="vn-wrap"><table class="vn-t">
+        <tr><th>{% translate "Shop" %}</th><th>{% translate "Bill" %}</th><th class="n">{% translate "Total" %}</th><th class="n">{% translate "Paid now" %}</th><th class="n">{% translate "Credit" %}</th></tr>
+        {% for s in sales %}<tr><td>{{ s.invoice.customer.name }}</td><td><a href="{% url 'webapp:invoice_share' s.invoice.id %}">{{ s.invoice.invoice_number }}</a></td>
+          <td class="n">{{ s.invoice.total|floatformat:2 }}</td><td class="n">{{ s.paid_now|floatformat:2 }}{% if s.paid_now and s.method != "cash" %} <small class="vn-muted">{% translate "bank" %}</small>{% endif %}</td>
+          <td class="n">{{ s.credit|floatformat:2 }}</td></tr>{% endfor %}
+        {% for c in collections %}<tr><td>{{ c.customer.name }}</td><td>💰 {% translate "Old dues" %}{% if c.receipts %} <small class="vn-muted">({{ c.receipts }})</small>{% endif %}</td><td class="n">—</td><td class="n">{{ c.amount|floatformat:2 }}{% if c.method != "cash" %} <small class="vn-muted">{% translate "bank" %}</small>{% endif %}</td><td class="n">—</td></tr>{% endfor %}
+      </table></div></div>
+      {% endif %}
+    </div>
+
+    <div>
+      <div class="vn-box"><h3>📦 {% translate "Stock in the van" %}</h3>
+        {% if stock %}<div class="vn-wrap"><table class="vn-t">
+          <tr><th>{% translate "Item" %}</th><th class="n">{% translate "Loaded" %}</th><th class="n">{% translate "Sold" %}</th><th class="n">{% translate "Left" %}</th>{% if trip.status == "closed" %}<th class="n">{% translate "Returned" %}</th>{% endif %}</tr>
+          {% for r in stock %}<tr><td>{{ r.product.name }}</td><td class="n">{{ r.loaded|floatformat:"-3" }}</td><td class="n">{{ r.sold|floatformat:"-3" }}</td><td class="n"><b>{{ r.left|floatformat:"-3" }}</b></td>
+            {% if trip.status == "closed" %}<td class="n">{{ r.returned|floatformat:"-3" }}{% if r.short %} <small style="color:#b91c1c">−{{ r.short|floatformat:"-3" }}</small>{% endif %}</td>{% endif %}</tr>{% endfor %}
+        </table></div>
+        {% else %}<p class="vn-muted">{% translate "Nothing loaded. Without a load list the driver can bill any item." %}</p>{% endif %}
+        {% if manager and trip.status != "closed" %}
+        <form method="post" action="{% url 'webapp:van_trip_action' trip.id %}" class="vn-row" style="margin-top:12px">{% csrf_token %}
+          <input type="hidden" name="action" value="load">
+          <label>{% translate "Load item" %}<select name="product" required>{% for r in stock %}<option value="{{ r.product.id }}">{{ r.product.name }} ({% translate "change" %})</option>{% endfor %}{% for p in products %}<option value="{{ p.id }}">{{ p.name }}</option>{% endfor %}</select></label>
+          <label style="flex:0 1 120px">{% translate "Quantity" %}<input type="number" name="quantity" step="any" min="0" required></label>
+          <button class="btn btn-secondary">＋ {% translate "Load" %}</button>
+        </form>
+        <p class="vn-muted">{% translate "Quantities are in the item's own unit (pieces). Enter 0 to take an item off." %}</p>
+        {% endif %}
+      </div>
+
+      {% if manager and trip.status != "closed" %}
+      <form class="vn-box vn-form" method="post" action="{% url 'webapp:van_trip_action' trip.id %}">{% csrf_token %}
+        <h3>🌙 {% translate "Evening settlement" %}</h3>
+        <input type="hidden" name="action" value="close">
+        {% for r in stock %}<label>{{ r.product.name }} · {% translate "came back" %} <small class="vn-muted">({% translate "should be" %} {{ r.left|floatformat:"-3" }})</small>
+          <input type="number" name="returned_{{ r.product.id }}" value="{{ r.left|stringformat:'s' }}" step="any" min="0" max="{{ r.left|stringformat:'s' }}"></label>{% endfor %}
+        <label>{% translate "Cash handed over" %} <small class="vn-muted">({% translate "should be" %} {{ money.expected_cash|floatformat:2 }})</small>
+          <input type="number" name="cash_handed" value="{{ money.expected_cash|stringformat:'.2f' }}" step="0.01" min="0" required></label>
+        <p class="vn-muted">{% translate "Stock that did not come back is written off from the branch. A cash difference is shown in the driver report." %}</p>
+        <button class="btn">✓ {% translate "Settle trip" %}</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

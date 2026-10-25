@@ -862,3 +862,89 @@ class ProductReview(TenantScopedModel):
     class Meta:
         ordering = ["-created_at"]
         indexes = [models.Index(fields=("company", "product", "is_approved"))]
+
+
+# ----------------------------------------------------------------- van sales
+
+class VanRoute(TenantScopedModel):
+    """A delivery line: the shops a driver visits, in order, on the days it runs."""
+    DAYS = [("0", _l("Mon")), ("1", _l("Tue")), ("2", _l("Wed")), ("3", _l("Thu")), ("4", _l("Fri")), ("5", _l("Sat")),
+            ("6", _l("Sun"))]
+    name = models.CharField(max_length=120, help_text="e.g. Monday line – Thamarassery")
+    driver = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL,
+                               related_name="+", help_text="Usual driver (each driver has their own login).")
+    days = models.CharField(max_length=20, blank=True, help_text="Weekdays it runs, e.g. 0,3 (Mon, Thu). Empty = any day.")
+    notes = models.CharField(max_length=255, blank=True)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
+    def day_list(self):
+        return [d for d in self.days.split(",") if d]
+
+    def runs_on(self, day):
+        return not self.day_list() or str(day.weekday()) in self.day_list()
+
+
+class VanRouteStop(models.Model):
+    route = models.ForeignKey(VanRoute, on_delete=models.CASCADE, related_name="stops")
+    customer = models.ForeignKey("customers.Customer", on_delete=models.CASCADE, related_name="+")
+    position = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["position", "id"]
+        unique_together = ("route", "customer")
+
+
+class VanTrip(TenantScopedModel):
+    """One day's run of a van: stock loaded in the morning, bills and collections on the line,
+    stock and cash handed back in the evening."""
+    STATUS = [("loading", _l("Loading")), ("out", _l("On the line")), ("closed", _l("Settled"))]
+    route = models.ForeignKey(VanRoute, null=True, blank=True, on_delete=models.SET_NULL, related_name="trips")
+    driver = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL, related_name="+")
+    date = models.DateField()
+    warehouse = models.ForeignKey("inventory.Warehouse", on_delete=models.PROTECT, related_name="+",
+                                  help_text="Stock goes out of (and comes back to) this branch.")
+    status = models.CharField(max_length=10, choices=STATUS, default="loading")
+    started_at = models.DateTimeField(null=True, blank=True)
+    closed_at = models.DateTimeField(null=True, blank=True)
+    closed_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL,
+                                  related_name="+")
+    cash_handed = models.DecimalField(max_digits=14, decimal_places=2, null=True, blank=True)
+    notes = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        ordering = ["-date", "-id"]
+        indexes = [models.Index(fields=("company", "date"))]
+
+
+class VanTripLoad(models.Model):
+    trip = models.ForeignKey(VanTrip, on_delete=models.CASCADE, related_name="loads")
+    product = models.ForeignKey("inventory.Product", on_delete=models.PROTECT, related_name="+")
+    loaded = models.DecimalField(max_digits=12, decimal_places=3)
+    returned = models.DecimalField(max_digits=12, decimal_places=3, null=True, blank=True)
+
+    class Meta:
+        unique_together = ("trip", "product")
+
+
+class VanTripSale(models.Model):
+    trip = models.ForeignKey(VanTrip, on_delete=models.CASCADE, related_name="sales")
+    invoice = models.OneToOneField("sales.SalesInvoice", on_delete=models.CASCADE, related_name="van_sale")
+    paid_now = models.DecimalField(max_digits=14, decimal_places=2, default=0)
+    method = models.CharField(max_length=10, default="cash")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class VanTripCollection(models.Model):
+    """Old dues a shop paid to the driver on the line."""
+    trip = models.ForeignKey(VanTrip, on_delete=models.CASCADE, related_name="collections")
+    customer = models.ForeignKey("customers.Customer", on_delete=models.PROTECT, related_name="+")
+    amount = models.DecimalField(max_digits=14, decimal_places=2)
+    method = models.CharField(max_length=10, default="cash")
+    receipts = models.CharField(max_length=255, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)

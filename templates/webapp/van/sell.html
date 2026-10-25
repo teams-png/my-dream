@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Bill" %} · {{ customer.name }}{% endblock %}
+{% block heading %}🧾 {% translate "Bill" %}{% endblock %}
+{% block content %}
+{% include "webapp/van/_style.html" %}
+<style>
+.vs-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;padding:12px 0;border-top:1px solid var(--line)}.vs-item:first-of-type{border-top:0}
+.vs-item .nm b{display:block;overflow-wrap:anywhere}.vs-item .nm small{color:var(--ink-soft)}
+.vs-item .in{display:flex;gap:6px;flex-wrap:wrap;grid-column:1/-1}.vs-item .in input{width:96px}.vs-item .in select{width:auto}
+.vs-item .ln{font-weight:800;align-self:center;white-space:nowrap}
+.vs-bar{position:sticky;bottom:0;background:var(--paper,var(--panel));border-top:1px solid var(--line);padding:12px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:end;z-index:5}
+.vs-bar .tot{font-size:22px;font-weight:800;flex:1 1 100%}.vs-bar label{margin:0;flex:1 1 130px}
+</style>
+<div class="vn">
+  <div class="vn-top"><div class="grow" style="min-width:0"><h2 style="margin:0;font-size:20px;overflow-wrap:anywhere">{{ customer.name }}</h2>
+    <span class="vn-muted">{% if customer.phone %}{{ customer.phone }} · {% endif %}{% translate "Owes" %} {{ currency }} {{ due|floatformat:2 }}{% if customer.credit_limit %} · {% translate "Credit limit" %} {{ customer.credit_limit|floatformat:2 }}{% endif %}</span></div>
+    <a class="btn btn-secondary" href="{% url 'webapp:van_trip' trip.id %}">← {% translate "Back to the line" %}</a></div>
+  <form method="post" id="vsForm">{% csrf_token %}<input type="hidden" name="customer" value="{{ customer.id }}">
+  <div class="vn-box">
+    {% for it in items %}
+    <div class="vs-item" data-units='{{ it.units_json }}'>
+      <div class="nm"><b>{{ it.product.name }}</b>{% if it.left is not None %}<small>{% translate "In van" %}: {{ it.left|floatformat:"-3" }}</small>{% endif %}</div>
+      <div class="ln" data-line>0.00</div>
+      <div class="in">
+        <input type="number" name="qty_{{ it.product.id }}" min="0" step="any" inputmode="decimal" placeholder="{% translate 'Qty' %}" aria-label="{% translate 'Quantity' %} {{ it.product.name }}" value="{{ it.qty|default:'' }}" data-qty>
+        <select name="unit_{{ it.product.id }}" aria-label="{% translate 'Unit' %}" data-unit {% if it.units|length == 1 %}hidden{% endif %}>{% for u in it.units %}<option value="{{ u.id }}" {% if u.id == it.unit %}selected{% endif %}>{{ u.name }}</option>{% endfor %}</select>
+        <input type="number" name="price_{{ it.product.id }}" min="0" step="0.01" inputmode="decimal" value="{{ it.price }}" aria-label="{% translate 'Price' %} {{ it.product.name }}" data-price>
+      </div>
+    </div>
+    {% empty %}<p class="vn-muted">{% translate "Nothing left in the van to sell." %}</p>{% endfor %}
+  </div>
+  <div class="vs-bar">
+    <div class="tot">{% translate "Total" %}: {{ currency }} <span id="vsTotal">0.00</span></div>
+    <label>{% translate "Paid now" %}<input type="number" name="paid" id="vsPaid" min="0" step="0.01" inputmode="decimal" value="{{ paid|default:'0' }}"></label>
+    <label>{% translate "Paid by" %}<select name="method"><option value="cash">{% translate "Cash" %}</option><option value="bank">{% translate "Bank / UPI" %}</option></select></label>
+    <button type="button" class="btn btn-secondary" id="vsFull">{% translate "Paid in full" %}</button>
+    <button class="btn">✓ {% translate "Save bill" %}</button>
+    <span class="vn-muted" id="vsCredit" style="flex:1 1 100%"></span>
+  </div>
+  </form>
+</div>
+<script>
+(function(){
+  var items=[].slice.call(document.querySelectorAll('.vs-item')),tot=document.getElementById('vsTotal'),paid=document.getElementById('vsPaid'),credit=document.getElementById('vsCredit');
+  var creditText="{% translate 'On credit' %}";
+  function n(v){v=parseFloat(v);return isNaN(v)?0:v}
+  function sum(){var t=0;items.forEach(function(it){var l=n(it.querySelector('[data-qty]').value)*n(it.querySelector('[data-price]').value);it.querySelector('[data-line]').textContent=l.toFixed(2);t+=l});
+    tot.textContent=t.toFixed(2);var c=t-n(paid.value);credit.textContent=c>0.004?creditText+': '+c.toFixed(2):'';return t}
+  items.forEach(function(it){var units=JSON.parse(it.dataset.units),sel=it.querySelector('[data-unit]'),price=it.querySelector('[data-price]');
+    sel.addEventListener('change',function(){var u=units.find(function(x){return x.id===sel.value});if(u)price.value=u.price;sum()});
+    it.querySelectorAll('input').forEach(function(i){i.addEventListener('input',sum)})});
+  paid.addEventListener('input',sum);
+  document.getElementById('vsFull').addEventListener('click',function(){paid.value=sum().toFixed(2);sum()});
+  sum();
+})();
+</script>
+{% endblock %}

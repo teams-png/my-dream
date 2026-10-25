@@ -18000,3 +18000,427 @@ msgstr "आईटी और सॉफ़्टवेयर"
 #: apps/modules/catalog.py
 msgid "Trading, industry & logistics"
 msgstr "ट्रेडिंग, उद्योग और लॉजिस्टिक्स"
+
+#: apps/modules/catalog.py
+msgid "%(amount)s added to credit."
+msgstr "%(amount)s उधार में जोड़ा गया।"
+
+#: apps/modules/catalog.py
+msgid "%(amount)s received from %(name)s."
+msgstr "%(name)s से %(amount)s प्राप्त हुए।"
+
+#: apps/modules/catalog.py
+msgid "%(name)s is not loaded in this van."
+msgstr "%(name)s इस वैन में लोड नहीं है।"
+
+#: apps/modules/catalog.py
+msgid "%(name)s: returned must be between 0 and %(left)s."
+msgstr "%(name)s: वापसी 0 और %(left)s के बीच होनी चाहिए।"
+
+#: apps/modules/catalog.py
+msgid "%(sold)s of %(name)s are already billed on this trip."
+msgstr "इस ट्रिप में %(name)s के %(sold)s पहले ही बिल हो चुके हैं।"
+
+#: apps/modules/catalog.py
+msgid "Add shop"
+msgstr "दुकान जोड़ें"
+
+#: apps/modules/catalog.py
+msgid "All trips"
+msgstr "सभी ट्रिप"
+
+#: apps/modules/catalog.py
+msgid "Amount received"
+msgstr "प्राप्त राशि"
+
+#: apps/modules/catalog.py
+msgid "Another shop"
+msgstr "दूसरी दुकान"
+
+#: apps/modules/catalog.py
+msgid "Back to the line"
+msgstr "लाइन पर वापस"
+
+#: apps/modules/catalog.py
+msgid "Bank / UPI"
+msgstr "बैंक / UPI"
+
+#: apps/modules/catalog.py
+msgid "Bill %(no)s for %(name)s: %(total)s."
+msgstr "%(name)s के लिए बिल %(no)s: %(total)s।"
+
+#: apps/modules/catalog.py
+msgid "By driver"
+msgstr "ड्राइवर के अनुसार"
+
+#: apps/modules/catalog.py
+msgid "Cash due"
+msgstr "देय नकद"
+
+#: apps/modules/catalog.py
+msgid "Cash handed"
+msgstr "सौंपा गया नकद"
+
+#: apps/modules/catalog.py
+msgid "Cash handed over"
+msgstr "सौंपा गया नकद"
+
+#: apps/modules/catalog.py
+msgid "Cash short"
+msgstr "नकद कमी"
+
+#: apps/modules/catalog.py
+msgid "Cash to hand over"
+msgstr "सौंपने वाला नकद"
+
+#: apps/modules/catalog.py
+msgid "Choose a driver."
+msgstr "एक ड्राइवर चुनें।"
+
+#: apps/modules/catalog.py
+msgid "Choose a shop or type a new shop's name."
+msgstr "दुकान चुनें या नई दुकान का नाम लिखें।"
+
+#: apps/modules/catalog.py
+msgid "Choose a valid unit."
+msgstr "सही इकाई चुनें।"
+
+#: apps/modules/catalog.py
+msgid "Credit given"
+msgstr "दिया गया उधार"
+
+#: apps/modules/catalog.py
+msgid ""
+"Credit limit crossed: %(name)s already owes %(owed)s (limit %(limit)s)."
+msgstr "उधार सीमा पार: %(name)s पर पहले से %(owed)s बाकी है (सीमा %(limit)s)।"
+
+#: apps/modules/catalog.py
+msgid "Driver"
+msgstr "ड्राइवर"
+
+#: apps/modules/catalog.py
+msgid "Driver report"
+msgstr "ड्राइवर रिपोर्ट"
+
+#: apps/modules/catalog.py
+msgid "Each driver needs their own login: add them in Team / Users as Staff."
+msgstr ""
+"हर ड्राइवर का अपना लॉगिन चाहिए: उन्हें Team / Users में Staff के रूप में "
+"जोड़ें।"
+
+#: apps/modules/catalog.py
+msgid "Enter a quantity for at least one item."
+msgstr "कम से कम एक आइटम की मात्रा डालें।"
+
+#: apps/modules/catalog.py
+msgid "Enter a quantity of 0 or more."
+msgstr "0 या अधिक मात्रा डालें।"
+
+#: apps/modules/catalog.py
+msgid "Enter a valid number."
+msgstr "सही संख्या डालें।"
+
+#: apps/modules/catalog.py
+msgid "Enter the cash the driver handed over."
+msgstr "ड्राइवर द्वारा सौंपा गया नकद डालें।"
+
+#: apps/modules/catalog.py
+msgid "Evening settlement"
+msgstr "शाम का हिसाब"
+
+#: apps/modules/catalog.py
+msgid "Extra trip"
+msgstr "अतिरिक्त ट्रिप"
+
+#: apps/modules/catalog.py
+msgid "Give the line a name."
+msgstr "लाइन का नाम दें।"
+
+#: apps/modules/catalog.py
+msgid "In van"
+msgstr "वैन में"
+
+#: apps/modules/catalog.py
+msgid "Leave the days empty if it runs every day."
+msgstr "अगर यह रोज़ चलती है तो दिन खाली छोड़ें।"
+
+#: apps/modules/catalog.py
+msgid "Line"
+msgstr "लाइन"
+
+#: apps/modules/catalog.py
+msgid "Line added. Now add its shops."
+msgstr "लाइन जोड़ी गई। अब इसकी दुकानें जोड़ें।"
+
+#: apps/modules/catalog.py
+msgid "Line details"
+msgstr "लाइन विवरण"
+
+#: apps/modules/catalog.py
+msgid "Line is running"
+msgstr "लाइन चालू है"
+
+#: apps/modules/catalog.py
+msgid "Line saved."
+msgstr "लाइन सेव हुई।"
+
+#: apps/modules/catalog.py
+msgid "Lines"
+msgstr "लाइनें"
+
+#: apps/modules/catalog.py
+msgid "Lines & shops"
+msgstr "लाइनें और दुकानें"
+
+#: apps/modules/catalog.py
+msgid "Lines running today"
+msgstr "आज चलने वाली लाइनें"
+
+#: apps/modules/catalog.py
+msgid "Load"
+msgstr "लोड करें"
+
+#: apps/modules/catalog.py
+msgid "Load item"
+msgstr "लोड आइटम"
+
+#: apps/modules/catalog.py
+msgid "Loaded"
+msgstr "लोड किया"
+
+#: apps/modules/catalog.py
+msgid "Loading"
+msgstr "लोड हो रहा है"
+
+#: apps/modules/catalog.py
+msgid "Move down"
+msgstr "नीचे करें"
+
+#: apps/modules/catalog.py
+msgid "Move up"
+msgstr "ऊपर करें"
+
+#: apps/modules/catalog.py
+msgid "My trips"
+msgstr "मेरी ट्रिप"
+
+#: apps/modules/catalog.py
+msgid "New line"
+msgstr "नई लाइन"
+
+#: apps/modules/catalog.py
+msgid "No driver"
+msgstr "कोई ड्राइवर नहीं"
+
+#: apps/modules/catalog.py
+msgid ""
+"No lines yet. Add one for each daily route, e.g. “Monday – Thamarassery”."
+msgstr ""
+"अभी कोई लाइन नहीं। हर दिन के रूट के लिए एक जोड़ें, जैसे “सोमवार – "
+"थामरस्सेरी”।"
+
+#: apps/modules/catalog.py
+msgid ""
+"No shops yet. Add the shops of this line in the order the driver visits "
+"them."
+msgstr ""
+"अभी कोई दुकान नहीं। ड्राइवर जिस क्रम में जाता है उसी क्रम में दुकानें "
+"जोड़ें।"
+
+#: apps/modules/catalog.py
+msgid "No trip is open for you. Ask the office to open today's trip."
+msgstr "आपकी कोई ट्रिप खुली नहीं है। ऑफिस से आज की ट्रिप खोलने को कहें।"
+
+#: apps/modules/catalog.py
+msgid "No trips in this period."
+msgstr "इस अवधि में कोई ट्रिप नहीं।"
+
+#: apps/modules/catalog.py
+msgid "No trips on this day yet."
+msgstr "इस दिन अभी कोई ट्रिप नहीं।"
+
+#: apps/modules/catalog.py
+msgid "Not enough %(name)s left in the van."
+msgstr "वैन में पर्याप्त %(name)s नहीं बचा।"
+
+#: apps/modules/catalog.py
+msgid "Nothing left in the van to sell."
+msgstr "बेचने के लिए वैन में कुछ नहीं बचा।"
+
+#: apps/modules/catalog.py
+msgid "Nothing loaded. Without a load list the driver can bill any item."
+msgstr ""
+"कुछ लोड नहीं हुआ। लोड सूची के बिना ड्राइवर कोई भी आइटम बिल कर सकता है।"
+
+#: apps/modules/catalog.py
+msgid "Old dues"
+msgstr "पुराना बकाया"
+
+#: apps/modules/catalog.py
+msgid "Old dues collected"
+msgstr "वसूला गया पुराना बकाया"
+
+#: apps/modules/catalog.py
+msgid "On credit"
+msgstr "उधार पर"
+
+#: apps/modules/catalog.py
+msgid "On the line"
+msgstr "लाइन पर"
+
+#: apps/modules/catalog.py
+msgid "Only stock items can be loaded."
+msgstr "केवल स्टॉक आइटम लोड किए जा सकते हैं।"
+
+#: apps/modules/catalog.py
+msgid "Open an extra trip (without a line)"
+msgstr "अतिरिक्त ट्रिप खोलें (बिना लाइन)"
+
+#: apps/modules/catalog.py
+msgid "Open trip"
+msgstr "ट्रिप खोलें"
+
+#: apps/modules/catalog.py
+msgid "Paid in full"
+msgstr "पूरा भुगतान"
+
+#: apps/modules/catalog.py
+msgid "Paid now must be between 0 and the bill total."
+msgstr "अभी भुगतान 0 और बिल राशि के बीच होना चाहिए।"
+
+#: apps/modules/catalog.py
+msgid "Print / share"
+msgstr "प्रिंट / शेयर"
+
+#: apps/modules/catalog.py
+msgid "Quantities and prices can't be negative."
+msgstr "मात्रा और कीमत ऋणात्मक नहीं हो सकती।"
+
+#: apps/modules/catalog.py
+msgid ""
+"Quantities are in the item's own unit (pieces). Enter 0 to take an item off."
+msgstr "मात्रा आइटम की अपनी इकाई (पीस) में है। आइटम हटाने के लिए 0 डालें।"
+
+#: apps/modules/catalog.py
+msgid "Runs on"
+msgstr "चलने के दिन"
+
+#: apps/modules/catalog.py
+msgid "Same load as last time"
+msgstr "पिछली बार जैसा लोड"
+
+#: apps/modules/catalog.py
+msgid "Save bill"
+msgstr "बिल सेव करें"
+
+#: apps/modules/catalog.py
+msgid "Send bill on WhatsApp"
+msgstr "बिल व्हाट्सऐप पर भेजें"
+
+#: apps/modules/catalog.py
+msgid "Settle trip"
+msgstr "ट्रिप का हिसाब करें"
+
+#: apps/modules/catalog.py
+msgid "Settled"
+msgstr "हिसाब हो गया"
+
+#: apps/modules/catalog.py
+msgid "Shops in visiting order"
+msgstr "जाने के क्रम में दुकानें"
+
+#: apps/modules/catalog.py
+msgid "Shops on this line"
+msgstr "इस लाइन की दुकानें"
+
+#: apps/modules/catalog.py
+msgid "Start trip"
+msgstr "ट्रिप शुरू करें"
+
+#: apps/modules/catalog.py
+msgid "Stock in the van"
+msgstr "वैन में स्टॉक"
+
+#: apps/modules/catalog.py
+msgid ""
+"Stock that did not come back is written off from the branch. A cash "
+"difference is shown in the driver report."
+msgstr ""
+"जो स्टॉक वापस नहीं आया वह ब्रांच से घटा दिया जाता है। नकद का अंतर ड्राइवर "
+"रिपोर्ट में दिखता है।"
+
+#: apps/modules/catalog.py
+msgid "This trip has no line. Pick any shop below to bill it."
+msgstr "इस ट्रिप की कोई लाइन नहीं। बिल करने के लिए नीचे कोई भी दुकान चुनें।"
+
+#: apps/modules/catalog.py
+msgid "This trip is already settled."
+msgstr "इस ट्रिप का हिसाब पहले ही हो चुका है।"
+
+#: apps/modules/catalog.py
+msgid ""
+"Tip: add your lines and their shops first, then each day's trip opens with "
+"one tap."
+msgstr ""
+"सुझाव: पहले लाइनें और उनकी दुकानें जोड़ें, फिर हर दिन की ट्रिप एक टैप में "
+"खुलेगी।"
+
+#: apps/modules/catalog.py
+msgid "Today's bills & collections"
+msgstr "आज के बिल और वसूली"
+
+#: apps/modules/catalog.py
+msgid "Trip opened. Add what goes into the van, then hand it to the driver."
+msgstr "ट्रिप खुल गई। वैन में जाने वाला सामान जोड़ें, फिर ड्राइवर को दें।"
+
+#: apps/modules/catalog.py
+msgid "Trip settled."
+msgstr "ट्रिप का हिसाब हो गया।"
+
+#: apps/modules/catalog.py
+msgid "Trip settled. Cash is short by %(amount)s."
+msgstr "ट्रिप का हिसाब हो गया। नकद %(amount)s कम है।"
+
+#: apps/modules/catalog.py
+msgid "Trip started. Have a good day on the line!"
+msgstr "ट्रिप शुरू हुई। लाइन पर दिन अच्छा रहे!"
+
+#: apps/modules/catalog.py
+msgid "Trips"
+msgstr "ट्रिप"
+
+#: apps/modules/catalog.py
+msgid "Usual driver"
+msgstr "सामान्य ड्राइवर"
+
+#: apps/modules/catalog.py
+msgid "Van sales"
+msgstr "वैन सेल्स"
+
+#: apps/modules/catalog.py
+msgid "came back"
+msgstr "वापस आया"
+
+#: apps/modules/catalog.py
+msgid "change"
+msgstr "बदलें"
+
+#: apps/modules/catalog.py
+msgid "e.g. Monday – Thamarassery"
+msgstr "जैसे सोमवार – थामरस्सेरी"
+
+#: apps/modules/catalog.py
+msgid "piece"
+msgstr "पीस"
+
+#: apps/modules/catalog.py
+msgid "shops"
+msgstr "दुकानें"
+
+#: apps/modules/catalog.py
+msgid "should be"
+msgstr "होना चाहिए"
+
+#: apps/modules/catalog.py
+msgid "…or new shop name"
+msgstr "…या नई दुकान का नाम"

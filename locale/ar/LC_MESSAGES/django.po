@@ -17908,3 +17908,417 @@ msgstr "تقنية المعلومات والبرمجيات"
 #: apps/modules/catalog.py
 msgid "Trading, industry & logistics"
 msgstr "التجارة والصناعة والنقل"
+
+#: apps/modules/catalog.py
+msgid "%(amount)s added to credit."
+msgstr "تمت إضافة %(amount)s إلى الآجل."
+
+#: apps/modules/catalog.py
+msgid "%(amount)s received from %(name)s."
+msgstr "تم استلام %(amount)s من %(name)s."
+
+#: apps/modules/catalog.py
+msgid "%(name)s is not loaded in this van."
+msgstr "%(name)s غير محمّل في هذه السيارة."
+
+#: apps/modules/catalog.py
+msgid "%(name)s: returned must be between 0 and %(left)s."
+msgstr "%(name)s: المرتجع يجب أن يكون بين 0 و %(left)s."
+
+#: apps/modules/catalog.py
+msgid "%(sold)s of %(name)s are already billed on this trip."
+msgstr "تم بالفعل فوترة %(sold)s من %(name)s في هذه الرحلة."
+
+#: apps/modules/catalog.py
+msgid "Add shop"
+msgstr "إضافة محل"
+
+#: apps/modules/catalog.py
+msgid "All trips"
+msgstr "كل الرحلات"
+
+#: apps/modules/catalog.py
+msgid "Amount received"
+msgstr "المبلغ المستلم"
+
+#: apps/modules/catalog.py
+msgid "Another shop"
+msgstr "محل آخر"
+
+#: apps/modules/catalog.py
+msgid "Back to the line"
+msgstr "العودة إلى الخط"
+
+#: apps/modules/catalog.py
+msgid "Bank / UPI"
+msgstr "بنك / تحويل"
+
+#: apps/modules/catalog.py
+msgid "Bill %(no)s for %(name)s: %(total)s."
+msgstr "فاتورة %(no)s لـ %(name)s: %(total)s."
+
+#: apps/modules/catalog.py
+msgid "By driver"
+msgstr "حسب السائق"
+
+#: apps/modules/catalog.py
+msgid "Cash due"
+msgstr "النقد المستحق"
+
+#: apps/modules/catalog.py
+msgid "Cash handed"
+msgstr "النقد المسلَّم"
+
+#: apps/modules/catalog.py
+msgid "Cash handed over"
+msgstr "النقد المسلَّم"
+
+#: apps/modules/catalog.py
+msgid "Cash short"
+msgstr "نقص النقد"
+
+#: apps/modules/catalog.py
+msgid "Cash to hand over"
+msgstr "النقد الواجب تسليمه"
+
+#: apps/modules/catalog.py
+msgid "Choose a driver."
+msgstr "اختر سائقًا."
+
+#: apps/modules/catalog.py
+msgid "Choose a shop or type a new shop's name."
+msgstr "اختر محلًا أو اكتب اسم محل جديد."
+
+#: apps/modules/catalog.py
+msgid "Choose a valid unit."
+msgstr "اختر وحدة صحيحة."
+
+#: apps/modules/catalog.py
+msgid "Credit given"
+msgstr "الآجل الممنوح"
+
+#: apps/modules/catalog.py
+msgid ""
+"Credit limit crossed: %(name)s already owes %(owed)s (limit %(limit)s)."
+msgstr "تم تجاوز حد الائتمان: على %(name)s مبلغ %(owed)s (الحد %(limit)s)."
+
+#: apps/modules/catalog.py
+msgid "Driver"
+msgstr "السائق"
+
+#: apps/modules/catalog.py
+msgid "Driver report"
+msgstr "تقرير السائقين"
+
+#: apps/modules/catalog.py
+msgid "Each driver needs their own login: add them in Team / Users as Staff."
+msgstr "يحتاج كل سائق إلى حساب دخول خاص: أضفه في الفريق / المستخدمين كموظف."
+
+#: apps/modules/catalog.py
+msgid "Enter a quantity for at least one item."
+msgstr "أدخل كمية لصنف واحد على الأقل."
+
+#: apps/modules/catalog.py
+msgid "Enter a quantity of 0 or more."
+msgstr "أدخل كمية 0 أو أكثر."
+
+#: apps/modules/catalog.py
+msgid "Enter a valid number."
+msgstr "أدخل رقمًا صحيحًا."
+
+#: apps/modules/catalog.py
+msgid "Enter the cash the driver handed over."
+msgstr "أدخل النقد الذي سلّمه السائق."
+
+#: apps/modules/catalog.py
+msgid "Evening settlement"
+msgstr "تسوية المساء"
+
+#: apps/modules/catalog.py
+msgid "Extra trip"
+msgstr "رحلة إضافية"
+
+#: apps/modules/catalog.py
+msgid "Give the line a name."
+msgstr "أعطِ الخط اسمًا."
+
+#: apps/modules/catalog.py
+msgid "In van"
+msgstr "في السيارة"
+
+#: apps/modules/catalog.py
+msgid "Leave the days empty if it runs every day."
+msgstr "اترك الأيام فارغة إذا كان يعمل يوميًا."
+
+#: apps/modules/catalog.py
+msgid "Line"
+msgstr "الخط"
+
+#: apps/modules/catalog.py
+msgid "Line added. Now add its shops."
+msgstr "تمت إضافة الخط. أضف محلاته الآن."
+
+#: apps/modules/catalog.py
+msgid "Line details"
+msgstr "تفاصيل الخط"
+
+#: apps/modules/catalog.py
+msgid "Line is running"
+msgstr "الخط يعمل"
+
+#: apps/modules/catalog.py
+msgid "Line saved."
+msgstr "تم حفظ الخط."
+
+#: apps/modules/catalog.py
+msgid "Lines"
+msgstr "الخطوط"
+
+#: apps/modules/catalog.py
+msgid "Lines & shops"
+msgstr "الخطوط والمحلات"
+
+#: apps/modules/catalog.py
+msgid "Lines running today"
+msgstr "الخطوط العاملة اليوم"
+
+#: apps/modules/catalog.py
+msgid "Load"
+msgstr "تحميل"
+
+#: apps/modules/catalog.py
+msgid "Load item"
+msgstr "صنف للتحميل"
+
+#: apps/modules/catalog.py
+msgid "Loaded"
+msgstr "المحمّل"
+
+#: apps/modules/catalog.py
+msgid "Loading"
+msgstr "قيد التحميل"
+
+#: apps/modules/catalog.py
+msgid "Move down"
+msgstr "نقل للأسفل"
+
+#: apps/modules/catalog.py
+msgid "Move up"
+msgstr "نقل للأعلى"
+
+#: apps/modules/catalog.py
+msgid "My trips"
+msgstr "رحلاتي"
+
+#: apps/modules/catalog.py
+msgid "New line"
+msgstr "خط جديد"
+
+#: apps/modules/catalog.py
+msgid "No driver"
+msgstr "بدون سائق"
+
+#: apps/modules/catalog.py
+msgid ""
+"No lines yet. Add one for each daily route, e.g. “Monday – Thamarassery”."
+msgstr "لا توجد خطوط بعد. أضف خطًا لكل مسار يومي، مثل «الاثنين – الوكرة»."
+
+#: apps/modules/catalog.py
+msgid ""
+"No shops yet. Add the shops of this line in the order the driver visits "
+"them."
+msgstr "لا توجد محلات بعد. أضف محلات هذا الخط بترتيب زيارة السائق."
+
+#: apps/modules/catalog.py
+msgid "No trip is open for you. Ask the office to open today's trip."
+msgstr "لا توجد رحلة مفتوحة لك. اطلب من المكتب فتح رحلة اليوم."
+
+#: apps/modules/catalog.py
+msgid "No trips in this period."
+msgstr "لا توجد رحلات في هذه الفترة."
+
+#: apps/modules/catalog.py
+msgid "No trips on this day yet."
+msgstr "لا توجد رحلات في هذا اليوم بعد."
+
+#: apps/modules/catalog.py
+msgid "Not enough %(name)s left in the van."
+msgstr "لا يكفي %(name)s المتبقي في السيارة."
+
+#: apps/modules/catalog.py
+msgid "Nothing left in the van to sell."
+msgstr "لم يتبقَّ شيء في السيارة للبيع."
+
+#: apps/modules/catalog.py
+msgid "Nothing loaded. Without a load list the driver can bill any item."
+msgstr "لم يُحمَّل شيء. بدون قائمة تحميل يمكن للسائق فوترة أي صنف."
+
+#: apps/modules/catalog.py
+msgid "Old dues"
+msgstr "مستحقات سابقة"
+
+#: apps/modules/catalog.py
+msgid "Old dues collected"
+msgstr "المستحقات السابقة المحصّلة"
+
+#: apps/modules/catalog.py
+msgid "On credit"
+msgstr "على الحساب"
+
+#: apps/modules/catalog.py
+msgid "On the line"
+msgstr "على الخط"
+
+#: apps/modules/catalog.py
+msgid "Only stock items can be loaded."
+msgstr "يمكن تحميل أصناف المخزون فقط."
+
+#: apps/modules/catalog.py
+msgid "Open an extra trip (without a line)"
+msgstr "فتح رحلة إضافية (بدون خط)"
+
+#: apps/modules/catalog.py
+msgid "Open trip"
+msgstr "فتح الرحلة"
+
+#: apps/modules/catalog.py
+msgid "Paid in full"
+msgstr "مدفوع بالكامل"
+
+#: apps/modules/catalog.py
+msgid "Paid now must be between 0 and the bill total."
+msgstr "المدفوع الآن يجب أن يكون بين 0 وإجمالي الفاتورة."
+
+#: apps/modules/catalog.py
+msgid "Print / share"
+msgstr "طباعة / مشاركة"
+
+#: apps/modules/catalog.py
+msgid "Quantities and prices can't be negative."
+msgstr "لا يمكن أن تكون الكميات والأسعار سالبة."
+
+#: apps/modules/catalog.py
+msgid ""
+"Quantities are in the item's own unit (pieces). Enter 0 to take an item off."
+msgstr "الكميات بوحدة الصنف نفسها (قطع). أدخل 0 لإزالة صنف."
+
+#: apps/modules/catalog.py
+msgid "Runs on"
+msgstr "يعمل في"
+
+#: apps/modules/catalog.py
+msgid "Same load as last time"
+msgstr "نفس حمولة المرة السابقة"
+
+#: apps/modules/catalog.py
+msgid "Save bill"
+msgstr "حفظ الفاتورة"
+
+#: apps/modules/catalog.py
+msgid "Send bill on WhatsApp"
+msgstr "إرسال الفاتورة عبر واتساب"
+
+#: apps/modules/catalog.py
+msgid "Settle trip"
+msgstr "تسوية الرحلة"
+
+#: apps/modules/catalog.py
+msgid "Settled"
+msgstr "تمت التسوية"
+
+#: apps/modules/catalog.py
+msgid "Shops in visiting order"
+msgstr "المحلات بترتيب الزيارة"
+
+#: apps/modules/catalog.py
+msgid "Shops on this line"
+msgstr "محلات هذا الخط"
+
+#: apps/modules/catalog.py
+msgid "Start trip"
+msgstr "بدء الرحلة"
+
+#: apps/modules/catalog.py
+msgid "Stock in the van"
+msgstr "المخزون في السيارة"
+
+#: apps/modules/catalog.py
+msgid ""
+"Stock that did not come back is written off from the branch. A cash "
+"difference is shown in the driver report."
+msgstr ""
+"المخزون الذي لم يرجع يُشطب من الفرع. ويظهر فرق النقد في تقرير السائقين."
+
+#: apps/modules/catalog.py
+msgid "This trip has no line. Pick any shop below to bill it."
+msgstr "هذه الرحلة بلا خط. اختر أي محل أدناه لفوترته."
+
+#: apps/modules/catalog.py
+msgid "This trip is already settled."
+msgstr "تمت تسوية هذه الرحلة بالفعل."
+
+#: apps/modules/catalog.py
+msgid ""
+"Tip: add your lines and their shops first, then each day's trip opens with "
+"one tap."
+msgstr "نصيحة: أضف خطوطك ومحلاتها أولًا، ثم تُفتح رحلة كل يوم بلمسة واحدة."
+
+#: apps/modules/catalog.py
+msgid "Today's bills & collections"
+msgstr "فواتير وتحصيلات اليوم"
+
+#: apps/modules/catalog.py
+msgid "Trip opened. Add what goes into the van, then hand it to the driver."
+msgstr "تم فتح الرحلة. أضف ما يُحمَّل في السيارة ثم سلّمها للسائق."
+
+#: apps/modules/catalog.py
+msgid "Trip settled."
+msgstr "تمت تسوية الرحلة."
+
+#: apps/modules/catalog.py
+msgid "Trip settled. Cash is short by %(amount)s."
+msgstr "تمت تسوية الرحلة. النقد ناقص بمقدار %(amount)s."
+
+#: apps/modules/catalog.py
+msgid "Trip started. Have a good day on the line!"
+msgstr "بدأت الرحلة. يومًا موفقًا على الخط!"
+
+#: apps/modules/catalog.py
+msgid "Trips"
+msgstr "الرحلات"
+
+#: apps/modules/catalog.py
+msgid "Usual driver"
+msgstr "السائق المعتاد"
+
+#: apps/modules/catalog.py
+msgid "Van sales"
+msgstr "مبيعات السيارات"
+
+#: apps/modules/catalog.py
+msgid "came back"
+msgstr "رجع"
+
+#: apps/modules/catalog.py
+msgid "change"
+msgstr "تغيير"
+
+#: apps/modules/catalog.py
+msgid "e.g. Monday – Thamarassery"
+msgstr "مثال: الاثنين – الوكرة"
+
+#: apps/modules/catalog.py
+msgid "piece"
+msgstr "قطعة"
+
+#: apps/modules/catalog.py
+msgid "shops"
+msgstr "محلات"
+
+#: apps/modules/catalog.py
+msgid "should be"
+msgstr "المفترض"
+
+#: apps/modules/catalog.py
+msgid "…or new shop name"
+msgstr "…أو اسم محل جديد"

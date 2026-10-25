@@ -16,7 +16,7 @@ import verticals_a, verticals_b, verticals_c, verticals_d, features, tr_ml_d, co
 OUT = os.environ.get("GUIDE_OUT") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "apps", "webapp", "guide_site")
 SLUG_GROUP = {
   "mobile-shop":"Retail & product shops","textile":"Retail & product shops","sports-shop":"Retail & product shops",
-  "cycle-shop":"Retail & product shops","medical-shop":"Retail & product shops","protein-shop":"Retail & product shops","retail-shop":"Retail & product shops",
+  "cycle-shop":"Retail & product shops","medical-shop":"Retail & product shops","protein-shop":"Retail & product shops","retail-shop":"Retail & product shops","van-sales":"Retail & product shops",
   "gym":"Fitness & wellness",
   "spa":"Beauty & wellness","saloon":"Beauty & wellness","beauty-parlour":"Beauty & wellness",
   "service-appointments":"Appointments & services","vehicle-wash":"Appointments & services",
@@ -29,7 +29,7 @@ SLUG_GROUP = {
   "website-online":"Tools for every business","devices-apps":"Tools for every business","security-settings":"Tools for every business",
 }
 ORDER = ["restaurant",
-         "mobile-shop","textile","sports-shop","cycle-shop","medical-shop","protein-shop","retail-shop","sell-by-weight","jewellery",
+         "mobile-shop","textile","sports-shop","cycle-shop","medical-shop","protein-shop","retail-shop","van-sales","sell-by-weight","jewellery",
          "bookings","education","property",
          "gym","spa","saloon","beauty-parlour","service-appointments","vehicle-wash","construction","project-agency","recruitment",
          "quotes-orders","purchases-suppliers","stock","customers-money","finance","staff-hr","website-online","devices-apps","security-settings"]

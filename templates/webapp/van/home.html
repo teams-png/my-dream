@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Van sales" %}{% endblock %}
+{% block heading %}🚚 {% translate "Van sales" %}{% endblock %}
+{% block content %}
+{% include "webapp/van/_style.html" %}
+<div class="vn">
+{% if manager %}
+  <div class="vn-top">
+    <a class="btn btn-secondary" href="?date={{ prev|date:'Y-m-d' }}" aria-label="{% translate 'Previous day' %}">‹</a>
+    <form method="get" style="margin:0"><input type="date" name="date" value="{{ day|date:'Y-m-d' }}" onchange="this.form.submit()" aria-label="{% translate 'Date' %}"></form>
+    <a class="btn btn-secondary" href="?date={{ next|date:'Y-m-d' }}" aria-label="{% translate 'Next day' %}">›</a>
+    <span class="grow"></span>
+    <a class="btn btn-secondary" href="{% url 'webapp:van_routes' %}">🗺️ {% translate "Lines & shops" %}</a>
+    <a class="btn btn-secondary" href="{% url 'webapp:van_report' %}?start={{ day|date:'Y-m-d' }}">📊 {% translate "Driver report" %}</a>
+  </div>
+  {% if waiting %}
+  <div class="vn-box"><h3>{% translate "Lines running today" %}</h3>
+    {% for route in waiting %}
+    <form method="post" action="{% url 'webapp:van_trip_start' %}" class="vn-shop">{% csrf_token %}
+      <input type="hidden" name="route" value="{{ route.id }}"><input type="hidden" name="date" value="{{ day|date:'Y-m-d' }}">
+      <div class="who"><b>{{ route.name }}</b><small>{{ route.stops.count }} {% translate "shops" %}</small></div>
+      <select name="driver" aria-label="{% translate 'Driver' %}">{% for d in drivers %}<option value="{{ d.id }}" {% if d.id == route.driver_id %}selected{% endif %}>{{ d.get_full_name|default:d.username }}</option>{% endfor %}</select>
+      {% if warehouses|length > 1 %}<select name="warehouse" aria-label="{% translate 'Branch' %}">{% for w in warehouses %}<option value="{{ w.id }}">{{ w.name }}</option>{% endfor %}</select>{% endif %}
+      <label class="vn-muted" style="display:flex;gap:4px;align-items:center;margin:0"><input type="checkbox" name="copy_load" value="1" checked style="width:auto">{% translate "Same load as last time" %}</label>
+      <button class="btn">{% translate "Open trip" %}</button>
+    </form>
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endif %}
+
+<div class="vn-box"><h3>{% if manager %}{% translate "Trips" %} · {{ day|date:"D, d M Y" }}{% else %}{% translate "My trips" %}{% endif %}</h3>
+  {% if rows %}
+  <div class="vn-wrap"><table class="vn-t">
+    <tr><th>{% translate "Line" %}</th><th>{% translate "Driver" %}</th><th>{% translate "Status" %}</th><th class="n">{% translate "Bills" %}</th><th class="n">{% translate "Sales" %}</th><th class="n">{% translate "Credit given" %}</th><th class="n">{% translate "Collected" %}</th><th class="n">{% translate "Cash to hand over" %}</th></tr>
+    {% for r in rows %}<tr>
+      <td><a href="{% url 'webapp:van_trip' r.trip.id %}"><b>{{ r.trip.route.name|default:_("Extra trip") }}</b></a>{% if not manager %}<br><small class="vn-muted">{{ r.trip.date|date:"D, d M" }}</small>{% endif %}</td>
+      <td>{{ r.trip.driver.get_full_name|default:r.trip.driver.username }}</td>
+      <td><span class="vn-pill {{ r.trip.status }}">{{ r.trip.get_status_display }}</span></td>
+      <td class="n">{{ r.money.bills }}</td><td class="n">{{ r.money.sales|floatformat:2 }}</td><td class="n">{{ r.money.credit|floatformat:2 }}</td>
+      <td class="n">{{ r.money.collected|floatformat:2 }}</td><td class="n"><b>{{ r.money.expected_cash|floatformat:2 }}</b></td>
+    </tr>{% endfor %}
+  </table></div>
+  {% else %}<p class="vn-muted">{% if manager %}{% translate "No trips on this day yet." %}{% else %}{% translate "No trip is open for you. Ask the office to open today's trip." %}{% endif %}</p>{% endif %}
+</div>
+
+{% if manager %}
+<details class="vn-box"><summary style="cursor:pointer;font-weight:700">＋ {% translate "Open an extra trip (without a line)" %}</summary>
+  <form method="post" action="{% url 'webapp:van_trip_start' %}" class="vn-row" style="margin-top:12px">{% csrf_token %}
+    <input type="hidden" name="date" value="{{ day|date:'Y-m-d' }}">
+    <label>{% translate "Line" %}<select name="route"><option value="">—</option>{% for r in routes %}<option value="{{ r.id }}">{{ r.name }}</option>{% endfor %}</select></label>
+    <label>{% translate "Driver" %}<select name="driver">{% for d in drivers %}<option value="{{ d.id }}">{{ d.get_full_name|default:d.username }}</option>{% endfor %}</select></label>
+    {% if warehouses|length > 1 %}<label>{% translate "Branch" %}<select name="warehouse">{% for w in warehouses %}<option value="{{ w.id }}">{{ w.name }}</option>{% endfor %}</select></label>{% endif %}
+    <button class="btn">{% translate "Open trip" %}</button>
+  </form>
+  {% if not routes %}<p class="vn-muted">{% translate "Tip: add your lines and their shops first, then each day's trip opens with one tap." %} <a href="{% url 'webapp:van_routes' %}">{% translate "Lines & shops" %} →</a></p>{% endif %}
+</details>
+{% endif %}
+</div>
+{% endblock %}

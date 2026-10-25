@@ -199,6 +199,8 @@ INDUSTRY_FEATURES = {
     # site workers (manpower supply): workers at clients' sites, ID / passport expiry, site timesheet, monthly client bill
     "manpower": {"recruitment_agency", "security_services", "cleaning_company", "maintenance_company",
                  "landscaping_company", "facility_management"},
+    # van sales: drivers take stock out on daily lines, bill shops (cash or credit), collect dues, settle each evening
+    "van_sales": {"wholesale_business", "trading_company", "manufacturing", "import_export", "bakery"},
     # yearly maintenance / service contracts (AMC) with visits planned by themselves and contract billing
     "contracts": {"ac_maintenance", "pest_control", "home_services", "repair_services", "cleaning_equipment_service",
                   "electronics_repair", "computer_repair", "security_services", "cleaning_company",

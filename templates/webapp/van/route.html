@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ route.name }}{% endblock %}
+{% block heading %}🗺️ {{ route.name }}{% endblock %}
+{% block content %}
+{% include "webapp/van/_style.html" %}
+<div class="vn">
+  <div class="vn-top"><a class="btn btn-secondary" href="{% url 'webapp:van_routes' %}">← {% translate "Lines & shops" %}</a></div>
+  <div class="vn-grid">
+    <div class="vn-box"><h3>🏪 {% translate "Shops in visiting order" %} ({{ stops|length }})</h3>
+      {% for s in stops %}
+      <div class="vn-shop"><div class="who"><b>{{ forloop.counter }}. {{ s.customer.name }}</b><small>{{ s.customer.phone }}</small></div>
+        <form method="post">{% csrf_token %}<input type="hidden" name="stop" value="{{ s.id }}">
+          {% if not forloop.first %}<button class="btn btn-secondary" name="action" value="up" aria-label="{% translate 'Move up' %}">↑</button>{% endif %}
+          {% if not forloop.last %}<button class="btn btn-secondary" name="action" value="down" aria-label="{% translate 'Move down' %}">↓</button>{% endif %}
+          <button class="btn btn-secondary" name="action" value="remove" aria-label="{% translate 'Remove' %}">✕</button></form></div>
+      {% empty %}<p class="vn-muted">{% translate "No shops yet. Add the shops of this line in the order the driver visits them." %}</p>{% endfor %}
+      <form method="post" class="vn-row" style="margin-top:12px">{% csrf_token %}<input type="hidden" name="action" value="add">
+        <label>{% translate "Shop" %}<select name="customer"><option value="">—</option>{% for c in customers %}<option value="{{ c.id }}">{{ c.name }}{% if c.phone %} · {{ c.phone }}{% endif %}</option>{% endfor %}</select></label>
+        <label>{% translate "…or new shop name" %}<input name="new_name" maxlength="255"></label>
+        <label>{% translate "Phone (WhatsApp)" %}<input name="new_phone" maxlength="20" inputmode="tel"></label>
+        <button class="btn">＋ {% translate "Add shop" %}</button>
+      </form>
+    </div>
+    <form class="vn-box vn-form" method="post">{% csrf_token %}<h3>{% translate "Line details" %}</h3><input type="hidden" name="action" value="save">
+      <label>{% translate "Name" %}<input name="name" value="{{ route.name }}" required maxlength="120"></label>
+      <label>{% translate "Usual driver" %}<select name="driver"><option value="">—</option>{% for d in drivers %}<option value="{{ d.id }}" {% if d.id == route.driver_id %}selected{% endif %}>{{ d.get_full_name|default:d.username }}</option>{% endfor %}</select></label>
+      <label>{% translate "Runs on" %}</label><div class="vn-days">{% for code, name in days %}<label><input type="checkbox" name="days" value="{{ code }}" {% if code in route.day_list %}checked{% endif %}>{{ name }}</label>{% endfor %}</div>
+      <label style="display:flex;gap:6px;align-items:center;margin-top:10px"><input type="checkbox" name="is_active" value="1" style="width:auto" {% if route.is_active %}checked{% endif %}>{% translate "Line is running" %}</label>
+      <label>{% translate "Notes" %}<input name="notes" value="{{ route.notes }}" maxlength="255"></label>
+      <button class="btn">{% translate "Save" %}</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

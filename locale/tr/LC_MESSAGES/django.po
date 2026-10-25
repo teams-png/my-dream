@@ -18076,3 +18076,416 @@ msgstr "BT ve yazılım"
 #: apps/modules/catalog.py
 msgid "Trading, industry & logistics"
 msgstr "Ticaret, sanayi ve lojistik"
+
+#: apps/modules/catalog.py
+msgid "%(amount)s added to credit."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "%(amount)s received from %(name)s."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "%(name)s is not loaded in this van."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "%(name)s: returned must be between 0 and %(left)s."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "%(sold)s of %(name)s are already billed on this trip."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Add shop"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "All trips"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Amount received"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Another shop"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Back to the line"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Bank / UPI"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Bill %(no)s for %(name)s: %(total)s."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "By driver"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Cash due"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Cash handed"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Cash handed over"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Cash short"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Cash to hand over"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Choose a driver."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Choose a shop or type a new shop's name."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Choose a valid unit."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Credit given"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid ""
+"Credit limit crossed: %(name)s already owes %(owed)s (limit %(limit)s)."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Driver"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Driver report"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Each driver needs their own login: add them in Team / Users as Staff."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Enter a quantity for at least one item."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Enter a quantity of 0 or more."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Enter a valid number."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Enter the cash the driver handed over."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Evening settlement"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Extra trip"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Give the line a name."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "In van"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Leave the days empty if it runs every day."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Line"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Line added. Now add its shops."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Line details"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Line is running"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Line saved."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Lines"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Lines & shops"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Lines running today"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Load"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Load item"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Loaded"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Loading"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Move down"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Move up"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "My trips"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "New line"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "No driver"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid ""
+"No lines yet. Add one for each daily route, e.g. “Monday – Thamarassery”."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid ""
+"No shops yet. Add the shops of this line in the order the driver visits "
+"them."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "No trip is open for you. Ask the office to open today's trip."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "No trips in this period."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "No trips on this day yet."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Not enough %(name)s left in the van."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Nothing left in the van to sell."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Nothing loaded. Without a load list the driver can bill any item."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Old dues"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Old dues collected"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "On credit"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "On the line"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Only stock items can be loaded."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Open an extra trip (without a line)"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Open trip"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Paid in full"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Paid now must be between 0 and the bill total."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Print / share"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Quantities and prices can't be negative."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid ""
+"Quantities are in the item's own unit (pieces). Enter 0 to take an item off."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Runs on"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Same load as last time"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Save bill"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Send bill on WhatsApp"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Settle trip"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Settled"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Shops in visiting order"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Shops on this line"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Start trip"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Stock in the van"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid ""
+"Stock that did not come back is written off from the branch. A cash "
+"difference is shown in the driver report."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "This trip has no line. Pick any shop below to bill it."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "This trip is already settled."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid ""
+"Tip: add your lines and their shops first, then each day's trip opens with "
+"one tap."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Today's bills & collections"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Trip opened. Add what goes into the van, then hand it to the driver."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Trip settled."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Trip settled. Cash is short by %(amount)s."
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Trip started. Have a good day on the line!"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Trips"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Usual driver"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "Van sales"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "came back"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "change"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "e.g. Monday – Thamarassery"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "piece"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "shops"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "should be"
+msgstr ""
+
+#: apps/modules/catalog.py
+msgid "…or new shop name"
+msgstr ""

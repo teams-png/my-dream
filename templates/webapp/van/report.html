@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Driver report" %}{% endblock %}
+{% block heading %}📊 {% translate "Driver report" %}{% endblock %}
+{% block content %}
+{% include "webapp/van/_style.html" %}
+<div class="vn">
+  <form class="vn-top" method="get">
+    <a class="btn btn-secondary" href="{% url 'webapp:van_home' %}">← {% translate "Van sales" %}</a><span class="grow"></span>
+    <label style="margin:0">{% translate "From" %} <input type="date" name="start" value="{{ start|date:'Y-m-d' }}"></label>
+    <label style="margin:0">{% translate "To" %} <input type="date" name="end" value="{{ end|date:'Y-m-d' }}"></label>
+    <button class="btn btn-secondary">{% translate "Show" %}</button>
+  </form>
+  <div class="vn-k">
+    <div><b>{{ currency }} {{ grand.sales|floatformat:2 }}</b><small>{% translate "Sales" %}</small></div>
+    <div><b>{{ currency }} {{ grand.credit|floatformat:2 }}</b><small>{% translate "Credit given" %}</small></div>
+    <div><b>{{ currency }} {{ grand.collected|floatformat:2 }}</b><small>{% translate "Old dues collected" %}</small></div>
+    <div class="{% if grand.cash_short > 0 %}bad{% endif %}"><b>{{ currency }} {{ grand.cash_short|floatformat:2 }}</b><small>{% translate "Cash short" %}</small></div>
+  </div>
+  <div class="vn-box"><h3>{% translate "By driver" %}</h3><div class="vn-wrap"><table class="vn-t">
+    <tr><th>{% translate "Driver" %}</th><th class="n">{% translate "Trips" %}</th><th class="n">{% translate "Bills" %}</th><th class="n">{% translate "Sales" %}</th><th class="n">{% translate "Paid now" %}</th><th class="n">{% translate "Credit given" %}</th><th class="n">{% translate "Collected" %}</th><th class="n">{% translate "Cash due" %}</th><th class="n">{% translate "Cash handed" %}</th><th class="n">{% translate "Short" %}</th></tr>
+    {% for d in drivers %}<tr><td><b>{{ d.name }}</b>{% if d.open %} <span class="vn-pill out">{{ d.open }} {% translate "open" %}</span>{% endif %}</td><td class="n">{{ d.trips }}</td><td class="n">{{ d.bills }}</td>
+      <td class="n">{{ d.sales|floatformat:2 }}</td><td class="n">{{ d.paid_cash|add:d.paid_bank|floatformat:2 }}</td><td class="n">{{ d.credit|floatformat:2 }}</td><td class="n">{{ d.collected|floatformat:2 }}</td>
+      <td class="n">{{ d.expected_cash|floatformat:2 }}</td><td class="n">{{ d.handed|floatformat:2 }}</td><td class="n" {% if d.cash_short > 0 %}style="color:#b91c1c;font-weight:800"{% endif %}>{{ d.cash_short|floatformat:2 }}</td></tr>
+    {% empty %}<tr><td colspan="10" class="vn-muted">{% translate "No trips in this period." %}</td></tr>{% endfor %}
+  </table></div></div>
+  {% if rows %}<div class="vn-box"><h3>{% translate "Trips" %}</h3><div class="vn-wrap"><table class="vn-t">
+    <tr><th>{% translate "Date" %}</th><th>{% translate "Line" %}</th><th>{% translate "Driver" %}</th><th>{% translate "Status" %}</th><th class="n">{% translate "Sales" %}</th><th class="n">{% translate "Credit given" %}</th><th class="n">{% translate "Short" %}</th></tr>
+    {% for r in rows %}<tr><td>{{ r.trip.date|date:"d M" }}</td><td><a href="{% url 'webapp:van_trip' r.trip.id %}">{{ r.trip.route.name|default:_("Extra trip") }}</a></td><td>{{ r.trip.driver.get_full_name|default:r.trip.driver.username }}</td>
+      <td><span class="vn-pill {{ r.trip.status }}">{{ r.trip.get_status_display }}</span></td><td class="n">{{ r.money.sales|floatformat:2 }}</td><td class="n">{{ r.money.credit|floatformat:2 }}</td><td class="n">{{ r.money.cash_short|floatformat:2 }}</td></tr>{% endfor %}
+  </table></div></div>{% endif %}
+</div>
+{% endblock %}

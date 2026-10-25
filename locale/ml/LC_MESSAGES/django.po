@@ -18166,3 +18166,430 @@ msgstr "ഐടിയും സോഫ്റ്റ്‌വെയറും"
 #: apps/modules/catalog.py
 msgid "Trading, industry & logistics"
 msgstr "ട്രേഡിംഗ്, വ്യവസായം, ലോജിസ്റ്റിക്സ്"
+
+#: apps/modules/catalog.py
+msgid "%(amount)s added to credit."
+msgstr "%(amount)s കടമായി ചേർത്തു."
+
+#: apps/modules/catalog.py
+msgid "%(amount)s received from %(name)s."
+msgstr "%(name)s-ൽ നിന്ന് %(amount)s ലഭിച്ചു."
+
+#: apps/modules/catalog.py
+msgid "%(name)s is not loaded in this van."
+msgstr "%(name)s ഈ വണ്ടിയിൽ കയറ്റിയിട്ടില്ല."
+
+#: apps/modules/catalog.py
+msgid "%(name)s: returned must be between 0 and %(left)s."
+msgstr "%(name)s: തിരികെ വന്നത് 0-നും %(left)s-നും ഇടയിൽ ആകണം."
+
+#: apps/modules/catalog.py
+msgid "%(sold)s of %(name)s are already billed on this trip."
+msgstr "ഈ ട്രിപ്പിൽ %(name)s %(sold)s എണ്ണം ഇതിനകം ബിൽ ചെയ്തു."
+
+#: apps/modules/catalog.py
+msgid "Add shop"
+msgstr "കട ചേർക്കുക"
+
+#: apps/modules/catalog.py
+msgid "All trips"
+msgstr "എല്ലാ ട്രിപ്പുകളും"
+
+#: apps/modules/catalog.py
+msgid "Amount received"
+msgstr "ലഭിച്ച തുക"
+
+#: apps/modules/catalog.py
+msgid "Another shop"
+msgstr "മറ്റൊരു കട"
+
+#: apps/modules/catalog.py
+msgid "Back to the line"
+msgstr "ലൈനിലേക്ക് തിരികെ"
+
+#: apps/modules/catalog.py
+msgid "Bank / UPI"
+msgstr "ബാങ്ക് / UPI"
+
+#: apps/modules/catalog.py
+msgid "Bill %(no)s for %(name)s: %(total)s."
+msgstr "%(name)s-ന് ബിൽ %(no)s: %(total)s."
+
+#: apps/modules/catalog.py
+msgid "By driver"
+msgstr "ഡ്രൈവർ തിരിച്ച്"
+
+#: apps/modules/catalog.py
+msgid "Cash due"
+msgstr "തരേണ്ട ക്യാഷ്"
+
+#: apps/modules/catalog.py
+msgid "Cash handed"
+msgstr "ഏൽപ്പിച്ച ക്യാഷ്"
+
+#: apps/modules/catalog.py
+msgid "Cash handed over"
+msgstr "ഏൽപ്പിച്ച ക്യാഷ്"
+
+#: apps/modules/catalog.py
+msgid "Cash short"
+msgstr "ക്യാഷ് കുറവ്"
+
+#: apps/modules/catalog.py
+msgid "Cash to hand over"
+msgstr "ഏൽപ്പിക്കേണ്ട ക്യാഷ്"
+
+#: apps/modules/catalog.py
+msgid "Choose a driver."
+msgstr "ഒരു ഡ്രൈവറെ തിരഞ്ഞെടുക്കുക."
+
+#: apps/modules/catalog.py
+msgid "Choose a shop or type a new shop's name."
+msgstr "ഒരു കട തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ കടയുടെ പേര് ടൈപ്പ് ചെയ്യുക."
+
+#: apps/modules/catalog.py
+msgid "Choose a valid unit."
+msgstr "ശരിയായ യൂണിറ്റ് തിരഞ്ഞെടുക്കുക."
+
+#: apps/modules/catalog.py
+msgid "Credit given"
+msgstr "കടം കൊടുത്തത്"
+
+#: apps/modules/catalog.py
+msgid ""
+"Credit limit crossed: %(name)s already owes %(owed)s (limit %(limit)s)."
+msgstr ""
+"ക്രെഡിറ്റ് പരിധി കടന്നു: %(name)s ഇതിനകം %(owed)s തരാനുണ്ട് (പരിധി "
+"%(limit)s)."
+
+#: apps/modules/catalog.py
+msgid "Driver"
+msgstr "ഡ്രൈവർ"
+
+#: apps/modules/catalog.py
+msgid "Driver report"
+msgstr "ഡ്രൈവർ റിപ്പോർട്ട്"
+
+#: apps/modules/catalog.py
+msgid "Each driver needs their own login: add them in Team / Users as Staff."
+msgstr ""
+"ഓരോ ഡ്രൈവർക്കും സ്വന്തം ലോഗിൻ വേണം: Team / Users-ൽ Staff ആയി ചേർക്കുക."
+
+#: apps/modules/catalog.py
+msgid "Enter a quantity for at least one item."
+msgstr "കുറഞ്ഞത് ഒരു ഐറ്റത്തിന് എണ്ണം നൽകുക."
+
+#: apps/modules/catalog.py
+msgid "Enter a quantity of 0 or more."
+msgstr "0 അല്ലെങ്കിൽ അതിൽ കൂടുതൽ എണ്ണം നൽകുക."
+
+#: apps/modules/catalog.py
+msgid "Enter a valid number."
+msgstr "ശരിയായ സംഖ്യ നൽകുക."
+
+#: apps/modules/catalog.py
+msgid "Enter the cash the driver handed over."
+msgstr "ഡ്രൈവർ ഏൽപ്പിച്ച ക്യാഷ് നൽകുക."
+
+#: apps/modules/catalog.py
+msgid "Evening settlement"
+msgstr "വൈകുന്നേരത്തെ കണക്ക് തീർക്കൽ"
+
+#: apps/modules/catalog.py
+msgid "Extra trip"
+msgstr "അധിക ട്രിപ്പ്"
+
+#: apps/modules/catalog.py
+msgid "Give the line a name."
+msgstr "ലൈനിന് ഒരു പേര് നൽകുക."
+
+#: apps/modules/catalog.py
+msgid "In van"
+msgstr "വണ്ടിയിൽ"
+
+#: apps/modules/catalog.py
+msgid "Leave the days empty if it runs every day."
+msgstr "എല്ലാ ദിവസവും ഓടുന്നതാണെങ്കിൽ ദിവസങ്ങൾ ഒഴിച്ചിടുക."
+
+#: apps/modules/catalog.py
+msgid "Line"
+msgstr "ലൈൻ"
+
+#: apps/modules/catalog.py
+msgid "Line added. Now add its shops."
+msgstr "ലൈൻ ചേർത്തു. ഇനി അതിലെ കടകൾ ചേർക്കുക."
+
+#: apps/modules/catalog.py
+msgid "Line details"
+msgstr "ലൈൻ വിവരങ്ങൾ"
+
+#: apps/modules/catalog.py
+msgid "Line is running"
+msgstr "ലൈൻ ഓടുന്നുണ്ട്"
+
+#: apps/modules/catalog.py
+msgid "Line saved."
+msgstr "ലൈൻ സേവ് ചെയ്തു."
+
+#: apps/modules/catalog.py
+msgid "Lines"
+msgstr "ലൈനുകൾ"
+
+#: apps/modules/catalog.py
+msgid "Lines & shops"
+msgstr "ലൈനുകളും കടകളും"
+
+#: apps/modules/catalog.py
+msgid "Lines running today"
+msgstr "ഇന്ന് ഓടുന്ന ലൈനുകൾ"
+
+#: apps/modules/catalog.py
+msgid "Load"
+msgstr "കയറ്റുക"
+
+#: apps/modules/catalog.py
+msgid "Load item"
+msgstr "കയറ്റേണ്ട ഐറ്റം"
+
+#: apps/modules/catalog.py
+msgid "Loaded"
+msgstr "കയറ്റിയത്"
+
+#: apps/modules/catalog.py
+msgid "Loading"
+msgstr "കയറ്റുന്നു"
+
+#: apps/modules/catalog.py
+msgid "Move down"
+msgstr "താഴേക്ക് നീക്കുക"
+
+#: apps/modules/catalog.py
+msgid "Move up"
+msgstr "മുകളിലേക്ക് നീക്കുക"
+
+#: apps/modules/catalog.py
+msgid "My trips"
+msgstr "എന്റെ ട്രിപ്പുകൾ"
+
+#: apps/modules/catalog.py
+msgid "New line"
+msgstr "പുതിയ ലൈൻ"
+
+#: apps/modules/catalog.py
+msgid "No driver"
+msgstr "ഡ്രൈവർ ഇല്ല"
+
+#: apps/modules/catalog.py
+msgid ""
+"No lines yet. Add one for each daily route, e.g. “Monday – Thamarassery”."
+msgstr ""
+"ഇതുവരെ ലൈനുകൾ ഇല്ല. ഓരോ ദിവസത്തെ റൂട്ടിനും ഒന്ന് ചേർക്കുക, ഉദാ: “Monday – "
+"Thamarassery”."
+
+#: apps/modules/catalog.py
+msgid ""
+"No shops yet. Add the shops of this line in the order the driver visits "
+"them."
+msgstr "ഇതുവരെ കടകൾ ഇല്ല. ഡ്രൈവർ പോകുന്ന ക്രമത്തിൽ ഈ ലൈനിലെ കടകൾ ചേർക്കുക."
+
+#: apps/modules/catalog.py
+msgid "No trip is open for you. Ask the office to open today's trip."
+msgstr ""
+"നിങ്ങൾക്ക് തുറന്ന ട്രിപ്പ് ഇല്ല. ഇന്നത്തെ ട്രിപ്പ് തുറക്കാൻ ഓഫീസിനോട് പറയുക."
+
+#: apps/modules/catalog.py
+msgid "No trips in this period."
+msgstr "ഈ കാലയളവിൽ ട്രിപ്പുകൾ ഇല്ല."
+
+#: apps/modules/catalog.py
+msgid "No trips on this day yet."
+msgstr "ഈ ദിവസം ഇതുവരെ ട്രിപ്പുകൾ ഇല്ല."
+
+#: apps/modules/catalog.py
+msgid "Not enough %(name)s left in the van."
+msgstr "വണ്ടിയിൽ ആവശ്യത്തിന് %(name)s ബാക്കിയില്ല."
+
+#: apps/modules/catalog.py
+msgid "Nothing left in the van to sell."
+msgstr "വിൽക്കാൻ വണ്ടിയിൽ ഒന്നും ബാക്കിയില്ല."
+
+#: apps/modules/catalog.py
+msgid "Nothing loaded. Without a load list the driver can bill any item."
+msgstr ""
+"ഒന്നും കയറ്റിയിട്ടില്ല. ലോഡ് ലിസ്റ്റ് ഇല്ലെങ്കിൽ ഡ്രൈവർക്ക് ഏത് ഐറ്റവും ബിൽ "
+"ചെയ്യാം."
+
+#: apps/modules/catalog.py
+msgid "Old dues"
+msgstr "പഴയ കുടിശ്ശിക"
+
+#: apps/modules/catalog.py
+msgid "Old dues collected"
+msgstr "പിരിച്ച പഴയ കുടിശ്ശിക"
+
+#: apps/modules/catalog.py
+msgid "On credit"
+msgstr "കടമായി"
+
+#: apps/modules/catalog.py
+msgid "On the line"
+msgstr "ലൈനിൽ"
+
+#: apps/modules/catalog.py
+msgid "Only stock items can be loaded."
+msgstr "സ്റ്റോക്ക് ഐറ്റങ്ങൾ മാത്രമേ കയറ്റാൻ പറ്റൂ."
+
+#: apps/modules/catalog.py
+msgid "Open an extra trip (without a line)"
+msgstr "അധിക ട്രിപ്പ് തുറക്കുക (ലൈൻ ഇല്ലാതെ)"
+
+#: apps/modules/catalog.py
+msgid "Open trip"
+msgstr "ട്രിപ്പ് തുറക്കുക"
+
+#: apps/modules/catalog.py
+msgid "Paid in full"
+msgstr "മുഴുവൻ അടച്ചു"
+
+#: apps/modules/catalog.py
+msgid "Paid now must be between 0 and the bill total."
+msgstr "ഇപ്പോൾ അടച്ചത് 0-നും ബിൽ തുകയ്ക്കും ഇടയിൽ ആകണം."
+
+#: apps/modules/catalog.py
+msgid "Print / share"
+msgstr "പ്രിന്റ് / ഷെയർ"
+
+#: apps/modules/catalog.py
+msgid "Quantities and prices can't be negative."
+msgstr "എണ്ണവും വിലയും നെഗറ്റീവ് ആകരുത്."
+
+#: apps/modules/catalog.py
+msgid ""
+"Quantities are in the item's own unit (pieces). Enter 0 to take an item off."
+msgstr ""
+"എണ്ണം ഐറ്റത്തിന്റെ സ്വന്തം യൂണിറ്റിൽ (പീസ്). ഒരു ഐറ്റം മാറ്റാൻ 0 നൽകുക."
+
+#: apps/modules/catalog.py
+msgid "Runs on"
+msgstr "ഓടുന്ന ദിവസങ്ങൾ"
+
+#: apps/modules/catalog.py
+msgid "Same load as last time"
+msgstr "കഴിഞ്ഞ തവണത്തെ അതേ ലോഡ്"
+
+#: apps/modules/catalog.py
+msgid "Save bill"
+msgstr "ബിൽ സേവ് ചെയ്യുക"
+
+#: apps/modules/catalog.py
+msgid "Send bill on WhatsApp"
+msgstr "ബിൽ വാട്സ്ആപ്പിൽ അയയ്ക്കുക"
+
+#: apps/modules/catalog.py
+msgid "Settle trip"
+msgstr "ട്രിപ്പ് കണക്ക് തീർക്കുക"
+
+#: apps/modules/catalog.py
+msgid "Settled"
+msgstr "കണക്ക് തീർത്തു"
+
+#: apps/modules/catalog.py
+msgid "Shops in visiting order"
+msgstr "പോകുന്ന ക്രമത്തിൽ കടകൾ"
+
+#: apps/modules/catalog.py
+msgid "Shops on this line"
+msgstr "ഈ ലൈനിലെ കടകൾ"
+
+#: apps/modules/catalog.py
+msgid "Start trip"
+msgstr "ട്രിപ്പ് തുടങ്ങുക"
+
+#: apps/modules/catalog.py
+msgid "Stock in the van"
+msgstr "വണ്ടിയിലെ സ്റ്റോക്ക്"
+
+#: apps/modules/catalog.py
+msgid ""
+"Stock that did not come back is written off from the branch. A cash "
+"difference is shown in the driver report."
+msgstr ""
+"തിരികെ വരാത്ത സ്റ്റോക്ക് ബ്രാഞ്ചിൽ നിന്ന് കുറയ്ക്കും. ക്യാഷ് വ്യത്യാസം "
+"ഡ്രൈവർ റിപ്പോർട്ടിൽ കാണാം."
+
+#: apps/modules/catalog.py
+msgid "This trip has no line. Pick any shop below to bill it."
+msgstr ""
+"ഈ ട്രിപ്പിന് ലൈൻ ഇല്ല. ബിൽ ചെയ്യാൻ താഴെ നിന്ന് ഏത് കടയും തിരഞ്ഞെടുക്കുക."
+
+#: apps/modules/catalog.py
+msgid "This trip is already settled."
+msgstr "ഈ ട്രിപ്പിന്റെ കണക്ക് ഇതിനകം തീർത്തു."
+
+#: apps/modules/catalog.py
+msgid ""
+"Tip: add your lines and their shops first, then each day's trip opens with "
+"one tap."
+msgstr ""
+"ടിപ്പ്: ആദ്യം ലൈനുകളും അവയിലെ കടകളും ചേർക്കുക, പിന്നെ ഓരോ ദിവസത്തെ ട്രിപ്പും"
+" ഒറ്റ ടാപ്പിൽ തുറക്കാം."
+
+#: apps/modules/catalog.py
+msgid "Today's bills & collections"
+msgstr "ഇന്നത്തെ ബില്ലുകളും പിരിവും"
+
+#: apps/modules/catalog.py
+msgid "Trip opened. Add what goes into the van, then hand it to the driver."
+msgstr "ട്രിപ്പ് തുറന്നു. വണ്ടിയിൽ കയറ്റുന്നവ ചേർത്ത് ഡ്രൈവർക്ക് കൊടുക്കുക."
+
+#: apps/modules/catalog.py
+msgid "Trip settled."
+msgstr "ട്രിപ്പ് കണക്ക് തീർത്തു."
+
+#: apps/modules/catalog.py
+msgid "Trip settled. Cash is short by %(amount)s."
+msgstr "ട്രിപ്പ് കണക്ക് തീർത്തു. ക്യാഷ് %(amount)s കുറവാണ്."
+
+#: apps/modules/catalog.py
+msgid "Trip started. Have a good day on the line!"
+msgstr "ട്രിപ്പ് തുടങ്ങി. ലൈനിൽ നല്ലൊരു ദിവസം ആശംസിക്കുന്നു!"
+
+#: apps/modules/catalog.py
+msgid "Trips"
+msgstr "ട്രിപ്പുകൾ"
+
+#: apps/modules/catalog.py
+msgid "Usual driver"
+msgstr "സാധാരണ ഡ്രൈവർ"
+
+#: apps/modules/catalog.py
+msgid "Van sales"
+msgstr "വാൻ സെയിൽസ്"
+
+#: apps/modules/catalog.py
+msgid "came back"
+msgstr "തിരികെ വന്നത്"
+
+#: apps/modules/catalog.py
+msgid "change"
+msgstr "മാറ്റുക"
+
+#: apps/modules/catalog.py
+msgid "e.g. Monday – Thamarassery"
+msgstr "ഉദാ: Monday – Thamarassery"
+
+#: apps/modules/catalog.py
+msgid "piece"
+msgstr "പീസ്"
+
+#: apps/modules/catalog.py
+msgid "shops"
+msgstr "കടകൾ"
+
+#: apps/modules/catalog.py
+msgid "should be"
+msgstr "വേണ്ടത്"
+
+#: apps/modules/catalog.py
+msgid "…or new shop name"
+msgstr "…അല്ലെങ്കിൽ പുതിയ കടയുടെ പേര്"

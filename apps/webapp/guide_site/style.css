@@ -1,6 +1,6 @@
 /* Ajwaaz Customer Guide — pure HTML + CSS, no JavaScript */
 :root{
-  --brand:#6d3b63; --brand-2:#8a5580; --brand-dark:#552d4d; --brand-soft:#f4ecf2; --brand-line:#e2cfdc; --lime:#ffd166;
+  --brand:#1a5fd0; --brand-2:#3b7be8; --brand-dark:#134aa6; --brand-soft:#eaf1fd; --brand-line:#c9dbf8; --lime:#ffd166;
   --ink:#0f1a14; --ink-soft:#5b6b62; --line:#e4ebe6; --paper:#f6f8f5; --panel:#fff;
   --gold:#8ac926; --gold-soft:#f2fbd9;
   --warn:#b7791f; --warn-bg:#fff6e0; --danger:#c0392b; --danger-bg:#fdeceb;
@@ -21,7 +21,7 @@ p{margin:0 0 1em}
 .site-header .in{max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--ink);letter-spacing:-.02em}
 .brand:hover{text-decoration:none}
-.brand .mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#6d3b63,#8a5580);color:#ffd166;display:grid;place-items:center;font-weight:800;font-size:18px;font-style:normal;box-shadow:0 6px 16px rgba(20,83,45,.25)}
+.brand .mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#1a5fd0,#3b7be8);color:#ffd166;display:grid;place-items:center;font-weight:800;font-size:18px;font-style:normal;box-shadow:0 6px 16px rgba(20,83,45,.25)}
 .site-nav a.home-site{color:var(--ink);border:1px solid var(--line);background:var(--panel, #fff)}
 .brand small{display:block;font-weight:600;color:var(--ink-soft);font-size:11.5px;letter-spacing:.02em;margin-top:-3px}
 .site-nav{display:flex;gap:4px;margin-inline-start:auto;align-items:center;flex-wrap:wrap}
@@ -34,7 +34,7 @@ p{margin:0 0 1em}
 .btn.light{background:#fff;color:var(--brand)!important}
 
 /* ---------- hero ---------- */
-.hero{background:radial-gradient(1200px 400px at 85% -10%,rgba(198,244,50,.30),transparent 60%),radial-gradient(900px 500px at 0% 110%,rgba(255,255,255,.08),transparent 60%),linear-gradient(135deg,#552d4d,var(--brand) 55%,#8a5580);color:#fff}
+.hero{background:radial-gradient(1200px 400px at 85% -10%,rgba(198,244,50,.30),transparent 60%),radial-gradient(900px 500px at 0% 110%,rgba(255,255,255,.08),transparent 60%),linear-gradient(135deg,#134aa6,var(--brand) 55%,#3b7be8);color:#fff}
 .hero .in{max-width:1180px;margin:0 auto;padding:54px 20px 60px}
 .hero .crumb{font-size:13.5px;opacity:.8;margin-bottom:14px}
 .hero .crumb a{color:#fff;text-decoration:underline;text-underline-offset:3px}
@@ -135,7 +135,7 @@ tr:last-child td{border-bottom:0}
 .mock .expl h3{margin-top:0}
 
 /* ---------- misc ---------- */
-.helpbox{background:linear-gradient(135deg,#552d4d,var(--brand));color:#fff;border-radius:var(--radius);padding:26px 28px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:8px}
+.helpbox{background:linear-gradient(135deg,#134aa6,var(--brand));color:#fff;border-radius:var(--radius);padding:26px 28px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:8px}
 .helpbox h3{color:#fff;margin:0 0 4px;font-size:20px}
 .helpbox p{margin:0;opacity:.9}
 .helpbox a{color:var(--lime);font-weight:700}

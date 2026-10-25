@@ -66,11 +66,11 @@
 .ovc-h a{font-size:14px;font-weight:700}
 .ovc-sub{color:var(--ink-soft);font-size:14px;margin:6px 0 12px}.ovc-sub b{color:var(--ink)}
 .ovc-bar{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--line)}
-.ovc-bar .cur{background:#6d3b63}.ovc-bar .over{background:#f59f00}
+.ovc-bar .cur{background:#2f7bff}.ovc-bar .over{background:#f59f00}
 .ovc-split{display:flex;gap:28px;margin-top:12px;flex-wrap:wrap}
 .ovc-split a{color:var(--ink);text-decoration:none}
 .ovc-split small{display:block;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
-.ovc-split small.cur{color:#6d3b63}.ovc-split small.over{color:#d97706}
+.ovc-split small.cur{color:#2f7bff}.ovc-split small.over{color:#d97706}
 .ovc-split b{font-size:19px}
 .ovc-sum{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 @media (max-width:980px){.ovc-sum{grid-template-columns:1fr 1fr}}
@@ -88,13 +88,13 @@
 .ovc-donut{height:240px}
 .ovc-legend{display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px;color:var(--ink-soft);margin:6px 0 10px}
 .ovc-legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-end:6px;vertical-align:-1px}
-.ovc-legend .inc::before{background:#6d3b63}.ovc-legend .exp::before{background:#f59f00}
+.ovc-legend .inc::before{background:#2f7bff}.ovc-legend .exp::before{background:#f59f00}
 .ovc-legend b{color:var(--ink)}
 .ovc-top{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
 .ovc-top div{display:flex;justify-content:space-between;gap:10px;font-size:14.5px}
 .ovc-top b{white-space:nowrap}
 .ovc-top span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ovc-top i{display:block;height:7px;border-radius:4px;background:linear-gradient(90deg,#6d3b63,#22b8cf);margin:6px 0 3px}
+.ovc-top i{display:block;height:7px;border-radius:4px;background:linear-gradient(90deg,#2f7bff,#22b8cf);margin:6px 0 3px}
 .ovc-top small{color:var(--ink-soft);font-size:12.5px}
 .ovc-empty{color:var(--ink-soft);margin:30px 0;text-align:center}
 .ovc-note p{color:var(--ink-soft);margin:10px 0 16px}

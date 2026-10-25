@@ -7,19 +7,19 @@
 <title>{% translate "Verify sign-in" %}</title>
 <style>
   @font-face{font-family:'Plus Jakarta Sans';src:url('{% static "fonts/PlusJakartaSans-latin.woff2" %}') format('woff2');font-weight:400 800;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Plus Jakarta Sans';src:url('{% static "fonts/PlusJakartaSans-latin-ext.woff2" %}') format('woff2');font-weight:400 800;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
-  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:radial-gradient(circle at 20% 10%,#f4ecf2,#f5f7fa 60%);color:#1d2939;padding:16px;box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:radial-gradient(circle at 20% 10%,#eaf1fd,#f5f7fa 60%);color:#1d2939;padding:16px;box-sizing:border-box}
   .box{width:min(380px,100%);background:#fff;border:1px solid #e3e8ef;border-radius:22px;padding:32px;box-shadow:0 20px 50px rgba(18,22,43,.08);text-align:center;animation:in .45s cubic-bezier(.2,.8,.2,1) both}
   @keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  .ico{width:64px;height:64px;border-radius:20px;background:#f4ecf2;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px}
+  .ico{width:64px;height:64px;border-radius:20px;background:#eaf1fd;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px}
   h1{font-size:21px;margin:0 0 6px}
   p{color:#667085;font-size:14px;margin:0 0 20px}
   .code{width:100%;box-sizing:border-box;padding:14px;border:2px solid #e3e8ef;border-radius:14px;font:inherit;font-size:28px;letter-spacing:.35em;text-align:center;font-weight:700}
-  .code:focus{outline:none;border-color:#6d3b63;box-shadow:0 0 0 4px #6d3b6322}
-  button{width:100%;margin-top:14px;padding:13px;border:0;border-radius:12px;background:#6d3b63;color:#fff;font:inherit;font-weight:700;font-size:15px;cursor:pointer}
+  .code:focus{outline:none;border-color:#1a5fd0;box-shadow:0 0 0 4px #1a5fd022}
+  button{width:100%;margin-top:14px;padding:13px;border:0;border-radius:12px;background:#1a5fd0;color:#fff;font:inherit;font-weight:700;font-size:15px;cursor:pointer}
   .msg{padding:10px 12px;border-radius:10px;background:#fdeceb;color:#c0392b;font-size:13.5px;margin-bottom:14px;animation:shake .4s}
   @keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
   .alt{display:block;margin-top:16px;font-size:13px;color:#667085}
-  a{color:#6d3b63;font-weight:700}
+  a{color:#1a5fd0;font-weight:700}
   @media(prefers-reduced-motion:reduce){.box,.msg{animation:none}}
 
   .lang-switch{margin:0;display:inline-flex}

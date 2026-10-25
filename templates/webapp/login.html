@@ -18,9 +18,9 @@
   .box p{color:#667085; font-size:13.5px; margin:0 0 22px;}
   label{display:block; font-size:13.5px; font-weight:600; color:#667085; margin:14px 0 6px;}
   input{width:100%; padding:12px 13px; font-size:16px; border:1.5px solid #e3e8ef; border-radius:10px; font-family:inherit; transition:border-color .15s ease;}
-  input:focus{outline:none; border-color:#6d3b63;}
+  input:focus{outline:none; border-color:#1a5fd0;}
   button{
-    width:100%; margin-top:20px; background:#6d3b63; color:#fff; border:none; padding:12px;
+    width:100%; margin-top:20px; background:#1a5fd0; color:#fff; border:none; padding:12px;
     border-radius:10px; font-size:14.5px; font-weight:600; cursor:pointer;
   }
   button:hover{opacity:0.92;}
@@ -52,8 +52,8 @@
       <input id="password" name="password" type="password" required>
       <button type="submit">{% translate "Sign in" %}</button>
     </form>
-    <p style="text-align:center; margin-top:14px; font-size:13px;"><a href="{% url 'webapp:password_reset' %}" style="color:#6d3b63; font-weight:600;">{% translate "Forgot password?" %}</a></p>
-    <p style="text-align:center; margin-top:6px; font-size:13px; color:#667085;">{% translate "New here?" %} <a href="{% url 'webapp:signup' %}" style="color:#6d3b63; font-weight:600;">{% translate "Start a free trial" %}</a></p>
+    <p style="text-align:center; margin-top:14px; font-size:13px;"><a href="{% url 'webapp:password_reset' %}" style="color:#1a5fd0; font-weight:600;">{% translate "Forgot password?" %}</a></p>
+    <p style="text-align:center; margin-top:6px; font-size:13px; color:#667085;">{% translate "New here?" %} <a href="{% url 'webapp:signup' %}" style="color:#1a5fd0; font-weight:600;">{% translate "Start a free trial" %}</a></p>
   </div>
 </body>
 </html>

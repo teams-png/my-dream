@@ -1,11 +1,11 @@
-{% load static %}<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ inv.number }} · {{ client.name }}</title>
 <style>
 body{margin:0;background:#f5f7fa;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#1d2939}
 .page{max-width:820px;margin:24px auto;background:#fff;border:1px solid #e3e8ef;border-radius:14px;padding:36px 40px;position:relative}
 .top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px}.logo i{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,#6d3b63,#8a5580);color:#ffd166;display:grid;place-items:center;font-style:normal}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px}.logo i{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,#1a5fd0,#3b7be8);color:#ffd166;display:grid;place-items:center;font-style:normal}
 h1{margin:0;font-size:26px;letter-spacing:.04em;text-align:end}.muted{color:#667085;font-size:14px;line-height:1.6}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:28px 0}
 .cols h3{margin:0 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#667085}
@@ -14,17 +14,16 @@ th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:#667085;ba
 td.r,th.r{text-align:end}.total td{font-weight:800;font-size:17px;border-bottom:0}
 .stamp{position:absolute;top:120px;inset-inline-end:44px;transform:rotate(-12deg);border:3px solid;border-radius:10px;padding:6px 16px;font-weight:900;font-size:24px;letter-spacing:.12em;opacity:.85}
 .stamp.paid{color:#0f9d58;border-color:#0f9d58}.stamp.unpaid{color:#b7791f;border-color:#b7791f}.stamp.void{color:#c0392b;border-color:#c0392b}
-.bar{max-width:820px;margin:16px auto 0;display:flex;gap:8px}.bar button{font:inherit;font-weight:700;padding:10px 18px;border-radius:10px;border:0;background:#6d3b63;color:#fff;cursor:pointer}
+.bar{max-width:820px;margin:16px auto 0;display:flex;gap:8px}.bar button{font:inherit;font-weight:700;padding:10px 18px;border-radius:10px;border:0;background:#1a5fd0;color:#fff;cursor:pointer}
 @media(max-width:640px){.page{margin:0;border-radius:0;padding:22px 18px}.cols{grid-template-columns:1fr}.stamp{top:90px;font-size:18px}h1{text-align:start}}
 @media print{body{background:#fff}.bar{display:none}.page{border:0;margin:0;max-width:none;padding:0}}
-.logo i.loop-mark{background:#fff;border:1px solid #E8E2E7;box-shadow:0 6px 16px rgba(109,59,99,.18)}.logo i.loop-mark img{width:72%;height:auto;display:block}
 </style></head>
 <body>
 <div class="bar"><button type="button" onclick="print()">🖨 Print / Save as PDF</button></div>
 <div class="page">
   <span class="stamp {{ inv.status }}">{% if inv.status == "paid" %}PAID{% elif inv.status == "void" %}CANCELLED{% else %}DUE{% endif %}</span>
   <div class="top">
-    <div><div class="logo"><i class="loop-mark"><img src="{% static 'img/loop-mark.png' %}" alt=""></i>BookPilot</div>
+    <div><div class="logo"><i>✦</i>BookPilot</div>
       <div class="muted" style="margin-top:8px">{{ seller.company }}{% if seller.cr_number %}<br>CR No. {{ seller.cr_number }}{% endif %}{% if seller.address %}<br>{{ seller.address }}{% elif seller.country %}<br>{{ seller.country }}{% endif %}{% if seller.email %}<br>{{ seller.email }}{% endif %}{% if seller.whatsapp %}<br>{{ seller.whatsapp }}{% endif %}</div></div>
     <div><h1>INVOICE</h1><div class="muted" style="text-align:end"><b style="color:#1d2939">{{ inv.number }}</b><br>Issued {{ inv.issued_on|date:"d M Y" }}<br>{% if inv.status == "unpaid" %}Due {{ inv.due_on|date:"d M Y" }}{% elif inv.payment %}Paid {{ inv.payment.paid_on|date:"d M Y" }}{% endif %}</div></div>
   </div>

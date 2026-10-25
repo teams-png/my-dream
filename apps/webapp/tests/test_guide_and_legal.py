@@ -93,4 +93,4 @@ def test_contact_number_on_the_website_and_guide(client):
     guide = client.get("/guide/en/help.html").content.decode()
     assert '<a href="https://wa.me/919847554224"' in guide
     css = client.get("/guide/style.css").content.decode()
-    assert "--brand:#6d3b63" in css and "#226db4" not in css
+    assert "--brand:#1a5fd0" in css and "#226db4" not in css

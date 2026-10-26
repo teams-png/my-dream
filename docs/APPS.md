@@ -85,7 +85,21 @@ You need to allow "install unknown apps".
 
 ## 5. iOS: publishing on the App Store
 
-Apple only allows signing and uploading from a Mac.
+**Today, without the App Store:** on an iPhone open the BookPilot website in
+Safari → Share → **Add to Home Screen**. It gets the BookPilot icon, opens
+full screen and the driver's van app works offline too.
+
+**Without a Mac (GitHub builds it):** the `ios-appstore` job in
+`.github/workflows/apps.yml` archives, signs and uploads the app to
+TestFlight. It stays off until these repository secrets exist
+(Settings → Secrets and variables → Actions → Secrets):
+`APPLE_TEAM_ID`, `ASC_KEY_ID`, `ASC_ISSUER_ID` and `ASC_KEY_P8` (the
+App Store Connect API key from Users and Access → Integrations → Keys,
+role *App Manager*). First create the app in App Store Connect with the
+bundle ID `com.bookpilot.app`. Then run the **apps** workflow; the build appears
+in TestFlight, and from there you submit it for review.
+
+**With a Mac:**
 
 1. Join the Apple Developer Program (USD 99 per year).
 2. On a Mac with Xcode, run:
@@ -105,7 +119,7 @@ splash screen and icons. In the review notes, give Apple a demo login.
 
 ## 6. Mobile app behaviour
 
-- **Opening**: the app opens on sign-in, with a green splash screen and
+- **Opening**: the app opens on sign-in, with a blue splash screen and
   the BookPilot icon.
 - **No connection**: a "No connection" screen shows and retries
   automatically. The offline POS keeps working once it has been opened

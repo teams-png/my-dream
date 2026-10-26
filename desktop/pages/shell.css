@@ -1,9 +1,9 @@
-:root{--ink:#12162b;--soft:#5f6579;--line:#e7e9f2;--brand:#14532d;--bg:#f4f6fb}
-@media (prefers-color-scheme:dark){:root{--ink:#eef2fa;--soft:#9aa6bd;--line:#252d40;--bg:#0d111b}}
+:root{--ink:#12162b;--soft:#5f6579;--line:#e7e9f2;--brand:#1a5fd0;--bg:#f4f6fb}
+@media (prefers-color-scheme:dark){:root{--ink:#eef2fa;--soft:#9aa6bd;--line:#252d40;--bg:#0d111b;--brand:#3b7be8}}
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif}
 .card{width:min(440px,92vw);text-align:center;padding:32px 28px}
-.logo{width:84px;height:84px;border-radius:22px;box-shadow:0 14px 34px rgba(20,83,45,.35);animation:float 3s ease-in-out infinite}
+.logo{width:84px;height:84px;border-radius:22px;box-shadow:0 14px 34px rgba(26,95,208,.35);animation:float 3s ease-in-out infinite}
 h1{font-size:22px;margin:18px 0 6px}
 p{color:var(--soft);margin:0 0 18px}
 .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}

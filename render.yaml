@@ -5,26 +5,27 @@
 # Already running services made by hand? This file does not change them — copy the plan, start command
 # and environment values below into each service's Settings in the Render dashboard instead.
 #
-# Monthly cost at these plans (check render.com/pricing): web Starter, Postgres Basic-256MB,
-# Key Value Starter, Cron Job (billed per minute it runs — a few cents). Move the web service to
-# Standard (2 GB) when you have many shops online at once, and raise WEB_CONCURRENCY to 4.
+# Sized for the first ~200 client businesses (check render.com/pricing): web Standard (2 GB, 4 workers)
+# ~$25, Postgres Basic-1GB with 15 GB disk ~$19 + storage, Key Value Starter, Cron Job (a few cents).
+# Past ~400 busy clients: web Pro (4 GB) or a second web instance, Postgres Basic-4GB.
 #
-# Region: Frankfurt is the closest Render region to the Gulf (about 3x less delay per page than the
-# US default). Every service and the database must be in the same region. A region cannot be changed
+# Region: Singapore is the closest Render region to India (BookPilot sells in India); Frankfurt is
+# closest to the Gulf. Every service and the database must be in the same region. A region cannot be changed
 # later — moving means new services in the new region and copying the database over.
 databases:
   - name: bookpilot-db
-    region: frankfurt
-    plan: basic-256mb        # paid Postgres: kept forever, daily backups (the free one is deleted after 30 days)
+    region: singapore
+    plan: basic-1gb          # paid Postgres: kept forever, daily backups (the free one is deleted after 30 days)
+    diskSizeGB: 15           # grows later without downtime; ~200 clients need well under 10 GB
     databaseName: bookpilot
     user: bookpilot
 
 services:
   - type: web
     name: bookpilot-web
-    region: frankfurt
+    region: singapore
     runtime: python
-    plan: starter            # always on (the free plan sleeps and loses uploads)
+    plan: standard           # 2 GB, always on — enough for ~200 client businesses
     buildCommand: "./build.sh"
     # Several worker processes (HTTP + the kitchen screen's WebSockets), instead of one daphne process.
     startCommand: "gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker -w ${WEB_CONCURRENCY:-2} -b 0.0.0.0:$PORT --timeout 120 --graceful-timeout 30"
@@ -32,7 +33,7 @@ services:
       - key: PYTHON_VERSION
         value: "3.12.8"
       - key: WEB_CONCURRENCY
-        value: "2"           # Starter (512 MB): 2. Standard (2 GB): 4.
+        value: "4"           # Starter (512 MB): 2. Standard (2 GB): 4. Pro (4 GB): 8.
       - key: DJANGO_SETTINGS_MODULE
         value: config.settings.render
       - key: DJANGO_SECRET_KEY
@@ -114,7 +115,7 @@ services:
 
   - type: keyvalue
     name: bookpilot-redis
-    region: frankfurt
+    region: singapore
     plan: starter            # paid: data is kept on restart (cache, rate limits, kitchen-screen updates)
     maxmemoryPolicy: allkeys-lru
     ipAllowList: []          # only reachable from your Render services
@@ -124,7 +125,7 @@ services:
   # the jobs run only once per day).
   - type: cron
     name: bookpilot-daily
-    region: frankfurt
+    region: singapore
     runtime: python
     plan: starter
     schedule: "30 20 * * *"  # 20:30 UTC = 23:30 Qatar / 02:00 India

@@ -30,6 +30,7 @@ def support_details():
         "company": settings.LEGAL_COMPANY_NAME,
         "address": settings.LEGAL_COMPANY_ADDRESS,
         "cr_number": settings.LEGAL_CR_NUMBER,
+        "gstin": getattr(settings, "LEGAL_GSTIN", ""),
         "country": settings.LEGAL_COUNTRY,
         "email": settings.SUPPORT_EMAIL,
         "whatsapp": settings.SUPPORT_WHATSAPP,

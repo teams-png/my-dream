@@ -86,9 +86,17 @@ def platform_billing_client(request, company_id):
 
 
 def _invoice_page(request, invoice):
+    from decimal import ROUND_HALF_UP, Decimal
+    from apps.subscriptions.pricing import tax_label, tax_percent
     sub = invoice.subscription
+    tax = None
+    percent = tax_percent(invoice.currency)
+    if percent:  # the amount includes GST: show the split
+        base = (Decimal(invoice.amount) * 100 / (100 + percent)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+        tax = {"percent": percent, "label": tax_label(), "base": base, "amount": Decimal(invoice.amount) - base,
+               "half": ((Decimal(invoice.amount) - base) / 2).quantize(Decimal("0.01"))}
     return render(request, "webapp/platform_admin/billing_invoice.html", {
-        "inv": invoice, "sub": sub, "client": sub.company, "seller": support_details(),
+        "inv": invoice, "sub": sub, "client": sub.company, "seller": support_details(), "tax": tax,
         "brand": getattr(settings, "LEGAL_COMPANY_NAME", "") or "BookPilot",
     })
 

@@ -1,7 +1,7 @@
 """
 Subscription pricing.
 
-Two price lists: India in INR and Global in QAR, each with two tiers (normal businesses, and supermarkets /
+Two price lists: India in INR (plus GST, see PLAN_TAX_PERCENT) and Global in QAR, each with two tiers (normal businesses, and supermarkets /
 large shops, same prices for now). The PRICING_REGION setting picks the one this site sells: every new
 sign-up gets that list whatever their country. On the QAR list, customers outside Qatar are charged the QAR
 price and `local_estimate` only *shows* roughly what that is in their own currency.
@@ -21,15 +21,15 @@ LARGE_BUSINESS_TYPES = {"supermarket", "wholesale_business"}
 PRICE_TABLE = {
     (GLOBAL, "standard"): {1: 699, 3: 899, 5: 999},
     (GLOBAL, "large"): {1: 699, 3: 899, 5: 999},
-    (INDIA, "standard"): {1: 3999, 3: 5999, 5: 6999},
-    (INDIA, "large"): {1: 3999, 3: 5999, 5: 6999},
+    (INDIA, "standard"): {1: 4999, 3: 7999, 5: 10999},
+    (INDIA, "large"): {1: 4999, 3: 7999, 5: 10999},
 }
 TIER_LABEL = {"standard": "Business", "large": "Large Shop"}
 
 # Yearly add-ons: each user above the biggest plan's users, and each branch above the first.
-ADDON_PRICES = {GLOBAL: {"user": 100, "branch": 300}, INDIA: {"user": 1000, "branch": 1000}}
+ADDON_PRICES = {GLOBAL: {"user": 100, "branch": 300}, INDIA: {"user": 2000, "branch": 2500}}
 # Yearly website add-ons: a website (pages, products, enquiries) or an e-commerce website (adds cart and orders).
-WEBSITE_PRICES = {GLOBAL: {"website": 499, "shop": 799}, INDIA: {"website": 3999, "shop": 6999}}
+WEBSITE_PRICES = {GLOBAL: {"website": 499, "shop": 799}, INDIA: {"website": 4999, "shop": 9999}}
 
 # How much of each currency one QAR buys, for display only. The GCC
 # currencies and USD are pegged, so these are exact; the others float and
@@ -137,12 +137,15 @@ def addons(subscription, company=None):
     branches_amount = plan.extra_branch_price * extra_branches
     site = website_addon(company or subscription.company, plan)
     website_amount = site[2] if site else Decimal("0")
+    subtotal = plan.price + users_amount + branches_amount + website_amount
+    percent = tax_percent(plan.currency)
+    tax = (subtotal * percent / Decimal("100")).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
     return {"users": users, "branches": branches, "extra_users": extra_users, "extra_branches": extra_branches,
             "extra_user_price": plan.extra_user_price, "extra_branch_price": plan.extra_branch_price,
             "users_amount": users_amount, "branches_amount": branches_amount,
             "website": site[1] if site else "", "website_amount": website_amount,
-            "plan_price": plan.price, "total": plan.price + users_amount + branches_amount + website_amount,
-            "currency": plan.currency}
+            "plan_price": plan.price, "subtotal": subtotal, "tax_percent": percent, "tax_label": tax_label(), "tax": tax,
+            "total": subtotal + tax, "currency": plan.currency}
 
 
 def website_addon(company, plan=None):
@@ -154,6 +157,17 @@ def website_addon(company, plan=None):
     region = plan.country if plan and plan.country in WEBSITE_PRICES else region_for(company.country)
     price = Decimal(WEBSITE_PRICES[region][design.package])
     return design.package, design.get_package_display(), price
+
+
+def tax_percent(currency):
+    """Tax added on top of the plan prices (India: 18% GST, set by PLAN_TAX_PERCENT). Only INR plans are taxed."""
+    if currency != REGION_CURRENCY[INDIA]:
+        return Decimal("0")
+    return Decimal(str(getattr(settings, "PLAN_TAX_PERCENT", 0) or 0))
+
+
+def tax_label():
+    return getattr(settings, "PLAN_TAX_LABEL", "GST")
 
 
 def amount_due(subscription):

@@ -139,7 +139,7 @@ button[type=submit].busy{opacity:.7;pointer-events:none}
       return `<label><input type="radio" name="plan" value="${p.id}" ${on?'checked':''}>${p.users} ${p.users>1?L.users:L.user} <small>${L.plusOwner}</small><b>${p.currency} ${fmt(p.price)}</b><small>/ ${L.year}</small>${est}</label>`;
     }).join('');
     const billed=(list[0]||{}).currency||'QAR';
-    note.textContent=(billed==='QAR'&&local&&local!=='QAR'?`${L.charged} QAR · ${local} ${L.approx}`:(billed!=='QAR'?`${L.charged} ${billed}.`:''))+' '+L.later;
+    note.textContent=(billed==='QAR'&&local&&local!=='QAR'?`${L.charged} QAR · ${local} ${L.approx}`:(billed!=='QAR'?`${L.charged} ${billed}${P.tax?` + ${P.tax.percent}% ${P.tax.label}`:''}.`:''))+' '+L.later;
   }
   country.addEventListener('change',renderPlans);
   document.getElementById('id_business_type').addEventListener('change',renderPlans);

@@ -28,7 +28,7 @@ def test_seeded_price_table():
     for country in ("India", "United Arab Emirates", "Saudi Arabia", "United Kingdom", "United States", "Other"):
         assert _prices(country, "restaurant") == _prices("Qatar", "restaurant")
     india = pricing.plans_for("India", "restaurant", region="India")
-    assert [(p.max_users, p.currency, p.price) for p in india] == [(1, "INR", 3999), (3, "INR", 5999), (5, "INR", 6999)]
+    assert [(p.max_users, p.currency, p.price) for p in india] == [(1, "INR", 4999), (3, "INR", 7999), (5, "INR", 10999)]
     assert not SubscriptionPlan.objects.filter(name="Starter", is_active=True).exists()
 
 

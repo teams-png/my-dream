@@ -18,7 +18,7 @@ from apps.accounts.models import LoginAttempt
 from apps.modules.catalog import BUSINESS_TYPE_MAP, business_group, categorized, hidden_business_codes, offered_business_choices
 from apps.modules.models import BusinessType, Module
 from apps.subscriptions.models import SubscriptionPlan
-from apps.subscriptions.pricing import (CURRENCY_BY_COUNTRY, INDIA, LARGE_BUSINESS_TYPES, REGION_CURRENCY, fx_rates,
+from apps.subscriptions.pricing import (CURRENCY_BY_COUNTRY, tax_label, tax_percent, INDIA, LARGE_BUSINESS_TYPES, REGION_CURRENCY, fx_rates,
                                        is_exact, plans_for, sales_region)
 from apps.subscriptions.services import TRIAL_DAYS
 from apps.tenants.models import Company, CompanyBusinessType
@@ -111,6 +111,8 @@ def _pricing_data():
         "fx": {code: {"rate": str(rate), "exact": is_exact(code)} for code, rate in fx_rates().items()},
         "country_currency": CURRENCY_BY_COUNTRY,
         "region": sales_region(), "currency": REGION_CURRENCY[sales_region()],
+        "tax": ({"percent": f"{tax_percent(REGION_CURRENCY[sales_region()]).normalize():f}", "label": tax_label()}
+                if tax_percent(REGION_CURRENCY[sales_region()]) else None),
     }
 
 

@@ -24,7 +24,7 @@ td.r,th.r{text-align:end}.total td{font-weight:800;font-size:17px;border-bottom:
   <span class="stamp {{ inv.status }}">{% if inv.status == "paid" %}PAID{% elif inv.status == "void" %}CANCELLED{% else %}DUE{% endif %}</span>
   <div class="top">
     <div><div class="logo"><i>✦</i>BookPilot</div>
-      <div class="muted" style="margin-top:8px">{{ seller.company }}{% if seller.cr_number %}<br>CR No. {{ seller.cr_number }}{% endif %}{% if seller.address %}<br>{{ seller.address }}{% elif seller.country %}<br>{{ seller.country }}{% endif %}{% if seller.email %}<br>{{ seller.email }}{% endif %}{% if seller.whatsapp %}<br>{{ seller.whatsapp }}{% endif %}</div></div>
+      <div class="muted" style="margin-top:8px">{{ seller.company }}{% if seller.cr_number %}<br>CR No. {{ seller.cr_number }}{% endif %}{% if seller.gstin %}<br>GSTIN {{ seller.gstin }}{% endif %}{% if seller.address %}<br>{{ seller.address }}{% elif seller.country %}<br>{{ seller.country }}{% endif %}{% if seller.email %}<br>{{ seller.email }}{% endif %}{% if seller.whatsapp %}<br>{{ seller.whatsapp }}{% endif %}</div></div>
     <div><h1>INVOICE</h1><div class="muted" style="text-align:end"><b style="color:#1d2939">{{ inv.number }}</b><br>Issued {{ inv.issued_on|date:"d M Y" }}<br>{% if inv.status == "unpaid" %}Due {{ inv.due_on|date:"d M Y" }}{% elif inv.payment %}Paid {{ inv.payment.paid_on|date:"d M Y" }}{% endif %}</div></div>
   </div>
   <div class="cols">
@@ -34,7 +34,8 @@ td.r,th.r{text-align:end}.total td{font-weight:800;font-size:17px;border-bottom:
   <table>
     <thead><tr><th>Description</th><th class="r">Amount ({{ inv.currency }})</th></tr></thead>
     <tbody>
-      <tr><td>BookPilot subscription – {{ inv.plan_name }}<br><span class="muted">{{ inv.period_start|date:"d M Y" }} to {{ inv.period_end|date:"d M Y" }}</span>{% if inv.notes %}<br><span class="muted">{{ inv.notes }}</span>{% endif %}</td><td class="r">{{ inv.amount }}</td></tr>
+      <tr><td>BookPilot subscription – {{ inv.plan_name }}<br><span class="muted">{{ inv.period_start|date:"d M Y" }} to {{ inv.period_end|date:"d M Y" }}</span>{% if inv.notes %}<br><span class="muted">{{ inv.notes }}</span>{% endif %}</td><td class="r">{% if tax %}{{ tax.base }}{% else %}{{ inv.amount }}{% endif %}</td></tr>
+      {% if tax %}<tr><td>{{ tax.label }} {{ tax.percent|floatformat:"-2" }}% <span class="muted">(CGST {{ tax.half }} + SGST {{ tax.half }}, or IGST)</span></td><td class="r">{{ tax.amount }}</td></tr>{% endif %}
       <tr class="total"><td>Total</td><td class="r">{{ inv.currency }} {{ inv.amount }}</td></tr>
     </tbody>
   </table>

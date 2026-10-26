@@ -32,8 +32,8 @@ def _users(company, n, start=0):
 def test_new_plans_have_the_addon_prices(plans):
     assert plans[5].extra_user_price == Decimal("100") and plans[3].extra_user_price == 0
     assert all(p.extra_branch_price == Decimal("300") for p in plans.values())
-    india = SubscriptionPlan.objects.get(country="India", tier="standard", max_users=5)
-    assert (india.extra_user_price, india.extra_branch_price) == (Decimal("1000"), Decimal("1000"))
+    india = SubscriptionPlan.objects.get(country="India", tier="standard", max_users=5, is_active=True)
+    assert (india.extra_user_price, india.extra_branch_price) == (Decimal("2000"), Decimal("2500"))
 
 
 def test_extra_users_and_branches_are_charged(tenant_a, plans):

@@ -61,22 +61,32 @@ def _money(company, qar):
     return ((value / step).quantize(Decimal("1"), rounding=ROUND_HALF_UP) * step).quantize(Decimal("0.01"))
 
 
+_STORED = set()  # pictures already checked in media storage by this process (on S3/R2 each check is a web request)
+
+
 def _image_name(code):
     """One shared copy of each picture in media storage; every restaurant's dish points at it."""
     photo = PHOTO_DIR / f"{PHOTOS[code]}.webp" if code in PHOTOS else None
     source, name = (photo, f"restaurant/kerala/photo-{code}.webp") if photo and photo.exists() else \
         (ART_DIR / f"{code}.png", f"restaurant/kerala/{code}.png")
+    if name in _STORED:
+        return name
     try:
         if not default_storage.exists(name):
             default_storage.save(name, ContentFile(source.read_bytes()))
     except (OSError, FileNotFoundError):
         log.warning("Kerala menu picture %s is missing", code)
         return ""
+    _STORED.add(name)
     return name
 
 
 def _track(company, kind, obj):
     StarterSample.objects.create(company=company, kind=kind, object_id=obj.pk)
+
+
+def _track_all(company, kind, objs):
+    StarterSample.objects.bulk_create([StarterSample(company=company, kind=kind, object_id=o.pk) for o in objs])
 
 
 @transaction.atomic
@@ -98,8 +108,10 @@ def install(company, user=None, *, staff=True, expenses=True):
             _track(company, "station", station)
         stations[name] = station
 
-    made = 0
+    # ~125 dishes: written in a few bulk inserts, not one query per row, so sign-up stays quick on a remote database
     category_objs = {}
+    have = set(Product.objects.for_company(company).filter(sku__startswith=SKU_PREFIX).values_list("sku", flat=True))
+    products, items = [], []
     for position, (cat_name, station_name) in enumerate(categories):
         category = ProductCategory.objects.for_company(company).filter(name=cat_name).first()
         if category is None:
@@ -109,20 +121,25 @@ def install(company, user=None, *, staff=True, expenses=True):
         stations[station_name].categories.add(category)
         for order, (dish, name, ml, price, desc, veg, spice, prep, featured, _art, _colour) in enumerate(data.DISHES[cat_name]):
             sku = f"{SKU_PREFIX}{dish}"[:50]
-            if Product.objects.for_company(company).filter(sku=sku).exists():
+            if sku in have:
                 continue
-            product = Product.objects.create(
+            have.add(sku)
+            products.append(Product(
                 company=company, sku=sku, name=name, category=category, unit=unit, selling_price=_money(company, price),
                 cost_price=(_money(company, price) * Decimal("0.4")).quantize(Decimal("0.01")),
-                is_stock_tracked=False, tracking_type="none", is_active=True)
-            item = RestaurantMenuItem(company=company, product=product, description=f"{desc} · {ml}",
+                is_stock_tracked=False, tracking_type="none", is_active=True))
+            item = RestaurantMenuItem(company=company, description=f"{desc} · {ml}",
                                       preparation_minutes=prep, spice_level=spice, is_vegetarian=veg,
                                       is_featured=featured, is_available=True, is_quick=dish in data.QUICK,
                                       sort_order=position * 100 + order)
             item.image.name = _image_name(dish)
-            item.save()
-            _track(company, "dish", product)
-            made += 1
+            items.append(item)
+    Product.objects.bulk_create(products)
+    for product, item in zip(products, items):
+        item.product = product
+    RestaurantMenuItem.objects.bulk_create(items)
+    _track_all(company, "dish", products)
+    made = len(products)
 
     for group_name, spec in data.MODIFIERS.items():
         targets = [c for c in spec["categories"] if c in category_objs]
@@ -131,13 +148,17 @@ def install(company, user=None, *, staff=True, expenses=True):
         group = MenuModifierGroup.objects.create(company=company, name=group_name, is_required=spec["required"],
                                                  min_selections=0, max_selections=spec["max"])
         _track(company, "modifier_group", group)
-        for i, (option, extra) in enumerate(spec["options"]):
-            modifier = MenuModifier.objects.create(company=company, name=option, price_delta=_money(company, extra) if extra else 0)
-            _track(company, "modifier", modifier)
-            MenuModifierOption.objects.create(company=company, group=group, modifier=modifier, sort_order=i)
-        for item in RestaurantMenuItem.objects.for_company(company).filter(product__category__name__in=targets,
-                                                                          product__sku__startswith=SKU_PREFIX):
-            item.modifier_groups.add(group)
+        modifiers = MenuModifier.objects.bulk_create([
+            MenuModifier(company=company, name=option, price_delta=_money(company, extra) if extra else 0)
+            for option, extra in spec["options"]])
+        _track_all(company, "modifier", modifiers)
+        MenuModifierOption.objects.bulk_create([MenuModifierOption(company=company, group=group, modifier=m, sort_order=i)
+                                                for i, m in enumerate(modifiers)])
+        item_ids = RestaurantMenuItem.objects.for_company(company).filter(
+            product__category__name__in=targets, product__sku__startswith=SKU_PREFIX).values_list("id", flat=True)
+        link = RestaurantMenuItem.modifier_groups.through
+        link.objects.bulk_create([link(restaurantmenuitem_id=i, menumodifiergroup_id=group.pk) for i in item_ids],
+                                 ignore_conflicts=True)
 
     if not DiningTable.objects.for_company(company).exists():
         for area_name, prefix, how_many, seats in data.TABLES:
@@ -145,9 +166,9 @@ def install(company, user=None, *, staff=True, expenses=True):
             if area is None:
                 area = DiningArea.objects.create(company=company, name=area_name)
                 _track(company, "area", area)
-            for n in range(1, how_many + 1):
-                table = DiningTable.objects.create(company=company, area=area, name=f"{prefix}{n}", capacity=seats)
-                _track(company, "table", table)
+            tables = DiningTable.objects.bulk_create([DiningTable(company=company, area=area, name=f"{prefix}{n}", capacity=seats)
+                                                      for n in range(1, how_many + 1)])
+            _track_all(company, "table", tables)
 
     if staff:
         _install_staff(company)

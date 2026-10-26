@@ -152,7 +152,7 @@ button[type=submit].busy{opacity:.7;pointer-events:none}
   sel.addEventListener('change',sync);sync();
   const pw=document.getElementById('pw'),bar=document.getElementById('pwbar');
   pw.addEventListener('input',()=>{const v=pw.value;let s=0;if(v.length>=8)s++;if(v.length>=12)s++;if(/[A-Z]/.test(v)&&/[a-z]/.test(v))s++;if(/\d/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;bar.style.width=(s*20)+'%';bar.style.background=s<3?'#c0392b':s<4?'#d99a00':'#3b7be8'});
-  document.getElementById('signupForm').addEventListener('submit',e=>{if(!e.target.checkValidity()){return}document.getElementById('go').classList.add('busy');document.getElementById('go').textContent='Setting up your business…'});
+  document.getElementById('signupForm').addEventListener('submit',e=>{if(!e.target.checkValidity()){return}if(document.getElementById('go').classList.contains('busy')){e.preventDefault();return}document.getElementById('go').classList.add('busy');document.getElementById('go').textContent='Setting up your business…'});
 })();
 </script>
 </body>

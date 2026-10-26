@@ -1,4 +1,5 @@
 """Public website: landing page, pricing and self-service sign-up."""
+import logging
 from datetime import timedelta
 
 from django import forms
@@ -193,8 +194,13 @@ def _finish_signup(request, data):
     LoginAttempt.objects.create(identifier="signup", ip_address=account_services.client_ip(request), successful=True)
     try:
         user, company = create_trial_account(data=data)
-    except Exception as exc:
-        messages.error(request, f"We could not create your account: {exc}")
+    except Exception:
+        if get_user_model().objects.filter(email__iexact=data["email"]).exists():
+            # the button was pressed twice: the first press already made the account
+            messages.success(request, _("Your account is ready. Please sign in."))
+            return redirect("webapp:login")
+        logging.getLogger(__name__).exception("sign-up failed for %s", data.get("business_type"))
+        messages.error(request, _("We could not create your account. Please try again in a minute."))
         return None
     login(request, user, backend="django.contrib.auth.backends.ModelBackend")
     request.session["active_company_id"] = company.id

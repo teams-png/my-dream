@@ -163,3 +163,30 @@ def test_sms_with_twilio(client, settings, monkeypatch):
     page = client.post(reverse("webapp:signup"), _data(email="b@spice.test", phone="+97455551234"),
                        follow=True).content.decode()
     assert "could not send a code" in page
+
+
+def test_second_press_while_account_is_made_goes_to_sign_in(rf, settings):
+    """A slow sign-up tapped twice: the second request finds the account the first one made and sends the
+    person to sign in, instead of showing a database error."""
+    from django.contrib.messages.storage.fallback import FallbackStorage
+    from django.contrib.sessions.backends.db import SessionStore
+    from apps.webapp.public_views import _finish_signup
+    settings.RESTAURANT_STARTER_KIT = True
+    data = {"business_name": "Spice Garden", "business_type": "restaurant", "country": "India",
+            "full_name": "Anu Thomas", "email": "anu@spice.test", "phone": "", "password": "Tasty-Food-2026!"}
+
+    def request():
+        r = rf.post("/signup/")
+        r.session = SessionStore()
+        r._messages = FallbackStorage(r)
+        return r
+
+    assert _finish_signup(request(), dict(data)).status_code == 302
+    company = Company.objects.get(name="Spice Garden")
+    from apps.verticals.restaurant import starter_kit
+    assert starter_kit.counts(company)["dish"] > 100  # the Kerala menu came in with the bulk inserts
+    second = request()
+    response = _finish_signup(second, dict(data))
+    assert response.url == reverse("webapp:login")
+    assert [str(m) for m in second._messages] == ["Your account is ready. Please sign in."]
+    assert User.objects.filter(email="anu@spice.test").count() == 1

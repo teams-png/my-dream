@@ -29,7 +29,9 @@ def test_india_landing_and_signup_show_rupees(client):
     assert data["region"] == "India" and data["currency"] == "INR"
     assert {p["region"] for p in data["plans"]} == {"India"}
     assert data["website"]["India"] == {"website": 4999, "shop": 9999}
-    assert b"INR 0" in landing.content and data["tax"] == {"percent": "18", "label": "GST"}
+    assert b"INR 0" in landing.content and data["tax"] is None  # not registered for GST: no tax line
+    with override_settings(PLAN_TAX_PERCENT="18"):
+        assert client.get("/").context["pricing"]["tax"] == {"percent": "18", "label": "GST"}
     signup = client.get(reverse("webapp:signup"))
     assert signup.context["form"].initial["country"] == "India"
 
@@ -73,3 +75,7 @@ def test_gst_is_added_to_inr_plans_only(client, tenant_a):
     sub.plan = SubscriptionPlan.objects.filter(country="Global", tier="standard", max_users=3).first()
     sub.save()
     assert addons(sub)["tax"] == 0
+    sub.plan = plans_for("India", "boutique").get(max_users=3)
+    sub.save()
+    with override_settings(PLAN_TAX_PERCENT="0"):
+        assert (addons(sub)["tax"], addons(sub)["total"]) == (0, Decimal("7999"))

@@ -318,8 +318,8 @@ TRIAL_DELETE_AFTER_DAYS = env.int("TRIAL_DELETE_AFTER_DAYS", default=30)
 TRIAL_PURGE_GRACE_DAYS = env.int("TRIAL_PURGE_GRACE_DAYS", default=7)
 # Price list for new sign-ups: "India" (INR) or "Global" (QAR). See apps/subscriptions/pricing.py.
 PRICING_REGION = env("PRICING_REGION", default="India")
-# Tax added on top of INR plan prices (India GST). Set 0 if you aren't registered for GST.
-PLAN_TAX_PERCENT = env("PLAN_TAX_PERCENT", default="18")
+# Tax added on top of INR plan prices (India GST). 0 = not registered for GST: no tax line anywhere.
+PLAN_TAX_PERCENT = env("PLAN_TAX_PERCENT", default="0")
 PLAN_TAX_LABEL = env("PLAN_TAX_LABEL", default="GST")
 SUPPORT_WHATSAPP = env("SUPPORT_WHATSAPP", default="+91 98475 54224")  # WhatsApp and phone
 LEGAL_COMPANY_NAME = env("LEGAL_COMPANY_NAME", default="Ajwaaz")

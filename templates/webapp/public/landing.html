@@ -24,6 +24,12 @@ a{color:inherit;text-decoration:none}
 .nav-links{display:flex;gap:22px;margin-left:24px;font-weight:500;font-size:15px;color:var(--soft)}
 .nav-links a:hover{color:var(--ink)}
 .nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+.nav .wrap{max-width:1240px}.nav-links a,.nav-cta>a,.nav-cta>button,.nav-cta .btn{white-space:nowrap}
+.nav-cta>.btn,.nav-cta>a.btn{height:44px;padding-top:0;padding-bottom:0;display:inline-flex;align-items:center;box-sizing:border-box}
+.nav-cta [data-install-app].icon-only{width:44px;padding:0;justify-content:center;font-size:17px}
+.nav-cta .lang-switch label{height:44px;box-sizing:border-box;border-radius:12px}
+@media(max-width:1180px){.nav .wrap{gap:12px}.nav-links{gap:16px;margin-left:8px;font-size:14px}}
+@media(max-width:1060px){.nav-links a[href="#faq"],.nav-links a[href="#contact"]{display:none}}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:13px;font-weight:600;font-size:15px;transition:transform .2s var(--ease),box-shadow .2s,background .2s;cursor:pointer;border:0;font-family:inherit}
 .btn:active{transform:scale(.97)}
 .btn.primary{background:var(--brand);color:#fff;box-shadow:0 10px 24px rgba(26,95,208,.28)}
@@ -191,7 +197,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <header class="nav" id="nav"><div class="wrap">
   <a class="logo" href="{% url 'webapp:landing' %}"><i>✦</i>{% translate "BookPilot" %}</a>
   <nav class="nav-links"><a href="#features">{% translate "Features" %}</a><a href="#business">{% translate "Businesses" %}</a><a href="#pricing">{% translate "Pricing" %}</a><a href="{% url 'webapp:guide' %}">{% translate "User guide" %}</a><a href="#faq">{% translate "FAQ" %}</a><a href="#contact">{% translate "Contact" %}</a></nav>
-  <div class="nav-cta"><button class="btn ghost" type="button" data-install-app hidden>⬇ {% translate "Install app" %}</button>{% include "webapp/_language_switcher.html" %}<a class="btn ghost" href="{% url 'webapp:login' %}">{% translate "Sign in" %}</a>{% if signup_enabled %}<a class="btn primary" href="{% url 'webapp:signup' %}">{% translate "Start free trial" %}</a>{% endif %}</div>
+  <div class="nav-cta"><button class="btn ghost icon-only" type="button" data-install-app hidden title="{% translate 'Install app' %}" aria-label="{% translate 'Install app' %}">⬇</button>{% include "webapp/_language_switcher.html" %}<a class="btn ghost" href="{% url 'webapp:login' %}">{% translate "Sign in" %}</a>{% if signup_enabled %}<a class="btn primary" href="{% url 'webapp:signup' %}">{% translate "Start free trial" %}</a>{% endif %}</div>
   <button class="menu-btn" type="button" data-menu aria-controls="mnav" aria-expanded="false" aria-label="{% translate 'Open menu' %}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 </div>
 <div class="mnav" id="mnav">

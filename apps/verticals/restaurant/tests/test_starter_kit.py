@@ -116,3 +116,23 @@ def test_barcode_labels_work_without_the_barcode_package():
     product = Product.objects.for_company(company).get(sku="KL-chaya")
     response = client.get(reverse("webapp:product_barcode", args=[product.id]))
     assert response.status_code == 200 and response["Content-Type"] in ("image/png", "image/svg+xml")
+
+
+@override_settings(RESTAURANT_STARTER_KIT=True)
+def test_kit_pictures_are_static_files_and_a_dish_tap_returns_only_the_ticket():
+    """Speed: kit pictures come from /static/ (cached by the browser) instead of signed media URLs, and adding a
+    dish (an XHR request) does not rebuild the whole 100+ dish menu."""
+    company, client = _signup("restaurant", "k9@t.qa")
+    biryani = Product.objects.for_company(company).get(sku="KL-thalassery-chicken-biryani").restaurant_menu_item
+    assert biryani.image.url.startswith("/static/products/photos/")
+    drawing = RestaurantMenuItem.objects.for_company(company).exclude(image__startswith="restaurant/kerala/photo-").first()
+    assert drawing.image.url.startswith("/static/restaurant/kerala/")
+    table = DiningTable.objects.for_company(company).first()
+    order = services.create_order(company=company, channel="dine_in", table=table)
+    url = reverse("webapp:restaurant_order_detail", args=[order.id])
+    full = client.get(url).content.decode()
+    assert full.count('class="food-card') >= 100
+    r = client.post(url, {"action": "quick_add", "product_id": biryani.product_id}, HTTP_X_REQUESTED_WITH="XMLHttpRequest",
+                    follow=True)
+    light = r.content.decode()
+    assert 'class="cart-panel"' in light and biryani.product.name in light and 'class="food-card' not in light

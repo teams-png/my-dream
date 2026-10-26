@@ -10,8 +10,6 @@ from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
 from django.conf import settings
-from django.core.files.base import ContentFile
-from django.core.files.storage import default_storage
 from django.db import transaction
 from django.db.models import ProtectedError
 from django.utils import timezone
@@ -61,24 +59,16 @@ def _money(company, qar):
     return ((value / step).quantize(Decimal("1"), rounding=ROUND_HALF_UP) * step).quantize(Decimal("0.01"))
 
 
-_STORED = set()  # pictures already checked in media storage by this process (on S3/R2 each check is a web request)
-
-
 def _image_name(code):
-    """One shared copy of each picture in media storage; every restaurant's dish points at it."""
+    """The dish's picture name. Kit pictures are static files (see models.MenuImageFile), so nothing is copied
+    into media storage."""
     photo = PHOTO_DIR / f"{PHOTOS[code]}.webp" if code in PHOTOS else None
-    source, name = (photo, f"restaurant/kerala/photo-{code}.webp") if photo and photo.exists() else \
-        (ART_DIR / f"{code}.png", f"restaurant/kerala/{code}.png")
-    if name in _STORED:
-        return name
-    try:
-        if not default_storage.exists(name):
-            default_storage.save(name, ContentFile(source.read_bytes()))
-    except (OSError, FileNotFoundError):
-        log.warning("Kerala menu picture %s is missing", code)
-        return ""
-    _STORED.add(name)
-    return name
+    if photo and photo.exists():
+        return f"restaurant/kerala/photo-{code}.webp"
+    if (ART_DIR / f"{code}.png").exists():
+        return f"restaurant/kerala/{code}.png"
+    log.warning("Kerala menu picture %s is missing", code)
+    return ""
 
 
 def _track(company, kind, obj):

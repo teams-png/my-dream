@@ -10,6 +10,33 @@ from django.utils.translation import gettext_lazy as _
 
 from apps.tenants.models import TenantScopedModel
 
+KIT_IMAGE_PREFIX = "restaurant/kerala/"
+
+
+class MenuImageFile(models.fields.files.ImageFieldFile):
+    """Starter-kit dish pictures are the app's own static files: they are served from the static CDN path
+    (cached by the browser for a year) instead of one signed media URL — or a missing file — per dish."""
+
+    @property
+    def url(self):
+        if self.name and self.name.startswith(KIT_IMAGE_PREFIX):
+            from django.contrib.staticfiles.storage import staticfiles_storage
+            from .starter_kit import PHOTOS
+            base = self.name[len(KIT_IMAGE_PREFIX):]
+            code = base[len("photo-"):].rsplit(".", 1)[0] if base.startswith("photo-") else None
+            path = f"products/photos/{PHOTOS[code]}.webp" if code in PHOTOS else \
+                (None if code else KIT_IMAGE_PREFIX + base)
+            if path:
+                try:
+                    return staticfiles_storage.url(path)
+                except ValueError:  # not in the static manifest: fall back to the media copy
+                    pass
+        return super().url
+
+
+class MenuImageField(models.ImageField):
+    attr_class = MenuImageFile
+
 
 class DiningArea(TenantScopedModel):
     name = models.CharField(max_length=100)
@@ -88,7 +115,7 @@ class RestaurantMenuItem(TenantScopedModel):
         "inventory.Product", on_delete=models.CASCADE, related_name="restaurant_menu_item"
     )
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to="restaurant/menu/%Y/%m/", blank=True, validators=[validate_upload_file])
+    image = MenuImageField(upload_to="restaurant/menu/%Y/%m/", blank=True, validators=[validate_upload_file])
     preparation_minutes = models.PositiveSmallIntegerField(default=10)
     spice_level = models.CharField(max_length=10, choices=SPICE_LEVELS, default="none")
     is_vegetarian = models.BooleanField(default=False)

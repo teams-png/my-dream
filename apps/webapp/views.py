@@ -3560,13 +3560,21 @@ def restaurant_order_detail(request, order_id):
         except Exception as exc:
             messages.error(request, str(exc))
     merge_candidates = RestaurantOrder.objects.for_company(company).exclude(id=order.id).exclude(status__in=["paid", "cancelled"])
-    menu_items = RestaurantMenuItem.objects.for_company(company).select_related(
-        "product", "product__category"
-    ).prefetch_related("modifier_groups__options__modifier").filter(product__is_active=True).order_by("sort_order", "product__name")
-    from django.db.models import Min
-    categories = ProductCategory.objects.for_company(company).filter(
-        product__restaurant_menu_item__isnull=False
-    ).annotate(first=Min("product__restaurant_menu_item__sort_order")).order_by("first", "name")
+    from django.db.models import Min, Prefetch
+    order = RestaurantOrder.objects.for_company(company).prefetch_related(Prefetch(
+        "lines", queryset=RestaurantOrderLine.objects.for_company(company).select_related("product")
+        .prefetch_related("modifiers__modifier"))).get(pk=order.pk)
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        # a tap on a dish only swaps the ticket on the page: skip building the whole menu (100+ dishes) again
+        menu_items = RestaurantMenuItem.objects.none()
+        categories = ProductCategory.objects.none()
+    else:
+        menu_items = RestaurantMenuItem.objects.for_company(company).select_related(
+            "product", "product__category"
+        ).prefetch_related("modifier_groups__options__modifier").filter(product__is_active=True).order_by("sort_order", "product__name")
+        categories = ProductCategory.objects.for_company(company).filter(
+            product__restaurant_menu_item__isnull=False
+        ).annotate(first=Min("product__restaurant_menu_item__sort_order")).order_by("first", "name")
     profile = RestaurantProfile.objects.for_company(company).first()
     service_pct = profile.service_charge_percent if profile else Decimal("0")
     suggested_service = order.service_charge

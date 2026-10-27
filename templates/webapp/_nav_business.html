@@ -146,7 +146,7 @@
         <a class="nav-link {% if request.resolver_match.url_name == 'restaurant_deliveries' %}active{% endif %}" href="{% url 'webapp:restaurant_deliveries' %}"><span>🛵 {% translate "Deliveries" %}</span></a>
         <a class="nav-link" href="{% url 'webapp:restaurant_kitchen' %}"><span>{% translate "Kitchen / KOT" %}</span></a>
         <a class="nav-link" href="{% url 'webapp:product_list' %}"><span>{% translate "Menu & Ingredients" %}</span></a>
-        <a class="nav-link" href="{% url 'webapp:retail_reports' %}"><span>{% translate "Reports" %}</span></a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'restaurant_reports' %}active{% endif %}" href="{% url 'webapp:restaurant_reports' %}"><span>{% translate "Reports" %}</span></a>
       </details>
 
       {% elif bt_group == "retail" %}

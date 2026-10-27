@@ -136,3 +136,19 @@ def test_kit_pictures_are_static_files_and_a_dish_tap_returns_only_the_ticket():
                     follow=True)
     light = r.content.decode()
     assert 'class="cart-panel"' in light and biryani.product.name in light and 'class="food-card' not in light
+
+
+def test_kerala_menu_offer_only_for_a_new_menu_and_reports_link_is_the_restaurant_one():
+    company, client = _signup("restaurant", "k10@t.qa")
+    page = client.get(reverse("webapp:restaurant_setup")).content.decode()
+    assert "Load Kerala menu" in page  # empty menu: offer the kit
+    assert f'href="{reverse("webapp:restaurant_reports")}"' in page and reverse("webapp:retail_reports") not in page
+    from apps.inventory.models import ProductCategory, Unit
+    cat = ProductCategory.objects.create(company=company, name="Own dishes")
+    unit = Unit.objects.create(company=company, name="plate")
+    for i in range(5):
+        p = Product.objects.create(company=company, sku=f"OWN-{i}", name=f"Dish {i}", category=cat, unit=unit,
+                                   selling_price=10)
+        RestaurantMenuItem.objects.create(company=company, product=p)
+    page = client.get(reverse("webapp:restaurant_setup")).content.decode()
+    assert "Load Kerala menu" not in page and "Kerala starter menu is loaded" not in page

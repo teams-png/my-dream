@@ -3281,7 +3281,9 @@ def restaurant_setup(request):
 def _starter_summary(company):
     from apps.verticals.restaurant import starter_kit
     found = starter_kit.counts(company)
-    return {"loaded": bool(found), "dishes": found.get("dish", 0), "staff": found.get("employee", 0),
+    # the "load the Kerala menu" offer is for a new restaurant, not one that already has its own menu
+    offer = not found and RestaurantMenuItem.objects.for_company(company).count() < 5
+    return {"loaded": bool(found), "offer": offer, "dishes": found.get("dish", 0), "staff": found.get("employee", 0),
             "expenses": found.get("expense", 0), "tables": found.get("table", 0)}
 
 

@@ -101,6 +101,18 @@ def checkout(*, company, user, payload, sale_date=None):
                     raise PosError(f"IMEI {unit.imei} is no longer in stock.")
                 units.append((unit, unit_price))
             line = {"product": product, "quantity": quantity, "unit_price": unit_price}
+            serial_id = item.get("serial_id")
+            if product.tracking_type == "serial" and serial_id:
+                from apps.inventory.models import ProductSerial
+                if quantity != 1:
+                    raise PosError("Each serial-numbered item must be billed as quantity 1.")
+                serial = ProductSerial.objects.select_for_update().for_company(company).filter(
+                    id=serial_id if str(serial_id).isdigit() else 0, product=product).first()
+                if serial is None:
+                    raise PosError(f"Serial number for {product.name} not found.")
+                if serial.status != "in_stock":
+                    raise PosError(f"Serial {serial.serial_number} is no longer in stock.")
+                line["serial"] = serial
             pack_id = item.get("pack_id")
             if pack_id:
                 from apps.inventory.models import ProductPack

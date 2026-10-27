@@ -88,6 +88,20 @@
     <div class="acts"><button class="btn">{% translate "Save check-in" %}</button>{% if rec.saved_at %}<a class="btn btn-secondary" href="{% url 'webapp:job_print' job.id %}" target="_blank">🖨 {% translate "Print job card" %}</a>{% endif %}</div>
   </form>
 
+{% elif kind == "device" %}
+  <h3>💻 {% translate "Device check-in" %}</h3>
+  <form method="post" action="{% url 'webapp:job_action' job.id %}" class="jr">{% csrf_token %}<input type="hidden" name="do" value="record">
+    <label>{% translate "Received with the device" %}</label>
+    <div class="g">{% for key, label, got in items %}<label style="display:flex;gap:6px;align-items:center;font-weight:600"><input type="checkbox" name="item_{{ key }}" value="1"{% if got %} checked{% endif %} style="width:auto"> {{ label }}</label>{% endfor %}</div>
+    <label>{% translate "Condition at check-in" %}<textarea name="condition" rows="2" placeholder="{% translate 'e.g. Scratch on the lid, one key missing' %}">{{ rec.condition }}</textarea></label>
+    <div class="g">
+      <label>{% translate "Page counter (printers)" %}<input name="counter" value="{{ rec.counter }}" inputmode="numeric" placeholder="18450"></label>
+      <label>{% translate "Warranty" %}<select name="warranty"><option value="">—</option><option value="in"{% if rec.warranty == "in" %} selected{% endif %}>{% translate "In warranty" %}</option><option value="out"{% if rec.warranty == "out" %} selected{% endif %}>{% translate "Out of warranty" %}</option></select></label>
+    </div>
+    <label style="display:flex;gap:6px;align-items:center;font-weight:600"><input type="checkbox" name="data_ok" value="1"{% if rec.data_ok %} checked{% endif %} style="width:auto"> {% translate "Customer agreed: data on the device may be lost during the repair" %}</label>
+    <div class="acts"><button class="btn">{% translate "Save check-in" %}</button>{% if rec.saved_at %}<a class="btn btn-secondary" href="{% url 'webapp:job_print' job.id %}" target="_blank">🖨 {% translate "Print job card" %}</a>{% endif %}</div>
+  </form>
+
 {% elif kind == "laundry" %}
   <h3>🏷 {% translate "Garment tags" %} ({{ tags|length }})</h3>
   {% if tags %}<p style="margin:0 0 8px;font-size:14px">{% for t in tags|slice:":12" %}<b>{{ t.tag }}</b> {{ t.item }}{% if not forloop.last %} · {% endif %}{% endfor %}{% if tags|length > 12 %} …{% endif %}</p>

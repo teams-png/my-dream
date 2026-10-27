@@ -194,6 +194,8 @@ INDUSTRY_FEATURES = {
     "lab": {"diagnostic_laboratory"},
     # eye test (power for each eye), frame and lens order on a job card — also opens job cards for the optical shop
     "eye_test": {"optical_shop"},
+    # a service desk in a shop: repair job cards (laptops, printers, cartridge refills) with a device check-in
+    "shop_service": {"computer_shop", "electronics_store"},
     # garment tags and tag slips for every piece on the job card
     "laundry": {"laundry_dry_cleaning"},
     # site workers (manpower supply): workers at clients' sites, ID / passport expiry, site timesheet, monthly client bill
@@ -203,10 +205,13 @@ INDUSTRY_FEATURES = {
     "van_sales": {"wholesale_business", "trading_company", "manufacturing", "import_export", "bakery"},
     # yearly maintenance / service contracts (AMC) with visits planned by themselves and contract billing
     "contracts": {"ac_maintenance", "pest_control", "home_services", "repair_services", "cleaning_equipment_service",
-                  "electronics_repair", "computer_repair", "security_services", "cleaning_company",
+                  "electronics_repair", "computer_repair", "computer_shop", "security_services", "cleaning_company",
                   "maintenance_company", "landscaping_company", "facility_management", "it_services",
                   "property_management"},
 }
+
+# features that give a shop job cards (and the appointments calendar) next to its products
+SHOP_JOB_FEATURES = {"eye_test", "shop_service"}
 
 # (resource, resource plural, booking, default rate unit) for the bookings module
 BOOKING_TERMS = {
@@ -267,6 +272,8 @@ def business_profile(code):
         profile.update(records_label="Guests", work_label="Orders", provider_label="Kitchen / Staff")
     else:
         profile.update(records_label="Customers", work_label="Sales", provider_label="Suppliers")
+        if "shop_service" in profile["features"]:
+            profile["profile_type"] = "asset"
     return profile
 
 

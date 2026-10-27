@@ -55,8 +55,10 @@
     [/pharma|medic|health/i, "💊"], [/service|repair/i, "🛠️"]];
   const catIcon = name => (CAT_ICONS.find(([re]) => re.test(name)) || [0, "🏷️"])[1];
   const inCart = id => Object.values(cart).filter(i => i.id === id).reduce((s, i) => s + i.qty * (i.factor || 1), 0);
-  const available = p => (p.item_type === "handset" ? p.mobile_units.filter(u => !cart[p.id + "-" + u.id]).length : parseFloat(p.stock) - inCart(p.id));
-  const soldOut = p => (p.tracked || p.item_type === "handset") && available(p) <= 0;
+  // IMEI handsets and serial-numbered items (laptops, printers) are billed one unit at a time, picked from a list
+  const picked = p => p.item_type === "handset" || !!p.serial;
+  const available = p => (picked(p) ? p.mobile_units.filter(u => !cart[p.id + "-" + u.id]).length : parseFloat(p.stock) - inCart(p.id));
+  const soldOut = p => (p.tracked || picked(p)) && available(p) <= 0;
 
   function buildRail() {
     const counts = {};
@@ -95,7 +97,7 @@
   function refreshStock() {
     document.querySelectorAll(".prod-card").forEach(card => {
       const p = PRODUCTS.find(x => x.id === +card.dataset.id), pill = card.querySelector(".stock-pill");
-      const left = available(p), tracked = p.tracked || p.item_type === "handset";
+      const left = available(p), tracked = p.tracked || picked(p);
       card.classList.toggle("sold", soldOut(p));
       card.querySelector(".food-add").disabled = soldOut(p);
       pill.hidden = !tracked;
@@ -122,10 +124,11 @@
   /* ------------------------------------------------------------ cart */
   function chooseAndAdd(p, fromEl) {
     if (p.weighed) return openWeigh(p, fromEl);
-    if (p.item_type !== "handset" && (p.packs || []).length) return choosePack(p, fromEl);
-    if (p.item_type !== "handset") return addToCart(p, null, fromEl);
+    if (!picked(p) && (p.packs || []).length) return choosePack(p, fromEl);
+    if (!picked(p)) return addToCart(p, null, fromEl);
     const units = p.mobile_units.filter(u => !cart[p.id + "-" + u.id]);
-    if (!units.length) return toast(T.noImei, true);
+    if (!units.length) return toast(p.serial ? T.noSerial : T.noImei, true);
+    $("imeiTitle").textContent = p.serial ? T.pickSerial : T.pickImei;
     $("imeiProduct").textContent = label(p);
     $("imeiList").innerHTML = units.map(u => `<button class="pick-row" type="button" data-unit="${u.id}"><span><b>${esc(u.imei)}</b><br><small>${esc(u.condition || "")}${u.warranty_months ? " · " + u.warranty_months + "m" : ""}</small></span><span>＋</span></button>`).join("");
     $("imeiList").onclick = e => {
@@ -154,7 +157,8 @@
     if (!cart[key]) {
       cart[key] = { key, id: p.id, name: label(p) + (pack ? ` — ${pack.name} (${pack.factor})` : ""), sku: p.sku,
         price: parseFloat(pack ? pack.price : p.price), qty: 0, pack_id: pack ? pack.id : null, factor: pack ? parseFloat(pack.factor) : 1,
-        mobile_unit_id: unit ? unit.id : null, imei: unit ? unit.imei : null, weighed: !!p.weighed, unit: unitOf(p), isNew: true };
+        mobile_unit_id: unit && !p.serial ? unit.id : null, serial_id: unit && p.serial ? unit.id : null,
+        imei: unit ? unit.imei : null, imeiLabel: p.serial ? "S/N" : "IMEI", weighed: !!p.weighed, unit: unitOf(p), isNew: true };
     }
     if (pack && p.tracked && available(p) < cart[key].factor) toast(`${cart[key].name} · ${+available(p).toFixed(3)} ${T.inStock}`, true);
     cart[key].qty = unit ? 1 : (p.weighed ? round3(cart[key].qty + (qty || 0)) : cart[key].qty + (qty || 1));
@@ -232,7 +236,7 @@
         <span class="cart-ico" style="--h:${hue(i.name.split(" — ")[0])}">${esc(initials(i.name))}</span>
         <div class="line-mid">
           <div class="cart-name">${esc(i.name)}</div>
-          <div class="cart-note">${i.imei ? "IMEI " + esc(i.imei) : `<span class="each">${money(i.price)} ${i.weighed ? "/ " + esc(unitOf(i)) : T.each}</span>`}</div>
+          <div class="cart-note">${i.imei ? esc(i.imeiLabel || "IMEI") + " " + esc(i.imei) : `<span class="each">${money(i.price)} ${i.weighed ? "/ " + esc(unitOf(i)) : T.each}</span>`}</div>
           ${i.imei ? "" : i.weighed
             ? `<div class="row"><div class="cart-qty"><button class="qty-btn" type="button" data-step="${unitOf(i) === "kg" ? -0.1 : -1}" aria-label="−">−</button><input type="number" min="0" step="0.001" value="${unitOf(i) === "kg" ? round3(i.qty).toFixed(3) : round3(i.qty)}" aria-label="${esc(unitOf(i))}" data-qty style="width:62px"><button class="qty-btn" type="button" data-step="${unitOf(i) === "kg" ? 0.1 : 1}" aria-label="+">+</button></div><span class="each">${esc(unitOf(i))}</span></div>`
             : `<div class="row"><div class="cart-qty"><button class="qty-btn" type="button" data-step="-1" aria-label="−">−</button><input type="number" min="0" step="1" value="${i.qty}" aria-label="Qty" data-qty><button class="qty-btn" type="button" data-step="1" aria-label="+">+</button></div></div>`}
@@ -339,7 +343,7 @@
       openWeigh(exact);
       return true;
     }
-    if (exact.item_type === "handset") {
+    if (picked(exact)) {
       if (scannedUnit && cart[exact.id + "-" + scannedUnit.id]) scannedUnit = null;
       scannedUnit = scannedUnit || exact.mobile_units.find(u => !cart[exact.id + "-" + u.id]);
       if (!scannedUnit) { toast(T.noImei, true); searchInput.select(); return true; }
@@ -459,7 +463,7 @@
       coupon_code: online() ? (val("pos-coupon") || "").trim() : "",
       amount_paid: val("pos-amount-paid"), deposit_method: val("pos-deposit-method"),
       installment_count: val("pos-installment-count"), frequency: val("pos-frequency"), next_due_date: val("pos-next-due"),
-      lines: lines().map(i => ({ product_id: i.id, quantity: i.qty, unit_price: i.price, mobile_unit_id: i.mobile_unit_id, pack_id: i.pack_id || null, name: i.name })),
+      lines: lines().map(i => ({ product_id: i.id, quantity: i.qty, unit_price: i.price, mobile_unit_id: i.mobile_unit_id, serial_id: i.serial_id || null, pack_id: i.pack_id || null, name: i.name })),
     };
   }
 
@@ -630,7 +634,7 @@
     // what was sold is no longer on the shelf
     lines().forEach(i => {
       const p = PRODUCTS.find(x => x.id === i.id);
-      if (i.mobile_unit_id) p.mobile_units = p.mobile_units.filter(u => u.id !== i.mobile_unit_id);
+      if (i.mobile_unit_id || i.serial_id) p.mobile_units = p.mobile_units.filter(u => u.id !== (i.mobile_unit_id || i.serial_id));
       else p.stock = String(parseFloat(p.stock) - i.qty);
     });
     for (const k in cart) delete cart[k];

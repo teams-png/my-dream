@@ -90,7 +90,7 @@
     </tr>
     {% for line in lines %}
     <tr>
-      <td>{{ line.product.name }}{{ line.unit_label }}</td>
+      <td>{{ line.product.name }}{{ line.unit_label }}{% if line.serial %}<br><small>{% translate "S/N" %}: <b>{{ line.serial.serial_number }}</b>{% if line.product.attributes.warranty_months %} · {% translate "Warranty" %}: {{ line.product.attributes.warranty_months }} {% translate "months" %} ({% translate "from the bill date" %}){% endif %}</small>{% endif %}</td>
       <td class="num">{{ line.quantity|floatformat:"-3" }}</td>
       <td class="num">{{ line.unit_price }}</td>
       <td class="num">{{ line.line_total }}</td>

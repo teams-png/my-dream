@@ -44,7 +44,7 @@ def active_business_profile(request):
     company = getattr(request, "company", None)
     if company is None or not getattr(company, "business_type_id", None):
         return {"active_business_profile": {}, "active_extra_suites": [], "active_suite_names": []}
-    from apps.modules.catalog import ALIASES, business_profile
+    from apps.modules.catalog import ALIASES, SHOP_JOB_FEATURES, business_profile
     from .industry_access import company_features
     profile = business_profile(company.business_type.code)
     suites = [(ALIASES.get(code, code), name) for code, name in company.business_suites.filter(is_active=True)
@@ -59,7 +59,7 @@ def active_business_profile(request):
             names.append(name)
             extra = business_profile(code)
             key = _menu_key(code, extra["group"])
-            repeats = key in shown or (key == "retail" and products and "eye_test" not in extra["features"])
+            repeats = key in shown or (key == "retail" and products and not SHOP_JOB_FEATURES & set(extra["features"]))
             if repeats:
                 continue
             shown.add(key)

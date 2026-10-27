@@ -33,6 +33,13 @@ table{width:100%;border-collapse:collapse;margin-top:10px}th,td{border-bottom:1p
   {% if rec.belongings %}<div style="grid-column:1/-1"><span>{% translate "Things left in the vehicle" %}:</span> {{ rec.belongings }}</div>{% endif %}
   {% if rec.next_km or rec.next_date %}<div style="grid-column:1/-1"><span>{% translate "Next service" %}:</span> <b>{% if rec.next_km %}{{ rec.next_km }} km{% endif %}{% if rec.next_km and rec.next_date %} / {% endif %}{% if rec.next_date %}{{ rec.next_date }}{% endif %}</b></div>{% endif %}
 </div>{% endif %}
+{% if received or rec.condition or rec.counter or rec.warranty %}<div class="kv" style="border:1px solid #ccc;border-radius:8px;padding:8px 10px">
+  <div style="grid-column:1/-1"><span>{% translate "Received with the device" %}:</span> <b>{{ received|join:", "|default:"—" }}</b></div>
+  {% if rec.condition %}<div style="grid-column:1/-1"><span>{% translate "Condition at check-in" %}:</span> {{ rec.condition }}</div>{% endif %}
+  {% if rec.counter %}<div><span>{% translate "Page counter" %}:</span> <b>{{ rec.counter }}</b></div>{% endif %}
+  {% if rec.warranty %}<div><span>{% translate "Warranty" %}:</span> <b>{% if rec.warranty == "in" %}{% translate "In warranty" %}{% else %}{% translate "Out of warranty" %}{% endif %}</b></div>{% endif %}
+  {% if rec.data_ok %}<div style="grid-column:1/-1">✔ {% translate "Customer agreed: data on the device may be lost during the repair" %}</div>{% endif %}
+</div>{% endif %}
 <table><tr><th>{% translate "Item / work" %}</th><th class="n">{% translate "Qty" %}</th><th class="n">{% translate "Price" %}</th><th class="n">{% translate "Total" %}</th></tr>
 {% for l in lines %}<tr><td>{{ l.description }}</td><td class="n">{{ l.quantity|floatformat:"-3" }}</td><td class="n">{{ l.unit_price|floatformat:2 }}</td><td class="n">{{ l.total|floatformat:2 }}</td></tr>
 {% empty %}<tr><td colspan="4" style="height:120px;vertical-align:top;color:#777">{% translate "Work to be done / parts used:" %}</td></tr>{% endfor %}</table>

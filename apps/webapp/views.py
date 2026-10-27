@@ -4082,6 +4082,16 @@ def _pos_catalog(company):
         for unit in MobileUnit.objects.for_company(company).filter(status="in_stock").values(
                 "id", "product_id", "imei", "serial_number", "condition", "warranty_months"):
             handset_units.setdefault(unit.pop("product_id"), []).append(unit)
+    serial_units = {}
+    serial_products = {p.id: p for p in products if p.tracking_type == "serial"}
+    if serial_products:
+        from apps.inventory.models import ProductSerial
+        for s in ProductSerial.objects.for_company(company).filter(product_id__in=serial_products, status="in_stock") \
+                .order_by("serial_number").values("id", "product_id", "serial_number"):
+            attrs = serial_products[s["product_id"]].attributes or {}
+            serial_units.setdefault(s["product_id"], []).append({
+                "id": s["id"], "imei": s["serial_number"], "serial_number": "", "condition": "",
+                "warranty_months": attrs.get("warranty_months") or ""})
     catalog, categories = [], {}
     offers = _price_rules(company)
     from apps.webapp.industry_access import company_features
@@ -4091,12 +4101,13 @@ def _pos_catalog(company):
         gold_rates = current_rates(company)
     for p in products:
         item_type = (p.attributes or {}).get("item_type", "")
-        units = handset_units.get(p.id, []) if item_type == "handset" else []
+        serial = p.tracking_type == "serial"
+        units = handset_units.get(p.id, []) if item_type == "handset" else serial_units.get(p.id, []) if serial else []
         if p.category_id:
             categories[p.category_id] = p.category.name
         catalog.append({
             "id": p.id, "name": p.name, "sku": p.sku, "price": f"{p.selling_price:.2f}",
-            "stock": str(len(units) if item_type == "handset" else stock.get(p.id) or 0),
+            "stock": str(len(units) if item_type == "handset" or serial else stock.get(p.id) or 0), "serial": serial,
             "tracked": p.is_stock_tracked, "reorder": p.reorder_level,
             "category_id": p.category_id, "size": p.size, "colour": p.colour, "material": p.material,
             "design": p.design, "variant": p.variant_label, "item_type": item_type, "mobile_units": units,

@@ -64,13 +64,14 @@ def invoice_receipt_data(request, invoice_id):
     invoice = get_object_or_404(
         SalesInvoice.objects.for_company(request.company).select_related("customer"), id=invoice_id,
     )
-    lines = invoice.lines.select_related("product")
+    lines = invoice.lines.select_related("product", "serial")
     return JsonResponse({
         "kind": "receipt",
         "company": _header(request.company),
         "title": invoice.invoice_number,
         "meta": [invoice.date.strftime("%d %b %Y"), str(invoice.customer)],
-        "lines": [{"qty": _qty(l.quantity), "name": l.product.name + l.unit_label, "amount": _money(l.line_total), "extra": []} for l in lines],
+        "lines": [{"qty": _qty(l.quantity), "name": l.product.name + l.unit_label, "amount": _money(l.line_total),
+                   "extra": [f"S/N {l.serial.serial_number}"] if l.serial_id else []} for l in lines],
         "totals": [["Subtotal", _money(invoice.subtotal)]]
                   + ([["Discount", "-" + _money(invoice.discount_amount)]] if invoice.discount_amount else [])
                   + ([["Tax", _money(invoice.tax_amount)]] if invoice.tax_amount else []),

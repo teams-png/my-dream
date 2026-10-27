@@ -39,7 +39,7 @@ def invoice_from_token(token):
 
 
 def render_invoice_html(invoice, *, public_url="", pay=None):
-    lines = SalesInvoiceLine.objects.filter(invoice=invoice).select_related("product")
+    lines = SalesInvoiceLine.objects.filter(invoice=invoice).select_related("product", "serial")
     return render_to_string("webapp/invoice_pdf.html", {
         "company": invoice.company, "invoice": invoice, "lines": lines,
         "mobile_units": invoice.mobile_units.select_related("product").all(),

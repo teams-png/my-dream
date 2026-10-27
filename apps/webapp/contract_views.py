@@ -22,7 +22,19 @@ from .views import require_business_group
 
 
 def staff_view(view):
-    return login_required(require_business_group("service", "project")(view))
+    """Service and project businesses — and shops that run contracts (a computer shop's printer AMC)."""
+    from functools import wraps
+    from apps.modules.catalog import business_features
+    guarded = require_business_group("service", "project")(view)
+
+    @wraps(view)
+    def wrapped(request, *args, **kwargs):
+        company = getattr(request, "company", None)
+        if company is not None and company.business_type_id and \
+                "contracts" in business_features(company.business_type.code):
+            return view(request, *args, **kwargs)
+        return guarded(request, *args, **kwargs)
+    return login_required(wrapped)
 
 
 class ContractForm(forms.Form):

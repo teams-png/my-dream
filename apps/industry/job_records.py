@@ -6,6 +6,8 @@
 * laundry — every piece gets a tag number from the job's lines (print: tag slips)
 * vehicle — garage check-in: km reading, fuel, a check-list, body damage, things left in the car and the next
             service (km / date); shown on the job card print and the customer's status page
+* device  — computer / printer check-in: what came with it (charger, bag, cartridge …), its condition, the printer's
+            page counter, warranty and the customer's OK that data may be lost; shown on the job card print
 """
 import re
 from datetime import datetime, time, timedelta
@@ -23,6 +25,9 @@ FUEL_LEVELS = ("", "empty", "1/4", "1/2", "3/4", "full")
 VEHICLE_CHECKS = (("engine_oil", "Engine oil"), ("brakes", "Brakes"), ("tyres", "Tyres"), ("battery", "Battery"),
                   ("lights", "Lights"), ("ac", "AC"), ("coolant", "Coolant"), ("wipers", "Wipers"))
 CHECK_STATES = ("", "ok", "attention", "replaced")
+DEVICE_ITEMS = (("charger", "Charger / adapter"), ("bag", "Bag"), ("power_cable", "Power cable"),
+                ("usb_cable", "USB cable"), ("cartridge", "Cartridge / toner"), ("battery", "Battery"))
+WARRANTY = ("", "in", "out")
 MAX_ROWS = 25
 
 
@@ -35,10 +40,13 @@ def kind_for(company):
             return kind
     if company.business_type.code in VEHICLE_TYPES:
         return "vehicle"
+    if company.business_type.code in DEVICE_TYPES:
+        return "device"
     return None
 
 
 VEHICLE_TYPES = {"auto_garage"}
+DEVICE_TYPES = {"computer_shop", "electronics_store", "computer_repair", "electronics_repair"}
 
 
 def _txt(post, key, limit=500):
@@ -127,6 +135,13 @@ def save(job, post, kind):
                               "next_km": next_km, "next_date": rec["next_date"]}
         profile.details = details
         profile.save(update_fields=["details"])
+    elif kind == "device":
+        rec["items"] = [key for key, _label in DEVICE_ITEMS if post.get(f"item_{key}")]
+        rec["condition"] = _txt(post, "condition", 1000)
+        rec["counter"] = re.sub(r"[^0-9]", "", _txt(post, "counter", 12))
+        warranty = _txt(post, "warranty", 5)
+        rec["warranty"] = warranty if warranty in WARRANTY else ""
+        rec["data_ok"] = bool(post.get("data_ok"))
     else:
         raise ValidationError(_("Nothing to record for this business."))
     rec["saved_at"] = timezone.now().isoformat()
@@ -139,6 +154,12 @@ def vehicle_checks(rec):
     """[(label, state)] of the check-list, in order, for the form and the print."""
     checks = (rec or {}).get("checks") or {}
     return [(key, _(label), checks.get(key, "")) for key, label in VEHICLE_CHECKS]
+
+
+def device_items(rec):
+    """[(key, label, received)] of the things that came with the device."""
+    got = set((rec or {}).get("items") or [])
+    return [(key, _(label), key in got) for key, label in DEVICE_ITEMS]
 
 
 def previous_vehicle(job):

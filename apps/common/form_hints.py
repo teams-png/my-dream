@@ -73,13 +73,20 @@ SUBJECT_SAMPLES = {"vehicle": ("Maruti Swift VXi", "KL-57-A-1234"), "pet": ("Bru
                    "organization": ("Main office", "SITE-07")}
 
 
+# a closer example for some business types
+SUBJECT_SAMPLES_BY_TYPE = {"computer_shop": ("HP LaserJet Pro M126nw", "VNC3K12345"),
+                           "computer_repair": ("Dell Inspiron 15 3520", "SN-8H2K9L3"),
+                           "electronics_store": ("Samsung 55\" LED TV", "SN-0QK7H3")}
+
+
 def _subject_sample(name):
     company = _context.get()[0]
     if company is None or name not in ("subject_name", "identifier"):
         return None
     from apps.industry.jobs import profile_type
     try:
-        pair = SUBJECT_SAMPLES.get(profile_type(company))
+        pair = (SUBJECT_SAMPLES_BY_TYPE.get(company.business_type.code if company.business_type_id else "")
+                or SUBJECT_SAMPLES.get(profile_type(company)))
     except Exception:
         return None
     return pair and pair[0 if name == "subject_name" else 1]

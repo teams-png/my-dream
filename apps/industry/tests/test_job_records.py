@@ -119,3 +119,28 @@ def test_garage_new_job_examples_are_a_car_and_a_plate():
     company, owner, staff = _garage("r10@t.qa", kind="auto_garage")
     page = owner.get(reverse("webapp:service_case_add")).content.decode()
     assert "Maruti Swift VXi" in page and "KL-57-A-1234" in page and "MRN-10023" not in page
+
+
+def test_computer_shop_service_desk_device_check_in_and_amc():
+    company, owner, staff = _garage("r11@t.qa", kind="computer_shop")
+    home = owner.get(reverse("webapp:service_case_list")).content.decode()
+    assert "Service & repairs" in home and "Service contracts (AMC)" in home
+    assert owner.get(reverse("webapp:contract_list")).status_code == 200
+    page = owner.get(reverse("webapp:service_case_add")).content.decode()
+    assert "HP LaserJet Pro M126nw" in page
+    job = _job(company, owner, staff, subject_name="HP LaserJet 1020", identifier="VNC3K12345", title="Paper jam + refill")
+    page = owner.get(reverse("webapp:service_case_detail", args=[job.id])).content.decode()
+    assert "Device check-in" in page and "Cartridge / toner" in page
+    owner.post(reverse("webapp:job_action", args=[job.id]), {
+        "do": "record", "item_cartridge": "1", "item_power_cable": "1", "item_bogus": "1", "condition": "Top cover cracked",
+        "counter": "18,450", "warranty": "out", "data_ok": "1"})
+    job.refresh_from_db()
+    rec = job.record
+    assert rec["items"] == ["power_cable", "cartridge"] and rec["counter"] == "18450" and rec["warranty"] == "out"
+    assert rec["data_ok"] is True
+    card = owner.get(reverse("webapp:job_print", args=[job.id])).content.decode()
+    assert "Power cable, Cartridge / toner" in card and "Top cover cracked" in card and "Out of warranty" in card
+    # a plain shop still has no job cards
+    company2, owner2, staff2 = _garage("r12@t.qa", kind="clothing_store")
+    assert owner2.get(reverse("webapp:service_case_list")).status_code == 302
+    assert owner2.get(reverse("webapp:contract_list")).status_code == 302

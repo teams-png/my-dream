@@ -188,6 +188,7 @@ FLUENT = {
     "washing": "Basket/3D/basket_3d.png",
     "watch": "Watch/3D/watch_3d.png",
     "water": "Droplet/3D/droplet_3d.png",
+    "ink": "Droplet/3D/droplet_3d.png",
     "website": "Globe with meridians/3D/globe_with_meridians_3d.png",
     "wheelchair": "Manual wheelchair/3D/manual_wheelchair_3d.png",
     "wiper": "Cloud with rain/3D/cloud_with_rain_3d.png",

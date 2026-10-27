@@ -31,16 +31,16 @@ SUBJECT_LABELS = {"person": (_l("Patient / person"), _l("File no. / ID")), "stud
 
 
 def staff_view(view):
-    """Service, salon and project businesses — and shops with an eye-test desk (optical)."""
+    """Service, salon and project businesses — and shops with an eye-test or service desk (optical, computer shop)."""
     from functools import wraps
-    from apps.modules.catalog import business_features
+    from apps.modules.catalog import SHOP_JOB_FEATURES, business_features
     guarded = require_business_group("service", "saloon", "project")(view)
 
     @wraps(view)
     def wrapped(request, *args, **kwargs):
         company = getattr(request, "company", None)
         if company is not None and company.business_type_id and \
-                "eye_test" in business_features(company.business_type.code):
+                SHOP_JOB_FEATURES & business_features(company.business_type.code):
             return view(request, *args, **kwargs)
         return guarded(request, *args, **kwargs)
     return login_required(wrapped)
@@ -195,6 +195,8 @@ def job_detail(request, case_id):
         extra["checks"] = job_records.vehicle_checks(record)
         extra["fuel_levels"] = job_records.FUEL_LEVELS[1:]
         extra["prev_vehicle"] = job_records.previous_vehicle(job)
+    if kind == "device":
+        extra["items"] = job_records.device_items(record)
     return render(request, "webapp/jobs/detail.html", {
         "job": job, "lines": lines, "amount": svc.total(job), "currency": company.default_currency,
         "notes": job.case_notes.order_by("-date", "-id"), "status_link": link,
@@ -280,7 +282,8 @@ def job_print(request, case_id):
     return render(request, "webapp/jobs/print.html", {
         "job": job, "lines": job.lines.all(), "amount": svc.total(job), "currency": company.default_currency,
         "company": company, "labels": _labels(company), "status_link": svc.status_url(request, job),
-        "rec": rec, "checks": job_records.vehicle_checks(rec) if rec.get("checks") else []})
+        "rec": rec, "checks": job_records.vehicle_checks(rec) if rec.get("checks") else [],
+        "received": [label for _key, label, got in job_records.device_items(rec) if got] if kind == "device" else []})
 
 
 @staff_view

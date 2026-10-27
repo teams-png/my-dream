@@ -29,7 +29,7 @@ def test_platform_admin_ticks_extra_business_types(client, settings, tmp_path):
     nav, before = _sections(client.get(reverse("webapp:dashboard")).content.decode())
     assert "Mobile Shop" in before and reverse("webapp:saloon_appointment_list") not in nav
 
-    # the owner cannot open the platform page; a platform admin ticks Computer Shop and Saloon
+    # the owner cannot open the platform page; a platform admin ticks Home Appliances Store and Saloon
     url = reverse("webapp:platform_admin_manage_business_suites", args=[company.id])
     assert client.get(url).status_code in (302, 403)
     admin = User.objects.create_user(username="pa@bp.qa", email="pa@bp.qa", password="Pa-Pass-12345",
@@ -37,16 +37,16 @@ def test_platform_admin_ticks_extra_business_types(client, settings, tmp_path):
     pa = Client()
     pa.force_login(admin)
     page = pa.get(url).content.decode()
-    assert "Tick every business this client runs" in page and "Computer Shop" in page
-    ids = [BusinessType.objects.get(code=c).id for c in ("computer_shop", "saloon")]
+    assert "Tick every business this client runs" in page and "Home Appliances Store" in page
+    ids = [BusinessType.objects.get(code=c).id for c in ("home_appliances_store", "saloon")]
     assert pa.post(url, {"business_types": ids}).status_code == 302
 
     html = client.get(reverse("webapp:dashboard")).content.decode()
     nav, after = _sections(html)
-    assert "Mobile Shop · Computer Shop · Saloon / Barber Shop" in html or (
-        "Computer Shop" in nav and "Saloon" in nav)
+    assert "Mobile Shop · Home Appliances Store · Saloon / Barber Shop" in html or (
+        "Home Appliances Store" in nav and "Saloon" in nav)
     assert reverse("webapp:saloon_appointment_list") in nav            # the salon's own menu joins
-    assert after.count("Mobile Shop") == 1 and "Computer Shop" not in after  # same products: no repeated section
+    assert after.count("Mobile Shop") == 1 and "Home Appliances Store" not in after  # same products: no repeated section
     assert client.get(reverse("webapp:saloon_appointment_list")).status_code == 200
     assert '<details class="nav-section" >' in nav  # the extra suite's section starts folded to keep the menu short
     assert 'class="nav-link nav-bill' not in nav       # the overview has its own big New bill button
@@ -56,3 +56,9 @@ def test_platform_admin_ticks_extra_business_types(client, settings, tmp_path):
     pa.post(url, {"business_types": [ids[0]]})
     nav, _ = _sections(client.get(reverse("webapp:dashboard")).content.decode())
     assert reverse("webapp:saloon_appointment_list") not in nav
+
+
+def test_extra_computer_shop_brings_its_service_desk_menu():
+    """A shop with a service desk (computer shop: repairs and AMC) keeps its own section as an extra suite."""
+    from apps.modules.catalog import SHOP_JOB_FEATURES, business_features
+    assert SHOP_JOB_FEATURES & business_features("computer_shop")

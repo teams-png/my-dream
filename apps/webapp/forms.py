@@ -430,7 +430,7 @@ class MobileBulkIMEIForm(forms.Form):
     purchase_price = forms.DecimalField(max_digits=12, decimal_places=2)
     warranty_months = forms.IntegerField(min_value=0, initial=12)
     condition = forms.ChoiceField(choices=MobileUnit.CONDITION, initial="new")
-    imeis = forms.CharField(widget=forms.Textarea(attrs={"rows": 10}), help_text="One IMEI per line. Optional serial: IMEI,SERIAL")
+    imeis = forms.CharField(label=_l("IMEI numbers"), widget=forms.Textarea(attrs={"rows": 10}), help_text="One IMEI per line. Optional serial: IMEI,SERIAL")
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)

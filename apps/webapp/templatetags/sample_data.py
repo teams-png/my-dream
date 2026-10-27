@@ -100,3 +100,13 @@ def product_picture(context, product):
     from apps.inventory.pictures import picture_url
     company = getattr(context.get("request"), "company", None)
     return picture_url(product, company.business_type.code if company else "")
+
+
+HIDDEN_ATTRIBUTES = {"item_type", "sold_by_weight"}  # internal switches, already shown by the category / unit
+
+
+@register.filter
+def attribute_pairs(attributes):
+    """A product's extra details for a list: readable names ("Model number"), internal switches left out."""
+    return [(str(k).replace("_", " ").capitalize(), v) for k, v in (attributes or {}).items()
+            if k not in HIDDEN_ATTRIBUTES and v not in ("", None)]

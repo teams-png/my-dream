@@ -39,14 +39,14 @@
       <a class="btn btn-secondary" href="{% url 'webapp:product_delete' p.id %}">Delete</a>
     </td>
   </tr>
-  {% if p.attributes %}
+  {% with pairs=p.attributes|attribute_pairs %}{% if pairs %}
   <tr>
     <td></td>
     <td></td><td colspan="6" style="font-size:12.5px; color:var(--ink-soft); border-top:none; padding-top:0;">
-      {% for k, v in p.attributes.items %}{{ k }}: {{ v }}{% if not forloop.last %} · {% endif %}{% endfor %}
+      {% for k, v in pairs %}{{ k }}: {{ v }}{% if not forloop.last %} · {% endif %}{% endfor %}
     </td>
   </tr>
-  {% endif %}
+  {% endif %}{% endwith %}
   {% for v in p.variants.all %}
   <tr style="background:var(--paper);">
     <td><input type="checkbox" class="bulk-check" value="{{ v.id }}" aria-label="{{ v.sku }}"></td>

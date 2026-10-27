@@ -56,6 +56,7 @@ def test_full_cash_delivery_and_handover():
     url = reverse("webapp:delivery_rider_page", args=[rider.token])
     html = page.get(url).content.decode()
     assert order.order_number in html and "Villa 12" in html and "google.com/maps" in html and "Delivery charge" not in html
+    assert "no-referrer" not in html  # it would send Origin: null and the buttons would fail the CSRF check
     page.post(url, {"order_id": order.id, "do": "out"})
     order.refresh_from_db()
     assert order.delivery_status == "out" and order.dispatched_at

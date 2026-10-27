@@ -1,6 +1,6 @@
 {% load i18n %}{% get_current_language as LANG %}{% get_current_language_bidi as RTL %}<!doctype html>
 <html lang="{{ LANG }}" dir="{% if RTL %}rtl{% else %}ltr{% endif %}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="same-origin">
 <title>{% translate "My deliveries" %} · {{ company.name }}</title>
 <style>
 :root{--ink:#172033;--soft:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--card:#fff;--go:#16a34a;--warn:#b45309}

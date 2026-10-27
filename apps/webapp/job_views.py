@@ -191,6 +191,10 @@ def job_detail(request, case_id):
         extra["eye_fields"] = job_records.EYE_FIELDS
     if kind == "laundry":
         extra["tags"] = job_records.laundry_tags(job)
+    if kind == "vehicle":
+        extra["checks"] = job_records.vehicle_checks(record)
+        extra["fuel_levels"] = job_records.FUEL_LEVELS[1:]
+        extra["prev_vehicle"] = job_records.previous_vehicle(job)
     return render(request, "webapp/jobs/detail.html", {
         "job": job, "lines": lines, "amount": svc.total(job), "currency": company.default_currency,
         "notes": job.case_notes.order_by("-date", "-id"), "status_link": link,
@@ -272,9 +276,11 @@ def job_print(request, case_id):
             "job": job, "doc": doc, "rec": job.record or {}, "company": company, "labels": _labels(company),
             "tags": job_records.laundry_tags(job) if doc == "tags" else [], "eye_fields": job_records.EYE_FIELDS,
             "staff": job.assigned_staff})
+    rec = job.record or {}
     return render(request, "webapp/jobs/print.html", {
         "job": job, "lines": job.lines.all(), "amount": svc.total(job), "currency": company.default_currency,
-        "company": company, "labels": _labels(company), "status_link": svc.status_url(request, job)})
+        "company": company, "labels": _labels(company), "status_link": svc.status_url(request, job),
+        "rec": rec, "checks": job_records.vehicle_checks(rec) if rec.get("checks") else []})
 
 
 @staff_view
@@ -364,7 +370,7 @@ def status_page(request, token):
     order = {"open": 0, "waiting": 1, "in_progress": 1, "ready": 2, "completed": 3}
     return render(request, "webapp/jobs/status.html", {
         "job": job, "company": job.company, "steps": steps, "at": order.get(job.status, 0),
-        "amount": svc.total(job), "currency": job.company.default_currency})
+        "amount": svc.total(job), "currency": job.company.default_currency, "rec": job.record or {}})
 
 
 def from_online_booking(req, user):

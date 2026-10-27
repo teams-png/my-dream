@@ -8233,7 +8233,7 @@ msgstr ""
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Needs attention"
-msgstr "تحتاج مراجعة"
+msgstr "يحتاج متابعة"
 
 #: templates/webapp/pos_offline_sales.html
 msgid "Synced"
@@ -18578,3 +18578,103 @@ msgstr "تعذّر إنشاء حسابك. يرجى المحاولة بعد دق�
 #: apps/modules/catalog.py
 msgid "Your account is ready. Please sign in."
 msgstr "حسابك جاهز. يرجى تسجيل الدخول."
+
+#: apps/modules/catalog.py
+msgid "AC"
+msgstr "المكيف"
+
+#: apps/modules/catalog.py
+msgid "Battery"
+msgstr "البطارية"
+
+#: apps/modules/catalog.py
+msgid "Body damage / scratches at check-in"
+msgstr "أضرار / خدوش عند الاستلام"
+
+#: apps/modules/catalog.py
+msgid "Body damage at check-in"
+msgstr "أضرار عند الاستلام"
+
+#: apps/modules/catalog.py
+msgid "Brakes"
+msgstr "الفرامل"
+
+#: apps/modules/catalog.py
+msgid "Check"
+msgstr "الفحص"
+
+#: apps/modules/catalog.py
+msgid "Coolant"
+msgstr "سائل التبريد"
+
+#: apps/modules/catalog.py
+msgid "Empty"
+msgstr "فارغ"
+
+#: apps/modules/catalog.py
+msgid "Engine oil"
+msgstr "زيت المحرك"
+
+#: apps/modules/catalog.py
+msgid "Full"
+msgstr "ممتلئ"
+
+#: apps/modules/catalog.py
+msgid "KM reading"
+msgstr "قراءة العداد (كم)"
+
+#: apps/modules/catalog.py
+msgid "Last visit"
+msgstr "الزيارة السابقة"
+
+#: apps/modules/catalog.py
+msgid "Lights"
+msgstr "الأضواء"
+
+#: apps/modules/catalog.py
+msgid "Next service"
+msgstr "الصيانة القادمة"
+
+#: apps/modules/catalog.py
+msgid "Next service at (km)"
+msgstr "الصيانة القادمة عند (كم)"
+
+#: apps/modules/catalog.py
+msgid "Next service date"
+msgstr "تاريخ الصيانة القادمة"
+
+#: apps/modules/catalog.py
+msgid "Replaced"
+msgstr "تم الاستبدال"
+
+#: apps/modules/catalog.py
+msgid "Save check-in"
+msgstr "حفظ الاستلام"
+
+#: apps/modules/catalog.py
+msgid "Things left in the vehicle"
+msgstr "أغراض داخل المركبة"
+
+#: apps/modules/catalog.py
+msgid "Tyres"
+msgstr "الإطارات"
+
+#: apps/modules/catalog.py
+msgid "Vehicle check-in"
+msgstr "استلام المركبة"
+
+#: apps/modules/catalog.py
+msgid "Wipers"
+msgstr "المساحات"
+
+#: apps/modules/catalog.py
+msgid "e.g. Scratch on the rear bumper"
+msgstr "مثال: خدش في الصدام الخلفي"
+
+#: apps/modules/catalog.py
+msgid "e.g. Spare wheel, jack, umbrella"
+msgstr "مثال: إطار احتياطي، رافعة، مظلة"
+
+#: apps/modules/catalog.py
+msgid "next service due at"
+msgstr "الصيانة القادمة عند"

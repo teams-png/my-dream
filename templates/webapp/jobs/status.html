@@ -27,6 +27,7 @@ h1{margin:6px 0 2px;font-size:20px}.shop{color:var(--soft)}
   {% if job.ready_by and job.status != "completed" and job.status != "ready" %}<p>⏰ {% translate "Expected ready by" %} {{ job.ready_by|date:"D j M, H:i" }}</p>{% endif %}
   {% if job.status == "ready" %}<p><b>{% translate "Ready — you can collect it now." %}</b></p>{% if amount %}<p class="amt">{{ currency }} {{ amount|floatformat:2 }}</p>{% endif %}{% endif %}
   {% endif %}
+  {% if rec.next_km or rec.next_date %}<p>🔧 {% translate "Next service" %}: <b>{% if rec.next_km %}{{ rec.next_km }} km{% endif %}{% if rec.next_km and rec.next_date %} / {% endif %}{% if rec.next_date %}{{ rec.next_date }}{% endif %}</b></p>{% endif %}
   {% if company.phone %}<p><a href="tel:{{ company.phone }}">📞 {{ company.phone }}</a></p>{% endif %}
   <p class="shop"><small>{% translate "This page refreshes by itself." %}</small></p>
 </main></body></html>

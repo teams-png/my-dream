@@ -94,6 +94,8 @@ def test_appointment_clash_calendar_and_phone_pages():
     url = reverse("webapp:technician_page", args=[link.token])
     html = tech.get(url).content.decode()
     assert "Oil change" in html and "Toyota Camry" in html and "Labour" not in html  # no prices on the phone page
+    # "no-referrer" makes the browser send Origin: null on the buttons and Django refuses them as CSRF
+    assert 'content="same-origin"' in html and "no-referrer" not in html
     job = ServiceCase.objects.get(company=company, title__startswith="Oil")
     tech.post(url, {"job_id": job.id, "do": "in_progress"})
     tech.post(url, {"job_id": job.id, "do": "note", "notes": "Brake pads worn — need new set"})

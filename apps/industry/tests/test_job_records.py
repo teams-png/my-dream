@@ -81,10 +81,41 @@ def test_optical_eye_test_and_laundry_tags():
     assert [t["tag"] for t in tags] == [f"{lj.number}-{i}" for i in range(1, 5)] and tags[3]["item"] == "Thobe – dry clean"
     sheet = owner2.get(reverse("webapp:job_print", args=[lj.id]) + "?doc=tags").content.decode()
     assert f"{lj.number}-4" in sheet
-    # a garage has no special record
-    company3, owner3, staff3 = _garage("r5@t.qa")
+    # a repair service has no special record (a garage has the vehicle check-in, tested below)
+    company3, owner3, staff3 = _garage("r5@t.qa", kind="repair_services")
     assert job_records.kind_for(company3) is None
     gj = _job(company3, owner3, staff3)
     owner3.post(reverse("webapp:job_action", args=[gj.id]), {"do": "record", "v_bp": "1"})
     gj.refresh_from_db()
     assert gj.record == {}
+
+
+def test_garage_vehicle_check_in_print_and_status_page():
+    company, owner, staff = _garage("r9@t.qa", kind="auto_garage")
+    job = _job(company, owner, staff, subject_name="Swift VXi", identifier="KL-57-A-1234", title="Full service")
+    page = owner.get(reverse("webapp:service_case_detail", args=[job.id])).content.decode()
+    assert "Vehicle check-in" in page and "KM reading" in page and "Engine oil" in page
+    nd = (timezone.localdate() + timedelta(days=120)).isoformat()
+    owner.post(reverse("webapp:job_action", args=[job.id]), {
+        "do": "record", "km_in": "45,200", "fuel": "1/2", "chk_engine_oil": "replaced", "chk_brakes": "attention",
+        "chk_tyres": "ok", "chk_ac": "bogus", "damage": "Scratch on the rear bumper", "belongings": "Spare wheel, jack",
+        "next_km": "50200", "next_date": nd})
+    job.refresh_from_db()
+    rec = job.record
+    assert rec["km_in"] == "45200" and rec["fuel"] == "1/2" and rec["next_km"] == "50200" and rec["next_date"] == nd
+    assert rec["checks"]["engine_oil"] == "replaced" and rec["checks"]["brakes"] == "attention" and rec["checks"]["ac"] == ""
+    assert job.profile.details["vehicle"]["km"] == "45200" and job.profile.details["vehicle"]["next_km"] == "50200"
+    card = owner.get(reverse("webapp:job_print", args=[job.id])).content.decode()
+    assert "45200" in card and "Needs attention" in card and "Scratch on the rear bumper" in card and "50200 km" in card
+    status = Client().get(reverse("webapp:job_status_page", args=[job.token])).content.decode()
+    assert "Next service" in status and "50200 km" in status
+    # the next visit of the same car shows the last reading
+    nxt = _job(company, owner, staff, subject_name="Swift VXi", identifier="KL-57-A-1234", title="Brake check")
+    page = owner.get(reverse("webapp:service_case_detail", args=[nxt.id])).content.decode()
+    assert "Last visit" in page and "45200 km" in page
+
+
+def test_garage_new_job_examples_are_a_car_and_a_plate():
+    company, owner, staff = _garage("r10@t.qa", kind="auto_garage")
+    page = owner.get(reverse("webapp:service_case_add")).content.decode()
+    assert "Maruti Swift VXi" in page and "KL-57-A-1234" in page and "MRN-10023" not in page

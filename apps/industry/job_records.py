@@ -4,6 +4,8 @@
 * lab     — test results with unit and normal range; out-of-range values are flagged (print: report)
 * eye     — eye test (power for right and left eye), PD, frame and lens (print: eye prescription / order)
 * laundry — every piece gets a tag number from the job's lines (print: tag slips)
+* vehicle — garage check-in: km reading, fuel, a check-list, body damage, things left in the car and the next
+            service (km / date); shown on the job card print and the customer's status page
 """
 import re
 from datetime import datetime, time, timedelta
@@ -17,6 +19,10 @@ from apps.modules.catalog import business_features
 
 VITALS = ("bp", "pulse", "temp", "weight", "spo2", "sugar")
 EYE_FIELDS = ("sph", "cyl", "axis", "add", "va")
+FUEL_LEVELS = ("", "empty", "1/4", "1/2", "3/4", "full")
+VEHICLE_CHECKS = (("engine_oil", "Engine oil"), ("brakes", "Brakes"), ("tyres", "Tyres"), ("battery", "Battery"),
+                  ("lights", "Lights"), ("ac", "AC"), ("coolant", "Coolant"), ("wipers", "Wipers"))
+CHECK_STATES = ("", "ok", "attention", "replaced")
 MAX_ROWS = 25
 
 
@@ -27,7 +33,12 @@ def kind_for(company):
     for kind, feat in (("clinic", "clinic"), ("lab", "lab"), ("eye", "eye_test"), ("laundry", "laundry")):
         if feat in feats:
             return kind
+    if company.business_type.code in VEHICLE_TYPES:
+        return "vehicle"
     return None
+
+
+VEHICLE_TYPES = {"auto_garage"}
 
 
 def _txt(post, key, limit=500):
@@ -96,12 +107,48 @@ def save(job, post, kind):
         details["eye_rx"] = {"date": timezone.localdate().isoformat(), "job": job.number, **rec["eye"], "pd": rec["pd"]}
         profile.details = details
         profile.save(update_fields=["details"])
+    elif kind == "vehicle":
+        km = re.sub(r"[^0-9]", "", _txt(post, "km_in", 12))
+        next_km = re.sub(r"[^0-9]", "", _txt(post, "next_km", 12))
+        fuel = _txt(post, "fuel", 10)
+        rec["km_in"] = km
+        rec["fuel"] = fuel if fuel in FUEL_LEVELS else ""
+        rec["checks"] = {key: (post.get(f"chk_{key}") if post.get(f"chk_{key}") in CHECK_STATES else "")
+                         for key, _label in VEHICLE_CHECKS}
+        rec["damage"] = _txt(post, "damage", 1000)
+        rec["belongings"] = _txt(post, "belongings", 500)
+        rec["next_km"] = next_km
+        nd = parse_date(post.get("next_date") or "")
+        rec["next_date"] = nd.isoformat() if nd else ""
+        # the car's last reading and next service stay on its record for the next visit and the reminders
+        profile = job.profile
+        details = dict(profile.details or {})
+        details["vehicle"] = {"date": timezone.localdate().isoformat(), "job": job.number, "km": km,
+                              "next_km": next_km, "next_date": rec["next_date"]}
+        profile.details = details
+        profile.save(update_fields=["details"])
     else:
         raise ValidationError(_("Nothing to record for this business."))
     rec["saved_at"] = timezone.now().isoformat()
     job.record = rec
     job.save(update_fields=["record"])
     return rec
+
+
+def vehicle_checks(rec):
+    """[(label, state)] of the check-list, in order, for the form and the print."""
+    checks = (rec or {}).get("checks") or {}
+    return [(key, _(label), checks.get(key, "")) for key, label in VEHICLE_CHECKS]
+
+
+def previous_vehicle(job):
+    """The car's last visit before this job (its km reading and what was due next)."""
+    from apps.verticals.saloon.models import ServiceCase
+    for other in (ServiceCase.objects.for_company(job.company).filter(profile=job.profile)
+                  .exclude(pk=job.pk).order_by("-opened_date", "-id")[:10]):
+        if (other.record or {}).get("km_in"):
+            return other
+    return None
 
 
 def previous_eye(job):

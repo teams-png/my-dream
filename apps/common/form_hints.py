@@ -53,6 +53,8 @@ def client_samples():
     """Everything the browser-side helper needs to add examples to hand-written forms."""
     product, category, brand, sku, description = PRODUCT_SAMPLES[family()]
     fields = {**FIELD_SAMPLES, "product_name": product, "new_category": category, "new_brand": brand, "sku": sku}
+    for key in ("subject_name", "identifier"):
+        fields[key] = _subject_sample(key) or fields.get(key)
     name = name_for_path()
     if name:
         fields["name"] = name
@@ -65,7 +67,28 @@ def _model_name(form):
     return model.__name__.lower() if model else ""
 
 
+# what a job card is about, by the business's profile type: (subject example, identifier example)
+SUBJECT_SAMPLES = {"vehicle": ("Maruti Swift VXi", "KL-57-A-1234"), "pet": ("Bruno (Labrador)", "MC-985112"),
+                   "asset": ("Split AC 1.5 ton", "SN-AC-20931"), "student": ("Aisha Mohammed", "STU-0042"),
+                   "organization": ("Main office", "SITE-07")}
+
+
+def _subject_sample(name):
+    company = _context.get()[0]
+    if company is None or name not in ("subject_name", "identifier"):
+        return None
+    from apps.industry.jobs import profile_type
+    try:
+        pair = SUBJECT_SAMPLES.get(profile_type(company))
+    except Exception:
+        return None
+    return pair and pair[0 if name == "subject_name" else 1]
+
+
 def sample_for(form, name):
+    subject = _subject_sample(name)
+    if subject:
+        return subject
     model = _model_name(form)
     product, category, brand, sku, description = PRODUCT_SAMPLES[family()]
     if name in ("new_category", "category_name") or (model == "productcategory" and name == "name"):

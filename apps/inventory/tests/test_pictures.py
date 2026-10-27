@@ -38,6 +38,10 @@ def test_names_pick_sensible_pictures():
     assert pick("Head massage") == "head_massage" and pick("Hot stone massage") == "stone" and pick("Foot massage") == "foot_massage"
     assert pick("Clean shave") == "shave" and pick("Bridal makeup") == "bridal" and pick("Body scrub") == "scrub"
     assert pick("Facial – 5 sessions") == "facial" and pick("Hair spa") == "head_massage"
+    # grocery: weights and pack words never pick an unrelated picture
+    assert pick("Wheat atta 5 kg", "Rice & grains") == "rice" and pick("Matta rice 5 kg") == "rice"
+    assert pick("Coconut oil 1 L", "Cooking oil") == "oil" and pick("Toothpaste 150 g", "Personal care") == "tooth"
+    assert pick("LKG admission") == "course"
 
 
 def test_ladies_salons_get_the_womens_photo(tmp_path, monkeypatch):

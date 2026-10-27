@@ -3142,6 +3142,8 @@ def retail_reports(request):
             .order_by("-units_sold")[:8]
         ),
     }
+    # size / colour columns only for shops that sell sizes and colours (not a grocery or a hardware shop)
+    context["uses_sizes"] = Product.objects.for_company(company).exclude(size="", colour="").exists()
     from apps.modules.catalog import ALIASES
     code = company.business_type.code if company.business_type_id else ""
     code = ALIASES.get(code, code)

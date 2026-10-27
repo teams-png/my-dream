@@ -30,9 +30,9 @@
 <h2 style="font-size:16px; margin-bottom:10px;">Top-selling products</h2>
 {% if top_products %}
 <table>
-  <tr><th>{% translate "Product" %}</th>{% if not attribute_reports %}<th>Size</th><th>Colour</th>{% endif %}<th>Units sold</th><th>Revenue</th></tr>
+  <tr><th>{% translate "Product" %}</th>{% if not attribute_reports and uses_sizes %}<th>Size</th><th>Colour</th>{% endif %}<th>Units sold</th><th>Revenue</th></tr>
   {% for p in top_products %}
-  <tr><td>{{ p.product__name }}{% if p.product__variant_label %} — {{ p.product__variant_label }}{% endif %}</td>{% if not attribute_reports %}<td>{{ p.product__size|default:"—" }}</td><td>{{ p.product__colour|default:"—" }}</td>{% endif %}<td>{{ p.units_sold }}</td><td>{{ p.revenue }}</td></tr>
+  <tr><td>{{ p.product__name }}{% if p.product__variant_label %} — {{ p.product__variant_label }}{% endif %}</td>{% if not attribute_reports and uses_sizes %}<td>{{ p.product__size|default:"—" }}</td><td>{{ p.product__colour|default:"—" }}</td>{% endif %}<td>{{ p.units_sold }}</td><td>{{ p.revenue }}</td></tr>
   {% endfor %}
 </table>
 {% else %}
@@ -47,10 +47,10 @@
   {% endfor %}
 </div>
 {% else %}
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;">
+<div style="display:grid;grid-template-columns:repeat({% if uses_sizes %}3{% else %}1{% endif %},1fr);gap:16px;margin-top:24px;">
   <div><h2 style="font-size:16px;">Top categories</h2><table><tr><th>Category</th><th>Units</th></tr>{% for p in top_categories %}<tr><td>{{ p.product__category__name|default:"Uncategorised" }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No data</td></tr>{% endfor %}</table></div>
-  <div><h2 style="font-size:16px;">Top sizes</h2><table><tr><th>Size</th><th>Units</th></tr>{% for p in top_sizes %}<tr><td>{{ p.product__size }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No size data</td></tr>{% endfor %}</table></div>
-  <div><h2 style="font-size:16px;">Top colours</h2><table><tr><th>Colour</th><th>Units</th></tr>{% for p in top_colours %}<tr><td>{{ p.product__colour }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No colour data</td></tr>{% endfor %}</table></div>
+  {% if uses_sizes %}<div><h2 style="font-size:16px;">Top sizes</h2><table><tr><th>Size</th><th>Units</th></tr>{% for p in top_sizes %}<tr><td>{{ p.product__size }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No size data</td></tr>{% endfor %}</table></div>
+  <div><h2 style="font-size:16px;">Top colours</h2><table><tr><th>Colour</th><th>Units</th></tr>{% for p in top_colours %}<tr><td>{{ p.product__colour }}</td><td>{{ p.units_sold }}</td></tr>{% empty %}<tr><td colspan="2">No colour data</td></tr>{% endfor %}</table></div>{% endif %}
 </div>
 {% endif %}
 {% endblock %}

@@ -64,8 +64,8 @@ ART = [
     ("shrimp", "🍤", "prawn prawns shrimp prawn_curry"),
     # food & grocery
     ("milk", "🥛", "milk dairy yogurt laban"), ("bread", "🍞", "bread bun loaf"), ("cake", "🎂", "cake"),
-    ("croissant", "🥐", "croissant pastry puff"), ("cookies", "🍪", "cookies biscuit"), ("rice", "🍚", "rice basmati grain"),
-    ("oil", "🫒", "oil olive sunflower ghee"), ("sugar", "🧂", "sugar salt spice masala"), ("tea", "🍵", "tea chai karak sulaimani"),
+    ("croissant", "🥐", "croissant pastry puff"), ("cookies", "🍪", "cookies biscuit"), ("rice", "🍚", "rice basmati grain atta flour maida rava"),
+    ("oil", "🫒", "oil olive sunflower ghee coconut"), ("sugar", "🧂", "sugar salt spice masala"), ("tea", "🍵", "tea chai karak sulaimani"),
     ("banana", "🍌", "banana"), ("apple", "🍎", "apple fruit fruits"), ("tomato", "🍅", "tomato vegetables vegetable"),
     ("onion", "🧅", "onion garlic"), ("fish", "🐟", "fish kingfish seafood"), ("chicken", "🍗", "chicken poultry"),
     ("meat", "🥩", "mutton beef meat lamb cutting"), ("water", "💧", "water"),
@@ -74,7 +74,7 @@ ART = [
     # health
     ("medicine", "💊", "tablet tablets medicine paracetamol capsule vitamins vitamin pain relief refill"),
     ("syrup", "🧪", "syrup cough lab test cbc lipid hba1c biochemistry haematology"), ("thermometer", "🌡️", "thermometer oximeter blood_pressure blood_test"),
-    ("doctor", "🩺", "consultation doctor clinic specialist assessment physiotherapy nurse nursing dressing elderly"), ("tooth", "🦷", "tooth teeth dental scaling filling root canal"),
+    ("doctor", "🩺", "consultation doctor clinic specialist assessment physiotherapy nurse nursing dressing elderly"), ("tooth", "🦷", "tooth teeth toothpaste toothbrush dental scaling filling root canal"),
     ("wheelchair", "🦽", "wheelchair mobility"), ("pet", "🐾", "pet dog cat collar grooming vaccination veterinary"),
     # sports & fitness
     ("gym", "🏋️", "gym dumbbell weights membership personal training workout fitness"), ("football", "⚽", "football soccer"),
@@ -98,7 +98,7 @@ ART = [
     ("food_service", "🍽️", "breakfast buffet catering"), ("transport", "🚚", "pickup delivery truck trip transport moving move courier logistics packing"),
     ("plane", "✈️", "ticket visa holiday travel air_ticket"), ("document", "📄", "document attestation contract drafting legal law paperwork registration legal_consultation"),
     ("insurance", "🛡️", "insurance motor health"), ("bug", "🐜", "pest termite pest_control"),
-    ("course", "🎓", "course class batch english grade maths physics lesson lessons toddler kg admission exam study"),
+    ("course", "🎓", "course class batch english grade maths physics lesson lessons toddler lkg ukg admission exam study"),
     ("driving", "🚦", "driving manual automatic file opening"), ("house", "🏠", "flat villa apartment rent tenancy property shop g1"),
     ("website", "🌐", "website hosting web"), ("code", "💻", "software development it support network"),
     ("megaphone", "📣", "campaign social media ads marketing advertising"), ("chart", "📊", "audit bookkeeping accounting vat tax business_plan"),

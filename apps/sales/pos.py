@@ -143,6 +143,15 @@ def checkout(*, company, user, payload, sale_date=None):
                 raise PosError("Staff member not found.")
             invoice.served_by = staff
             invoice.save(update_fields=["served_by"])
+        appointment_id = payload.get("appointment_id")
+        if appointment_id and str(appointment_id).isdigit():
+            # billed from an appointment: it is done now (and the stylist's commission is recorded)
+            from apps.verticals.saloon.models import Appointment as SaloonAppointment
+            from apps.verticals.saloon.services import complete_appointment
+            appt = SaloonAppointment.objects.select_for_update().for_company(company).filter(
+                id=appointment_id, status="booked").first()
+            if appt is not None:
+                complete_appointment(appt)
         deferred = payment_method in {"credit", "installment"}
         amount_paid = invoice.total
         if deferred:

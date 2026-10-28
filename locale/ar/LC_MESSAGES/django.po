@@ -979,7 +979,7 @@ msgstr "الإيرادات والمصروفات"
 
 #: templates/webapp/_overview_charts.html
 msgid "Income"
-msgstr "الإيرادات"
+msgstr "الدخل"
 
 #: templates/webapp/_overview_charts.html
 msgid "Expense"
@@ -18758,3 +18758,63 @@ msgstr "اختر الرقم التسلسلي"
 #: apps/modules/catalog.py
 msgid "from the bill date"
 msgstr "من تاريخ الفاتورة"
+
+#: apps/modules/catalog.py
+msgid "Appointment booked. Bill it from the list after the service."
+msgstr "تم حجز الموعد. أصدر الفاتورة من القائمة بعد الخدمة."
+
+#: apps/modules/catalog.py
+msgid "Appointments done"
+msgstr "المواعيد المنجزة"
+
+#: apps/modules/catalog.py
+msgid "Cancelled / no-show"
+msgstr "ملغاة / لم يحضر"
+
+#: apps/modules/catalog.py
+msgid "Commission"
+msgstr "العمولة"
+
+#: apps/modules/catalog.py
+msgid ""
+"Hi %(name)s, a reminder of your %(service)s at %(shop)s on %(when)s. See "
+"you!"
+msgstr ""
+"مرحباً %(name)s، تذكير بموعد %(service)s في %(shop)s يوم %(when)s. نراك "
+"قريباً!"
+
+#: apps/modules/catalog.py
+msgid "Income by service"
+msgstr "الدخل حسب الخدمة"
+
+#: apps/modules/catalog.py
+msgid "Income this month"
+msgstr "دخل هذا الشهر"
+
+#: apps/modules/catalog.py
+msgid "No appointments yet."
+msgstr "لا مواعيد بعد."
+
+#: apps/modules/catalog.py
+msgid "No services billed this month yet."
+msgstr "لم تُصدر فواتير خدمات هذا الشهر بعد."
+
+#: apps/modules/catalog.py
+msgid "Staff: bills, total and commission"
+msgstr "الموظفون: الفواتير والإجمالي والعمولة"
+
+#: apps/modules/catalog.py
+msgid "Still booked"
+msgstr "ما زالت محجوزة"
+
+#: apps/modules/catalog.py
+msgid "Stylist"
+msgstr "المصفف"
+
+#: apps/modules/catalog.py
+msgid "Times"
+msgstr "مرات"
+
+#: apps/modules/catalog.py
+msgid "Upcoming"
+msgstr "القادمة"

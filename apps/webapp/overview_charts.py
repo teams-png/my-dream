@@ -125,6 +125,6 @@ def build(company, today=None):
             "payLabels": [str(r["method"]).replace("_", " ").title() for r in methods],
             "payValues": num(r["t"] for r in methods),
         },
-        "top_items": [{"name": r["product__name"], "amount": r["amount"] or ZERO, "qty": r["qty"] or 0,
+        "top_items": [{"name": r["product__name"].split(" — ")[-1], "amount": r["amount"] or ZERO, "qty": r["qty"] or 0,
                        "pct": round(float((r["amount"] or 0) / (top_items[0]["amount"] or 1) * 100))} for r in top_items],
     }

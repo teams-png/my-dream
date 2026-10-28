@@ -1,36 +1,33 @@
 {% extends "base.html" %}
-{% block title %}Reports{% endblock %}
-{% block heading %}Reports{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Reports" %}{% endblock %}
+{% block heading %}{% translate "Reports" %}{% endblock %}
 {% block content %}
-<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
-  <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Booked</div>
-    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ booked_count }}</div>
-  </div>
-  <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Completed</div>
-    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ completed_count }}</div>
-  </div>
-  <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Cancelled/No-show</div>
-    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ cancelled_count }}</div>
-  </div>
-  <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Revenue</div>
-    <div style="font-size:24px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
-  </div>
+<p style="margin:0 0 14px;color:var(--ink-soft)">{{ month|date:"F Y" }}</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px">
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px">{% translate "Income this month" %}</div><div style="font-size:24px;font-weight:700;margin-top:6px">{{ currency }} {{ revenue|floatformat:2 }}</div><small>{{ bill_count }} {% translate "bills" %}</small></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px">{% translate "Appointments done" %}</div><div style="font-size:24px;font-weight:700;margin-top:6px">{{ completed_count }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px">{% translate "Still booked" %}</div><div style="font-size:24px;font-weight:700;margin-top:6px">{{ booked_count }}</div></div>
+  <div class="card"><div style="color:var(--ink-soft);font-size:13px">{% translate "Cancelled / no-show" %}</div><div style="font-size:24px;font-weight:700;margin-top:6px">{{ cancelled_count }}</div></div>
 </div>
 
-<h2 style="font-size:16px; margin-bottom:10px;">Revenue by service</h2>
-{% if by_service %}
+<h2 style="font-size:16px;margin-bottom:10px">{% translate "Staff: bills, total and commission" %}</h2>
+{% if by_staff %}
 <table>
-  <tr><th>Service</th><th>Completed</th><th>Revenue</th></tr>
-  {% for row in by_service %}
-  <tr><td>{{ row.service__name }}</td><td>{{ row.count }}</td><td>{{ row.revenue }}</td></tr>
-  {% endfor %}
+  <tr><th>{% translate "Staff" %}</th><th>{% translate "Bills" %}</th><th>{% translate "Total" %}</th><th>{% translate "Commission" %}</th></tr>
+  {% for row in by_staff %}<tr><td><b>{{ row.name }}</b></td><td>{{ row.bills }}</td><td>{{ currency }} {{ row.total|floatformat:2 }}</td><td>{{ currency }} {{ row.commission|floatformat:2 }}</td></tr>{% endfor %}
 </table>
 {% else %}
-<div class="card empty">No completed appointments yet.</div>
+<div class="card empty">{% translate "Choose “Done by” on the Billing screen to see each staff member's work here." %}</div>
 {% endif %}
-{% include "webapp/_staff_billing.html" %}
+
+<h2 style="font-size:16px;margin:24px 0 10px">{% translate "Income by service" %}</h2>
+{% if by_service %}
+<table>
+  <tr><th>{% translate "Service" %}</th><th>{% translate "Times" %}</th><th>{% translate "Income" %}</th></tr>
+  {% for row in by_service %}<tr><td>{{ row.name }}</td><td>{{ row.count|floatformat:"-3" }}</td><td>{{ currency }} {{ row.revenue|floatformat:2 }}</td></tr>{% endfor %}
+</table>
+{% else %}
+<div class="card empty">{% translate "No services billed this month yet." %}</div>
+{% endif %}
 {% endblock %}

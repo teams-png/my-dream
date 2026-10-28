@@ -116,6 +116,8 @@ def _salon(company, code, today, money):
                      "tone": "ok" if a.status == "completed" else "bad" if a.status == "no_show" else "",
                      "action_url": reverse(done_url, args=[a.id]) + "?next=overview" if a.status == "booked" else "",
                      "action_label": "✓ " + _("Done")})
+        if code == "saloon" and a.status == "booked":  # bill it: the Billing screen opens with this service and stylist
+            rows[-1].update(bill_url=reverse("webapp:pos") + f"?appt={a.id}", bill_label="💳 " + _("Bill"))
     left = sum(1 for a in todays if a.status == "booked")
     done = sum(1 for a in todays if a.status == "completed")
     kpi = _kpi(_("Appointments today"), len(rows), reverse(list_url),

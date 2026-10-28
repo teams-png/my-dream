@@ -2357,12 +2357,24 @@ def saloon_service_delete(request, service_id):
 @login_required
 def saloon_appointment_list(request):
     company = request.company
-    appts = (
-        SaloonAppointment.objects.for_company(company).select_related("customer", "service", "stylist")
-        .order_by("-scheduled_at")
-        if company else []
-    )
-    return render(request, "webapp/saloon/appointment_list.html", {"appointments": appts})
+    if company is None:
+        return render(request, "webapp/no_company.html")
+    show = request.GET.get("show", "today")
+    today = timezone.localdate()
+    qs = SaloonAppointment.objects.for_company(company).select_related("customer", "service", "stylist")
+    if show == "today":
+        qs = qs.filter(scheduled_at__date=today).order_by("scheduled_at")
+    elif show == "upcoming":
+        qs = qs.filter(scheduled_at__date__gt=today, status="booked").order_by("scheduled_at")
+    else:
+        show = "all"
+        qs = qs.order_by("-scheduled_at")
+    appts = list(qs[:300])
+    for a in appts:
+        a.wa_text = _("Hi %(name)s, a reminder of your %(service)s at %(shop)s on %(when)s. See you!") % {
+            "name": a.customer.name, "service": a.service.name, "shop": company.name,
+            "when": timezone.localtime(a.scheduled_at).strftime("%d %b, %I:%M %p")}
+    return render(request, "webapp/saloon/appointment_list.html", {"appointments": appts, "show": show})
 
 
 @login_required
@@ -2376,9 +2388,9 @@ def saloon_appointment_book(request):
                     company=company, user=request.user, customer=form.cleaned_data["customer"], service=form.cleaned_data["service"],
                     stylist=form.cleaned_data["stylist"], scheduled_at=form.cleaned_data["scheduled_at"],
                     warehouse=_default_warehouse(company),
-                    commission_rate_percent=form.cleaned_data["commission_rate_percent"] or 0,
+                    commission_rate_percent=form.cleaned_data["commission_rate_percent"] or 0, invoice=False,
                 )
-                messages.success(request, "Appointment booked.")
+                messages.success(request, _("Appointment booked. Bill it from the list after the service."))
                 return redirect("webapp:saloon_appointment_list")
             except Exception as exc:
                 messages.error(request, f"Couldn't book: {exc}")
@@ -2412,16 +2424,33 @@ def saloon_appointment_cancel(request, appointment_id):
 
 @login_required
 def saloon_reports(request):
+    """This month: what the bills brought in by service and by staff (with commission), and the appointments."""
     company = request.company
     if company is None:
         return render(request, "webapp/no_company.html")
-    appts = SaloonAppointment.objects.for_company(company)
-    completed = appts.filter(status="completed")
+    from apps.employees.models import Commission
+    from apps.sales.models import SalesInvoice, SalesInvoiceLine
+    today = timezone.localdate()
+    start = today.replace(day=1)
+    appts = SaloonAppointment.objects.for_company(company).filter(scheduled_at__date__gte=start, scheduled_at__date__lte=today)
+    bills = SalesInvoice.objects.for_company(company).filter(date__gte=start, date__lte=today).exclude(status="void")
+    lines = SalesInvoiceLine.objects.filter(invoice__in=bills, product__saloon_service__isnull=False)
+    by_service = [{"name": r["product__saloon_service__name"], "count": r["count"], "revenue": r["revenue"] or 0}
+                  for r in lines.values("product__saloon_service__name").annotate(
+                      count=Sum("quantity"), revenue=Sum("line_total")).order_by("-revenue")]
+    commission = dict(Commission.objects.for_company(company).filter(date__gte=start, date__lte=today)
+                      .values("employee").annotate(t=Sum("amount")).values_list("employee", "t"))
+    by_staff = [{"name": r["served_by__name"], "bills": r["bills"], "total": r["total"] or 0,
+                 "commission": commission.get(r["served_by"]) or 0}
+                for r in bills.filter(served_by__isnull=False).values("served_by", "served_by__name")
+                .annotate(bills=Count("id"), total=Sum("total")).order_by("-total")]
     context = {
+        "month": start, "currency": company.default_currency,
         "booked_count": appts.filter(status="booked").count(),
-        "completed_count": completed.count(),
-        "revenue": completed.aggregate(total=Sum("price"))["total"] or 0,
-        "by_service": completed.values("service__name").annotate(count=Count("id"), revenue=Sum("price")).order_by("-revenue"),
+        "completed_count": appts.filter(status="completed").count(),
+        "cancelled_count": appts.filter(status__in=("cancelled", "no_show")).count(),
+        "revenue": bills.aggregate(t=Sum("total"))["t"] or 0, "bill_count": bills.count(),
+        "by_service": by_service, "by_staff": by_staff,
     }
     return render(request, "webapp/saloon/reports.html", context)
 
@@ -4161,14 +4190,21 @@ def pos_view(request):
     role = getattr(request, "role", None)
     show_tour = request.GET.get("tour") == "1" or (
         role is not None and role.name == "Owner" and "tour_done" not in milestones(company).milestones)
+    appointment = None
+    if service_billing and str(request.GET.get("appt", "")).isdigit():
+        appt = SaloonAppointment.objects.for_company(company).select_related("service", "customer").filter(
+            id=request.GET["appt"], status="booked").first()
+        if appt is not None and appt.service.product_id:
+            appointment = {"id": appt.id, "product_id": appt.service.product_id, "price": f"{appt.price:.2f}",
+                           "customer_id": appt.customer_id, "staff_id": appt.stylist_id}
     return render(request, "webapp/pos.html", {
-        "service_billing": service_billing, "staff": staff, "show_tour": show_tour,
+        "service_billing": service_billing, "staff": staff, "show_tour": show_tour and appointment is None,
         "pos_data": {
             "products": catalog, "categories": categories,
             "company": {"name": company.name, "address": company.address, "phone": company.phone,
                         "currency": company.default_currency, "vat_number": getattr(company, "vat_number", "")},
             "cashier": request.user.get_full_name() or request.user.email or request.user.username,
-            "scale": _scale_settings(company),
+            "scale": _scale_settings(company), "appointment": appointment,
         },
         "customers": Customer.objects.for_company(company).filter(is_active=True).order_by("name"),
         "branches": branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True)).order_by("name"),

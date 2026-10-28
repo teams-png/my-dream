@@ -11,6 +11,7 @@
   const $ = id => document.getElementById(id);
   const cart = {};
   let activeCat = "all", clientId = null, lastSale = null, syncing = false;
+  let appointmentId = DATA.appointment ? DATA.appointment.id : null;  // billing a booked appointment
 
   /* ------------------------------------------------------------ helpers */
   function round2(v) { const x = v * 100, f = Math.floor(x + 1e-9), d = x - f; if (Math.abs(d - 0.5) < 1e-7) return (f % 2 === 0 ? f : f + 1) / 100; return Math.round(x) / 100; }
@@ -458,7 +459,7 @@
     return {
       client_id: clientId || (clientId = uuid()),
       customer_id: val("pos-customer") || null,
-      warehouse_id: val("pos-branch"), staff_id: val("pos-staff") || null,
+      warehouse_id: val("pos-branch"), staff_id: val("pos-staff") || null, appointment_id: appointmentId,
       payment_method: method,
       coupon_code: online() ? (val("pos-coupon") || "").trim() : "",
       amount_paid: val("pos-amount-paid"), deposit_method: val("pos-deposit-method"),
@@ -638,6 +639,7 @@
       else p.stock = String(parseFloat(p.stock) - i.qty);
     });
     for (const k in cart) delete cart[k];
+    appointmentId = null;
     if ($("pos-coupon")) $("pos-coupon").value = "";
     $("pos-customer").value = "";
     document.body.classList.remove("ticket-open");
@@ -663,6 +665,12 @@
 
   buildRail();
   buildGrid();
+  if (DATA.appointment) {  // opened from an appointment: its service, customer and stylist are filled in
+    const a = DATA.appointment, p = PRODUCTS.find(x => x.id === a.product_id);
+    if (p) { addToCart(p, null, null); const line = cart[String(p.id)]; if (line) line.price = parseFloat(a.price); }
+    if ($("pos-customer")) $("pos-customer").value = String(a.customer_id);
+    if ($("pos-staff")) $("pos-staff").value = String(a.staff_id);
+  }
   renderCart();
   renderHeldCount();
   netState();

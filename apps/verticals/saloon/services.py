@@ -67,9 +67,10 @@ def create_service_package(*, company, name, service, session_count, price, cate
 @transaction.atomic
 def book_appointment(
     *, company, user, customer, service, stylist, scheduled_at, warehouse, price=None,
-    commission_rate_percent=Decimal("0"), customer_package=None,
+    commission_rate_percent=Decimal("0"), customer_package=None, invoice=True,
 ):
-    """Walk-in: invoices immediately at booking time. Package-covered: no invoice here (already paid at purchase)."""
+    """Walk-in: invoices immediately at booking time. Package-covered: no invoice here (already paid at purchase).
+    ``invoice=False`` books it to be paid after the service, from the Billing screen (the web app's way)."""
     if isinstance(scheduled_at, str):
         parsed = parse_datetime(scheduled_at)
         if parsed is None:
@@ -79,7 +80,7 @@ def book_appointment(
     if customer_package is not None:
         if customer_package.sessions_remaining < 1:
             raise ValueError("This package has no sessions remaining.")
-    else:
+    elif invoice:
         if service.product_id is None:
             raise ValueError(
                 "This SaloonService has no linked Product — create services via "

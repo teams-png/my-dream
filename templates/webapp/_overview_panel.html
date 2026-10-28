@@ -7,6 +7,7 @@
     {% if r.since %}<span class="ov-timer{% if r.stopped %} stopped{% endif %}" data-since="{{ r.since }}" data-target="{{ r.target }}" title="{% translate 'Target' %}: {{ r.target }} min"><b>--:--</b><i><i></i></i></span>{% endif %}
     {% if r.badge %}<span class="ov-tag {{ r.tone }}">{{ r.badge }}</span>{% endif %}
     {% if r.amount is not None and r.amount != "" %}<span class="ov-amount">{{ r.amount|floatformat:2 }}</span>{% endif %}
+    {% if r.bill_url %}<a class="btn" href="{{ r.bill_url }}">{{ r.bill_label }}</a>{% endif %}
     {% if r.action_url %}<a class="btn btn-secondary" href="{{ r.action_url }}">{{ r.action_label }}</a>{% endif %}
   </div>
   {% empty %}

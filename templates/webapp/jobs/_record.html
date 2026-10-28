@@ -102,6 +102,25 @@
     <div class="acts"><button class="btn">{% translate "Save check-in" %}</button>{% if rec.saved_at %}<a class="btn btn-secondary" href="{% url 'webapp:job_print' job.id %}" target="_blank">🖨 {% translate "Print job card" %}</a>{% endif %}</div>
   </form>
 
+{% elif kind == "cake" %}
+  <h3>🎂 {% translate "Cake details" %}</h3>
+  <form method="post" action="{% url 'webapp:job_action' job.id %}" class="jr">{% csrf_token %}<input type="hidden" name="do" value="record">
+    <div class="g">
+      <label>{% translate "Flavour" %}<input name="flavour" value="{{ rec.flavour }}" placeholder="{% translate 'e.g. Chocolate truffle' %}"></label>
+      <label>{% translate "Weight (kg)" %}<input name="weight_kg" value="{{ rec.weight_kg }}" inputmode="decimal" placeholder="1.5"></label>
+      <label>{% translate "Shape" %}<select name="shape"><option value="">—</option>{% for s in shapes %}<option value="{{ s }}"{% if rec.shape == s %} selected{% endif %}>{% if s == "round" %}{% translate "Round" %}{% elif s == "square" %}{% translate "Square" %}{% elif s == "heart" %}{% translate "Heart" %}{% elif s == "photo" %}{% translate "Photo cake" %}{% else %}{% translate "Tier cake" %}{% endif %}</option>{% endfor %}</select></label>
+    </div>
+    <label style="display:flex;gap:6px;align-items:center;font-weight:600"><input type="checkbox" name="eggless" value="1"{% if rec.eggless %} checked{% endif %} style="width:auto"> {% translate "Eggless" %}</label>
+    <label>{% translate "Message on the cake" %}<input name="message" value="{{ rec.message }}" placeholder="{% translate 'e.g. Happy Birthday Ammu' %}"></label>
+    <label>{% translate "Design / notes" %}<textarea name="design" rows="2" placeholder="{% translate 'e.g. Pink and white, unicorn topper' %}">{{ rec.design }}</textarea></label>
+    {% if rec.advance %}<p style="margin:0;font-weight:700">💰 {% translate "Advance paid" %}: {{ rec.advance }} ({{ rec.advance_method }})</p>
+    {% else %}<div class="g">
+      <label>{% translate "Advance paid" %}<input name="advance" inputmode="decimal" placeholder="500"></label>
+      <label>{% translate "Paid by" %}<select name="advance_method"><option value="cash">{% translate "Cash" %}</option><option value="card">{% translate "Card" %}</option><option value="bank">{% translate "UPI / bank" %}</option></select></label>
+    </div>{% endif %}
+    <div class="acts"><button class="btn">{% translate "Save order" %}</button>{% if rec.saved_at %}<a class="btn btn-secondary" href="{% url 'webapp:job_print' job.id %}" target="_blank">🖨 {% translate "Print order slip" %}</a>{% endif %}</div>
+  </form>
+
 {% elif kind == "laundry" %}
   <h3>🏷 {% translate "Garment tags" %} ({{ tags|length }})</h3>
   {% if tags %}<p style="margin:0 0 8px;font-size:14px">{% for t in tags|slice:":12" %}<b>{{ t.tag }}</b> {{ t.item }}{% if not forloop.last %} · {% endif %}{% endfor %}{% if tags|length > 12 %} …{% endif %}</p>

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n static %}
-{% block title %}{% translate "New job" %}{% endblock %}
-{% block heading %}🧰 {% translate "New job / appointment" %}{% endblock %}
+{% block title %}{% if terms.new %}{{ terms.new }}{% else %}{% translate "New job" %}{% endif %}{% endblock %}
+{% block heading %}{{ terms.icon|default:"🧰" }} {% if terms.new %}{{ terms.new }}{% else %}{% translate "New job / appointment" %}{% endif %}{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/industry.css' %}">
 <style>

@@ -144,3 +144,38 @@ def test_computer_shop_service_desk_device_check_in_and_amc():
     company2, owner2, staff2 = _garage("r12@t.qa", kind="clothing_store")
     assert owner2.get(reverse("webapp:service_case_list")).status_code == 302
     assert owner2.get(reverse("webapp:contract_list")).status_code == 302
+
+
+def test_bakery_cake_order_with_advance_then_bill_the_balance():
+    from decimal import Decimal
+    from apps.industry import jobs
+    from apps.sales.models import CustomerPayment
+    company, owner, staff = _garage("r13@t.qa", kind="bakery")
+    board = owner.get(reverse("webapp:service_case_list")).content.decode()
+    assert "Cake orders" in board and "New cake order" in board
+    page = owner.get(reverse("webapp:service_case_add")).content.decode()
+    assert "Cake for (name / occasion)" in page and "Pickup / delivery time" in page and "Ammu&#x27;s 5th birthday" in page
+    assert "Chocolate truffle cake 1.5 kg" in page and "Oil change" not in page
+    job = _job(company, owner, staff, subject_name="Ammu's birthday", title="Chocolate truffle cake 1.5 kg")
+    page = owner.get(reverse("webapp:service_case_detail", args=[job.id])).content.decode()
+    assert "Cake details" in page and "Message on the cake" in page
+    act = reverse("webapp:job_action", args=[job.id])
+    owner.post(act, {"do": "record", "flavour": "Chocolate truffle", "weight_kg": "1.5 kg", "shape": "heart",
+                     "eggless": "1", "message": "Happy Birthday Ammu", "advance": "500", "advance_method": "bank"})
+    job.refresh_from_db()
+    rec = job.record
+    assert rec["weight_kg"] == "1.5" and rec["shape"] == "heart" and rec["eggless"] and rec["advance"] == "500.00"
+    advance = CustomerPayment.objects.get(id=rec["advance_payment_id"])
+    assert advance.invoice is None and advance.method == "bank" and advance.amount == Decimal("500")
+    # saving again does not take the advance twice
+    owner.post(act, {"do": "record", "flavour": "Chocolate truffle", "weight_kg": "1.5", "shape": "heart", "eggless": "1",
+                     "message": "Happy Birthday Ammu", "advance": "500"})
+    assert CustomerPayment.objects.filter(company=company).count() == 1
+    owner.post(act, {"do": "line", "description": "Chocolate truffle cake 1.5 kg", "quantity": "1", "unit_price": "1350"})
+    slip = owner.get(reverse("webapp:job_print", args=[job.id])).content.decode()
+    assert "Happy Birthday Ammu" in slip and "Eggless" in slip and "850.00" in slip
+    jobs.set_status(job, "in_progress"); jobs.set_status(job, "ready")
+    invoice = jobs.bill(job, staff.company.memberships.first().user, method="cash")
+    advance.refresh_from_db()
+    assert advance.invoice == invoice and invoice.status == "paid" and invoice.amount_paid == Decimal("1350")
+    assert CustomerPayment.objects.get(invoice=invoice, method="cash").amount == Decimal("850")

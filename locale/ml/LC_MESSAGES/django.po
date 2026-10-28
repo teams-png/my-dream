@@ -5056,7 +5056,7 @@ msgstr "അതിഥികൾ / ആളുകൾ"
 
 #: templates/webapp/industry/booking_detail.html
 msgid "Advance paid"
-msgstr "അഡ്വാൻസ് അടച്ചത്"
+msgstr "അഡ്വാൻസ് കിട്ടിയത്"
 
 #: templates/webapp/industry/booking_detail.html
 msgid "Security deposit"
@@ -5124,7 +5124,7 @@ msgstr "ഇപ്പോൾ അടച്ചത്"
 
 #: templates/webapp/industry/booking_detail.html
 msgid "Paid by"
-msgstr "അടച്ച രീതി"
+msgstr "പണം നൽകിയത്"
 
 #: templates/webapp/industry/booking_detail.html
 msgid "To pay (before extras / discount)"
@@ -19138,3 +19138,107 @@ msgstr "അടയ്ക്കേണ്ടത്"
 #: apps/modules/catalog.py
 msgid "Weight (g)"
 msgstr "തൂക്കം (ഗ്രാം)"
+
+#: apps/modules/catalog.py
+msgid "Baker"
+msgstr "ബേക്കർ"
+
+#: apps/modules/catalog.py
+msgid "Cake / order"
+msgstr "കേക്ക് / ഓർഡർ"
+
+#: apps/modules/catalog.py
+msgid "Cake details"
+msgstr "കേക്കിന്റെ വിവരങ്ങൾ"
+
+#: apps/modules/catalog.py
+msgid "Cake for (name / occasion)"
+msgstr "ആർക്ക് (പേര് / അവസരം)"
+
+#: apps/modules/catalog.py
+msgid "Cake orders"
+msgstr "കേക്ക് ഓർഡറുകൾ"
+
+#: apps/modules/catalog.py
+msgid "Design / notes"
+msgstr "ഡിസൈൻ / കുറിപ്പ്"
+
+#: apps/modules/catalog.py
+msgid "Eggless"
+msgstr "മുട്ടയില്ലാത്തത്"
+
+#: apps/modules/catalog.py
+msgid "Flavour"
+msgstr "ഫ്ലേവർ"
+
+#: apps/modules/catalog.py
+msgid "Heart"
+msgstr "ഹാർട്ട്"
+
+#: apps/modules/catalog.py
+msgid "Message on the cake"
+msgstr "കേക്കിൽ എഴുതേണ്ടത്"
+
+#: apps/modules/catalog.py
+msgid "New cake order"
+msgstr "പുതിയ കേക്ക് ഓർഡർ"
+
+#: apps/modules/catalog.py
+msgid "Order ref"
+msgstr "ഓർഡർ നമ്പർ"
+
+#: apps/modules/catalog.py
+msgid "Photo cake"
+msgstr "ഫോട്ടോ കേക്ക്"
+
+#: apps/modules/catalog.py
+msgid "Pickup / delivery time"
+msgstr "കൊണ്ടുപോകുന്ന / ഡെലിവറി സമയം"
+
+#: apps/modules/catalog.py
+msgid "Print order slip"
+msgstr "ഓർഡർ സ്ലിപ്പ് പ്രിന്റ്"
+
+#: apps/modules/catalog.py
+msgid "Round"
+msgstr "വട്ടം"
+
+#: apps/modules/catalog.py
+msgid "Save order"
+msgstr "ഓർഡർ സേവ് ചെയ്യുക"
+
+#: apps/modules/catalog.py
+msgid "Shape"
+msgstr "ആകൃതി"
+
+#: apps/modules/catalog.py
+msgid "Square"
+msgstr "ചതുരം"
+
+#: apps/modules/catalog.py
+msgid "The advance cannot be negative."
+msgstr "അഡ്വാൻസ് മൈനസ് ആകാൻ പാടില്ല."
+
+#: apps/modules/catalog.py
+msgid "Tier cake"
+msgstr "തട്ടുള്ള കേക്ക്"
+
+#: apps/modules/catalog.py
+msgid "Type the advance as a number."
+msgstr "അഡ്വാൻസ് സംഖ്യയായി അടിക്കുക."
+
+#: apps/modules/catalog.py
+msgid "UPI / bank"
+msgstr "UPI / ബാങ്ക്"
+
+#: apps/modules/catalog.py
+msgid "e.g. Chocolate truffle"
+msgstr "ഉദാ. ചോക്ലേറ്റ് ട്രഫിൾ"
+
+#: apps/modules/catalog.py
+msgid "e.g. Happy Birthday Ammu"
+msgstr "ഉദാ. Happy Birthday Ammu"
+
+#: apps/modules/catalog.py
+msgid "e.g. Pink and white, unicorn topper"
+msgstr "ഉദാ. പിങ്കും വെള്ളയും, യൂണികോൺ ടോപ്പർ"

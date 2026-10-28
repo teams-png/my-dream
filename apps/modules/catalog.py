@@ -196,6 +196,8 @@ INDUSTRY_FEATURES = {
     "eye_test": {"optical_shop"},
     # a service desk in a shop: repair job cards (laptops, printers, cartridge refills) with a device check-in
     "shop_service": {"computer_shop", "electronics_store"},
+    # cake / custom orders on job cards: flavour, weight, message on the cake, advance, pickup time
+    "cake_orders": {"bakery"},
     # garment tags and tag slips for every piece on the job card
     "laundry": {"laundry_dry_cleaning"},
     # site workers (manpower supply): workers at clients' sites, ID / passport expiry, site timesheet, monthly client bill
@@ -211,7 +213,7 @@ INDUSTRY_FEATURES = {
 }
 
 # features that give a shop job cards (and the appointments calendar) next to its products
-SHOP_JOB_FEATURES = {"eye_test", "shop_service"}
+SHOP_JOB_FEATURES = {"eye_test", "shop_service", "cake_orders"}
 
 # (resource, resource plural, booking, default rate unit) for the bookings module
 BOOKING_TERMS = {

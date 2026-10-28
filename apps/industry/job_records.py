@@ -8,6 +8,8 @@
             service (km / date); shown on the job card print and the customer's status page
 * device  — computer / printer check-in: what came with it (charger, bag, cartridge …), its condition, the printer's
             page counter, warranty and the customer's OK that data may be lost; shown on the job card print
+* cake    — a bakery's cake order: flavour, weight, shape, eggless, the message on the cake, design notes and the
+            advance paid (recorded as a payment at once and set against the bill at pickup)
 """
 import re
 from datetime import datetime, time, timedelta
@@ -28,6 +30,8 @@ CHECK_STATES = ("", "ok", "attention", "replaced")
 DEVICE_ITEMS = (("charger", "Charger / adapter"), ("bag", "Bag"), ("power_cable", "Power cable"),
                 ("usb_cable", "USB cable"), ("cartridge", "Cartridge / toner"), ("battery", "Battery"))
 WARRANTY = ("", "in", "out")
+CAKE_SHAPES = ("", "round", "square", "heart", "photo", "tier")
+ADVANCE_METHODS = ("cash", "card", "bank")
 MAX_ROWS = 25
 
 
@@ -42,6 +46,8 @@ def kind_for(company):
         return "vehicle"
     if company.business_type.code in DEVICE_TYPES:
         return "device"
+    if "cake_orders" in feats:
+        return "cake"
     return None
 
 
@@ -83,7 +89,7 @@ def _flag(value, normal):
     return ""
 
 
-def save(job, post, kind):
+def save(job, post, kind, user=None):
     """Saves the record form of this job's kind. Returns the record."""
     if job.status == "cancelled":
         raise ValidationError(_("This job is cancelled."))
@@ -142,6 +148,23 @@ def save(job, post, kind):
         warranty = _txt(post, "warranty", 5)
         rec["warranty"] = warranty if warranty in WARRANTY else ""
         rec["data_ok"] = bool(post.get("data_ok"))
+    elif kind == "cake":
+        rec["flavour"] = _txt(post, "flavour", 100)
+        weight = re.sub(r"[^0-9.]", "", _txt(post, "weight_kg", 10))
+        rec["weight_kg"] = weight
+        shape = _txt(post, "shape", 10)
+        rec["shape"] = shape if shape in CAKE_SHAPES else ""
+        rec["eggless"] = bool(post.get("eggless"))
+        rec["message"] = _txt(post, "message", 200)
+        rec["design"] = _txt(post, "design", 1000)
+        advance = _money_or_none(post.get("advance"))
+        if advance and not rec.get("advance_payment_id"):
+            # the advance is money in hand today: a payment on the customer's account, set against the bill later
+            from apps.sales.services import record_customer_payment
+            method = post.get("advance_method") if post.get("advance_method") in ADVANCE_METHODS else "cash"
+            payment = record_customer_payment(company=job.company, user=user, customer=job.profile.customer,
+                                              amount=advance, date=timezone.localdate(), method=method)
+            rec.update(advance=str(payment.amount), advance_method=method, advance_payment_id=payment.id)
     else:
         raise ValidationError(_("Nothing to record for this business."))
     rec["saved_at"] = timezone.now().isoformat()
@@ -154,6 +177,17 @@ def vehicle_checks(rec):
     """[(label, state)] of the check-list, in order, for the form and the print."""
     checks = (rec or {}).get("checks") or {}
     return [(key, _(label), checks.get(key, "")) for key, label in VEHICLE_CHECKS]
+
+
+def _money_or_none(value):
+    from decimal import Decimal, InvalidOperation
+    try:
+        v = Decimal(str(value or "").replace(",", "").strip() or "0")
+    except InvalidOperation:
+        raise ValidationError(_("Type the advance as a number."))
+    if v < 0:
+        raise ValidationError(_("The advance cannot be negative."))
+    return v.quantize(Decimal("0.01")) if v else None
 
 
 def device_items(rec):

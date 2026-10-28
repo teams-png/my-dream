@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n static %}
 {% block title %}{{ job.number }} · {{ job.title }}{% endblock %}
-{% block heading %}🧰 {{ job.number }}{% endblock %}
+{% block heading %}{{ terms.icon|default:"🧰" }} {{ job.number }}{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/industry.css' %}">
 <style>
@@ -24,7 +24,7 @@
 .jd-late{color:#b91c1c;font-weight:800}
 </style>
 <div class="ix">
-  <p style="margin:0 0 10px"><a href="{% url 'webapp:service_case_list' %}">← {% translate "Job cards" %}</a></p>
+  <p style="margin:0 0 10px"><a href="{% url 'webapp:service_case_list' %}">← {% if terms.board %}{{ terms.board }}{% else %}{% translate "Job cards" %}{% endif %}</a></p>
   <div class="jd">
     <div>
       <section class="jd-box">
@@ -33,7 +33,7 @@
           <dt>{% translate "Customer" %}</dt><dd><b>{{ job.profile.customer.name }}</b>{% if job.profile.customer.phone %} · <a href="tel:{{ job.profile.customer.phone }}">{{ job.profile.customer.phone }}</a>{% endif %}</dd>
           <dt>{{ labels.0 }}</dt><dd>{{ job.profile.subject_name }}{% if job.profile.identifier %} · {{ labels.1 }}: {{ job.profile.identifier }}{% endif %}</dd>
           {% if job.scheduled_at %}<dt>{% translate "Appointment" %}</dt><dd>{{ job.scheduled_at|date:"D j M Y, H:i" }} · {{ job.duration_minutes }} {% translate "min" %}</dd>{% endif %}
-          {% if job.ready_by %}<dt>{% translate "Ready by" %}</dt><dd>{{ job.ready_by|date:"D j M, H:i" }}</dd>{% endif %}
+          {% if job.ready_by %}<dt>{% if terms.ready_by %}{{ terms.ready_by }}{% else %}{% translate "Ready by" %}{% endif %}</dt><dd>{{ job.ready_by|date:"D j M, H:i" }}</dd>{% endif %}
           {% if job.started_at %}<dt>{% translate "Started" %}</dt><dd>{{ job.started_at|date:"j M H:i" }}</dd>{% endif %}
           {% if job.finished_at %}<dt>{% translate "Finished" %}</dt><dd>{{ job.finished_at|date:"j M H:i" }}</dd>{% endif %}
           {% if job.contract %}<dt>{% translate "Contract" %}</dt><dd><a href="{% url 'webapp:contract_detail' job.contract.id %}">{{ job.contract.number }}</a> · {% translate "visit" %} {{ job.visit_no }}</dd>{% endif %}

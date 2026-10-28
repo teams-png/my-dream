@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n static %}
-{% block title %}{% translate "Job cards" %}{% endblock %}
-{% block heading %}🧰 {% translate "Job cards" %}{% endblock %}
+{% block title %}{% if terms.board %}{{ terms.board }}{% else %}{% translate "Job cards" %}{% endif %}{% endblock %}
+{% block heading %}{{ terms.icon|default:"🧰" }} {% if terms.board %}{{ terms.board }}{% else %}{% translate "Job cards" %}{% endif %}{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/industry.css' %}">
 <style>
@@ -22,7 +22,7 @@
 </style>
 <div class="ix">
   <div class="jb-top">
-    <a class="btn" href="{% url 'webapp:service_case_add' %}">＋ {% translate "New job / appointment" %}</a>
+    <a class="btn" href="{% url 'webapp:service_case_add' %}">＋ {% if terms.new %}{{ terms.new }}{% else %}{% translate "New job / appointment" %}{% endif %}</a>
     <a class="btn btn-secondary" href="{% url 'webapp:job_calendar' %}">📅 {% translate "Calendar" %}</a>
     <form method="get">
       <input type="hidden" name="show" value="{{ show }}">

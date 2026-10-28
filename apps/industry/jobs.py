@@ -200,9 +200,24 @@ def bill(job, user, *, method="", warehouse=None, discount=Decimal("0")):
                              warehouse=warehouse or _warehouse(company), lines=invoice_lines, discount_amount=discount,
                              discount_reason=f"{job.number} discount" if discount else "",
                              discount_approved_by=user if discount else None)
-    if method in PAY_METHODS:
+    balance = invoice.transaction_total
+    advance_id = (job.record or {}).get("advance_payment_id")
+    if advance_id:
+        # the advance paid when the order was taken now counts against this bill
+        from apps.sales.models import CustomerPayment
+        paid = CustomerPayment.objects.filter(company=company, id=advance_id, invoice__isnull=True).first()
+        if paid is not None:
+            used = min(paid.amount, invoice.total)
+            paid.invoice = invoice
+            paid.save(update_fields=["invoice"])
+            invoice.amount_paid += used
+            invoice.transaction_amount_paid += used
+            invoice.status = "paid" if invoice.transaction_amount_paid >= invoice.transaction_total else "partial"
+            invoice.save(update_fields=["amount_paid", "transaction_amount_paid", "status"])
+            balance = max(invoice.transaction_total - invoice.transaction_amount_paid, Decimal("0"))
+    if method in PAY_METHODS and balance > 0:
         record_customer_payment(company=company, user=user, customer=customer, invoice=invoice,
-                                amount=invoice.transaction_total, date=today, method=method)
+                                amount=balance, date=today, method=method)
     job.invoice, job.status, job.closed_date = invoice, "completed", today
     job.finished_at = job.finished_at or timezone.now()
     job.save(update_fields=["invoice", "status", "closed_date", "finished_at"])

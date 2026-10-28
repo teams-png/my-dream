@@ -19,10 +19,10 @@ table{width:100%;border-collapse:collapse;margin-top:10px}th,td{border-bottom:1p
 <div class="kv">
   <div><span>{% translate "Customer" %}:</span> <b>{{ job.profile.customer.name }}</b> {{ job.profile.customer.phone }}</div>
   <div><span>{{ labels.0 }}:</span> {{ job.profile.subject_name }}{% if job.profile.identifier %} · {{ job.profile.identifier }}{% endif %}</div>
-  <div><span>{% translate "Job / complaint" %}:</span> <b>{{ job.title }}</b></div>
-  <div><span>{% translate "Staff" %}:</span> {{ job.assigned_staff.name|default:"—" }}</div>
+  <div><span>{% if terms.title %}{{ terms.title }}{% else %}{% translate "Job / complaint" %}{% endif %}:</span> <b>{{ job.title }}</b></div>
+  <div><span>{% if terms.staff %}{{ terms.staff }}{% else %}{% translate "Staff" %}{% endif %}:</span> {{ job.assigned_staff.name|default:"—" }}</div>
   {% if job.scheduled_at %}<div><span>{% translate "Appointment" %}:</span> {{ job.scheduled_at|date:"j M Y H:i" }}</div>{% endif %}
-  {% if job.ready_by %}<div><span>{% translate "Ready by" %}:</span> {{ job.ready_by|date:"j M Y H:i" }}</div>{% endif %}
+  {% if job.ready_by %}<div><span>{% if terms.ready_by %}{{ terms.ready_by }}{% else %}{% translate "Ready by" %}{% endif %}:</span> {{ job.ready_by|date:"j M Y H:i" }}</div>{% endif %}
 </div>
 {% if job.description %}<p><span style="color:#555">{% translate "Details" %}:</span> {{ job.description|linebreaksbr }}</p>{% endif %}
 {% if rec.km_in or checks %}<div class="kv" style="border:1px solid #ccc;border-radius:8px;padding:8px 10px">
@@ -32,6 +32,13 @@ table{width:100%;border-collapse:collapse;margin-top:10px}th,td{border-bottom:1p
   {% if rec.damage %}<div style="grid-column:1/-1"><span>{% translate "Body damage at check-in" %}:</span> {{ rec.damage }}</div>{% endif %}
   {% if rec.belongings %}<div style="grid-column:1/-1"><span>{% translate "Things left in the vehicle" %}:</span> {{ rec.belongings }}</div>{% endif %}
   {% if rec.next_km or rec.next_date %}<div style="grid-column:1/-1"><span>{% translate "Next service" %}:</span> <b>{% if rec.next_km %}{{ rec.next_km }} km{% endif %}{% if rec.next_km and rec.next_date %} / {% endif %}{% if rec.next_date %}{{ rec.next_date }}{% endif %}</b></div>{% endif %}
+</div>{% endif %}
+{% if rec.flavour or rec.message or rec.weight_kg %}<div class="kv" style="border:1px solid #ccc;border-radius:8px;padding:8px 10px">
+  <div><span>{% translate "Flavour" %}:</span> <b>{{ rec.flavour|default:"—" }}</b>{% if rec.eggless %} · <b>{% translate "Eggless" %}</b>{% endif %}</div>
+  <div><span>{% translate "Weight (kg)" %}:</span> <b>{{ rec.weight_kg|default:"—" }}</b>{% if rec.shape %} · {{ rec.shape|capfirst }}{% endif %}</div>
+  {% if rec.message %}<div style="grid-column:1/-1"><span>{% translate "Message on the cake" %}:</span> <b>“{{ rec.message }}”</b></div>{% endif %}
+  {% if rec.design %}<div style="grid-column:1/-1"><span>{% translate "Design / notes" %}:</span> {{ rec.design }}</div>{% endif %}
+  {% if rec.advance %}<div style="grid-column:1/-1"><span>{% translate "Advance paid" %}:</span> <b>{{ rec.advance }}</b> · {% translate "Balance" %}: <b>{{ balance|floatformat:2 }}</b></div>{% endif %}
 </div>{% endif %}
 {% if received or rec.condition or rec.counter or rec.warranty %}<div class="kv" style="border:1px solid #ccc;border-radius:8px;padding:8px 10px">
   <div style="grid-column:1/-1"><span>{% translate "Received with the device" %}:</span> <b>{{ received|join:", "|default:"—" }}</b></div>

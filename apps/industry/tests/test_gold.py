@@ -126,3 +126,43 @@ def test_product_form_saves_industry_fields_for_every_type(jeweller):
         product.save()
         product.refresh_from_db()
         assert product.attributes["wholesale_price"] == "1.5", code
+
+
+def test_old_gold_exchange_pays_part_of_the_bill(jeweller):
+    import json
+    import uuid
+    from apps.accounting.models import Account
+    from apps.industry.models import OldGoldExchange
+    from apps.inventory.services import record_stock_movement
+    from apps.industry.common import default_warehouse
+    from apps.sales.models import CustomerPayment, SalesInvoice
+    from apps.sales.sharing import render_invoice_html
+    company, client = jeweller["company"], jeweller["client"]
+    svc.set_rates(company, jeweller["user"], {"22K": "7000"})
+    chain = ring(company, weight_grams="8.450", making_mode="percent", making_charge="10", huid="AB12CD")
+    record_stock_movement(company=company, product=chain, warehouse=default_warehouse(company), quantity=Decimal("1"),
+                          reason="adjustment", reference="open")
+    data = client.get(reverse("webapp:pos")).context["pos_data"]
+    assert data["gold_rates"] == {"22K": "7000.00"}
+    total = Decimal("8.450") * 7000 * Decimal("1.10")
+    body = {"client_id": str(uuid.uuid4()), "payment_method": "cash",
+            "lines": [{"product_id": chain.id, "quantity": 1, "unit_price": str(total)}],
+            "old_gold": {"weight": "5", "karat": "22K", "deduction": "5"}}
+    r = client.post(reverse("webapp:pos_checkout"), json.dumps(body), content_type="application/json")
+    assert r.status_code == 200, r.content
+    out = r.json()
+    assert Decimal(out["old_gold_value"]) == Decimal("33250.00")  # 5 g x 7000 less 5%
+    invoice = SalesInvoice.objects.get(id=out["invoice_id"])
+    assert invoice.status == "paid" and invoice.amount_paid == invoice.total
+    ex = OldGoldExchange.objects.get(company=company)
+    assert ex.invoice == invoice and ex.weight_grams == Decimal("5.000") and ex.rate_per_gram == Decimal("7000")
+    assert set(CustomerPayment.objects.filter(invoice=invoice).values_list("method", flat=True)) == {"old_gold", "cash"}
+    assert Account.objects.get(company=company, code="1260").name == "Old gold received"
+    bill = render_invoice_html(invoice)
+    assert "8.450 g" in bill and "HUID <b>AB12CD</b>" in bill and "Old gold taken in exchange" in bill and "33250.00" in bill
+    page = client.get(reverse("webapp:gold_rates")).content.decode()
+    assert "Old gold taken in exchange" in page and invoice.invoice_number in page
+    # no rate for the karat: refused
+    body.update(client_id=str(uuid.uuid4()), old_gold={"weight": "2", "karat": "18K"})
+    r = client.post(reverse("webapp:pos_checkout"), json.dumps(body), content_type="application/json")
+    assert r.status_code == 400 and "18K" in r.json()["error"]

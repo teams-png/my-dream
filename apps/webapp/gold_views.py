@@ -32,7 +32,13 @@ def gold_rates(request):
         if parts or (product.attributes or {}).get("weight_grams"):
             items.append({"p": product, "parts": parts,
                           "stale": bool(parts and parts["total"] != product.selling_price)})
+    from django.db.models import Sum
+    from apps.industry.models import OldGoldExchange
+    month = timezone.localdate().replace(day=1)
+    old = OldGoldExchange.objects.for_company(company).select_related("customer", "invoice")
     return render(request, "webapp/industry/gold_rates.html", {
+        "old_gold": old[:15],
+        "old_gold_month": old.filter(date__gte=month).values("karat").annotate(weight=Sum("weight_grams"), value=Sum("value")).order_by("karat"),
         "karats": [(k, rates.get(k)) for k in svc.KARATS], "items": items,
         "history": GoldRate.objects.for_company(company)[:28], "today": timezone.localdate(),
         "stale_count": sum(1 for i in items if i["stale"])})

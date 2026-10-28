@@ -40,7 +40,7 @@ ART = [
     ("fabric", "🧵", "fabric cloth suiting shirting stitching tailoring alteration blouse"),
     ("cap", "🧢", "cap hat"), ("glasses", "👓", "frame glasses spectacles lens lenses eye test optical"),
     ("sunglasses", "🕶️", "sunglasses aviator"), ("watch", "⌚", "watch chronograph strap smart_watch dress_watch"),
-    ("ring", "💍", "ring diamond"), ("jewel", "📿", "bangle chain necklace gold jewellery jewelry earring"),
+    ("ring", "💍", "ring diamond"), ("jewel", "📿", "bangle chain necklace gold jewellery jewelry earring earrings bracelet jhumka pendant kada anklet"),
     # electronics
     ("phone", "📱", "phone mobile iphone galaxy samsung redmi smartphone handset"), ("charger", "🔌", "charger cable hdmi adapter port plug charging_port"),
     ("headphones", "🎧", "earbuds headphones earphone audio"), ("speaker", "🔊", "speaker sound"),

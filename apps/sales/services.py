@@ -309,7 +309,10 @@ def record_customer_payment(*, company, user, customer, amount, date, invoice=No
         transaction_amount=transaction_amount, exchange_rate=rate, base_amount=base_amount,
     )
 
-    asset_code = "1000" if method == "cash" else "1010"
+    asset_code = "1000" if method == "cash" else "1260" if method == "old_gold" else "1010"
+    if method == "old_gold":
+        Account.objects.get_or_create(company=company, code="1260",
+                                      defaults={"name": "Old gold received", "type": "asset", "is_system_account": True})
     accounts = {a.code: a for a in Account.objects.for_company(company).filter(code__in=[asset_code, "1100"])}
     carrying_amount = base_amount
     gain = loss = Decimal("0")

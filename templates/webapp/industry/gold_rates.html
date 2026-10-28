@@ -43,6 +43,11 @@
     </div>
   </div>
 
+  <div class="ix-card"><h3>🪙 {% translate "Old gold taken in exchange" %}</h3>
+    <p style="margin:0 0 8px;color:var(--ink-soft);font-size:13px">{% translate "This month" %}: {% for k in old_gold_month %}<b>{{ k.karat }}</b> {{ k.weight|floatformat:3 }} g ({{ k.value|floatformat:2 }}){% if not forloop.last %} · {% endif %}{% empty %}—{% endfor %}</p>
+    <div class="ix-list">{% for g in old_gold %}<div class="ix-row"><span class="grow"><b>{{ g.date|date:"j M" }} · {{ g.customer.name|default:"—" }}</b><small>{{ g.invoice.invoice_number }} · {{ g.karat }} {{ g.weight_grams|floatformat:3 }} g × {{ g.rate_per_gram|floatformat:2 }}{% if g.deduction_percent %} − {{ g.deduction_percent|floatformat:"-2" }}%{% endif %}</small></span><b>{{ g.value|floatformat:2 }}</b></div>{% empty %}<div class="ix-empty">{% translate "Old gold given at the billing counter shows here." %}</div>{% endfor %}</div>
+  </div>
+
   <div class="ix-card"><h3>📈 {% translate "Rate history" %}</h3>
     <div class="ix-list">{% for r in history %}<div class="ix-row"><span class="grow"><b>{{ r.date|date:"D j M Y" }}</b></span><span class="ix-chip">{{ r.karat }}</span><b>{{ r.rate_per_gram }}</b></div>{% empty %}<div class="ix-empty">{% translate "No rates saved yet." %}</div>{% endfor %}</div>
   </div>

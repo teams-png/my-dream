@@ -216,7 +216,7 @@ class BusinessProductForm(ProductForm):
         "medical_shop": ("generic_name", "strength", "pack_size", "prescription_required"),
         "pharmacy": ("generic_name", "strength", "pack_size", "prescription_required"),
         "watch_shop": ("model_number", "movement", "strap_material", "water_resistance"),
-        "jewelry_shop": ("weight_grams", "purity", "making_mode", "making_charge", "stone_value", "stone_details"),
+        "jewelry_shop": ("weight_grams", "purity", "making_mode", "making_charge", "stone_value", "stone_details", "huid"),
         "auto_spare_parts": ("part_number", "oem_number", "compatible_models"),
         "car_showroom": ("vin", "chassis_number", "model_year", "transmission", "mileage"),
         "electronics_store": ("model_number", "serial_required", "warranty_months", "technical_specs"),
@@ -289,7 +289,7 @@ class BusinessProductForm(ProductForm):
         "service_interval_days": "Service interval (days)",
         "sport_category": "Sport", "flavour": "Flavour", "servings": "Servings per pack", "goal": "Goal (e.g. muscle gain, weight loss)",
         "generic_name": "Generic name", "strength": "Strength (e.g. 500 mg)",
-        "prescription_required": "Prescription needed",
+        "prescription_required": "Prescription needed", "huid": "HUID (hallmark number)",
     }
     # Shops whose stock has an expiry: new products are batch-tracked, so billing sells the batch that expires first.
     BATCH_TYPES = {"protein_shop", "medical_shop", "pharmacy"}
@@ -316,6 +316,8 @@ class BusinessProductForm(ProductForm):
                     self.fields[name] = forms.BooleanField(required=False, label=label)
                 elif name in {"production_date", "expiry_date"}:
                     self.fields[name] = forms.DateField(required=False, label=label, widget=forms.DateInput(attrs={"type": "date"}))
+                elif name == "weight_grams" and self.business_code == "jewelry_shop":
+                    self.fields[name] = forms.DecimalField(required=False, label=label, max_digits=12, decimal_places=3)
                 elif name in {"weight_grams", "making_charge", "mileage"}:
                     self.fields[name] = forms.DecimalField(required=False, label=label, max_digits=12, decimal_places=2)
                 elif name in {"warranty_months", "model_year", "production_lead_days", "preparation_minutes", "lead_time_days", "service_interval_days", "servings"}:

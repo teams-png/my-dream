@@ -256,6 +256,24 @@ class GoldRate(TenantScopedModel):
         constraints = [models.UniqueConstraint(fields=["company", "karat", "date"], name="one_gold_rate_per_karat_day")]
 
 
+class OldGoldExchange(TenantScopedModel):
+    """Old gold a customer gives in part payment of a jewellery bill: weight x the day's rate, less a deduction."""
+    customer = models.ForeignKey("customers.Customer", null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    invoice = models.ForeignKey("sales.SalesInvoice", null=True, blank=True, on_delete=models.SET_NULL,
+                                related_name="old_gold")
+    date = models.DateField()
+    karat = models.CharField(max_length=4, choices=GoldRate.KARATS)
+    weight_grams = models.DecimalField(max_digits=10, decimal_places=3)
+    rate_per_gram = models.DecimalField(max_digits=12, decimal_places=2)
+    deduction_percent = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    value = models.DecimalField(max_digits=14, decimal_places=2)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-date", "-id"]
+
+
 class AttendanceMark(models.Model):
     session = models.ForeignKey(AttendanceSession, on_delete=models.CASCADE, related_name="marks")
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE, related_name="attendance")

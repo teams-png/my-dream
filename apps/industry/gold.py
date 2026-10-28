@@ -81,6 +81,39 @@ def set_rates(company, user, values, on=None):
     return saved
 
 
+def old_gold_value(company, weight, karat, deduction=0, on=None):
+    """(value, rate) of old gold: weight x today's rate for the karat, less the deduction %."""
+    weight, deduction = _dec(weight), _dec(deduction) or Decimal("0")
+    karat = (karat or "").upper().replace(" ", "")
+    if weight is None or weight <= 0:
+        raise ValueError("Type the old gold's weight.")
+    if deduction < 0 or deduction >= 100:
+        raise ValueError("The deduction must be between 0 and 100%.")
+    rate = current_rates(company, on).get(karat)
+    if rate is None:
+        raise ValueError(f"Set today's {karat} rate first.")
+    value = (weight * rate * (Decimal("100") - deduction) / Decimal("100")).quantize(CENT)
+    return value, rate
+
+
+@transaction.atomic
+def take_old_gold(company, user, invoice, weight, karat, deduction=0):
+    """Records old gold given towards a bill and pays the bill with its value (up to what is due)."""
+    from apps.sales.services import record_customer_payment
+    from .models import OldGoldExchange
+    value, rate = old_gold_value(company, weight, karat, deduction, on=invoice.date)
+    value = min(value, invoice.total - invoice.amount_paid)
+    if value <= 0:
+        return None
+    exchange = OldGoldExchange.objects.create(
+        company=company, customer=invoice.customer, invoice=invoice, date=invoice.date, karat=karat.upper(),
+        weight_grams=_dec(weight).quantize(Decimal("0.001")), rate_per_gram=rate,
+        deduction_percent=_dec(deduction) or 0, value=value, created_by=user)
+    record_customer_payment(company=company, user=user, customer=invoice.customer, amount=value, date=invoice.date,
+                            invoice=invoice, method="old_gold")
+    return exchange
+
+
 @transaction.atomic
 def apply_to_products(company, products=None):
     """Writes today's gold price into each item's selling price. Returns how many changed."""

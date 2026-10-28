@@ -163,6 +163,19 @@ def checkout(*, company, user, payload, sale_date=None):
                 raise PosError("Invalid paid amount.")
             if amount_paid < 0 or amount_paid > invoice.total:
                 raise PosError("Paid amount must be between zero and invoice total.")
+        old_gold = payload.get("old_gold")
+        old_gold_value = Decimal("0")
+        if isinstance(old_gold, dict) and old_gold.get("weight"):
+            # jewellery: old gold given in exchange pays part of the bill
+            from apps.industry import gold
+            try:
+                exchange = gold.take_old_gold(company, user, invoice, old_gold.get("weight"), old_gold.get("karat", ""),
+                                              old_gold.get("deduction") or 0)
+            except ValueError as exc:
+                raise PosError(str(exc))
+            if exchange is not None:
+                old_gold_value = exchange.value
+                amount_paid = max(Decimal("0"), amount_paid - old_gold_value) if not deferred else amount_paid
         if amount_paid:
             method = (payload.get("deposit_method") or "cash") if deferred else payment_method
             sales_services.record_customer_payment(
@@ -204,7 +217,8 @@ def checkout(*, company, user, payload, sale_date=None):
     return {
         "invoice_id": invoice.id, "invoice_number": invoice.invoice_number, "total": str(invoice.total),
         "discount_amount": str(discount_amount), "points_earned": points_earned,
-        "amount_paid": str(amount_paid), "balance": str(invoice.total - amount_paid),
+        "amount_paid": str(amount_paid), "balance": str(invoice.total - amount_paid - old_gold_value),
+        "old_gold_value": str(old_gold_value),
     }
 
 

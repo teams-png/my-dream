@@ -17,7 +17,7 @@
 <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px;">
   <div class="card">
     <div style="color:var(--ink-soft); font-size:13px;">Revenue</div>
-    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ revenue }}</div>
+    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ revenue|floatformat:2 }}</div>
   </div>
   <div class="card">
     <div style="color:var(--ink-soft); font-size:13px;">Invoices</div>
@@ -32,7 +32,7 @@
 <table>
   <tr><th>{% translate "Product" %}</th>{% if not attribute_reports and uses_sizes %}<th>Size</th><th>Colour</th>{% endif %}<th>Units sold</th><th>Revenue</th></tr>
   {% for p in top_products %}
-  <tr><td>{{ p.product__name }}{% if p.product__variant_label %} — {{ p.product__variant_label }}{% endif %}</td>{% if not attribute_reports and uses_sizes %}<td>{{ p.product__size|default:"—" }}</td><td>{{ p.product__colour|default:"—" }}</td>{% endif %}<td>{{ p.units_sold }}</td><td>{{ p.revenue }}</td></tr>
+  <tr><td>{{ p.product__name }}{% if p.product__variant_label %} — {{ p.product__variant_label }}{% endif %}</td>{% if not attribute_reports and uses_sizes %}<td>{{ p.product__size|default:"—" }}</td><td>{{ p.product__colour|default:"—" }}</td>{% endif %}<td>{{ p.units_sold|floatformat:"-3" }}</td><td>{{ p.revenue|floatformat:2 }}</td></tr>
   {% endfor %}
 </table>
 {% else %}

@@ -12,6 +12,15 @@
   const cart = {};
   let activeCat = "all", clientId = null, lastSale = null, syncing = false;
   let appointmentId = DATA.appointment ? DATA.appointment.id : null;  // billing a booked appointment
+  // jewellery: old gold given in exchange pays part of the bill (weight x today's rate, less a deduction)
+  const GOLD = DATA.gold_rates || null;
+  function oldGold() {
+    if (!GOLD || !$("og-weight")) return null;
+    const weight = +$("og-weight").value || 0, karat = $("og-karat").value, ded = Math.min(99, Math.max(0, +$("og-deduction").value || 0));
+    if (weight <= 0 || !GOLD[karat]) return null;
+    return { weight: weight, karat: karat, deduction: ded, value: round2(weight * +GOLD[karat] * (100 - ded) / 100) };
+  }
+  const payable = () => { const og = oldGold(); return round2(Math.max(0, cartTotal() - (og ? og.value : 0))); };
 
   /* ------------------------------------------------------------ helpers */
   function round2(v) { const x = v * 100, f = Math.floor(x + 1e-9), d = x - f; if (Math.abs(d - 0.5) < 1e-7) return (f % 2 === 0 ? f : f + 1) / 100; return Math.round(x) / 100; }
@@ -425,7 +434,7 @@
   $("paySeg").addEventListener("click", e => { const b = e.target.closest("button"); if (b && !b.disabled) setMethod(b.dataset.method); });
 
   function updateChange() {
-    const due = cartTotal(), raw = $("tendered").value, given = raw === "" ? due : +raw, diff = round2(given - due);
+    const due = payable(), raw = $("tendered").value, given = raw === "" ? due : +raw, diff = round2(given - due);
     const box = $("changeBox");
     box.classList.toggle("short", diff < 0);
     box.firstElementChild.textContent = diff < 0 ? T.short : T.change;
@@ -434,14 +443,24 @@
   $("tendered").addEventListener("input", updateChange);
   $("quickCash").addEventListener("click", e => { const b = e.target.closest("[data-cash]"); if (b) { $("tendered").value = b.dataset.cash; updateChange(); } });
 
-  function preparePay() {
-    const due = cartTotal(), off = !online();
+  function preparePay(keepGold) {
+    const total = cartTotal(), due = payable(), off = !online(), og = oldGold();
+    if (GOLD && $("oldGoldPanel")) {
+      $("oldGoldPanel").hidden = off;
+      if (!keepGold) {
+        $("og-karat").innerHTML = Object.keys(GOLD).map(k => `<option value="${esc(k)}"${k === "22K" ? " selected" : ""}>${esc(k)} · ${esc(CUR)} ${money(GOLD[k])}/g</option>`).join("");
+        $("og-weight").value = ""; $("og-deduction").value = "0";
+      }
+      $("og-value").textContent = CUR + " " + money(og ? og.value : 0);
+    }
     $("payDue").textContent = CUR + " " + money(due);
-    $("payLines").innerHTML = `<div><span>${T.subtotal}</span><span>${money(due)}</span></div><div><span>${T.items}</span><span>${lines().reduce((s, i) => s + i.qty, 0)}</span></div>`;
+    $("payLines").innerHTML = `<div><span>${T.subtotal}</span><span>${money(total)}</span></div>` +
+      (og ? `<div><span>${T.oldGold} (${og.weight} g ${esc(og.karat)})</span><span>− ${money(og.value)}</span></div><div><span>${T.toPay}</span><span>${money(due)}</span></div>` : "") +
+      `<div><span>${T.items}</span><span>${lines().reduce((s, i) => s + i.qty, 0)}</span></div>`;
     $("payCustomer").textContent = "👤 " + $("pos-customer").selectedOptions[0].text.replace(/^👤\s*/, "");
     const notes = [...new Set([due, Math.ceil(due / 5) * 5, Math.ceil(due / 10) * 10, Math.ceil(due / 50) * 50, Math.ceil(due / 100) * 100])].filter(v => v >= due).slice(0, 5);
     $("quickCash").innerHTML = notes.map((v, i) => `<button type="button" data-cash="${v.toFixed(2)}">${i === 0 ? T.exact : money(v)}</button>`).join("");
-    $("tendered").value = "";
+    if (!keepGold) $("tendered").value = "";
     $("offlineNote").hidden = !off;
     $("couponWrap").hidden = off;
     $("paySeg").querySelectorAll("[data-online-only]").forEach(b => { b.disabled = off; b.title = off ? T.onlineOnly : ""; });
@@ -451,6 +470,7 @@
   }
   function showMsg(text, err) { const m = $("pos-message"); m.hidden = !text; m.textContent = text; m.style.background = err ? "#fee4e2" : ""; m.style.color = err ? "#b42318" : ""; }
 
+  ["og-weight", "og-karat", "og-deduction"].forEach(id => $(id) && $(id).addEventListener("input", () => { preparePay(true); updateChange && updateChange(); }));
   $("pos-checkout-btn").addEventListener("click", () => { if (!lines().length) return; preparePay(); $("payDialog").showModal(); setTimeout(() => (method === "cash" ? $("tendered") : $("completeBtn")).focus(), 60); });
   $("payForm").addEventListener("submit", e => { e.preventDefault(); complete(); });
 
@@ -474,9 +494,11 @@
     const deferred = ["credit", "installment"].includes(method);
     if (deferred && !$("pos-customer").value) return showMsg(T.needCustomer, true);
     const tendered = method === "cash" && $("tendered").value !== "" ? +$("tendered").value : null;
-    if (tendered !== null && tendered < cartTotal()) return showMsg(T.short + " " + money(cartTotal() - tendered), true);
+    if (tendered !== null && tendered < payable()) return showMsg(T.short + " " + money(payable() - tendered), true);
     const body = saleBody();
-    const canQueue = !deferred && !body.coupon_code;
+    const og = oldGold();
+    if (og) body.old_gold = { weight: og.weight, karat: og.karat, deduction: og.deduction };
+    const canQueue = !deferred && !body.coupon_code && !og;
     $("completeBtn").disabled = true;
     showMsg(T.processing);
     if (!online() && canQueue) return saveOffline(body, tendered);
@@ -501,7 +523,7 @@
     $("completeBtn").disabled = false;
     if (!data || res.redirected) return showMsg(T.sessionEnded, true);
     if (!res.ok) return showMsg(data.error || T.error, true);
-    finish({ online: true, body, data, tendered, total: +data.total });
+    finish({ online: true, body, data, tendered, total: round2(+data.total - (+data.old_gold_value || 0)) });
   }
 
   /* ------------------------------------------------------------ offline queue */

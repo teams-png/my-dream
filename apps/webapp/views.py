@@ -4169,6 +4169,15 @@ def _scale_settings(company):
     return ScaleSettings.load(company).as_dict() if "weighed" in company_features(company) else None
 
 
+def _gold_rates_for_pos(company):
+    """Today's gold rates for a jewellery till (old gold exchange), else None."""
+    from apps.webapp.industry_access import company_features
+    if "gold" not in company_features(company):
+        return None
+    from apps.industry.gold import current_rates
+    return {k: f"{v:.2f}" for k, v in current_rates(company).items()}
+
+
 @login_required
 @require_feature("webui_pos")
 def pos_view(request):
@@ -4204,7 +4213,7 @@ def pos_view(request):
             "company": {"name": company.name, "address": company.address, "phone": company.phone,
                         "currency": company.default_currency, "vat_number": getattr(company, "vat_number", "")},
             "cashier": request.user.get_full_name() or request.user.email or request.user.username,
-            "scale": _scale_settings(company), "appointment": appointment,
+            "scale": _scale_settings(company), "appointment": appointment, "gold_rates": _gold_rates_for_pos(company),
         },
         "customers": Customer.objects.for_company(company).filter(is_active=True).order_by("name"),
         "branches": branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True)).order_by("name"),

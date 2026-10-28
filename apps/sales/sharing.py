@@ -39,8 +39,18 @@ def invoice_from_token(token):
 
 
 def render_invoice_html(invoice, *, public_url="", pay=None):
-    lines = SalesInvoiceLine.objects.filter(invoice=invoice).select_related("product", "serial")
+    lines = list(SalesInvoiceLine.objects.filter(invoice=invoice).select_related("product", "serial"))
+    old_gold = []
+    if invoice.company.business_type_id and invoice.company.business_type.code == "jewelry_shop":
+        # each piece shows its weight, karat, the day's rate, making charge and stones; old gold given in exchange
+        from apps.industry import gold
+        rates = gold.current_rates(invoice.company, on=invoice.date)
+        for line in lines:
+            line.gold = gold.breakdown(line.product.attributes, rates) if line.product_id else None
+            line.huid = (line.product.attributes or {}).get("huid", "") if line.product_id else ""
+        old_gold = list(invoice.old_gold.all())
     return render_to_string("webapp/invoice_pdf.html", {
+        "old_gold": old_gold,
         "company": invoice.company, "invoice": invoice, "lines": lines,
         "mobile_units": invoice.mobile_units.select_related("product").all(),
         "balance_due": invoice.total - invoice.amount_paid,

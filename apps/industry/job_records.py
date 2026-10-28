@@ -206,6 +206,20 @@ def previous_vehicle(job):
     return None
 
 
+def previous_visits(job, limit=5):
+    """The patient's earlier visits with a record (newest first): date, doctor, diagnosis and medicines."""
+    from apps.verticals.saloon.models import ServiceCase
+    visits = []
+    for other in (ServiceCase.objects.for_company(job.company).filter(profile=job.profile)
+                  .exclude(pk=job.pk).select_related("assigned_staff").order_by("-opened_date", "-id")[:limit * 3]):
+        rec = other.record or {}
+        if rec.get("diagnosis") or rec.get("rx") or rec.get("complaint"):
+            visits.append(other)
+        if len(visits) >= limit:
+            break
+    return visits
+
+
 def previous_eye(job):
     """The last eye test of this customer before this job (to compare)."""
     from apps.verticals.saloon.models import ServiceCase

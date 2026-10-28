@@ -44,7 +44,7 @@
         <div class="jd-steps">
           {% for value, label in job.STATUS %}{% if value != "completed" and value != job.status %}
           <form method="post" action="{% url 'webapp:job_action' job.id %}">{% csrf_token %}<input type="hidden" name="do" value="status"><input type="hidden" name="status" value="{{ value }}">
-            <button class="btn {% if value == 'ready' or value == 'in_progress' and job.status == 'open' %}{% else %}btn-secondary{% endif %}"{% if value == "cancelled" %} onclick="return confirm('{% translate "Cancel this job?" %}')"{% endif %}>{% if value == "open" %}↩ {% translate "Booked / to start" %}{% elif value == "in_progress" %}▶ {% translate "Start work" %}{% elif value == "waiting" %}⏸ {% translate "Waiting (parts / approval)" %}{% elif value == "ready" %}✅ {% translate "Ready for the customer" %}{% else %}✕ {% translate "Cancel job" %}{% endif %}</button>
+            <button class="btn {% if value == 'ready' or value == 'in_progress' and job.status == 'open' %}{% else %}btn-secondary{% endif %}"{% if value == "cancelled" %} onclick="return confirm('{% translate "Cancel this job?" %}')"{% endif %}>{% if value == "open" %}↩ {% translate "Booked / to start" %}{% elif value == "in_progress" %}▶ {% if terms.start %}{{ terms.start }}{% else %}{% translate "Start work" %}{% endif %}{% elif value == "waiting" %}⏸ {% if terms.waiting %}{{ terms.waiting }}{% else %}{% translate "Waiting (parts / approval)" %}{% endif %}{% elif value == "ready" %}✅ {% if terms.ready %}{{ terms.ready }}{% else %}{% translate "Ready for the customer" %}{% endif %}{% else %}✕ {% translate "Cancel job" %}{% endif %}</button>
           </form>
           {% endif %}{% endfor %}
         </div>

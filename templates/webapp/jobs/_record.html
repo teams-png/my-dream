@@ -9,6 +9,12 @@
 </style>
 <section class="jd-box" id="record">
 {% if kind == "clinic" %}
+  {% if history %}<details open style="margin-bottom:12px"><summary style="font-weight:800;cursor:pointer">🗂 {% translate "Previous visits" %} ({{ history|length }})</summary>
+    <div style="display:grid;gap:6px;margin-top:8px">{% for h in history %}<div style="border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px">
+      <b>{{ h.opened_date|date:"j M Y" }}</b> · {{ h.assigned_staff.name|default:"—" }}{% if h.record.vitals.bp %} · BP {{ h.record.vitals.bp }}{% endif %}<br>
+      {% if h.record.diagnosis %}<b>{{ h.record.diagnosis }}</b>{% else %}{{ h.record.complaint }}{% endif %}{% if h.record.rx %} — {% for m in h.record.rx %}{{ m.medicine }} {{ m.freq }}{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %}
+      <a href="{% url 'webapp:job_print' h.id %}?doc=rx" target="_blank" style="margin-inline-start:6px">℞</a></div>{% endfor %}</div>
+  </details>{% endif %}
   <h3>🩺 {% translate "Visit record" %}</h3>
   <form method="post" action="{% url 'webapp:job_action' job.id %}" class="jr">{% csrf_token %}<input type="hidden" name="do" value="record">
     <div class="g">

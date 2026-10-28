@@ -179,3 +179,17 @@ def test_bakery_cake_order_with_advance_then_bill_the_balance():
     advance.refresh_from_db()
     assert advance.invoice == invoice and invoice.status == "paid" and invoice.amount_paid == Decimal("1350")
     assert CustomerPayment.objects.get(invoice=invoice, method="cash").amount == Decimal("850")
+
+
+def test_clinic_words_and_previous_visits():
+    company, owner, staff = _garage("r14@t.qa", kind="medical_clinic")
+    board = owner.get(reverse("webapp:service_case_list")).content.decode()
+    assert "OP / patient visits" in board and "New OP visit" in board and "Consultation done" in board
+    first = _job(company, owner, staff, subject_name="Leela", identifier="OP-1008", title="Knee pain")
+    owner.post(reverse("webapp:job_action", args=[first.id]), {
+        "do": "record", "v_bp": "140/90", "complaint": "Knee pain", "diagnosis": "Osteoarthritis knee",
+        "rx_medicine": ["Aceclofenac 100 mg"], "rx_dose": ["1 tab"], "rx_freq": ["1-0-1"], "rx_days": ["5"], "rx_note": [""]})
+    second = _job(company, owner, staff, subject_name="Leela", identifier="OP-1008", title="Review")
+    page = owner.get(reverse("webapp:service_case_detail", args=[second.id])).content.decode()
+    assert "Previous visits (1)" in page and "Osteoarthritis knee" in page and "Aceclofenac 100 mg 1-0-1" in page
+    assert "Call in" in page and "Waiting (lab / tests)" in page

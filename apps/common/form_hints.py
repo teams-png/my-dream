@@ -81,7 +81,8 @@ SUBJECT_SAMPLES_BY_TYPE = {"computer_shop": ("HP LaserJet Pro M126nw", "VNC3K123
 
 
 # what the job card is (its title), where a business's job cards are something else
-TITLE_SAMPLES_BY_TYPE = {"bakery": "Chocolate truffle cake 1.5 kg", "computer_shop": "Toner refill + paper jam"}
+TITLE_SAMPLES_BY_TYPE = {"bakery": "Chocolate truffle cake 1.5 kg", "computer_shop": "Toner refill + paper jam",
+                         "medical_clinic": "Fever and cough since 2 days", "dental_clinic": "Tooth pain – lower left"}
 
 
 def _subject_sample(name):

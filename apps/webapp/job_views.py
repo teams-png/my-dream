@@ -55,7 +55,11 @@ def _pk(value):
 JOB_TERMS = {
     "cake_orders": {"board": _l("Cake orders"), "new": _l("New cake order"), "title": _l("Cake / order"),
                     "subject": (_l("Cake for (name / occasion)"), _l("Order ref")),
-                    "ready_by": _l("Pickup / delivery time"), "staff": _l("Baker"), "icon": "🎂"},
+                    "ready_by": _l("Pickup / delivery time"), "staff": _l("Baker"), "icon": "🎂",
+                    "start": _l("Start baking"), "waiting": _l("Waiting"), "ready": _l("Ready for pickup")},
+    "clinic": {"board": _l("OP / patient visits"), "new": _l("New OP visit"), "title": _l("Complaint / reason"),
+               "subject": (_l("Patient"), _l("OP / file no.")), "staff": _l("Doctor"), "icon": "🩺",
+               "start": _l("Call in"), "waiting": _l("Waiting (lab / tests)"), "ready": _l("Consultation done")},
 }
 
 
@@ -151,10 +155,11 @@ def board(request):
         if show == "today":
             jobs = [j for j in jobs if (j.scheduled_at and timezone.localtime(j.scheduled_at).date() == today)
                     or j.status in ("in_progress", "ready")]
+        terms = _terms(company)
         columns = [("open", _("Booked / to start"), [j for j in jobs if j.status == "open"]),
                    ("in_progress", _("In progress"), [j for j in jobs if j.status == "in_progress"]),
-                   ("waiting", _("Waiting (parts / approval)"), [j for j in jobs if j.status == "waiting"]),
-                   ("ready", _("Ready for the customer"), [j for j in jobs if j.status == "ready"])]
+                   ("waiting", terms.get("waiting") or _("Waiting (parts / approval)"), [j for j in jobs if j.status == "waiting"]),
+                   ("ready", terms.get("ready") or _("Ready for the customer"), [j for j in jobs if j.status == "ready"])]
     for j in jobs:
         j.amount = svc.total(j)
         j.late = svc.overdue(j)
@@ -212,6 +217,7 @@ def job_detail(request, case_id):
     extra = {"kind": kind, "rec": record}
     if kind == "clinic":
         extra["rx_rows"] = (record.get("rx") or []) + [{}] * max(1, 4 - len(record.get("rx") or []))
+        extra["history"] = job_records.previous_visits(job)
     if kind == "lab":
         extra["res_rows"] = (record.get("results") or []) + [{}] * max(1, 6 - len(record.get("results") or []))
     if kind == "eye":

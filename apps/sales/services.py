@@ -191,12 +191,14 @@ def create_invoice(*, company, user, customer, date, lines, warehouse, due_date=
             # No batch chosen (POS, quick sale): take stock from the batches that expire first.
             from apps.inventory.services import suggest_fefo_batches
             remaining = l["stock_qty"]
+            first_batch = None
             today = invoice.date if hasattr(invoice.date, "year") else parse_date(str(invoice.date))
             for suggestion in suggest_fefo_batches(company=company, product=product, warehouse=warehouse,
                                                    quantity_needed=remaining):
                 batch = suggestion["batch"]
                 if product.block_expired_batch_sale and batch.expiry_date and batch.expiry_date < today:
                     continue
+                first_batch = first_batch or batch
                 take = min(remaining, suggestion["available_quantity"])
                 record_stock_movement(company=company, product=product, warehouse=warehouse, quantity=-take,
                                       reason="sale", reference=invoice.invoice_number, batch=batch)
@@ -206,6 +208,9 @@ def create_invoice(*, company, user, customer, date, lines, warehouse, due_date=
             if remaining > 0:
                 record_stock_movement(company=company, product=product, warehouse=warehouse, quantity=-remaining,
                                       reason="sale", reference=invoice.invoice_number)
+            if first_batch is not None:
+                # the bill shows the batch and expiry it was sold from
+                SalesInvoiceLine.objects.filter(invoice=invoice, product=product, batch__isnull=True).update(batch=first_batch)
         else:
             record_stock_movement(
                 company=company, product=product, warehouse=warehouse,

@@ -90,13 +90,20 @@
     </tr>
     {% for line in lines %}
     <tr>
-      <td>{{ line.product.name }}{{ line.unit_label }}{% if line.gold %}<br><small>{{ line.gold.karat }} · {{ line.gold.weight|floatformat:3 }} g × {{ line.gold.rate|floatformat:2 }} = {{ line.gold.gold|floatformat:2 }}{% if line.gold.making %} · {% translate "Making charge" %} {{ line.gold.making|floatformat:2 }}{% endif %}{% if line.gold.stones %} · {% translate "Stones" %} {{ line.gold.stones|floatformat:2 }}{% endif %}{% if line.huid %} · HUID <b>{{ line.huid }}</b>{% endif %}</small>{% endif %}{% if line.serial %}<br><small>{% translate "S/N" %}: <b>{{ line.serial.serial_number }}</b>{% if line.product.attributes.warranty_months %} · {% translate "Warranty" %}: {{ line.product.attributes.warranty_months }} {% translate "months" %} ({% translate "from the bill date" %}){% endif %}</small>{% endif %}</td>
+      <td>{{ line.product.name }}{{ line.unit_label }}{% if line.gold %}<br><small>{{ line.gold.karat }} · {{ line.gold.weight|floatformat:3 }} g × {{ line.gold.rate|floatformat:2 }} = {{ line.gold.gold|floatformat:2 }}{% if line.gold.making %} · {% translate "Making charge" %} {{ line.gold.making|floatformat:2 }}{% endif %}{% if line.gold.stones %} · {% translate "Stones" %} {{ line.gold.stones|floatformat:2 }}{% endif %}{% if line.huid %} · HUID <b>{{ line.huid }}</b>{% endif %}</small>{% endif %}{% if line.serial %}<br><small>{% translate "S/N" %}: <b>{{ line.serial.serial_number }}</b>{% if line.product.attributes.warranty_months %} · {% translate "Warranty" %}: {{ line.product.attributes.warranty_months }} {% translate "months" %} ({% translate "from the bill date" %}){% endif %}</small>{% endif %}{% if line.batch %}<br><small>{% translate "Batch" %} <b>{{ line.batch.batch_number }}</b>{% if line.batch.expiry_date %} · {% translate "Exp" %} {{ line.batch.expiry_date|date:"m/Y" }}{% endif %}{% if line.product.attributes.prescription_required %} · ℞{% endif %}</small>{% endif %}</td>
       <td class="num">{{ line.quantity|floatformat:"-3" }}</td>
       <td class="num">{{ line.unit_price }}</td>
       <td class="num">{{ line.line_total }}</td>
     </tr>
     {% endfor %}
   </table>
+
+  {% if prescription %}
+  <div style="margin-top:18px;border:1px solid #e3e8ef;padding:12px;">
+    <strong>℞ {% translate "Prescription" %}</strong>
+    <p style="margin:7px 0 0;">{% translate "Patient" %}: <b>{{ prescription.patient_name|default:invoice.customer.name }}</b>{% if prescription.patient_age %} ({{ prescription.patient_age }}){% endif %} · {% translate "Doctor" %}: <b>{{ prescription.doctor_name }}</b>{% if prescription.doctor_reg_no %} ({% translate "Reg. no." %} {{ prescription.doctor_reg_no }}){% endif %}{% if prescription.rx_number %} · {% translate "Rx no." %} {{ prescription.rx_number }}{% endif %}</p>
+  </div>
+  {% endif %}
 
   {% if old_gold %}
   <div style="margin-top:18px;border:1px solid #e3e8ef;padding:12px;">

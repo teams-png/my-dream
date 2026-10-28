@@ -580,6 +580,7 @@ urlpatterns = [
     path("medical-shop/batches/<int:batch_id>/dispense/", views.medicine_dispense, name="medicine_dispense"),
     path("medical-shop/dispenses/", views.medicine_dispense_history, name="medicine_dispense_history"),
     path("medical-shop/reports/", views.medical_reports, name="medical_reports"),
+    path("medical-shop/prescriptions/", views.prescription_register, name="prescription_register"),
 
     # ---- Protein Shop ----
     path("protein-shop/batches/", views.protein_batch_list, name="protein_batch_list"),

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Prescription register" %}{% endblock %}
+{% block heading %}℞ {% translate "Prescription register" %}{% endblock %}
+{% block content %}
+<style>
+.rx-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:end;margin-bottom:14px}
+.rx-bar label{font-size:12px;color:var(--ink-soft);display:flex;flex-direction:column;gap:4px}
+.rx-pill{font-weight:800;padding:8px 14px;border-radius:999px;background:#fee2e2;color:#991b1b}
+.rx-med{white-space:nowrap}.rx-med small{color:var(--ink-soft)}
+@media print{.rx-bar,.no-print{display:none}}
+</style>
+<form class="rx-bar" method="get">
+  <label>{% translate "From" %}<input type="date" name="from" value="{{ start|date:'Y-m-d' }}"></label>
+  <label>{% translate "To" %}<input type="date" name="to" value="{{ end|date:'Y-m-d' }}"></label>
+  <label>{% translate "Search" %}<input name="q" value="{{ q }}" placeholder="{% translate 'Doctor, patient, medicine or bill' %}" style="min-width:230px"></label>
+  <button class="btn" type="submit">{% translate "Show" %}</button>
+  <button class="btn btn-secondary" type="button" onclick="window.print()">🖨 {% translate "Print" %}</button>
+  <span class="rx-pill">{% blocktranslate count n=rows|length %}{{ n }} prescription{% plural %}{{ n }} prescriptions{% endblocktranslate %} · {% blocktranslate count n=rx_count %}{{ n }} ℞ medicine{% plural %}{{ n }} ℞ medicines{% endblocktranslate %}</span>
+</form>
+{% if rows %}
+<div style="overflow-x:auto"><table>
+  <tr><th>{% translate "Date" %}</th><th>{% translate "Bill" %}</th><th>{% translate "Patient" %}</th><th>{% translate "Doctor" %}</th><th>{% translate "Rx no." %}</th><th>{% translate "Medicines (batch · expiry · qty)" %}</th></tr>
+  {% for r in rows %}
+  <tr>
+    <td>{{ r.invoice.date|date:"d M Y" }}</td>
+    <td><a href="{% url 'webapp:invoice_pdf' r.invoice_id %}" target="_blank">{{ r.invoice.invoice_number }}</a></td>
+    <td><b>{{ r.patient_name|default:r.invoice.customer.name }}</b>{% if r.patient_age %}<br><small>{{ r.patient_age }}</small>{% endif %}</td>
+    <td>{{ r.doctor_name }}{% if r.doctor_reg_no %}<br><small>{% translate "Reg." %} {{ r.doctor_reg_no }}</small>{% endif %}</td>
+    <td>{{ r.rx_number|default:"—" }}</td>
+    <td>{% for l in r.items %}<div class="rx-med">{% if l in r.rx_items %}<b style="color:#b42318">℞</b> {% endif %}{{ l.product.name }} <small>{% if l.batch %}· {{ l.batch.batch_number }}{% if l.batch.expiry_date %} · {{ l.batch.expiry_date|date:"m/y" }}{% endif %}{% endif %} · ×{{ l.quantity|floatformat:"-3" }}</small></div>{% endfor %}</td>
+  </tr>
+  {% endfor %}
+</table></div>
+{% else %}
+<div class="card empty">{% translate "No prescription bills in these dates. On the Billing screen, type the doctor's name when you sell ℞ medicines." %}</div>
+{% endif %}
+{% endblock %}

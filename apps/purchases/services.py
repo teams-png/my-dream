@@ -90,6 +90,7 @@ def create_purchase(*, company, user, supplier, date, lines, warehouse, bill_num
         record_stock_movement(
             company=company, product=l["product"], warehouse=warehouse,
             quantity=Decimal(l["quantity"]) * l["unit_factor"], reason="purchase", reference=bill_number or f"PUR#{purchase.id}",
+            batch=l.get("batch"),
         )
 
     accounts = {a.code: a for a in Account.objects.for_company(company).filter(code__in=["1200", "2000", "2100"])}

@@ -64,14 +64,23 @@ def invoice_receipt_data(request, invoice_id):
     invoice = get_object_or_404(
         SalesInvoice.objects.for_company(request.company).select_related("customer"), id=invoice_id,
     )
-    lines = invoice.lines.select_related("product", "serial")
+    lines = invoice.lines.select_related("product", "serial", "batch")
+    from apps.industry.models import PrescriptionSale
+    rx = PrescriptionSale.objects.filter(invoice=invoice).first()
+
+    def extra(l):
+        if l.serial_id:
+            return [f"S/N {l.serial.serial_number}"]
+        if l.batch_id:  # medicines: batch and expiry
+            return [f"Batch {l.batch.batch_number}" + (f" Exp {l.batch.expiry_date:%m/%y}" if l.batch.expiry_date else "")]
+        return []
     return JsonResponse({
         "kind": "receipt",
         "company": _header(request.company),
         "title": invoice.invoice_number,
-        "meta": [invoice.date.strftime("%d %b %Y"), str(invoice.customer)],
+        "meta": [invoice.date.strftime("%d %b %Y"), str(invoice.customer)] + ([f"Dr. {rx.doctor_name}".replace("Dr. Dr.", "Dr.")] if rx else []),
         "lines": [{"qty": _qty(l.quantity), "name": l.product.name + l.unit_label, "amount": _money(l.line_total),
-                   "extra": [f"S/N {l.serial.serial_number}"] if l.serial_id else []} for l in lines],
+                   "extra": extra(l)} for l in lines],
         "totals": [["Subtotal", _money(invoice.subtotal)]]
                   + ([["Discount", "-" + _money(invoice.discount_amount)]] if invoice.discount_amount else [])
                   + ([["Tax", _money(invoice.tax_amount)]] if invoice.tax_amount else []),

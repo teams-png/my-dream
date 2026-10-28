@@ -240,7 +240,7 @@
   [dir=rtl] .focus-mode.nav-open .sidebar{transform:none}
 </style>
 {% if request.path|slice:':12' == '/restaurant/' %}<link rel="stylesheet" href="{% static 'css/restaurant.css' %}">{% endif %}
-{% include "webapp/_lang_font.html" %}{% load static %}<link rel="stylesheet" href="{% static 'css/forms.css' %}"><link rel="stylesheet" href="{% static 'css/dark.css' %}"><script>(function(){try{if(localStorage.getItem('bp.theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}})();</script></head>
+{% include "webapp/_lang_font.html" %}{% load static %}<link rel="stylesheet" href="{% static 'css/forms.css' %}"><link rel="stylesheet" href="{% static 'css/hr.css' %}"><link rel="stylesheet" href="{% static 'css/dark.css' %}"><script>(function(){try{if(localStorage.getItem('bp.theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}})();</script></head>
 <body>
 <div class="shell {% block shell_class %}{% endblock %}" id="appShell">
   {% if request.user.is_authenticated %}

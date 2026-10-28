@@ -119,6 +119,16 @@
               </div>
             </div>
             {% endif %}
+            <div class="pay-panel" id="rxPanel" hidden><style>#rxPanel .adj-grid{grid-template-columns:1fr 1fr}#rxPanel .adj-grid label:first-child{grid-column:1/-1}</style>
+              <label class="field-label">℞ {% translate "Prescription (needed for ℞ medicines)" %}</label>
+              <div class="adj-grid">
+                <label>{% translate "Doctor" %}<input class="rp-input" id="rx-doctor" type="text" maxlength="150" autocomplete="off" placeholder="{% translate 'Dr. name' %}"></label>
+                <label>{% translate "Reg. no." %}<input class="rp-input" id="rx-reg" type="text" maxlength="60" autocomplete="off"></label>
+                <label>{% translate "Rx no." %}<input class="rp-input" id="rx-number" type="text" maxlength="60" autocomplete="off"></label>
+                <label>{% translate "Patient" %}<input class="rp-input" id="rx-patient" type="text" maxlength="150" autocomplete="off"></label>
+                <label>{% translate "Age" %}<input class="rp-input" id="rx-age" type="text" maxlength="20" autocomplete="off"></label>
+              </div>
+            </div>
             <div class="pay-panel" id="oldGoldPanel" hidden>
               <label class="field-label">🪙 {% translate "Old gold exchange (optional)" %}</label>
               <div class="adj-grid">
@@ -202,7 +212,7 @@ window.POS_CFG = {
     added: "{% translate 'added' %}", notFound: "{% translate 'Barcode / SKU not found.' %}", outOfStock: "{% translate 'is out of stock.' %}",
     piece: "{% translate 'Single piece' %}", pieces: "{% translate 'pieces' %}",
     noImei: "{% translate 'No IMEI unit is available for this handset.' %}",
-    noSerial: "{% translate 'No serial number of this item is in stock.' %}", oldGold: "{% translate 'Old gold' %}", toPay: "{% translate 'To pay' %}",
+    noSerial: "{% translate 'No serial number of this item is in stock.' %}", oldGold: "{% translate 'Old gold' %}", needDoctor: "{% translate 'Enter the doctor’s name for ℞ medicines.' %}", exp: "{% translate 'Exp' %}", toPay: "{% translate 'To pay' %}",
     pickSerial: "{% translate 'Select serial number' %}", pickImei: "{% translate 'Select IMEI' %}", cartEmpty: "{% translate 'Cart is empty.' %}",
     processing: "{% translate 'Processing…' %}", error: "{% translate 'Something went wrong.' %}", exact: "{% translate 'Exact' %}",
     short: "{% translate 'Still to pay' %}", change: "{% translate 'Change due' %}", subtotal: "{% translate 'Subtotal' %}",

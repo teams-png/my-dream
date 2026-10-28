@@ -17,6 +17,7 @@ from django.urls import reverse
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from datetime import timedelta
+from django.utils.dateparse import parse_date
 from decimal import Decimal
 
 from apps.inventory import branch_access
@@ -4104,12 +4105,31 @@ def purchase_add(request):
         if form.is_valid():
             d = form.cleaned_data
             try:
-                purchase_services.create_purchase(
-                    company=company, user=request.user, supplier=d["supplier"], date=d["date"],
-                    warehouse=d["warehouse"] or _default_warehouse(company), bill_number=d["bill_number"],
-                    lines=[{"product": d["product"], "quantity": d["quantity"], "unit_cost": d["unit_cost"],
-                            **({"pack": d["pack"]} if d.get("pack") else {})}],
-                )
+                with transaction.atomic():
+                    line = {"product": d["product"], "quantity": d["quantity"], "unit_cost": d["unit_cost"],
+                            **({"pack": d["pack"]} if d.get("pack") else {})}
+                    number = (d.get("batch_number") or "").strip()
+                    if number:
+                        # medicines and other dated stock: the batch and its expiry come in with the purchase
+                        from apps.inventory.models import ProductBatch
+                        from apps.inventory.services import create_batch
+                        product = d["product"]
+                        if product.tracking_type != "batch":
+                            product.tracking_type = "batch"
+                            product.save(update_fields=["tracking_type"])
+                        batch = ProductBatch.objects.for_company(company).filter(product=product, batch_number=number).first()
+                        if batch is None:
+                            batch = create_batch(company=company, product=product, batch_number=number[:100],
+                                                 expiry_date=d.get("expiry_date"))
+                        elif d.get("expiry_date") and batch.expiry_date != d["expiry_date"]:
+                            batch.expiry_date = d["expiry_date"]
+                            batch.save(update_fields=["expiry_date"])
+                        line["batch"] = batch
+                    purchase_services.create_purchase(
+                        company=company, user=request.user, supplier=d["supplier"], date=d["date"],
+                        warehouse=d["warehouse"] or _default_warehouse(company), bill_number=d["bill_number"],
+                        lines=[line],
+                    )
                 messages.success(request, "Purchase recorded and stock updated.")
                 return redirect("webapp:purchase_list")
             except Exception as exc:
@@ -4201,6 +4221,9 @@ def _price_rules(company):
     return resolve
 
 
+PHARMACY_TYPES = {"medical_shop", "pharmacy"}
+
+
 def _pos_catalog(company):
     """Product data for the POS screen, with stock from one grouped query."""
     from apps.inventory.models import StockMovement
@@ -4229,6 +4252,14 @@ def _pos_catalog(company):
                 "id": s["id"], "imei": s["serial_number"], "serial_number": "", "condition": "",
                 "warranty_months": attrs.get("warranty_months") or ""})
     catalog, categories = [], {}
+    pharmacy = company.business_type.code in PHARMACY_TYPES
+    next_expiry = {}
+    if pharmacy:
+        for row in (StockMovement.objects.for_company(company).filter(product__in=products, batch__isnull=False)
+                    .values("product", "batch__expiry_date").annotate(q=Sum("quantity")).filter(q__gt=0)):
+            exp = row["batch__expiry_date"]
+            if exp and (row["product"] not in next_expiry or exp < next_expiry[row["product"]]):
+                next_expiry[row["product"]] = exp
     offers = _price_rules(company)
     from apps.webapp.industry_access import company_features
     gold_rates = None
@@ -4254,6 +4285,13 @@ def _pos_catalog(company):
             "packs": [{"id": k.id, "name": k.name, "factor": f"{k.factor.normalize():f}", "price": f"{k.price:.2f}",
                        "barcode": k.barcode} for k in p.packs.all() if k.is_active],
         })
+        if pharmacy:
+            attrs = p.attributes or {}
+            generic = " ".join(x for x in (attrs.get("generic_name") or "", attrs.get("strength") or "") if x).strip()
+            catalog[-1]["rx"] = bool(attrs.get("prescription_required"))
+            catalog[-1]["exp"] = f"{next_expiry[p.id]:%m/%y}" if p.id in next_expiry else ""
+            if generic and not catalog[-1]["variant"]:
+                catalog[-1]["variant"] = generic
         list_price, offer = offers(p)
         if list_price is not None and list_price != p.selling_price:
             catalog[-1]["price"] = f"{list_price:.2f}"
@@ -4321,6 +4359,7 @@ def pos_view(request):
                         "currency": company.default_currency, "vat_number": getattr(company, "vat_number", "")},
             "cashier": request.user.get_full_name() or request.user.email or request.user.username,
             "scale": _scale_settings(company), "appointment": appointment, "gold_rates": _gold_rates_for_pos(company),
+            "pharmacy": company.business_type.code in PHARMACY_TYPES,
         },
         "customers": Customer.objects.for_company(company).filter(is_active=True).order_by("name"),
         "branches": branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True)).order_by("name"),
@@ -6290,3 +6329,33 @@ def platform_admin_role_permissions(request, company_id, role_id):
     return render(request, "webapp/platform_admin/role_permissions.html", {
         "company": company, "role": role, "permissions": permissions, "granted": granted,
     })
+
+
+@login_required
+def prescription_register(request):
+    """Schedule H / H1 register: every bill with a doctor's prescription, with its ℞ medicines, batch and expiry."""
+    from apps.industry.models import PrescriptionSale
+    company = request.company
+    if company is None:
+        return render(request, "webapp/no_company.html")
+    today = tz.localdate()
+    start = parse_date(request.GET.get("from") or "") or today.replace(day=1)
+    end = parse_date(request.GET.get("to") or "") or today
+    q = request.GET.get("q", "").strip()
+    rows = (PrescriptionSale.objects.for_company(company).select_related("invoice__customer")
+            .filter(invoice__date__gte=start, invoice__date__lte=end).exclude(invoice__status="void")
+            .order_by("-invoice__date", "-id"))
+    if q:
+        rows = rows.filter(Q(doctor_name__icontains=q) | Q(patient_name__icontains=q) | Q(rx_number__icontains=q) |
+                           Q(invoice__invoice_number__icontains=q) | Q(invoice__lines__product__name__icontains=q)).distinct()
+    rows = list(rows[:500])
+    lines = {}
+    for line in (SalesInvoiceLine.objects.filter(invoice__in=[r.invoice_id for r in rows])
+                 .select_related("product", "batch").order_by("id")):
+        lines.setdefault(line.invoice_id, []).append(line)
+    for r in rows:
+        r.items = lines.get(r.invoice_id, [])
+        r.rx_items = [l for l in r.items if (l.product.attributes or {}).get("prescription_required")]
+    return render(request, "webapp/medical_shop/prescription_register.html", {
+        "rows": rows, "start": start, "end": end, "q": q,
+        "rx_count": sum(len(r.rx_items) for r in rows)})

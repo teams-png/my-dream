@@ -274,6 +274,20 @@ class OldGoldExchange(TenantScopedModel):
         ordering = ["-date", "-id"]
 
 
+class PrescriptionSale(TenantScopedModel):
+    """Doctor and prescription details on a pharmacy bill (the Schedule H / H1 register reads these)."""
+    invoice = models.OneToOneField("sales.SalesInvoice", on_delete=models.CASCADE, related_name="prescription")
+    patient_name = models.CharField(max_length=150, blank=True)
+    patient_age = models.CharField(max_length=20, blank=True)
+    doctor_name = models.CharField(max_length=150)
+    doctor_reg_no = models.CharField(max_length=60, blank=True)
+    rx_number = models.CharField(max_length=60, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+
 class AttendanceMark(models.Model):
     session = models.ForeignKey(AttendanceSession, on_delete=models.CASCADE, related_name="marks")
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE, related_name="attendance")

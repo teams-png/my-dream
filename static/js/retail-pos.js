@@ -20,6 +20,14 @@
     if (weight <= 0 || !GOLD[karat]) return null;
     return { weight: weight, karat: karat, deduction: ded, value: round2(weight * +GOLD[karat] * (100 - ded) / 100) };
   }
+  // pharmacy: ℞ medicines need the doctor's name on the bill
+  const PHARMACY = !!DATA.pharmacy;
+  const needsRx = () => PHARMACY && lines().some(i => (PRODUCTS.find(p => p.id === i.id) || {}).rx);
+  function prescription() {
+    if (!PHARMACY || !$("rx-doctor")) return null;
+    const v = id => $(id).value.trim();
+    return v("rx-doctor") ? { doctor: v("rx-doctor"), reg: v("rx-reg"), number: v("rx-number"), patient: v("rx-patient"), age: v("rx-age") } : null;
+  }
   const payable = () => { const og = oldGold(); return round2(Math.max(0, cartTotal() - (og ? og.value : 0))); };
 
   /* ------------------------------------------------------------ helpers */
@@ -95,7 +103,7 @@
         <div class="prod-tile${p.img ? " has-img" : ""}">${p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy" decoding="async">` : `<span class="ico">${esc(initials(p.name))}</span>`}<span class="stock-pill"></span></div>
         <div class="food-body">
           <div class="food-name">${esc(label(p))}</div>
-          <div class="prod-sku">${esc(p.sku)}</div>
+          <div class="prod-sku">${p.rx ? '<b style="color:#b42318">℞</b> ' : ""}${esc(p.sku)}${p.exp ? ` · ${esc(T.exp || "Exp")} ${esc(p.exp)}` : ""}</div>
           <div class="food-meta"><span class="food-price"><small>${esc(CUR)}</small>${esc(p.price)}${p.weighed ? `<small> /${esc(unitOf(p))}</small>` : ""}</span>
             <button class="food-add" type="button" aria-label="${esc(label(p))}">+</button></div>
         </div>
@@ -453,6 +461,10 @@
       }
       $("og-value").textContent = CUR + " " + money(og ? og.value : 0);
     }
+    if (PHARMACY && $("rxPanel")) {
+      $("rxPanel").hidden = false;
+      if (!keepGold) ["rx-doctor", "rx-reg", "rx-number", "rx-patient", "rx-age"].forEach(id => { $(id).value = ""; });
+    }
     $("payDue").textContent = CUR + " " + money(due);
     $("payLines").innerHTML = `<div><span>${T.subtotal}</span><span>${money(total)}</span></div>` +
       (og ? `<div><span>${T.oldGold} (${og.weight} g ${esc(og.karat)})</span><span>− ${money(og.value)}</span></div><div><span>${T.toPay}</span><span>${money(due)}</span></div>` : "") +
@@ -485,6 +497,7 @@
       amount_paid: val("pos-amount-paid"), deposit_method: val("pos-deposit-method"),
       installment_count: val("pos-installment-count"), frequency: val("pos-frequency"), next_due_date: val("pos-next-due"),
       lines: lines().map(i => ({ product_id: i.id, quantity: i.qty, unit_price: i.price, mobile_unit_id: i.mobile_unit_id, serial_id: i.serial_id || null, pack_id: i.pack_id || null, name: i.name })),
+      prescription: prescription(),
     };
   }
 
@@ -493,6 +506,7 @@
     if (!items.length) return showMsg(T.cartEmpty, true);
     const deferred = ["credit", "installment"].includes(method);
     if (deferred && !$("pos-customer").value) return showMsg(T.needCustomer, true);
+    if (needsRx() && !prescription()) { $("rx-doctor").focus(); return showMsg(T.needDoctor, true); }
     const tendered = method === "cash" && $("tendered").value !== "" ? +$("tendered").value : null;
     if (tendered !== null && tendered < payable()) return showMsg(T.short + " " + money(payable() - tendered), true);
     const body = saleBody();

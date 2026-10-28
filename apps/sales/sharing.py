@@ -39,8 +39,10 @@ def invoice_from_token(token):
 
 
 def render_invoice_html(invoice, *, public_url="", pay=None):
-    lines = list(SalesInvoiceLine.objects.filter(invoice=invoice).select_related("product", "serial"))
+    lines = list(SalesInvoiceLine.objects.filter(invoice=invoice).select_related("product", "serial", "batch"))
     old_gold = []
+    from apps.industry.models import PrescriptionSale
+    prescription = PrescriptionSale.objects.filter(invoice=invoice).first()
     if invoice.company.business_type_id and invoice.company.business_type.code == "jewelry_shop":
         # each piece shows its weight, karat, the day's rate, making charge and stones; old gold given in exchange
         from apps.industry import gold
@@ -50,7 +52,7 @@ def render_invoice_html(invoice, *, public_url="", pay=None):
             line.huid = (line.product.attributes or {}).get("huid", "") if line.product_id else ""
         old_gold = list(invoice.old_gold.all())
     return render_to_string("webapp/invoice_pdf.html", {
-        "old_gold": old_gold,
+        "old_gold": old_gold, "prescription": prescription,
         "company": invoice.company, "invoice": invoice, "lines": lines,
         "mobile_units": invoice.mobile_units.select_related("product").all(),
         "balance_due": invoice.total - invoice.amount_paid,

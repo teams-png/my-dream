@@ -1254,6 +1254,9 @@ class PurchaseForm(forms.Form):
     unit_cost = forms.DecimalField(max_digits=12, decimal_places=2)
     bill_number = forms.CharField(max_length=30, required=False)
     date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
+    batch_number = forms.CharField(max_length=100, required=False, label=_l("Batch no."),
+                                   help_text=_l("Medicines, food, supplements: the batch printed on the pack."))
+    expiry_date = forms.DateField(required=False, label=_l("Expiry date"), widget=forms.DateInput(attrs={"type": "date"}))
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1271,6 +1274,8 @@ class PurchaseForm(forms.Form):
         data = super().clean()
         if data.get("pack") and data.get("product") and data["pack"].product_id != data["product"].id:
             self.add_error("pack", _l("That pack belongs to another item."))
+        if data.get("expiry_date") and not (data.get("batch_number") or "").strip():
+            self.add_error("batch_number", _l("Enter the batch number for this expiry date."))
         return data
 
 

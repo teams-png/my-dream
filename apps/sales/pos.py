@@ -143,6 +143,14 @@ def checkout(*, company, user, payload, sale_date=None):
                 raise PosError("Staff member not found.")
             invoice.served_by = staff
             invoice.save(update_fields=["served_by"])
+        rx = payload.get("prescription")
+        if isinstance(rx, dict) and str(rx.get("doctor") or "").strip():
+            from apps.industry.models import PrescriptionSale
+            PrescriptionSale.objects.create(
+                company=company, invoice=invoice, doctor_name=str(rx.get("doctor")).strip()[:150],
+                doctor_reg_no=str(rx.get("reg") or "").strip()[:60], rx_number=str(rx.get("number") or "").strip()[:60],
+                patient_name=str(rx.get("patient") or "").strip()[:150] or (customer.name if customer.name != WALK_IN else ""),
+                patient_age=str(rx.get("age") or "").strip()[:20])
         appointment_id = payload.get("appointment_id")
         if appointment_id and str(appointment_id).isdigit():
             # billed from an appointment: it is done now (and the stylist's commission is recorded)

@@ -1,23 +1,23 @@
 {% extends "base.html" %}
-{% block title %}Enroll member{% endblock %}
-{% block heading %}Enroll member{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "New member" %}{% endblock %}
+{% block heading %}{% translate "New member" %}{% endblock %}
 {% block content %}
-{% if no_customers %}
-<div class="card" style="margin-bottom:16px;">No customers yet. <a href="{% url 'webapp:customer_add' %}">Add a customer</a> first, then come back here.</div>
-{% endif %}
 {% if no_plans %}
-<div class="card" style="margin-bottom:16px;">No membership plans yet. <a href="{% url 'webapp:plan_add' %}">Add a plan</a> first, then come back here.</div>
+<div class="card" style="margin-bottom:16px;">{% translate "No membership plans yet." %} <a href="{% url 'webapp:plan_add' %}">{% translate "Add a plan" %}</a></div>
 {% endif %}
-<div class="card" style="max-width:420px;">
+<div class="card" style="max-width:560px;">
   <form class="stacked" method="post">
     {% csrf_token %}
+    {{ form.non_field_errors }}
     {% for field in form %}
       <label for="{{ field.id_for_label }}">{{ field.label }}</label>
       {{ field }}
       {{ field.errors }}
     {% endfor %}
-    <button class="btn" style="margin-top:20px;" type="submit">Enroll & invoice</button>
-    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:member_list' %}">Cancel</a>
+    <datalist id="gym-goals"><option value="{% translate 'Weight loss' %}"><option value="{% translate 'Muscle gain' %}"><option value="{% translate 'General fitness' %}"><option value="{% translate 'Cardio / stamina' %}"></datalist>
+    <button class="btn" style="margin-top:20px;" type="submit">{% translate "Join & bill" %}</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:member_list' %}">{% translate "Cancel" %}</a>
   </form>
 </div>
 {% endblock %}

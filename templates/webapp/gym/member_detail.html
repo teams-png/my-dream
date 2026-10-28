@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ member.customer.name }}{% endblock %}
+{% block heading %}{{ member.customer.name }}{% endblock %}
+{% block content %}
+<style>
+.gd-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px}
+.gd-k{color:var(--ink-soft);font-size:13px}.gd-v{font-size:22px;font-weight:800;margin-top:4px}
+.gd-v.bad{color:#b91c1c}.gd-v.warn{color:#b45309}.gd-v.ok{color:#15803d}
+.gd-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.gd-cols h2{font-size:16px;margin:0 0 10px}
+.gd-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;align-items:end;margin-bottom:12px}
+.gd-form label{font-size:12px;color:var(--ink-soft);display:block}.gd-form input{width:100%}
+</style>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+  <a class="btn" href="{% url 'webapp:member_renew' member.id %}">↻ {% translate "Renew" %}</a>
+  {% if wa %}<a class="btn btn-secondary" target="_blank" rel="noopener" href="{{ wa }}">💬 {% translate "WhatsApp reminder" %}</a>{% endif %}
+  <a class="btn btn-secondary" href="{% url 'webapp:member_list' %}">← {% translate "Members" %}</a>
+</div>
+<div class="gd-grid">
+  <div class="card"><div class="gd-k">{% translate "Plan" %}</div><div class="gd-v">{{ member.membership_plan.name }}</div>
+    <small>{{ member.member_no }}{% if member.goal %} · {{ member.goal }}{% endif %}</small></div>
+  <div class="card"><div class="gd-k">{% translate "Ends on" %}</div>
+    <div class="gd-v {% if left < 0 %}bad{% elif left <= 7 %}warn{% else %}ok{% endif %}">{{ member.membership_end|date:"d M Y" }}</div>
+    <small>{% if member.status == "frozen" %}{% translate "Frozen" %}{% elif left < 0 %}{% translate "Expired" %}{% else %}{% blocktranslate count n=left %}{{ n }} day left{% plural %}{{ n }} days left{% endblocktranslate %}{% endif %}</small></div>
+  <div class="card"><div class="gd-k">{% translate "Visits this month" %}</div><div class="gd-v">{{ visits_month }}</div>
+    <small>{% blocktranslate with n=visits_total %}{{ n }} in all{% endblocktranslate %}</small></div>
+  <div class="card"><div class="gd-k">{% translate "Trainer" %}</div><div class="gd-v" style="font-size:18px">{{ member.trainer.name|default:"—" }}</div>
+    <small>{{ member.customer.phone }}</small></div>
+</div>
+<div class="gd-cols">
+  <div class="card">
+    <h2>⚖️ {% translate "Body progress" %}{% if weight_change is not None %} <small style="color:{% if weight_change < 0 %}#15803d{% else %}#b45309{% endif %}">({% if weight_change > 0 %}+{% endif %}{{ weight_change }} kg)</small>{% endif %}</h2>
+    <form class="gd-form" method="post" action="{% url 'webapp:member_measure' member.id %}">{% csrf_token %}
+      {% for f in measure_form %}<div><label for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</div>{% endfor %}
+      <div><button class="btn" type="submit">{% translate "Save" %}</button></div>
+    </form>
+    {% if measurements %}
+    <table><tr><th>{% translate "Date" %}</th><th>{% translate "Weight (kg)" %}</th><th>BMI</th><th>{% translate "Waist (cm)" %}</th><th>{% translate "Note" %}</th></tr>
+      {% for x in measurements %}<tr><td>{{ x.date|date:"d M" }}</td><td><b>{{ x.weight_kg }}</b></td><td>{{ x.bmi|default:"—" }}</td><td>{{ x.waist_cm|default:"—" }}</td><td>{{ x.note }}</td></tr>{% endfor %}
+    </table>
+    {% else %}<div class="empty">{% translate "No measurements yet." %}</div>{% endif %}
+  </div>
+  <div>
+    <div class="card" style="margin-bottom:16px">
+      <h2>🧾 {% translate "Bills & payments" %}</h2>
+      {% if invoices %}<table><tr><th>{% translate "Date" %}</th><th>{% translate "Bill" %}</th><th>{% translate "Amount" %}</th><th>{% translate "Status" %}</th></tr>
+        {% for i in invoices %}<tr><td>{{ i.date|date:"d M Y" }}</td><td><a href="{% url 'webapp:invoice_pdf' i.id %}" target="_blank">{{ i.invoice_number }}</a> <a href="{% url 'webapp:invoice_share' i.id %}" title="{% translate 'Share' %}">📤</a></td><td>{{ i.total|floatformat:2 }}</td><td>{{ i.get_status_display }}</td></tr>{% endfor %}
+      </table>{% else %}<div class="empty">{% translate "No bills yet." %}</div>{% endif %}
+    </div>
+    <div class="card">
+      <h2>🏋️ {% translate "Last visits" %}</h2>
+      {% if recent_visits %}<table>{% for v in recent_visits %}<tr><td>{{ v.check_in|date:"D d M" }}</td><td>{{ v.check_in|time:"H:i" }} – {{ v.check_out|time:"H:i"|default:"…" }}</td></tr>{% endfor %}</table>
+      {% else %}<div class="empty">{% translate "No visits yet." %}</div>{% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

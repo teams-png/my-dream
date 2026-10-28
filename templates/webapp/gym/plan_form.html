@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% block title %}{% if editing %}Edit plan{% else %}Add plan{% endif %}{% endblock %}
-{% block heading %}{% if editing %}Edit membership plan{% else %}Add membership plan{% endif %}{% endblock %}
+{% load i18n %}
+{% block title %}{% if editing %}{% translate "Edit plan" %}{% else %}{% translate "Add plan" %}{% endif %}{% endblock %}
+{% block heading %}{% if editing %}{% translate "Edit membership plan" %}{% else %}{% translate "Add membership plan" %}{% endif %}{% endblock %}
 {% block content %}
 <div class="card" style="max-width:400px;">
   <form class="stacked" method="post">
@@ -10,8 +11,8 @@
       {{ field }}
       {{ field.errors }}
     {% endfor %}
-    <button class="btn" style="margin-top:20px;" type="submit">Save</button>
-    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:plan_list' %}">Cancel</a>
+    <button class="btn" style="margin-top:20px;" type="submit">{% translate "Save" %}</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:plan_list' %}">{% translate "Cancel" %}</a>
   </form>
 </div>
 {% endblock %}

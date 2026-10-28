@@ -19006,3 +19006,235 @@ msgstr "بدء الخبز"
 #: apps/modules/catalog.py
 msgid "Waiting (lab / tests)"
 msgstr "انتظار (مختبر / فحوص)"
+
+#: apps/modules/catalog.py
+msgid "%(name)s checked in."
+msgstr "تم تسجيل دخول %(name)s."
+
+#: apps/modules/catalog.py
+msgid "%(name)s is already checked in."
+msgstr "%(name)s مسجّل دخوله بالفعل."
+
+#: apps/modules/catalog.py
+msgid "%(name)s joined. Bill %(no)s made."
+msgstr "انضم %(name)s. تم إنشاء الفاتورة %(no)s."
+
+#: apps/modules/catalog.py
+msgid "%(name)s's membership has ended. Renew it first."
+msgstr "انتهت عضوية %(name)s. جدّدها أولاً."
+
+#: apps/modules/catalog.py
+msgid "Active members by plan"
+msgstr "الأعضاء النشطون حسب الخطة"
+
+#: apps/modules/catalog.py
+msgid "Add a plan"
+msgstr "أضف خطة"
+
+#: apps/modules/catalog.py
+msgid "Add membership plan"
+msgstr "إضافة خطة عضوية"
+
+#: apps/modules/catalog.py
+msgid "Add plan"
+msgstr "إضافة خطة"
+
+#: apps/modules/catalog.py
+msgid "Add the first member"
+msgstr "أضف أول عضو"
+
+#: apps/modules/catalog.py
+msgid "Admission fee"
+msgstr "رسوم التسجيل"
+
+#: apps/modules/catalog.py
+msgid "Bills & payments"
+msgstr "الفواتير والمدفوعات"
+
+#: apps/modules/catalog.py
+msgid "Body progress"
+msgstr "تقدّم الجسم"
+
+#: apps/modules/catalog.py
+msgid "Busiest hours"
+msgstr "أكثر الساعات ازدحاماً"
+
+#: apps/modules/catalog.py
+msgid "Cardio / stamina"
+msgstr "كارديو / تحمّل"
+
+#: apps/modules/catalog.py
+msgid "Check-ins, last 14 days"
+msgstr "تسجيلات الدخول، آخر 14 يوماً"
+
+#: apps/modules/catalog.py
+msgid "Checked out."
+msgstr "تم تسجيل الخروج."
+
+#: apps/modules/catalog.py
+msgid "Couldn't enroll member: %(err)s"
+msgstr "تعذّر تسجيل العضو: %(err)s"
+
+#: apps/modules/catalog.py
+msgid "Duration"
+msgstr "المدة"
+
+#: apps/modules/catalog.py
+msgid "Edit membership plan"
+msgstr "تعديل خطة العضوية"
+
+#: apps/modules/catalog.py
+msgid "Ending this week"
+msgstr "تنتهي هذا الأسبوع"
+
+#: apps/modules/catalog.py
+msgid "Ends on"
+msgstr "تنتهي في"
+
+#: apps/modules/catalog.py
+msgid "Ends today"
+msgstr "تنتهي اليوم"
+
+#: apps/modules/catalog.py
+msgid "Fees by plan this month"
+msgstr "الرسوم حسب الخطة هذا الشهر"
+
+#: apps/modules/catalog.py
+msgid "Fees this month"
+msgstr "رسوم هذا الشهر"
+
+#: apps/modules/catalog.py
+msgid "Freeze"
+msgstr "تجميد"
+
+#: apps/modules/catalog.py
+msgid "Frozen"
+msgstr "مجمّدة"
+
+#: apps/modules/catalog.py
+msgid "General fitness"
+msgstr "لياقة عامة"
+
+#: apps/modules/catalog.py
+msgid "Goal"
+msgstr "الهدف"
+
+#: apps/modules/catalog.py
+msgid "Gym reports"
+msgstr "تقارير النادي"
+
+#: apps/modules/catalog.py
+msgid "Height (cm)"
+msgstr "الطول (سم)"
+
+#: apps/modules/catalog.py
+msgid "In"
+msgstr "بالداخل"
+
+#: apps/modules/catalog.py
+msgid "Join & bill"
+msgstr "انضمام وفاتورة"
+
+#: apps/modules/catalog.py
+msgid "Last visits"
+msgstr "آخر الزيارات"
+
+#: apps/modules/catalog.py
+msgid "Measurement saved."
+msgstr "تم حفظ القياس."
+
+#: apps/modules/catalog.py
+msgid "Membership renewed till %(date)s. Bill %(no)s made."
+msgstr "تم تجديد العضوية حتى %(date)s. تم إنشاء الفاتورة %(no)s."
+
+#: apps/modules/catalog.py
+msgid "Membership status updated."
+msgstr "تم تحديث حالة العضوية."
+
+#: apps/modules/catalog.py
+msgid "Muscle gain"
+msgstr "زيادة العضلات"
+
+#: apps/modules/catalog.py
+msgid "New joins"
+msgstr "المنضمون الجدد"
+
+#: apps/modules/catalog.py
+msgid "No fees this month yet."
+msgstr "لا رسوم هذا الشهر بعد."
+
+#: apps/modules/catalog.py
+msgid "No measurements yet."
+msgstr "لا قياسات بعد."
+
+#: apps/modules/catalog.py
+msgid "No member matches that search."
+msgstr "لا يوجد عضو يطابق البحث."
+
+#: apps/modules/catalog.py
+msgid "No members here."
+msgstr "لا أعضاء هنا."
+
+#: apps/modules/catalog.py
+msgid "No members yet."
+msgstr "لا أعضاء بعد."
+
+#: apps/modules/catalog.py
+msgid "No membership plans yet."
+msgstr "لا خطط عضوية بعد."
+
+#: apps/modules/catalog.py
+msgid "No visits yet."
+msgstr "لا زيارات بعد."
+
+#: apps/modules/catalog.py
+msgid "Or new member's name"
+msgstr "أو اسم العضو الجديد"
+
+#: apps/modules/catalog.py
+msgid "Pick a customer or type the new member's name."
+msgstr "اختر عميلاً أو اكتب اسم العضو الجديد."
+
+#: apps/modules/catalog.py
+msgid "Renew — %(name)s"
+msgstr "تجديد — %(name)s"
+
+#: apps/modules/catalog.py
+msgid "Renewals"
+msgstr "التجديدات"
+
+#: apps/modules/catalog.py
+msgid "Today's log"
+msgstr "سجل اليوم"
+
+#: apps/modules/catalog.py
+msgid "Trainer"
+msgstr "المدرّب"
+
+#: apps/modules/catalog.py
+msgid "Type name, phone or member no."
+msgstr "اكتب الاسم أو الهاتف أو رقم العضو"
+
+#: apps/modules/catalog.py
+msgid "Type the weight in kg."
+msgstr "اكتب الوزن بالكيلوغرام."
+
+#: apps/modules/catalog.py
+msgid "Unfreeze"
+msgstr "إلغاء التجميد"
+
+#: apps/modules/catalog.py
+msgid "Visits this month"
+msgstr "زيارات هذا الشهر"
+
+#: apps/modules/catalog.py
+msgid "Waist (cm)"
+msgstr "الخصر (سم)"
+
+#: apps/modules/catalog.py
+msgid "Weight loss"
+msgstr "إنقاص الوزن"
+
+#: apps/modules/catalog.py
+msgid "WhatsApp reminder"
+msgstr "تذكير واتساب"

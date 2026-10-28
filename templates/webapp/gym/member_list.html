@@ -1,19 +1,51 @@
 {% extends "base.html" %}
-{% block title %}Members{% endblock %}
-{% block heading %}Members{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Members" %}{% endblock %}
+{% block heading %}{% translate "Members" %}{% endblock %}
 {% block content %}
-<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:member_enroll' %}">+ Enroll member</a></div>
-{% if members %}
-<table>
-  <tr><th>Name</th><th>Plan</th><th>Start</th><th>End</th><th>Status</th><th></th></tr>
-  {% for m in members %}
+<style>
+.gm-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.gm-tabs{display:flex;gap:6px;flex-wrap:wrap}.gm-tabs a{padding:8px 14px;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:700;font-size:14px}
+.gm-tabs a.on{background:var(--brand,#2563eb);border-color:var(--brand,#2563eb);color:#fff}
+.gm-tabs a small{opacity:.75;font-weight:600}
+.gm-left{font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;background:#dcfce7;color:#166534;white-space:nowrap}
+.gm-left.warn{background:#fef3c7;color:#92400e}.gm-left.bad{background:#fee2e2;color:#991b1b}.gm-left.frozen{background:#e0f2fe;color:#075985}
+.gm-acts{display:flex;gap:6px;justify-content:flex-end;white-space:nowrap}
+</style>
+<div class="gm-bar">
+  <a class="btn" href="{% url 'webapp:member_enroll' %}">+ {% translate "New member" %}</a>
+  <form method="get" style="display:flex;gap:6px;margin:0"><input type="hidden" name="tab" value="{{ tab }}">
+    <input name="q" value="{{ q }}" placeholder="{% translate 'Name, phone or member no.' %}" style="min-width:220px"></form>
+</div>
+<div class="gm-tabs" style="margin-bottom:14px">
+  <a href="?tab=all" class="{% if tab == 'all' %}on{% endif %}">{% translate "All" %} <small>{{ counts.all }}</small></a>
+  <a href="?tab=active" class="{% if tab == 'active' %}on{% endif %}">{% translate "Active" %} <small>{{ counts.active }}</small></a>
+  <a href="?tab=ending" class="{% if tab == 'ending' %}on{% endif %}">⏰ {% translate "Ending this week" %} <small>{{ counts.ending }}</small></a>
+  <a href="?tab=expired" class="{% if tab == 'expired' %}on{% endif %}">{% translate "Expired" %} <small>{{ counts.expired }}</small></a>
+  <a href="?tab=frozen" class="{% if tab == 'frozen' %}on{% endif %}">{% translate "Frozen" %} <small>{{ counts.frozen }}</small></a>
+</div>
+{% if rows %}
+<div style="overflow-x:auto"><table>
+  <tr><th>{% translate "Member" %}</th><th>{% translate "Plan" %}</th><th>{% translate "Trainer" %}</th><th>{% translate "Ends on" %}</th><th>{% translate "Status" %}</th><th></th></tr>
+  {% for r in rows %}{% with m=r.m %}
   <tr>
-    <td>{{ m.customer.name }}</td><td>{{ m.membership_plan.name }}</td>
-    <td>{{ m.membership_start }}</td><td>{{ m.membership_end }}</td><td>{{ m.get_status_display }}</td><td><a class="btn btn-secondary" href="{% url 'webapp:member_renew' m.id %}">Renew</a> <form method="post" action="{% url 'webapp:member_status_toggle' m.id %}" style="display:inline;">{% csrf_token %}<button class="btn btn-secondary">{% if m.status == 'frozen' %}Unfreeze{% else %}Freeze{% endif %}</button></form></td>
+    <td><a href="{% url 'webapp:member_detail' m.id %}"><b>{{ m.customer.name }}</b></a>{% if m.member_no %} <small>{{ m.member_no }}</small>{% endif %}{% if m.customer.phone %}<br><small>{{ m.customer.phone }}</small>{% endif %}</td>
+    <td>{{ m.membership_plan.name }}</td><td>{{ m.trainer.name|default:"—" }}</td>
+    <td>{{ m.membership_end|date:"d M Y" }}</td>
+    <td>{% if m.status == "frozen" %}<span class="gm-left frozen">{% translate "Frozen" %}</span>
+      {% elif r.left < 0 %}<span class="gm-left bad">{% blocktranslate count n=r.ago %}Ended {{ n }} day ago{% plural %}Ended {{ n }} days ago{% endblocktranslate %}</span>
+      {% elif r.left == 0 %}<span class="gm-left bad">{% translate "Ends today" %}</span>
+      {% elif r.left <= 7 %}<span class="gm-left warn">{% blocktranslate count n=r.left %}{{ n }} day left{% plural %}{{ n }} days left{% endblocktranslate %}</span>
+      {% else %}<span class="gm-left">{% blocktranslate count n=r.left %}{{ n }} day left{% plural %}{{ n }} days left{% endblocktranslate %}</span>{% endif %}</td>
+    <td><div class="gm-acts">
+      <a class="btn" href="{% url 'webapp:member_renew' m.id %}">↻ {% translate "Renew" %}</a>
+      {% if r.wa and m.status != "frozen" %}<a class="btn btn-secondary" target="_blank" rel="noopener" href="{{ r.wa }}">💬 {% translate "Remind" %}</a>{% endif %}
+      <form method="post" action="{% url 'webapp:member_status_toggle' m.id %}" style="display:inline;">{% csrf_token %}<button class="btn btn-secondary">{% if m.status == 'frozen' %}{% translate "Unfreeze" %}{% else %}{% translate "Freeze" %}{% endif %}</button></form>
+    </div></td>
   </tr>
-  {% endfor %}
-</table>
+  {% endwith %}{% endfor %}
+</table></div>
 {% else %}
-<div class="card empty">No members yet.</div>
+<div class="card empty">{% if q %}{% translate "No member matches that search." %}{% else %}{% translate "No members here." %}{% endif %}</div>
 {% endif %}
 {% endblock %}

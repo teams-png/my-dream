@@ -293,7 +293,7 @@ def _gym(company, today, money):
         days = (m.membership_end - today).days
         rows.append({"title": m.customer.name, "sub": m.membership_plan.name,
                      "badge": _("Expired") if days < 0 else _("Today") if days == 0 else _("in %(n)s days") % {"n": days},
-                     "tone": "bad" if days <= 0 else "warn", "url": member_list})
+                     "tone": "bad" if days <= 0 else "warn", "url": reverse("webapp:member_detail", args=[m.id])})
     main = _panel(_("Memberships to renew"), member_list, _("All members"), rows, _("No memberships end this week."))
     side = _panel(_("Today's check-ins"), reverse("webapp:attendance_today"), _("Attendance"),
                   [{"lead": f"{timezone.localtime(v.check_in):%H:%M}", "title": v.member.customer.name} for v in visits],

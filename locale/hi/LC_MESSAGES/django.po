@@ -19107,3 +19107,235 @@ msgstr "बेकिंग शुरू"
 #: apps/modules/catalog.py
 msgid "Waiting (lab / tests)"
 msgstr "इंतज़ार (लैब / जाँच)"
+
+#: apps/modules/catalog.py
+msgid "%(name)s checked in."
+msgstr "%(name)s ने चेक-इन किया।"
+
+#: apps/modules/catalog.py
+msgid "%(name)s is already checked in."
+msgstr "%(name)s पहले से चेक-इन है।"
+
+#: apps/modules/catalog.py
+msgid "%(name)s joined. Bill %(no)s made."
+msgstr "%(name)s जुड़ गए। बिल %(no)s बना।"
+
+#: apps/modules/catalog.py
+msgid "%(name)s's membership has ended. Renew it first."
+msgstr "%(name)s की सदस्यता ख़त्म हो गई। पहले रिन्यू करें।"
+
+#: apps/modules/catalog.py
+msgid "Active members by plan"
+msgstr "प्लान के अनुसार सक्रिय सदस्य"
+
+#: apps/modules/catalog.py
+msgid "Add a plan"
+msgstr "एक प्लान जोड़ें"
+
+#: apps/modules/catalog.py
+msgid "Add membership plan"
+msgstr "सदस्यता प्लान जोड़ें"
+
+#: apps/modules/catalog.py
+msgid "Add plan"
+msgstr "प्लान जोड़ें"
+
+#: apps/modules/catalog.py
+msgid "Add the first member"
+msgstr "पहला सदस्य जोड़ें"
+
+#: apps/modules/catalog.py
+msgid "Admission fee"
+msgstr "एडमिशन फ़ीस"
+
+#: apps/modules/catalog.py
+msgid "Bills & payments"
+msgstr "बिल और भुगतान"
+
+#: apps/modules/catalog.py
+msgid "Body progress"
+msgstr "बॉडी प्रोग्रेस"
+
+#: apps/modules/catalog.py
+msgid "Busiest hours"
+msgstr "सबसे व्यस्त घंटे"
+
+#: apps/modules/catalog.py
+msgid "Cardio / stamina"
+msgstr "कार्डियो / स्टैमिना"
+
+#: apps/modules/catalog.py
+msgid "Check-ins, last 14 days"
+msgstr "चेक-इन, पिछले 14 दिन"
+
+#: apps/modules/catalog.py
+msgid "Checked out."
+msgstr "चेक-आउट हो गया।"
+
+#: apps/modules/catalog.py
+msgid "Couldn't enroll member: %(err)s"
+msgstr "सदस्य नहीं जुड़ सका: %(err)s"
+
+#: apps/modules/catalog.py
+msgid "Duration"
+msgstr "अवधि"
+
+#: apps/modules/catalog.py
+msgid "Edit membership plan"
+msgstr "सदस्यता प्लान बदलें"
+
+#: apps/modules/catalog.py
+msgid "Ending this week"
+msgstr "इस हफ़्ते ख़त्म"
+
+#: apps/modules/catalog.py
+msgid "Ends on"
+msgstr "ख़त्म होने की तारीख़"
+
+#: apps/modules/catalog.py
+msgid "Ends today"
+msgstr "आज ख़त्म"
+
+#: apps/modules/catalog.py
+msgid "Fees by plan this month"
+msgstr "इस महीने प्लान के अनुसार फ़ीस"
+
+#: apps/modules/catalog.py
+msgid "Fees this month"
+msgstr "इस महीने की फ़ीस"
+
+#: apps/modules/catalog.py
+msgid "Freeze"
+msgstr "फ़्रीज़ करें"
+
+#: apps/modules/catalog.py
+msgid "Frozen"
+msgstr "फ़्रीज़"
+
+#: apps/modules/catalog.py
+msgid "General fitness"
+msgstr "सामान्य फ़िटनेस"
+
+#: apps/modules/catalog.py
+msgid "Goal"
+msgstr "लक्ष्य"
+
+#: apps/modules/catalog.py
+msgid "Gym reports"
+msgstr "जिम रिपोर्ट"
+
+#: apps/modules/catalog.py
+msgid "Height (cm)"
+msgstr "लंबाई (सेमी)"
+
+#: apps/modules/catalog.py
+msgid "In"
+msgstr "अंदर"
+
+#: apps/modules/catalog.py
+msgid "Join & bill"
+msgstr "जोड़ें और बिल"
+
+#: apps/modules/catalog.py
+msgid "Last visits"
+msgstr "पिछली विज़िट"
+
+#: apps/modules/catalog.py
+msgid "Measurement saved."
+msgstr "माप सेव हो गया।"
+
+#: apps/modules/catalog.py
+msgid "Membership renewed till %(date)s. Bill %(no)s made."
+msgstr "सदस्यता %(date)s तक रिन्यू हुई। बिल %(no)s बना।"
+
+#: apps/modules/catalog.py
+msgid "Membership status updated."
+msgstr "सदस्यता की स्थिति बदली गई।"
+
+#: apps/modules/catalog.py
+msgid "Muscle gain"
+msgstr "मसल गेन"
+
+#: apps/modules/catalog.py
+msgid "New joins"
+msgstr "नए सदस्य"
+
+#: apps/modules/catalog.py
+msgid "No fees this month yet."
+msgstr "इस महीने अभी कोई फ़ीस नहीं।"
+
+#: apps/modules/catalog.py
+msgid "No measurements yet."
+msgstr "अभी कोई माप नहीं।"
+
+#: apps/modules/catalog.py
+msgid "No member matches that search."
+msgstr "इस खोज से कोई सदस्य नहीं मिला।"
+
+#: apps/modules/catalog.py
+msgid "No members here."
+msgstr "यहाँ कोई सदस्य नहीं।"
+
+#: apps/modules/catalog.py
+msgid "No members yet."
+msgstr "अभी कोई सदस्य नहीं।"
+
+#: apps/modules/catalog.py
+msgid "No membership plans yet."
+msgstr "अभी कोई सदस्यता प्लान नहीं।"
+
+#: apps/modules/catalog.py
+msgid "No visits yet."
+msgstr "अभी कोई विज़िट नहीं।"
+
+#: apps/modules/catalog.py
+msgid "Or new member's name"
+msgstr "या नए सदस्य का नाम"
+
+#: apps/modules/catalog.py
+msgid "Pick a customer or type the new member's name."
+msgstr "ग्राहक चुनें या नए सदस्य का नाम लिखें।"
+
+#: apps/modules/catalog.py
+msgid "Renew — %(name)s"
+msgstr "रिन्यू — %(name)s"
+
+#: apps/modules/catalog.py
+msgid "Renewals"
+msgstr "रिन्यूअल"
+
+#: apps/modules/catalog.py
+msgid "Today's log"
+msgstr "आज का लॉग"
+
+#: apps/modules/catalog.py
+msgid "Trainer"
+msgstr "ट्रेनर"
+
+#: apps/modules/catalog.py
+msgid "Type name, phone or member no."
+msgstr "नाम, फ़ोन या सदस्य नंबर लिखें"
+
+#: apps/modules/catalog.py
+msgid "Type the weight in kg."
+msgstr "वज़न kg में लिखें।"
+
+#: apps/modules/catalog.py
+msgid "Unfreeze"
+msgstr "फ़्रीज़ हटाएँ"
+
+#: apps/modules/catalog.py
+msgid "Visits this month"
+msgstr "इस महीने की विज़िट"
+
+#: apps/modules/catalog.py
+msgid "Waist (cm)"
+msgstr "कमर (सेमी)"
+
+#: apps/modules/catalog.py
+msgid "Weight loss"
+msgstr "वज़न घटाना"
+
+#: apps/modules/catalog.py
+msgid "WhatsApp reminder"
+msgstr "WhatsApp रिमाइंडर"

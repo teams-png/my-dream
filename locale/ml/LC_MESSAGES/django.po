@@ -19286,3 +19286,237 @@ msgstr "ഉണ്ടാക്കാൻ തുടങ്ങുക"
 #: apps/modules/catalog.py
 msgid "Waiting (lab / tests)"
 msgstr "കാത്തിരിക്കുന്നു (ലാബ് / ടെസ്റ്റ്)"
+
+#: apps/modules/catalog.py
+msgid "%(name)s checked in."
+msgstr "%(name)s ചെക്ക്-ഇൻ ചെയ്തു."
+
+#: apps/modules/catalog.py
+msgid "%(name)s is already checked in."
+msgstr "%(name)s ഇതിനകം ചെക്ക്-ഇൻ ചെയ്തിട്ടുണ്ട്."
+
+#: apps/modules/catalog.py
+msgid "%(name)s joined. Bill %(no)s made."
+msgstr "%(name)s ചേർന്നു. ബിൽ %(no)s ഉണ്ടാക്കി."
+
+#: apps/modules/catalog.py
+msgid "%(name)s's membership has ended. Renew it first."
+msgstr "%(name)s-ന്റെ membership കഴിഞ്ഞു. ആദ്യം പുതുക്കുക."
+
+#: apps/modules/catalog.py
+msgid "Active members by plan"
+msgstr "പ്ലാൻ തിരിച്ച് സജീവ അംഗങ്ങൾ"
+
+#: apps/modules/catalog.py
+msgid "Add a plan"
+msgstr "ഒരു പ്ലാൻ ചേർക്കുക"
+
+#: apps/modules/catalog.py
+msgid "Add membership plan"
+msgstr "Membership പ്ലാൻ ചേർക്കുക"
+
+#: apps/modules/catalog.py
+msgid "Add plan"
+msgstr "പ്ലാൻ ചേർക്കുക"
+
+#: apps/modules/catalog.py
+msgid "Add the first member"
+msgstr "ആദ്യ അംഗത്തെ ചേർക്കുക"
+
+#: apps/modules/catalog.py
+msgid "Admission fee"
+msgstr "അഡ്മിഷൻ ഫീസ്"
+
+#: apps/modules/catalog.py
+msgid "Bills & payments"
+msgstr "ബില്ലുകളും പണമടവും"
+
+#: apps/modules/catalog.py
+msgid "Body progress"
+msgstr "ശരീര പുരോഗതി"
+
+#: apps/modules/catalog.py
+msgid "Busiest hours"
+msgstr "ഏറ്റവും തിരക്കുള്ള സമയം"
+
+#: apps/modules/catalog.py
+msgid "Cardio / stamina"
+msgstr "കാർഡിയോ / സ്റ്റാമിന"
+
+#: apps/modules/catalog.py
+msgid "Check-ins, last 14 days"
+msgstr "ചെക്ക്-ഇൻ, കഴിഞ്ഞ 14 ദിവസം"
+
+#: apps/modules/catalog.py
+msgid "Checked out."
+msgstr "ചെക്ക്-ഔട്ട് ചെയ്തു."
+
+#: apps/modules/catalog.py
+msgid "Couldn't enroll member: %(err)s"
+msgstr "അംഗത്തെ ചേർക്കാനായില്ല: %(err)s"
+
+#: apps/modules/catalog.py
+msgid "Duration"
+msgstr "കാലാവധി"
+
+#: apps/modules/catalog.py
+msgid "Edit membership plan"
+msgstr "Membership പ്ലാൻ മാറ്റുക"
+
+#: apps/modules/catalog.py
+msgid "Ending this week"
+msgstr "ഈ ആഴ്ച തീരുന്നവ"
+
+#: apps/modules/catalog.py
+msgid "Ends on"
+msgstr "തീരുന്നത്"
+
+#: apps/modules/catalog.py
+msgid "Ends today"
+msgstr "ഇന്ന് തീരും"
+
+#: apps/modules/catalog.py
+msgid "Fees by plan this month"
+msgstr "ഈ മാസം പ്ലാൻ തിരിച്ച് ഫീസ്"
+
+#: apps/modules/catalog.py
+msgid "Fees this month"
+msgstr "ഈ മാസത്തെ ഫീസ്"
+
+#: apps/modules/catalog.py
+msgid "Freeze"
+msgstr "ഫ്രീസ് ചെയ്യുക"
+
+#: apps/modules/catalog.py
+msgid "Frozen"
+msgstr "ഫ്രീസ് ചെയ്തത്"
+
+#: apps/modules/catalog.py
+msgid "General fitness"
+msgstr "പൊതു ഫിറ്റ്നസ്"
+
+#: apps/modules/catalog.py
+msgid "Goal"
+msgstr "ലക്ഷ്യം"
+
+#: apps/modules/catalog.py
+msgid "Gym reports"
+msgstr "ജിം റിപ്പോർട്ടുകൾ"
+
+#: apps/modules/catalog.py
+msgid "Height (cm)"
+msgstr "ഉയരം (cm)"
+
+#: apps/modules/catalog.py
+msgid "In"
+msgstr "അകത്ത്"
+
+#: apps/modules/catalog.py
+msgid "Join & bill"
+msgstr "ചേർക്കുക & ബിൽ"
+
+#: apps/modules/catalog.py
+msgid "Last visits"
+msgstr "അവസാന സന്ദർശനങ്ങൾ"
+
+#: apps/modules/catalog.py
+msgid "Measurement saved."
+msgstr "അളവ് സേവ് ചെയ്തു."
+
+#: apps/modules/catalog.py
+msgid "Membership renewed till %(date)s. Bill %(no)s made."
+msgstr "%(date)s വരെ membership പുതുക്കി. ബിൽ %(no)s ഉണ്ടാക്കി."
+
+#: apps/modules/catalog.py
+msgid "Membership status updated."
+msgstr "Membership നില മാറ്റി."
+
+#: apps/modules/catalog.py
+msgid "Muscle gain"
+msgstr "മസിൽ കൂട്ടാൻ"
+
+#: apps/modules/catalog.py
+msgid "New joins"
+msgstr "പുതുതായി ചേർന്നവർ"
+
+#: apps/modules/catalog.py
+msgid "No fees this month yet."
+msgstr "ഈ മാസം ഇതുവരെ ഫീസ് ഇല്ല."
+
+#: apps/modules/catalog.py
+msgid "No measurements yet."
+msgstr "ഇതുവരെ അളവുകൾ ഇല്ല."
+
+#: apps/modules/catalog.py
+msgid "No member matches that search."
+msgstr "ആ തിരച്ചിലിന് അംഗങ്ങളില്ല."
+
+#: apps/modules/catalog.py
+msgid "No members here."
+msgstr "ഇവിടെ അംഗങ്ങളില്ല."
+
+#: apps/modules/catalog.py
+msgid "No members yet."
+msgstr "ഇതുവരെ അംഗങ്ങളില്ല."
+
+#: apps/modules/catalog.py
+msgid "No membership plans yet."
+msgstr "ഇതുവരെ membership പ്ലാനുകൾ ഇല്ല."
+
+#: apps/modules/catalog.py
+msgid "No visits yet."
+msgstr "ഇതുവരെ സന്ദർശനങ്ങളില്ല."
+
+#: apps/modules/catalog.py
+msgid "Or new member's name"
+msgstr "അല്ലെങ്കിൽ പുതിയ അംഗത്തിന്റെ പേര്"
+
+#: apps/modules/catalog.py
+msgid "Pick a customer or type the new member's name."
+msgstr ""
+"ഒരു customer-നെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ അംഗത്തിന്റെ പേര് ടൈപ്പ് "
+"ചെയ്യുക."
+
+#: apps/modules/catalog.py
+msgid "Renew — %(name)s"
+msgstr "പുതുക്കുക — %(name)s"
+
+#: apps/modules/catalog.py
+msgid "Renewals"
+msgstr "പുതുക്കലുകൾ"
+
+#: apps/modules/catalog.py
+msgid "Today's log"
+msgstr "ഇന്നത്തെ ലോഗ്"
+
+#: apps/modules/catalog.py
+msgid "Trainer"
+msgstr "ട്രെയിനർ"
+
+#: apps/modules/catalog.py
+msgid "Type name, phone or member no."
+msgstr "പേര്, ഫോൺ അല്ലെങ്കിൽ മെമ്പർ നമ്പർ ടൈപ്പ് ചെയ്യുക"
+
+#: apps/modules/catalog.py
+msgid "Type the weight in kg."
+msgstr "ഭാരം kg-ൽ ടൈപ്പ് ചെയ്യുക."
+
+#: apps/modules/catalog.py
+msgid "Unfreeze"
+msgstr "ഫ്രീസ് മാറ്റുക"
+
+#: apps/modules/catalog.py
+msgid "Visits this month"
+msgstr "ഈ മാസത്തെ സന്ദർശനം"
+
+#: apps/modules/catalog.py
+msgid "Waist (cm)"
+msgstr "അരവണ്ണം (cm)"
+
+#: apps/modules/catalog.py
+msgid "Weight loss"
+msgstr "ഭാരം കുറയ്ക്കൽ"
+
+#: apps/modules/catalog.py
+msgid "WhatsApp reminder"
+msgstr "WhatsApp ഓർമ്മപ്പെടുത്തൽ"

@@ -435,6 +435,8 @@ urlpatterns = [
 
     path("gym/members/", views.member_list, name="member_list"),
     path("gym/members/enroll/", views.member_enroll, name="member_enroll"),
+    path("gym/members/<int:member_id>/", views.member_detail, name="member_detail"),
+    path("gym/members/<int:member_id>/measure/", views.member_measure, name="member_measure"),
     path("gym/members/<int:member_id>/renew/", views.member_renew, name="member_renew"),
     path("gym/members/<int:member_id>/status/", views.member_status_toggle, name="member_status_toggle"),
 

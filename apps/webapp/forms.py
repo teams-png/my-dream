@@ -583,10 +583,21 @@ class MembershipPlanForm(forms.Form):
     price = forms.DecimalField(max_digits=10, decimal_places=2)
 
 
+GYM_PAY_CHOICES = [("cash", _l("Cash")), ("bank", _l("UPI / bank")), ("card", _l("Card")), ("", _l("Not paid yet"))]
+
+
 class EnrollMemberForm(forms.Form):
-    customer = forms.ModelChoiceField(queryset=Customer.objects.none())
-    membership_plan = forms.ModelChoiceField(queryset=MembershipPlan.objects.none(), label="Plan")
-    join_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
+    customer = forms.ModelChoiceField(queryset=Customer.objects.none(), required=False, label=_l("Existing customer"))
+    new_name = forms.CharField(max_length=150, required=False, label=_l("Or new member's name"))
+    new_phone = forms.CharField(max_length=30, required=False, label=_l("Phone (WhatsApp)"))
+    membership_plan = forms.ModelChoiceField(queryset=MembershipPlan.objects.none(), label=_l("Plan"))
+    join_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label=_l("Start date"))
+    admission_fee = forms.DecimalField(max_digits=10, decimal_places=2, required=False, min_value=0,
+                                       label=_l("Admission fee"))
+    trainer = forms.ModelChoiceField(queryset=Employee.objects.none(), required=False, label=_l("Trainer"))
+    goal = forms.CharField(max_length=60, required=False, label=_l("Goal"),
+                           widget=forms.TextInput(attrs={"list": "gym-goals", "placeholder": _l("Weight loss")}))
+    method = forms.ChoiceField(choices=GYM_PAY_CHOICES, required=False, initial="cash", label=_l("Paid by"))
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
@@ -596,14 +607,31 @@ class EnrollMemberForm(forms.Form):
                 Customer.objects.for_company(company).filter(is_active=True).exclude(id__in=already_members)
             )
             self.fields["membership_plan"].queryset = MembershipPlan.objects.for_company(company).filter(is_active=True)
+            self.fields["trainer"].queryset = Employee.objects.for_company(company).filter(is_active=True)
+
+    def clean(self):
+        data = super().clean()
+        if not data.get("customer") and not (data.get("new_name") or "").strip():
+            raise forms.ValidationError(_l("Pick a customer or type the new member's name."))
+        return data
 
 
 class RenewMemberForm(forms.Form):
-    membership_plan = forms.ModelChoiceField(queryset=MembershipPlan.objects.none(), label="Plan")
-    start_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
+    membership_plan = forms.ModelChoiceField(queryset=MembershipPlan.objects.none(), label=_l("Plan"))
+    start_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label=_l("Start date"))
+    method = forms.ChoiceField(choices=GYM_PAY_CHOICES, required=False, initial="cash", label=_l("Paid by"))
+
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["membership_plan"].queryset = MembershipPlan.objects.for_company(company).filter(is_active=True)
+
+
+class BodyMeasurementForm(forms.Form):
+    date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label=_l("Date"))
+    weight_kg = forms.DecimalField(max_digits=5, decimal_places=1, min_value=1, label=_l("Weight (kg)"))
+    height_cm = forms.DecimalField(max_digits=5, decimal_places=1, min_value=30, required=False, label=_l("Height (cm)"))
+    waist_cm = forms.DecimalField(max_digits=5, decimal_places=1, min_value=10, required=False, label=_l("Waist (cm)"))
+    note = forms.CharField(max_length=200, required=False, label=_l("Note"))
 
 
 class NewCustomerQuickForm(forms.ModelForm):

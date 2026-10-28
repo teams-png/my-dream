@@ -1,32 +1,48 @@
 {% extends "base.html" %}
-{% block title %}Reports{% endblock %}
-{% block heading %}Reports{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Reports" %}{% endblock %}
+{% block heading %}{% translate "Gym reports" %}{% endblock %}
 {% block content %}
-<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px;">
-  <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Active members</div>
-    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ active_count }}</div>
+<style>
+.gr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
+.gr-k{color:var(--ink-soft);font-size:13px}.gr-v{font-size:24px;font-weight:800;margin-top:6px}
+.gr-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:16px}
+.gr-cols h2{font-size:16px;margin:0 0 10px}
+.gr-bars{display:flex;align-items:flex-end;gap:6px;height:150px;padding-top:10px}
+.gr-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-size:11px;color:var(--ink-soft)}
+.gr-bar i{display:block;width:100%;background:var(--brand,#2563eb);border-radius:6px 6px 0 0;min-height:2px}
+.gr-bar b{font-size:11px;color:var(--ink)}
+</style>
+<div class="gr-grid">
+  <div class="card"><div class="gr-k">{% translate "Fees this month" %}</div><div class="gr-v">{{ income|floatformat:2 }}</div></div>
+  <div class="card"><div class="gr-k">{% translate "New joins" %}</div><div class="gr-v">{{ joined }}</div></div>
+  <div class="card"><div class="gr-k">{% translate "Renewals" %}</div><div class="gr-v">{{ renewed }}</div></div>
+  <div class="card"><div class="gr-k">{% translate "Active members" %}</div><div class="gr-v">{{ active_count }}</div></div>
+  <div class="card"><div class="gr-k">{% translate "Ending this week" %}</div><div class="gr-v" style="color:#b45309">{{ ending_count }}</div></div>
+  <div class="card"><div class="gr-k">{% translate "Expired" %}</div><div class="gr-v" style="color:#b91c1c">{{ expired_count }}</div></div>
+</div>
+<div class="gr-cols">
+  <div class="card"><h2>{% translate "Check-ins, last 14 days" %}</h2>
+    <div class="gr-bars">{% for d in days %}<div class="gr-bar"><b>{{ d.n }}</b><i style="height:{{ d.pct }}%"></i>{{ d.day|date:"d" }}</div>{% endfor %}</div>
+    {% if busy %}<p style="margin:12px 0 0">⏱ {% translate "Busiest hours" %}: {% for b in busy %}<b>{{ b.label }}</b> ({{ b.n }}){% if not forloop.last %} · {% endif %}{% endfor %}</p>{% endif %}
   </div>
-  <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Expired</div>
-    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ expired_count }}</div>
-  </div>
-  <div class="card">
-    <div style="color:var(--ink-soft); font-size:13px;">Frozen</div>
-    <div style="font-size:26px; font-weight:600; margin-top:6px;">{{ frozen_count }}</div>
+  <div class="card"><h2>{% translate "Fees by plan this month" %}</h2>
+    {% if by_plan %}<table><tr><th>{% translate "Plan" %}</th><th>{% translate "Bills" %}</th><th>{% translate "Amount" %}</th></tr>
+      {% for r in by_plan %}<tr><td>{{ r.name }}</td><td>{{ r.n }}</td><td>{{ r.amount|floatformat:2 }}</td></tr>{% endfor %}</table>
+    {% else %}<div class="empty">{% translate "No fees this month yet." %}</div>{% endif %}
   </div>
 </div>
-
-<h2 style="font-size:16px; margin-bottom:10px;">Members by plan</h2>
+<div class="card"><h2 style="font-size:16px;margin:0 0 10px">{% translate "Active members by plan" %}</h2>
 {% if plan_breakdown %}
 <table>
-  <tr><th>Plan</th><th>Members</th></tr>
+  <tr><th>{% translate "Plan" %}</th><th>{% translate "Members" %}</th></tr>
   {% for row in plan_breakdown %}
   <tr><td>{{ row.membership_plan__name }}</td><td>{{ row.count }}</td></tr>
   {% endfor %}
 </table>
 {% else %}
-<div class="card empty">No members yet.</div>
+<div class="empty">{% translate "No members yet." %}</div>
 {% endif %}
+</div>
 {% include "webapp/_staff_billing.html" %}
 {% endblock %}

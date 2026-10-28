@@ -1,35 +1,60 @@
 {% extends "base.html" %}
-{% block title %}Attendance{% endblock %}
-{% block heading %}Today's attendance{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Attendance" %}{% endblock %}
+{% block heading %}{% translate "Today's attendance" %}{% endblock %}
 {% block content %}
-<h2 style="font-size:15px; margin:0 0 10px;">Check in a member</h2>
-{% if active_members %}
-<table style="margin-bottom:26px;">
-  <tr><th>Name</th><th>Plan</th><th></th></tr>
-  {% for m in active_members %}
-  <tr>
-    <td>{{ m.customer.name }}</td><td>{{ m.membership_plan.name }}</td>
-    <td><a class="btn btn-secondary" href="{% url 'webapp:attendance_check_in' m.id %}">Check in</a></td>
-  </tr>
-  {% endfor %}
-</table>
+<style>
+.ga-top{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.ga-top input{flex:1;min-width:240px;font-size:18px;padding:12px 14px}
+.ga-pill{font-weight:800;padding:8px 14px;border-radius:999px;background:#dcfce7;color:#166534}
+.ga-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin-bottom:24px}
+.ga-card{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--card,#fff)}
+.ga-card b{display:block}.ga-card small{color:var(--ink-soft)}
+.ga-card.out{opacity:.75}.ga-card.in{border-color:#16a34a;box-shadow:0 0 0 2px #bbf7d0 inset}
+.ga-bad{color:#b91c1c;font-weight:700}
+</style>
+<div class="ga-top">
+  <input id="ga-find" type="search" placeholder="🔍 {% translate 'Type name, phone or member no.' %}" autocomplete="off" autofocus>
+  <span class="ga-pill">🏋️ {% blocktranslate count n=inside_count %}{{ n }} inside now{% plural %}{{ n }} inside now{% endblocktranslate %}</span>
+  <span class="ga-pill" style="background:#e0f2fe;color:#075985">{% blocktranslate count n=entries|length %}{{ n }} check-in today{% plural %}{{ n }} check-ins today{% endblocktranslate %}</span>
+</div>
+{% if members %}
+<div class="ga-list" id="ga-list">
+  {% for r in members %}{% with m=r.m %}
+  <div class="ga-card {% if r.inside %}in{% elif m.status != 'active' %}out{% endif %}" data-find="{{ m.customer.name|lower }} {{ m.customer.phone }} {{ m.member_no|lower }}">
+    <div><b>{{ m.customer.name }}</b><small>{{ m.member_no }} · {{ m.membership_plan.name }}</small>
+      {% if m.status == "frozen" %}<small class="ga-bad"> · {% translate "Frozen" %}</small>{% elif m.status != "active" %}<small class="ga-bad"> · {% translate "Expired" %}</small>{% elif r.left <= 3 %}<small class="ga-bad"> · {% blocktranslate count n=r.left %}{{ n }} day left{% plural %}{{ n }} days left{% endblocktranslate %}</small>{% endif %}</div>
+    {% if r.inside %}<span class="ga-pill">✓ {% translate "In" %}</span>
+    {% elif m.status == "active" %}<form method="post" action="{% url 'webapp:attendance_check_in' m.id %}" style="margin:0">{% csrf_token %}<button class="btn">{% translate "Check in" %}</button></form>
+    {% elif m.status == "expired" %}<a class="btn btn-secondary" href="{% url 'webapp:member_renew' m.id %}">↻ {% translate "Renew" %}</a>{% endif %}
+  </div>
+  {% endwith %}{% endfor %}
+</div>
 {% else %}
-<div class="card empty" style="margin-bottom:26px;">No active members to check in.</div>
+<div class="card empty" style="margin-bottom:26px;">{% translate "No members yet." %} <a href="{% url 'webapp:member_enroll' %}">{% translate "Add the first member" %}</a></div>
 {% endif %}
 
-<h2 style="font-size:15px; margin:0 0 10px;">Today's log</h2>
+<h2 style="font-size:15px; margin:0 0 10px;">{% translate "Today's log" %}</h2>
 {% if entries %}
 <table>
-  <tr><th>Name</th><th>Check-in</th><th>Check-out</th><th></th></tr>
+  <tr><th>{% translate "Member" %}</th><th>{% translate "Check-in" %}</th><th>{% translate "Check-out" %}</th><th></th></tr>
   {% for e in entries %}
   <tr>
-    <td>{{ e.member.customer.name }}</td><td>{{ e.check_in|date:"H:i" }}</td>
-    <td>{{ e.check_out|date:"H:i"|default:"—" }}</td>
-    <td>{% if not e.check_out %}<a class="btn btn-secondary" href="{% url 'webapp:attendance_check_out' e.id %}">Check out</a>{% endif %}</td>
+    <td>{{ e.member.customer.name }}</td><td>{{ e.check_in|time:"H:i" }}</td>
+    <td>{{ e.check_out|time:"H:i"|default:"—" }}</td>
+    <td>{% if not e.check_out %}<form method="post" action="{% url 'webapp:attendance_check_out' e.id %}" style="margin:0">{% csrf_token %}<button class="btn btn-secondary">{% translate "Check out" %}</button></form>{% endif %}</td>
   </tr>
   {% endfor %}
 </table>
 {% else %}
-<div class="card empty">No check-ins yet today.</div>
+<div class="card empty">{% translate "No check-ins yet today." %}</div>
 {% endif %}
+<script>
+(function(){var box=document.getElementById("ga-find");if(!box)return;
+box.addEventListener("input",function(){var q=box.value.trim().toLowerCase();
+document.querySelectorAll("#ga-list .ga-card").forEach(function(c){c.style.display=!q||c.dataset.find.indexOf(q)>-1?"":"none";});});
+box.addEventListener("keydown",function(e){if(e.key!=="Enter")return;e.preventDefault();
+var shown=[].filter.call(document.querySelectorAll("#ga-list .ga-card"),function(c){return c.style.display!=="none";});
+if(shown.length===1){var b=shown[0].querySelector("button");if(b)b.click();}});})();
+</script>
 {% endblock %}

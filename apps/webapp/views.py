@@ -81,7 +81,7 @@ from .forms import (
     CategoryForm, ProductForm, MobileProductForm, BusinessProductForm, MobileUnitForm, MobileBulkIMEIForm,
     MobileRepairJobForm, MobileRepairPartForm, MobileWarrantyClaimForm, MobileTradeInForm,
     MobileInstallmentPaymentForm, CustomerForm, SellUnitForm,
-    MembershipPlanForm, EnrollMemberForm, RenewMemberForm, SpaServiceForm, EmployeeForm, BookAppointmentForm,
+    MembershipPlanForm, EnrollMemberForm, RenewMemberForm, BodyMeasurementForm, SpaServiceForm, EmployeeForm, BookAppointmentForm,
     RegisterClientForm, FabricForm, MeasurementForm, TailoringOrderForm,
     VehicleForm, WashPackageForm, BookWashForm,
     SportsProductForm, CycleUnitForm, SellCycleForm, ServiceTicketForm,
@@ -1194,7 +1194,9 @@ def _selected_warehouse(company, warehouse_id):
 @login_required
 def plan_list(request):
     company = request.company
-    plans = MembershipPlan.objects.for_company(company).order_by("price") if company else []
+    plans = (MembershipPlan.objects.for_company(company)
+             .annotate(active_members=Count("gymmember", filter=Q(gymmember__status="active"))).order_by("price")
+             if company else [])
     return render(request, "webapp/gym/plan_list.html", {"plans": plans})
 
 
@@ -1251,14 +1253,43 @@ def plan_delete(request, plan_id):
     })
 
 
+def _gym_member_rows(company, members, today):
+    from apps.industry.reminders import membership_message, whatsapp_link
+    rows = []
+    for m in members:
+        left = (m.membership_end - today).days
+        rows.append({"m": m, "left": left, "ago": -left,
+                     "wa": whatsapp_link(company, m.customer, membership_message(company, m)) if left <= 7 else ""})
+    return rows
+
+
 @login_required
 def member_list(request):
     company = request.company
-    members = (
-        GymMember.objects.for_company(company).select_related("customer", "membership_plan").order_by("-join_date")
-        if company else []
-    )
-    return render(request, "webapp/gym/member_list.html", {"members": members})
+    if company is None:
+        return render(request, "webapp/no_company.html")
+    today = tz.localdate()
+    gym_services.mark_expired(company, today)
+    members = GymMember.objects.for_company(company).select_related("customer", "membership_plan", "trainer")
+    q = request.GET.get("q", "").strip()
+    if q:
+        members = members.filter(Q(customer__name__icontains=q) | Q(customer__phone__icontains=q) | Q(member_no__icontains=q))
+    soon = today + timedelta(days=7)
+    tabs = {
+        "all": members,
+        "active": members.filter(status="active"),
+        "ending": members.filter(status="active", membership_end__lte=soon),
+        "expired": members.filter(status="expired"),
+        "frozen": members.filter(status="frozen"),
+    }
+    tab = request.GET.get("tab", "all")
+    if tab not in tabs:
+        tab = "all"
+    shown = tabs[tab].order_by("membership_end" if tab in ("ending", "expired") else "customer__name")
+    return render(request, "webapp/gym/member_list.html", {
+        "rows": _gym_member_rows(company, shown, today), "tab": tab, "q": q,
+        "counts": {k: v.count() for k, v in tabs.items()},
+    })
 
 
 @login_required
@@ -1267,39 +1298,80 @@ def member_enroll(request):
     if request.method == "POST":
         form = EnrollMemberForm(request.POST, company=company)
         if form.is_valid():
+            data = form.cleaned_data
             try:
-                gym_services.enroll_member(
-                    company=company,
-                    user=request.user,
-                    customer=form.cleaned_data["customer"],
-                    membership_plan=form.cleaned_data["membership_plan"],
-                    join_date=form.cleaned_data["join_date"],
-                    warehouse=_default_warehouse(company),
-                )
-                messages.success(request, "Member enrolled and invoiced.")
-                return redirect("webapp:member_list")
+                with transaction.atomic():
+                    customer = data["customer"] or Customer.objects.create(
+                        company=company, name=data["new_name"].strip(), phone=data["new_phone"].strip())
+                    member = gym_services.enroll_member(
+                        company=company, user=request.user, customer=customer, membership_plan=data["membership_plan"],
+                        join_date=data["join_date"], warehouse=_default_warehouse(company), method=data["method"],
+                        admission_fee=data["admission_fee"] or 0, trainer=data["trainer"], goal=data["goal"],
+                    )
+                messages.success(request, _("%(name)s joined. Bill %(no)s made.") % {
+                    "name": customer.name, "no": member.invoice.invoice_number})
+                return redirect("webapp:member_detail", member.id)
             except Exception as exc:
-                messages.error(request, f"Couldn't enroll member: {exc}")
+                messages.error(request, _("Couldn't enroll member: %(err)s") % {"err": exc})
     else:
-        form = EnrollMemberForm(company=company, initial={"join_date": tz.now().date()})
+        form = EnrollMemberForm(company=company, initial={"join_date": tz.localdate(), "method": "cash"})
 
     no_plans = not MembershipPlan.objects.for_company(company).filter(is_active=True).exists()
-    no_customers = not Customer.objects.for_company(company).exists()
-    return render(request, "webapp/gym/member_enroll.html", {
-        "form": form, "no_plans": no_plans, "no_customers": no_customers,
+    return render(request, "webapp/gym/member_enroll.html", {"form": form, "no_plans": no_plans})
+
+
+@login_required
+def member_detail(request, member_id):
+    from apps.industry.reminders import membership_message, whatsapp_link
+    company = request.company
+    member = get_object_or_404(GymMember.objects.for_company(company).select_related("customer", "membership_plan", "trainer"),
+                               id=member_id)
+    today = tz.localdate()
+    visits = Attendance.objects.for_company(company).filter(member=member)
+    measurements = list(member.measurements.all()[:12])
+    change = None
+    if len(measurements) > 1:
+        change = measurements[0].weight_kg - measurements[-1].weight_kg
+    return render(request, "webapp/gym/member_detail.html", {
+        "member": member, "left": (member.membership_end - today).days,
+        "visits_month": visits.filter(check_in__date__gte=today.replace(day=1)).count(),
+        "visits_total": visits.count(), "recent_visits": visits.order_by("-check_in")[:8],
+        "measurements": measurements, "weight_change": change,
+        "measure_form": BodyMeasurementForm(initial={"date": today}),
+        "invoices": SalesInvoice.objects.for_company(company).filter(customer=member.customer).order_by("-date", "-id")[:8],
+        "wa": whatsapp_link(company, member.customer, membership_message(company, member)),
     })
+
+
+@login_required
+@require_POST
+def member_measure(request, member_id):
+    company = request.company
+    member = get_object_or_404(GymMember.objects.for_company(company), id=member_id)
+    form = BodyMeasurementForm(request.POST)
+    if form.is_valid():
+        gym_services.add_measurement(company, member, on=form.cleaned_data["date"], weight_kg=form.cleaned_data["weight_kg"],
+                                     height_cm=form.cleaned_data["height_cm"], waist_cm=form.cleaned_data["waist_cm"],
+                                     note=form.cleaned_data["note"])
+        messages.success(request, _("Measurement saved."))
+    else:
+        messages.error(request, _("Type the weight in kg."))
+    return redirect("webapp:member_detail", member.id)
 
 
 @login_required
 def member_renew(request, member_id):
     member = get_object_or_404(GymMember.objects.for_company(request.company), id=member_id)
-    form = RenewMemberForm(request.POST or None, company=request.company, initial={"membership_plan": member.membership_plan_id, "start_date": max(tz.now().date(), member.membership_end)})
+    form = RenewMemberForm(request.POST or None, company=request.company, initial={
+        "membership_plan": member.membership_plan_id, "start_date": max(tz.localdate(), member.membership_end),
+        "method": "cash"})
     if request.method == "POST" and form.is_valid():
-        gym_services.renew_member(company=request.company, user=request.user, member=member,
-            warehouse=_default_warehouse(request.company), **form.cleaned_data)
-        messages.success(request, "Membership renewed and invoice created.")
-        return redirect("webapp:member_list")
-    return render(request, "webapp/mobile_shop/form.html", {"form": form, "heading": f"Renew — {member.customer.name}", "cancel_url": "webapp:member_list"})
+        _m, invoice = gym_services.renew_member(company=request.company, user=request.user, member=member,
+                                                warehouse=_default_warehouse(request.company), **form.cleaned_data)
+        messages.success(request, _("Membership renewed till %(date)s. Bill %(no)s made.") % {
+            "date": member.membership_end.strftime("%d %b %Y"), "no": invoice.invoice_number})
+        return redirect("webapp:member_detail", member.id)
+    return render(request, "webapp/mobile_shop/form.html", {"form": form, "heading": _("Renew — %(name)s") % {"name": member.customer.name}, "cancel_url": "webapp:member_list"})
 
 
 @login_required
@@ -1308,45 +1380,51 @@ def member_status_toggle(request, member_id):
     if request.method == "POST":
         member.status = "active" if member.status == "frozen" else "frozen"
         member.save(update_fields=["status"])
-        messages.success(request, "Membership status updated.")
+        messages.success(request, _("Membership status updated."))
     return redirect("webapp:member_list")
 
 
 @login_required
 def attendance_today(request):
     company = request.company
-    today = tz.now().date()
-    entries = (
-        Attendance.objects.for_company(company)
-        .select_related("member__customer")
-        .filter(check_in__date=today)
-        .order_by("-check_in")
-        if company else []
-    )
-    active_members = GymMember.objects.for_company(company).filter(status="active").select_related("customer") if company else []
-    return render(request, "webapp/gym/attendance.html", {"entries": entries, "active_members": active_members})
+    if company is None:
+        return render(request, "webapp/no_company.html")
+    today = tz.localdate()
+    gym_services.mark_expired(company, today)
+    entries = list(Attendance.objects.for_company(company).select_related("member__customer")
+                   .filter(check_in__date=today).order_by("-check_in"))
+    inside = {e.member_id for e in entries if not e.check_out}
+    members = GymMember.objects.for_company(company).select_related("customer", "membership_plan").order_by("customer__name")
+    return render(request, "webapp/gym/attendance.html", {
+        "entries": entries, "inside_count": len(inside),
+        "members": [{"m": m, "inside": m.id in inside, "left": (m.membership_end - today).days} for m in members],
+    })
 
 
 @login_required
+@require_POST
 def attendance_check_in(request, member_id):
     company = request.company
-    member = get_object_or_404(GymMember.objects.for_company(company), id=member_id)
-    open_entry = Attendance.objects.for_company(company).filter(member=member, check_out__isnull=True).first()
-    if open_entry:
-        messages.error(request, f"{member.customer.name} is already checked in.")
+    member = get_object_or_404(GymMember.objects.for_company(company).select_related("customer"), id=member_id)
+    _entry, error = gym_services.check_in(company, member, tz.now())
+    if error == "expired":
+        messages.error(request, _("%(name)s's membership has ended. Renew it first.") % {"name": member.customer.name})
+    elif error:
+        messages.error(request, _("%(name)s is already checked in.") % {"name": member.customer.name})
     else:
-        Attendance.objects.create(company=company, member=member, check_in=tz.now())
-        messages.success(request, f"{member.customer.name} checked in.")
+        messages.success(request, _("%(name)s checked in.") % {"name": member.customer.name})
     return redirect("webapp:attendance_today")
 
 
 @login_required
+@require_POST
 def attendance_check_out(request, entry_id):
     company = request.company
     entry = get_object_or_404(Attendance.objects.for_company(company), id=entry_id)
-    entry.check_out = tz.now()
-    entry.save(update_fields=["check_out"])
-    messages.success(request, "Checked out.")
+    if entry.check_out is None:
+        entry.check_out = tz.now()
+        entry.save(update_fields=["check_out"])
+    messages.success(request, _("Checked out."))
     return redirect("webapp:attendance_today")
 
 
@@ -1355,14 +1433,43 @@ def gym_reports(request):
     company = request.company
     if company is None:
         return render(request, "webapp/no_company.html")
-
+    today = tz.localdate()
+    gym_services.mark_expired(company, today)
+    month_start = today.replace(day=1)
     members = GymMember.objects.for_company(company)
+    plan_products = list(MembershipPlan.objects.for_company(company).exclude(product=None).values_list("product_id", flat=True))
+    lines = (SalesInvoiceLine.objects.filter(invoice__company=company, invoice__date__gte=month_start,
+                                             invoice__date__lte=today)
+             .exclude(invoice__status="void"))
+    fees = lines.filter(Q(product_id__in=plan_products) | Q(product__sku=gym_services.ADMISSION_SKU))
+    by_plan = list(fees.values("product__name").annotate(n=Count("id"), amount=Sum("line_total")).order_by("-amount"))
+    for row in by_plan:
+        row["name"] = row["product__name"].replace("Gym Membership — ", "")
+    joined = members.filter(join_date__gte=month_start, join_date__lte=today).count()
+    paid_bills = fees.filter(product_id__in=plan_products).values("invoice_id").distinct().count()
+    visits = Attendance.objects.for_company(company)
+    days = []
+    for back in range(13, -1, -1):
+        d = today - timedelta(days=back)
+        days.append({"day": d, "n": visits.filter(check_in__date=d).count()})
+    top = max([d["n"] for d in days] + [1])
+    for d in days:
+        d["pct"] = round(d["n"] * 100 / top)
+    hours = {}
+    for when in visits.filter(check_in__date__gte=today - timedelta(days=30)).values_list("check_in", flat=True):
+        h = tz.localtime(when).hour
+        hours[h] = hours.get(h, 0) + 1
+    busy = sorted(hours.items(), key=lambda kv: -kv[1])[:3]
     context = {
         "active_count": members.filter(status="active").count(),
         "expired_count": members.filter(status="expired").count(),
         "frozen_count": members.filter(status="frozen").count(),
+        "ending_count": members.filter(status="active", membership_end__lte=today + timedelta(days=7)).count(),
+        "income": fees.aggregate(t=Sum("line_total"))["t"] or 0, "joined": joined,
+        "renewed": max(paid_bills - joined, 0), "by_plan": by_plan, "days": days,
+        "busy": [{"label": f"{h:02d}:00–{(h + 1) % 24:02d}:00", "n": n} for h, n in busy],
         "plan_breakdown": (
-            members.values("membership_plan__name")
+            members.filter(status="active").values("membership_plan__name")
             .annotate(count=Count("id"))
             .order_by("-count")
         ),

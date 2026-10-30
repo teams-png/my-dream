@@ -57,6 +57,13 @@ JOB_TERMS = {
                     "subject": (_l("Cake for (name / occasion)"), _l("Order ref")),
                     "ready_by": _l("Pickup / delivery time"), "staff": _l("Baker"), "icon": "🎂",
                     "start": _l("Start baking"), "waiting": _l("Waiting"), "ready": _l("Ready for pickup")},
+    "laundry": {"board": _l("Laundry orders"), "new": _l("New laundry order"), "title": _l("Service"),
+                "subject": (_l("Bag / pickup from"), _l("Bag no.")), "ready_by": _l("Delivery / pickup time"),
+                "staff": _l("Handled by"), "icon": "🧺", "start": _l("Washing"), "doing": _l("Washing / ironing"), "waiting": _l("Waiting (stain / repair)"),
+                "ready": _l("Ready for delivery")},
+    "eye_test": {"board": _l("Eye tests & orders"), "new": _l("New eye test / order"), "title": _l("What for"),
+                 "subject": (_l("Glasses for"), _l("Customer no.")), "ready_by": _l("Ready by"), "staff": _l("Optometrist"),
+                 "icon": "👓", "start": _l("Lens ordered"), "doing": _l("Lens ordered"), "waiting": _l("Waiting for lens"), "ready": _l("Ready for pickup")},
     "clinic": {"board": _l("OP / patient visits"), "new": _l("New OP visit"), "title": _l("Complaint / reason"),
                "subject": (_l("Patient"), _l("OP / file no.")), "staff": _l("Doctor"), "icon": "🩺",
                "start": _l("Call in"), "waiting": _l("Waiting (lab / tests)"), "ready": _l("Consultation done")},
@@ -157,7 +164,7 @@ def board(request):
                     or j.status in ("in_progress", "ready")]
         terms = _terms(company)
         columns = [("open", _("Booked / to start"), [j for j in jobs if j.status == "open"]),
-                   ("in_progress", _("In progress"), [j for j in jobs if j.status == "in_progress"]),
+                   ("in_progress", terms.get("doing") or _("In progress"), [j for j in jobs if j.status == "in_progress"]),
                    ("waiting", terms.get("waiting") or _("Waiting (parts / approval)"), [j for j in jobs if j.status == "waiting"]),
                    ("ready", terms.get("ready") or _("Ready for the customer"), [j for j in jobs if j.status == "ready"])]
     for j in jobs:
@@ -223,6 +230,7 @@ def job_detail(request, case_id):
     if kind == "eye":
         extra["prev_eye"] = job_records.previous_eye(job)
         extra["eye_fields"] = job_records.EYE_FIELDS
+        extra["lens_types"] = job_records.LENS_TYPES
     if kind == "laundry":
         extra["tags"] = job_records.laundry_tags(job)
     if kind == "vehicle":
@@ -313,7 +321,8 @@ def job_print(request, case_id):
         return render(request, "webapp/jobs/doc.html", {
             "job": job, "doc": doc, "rec": job.record or {}, "company": company, "labels": _labels(company),
             "tags": job_records.laundry_tags(job) if doc == "tags" else [], "eye_fields": job_records.EYE_FIELDS,
-            "staff": job.assigned_staff})
+            "staff": job.assigned_staff, "amount": svc.total(job),
+            "balance": max(svc.total(job) - Decimal((job.record or {}).get("advance") or 0), Decimal("0"))})
     rec = job.record or {}
     return render(request, "webapp/jobs/print.html", {
         "job": job, "lines": job.lines.all(), "amount": svc.total(job), "currency": company.default_currency,

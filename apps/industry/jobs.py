@@ -246,6 +246,10 @@ def customer_message(job, link=""):
         amount = total(job)
         if amount:
             lines.append(_("Amount: %(amount)s") % {"amount": f"{company.default_currency} {amount:.2f}"})
+            advance = Decimal((job.record or {}).get("advance") or 0)
+            if advance:
+                lines.append(_("Advance paid: %(advance)s · Balance: %(balance)s") % {
+                    "advance": f"{advance:.2f}", "balance": f"{company.default_currency} {max(amount - advance, Decimal('0')):.2f}"})
     elif job.status == "waiting":
         lines.append(_("%(what)s is waiting for parts / your approval. We will update you.") % {"what": what})
     elif job.status == "completed":

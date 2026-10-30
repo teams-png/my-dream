@@ -1,23 +1,34 @@
 {% extends "base.html" %}
-{% block title %}Book wash{% endblock %}
-{% block heading %}Book a wash{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "New car in the queue" %}{% endblock %}
+{% block heading %}{% translate "New car in the queue" %}{% endblock %}
 {% block content %}
-{% if no_vehicles %}
-<div class="card" style="margin-bottom:16px;">No vehicles yet. <a href="{% url 'webapp:vehicle_add' %}">Add a vehicle</a> first.</div>
-{% endif %}
 {% if no_packages %}
-<div class="card" style="margin-bottom:16px;">No wash packages yet. <a href="{% url 'webapp:wash_package_add' %}">Add a package</a> first.</div>
+<div class="card" style="margin-bottom:16px;">{% translate "No wash packages yet." %} <a href="{% url 'webapp:wash_package_add' %}">{% translate "Add a package" %}</a></div>
 {% endif %}
-<div class="card" style="max-width:440px;">
+<div class="card" style="max-width:560px;">
   <form class="stacked" method="post">
     {% csrf_token %}
+    {{ form.non_field_errors }}
     {% for field in form %}
       <label for="{{ field.id_for_label }}">{{ field.label }}</label>
       {{ field }}
+      {% if field.name == "vehicle_number" %}<small id="wb-known" style="color:#15803d;font-weight:700"></small>{% endif %}
       {{ field.errors }}
     {% endfor %}
-    <button class="btn" style="margin-top:20px;" type="submit">Book</button>
-    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:wash_order_list' %}">Cancel</a>
+    <datalist id="wash-vehicles">{% for v in vehicles %}<option value="{{ v.vehicle_number }}">{{ v.customer.name }}</option>{% endfor %}</datalist>
+    <button class="btn" style="margin-top:20px;" type="submit">{% translate "Add to the queue" %}</button>
+    <a class="btn btn-secondary" style="margin-top:20px; margin-left:8px;" href="{% url 'webapp:wash_order_list' %}">{% translate "Cancel" %}</a>
   </form>
 </div>
+{{ known|json_script:"wbKnown" }}{{ prices|json_script:"wbPrices" }}
+<script>
+(function(){
+  var known = JSON.parse(document.getElementById("wbKnown").textContent), prices = JSON.parse(document.getElementById("wbPrices").textContent);
+  var num = document.getElementById("id_vehicle_number"), out = document.getElementById("wb-known");
+  num.addEventListener("input", function(){ var k = num.value.toUpperCase().replace(/\s+/g, ""); out.textContent = known[k] ? "✓ " + known[k] : ""; });
+  var pkg = document.getElementById("id_package"), price = document.getElementById("id_price");
+  pkg.addEventListener("change", function(){ if (prices[pkg.value]) price.placeholder = prices[pkg.value]; });
+})();
+</script>
 {% endblock %}

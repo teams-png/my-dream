@@ -2130,13 +2130,31 @@ def wash_package_delete(request, package_id):
 
 @login_required
 def wash_order_list(request):
+    """The wash bay: cars waiting, being washed, and done today; "all" lists every order."""
+    from apps.industry.reminders import whatsapp_link
     company = request.company
-    orders = (
-        WashOrder.objects.for_company(company).select_related("vehicle", "package", "staff")
-        .order_by("-scheduled_at")
-        if company else []
-    )
-    return render(request, "webapp/vehicle_wash/order_list.html", {"orders": orders})
+    if company is None:
+        return render(request, "webapp/no_company.html")
+    show = request.GET.get("show", "today")
+    orders = WashOrder.objects.for_company(company).select_related("vehicle__customer", "package", "staff", "sales_invoice")
+    if show == "all":
+        return render(request, "webapp/vehicle_wash/order_list.html", {
+            "show": show, "orders": orders.order_by("-scheduled_at")[:200]})
+    today = tz.localdate()
+    open_orders = list(orders.filter(status__in=("booked", "in_progress")).order_by("scheduled_at"))
+    done = list(orders.filter(status="completed", scheduled_at__date=today).order_by("-scheduled_at"))
+    visits = dict(WashOrder.objects.for_company(company).filter(status="completed").values("vehicle_id")
+                  .annotate(n=Count("id")).values_list("vehicle_id", "n"))
+    for o in open_orders + done:
+        o.visits = visits.get(o.vehicle_id, 0)
+        o.wa = whatsapp_link(company, o.vehicle.customer, wash_services.ready_message(o)) if o.vehicle.customer.phone else ""
+    return render(request, "webapp/vehicle_wash/order_list.html", {
+        "show": show,
+        "columns": [("booked", _("Waiting"), [o for o in open_orders if o.status == "booked"]),
+                    ("in_progress", _("Washing"), [o for o in open_orders if o.status == "in_progress"]),
+                    ("completed", _("Done today"), done)],
+        "done_total": sum((o.price for o in done), Decimal("0")),
+    })
 
 
 @login_required
@@ -2145,57 +2163,64 @@ def wash_order_book(request):
     if request.method == "POST":
         form = BookWashForm(request.POST, company=company)
         if form.is_valid():
-            wash_services.book_wash(
-                company=company,
-                vehicle=form.cleaned_data["vehicle"],
-                package=form.cleaned_data["package"],
-                staff=form.cleaned_data["staff"],
-                scheduled_at=form.cleaned_data["scheduled_at"],
-                price=form.cleaned_data["price"],
-            )
-            messages.success(request, "Wash booked.")
-            return redirect("webapp:wash_order_list")
+            d = form.cleaned_data
+            make, _sp, model = (d.get("make_model") or "").strip().partition(" ")
+            try:
+                vehicle = wash_services.vehicle_for(company=company, number=d["vehicle_number"], owner_name=d["owner_name"],
+                                                    phone=d["phone"], vehicle_type=d["vehicle_type"], make=make, model=model)
+                wash_services.book_wash(company=company, vehicle=vehicle, package=d["package"], staff=d["staff"],
+                                        scheduled_at=d["scheduled_at"], price=d["price"])
+                messages.success(request, _("%(number)s is in the queue.") % {"number": vehicle.vehicle_number})
+                return redirect("webapp:wash_order_list")
+            except ValueError as exc:
+                messages.error(request, str(exc))
     else:
-        form = BookWashForm(company=company, initial={"scheduled_at": tz.now()})
-
-    no_vehicles = not Vehicle.objects.for_company(company).exists()
+        form = BookWashForm(company=company, initial={"scheduled_at": tz.localtime().strftime("%Y-%m-%dT%H:%M")})
+    vehicles = Vehicle.objects.for_company(company).select_related("customer").order_by("vehicle_number")
     no_packages = not WashPackage.objects.for_company(company).filter(is_active=True).exists()
     return render(request, "webapp/vehicle_wash/order_book.html", {
-        "form": form, "no_vehicles": no_vehicles, "no_packages": no_packages,
+        "form": form, "no_packages": no_packages, "vehicles": vehicles,
+        "known": {v.vehicle_number.upper().replace(" ", ""): " · ".join(x for x in (v.customer.name, f"{v.make} {v.model}".strip()) if x)
+                  for v in vehicles},
+        "prices": {str(p.id): f"{p.price:.2f}" for p in WashPackage.objects.for_company(company).filter(is_active=True)},
     })
 
 
 @login_required
+@require_POST
 def wash_order_start(request, order_id):
     company = request.company
     order = get_object_or_404(WashOrder.objects.for_company(company), id=order_id)
     try:
         wash_services.start_wash(order)
-        messages.success(request, "Wash started.")
+        messages.success(request, _("Washing started."))
     except ValueError as exc:
         messages.error(request, str(exc))
     return redirect("webapp:wash_order_list")
 
 
 @login_required
+@require_POST
 def wash_order_complete(request, order_id):
     company = request.company
     order = get_object_or_404(WashOrder.objects.for_company(company), id=order_id)
     try:
-        wash_services.complete_wash(order, user=request.user, warehouse=_default_warehouse(company))
-        messages.success(request, "Wash completed.")
+        wash_services.complete_wash(order, user=request.user, warehouse=_default_warehouse(company),
+                                    method=request.POST.get("method", ""))
+        messages.success(request, _("Done. Bill %(no)s made.") % {"no": order.sales_invoice.invoice_number})
     except ValueError as exc:
         messages.error(request, str(exc))
     return redirect("webapp:wash_order_list")
 
 
 @login_required
+@require_POST
 def wash_order_cancel(request, order_id):
     company = request.company
     order = get_object_or_404(WashOrder.objects.for_company(company), id=order_id)
     try:
         wash_services.cancel_wash(order)
-        messages.success(request, "Wash cancelled.")
+        messages.success(request, _("Wash cancelled."))
     except ValueError as exc:
         messages.error(request, str(exc))
     return redirect("webapp:wash_order_list")

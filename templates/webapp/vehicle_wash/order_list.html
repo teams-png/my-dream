@@ -1,27 +1,59 @@
 {% extends "base.html" %}
-{% block title %}Wash orders{% endblock %}
-{% block heading %}Wash orders{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Wash bay" %}{% endblock %}
+{% block heading %}🚗 {% translate "Wash bay" %}{% endblock %}
 {% block content %}
-<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:wash_order_book' %}">+ Book wash</a></div>
-{% if orders %}
-<table>
-  <tr><th>When</th><th>Vehicle</th><th>Package</th><th>Staff</th><th>Status</th><th></th></tr>
-  {% for o in orders %}
-  <tr>
-    <td>{{ o.scheduled_at|date:"d M, H:i" }}</td><td>{{ o.vehicle.vehicle_number }}</td>
-    <td>{{ o.package.name }}</td><td>{{ o.staff.name|default:"—" }}</td><td>{{ o.get_status_display }}</td>
-    <td>
-      {% if o.status == "booked" %}
-      <a class="btn btn-secondary" href="{% url 'webapp:wash_order_start' o.id %}">Start</a>
-      <a class="btn btn-secondary" href="{% url 'webapp:wash_order_cancel' o.id %}">Cancel</a>
-      {% elif o.status == "in_progress" %}
-      <a class="btn btn-secondary" href="{% url 'webapp:wash_order_complete' o.id %}">Complete</a>
-      {% endif %}
-    </td>
-  </tr>
-  {% endfor %}
-</table>
+<style>
+.wb-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.wb-tabs a{padding:8px 14px;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:700;font-size:14px;margin-right:6px}
+.wb-tabs a.on{background:var(--brand,#2563eb);border-color:var(--brand,#2563eb);color:#fff}
+.wb-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:start}
+@media(max-width:900px){.wb-cols{grid-template-columns:minmax(0,1fr)}}
+.wb-col{background:var(--paper,#f1f5f9);border-radius:14px;padding:10px}
+.wb-col h3{font-size:15px;margin:2px 4px 10px;display:flex;justify-content:space-between}
+.wb-card{background:var(--card,#fff);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:10px}
+.wb-plate{font-weight:800;font-size:18px;letter-spacing:.5px;background:#fef9c3;border:2px solid #111;border-radius:6px;padding:1px 8px;display:inline-block}
+.wb-card small{color:var(--ink-soft)}
+.wb-acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.wb-acts select{max-width:120px}
+</style>
+<div class="wb-bar">
+  <a class="btn" href="{% url 'webapp:wash_order_book' %}">+ {% translate "New car in the queue" %}</a>
+  <span class="wb-tabs"><a href="?show=today" class="{% if show != 'all' %}on{% endif %}">{% translate "Today" %}</a><a href="?show=all" class="{% if show == 'all' %}on{% endif %}">{% translate "All washes" %}</a></span>
+  {% if show != "all" %}<b>{% translate "Done today" %}: {{ done_total|floatformat:2 }}</b>{% endif %}
+</div>
+{% if show == "all" %}
+  {% if orders %}<div style="overflow-x:auto"><table>
+    <tr><th>{% translate "When" %}</th><th>{% translate "Vehicle" %}</th><th>{% translate "Owner" %}</th><th>{% translate "Package" %}</th><th>{% translate "Washed by" %}</th><th>{% translate "Price" %}</th><th>{% translate "Status" %}</th></tr>
+    {% for o in orders %}<tr><td>{{ o.scheduled_at|date:"d M, H:i" }}</td><td><b>{{ o.vehicle.vehicle_number }}</b></td><td>{{ o.vehicle.customer.name }}</td><td>{{ o.package.name }}</td><td>{{ o.staff.name|default:"—" }}</td><td>{{ o.price|floatformat:2 }}</td><td>{{ o.get_status_display }}{% if o.sales_invoice %} · {{ o.sales_invoice.invoice_number }}{% endif %}</td></tr>{% endfor %}
+  </table></div>{% else %}<div class="card empty">{% translate "No wash orders yet." %}</div>{% endif %}
 {% else %}
-<div class="card empty">No wash orders yet.</div>
+<div class="wb-cols">
+  {% for key, title, items in columns %}
+  <div class="wb-col"><h3><span>{{ title }}</span><span>{{ items|length }}</span></h3>
+    {% for o in items %}
+    <div class="wb-card">
+      <span class="wb-plate">{{ o.vehicle.vehicle_number }}</span>
+      <div style="margin-top:6px"><b>{{ o.package.name }}</b> · {{ o.price|floatformat:2 }}</div>
+      <small>{{ o.vehicle.customer.name }}{% if o.vehicle.make %} · {{ o.vehicle.make }} {{ o.vehicle.model }}{% endif %} · {{ o.scheduled_at|time:"H:i" }}{% if o.staff %} · 🧽 {{ o.staff.name }}{% endif %}{% if o.visits %} · {% blocktranslate count n=o.visits %}{{ n }} wash before{% plural %}{{ n }} washes before{% endblocktranslate %}{% endif %}</small>
+      <div class="wb-acts">
+        {% if o.status == "booked" %}
+        <form method="post" action="{% url 'webapp:wash_order_start' o.id %}" style="margin:0">{% csrf_token %}<button class="btn">▶ {% translate "Start washing" %}</button></form>
+        <form method="post" action="{% url 'webapp:wash_order_cancel' o.id %}" style="margin:0">{% csrf_token %}<button class="btn btn-secondary">✕</button></form>
+        {% elif o.status == "in_progress" %}
+        <form method="post" action="{% url 'webapp:wash_order_complete' o.id %}" style="margin:0;display:flex;gap:6px">{% csrf_token %}
+          <select name="method"><option value="cash">{% translate "Cash" %}</option><option value="bank">{% translate "UPI / bank" %}</option><option value="card">{% translate "Card" %}</option><option value="">{% translate "Pay later" %}</option></select>
+          <button class="btn">✓ {% translate "Done & bill" %}</button></form>
+        {% if o.wa %}<a class="btn btn-secondary" target="_blank" rel="noopener" href="{{ o.wa }}">💬 {% translate "Car ready" %}</a>{% endif %}
+        {% else %}
+        <small>✓ {{ o.sales_invoice.invoice_number }}{% if o.payment_method %} · {{ o.payment_method }}{% endif %}</small>
+        {% if o.sales_invoice %}<a class="btn btn-secondary" href="{% url 'webapp:invoice_share' o.sales_invoice.id %}">📤 {% translate "Bill" %}</a>{% endif %}
+        {% endif %}
+      </div>
+    </div>
+    {% empty %}<small style="margin-left:4px">{% translate "Nothing here." %}</small>{% endfor %}
+  </div>
+  {% endfor %}
+</div>
 {% endif %}
 {% endblock %}

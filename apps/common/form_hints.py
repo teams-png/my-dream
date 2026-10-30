@@ -76,12 +76,14 @@ SUBJECT_SAMPLES = {"vehicle": ("Maruti Swift VXi", "KL-57-A-1234"), "pet": ("Bru
 # a closer example for some business types
 SUBJECT_SAMPLES_BY_TYPE = {"computer_shop": ("HP LaserJet Pro M126nw", "VNC3K12345"),
                            "bakery": ("Ammu's 5th birthday", "CK-1024"),
+                           "optical_shop": ("Rajan P", "R-1023"),
+                           "laundry_dry_cleaning": ("Bag 1 – home pickup", "BAG-23"),
                            "computer_repair": ("Dell Inspiron 15 3520", "SN-8H2K9L3"),
                            "electronics_store": ("Samsung 55\" LED TV", "SN-0QK7H3")}
 
 
 # what the job card is (its title), where a business's job cards are something else
-TITLE_SAMPLES_BY_TYPE = {"bakery": "Chocolate truffle cake 1.5 kg", "computer_shop": "Toner refill + paper jam",
+TITLE_SAMPLES_BY_TYPE = {"bakery": "Chocolate truffle cake 1.5 kg", "laundry_dry_cleaning": "Wash & iron + dry clean", "optical_shop": "Eye test + new glasses", "computer_shop": "Toner refill + paper jam",
                          "medical_clinic": "Fever and cough since 2 days", "dental_clinic": "Tooth pain – lower left"}
 
 

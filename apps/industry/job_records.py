@@ -23,6 +23,9 @@ from apps.modules.catalog import business_features
 
 VITALS = ("bp", "pulse", "temp", "weight", "spo2", "sugar")
 EYE_FIELDS = ("sph", "cyl", "axis", "add", "va")
+ADVANCE_KINDS = {"cake", "eye"}  # orders where the customer pays something now and the rest at pickup
+LENS_TYPES = ("Single vision", "Single vision blue-cut", "Bifocal (KT)", "Progressive", "Progressive blue-cut",
+              "Photochromic (grey)", "Anti-glare (ARC)")
 FUEL_LEVELS = ("", "empty", "1/4", "1/2", "3/4", "full")
 VEHICLE_CHECKS = (("engine_oil", "Engine oil"), ("brakes", "Brakes"), ("tyres", "Tyres"), ("battery", "Battery"),
                   ("lights", "Lights"), ("ac", "AC"), ("coolant", "Coolant"), ("wipers", "Wipers"))
@@ -157,6 +160,9 @@ def save(job, post, kind, user=None):
         rec["eggless"] = bool(post.get("eggless"))
         rec["message"] = _txt(post, "message", 200)
         rec["design"] = _txt(post, "design", 1000)
+    else:
+        raise ValidationError(_("Nothing to record for this business."))
+    if kind in ADVANCE_KINDS:
         advance = _money_or_none(post.get("advance"))
         if advance and not rec.get("advance_payment_id"):
             # the advance is money in hand today: a payment on the customer's account, set against the bill later
@@ -165,8 +171,6 @@ def save(job, post, kind, user=None):
             payment = record_customer_payment(company=job.company, user=user, customer=job.profile.customer,
                                               amount=advance, date=timezone.localdate(), method=method)
             rec.update(advance=str(payment.amount), advance_method=method, advance_payment_id=payment.id)
-    else:
-        raise ValidationError(_("Nothing to record for this business."))
     rec["saved_at"] = timezone.now().isoformat()
     job.record = rec
     job.save(update_fields=["record"])

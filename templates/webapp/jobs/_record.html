@@ -63,9 +63,11 @@
     <div class="g">
       <label>PD<input name="pd" value="{{ rec.pd }}" placeholder="62"></label>
       <label>{% translate "Frame" %}<input name="frame" value="{{ rec.frame }}"></label>
-      <label>{% translate "Lens" %}<input name="lens" value="{{ rec.lens }}" placeholder="{% translate 'e.g. Blue-cut 1.56' %}"></label>
+      <label>{% translate "Lens" %}<input name="lens" value="{{ rec.lens }}" list="lens-types" placeholder="{% translate 'e.g. Blue-cut 1.56' %}"></label>
     </div>
+    <datalist id="lens-types">{% for t in lens_types %}<option value="{{ t }}">{% endfor %}</datalist>
     <label>{% translate "Notes" %}<textarea name="eye_notes" rows="2">{{ rec.notes }}</textarea></label>
+    {% include "webapp/jobs/_advance.html" %}
     {% if prev_eye %}<small>{% translate "Last test" %} ({{ prev_eye.number }}, {{ prev_eye.opened_date|date:"j M Y" }}): R {{ prev_eye.record.eye.R.sph|default:"—" }}/{{ prev_eye.record.eye.R.cyl|default:"—" }}×{{ prev_eye.record.eye.R.axis|default:"—" }} · L {{ prev_eye.record.eye.L.sph|default:"—" }}/{{ prev_eye.record.eye.L.cyl|default:"—" }}×{{ prev_eye.record.eye.L.axis|default:"—" }}</small>{% endif %}
     <div class="acts"><button class="btn">{% translate "Save eye test" %}</button>{% if rec.saved_at %}<a class="btn btn-secondary" href="{% url 'webapp:job_print' job.id %}?doc=eye" target="_blank">🖨 {% translate "Print prescription / order" %}</a>{% endif %}</div>
   </form>
@@ -119,11 +121,7 @@
     <label style="display:flex;gap:6px;align-items:center;font-weight:600"><input type="checkbox" name="eggless" value="1"{% if rec.eggless %} checked{% endif %} style="width:auto"> {% translate "Eggless" %}</label>
     <label>{% translate "Message on the cake" %}<input name="message" value="{{ rec.message }}" placeholder="{% translate 'e.g. Happy Birthday Ammu' %}"></label>
     <label>{% translate "Design / notes" %}<textarea name="design" rows="2" placeholder="{% translate 'e.g. Pink and white, unicorn topper' %}">{{ rec.design }}</textarea></label>
-    {% if rec.advance %}<p style="margin:0;font-weight:700">💰 {% translate "Advance paid" %}: {{ rec.advance }} ({{ rec.advance_method }})</p>
-    {% else %}<div class="g">
-      <label>{% translate "Advance paid" %}<input name="advance" inputmode="decimal" placeholder="500"></label>
-      <label>{% translate "Paid by" %}<select name="advance_method"><option value="cash">{% translate "Cash" %}</option><option value="card">{% translate "Card" %}</option><option value="bank">{% translate "UPI / bank" %}</option></select></label>
-    </div>{% endif %}
+    {% include "webapp/jobs/_advance.html" %}
     <div class="acts"><button class="btn">{% translate "Save order" %}</button>{% if rec.saved_at %}<a class="btn btn-secondary" href="{% url 'webapp:job_print' job.id %}" target="_blank">🖨 {% translate "Print order slip" %}</a>{% endif %}</div>
   </form>
 

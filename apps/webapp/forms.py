@@ -853,18 +853,33 @@ class WashPackageForm(forms.ModelForm):
 
 
 class BookWashForm(forms.Form):
-    vehicle = forms.ModelChoiceField(queryset=Vehicle.objects.none())
-    package = forms.ModelChoiceField(queryset=WashPackage.objects.none())
-    staff = forms.ModelChoiceField(queryset=Employee.objects.none(), required=False)
-    scheduled_at = forms.DateTimeField(widget=forms.DateTimeInput(attrs={"type": "datetime-local"}))
-    price = forms.DecimalField(max_digits=10, decimal_places=2, required=False, help_text="Leave blank to use the package price")
+    vehicle_number = forms.CharField(max_length=30, required=False, label=_l("Vehicle number"),
+                                     widget=forms.TextInput(attrs={"placeholder": "KL 11 AB 1234", "autocomplete": "off",
+                                                                   "list": "wash-vehicles", "style": "text-transform:uppercase"}))
+    owner_name = forms.CharField(max_length=150, required=False, label=_l("Owner's name (new vehicle)"),
+                                 widget=forms.TextInput(attrs={"placeholder": _l("Leave empty for a known vehicle")}))
+    phone = forms.CharField(max_length=20, required=False, label=_l("Phone (WhatsApp)"),
+                            widget=forms.TextInput(attrs={"inputmode": "tel"}))
+    vehicle_type = forms.ChoiceField(choices=Vehicle.VEHICLE_TYPE, initial="car", label=_l("Vehicle type"))
+    make_model = forms.CharField(max_length=100, required=False, label=_l("Make & model"),
+                                 widget=forms.TextInput(attrs={"placeholder": "Maruti Swift"}))
+    package = forms.ModelChoiceField(queryset=WashPackage.objects.none(), label=_l("Package"))
+    staff = forms.ModelChoiceField(queryset=Employee.objects.none(), required=False, label=_l("Washed by"))
+    scheduled_at = forms.DateTimeField(widget=forms.DateTimeInput(attrs={"type": "datetime-local"}), label=_l("When"))
+    price = forms.DecimalField(max_digits=10, decimal_places=2, required=False, label=_l("Price"),
+                               help_text=_l("Leave blank to use the package price"))
 
     def __init__(self, *args, company=None, **kwargs):
         super().__init__(*args, **kwargs)
         if company is not None:
-            self.fields["vehicle"].queryset = Vehicle.objects.for_company(company)
             self.fields["package"].queryset = WashPackage.objects.for_company(company).filter(is_active=True)
             self.fields["staff"].queryset = Employee.objects.for_company(company).filter(is_active=True)
+
+    def clean_vehicle_number(self):
+        number = " ".join((self.cleaned_data.get("vehicle_number") or "").upper().split())
+        if not number:
+            raise forms.ValidationError(_l("Type the vehicle number."))
+        return number
 
 # ---------------- Sports Shop ----------------
 

@@ -193,3 +193,24 @@ def test_clinic_words_and_previous_visits():
     page = owner.get(reverse("webapp:service_case_detail", args=[second.id])).content.decode()
     assert "Previous visits (1)" in page and "Osteoarthritis knee" in page and "Aceclofenac 100 mg 1-0-1" in page
     assert "Call in" in page and "Waiting (lab / tests)" in page
+
+
+def test_optical_order_with_advance_and_balance():
+    company, owner, staff = _garage("r15@t.qa", kind="optical_shop")
+    board = owner.get(reverse("webapp:service_case_list")).content.decode()
+    assert "Eye tests &amp; orders" in board and "New eye test / order" in board
+    job = _job(company, owner, staff, subject_name="Rajan", title="New glasses")
+    act = reverse("webapp:job_action", args=[job.id])
+    owner.post(act, {"do": "line", "description": "Frame – Titan", "quantity": "1", "unit_price": "1800"})
+    owner.post(act, {"do": "line", "description": "Progressive lenses", "quantity": "1", "unit_price": "3200"})
+    owner.post(act, {"do": "record", "R_sph": "+1.00", "R_add": "+2.00", "L_sph": "+1.25", "L_add": "+2.00", "pd": "64",
+                     "frame": "Titan T2041", "lens": "Progressive", "advance": "2000", "advance_method": "bank"})
+    job.refresh_from_db()
+    assert job.record["advance"] == "2000.00" and job.record["advance_payment_id"]
+    page = owner.get(reverse("webapp:service_case_detail", args=[job.id])).content.decode()
+    assert "Advance paid" in page and "Progressive blue-cut" in page and "Lens ordered" in page
+    slip = owner.get(reverse("webapp:job_print", args=[job.id]) + "?doc=eye").content.decode()
+    assert "+2.00" in slip and "Balance" in slip and "3000.00" in slip
+    from apps.industry import jobs
+    jobs.set_status(job, "in_progress"); jobs.set_status(job, "ready")
+    assert "Balance: INR 3000.00" in jobs.customer_message(job) or "Balance: QAR 3000.00" in jobs.customer_message(job)

@@ -1,0 +1,6 @@
+{% load i18n %}{# advance paid when the order is taken: recorded at once, set against the bill at pickup #}
+{% if rec.advance %}<p style="margin:0;font-weight:700">💰 {% translate "Advance paid" %}: {{ rec.advance }} ({{ rec.advance_method }})</p>
+{% else %}<div class="g">
+  <label>{% translate "Advance paid" %}<input name="advance" inputmode="decimal" placeholder="500"></label>
+  <label>{% translate "Paid by" %}<select name="advance_method"><option value="cash">{% translate "Cash" %}</option><option value="card">{% translate "Card" %}</option><option value="bank">{% translate "UPI / bank" %}</option></select></label>
+</div>{% endif %}

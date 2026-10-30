@@ -49,6 +49,7 @@ table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #ccc;pad
   <p>{% if rec.pd %}<b>PD:</b> {{ rec.pd }} · {% endif %}{% if rec.frame %}<b>{% translate "Frame" %}:</b> {{ rec.frame }} · {% endif %}{% if rec.lens %}<b>{% translate "Lens" %}:</b> {{ rec.lens }}{% endif %}</p>
   {% if rec.notes %}<p>{{ rec.notes|linebreaksbr }}</p>{% endif %}
   {% if job.ready_by %}<p><b>{% translate "Ready by" %}:</b> {{ job.ready_by|date:"j M Y H:i" }}</p>{% endif %}
+  {% if amount %}<p><b>{% translate "Amount" %}:</b> {{ amount|floatformat:2 }}{% if rec.advance %} · <b>{% translate "Advance paid" %}:</b> {{ rec.advance }} · <b>{% translate "Balance" %}:</b> {{ balance|floatformat:2 }}{% endif %}</p>{% endif %}
 {% endif %}
 <div class="sig"><div>{{ staff.name|default:"" }}<br>{% translate "Signature" %}</div></div>
 {% endif %}

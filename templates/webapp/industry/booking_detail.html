@@ -22,7 +22,10 @@
         <dt>{% translate "From" %}</dt><dd>{{ booking.start|date:"D j M Y, H:i" }}</dd>
         <dt>{% translate "Until" %}</dt><dd>{{ booking.end|date:"D j M Y, H:i" }}</dd>
         <dt>{% translate "Guests / people" %}</dt><dd>{{ booking.guests }}</dd>
+        {% if booking.guest_id %}<dt>{% translate "ID proof" %}</dt><dd>{{ booking.guest_id }}</dd>{% endif %}
+        {% if booking.coming_from %}<dt>{% translate "Coming from" %}</dt><dd>{{ booking.coming_from }}</dd>{% endif %}
         <dt>{% translate "Price" %}</dt><dd>{{ booking.rate|floatformat:"-2" }} {{ booking.get_rate_unit_display|lower }}</dd>
+        <dt>{% translate "Stay total" %}</dt><dd>{{ stay.0|floatformat:"-2" }} × {{ booking.rate|floatformat:"-2" }} = <b>{{ stay.1 }}</b></dd>
         {% if booking.advance %}<dt>{% translate "Advance paid" %}</dt><dd>{{ booking.advance }} ({{ booking.advance_method }})</dd>{% endif %}
         {% if booking.security_deposit %}<dt>{% translate "Security deposit" %}</dt><dd>{{ booking.security_deposit }} · {% if booking.deposit_returned %}<span class="ix-chip completed">{% translate "Returned" %}</span>{% else %}<span class="ix-chip checked_in">{% translate "Held" %}</span>{% endif %}</dd>{% endif %}
         {% if booking.checked_in_at %}<dt>{% translate "Checked in" %}</dt><dd>{{ booking.checked_in_at|date:"j M Y, H:i" }}</dd>{% endif %}
@@ -31,10 +34,11 @@
       </dl>
       <div class="ix-actions" style="margin-top:16px">
         {% if booking.status == "reserved" %}
-        <form method="post">{% csrf_token %}<button class="btn" name="action" value="check_in">✓ {% translate "Check in / hand over" %}</button></form>
+        <form method="post" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">{% csrf_token %}{% if terms.unit == "night" and not booking.guest_id %}<input name="guest_id" maxlength="80" list="id-proofs" placeholder="{% translate 'ID proof (type & number)' %}" style="min-width:240px"><datalist id="id-proofs"><option value="Aadhaar "><option value="Driving licence "><option value="Passport "><option value="Voter ID "></datalist>{% endif %}<button class="btn" name="action" value="check_in">✓ {% translate "Check in / hand over" %}</button></form>
         <form method="post" onsubmit="return confirm('{% translate "Cancel this booking?" %}')">{% csrf_token %}<button class="btn btn-secondary" name="action" value="cancel">{% translate "Cancel booking" %}</button></form>
         <form method="post">{% csrf_token %}<button class="btn btn-secondary" name="action" value="no_show">{% translate "No-show" %}</button></form>
         {% endif %}
+        {% if wa %}<a class="btn btn-secondary" href="{{ wa }}" target="_blank" rel="noopener">💬 {% if booking.status == "completed" %}{% translate "WhatsApp thank-you" %}{% else %}{% translate "WhatsApp confirmation" %}{% endif %}</a>{% endif %}
         {% if booking.security_deposit and not booking.deposit_returned and booking.status == "completed" %}
         <form method="post">{% csrf_token %}<button class="btn btn-secondary" name="action" value="deposit_returned">↩ {% translate "Deposit returned" %}</button></form>
         {% endif %}

@@ -41,6 +41,8 @@ class BookingForm(forms.Form):
     start = forms.DateTimeField(widget=DT, input_formats=["%Y-%m-%dT%H:%M", "%Y-%m-%d %H:%M"])
     end = forms.DateTimeField(widget=DT, input_formats=["%Y-%m-%dT%H:%M", "%Y-%m-%d %H:%M"])
     guests = forms.IntegerField(min_value=1, max_value=5000, initial=1)
+    guest_id = forms.CharField(max_length=80, required=False)
+    coming_from = forms.CharField(max_length=120, required=False)
     advance = forms.DecimalField(min_value=0, decimal_places=2, required=False, initial=0)
     advance_method = forms.ChoiceField(choices=PAYMENT_METHODS, initial="cash")
     security_deposit = forms.DecimalField(min_value=0, decimal_places=2, required=False, initial=0)
@@ -50,10 +52,11 @@ class BookingForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.company = company
         self.fields["resource"].queryset = BookableResource.objects.for_company(company).filter(is_active=True)
+        self.fields["resource"].empty_label = _("Choose…")
         self.fields["customer"].queryset = Customer.objects.for_company(company).filter(is_active=True).order_by("name")
         if editing:
             for name in ("customer", "new_customer_name", "new_customer_phone", "advance", "advance_method",
-                         "security_deposit", "notes"):
+                         "security_deposit", "notes", "guest_id", "coming_from"):
                 del self.fields[name]
 
     def clean(self):
@@ -174,7 +177,7 @@ def booking_add(request):
                 company=company, user=request.user, resource=d["resource"], customer=form.get_customer(),
                 start=d["start"], end=d["end"], guests=d["guests"], advance=d.get("advance") or 0,
                 advance_method=d["advance_method"], security_deposit=d.get("security_deposit") or 0,
-                notes=d.get("notes", ""))
+                notes=d.get("notes", ""), guest_id=d.get("guest_id", ""), coming_from=d.get("coming_from", ""))
         except ValidationError as exc:
             form.add_error(None, " ".join(exc.messages))
         else:
@@ -214,6 +217,10 @@ def booking_detail(request, booking_id):
         action = request.POST.get("action")
         try:
             if action == "check_in":
+                guest_id = (request.POST.get("guest_id") or "").strip()[:80]
+                if guest_id:
+                    booking.guest_id = guest_id
+                    booking.save(update_fields=["guest_id"])
                 svc.check_in(booking)
                 messages.success(request, _("Checked in."))
             elif action == "cancel":
@@ -242,7 +249,24 @@ def booking_detail(request, booking_id):
         preview["due"] = max(preview["rent"] - booking.advance, 0)
         if not checkout.is_bound:
             checkout = CheckoutForm(initial={"paid_now": preview["due"], "extras": 0, "discount": 0})
+    from apps.industry.reminders import whatsapp_link
     return render(request, "webapp/industry/booking_detail.html", {
         "booking": booking, "terms": _terms(company), "preview": preview, "checkout": checkout,
+        "wa": whatsapp_link(company, booking.customer, svc.customer_message(booking))
+        if booking.status in ("reserved", "checked_in", "completed") else "",
+        "stay": svc.stay_total(booking),
         "overdue": booking.status == "checked_in" and booking.end < timezone.now(),
         "balance": (booking.invoice.total - booking.invoice.amount_paid) if booking.invoice else None})
+
+
+@bookings_view
+def guest_register(request):
+    """Guests checked in over a period, with ID proof: the register a lodge keeps (and prints)."""
+    today = timezone.localdate()
+    start = parse_date(request.GET.get("from") or "") or today.replace(day=1)
+    end = parse_date(request.GET.get("to") or "") or today
+    if end < start:
+        start, end = end, start
+    return render(request, "webapp/industry/guest_register.html", {
+        "terms": _terms(request.company), "rows": svc.register(request.company, start, end)[:1000],
+        "start": start, "end": end})

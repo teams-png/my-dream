@@ -307,6 +307,7 @@ urlpatterns = [
     path("education/courses/<int:course_id>/edit/", education_views.course_form, name="education_course_edit"),
     path("bookings/", booking_views.booking_board, name="booking_board"),
     path("bookings/all/", booking_views.booking_list, name="booking_list"),
+    path("bookings/register/", booking_views.guest_register, name="guest_register"),
     path("bookings/new/", booking_views.booking_add, name="booking_add"),
     path("bookings/<int:booking_id>/", booking_views.booking_detail, name="booking_detail"),
     path("bookings/<int:booking_id>/edit/", booking_views.booking_edit, name="booking_edit"),

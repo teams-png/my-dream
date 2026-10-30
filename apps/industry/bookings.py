@@ -63,7 +63,7 @@ def resource_product(resource):
 
 @transaction.atomic
 def create_booking(*, company, user, resource, customer, start, end, guests=1, advance=0, advance_method="cash",
-                   security_deposit=0, notes=""):
+                   security_deposit=0, notes="", guest_id="", coming_from=""):
     _check_times(start, end)
     resource = BookableResource.objects.select_for_update().get(pk=resource.pk, company=company)
     if not resource.is_active:
@@ -79,7 +79,8 @@ def create_booking(*, company, user, resource, customer, start, end, guests=1, a
         company=company, resource=resource, customer=customer, start=start, end=end, guests=guests or 1,
         rate=resource.rate, rate_unit=resource.rate_unit, advance=money(advance, "advance"),
         advance_method=advance_method, advance_date=timezone.localdate() if money(advance) else None,
-        security_deposit=money(security_deposit, "deposit"), notes=notes, created_by=user,
+        security_deposit=money(security_deposit, "deposit"), notes=notes, guest_id=guest_id.strip(),
+        coming_from=coming_from.strip(), created_by=user,
     )
     booking.number = f"BK-{booking.pk:05d}"
     booking.save(update_fields=["number"])
@@ -102,6 +103,46 @@ def reschedule(booking, *, resource, start, end, guests=None):
         booking.guests = guests
     booking.save()
     return booking
+
+
+def stay_total(booking):
+    """The booked units and rent, before extras and discount."""
+    units = billable_units(booking.rate_unit, booking.start, booking.end)
+    return units, (units * booking.rate).quantize(Decimal("0.01"))
+
+
+def customer_message(booking):
+    """WhatsApp text for the guest: the confirmation while it's upcoming, a thank-you once billed."""
+    from django.utils.translation import gettext as _
+    name = booking.customer.name
+    if booking.status == "completed" and booking.invoice_id:
+        inv = booking.invoice
+        return _("Thank you for staying with us, %(name)s! Bill %(number)s: %(total)s, paid %(paid)s. "
+                 "We hope to see you again at %(shop)s.") % {
+            "name": name, "number": inv.invoice_number, "total": inv.total, "paid": inv.amount_paid,
+            "shop": booking.company.name}
+    units, rent = stay_total(booking)
+    lines = [
+        _("Hi %(name)s, your booking %(number)s at %(shop)s is confirmed.") % {
+            "name": name, "number": booking.number, "shop": booking.company.name},
+        booking.resource.name,
+        _("Check-in: %(when)s") % {"when": f"{timezone.localtime(booking.start):%d %b %Y, %I:%M %p}"},
+        _("Check-out: %(when)s") % {"when": f"{timezone.localtime(booking.end):%d %b %Y, %I:%M %p}"},
+        f"{units:g} x {booking.rate} = {rent}",
+        _("Advance paid: %(advance)s · Balance: %(balance)s") % {
+            "advance": booking.advance, "balance": max(rent - booking.advance, Decimal("0"))},
+    ]
+    return "\n".join(lines)
+
+
+def register(company, start_date, end_date):
+    """Guests who checked in between the two dates (inclusive), oldest first, for the guest register."""
+    from datetime import datetime, time
+    tz = timezone.get_current_timezone()
+    since = timezone.make_aware(datetime.combine(start_date, time.min), tz)
+    until = timezone.make_aware(datetime.combine(end_date, time.min), tz) + timedelta(days=1)
+    return (Booking.objects.for_company(company).filter(checked_in_at__gte=since, checked_in_at__lt=until)
+            .select_related("resource", "customer").order_by("checked_in_at"))
 
 
 def check_in(booking):

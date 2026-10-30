@@ -18,19 +18,25 @@
     <div><label for="id_end">{% translate "Until" %}</label>{{ form.end }}{{ form.end.errors }}</div>
     <div><label for="id_guests">{% translate "Guests / people" %}</label>{{ form.guests }}{{ form.guests.errors }}</div>
     {% if form.advance %}
+    {% if terms.unit == "night" %}
     <div></div>
+    <div><label for="id_guest_id">{% translate "ID proof (type & number)" %}</label>{{ form.guest_id }}</div>
+    <div><label for="id_coming_from">{% translate "Coming from" %}</label>{{ form.coming_from }}</div>
+    {% else %}<div></div>{% endif %}
     <div><label for="id_advance">{% translate "Advance paid now" %}</label>{{ form.advance }}{{ form.advance.errors }}</div>
     <div><label for="id_advance_method">{% translate "Paid by" %}</label>{{ form.advance_method }}</div>
     <div><label for="id_security_deposit">{% translate "Security deposit (refundable)" %}</label>{{ form.security_deposit }}{{ form.security_deposit.errors }}</div>
     <div class="full"><label for="id_notes">{% translate "Notes" %}</label>{{ form.notes }}</div>
     {% endif %}
   </div>
+  {% if terms.unit == "night" %}<datalist id="id-proofs"><option value="Aadhaar "><option value="Driving licence "><option value="Passport "><option value="Voter ID "></datalist>{% endif %}
   <p id="estimate" style="font-weight:700;margin:14px 0 0"></p>
   <div class="ix-actions" style="margin-top:14px"><button class="btn" type="submit">{% if booking %}{% translate "Save changes" %}{% else %}{% translate "Book" %}{% endif %}</button><a class="btn btn-secondary" href="{% if booking %}{% url 'webapp:booking_detail' booking.id %}{% else %}{% url 'webapp:booking_board' %}{% endif %}">{% translate "Cancel" %}</a></div>
 </form>
 {{ rates|json_script:"rates" }}
 <script>
 (function(){
+  const gid=document.getElementById('id_guest_id');if(gid){gid.setAttribute('list','id-proofs');gid.placeholder='Aadhaar XXXX XXXX 1234'}
   const rates=JSON.parse(document.getElementById('rates').textContent||'{}');
   const r=document.getElementById('id_resource'),s=document.getElementById('id_start'),e=document.getElementById('id_end'),out=document.getElementById('estimate');
   function units(unit,a,b){const h=(b-a)/36e5;if(h<=0)return 0;if(unit==='hour')return Math.max(1,Math.ceil(h-0.5));if(unit==='day')return Math.max(1,Math.ceil((h-0.5)/24));

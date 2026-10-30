@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block title %}{% translate "Guest register" %}{% endblock %}
+{% block heading %}{% translate "Guest register" %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/industry.css' %}">
+<style>@media print{.sidebar,.topbar,.ix-toolbar,.no-print{display:none!important}.ix-print-head{display:block!important}}</style>
+<div class="ix">
+  <div class="ix-toolbar">
+    <a class="btn btn-secondary" href="{% url 'webapp:booking_board' %}">← {% translate "Booking calendar" %}</a>
+    <form method="get"><input type="date" name="from" value="{{ start|date:'Y-m-d' }}"><input type="date" name="to" value="{{ end|date:'Y-m-d' }}"><button class="btn btn-secondary">{% translate "Show" %}</button></form>
+    <span class="grow"></span><button class="btn" type="button" onclick="window.print()">🖨 {% translate "Print" %}</button>
+  </div>
+  <div class="ix-print-head" style="display:none;margin-bottom:10px"><h2>{{ request.company.name }} · {% translate "Guest register" %}</h2><p>{{ start|date:"j M Y" }} – {{ end|date:"j M Y" }}</p></div>
+  <div class="card" style="padding:0;overflow-x:auto">
+  <table>
+    <thead><tr><th>#</th><th>{% translate "Checked in" %}</th><th>{% translate "Guest" %}</th><th>{% translate "Phone" %}</th><th>{% translate "ID proof" %}</th><th>{% translate "Coming from" %}</th><th>{% translate "Guests / people" %}</th><th>{% translate terms.resource %}</th><th>{% translate "Checked out" %}</th></tr></thead>
+    <tbody>
+    {% for b in rows %}
+      <tr><td>{{ forloop.counter }}</td><td style="white-space:nowrap">{{ b.checked_in_at|date:"j M Y H:i" }}</td><td><a href="{% url 'webapp:booking_detail' b.id %}"><strong>{{ b.customer.name }}</strong></a><br><small>{{ b.number }}</small></td><td style="white-space:nowrap">{{ b.customer.phone }}</td><td>{{ b.guest_id|default:"—" }}</td><td>{{ b.coming_from|default:"—" }}</td><td>{{ b.guests }}</td><td>{{ b.resource.name }}</td><td style="white-space:nowrap">{% if b.checked_out_at %}{{ b.checked_out_at|date:"j M Y H:i" }}{% else %}<span class="ix-chip checked_in">{% translate "Staying" %}</span>{% endif %}</td></tr>
+    {% empty %}
+      <tr><td colspan="9" class="ix-empty">{% translate "No guests checked in on these dates." %}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

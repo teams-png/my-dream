@@ -47,6 +47,8 @@ class Booking(TenantScopedModel):
     start = models.DateTimeField()
     end = models.DateTimeField()
     guests = models.PositiveSmallIntegerField(default=1)
+    guest_id = models.CharField(max_length=80, blank=True, help_text="ID proof type and number, for the guest register.")
+    coming_from = models.CharField(max_length=120, blank=True)
     rate = models.DecimalField(max_digits=12, decimal_places=2)
     rate_unit = models.CharField(max_length=8, choices=RATE_UNITS)
     advance = models.DecimalField(max_digits=12, decimal_places=2, default=0,

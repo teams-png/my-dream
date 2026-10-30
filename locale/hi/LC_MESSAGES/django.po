@@ -19567,3 +19567,63 @@ msgstr "धुलाई शुरू।"
 #: apps/modules/catalog.py
 msgid "Leave empty for a known vehicle"
 msgstr "जानी-पहचानी गाड़ी के लिए खाली छोड़ें"
+
+#: apps/modules/catalog.py
+msgid "Check-in: %(when)s"
+msgstr "चेक-इन: %(when)s"
+
+#: apps/modules/catalog.py
+msgid "Check-out: %(when)s"
+msgstr "चेक-आउट: %(when)s"
+
+#: apps/modules/catalog.py
+msgid "Coming from"
+msgstr "कहाँ से आ रहे हैं"
+
+#: apps/modules/catalog.py
+msgid "Guest"
+msgstr "मेहमान"
+
+#: apps/modules/catalog.py
+msgid "Guest register"
+msgstr "गेस्ट रजिस्टर"
+
+#: apps/modules/catalog.py
+msgid "Hi %(name)s, your booking %(number)s at %(shop)s is confirmed."
+msgstr "नमस्ते %(name)s, %(shop)s में आपकी बुकिंग %(number)s पक्की हो गई है."
+
+#: apps/modules/catalog.py
+msgid "ID proof"
+msgstr "आईडी प्रूफ"
+
+#: apps/modules/catalog.py
+msgid "ID proof (type & number)"
+msgstr "आईडी प्रूफ (प्रकार और नंबर)"
+
+#: apps/modules/catalog.py
+msgid "No guests checked in on these dates."
+msgstr "इन तारीखों में कोई मेहमान चेक-इन नहीं हुआ."
+
+#: apps/modules/catalog.py
+msgid "Staying"
+msgstr "ठहरे हुए"
+
+#: apps/modules/catalog.py
+msgid ""
+"Thank you for staying with us, %(name)s! Bill %(number)s: %(total)s, paid "
+"%(paid)s. We hope to see you again at %(shop)s."
+msgstr ""
+"हमारे साथ ठहरने के लिए धन्यवाद, %(name)s! बिल %(number)s: %(total)s, भुगतान "
+"%(paid)s. %(shop)s में फिर मिलेंगे."
+
+#: apps/modules/catalog.py
+msgid "WhatsApp confirmation"
+msgstr "WhatsApp कन्फर्मेशन"
+
+#: apps/modules/catalog.py
+msgid "WhatsApp thank-you"
+msgstr "WhatsApp धन्यवाद संदेश"
+
+#: apps/modules/catalog.py
+msgid "Stay total"
+msgstr "ठहरने का कुल"

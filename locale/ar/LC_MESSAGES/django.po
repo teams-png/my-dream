@@ -19466,3 +19466,63 @@ msgstr "بدأ الغسيل."
 #: apps/modules/catalog.py
 msgid "Leave empty for a known vehicle"
 msgstr "اتركه فارغاً لمركبة معروفة"
+
+#: apps/modules/catalog.py
+msgid "Check-in: %(when)s"
+msgstr "تسجيل الدخول: %(when)s"
+
+#: apps/modules/catalog.py
+msgid "Check-out: %(when)s"
+msgstr "تسجيل الخروج: %(when)s"
+
+#: apps/modules/catalog.py
+msgid "Coming from"
+msgstr "قادم من"
+
+#: apps/modules/catalog.py
+msgid "Guest"
+msgstr "النزيل"
+
+#: apps/modules/catalog.py
+msgid "Guest register"
+msgstr "سجل النزلاء"
+
+#: apps/modules/catalog.py
+msgid "Hi %(name)s, your booking %(number)s at %(shop)s is confirmed."
+msgstr "مرحباً %(name)s، تم تأكيد حجزك %(number)s في %(shop)s."
+
+#: apps/modules/catalog.py
+msgid "ID proof"
+msgstr "إثبات الهوية"
+
+#: apps/modules/catalog.py
+msgid "ID proof (type & number)"
+msgstr "إثبات الهوية (النوع والرقم)"
+
+#: apps/modules/catalog.py
+msgid "No guests checked in on these dates."
+msgstr "لم يسجل أي نزيل دخوله في هذه التواريخ."
+
+#: apps/modules/catalog.py
+msgid "Staying"
+msgstr "مقيم"
+
+#: apps/modules/catalog.py
+msgid ""
+"Thank you for staying with us, %(name)s! Bill %(number)s: %(total)s, paid "
+"%(paid)s. We hope to see you again at %(shop)s."
+msgstr ""
+"شكراً لإقامتك معنا يا %(name)s! الفاتورة %(number)s: %(total)s، المدفوع "
+"%(paid)s. نأمل أن نراك مجدداً في %(shop)s."
+
+#: apps/modules/catalog.py
+msgid "WhatsApp confirmation"
+msgstr "تأكيد عبر واتساب"
+
+#: apps/modules/catalog.py
+msgid "WhatsApp thank-you"
+msgstr "رسالة شكر عبر واتساب"
+
+#: apps/modules/catalog.py
+msgid "Stay total"
+msgstr "إجمالي الإقامة"

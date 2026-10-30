@@ -140,3 +140,25 @@ def test_other_business_types_cannot_open_bookings(client, tenant_a, tenant_a_ow
     client.force_login(tenant_a_owner)
     resp = client.get(reverse("webapp:booking_board"))
     assert resp.status_code == 302
+
+
+def test_guest_id_whatsapp_and_register(hotel):
+    d, c = hotel, hotel["client"]
+    c.post(reverse("webapp:booking_add"), {
+        "resource": d["room"].id, "customer": d["guest"].id, "start": at(0).strftime("%Y-%m-%dT%H:%M"),
+        "end": at(2, 12).strftime("%Y-%m-%dT%H:%M"), "guests": 2, "advance": "100", "advance_method": "cash",
+        "security_deposit": "0", "coming_from": "Kochi"})
+    booking = Booking.objects.get(company=d["company"])
+    assert booking.coming_from == "Kochi"
+    text = svc.customer_message(booking)
+    assert "2 x 250.00 = 500.00" in text and "Balance: 400.00" in text
+    page = c.get(reverse("webapp:booking_detail", args=[booking.id])).content.decode()
+    assert "WhatsApp confirmation" in page and 'name="guest_id"' in page
+    c.post(reverse("webapp:booking_detail", args=[booking.id]), {"action": "check_in", "guest_id": "Aadhaar XXXX 4321"})
+    booking.refresh_from_db()
+    assert booking.status == "checked_in" and booking.guest_id == "Aadhaar XXXX 4321"
+    register = c.get(reverse("webapp:guest_register")).content.decode()
+    assert "Aadhaar XXXX 4321" in register and "Kochi" in register and "Guest One" in register
+    svc.check_out(booking, user=d["user"], paid_now=400)
+    booking.refresh_from_db()
+    assert "Thank you for staying" in svc.customer_message(booking)

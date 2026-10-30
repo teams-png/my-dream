@@ -27,6 +27,10 @@
       <div class="at-grid">{% for r in active_rows %}<label><input type="checkbox" name="present" value="{{ r.e.id }}" {% if r.present %}checked{% endif %}>{{ r.e.student.name }}</label>{% endfor %}</div>
       <div class="ix-actions" style="margin-top:14px"><button class="btn" type="submit">{% translate "Save attendance" %}</button></div>
       {% else %}<div class="ix-empty">{% translate "Nobody enrolled on this day." %}</div>{% endif %}
+      {% if absent %}<div id="absent" style="margin-top:16px;border-top:1px solid var(--line);padding-top:12px">
+        <b>🚫 {% translate "Absent" %} ({{ absent|length }})</b>
+        <div class="ix-list" style="margin-top:8px">{% for a in absent %}<div class="ix-row"><span class="grow"><b>{{ a.e.student.name }}</b><small>{{ a.e.guardian_name|default:"" }} {{ a.e.guardian_phone|default:a.e.student.phone }}</small></span>{% if a.wa %}<a class="btn btn-secondary" href="{{ a.wa }}" target="_blank" rel="noopener">💬 {% translate "Tell parent" %}</a>{% endif %}</div>{% endfor %}</div>
+      </div>{% endif %}
     </form>
 
     <div class="ix-card">

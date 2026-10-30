@@ -105,3 +105,24 @@ def test_pages(school):
     assert AttendanceMark.objects.get(enrollment=zara).present
     resp = c.post(reverse("webapp:education_fees"), {"month": "2026-10"})
     assert resp.status_code == 302 and FeeCharge.objects.filter(period="2026-10").count() == 1
+
+
+def test_collect_fees_parent_whatsapp_and_absent_alert(school):
+    d, c = school, school["client"]
+    e = svc.enroll(company=d["company"], user=d["user"], course=d["maths"], student=d["s1"], start_date=date(2026, 9, 1),
+                   guardian_name="Kareem", guardian_phone="+974 5555 0101")
+    svc.generate_month(company=d["company"], user=d["user"], key="2026-10")
+    page = c.get(reverse("webapp:education_dues")).content.decode()
+    assert "Collect fee" in page and "wa.me/97455550101" in page
+    row = svc.dues(d["company"])[0]
+    assert row["due"] == Decimal("600") and "Sep 2026, Oct 2026" in svc.fee_message(d["company"], row)
+    with pytest.raises(ValidationError):
+        svc.collect_fees(company=d["company"], user=d["user"], student=d["s1"], amount="700")
+    c.post(reverse("webapp:education_dues"), {"student": d["s1"].id, "amount": "400", "method": "bank"})
+    sep, oct_ = [ch.invoice for ch in FeeCharge.objects.filter(enrollment=e).select_related("invoice").order_by("period")]
+    sep.refresh_from_db(); oct_.refresh_from_db()
+    assert sep.amount_paid == Decimal("300") and oct_.amount_paid == Decimal("100")
+    url = reverse("webapp:education_course", args=[d["maths"].id])
+    c.post(url, {"action": "attendance", "date": "2026-10-12"})
+    page = c.get(url + "?date=2026-10-12").content.decode()
+    assert "Tell parent" in page and "absent today" in svc.absent_message(d["company"], e, date(2026, 10, 12))

@@ -19856,3 +19856,31 @@ msgstr "%(months)s മാസത്തെ വാടക കിട്ടി."
 #: apps/modules/catalog.py
 msgid "WhatsApp rent reminder"
 msgstr "WhatsApp വാടക ഓർമ്മപ്പെടുത്തൽ"
+
+#: apps/modules/catalog.py
+msgid "Collect fee"
+msgstr "ഫീസ് വാങ്ങുക"
+
+#: apps/modules/catalog.py
+msgid ""
+"Dear parent, %(name)s was absent today (%(day)s) for %(course)s at %(shop)s."
+" Please let us know the reason."
+msgstr ""
+"പ്രിയ രക്ഷിതാവേ, %(name)s ഇന്ന് (%(day)s) %(shop)s-ലെ %(course)s ക്ലാസിൽ "
+"ഹാജരായില്ല. കാരണം അറിയിക്കാമോ."
+
+#: apps/modules/catalog.py
+msgid ""
+"Dear parent, the fee for %(name)s at %(shop)s is due for %(months)s. Amount "
+"due: %(due)s. Kindly pay at the earliest. Thank you."
+msgstr ""
+"പ്രിയ രക്ഷിതാവേ, %(shop)s-ൽ %(name)s-ന്റെ %(months)s മാസത്തെ ഫീസ് "
+"അടയ്ക്കാനുണ്ട്. തുക: %(due)s. എത്രയും വേഗം അടയ്ക്കാൻ അപേക്ഷ. നന്ദി."
+
+#: apps/modules/catalog.py
+msgid "Tell parent"
+msgstr "രക്ഷിതാവിനെ അറിയിക്കുക"
+
+#: apps/modules/catalog.py
+msgid "WhatsApp parent"
+msgstr "രക്ഷിതാവിന് WhatsApp"

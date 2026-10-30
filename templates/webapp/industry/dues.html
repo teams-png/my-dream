@@ -14,6 +14,13 @@
         <div><b style="font-size:16px">{{ r.student.name }}</b>{% if r.student.phone %} · <a href="tel:{{ r.student.phone }}">{{ r.student.phone }}</a>{% endif %}</div>
         <b style="font-size:20px;color:var(--ix-red)">{{ r.due|floatformat:2 }}</b>
       </div>
+      <form method="post" class="fee-pay" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px">{% csrf_token %}
+        <input type="hidden" name="student" value="{{ r.student.id }}">
+        <input type="number" name="amount" step="0.01" min="0.01" value="{{ r.due|floatformat:2 }}" aria-label="{% translate 'Amount received' %}" style="width:140px">
+        <select name="method" aria-label="{% translate 'Paid by' %}">{% for v, l in methods %}<option value="{{ v }}">{% translate l %}</option>{% endfor %}</select>
+        <button class="btn" type="submit">💰 {% translate "Collect fee" %}</button>
+        {% if r.wa %}<a class="btn btn-secondary" href="{{ r.wa }}" target="_blank" rel="noopener">💬 {% translate "WhatsApp parent" %}</a>{% endif %}
+      </form>
       <div class="ix-list" style="margin-top:10px">{% for inv in r.invoices %}<div class="ix-row"><span class="grow"><b>{{ inv.invoice_number }}</b><small>{{ inv.date|date:"j M Y" }} · {% translate "total" %} {{ inv.total }} · {% translate "paid" %} {{ inv.amount_paid }}</small></span><a class="btn btn-secondary" href="{% url 'webapp:invoice_pdf' inv.id %}" target="_blank">🧾</a><a class="btn btn-secondary" href="{% url 'webapp:invoice_share' inv.id %}">📤 {% translate "Remind" %}</a></div>{% endfor %}</div>
     </div>
   {% empty %}

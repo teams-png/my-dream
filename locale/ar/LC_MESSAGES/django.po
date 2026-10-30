@@ -19571,3 +19571,31 @@ msgstr "تم استلام الإيجار عن %(months)s."
 #: apps/modules/catalog.py
 msgid "WhatsApp rent reminder"
 msgstr "تذكير بالإيجار عبر واتساب"
+
+#: apps/modules/catalog.py
+msgid "Collect fee"
+msgstr "تحصيل الرسوم"
+
+#: apps/modules/catalog.py
+msgid ""
+"Dear parent, %(name)s was absent today (%(day)s) for %(course)s at %(shop)s."
+" Please let us know the reason."
+msgstr ""
+"ولي الأمر الكريم، تغيّب %(name)s اليوم (%(day)s) عن %(course)s في %(shop)s. "
+"يرجى إبلاغنا بالسبب."
+
+#: apps/modules/catalog.py
+msgid ""
+"Dear parent, the fee for %(name)s at %(shop)s is due for %(months)s. Amount "
+"due: %(due)s. Kindly pay at the earliest. Thank you."
+msgstr ""
+"ولي الأمر الكريم، رسوم %(name)s في %(shop)s مستحقة عن %(months)s. المبلغ "
+"المستحق: %(due)s. يرجى الدفع في أقرب وقت. شكراً."
+
+#: apps/modules/catalog.py
+msgid "Tell parent"
+msgstr "إبلاغ ولي الأمر"
+
+#: apps/modules/catalog.py
+msgid "WhatsApp parent"
+msgstr "واتساب لولي الأمر"

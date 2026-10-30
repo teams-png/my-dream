@@ -19673,3 +19673,31 @@ msgstr "%(months)s का किराया मिल गया."
 #: apps/modules/catalog.py
 msgid "WhatsApp rent reminder"
 msgstr "WhatsApp किराया रिमाइंडर"
+
+#: apps/modules/catalog.py
+msgid "Collect fee"
+msgstr "फीस लें"
+
+#: apps/modules/catalog.py
+msgid ""
+"Dear parent, %(name)s was absent today (%(day)s) for %(course)s at %(shop)s."
+" Please let us know the reason."
+msgstr ""
+"प्रिय अभिभावक, %(name)s आज (%(day)s) %(shop)s में %(course)s से अनुपस्थित "
+"रहे. कृपया कारण बताएं."
+
+#: apps/modules/catalog.py
+msgid ""
+"Dear parent, the fee for %(name)s at %(shop)s is due for %(months)s. Amount "
+"due: %(due)s. Kindly pay at the earliest. Thank you."
+msgstr ""
+"प्रिय अभिभावक, %(shop)s में %(name)s की %(months)s की फीस बाकी है. बकाया "
+"राशि: %(due)s. कृपया जल्द जमा करें. धन्यवाद."
+
+#: apps/modules/catalog.py
+msgid "Tell parent"
+msgstr "अभिभावक को बताएं"
+
+#: apps/modules/catalog.py
+msgid "WhatsApp parent"
+msgstr "अभिभावक को WhatsApp"

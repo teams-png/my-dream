@@ -119,6 +119,58 @@ def dues(company):
     return sorted(students.values(), key=lambda r: -r["due"])
 
 
+def parent_phone(student):
+    """The guardian's number from the student's latest enrolment, else the student's own."""
+    e = (Enrollment.objects.filter(student=student).exclude(guardian_phone="").order_by("-status", "-start_date")
+         .only("guardian_phone").first())
+    return (e.guardian_phone if e else "") or student.phone
+
+
+def whatsapp_to(company, phone, text):
+    from urllib.parse import quote
+    from apps.sales.sharing import normalise_phone
+    number = normalise_phone(phone, company.country)
+    return f"https://wa.me/{number}?text={quote(text)}" if number else ""
+
+
+def fee_message(company, row):
+    from django.utils.translation import gettext as _
+    months = ", ".join(inv.date.strftime("%b %Y") for inv in row["invoices"])
+    return _("Dear parent, the fee for %(name)s at %(shop)s is due for %(months)s. Amount due: %(due)s. "
+             "Kindly pay at the earliest. Thank you.") % {
+        "name": row["student"].name, "shop": company.name, "months": months, "due": row["due"]}
+
+
+def absent_message(company, enrollment, day):
+    from django.utils.translation import gettext as _
+    return _("Dear parent, %(name)s was absent today (%(day)s) for %(course)s at %(shop)s. "
+             "Please let us know the reason.") % {
+        "name": enrollment.student.name, "day": day.strftime("%d %b %Y"), "course": enrollment.course.name,
+        "shop": company.name}
+
+
+@transaction.atomic
+def collect_fees(*, company, user, student, amount, method="cash", on=None):
+    """A fee payment from a student's family, settling the oldest unpaid fee invoices first."""
+    from .common import pay
+    amount = money(amount, "payment")
+    if amount <= 0:
+        raise ValidationError("Enter the amount received.")
+    row = next((r for r in dues(company) if r["student"].pk == student.pk), None)
+    if not row:
+        raise ValidationError(f"{student.name} has no fees due.")
+    if amount > row["due"]:
+        raise ValidationError(f"{student.name} owes {row['due']}; the payment is more than that.")
+    left = amount
+    for inv in row["invoices"]:
+        if left <= 0:
+            break
+        part = min(left, inv.total - inv.amount_paid)
+        pay(company, user, inv, part, method, on)
+        left -= part
+    return amount
+
+
 @transaction.atomic
 def take_attendance(*, company, user, course, day, present_ids):
     session, _ = AttendanceSession.objects.get_or_create(company=company, course=course, date=day,

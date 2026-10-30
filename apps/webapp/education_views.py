@@ -135,7 +135,10 @@ def course_detail(request, course_id):
     marked = {m.enrollment_id: m.present for m in session.marks.all()} if session else {}
     rates = svc.attendance_rates(course)
     rows = [{"e": e, "rate": rates.get(e.pk), "present": marked.get(e.pk, True)} for e in enrollments]
-    return render(request, "webapp/industry/course_detail.html", {
+    absent = [{"e": r["e"], "wa": svc.whatsapp_to(company, r["e"].guardian_phone or r["e"].student.phone,
+                                                    svc.absent_message(company, r["e"], day))}
+              for r in rows if session and r["e"].pk in marked and not marked[r["e"].pk]]
+    return render(request, "webapp/industry/course_detail.html", {"absent": absent,
         "terms": _terms(company), "course": course, "rows": rows, "day": day, "session": session,
         "active_rows": [r for r in rows if r["e"].status == "active" and r["e"].start_date <= day],
         "sessions": course.sessions.all()[:10]})
@@ -189,4 +192,19 @@ def fees(request):
 
 @education_view
 def dues(request):
-    return render(request, "webapp/industry/dues.html", {"terms": _terms(request.company), "rows": svc.dues(request.company)})
+    from apps.industry.common import PAYMENT_METHODS
+    company = request.company
+    if request.method == "POST":
+        student = get_object_or_404(Customer.objects.for_company(company), pk=pick_id(request.POST.get("student")))
+        try:
+            amount = svc.collect_fees(company=company, user=request.user, student=student,
+                                      amount=request.POST.get("amount") or 0, method=request.POST.get("method") or "cash")
+        except (ValidationError, ArithmeticError, ValueError) as exc:
+            messages.error(request, " ".join(getattr(exc, "messages", [_("Check the numbers and try again.")])))
+        else:
+            messages.success(request, _("%(amount)s received from %(name)s.") % {"amount": amount, "name": student.name})
+        return redirect("webapp:education_dues")
+    rows = svc.dues(company)
+    for r in rows:
+        r["wa"] = svc.whatsapp_to(company, svc.parent_phone(r["student"]), svc.fee_message(company, r))
+    return render(request, "webapp/industry/dues.html", {"terms": _terms(company), "rows": rows, "methods": PAYMENT_METHODS})

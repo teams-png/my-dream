@@ -8,7 +8,7 @@ from contextvars import ContextVar
 from django import forms
 from django.utils.translation import gettext as _
 
-from .form_samples import FAMILIES, FIELD_SAMPLES, NAME_BY_PATH, NUMBER_SAMPLES, PRODUCT_SAMPLES
+from .form_samples import FAMILIES, FIELD_SAMPLES, LOCAL_SAMPLES, NAME_BY_PATH, NUMBER_SAMPLES, PRODUCT_SAMPLES
 
 _context = ContextVar("bookpilot_form_context", default=(None, ""))
 
@@ -37,22 +37,35 @@ def family():
     return "default"
 
 
+def local(value):
+    """The example as people in the company's country would write it (a +91 number in India, not +974)."""
+    company = _context.get()[0]
+    swaps = LOCAL_SAMPLES.get(getattr(company, "country", "") or "")
+    if not swaps or not isinstance(value, str):
+        return value
+    return swaps.get(value, value)
+
+
+def _product_samples():
+    return tuple(local(x) for x in PRODUCT_SAMPLES[family()])
+
+
 def name_for_path(path=None):
     """Example for a plain "name" box, from the page it is on (branch, room, course, …)."""
     path = _context.get()[1] if path is None else path
     for prefix, sample in NAME_BY_PATH:
         if path.startswith(prefix):
             if sample is None:  # categories / brands / units pages use the business's own examples
-                product, category, brand, *_ = PRODUCT_SAMPLES[family()]
+                product, category, brand, *_ = _product_samples()
                 return brand if "brand" in prefix else category
-            return sample
+            return local(sample)
     return None
 
 
 def client_samples():
     """Everything the browser-side helper needs to add examples to hand-written forms."""
-    product, category, brand, sku, description = PRODUCT_SAMPLES[family()]
-    fields = {**FIELD_SAMPLES, "product_name": product, "new_category": category, "new_brand": brand, "sku": sku}
+    product, category, brand, sku, description = _product_samples()
+    fields = {**{k: local(v) for k, v in FIELD_SAMPLES.items()}, "product_name": product, "new_category": category, "new_brand": brand, "sku": sku}
     for key in ("subject_name", "identifier"):
         fields[key] = _subject_sample(key) or fields.get(key)
     name = name_for_path()
@@ -107,7 +120,7 @@ def sample_for(form, name):
     if subject:
         return subject
     model = _model_name(form)
-    product, category, brand, sku, description = PRODUCT_SAMPLES[family()]
+    product, category, brand, sku, description = _product_samples()
     if name in ("new_category", "category_name") or (model == "productcategory" and name == "name"):
         return category
     if name in ("new_brand", "brand_name") or (model == "brand" and name == "name"):
@@ -120,14 +133,14 @@ def sample_for(form, name):
         if name == "description":
             return description
     if model == "customer" and name == "name":
-        return "Ahmed Al-Kuwari"
+        return local("Ahmed Al-Kuwari")
     if model == "supplier" and name == "name":
-        return "Al Meera Wholesale"
+        return local("Al Meera Wholesale")
     if model in ("employee", "candidate") and name == "name":
-        return "Ahmed Al-Kuwari"
+        return local("Ahmed Al-Kuwari")
     if name == "name":
         return name_for_path()
-    return FIELD_SAMPLES.get(name)
+    return local(FIELD_SAMPLES.get(name))
 
 
 TEXT_TYPES = {"text", "email", "url", "tel", "search"}

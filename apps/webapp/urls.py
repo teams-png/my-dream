@@ -475,6 +475,7 @@ urlpatterns = [
     path("textile/orders/add/", views.order_add, name="order_add"),
     path("textile/orders/<int:order_id>/edit/", views.order_edit, name="order_edit"),
     path("textile/orders/<int:order_id>/cancel/", views.order_cancel, name="order_cancel"),
+    path("textile/orders/<int:order_id>/start/", views.order_start, name="order_start"),
     path("textile/orders/<int:order_id>/ready/", views.order_mark_ready, name="order_mark_ready"),
     path("textile/orders/<int:order_id>/delivered/", views.order_mark_delivered, name="order_mark_delivered"),
 

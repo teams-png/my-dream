@@ -112,3 +112,24 @@ def test_empty_choices_are_refused_not_crashing(client):
         assert client.post(url, data).status_code in (200, 302), url
     from apps.common.ids import pick_id
     assert [pick_id(v) for v in ("", None, "abc", "0", "-3", " 12 ")] == [None, None, None, None, None, 12]
+
+
+def test_examples_follow_the_company_country():
+    from apps.webapp.forms import ProductForm
+    company, _ = _company("hardware_store")
+    company.country = "India"
+    company.save(update_fields=["country"])
+    token = form_hints.activate(company)
+    try:
+        form = ProductForm(company=company)
+        fields = form_hints.client_samples()["fields"]
+    finally:
+        form_hints.reset(token)
+    assert "Asian Paints" in form.fields["name"].widget.attrs["placeholder"]
+    assert fields["phone"] == "+91 98470 12345" and fields["new_customer_name"] == "Rahul Nair" and fields["city"] == "Kochi"
+    company.country = "Qatar"
+    token = form_hints.activate(company)
+    try:
+        assert form_hints.client_samples()["fields"]["phone"] == "+974 5555 1234"
+    finally:
+        form_hints.reset(token)

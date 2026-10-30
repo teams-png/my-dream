@@ -63,6 +63,10 @@ class TailoringOrder(TenantScopedModel):
     delivered_date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS, default="pending")
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    garment = models.CharField(max_length=150, blank=True, help_text="What to stitch, e.g. Churidar set, 2 shirts")
+    quantity = models.PositiveSmallIntegerField(default=1)
+    trial_date = models.DateField(null=True, blank=True)
+    advance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     notes = models.TextField(blank=True)
     # Set once services.create_tailoring_order() invoices it — same
     # Uses the same linked-product billing pattern as verticals.gym.GymMember.

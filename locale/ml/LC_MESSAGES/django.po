@@ -6808,7 +6808,7 @@ msgstr "വിലാസമില്ല — മെമ്പർ പേജിൽ �
 
 #: templates/webapp/mess/delivery.html
 msgid "Delivered"
-msgstr "ഡെലിവർ ചെയ്തത്"
+msgstr "കൊടുത്തു"
 
 #: templates/webapp/mess/delivery.html
 msgid "Mark delivered"
@@ -7302,7 +7302,7 @@ msgstr "പാർട്ട്"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Charge"
-msgstr "ചാർജ് ചെയ്യുക"
+msgstr "കൂലി"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "No parts added."
@@ -14529,7 +14529,7 @@ msgstr "വിനിമയ നിരക്ക് സേവ് ചെയ്തു
 
 #: apps/webapp/booking_views.py
 msgid "Choose a customer or type a new customer's name."
-msgstr "ഒരു ഉപഭോക്താവിനെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ പേര് ടൈപ്പ് ചെയ്യുക."
+msgstr "കസ്റ്റമറെ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പുതിയ പേര് നൽകുക."
 
 #: apps/webapp/booking_views.py
 msgid "%(name)s saved."
@@ -19884,3 +19884,155 @@ msgstr "രക്ഷിതാവിനെ അറിയിക്കുക"
 #: apps/modules/catalog.py
 msgid "WhatsApp parent"
 msgstr "രക്ഷിതാവിന് WhatsApp"
+
+#: apps/modules/catalog.py
+msgid "%(name)s's order is ready for pickup."
+msgstr "%(name)s-ന്റെ ഓർഡർ റെഡിയായി."
+
+#: apps/modules/catalog.py
+msgid "Alteration"
+msgstr "ആൾട്ടറേഷൻ"
+
+#: apps/modules/catalog.py
+msgid "Balance received"
+msgstr "കിട്ടിയ ബാക്കി"
+
+#: apps/modules/catalog.py
+msgid "Blouse"
+msgstr "ബ്ലൗസ്"
+
+#: apps/modules/catalog.py
+msgid "Churidar set"
+msgstr "ചുരിദാർ സെറ്റ്"
+
+#: apps/modules/catalog.py
+msgid "Delivered to %(name)s."
+msgstr "%(name)s-ന് കൊടുത്തു."
+
+#: apps/modules/catalog.py
+msgid "Edit order"
+msgstr "ഓർഡർ മാറ്റുക"
+
+#: apps/modules/catalog.py
+msgid "Edit tailoring order"
+msgstr "തയ്യൽ ഓർഡർ മാറ്റുക"
+
+#: apps/modules/catalog.py
+msgid "Fabric (if shop-provided)"
+msgstr "തുണി (കടയിൽ നിന്നാണെങ്കിൽ)"
+
+#: apps/modules/catalog.py
+msgid "Frock (kids)"
+msgstr "ഫ്രോക്ക് (കുട്ടികൾ)"
+
+#: apps/modules/catalog.py
+msgid ""
+"Hi %(name)s, %(what)s from %(shop)s is ready. Please collect it at your "
+"convenience."
+msgstr ""
+"നമസ്കാരം %(name)s, %(shop)s-ൽ നിങ്ങളുടെ %(what)s റെഡിയാണ്. സൗകര്യം പോലെ "
+"വന്ന് വാങ്ങാം."
+
+#: apps/modules/catalog.py
+msgid "Kurta"
+msgstr "കുർത്ത"
+
+#: apps/modules/catalog.py
+msgid "Lehenga"
+msgstr "ലെഹങ്ക"
+
+#: apps/modules/catalog.py
+msgid "Measurement"
+msgstr "അളവ്"
+
+#: apps/modules/catalog.py
+msgid "New tailoring order"
+msgstr "പുതിയ തയ്യൽ ഓർഡർ"
+
+#: apps/modules/catalog.py
+msgid "Order date"
+msgstr "ഓർഡർ തീയതി"
+
+#: apps/modules/catalog.py
+msgid "Order for %(name)s saved."
+msgstr "%(name)s-ന്റെ ഓർഡർ സേവ് ചെയ്തു."
+
+#: apps/modules/catalog.py
+msgid "Order updated."
+msgstr "ഓർഡർ പുതുക്കി."
+
+#: apps/modules/catalog.py
+msgid "Pant"
+msgstr "പാന്റ്"
+
+#: apps/modules/catalog.py
+msgid "Recently delivered"
+msgstr "അടുത്തിടെ കൊടുത്തവ"
+
+#: apps/modules/catalog.py
+msgid "Salwar suit"
+msgstr "സൽവാർ സ്യൂട്ട്"
+
+#: apps/modules/catalog.py
+msgid "Saree fall & pico"
+msgstr "സാരി ഫാൾ & പിക്കോ"
+
+#: apps/modules/catalog.py
+msgid "School uniform"
+msgstr "സ്കൂൾ യൂണിഫോം"
+
+#: apps/modules/catalog.py
+msgid "Shirt"
+msgstr "ഷർട്ട്"
+
+#: apps/modules/catalog.py
+msgid "Start stitching"
+msgstr "തയ്യൽ തുടങ്ങുക"
+
+#: apps/modules/catalog.py
+msgid "Stitching"
+msgstr "തയ്യൽ നടക്കുന്നു"
+
+#: apps/modules/catalog.py
+msgid "Stitching charge (total)"
+msgstr "തയ്യൽ കൂലി (ആകെ)"
+
+#: apps/modules/catalog.py
+msgid "Stitching started for %(name)s."
+msgstr "%(name)s-ന്റെ തയ്യൽ തുടങ്ങി."
+
+#: apps/modules/catalog.py
+msgid "Tailoring orders"
+msgstr "തയ്യൽ ഓർഡറുകൾ"
+
+#: apps/modules/catalog.py
+msgid "The advance can't be more than the charge."
+msgstr "അഡ്വാൻസ് ആകെ തുകയേക്കാൾ കൂടരുത്."
+
+#: apps/modules/catalog.py
+msgid "To cut"
+msgstr "കട്ടിംഗിന്"
+
+#: apps/modules/catalog.py
+msgid "Total: %(total)s · Paid: %(paid)s · Balance: %(balance)s"
+msgstr "ആകെ: %(total)s · അടച്ചത്: %(paid)s · ബാക്കി: %(balance)s"
+
+#: apps/modules/catalog.py
+msgid "Trial"
+msgstr "ട്രയൽ"
+
+#: apps/modules/catalog.py
+msgid "Trial date"
+msgstr "ട്രയൽ തീയതി"
+
+#: apps/modules/catalog.py
+msgid "What to stitch"
+msgstr "എന്ത് തയ്ക്കണം"
+
+#: apps/modules/catalog.py
+msgid "e.g. Churidar set / 2 shirts"
+msgstr "ഉദാ. ചുരിദാർ സെറ്റ് / 2 ഷർട്ട്"
+
+#: apps/modules/catalog.py
+msgid "your order"
+msgstr "നിങ്ങളുടെ ഓർഡർ"

@@ -6734,7 +6734,7 @@ msgstr "لا يوجد عنوان — أضفه في صفحة العضو"
 
 #: templates/webapp/mess/delivery.html
 msgid "Delivered"
-msgstr "المُسلّم"
+msgstr "تم التسليم"
 
 #: templates/webapp/mess/delivery.html
 msgid "Mark delivered"
@@ -7223,7 +7223,7 @@ msgstr "القطعة"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "Charge"
-msgstr "تحصيل"
+msgstr "الأجرة"
 
 #: templates/webapp/mobile_shop/repair_detail.html
 msgid "No parts added."
@@ -19599,3 +19599,155 @@ msgstr "إبلاغ ولي الأمر"
 #: apps/modules/catalog.py
 msgid "WhatsApp parent"
 msgstr "واتساب لولي الأمر"
+
+#: apps/modules/catalog.py
+msgid "%(name)s's order is ready for pickup."
+msgstr "طلب %(name)s جاهز للاستلام."
+
+#: apps/modules/catalog.py
+msgid "Alteration"
+msgstr "تعديل"
+
+#: apps/modules/catalog.py
+msgid "Balance received"
+msgstr "المتبقي المستلم"
+
+#: apps/modules/catalog.py
+msgid "Blouse"
+msgstr "بلوزة"
+
+#: apps/modules/catalog.py
+msgid "Churidar set"
+msgstr "طقم شوريدار"
+
+#: apps/modules/catalog.py
+msgid "Delivered to %(name)s."
+msgstr "تم التسليم إلى %(name)s."
+
+#: apps/modules/catalog.py
+msgid "Edit order"
+msgstr "تعديل الطلب"
+
+#: apps/modules/catalog.py
+msgid "Edit tailoring order"
+msgstr "تعديل طلب الخياطة"
+
+#: apps/modules/catalog.py
+msgid "Fabric (if shop-provided)"
+msgstr "القماش (إن كان من المحل)"
+
+#: apps/modules/catalog.py
+msgid "Frock (kids)"
+msgstr "فستان (أطفال)"
+
+#: apps/modules/catalog.py
+msgid ""
+"Hi %(name)s, %(what)s from %(shop)s is ready. Please collect it at your "
+"convenience."
+msgstr ""
+"مرحباً %(name)s، %(what)s من %(shop)s جاهز. يرجى استلامه في الوقت المناسب "
+"لك."
+
+#: apps/modules/catalog.py
+msgid "Kurta"
+msgstr "كورتا"
+
+#: apps/modules/catalog.py
+msgid "Lehenga"
+msgstr "لهنغا"
+
+#: apps/modules/catalog.py
+msgid "Measurement"
+msgstr "المقاسات"
+
+#: apps/modules/catalog.py
+msgid "New tailoring order"
+msgstr "طلب خياطة جديد"
+
+#: apps/modules/catalog.py
+msgid "Order date"
+msgstr "تاريخ الطلب"
+
+#: apps/modules/catalog.py
+msgid "Order for %(name)s saved."
+msgstr "تم حفظ طلب %(name)s."
+
+#: apps/modules/catalog.py
+msgid "Order updated."
+msgstr "تم تحديث الطلب."
+
+#: apps/modules/catalog.py
+msgid "Pant"
+msgstr "بنطال"
+
+#: apps/modules/catalog.py
+msgid "Recently delivered"
+msgstr "سُلّم مؤخراً"
+
+#: apps/modules/catalog.py
+msgid "Salwar suit"
+msgstr "بدلة سلوار"
+
+#: apps/modules/catalog.py
+msgid "Saree fall & pico"
+msgstr "تشطيب الساري"
+
+#: apps/modules/catalog.py
+msgid "School uniform"
+msgstr "زي مدرسي"
+
+#: apps/modules/catalog.py
+msgid "Shirt"
+msgstr "قميص"
+
+#: apps/modules/catalog.py
+msgid "Start stitching"
+msgstr "ابدأ الخياطة"
+
+#: apps/modules/catalog.py
+msgid "Stitching"
+msgstr "قيد الخياطة"
+
+#: apps/modules/catalog.py
+msgid "Stitching charge (total)"
+msgstr "أجرة الخياطة (الإجمالي)"
+
+#: apps/modules/catalog.py
+msgid "Stitching started for %(name)s."
+msgstr "بدأت الخياطة لـ %(name)s."
+
+#: apps/modules/catalog.py
+msgid "Tailoring orders"
+msgstr "طلبات الخياطة"
+
+#: apps/modules/catalog.py
+msgid "The advance can't be more than the charge."
+msgstr "لا يمكن أن يتجاوز المقدم المبلغ."
+
+#: apps/modules/catalog.py
+msgid "To cut"
+msgstr "للقص"
+
+#: apps/modules/catalog.py
+msgid "Total: %(total)s · Paid: %(paid)s · Balance: %(balance)s"
+msgstr "الإجمالي: %(total)s · المدفوع: %(paid)s · المتبقي: %(balance)s"
+
+#: apps/modules/catalog.py
+msgid "Trial"
+msgstr "قياس"
+
+#: apps/modules/catalog.py
+msgid "Trial date"
+msgstr "موعد القياس"
+
+#: apps/modules/catalog.py
+msgid "What to stitch"
+msgstr "ما المطلوب خياطته"
+
+#: apps/modules/catalog.py
+msgid "e.g. Churidar set / 2 shirts"
+msgstr "مثلاً: طقم / قميصان"
+
+#: apps/modules/catalog.py
+msgid "your order"
+msgstr "طلبك"

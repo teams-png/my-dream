@@ -1,30 +1,61 @@
 {% extends "base.html" %}
-{% block title %}Orders{% endblock %}
-{% block heading %}Tailoring orders{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Tailoring orders" %}{% endblock %}
+{% block heading %}🧵 {% translate "Tailoring orders" %}{% endblock %}
 {% block content %}
-<div style="margin-bottom:14px;"><a class="btn" href="{% url 'webapp:order_add' %}">+ New order</a></div>
-{% if orders %}
-<table>
-  <tr><th>Customer</th><th>Order date</th><th>Due</th><th>Price</th><th>Status</th><th></th></tr>
-  {% for o in orders %}
-  <tr>
-    <td>{{ o.customer.name }}</td><td>{{ o.order_date }}</td><td>{{ o.expected_delivery_date }}</td>
-    <td>{{ o.price }}</td><td>{{ o.get_status_display }}</td>
-    <td>
-      {% if o.status == "pending" or o.status == "in_progress" %}
-      <a class="btn btn-secondary" href="{% url 'webapp:order_mark_ready' o.id %}">Mark ready</a>
-      {% elif o.status == "ready" %}
-      <a class="btn btn-secondary" href="{% url 'webapp:order_mark_delivered' o.id %}">Mark delivered</a>
-      {% endif %}
-      {% if o.status != "delivered" and o.status != "cancelled" %}
-      <a class="btn btn-secondary" href="{% url 'webapp:order_edit' o.id %}">Edit</a>
-      <a class="btn btn-secondary" href="{% url 'webapp:order_cancel' o.id %}">Cancel</a>
-      {% endif %}
-    </td>
-  </tr>
-  {% endfor %}
-</table>
-{% else %}
-<div class="card empty">No orders yet.</div>
+<style>
+.tb-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.tb-bar .chip{padding:6px 12px;border-radius:999px;background:var(--paper,#f1f5f9);font-weight:700;font-size:14px}
+.tb-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:start}
+@media(max-width:900px){.tb-cols{grid-template-columns:minmax(0,1fr)}}
+.tb-col{background:var(--paper,#f1f5f9);border-radius:14px;padding:10px}
+.tb-col h3{font-size:15px;margin:2px 4px 10px;display:flex;justify-content:space-between}
+.tb-card{background:var(--card,#fff);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:10px}
+.tb-card small{color:var(--ink-soft)}
+.tb-due{font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:#e0f2fe;color:#075985}
+.tb-due.late{background:#fee2e2;color:#b91c1c}
+.tb-acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.tb-acts form{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0}
+.tb-acts input{width:110px}.tb-acts select{max-width:120px}
+</style>
+<div class="tb-bar">
+  <a class="btn" href="{% url 'webapp:order_add' %}">+ {% translate "New order" %}</a>
+  <a class="btn btn-secondary" href="{% url 'webapp:measurement_list' %}">📏 {% translate "Measurements" %}</a>
+  <span class="chip">{% translate "Due today" %}: {{ due_today }}</span>
+  <span class="chip">{% translate "Delivered today" %}: {{ delivered_today }}</span>
+</div>
+<div class="tb-cols">
+{% for key, label, items in columns %}
+  <div class="tb-col" id="col-{{ key }}">
+    <h3><span>{% if key == "pending" %}✂️{% elif key == "in_progress" %}🧵{% else %}✅{% endif %} {{ label }}</span><span>{{ items|length }}</span></h3>
+    {% for o in items %}
+    <div class="tb-card">
+      <div style="display:flex;justify-content:space-between;gap:8px;align-items:start">
+        <div><b>{{ o.customer.name }}</b><br><small>{{ o.garment|default:_("Order") }}{% if o.quantity > 1 %} × {{ o.quantity }}{% endif %}</small></div>
+        <span class="tb-due{% if o.late %} late{% endif %}">{{ o.expected_delivery_date|date:"d M" }}</span>
+      </div>
+      <small>{% if o.trial_date and key != "ready" %}{% translate "Trial" %}: {{ o.trial_date|date:"d M" }} · {% endif %}{% translate "Charge" %} {{ o.price|floatformat:2 }} · {% translate "Balance" %} <b>{{ o.balance|floatformat:2 }}</b></small>
+      <div class="tb-acts">
+        {% if key == "pending" %}<form method="post" action="{% url 'webapp:order_start' o.id %}">{% csrf_token %}<button class="btn btn-secondary">🧵 {% translate "Start stitching" %}</button></form>{% endif %}
+        {% if key == "pending" or key == "in_progress" %}<form method="post" action="{% url 'webapp:order_mark_ready' o.id %}">{% csrf_token %}<button class="btn">✅ {% translate "Ready" %}</button></form>{% endif %}
+        {% if key == "ready" %}
+          {% if o.wa %}<a class="btn btn-secondary" href="{{ o.wa }}" target="_blank" rel="noopener">💬 {% translate "Tell customer" %}</a>{% endif %}
+          <form method="post" action="{% url 'webapp:order_mark_delivered' o.id %}">{% csrf_token %}
+            {% if o.balance %}<input type="number" name="collect" step="0.01" min="0" value="{{ o.balance|floatformat:2 }}" aria-label="{% translate 'Balance received' %}"><select name="method" aria-label="{% translate 'Paid by' %}">{% for v, l in methods %}<option value="{{ v }}">{{ l }}</option>{% endfor %}</select>{% endif %}
+            <button class="btn">📦 {% translate "Delivered" %}</button></form>
+        {% endif %}
+        <a class="btn btn-secondary" href="{% url 'webapp:order_edit' o.id %}">✎</a>
+      </div>
+    </div>
+    {% empty %}<div class="card empty" style="margin:0">{% translate "Nothing here." %}</div>{% endfor %}
+  </div>
+{% endfor %}
+</div>
+{% if delivered %}
+<h3 style="margin-top:22px">📦 {% translate "Recently delivered" %}</h3>
+<div style="overflow-x:auto"><table>
+  <tr><th>{% translate "Customer" %}</th><th>{% translate "What to stitch" %}</th><th>{% translate "Delivered" %}</th><th>{% translate "Charge" %}</th><th>{% translate "Invoice" %}</th></tr>
+  {% for o in delivered %}<tr><td>{{ o.customer.name }}</td><td>{{ o.garment|default:"—" }}{% if o.quantity > 1 %} × {{ o.quantity }}{% endif %}</td><td>{{ o.delivered_date|date:"d M Y" }}</td><td>{{ o.price|floatformat:2 }}</td><td>{{ o.sales_invoice.invoice_number|default:"—" }}</td></tr>{% endfor %}
+</table></div>
 {% endif %}
 {% endblock %}

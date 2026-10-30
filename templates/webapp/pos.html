@@ -93,11 +93,11 @@
         <div class="pay-grid">
           <div class="pay-due"><small>{% translate "Amount due" %}</small><div class="big" id="payDue">0.00</div><div class="pay-lines" id="payLines"></div></div>
           <div>
-            <div class="seg {% if is_mobile_shop %}cols-5{% else %}cols-3{% endif %}" id="paySeg" role="radiogroup">
+            <div class="seg {% if is_mobile_shop %}cols-5{% elif credit_sales %}cols-4{% else %}cols-3{% endif %}" id="paySeg" role="radiogroup">
               <button type="button" class="on" data-method="cash"><span>💵</span>{% translate "Cash" %}</button>
               <button type="button" data-method="card"><span>💳</span>{% translate "Card" %}</button>
               <button type="button" data-method="bank"><span>🏦</span>{% translate "Bank" %}</button>
-              {% if is_mobile_shop %}<button type="button" data-method="credit" data-online-only><span>📒</span>{% translate "Credit" %}</button><button type="button" data-method="installment" data-online-only><span>📆</span>{% translate "Instalment" %}</button>{% endif %}
+              {% if credit_sales %}<button type="button" data-method="credit" data-online-only><span>📒</span>{% translate "Credit" %}</button>{% endif %}{% if is_mobile_shop %}<button type="button" data-method="installment" data-online-only><span>📆</span>{% translate "Instalment" %}</button>{% endif %}
             </div>
             <input type="hidden" id="pos-payment-method" value="cash">
             <div class="pay-panel" id="cashPanel">
@@ -106,7 +106,7 @@
               <div class="quick-cash" id="quickCash"></div>
               <div class="change-box" id="changeBox"><span>{% translate "Change due" %}</span><span id="changeAmt">0.00</span></div>
             </div>
-            {% if is_mobile_shop %}
+            {% if credit_sales %}
             <div class="pay-panel" id="mobile-payment-details" hidden>
               <label class="field-label" for="pos-amount-paid">{% translate "Deposit / amount paid now" %}</label><input class="rp-input" id="pos-amount-paid" type="number" min="0" step="0.01" value="0">
               <label class="field-label" for="pos-deposit-method">{% translate "Deposit method" %}</label><select class="rp-input" id="pos-deposit-method"><option value="cash">{% translate "Cash" %}</option><option value="card">{% translate "Card" %}</option><option value="bank">{% translate "Bank" %}</option></select>

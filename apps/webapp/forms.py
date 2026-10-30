@@ -820,20 +820,43 @@ class MeasurementForm(forms.Form):
 
 
 class TailoringOrderForm(forms.Form):
-    customer = forms.ModelChoiceField(queryset=Customer.objects.none())
-    measurement = forms.ModelChoiceField(queryset=Measurement.objects.none(), required=False)
-    fabric_product = forms.ModelChoiceField(queryset=Product.objects.none(), required=False, label="Fabric (if shop-provided)")
-    order_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
-    expected_delivery_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
-    price = forms.DecimalField(max_digits=10, decimal_places=2)
-    notes = forms.CharField(widget=forms.Textarea, required=False)
+    customer = forms.ModelChoiceField(queryset=Customer.objects.none(), required=False, label=_l("Customer"))
+    new_name = forms.CharField(max_length=150, required=False, label=_l("…or new customer name"))
+    new_phone = forms.CharField(max_length=20, required=False, label=_l("Phone (WhatsApp)"))
+    garment = forms.CharField(max_length=150, required=False, label=_l("What to stitch"),
+                              widget=forms.TextInput(attrs={"placeholder": _l("e.g. Churidar set / 2 shirts"),
+                                                            "list": "garment-types"}))
+    quantity = forms.IntegerField(min_value=1, max_value=999, initial=1, label=_l("Pieces"))
+    measurement = forms.ModelChoiceField(queryset=Measurement.objects.none(), required=False, label=_l("Measurement"))
+    fabric_product = forms.ModelChoiceField(queryset=Product.objects.none(), required=False, label=_l("Fabric (if shop-provided)"))
+    order_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label=_l("Order date"))
+    trial_date = forms.DateField(required=False, widget=forms.DateInput(attrs={"type": "date"}), label=_l("Trial date"))
+    expected_delivery_date = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label=_l("Delivery date"))
+    price = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0, label=_l("Stitching charge (total)"))
+    advance = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0, required=False, initial=0, label=_l("Advance paid now"))
+    advance_method = forms.ChoiceField(choices=[("cash", _l("Cash")), ("card", _l("Card")), ("bank", _l("Bank / UPI"))],
+                                       initial="cash", label=_l("Paid by"))
+    notes = forms.CharField(widget=forms.Textarea(attrs={"rows": 3}), required=False, label=_l("Notes"))
 
-    def __init__(self, *args, company=None, **kwargs):
+    def __init__(self, *args, company=None, editing=False, **kwargs):
         super().__init__(*args, **kwargs)
         if company is not None:
             self.fields["customer"].queryset = Customer.objects.for_company(company).filter(is_active=True)
-            self.fields["measurement"].queryset = Measurement.objects.for_company(company).order_by("-taken_on")
+            self.fields["measurement"].queryset = Measurement.objects.for_company(company).select_related("customer").order_by("-taken_on")
             self.fields["fabric_product"].queryset = Product.objects.for_company(company).filter(fabric_detail__isnull=False)
+        if editing:
+            for name in ("new_name", "new_phone", "advance", "advance_method"):
+                del self.fields[name]
+
+    def clean(self):
+        cleaned = super().clean()
+        if not cleaned.get("customer") and not (cleaned.get("new_name") or "").strip():
+            self.add_error("customer", _l("Choose a customer or type a new customer's name."))
+        price, advance = cleaned.get("price"), cleaned.get("advance")
+        if price is not None and advance and advance > price:
+            self.add_error("advance", _l("The advance can't be more than the charge."))
+        return cleaned
+
 
 class VehicleForm(forms.ModelForm):
     class Meta:

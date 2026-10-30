@@ -49,7 +49,7 @@ html[data-theme=dark] .cart-item .cart-qty{background:#1d2436}
 .primary-actions.three{grid-template-columns:1fr 1fr}
 
 .seg.cols-5{grid-template-columns:repeat(5,1fr)}
-.seg.cols-3{grid-template-columns:repeat(3,1fr)}
+.seg.cols-3{grid-template-columns:repeat(3,1fr)}.seg.cols-4{grid-template-columns:repeat(4,1fr)}
 .offline-note{margin-top:10px; font-size:12.5px; background:#fff3d1; color:#7a4b00; border-radius:10px; padding:9px 11px}
 
 .done-hero{text-align:center; padding:28px 24px 6px}

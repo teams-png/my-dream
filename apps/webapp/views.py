@@ -18,7 +18,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from datetime import timedelta
 from django.utils.dateparse import parse_date
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 
 from apps.inventory import branch_access
 from apps.accounts import services as account_services
@@ -1909,14 +1909,38 @@ def measurement_delete(request, measurement_id):
     })
 
 
+GARMENT_TYPES = ["Shirt", "Pant", "Churidar set", "Salwar suit", "Blouse", "Saree fall & pico", "Kurta", "Lehenga",
+                 "Frock (kids)", "School uniform", "Alteration"]
+
+
 @login_required
 def order_list(request):
+    from apps.industry.reminders import whatsapp_link
     company = request.company
-    orders = (
-        TailoringOrder.objects.for_company(company).select_related("customer").order_by("-order_date")
-        if company else []
-    )
-    return render(request, "webapp/textile/order_list.html", {"orders": orders})
+    orders = list(TailoringOrder.objects.for_company(company).select_related("customer", "sales_invoice", "measurement")
+                  .exclude(status__in=["delivered", "cancelled"]).order_by("expected_delivery_date", "id"))
+    today = tz.localdate()
+    for o in orders:
+        o.balance = textile_services.balance(o)
+        o.late = o.expected_delivery_date < today
+        o.wa = whatsapp_link(company, o.customer, textile_services.ready_message(o)) if o.status == "ready" else ""
+    columns = [(key, label, [o for o in orders if o.status == key]) for key, label in
+               (("pending", _("To cut")), ("in_progress", _("Stitching")), ("ready", _("Ready for pickup")))]
+    done = TailoringOrder.objects.for_company(company).filter(status="delivered").select_related("customer").order_by(
+        "-delivered_date", "-id")
+    return render(request, "webapp/textile/order_list.html", {
+        "columns": columns, "today": today, "delivered": done[:15], "delivered_today": done.filter(delivered_date=today).count(),
+        "due_today": sum(1 for o in orders if o.expected_delivery_date == today), "methods": PAY_CHOICES})
+
+
+PAY_CHOICES = [("cash", _l("Cash")), ("card", _l("Card")), ("bank", _l("Bank / UPI"))]
+
+
+def _order_customer(form, company):
+    d = form.cleaned_data
+    if d.get("customer"):
+        return d["customer"]
+    return Customer.objects.create(company=company, name=d["new_name"].strip(), phone=(d.get("new_phone") or "").strip())
 
 
 @login_required
@@ -1926,19 +1950,21 @@ def order_add(request):
         form = TailoringOrderForm(request.POST, company=company)
         if form.is_valid():
             d = form.cleaned_data
-            textile_services.create_tailoring_order(
-                company=company, user=request.user, customer=d["customer"], order_date=d["order_date"],
+            order = textile_services.create_tailoring_order(
+                company=company, user=request.user, customer=_order_customer(form, company), order_date=d["order_date"],
                 expected_delivery_date=d["expected_delivery_date"], price=d["price"],
                 warehouse=_default_warehouse(company),
                 measurement=d["measurement"], fabric_product=d["fabric_product"], notes=d["notes"],
+                garment=d.get("garment", ""), quantity=d.get("quantity") or 1, trial_date=d.get("trial_date"),
+                advance=d.get("advance") or 0, advance_method=d.get("advance_method") or "cash",
             )
-            messages.success(request, "Order created.")
+            messages.success(request, _("Order for %(name)s saved.") % {"name": order.customer.name})
             return redirect("webapp:order_list")
     else:
-        form = TailoringOrderForm(company=company, initial={"order_date": tz.now().date()})
-
-    no_customers = not Customer.objects.for_company(company).exists()
-    return render(request, "webapp/textile/order_form.html", {"form": form, "no_customers": no_customers})
+        form = TailoringOrderForm(company=company, initial={
+            "order_date": tz.localdate(), "expected_delivery_date": tz.localdate() + timedelta(days=7), "quantity": 1,
+            "customer": request.GET.get("customer") or None})
+    return render(request, "webapp/textile/order_form.html", {"form": form, "garments": GARMENT_TYPES})
 
 
 @login_required
@@ -1946,23 +1972,25 @@ def order_edit(request, order_id):
     company = request.company
     order = get_object_or_404(TailoringOrder.objects.for_company(company), id=order_id)
     if request.method == "POST":
-        form = TailoringOrderForm(request.POST, company=company)
+        form = TailoringOrderForm(request.POST, company=company, editing=True)
         if form.is_valid():
             d = form.cleaned_data
-            order.customer = d["customer"]; order.measurement = d["measurement"]; order.fabric_product = d["fabric_product"]
+            order.customer = d["customer"] or order.customer
+            order.measurement = d["measurement"]; order.fabric_product = d["fabric_product"]
             order.order_date = d["order_date"]; order.expected_delivery_date = d["expected_delivery_date"]
+            order.trial_date = d.get("trial_date"); order.garment = d.get("garment", ""); order.quantity = d.get("quantity") or 1
             order.price = d["price"]; order.notes = d["notes"]
             order.save()
-            messages.success(request, "Order updated.")
+            messages.success(request, _("Order updated."))
             return redirect("webapp:order_list")
     else:
-        form = TailoringOrderForm(company=company, initial={
+        form = TailoringOrderForm(company=company, editing=True, initial={
             "customer": order.customer_id, "measurement": order.measurement_id, "fabric_product": order.fabric_product_id,
             "order_date": order.order_date, "expected_delivery_date": order.expected_delivery_date,
+            "trial_date": order.trial_date, "garment": order.garment, "quantity": order.quantity,
             "price": order.price, "notes": order.notes,
         })
-    no_customers = not Customer.objects.for_company(company).exists()
-    return render(request, "webapp/textile/order_form.html", {"form": form, "no_customers": no_customers, "editing": True})
+    return render(request, "webapp/textile/order_form.html", {"form": form, "editing": True, "garments": GARMENT_TYPES})
 
 
 @login_required
@@ -1972,7 +2000,7 @@ def order_cancel(request, order_id):
     if request.method == "POST":
         order.status = "cancelled"
         order.save(update_fields=["status"])
-        messages.success(request, "Order cancelled.")
+        messages.success(request, _("Order cancelled."))
         return redirect("webapp:order_list")
     return render(request, "webapp/confirm_delete.html", {
         "object": order, "cancel_url": "webapp:order_list", "delete_url": "webapp:order_cancel", "delete_id": order_id,
@@ -1980,20 +2008,35 @@ def order_cancel(request, order_id):
 
 
 @login_required
-def order_mark_ready(request, order_id):
-    company = request.company
-    order = get_object_or_404(TailoringOrder.objects.for_company(company), id=order_id)
-    textile_services.mark_ready(order)
-    messages.success(request, "Order marked ready for pickup.")
+@require_POST
+def order_start(request, order_id):
+    order = get_object_or_404(TailoringOrder.objects.for_company(request.company), id=order_id, status="pending")
+    textile_services.start_stitching(order)
+    messages.success(request, _("Stitching started for %(name)s.") % {"name": order.customer.name})
     return redirect("webapp:order_list")
 
 
 @login_required
+@require_POST
+def order_mark_ready(request, order_id):
+    order = get_object_or_404(TailoringOrder.objects.for_company(request.company), id=order_id,
+                              status__in=["pending", "in_progress"])
+    textile_services.mark_ready(order)
+    messages.success(request, _("%(name)s's order is ready for pickup.") % {"name": order.customer.name})
+    return redirect("webapp:order_list")
+
+
+@login_required
+@require_POST
 def order_mark_delivered(request, order_id):
-    company = request.company
-    order = get_object_or_404(TailoringOrder.objects.for_company(company), id=order_id)
-    textile_services.mark_delivered(order, tz.now().date())
-    messages.success(request, "Order marked delivered.")
+    order = get_object_or_404(TailoringOrder.objects.for_company(request.company), id=order_id, status="ready")
+    try:
+        collect = Decimal(request.POST.get("collect") or "0")
+    except (InvalidOperation, ValueError):
+        collect = Decimal("0")
+    method = request.POST.get("method") if request.POST.get("method") in dict(PAY_CHOICES) else "cash"
+    textile_services.mark_delivered(order, tz.localdate(), user=request.user, collect=max(collect, Decimal("0")), method=method)
+    messages.success(request, _("Delivered to %(name)s.") % {"name": order.customer.name})
     return redirect("webapp:order_list")
 
 
@@ -4249,6 +4292,11 @@ def _price_rules(company):
 PHARMACY_TYPES = {"medical_shop", "pharmacy"}
 
 
+# Shops that sell on credit at the counter (contractors, retailers on account): the POS offers "Credit".
+CREDIT_SALE_TYPES = {"mobile_shop", "hardware_store", "building_materials_store", "electrical_plumbing_store",
+                     "wholesale_business", "trading_company", "agricultural_supplies_store", "auto_spare_parts"}
+
+
 def _pos_catalog(company):
     """Product data for the POS screen, with stock from one grouped query."""
     from apps.inventory.models import StockMovement
@@ -4389,6 +4437,7 @@ def pos_view(request):
         "customers": Customer.objects.for_company(company).filter(is_active=True).order_by("name"),
         "branches": branch_access.limit(Warehouse.objects.for_company(company).filter(is_active=True)).order_by("name"),
         "is_mobile_shop": company.business_type.code == "mobile_shop",
+        "credit_sales": company.business_type.code in CREDIT_SALE_TYPES,
         "offline_attention": OfflineSaleSync.objects.for_company(company).filter(channel="offline", status="attention").count(),
     })
 

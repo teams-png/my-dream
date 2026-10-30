@@ -132,3 +132,22 @@ NUMBER_SAMPLES = {
     "carton_quantity": "24", "length_per_unit": "50", "width_inches": "58", "chest": "40", "waist": "34", "length": "56",
     "sleeve": "24", "weight_grams": "250", "volume_ml": "100", "gsm": "180", "mileage": "45000", "model_year": "2024",
 }
+
+# Examples that read as foreign in some countries: the value shown instead, by company country.
+LOCAL_SAMPLES = {
+    "India": {
+        "+974 5555 1234": "+91 98470 12345", "+974 6666 4321": "+91 94470 54321",
+        "Ahmed Al-Kuwari": "Rahul Nair", "Ahmed": "Rahul", "Al-Kuwari": "Nair", "Al Noor Trading WLL": "Malabar Traders",
+        "Al Meera Wholesale": "Malabar Wholesale", "Rashid Khan": "Suresh Kumar",
+        "Building 12, Street 340, Al Sadd, Doha": "2nd Floor, Pearl Plaza, MG Road, Kochi 682016", "Doha": "Kochi",
+        "Qatar": "India", "Al Sadd": "Kadavanthra", "Doha, Qatar": "Kochi, Kerala", "Qatar, UAE, Saudi Arabia": "India, UAE, Qatar",
+        "300123456700003": "32ABCDE1234F1Z5", "CR 123456": "U12345KL2020PTC012345", "MOL-12345": "KL/TCR/2024/0123",
+        "28435612345": "XXXX XXXX 1234", "QNB": "SBI", "QA58 DOHB 0000 1234 5678 90AB CDEF G": "SBIN0001234",
+        "QNBAQAQA": "SBININBB", "Main branch – Al Sadd": "Main branch – MG Road", "Al Sadd Tower": "Pearl Heights",
+        "Men's cotton kandura": "Men's cotton shirt", "Kandura": "Shirts", "Al Jazeera": "Ramraj",
+        "Almarai full fat milk 1L": "Milma toned milk 500 ml", "Almarai": "Milma", "6281007000017": "8901262010016",
+        "Jotun interior paint 18L": "Asian Paints Apex 10L", "Jotun": "Asian Paints", "JOT-18L-WH": "AP-APEX-10L",
+        "Oud Royal Eau de Parfum 100ml": "Oud Royal attar 12 ml", "Panadol Extra 24 tablets": "Dolo 650 (15 tablets)",
+        "GSK": "Micro Labs", "PAN-24": "DOLO-650", "6281000000017": "8901234567890", "Super 95": "Petrol",
+    },
+}

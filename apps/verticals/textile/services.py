@@ -18,7 +18,10 @@ from decimal import Decimal
 
 from django.db import transaction
 
-from apps.sales.services import create_invoice
+from django.utils import timezone
+from django.utils.translation import gettext as _
+
+from apps.sales.services import create_invoice, record_customer_payment
 
 from .models import TailoringOrder
 
@@ -42,7 +45,8 @@ def _get_or_create_tailoring_service_product(company):
 @transaction.atomic
 def create_tailoring_order(
     *, company, user, customer, order_date, expected_delivery_date, price, warehouse,
-    measurement=None, fabric_product=None, notes="",
+    measurement=None, fabric_product=None, notes="", garment="", quantity=1, trial_date=None, advance=Decimal("0"),
+    advance_method="cash",
 ):
     """
     Invoices the order's price against the shared Tailoring Service
@@ -57,12 +61,42 @@ def create_tailoring_order(
         lines=[{"product": service_product, "quantity": Decimal("1"), "unit_price": price}],
     )
 
+    advance = min(Decimal(advance or 0), invoice.total)
+    if advance > 0:
+        record_customer_payment(company=company, user=user, customer=customer, amount=advance, date=order_date,
+                                invoice=invoice, method=advance_method)
     return TailoringOrder.objects.create(
         company=company, customer=customer, measurement=measurement,
         fabric_product=fabric_product, order_date=order_date,
         expected_delivery_date=expected_delivery_date, price=price,
         notes=notes, status="pending", sales_invoice=invoice,
+        garment=(garment or "")[:150], quantity=max(1, int(quantity or 1)), trial_date=trial_date, advance=advance,
     )
+
+
+def balance(order):
+    inv = order.sales_invoice
+    return max(inv.total - inv.amount_paid, Decimal("0")) if inv else Decimal("0")
+
+
+def start_stitching(order):
+    order.status = "in_progress"
+    order.save(update_fields=["status"])
+    return order
+
+
+def ready_message(order):
+    """WhatsApp text for the customer when the clothes are ready."""
+    inv = order.sales_invoice
+    what = order.garment or _("your order")
+    if order.quantity > 1 and order.garment:
+        what = f"{order.garment} × {order.quantity}"
+    text = _("Hi %(name)s, %(what)s from %(shop)s is ready. Please collect it at your convenience.") % {
+        "name": order.customer.name, "what": what, "shop": order.company.name}
+    if inv:
+        text += " " + _("Total: %(total)s · Paid: %(paid)s · Balance: %(balance)s") % {
+            "total": inv.total, "paid": inv.amount_paid, "balance": balance(order)}
+    return text
 
 
 def mark_ready(order):
@@ -72,7 +106,12 @@ def mark_ready(order):
 
 
 @transaction.atomic
-def mark_delivered(order, delivered_date):
+def mark_delivered(order, delivered_date, *, user=None, collect=Decimal("0"), method="cash"):
+    """Hands the clothes over; ``collect`` is the balance taken now (never more than is due)."""
+    collect = min(Decimal(collect or 0), balance(order))
+    if collect > 0:
+        record_customer_payment(company=order.company, user=user, customer=order.customer, amount=collect,
+                                date=delivered_date or timezone.localdate(), invoice=order.sales_invoice, method=method)
     order.status = "delivered"
     order.delivered_date = delivered_date
     order.save(update_fields=["status", "delivered_date"])

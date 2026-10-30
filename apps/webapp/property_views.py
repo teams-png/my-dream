@@ -74,8 +74,12 @@ def property_home(request):
     properties = Property.objects.for_company(company).prefetch_related("units")
     active = {l.unit_id: l for l in Lease.objects.for_company(company).filter(status="active", start_date__lte=timezone.localdate(),
                                                                                 end_date__gte=timezone.localdate()).select_related("tenant")}
+    from apps.industry.reminders import whatsapp_link
+    overdue = svc.overdue(company)[:20]
+    for o in overdue:
+        o["wa"] = whatsapp_link(company, o["charge"].lease.tenant, svc.rent_message(o["charge"].lease))
     return render(request, "webapp/industry/property_home.html", {
-        "summary": summary, "overdue": svc.overdue(company)[:20],
+        "summary": summary, "overdue": overdue,
         "properties": [{"p": p, "units": [(u, active.get(u.pk)) for u in p.units.all()]} for p in properties]})
 
 
@@ -150,16 +154,30 @@ def lease_detail(request, lease_id):
                 lease.deposit_returned = True
                 lease.save(update_fields=["deposit_returned"])
                 messages.success(request, _("Security deposit marked as returned."))
+            elif action == "receive":
+                settled = svc.receive_rent(lease, user=request.user, amount=request.POST.get("amount") or 0,
+                                           method=request.POST.get("method") or "cash")
+                messages.success(request, _("Rent received for %(months)s.") % {
+                    "months": ", ".join(svc.month_label(k) for k in settled)})
+            elif action == "renew":
+                new = svc.renew_lease(lease, user=request.user, months=request.POST.get("months") or 12,
+                                      increase_percent=request.POST.get("increase") or 0)
+                messages.success(request, _("Renewed as %(number)s.") % {"number": new.number})
+                return redirect("webapp:lease_detail", lease_id=new.pk)
             elif action == "bill_month":
                 invoices = svc.bill(company=company, user=request.user, leases=[lease], key=month_key(timezone.localdate()))
                 messages.success(request, _("Rent billed.") if invoices else _("This month's rent is already billed."))
-        except ValidationError as exc:
-            messages.error(request, " ".join(exc.messages))
+        except (ValidationError, ArithmeticError, ValueError) as exc:
+            messages.error(request, " ".join(getattr(exc, "messages", [_("Check the numbers and try again.")])))
         return redirect("webapp:lease_detail", lease_id=lease.pk)
+    from apps.industry.common import PAYMENT_METHODS
+    from apps.industry.reminders import whatsapp_link
     charges = lease.charges.select_related("invoice")
     today = timezone.localdate()
+    renewal = Lease.objects.for_company(company).filter(unit=lease.unit, start_date__gt=lease.end_date).first()
     return render(request, "webapp/industry/lease_detail.html", {
-        "lease": lease, "charges": charges, "today": today,
+        "lease": lease, "charges": charges, "today": today, "methods": PAYMENT_METHODS, "renewal": renewal,
+        "wa": whatsapp_link(company, lease.tenant, svc.rent_message(lease)),
         "days_left": (lease.end_date - today).days,
         "balance": sum(((c.invoice.total - c.invoice.amount_paid) for c in charges if c.invoice_id), 0)})
 

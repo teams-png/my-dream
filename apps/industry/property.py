@@ -54,6 +54,75 @@ def create_lease(*, company, user, unit, tenant, start_date, end_date, monthly_r
     return lease
 
 
+def unpaid_charges(lease):
+    return [c for c in lease.charges.select_related("invoice").order_by("period")
+            if c.invoice_id and c.invoice.amount_paid < c.invoice.total]
+
+
+@transaction.atomic
+def receive_rent(lease, *, user, amount, method="cash", on=None):
+    """Take a rent payment from the tenant and settle the oldest unpaid months first."""
+    from .common import pay
+    amount = money(amount, "payment")
+    if amount <= 0:
+        raise ValidationError("Enter the amount received.")
+    open_charges = unpaid_charges(lease)
+    due = sum((c.invoice.total - c.invoice.amount_paid for c in open_charges), Decimal("0"))
+    if amount > due:
+        raise ValidationError(f"The tenant owes {due}; the payment is more than that.")
+    left, settled = amount, []
+    for c in open_charges:
+        if left <= 0:
+            break
+        part = min(left, c.invoice.total - c.invoice.amount_paid)
+        pay(lease.company, user, c.invoice, part, method, on or timezone.localdate())
+        left -= part
+        settled.append(c.period)
+    return settled
+
+
+def rent_message(lease):
+    """WhatsApp text to the tenant: what is unpaid, or a thank-you when nothing is."""
+    from django.utils.translation import gettext as _
+    open_charges = unpaid_charges(lease)
+    name = lease.tenant.name
+    if not open_charges:
+        return _("Hi %(name)s, thank you! Your rent for %(unit)s is fully paid. – %(shop)s") % {
+            "name": name, "unit": lease.unit, "shop": lease.company.name}
+    due = sum((c.invoice.total - c.invoice.amount_paid for c in open_charges), Decimal("0"))
+    return _("Hi %(name)s, a reminder from %(shop)s: rent for %(unit)s is due for %(months)s. "
+             "Amount due: %(due)s. Please pay at the earliest. Thank you.") % {
+        "name": name, "shop": lease.company.name, "unit": lease.unit,
+        "months": ", ".join(month_label(c.period) for c in open_charges), "due": due}
+
+
+def month_label(key):
+    return month_bounds(key)[0].strftime("%b %Y")
+
+
+@transaction.atomic
+def renew_lease(lease, *, user, months=12, increase_percent=0):
+    """A new lease for the same unit and tenant from the day after this one ends, rent raised by a percentage."""
+    if lease.status != "active":
+        raise ValidationError("Only an active lease can be renewed.")
+    if Lease.objects.filter(unit=lease.unit, status="active", start_date__gt=lease.end_date).exists():
+        raise ValidationError("This unit already has a lease after this one.")
+    months = int(months)
+    if not 1 <= months <= 120:
+        raise ValidationError("Renew for 1 to 120 months.")
+    start = lease.end_date + timedelta(days=1)
+    y, m = divmod(start.month - 1 + months, 12)
+    end = date(start.year + y, m + 1, 1) - timedelta(days=1) if start.day == 1 else \
+        date(start.year + y, m + 1, min(start.day, 28)) - timedelta(days=1)
+    rent = (lease.monthly_rent * (Decimal("100") + Decimal(str(increase_percent))) / Decimal("100")).quantize(Decimal("1"))
+    new = Lease.objects.create(company=lease.company, unit=lease.unit, tenant=lease.tenant, start_date=start, end_date=end,
+                               monthly_rent=rent, due_day=lease.due_day, security_deposit=lease.security_deposit,
+                               notes=f"Renewal of {lease.number}", created_by=user)
+    new.number = f"LS-{new.pk:05d}"
+    new.save(update_fields=["number"])
+    return new
+
+
 def end_lease(lease, *, on, early=False):
     if lease.status != "active":
         raise ValidationError("This lease is already closed.")
@@ -84,7 +153,7 @@ def bill(*, company, user, leases, key):
     for lease in leases:
         if RentCharge.objects.filter(lease=lease, period=key).exists():
             continue
-        due = _due_date(lease, key)
+        due = max(_due_date(lease, key), lease.start_date)  # a lease starting after the due day isn't late on day one
         inv = make_invoice(company, user, lease.tenant, [(unit_product(lease.unit), Decimal("1"), lease.monthly_rent)],
                            date=month_bounds(key)[0])
         if inv.due_date != due:

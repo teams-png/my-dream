@@ -27,12 +27,28 @@
         <form method="post">{% csrf_token %}<button class="btn" name="action" value="bill_month">🧾 {% translate "Bill this month" %}</button></form>
         <form method="post" onsubmit="return confirm('{% translate "End this lease today?" %}')">{% csrf_token %}<button class="btn btn-secondary" name="action" value="{% if lease.end_date > today %}terminate{% else %}end{% endif %}">{% if lease.end_date > today %}{% translate "Terminate early" %}{% else %}{% translate "End lease" %}{% endif %}</button></form>
         {% endif %}
+        {% if wa %}<a class="btn btn-secondary" href="{{ wa }}" target="_blank" rel="noopener">💬 {% if balance %}{% translate "WhatsApp rent reminder" %}{% else %}{% translate "WhatsApp thank-you" %}{% endif %}</a>{% endif %}
         {% if lease.security_deposit and not lease.deposit_returned and lease.status != "active" %}<form method="post">{% csrf_token %}<button class="btn btn-secondary" name="action" value="deposit_returned">↩ {% translate "Deposit returned" %}</button></form>{% endif %}
       </div>
+      {% if lease.status == "active" %}
+      {% if renewal %}<p style="margin-top:16px">🔁 {% translate "Renewed as" %} <a href="{% url 'webapp:lease_detail' renewal.id %}"><b>{{ renewal.number }}</b></a> · {{ renewal.monthly_rent }} {% translate "from" %} {{ renewal.start_date|date:"j M Y" }}</p>
+      {% elif days_left <= 90 %}
+      <form method="post" class="ix-form" id="renew" style="margin-top:18px;border-top:1px solid var(--line);padding-top:14px">{% csrf_token %}
+        <h3>🔁 {% translate "Renew lease" %}</h3>
+        <div class="fields"><div><label for="renew-months">{% translate "Months" %}</label><input id="renew-months" type="number" name="months" value="12" min="1" max="120"></div>
+          <div><label for="renew-increase">{% translate "Rent increase %" %}</label><input id="renew-increase" type="number" name="increase" value="5" min="0" max="100" step="0.5"></div></div>
+        <button class="btn" name="action" value="renew" style="margin-top:10px">{% translate "Renew from" %} {{ lease.end_date|date:"j M" }}</button>
+      </form>
+      {% endif %}{% endif %}
     </div>
     <div class="ix-card">
       <h3>💰 {% translate "Rent" %}</h3>
       <div class="ix-total" style="border-top:0;margin-top:0;padding-top:0"><span>{% translate "Balance due" %}</span><b style="{% if balance %}color:var(--ix-red){% endif %}">{{ balance|floatformat:2 }}</b></div>
+      {% if balance %}<form method="post" class="ix-form" id="receive" style="margin:6px 0 14px">{% csrf_token %}
+        <div class="fields"><div><label for="rc-amount">{% translate "Amount received" %}</label><input id="rc-amount" type="number" name="amount" step="0.01" min="0.01" value="{{ balance|floatformat:2 }}"></div>
+          <div><label for="rc-method">{% translate "Paid by" %}</label><select id="rc-method" name="method">{% for v, l in methods %}<option value="{{ v }}">{% translate l %}</option>{% endfor %}</select></div></div>
+        <button class="btn" name="action" value="receive" style="width:100%;margin-top:10px">💰 {% translate "Receive rent" %}</button>
+      </form>{% endif %}
       <div class="ix-list">{% for c in charges %}<div class="ix-row"><span class="grow"><b>{{ c.period }}</b><small>{% translate "due" %} {{ c.due_date|date:"j M Y" }}{% if c.invoice %} · {{ c.invoice.invoice_number }}{% endif %}</small></span>
         {% if c.invoice and c.invoice.amount_paid >= c.invoice.total %}<span class="ix-chip paid">{% translate "Paid" %}</span>{% elif c.due_date < today %}<span class="ix-chip late">{% translate "Overdue" %}</span>{% else %}<span class="ix-chip due">{% translate "Due" %}</span>{% endif %}
         <b>{{ c.amount }}</b>{% if c.invoice %}<a class="btn btn-secondary" href="{% url 'webapp:invoice_share' c.invoice.id %}">📤</a>{% endif %}</div>{% empty %}<div class="ix-empty">{% translate "No rent billed yet." %}</div>{% endfor %}</div>

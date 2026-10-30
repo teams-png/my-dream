@@ -91,3 +91,34 @@ def test_pages(pm):
     c.post(reverse("webapp:lease_detail", args=[new.id]), {"action": "terminate"})
     new.refresh_from_db()
     assert new.status in ("terminated", "ended")
+
+
+def test_receive_rent_reminder_and_renewal(pm):
+    c = pm["client"]
+    first = lease(pm, "a1", "t1", date(2026, 1, 1), date(2026, 12, 31), bill_first_month=True)
+    svc.bill(company=pm["company"], user=pm["user"], leases=[first], key="2026-02")
+    assert "Jan 2026, Feb 2026" in svc.rent_message(first) and "13000.00" in svc.rent_message(first)
+    page = c.get(reverse("webapp:lease_detail", args=[first.id])).content.decode()
+    assert "Receive rent" in page and "WhatsApp rent reminder" in page
+    with pytest.raises(ValidationError):
+        svc.receive_rent(first, user=pm["user"], amount="20000")
+    c.post(reverse("webapp:lease_detail", args=[first.id]), {"action": "receive", "amount": "9000", "method": "bank"})
+    jan, feb = [ch.invoice for ch in first.charges.select_related("invoice").order_by("period")]
+    jan.refresh_from_db(); feb.refresh_from_db()
+    assert jan.amount_paid == Decimal("6500") and feb.amount_paid == Decimal("2500")
+    svc.receive_rent(first, user=pm["user"], amount="4000", method="cash")
+    assert "fully paid" in svc.rent_message(first)
+    resp = c.post(reverse("webapp:lease_detail", args=[first.id]), {"action": "renew", "months": "12", "increase": "5"})
+    new = Lease.objects.get(unit=pm["a1"], start_date=date(2027, 1, 1))
+    assert resp.status_code == 302 and new.end_date == date(2027, 12, 31) and new.monthly_rent == Decimal("6825")
+    assert new.tenant == pm["t1"] and new.number.startswith("LS-")
+    with pytest.raises(ValidationError):
+        svc.renew_lease(first, user=pm["user"])
+    assert "Renewed as" in c.get(reverse("webapp:lease_detail", args=[first.id])).content.decode()
+    assert c.get(reverse("webapp:property_home")).status_code == 200
+
+
+def test_first_month_due_not_before_start(pm):
+    mid = lease(pm, "a2", "t2", date(2026, 3, 20), date(2027, 3, 19), rent="5000", due_day=5)
+    charge = mid.charges.get()
+    assert charge.period == "2026-03" and charge.due_date == date(2026, 3, 20)

@@ -170,3 +170,14 @@ def test_samples_follow_the_company_country():
     gulf, _ = _company("clothing_store", 4)
     sample_kit.install(gulf)
     assert Product.objects.filter(company=gulf, name="Men's kandura – white").exists()
+
+
+def test_jewellery_samples_come_priced_from_a_sample_gold_rate():
+    from apps.industry.models import GoldRate
+    company, user = _company("jewelry_shop", 900, currency="INR")
+    sample_kit.install(company, user)
+    assert GoldRate.objects.for_company(company).get(karat="22K").rate_per_gram == 11460
+    chain = Product.objects.for_company(company).get(name="22K gold chain")
+    assert chain.selling_price == 8 * 11460 + 8 * 12  # 8 g at the 22K rate + 12 a gram making
+    sample_kit.remove(company)
+    assert not GoldRate.objects.for_company(company).exists()

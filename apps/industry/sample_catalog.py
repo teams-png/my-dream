@@ -508,3 +508,13 @@ PROJECT_MATERIALS = {
     "construction": [P("Cement 50 kg bag", "Materials", 18, stock=100, unit="bag"),
                      P("Steel bar 12mm", "Materials", 32, stock=80)],
 }
+
+
+# jewellery: a day's sample gold rate per gram, by currency (the owner types the real one each morning)
+GOLD_TYPES = {"jewelry_shop"}
+GOLD_RATES = {
+    "QAR": {"24K": "470", "22K": "435", "21K": "415", "18K": "356"},
+    "AED": {"24K": "475", "22K": "440", "21K": "420", "18K": "360"},
+    "SAR": {"24K": "485", "22K": "450", "21K": "430", "18K": "368"},
+    "INR": {"24K": "12500", "22K": "11460", "21K": "10940", "18K": "9375"},
+}

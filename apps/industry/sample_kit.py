@@ -273,6 +273,8 @@ def install(company, user=None):
         _courses(kit, code)
     if code in ("property_management", "real_estate_brokerage"):
         _properties(kit)
+    if code in data.GOLD_TYPES:
+        _gold(kit)
     _people(kit, code)
     return SampleRecord.objects.for_company(company).count()
 
@@ -341,6 +343,18 @@ def _properties(kit):
         for unit_name, unit_kind, bedrooms, size, rent in units:
             kit.track(RentalUnit.objects.create(company=kit.company, property=prop, name=unit_name, kind=unit_kind,
                                                 bedrooms=bedrooms, size=size, monthly_rent=kit.money(rent)))
+
+
+def _gold(kit):
+    """A day's sample gold rates (if the shop has none yet), then prices the sample jewellery from them."""
+    from . import gold
+    from .models import GoldRate
+    if not GoldRate.objects.for_company(kit.company).exists():
+        currency = (kit.company.default_currency or "QAR").upper()
+        rates = data.GOLD_RATES.get(currency) or {k: kit.money(v) for k, v in data.GOLD_RATES["QAR"].items()}
+        for rate in gold.set_rates(kit.company, kit.user, rates):
+            kit.track(rate)
+    gold.apply_to_products(kit.company)
 
 
 def _people(kit, code):

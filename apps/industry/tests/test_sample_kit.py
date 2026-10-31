@@ -142,3 +142,31 @@ def test_pos_bills_variants_not_their_group():
     data = json.loads(page.split('id="posData"', 1)[1].split(">", 1)[1].split("</script>", 1)[0])
     names = [(p["name"], p["variant"]) for p in data["products"]]
     assert ("Men's cotton shirt", "White / M") in names and ("Men's cotton shirt", "") not in names
+
+
+def test_samples_follow_the_company_country():
+    from apps.employees.models import Employee
+    from apps.industry.models import Property
+    from apps.suppliers.models import Supplier
+    india, _ = _company("clothing_store", 1, currency="INR")
+    india.country = "India"
+    india.save(update_fields=["country"])
+    sample_kit.install(india)
+    names = set(Product.objects.filter(company=india).values_list("name", flat=True))
+    assert "Men's mundu – double (white)" in names and not any("andura" in n or "Abaya" in n for n in names)
+    assert Customer.objects.filter(company=india, name="Rahul Nair (sample)", phone__startswith="+91").exists()
+    assert not Customer.objects.filter(company=india, phone__startswith="+974").exists()
+    assert Supplier.objects.filter(company=india, name="Malabar Wholesale (sample)").exists()
+    homes, _ = _company("property_management", 2, currency="INR")
+    homes.country = "India"
+    homes.save(update_fields=["country"])
+    sample_kit.install(homes)
+    assert Property.objects.filter(company=homes, name="Pearl Heights", address="Kadavanthra, Kochi").exists()
+    clinic, _ = _company("dental_clinic", 3, currency="INR")
+    clinic.country = "India"
+    clinic.save(update_fields=["country"])
+    sample_kit.install(clinic)
+    assert Employee.objects.filter(company=clinic, phone__startswith="+91").count() == 2
+    gulf, _ = _company("clothing_store", 4)
+    sample_kit.install(gulf)
+    assert Product.objects.filter(company=gulf, name="Men's kandura – white").exists()

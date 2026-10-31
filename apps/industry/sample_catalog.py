@@ -28,6 +28,23 @@ CUSTOMERS = [("Ahmed Al-Kuwari", "+974 5550 1001", "ahmed@example.com"),
 SUPPLIERS = [("Al Meera Wholesale", "+974 4440 2001"), ("Gulf Trading Co.", "+974 4440 2002")]
 STAFF = [("Ravi Kumar", "Senior staff", 3500), ("Maria Santos", "Staff", 2800)]
 
+# The same kit for a company in another country: its own people and phone numbers, and local names for the
+# few items that only make sense in the Gulf. "swap" replaces those words in item, category and brand names.
+LOCAL = {
+    "India": {
+        "customers": [("Rahul Nair", "+91 98470 10001", "rahul@example.com"),
+                      ("Fathima Rahman", "+91 94470 10002", "fathima@example.com"),
+                      ("John Mathew", "+91 97450 10003", "")],
+        "suppliers": [("Malabar Wholesale", "+91 98950 20001"), ("Kerala Traders", "+91 94960 20002")],
+        "staff": [("Ravi Kumar", "Senior staff", 3500), ("Anjali Menon", "Staff", 2800)],
+        "staff_phone": "+91 90370 200{n:02d}",
+        "swap": {"Men's kandura – white": "Men's mundu – double (white)", "Kandura – wash & iron": "Mundu – wash & iron",
+                 "Abaya – embroidered": "Churidar set – embroidered", "Abayas": "Churidar sets", "Kandura": "Mundu",
+                 "Al Jazeera": "Ramraj", "Jotun interior paint 18L": "Asian Paints Apex emulsion 10L", "Jotun": "Asian Paints",
+                 "Almarai": "Milma", "Al Sadd Tower": "Pearl Heights", "Al Sadd, Doha": "Kadavanthra, Kochi"},
+    },
+}
+
 # ------------------------------------------------------------------ retail
 KITS = {
     "clothing_store": {

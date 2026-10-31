@@ -106,6 +106,13 @@ class _Kit:
             Warehouse.objects.filter(company=company).first()
         self.cache = {}
         self.n = 0
+        self.local = data.LOCAL.get(company.country or "", {})
+
+    def swap(self, text):
+        """The local name of a Gulf-only item, brand or place (Kandura → Mundu in India)."""
+        for old, new in sorted(self.local.get("swap", {}).items(), key=lambda kv: -len(kv[0])):
+            text = text.replace(old, new)
+        return text
 
     def track(self, obj):
         SampleRecord.objects.create(company=self.company, content_type=ContentType.objects.get_for_model(obj),
@@ -121,6 +128,7 @@ class _Kit:
 
     def named(self, model, name, **defaults):
         """Reuse the business's own category / brand / unit of that name; make (and track) it otherwise."""
+        name = self.swap(name)
         key = (model, name)
         if key not in self.cache:
             obj = model.objects.filter(company=self.company, name=name).first()
@@ -150,7 +158,7 @@ class _Kit:
         attrs = {k: v for k, v in attrs.items() if v not in ("", None)}
         price = self.money(row["price"])
         product = Product.objects.create(
-            company=self.company, sku=self.sku(), name=name or row["name"],
+            company=self.company, sku=self.sku(), name=self.swap(name or row["name"]),
             category=self.named(ProductCategory, row["category"]),
             brand=self.named(Brand, row["brand"]) if row.get("brand") else None,
             unit=self.named(Unit, row.get("unit") or ("pcs" if stocked else "service")),
@@ -329,7 +337,7 @@ def _courses(kit, code):
 def _properties(kit):
     from .models import Property, RentalUnit
     for name, kind, address, units in data.PROPERTIES:
-        prop = kit.track(Property.objects.create(company=kit.company, name=name, kind=kind, address=address))
+        prop = kit.track(Property.objects.create(company=kit.company, name=kit.swap(name), kind=kind, address=kit.swap(address)))
         for unit_name, unit_kind, bedrooms, size, rent in units:
             kit.track(RentalUnit.objects.create(company=kit.company, property=prop, name=unit_name, kind=unit_kind,
                                                 bedrooms=bedrooms, size=size, monthly_rent=kit.money(rent)))
@@ -339,18 +347,19 @@ def _people(kit, code):
     from apps.customers.models import Customer
     from apps.suppliers.models import Supplier
     company = kit.company
-    for name, phone, email in data.CUSTOMERS:
+    for name, phone, email in kit.local.get("customers", data.CUSTOMERS):
         kit.track(Customer.objects.create(company=company, name=f"{name} (sample)", phone=phone, email=email))
     if business_group(code) == "retail" or code in data.PROJECT_MATERIALS:
-        for name, phone in data.SUPPLIERS:
+        for name, phone in kit.local.get("suppliers", data.SUPPLIERS):
             kit.track(Supplier.objects.create(company=company, name=f"{name} (sample)", phone=phone))
     if code in STAFF_TYPES or business_group(code) == "service":
         from apps.employees.models import Employee
         if not Employee.objects.filter(company=company).exists():
             joined = timezone.localdate() - datetime.timedelta(days=180)
-            for i, (name, role, salary) in enumerate(data.STAFF):
+            phone = kit.local.get("staff_phone", "+974 5000 20{n:02d}")
+            for i, (name, role, salary) in enumerate(kit.local.get("staff", data.STAFF)):
                 kit.track(Employee.objects.create(company=company, name=f"{name} (sample)", role_title=role,
-                                                  phone=f"+974 5000 20{i + 1:02d}", salary=kit.money(salary),
+                                                  phone=phone.format(n=i + 1), salary=kit.money(salary),
                                                   joined_date=joined))
 
 

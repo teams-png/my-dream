@@ -97,7 +97,31 @@ SUBJECT_SAMPLES_BY_TYPE = {"computer_shop": ("HP LaserJet Pro M126nw", "VNC3K123
 
 # what the job card is (its title), where a business's job cards are something else
 TITLE_SAMPLES_BY_TYPE = {"bakery": "Chocolate truffle cake 1.5 kg", "laundry_dry_cleaning": "Wash & iron + dry clean", "optical_shop": "Eye test + new glasses", "computer_shop": "Toner refill + paper jam",
-                         "medical_clinic": "Fever and cough since 2 days", "dental_clinic": "Tooth pain – lower left"}
+                         "medical_clinic": "Fever and cough since 2 days", "dental_clinic": "Tooth pain – lower left",
+                         "auto_garage": "Oil change + brake check", "physiotherapy_center": "Back pain – 5 sessions",
+                         "diagnostic_laboratory": "Blood test – CBC + sugar", "veterinary_clinic": "Vaccination – dog",
+                         "home_nursing": "Post-surgery care – 7 days", "coworking_space": "Hot desk – 1 month",
+                         "nursery_daycare": "Daycare – full day, monthly", "school_training_institute": "Spoken English – batch admission",
+                         "driving_school": "Car licence – 20 classes", "wedding_party_hall": "Wedding reception – 300 guests",
+                         "event_management": "Birthday party decoration", "car_rental": "Sedan – 3 days",
+                         "equipment_rental": "Generator 30 kVA – 1 week", "repair_services": "Washing machine not spinning",
+                         "electronics_repair": "TV no display", "computer_repair": "Laptop slow + OS reinstall",
+                         "home_services": "Plumbing – kitchen tap leak", "pest_control": "Cockroach treatment – 2BHK",
+                         "moving_packing": "House shifting – 2BHK", "cleaning_equipment_service": "Pressure washer service",
+                         "interior_design": "Living room false ceiling", "landscaping_company": "Garden lawn + plants",
+                         "recruitment_agency": "2 drivers for a client", "cleaning_company": "Deep cleaning – 3BHK villa",
+                         "maintenance_company": "AC + electrical check – office", "facility_management": "Monthly building upkeep",
+                         "consultancy": "Business plan review", "accounting_audit": "GST filing – October",
+                         "law_firm": "Rental agreement drafting", "insurance_brokerage": "Car insurance renewal",
+                         "travel_agency": "Dubai visa + air ticket", "document_clearing": "Passport renewal",
+                         "real_estate_brokerage": "2BHK flat for rent", "photography_studio": "Wedding photo + video",
+                         "advertising_agency": "Shop signboard + flyers", "digital_marketing_agency": "Instagram ads – 1 month",
+                         "it_services": "Office network setup", "software_company": "Billing app customisation",
+                         "web_development": "Business website – 5 pages", "import_export": "Container clearance – spices",
+                         "manufacturing": "Order – 500 units", "industrial_services": "Motor rewinding",
+                         "logistics_transport": "Truck load Kochi → Bengaluru", "courier_delivery": "Parcel pickup + delivery",
+                         "tuition_center": "Class 10 maths – monthly", "hotel_apartment": "Room 204 – extra bed + cleaning",
+                         "ac_maintenance": "AC not cooling – 1.5 ton split"}
 
 
 def _subject_sample(name):

@@ -133,3 +133,13 @@ def test_examples_follow_the_company_country():
         assert form_hints.client_samples()["fields"]["phone"] == "+974 5555 1234"
     finally:
         form_hints.reset(token)
+
+
+def test_job_form_example_fits_the_business():
+    from apps.modules.catalog import BUSINESS_TYPE_MAP, business_group
+    from apps.webapp.job_views import JobForm
+    company, _ = _company("coworking_space")
+    assert JobForm(company=company).fields["title"].widget.attrs["placeholder"] == "e.g. Hot desk – 1 month"
+    # every job-board business has its own example, not a garage's
+    missing = [c for c in BUSINESS_TYPE_MAP if business_group(c) == "service" and c not in form_hints.TITLE_SAMPLES_BY_TYPE]
+    assert not missing, missing

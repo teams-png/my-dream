@@ -12,5 +12,5 @@ window.SITE = {
   instagram: "",                  // e.g. "https://instagram.com/looptechnologies"
   facebook: "",
   linkedin: "",
-  bookpilot_url: "https://bookpilot-web.onrender.com",  // where BookPilot runs
+  bookpilot_url: "https://bookpilot.looptechnologies.in",  // where BookPilot runs
 };

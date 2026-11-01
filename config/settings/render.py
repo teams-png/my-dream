@@ -4,9 +4,9 @@ import environ
 env = environ.Env()
 
 DEBUG = env.bool("DJANGO_DEBUG", default=False)
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".onrender.com"])
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".onrender.com", "bookpilot.looptechnologies.in"])
 
-CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=["https://*.onrender.com"])
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=["https://*.onrender.com", "https://bookpilot.looptechnologies.in"])
 
 DATABASES["default"] = env.db("DATABASE_URL")
 # Optional: keep database connections open and share them (psycopg pool). Off by default — turn on with DB_POOL=1

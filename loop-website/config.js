@@ -9,8 +9,9 @@ window.SITE = {
   domain: "looptechnologies.in",  // shown in the footer
   address: "Kerala, India",
   hours: "Monday – Saturday · 9:30 AM – 6:30 PM",
-  instagram: "",                  // e.g. "https://instagram.com/looptechnologies"
-  facebook: "",
+  instagram: "https://www.instagram.com/loop_technologies/",
+  facebook: "https://www.facebook.com/profile.php?id=61595876802445",
+  youtube: "https://www.youtube.com/@w3schoolmalayalam965",
   linkedin: "",
   bookpilot_url: "https://bookpilot.looptechnologies.in",  // where BookPilot runs
 };

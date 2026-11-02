@@ -43,7 +43,7 @@
     if (kind === "tel" && num) el.href = "tel:" + num.replace(/[^\d+]/g, "");
     if (kind === "mailto" && S.email) el.href = "mailto:" + S.email;
     if (kind === "wa" && wa) el.href = "https://wa.me/" + wa + (el.dataset.waText ? "?text=" + encodeURIComponent(el.dataset.waText) : "");
-    if (/^(instagram|facebook|linkedin)$/.test(kind) && S[kind]) el.href = S[kind];
+    if (/^(instagram|facebook|linkedin|youtube)$/.test(kind) && S[kind]) el.href = S[kind];
   });
   $all("[data-needs]").forEach(function (el) {
     var key = el.dataset.needs === "whatsapp" ? wa : S[el.dataset.needs];

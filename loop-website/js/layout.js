@@ -45,6 +45,7 @@
     '<a data-needs="email" data-site-href="mailto" href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>' +
     '<a data-needs="instagram" data-site-href="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>' +
     '<a data-needs="facebook" data-site-href="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>' +
+    '<a data-needs="youtube" data-site-href="youtube" href="#" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>' +
     '<a data-needs="linkedin" data-site-href="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a></div></div>' +
     '<div class="col-6 col-lg-2"><h4>Company</h4><ul class="list-unstyled small">' +
     '<li><a href="/about/">About us</a></li><li><a href="/work/">Our work</a></li><li><a href="/contact/">Contact</a></li><li><a href="/contact/?need=BookPilot%20free%20demo">Book a demo</a></li></ul></div>' +

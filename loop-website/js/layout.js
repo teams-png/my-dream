@@ -3,13 +3,13 @@
 (function () {
   var page = document.body.dataset.page || "";
   var links = [
-    ["index.html", "home", "Home"],
-    ["bookpilot.html", "bookpilot", "BookPilot"],
-    ["services.html", "services", "Services"],
-    ["ai.html", "ai", "AI Solutions"],
-    ["work.html", "work", "Our Work"],
-    ["about.html", "about", "About"],
-    ["contact.html", "contact", "Contact"]
+    ["/", "home", "Home"],
+    ["/bookpilot/", "bookpilot", "BookPilot"],
+    ["/services/", "services", "Services"],
+    ["/ai/", "ai", "AI Solutions"],
+    ["/work/", "work", "Our Work"],
+    ["/about/", "about", "About"],
+    ["/contact/", "contact", "Contact"]
   ];
   function nav() {
     return links.map(function (l) {
@@ -21,23 +21,23 @@
 
   var head = document.getElementById("siteNav");
   if (head) head.outerHTML =
-    '<div id="preloader" aria-hidden="true"><img src="assets/loop-mark-white.png" alt=""><div class="bar"></div></div>' +
+    '<div id="preloader" aria-hidden="true"><img src="/assets/loop-mark-white.png" alt=""><div class="bar"></div></div>' +
     '<div id="scrollBar" aria-hidden="true"></div>' +
     '<nav id="mainNav" class="navbar navbar-expand-xl fixed-top" aria-label="Main">' +
     '<div class="container">' +
-    '<a class="navbar-brand d-flex align-items-center gap-2" href="index.html" aria-label="Loop Technologies home">' +
-    '<img src="assets/loop-mark-white.png" alt="" class="brand-mark">' +
+    '<a class="navbar-brand d-flex align-items-center gap-2" href="/" aria-label="Loop Technologies home">' +
+    '<img src="/assets/loop-mark-white.png" alt="" class="brand-mark">' +
     '<span class="brand-text">Loop <b>Technologies</b></span></a>' +
     '<button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu">' +
     '<i class="bi bi-list fs-2"></i></button>' +
     '<div class="collapse navbar-collapse" id="navLinks"><ul class="navbar-nav ms-auto align-items-xl-center gap-xl-1">' + nav() +
-    '<li class="nav-item ms-xl-3 mt-2 mt-xl-0"><a class="btn btn-signal rounded-pill px-4" href="contact.html?need=BookPilot%20free%20demo"><i class="bi bi-calendar-check me-1"></i> Free demo</a></li>' +
+    '<li class="nav-item ms-xl-3 mt-2 mt-xl-0"><a class="btn btn-signal rounded-pill px-4" href="/contact/?need=BookPilot%20free%20demo"><i class="bi bi-calendar-check me-1"></i> Free demo</a></li>' +
     "</ul></div></div></nav>";
 
   var foot = document.getElementById("siteFooter");
   if (foot) foot.outerHTML =
     '<footer class="footer"><div class="container"><div class="row g-4">' +
-    '<div class="col-lg-4"><img src="assets/loop-logo-white.png" alt="Loop Technologies" width="96" height="106" class="mb-3 foot-logo">' +
+    '<div class="col-lg-4"><img src="/assets/loop-logo-white.png" alt="Loop Technologies" width="96" height="106" class="mb-3 foot-logo">' +
     '<p class="mb-1 fw-semibold text-white">Loop Technologies</p>' +
     '<p class="small">Makers of BookPilot business software. Websites, custom software, apps, design and AI for growing businesses.</p>' +
     '<div class="social mt-3"><a data-needs="whatsapp" data-site-href="wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>' +
@@ -47,14 +47,14 @@
     '<a data-needs="facebook" data-site-href="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>' +
     '<a data-needs="linkedin" data-site-href="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a></div></div>' +
     '<div class="col-6 col-lg-2"><h4>Company</h4><ul class="list-unstyled small">' +
-    '<li><a href="about.html">About us</a></li><li><a href="work.html">Our work</a></li><li><a href="contact.html">Contact</a></li><li><a href="contact.html?need=BookPilot%20free%20demo">Book a demo</a></li></ul></div>' +
+    '<li><a href="/about/">About us</a></li><li><a href="/work/">Our work</a></li><li><a href="/contact/">Contact</a></li><li><a href="/contact/?need=BookPilot%20free%20demo">Book a demo</a></li></ul></div>' +
     '<div class="col-6 col-lg-2"><h4>BookPilot</h4><ul class="list-unstyled small">' +
-    '<li><a href="bookpilot.html">Features</a></li><li><a href="bookpilot.html#industries">Industries</a></li>' +
-    '<li><a href="bookpilot.html#pricing">Pricing</a></li><li><a data-bp-link="/login/" href="bookpilot.html">Sign in</a></li></ul></div>' +
+    '<li><a href="/bookpilot/">Features</a></li><li><a href="/bookpilot/#industries">Industries</a></li>' +
+    '<li><a href="/contact/?need=BookPilot%20free%20demo">Get a demo</a></li><li><a data-bp-link="/login/" href="/bookpilot/">Sign in</a></li></ul></div>' +
     '<div class="col-6 col-lg-2"><h4>Services</h4><ul class="list-unstyled small">' +
-    '<li><a href="services.html#web">Web development</a></li><li><a href="services.html#software">Software development</a></li>' +
-    '<li><a href="services.html#apps">Mobile apps</a></li><li><a href="services.html#design">UI/UX &amp; design</a></li>' +
-    '<li><a href="ai.html">AI solutions</a></li><li><a href="services.html#marketing">Digital marketing</a></li></ul></div>' +
+    '<li><a href="/services/#web">Web development</a></li><li><a href="/services/#software">Software development</a></li>' +
+    '<li><a href="/services/#apps">Mobile apps</a></li><li><a href="/services/#design">UI/UX &amp; design</a></li>' +
+    '<li><a href="/ai/">AI solutions</a></li><li><a href="/services/#marketing">Digital marketing</a></li></ul></div>' +
     '<div class="col-6 col-lg-2"><h4>Contact</h4><ul class="list-unstyled small">' +
     '<li data-needs="phone"><a data-site="phone" data-site-href="tel" href="#" dir="ltr"></a></li>' +
     '<li data-needs="phone2"><a data-site="phone2" data-site-href="tel" data-tel-key="phone2" href="#" dir="ltr"></a></li>' +

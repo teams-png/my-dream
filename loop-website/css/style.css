@@ -403,3 +403,20 @@ a.cl-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color
 .cl-logo{grid-template-rows:1fr auto;gap:8px;height:auto;min-height:120px}
 .cl-name{font-size:.78rem;font-weight:600;color:var(--ink-soft);text-align:center;line-height:1.2}
 .cl-card .cl-host{color:var(--teal);font-weight:600;font-size:.8rem}
+
+/* CEO message */
+.ceo-card{
+  display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);align-items:center;
+  overflow:hidden;border-radius:var(--radius);background:linear-gradient(135deg,var(--night),var(--night-2));
+  color:#fff;box-shadow:var(--shadow)
+}
+.ceo-portrait{display:block;width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;object-position:55% 36%}
+.ceo-copy{padding:clamp(1.5rem,4vw,3.5rem)}
+.ceo-quote{margin:0 0 1.5rem;font-size:clamp(1.15rem,2.2vw,1.65rem);line-height:1.5}
+.ceo-quote p{margin:0}
+.ceo-name{display:block;font-weight:800;font-size:1.15rem}
+.ceo-role{display:block;color:#ddd2ff;font-size:.9rem}
+@media (max-width:767.98px){
+  .ceo-card{grid-template-columns:1fr}
+  .ceo-portrait{height:auto;max-height:340px}
+}

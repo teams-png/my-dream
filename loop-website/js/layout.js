@@ -5,6 +5,7 @@
   var links = [
     ["/", "home", "Home"],
     ["/bookpilot/", "bookpilot", "BookPilot"],
+    ["https://bookpilot.looptechnologies.in/guide/", "guide", "User Guide"],
     ["/services/", "services", "Services"],
     ["/ai/", "ai", "AI Solutions"],
     ["/work/", "work", "Our Work"],
@@ -50,7 +51,7 @@
     '<div class="col-6 col-lg-2"><h4>Company</h4><ul class="list-unstyled small">' +
     '<li><a href="/about/">About us</a></li><li><a href="/work/">Our work</a></li><li><a href="/contact/">Contact</a></li><li><a href="/contact/?need=BookPilot%20free%20demo">Book a demo</a></li></ul></div>' +
     '<div class="col-6 col-lg-2"><h4>BookPilot</h4><ul class="list-unstyled small">' +
-    '<li><a href="/bookpilot/">Features</a></li><li><a href="/bookpilot/#industries">Industries</a></li>' +
+    '<li><a href="/bookpilot/">Features</a></li><li><a href="/bookpilot/#industries">Industries</a></li><li><a href="https://bookpilot.looptechnologies.in/guide/">User Guide</a></li>' +
     '<li><a href="/contact/?need=BookPilot%20free%20demo">Get a demo</a></li><li><a data-bp-link="/login/" href="/bookpilot/">Sign in</a></li></ul></div>' +
     '<div class="col-6 col-lg-2"><h4>Services</h4><ul class="list-unstyled small">' +
     '<li><a href="/services/#web">Web development</a></li><li><a href="/services/#software">Software development</a></li>' +

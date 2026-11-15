@@ -33,6 +33,10 @@
         <p class="lead mb-4 reveal d2">Billing, stock, customers, staff and reports for shops, boutiques, restaurants, salons and service businesses. Open it on any computer, tablet or phone.</p>
         <div class="d-flex flex-wrap gap-3 reveal d3">
           <a class="btn btn-signal btn-lg rounded-pill" data-bp-link="/signup/" href="/contact/?need=BookPilot%20free%20demo"><i class="bi bi-rocket-takeoff me-1"></i> Start 3-day free trial</a>
+          <button class="btn btn-ghost btn-lg rounded-pill" type="button" data-bs-toggle="modal" data-bs-target="#bookpilotInstall">
+            <span class="d-none d-md-inline"><i class="bi bi-pc-display me-1" aria-hidden="true"></i> Install Desktop App</span>
+            <span class="d-md-none"><i class="bi bi-phone me-1" aria-hidden="true"></i> Install Mobile App</span>
+          </button>
           <a class="btn btn-ghost btn-lg rounded-pill" href="/contact/?need=BookPilot%20free%20demo">Get a free demo</a>
         </div>
         <div class="hero-points mt-4 reveal d4"><span><i class="bi bi-check-circle-fill"></i>No card needed</span><span><i class="bi bi-check-circle-fill"></i>Free owner login</span><span><i class="bi bi-check-circle-fill"></i>Set up in a day</span></div>
@@ -202,6 +206,31 @@
     </div>
   </div>
 </div></section>
+
+<div class="modal fade" id="bookpilotInstall" tabindex="-1" aria-labelledby="bookpilotInstallTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="bookpilotInstallTitle">Install BookPilot</h2>
+        <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Open BookPilot in the browser on the device where you want to install it.</p>
+        <ul class="d-none d-md-block mb-0 ps-3">
+          <li class="mb-2"><strong>Windows or Mac with Chrome or Edge</strong> — Choose the install icon in the address bar or look for Install in the browser menu.</li>
+          <li><strong>Mac with Safari</strong> — Choose File → Add to Dock.</li>
+          </ul>
+        <ul class="d-md-none mb-0 ps-3">
+          <li class="mb-2"><strong>Android with Chrome</strong> — Tap ⋮ → Add to Home screen → Install.</li>
+          <li><strong>iPhone or iPad with Safari</strong> — Tap Share → Add to Home Screen, turn on Open as Web App if shown, then tap Add.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-signal rounded-pill" href="https://bookpilot.looptechnologies.in/">Open BookPilot</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="siteFooter"></div><script src="/js/layout.js"></script>
 <script src="/vendor/bootstrap/bootstrap.bundle.min.js"></script>
